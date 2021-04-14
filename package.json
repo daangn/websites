@@ -1,0 +1,19 @@
+{
+  "name": "@daangn/websites",
+  "private": true,
+  "version": "0.0.0",
+  "main": "index.js",
+  "workspaces": [
+    "_packages/**",
+    "team.daangn.com"
+  ],
+  "resolutions": {
+    "react": "0.0.0-experimental-ea155e226",
+    "react-dom": "0.0.0-experimental-ea155e226"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.37",
+    "@yarnpkg/pnpify": "^3.0.0-rc.3",
+    "typescript": "^4.2.4"
+  }
+}
