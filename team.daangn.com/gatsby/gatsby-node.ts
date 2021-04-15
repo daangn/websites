@@ -1,5 +1,9 @@
+/// <reference path="../src/__generated__/gatsby-types.d.ts" />;
+
 import type { GatsbyNode, Node } from 'gatsby';
 import { Option } from '@cometjs/core';
+import cheerio from 'cheerio';
+import { decode as decodeEntities } from 'html-entities';
 
 interface NormalizedAPI<T1, T2, Return> {
   (t1: T1, t2: T2): Return | Promise<Return>;
@@ -31,7 +35,37 @@ export const onCreateBabelConfig: NormalizeAPI<'onCreateBabelConfig'> = ({
 
 export const createSchemaCustomization: NormalizeAPI<'createSchemaCustomization'> = ({
   actions,
+  schema,
+  reporter,
 }) => {
+  actions.createTypes(
+    schema.buildInterfaceType({
+      name: 'JobPostContentSection',
+      resolveType: (source: { tagName: string }) => {
+        switch (source.tagName) {
+          case 'p':
+            return 'JobPostContentParagraphSection';
+          case 'ol':
+            return 'JobPostContentOrderedListSection';
+          case 'ul':
+            return 'JobPostContentUnorderedListSection';
+          default:
+            reporter.panic(`<${source.tagName}> is not supported`);
+        }
+      },
+      fields: {
+        title: {
+          type: 'String!',
+        },
+        level: {
+          type: 'HeadingLevel!',
+        },
+        rawContent: {
+          type: 'String!',
+        },
+      },
+    }),
+  );
   actions.createTypes(gql`
     enum JobEmploymentType {
       FULL_TIME
@@ -50,6 +84,45 @@ export const createSchemaCustomization: NormalizeAPI<'createSchemaCustomization'
       WHATEVER
     }
 
+    enum HeadingLevel {
+      H1
+      H2
+      H3
+      H4
+      H5
+      H6
+    }
+
+    type JobPostContentUnorderedListSection implements JobPostContentSection {
+      title: String!
+      level: HeadingLevel!
+
+      # HTML content (unsafe)
+      rawContent: String!
+
+      items: [String!]!
+    }
+
+    type JobPostContentOrderedListSection implements JobPostContentSection {
+      title: String!
+      level: HeadingLevel!
+
+      # HTML content (unsafe)
+      rawContent: String!
+
+      items: [String!]!
+    }
+
+    type JobPostContentParagraphSection implements JobPostContentSection {
+      title: String!
+      level: HeadingLevel!
+
+      # HTML content (unsafe)
+      rawContent: String!
+
+      paragraph: String!
+    }
+
     type JobPost implements Node
       @dontInfer
       @childOf(types: ["GreenhouseJob"]) {
@@ -57,6 +130,12 @@ export const createSchemaCustomization: NormalizeAPI<'createSchemaCustomization'
       title: String!
 
       boardUrl: String!
+
+      # Parsed content
+      content: [JobPostContentSection!]!
+
+      # HTML content (unsafe)
+      rawContent: String!
 
       # 고용 형태
       employmentType: JobEmploymentType!
@@ -162,12 +241,19 @@ export const onCreateNode: NormalizeAPI<'onCreateNode'> = ({
     });
   }
 
+  const $ = cheerio.load(decodeEntities(node.content), null, false);
+  $('.content-intro').remove();
+  $('.content-conclusion').remove();
+
   // NOTE: 몇 필드들은 required 지만 나중에 추가 되서 값이 없을 수 있음
   // 일단 기본값을 넣어 두지만 최종적으로는 그린하우스에서 모두 값을 제공해야함
-  const content = {
+  const jobPostNodeSource = {
     title: node.title,
 
     boardUrl: node.boardUrl,
+
+    rawContent: $.root().html(),
+    content: [...extractSections($)],
 
     // FIXME: required, 값 없으면 일단 정규직 지원인 셈 침
     employmentType: employmentType(node) ?? 'FULL_TIME',
@@ -187,9 +273,9 @@ export const onCreateNode: NormalizeAPI<'onCreateNode'> = ({
     id: createNodeId(`${node.id} >>> JobPost`),
     internal: {
       type: 'JobPost',
-      contentDigest: createContentDigest(content),
+      contentDigest: createContentDigest(jobPostNodeSource),
     },
-    ...content,
+    ...jobPostNodeSource,
   };
 
   actions.createNode(jobPostNode);
@@ -199,3 +285,54 @@ export const onCreateNode: NormalizeAPI<'onCreateNode'> = ({
     child: jobPostNode as unknown as Node,
   });
 };
+
+function *extractSections($: cheerio.Root) {
+  const heading = 'h1,h2,h3,h4,h5,h6';
+
+  let $cursor = $.root().children(heading).first();
+  while ($cursor.length) {
+    const $body = $cursor.next();
+
+    const headingElement = $cursor.get(0);
+    const bodyElement = $body.get(0);
+    if (!(headingElement && bodyElement)) {
+      return;
+    }
+
+    const title = $cursor.text();
+    const level = headingElement.tagName.toUpperCase();
+
+    switch (bodyElement.tagName.toLowerCase()) {
+      case 'p':
+        yield {
+          tagName: 'p',
+          title,
+          level,
+          rawContent: $body.html(),
+          paragraph: $body.text(),
+        } as const;
+        break;
+      case 'ol':
+        yield {
+          tagName: 'ol',
+          title,
+          level,
+          rawContent: $body.html(),
+          items: $body.children('li').map(function () { return $(this).text() }).get(),
+        } as const;
+        break;
+      case 'ul':
+        yield {
+          tagName: 'ul',
+          title,
+          level,
+          rawContent: $body.html(),
+          items: $body.children('li').map(function () { return $(this).text() }).get(),
+        } as const;
+        break;
+      // Add more sections...
+    }
+
+    $cursor = $body.next(heading);
+  }
+}

@@ -251,6 +251,8 @@ type Directory_ctimeArgs = {
 type Site = Node & {
   readonly buildTime: Maybe<Scalars['Date']>;
   readonly siteMetadata: Maybe<SiteSiteMetadata>;
+  readonly port: Maybe<Scalars['Int']>;
+  readonly host: Maybe<Scalars['String']>;
   readonly flags: Maybe<SiteFlags>;
   readonly polyfill: Maybe<Scalars['Boolean']>;
   readonly pathPrefix: Maybe<Scalars['String']>;
@@ -592,6 +594,11 @@ type GreenhouseJobCustomFieldMetadata = {
   readonly value: Maybe<Scalars['String']>;
 };
 
+type JobPostContentSection = {
+  readonly title: Scalars['String'];
+  readonly level: HeadingLevel;
+};
+
 type JobEmploymentType =
   | 'FULL_TIME'
   | 'CONTRACTOR'
@@ -602,9 +609,37 @@ type JobPriorExperience =
   | 'NO'
   | 'WHATEVER';
 
+type HeadingLevel =
+  | 'H1'
+  | 'H2'
+  | 'H3'
+  | 'H4'
+  | 'H5'
+  | 'H6';
+
+type JobPostContentUnorderedListSection = JobPostContentSection & {
+  readonly title: Scalars['String'];
+  readonly level: HeadingLevel;
+  readonly items: ReadonlyArray<Scalars['String']>;
+};
+
+type JobPostContentOrderedListSection = JobPostContentSection & {
+  readonly title: Scalars['String'];
+  readonly level: HeadingLevel;
+  readonly items: ReadonlyArray<Scalars['String']>;
+};
+
+type JobPostContentParagraphSection = JobPostContentSection & {
+  readonly title: Scalars['String'];
+  readonly level: HeadingLevel;
+  readonly paragraph: Scalars['String'];
+};
+
 type JobPost = Node & {
   readonly title: Scalars['String'];
   readonly boardUrl: Scalars['String'];
+  readonly content: ReadonlyArray<JobPostContentSection>;
+  readonly rawContent: Scalars['String'];
   readonly employmentType: JobEmploymentType;
   readonly alternativeCivilianService: Scalars['Boolean'];
   readonly priorExperience: JobPriorExperience;
@@ -821,6 +856,8 @@ type Query_allDirectoryArgs = {
 type Query_siteArgs = {
   buildTime: Maybe<DateQueryOperatorInput>;
   siteMetadata: Maybe<SiteSiteMetadataFilterInput>;
+  port: Maybe<IntQueryOperatorInput>;
+  host: Maybe<StringQueryOperatorInput>;
   flags: Maybe<SiteFlagsFilterInput>;
   polyfill: Maybe<BooleanQueryOperatorInput>;
   pathPrefix: Maybe<StringQueryOperatorInput>;
@@ -912,6 +949,8 @@ type Query_allGreenhouseJobArgs = {
 type Query_jobPostArgs = {
   title: Maybe<StringQueryOperatorInput>;
   boardUrl: Maybe<StringQueryOperatorInput>;
+  content: Maybe<JobPostContentSectionFilterListInput>;
+  rawContent: Maybe<StringQueryOperatorInput>;
   employmentType: Maybe<JobEmploymentTypeQueryOperatorInput>;
   alternativeCivilianService: Maybe<BooleanQueryOperatorInput>;
   priorExperience: Maybe<JobPriorExperienceQueryOperatorInput>;
@@ -1708,6 +1747,8 @@ type SiteFieldsEnum =
   | 'buildTime'
   | 'siteMetadata.title'
   | 'siteMetadata.description'
+  | 'port'
+  | 'host'
   | 'flags.FAST_DEV'
   | 'flags.QUERY_ON_DEMAND'
   | 'flags.LAZY_IMAGES'
@@ -1813,6 +1854,8 @@ type SiteGroupConnection = {
 type SiteFilterInput = {
   readonly buildTime: Maybe<DateQueryOperatorInput>;
   readonly siteMetadata: Maybe<SiteSiteMetadataFilterInput>;
+  readonly port: Maybe<IntQueryOperatorInput>;
+  readonly host: Maybe<StringQueryOperatorInput>;
   readonly flags: Maybe<SiteFlagsFilterInput>;
   readonly polyfill: Maybe<BooleanQueryOperatorInput>;
   readonly pathPrefix: Maybe<StringQueryOperatorInput>;
@@ -2320,6 +2363,8 @@ type JobPostFilterListInput = {
 type JobPostFilterInput = {
   readonly title: Maybe<StringQueryOperatorInput>;
   readonly boardUrl: Maybe<StringQueryOperatorInput>;
+  readonly content: Maybe<JobPostContentSectionFilterListInput>;
+  readonly rawContent: Maybe<StringQueryOperatorInput>;
   readonly employmentType: Maybe<JobEmploymentTypeQueryOperatorInput>;
   readonly alternativeCivilianService: Maybe<BooleanQueryOperatorInput>;
   readonly priorExperience: Maybe<JobPriorExperienceQueryOperatorInput>;
@@ -2329,6 +2374,22 @@ type JobPostFilterInput = {
   readonly parent: Maybe<NodeFilterInput>;
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
+};
+
+type JobPostContentSectionFilterListInput = {
+  readonly elemMatch: Maybe<JobPostContentSectionFilterInput>;
+};
+
+type JobPostContentSectionFilterInput = {
+  readonly title: Maybe<StringQueryOperatorInput>;
+  readonly level: Maybe<HeadingLevelQueryOperatorInput>;
+};
+
+type HeadingLevelQueryOperatorInput = {
+  readonly eq: Maybe<HeadingLevel>;
+  readonly ne: Maybe<HeadingLevel>;
+  readonly in: Maybe<ReadonlyArray<Maybe<HeadingLevel>>>;
+  readonly nin: Maybe<ReadonlyArray<Maybe<HeadingLevel>>>;
 };
 
 type JobEmploymentTypeQueryOperatorInput = {
@@ -2386,6 +2447,10 @@ type GreenhouseJobFieldsEnum =
   | 'childrenJobPost'
   | 'childrenJobPost.title'
   | 'childrenJobPost.boardUrl'
+  | 'childrenJobPost.content'
+  | 'childrenJobPost.content.title'
+  | 'childrenJobPost.content.level'
+  | 'childrenJobPost.rawContent'
   | 'childrenJobPost.employmentType'
   | 'childrenJobPost.alternativeCivilianService'
   | 'childrenJobPost.priorExperience'
@@ -2431,6 +2496,10 @@ type GreenhouseJobFieldsEnum =
   | 'childrenJobPost.internal.type'
   | 'childJobPost.title'
   | 'childJobPost.boardUrl'
+  | 'childJobPost.content'
+  | 'childJobPost.content.title'
+  | 'childJobPost.content.level'
+  | 'childJobPost.rawContent'
   | 'childJobPost.employmentType'
   | 'childJobPost.alternativeCivilianService'
   | 'childJobPost.priorExperience'
@@ -2620,6 +2689,10 @@ type JobPostEdge = {
 type JobPostFieldsEnum =
   | 'title'
   | 'boardUrl'
+  | 'content'
+  | 'content.title'
+  | 'content.level'
+  | 'rawContent'
   | 'employmentType'
   | 'alternativeCivilianService'
   | 'priorExperience'
@@ -3054,5 +3127,10 @@ type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = Pick<ImageSharpFluid, 't
 type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
 }
