@@ -12,7 +12,9 @@
     "react-dom": "0.0.0-experimental-ea155e226"
   },
   "scripts": {
-    "postinstall": "ultra --recursive --filter \"_packages/*\" build"
+    "postinstall": "yarn init:plugins && yarn init:sites",
+    "init:plugins": "ultra --recursive --filter \"_packages/*\" build",
+    "init:sites": "ultra --recursive prepare-gatsby"
   },
   "devDependencies": {
     "@types/node": "^14.14.37",
