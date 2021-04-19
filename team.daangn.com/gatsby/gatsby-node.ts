@@ -1,7 +1,12 @@
 /// <reference path="../src/__generated__/gatsby-types.d.ts" />;
 
-import type { GatsbyNode, Node } from 'gatsby';
+import type {
+  GatsbyNode,
+  Node,
+  NodeInput,
+} from 'gatsby';
 import { Option } from '@cometjs/core';
+import type { GreenhouseJob } from '@karrotmarket/gatsby-source-greenhouse-job-board/types';
 import cheerio from 'cheerio';
 import { decode as decodeEntities } from 'html-entities';
 
@@ -161,7 +166,11 @@ export const onCreateNode: NormalizeAPI<'onCreateNode'> = ({
   createContentDigest,
   reporter,
 }) => {
-  type GreenhouseJobNode = Node & GatsbyTypes.GreenhouseJob;
+  type GreenhouseJobNode = (
+    & Node
+    & Omit<GreenhouseJob, 'id'>
+    & { ghId: number }
+  );
 
   function isGreenhouseJobNode(node: Node): node is GreenhouseJobNode {
     return node.internal.type === 'GreenhouseJob';
@@ -171,24 +180,30 @@ export const onCreateNode: NormalizeAPI<'onCreateNode'> = ({
     return;
   }
 
-  function findMetadataById(node: GreenhouseJobNode, id: string) {
+  function findMetadataById(node: GreenhouseJobNode, id: number) {
     return Option.map(
       node.metadata.find(v => v.id === id),
       metadata => ({
-        type: metadata.type,
+        type: metadata.value_type,
         value: metadata.value,
       } as const),
     );
   }
 
   function employmentType(node: GreenhouseJobNode) {
-    const fieldId = '503398003';
+    const fieldId = 503398003;
     const field = findMetadataById(node, fieldId);
     return Option.map(field, field => {
       switch (field.value) {
         case '정규직': return 'FULL_TIME';
         case '계약직': return 'CONTRACTOR';
         case '인턴': return 'INTERN';
+        case null: {
+          reporter.warn(reporter.stripIndent`
+            Employment Type 필드 값이 비어있습니다. (Greenhouse ID: ${node.ghId})
+          `);
+          return 'FULL_TIME';
+        }
         default:
           reporter.panic(reporter.stripIndent`
             알 수 없는 Employment Type 필드 값 입니다. 값: ${field.value}
@@ -202,33 +217,44 @@ export const onCreateNode: NormalizeAPI<'onCreateNode'> = ({
   }
 
   function alternativeCivilianService(node: GreenhouseJobNode) {
-    const fieldId = '5784622003';
+    const fieldId = 5784622003;
     const field = findMetadataById(node, fieldId);
     return Option.map(field, field => {
-      switch (field.value) {
-        case 'yes': return true;
-        case 'no': return false;
-        case null:
-        default:
-          reporter.panic(reporter.stripIndent`
-            Alternative Civilian Service 필드 값이 올바르지 않습니다. 값: ${field.value}
-
-            Greenhouse 에서 커스텀 필드 형식을 확인하고 코드를 올바르게 변경해주세요.
-
-            See https://app3.greenhouse.io/custom_fields/jobs/${fieldId}
+      if (field.type === 'yes_no') {
+        if (field.value == null) {
+          reporter.warn(reporter.stripIndent`
+            Alternative Civilian Service 필드 값이 비어있습니다. (Greenhouse ID: ${node.ghId})
           `);
+          return false;
+        }
+        if (typeof field.value === 'boolean') {
+          return field.value;
+        }
       }
+      reporter.panic(reporter.stripIndent`
+        Alternative Civilian Service 필드 값이 올바르지 않습니다. 값: ${field.value}
+
+        Greenhouse 에서 커스텀 필드 형식을 확인하고 코드를 올바르게 변경해주세요.
+
+        See https://app3.greenhouse.io/custom_fields/jobs/${fieldId}
+      `);
     });
   }
 
   function priorExperience(node: GreenhouseJobNode) {
-    const fieldId = '5784623003';
+    const fieldId = 5784623003;
     const field = findMetadataById(node, fieldId);
     return Option.map(field, field => {
       switch (field.value) {
         case '경력': return 'YES';
         case '신입': return 'NO';
         case '신입/경력': return 'WHATEVER';
+        case null: {
+            reporter.warn(reporter.stripIndent`
+              Prior Experience 필드 값이 비어있습니다. (Greenhouse Id: ${node.ghId})
+            `);
+          return 'YES';
+        }
         default:
           reporter.panic(reporter.stripIndent`
             Prior Experience 필드 값이 올바르지 않습니다. 값: ${field.value}
@@ -250,27 +276,27 @@ export const onCreateNode: NormalizeAPI<'onCreateNode'> = ({
   const jobPostNodeSource = {
     title: node.title,
 
-    boardUrl: node.boardUrl,
+    boardUrl: node.absolute_url,
 
     rawContent: $.root().html(),
     content: [...extractSections($)],
 
-    // FIXME: required, 값 없으면 일단 정규직 지원인 셈 침
-    employmentType: employmentType(node) ?? 'FULL_TIME',
-    // FIXME: required, 값 없으면 일단 산업기능요원 못하는 셈 침
-    alternativeCivilianService: alternativeCivilianService(node) ?? false,
-    // FIXME: required, 값 없으면 일단 경력 채용인 셈 침
-    priorExperience: priorExperience(node) ?? 'YES',
-    // FIXME: required, 값 없으면 empty?
-    chapter: findMetadataById(node, '6008743003') ?? '',
+    employmentType: employmentType(node),
+    alternativeCivilianService: alternativeCivilianService(node),
+    priorExperience: priorExperience(node),
+    // FIXME
+    chapter: findMetadataById(node, 6008743003) ?? '',
+    // FIXME
     keywords: Option.map(
-      findMetadataById(node, '6008744003'),
-      ({ value }) => value?.split(',').map(part => part.trim()),
+      findMetadataById(node, 6008744003),
+      ({ value }) => typeof value === 'string' && value?.split(',').map(part => part.trim()),
     ) ?? [],
   };
 
-  const jobPostNode = {
+  const jobPostNode: NodeInput = {
     id: createNodeId(`${node.id} >>> JobPost`),
+    parent: node.id,
+    children: [],
     internal: {
       type: 'JobPost',
       contentDigest: createContentDigest(jobPostNodeSource),

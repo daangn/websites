@@ -597,6 +597,7 @@ type GreenhouseJobCustomFieldMetadata = {
 type JobPostContentSection = {
   readonly title: Scalars['String'];
   readonly level: HeadingLevel;
+  readonly rawContent: Scalars['String'];
 };
 
 type JobEmploymentType =
@@ -620,18 +621,21 @@ type HeadingLevel =
 type JobPostContentUnorderedListSection = JobPostContentSection & {
   readonly title: Scalars['String'];
   readonly level: HeadingLevel;
+  readonly rawContent: Scalars['String'];
   readonly items: ReadonlyArray<Scalars['String']>;
 };
 
 type JobPostContentOrderedListSection = JobPostContentSection & {
   readonly title: Scalars['String'];
   readonly level: HeadingLevel;
+  readonly rawContent: Scalars['String'];
   readonly items: ReadonlyArray<Scalars['String']>;
 };
 
 type JobPostContentParagraphSection = JobPostContentSection & {
   readonly title: Scalars['String'];
   readonly level: HeadingLevel;
+  readonly rawContent: Scalars['String'];
   readonly paragraph: Scalars['String'];
 };
 
@@ -2383,6 +2387,7 @@ type JobPostContentSectionFilterListInput = {
 type JobPostContentSectionFilterInput = {
   readonly title: Maybe<StringQueryOperatorInput>;
   readonly level: Maybe<HeadingLevelQueryOperatorInput>;
+  readonly rawContent: Maybe<StringQueryOperatorInput>;
 };
 
 type HeadingLevelQueryOperatorInput = {
@@ -2450,6 +2455,7 @@ type GreenhouseJobFieldsEnum =
   | 'childrenJobPost.content'
   | 'childrenJobPost.content.title'
   | 'childrenJobPost.content.level'
+  | 'childrenJobPost.content.rawContent'
   | 'childrenJobPost.rawContent'
   | 'childrenJobPost.employmentType'
   | 'childrenJobPost.alternativeCivilianService'
@@ -2499,6 +2505,7 @@ type GreenhouseJobFieldsEnum =
   | 'childJobPost.content'
   | 'childJobPost.content.title'
   | 'childJobPost.content.level'
+  | 'childJobPost.content.rawContent'
   | 'childJobPost.rawContent'
   | 'childJobPost.employmentType'
   | 'childJobPost.alternativeCivilianService'
@@ -2692,6 +2699,7 @@ type JobPostFieldsEnum =
   | 'content'
   | 'content.title'
   | 'content.level'
+  | 'content.rawContent'
   | 'rawContent'
   | 'employmentType'
   | 'alternativeCivilianService'

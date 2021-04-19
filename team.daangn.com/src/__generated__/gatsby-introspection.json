@@ -5451,6 +5451,22 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "rawContent",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -5621,6 +5637,22 @@
             "deprecationReason": null
           },
           {
+            "name": "rawContent",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "items",
             "description": null,
             "args": [],
@@ -5695,6 +5727,22 @@
             "deprecationReason": null
           },
           {
+            "name": "rawContent",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "items",
             "description": null,
             "args": [],
@@ -5762,6 +5810,22 @@
               "ofType": {
                 "kind": "ENUM",
                 "name": "HeadingLevel",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "rawContent",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -19925,6 +19989,18 @@
             "defaultValue": null,
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "rawContent",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -20491,6 +20567,12 @@
             "deprecationReason": null
           },
           {
+            "name": "childrenJobPost___content___rawContent",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "childrenJobPost___rawContent",
             "description": null,
             "isDeprecated": false,
@@ -20780,6 +20862,12 @@
           },
           {
             "name": "childJobPost___content___level",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "childJobPost___content___rawContent",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -22172,6 +22260,12 @@
           },
           {
             "name": "content___level",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "content___rawContent",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null

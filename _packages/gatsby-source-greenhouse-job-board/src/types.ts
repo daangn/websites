@@ -6,23 +6,37 @@ export type GreenhouseJob = {
   metadata: GreenhouseJobCustomFieldMetadata[],
 };
 
-export type GreenhouseJobCustomFieldMetadata = {
-  id: number,
-  name: string,
-  value_type: GreenhouseJobCustomFieldValueType,
-  value: string | null,
-};
+export type GreenhouseJobCustomFieldMetadata = (
+  | {
+    id: number,
+    name: string,
+    value_type: GreenhouseJobCustomFieldValueTypeString,
+    value: string | boolean | null,
+  }
+  | {
+    id: number,
+    name: string,
+    value_type: GreenhouseJobCustomFieldValueTypeBoolean,
+    value: boolean | null,
+  }
+);
 
-export type GreenhouseJobCustomFieldValueType = (
+type GreenhouseJobCustomFieldValueTypeString = (
   | 'short_text'
   | 'long_text'
   | 'single_select'
   | 'multi_select'
-  | 'yes_no'
   | 'currency'
   | 'date'
   | 'url'
   | 'user'
   | 'currency_range'
   | 'number_range'
+);
+type GreenhouseJobCustomFieldValueTypeBoolean = (
+  | 'yes_no'
+);
+export type GreenhouseJobCustomFieldValueType = (
+  | GreenhouseJobCustomFieldValueTypeString
+  | GreenhouseJobCustomFieldValueTypeBoolean
 );

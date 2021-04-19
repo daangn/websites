@@ -2480,6 +2480,7 @@ __metadata:
     "@babel/runtime": ^7.13.10
     "@types/node": ^14.14.37
     babel-preset-gatsby-package: ^1.3.0
+    concurrently: ^6.0.2
     gatsby: ^3.3.0
     got: ^11.8.2
     typescript: ^4.2.4
@@ -2994,6 +2995,13 @@ __metadata:
   version: 8.10.66
   resolution: "@types/node@npm:8.10.66"
   checksum: d4f105d5c90fb4ed7437e136b47c0972c937aa680fb0b6665ff8fc1307796a42355417146e045873e83af3f7c0ac70b009442bad3a33c9023001be38ff47c7af
+  languageName: node
+  linkType: hard
+
+"@types/normalize-package-data@npm:^2.4.0":
+  version: 2.4.0
+  resolution: "@types/normalize-package-data@npm:2.4.0"
+  checksum: 6d077e73be7ac6227b678829c7bd765607136cdef537fd4ee7f368d9302a651aea924254d69826663322048436d90d6e7c679c9aa99c4824a687c568aab8ce4f
   languageName: node
   linkType: hard
 
@@ -5593,6 +5601,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"concurrently@npm:^6.0.2":
+  version: 6.0.2
+  resolution: "concurrently@npm:6.0.2"
+  dependencies:
+    chalk: ^4.1.0
+    date-fns: ^2.16.1
+    lodash: ^4.17.21
+    read-pkg: ^5.2.0
+    rxjs: ^6.6.3
+    spawn-command: ^0.0.2-1
+    supports-color: ^8.1.0
+    tree-kill: ^1.2.2
+    yargs: ^16.2.0
+  bin:
+    concurrently: bin/concurrently.js
+  checksum: 2bb8892c8948bcfd8bd4079d720507acb3e49fdb5a4ad4e315f4ffdc768fb8cc7f3b25a1e98fbd7734efe6a8c86a5bd0f77001a212bd2db4ce67f05d0868f326
+  languageName: node
+  linkType: hard
+
 "config-chain@npm:^1.1.11":
   version: 1.1.12
   resolution: "config-chain@npm:1.1.12"
@@ -6219,6 +6246,13 @@ __metadata:
   version: 2.21.0
   resolution: "date-fns@npm:2.21.0"
   checksum: 1f9d9ca83dbb525c83f749f4b286dbb4efb09a1ab337f8fecb92552a351accec439a298c4bc63a55dfcfff863d42ba303d0ccd74d5fcd199fdfb43fd0698449b
+  languageName: node
+  linkType: hard
+
+"date-fns@npm:^2.16.1":
+  version: 2.21.1
+  resolution: "date-fns@npm:2.21.1"
+  checksum: 00a2ddea1047c4ce6eaadda76a0ee0782d1cfe65061641bbff94f7a70d2d6ab12dac89e027b39d49710bdb2cf264bc1a4e096b0324c7de79699296a4c19f4a40
   languageName: node
   linkType: hard
 
@@ -12844,7 +12878,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"normalize-package-data@npm:^2.3.2, normalize-package-data@npm:^2.3.4":
+"normalize-package-data@npm:^2.3.2, normalize-package-data@npm:^2.3.4, normalize-package-data@npm:^2.5.0":
   version: 2.5.0
   resolution: "normalize-package-data@npm:2.5.0"
   dependencies:
@@ -15078,6 +15112,18 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
+"read-pkg@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "read-pkg@npm:5.2.0"
+  dependencies:
+    "@types/normalize-package-data": ^2.4.0
+    normalize-package-data: ^2.5.0
+    parse-json: ^5.0.0
+    type-fest: ^0.6.0
+  checksum: 641102f0955f64304f97ed388bfe3b7ce55d74b1ffe1be06be1ae75479ce4910aa7177460d1982af6963f80b293a25f25d593a52a4328d941fd9b7d89fde2dbf
+  languageName: node
+  linkType: hard
+
 "read@npm:^1.0.7":
   version: 1.0.7
   resolution: "read@npm:1.0.7"
@@ -15693,7 +15739,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"rxjs@npm:^6.6.0":
+"rxjs@npm:^6.6.0, rxjs@npm:^6.6.3":
   version: 6.6.7
   resolution: "rxjs@npm:6.6.7"
   dependencies:
@@ -16401,6 +16447,13 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
+"spawn-command@npm:^0.0.2-1":
+  version: 0.0.2
+  resolution: "spawn-command@npm:0.0.2"
+  checksum: 961fb1551f2d5848509ec661f639c515e582034b010724fcaad6949148e21c50226e30889dd710a70dce25c4ba43437665aad621fc37c0f8a75fa9ec3e46a69f
+  languageName: node
+  linkType: hard
+
 "spdx-correct@npm:^3.0.0":
   version: 3.1.1
   resolution: "spdx-correct@npm:3.1.1"
@@ -16985,6 +17038,15 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
+"supports-color@npm:^8.1.0":
+  version: 8.1.1
+  resolution: "supports-color@npm:8.1.1"
+  dependencies:
+    has-flag: ^4.0.0
+  checksum: 0219f5c91753fea8dc8046cd4b18d39458b5dc0c6421c67c1072209faae9ba93b89283252e3b05d5c18901fd9f8b95001e3247fb93e2265f66d584a676522c75
+  languageName: node
+  linkType: hard
+
 "svgo@npm:1.3.2, svgo@npm:^1.0.0":
   version: 1.3.2
   resolution: "svgo@npm:1.3.2"
@@ -17405,6 +17467,15 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
+"tree-kill@npm:^1.2.2":
+  version: 1.2.2
+  resolution: "tree-kill@npm:1.2.2"
+  bin:
+    tree-kill: cli.js
+  checksum: 967643efa4a231868232ea9d046c3ba7494ea6061fbb1e661c699b43ca0f0a14dad0782a631d915959d562830035166bab80ed726f9fe33b838af8a7516624ed
+  languageName: node
+  linkType: hard
+
 "treeify@npm:^1.1.0":
   version: 1.1.0
   resolution: "treeify@npm:1.1.0"
@@ -17595,6 +17666,13 @@ resolve@^2.0.0-next.3:
   version: 0.21.3
   resolution: "type-fest@npm:0.21.3"
   checksum: bbe5f5c60e8da4e0b0fe290c31821b10c2fd935768802cd659784cb5e792c7a31bb25a89174d3b42dde3bf8eb9d301ede7456a274c1068280b7698438e250f49
+  languageName: node
+  linkType: hard
+
+"type-fest@npm:^0.6.0":
+  version: 0.6.0
+  resolution: "type-fest@npm:0.6.0"
+  checksum: c77f687caff9f8effffd6091fbdb57b8e7265213e067c34086d37dc6ac3b640abd3dd3921402a6ba9eb56621719c552ae5e91d183d1e6d075f9aff859a347f00
   languageName: node
   linkType: hard
 
@@ -18790,7 +18868,7 @@ typescript@^4.2.4:
   languageName: node
   linkType: hard
 
-"yargs@npm:^16.1.0":
+"yargs@npm:^16.1.0, yargs@npm:^16.2.0":
   version: 16.2.0
   resolution: "yargs@npm:16.2.0"
   dependencies:
