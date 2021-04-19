@@ -1,4 +1,5 @@
 .eslintcache
+.ultra.cache.json
 
 *.DS_Store
 *.log
