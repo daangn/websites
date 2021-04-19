@@ -5,7 +5,7 @@ import type {
   Node,
   NodeInput,
 } from 'gatsby';
-import { Option } from '@cometjs/core';
+import { Option } from '@cometjs/core/lib/index';
 import type { GreenhouseJob } from '@karrotmarket/gatsby-source-greenhouse-job-board/types';
 import cheerio from 'cheerio';
 import { decode as decodeEntities } from 'html-entities';
