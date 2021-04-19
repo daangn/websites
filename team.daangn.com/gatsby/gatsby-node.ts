@@ -5,7 +5,6 @@ import type {
   Node,
   NodeInput,
 } from 'gatsby';
-import { Option } from '@cometjs/core/lib/index';
 import type { GreenhouseJob } from '@karrotmarket/gatsby-source-greenhouse-job-board/types';
 import cheerio from 'cheerio';
 import { decode as decodeEntities } from 'html-entities';
@@ -181,19 +180,14 @@ export const onCreateNode: NormalizeAPI<'onCreateNode'> = ({
   }
 
   function findMetadataById(node: GreenhouseJobNode, id: number) {
-    return Option.map(
-      node.metadata.find(v => v.id === id),
-      metadata => ({
-        type: metadata.value_type,
-        value: metadata.value,
-      } as const),
-    );
+    const metadata = node.metadata.find(v => v.id === id);
+    return metadata && ({ type: metadata.value_type, value: metadata.value });
   }
 
   function employmentType(node: GreenhouseJobNode) {
     const fieldId = 503398003;
     const field = findMetadataById(node, fieldId);
-    return Option.map(field, field => {
+    return field && (() => {
       switch (field.value) {
         case '정규직': return 'FULL_TIME';
         case '계약직': return 'CONTRACTOR';
@@ -213,13 +207,13 @@ export const onCreateNode: NormalizeAPI<'onCreateNode'> = ({
             See https://app3.greenhouse.io/custom_fields/jobs/${fieldId}
           `);
       }
-    });
+    })();
   }
 
   function alternativeCivilianService(node: GreenhouseJobNode) {
     const fieldId = 5784622003;
     const field = findMetadataById(node, fieldId);
-    return Option.map(field, field => {
+    return field && (() => {
       if (field.type === 'yes_no') {
         if (field.value == null) {
           reporter.warn(reporter.stripIndent`
@@ -238,13 +232,13 @@ export const onCreateNode: NormalizeAPI<'onCreateNode'> = ({
 
         See https://app3.greenhouse.io/custom_fields/jobs/${fieldId}
       `);
-    });
+    })();
   }
 
   function priorExperience(node: GreenhouseJobNode) {
     const fieldId = 5784623003;
     const field = findMetadataById(node, fieldId);
-    return Option.map(field, field => {
+    return field && (() => {
       switch (field.value) {
         case '경력': return 'YES';
         case '신입': return 'NO';
@@ -264,7 +258,16 @@ export const onCreateNode: NormalizeAPI<'onCreateNode'> = ({
             See https://app3.greenhouse.io/custom_fields/jobs/${fieldId}
           `);
       }
-    });
+    })();
+  }
+
+  function keywords(node: GreenhouseJobNode) {
+    const metadata = findMetadataById(node, 6008744003);
+    return (
+      metadata?.value
+      && typeof metadata.value === 'string'
+      && metadata.value.split(',').map(part => part.trim())
+    ) ?? [];
   }
 
   const $ = cheerio.load(decodeEntities(node.content), null, false);
@@ -287,10 +290,7 @@ export const onCreateNode: NormalizeAPI<'onCreateNode'> = ({
     // FIXME
     chapter: findMetadataById(node, 6008743003) ?? '',
     // FIXME
-    keywords: Option.map(
-      findMetadataById(node, 6008744003),
-      ({ value }) => typeof value === 'string' && value?.split(',').map(part => part.trim()),
-    ) ?? [],
+    keywords: keywords(node),
   };
 
   const jobPostNode: NodeInput = {
