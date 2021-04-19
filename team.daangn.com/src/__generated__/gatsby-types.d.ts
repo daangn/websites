@@ -293,9 +293,20 @@ type SitePage = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly internal: Internal;
   readonly isCreatedByStatefulCreatePages: Maybe<Scalars['Boolean']>;
+  readonly context: Maybe<SitePageContext>;
   readonly pluginCreator: Maybe<SitePlugin>;
   readonly pluginCreatorId: Maybe<Scalars['String']>;
   readonly componentPath: Maybe<Scalars['String']>;
+};
+
+type SitePageContext = {
+  readonly id: Maybe<Scalars['String']>;
+  readonly parent__ghId: Maybe<Scalars['String']>;
+  readonly _xparams: Maybe<SitePageContext_xparams>;
+};
+
+type SitePageContext_xparams = {
+  readonly parent__ghId: Maybe<Scalars['String']>;
 };
 
 type ImageFormat =
@@ -649,10 +660,16 @@ type JobPost = Node & {
   readonly priorExperience: JobPriorExperience;
   readonly chapter: Scalars['String'];
   readonly keywords: ReadonlyArray<Scalars['String']>;
+  readonly gatsbyPath: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly parent: Maybe<Node>;
   readonly children: ReadonlyArray<Node>;
   readonly internal: Internal;
+};
+
+
+type JobPost_gatsbyPathArgs = {
+  filePath: Maybe<Scalars['String']>;
 };
 
 type SiteBuildMetadata = Node & {
@@ -891,6 +908,7 @@ type Query_sitePageArgs = {
   children: Maybe<NodeFilterListInput>;
   internal: Maybe<InternalFilterInput>;
   isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
+  context: Maybe<SitePageContextFilterInput>;
   pluginCreator: Maybe<SitePluginFilterInput>;
   pluginCreatorId: Maybe<StringQueryOperatorInput>;
   componentPath: Maybe<StringQueryOperatorInput>;
@@ -960,6 +978,7 @@ type Query_jobPostArgs = {
   priorExperience: Maybe<JobPriorExperienceQueryOperatorInput>;
   chapter: Maybe<StringQueryOperatorInput>;
   keywords: Maybe<StringQueryOperatorInput>;
+  gatsbyPath: Maybe<StringQueryOperatorInput>;
   id: Maybe<StringQueryOperatorInput>;
   parent: Maybe<NodeFilterInput>;
   children: Maybe<NodeFilterListInput>;
@@ -1874,6 +1893,16 @@ type SiteSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
+type SitePageContextFilterInput = {
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly parent__ghId: Maybe<StringQueryOperatorInput>;
+  readonly _xparams: Maybe<SitePageContext_xparamsFilterInput>;
+};
+
+type SitePageContext_xparamsFilterInput = {
+  readonly parent__ghId: Maybe<StringQueryOperatorInput>;
+};
+
 type SitePluginFilterInput = {
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
@@ -2074,6 +2103,9 @@ type SitePageFieldsEnum =
   | 'internal.owner'
   | 'internal.type'
   | 'isCreatedByStatefulCreatePages'
+  | 'context.id'
+  | 'context.parent__ghId'
+  | 'context._xparams.parent__ghId'
   | 'pluginCreator.id'
   | 'pluginCreator.parent.id'
   | 'pluginCreator.parent.parent.id'
@@ -2171,6 +2203,7 @@ type SitePageFilterInput = {
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
   readonly isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
+  readonly context: Maybe<SitePageContextFilterInput>;
   readonly pluginCreator: Maybe<SitePluginFilterInput>;
   readonly pluginCreatorId: Maybe<StringQueryOperatorInput>;
   readonly componentPath: Maybe<StringQueryOperatorInput>;
@@ -2374,6 +2407,7 @@ type JobPostFilterInput = {
   readonly priorExperience: Maybe<JobPriorExperienceQueryOperatorInput>;
   readonly chapter: Maybe<StringQueryOperatorInput>;
   readonly keywords: Maybe<StringQueryOperatorInput>;
+  readonly gatsbyPath: Maybe<StringQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
   readonly children: Maybe<NodeFilterListInput>;
@@ -2462,6 +2496,7 @@ type GreenhouseJobFieldsEnum =
   | 'childrenJobPost.priorExperience'
   | 'childrenJobPost.chapter'
   | 'childrenJobPost.keywords'
+  | 'childrenJobPost.gatsbyPath'
   | 'childrenJobPost.id'
   | 'childrenJobPost.parent.id'
   | 'childrenJobPost.parent.parent.id'
@@ -2512,6 +2547,7 @@ type GreenhouseJobFieldsEnum =
   | 'childJobPost.priorExperience'
   | 'childJobPost.chapter'
   | 'childJobPost.keywords'
+  | 'childJobPost.gatsbyPath'
   | 'childJobPost.id'
   | 'childJobPost.parent.id'
   | 'childJobPost.parent.parent.id'
@@ -2706,6 +2742,7 @@ type JobPostFieldsEnum =
   | 'priorExperience'
   | 'chapter'
   | 'keywords'
+  | 'gatsbyPath'
   | 'id'
   | 'parent.id'
   | 'parent.parent.id'
@@ -3140,5 +3177,20 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
+
+type JobPostPageQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+type JobPostPageQuery = { readonly jobPost: Maybe<Pick<JobPost, 'title'>> };
+
+type JobsPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type JobsPageQuery = { readonly allJobPost: { readonly nodes: ReadonlyArray<(
+      Pick<JobPost, 'id' | 'title'>
+      & { pagePath: JobPost['gatsbyPath'] }
+    )> } };
 
 }
