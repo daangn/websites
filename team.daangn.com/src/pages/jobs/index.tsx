@@ -2,13 +2,15 @@ import * as React from 'react';
 import type { PageProps } from 'gatsby';
 import { graphql, Link } from 'gatsby';
 
+import Layout from '~/components/Layout';
+
 type JobsPageProps = PageProps<GatsbyTypes.JobsPageQuery>;
 
 const JobsPage: React.FC<JobsPageProps> = ({
   data,
 }) => {
   return (
-    <div>
+    <Layout>
       <h1>공고 보기</h1>
       <ul>
         {data.allJobPost.nodes.map(node => (
@@ -17,7 +19,7 @@ const JobsPage: React.FC<JobsPageProps> = ({
           </li>
         ))}
       </ul>
-    </div>
+    </Layout>
   );
 };
 

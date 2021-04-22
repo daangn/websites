@@ -5,7 +5,7 @@ import { createCss } from '@stitches/react';
 import { convertColorScheme } from './colors';
 
 // should exports `styled`, `css` and `getCssString`
-export const { styled, css, getCssString } = createCss({
+export const { styled, css, global, getCssString } = createCss({
   // follows Bootstrap's breakpoints practice
   // See https://getbootstrap.com/docs/5.0/layout/breakpoints/#available-breakpoints
   media: {
@@ -33,6 +33,28 @@ export const { styled, css, getCssString } = createCss({
       caption1: rem(14),
       caption2: rem(13),
     },
-    sizes: {},
+    sizes: {
+      maxContent: rem(1200),
+    },
+    zIndices: {
+    },
+  },
+  utils: {
+    marginX: _config => value => ({
+      marginLeft: value,
+      marginRight: value,
+    }),
+    marginY: _config => value => ({
+      marginTop: value,
+      marginBottom: value,
+    }),
+    paddingX: _config => value => ({
+      paddingLeft: value,
+      paddingRight: value,
+    }),
+    paddingY: _config => value => ({
+      paddingTop: value,
+      paddingBottom: value,
+    }),
   },
 });

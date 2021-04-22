@@ -1,22 +1,61 @@
-/// <reference path="../src/__generated__/gatsby-types.d.ts" />;
-
 import type {
   GatsbyNode,
   Node,
   NodeInput,
 } from 'gatsby';
-import type { GreenhouseJob } from '@karrotmarket/gatsby-source-greenhouse-job-board/types';
+import _ from 'lodash';
 import cheerio from 'cheerio';
 import { decode as decodeEntities } from 'html-entities';
+import type { GreenhouseJob } from '@karrotmarket/gatsby-source-greenhouse-job-board/types';
 
 interface NormalizedAPI<T1, T2, Return> {
   (t1: T1, t2: T2): Return | Promise<Return>;
 }
 
-export type NormalizeAPI<T extends keyof GatsbyNode> = (
+type NormalizeAPI<T extends keyof GatsbyNode> = (
   NonNullable<GatsbyNode[T]> extends NormalizedAPI<infer T1, infer T2, infer Return>
   ? NormalizedAPI<T1, T2, Return>
   : false
+);
+
+type GreenhouseJobNode = (
+  & Node
+  & Omit<GreenhouseJob, 'id'>
+  & { ghId: number }
+);
+
+type PrismicLink = (
+  | {
+    link_type: 'Any',
+  }
+  | {
+    link_type: 'Web',
+    url: string,
+  }
+);
+type PrismicSiteNavigationNode = (
+  & Node
+  & {
+    uid: string,
+    prismicId: string,
+    data: {
+      canonical_link: PrismicLink,
+      header_entries: {
+        display_name: string | null,
+        category: string | null,
+        link: PrismicLink,
+      }[],
+      footer_entries: {
+        display_name: string | null,
+        category: string | null,
+        link: PrismicLink,
+      }[],
+      social_entries: {
+        social_type: string | null,
+        link: PrismicLink,
+      }[],
+    },
+  }
 );
 
 const gql = String.raw;
@@ -129,8 +168,8 @@ export const createSchemaCustomization: NormalizeAPI<'createSchemaCustomization'
 
     type JobPost implements Node
       @dontInfer
-      @childOf(types: ["GreenhouseJob"]) {
-
+      @childOf(types: ["GreenhouseJob"])
+    {
       title: String!
 
       boardUrl: String!
@@ -156,6 +195,158 @@ export const createSchemaCustomization: NormalizeAPI<'createSchemaCustomization'
       keywords: [String!]!
     }
   `);
+
+  actions.createTypes(gql`
+    type SiteNavigation implements Node
+      @dontInfer
+      @childOf(types: ["PrismicSiteNavigation"])
+    {
+      headerEntries: [SiteNavigationEntry!]!
+      footerEntries: [SiteNavigationEntry!]!
+      socialProfiles: [SocialProfileEntry!]!
+    }
+
+    enum SocialService {
+      FACEBOOK
+      INSTAGRAM
+      TWITTER
+      LINKEDIN
+      MEDIUM
+      GITHUB
+    }
+  `);
+
+  actions.createTypes([
+    schema.buildInterfaceType({
+      name: 'SiteNavigationEntry',
+      resolveType: (source: { link: PrismicLink }) => {
+        if (source.link.link_type !== 'Web') {
+          throw new Error(
+            'SiteNavigation.link 값은 Web 링크만 사용할 수 있습니다.',
+          );
+        }
+        const url = new URL(source.link.url);
+
+        // FIXME: plugin options 로 분리
+        return url.origin === 'https://team.daangn.com'
+          ? 'SiteNavigationEntryInternal'
+          : 'SiteNavigationEntryExternal'
+      },
+      fields: {
+        href: {
+          type: 'String!',
+          resolve: (source: { link: PrismicLink }) => {
+            if (source.link.link_type !== 'Web') {
+              throw new Error(
+                'SiteNavigation.link 값은 Web 링크만 사용할 수 있습니다.',
+              );
+            }
+            return source.link.url;
+          },
+        },
+        displayName: {
+          type: 'String!',
+          resolve: (source: { display_name: string }) => source.display_name,
+        },
+        category: {
+          type: 'String',
+        },
+      },
+    }),
+    schema.buildObjectType({
+      name: 'SiteNavigationEntryInternal',
+      interfaces: ['SiteNavigationEntry'],
+      fields: {
+        href: {
+          type: 'String!',
+          resolve: (source: { link: PrismicLink }) => {
+            if (source.link.link_type !== 'Web') {
+              throw new Error(
+                'SiteNavigation.link 값은 Web 링크만 사용할 수 있습니다.',
+              );
+            }
+            return source.link.url;
+          },
+        },
+        displayName: {
+          type: 'String!',
+          resolve: (source: { display_name: string }) => source.display_name,
+        },
+        category: {
+          type: 'String',
+        },
+        pathname: {
+          type: 'String!',
+          resolve: (source: { link: PrismicLink }) => {
+            if (source.link.link_type !== 'Web') {
+              throw new Error(
+                'SiteNavigation.link 값은 Web 링크만 사용할 수 있습니다.',
+              );
+            }
+            const url = new URL(source.link.url);
+            return url.pathname;
+          },
+        },
+      },
+    }),
+    schema.buildObjectType({
+      name: 'SiteNavigationEntryExternal',
+      interfaces: ['SiteNavigationEntry'],
+      fields: {
+        href: {
+          type: 'String!',
+          resolve: (source: { link: PrismicLink }) => {
+            if (source.link.link_type !== 'Web') {
+              throw new Error(
+                'SiteNavigation.link 값은 Web 링크만 사용할 수 있습니다.',
+              );
+            }
+            return source.link.url;
+          },
+        },
+        displayName: {
+          type: 'String!',
+          resolve: (source: { display_name: string }) => source.display_name,
+        },
+        category: {
+          type: 'String',
+        },
+        url: {
+          type: 'String!',
+          resolve: (source: { link: PrismicLink }) => {
+            if (source.link.link_type !== 'Web') {
+              throw new Error(
+                'SiteNavigation.link 값은 Web 링크만 사용할 수 있습니다.',
+              );
+            }
+            return source.link.url;
+          },
+        },
+      },
+    }),
+    schema.buildObjectType({
+      name: 'SocialProfileEntry',
+      fields: {
+        service: {
+          type: 'SocialService!',
+          resolve: (source: { social_type: string }) => {
+            return source.social_type.toUpperCase();
+          },
+        },
+        url: {
+          type: 'String!',
+          resolve: (source: { link: PrismicLink }) => {
+            if (source.link.link_type !== 'Web') {
+              throw new Error(
+                'SiteNavigation.link 값은 Web 링크만 사용할 수 있습니다.',
+              );
+            }
+            return source.link.url;
+          },
+        },
+      },
+    }),
+  ]);
 };
 
 export const onCreateNode: NormalizeAPI<'onCreateNode'> = ({
@@ -165,151 +356,168 @@ export const onCreateNode: NormalizeAPI<'onCreateNode'> = ({
   createContentDigest,
   reporter,
 }) => {
-  type GreenhouseJobNode = (
-    & Node
-    & Omit<GreenhouseJob, 'id'>
-    & { ghId: number }
-  );
+  function isPrismicSiteNavigationNode(node: Node): node is PrismicSiteNavigationNode {
+    return node.internal.type === 'PrismicSiteNavigation';
+  }
 
   function isGreenhouseJobNode(node: Node): node is GreenhouseJobNode {
     return node.internal.type === 'GreenhouseJob';
   }
 
-  if (!isGreenhouseJobNode(node)) {
-    return;
+  if (isPrismicSiteNavigationNode(node)) {
+    const siteNavigationNode = {
+      id: createNodeId(`PrismicSiteNavigation:${node.id} >>> SiteNavigation`),
+      headerEntries: node.data.header_entries,
+      footerEntries: node.data.footer_entries,
+      socialProfiles: node.data.social_entries,
+    };
+    actions.createNode({
+      ...siteNavigationNode,
+      parent: node.id,
+      internal: {
+        type: 'SiteNavigation',
+        contentDigest: createContentDigest(siteNavigationNode),
+      },
+    });
+    actions.createParentChildLink({
+      parent: node,
+      child: siteNavigationNode as unknown as Node,
+    });
   }
 
-  function findMetadataById(node: GreenhouseJobNode, id: number) {
-    const metadata = node.metadata.find(v => v.id === id);
-    return metadata && ({ type: metadata.value_type, value: metadata.value });
-  }
+  if (isGreenhouseJobNode(node)) {
+    function findMetadataById(node: GreenhouseJobNode, id: number) {
+      const metadata = node.metadata.find(v => v.id === id);
+      return metadata && ({ type: metadata.value_type, value: metadata.value });
+    }
 
-  function employmentType(node: GreenhouseJobNode) {
-    const fieldId = 503398003;
-    const field = findMetadataById(node, fieldId);
-    return field && (() => {
-      switch (field.value) {
-        case '정규직': return 'FULL_TIME';
-        case '계약직': return 'CONTRACTOR';
-        case '인턴': return 'INTERN';
-        case null: {
-          reporter.warn(reporter.stripIndent`
-            Employment Type 필드 값이 비어있습니다. (Greenhouse ID: ${node.ghId})
-          `);
-          return 'FULL_TIME';
-        }
-        default:
-          reporter.panic(reporter.stripIndent`
-            알 수 없는 Employment Type 필드 값 입니다. 값: ${field.value}
-
-            Greenhouse 에서 커스텀 필드 형식을 확인하고 코드를 올바르게 변경해주세요.
-
-            See https://app3.greenhouse.io/custom_fields/jobs/${fieldId}
-          `);
-      }
-    })();
-  }
-
-  function alternativeCivilianService(node: GreenhouseJobNode) {
-    const fieldId = 5784622003;
-    const field = findMetadataById(node, fieldId);
-    return field && (() => {
-      if (field.type === 'yes_no') {
-        if (field.value == null) {
-          reporter.warn(reporter.stripIndent`
-            Alternative Civilian Service 필드 값이 비어있습니다. (Greenhouse ID: ${node.ghId})
-          `);
-          return false;
-        }
-        if (typeof field.value === 'boolean') {
-          return field.value;
-        }
-      }
-      reporter.panic(reporter.stripIndent`
-        Alternative Civilian Service 필드 값이 올바르지 않습니다. 값: ${field.value}
-
-        Greenhouse 에서 커스텀 필드 형식을 확인하고 코드를 올바르게 변경해주세요.
-
-        See https://app3.greenhouse.io/custom_fields/jobs/${fieldId}
-      `);
-    })();
-  }
-
-  function priorExperience(node: GreenhouseJobNode) {
-    const fieldId = 5784623003;
-    const field = findMetadataById(node, fieldId);
-    return field && (() => {
-      switch (field.value) {
-        case '경력': return 'YES';
-        case '신입': return 'NO';
-        case '신입/경력': return 'WHATEVER';
-        case null: {
+    function employmentType(node: GreenhouseJobNode) {
+      const fieldId = 503398003;
+      const field = findMetadataById(node, fieldId);
+      return field && (() => {
+        switch (field.value) {
+          case '정규직': return 'FULL_TIME';
+          case '계약직': return 'CONTRACTOR';
+          case '인턴': return 'INTERN';
+          case null: {
             reporter.warn(reporter.stripIndent`
-              Prior Experience 필드 값이 비어있습니다. (Greenhouse Id: ${node.ghId})
+              Employment Type 필드 값이 비어있습니다. (Greenhouse ID: ${node.ghId})
             `);
-          return 'YES';
+            return 'FULL_TIME';
+          }
+          default:
+            reporter.panic(reporter.stripIndent`
+              알 수 없는 Employment Type 필드 값 입니다. 값: ${field.value}
+
+              Greenhouse 에서 커스텀 필드 형식을 확인하고 코드를 올바르게 변경해주세요.
+
+              See https://app3.greenhouse.io/custom_fields/jobs/${fieldId}
+            `);
         }
-        default:
-          reporter.panic(reporter.stripIndent`
-            Prior Experience 필드 값이 올바르지 않습니다. 값: ${field.value}
+      })();
+    }
 
-            Greenhouse 에서 커스텀 필드 형식을 확인하고 코드를 올바르게 변경해주세요.
+    function alternativeCivilianService(node: GreenhouseJobNode) {
+      const fieldId = 5784622003;
+      const field = findMetadataById(node, fieldId);
+      return field && (() => {
+        if (field.type === 'yes_no') {
+          if (field.value == null) {
+            reporter.warn(reporter.stripIndent`
+              Alternative Civilian Service 필드 값이 비어있습니다. (Greenhouse ID: ${node.ghId})
+            `);
+            return false;
+          }
+          if (typeof field.value === 'boolean') {
+            return field.value;
+          }
+        }
+        reporter.panic(reporter.stripIndent`
+          Alternative Civilian Service 필드 값이 올바르지 않습니다. 값: ${field.value}
 
-            See https://app3.greenhouse.io/custom_fields/jobs/${fieldId}
-          `);
-      }
-    })();
+          Greenhouse 에서 커스텀 필드 형식을 확인하고 코드를 올바르게 변경해주세요.
+
+          See https://app3.greenhouse.io/custom_fields/jobs/${fieldId}
+        `);
+      })();
+    }
+
+    function priorExperience(node: GreenhouseJobNode) {
+      const fieldId = 5784623003;
+      const field = findMetadataById(node, fieldId);
+      return field && (() => {
+        switch (field.value) {
+          case '경력': return 'YES';
+          case '신입': return 'NO';
+          case '신입/경력': return 'WHATEVER';
+          case null: {
+              reporter.warn(reporter.stripIndent`
+                Prior Experience 필드 값이 비어있습니다. (Greenhouse Id: ${node.ghId})
+              `);
+            return 'YES';
+          }
+          default:
+            reporter.panic(reporter.stripIndent`
+              Prior Experience 필드 값이 올바르지 않습니다. 값: ${field.value}
+
+              Greenhouse 에서 커스텀 필드 형식을 확인하고 코드를 올바르게 변경해주세요.
+
+              See https://app3.greenhouse.io/custom_fields/jobs/${fieldId}
+            `);
+        }
+      })();
+    }
+
+    function keywords(node: GreenhouseJobNode) {
+      const metadata = findMetadataById(node, 6008744003);
+      return (
+        metadata?.value
+        && typeof metadata.value === 'string'
+        && metadata.value.split(',').map(part => part.trim())
+      ) ?? [];
+    }
+
+    const $ = cheerio.load(decodeEntities(node.content), null, false);
+    $('.content-intro').remove();
+    $('.content-conclusion').remove();
+
+    // NOTE: 몇 필드들은 required 지만 나중에 추가 되서 값이 없을 수 있음
+    // 일단 기본값을 넣어 두지만 최종적으로는 그린하우스에서 모두 값을 제공해야함
+    const jobPostNodeSource = {
+      title: node.title,
+
+      boardUrl: node.absolute_url,
+
+      rawContent: $.root().html(),
+      content: [...extractSections($)],
+
+      employmentType: employmentType(node),
+      alternativeCivilianService: alternativeCivilianService(node),
+      priorExperience: priorExperience(node),
+      // FIXME
+      chapter: findMetadataById(node, 6008743003) ?? '',
+      // FIXME
+      keywords: keywords(node),
+    };
+
+    const jobPostNode: NodeInput = {
+      id: createNodeId(`${node.id} >>> JobPost`),
+      parent: node.id,
+      children: [],
+      internal: {
+        type: 'JobPost',
+        contentDigest: createContentDigest(jobPostNodeSource),
+      },
+      ...jobPostNodeSource,
+    };
+
+    actions.createNode(jobPostNode);
+    actions.createParentChildLink({
+      parent: node,
+      // See https://github.com/gatsbyjs/gatsby/issues/19993
+      child: jobPostNode as unknown as Node,
+    });
   }
-
-  function keywords(node: GreenhouseJobNode) {
-    const metadata = findMetadataById(node, 6008744003);
-    return (
-      metadata?.value
-      && typeof metadata.value === 'string'
-      && metadata.value.split(',').map(part => part.trim())
-    ) ?? [];
-  }
-
-  const $ = cheerio.load(decodeEntities(node.content), null, false);
-  $('.content-intro').remove();
-  $('.content-conclusion').remove();
-
-  // NOTE: 몇 필드들은 required 지만 나중에 추가 되서 값이 없을 수 있음
-  // 일단 기본값을 넣어 두지만 최종적으로는 그린하우스에서 모두 값을 제공해야함
-  const jobPostNodeSource = {
-    title: node.title,
-
-    boardUrl: node.absolute_url,
-
-    rawContent: $.root().html(),
-    content: [...extractSections($)],
-
-    employmentType: employmentType(node),
-    alternativeCivilianService: alternativeCivilianService(node),
-    priorExperience: priorExperience(node),
-    // FIXME
-    chapter: findMetadataById(node, 6008743003) ?? '',
-    // FIXME
-    keywords: keywords(node),
-  };
-
-  const jobPostNode: NodeInput = {
-    id: createNodeId(`${node.id} >>> JobPost`),
-    parent: node.id,
-    children: [],
-    internal: {
-      type: 'JobPost',
-      contentDigest: createContentDigest(jobPostNodeSource),
-    },
-    ...jobPostNodeSource,
-  };
-
-  actions.createNode(jobPostNode);
-  actions.createParentChildLink({
-    parent: node,
-    // See https://github.com/gatsbyjs/gatsby/issues/19993
-    child: jobPostNode as unknown as Node,
-  });
 };
 
 function *extractSections($: cheerio.Root) {

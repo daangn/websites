@@ -4,6 +4,7 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
+      "~/*": ["./src/*"],
       "gatsby-theme-stitches/src/*": ["./src/gatsby-theme-stitches/*"]
     }
   },
