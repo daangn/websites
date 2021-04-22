@@ -561,52 +561,6 @@ type ImageSharpResize = {
   readonly originalName: Maybe<Scalars['String']>;
 };
 
-type GreenhouseJobCustomFieldType =
-  | 'SHORT_TEXT'
-  | 'LONG_TEXT'
-  | 'SINGLE_SELECT'
-  | 'MULTI_SELECT'
-  | 'YES_NO'
-  | 'CURRENCY'
-  | 'DATE'
-  | 'URL'
-  | 'USER'
-  | 'CURRENCY_RANGE'
-  | 'NUMBER_RANGE';
-
-type GreenhouseJob = Node & {
-  readonly ghId: Scalars['String'];
-  readonly title: Scalars['String'];
-  /** URL to public Greenhouse job board UI */
-  readonly boardUrl: Scalars['String'];
-  readonly content: Scalars['String'];
-  readonly updatedAt: Scalars['Date'];
-  readonly metadata: ReadonlyArray<GreenhouseJobCustomFieldMetadata>;
-  /** Returns all children nodes filtered by type JobPost */
-  readonly childrenJobPost: Maybe<ReadonlyArray<Maybe<JobPost>>>;
-  /** Returns the first child node of type JobPost or null if there are no children of given type on this node */
-  readonly childJobPost: Maybe<JobPost>;
-  readonly id: Scalars['ID'];
-  readonly parent: Maybe<Node>;
-  readonly children: ReadonlyArray<Node>;
-  readonly internal: Internal;
-};
-
-
-type GreenhouseJob_updatedAtArgs = {
-  formatString: Maybe<Scalars['String']>;
-  fromNow: Maybe<Scalars['Boolean']>;
-  difference: Maybe<Scalars['String']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-type GreenhouseJobCustomFieldMetadata = {
-  readonly id: Scalars['String'];
-  readonly name: Scalars['String'];
-  readonly type: GreenhouseJobCustomFieldType;
-  readonly value: Maybe<Scalars['String']>;
-};
-
 type PrismicFaqEntriesGroupType = {
   readonly question: Maybe<Scalars['String']>;
   readonly answer: Maybe<PrismicStructuredTextType>;
@@ -1444,10 +1398,26 @@ type PrismicSliceType = {
   readonly slice_label: Maybe<Scalars['String']>;
 };
 
-type JobPostContentSection = {
+type JobPost = Node & {
   readonly title: Scalars['String'];
-  readonly level: HeadingLevel;
+  readonly boardUrl: Scalars['String'];
+  readonly content: ReadonlyArray<JobPostContentSection>;
   readonly rawContent: Scalars['String'];
+  readonly employmentType: JobEmploymentType;
+  readonly alternativeCivilianService: Scalars['Boolean'];
+  readonly priorExperience: JobPriorExperience;
+  readonly chapter: Scalars['String'];
+  readonly keywords: ReadonlyArray<Scalars['String']>;
+  readonly gatsbyPath: Maybe<Scalars['String']>;
+  readonly id: Scalars['ID'];
+  readonly parent: Maybe<Node>;
+  readonly children: ReadonlyArray<Node>;
+  readonly internal: Internal;
+};
+
+
+type JobPost_gatsbyPathArgs = {
+  filePath: Maybe<Scalars['String']>;
 };
 
 type JobEmploymentType =
@@ -1489,26 +1459,10 @@ type JobPostContentParagraphSection = JobPostContentSection & {
   readonly paragraph: Scalars['String'];
 };
 
-type JobPost = Node & {
+type JobPostContentSection = {
   readonly title: Scalars['String'];
-  readonly boardUrl: Scalars['String'];
-  readonly content: ReadonlyArray<JobPostContentSection>;
+  readonly level: HeadingLevel;
   readonly rawContent: Scalars['String'];
-  readonly employmentType: JobEmploymentType;
-  readonly alternativeCivilianService: Scalars['Boolean'];
-  readonly priorExperience: JobPriorExperience;
-  readonly chapter: Scalars['String'];
-  readonly keywords: ReadonlyArray<Scalars['String']>;
-  readonly gatsbyPath: Maybe<Scalars['String']>;
-  readonly id: Scalars['ID'];
-  readonly parent: Maybe<Node>;
-  readonly children: ReadonlyArray<Node>;
-  readonly internal: Internal;
-};
-
-
-type JobPost_gatsbyPathArgs = {
-  filePath: Maybe<Scalars['String']>;
 };
 
 type SiteNavigation = Node & {
@@ -1554,6 +1508,52 @@ type SocialProfileEntry = {
   readonly url: Scalars['String'];
 };
 
+type GreenhouseJobCustomFieldType =
+  | 'SHORT_TEXT'
+  | 'LONG_TEXT'
+  | 'SINGLE_SELECT'
+  | 'MULTI_SELECT'
+  | 'YES_NO'
+  | 'CURRENCY'
+  | 'DATE'
+  | 'URL'
+  | 'USER'
+  | 'CURRENCY_RANGE'
+  | 'NUMBER_RANGE';
+
+type GreenhouseJob = Node & {
+  readonly ghId: Scalars['String'];
+  readonly title: Scalars['String'];
+  /** URL to public Greenhouse job board UI */
+  readonly boardUrl: Scalars['String'];
+  readonly content: Scalars['String'];
+  readonly updatedAt: Scalars['Date'];
+  readonly metadata: ReadonlyArray<GreenhouseJobCustomFieldMetadata>;
+  /** Returns all children nodes filtered by type JobPost */
+  readonly childrenJobPost: Maybe<ReadonlyArray<Maybe<JobPost>>>;
+  /** Returns the first child node of type JobPost or null if there are no children of given type on this node */
+  readonly childJobPost: Maybe<JobPost>;
+  readonly id: Scalars['ID'];
+  readonly parent: Maybe<Node>;
+  readonly children: ReadonlyArray<Node>;
+  readonly internal: Internal;
+};
+
+
+type GreenhouseJob_updatedAtArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+type GreenhouseJobCustomFieldMetadata = {
+  readonly id: Scalars['String'];
+  readonly name: Scalars['String'];
+  readonly type: GreenhouseJobCustomFieldType;
+  readonly value: Maybe<Scalars['String']>;
+};
+
 type SiteBuildMetadata = Node & {
   readonly id: Scalars['ID'];
   readonly parent: Maybe<Node>;
@@ -1591,8 +1591,6 @@ type SitePluginPluginOptions = {
   readonly stripMetadata: Maybe<Scalars['Boolean']>;
   readonly defaultQuality: Maybe<Scalars['Int']>;
   readonly failOnError: Maybe<Scalars['Boolean']>;
-  readonly boardToken: Maybe<Scalars['String']>;
-  readonly includeContent: Maybe<Scalars['Boolean']>;
   readonly root: Maybe<Scalars['String']>;
   readonly aliases: Maybe<SitePluginPluginOptionsAliases>;
   readonly outputPath: Maybe<Scalars['String']>;
@@ -1601,6 +1599,10 @@ type SitePluginPluginOptions = {
   readonly repositoryName: Maybe<Scalars['String']>;
   readonly accessToken: Maybe<Scalars['String']>;
   readonly schemas: Maybe<SitePluginPluginOptionsSchemas>;
+  readonly baseUrl: Maybe<Scalars['String']>;
+  readonly uid: Maybe<Scalars['String']>;
+  readonly boardToken: Maybe<Scalars['String']>;
+  readonly includeContent: Maybe<Scalars['Boolean']>;
   readonly path: Maybe<Scalars['String']>;
   readonly pathCheck: Maybe<Scalars['Boolean']>;
   readonly allExtensions: Maybe<Scalars['Boolean']>;
@@ -1862,8 +1864,6 @@ type Query = {
   readonly allSitePage: SitePageConnection;
   readonly imageSharp: Maybe<ImageSharp>;
   readonly allImageSharp: ImageSharpConnection;
-  readonly greenhouseJob: Maybe<GreenhouseJob>;
-  readonly allGreenhouseJob: GreenhouseJobConnection;
   readonly prismicFaq: Maybe<PrismicFaq>;
   readonly allPrismicFaq: PrismicFaqConnection;
   readonly prismicSiteNavigation: Maybe<PrismicSiteNavigation>;
@@ -1872,6 +1872,8 @@ type Query = {
   readonly allJobPost: JobPostConnection;
   readonly siteNavigation: Maybe<SiteNavigation>;
   readonly allSiteNavigation: SiteNavigationConnection;
+  readonly greenhouseJob: Maybe<GreenhouseJob>;
+  readonly allGreenhouseJob: GreenhouseJobConnection;
   readonly siteBuildMetadata: Maybe<SiteBuildMetadata>;
   readonly allSiteBuildMetadata: SiteBuildMetadataConnection;
   readonly sitePlugin: Maybe<SitePlugin>;
@@ -2045,30 +2047,6 @@ type Query_allImageSharpArgs = {
 };
 
 
-type Query_greenhouseJobArgs = {
-  ghId: Maybe<StringQueryOperatorInput>;
-  title: Maybe<StringQueryOperatorInput>;
-  boardUrl: Maybe<StringQueryOperatorInput>;
-  content: Maybe<StringQueryOperatorInput>;
-  updatedAt: Maybe<DateQueryOperatorInput>;
-  metadata: Maybe<GreenhouseJobCustomFieldMetadataFilterListInput>;
-  childrenJobPost: Maybe<JobPostFilterListInput>;
-  childJobPost: Maybe<JobPostFilterInput>;
-  id: Maybe<StringQueryOperatorInput>;
-  parent: Maybe<NodeFilterInput>;
-  children: Maybe<NodeFilterListInput>;
-  internal: Maybe<InternalFilterInput>;
-};
-
-
-type Query_allGreenhouseJobArgs = {
-  filter: Maybe<GreenhouseJobFilterInput>;
-  sort: Maybe<GreenhouseJobSortInput>;
-  skip: Maybe<Scalars['Int']>;
-  limit: Maybe<Scalars['Int']>;
-};
-
-
 type Query_prismicFaqArgs = {
   data: Maybe<PrismicFaqDataTypeFilterInput>;
   dataRaw: Maybe<JSONQueryOperatorInput>;
@@ -2170,6 +2148,30 @@ type Query_siteNavigationArgs = {
 type Query_allSiteNavigationArgs = {
   filter: Maybe<SiteNavigationFilterInput>;
   sort: Maybe<SiteNavigationSortInput>;
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+};
+
+
+type Query_greenhouseJobArgs = {
+  ghId: Maybe<StringQueryOperatorInput>;
+  title: Maybe<StringQueryOperatorInput>;
+  boardUrl: Maybe<StringQueryOperatorInput>;
+  content: Maybe<StringQueryOperatorInput>;
+  updatedAt: Maybe<DateQueryOperatorInput>;
+  metadata: Maybe<GreenhouseJobCustomFieldMetadataFilterListInput>;
+  childrenJobPost: Maybe<JobPostFilterListInput>;
+  childJobPost: Maybe<JobPostFilterInput>;
+  id: Maybe<StringQueryOperatorInput>;
+  parent: Maybe<NodeFilterInput>;
+  children: Maybe<NodeFilterListInput>;
+  internal: Maybe<InternalFilterInput>;
+};
+
+
+type Query_allGreenhouseJobArgs = {
+  filter: Maybe<GreenhouseJobFilterInput>;
+  sort: Maybe<GreenhouseJobSortInput>;
   skip: Maybe<Scalars['Int']>;
   limit: Maybe<Scalars['Int']>;
 };
@@ -3107,8 +3109,6 @@ type SitePluginPluginOptionsFilterInput = {
   readonly stripMetadata: Maybe<BooleanQueryOperatorInput>;
   readonly defaultQuality: Maybe<IntQueryOperatorInput>;
   readonly failOnError: Maybe<BooleanQueryOperatorInput>;
-  readonly boardToken: Maybe<StringQueryOperatorInput>;
-  readonly includeContent: Maybe<BooleanQueryOperatorInput>;
   readonly root: Maybe<StringQueryOperatorInput>;
   readonly aliases: Maybe<SitePluginPluginOptionsAliasesFilterInput>;
   readonly outputPath: Maybe<StringQueryOperatorInput>;
@@ -3117,6 +3117,10 @@ type SitePluginPluginOptionsFilterInput = {
   readonly repositoryName: Maybe<StringQueryOperatorInput>;
   readonly accessToken: Maybe<StringQueryOperatorInput>;
   readonly schemas: Maybe<SitePluginPluginOptionsSchemasFilterInput>;
+  readonly baseUrl: Maybe<StringQueryOperatorInput>;
+  readonly uid: Maybe<StringQueryOperatorInput>;
+  readonly boardToken: Maybe<StringQueryOperatorInput>;
+  readonly includeContent: Maybe<BooleanQueryOperatorInput>;
   readonly path: Maybe<StringQueryOperatorInput>;
   readonly pathCheck: Maybe<BooleanQueryOperatorInput>;
   readonly allExtensions: Maybe<BooleanQueryOperatorInput>;
@@ -3547,8 +3551,6 @@ type SitePageFieldsEnum =
   | 'pluginCreator.pluginOptions.stripMetadata'
   | 'pluginCreator.pluginOptions.defaultQuality'
   | 'pluginCreator.pluginOptions.failOnError'
-  | 'pluginCreator.pluginOptions.boardToken'
-  | 'pluginCreator.pluginOptions.includeContent'
   | 'pluginCreator.pluginOptions.root'
   | 'pluginCreator.pluginOptions.aliases._'
   | 'pluginCreator.pluginOptions.outputPath'
@@ -3556,6 +3558,10 @@ type SitePageFieldsEnum =
   | 'pluginCreator.pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql'
   | 'pluginCreator.pluginOptions.repositoryName'
   | 'pluginCreator.pluginOptions.accessToken'
+  | 'pluginCreator.pluginOptions.baseUrl'
+  | 'pluginCreator.pluginOptions.uid'
+  | 'pluginCreator.pluginOptions.boardToken'
+  | 'pluginCreator.pluginOptions.includeContent'
   | 'pluginCreator.pluginOptions.path'
   | 'pluginCreator.pluginOptions.pathCheck'
   | 'pluginCreator.pluginOptions.allExtensions'
@@ -3772,333 +3778,6 @@ type ImageSharpGroupConnection = {
 
 type ImageSharpSortInput = {
   readonly fields: Maybe<ReadonlyArray<Maybe<ImageSharpFieldsEnum>>>;
-  readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
-};
-
-type GreenhouseJobCustomFieldMetadataFilterListInput = {
-  readonly elemMatch: Maybe<GreenhouseJobCustomFieldMetadataFilterInput>;
-};
-
-type GreenhouseJobCustomFieldMetadataFilterInput = {
-  readonly id: Maybe<StringQueryOperatorInput>;
-  readonly name: Maybe<StringQueryOperatorInput>;
-  readonly type: Maybe<GreenhouseJobCustomFieldTypeQueryOperatorInput>;
-  readonly value: Maybe<StringQueryOperatorInput>;
-};
-
-type GreenhouseJobCustomFieldTypeQueryOperatorInput = {
-  readonly eq: Maybe<GreenhouseJobCustomFieldType>;
-  readonly ne: Maybe<GreenhouseJobCustomFieldType>;
-  readonly in: Maybe<ReadonlyArray<Maybe<GreenhouseJobCustomFieldType>>>;
-  readonly nin: Maybe<ReadonlyArray<Maybe<GreenhouseJobCustomFieldType>>>;
-};
-
-type JobPostFilterListInput = {
-  readonly elemMatch: Maybe<JobPostFilterInput>;
-};
-
-type JobPostFilterInput = {
-  readonly title: Maybe<StringQueryOperatorInput>;
-  readonly boardUrl: Maybe<StringQueryOperatorInput>;
-  readonly content: Maybe<JobPostContentSectionFilterListInput>;
-  readonly rawContent: Maybe<StringQueryOperatorInput>;
-  readonly employmentType: Maybe<JobEmploymentTypeQueryOperatorInput>;
-  readonly alternativeCivilianService: Maybe<BooleanQueryOperatorInput>;
-  readonly priorExperience: Maybe<JobPriorExperienceQueryOperatorInput>;
-  readonly chapter: Maybe<StringQueryOperatorInput>;
-  readonly keywords: Maybe<StringQueryOperatorInput>;
-  readonly gatsbyPath: Maybe<StringQueryOperatorInput>;
-  readonly id: Maybe<StringQueryOperatorInput>;
-  readonly parent: Maybe<NodeFilterInput>;
-  readonly children: Maybe<NodeFilterListInput>;
-  readonly internal: Maybe<InternalFilterInput>;
-};
-
-type JobPostContentSectionFilterListInput = {
-  readonly elemMatch: Maybe<JobPostContentSectionFilterInput>;
-};
-
-type JobPostContentSectionFilterInput = {
-  readonly title: Maybe<StringQueryOperatorInput>;
-  readonly level: Maybe<HeadingLevelQueryOperatorInput>;
-  readonly rawContent: Maybe<StringQueryOperatorInput>;
-};
-
-type HeadingLevelQueryOperatorInput = {
-  readonly eq: Maybe<HeadingLevel>;
-  readonly ne: Maybe<HeadingLevel>;
-  readonly in: Maybe<ReadonlyArray<Maybe<HeadingLevel>>>;
-  readonly nin: Maybe<ReadonlyArray<Maybe<HeadingLevel>>>;
-};
-
-type JobEmploymentTypeQueryOperatorInput = {
-  readonly eq: Maybe<JobEmploymentType>;
-  readonly ne: Maybe<JobEmploymentType>;
-  readonly in: Maybe<ReadonlyArray<Maybe<JobEmploymentType>>>;
-  readonly nin: Maybe<ReadonlyArray<Maybe<JobEmploymentType>>>;
-};
-
-type JobPriorExperienceQueryOperatorInput = {
-  readonly eq: Maybe<JobPriorExperience>;
-  readonly ne: Maybe<JobPriorExperience>;
-  readonly in: Maybe<ReadonlyArray<Maybe<JobPriorExperience>>>;
-  readonly nin: Maybe<ReadonlyArray<Maybe<JobPriorExperience>>>;
-};
-
-type GreenhouseJobConnection = {
-  readonly totalCount: Scalars['Int'];
-  readonly edges: ReadonlyArray<GreenhouseJobEdge>;
-  readonly nodes: ReadonlyArray<GreenhouseJob>;
-  readonly pageInfo: PageInfo;
-  readonly distinct: ReadonlyArray<Scalars['String']>;
-  readonly group: ReadonlyArray<GreenhouseJobGroupConnection>;
-};
-
-
-type GreenhouseJobConnection_distinctArgs = {
-  field: GreenhouseJobFieldsEnum;
-};
-
-
-type GreenhouseJobConnection_groupArgs = {
-  skip: Maybe<Scalars['Int']>;
-  limit: Maybe<Scalars['Int']>;
-  field: GreenhouseJobFieldsEnum;
-};
-
-type GreenhouseJobEdge = {
-  readonly next: Maybe<GreenhouseJob>;
-  readonly node: GreenhouseJob;
-  readonly previous: Maybe<GreenhouseJob>;
-};
-
-type GreenhouseJobFieldsEnum =
-  | 'ghId'
-  | 'title'
-  | 'boardUrl'
-  | 'content'
-  | 'updatedAt'
-  | 'metadata'
-  | 'metadata.id'
-  | 'metadata.name'
-  | 'metadata.type'
-  | 'metadata.value'
-  | 'childrenJobPost'
-  | 'childrenJobPost.title'
-  | 'childrenJobPost.boardUrl'
-  | 'childrenJobPost.content'
-  | 'childrenJobPost.content.title'
-  | 'childrenJobPost.content.level'
-  | 'childrenJobPost.content.rawContent'
-  | 'childrenJobPost.rawContent'
-  | 'childrenJobPost.employmentType'
-  | 'childrenJobPost.alternativeCivilianService'
-  | 'childrenJobPost.priorExperience'
-  | 'childrenJobPost.chapter'
-  | 'childrenJobPost.keywords'
-  | 'childrenJobPost.gatsbyPath'
-  | 'childrenJobPost.id'
-  | 'childrenJobPost.parent.id'
-  | 'childrenJobPost.parent.parent.id'
-  | 'childrenJobPost.parent.parent.children'
-  | 'childrenJobPost.parent.children'
-  | 'childrenJobPost.parent.children.id'
-  | 'childrenJobPost.parent.children.children'
-  | 'childrenJobPost.parent.internal.content'
-  | 'childrenJobPost.parent.internal.contentDigest'
-  | 'childrenJobPost.parent.internal.description'
-  | 'childrenJobPost.parent.internal.fieldOwners'
-  | 'childrenJobPost.parent.internal.ignoreType'
-  | 'childrenJobPost.parent.internal.mediaType'
-  | 'childrenJobPost.parent.internal.owner'
-  | 'childrenJobPost.parent.internal.type'
-  | 'childrenJobPost.children'
-  | 'childrenJobPost.children.id'
-  | 'childrenJobPost.children.parent.id'
-  | 'childrenJobPost.children.parent.children'
-  | 'childrenJobPost.children.children'
-  | 'childrenJobPost.children.children.id'
-  | 'childrenJobPost.children.children.children'
-  | 'childrenJobPost.children.internal.content'
-  | 'childrenJobPost.children.internal.contentDigest'
-  | 'childrenJobPost.children.internal.description'
-  | 'childrenJobPost.children.internal.fieldOwners'
-  | 'childrenJobPost.children.internal.ignoreType'
-  | 'childrenJobPost.children.internal.mediaType'
-  | 'childrenJobPost.children.internal.owner'
-  | 'childrenJobPost.children.internal.type'
-  | 'childrenJobPost.internal.content'
-  | 'childrenJobPost.internal.contentDigest'
-  | 'childrenJobPost.internal.description'
-  | 'childrenJobPost.internal.fieldOwners'
-  | 'childrenJobPost.internal.ignoreType'
-  | 'childrenJobPost.internal.mediaType'
-  | 'childrenJobPost.internal.owner'
-  | 'childrenJobPost.internal.type'
-  | 'childJobPost.title'
-  | 'childJobPost.boardUrl'
-  | 'childJobPost.content'
-  | 'childJobPost.content.title'
-  | 'childJobPost.content.level'
-  | 'childJobPost.content.rawContent'
-  | 'childJobPost.rawContent'
-  | 'childJobPost.employmentType'
-  | 'childJobPost.alternativeCivilianService'
-  | 'childJobPost.priorExperience'
-  | 'childJobPost.chapter'
-  | 'childJobPost.keywords'
-  | 'childJobPost.gatsbyPath'
-  | 'childJobPost.id'
-  | 'childJobPost.parent.id'
-  | 'childJobPost.parent.parent.id'
-  | 'childJobPost.parent.parent.children'
-  | 'childJobPost.parent.children'
-  | 'childJobPost.parent.children.id'
-  | 'childJobPost.parent.children.children'
-  | 'childJobPost.parent.internal.content'
-  | 'childJobPost.parent.internal.contentDigest'
-  | 'childJobPost.parent.internal.description'
-  | 'childJobPost.parent.internal.fieldOwners'
-  | 'childJobPost.parent.internal.ignoreType'
-  | 'childJobPost.parent.internal.mediaType'
-  | 'childJobPost.parent.internal.owner'
-  | 'childJobPost.parent.internal.type'
-  | 'childJobPost.children'
-  | 'childJobPost.children.id'
-  | 'childJobPost.children.parent.id'
-  | 'childJobPost.children.parent.children'
-  | 'childJobPost.children.children'
-  | 'childJobPost.children.children.id'
-  | 'childJobPost.children.children.children'
-  | 'childJobPost.children.internal.content'
-  | 'childJobPost.children.internal.contentDigest'
-  | 'childJobPost.children.internal.description'
-  | 'childJobPost.children.internal.fieldOwners'
-  | 'childJobPost.children.internal.ignoreType'
-  | 'childJobPost.children.internal.mediaType'
-  | 'childJobPost.children.internal.owner'
-  | 'childJobPost.children.internal.type'
-  | 'childJobPost.internal.content'
-  | 'childJobPost.internal.contentDigest'
-  | 'childJobPost.internal.description'
-  | 'childJobPost.internal.fieldOwners'
-  | 'childJobPost.internal.ignoreType'
-  | 'childJobPost.internal.mediaType'
-  | 'childJobPost.internal.owner'
-  | 'childJobPost.internal.type'
-  | 'id'
-  | 'parent.id'
-  | 'parent.parent.id'
-  | 'parent.parent.parent.id'
-  | 'parent.parent.parent.children'
-  | 'parent.parent.children'
-  | 'parent.parent.children.id'
-  | 'parent.parent.children.children'
-  | 'parent.parent.internal.content'
-  | 'parent.parent.internal.contentDigest'
-  | 'parent.parent.internal.description'
-  | 'parent.parent.internal.fieldOwners'
-  | 'parent.parent.internal.ignoreType'
-  | 'parent.parent.internal.mediaType'
-  | 'parent.parent.internal.owner'
-  | 'parent.parent.internal.type'
-  | 'parent.children'
-  | 'parent.children.id'
-  | 'parent.children.parent.id'
-  | 'parent.children.parent.children'
-  | 'parent.children.children'
-  | 'parent.children.children.id'
-  | 'parent.children.children.children'
-  | 'parent.children.internal.content'
-  | 'parent.children.internal.contentDigest'
-  | 'parent.children.internal.description'
-  | 'parent.children.internal.fieldOwners'
-  | 'parent.children.internal.ignoreType'
-  | 'parent.children.internal.mediaType'
-  | 'parent.children.internal.owner'
-  | 'parent.children.internal.type'
-  | 'parent.internal.content'
-  | 'parent.internal.contentDigest'
-  | 'parent.internal.description'
-  | 'parent.internal.fieldOwners'
-  | 'parent.internal.ignoreType'
-  | 'parent.internal.mediaType'
-  | 'parent.internal.owner'
-  | 'parent.internal.type'
-  | 'children'
-  | 'children.id'
-  | 'children.parent.id'
-  | 'children.parent.parent.id'
-  | 'children.parent.parent.children'
-  | 'children.parent.children'
-  | 'children.parent.children.id'
-  | 'children.parent.children.children'
-  | 'children.parent.internal.content'
-  | 'children.parent.internal.contentDigest'
-  | 'children.parent.internal.description'
-  | 'children.parent.internal.fieldOwners'
-  | 'children.parent.internal.ignoreType'
-  | 'children.parent.internal.mediaType'
-  | 'children.parent.internal.owner'
-  | 'children.parent.internal.type'
-  | 'children.children'
-  | 'children.children.id'
-  | 'children.children.parent.id'
-  | 'children.children.parent.children'
-  | 'children.children.children'
-  | 'children.children.children.id'
-  | 'children.children.children.children'
-  | 'children.children.internal.content'
-  | 'children.children.internal.contentDigest'
-  | 'children.children.internal.description'
-  | 'children.children.internal.fieldOwners'
-  | 'children.children.internal.ignoreType'
-  | 'children.children.internal.mediaType'
-  | 'children.children.internal.owner'
-  | 'children.children.internal.type'
-  | 'children.internal.content'
-  | 'children.internal.contentDigest'
-  | 'children.internal.description'
-  | 'children.internal.fieldOwners'
-  | 'children.internal.ignoreType'
-  | 'children.internal.mediaType'
-  | 'children.internal.owner'
-  | 'children.internal.type'
-  | 'internal.content'
-  | 'internal.contentDigest'
-  | 'internal.description'
-  | 'internal.fieldOwners'
-  | 'internal.ignoreType'
-  | 'internal.mediaType'
-  | 'internal.owner'
-  | 'internal.type';
-
-type GreenhouseJobGroupConnection = {
-  readonly totalCount: Scalars['Int'];
-  readonly edges: ReadonlyArray<GreenhouseJobEdge>;
-  readonly nodes: ReadonlyArray<GreenhouseJob>;
-  readonly pageInfo: PageInfo;
-  readonly field: Scalars['String'];
-  readonly fieldValue: Maybe<Scalars['String']>;
-};
-
-type GreenhouseJobFilterInput = {
-  readonly ghId: Maybe<StringQueryOperatorInput>;
-  readonly title: Maybe<StringQueryOperatorInput>;
-  readonly boardUrl: Maybe<StringQueryOperatorInput>;
-  readonly content: Maybe<StringQueryOperatorInput>;
-  readonly updatedAt: Maybe<DateQueryOperatorInput>;
-  readonly metadata: Maybe<GreenhouseJobCustomFieldMetadataFilterListInput>;
-  readonly childrenJobPost: Maybe<JobPostFilterListInput>;
-  readonly childJobPost: Maybe<JobPostFilterInput>;
-  readonly id: Maybe<StringQueryOperatorInput>;
-  readonly parent: Maybe<NodeFilterInput>;
-  readonly children: Maybe<NodeFilterListInput>;
-  readonly internal: Maybe<InternalFilterInput>;
-};
-
-type GreenhouseJobSortInput = {
-  readonly fields: Maybe<ReadonlyArray<Maybe<GreenhouseJobFieldsEnum>>>;
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
@@ -4740,6 +4419,37 @@ type PrismicSiteNavigationSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
+type JobPostContentSectionFilterListInput = {
+  readonly elemMatch: Maybe<JobPostContentSectionFilterInput>;
+};
+
+type JobPostContentSectionFilterInput = {
+  readonly title: Maybe<StringQueryOperatorInput>;
+  readonly level: Maybe<HeadingLevelQueryOperatorInput>;
+  readonly rawContent: Maybe<StringQueryOperatorInput>;
+};
+
+type HeadingLevelQueryOperatorInput = {
+  readonly eq: Maybe<HeadingLevel>;
+  readonly ne: Maybe<HeadingLevel>;
+  readonly in: Maybe<ReadonlyArray<Maybe<HeadingLevel>>>;
+  readonly nin: Maybe<ReadonlyArray<Maybe<HeadingLevel>>>;
+};
+
+type JobEmploymentTypeQueryOperatorInput = {
+  readonly eq: Maybe<JobEmploymentType>;
+  readonly ne: Maybe<JobEmploymentType>;
+  readonly in: Maybe<ReadonlyArray<Maybe<JobEmploymentType>>>;
+  readonly nin: Maybe<ReadonlyArray<Maybe<JobEmploymentType>>>;
+};
+
+type JobPriorExperienceQueryOperatorInput = {
+  readonly eq: Maybe<JobPriorExperience>;
+  readonly ne: Maybe<JobPriorExperience>;
+  readonly in: Maybe<ReadonlyArray<Maybe<JobPriorExperience>>>;
+  readonly nin: Maybe<ReadonlyArray<Maybe<JobPriorExperience>>>;
+};
+
 type JobPostConnection = {
   readonly totalCount: Scalars['Int'];
   readonly edges: ReadonlyArray<JobPostEdge>;
@@ -4875,6 +4585,23 @@ type JobPostGroupConnection = {
   readonly pageInfo: PageInfo;
   readonly field: Scalars['String'];
   readonly fieldValue: Maybe<Scalars['String']>;
+};
+
+type JobPostFilterInput = {
+  readonly title: Maybe<StringQueryOperatorInput>;
+  readonly boardUrl: Maybe<StringQueryOperatorInput>;
+  readonly content: Maybe<JobPostContentSectionFilterListInput>;
+  readonly rawContent: Maybe<StringQueryOperatorInput>;
+  readonly employmentType: Maybe<JobEmploymentTypeQueryOperatorInput>;
+  readonly alternativeCivilianService: Maybe<BooleanQueryOperatorInput>;
+  readonly priorExperience: Maybe<JobPriorExperienceQueryOperatorInput>;
+  readonly chapter: Maybe<StringQueryOperatorInput>;
+  readonly keywords: Maybe<StringQueryOperatorInput>;
+  readonly gatsbyPath: Maybe<StringQueryOperatorInput>;
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly parent: Maybe<NodeFilterInput>;
+  readonly children: Maybe<NodeFilterListInput>;
+  readonly internal: Maybe<InternalFilterInput>;
 };
 
 type JobPostSortInput = {
@@ -5019,6 +4746,285 @@ type SiteNavigationGroupConnection = {
 
 type SiteNavigationSortInput = {
   readonly fields: Maybe<ReadonlyArray<Maybe<SiteNavigationFieldsEnum>>>;
+  readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
+};
+
+type GreenhouseJobCustomFieldMetadataFilterListInput = {
+  readonly elemMatch: Maybe<GreenhouseJobCustomFieldMetadataFilterInput>;
+};
+
+type GreenhouseJobCustomFieldMetadataFilterInput = {
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly name: Maybe<StringQueryOperatorInput>;
+  readonly type: Maybe<GreenhouseJobCustomFieldTypeQueryOperatorInput>;
+  readonly value: Maybe<StringQueryOperatorInput>;
+};
+
+type GreenhouseJobCustomFieldTypeQueryOperatorInput = {
+  readonly eq: Maybe<GreenhouseJobCustomFieldType>;
+  readonly ne: Maybe<GreenhouseJobCustomFieldType>;
+  readonly in: Maybe<ReadonlyArray<Maybe<GreenhouseJobCustomFieldType>>>;
+  readonly nin: Maybe<ReadonlyArray<Maybe<GreenhouseJobCustomFieldType>>>;
+};
+
+type JobPostFilterListInput = {
+  readonly elemMatch: Maybe<JobPostFilterInput>;
+};
+
+type GreenhouseJobConnection = {
+  readonly totalCount: Scalars['Int'];
+  readonly edges: ReadonlyArray<GreenhouseJobEdge>;
+  readonly nodes: ReadonlyArray<GreenhouseJob>;
+  readonly pageInfo: PageInfo;
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly group: ReadonlyArray<GreenhouseJobGroupConnection>;
+};
+
+
+type GreenhouseJobConnection_distinctArgs = {
+  field: GreenhouseJobFieldsEnum;
+};
+
+
+type GreenhouseJobConnection_groupArgs = {
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+  field: GreenhouseJobFieldsEnum;
+};
+
+type GreenhouseJobEdge = {
+  readonly next: Maybe<GreenhouseJob>;
+  readonly node: GreenhouseJob;
+  readonly previous: Maybe<GreenhouseJob>;
+};
+
+type GreenhouseJobFieldsEnum =
+  | 'ghId'
+  | 'title'
+  | 'boardUrl'
+  | 'content'
+  | 'updatedAt'
+  | 'metadata'
+  | 'metadata.id'
+  | 'metadata.name'
+  | 'metadata.type'
+  | 'metadata.value'
+  | 'childrenJobPost'
+  | 'childrenJobPost.title'
+  | 'childrenJobPost.boardUrl'
+  | 'childrenJobPost.content'
+  | 'childrenJobPost.content.title'
+  | 'childrenJobPost.content.level'
+  | 'childrenJobPost.content.rawContent'
+  | 'childrenJobPost.rawContent'
+  | 'childrenJobPost.employmentType'
+  | 'childrenJobPost.alternativeCivilianService'
+  | 'childrenJobPost.priorExperience'
+  | 'childrenJobPost.chapter'
+  | 'childrenJobPost.keywords'
+  | 'childrenJobPost.gatsbyPath'
+  | 'childrenJobPost.id'
+  | 'childrenJobPost.parent.id'
+  | 'childrenJobPost.parent.parent.id'
+  | 'childrenJobPost.parent.parent.children'
+  | 'childrenJobPost.parent.children'
+  | 'childrenJobPost.parent.children.id'
+  | 'childrenJobPost.parent.children.children'
+  | 'childrenJobPost.parent.internal.content'
+  | 'childrenJobPost.parent.internal.contentDigest'
+  | 'childrenJobPost.parent.internal.description'
+  | 'childrenJobPost.parent.internal.fieldOwners'
+  | 'childrenJobPost.parent.internal.ignoreType'
+  | 'childrenJobPost.parent.internal.mediaType'
+  | 'childrenJobPost.parent.internal.owner'
+  | 'childrenJobPost.parent.internal.type'
+  | 'childrenJobPost.children'
+  | 'childrenJobPost.children.id'
+  | 'childrenJobPost.children.parent.id'
+  | 'childrenJobPost.children.parent.children'
+  | 'childrenJobPost.children.children'
+  | 'childrenJobPost.children.children.id'
+  | 'childrenJobPost.children.children.children'
+  | 'childrenJobPost.children.internal.content'
+  | 'childrenJobPost.children.internal.contentDigest'
+  | 'childrenJobPost.children.internal.description'
+  | 'childrenJobPost.children.internal.fieldOwners'
+  | 'childrenJobPost.children.internal.ignoreType'
+  | 'childrenJobPost.children.internal.mediaType'
+  | 'childrenJobPost.children.internal.owner'
+  | 'childrenJobPost.children.internal.type'
+  | 'childrenJobPost.internal.content'
+  | 'childrenJobPost.internal.contentDigest'
+  | 'childrenJobPost.internal.description'
+  | 'childrenJobPost.internal.fieldOwners'
+  | 'childrenJobPost.internal.ignoreType'
+  | 'childrenJobPost.internal.mediaType'
+  | 'childrenJobPost.internal.owner'
+  | 'childrenJobPost.internal.type'
+  | 'childJobPost.title'
+  | 'childJobPost.boardUrl'
+  | 'childJobPost.content'
+  | 'childJobPost.content.title'
+  | 'childJobPost.content.level'
+  | 'childJobPost.content.rawContent'
+  | 'childJobPost.rawContent'
+  | 'childJobPost.employmentType'
+  | 'childJobPost.alternativeCivilianService'
+  | 'childJobPost.priorExperience'
+  | 'childJobPost.chapter'
+  | 'childJobPost.keywords'
+  | 'childJobPost.gatsbyPath'
+  | 'childJobPost.id'
+  | 'childJobPost.parent.id'
+  | 'childJobPost.parent.parent.id'
+  | 'childJobPost.parent.parent.children'
+  | 'childJobPost.parent.children'
+  | 'childJobPost.parent.children.id'
+  | 'childJobPost.parent.children.children'
+  | 'childJobPost.parent.internal.content'
+  | 'childJobPost.parent.internal.contentDigest'
+  | 'childJobPost.parent.internal.description'
+  | 'childJobPost.parent.internal.fieldOwners'
+  | 'childJobPost.parent.internal.ignoreType'
+  | 'childJobPost.parent.internal.mediaType'
+  | 'childJobPost.parent.internal.owner'
+  | 'childJobPost.parent.internal.type'
+  | 'childJobPost.children'
+  | 'childJobPost.children.id'
+  | 'childJobPost.children.parent.id'
+  | 'childJobPost.children.parent.children'
+  | 'childJobPost.children.children'
+  | 'childJobPost.children.children.id'
+  | 'childJobPost.children.children.children'
+  | 'childJobPost.children.internal.content'
+  | 'childJobPost.children.internal.contentDigest'
+  | 'childJobPost.children.internal.description'
+  | 'childJobPost.children.internal.fieldOwners'
+  | 'childJobPost.children.internal.ignoreType'
+  | 'childJobPost.children.internal.mediaType'
+  | 'childJobPost.children.internal.owner'
+  | 'childJobPost.children.internal.type'
+  | 'childJobPost.internal.content'
+  | 'childJobPost.internal.contentDigest'
+  | 'childJobPost.internal.description'
+  | 'childJobPost.internal.fieldOwners'
+  | 'childJobPost.internal.ignoreType'
+  | 'childJobPost.internal.mediaType'
+  | 'childJobPost.internal.owner'
+  | 'childJobPost.internal.type'
+  | 'id'
+  | 'parent.id'
+  | 'parent.parent.id'
+  | 'parent.parent.parent.id'
+  | 'parent.parent.parent.children'
+  | 'parent.parent.children'
+  | 'parent.parent.children.id'
+  | 'parent.parent.children.children'
+  | 'parent.parent.internal.content'
+  | 'parent.parent.internal.contentDigest'
+  | 'parent.parent.internal.description'
+  | 'parent.parent.internal.fieldOwners'
+  | 'parent.parent.internal.ignoreType'
+  | 'parent.parent.internal.mediaType'
+  | 'parent.parent.internal.owner'
+  | 'parent.parent.internal.type'
+  | 'parent.children'
+  | 'parent.children.id'
+  | 'parent.children.parent.id'
+  | 'parent.children.parent.children'
+  | 'parent.children.children'
+  | 'parent.children.children.id'
+  | 'parent.children.children.children'
+  | 'parent.children.internal.content'
+  | 'parent.children.internal.contentDigest'
+  | 'parent.children.internal.description'
+  | 'parent.children.internal.fieldOwners'
+  | 'parent.children.internal.ignoreType'
+  | 'parent.children.internal.mediaType'
+  | 'parent.children.internal.owner'
+  | 'parent.children.internal.type'
+  | 'parent.internal.content'
+  | 'parent.internal.contentDigest'
+  | 'parent.internal.description'
+  | 'parent.internal.fieldOwners'
+  | 'parent.internal.ignoreType'
+  | 'parent.internal.mediaType'
+  | 'parent.internal.owner'
+  | 'parent.internal.type'
+  | 'children'
+  | 'children.id'
+  | 'children.parent.id'
+  | 'children.parent.parent.id'
+  | 'children.parent.parent.children'
+  | 'children.parent.children'
+  | 'children.parent.children.id'
+  | 'children.parent.children.children'
+  | 'children.parent.internal.content'
+  | 'children.parent.internal.contentDigest'
+  | 'children.parent.internal.description'
+  | 'children.parent.internal.fieldOwners'
+  | 'children.parent.internal.ignoreType'
+  | 'children.parent.internal.mediaType'
+  | 'children.parent.internal.owner'
+  | 'children.parent.internal.type'
+  | 'children.children'
+  | 'children.children.id'
+  | 'children.children.parent.id'
+  | 'children.children.parent.children'
+  | 'children.children.children'
+  | 'children.children.children.id'
+  | 'children.children.children.children'
+  | 'children.children.internal.content'
+  | 'children.children.internal.contentDigest'
+  | 'children.children.internal.description'
+  | 'children.children.internal.fieldOwners'
+  | 'children.children.internal.ignoreType'
+  | 'children.children.internal.mediaType'
+  | 'children.children.internal.owner'
+  | 'children.children.internal.type'
+  | 'children.internal.content'
+  | 'children.internal.contentDigest'
+  | 'children.internal.description'
+  | 'children.internal.fieldOwners'
+  | 'children.internal.ignoreType'
+  | 'children.internal.mediaType'
+  | 'children.internal.owner'
+  | 'children.internal.type'
+  | 'internal.content'
+  | 'internal.contentDigest'
+  | 'internal.description'
+  | 'internal.fieldOwners'
+  | 'internal.ignoreType'
+  | 'internal.mediaType'
+  | 'internal.owner'
+  | 'internal.type';
+
+type GreenhouseJobGroupConnection = {
+  readonly totalCount: Scalars['Int'];
+  readonly edges: ReadonlyArray<GreenhouseJobEdge>;
+  readonly nodes: ReadonlyArray<GreenhouseJob>;
+  readonly pageInfo: PageInfo;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+};
+
+type GreenhouseJobFilterInput = {
+  readonly ghId: Maybe<StringQueryOperatorInput>;
+  readonly title: Maybe<StringQueryOperatorInput>;
+  readonly boardUrl: Maybe<StringQueryOperatorInput>;
+  readonly content: Maybe<StringQueryOperatorInput>;
+  readonly updatedAt: Maybe<DateQueryOperatorInput>;
+  readonly metadata: Maybe<GreenhouseJobCustomFieldMetadataFilterListInput>;
+  readonly childrenJobPost: Maybe<JobPostFilterListInput>;
+  readonly childJobPost: Maybe<JobPostFilterInput>;
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly parent: Maybe<NodeFilterInput>;
+  readonly children: Maybe<NodeFilterListInput>;
+  readonly internal: Maybe<InternalFilterInput>;
+};
+
+type GreenhouseJobSortInput = {
+  readonly fields: Maybe<ReadonlyArray<Maybe<GreenhouseJobFieldsEnum>>>;
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
@@ -5281,8 +5287,6 @@ type SitePluginFieldsEnum =
   | 'pluginOptions.stripMetadata'
   | 'pluginOptions.defaultQuality'
   | 'pluginOptions.failOnError'
-  | 'pluginOptions.boardToken'
-  | 'pluginOptions.includeContent'
   | 'pluginOptions.root'
   | 'pluginOptions.aliases._'
   | 'pluginOptions.outputPath'
@@ -5290,6 +5294,10 @@ type SitePluginFieldsEnum =
   | 'pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql'
   | 'pluginOptions.repositoryName'
   | 'pluginOptions.accessToken'
+  | 'pluginOptions.baseUrl'
+  | 'pluginOptions.uid'
+  | 'pluginOptions.boardToken'
+  | 'pluginOptions.includeContent'
   | 'pluginOptions.path'
   | 'pluginOptions.pathCheck'
   | 'pluginOptions.allExtensions'
@@ -5329,30 +5337,20 @@ type SitePluginSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
+type Header_navigationFragment = NavigationMenu_navigationFragment;
+
+type NavigationMenu_navigationFragment = { readonly headerEntries: ReadonlyArray<(
+    { readonly __typename: 'SiteNavigationEntryInternal' }
+    & Pick<SiteNavigationEntryInternal, 'pathname' | 'href' | 'displayName'>
+  ) | (
+    { readonly __typename: 'SiteNavigationEntryExternal' }
+    & Pick<SiteNavigationEntryExternal, 'url' | 'href' | 'displayName'>
+  )> };
+
 type LayoutStaticQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type LayoutStaticQuery = { readonly siteNavigation: Maybe<Header_navigationFragment> };
-
-type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type IndexPageQuery = { readonly __typename: 'Query' };
-
-type JobPostPageQueryVariables = Exact<{
-  id: Scalars['String'];
-}>;
-
-
-type JobPostPageQuery = { readonly jobPost: Maybe<Pick<JobPost, 'title'>> };
-
-type JobsPageQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type JobsPageQuery = { readonly allJobPost: { readonly nodes: ReadonlyArray<(
-      Pick<JobPost, 'id' | 'title'>
-      & { pagePath: JobPost['gatsbyPath'] }
-    )> } };
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
@@ -5380,18 +5378,30 @@ type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio
 
 type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
+type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type IndexPageQuery = { readonly __typename: 'Query' };
+
+type JobPostPageQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+type JobPostPageQuery = { readonly jobPost: Maybe<Pick<JobPost, 'title'>> };
+
 type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
-type NavigationMenu_navigationFragment = { readonly headerEntries: ReadonlyArray<(
-    { readonly __typename: 'SiteNavigationEntryInternal' }
-    & Pick<SiteNavigationEntryInternal, 'pathname' | 'href' | 'displayName'>
-  ) | (
-    { readonly __typename: 'SiteNavigationEntryExternal' }
-    & Pick<SiteNavigationEntryExternal, 'url' | 'href' | 'displayName'>
-  )> };
+type JobsPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type JobsPageQuery = { readonly allJobPost: { readonly nodes: ReadonlyArray<(
+      Pick<JobPost, 'id' | 'title'>
+      & { pagePath: JobPost['gatsbyPath'] }
+    )> } };
 
 type GatsbyPrismicImageFixedFragment = Pick<PrismicImageFixedType, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
@@ -5408,7 +5418,5 @@ type GatsbyPrismicImageFluid_noBase64Fragment = Pick<PrismicImageFluidType, 'asp
 type GatsbyPrismicImageFluid_withWebpFragment = Pick<PrismicImageFluidType, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
 type GatsbyPrismicImageFluid_withWebp_noBase64Fragment = Pick<PrismicImageFluidType, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type Header_navigationFragment = NavigationMenu_navigationFragment;
 
 }

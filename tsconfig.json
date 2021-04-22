@@ -5,6 +5,9 @@
     "moduleResolution": "Node",
     "incremental": true,
     "composite": true,
-    "strict": true
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "downlevelIteration": true
   }
 }

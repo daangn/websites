@@ -1,1 +1,3 @@
-/gatsby-*.js
+/*.js
+!/index.js
+/*.d.ts

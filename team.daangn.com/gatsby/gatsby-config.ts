@@ -3,6 +3,12 @@ import dotenv from 'dotenv-safe';
 
 dotenv.config();
 
+const siteUrl = new URL(
+  process.env.NODE_ENV === 'development'
+  ? 'http://localhost:8000'
+  : (process.env.SITE_URL || 'https://team.daangn.com')
+);
+
 const config: GatsbyConfig = {
   // See https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby/src/utils/flags.ts
   flags: {
@@ -12,9 +18,7 @@ const config: GatsbyConfig = {
     PARALLEL_SOURCING: true,
   },
   siteMetadata: {
-    siteUrl: process.env.NODE_ENV === 'development'
-      ? 'http://localhost'
-      : (process.env.SITE_URL || 'https://team.daangn.com'),
+    siteUrl: siteUrl.origin,
   },
   plugins: [
     'gatsby-theme-stitches',
@@ -22,13 +26,6 @@ const config: GatsbyConfig = {
     'gatsby-plugin-image',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
-    {
-      resolve: '@karrotmarket/gatsby-source-greenhouse-job-board',
-      options: {
-        boardToken: 'daangn',
-        includeContent: true,
-      },
-    },
     {
       resolve: 'gatsby-plugin-module-resolver',
       options: {
@@ -59,6 +56,24 @@ const config: GatsbyConfig = {
           faq: require('./prismic/schemas/faq.json'),
           site_navigation: require('./prismic/schemas/site-navigation.json'),
         },
+      },
+    },
+
+    // 커스텀 플러그인
+    
+    '@karrotmarket/gatsby-transformer-job-post',
+    {
+      resolve: '@karrotmarket/gatsby-transformer-site-navigation',
+      options: {
+        baseUrl: 'https://team.daangn.com',
+        uid: 'team.daangn.com',
+      },
+    },
+    {
+      resolve: '@karrotmarket/gatsby-source-greenhouse-job-board',
+      options: {
+        boardToken: 'daangn',
+        includeContent: true,
       },
     },
   ],
