@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
-import { global } from 'gatsby-theme-stitches/src/stitches.config';
+import { global, styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { rem } from 'polished';
 
 import Header from './layout/Header';
+import _Footer from './layout/Footer';
 
 const globalStyles = global({
   '*': {
@@ -20,6 +22,18 @@ const globalStyles = global({
   },
 });
 
+const Footer = styled(_Footer, {
+  marginTop: rem(120),
+
+  variants: {
+    wide: {
+      true: {
+        marginTop: rem(160),
+      },
+    },
+  },
+});
+
 const Layout: React.FC = ({
   children,
 }) => {
@@ -29,6 +43,7 @@ const Layout: React.FC = ({
     query LayoutStatic {
       siteNavigation {
         ...Header_navigation
+        ...Footer_navigation
       }
     }
   `);
@@ -41,6 +56,10 @@ const Layout: React.FC = ({
     <>
       <Header navigation={data.siteNavigation} />
       {children}
+      <Footer
+        navigation={data.siteNavigation}
+        wide={{ '@sm': true }}
+      />
     </>
   );
 }

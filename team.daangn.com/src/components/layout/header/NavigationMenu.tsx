@@ -11,7 +11,6 @@ type HamburgerMenuProps = {
 };
 
 export const query = graphql`
-  # TODO: Transform source to own type (ex. HeaderNavigation)
   fragment NavigationMenu_navigation on SiteNavigation {
     headerEntries {
       __typename

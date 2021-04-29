@@ -5339,18 +5339,35 @@ type SitePluginSortInput = {
 
 type Header_navigationFragment = NavigationMenu_navigationFragment;
 
-type NavigationMenu_navigationFragment = { readonly headerEntries: ReadonlyArray<(
+type Footer_navigationFragment = { readonly footerEntries: ReadonlyArray<(
     { readonly __typename: 'SiteNavigationEntryInternal' }
     & Pick<SiteNavigationEntryInternal, 'pathname' | 'href' | 'displayName'>
   ) | (
     { readonly __typename: 'SiteNavigationEntryExternal' }
     & Pick<SiteNavigationEntryExternal, 'url' | 'href' | 'displayName'>
-  )> };
+  )>, readonly socialProfiles: ReadonlyArray<SocialServiceProfile_profileFragment> };
 
-type LayoutStaticQueryVariables = Exact<{ [key: string]: never; }>;
+type JobPostPageQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
 
 
-type LayoutStaticQuery = { readonly siteNavigation: Maybe<Header_navigationFragment> };
+type JobPostPageQuery = { readonly jobPost: Maybe<Pick<JobPost, 'title'>> };
+
+type SocialServiceProfile_profileFragment = Pick<SocialProfileEntry, 'service' | 'url'>;
+
+type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type IndexPageQuery = { readonly __typename: 'Query' };
+
+type JobsPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type JobsPageQuery = { readonly allJobPost: { readonly nodes: ReadonlyArray<(
+      Pick<JobPost, 'id' | 'title'>
+      & { pagePath: JobPost['gatsbyPath'] }
+    )> } };
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
@@ -5378,31 +5395,6 @@ type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio
 
 type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
-type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type IndexPageQuery = { readonly __typename: 'Query' };
-
-type JobPostPageQueryVariables = Exact<{
-  id: Scalars['String'];
-}>;
-
-
-type JobPostPageQuery = { readonly jobPost: Maybe<Pick<JobPost, 'title'>> };
-
-type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
-
-type JobsPageQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type JobsPageQuery = { readonly allJobPost: { readonly nodes: ReadonlyArray<(
-      Pick<JobPost, 'id' | 'title'>
-      & { pagePath: JobPost['gatsbyPath'] }
-    )> } };
-
 type GatsbyPrismicImageFixedFragment = Pick<PrismicImageFixedType, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
 type GatsbyPrismicImageFixed_noBase64Fragment = Pick<PrismicImageFixedType, 'width' | 'height' | 'src' | 'srcSet'>;
@@ -5418,5 +5410,26 @@ type GatsbyPrismicImageFluid_noBase64Fragment = Pick<PrismicImageFluidType, 'asp
 type GatsbyPrismicImageFluid_withWebpFragment = Pick<PrismicImageFluidType, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
 type GatsbyPrismicImageFluid_withWebp_noBase64Fragment = Pick<PrismicImageFluidType, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
+
+type LayoutStaticQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type LayoutStaticQuery = { readonly siteNavigation: Maybe<(
+    Header_navigationFragment
+    & Footer_navigationFragment
+  )> };
+
+type NavigationMenu_navigationFragment = { readonly headerEntries: ReadonlyArray<(
+    { readonly __typename: 'SiteNavigationEntryInternal' }
+    & Pick<SiteNavigationEntryInternal, 'pathname' | 'href' | 'displayName'>
+  ) | (
+    { readonly __typename: 'SiteNavigationEntryExternal' }
+    & Pick<SiteNavigationEntryExternal, 'url' | 'href' | 'displayName'>
+  )> };
 
 }
