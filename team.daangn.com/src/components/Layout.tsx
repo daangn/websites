@@ -20,6 +20,12 @@ const globalStyles = global({
   'body:lang(ko)': {
     wordBreak: 'keep-all',
   },
+  '@media (prefers-reduced-motion: no-preference)': {
+    ':focus': {
+      transition: 'outline-offset .25s ease',
+      outlineOffset: '3px',
+    },
+  },
 });
 
 const Footer = styled(_Footer, {
