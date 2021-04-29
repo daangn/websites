@@ -40,6 +40,19 @@ const Footer = styled(_Footer, {
   },
 });
 
+const Main = styled('main', {
+  paddingX: rem(24),
+
+  variants: {
+    wide: {
+      true: {
+        maxWidth: '$maxContent',
+        margin: '0 auto',
+      },
+    },
+  },
+});
+
 const Layout: React.FC = ({
   children,
 }) => {
@@ -61,7 +74,9 @@ const Layout: React.FC = ({
   return (
     <>
       <Header navigation={data.siteNavigation} />
-      {children}
+      <Main wide={{ '@sm': true }}>
+        {children}
+      </Main>
       <Footer
         navigation={data.siteNavigation}
         wide={{ '@sm': true }}
