@@ -12,18 +12,10 @@ export const query = graphql`
   }
 `;
 
-const Test = styled('div', {
-  color: '$carrot500',
-});
-
 export default function IndexPage({
   data,
 }: IndexPageProps) {
   return (
-    <Layout>
-      <Test>
-        Hello GatsbyJS!!
-      </Test>
-    </Layout>
+    <Layout />
   );
 }

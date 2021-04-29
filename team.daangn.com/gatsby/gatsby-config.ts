@@ -25,6 +25,7 @@ const config: GatsbyConfig = {
     'gatsby-plugin-svgr',
     'gatsby-plugin-image',
     'gatsby-plugin-sharp',
+    'gatsby-plugin-react-helmet-async',
     'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-plugin-module-resolver',
@@ -60,8 +61,13 @@ const config: GatsbyConfig = {
     },
 
     // 커스텀 플러그인
-    
     '@karrotmarket/gatsby-transformer-job-post',
+    {
+      resolve: '@karrotmarket/gatsby-transformer-faq',
+      options: {
+        uid: 'team.daangn.com',
+      },
+    },
     {
       resolve: '@karrotmarket/gatsby-transformer-site-navigation',
       options: {

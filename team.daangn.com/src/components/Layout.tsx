@@ -1,9 +1,10 @@
 import * as React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { graphql, useStaticQuery } from 'gatsby';
 import { global, styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { rem } from 'polished';
 
-import Header from './layout/Header';
+import _Header from './layout/Header';
 import _Footer from './layout/Footer';
 
 const globalStyles = global({
@@ -12,6 +13,7 @@ const globalStyles = global({
     fontFamily: 'inherit',
   },
   'body': {
+    color: '$gray900',
     fontFamily: 'sans-serif',
     textRendering: 'optimizeLegibility',
     wordBreak: 'break-word',
@@ -20,10 +22,25 @@ const globalStyles = global({
   'body:lang(ko)': {
     wordBreak: 'keep-all',
   },
+  'a': {
+    color: '$carrot500',
+  },
   '@media (prefers-reduced-motion: no-preference)': {
     ':focus': {
       transition: 'outline-offset .25s ease',
       outlineOffset: '3px',
+    },
+  },
+});
+
+const Header = styled(_Header, {
+  marginBottom: rem(36),
+
+  variants: {
+    wide: {
+      true: {
+        marginBottom: rem(100),
+      },
     },
   },
 });
@@ -73,7 +90,13 @@ const Layout: React.FC = ({
 
   return (
     <>
-      <Header navigation={data.siteNavigation} />
+      <Helmet>
+        <html lang="ko" />
+      </Helmet>
+      <Header
+        navigation={data.siteNavigation}
+        wide={{ '@sm': true }}
+      />
       <Main wide={{ '@sm': true }}>
         {children}
       </Main>

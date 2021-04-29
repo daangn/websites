@@ -7,6 +7,7 @@ import NavigationMenu from './header/NavigationMenu';
 import { ReactComponent as LogoSvg } from './logo.svg';
 
 type HeaderProps = {
+  className?: string,
   navigation: GatsbyTypes.Header_navigationFragment,
 };
 
@@ -22,6 +23,7 @@ const Container = styled('header', {
   background: '#fff',
   width: '100%',
   height: rem(58),
+  zIndex: 1,
 
   variants: {
     size: {
@@ -79,10 +81,11 @@ const Logo = styled(LogoSvg, {
 });
 
 export default function Header({
+  className,
   navigation,
 }: HeaderProps) {
   return (
-    <>
+    <div className={className}>
       <Placer size={{ '@sm': 'sm' }} />
       <Container size={{ '@sm': 'sm' }}>
         <Content wide={{ initial: false, '@sm': true }}>
@@ -95,6 +98,6 @@ export default function Header({
           />
         </Content>
       </Container>
-    </>
+    </div>
   );
 }

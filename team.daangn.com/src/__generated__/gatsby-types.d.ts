@@ -584,6 +584,7 @@ type PrismicFaq = PrismicDocument & Node & {
   readonly type: Scalars['String'];
   readonly prismicId: Scalars['ID'];
   readonly _previewable: Scalars['ID'];
+  readonly uid: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly parent: Maybe<Node>;
   readonly children: ReadonlyArray<Node>;
@@ -1465,6 +1466,20 @@ type JobPostContentSection = {
   readonly rawContent: Scalars['String'];
 };
 
+type Faq = Node & {
+  readonly entries: ReadonlyArray<FaqEntry>;
+  readonly id: Scalars['ID'];
+  readonly parent: Maybe<Node>;
+  readonly children: ReadonlyArray<Node>;
+  readonly internal: Internal;
+};
+
+type FaqEntry = {
+  readonly id: Scalars['ID'];
+  readonly question: Scalars['String'];
+  readonly answerHtml: Scalars['String'];
+};
+
 type SiteNavigation = Node & {
   readonly headerEntries: ReadonlyArray<SiteNavigationEntry>;
   readonly footerEntries: ReadonlyArray<SiteNavigationEntry>;
@@ -1599,8 +1614,8 @@ type SitePluginPluginOptions = {
   readonly repositoryName: Maybe<Scalars['String']>;
   readonly accessToken: Maybe<Scalars['String']>;
   readonly schemas: Maybe<SitePluginPluginOptionsSchemas>;
-  readonly baseUrl: Maybe<Scalars['String']>;
   readonly uid: Maybe<Scalars['String']>;
+  readonly baseUrl: Maybe<Scalars['String']>;
   readonly boardToken: Maybe<Scalars['String']>;
   readonly includeContent: Maybe<Scalars['Boolean']>;
   readonly path: Maybe<Scalars['String']>;
@@ -1632,7 +1647,17 @@ type SitePluginPluginOptionsSchemasFaq = {
 };
 
 type SitePluginPluginOptionsSchemasFaqMain = {
+  readonly uid: Maybe<SitePluginPluginOptionsSchemasFaqMainUid>;
   readonly entries: Maybe<SitePluginPluginOptionsSchemasFaqMainEntries>;
+};
+
+type SitePluginPluginOptionsSchemasFaqMainUid = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasFaqMainUidConfig>;
+};
+
+type SitePluginPluginOptionsSchemasFaqMainUidConfig = {
+  readonly label: Maybe<Scalars['String']>;
 };
 
 type SitePluginPluginOptionsSchemasFaqMainEntries = {
@@ -1870,6 +1895,8 @@ type Query = {
   readonly allPrismicSiteNavigation: PrismicSiteNavigationConnection;
   readonly jobPost: Maybe<JobPost>;
   readonly allJobPost: JobPostConnection;
+  readonly faq: Maybe<Faq>;
+  readonly allFaq: FaqConnection;
   readonly siteNavigation: Maybe<SiteNavigation>;
   readonly allSiteNavigation: SiteNavigationConnection;
   readonly greenhouseJob: Maybe<GreenhouseJob>;
@@ -2061,6 +2088,7 @@ type Query_prismicFaqArgs = {
   type: Maybe<StringQueryOperatorInput>;
   prismicId: Maybe<IDQueryOperatorInput>;
   _previewable: Maybe<IDQueryOperatorInput>;
+  uid: Maybe<StringQueryOperatorInput>;
   id: Maybe<StringQueryOperatorInput>;
   parent: Maybe<NodeFilterInput>;
   children: Maybe<NodeFilterListInput>;
@@ -2129,6 +2157,23 @@ type Query_jobPostArgs = {
 type Query_allJobPostArgs = {
   filter: Maybe<JobPostFilterInput>;
   sort: Maybe<JobPostSortInput>;
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+};
+
+
+type Query_faqArgs = {
+  entries: Maybe<FaqEntryFilterListInput>;
+  id: Maybe<StringQueryOperatorInput>;
+  parent: Maybe<NodeFilterInput>;
+  children: Maybe<NodeFilterListInput>;
+  internal: Maybe<InternalFilterInput>;
+};
+
+
+type Query_allFaqArgs = {
+  filter: Maybe<FaqFilterInput>;
+  sort: Maybe<FaqSortInput>;
   skip: Maybe<Scalars['Int']>;
   limit: Maybe<Scalars['Int']>;
 };
@@ -3117,8 +3162,8 @@ type SitePluginPluginOptionsFilterInput = {
   readonly repositoryName: Maybe<StringQueryOperatorInput>;
   readonly accessToken: Maybe<StringQueryOperatorInput>;
   readonly schemas: Maybe<SitePluginPluginOptionsSchemasFilterInput>;
-  readonly baseUrl: Maybe<StringQueryOperatorInput>;
   readonly uid: Maybe<StringQueryOperatorInput>;
+  readonly baseUrl: Maybe<StringQueryOperatorInput>;
   readonly boardToken: Maybe<StringQueryOperatorInput>;
   readonly includeContent: Maybe<BooleanQueryOperatorInput>;
   readonly path: Maybe<StringQueryOperatorInput>;
@@ -3150,7 +3195,17 @@ type SitePluginPluginOptionsSchemasFaqFilterInput = {
 };
 
 type SitePluginPluginOptionsSchemasFaqMainFilterInput = {
+  readonly uid: Maybe<SitePluginPluginOptionsSchemasFaqMainUidFilterInput>;
   readonly entries: Maybe<SitePluginPluginOptionsSchemasFaqMainEntriesFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasFaqMainUidFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasFaqMainUidConfigFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasFaqMainUidConfigFilterInput = {
+  readonly label: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePluginPluginOptionsSchemasFaqMainEntriesFilterInput = {
@@ -3558,8 +3613,8 @@ type SitePageFieldsEnum =
   | 'pluginCreator.pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql'
   | 'pluginCreator.pluginOptions.repositoryName'
   | 'pluginCreator.pluginOptions.accessToken'
-  | 'pluginCreator.pluginOptions.baseUrl'
   | 'pluginCreator.pluginOptions.uid'
+  | 'pluginCreator.pluginOptions.baseUrl'
   | 'pluginCreator.pluginOptions.boardToken'
   | 'pluginCreator.pluginOptions.includeContent'
   | 'pluginCreator.pluginOptions.path'
@@ -3890,6 +3945,7 @@ type PrismicFaqFieldsEnum =
   | 'type'
   | 'prismicId'
   | '_previewable'
+  | 'uid'
   | 'id'
   | 'parent.id'
   | 'parent.parent.id'
@@ -4000,6 +4056,7 @@ type PrismicFaqFilterInput = {
   readonly type: Maybe<StringQueryOperatorInput>;
   readonly prismicId: Maybe<IDQueryOperatorInput>;
   readonly _previewable: Maybe<IDQueryOperatorInput>;
+  readonly uid: Maybe<StringQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
   readonly children: Maybe<NodeFilterListInput>;
@@ -4606,6 +4663,157 @@ type JobPostFilterInput = {
 
 type JobPostSortInput = {
   readonly fields: Maybe<ReadonlyArray<Maybe<JobPostFieldsEnum>>>;
+  readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
+};
+
+type FaqEntryFilterListInput = {
+  readonly elemMatch: Maybe<FaqEntryFilterInput>;
+};
+
+type FaqEntryFilterInput = {
+  readonly id: Maybe<IDQueryOperatorInput>;
+  readonly question: Maybe<StringQueryOperatorInput>;
+  readonly answerHtml: Maybe<StringQueryOperatorInput>;
+};
+
+type FaqConnection = {
+  readonly totalCount: Scalars['Int'];
+  readonly edges: ReadonlyArray<FaqEdge>;
+  readonly nodes: ReadonlyArray<Faq>;
+  readonly pageInfo: PageInfo;
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly group: ReadonlyArray<FaqGroupConnection>;
+};
+
+
+type FaqConnection_distinctArgs = {
+  field: FaqFieldsEnum;
+};
+
+
+type FaqConnection_groupArgs = {
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+  field: FaqFieldsEnum;
+};
+
+type FaqEdge = {
+  readonly next: Maybe<Faq>;
+  readonly node: Faq;
+  readonly previous: Maybe<Faq>;
+};
+
+type FaqFieldsEnum =
+  | 'entries'
+  | 'entries.id'
+  | 'entries.question'
+  | 'entries.answerHtml'
+  | 'id'
+  | 'parent.id'
+  | 'parent.parent.id'
+  | 'parent.parent.parent.id'
+  | 'parent.parent.parent.children'
+  | 'parent.parent.children'
+  | 'parent.parent.children.id'
+  | 'parent.parent.children.children'
+  | 'parent.parent.internal.content'
+  | 'parent.parent.internal.contentDigest'
+  | 'parent.parent.internal.description'
+  | 'parent.parent.internal.fieldOwners'
+  | 'parent.parent.internal.ignoreType'
+  | 'parent.parent.internal.mediaType'
+  | 'parent.parent.internal.owner'
+  | 'parent.parent.internal.type'
+  | 'parent.children'
+  | 'parent.children.id'
+  | 'parent.children.parent.id'
+  | 'parent.children.parent.children'
+  | 'parent.children.children'
+  | 'parent.children.children.id'
+  | 'parent.children.children.children'
+  | 'parent.children.internal.content'
+  | 'parent.children.internal.contentDigest'
+  | 'parent.children.internal.description'
+  | 'parent.children.internal.fieldOwners'
+  | 'parent.children.internal.ignoreType'
+  | 'parent.children.internal.mediaType'
+  | 'parent.children.internal.owner'
+  | 'parent.children.internal.type'
+  | 'parent.internal.content'
+  | 'parent.internal.contentDigest'
+  | 'parent.internal.description'
+  | 'parent.internal.fieldOwners'
+  | 'parent.internal.ignoreType'
+  | 'parent.internal.mediaType'
+  | 'parent.internal.owner'
+  | 'parent.internal.type'
+  | 'children'
+  | 'children.id'
+  | 'children.parent.id'
+  | 'children.parent.parent.id'
+  | 'children.parent.parent.children'
+  | 'children.parent.children'
+  | 'children.parent.children.id'
+  | 'children.parent.children.children'
+  | 'children.parent.internal.content'
+  | 'children.parent.internal.contentDigest'
+  | 'children.parent.internal.description'
+  | 'children.parent.internal.fieldOwners'
+  | 'children.parent.internal.ignoreType'
+  | 'children.parent.internal.mediaType'
+  | 'children.parent.internal.owner'
+  | 'children.parent.internal.type'
+  | 'children.children'
+  | 'children.children.id'
+  | 'children.children.parent.id'
+  | 'children.children.parent.children'
+  | 'children.children.children'
+  | 'children.children.children.id'
+  | 'children.children.children.children'
+  | 'children.children.internal.content'
+  | 'children.children.internal.contentDigest'
+  | 'children.children.internal.description'
+  | 'children.children.internal.fieldOwners'
+  | 'children.children.internal.ignoreType'
+  | 'children.children.internal.mediaType'
+  | 'children.children.internal.owner'
+  | 'children.children.internal.type'
+  | 'children.internal.content'
+  | 'children.internal.contentDigest'
+  | 'children.internal.description'
+  | 'children.internal.fieldOwners'
+  | 'children.internal.ignoreType'
+  | 'children.internal.mediaType'
+  | 'children.internal.owner'
+  | 'children.internal.type'
+  | 'internal.content'
+  | 'internal.contentDigest'
+  | 'internal.description'
+  | 'internal.fieldOwners'
+  | 'internal.ignoreType'
+  | 'internal.mediaType'
+  | 'internal.owner'
+  | 'internal.type';
+
+type FaqGroupConnection = {
+  readonly totalCount: Scalars['Int'];
+  readonly edges: ReadonlyArray<FaqEdge>;
+  readonly nodes: ReadonlyArray<Faq>;
+  readonly pageInfo: PageInfo;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+};
+
+type FaqFilterInput = {
+  readonly entries: Maybe<FaqEntryFilterListInput>;
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly parent: Maybe<NodeFilterInput>;
+  readonly children: Maybe<NodeFilterListInput>;
+  readonly internal: Maybe<InternalFilterInput>;
+};
+
+type FaqSortInput = {
+  readonly fields: Maybe<ReadonlyArray<Maybe<FaqFieldsEnum>>>;
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
@@ -5294,8 +5502,8 @@ type SitePluginFieldsEnum =
   | 'pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql'
   | 'pluginOptions.repositoryName'
   | 'pluginOptions.accessToken'
-  | 'pluginOptions.baseUrl'
   | 'pluginOptions.uid'
+  | 'pluginOptions.baseUrl'
   | 'pluginOptions.boardToken'
   | 'pluginOptions.includeContent'
   | 'pluginOptions.path'
@@ -5337,24 +5545,23 @@ type SitePluginSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type Header_navigationFragment = NavigationMenu_navigationFragment;
+type FaqAccordian_faqFragment = { readonly entries: ReadonlyArray<FaqAccordianItem_entryFragment> };
 
-type Footer_navigationFragment = { readonly footerEntries: ReadonlyArray<(
-    { readonly __typename: 'SiteNavigationEntryInternal' }
-    & Pick<SiteNavigationEntryInternal, 'pathname' | 'href' | 'displayName'>
-  ) | (
-    { readonly __typename: 'SiteNavigationEntryExternal' }
-    & Pick<SiteNavigationEntryExternal, 'url' | 'href' | 'displayName'>
-  )>, readonly socialProfiles: ReadonlyArray<SocialServiceProfile_profileFragment> };
-
-type JobPostPageQueryVariables = Exact<{
-  id: Scalars['String'];
-}>;
-
-
-type JobPostPageQuery = { readonly jobPost: Maybe<Pick<JobPost, 'title'>> };
+type FaqAccordianItem_entryFragment = Pick<FaqEntry, 'id' | 'question' | 'answerHtml'>;
 
 type SocialServiceProfile_profileFragment = Pick<SocialProfileEntry, 'service' | 'url'>;
+
+type Header_navigationFragment = NavigationMenu_navigationFragment;
+
+type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
+
+type FaqPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type FaqPageQuery = { readonly faq: Maybe<FaqAccordian_faqFragment> };
 
 type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -5368,6 +5575,45 @@ type JobsPageQuery = { readonly allJobPost: { readonly nodes: ReadonlyArray<(
       Pick<JobPost, 'id' | 'title'>
       & { pagePath: JobPost['gatsbyPath'] }
     )> } };
+
+type JobPostPageQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+type JobPostPageQuery = { readonly jobPost: Maybe<Pick<JobPost, 'title'>> };
+
+type LayoutStaticQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type LayoutStaticQuery = { readonly siteNavigation: Maybe<(
+    Header_navigationFragment
+    & Footer_navigationFragment
+  )> };
+
+type NavigationMenu_navigationFragment = { readonly headerEntries: ReadonlyArray<(
+    { readonly __typename: 'SiteNavigationEntryInternal' }
+    & Pick<SiteNavigationEntryInternal, 'pathname' | 'href' | 'displayName'>
+  ) | (
+    { readonly __typename: 'SiteNavigationEntryExternal' }
+    & Pick<SiteNavigationEntryExternal, 'url' | 'href' | 'displayName'>
+  )> };
+
+type GatsbyPrismicImageFixedFragment = Pick<PrismicImageFixedType, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
+
+type GatsbyPrismicImageFixed_noBase64Fragment = Pick<PrismicImageFixedType, 'width' | 'height' | 'src' | 'srcSet'>;
+
+type GatsbyPrismicImageFixed_withWebpFragment = Pick<PrismicImageFixedType, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+
+type GatsbyPrismicImageFixed_withWebp_noBase64Fragment = Pick<PrismicImageFixedType, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+
+type GatsbyPrismicImageFluidFragment = Pick<PrismicImageFluidType, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyPrismicImageFluid_noBase64Fragment = Pick<PrismicImageFluidType, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyPrismicImageFluid_withWebpFragment = Pick<PrismicImageFluidType, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+type GatsbyPrismicImageFluid_withWebp_noBase64Fragment = Pick<PrismicImageFluidType, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
@@ -5395,41 +5641,12 @@ type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio
 
 type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
-type GatsbyPrismicImageFixedFragment = Pick<PrismicImageFixedType, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyPrismicImageFixed_noBase64Fragment = Pick<PrismicImageFixedType, 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyPrismicImageFixed_withWebpFragment = Pick<PrismicImageFixedType, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyPrismicImageFixed_withWebp_noBase64Fragment = Pick<PrismicImageFixedType, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyPrismicImageFluidFragment = Pick<PrismicImageFluidType, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyPrismicImageFluid_noBase64Fragment = Pick<PrismicImageFluidType, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyPrismicImageFluid_withWebpFragment = Pick<PrismicImageFluidType, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyPrismicImageFluid_withWebp_noBase64Fragment = Pick<PrismicImageFluidType, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
-
-type LayoutStaticQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type LayoutStaticQuery = { readonly siteNavigation: Maybe<(
-    Header_navigationFragment
-    & Footer_navigationFragment
-  )> };
-
-type NavigationMenu_navigationFragment = { readonly headerEntries: ReadonlyArray<(
+type Footer_navigationFragment = { readonly footerEntries: ReadonlyArray<(
     { readonly __typename: 'SiteNavigationEntryInternal' }
     & Pick<SiteNavigationEntryInternal, 'pathname' | 'href' | 'displayName'>
   ) | (
     { readonly __typename: 'SiteNavigationEntryExternal' }
     & Pick<SiteNavigationEntryExternal, 'url' | 'href' | 'displayName'>
-  )> };
+  )>, readonly socialProfiles: ReadonlyArray<SocialServiceProfile_profileFragment> };
 
 }
