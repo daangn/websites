@@ -21,7 +21,6 @@ export const query = graphql`
 `;
 
 const Container = styled('div', {
-  minHeight: '100vh',
 });
 
 type State = {

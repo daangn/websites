@@ -125,6 +125,6 @@ export const keywords: FieldParser<string[]> = (
 export const chapter: FieldParser<string> = (
   node,
 ) => {
-  const metadata = findMetadataById<string>(node, 6008743003);
+  const metadata = findMetadataById<string>(node, 6015694003);
   return metadata?.value ?? '';
 }

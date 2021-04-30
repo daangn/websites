@@ -118,8 +118,8 @@ export default function Footer({
       <Content wide={{ '@sm': true }}>
         <FooterEntryList wide={{ '@sm': true }}>
           <Copyright>© 당근마켓</Copyright>
-          {navigation.footerEntries.map(entry => (
-            <FooterEntryItem key={entry.href}>
+          {navigation.footerEntries.map((entry, i) => (
+            <FooterEntryItem key={`${entry.href}#${i}`}>
               {mapAbstractType(entry, {
                 SiteNavigationEntryInternal: entry => (
                   <FooterEntryLink to={entry.pathname}>

@@ -3,7 +3,6 @@ import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { rem } from 'polished';
 import { motion } from 'framer-motion';
-import * as RadixAccordion from '@radix-ui/react-accordion';
 
 import chevronIconUrl from '!!file-loader?modules!./faqAccordianItem/chevron.svg';
 

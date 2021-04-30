@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import ReactDOM from 'react-dom';
+import { AnimateSharedLayout, AnimatePresence } from 'framer-motion';
 import type { GatsbyBrowser } from 'gatsby';
 import type { Callable } from '@cometjs/core';
 import { IdProvider } from '@radix-ui/react-id';

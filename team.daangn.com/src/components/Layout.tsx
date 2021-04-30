@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useInView } from 'react-intersection-observer';
+import { motion, useAnimation, AnimateSharedLayout, AnimatePresence } from 'framer-motion';
 import { graphql, useStaticQuery } from 'gatsby';
 import { global, styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { rem } from 'polished';
@@ -57,7 +59,7 @@ const Footer = styled(_Footer, {
   },
 });
 
-const Main = styled('main', {
+const Main = styled(motion.main, {
   paddingX: rem(24),
 
   variants: {
@@ -70,10 +72,38 @@ const Main = styled('main', {
   },
 });
 
+const variants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const transition = {
+  type: 'spring',
+  mass: 0.35,
+  stiffness: 50,
+  duration: 3.0,
+};
+
 const Layout: React.FC = ({
   children,
 }) => {
   globalStyles();
+
+  const controls = useAnimation();
+
+  const [isMounted, mount] = React.useReducer(() => true, false);
+  React.useEffect(() => {
+    mount();
+  }, []);
+
+  React.useEffect(() => {
+    if (!isMounted) {
+      controls.set('hidden');
+    }
+    if (isMounted) {
+      controls.start('visible');
+    }
+  }, [isMounted, controls]);
 
   const data = useStaticQuery<GatsbyTypes.LayoutStaticQuery>(graphql`
     query LayoutStatic {
@@ -90,17 +120,26 @@ const Layout: React.FC = ({
 
   return (
     <>
-      <Helmet>
+      <Helmet key="helmet">
         <html lang="ko" />
       </Helmet>
       <Header
+        key="header"
         navigation={data.siteNavigation}
         wide={{ '@sm': true }}
       />
-      <Main wide={{ '@sm': true }}>
+      <Main
+        key="main"
+        initial="visible"
+        animate={controls}
+        variants={variants}
+        transition={transition}
+        wide={{ '@sm': true }}
+      >
         {children}
       </Main>
       <Footer
+        key="footer"
         navigation={data.siteNavigation}
         wide={{ '@sm': true }}
       />

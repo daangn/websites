@@ -150,11 +150,11 @@ export const onCreateNode: NormalizeAPI<'onCreateNode'> = ctx => {
       boardUrl: node.absolute_url,
       rawContent,
       content,
-      employmentType: fieldParser.employmentType(node, ctx),
-      alternativeCivilianService: fieldParser.alternativeCivilianService(node, ctx),
-      priorExperience: fieldParser.priorExperience(node, ctx),
-      chapter: fieldParser.chapter(node, ctx),
-      keywords: fieldParser.keywords(node, ctx),
+      employmentType: fieldParser.employmentType(node, ctx) ?? 'FULL_TIME',
+      alternativeCivilianService: fieldParser.alternativeCivilianService(node, ctx) ?? false,
+      priorExperience: fieldParser.priorExperience(node, ctx) ?? 'YES',
+      chapter: fieldParser.chapter(node, ctx) ?? '',
+      keywords: fieldParser.keywords(node, ctx) ?? [],
     };
 
     const jobPostNode: NodeInput = {

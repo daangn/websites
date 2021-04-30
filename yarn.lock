@@ -1175,6 +1175,11 @@
     "@babel/helper-validator-identifier" "^7.12.11"
     to-fast-properties "^2.0.0"
 
+"@cometjs/core@1.0.0", "@cometjs/core@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@cometjs/core/-/core-1.0.0.tgz#1c751ab2d39c1d0fbf704a3cc1a818d8810a1cc3"
+  integrity sha512-FsIco/9VLpqBPV9I+SZr8dz72A6j11R9JjAacCcd6sQZrCMclnc1BRvLEKppOj2+Xhy85rzCmG0qlhwS5AGzIw==
+
 "@cometjs/core@1.0.0-rc.1":
   version "1.0.0-rc.1"
   resolved "https://registry.yarnpkg.com/@cometjs/core/-/core-1.0.0-rc.1.tgz#f99b1bae84afa5be0be96091a88dab4c1dfb7618"
@@ -1187,17 +1192,19 @@
   dependencies:
     core-js "^3.6.5"
 
-"@cometjs/core@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@cometjs/core/-/core-1.0.0.tgz#1c751ab2d39c1d0fbf704a3cc1a818d8810a1cc3"
-  integrity sha512-FsIco/9VLpqBPV9I+SZr8dz72A6j11R9JjAacCcd6sQZrCMclnc1BRvLEKppOj2+Xhy85rzCmG0qlhwS5AGzIw==
-
 "@cometjs/graphql-utils@^1.0.0-rc.1":
   version "1.0.0-rc.1"
   resolved "https://registry.yarnpkg.com/@cometjs/graphql-utils/-/graphql-utils-1.0.0-rc.1.tgz#6134576fa3899e5fb65e62479a0fc5f5b4c69974"
   integrity sha512-BRXG/l6XJ5QNj7bMOSSxg5jD8GPvNhboNMYWXWDdL/5jl1zX8bJL5j0m5WIuhsy6OIbNBVjo2BMS1ZpqKcZ2oA==
   dependencies:
     "@cometjs/core" "1.0.0-rc.1"
+
+"@cometjs/react-utils@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@cometjs/react-utils/-/react-utils-1.0.0.tgz#8f897e360dde42feb8077629f5e69ecc91fb711b"
+  integrity sha512-xfhs878pT0ggRE/Vr8VDbHrJEalGKJQPejldnSDNc/uZFY1WfrG/sd2+eesqnSn0M2Z4ncqT8b73aAzqQI+1+A==
+  dependencies:
+    "@cometjs/core" "1.0.0"
 
 "@daangn/design-token@^0.1.6":
   version "0.1.6"
@@ -6674,6 +6681,13 @@ gatsby-plugin-imgix@^0.8.1:
     node-fetch "^2.6.0"
     param-case "^3.0.3"
 
+gatsby-plugin-layout@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-layout/-/gatsby-plugin-layout-2.4.0.tgz#48a3898db0377360ded062900dc267039eb0914b"
+  integrity sha512-NXX+bMDWmsb8r/GE5GHG1rSpypYCi7wUEuWf1ceDRafpEO8Bo4jI2Sx777vunTUgWLq6SN92EgUBm6d8D5AcfQ==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+
 gatsby-plugin-manifest@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-manifest/-/gatsby-plugin-manifest-3.3.0.tgz#211b7ad6b0ff8dccd182a34bdb21a31c1fbd9377"
@@ -11717,6 +11731,11 @@ react-helmet-async@^1.0.9:
     prop-types "^15.7.2"
     react-fast-compare "^3.2.0"
     shallowequal "^1.1.0"
+
+react-intersection-observer@^8.31.1:
+  version "8.31.1"
+  resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-8.31.1.tgz#dea4e9a10bbfc899c4159eadd94354cc083920b5"
+  integrity sha512-Q4OH2aUXcEi6tPBBgOBjfodoRM68wikXqqbPf8FaY4VBMcSACbxulfkW/OqcfLYfSAOEPGvxN+NCn9PqBgAOfQ==
 
 react-is@^16.12.0, react-is@^16.8.1:
   version "16.13.1"
