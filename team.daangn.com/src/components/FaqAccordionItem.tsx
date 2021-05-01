@@ -4,10 +4,10 @@ import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { rem } from 'polished';
 import { motion } from 'framer-motion';
 
-import chevronIconUrl from '!!file-loader?modules!./faqAccordianItem/chevron.svg';
+import chevronIconUrl from '!!file-loader?modules!./faqAccordionItem/chevron.svg';
 
-type FaqAccordianItemProps = {
-  entry: GatsbyTypes.FaqAccordianItem_entryFragment,
+type FaqAccordionItemProps = {
+  entry: GatsbyTypes.FaqAccordionItem_entryFragment,
   className?: string,
   open?: boolean,
   onClick?: (id: string) => void,
@@ -15,7 +15,7 @@ type FaqAccordianItemProps = {
 };
 
 export const query = graphql`
-  fragment FaqAccordianItem_entry on FaqEntry {
+  fragment FaqAccordionItem_entry on FaqEntry {
     id
     question
     answerHtml
@@ -94,7 +94,7 @@ const transition = {
   ease: [0.04, 0.62, 0.23, 0.98],
 };
 
-const FaqAccordianItem: React.FC<FaqAccordianItemProps> = ({
+const FaqAccordionItem: React.FC<FaqAccordionItemProps> = ({
   entry,
   className,
   onClick,
@@ -135,4 +135,4 @@ const FaqAccordianItem: React.FC<FaqAccordianItemProps> = ({
   );
 }
 
-export default FaqAccordianItem;
+export default FaqAccordionItem;

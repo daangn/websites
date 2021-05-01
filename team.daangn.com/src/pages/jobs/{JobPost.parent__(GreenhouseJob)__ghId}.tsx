@@ -14,6 +14,22 @@ import JobPostContentParagraphSection from '~/components/JobPostContentParagraph
 
 type JobPostPageProps = PageProps<GatsbyTypes.JobPostPageQuery, GatsbyTypes.SitePageContext>;
 
+export const query = graphql`
+  query JobPostPage($id: String!) {
+    jobPost(id: { eq: $id }) {
+      id
+      title
+      applyPath: gatsbyPath(filePath: "/jobs/{JobPost.parent__(GreenhouseJob)__ghId}/apply")
+      content {
+        __typename
+        ...JobPostContentUnorderedListSection_content
+        ...JobPostContentOrderedListSection_content
+        ...JobPostContentParagraphSection_content
+      }
+    }
+  }
+`;
+
 const ContentWrapper = styled('div', {
   display: 'grid',
 });
@@ -51,19 +67,3 @@ const JobPostPage: React.FC<JobPostPageProps> = ({
 };
 
 export default JobPostPage;
-
-export const query = graphql`
-  query JobPostPage($id: String!) {
-    jobPost(id: { eq: $id }) {
-      id
-      title
-      applyPath: gatsbyPath(filePath: "/jobs/{JobPost.parent__(GreenhouseJob)__ghId}/apply")
-      content {
-        __typename
-        ...JobPostContentUnorderedListSection_content
-        ...JobPostContentOrderedListSection_content
-        ...JobPostContentParagraphSection_content
-      }
-    }
-  }
-`;

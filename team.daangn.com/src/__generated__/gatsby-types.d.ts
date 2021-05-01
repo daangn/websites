@@ -5549,23 +5549,19 @@ type SitePluginSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type FaqAccordianItem_entryFragment = Pick<FaqEntry, 'id' | 'question' | 'answerHtml'>;
-
-type Header_navigationFragment = NavigationMenu_navigationFragment;
-
-type FaqAccordian_faqFragment = { readonly entries: ReadonlyArray<FaqAccordianItem_entryFragment> };
-
-type SocialServiceProfile_profileFragment = Pick<SocialProfileEntry, 'service' | 'url'>;
-
 type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
+type FaqAccordion_faqFragment = { readonly entries: ReadonlyArray<FaqAccordionItem_entryFragment> };
+
+type FaqAccordionItem_entryFragment = Pick<FaqEntry, 'id' | 'question' | 'answerHtml'>;
+
 type FaqPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type FaqPageQuery = { readonly faq: Maybe<FaqAccordian_faqFragment> };
+type FaqPageQuery = { readonly faq: Maybe<FaqAccordion_faqFragment> };
 
 type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -5623,6 +5619,16 @@ type JobApplicationPageQueryVariables = Exact<{
 
 type JobApplicationPageQuery = { readonly jobPost: Maybe<Pick<JobPost, 'title'>> };
 
+type Footer_navigationFragment = { readonly footerEntries: ReadonlyArray<(
+    { readonly __typename: 'SiteNavigationEntryInternal' }
+    & Pick<SiteNavigationEntryInternal, 'pathname' | 'href' | 'displayName'>
+  ) | (
+    { readonly __typename: 'SiteNavigationEntryExternal' }
+    & Pick<SiteNavigationEntryExternal, 'url' | 'href' | 'displayName'>
+  )>, readonly socialProfiles: ReadonlyArray<SocialServiceProfile_profileFragment> };
+
+type Header_navigationFragment = NavigationMenu_navigationFragment;
+
 type LayoutStaticQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -5630,6 +5636,8 @@ type LayoutStaticQuery = { readonly siteNavigation: Maybe<(
     Header_navigationFragment
     & Footer_navigationFragment
   )> };
+
+type SocialServiceProfile_profileFragment = Pick<SocialProfileEntry, 'service' | 'url'>;
 
 type NavigationMenu_navigationFragment = { readonly headerEntries: ReadonlyArray<(
     { readonly __typename: 'SiteNavigationEntryInternal' }
@@ -5664,14 +5672,6 @@ type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = Pick<ImageSharpFluid, 't
 type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type Footer_navigationFragment = { readonly footerEntries: ReadonlyArray<(
-    { readonly __typename: 'SiteNavigationEntryInternal' }
-    & Pick<SiteNavigationEntryInternal, 'pathname' | 'href' | 'displayName'>
-  ) | (
-    { readonly __typename: 'SiteNavigationEntryExternal' }
-    & Pick<SiteNavigationEntryExternal, 'url' | 'href' | 'displayName'>
-  )>, readonly socialProfiles: ReadonlyArray<SocialServiceProfile_profileFragment> };
 
 type GatsbyPrismicImageFixedFragment = Pick<PrismicImageFixedType, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 

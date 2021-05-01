@@ -1,21 +1,19 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
-import { rem } from 'polished';
 import { AnimatePresence } from 'framer-motion';
-import * as RadixAccordion from '@radix-ui/react-accordion';
 
-import FaqAccordianItem from './FaqAccordianItem';
+import FaqAccordionItem from './FaqAccordionItem';
 
-type FaqAccordianProps = {
+type FaqAccordionProps = {
   className?: string,
-  faq: GatsbyTypes.FaqAccordian_faqFragment,
+  faq: GatsbyTypes.FaqAccordion_faqFragment,
 };
 
 export const query = graphql`
-  fragment FaqAccordian_faq on Faq {
+  fragment FaqAccordion_faq on Faq {
     entries {
-      ...FaqAccordianItem_entry
+      ...FaqAccordionItem_entry
     }
   }
 `;
@@ -52,17 +50,17 @@ const reducer: React.Reducer<State, Action> = (state, action) => {
   };
 };
 
-export default function FaqAccordian({
+const FaqAccordion: React.FC<FaqAccordionProps> = ({
   className,
   faq,
-}: FaqAccordianProps) {
+}) => {
   const [state, dispatch] = React.useReducer(reducer, initialState);
 
   return (
     <Container className={className}>
       <AnimatePresence initial={false}>
         {faq.entries.map(entry => (
-          <FaqAccordianItem
+          <FaqAccordionItem
             key={entry.id}
             entry={entry}
             open={state.id === entry.id}
@@ -73,4 +71,6 @@ export default function FaqAccordian({
       </AnimatePresence>
     </Container>
   );
-}
+};
+
+export default FaqAccordion;

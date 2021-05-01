@@ -9,6 +9,14 @@ import Button from '~/components/Button';
 
 type JobApplicationPageProps = PageProps<GatsbyTypes.JobApplicationPageQuery, GatsbyTypes.SitePageContext>;
 
+export const query = graphql`
+  query JobApplicationPage($id: String!) {
+    jobPost(id: { eq: $id }) {
+      title
+    }
+  }
+`;
+
 const JobPostTitle = styled('p', {
   fontSize: '$subtitle3',
   fontWeight: 'bold',
@@ -37,11 +45,3 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
 };
 
 export default JobApplicationPage;
-
-export const query = graphql`
-  query JobApplicationPage($id: String!) {
-    jobPost(id: { eq: $id }) {
-      title
-    }
-  }
-`;

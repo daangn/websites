@@ -9,6 +9,17 @@ import JobPostingList from '~/components/JobPostingList';
 
 type JobsPageProps = PageProps<GatsbyTypes.JobsPageQuery>;
 
+export const query = graphql`
+  query JobsPage {
+    allJobPost {
+      ...JobPostingList_jobPosts
+      nodes {
+        pagePath: gatsbyPath(filePath: "/jobs/{JobPost.parent__(GreenhouseJob)__ghId}")
+      }
+    }
+  }
+`;
+
 const JobsPage: React.FC<JobsPageProps> = ({
   data,
 }) => {
@@ -31,14 +42,3 @@ const JobsPage: React.FC<JobsPageProps> = ({
 };
 
 export default JobsPage;
-
-export const query = graphql`
-  query JobsPage {
-    allJobPost {
-      ...JobPostingList_jobPosts
-      nodes {
-        pagePath: gatsbyPath(filePath: "/jobs/{JobPost.parent__(GreenhouseJob)__ghId}")
-      }
-    }
-  }
-`;

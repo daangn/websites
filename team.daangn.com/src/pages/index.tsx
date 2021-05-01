@@ -1,9 +1,8 @@
+import * as React from 'react';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 
 import Layout from '~/components/Layout';
-import Button from '~/components/Button';
 import PageTitle from '~/components/PageTitle';
 
 type IndexPageProps = PageProps<GatsbyTypes.IndexPageQuery, GatsbyTypes.SitePageContext>;
@@ -14,9 +13,7 @@ export const query = graphql`
   }
 `;
 
-export default function IndexPage({
-  data,
-}: IndexPageProps) {
+const IndexPage: React.FC<IndexPageProps> = () => {
   return (
     <Layout>
       <PageTitle size={{ '@sm': 'sm' }}>
@@ -25,4 +22,6 @@ export default function IndexPage({
       </PageTitle>
     </Layout>
   );
-}
+};
+
+export default IndexPage;
