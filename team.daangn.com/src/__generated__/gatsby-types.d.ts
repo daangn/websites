@@ -1608,7 +1608,6 @@ type SitePluginPluginOptions = {
   readonly failOnError: Maybe<Scalars['Boolean']>;
   readonly root: Maybe<Scalars['String']>;
   readonly aliases: Maybe<SitePluginPluginOptionsAliases>;
-  readonly component: Maybe<Scalars['String']>;
   readonly outputPath: Maybe<Scalars['String']>;
   readonly emitSchema: Maybe<SitePluginPluginOptionsEmitSchema>;
   readonly emitPluginDocuments: Maybe<SitePluginPluginOptionsEmitPluginDocuments>;
@@ -3157,7 +3156,6 @@ type SitePluginPluginOptionsFilterInput = {
   readonly failOnError: Maybe<BooleanQueryOperatorInput>;
   readonly root: Maybe<StringQueryOperatorInput>;
   readonly aliases: Maybe<SitePluginPluginOptionsAliasesFilterInput>;
-  readonly component: Maybe<StringQueryOperatorInput>;
   readonly outputPath: Maybe<StringQueryOperatorInput>;
   readonly emitSchema: Maybe<SitePluginPluginOptionsEmitSchemaFilterInput>;
   readonly emitPluginDocuments: Maybe<SitePluginPluginOptionsEmitPluginDocumentsFilterInput>;
@@ -3610,7 +3608,6 @@ type SitePageFieldsEnum =
   | 'pluginCreator.pluginOptions.failOnError'
   | 'pluginCreator.pluginOptions.root'
   | 'pluginCreator.pluginOptions.aliases._'
-  | 'pluginCreator.pluginOptions.component'
   | 'pluginCreator.pluginOptions.outputPath'
   | 'pluginCreator.pluginOptions.emitSchema.src___generated___gatsby_introspection_json'
   | 'pluginCreator.pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql'
@@ -5500,7 +5497,6 @@ type SitePluginFieldsEnum =
   | 'pluginOptions.failOnError'
   | 'pluginOptions.root'
   | 'pluginOptions.aliases._'
-  | 'pluginOptions.component'
   | 'pluginOptions.outputPath'
   | 'pluginOptions.emitSchema.src___generated___gatsby_introspection_json'
   | 'pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql'
@@ -5570,21 +5566,16 @@ type IndexPageQuery = { readonly __typename: 'Query' };
 
 type JobPostingList_jobPostsFragment = { readonly nodes: ReadonlyArray<(
     Pick<JobPost, 'id'>
+    & { pagePath: JobPost['gatsbyPath'] }
     & JobPostingListItem_jobPostFragment
   )> };
 
-type JobPostingListItem_jobPostFragment = (
-  Pick<JobPost, 'id' | 'title' | 'chapter' | 'employmentType' | 'priorExperience'>
-  & { pagePath: JobPost['gatsbyPath'] }
-);
+type JobPostingListItem_jobPostFragment = Pick<JobPost, 'id' | 'title' | 'chapter' | 'employmentType' | 'priorExperience'>;
 
 type JobsPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type JobsPageQuery = { readonly allJobPost: (
-    { readonly nodes: ReadonlyArray<{ pagePath: JobPost['gatsbyPath'] }> }
-    & JobPostingList_jobPostsFragment
-  ) };
+type JobsPageQuery = { readonly allJobPost: JobPostingList_jobPostsFragment };
 
 type JobPostContentUnorderedListSection_contentFragment = Pick<JobPostContentUnorderedListSection, 'title' | 'items'>;
 
@@ -5598,7 +5589,7 @@ type JobPostPageQueryVariables = Exact<{
 
 
 type JobPostPageQuery = { readonly jobPost: Maybe<(
-    Pick<JobPost, 'id' | 'title'>
+    Pick<JobPost, 'id' | 'title' | 'employmentType'>
     & { applyPath: JobPost['gatsbyPath'] }
     & { readonly content: ReadonlyArray<(
       { readonly __typename: 'JobPostContentUnorderedListSection' }
@@ -5628,14 +5619,6 @@ type Footer_navigationFragment = { readonly footerEntries: ReadonlyArray<(
   )>, readonly socialProfiles: ReadonlyArray<SocialServiceProfile_profileFragment> };
 
 type Header_navigationFragment = NavigationMenu_navigationFragment;
-
-type LayoutStaticQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type LayoutStaticQuery = { readonly siteNavigation: Maybe<(
-    Header_navigationFragment
-    & Footer_navigationFragment
-  )> };
 
 type SocialServiceProfile_profileFragment = Pick<SocialProfileEntry, 'service' | 'url'>;
 
@@ -5688,5 +5671,13 @@ type GatsbyPrismicImageFluid_noBase64Fragment = Pick<PrismicImageFluidType, 'asp
 type GatsbyPrismicImageFluid_withWebpFragment = Pick<PrismicImageFluidType, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
 type GatsbyPrismicImageFluid_withWebp_noBase64Fragment = Pick<PrismicImageFluidType, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+type LayoutStaticQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type LayoutStaticQuery = { readonly siteNavigation: Maybe<(
+    Header_navigationFragment
+    & Footer_navigationFragment
+  )> };
 
 }

@@ -13,9 +13,6 @@ export const query = graphql`
   query JobsPage {
     allJobPost {
       ...JobPostingList_jobPosts
-      nodes {
-        pagePath: gatsbyPath(filePath: "/jobs/{JobPost.parent__(GreenhouseJob)__ghId}")
-      }
     }
   }
 `;

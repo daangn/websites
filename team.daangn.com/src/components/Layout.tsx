@@ -3,10 +3,10 @@ import { Helmet } from 'react-helmet-async';
 import { graphql, useStaticQuery } from 'gatsby';
 import { global, styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { rem } from 'polished';
+import { required } from '@cometjs/core';
 
 import _Header from './layout/Header';
 import _Footer from './layout/Footer';
-import FadeInWhenVisible from './FadeInWhenVisible';
 
 const globalStyles = global({
   '*': {
@@ -85,10 +85,7 @@ const Layout: React.FC = ({
     }
   `);
 
-  if (!data.siteNavigation) {
-    throw new Error('SiteNavigation 노드가 없습니다.');
-  }
-
+  required(data.siteNavigation);
   return (
     <>
       <Helmet key="helmet">
@@ -99,14 +96,12 @@ const Layout: React.FC = ({
         navigation={data.siteNavigation}
         wide={{ '@sm': true }}
       />
-      <FadeInWhenVisible>
-        <Main
-          key="main"
-          wide={{ '@sm': true }}
-        >
-          {children}
-        </Main>
-      </FadeInWhenVisible>
+      <Main
+        key="main"
+        wide={{ '@sm': true }}
+      >
+        {children}
+      </Main>
       <Footer
         key="footer"
         navigation={data.siteNavigation}

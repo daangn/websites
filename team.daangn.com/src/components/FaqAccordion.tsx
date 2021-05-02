@@ -64,8 +64,8 @@ const FaqAccordion: React.FC<FaqAccordionProps> = ({
             key={entry.id}
             entry={entry}
             open={state.id === entry.id}
-            onClick={() => dispatch({ type: 'CLICK', id: entry.id})}
-            onFocus={() => dispatch({ type: 'FOCUS', id: entry.id})}
+            onClick={() => dispatch({ type: 'CLICK', id: entry.id })}
+            onFocus={() => dispatch({ type: 'FOCUS', id: entry.id })}
           />
         ))}
       </AnimatePresence>

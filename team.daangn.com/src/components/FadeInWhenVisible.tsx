@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useInView } from 'react-intersection-observer';
-import { motion, useAnimation } from 'framer-motion';
+import { motion, useAnimation, useReducedMotion } from 'framer-motion';
 
 const transition = {
   duration: 1,
@@ -13,34 +13,76 @@ const variants = {
   hidden: { opacity: 0, y: 30 },
 };
 
+type State = (
+  | 'INITIAL_VISIBLE'
+  | 'HIDDEN'
+  | 'VISIBLE'
+);
+
+type Action = (
+  | 'REDUCE_MOTION'
+  | 'APPEAR'
+  | 'DISAPPEAR'
+);
+
+const reducer: React.Reducer<State, Action> = (state, action) => {
+  switch (state) {
+    case 'INITIAL_VISIBLE': {
+      switch (action) {
+        case 'REDUCE_MOTION': return 'VISIBLE';
+        case 'DISAPPEAR': return 'HIDDEN';
+      }
+      break;
+    }
+    case 'HIDDEN': {
+      switch (action) {
+        case 'APPEAR': return 'VISIBLE';
+      }
+      break;
+    }
+  }
+  return state;
+};
+
 const FadeInWhenVisible: React.FC = ({
   children,
 }) => {
+  const [state, dispatch] = React.useReducer(reducer, 'INITIAL_VISIBLE');
+
   const controls = useAnimation();
-  const [ref, inView] = useInView();
+  const shouldReducedMotion = useReducedMotion();
+  const [ref, inView] = useInView({ initialInView: true, triggerOnce: true });
+
+  React.useEffect(() => {
+    if (shouldReducedMotion) {
+      dispatch('REDUCE_MOTION');
+    }
+  }, [shouldReducedMotion]);
+
   React.useEffect(() => {
     if (inView) {
-      controls.start('visible');
+      dispatch('APPEAR');
+    } else {
+      dispatch('DISAPPEAR');
     }
-  }, [controls, inView]);
-
-  const [isMounted, mount] = React.useReducer(() => true, false);
-  React.useEffect(() => {
-    mount();
-  }, []);
+  }, [inView]);
 
   React.useEffect(() => {
-    if (!isMounted && !inView) {
-      controls.set('hidden');
+    switch (state) {
+      case 'HIDDEN':
+        controls.set('hidden');
+        break;
+      case 'VISIBLE':
+        controls.start('visible');
+        break;
     }
-  }, [isMounted, inView, controls]);
+  }, [controls, state]);
 
   return (
     <motion.div
       ref={ref}
-      animate={controls}
       initial="visible"
-      exit="hidden"
+      animate={controls}
       transition={transition}
       variants={variants}
     >

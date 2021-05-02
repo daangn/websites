@@ -35,9 +35,10 @@ const FaqPage: React.FC<FaqPageProps> = ({
   data,
 }) => {
   if (!data.faq) {
-    throw new Error(
-      'faq 데이터가 주입되지 않았습니다. @karrotmarket/gatsby-transformer-faq 옵션이 올바른지 확인하세요!',
-    );
+    throw new Error(`
+      faq 데이터가 주입되지 않았습니다.
+      @karrotmarket/gatsby-transformer-faq 옵션이 올바른지 확인하세요!
+    `);
   }
 
   return (

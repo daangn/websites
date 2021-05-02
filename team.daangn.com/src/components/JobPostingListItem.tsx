@@ -1,9 +1,7 @@
 import * as React from 'react';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { rem } from 'polished';
-
-import JobPostTitleText from './JobPostTitleText';
 
 type JobPostingListItemProps = {
   jobPost: GatsbyTypes.JobPostingListItem_jobPostFragment,
@@ -16,7 +14,6 @@ export const query = graphql`
     chapter
     employmentType
     priorExperience
-    pagePath: gatsbyPath(filePath: "/jobs/{JobPost.parent__(GreenhouseJob)__ghId}")
   }
 `;
 
@@ -53,16 +50,6 @@ const Title = styled('h3', {
         fontSize: '$subtitle2',
       },
     },
-  },
-});
-
-const JobPostLink = styled(Link, {
-  display: 'block',
-  color: 'inherit',
-  transition: 'color .3s',
-  textDecoration: 'none',
-  '&:hover': {
-    color: '$gray600',
   },
 });
 
@@ -130,33 +117,31 @@ const JobPostingListItem: React.FC<JobPostingListItemProps> = ({
   jobPost,
 }) => {
   return (
-    <JobPostLink to={jobPost.pagePath!}>
-      <Container layout={{ '@lg': 'table' }}>
-        <Title size={{ '@sm': 'sm' }}>
-            {jobPost.title}
-        </Title>
-        <Chapter layout={{ '@lg': 'table' }}>
-          {jobPost.chapter}
-        </Chapter>
-        <Department layout={{ '@lg': 'table' }}>
-          {'당근마켓'}
-        </Department>
-        <PriorExperience layout={{ '@lg': 'table' }}>
-          {{
-            YES: '경력',
-            NO: '신입',
-            WHATEVER: '경력/신입',
-          }[jobPost.priorExperience]}
-        </PriorExperience>
-        <EmploymentType layout={{ '@lg': 'table' }}>
-          {{
-            FULL_TIME: '정규직',
-            INTERN: '인턴',
-            CONTRACTOR: '계약직',
-          }[jobPost.employmentType]}
-        </EmploymentType>
-      </Container>
-    </JobPostLink>
+    <Container layout={{ '@lg': 'table' }}>
+      <Title size={{ '@sm': 'sm' }}>
+          {jobPost.title}
+      </Title>
+      <Chapter layout={{ '@lg': 'table' }}>
+        {jobPost.chapter}
+      </Chapter>
+      <Department layout={{ '@lg': 'table' }}>
+        {'당근마켓'}
+      </Department>
+      <PriorExperience layout={{ '@lg': 'table' }}>
+        {{
+          YES: '경력',
+          NO: '신입',
+          WHATEVER: '경력/신입',
+        }[jobPost.priorExperience]}
+      </PriorExperience>
+      <EmploymentType layout={{ '@lg': 'table' }}>
+        {{
+          FULL_TIME: '정규직',
+          INTERN: '인턴',
+          CONTRACTOR: '계약직',
+        }[jobPost.employmentType]}
+      </EmploymentType>
+    </Container>
   );
 };
 

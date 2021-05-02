@@ -37,12 +37,6 @@ const config: GatsbyConfig = {
       },
     },
     {
-      resolve: 'gatsby-plugin-layout',
-      options: {
-        component: require.resolve('./src/components/LayoutPersister.tsx'),
-      },
-    },
-    {
       resolve: 'gatsby-plugin-typegen',
       options: {
         outputPath: 'src/__generated__/gatsby-types.d.ts',
