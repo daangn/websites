@@ -2,11 +2,11 @@ import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { rem } from 'polished';
 
-import githubIconUrl from './socialServiceProfile/github.svg';
-import facebookIconUrl from './socialServiceProfile/facebook.svg';
-import twitterIconUrl from './socialServiceProfile/twitter.svg';
-import mediumIconUrl from './socialServiceProfile/medium.svg';
-import instagramIconUrl from './socialServiceProfile/instagram.svg';
+import githubIconUrl from '!!file-loader?modules!./socialServiceProfile/github.svg';
+import facebookIconUrl from '!!file-loader?modules!./socialServiceProfile/facebook.svg';
+import twitterIconUrl from '!!file-loader?modules!./socialServiceProfile/twitter.svg';
+import mediumIconUrl from '!!file-loader?modules!./socialServiceProfile/medium.svg';
+import instagramIconUrl from '!!file-loader?modules!./socialServiceProfile/instagram.svg';
 
 type SocialServiceProfileProps = {
   className?: string,
