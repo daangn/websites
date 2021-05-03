@@ -720,7 +720,58 @@ type PrismicSiteNavigation_last_publication_dateArgs = {
   locale: Maybe<Scalars['String']>;
 };
 
-type PrismicAllDocumentTypes = PrismicFaq | PrismicSiteNavigation;
+type PrismicTermsAndConditionsDataType = {
+  readonly description: Maybe<Scalars['String']>;
+  readonly revision_date: Maybe<Scalars['Date']>;
+  readonly content: Maybe<PrismicStructuredTextType>;
+};
+
+
+type PrismicTermsAndConditionsDataType_revision_dateArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+type PrismicTermsAndConditions = PrismicDocument & Node & {
+  readonly data: Maybe<PrismicTermsAndConditionsDataType>;
+  readonly dataRaw: Scalars['JSON'];
+  readonly dataString: Scalars['String'];
+  readonly first_publication_date: Scalars['Date'];
+  readonly href: Scalars['String'];
+  readonly url: Maybe<Scalars['String']>;
+  readonly lang: Scalars['String'];
+  readonly last_publication_date: Scalars['Date'];
+  readonly tags: ReadonlyArray<Scalars['String']>;
+  readonly alternate_languages: ReadonlyArray<PrismicLinkType>;
+  readonly type: Scalars['String'];
+  readonly prismicId: Scalars['ID'];
+  readonly _previewable: Scalars['ID'];
+  readonly uid: Maybe<Scalars['String']>;
+  readonly id: Scalars['ID'];
+  readonly parent: Maybe<Node>;
+  readonly children: ReadonlyArray<Node>;
+  readonly internal: Internal;
+};
+
+
+type PrismicTermsAndConditions_first_publication_dateArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+
+type PrismicTermsAndConditions_last_publication_dateArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+type PrismicAllDocumentTypes = PrismicFaq | PrismicSiteNavigation | PrismicTermsAndConditions;
 
 
 type PrismicImageFixedType = {
@@ -1640,6 +1691,7 @@ type SitePluginPluginOptionsEmitPluginDocuments = {
 type SitePluginPluginOptionsSchemas = {
   readonly faq: Maybe<SitePluginPluginOptionsSchemasFaq>;
   readonly site_navigation: Maybe<SitePluginPluginOptionsSchemasSite_navigation>;
+  readonly terms_and_conditions: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditions>;
 };
 
 type SitePluginPluginOptionsSchemasFaq = {
@@ -1851,6 +1903,56 @@ type SitePluginPluginOptionsSchemasSite_navigationMainSocial_entriesConfigFields
   readonly placeholder: Maybe<Scalars['String']>;
 };
 
+type SitePluginPluginOptionsSchemasTerms_and_conditions = {
+  readonly Main: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMain>;
+};
+
+type SitePluginPluginOptionsSchemasTerms_and_conditionsMain = {
+  readonly uid: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainUid>;
+  readonly description: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainDescription>;
+  readonly revision_date: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainRevision_date>;
+  readonly content: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainContent>;
+};
+
+type SitePluginPluginOptionsSchemasTerms_and_conditionsMainUid = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainUidConfig>;
+};
+
+type SitePluginPluginOptionsSchemasTerms_and_conditionsMainUidConfig = {
+  readonly label: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasTerms_and_conditionsMainDescription = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainDescriptionConfig>;
+};
+
+type SitePluginPluginOptionsSchemasTerms_and_conditionsMainDescriptionConfig = {
+  readonly label: Maybe<Scalars['String']>;
+  readonly placeholder: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasTerms_and_conditionsMainRevision_date = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainRevision_dateConfig>;
+};
+
+type SitePluginPluginOptionsSchemasTerms_and_conditionsMainRevision_dateConfig = {
+  readonly label: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasTerms_and_conditionsMainContent = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainContentConfig>;
+};
+
+type SitePluginPluginOptionsSchemasTerms_and_conditionsMainContentConfig = {
+  readonly multi: Maybe<Scalars['String']>;
+  readonly label: Maybe<Scalars['String']>;
+  readonly placeholder: Maybe<Scalars['String']>;
+};
+
 type SitePluginPackageJson = {
   readonly name: Maybe<Scalars['String']>;
   readonly description: Maybe<Scalars['String']>;
@@ -1893,6 +1995,8 @@ type Query = {
   readonly allPrismicFaq: PrismicFaqConnection;
   readonly prismicSiteNavigation: Maybe<PrismicSiteNavigation>;
   readonly allPrismicSiteNavigation: PrismicSiteNavigationConnection;
+  readonly prismicTermsAndConditions: Maybe<PrismicTermsAndConditions>;
+  readonly allPrismicTermsAndConditions: PrismicTermsAndConditionsConnection;
   readonly jobPost: Maybe<JobPost>;
   readonly allJobPost: JobPostConnection;
   readonly faq: Maybe<Faq>;
@@ -2131,6 +2235,36 @@ type Query_prismicSiteNavigationArgs = {
 type Query_allPrismicSiteNavigationArgs = {
   filter: Maybe<PrismicSiteNavigationFilterInput>;
   sort: Maybe<PrismicSiteNavigationSortInput>;
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+};
+
+
+type Query_prismicTermsAndConditionsArgs = {
+  data: Maybe<PrismicTermsAndConditionsDataTypeFilterInput>;
+  dataRaw: Maybe<JSONQueryOperatorInput>;
+  dataString: Maybe<StringQueryOperatorInput>;
+  first_publication_date: Maybe<DateQueryOperatorInput>;
+  href: Maybe<StringQueryOperatorInput>;
+  url: Maybe<StringQueryOperatorInput>;
+  lang: Maybe<StringQueryOperatorInput>;
+  last_publication_date: Maybe<DateQueryOperatorInput>;
+  tags: Maybe<StringQueryOperatorInput>;
+  alternate_languages: Maybe<PrismicLinkTypeFilterListInput>;
+  type: Maybe<StringQueryOperatorInput>;
+  prismicId: Maybe<IDQueryOperatorInput>;
+  _previewable: Maybe<IDQueryOperatorInput>;
+  uid: Maybe<StringQueryOperatorInput>;
+  id: Maybe<StringQueryOperatorInput>;
+  parent: Maybe<NodeFilterInput>;
+  children: Maybe<NodeFilterListInput>;
+  internal: Maybe<InternalFilterInput>;
+};
+
+
+type Query_allPrismicTermsAndConditionsArgs = {
+  filter: Maybe<PrismicTermsAndConditionsFilterInput>;
+  sort: Maybe<PrismicTermsAndConditionsSortInput>;
   skip: Maybe<Scalars['Int']>;
   limit: Maybe<Scalars['Int']>;
 };
@@ -3188,6 +3322,7 @@ type SitePluginPluginOptionsEmitPluginDocumentsFilterInput = {
 type SitePluginPluginOptionsSchemasFilterInput = {
   readonly faq: Maybe<SitePluginPluginOptionsSchemasFaqFilterInput>;
   readonly site_navigation: Maybe<SitePluginPluginOptionsSchemasSite_navigationFilterInput>;
+  readonly terms_and_conditions: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsFilterInput>;
 };
 
 type SitePluginPluginOptionsSchemasFaqFilterInput = {
@@ -3395,6 +3530,56 @@ type SitePluginPluginOptionsSchemasSite_navigationMainSocial_entriesConfigFields
 };
 
 type SitePluginPluginOptionsSchemasSite_navigationMainSocial_entriesConfigFieldsLinkConfigFilterInput = {
+  readonly label: Maybe<StringQueryOperatorInput>;
+  readonly placeholder: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsSchemasTerms_and_conditionsFilterInput = {
+  readonly Main: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasTerms_and_conditionsMainFilterInput = {
+  readonly uid: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainUidFilterInput>;
+  readonly description: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainDescriptionFilterInput>;
+  readonly revision_date: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainRevision_dateFilterInput>;
+  readonly content: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainContentFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasTerms_and_conditionsMainUidFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainUidConfigFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasTerms_and_conditionsMainUidConfigFilterInput = {
+  readonly label: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsSchemasTerms_and_conditionsMainDescriptionFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainDescriptionConfigFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasTerms_and_conditionsMainDescriptionConfigFilterInput = {
+  readonly label: Maybe<StringQueryOperatorInput>;
+  readonly placeholder: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsSchemasTerms_and_conditionsMainRevision_dateFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainRevision_dateConfigFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasTerms_and_conditionsMainRevision_dateConfigFilterInput = {
+  readonly label: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsSchemasTerms_and_conditionsMainContentFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainContentConfigFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasTerms_and_conditionsMainContentConfigFilterInput = {
+  readonly multi: Maybe<StringQueryOperatorInput>;
   readonly label: Maybe<StringQueryOperatorInput>;
   readonly placeholder: Maybe<StringQueryOperatorInput>;
 };
@@ -4473,6 +4658,192 @@ type PrismicSiteNavigationFilterInput = {
 
 type PrismicSiteNavigationSortInput = {
   readonly fields: Maybe<ReadonlyArray<Maybe<PrismicSiteNavigationFieldsEnum>>>;
+  readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
+};
+
+type PrismicTermsAndConditionsDataTypeFilterInput = {
+  readonly description: Maybe<StringQueryOperatorInput>;
+  readonly revision_date: Maybe<DateQueryOperatorInput>;
+  readonly content: Maybe<PrismicStructuredTextTypeFilterInput>;
+};
+
+type PrismicTermsAndConditionsConnection = {
+  readonly totalCount: Scalars['Int'];
+  readonly edges: ReadonlyArray<PrismicTermsAndConditionsEdge>;
+  readonly nodes: ReadonlyArray<PrismicTermsAndConditions>;
+  readonly pageInfo: PageInfo;
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly group: ReadonlyArray<PrismicTermsAndConditionsGroupConnection>;
+};
+
+
+type PrismicTermsAndConditionsConnection_distinctArgs = {
+  field: PrismicTermsAndConditionsFieldsEnum;
+};
+
+
+type PrismicTermsAndConditionsConnection_groupArgs = {
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+  field: PrismicTermsAndConditionsFieldsEnum;
+};
+
+type PrismicTermsAndConditionsEdge = {
+  readonly next: Maybe<PrismicTermsAndConditions>;
+  readonly node: PrismicTermsAndConditions;
+  readonly previous: Maybe<PrismicTermsAndConditions>;
+};
+
+type PrismicTermsAndConditionsFieldsEnum =
+  | 'data.description'
+  | 'data.revision_date'
+  | 'data.content.html'
+  | 'data.content.text'
+  | 'data.content.raw'
+  | 'dataRaw'
+  | 'dataString'
+  | 'first_publication_date'
+  | 'href'
+  | 'url'
+  | 'lang'
+  | 'last_publication_date'
+  | 'tags'
+  | 'alternate_languages'
+  | 'alternate_languages.link_type'
+  | 'alternate_languages.isBroken'
+  | 'alternate_languages.url'
+  | 'alternate_languages.target'
+  | 'alternate_languages.size'
+  | 'alternate_languages.id'
+  | 'alternate_languages.type'
+  | 'alternate_languages.tags'
+  | 'alternate_languages.lang'
+  | 'alternate_languages.slug'
+  | 'alternate_languages.uid'
+  | 'alternate_languages.raw'
+  | 'type'
+  | 'prismicId'
+  | '_previewable'
+  | 'uid'
+  | 'id'
+  | 'parent.id'
+  | 'parent.parent.id'
+  | 'parent.parent.parent.id'
+  | 'parent.parent.parent.children'
+  | 'parent.parent.children'
+  | 'parent.parent.children.id'
+  | 'parent.parent.children.children'
+  | 'parent.parent.internal.content'
+  | 'parent.parent.internal.contentDigest'
+  | 'parent.parent.internal.description'
+  | 'parent.parent.internal.fieldOwners'
+  | 'parent.parent.internal.ignoreType'
+  | 'parent.parent.internal.mediaType'
+  | 'parent.parent.internal.owner'
+  | 'parent.parent.internal.type'
+  | 'parent.children'
+  | 'parent.children.id'
+  | 'parent.children.parent.id'
+  | 'parent.children.parent.children'
+  | 'parent.children.children'
+  | 'parent.children.children.id'
+  | 'parent.children.children.children'
+  | 'parent.children.internal.content'
+  | 'parent.children.internal.contentDigest'
+  | 'parent.children.internal.description'
+  | 'parent.children.internal.fieldOwners'
+  | 'parent.children.internal.ignoreType'
+  | 'parent.children.internal.mediaType'
+  | 'parent.children.internal.owner'
+  | 'parent.children.internal.type'
+  | 'parent.internal.content'
+  | 'parent.internal.contentDigest'
+  | 'parent.internal.description'
+  | 'parent.internal.fieldOwners'
+  | 'parent.internal.ignoreType'
+  | 'parent.internal.mediaType'
+  | 'parent.internal.owner'
+  | 'parent.internal.type'
+  | 'children'
+  | 'children.id'
+  | 'children.parent.id'
+  | 'children.parent.parent.id'
+  | 'children.parent.parent.children'
+  | 'children.parent.children'
+  | 'children.parent.children.id'
+  | 'children.parent.children.children'
+  | 'children.parent.internal.content'
+  | 'children.parent.internal.contentDigest'
+  | 'children.parent.internal.description'
+  | 'children.parent.internal.fieldOwners'
+  | 'children.parent.internal.ignoreType'
+  | 'children.parent.internal.mediaType'
+  | 'children.parent.internal.owner'
+  | 'children.parent.internal.type'
+  | 'children.children'
+  | 'children.children.id'
+  | 'children.children.parent.id'
+  | 'children.children.parent.children'
+  | 'children.children.children'
+  | 'children.children.children.id'
+  | 'children.children.children.children'
+  | 'children.children.internal.content'
+  | 'children.children.internal.contentDigest'
+  | 'children.children.internal.description'
+  | 'children.children.internal.fieldOwners'
+  | 'children.children.internal.ignoreType'
+  | 'children.children.internal.mediaType'
+  | 'children.children.internal.owner'
+  | 'children.children.internal.type'
+  | 'children.internal.content'
+  | 'children.internal.contentDigest'
+  | 'children.internal.description'
+  | 'children.internal.fieldOwners'
+  | 'children.internal.ignoreType'
+  | 'children.internal.mediaType'
+  | 'children.internal.owner'
+  | 'children.internal.type'
+  | 'internal.content'
+  | 'internal.contentDigest'
+  | 'internal.description'
+  | 'internal.fieldOwners'
+  | 'internal.ignoreType'
+  | 'internal.mediaType'
+  | 'internal.owner'
+  | 'internal.type';
+
+type PrismicTermsAndConditionsGroupConnection = {
+  readonly totalCount: Scalars['Int'];
+  readonly edges: ReadonlyArray<PrismicTermsAndConditionsEdge>;
+  readonly nodes: ReadonlyArray<PrismicTermsAndConditions>;
+  readonly pageInfo: PageInfo;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+};
+
+type PrismicTermsAndConditionsFilterInput = {
+  readonly data: Maybe<PrismicTermsAndConditionsDataTypeFilterInput>;
+  readonly dataRaw: Maybe<JSONQueryOperatorInput>;
+  readonly dataString: Maybe<StringQueryOperatorInput>;
+  readonly first_publication_date: Maybe<DateQueryOperatorInput>;
+  readonly href: Maybe<StringQueryOperatorInput>;
+  readonly url: Maybe<StringQueryOperatorInput>;
+  readonly lang: Maybe<StringQueryOperatorInput>;
+  readonly last_publication_date: Maybe<DateQueryOperatorInput>;
+  readonly tags: Maybe<StringQueryOperatorInput>;
+  readonly alternate_languages: Maybe<PrismicLinkTypeFilterListInput>;
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly prismicId: Maybe<IDQueryOperatorInput>;
+  readonly _previewable: Maybe<IDQueryOperatorInput>;
+  readonly uid: Maybe<StringQueryOperatorInput>;
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly parent: Maybe<NodeFilterInput>;
+  readonly children: Maybe<NodeFilterListInput>;
+  readonly internal: Maybe<InternalFilterInput>;
+};
+
+type PrismicTermsAndConditionsSortInput = {
+  readonly fields: Maybe<ReadonlyArray<Maybe<PrismicTermsAndConditionsFieldsEnum>>>;
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
@@ -5608,7 +5979,21 @@ type JobApplicationPageQueryVariables = Exact<{
 }>;
 
 
-type JobApplicationPageQuery = { readonly jobPost: Maybe<Pick<JobPost, 'title'>> };
+type JobApplicationPageQuery = { readonly jobPost: Maybe<Pick<JobPost, 'title'>>, readonly privacyPolicy: Maybe<(
+    Pick<PrismicTermsAndConditions, 'id'>
+    & { readonly data: Maybe<{ readonly content: Maybe<Pick<PrismicStructuredTextType, 'html'>> }> }
+  )>, readonly sensitiveInfoPolicy: Maybe<(
+    Pick<PrismicTermsAndConditions, 'id'>
+    & { readonly data: Maybe<{ readonly content: Maybe<Pick<PrismicStructuredTextType, 'html'>> }> }
+  )> };
+
+type LayoutStaticQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type LayoutStaticQuery = { readonly siteNavigation: Maybe<(
+    Header_navigationFragment
+    & Footer_navigationFragment
+  )> };
 
 type Footer_navigationFragment = { readonly footerEntries: ReadonlyArray<(
     { readonly __typename: 'SiteNavigationEntryInternal' }
@@ -5620,8 +6005,6 @@ type Footer_navigationFragment = { readonly footerEntries: ReadonlyArray<(
 
 type Header_navigationFragment = NavigationMenu_navigationFragment;
 
-type SocialServiceProfile_profileFragment = Pick<SocialProfileEntry, 'service' | 'url'>;
-
 type NavigationMenu_navigationFragment = { readonly headerEntries: ReadonlyArray<(
     { readonly __typename: 'SiteNavigationEntryInternal' }
     & Pick<SiteNavigationEntryInternal, 'pathname' | 'href' | 'displayName'>
@@ -5629,6 +6012,24 @@ type NavigationMenu_navigationFragment = { readonly headerEntries: ReadonlyArray
     { readonly __typename: 'SiteNavigationEntryExternal' }
     & Pick<SiteNavigationEntryExternal, 'url' | 'href' | 'displayName'>
   )> };
+
+type SocialServiceProfile_profileFragment = Pick<SocialProfileEntry, 'service' | 'url'>;
+
+type GatsbyPrismicImageFixedFragment = Pick<PrismicImageFixedType, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
+
+type GatsbyPrismicImageFixed_noBase64Fragment = Pick<PrismicImageFixedType, 'width' | 'height' | 'src' | 'srcSet'>;
+
+type GatsbyPrismicImageFixed_withWebpFragment = Pick<PrismicImageFixedType, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+
+type GatsbyPrismicImageFixed_withWebp_noBase64Fragment = Pick<PrismicImageFixedType, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+
+type GatsbyPrismicImageFluidFragment = Pick<PrismicImageFluidType, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyPrismicImageFluid_noBase64Fragment = Pick<PrismicImageFluidType, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyPrismicImageFluid_withWebpFragment = Pick<PrismicImageFluidType, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+type GatsbyPrismicImageFluid_withWebp_noBase64Fragment = Pick<PrismicImageFluidType, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
@@ -5655,29 +6056,5 @@ type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = Pick<ImageSharpFluid, 't
 type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyPrismicImageFixedFragment = Pick<PrismicImageFixedType, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyPrismicImageFixed_noBase64Fragment = Pick<PrismicImageFixedType, 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyPrismicImageFixed_withWebpFragment = Pick<PrismicImageFixedType, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyPrismicImageFixed_withWebp_noBase64Fragment = Pick<PrismicImageFixedType, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyPrismicImageFluidFragment = Pick<PrismicImageFluidType, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyPrismicImageFluid_noBase64Fragment = Pick<PrismicImageFluidType, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyPrismicImageFluid_withWebpFragment = Pick<PrismicImageFluidType, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyPrismicImageFluid_withWebp_noBase64Fragment = Pick<PrismicImageFluidType, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type LayoutStaticQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type LayoutStaticQuery = { readonly siteNavigation: Maybe<(
-    Header_navigationFragment
-    & Footer_navigationFragment
-  )> };
 
 }

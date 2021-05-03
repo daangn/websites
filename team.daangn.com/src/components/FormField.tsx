@@ -91,11 +91,18 @@ const FileInput = styled(Input, {
 });
 
 const TermsInput = styled(Input, {
+  display: 'block',
   height: rem(200),
   paddingY: rem(16),
   overflowY: 'auto',
   color: '$gray700',
   whiteSpace: 'pre-line',
+  '> p, ul': {
+    marginBottom: rem(16),
+  },
+  '> ul': {
+    paddingLeft: rem(16),
+  },
 });
 
 const Description = styled('p', {
@@ -175,9 +182,7 @@ const FormField: React.FC<FormFieldProps> = ({
           <Label as="div" required={required}>
             {label}
           </Label>
-          <TermsInput as="div">
-            {variants.terms}
-          </TermsInput>
+          <TermsInput as="div" dangerouslySetInnerHTML={{ __html: variants.terms }} />
           {description && (
             <Description>{description}</Description>
           )}

@@ -56,6 +56,7 @@ const config: GatsbyConfig = {
         schemas: {
           faq: require('./prismic/schemas/faq.json'),
           site_navigation: require('./prismic/schemas/site-navigation.json'),
+          terms_and_conditions: require('./prismic/schemas/terms-and-conditions.json'),
         },
       },
     },

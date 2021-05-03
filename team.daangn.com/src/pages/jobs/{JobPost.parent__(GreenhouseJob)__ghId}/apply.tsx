@@ -18,6 +18,22 @@ export const query = graphql`
     jobPost(id: { eq: $id }) {
       title
     }
+    privacyPolicy: prismicTermsAndConditions(uid: { eq: "job-application-privacy" }) {
+      id
+      data {
+        content {
+          html
+        }
+      }
+    }
+    sensitiveInfoPolicy: prismicTermsAndConditions(uid: { eq: "job-application-sensitive" }) {
+      id
+      data {
+        content {
+          html
+        }
+      }
+    }
   }
 `;
 
@@ -137,46 +153,28 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
           placeholder="https://"
           description="블로그나 GitHub 링크 등 자유롭게 입력해주세요."
         />
-        <FormField
-          variants={{
-            type: 'terms',
-            // FIXME
-            terms: `
-              FIXME: 데이터 주입
-
-              1. 개인정보의 수집 및 이용 목적 입사 지원자 식별, 본인 확인, 입사 전형 진행(합격여부 확인) 및 문의 등의 원활한 처리
-              2. 수집하는 개인정보의 항목 [필수항목] : 성명, 이메일 주소, 휴대폰 번호, 병역사항, 보훈사항(대상인 경우), 장애...
-              3. 당근마켓 많이 많이 지원해주세요.
-
-              4. 당근마켓 많이 많이 지원해주세요.
-
-              5. 아 오라고 ㅋㅋㅋ
-            `,
-          }}
-          name="privacy"
-          label="개인정보 수집 및 이용동의"
-          required
-        />
-        <FormField
-          variants={{
-            type: 'terms',
-            // FIXME
-            terms: `
-              FIXME: 데이터 주입
-
-              1. 개인정보의 수집 및 이용 목적 입사 지원자 식별, 본인 확인, 입사 전형 진행(합격여부 확인) 및 문의 등의 원활한 처리
-              2. 수집하는 개인정보의 항목 [필수항목] : 성명, 이메일 주소, 휴대폰 번호, 병역사항, 보훈사항(대상인 경우), 장애...
-              3. 당근마켓 많이 많이 지원해주세요.
-
-              4. 당근마켓 많이 많이 지원해주세요.
-
-              5. 아 오라고 ㅋㅋㅋ
-            `,
-          }}
-          name="sensitive"
-          label="민감정보 수집 및 이용동의"
-          required
-        />
+        {data.privacyPolicy?.data?.content?.html && (
+          <FormField
+            variants={{
+              type: 'terms',
+              terms: data.privacyPolicy.data.content.html,
+            }}
+            name="privacy"
+            label="개인정보 수집 및 이용동의"
+            required
+          />
+        )}
+        {data.sensitiveInfoPolicy?.data?.content?.html && (
+          <FormField
+            variants={{
+              type: 'terms',
+              terms: data.sensitiveInfoPolicy.data.content.html,
+            }}
+            name="sensitive"
+            label="민감정보 수집 및 이용동의"
+            required
+          />
+        )}
         <Button as="button" type="primary" fullWidget>
           동의 후 제출하기
         </Button>

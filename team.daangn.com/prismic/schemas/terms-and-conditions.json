@@ -1,0 +1,31 @@
+{
+  "Main" : {
+    "uid" : {
+      "type" : "UID",
+      "config" : {
+        "label" : "uid"
+      }
+    },
+    "description" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "설명",
+        "placeholder" : "어디 쓰이는 약관인지 적어주세요"
+      }
+    },
+    "revision_date" : {
+      "type" : "Date",
+      "config" : {
+        "label" : "개정일"
+      }
+    },
+    "content" : {
+      "type" : "StructuredText",
+      "config" : {
+        "multi" : "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, list-item, o-list-item",
+        "label" : "내용",
+        "placeholder" : "약관 내용"
+      }
+    }
+  }
+}
