@@ -5,11 +5,13 @@
   "main": "index.js",
   "workspaces": [
     "_packages/**",
-    "team.daangn.com"
+    "team.daangn.com",
+    "mbti.daangn.com"
   ],
   "resolutions": {
     "react": "0.0.0-experimental-ea155e226",
-    "react-dom": "0.0.0-experimental-ea155e226"
+    "react-dom": "0.0.0-experimental-ea155e226",
+    "webpack": "5.36.2"
   },
   "scripts": {
     "postinstall": "yarn init:plugins && yarn init:sites",

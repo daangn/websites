@@ -31,7 +31,7 @@
     "@types/node": "^14.14.37",
     "babel-preset-gatsby-package": "^1.3.0",
     "concurrently": "^6.0.2",
-    "gatsby": "^3.3.0",
+    "gatsby": "^3.4.0",
     "typescript": "^4.2.4"
   }
 }

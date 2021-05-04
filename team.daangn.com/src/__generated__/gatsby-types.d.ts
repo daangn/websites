@@ -5921,10 +5921,6 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
-type FaqAccordion_faqFragment = { readonly entries: ReadonlyArray<FaqAccordionItem_entryFragment> };
-
-type FaqAccordionItem_entryFragment = Pick<FaqEntry, 'id' | 'question' | 'answerHtml'>;
-
 type FaqPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -5935,24 +5931,10 @@ type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 type IndexPageQuery = { readonly __typename: 'Query' };
 
-type JobPostingList_jobPostsFragment = { readonly nodes: ReadonlyArray<(
-    Pick<JobPost, 'id'>
-    & { pagePath: JobPost['gatsbyPath'] }
-    & JobPostingListItem_jobPostFragment
-  )> };
-
-type JobPostingListItem_jobPostFragment = Pick<JobPost, 'id' | 'title' | 'chapter' | 'employmentType' | 'priorExperience'>;
-
 type JobsPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type JobsPageQuery = { readonly allJobPost: JobPostingList_jobPostsFragment };
-
-type JobPostContentUnorderedListSection_contentFragment = Pick<JobPostContentUnorderedListSection, 'title' | 'items'>;
-
-type JobPostContentOrderedListSection_contentFragment = Pick<JobPostContentOrderedListSection, 'title' | 'items'>;
-
-type JobPostContentParagraphSection_contentFragment = Pick<JobPostContentParagraphSection, 'title' | 'paragraph'>;
 
 type JobPostPageQueryVariables = Exact<{
   id: Scalars['String'];
@@ -5987,13 +5969,13 @@ type JobApplicationPageQuery = { readonly jobPost: Maybe<Pick<JobPost, 'title'>>
     & { readonly data: Maybe<{ readonly content: Maybe<Pick<PrismicStructuredTextType, 'html'>> }> }
   )> };
 
-type LayoutStaticQueryVariables = Exact<{ [key: string]: never; }>;
+type FaqAccordion_faqFragment = { readonly entries: ReadonlyArray<FaqAccordionItem_entryFragment> };
 
+type JobPostContentOrderedListSection_contentFragment = Pick<JobPostContentOrderedListSection, 'title' | 'items'>;
 
-type LayoutStaticQuery = { readonly siteNavigation: Maybe<(
-    Header_navigationFragment
-    & Footer_navigationFragment
-  )> };
+type JobPostContentParagraphSection_contentFragment = Pick<JobPostContentParagraphSection, 'title' | 'paragraph'>;
+
+type FaqAccordionItem_entryFragment = Pick<FaqEntry, 'id' | 'question' | 'answerHtml'>;
 
 type Footer_navigationFragment = { readonly footerEntries: ReadonlyArray<(
     { readonly __typename: 'SiteNavigationEntryInternal' }
@@ -6003,7 +5985,9 @@ type Footer_navigationFragment = { readonly footerEntries: ReadonlyArray<(
     & Pick<SiteNavigationEntryExternal, 'url' | 'href' | 'displayName'>
   )>, readonly socialProfiles: ReadonlyArray<SocialServiceProfile_profileFragment> };
 
-type Header_navigationFragment = NavigationMenu_navigationFragment;
+type JobPostContentUnorderedListSection_contentFragment = Pick<JobPostContentUnorderedListSection, 'title' | 'items'>;
+
+type JobPostingListItem_jobPostFragment = Pick<JobPost, 'id' | 'title' | 'chapter' | 'employmentType' | 'priorExperience'>;
 
 type NavigationMenu_navigationFragment = { readonly headerEntries: ReadonlyArray<(
     { readonly __typename: 'SiteNavigationEntryInternal' }
@@ -6011,6 +5995,14 @@ type NavigationMenu_navigationFragment = { readonly headerEntries: ReadonlyArray
   ) | (
     { readonly __typename: 'SiteNavigationEntryExternal' }
     & Pick<SiteNavigationEntryExternal, 'url' | 'href' | 'displayName'>
+  )> };
+
+type Header_navigationFragment = NavigationMenu_navigationFragment;
+
+type JobPostingList_jobPostsFragment = { readonly nodes: ReadonlyArray<(
+    Pick<JobPost, 'id'>
+    & { pagePath: JobPost['gatsbyPath'] }
+    & JobPostingListItem_jobPostFragment
   )> };
 
 type SocialServiceProfile_profileFragment = Pick<SocialProfileEntry, 'service' | 'url'>;
@@ -6056,5 +6048,13 @@ type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = Pick<ImageSharpFluid, 't
 type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+type LayoutStaticQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type LayoutStaticQuery = { readonly siteNavigation: Maybe<(
+    Header_navigationFragment
+    & Footer_navigationFragment
+  )> };
 
 }
