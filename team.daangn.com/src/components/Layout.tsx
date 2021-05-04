@@ -15,7 +15,7 @@ const globalStyles = global({
   },
   'body': {
     color: '$gray900',
-    fontFamily: 'sans-serif',
+    fontFamily: '$body',
     textRendering: 'optimizeLegibility',
     wordBreak: 'break-word',
     WebkitFontSmoothing: 'antialiased'
