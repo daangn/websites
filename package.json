@@ -14,7 +14,6 @@
     "webpack": "5.36.2"
   },
   "scripts": {
-    "postinstall": "yarn init:plugins && yarn init:sites",
     "init:plugins": "ultra --recursive --filter \"_packages/*\" build",
     "init:sites": "ultra --recursive prepare-gatsby"
   },
