@@ -12,5 +12,15 @@ module.exports = {
         icon: 'src/assets/favicon.svg',
       },
     },
-  ]
+    {
+      resolve: 'gatsby-source-prismic',
+      options: {
+        repositoryName: 'karrot',
+        schemas: {
+          mbti_event_question: require('./prismic/mbti-event-question.json'),
+          mbti_test_result: require('./prismic/mbti-test-result.json'),
+        },
+      },
+    },
+  ],
 };

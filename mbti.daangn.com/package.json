@@ -28,7 +28,8 @@
   },
   "dependencies": {
     "gatsby": "^3.4.0",
-    "gatsby-plugin-manifest": "^3.4.0"
+    "gatsby-plugin-manifest": "^3.4.0",
+    "gatsby-source-prismic": "^3.3.6"
   },
   "devDependencies": {
     "@babel/core": "^7.14.0",
