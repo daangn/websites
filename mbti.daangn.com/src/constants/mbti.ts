@@ -1,4 +1,5 @@
 export const MBTI_RESULT_LOCALSTORAGE_KEY = 'daangn:eventMbtiResult'
+export const MBTI_PARTICIPANT_KEY = 'daangn:participant'
 
 export const MBTI_GROUPS = [
   ['M', ['E', 'I']],

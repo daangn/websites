@@ -32,8 +32,10 @@
     "@daangn/webview-bridge-modern": "^4.7.0",
     "@egjs/agent": "^2.3.0",
     "@emotion/eslint-plugin": "^11.2.0",
+    "@svgr/webpack": "^5.5.0",
     "@types/lodash.debounce": "^4.0.6",
     "@types/lodash.throttle": "^4.1.6",
+    "axios": "^0.21.1",
     "copy-text-to-clipboard": "^3.0.1",
     "gatsby": "^3.4.0",
     "gatsby-plugin-emotion": "^6.4.0",
@@ -42,6 +44,7 @@
     "gatsby-plugin-manifest": "^3.4.0",
     "gatsby-plugin-module-resolver": "^1.0.3",
     "gatsby-plugin-react-helmet-async": "^1.2.0",
+    "gatsby-plugin-svgr": "^3.0.0-beta.0",
     "gatsby-plugin-typegen": "^2.2.4",
     "gatsby-source-filesystem": "^3.4.0",
     "gatsby-source-prismic": "^3.3.6",
@@ -50,7 +53,8 @@
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
     "react-helmet-async": "^1.0.9",
-    "recoil": "^0.2.0"
+    "recoil": "^0.2.0",
+    "worktop": "^0.6.3"
   },
   "devDependencies": {
     "@babel/core": "^7.14.0",
@@ -59,6 +63,7 @@
     "@cloudflare/workers-types": "^2.2.2",
     "@cloudflare/wrangler": "^1.16.1",
     "@daangn/eslint-config-karrot": "^2.0.2",
+    "@types/axios": "^0.14.0",
     "@typescript-eslint/eslint-plugin": "^4.22.1",
     "@typescript-eslint/parser": "^4.22.1",
     "babel-loader": "^8.2.2",

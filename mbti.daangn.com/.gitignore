@@ -1,3 +1,4 @@
 /.cache/
 /public/
 /dist/
+/worker/

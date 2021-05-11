@@ -8,6 +8,7 @@ module.exports = {
     DEV_SSR: false,
   },
   plugins: [
+    'gatsby-plugin-svgr',
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,

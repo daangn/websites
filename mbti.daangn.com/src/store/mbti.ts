@@ -1,5 +1,6 @@
-import { atom, DefaultValue, selectorFamily } from 'recoil'
+import { atom, DefaultValue, selector, selectorFamily } from 'recoil'
 
+import { getParticipantCount } from '@src/api'
 import { MBTIValue } from '@src/constants/mbti'
 
 export const mbtiAnswersAtom = atom<Record<string | number, MBTIValue>>({
@@ -35,4 +36,9 @@ export const selectedAnswerByIndexSelector = selectorFamily<MBTIValue, number>({
       set(mbtiAnswersAtom, (prev) => ({ ...prev, [idx]: nextValue }))
     }
   },
+})
+
+export const participantsCount = selector({
+  key: 'participantsCountSelector',
+  get: getParticipantCount,
 })

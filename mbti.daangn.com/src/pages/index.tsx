@@ -12,11 +12,24 @@ import Navbar from '@src/components/Navbar'
 import { bridge } from '@src/bridge'
 import { useShare } from '@src/hooks/useShare'
 import { useReplaceToResultPage } from '@src/hooks/useReplaceToResultPage'
+import Participants from '@src/components/Intro/Participants'
+import { MBTI_PARTICIPANT_KEY } from '@src/constants/mbti'
+import { postPartipantCount } from '@src/api'
 
 const MBTIIntroPage: React.FC = () => {
   const { show } = useReplaceToResultPage()
   const handleClickShare = useShare()
 
+  const handleClickStart = async () => {
+    const isParticipant = localStorage.getItem(MBTI_PARTICIPANT_KEY)
+    if (!isParticipant) {
+      postPartipantCount()
+        .then(() => {
+          localStorage.setItem(MBTI_PARTICIPANT_KEY, 'true')
+        })
+        .catch(() => null)
+    }
+  }
   return (
     <Layout>
       <Global
@@ -40,7 +53,7 @@ const MBTIIntroPage: React.FC = () => {
               height={378}
               formats={['auto']}
               alt="성격으로 알아보는 당신의 씀씀이 테스트"
-              style={{ width: '100%', maxWidth: 500, transition: 'opacity 50ms' }}
+              style={{ width: '100%', maxWidth: 500 }}
             />
           </Title>
           <IllustWrapper>
@@ -51,13 +64,14 @@ const MBTIIntroPage: React.FC = () => {
               placeholder="none"
               formats={['auto']}
               alt="당근마켓"
-              style={{ width: '100%', maxWidth: 500, transition: 'opacity 50ms' }}
-            />
+              style={{ width: '100%', maxWidth: 500 }}
+          />
           </IllustWrapper>
 
           <Bottom>
-            <Participants>현재 123,456,789명의 이웃들이 참여했어요.</Participants>
-            <Link to="/q/1/" className="karrot-button">
+            <Participants />
+
+            <Link to="/q/0/" className="karrot-button" onClick={handleClickStart}>
               나의 당근 유형 알아보기
             </Link>
             <WhiteButton onClick={handleClickShare}>테스트 공유하기</WhiteButton>
@@ -125,15 +139,6 @@ const Bottom = styled.div`
     margin: 0 0 1rem;
     animation: 300ms ${fadeIn} 150ms forwards;
   }
-`
-const Participants = styled.p`
-  margin: 0 0 0.5rem;
-  font-weight: bold;
-  font-size: 0.8125rem;
-  line-height: 150%;
-  text-align: center;
-  letter-spacing: -0.02em;
-  color: #505356;
 `
 const IllustWrapper = styled(ImageWrapper)`
   margin: 0 0 0.875rem;

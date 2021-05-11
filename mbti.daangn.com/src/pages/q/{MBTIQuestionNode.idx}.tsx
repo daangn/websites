@@ -3,7 +3,6 @@ import { graphql, PageProps, navigate } from 'gatsby'
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil'
 import { colors } from '@daangn/design-token'
 import styled from '@emotion/styled'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { keyframes } from '@emotion/react'
 
 import Layout from '@src/components/Layout'
@@ -14,6 +13,20 @@ import { bridge } from '@src/bridge'
 import { MBTIValue } from '@src/constants/mbti'
 import Analysis from '@src/components/Analysis'
 import { useReplaceToResultPage } from '@src/hooks/useReplaceToResultPage'
+import { ReactComponent as Num1 } from '@src/images/numbers/img_num_01.svg'
+import { ReactComponent as Num2 } from '@src/images/numbers/img_num_02.svg'
+import { ReactComponent as Num3 } from '@src/images/numbers/img_num_03.svg'
+import { ReactComponent as Num4 } from '@src/images/numbers/img_num_04.svg'
+import { ReactComponent as Num5 } from '@src/images/numbers/img_num_05.svg'
+import { ReactComponent as Num6 } from '@src/images/numbers/img_num_06.svg'
+import { ReactComponent as Num7 } from '@src/images/numbers/img_num_07.svg'
+import { ReactComponent as Num8 } from '@src/images/numbers/img_num_08.svg'
+import { ReactComponent as Num9 } from '@src/images/numbers/img_num_09.svg'
+import { ReactComponent as Num10 } from '@src/images/numbers/img_num_10.svg'
+import { ReactComponent as Num11 } from '@src/images/numbers/img_num_11.svg'
+import { ReactComponent as Num12 } from '@src/images/numbers/img_num_12.svg'
+
+const Numbers = [Num1, Num2, Num3, Num4, Num5, Num6, Num7, Num8, Num9, Num10, Num11, Num12]
 
 export default function MBTIQuestionPage({
   data: {
@@ -21,12 +34,12 @@ export default function MBTIQuestionPage({
     allMbtiQuestionNode: { totalCount },
   },
 }: PageProps<GatsbyTypes.MBTIQuestionPageQuery>) {
-  const { answers, idx, imageFile, title, isLast } = mbtiQuestionNode!
+  const { answers, idx, title, isLast } = mbtiQuestionNode!
   const { show: visible } = useReplaceToResultPage()
   const [selectedAnswer, setSelectedAnswer] = React.useState<null | MBTIValue>(null)
   const [showAnalysis, setShowAnalysis] = React.useState(false)
-  const isValid = useRecoilValue(hasValidAnswerSelector(idx - 1))
-  const setGlobalSelectedAnswer = useSetRecoilState(selectedAnswerByIndexSelector(idx - 1))
+  const isValid = useRecoilValue(hasValidAnswerSelector(idx))
+  const setGlobalSelectedAnswer = useSetRecoilState(selectedAnswerByIndexSelector(idx))
   const resetAnswers = useResetRecoilState(mbtiAnswersAtom)
 
   const handleReplace = React.useCallback(() => {
@@ -56,6 +69,8 @@ export default function MBTIQuestionPage({
     }
   }, [isValid, handleReplace])
 
+  const NumberComponent = Numbers[idx]
+
   return visible ? (
     <Layout>
       {!showAnalysis && (
@@ -67,13 +82,8 @@ export default function MBTIQuestionPage({
           />
           <InnerContainer>
             <ContentWrapper willUnmount={!!selectedAnswer} onAnimationEnd={handleAnimationEnd}>
-              {imageFile?.childImageSharp && (
-                <GatsbyImage
-                  image={getImage(imageFile?.childImageSharp.gatsbyImageData)!}
-                  alt={`${idx} 번 문제`}
-                  className="number-asset"
-                />
-              )}
+              <NumberAssetWraper>{NumberComponent && <NumberComponent />}</NumberAssetWraper>
+
               <Title>{title}</Title>
               <ul>
                 {answers.map((answer) => (
@@ -93,10 +103,10 @@ export default function MBTIQuestionPage({
             </ContentWrapper>
             <ProgressWrapper>
               <ProgressText>
-                {idx}/{totalCount}
+                {idx + 1}/{totalCount}
               </ProgressText>
               <ProgressBarWrapper>
-                <ProgressBar totalCount={totalCount} currentIndex={idx} />
+                <ProgressBar totalCount={totalCount} currentIndex={idx + 1} />
               </ProgressBarWrapper>
             </ProgressWrapper>
           </InnerContainer>
@@ -227,6 +237,11 @@ const ProgressBar = styled.span<ProgressBarProps>`
   border-radius: 3.75rem;
   background: ${({ theme }) => theme.colors.carrot500};
 `
+const NumberAssetWraper = styled.span`
+  width: 1.875rem;
+  height: 1.875rem;
+  display: block;
+`
 
 export const query = graphql`
   query MBTIQuestionPage($id: String!) {
@@ -238,11 +253,6 @@ export const query = graphql`
       }
       idx
       isLast
-      imageFile {
-        childImageSharp {
-          gatsbyImageData(width: 30, formats: [AUTO, WEBP, AVIF], layout: FIXED)
-        }
-      }
     }
     allMbtiQuestionNode {
       totalCount

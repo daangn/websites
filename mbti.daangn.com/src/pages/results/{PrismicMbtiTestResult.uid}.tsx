@@ -124,7 +124,6 @@ const MBTITargetResultPage = ({
           <FloatingImageWrapper marginTop={assetMarginTop}>
             <ImageArea />
             <HeroImg src={mbtiTargetResult.data.thumbnail.url} />
-            {/* <GatsbyImage alt={mbtiTargetResult.data.summary} image={thumbnail} /> */}
           </FloatingImageWrapper>
         </ImageWrapper>
 

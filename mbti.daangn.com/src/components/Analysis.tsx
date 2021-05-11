@@ -3,12 +3,13 @@ import styled from '@emotion/styled'
 import { useRecoilValue } from 'recoil'
 import { css, Global, keyframes } from '@emotion/react'
 import { colors } from '@daangn/design-token'
-import { StaticImage } from 'gatsby-plugin-image'
 import { navigate } from 'gatsby'
 
 import { mbtiAnswersAtom } from '@src/store/mbti'
 import { Base } from '@src/styles'
 import { getMBTIResult, MBTI_RESULT_LOCALSTORAGE_KEY } from '@src/constants/mbti'
+
+import Url from '!!url-loader?modules!@src/images/img_analysis_carrot.png'
 
 const Analysis: React.FC = () => {
   const [spot, setSpot] = React.useState('')
@@ -39,16 +40,8 @@ const Analysis: React.FC = () => {
 
   return (
     <Container outro={willUnmount} onAnimationEnd={handleAnimationEnd}>
-      <StaticImage
-        src="../images/img_analysis_carrot.png"
-        width={792}
-        height={660}
-        placeholder="none"
-        formats={['auto']}
-        alt="분석중"
-        transformOptions={{ fit: 'contain' }}
-        style={{ width: '100%', maxWidth: 400, transition: 'none' }}
-      />
+      <Img src={Url} alt="" />
+
       <Paragraph>
         당신의 씀씀이를
         <br />
@@ -102,6 +95,11 @@ const Paragraph = styled.p`
   letter-spacing: -0.03em;
   color: #ffffff;
   margin: 1rem 0 0;
+`
+const Img = styled.img`
+  width: 100%;
+  max-width: 400px;
+  display: block;
 `
 
 export default Analysis

@@ -38,7 +38,6 @@ exports.createSchemaCustomization = ({ actions }) => {
     type MBTIQuestionNode implements Node @dontInfer {
       title: String!
       answers: [MBTIAnswerNode!]!
-      imageFile: File! @link(by: "relativePath", from: "relativeImagePath")
       idx: Int!
       isLast: Boolean!
     }
@@ -68,9 +67,8 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
           contentDigest: createContentDigest(question),
         },
         ...question,
-        idx: idx + 1,
-        isLast: idx + 1 >= questionCount,
-        relativeImagePath: `numbers/img_num_${idx + 1}.png`,
+        idx: idx,
+        isLast: idx === questionCount - 1,
       })
     })
 
