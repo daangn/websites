@@ -57,13 +57,9 @@ module.exports = {
     {
       resolve: 'gatsby-source-prismic',
       options: {
-        shouldDownloadImage: (node) => {
-          console.log(node)
-          return true
-        },
         repositoryName: 'karrot',
         schemas: {
-          mbti_event_question: require('./prismic/mbti-event-question.json'),
+          mbti_test_question: require('./prismic/mbti_test_question.json'),
           mbti_test_result: require('./prismic/mbti-test-result.json'),
         },
       },
