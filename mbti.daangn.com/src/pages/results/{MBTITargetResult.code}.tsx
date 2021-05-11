@@ -1,29 +1,36 @@
 import * as React from 'react'
 import styled from '@emotion/styled'
 import { colors } from '@daangn/design-token'
-import { StaticImage } from 'gatsby-plugin-image'
 import { css, Global } from '@emotion/react'
 import throttle from 'lodash.throttle'
 import debounce from 'lodash.debounce'
-import { Link } from 'gatsby'
+import { Link, PageProps } from 'gatsby'
+import html2canvas from 'html2canvas'
 
 import Layout from '@src/components/Layout'
 import { Base, clickAfterDimm } from '@src/styles'
 import Navbar, { NavbarRef } from '@src/components/Navbar'
 import { bridge } from '@src/bridge'
-import Portal from '@src/components/Portal'
 import ResultTags from '@src/components/ResultPage/ResultTags'
 import ResultComments from '@src/components/ResultPage/ResultComments'
 import ResultRelations from '@src/components/ResultPage/ResultRelations'
 import ResultRemarks from '@src/components/ResultPage/ResultRemarks'
 import { MBTI_RESULT_LOCALSTORAGE_KEY } from '@src/constants/mbti'
 import { useShare } from '@src/hooks/useShare'
+import Modal from '@src/components/Modal'
+import Portal from '@src/components/Portal'
+import DownloadIc from '@src/images/ic_download_outline_m.svg'
 
-const MBTITargetResultPage: React.FC = (
-  {
-    // data: { mbtiTargetResult },
-  }
-) => {
+import Image from '../../images/img_result_01.png'
+
+const checkIsSafari = () => {
+  const ua = navigator.userAgent
+  const iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i)
+
+  return iOS || bridge.environment === 'Cupertino'
+}
+
+const MBTITargetResultPage = ({ params: { code } }: PageProps) => {
   const navbarRef = React.useRef<NavbarRef>(null)
   const cardEl = React.useRef<HTMLDivElement>(null)
   const [assetMarginTop, setAssetMarginTop] = React.useState(0)
@@ -64,10 +71,37 @@ const MBTITargetResultPage: React.FC = (
   }
 
   const handleClickShare = useShare()
+  const ref = React.useRef<HTMLDivElement>(null)
+  const isLoadingToExtractCanvas = React.useRef(false)
+
+  const [image, setImage] = React.useState<null | string>(null)
+
+  const handleClickDownload = React.useCallback(() => {
+    window.scrollTo(0, 0)
+    if (ref.current && !isLoadingToExtractCanvas.current) {
+      isLoadingToExtractCanvas.current = true
+      html2canvas(ref.current, { backgroundColor: '#f4f1ee' })
+        .then((canvas) => {
+          isLoadingToExtractCanvas.current = false
+          const image = canvas.toDataURL()
+          if (checkIsSafari()) {
+            setImage(image)
+          } else {
+            const link = document.createElement('a')
+            link.download = `${code}.jpeg`
+            link.href = image
+            link.click()
+          }
+        })
+        .catch(() => {
+          isLoadingToExtractCanvas.current = false
+        })
+    }
+  }, [code])
 
   return (
     <Layout>
-      <Base>
+      <Container ref={ref}>
         <Navbar
           showClose
           iconColor={colors.light.$gray900}
@@ -77,25 +111,24 @@ const MBTITargetResultPage: React.FC = (
         />
         <ImageWrapper>
           <ImageArea />
-          <Portal>
-            <FloatingImageWrapper marginTop={assetMarginTop}>
-              <ImageArea />
-              <StaticImage
-                alt="나의 당근 유형은 공감력 만렙 생활의 달인"
-                src="../../images/img_result_01.png"
-                width={520}
-                height={520}
-                placeholder="none"
-                formats={['auto']}
-                transformOptions={{ fit: 'contain' }}
-                style={{
-                  width: '100%',
-                  maxWidth: 500,
-                  transition: 'none',
-                }}
-              />
-            </FloatingImageWrapper>
-          </Portal>
+          <FloatingImageWrapper marginTop={assetMarginTop}>
+            <ImageArea />
+            <HeroImg src={Image}></HeroImg>
+            {/* <StaticImage
+              alt="나의 당근 유형은 공감력 만렙 생활의 달인"
+              src="../../images/img_result_01.png"
+              width={520}
+              height={520}
+              placeholder="none"
+              formats={['png']}
+              transformOptions={{ fit: 'cover' }}
+              style={{
+                width: '100%',
+                maxWidth: 500,
+                transition: 'none',
+              }}
+            /> */}
+          </FloatingImageWrapper>
         </ImageWrapper>
         <CardWrapper ref={cardEl}>
           <Card>
@@ -127,7 +160,7 @@ const MBTITargetResultPage: React.FC = (
               </ButtonWrapper>
 
               <ButtonWrapper>
-                <OutlineWhiteButton onClick={handleClickShare}>결과 공유하기</OutlineWhiteButton>
+                <OutlineWhiteButton onClick={handleClickDownload}>결과 이미지 저장하기</OutlineWhiteButton>
               </ButtonWrapper>
 
               <RetryButtonWrapper>
@@ -138,7 +171,25 @@ const MBTITargetResultPage: React.FC = (
             </ButtonsWrapper>
           </Card>
         </CardWrapper>
-      </Base>
+      </Container>
+      <Portal>
+        <DownloadButton onClick={handleClickShare}>나의 유형 결과 공유하기</DownloadButton>
+      </Portal>
+
+      <Modal
+        open={!!image}
+        onClose={() => {
+          setImage(null)
+        }}>
+        <div>
+          <DownloadImageGuideMessage>
+            <DownloadIconImage src={DownloadIc} />
+            <span>아래 이미지를 꾹 눌러 저장하세요</span>
+          </DownloadImageGuideMessage>
+          {image && <DownloadImage src={image} />}
+        </div>
+      </Modal>
+
       <Global
         styles={css`
           body {
@@ -150,6 +201,11 @@ const MBTITargetResultPage: React.FC = (
   )
 }
 
+const Container = styled(Base)`
+  height: auto;
+  min-height: 100vh;
+  flex: 1;
+`
 const ImageWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -181,6 +237,7 @@ const Card = styled.div`
   border-top-left-radius: 0.875rem;
   border-top-right-radius: 0.875rem;
   padding: 1.5rem;
+  padding-bottom: 3.5rem;
 `
 const MarginContainer = styled.div<{ margin?: string }>`
   margin: ${({ margin }) => margin || '0 0 2rem'};
@@ -210,26 +267,13 @@ const defaultButtonStyles = css`
   letter-spacing: -0.03em;
   min-height: 3rem;
 `
-
-const KarrotButton = styled.button`
-  ${defaultButtonStyles}
-  background: ${({ theme }) => theme.colors.carrot500};
-
-  :disabled {
-    background: ${({ theme }) => theme.colors.gray300};
-  }
-  :active:not([disabled]) {
-    background: ${({ theme }) => theme.colors.carrot600};
-  }
-`
-
 const OutlineWhiteButton = styled.button`
   ${defaultButtonStyles};
   ${clickAfterDimm}
 
   background: #fff;
-  color: ${({ theme }) => theme.colors.gray900};
-  border: 1px solid #dcdee3;
+  color: ${({ theme }) => theme.colors.gray700};
+  border: 1px solid ${({ theme }) => theme.colors.gray300};
 
   :disabled::before {
     content: '';
@@ -241,6 +285,14 @@ const OutlineWhiteButton = styled.button`
     background: rgba(248, 249, 250, 0.7);
   }
 `
+
+const KarrotButton = styled(OutlineWhiteButton)`
+  ${defaultButtonStyles}
+  background: #fff;
+  border-color: ${({ theme }) => theme.colors.carrot500};
+  color: ${({ theme }) => theme.colors.carrot500};
+`
+
 const ButtonWrapper = styled.div`
   margin: 0 0 1rem;
 `
@@ -259,6 +311,56 @@ const RetryButtonWrapper = styled.div`
     letter-spacing: -0.02em;
     color: ${({ theme }) => theme.colors.gray600};
   }
+`
+const HeroImg = styled.img`
+  max-width: 500px;
+  width: 100%;
+  display: block;
+`
+const DownloadButton = styled.button`
+  ${clickAfterDimm};
+
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  min-height: 3.5rem;
+  background: ${({ theme }) => theme.colors.carrot500};
+  padding: 0.875rem;
+  font-weight: bold;
+  font-size: 1.1875rem;
+  line-height: 140%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+`
+
+const DownloadImage = styled.img`
+  display: block;
+  width: 100%;
+  pointer-events: auto;
+`
+
+const DownloadImageGuideMessage = styled.p`
+  margin: 0 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 150%;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+`
+const DownloadIconImage = styled.img`
+  width: 24px;
+  display: block;
+  margin-right: 0.375rem;
 `
 
 export default MBTITargetResultPage

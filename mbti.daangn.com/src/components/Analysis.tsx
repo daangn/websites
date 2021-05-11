@@ -50,9 +50,9 @@ const Analysis: React.FC = () => {
         style={{ width: '100%', maxWidth: 400, transition: 'none' }}
       />
       <Paragraph>
-        나의 당근 유형을
+        당신의 씀씀이를
         <br />
-        찾고 있어요{spot}
+        분석하고 있어요{spot}
       </Paragraph>
       <Global
         styles={css`

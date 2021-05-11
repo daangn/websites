@@ -2,7 +2,7 @@ module.exports = {
   // See https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby/src/utils/flags.ts
   flags: {
     FAST_DEV: true,
-    QUERY_ON_DEMAND: true,
+    QUERY_ON_DEMAND: false,
     LAZY_IMAGES: true,
     PARALLEL_SOURCING: true,
   },

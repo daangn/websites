@@ -45,6 +45,7 @@
     "gatsby-source-filesystem": "^3.4.0",
     "gatsby-source-prismic": "^3.3.6",
     "gatsby-transformer-sharp": "^3.4.0",
+    "html2canvas": "^1.0.0-rc.7",
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
     "react-helmet-async": "^1.0.9",
