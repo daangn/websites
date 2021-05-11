@@ -51,7 +51,10 @@ const Modal: React.FC<Props> = ({ onClose, open, children }) => {
                   onClose()
                 }
               }}>
-              <CardContainer>{childInstance}</CardContainer>
+              <CardContainer>
+                {childInstance}
+                <Margin />
+              </CardContainer>
             </ScrollContainer>
           </Base>
         )}
@@ -95,7 +98,10 @@ const Base = styled.div<{ open: boolean }>`
 `
 const CardContainer = styled.div`
   position: relative;
-  margin: 2.5rem 1.5rem;
+  margin: 2.5rem 1.5rem 0;
+`
+const Margin = styled.div`
+  height: 2.5rem;
 `
 const ScrollContainer = styled.div`
   height: 100%;

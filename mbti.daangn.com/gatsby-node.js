@@ -11,6 +11,25 @@ const mbtiJSON = JSON.parse(fs.readFileSync(path.resolve(__dirname, './data/mbti
 // You can delete this file if you're not using it
 exports.createSchemaCustomization = ({ actions }) => {
   const gql = String.raw
+  actions.createTypes(
+    gql`
+      type PrismicMbtiTestResultDataType {
+        relations: [PrismicMbtiTestResultRelationsGroupType!]!
+        thumbnail: PrismicImageType!
+      }
+      type PrismicImageDimensionsType {
+        width: Int!
+        height: Int!
+      }
+      type PrismicImageType {
+        url: String!
+        dimensions: PrismicImageDimensionsType!
+      }
+      type PrismicMbtiTestResultRemarksGroupType {
+        remark_name: String!
+      }
+    `
+  )
   actions.createTypes(gql`
     type MBTIAnswerNode {
       target: String!

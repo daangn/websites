@@ -1,16 +1,17 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { graphql } from 'gatsby'
 
-interface Props {}
+interface Props {
+  data: GatsbyTypes.ResultTags_dataFragment
+}
 
-const TAGS = ['우리동네 해결사', '남을 위한 플렉스', '고민상담소']
-
-const ResultTags: React.FC<Props> = () => {
+const ResultTags: React.FC<Props> = ({ data: { tags = [] }, data }) => {
   return (
     <Base>
       <List>
-        {TAGS.map((item, idx) => (
-          <Item key={idx}># {item}</Item>
+        {tags.map((tag, idx) => (
+          <Item key={idx}># {tag?.tagName}</Item>
         ))}
       </List>
     </Base>
@@ -44,6 +45,14 @@ const Item = styled.li`
   :nth-of-type(3n - 2) {
     background: ${({ theme }) => theme.colors.carrot50};
     color: ${({ theme }) => theme.colors.carrot600};
+  }
+`
+
+export const fragment = graphql`
+  fragment ResultTags_data on PrismicMbtiTestResultDataType {
+    tags {
+      tagName: tag_name
+    }
   }
 `
 

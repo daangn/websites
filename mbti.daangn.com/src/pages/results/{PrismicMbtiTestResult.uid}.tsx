@@ -4,8 +4,10 @@ import { colors } from '@daangn/design-token'
 import { css, Global } from '@emotion/react'
 import throttle from 'lodash.throttle'
 import debounce from 'lodash.debounce'
-import { Link, PageProps } from 'gatsby'
+import { graphql, Link, PageProps } from 'gatsby'
 import html2canvas from 'html2canvas'
+import { getAccurateAgent } from '@egjs/agent'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 import Layout from '@src/components/Layout'
 import { Base, clickAfterDimm } from '@src/styles'
@@ -21,16 +23,22 @@ import Modal from '@src/components/Modal'
 import Portal from '@src/components/Portal'
 import DownloadIc from '@src/images/ic_download_outline_m.svg'
 
-import Image from '../../images/img_result_01.png'
+const checkIsMobileSafari = async () => {
+  const agent = await getAccurateAgent()
 
-const checkIsSafari = () => {
-  const ua = navigator.userAgent
-  const iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i)
-
-  return iOS || bridge.environment === 'Cupertino'
+  if (agent) {
+    return agent.browser.webkit && window.innerWidth < 1200
+  }
+  return false
 }
 
-const MBTITargetResultPage = ({ params: { code } }: PageProps) => {
+const MBTITargetResultPage = ({
+  data: { mbtiTargetResult },
+  params: { code },
+}: PageProps<GatsbyTypes.MBTITargetResultPageQuery>) => {
+  if (!mbtiTargetResult?.data) {
+    throw new Error('There is no mbtiTargetResult')
+  }
   const navbarRef = React.useRef<NavbarRef>(null)
   const cardEl = React.useRef<HTMLDivElement>(null)
   const [assetMarginTop, setAssetMarginTop] = React.useState(0)
@@ -81,10 +89,11 @@ const MBTITargetResultPage = ({ params: { code } }: PageProps) => {
     if (ref.current && !isLoadingToExtractCanvas.current) {
       isLoadingToExtractCanvas.current = true
       html2canvas(ref.current, { backgroundColor: '#f4f1ee' })
-        .then((canvas) => {
+        .then(async (canvas) => {
           isLoadingToExtractCanvas.current = false
           const image = canvas.toDataURL()
-          if (checkIsSafari()) {
+          const isMobileSafari = await checkIsMobileSafari()
+          if (isMobileSafari) {
             setImage(image)
           } else {
             const link = document.createElement('a')
@@ -98,6 +107,7 @@ const MBTITargetResultPage = ({ params: { code } }: PageProps) => {
         })
     }
   }, [code])
+  // const thumbnail = getImage(mbtiTargetResult.data.thumbnail.localFile.childImageSharp.gatsbyImageData)
 
   return (
     <Layout>
@@ -113,47 +123,34 @@ const MBTITargetResultPage = ({ params: { code } }: PageProps) => {
           <ImageArea />
           <FloatingImageWrapper marginTop={assetMarginTop}>
             <ImageArea />
-            <HeroImg src={Image}></HeroImg>
-            {/* <StaticImage
-              alt="나의 당근 유형은 공감력 만렙 생활의 달인"
-              src="../../images/img_result_01.png"
-              width={520}
-              height={520}
-              placeholder="none"
-              formats={['png']}
-              transformOptions={{ fit: 'cover' }}
-              style={{
-                width: '100%',
-                maxWidth: 500,
-                transition: 'none',
-              }}
-            /> */}
+            <HeroImg src={mbtiTargetResult.data.thumbnail.url} />
+            {/* <GatsbyImage alt={mbtiTargetResult.data.summary} image={thumbnail} /> */}
           </FloatingImageWrapper>
         </ImageWrapper>
+
         <CardWrapper ref={cardEl}>
           <Card>
             <MarginContainer margin="0 0 1.5rem">
-              <ResultTags />
+              <ResultTags data={mbtiTargetResult.data} />
             </MarginContainer>
 
             <MarginContainer>
-              <ResultComments />
+              <ResultComments data={mbtiTargetResult.data} />
             </MarginContainer>
 
             <Divider />
-
             <MarginContainer>
-              <ResultRelations />
+              <ResultRelations data={mbtiTargetResult.data} />
             </MarginContainer>
 
-            {
+            {Boolean(mbtiTargetResult.data.remarks?.length) && (
               <>
                 <Divider />
                 <MarginContainer>
-                  <ResultRemarks />
+                  <ResultRemarks data={mbtiTargetResult.data} />
                 </MarginContainer>
               </>
-            }
+            )}
             <ButtonsWrapper>
               <ButtonWrapper>
                 <KarrotButton>환상의 케미 이웃 만나러 가기</KarrotButton>
@@ -361,6 +358,38 @@ const DownloadIconImage = styled.img`
   width: 24px;
   display: block;
   margin-right: 0.375rem;
+`
+
+export const query = graphql`
+  query MBTITargetResultPage($uid: String!) {
+    mbtiTargetResult: prismicMbtiTestResult(uid: { eq: $uid }) {
+      id
+      uid
+      data {
+        ...ResultTags_data
+        ...ResultComments_data
+        relations {
+          __typename
+        }
+        summary
+        thumbnail {
+          alt
+          url
+          localFile {
+            childImageSharp {
+              gatsbyImageData(width: 500, formats: [AUTO], layout: FIXED)
+            }
+          }
+        }
+        remarks {
+          __typename
+        }
+        ...ResultRemarks_data
+        ...ResultRelations_data
+      }
+      __typename
+    }
+  }
 `
 
 export default MBTITargetResultPage

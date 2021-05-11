@@ -5,6 +5,7 @@ module.exports = {
     QUERY_ON_DEMAND: false,
     LAZY_IMAGES: true,
     PARALLEL_SOURCING: true,
+    DEV_SSR: false,
   },
   plugins: [
     `gatsby-plugin-image`,
@@ -29,18 +30,18 @@ module.exports = {
         },
       },
     },
-    // {
-    //   resolve: 'gatsby-plugin-typegen',
-    //   options: {
-    //     outputPath: 'src/__generated__/gatsby-types.d.ts',
-    //     emitSchema: {
-    //       'src/__generated__/gatsby-introspection.json': true,
-    //     },
-    //     emitPluginDocuments: {
-    //       'src/__generated__/gatsby-plugin-documents.graphql': true,
-    //     },
-    //   },
-    // },
+    {
+      resolve: 'gatsby-plugin-typegen',
+      options: {
+        outputPath: 'src/__generated__/gatsby-types.d.ts',
+        emitSchema: {
+          'src/__generated__/gatsby-introspection.json': true,
+        },
+        emitPluginDocuments: {
+          'src/__generated__/gatsby-plugin-documents.graphql': true,
+        },
+      },
+    },
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
@@ -56,6 +57,10 @@ module.exports = {
     {
       resolve: 'gatsby-source-prismic',
       options: {
+        shouldDownloadImage: (node) => {
+          console.log(node)
+          return true
+        },
         repositoryName: 'karrot',
         schemas: {
           mbti_event_question: require('./prismic/mbti-event-question.json'),

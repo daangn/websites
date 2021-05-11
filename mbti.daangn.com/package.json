@@ -30,6 +30,7 @@
     "@daangn/design-token": "^0.1.7",
     "@daangn/emotion-react-theme": "^0.3.0",
     "@daangn/webview-bridge-modern": "^4.7.0",
+    "@egjs/agent": "^2.3.0",
     "@emotion/eslint-plugin": "^11.2.0",
     "@types/lodash.debounce": "^4.0.6",
     "@types/lodash.throttle": "^4.1.6",

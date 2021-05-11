@@ -70,10 +70,6 @@ const Navbar = React.forwardRef<NavbarRef, NavbarProps>(
       [iconColor, showClose]
     )
 
-    React.useEffect(() => {
-      console.log(ref.current?.clientHeight)
-    }, [])
-
     return (
       <>
         <Base navigatorTheme={theme} showNavigationBg={showNavigationBg} ref={ref} />

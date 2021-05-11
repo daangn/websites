@@ -1,26 +1,21 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { graphql } from 'gatsby'
 
-interface Props {}
+interface Props {
+  data: GatsbyTypes.ResultComments_dataFragment
+}
 
-const COMMENTS = [
-  '세상 물정 모르는 당신! 버스비가 얼마인지 알고 계시나요?',
-  '절약 성향이 강하고 이것 저것 똑부러지게 잘 챙겨서 생활력도 좋아요.',
-  '하지만 종종 과시하고 싶은 마음이 들면 씀씀이가 갑자기 커질 때도 있어요. 가지고 싶은 건 가져야하죠.',
-  '내가 경험한 좋은 것을 주변에 알리고 추천하는 걸 좋아해요.',
-  '친절한 마음으로 이웃에게 현실적인 도움을 주는 따뜻한 오지라퍼!🧡',
-]
-
-const ResultComments: React.FC<Props> = () => {
+const ResultComments: React.FC<Props> = ({ data: { comments = [] } }) => {
   return (
     <Base>
       <ul>
-        {COMMENTS.map((comment, idx) => (
+        {comments.map((comment, idx) => (
           <Item key={idx}>
             <BullitWrapper>
               <Bullit />
             </BullitWrapper>
-            <P>{comment}</P>
+            <P>{comment?.text}</P>
           </Item>
         ))}
       </ul>
@@ -55,6 +50,14 @@ const P = styled.p`
   align-items: center;
   letter-spacing: -0.02em;
   color: ${({ theme }) => theme.colors.gray900};
+`
+
+export const fragment = graphql`
+  fragment ResultComments_data on PrismicMbtiTestResultDataType {
+    comments {
+      text
+    }
+  }
 `
 
 export default ResultComments

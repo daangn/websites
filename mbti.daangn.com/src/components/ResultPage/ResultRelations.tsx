@@ -1,36 +1,27 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { graphql } from 'gatsby'
 
-interface Props {}
+interface Props {
+  data: GatsbyTypes.ResultRelations_dataFragment
+}
 
-const RELATIONS = [
-  {
-    src: '',
-    title: '환상의 케미',
-    name: '실속파 최저가 사냥꾼',
-    color: '#FF7E36',
-  },
-  {
-    src: '',
-    title: '환장하는 케미',
-    name: '취향 독고다이',
-    color: '#868B94',
-  },
-]
-
-const ResultRelations: React.FC<Props> = () => {
+const ResultRelations: React.FC<Props> = ({ data: { relations } }) => {
   return (
     <Base>
       <ul>
-        {RELATIONS.map((relation, idx) => (
-          <Item key={idx}>
-            <Image src={relation.src} />
-            <RelationTextWrap>
-              <Title color={relation.color}>{relation.title}</Title>
-              <Name>{relation.name}</Name>
-            </RelationTextWrap>
-          </Item>
-        ))}
+        {relations.map(
+          (relation, idx) =>
+            relation && (
+              <Item key={idx}>
+                <Image src={relation.relation_entry?.document?.data?.avatar?.url || ''} />
+                <RelationTextWrap>
+                  <Title color={relation.relation_color!}>{relation.relation_type}</Title>
+                  <Name>{relation.relation_entry?.document?.data?.summary}</Name>
+                </RelationTextWrap>
+              </Item>
+            )
+        )}
       </ul>
     </Base>
   )
@@ -69,6 +60,34 @@ const Name = styled.span`
   line-height: 135%;
   letter-spacing: -0.03em;
   color: ${({ theme }) => theme.colors.gray900};
+`
+
+export const fragments = graphql`
+  fragment ResultRelations_data on PrismicMbtiTestResultDataType {
+    relations {
+      relation_type
+      relation_color
+      relation_entry {
+        id
+        url
+        document {
+          ... on PrismicMbtiTestResult {
+            id
+            data {
+              avatar {
+                dimensions {
+                  width
+                  height
+                }
+                url
+              }
+              summary
+            }
+          }
+        }
+      }
+    }
+  }
 `
 
 export default ResultRelations
