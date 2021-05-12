@@ -16,8 +16,12 @@ const MBTITargetResultViewPage = ({
       <Global
         styles={css`
           @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+          @font-face {
+            font-family: 'Noto Color Emoji';
+            src: url('/fonts/noto/NotoColorEmoji.ttf') format('truetype');
+          }
           * {
-            font-family: 'Noto Sans KR';
+            font-family: 'Noto Sans KR', sans-serif, 'Noto Color Emoji';
           }
         `}
       />
