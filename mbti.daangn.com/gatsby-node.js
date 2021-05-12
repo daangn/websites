@@ -57,10 +57,11 @@ function calcLCP() {
 }
 
 exports.onPostBuild = async ({ store, reporter }) => {
-  // if (process.env.GATSBY_CLOUD === 'true') {
-  //   // Note: Gatsby Cloud 에서는 Puppeteer를 못돌린다 이런;;
-  //   return
-  // }
+  if (process.env.GATSBY_CLOUD === 'true') {
+    // Note: Gatsby Cloud 에서는 Puppeteer를 못돌린다 이런;;
+    return
+  }
+
   const scale = 3
 
   let puppeteerCore
@@ -70,6 +71,7 @@ exports.onPostBuild = async ({ store, reporter }) => {
       height: 640,
     },
     headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
     ignoreHTTPSErrors: true,
   }
   try {
@@ -81,10 +83,11 @@ exports.onPostBuild = async ({ store, reporter }) => {
     try {
       const chromium = require('chrome-aws-lambda')
       puppeteerCore = chromium.puppeteer
-      puppeteerOptions.args = chromium.args
       puppeteerOptions.executablePath = await chromium.executablePath
     } catch (e) {
-      throw new Error('Missing puppeteer dependency (yarn add puppeteer or yarn add puppeteer-core chrome-aws-lambda)')
+      reporter.panicOnBuild(
+        'Missing puppeteer dependency (yarn add puppeteer or yarn add puppeteer-core chrome-aws-lambda)'
+      )
     }
   }
 
