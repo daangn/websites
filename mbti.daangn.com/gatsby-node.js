@@ -129,6 +129,7 @@ exports.onPostBuild = async ({ store, reporter }) => {
     await page.goto(`http://localhost:8899/results/${resultName}/view/`, {
       waitUntil: 'load',
     })
+    await page.evaluateHandle('document.fonts.ready')
     await pending(page)
     await page.evaluate(() => {
       document.documentElement.style.fontSize = `3em`
