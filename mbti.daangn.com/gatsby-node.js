@@ -5,7 +5,6 @@
  */
 const path = require('path')
 const { promises: fs } = require('fs')
-const chromium = require('chrome-aws-lambda')
 const http = require('http')
 const serveHandler = require('serve-handler')
 
@@ -57,11 +56,38 @@ function calcLCP() {
   })
 }
 
-exports.onPostBuild = async ({ store }) => {
+exports.onPostBuild = async ({ store, reporter }) => {
   // if (process.env.GATSBY_CLOUD === 'true') {
   //   // Note: Gatsby Cloud 에서는 Puppeteer를 못돌린다 이런;;
   //   return
   // }
+  const scale = 3
+
+  let puppeteerCore
+  let puppeteerOptions = {
+    defaultViewport: {
+      width: 375 * scale,
+      height: 640,
+    },
+    headless: true,
+    ignoreHTTPSErrors: true,
+  }
+  try {
+    puppeteerCore = require('puppeteer')
+  } catch (e) {
+    reporter.warn("chouldn't load puppeteer")
+  }
+  if (!puppeteerCore) {
+    try {
+      const chromium = require('chrome-aws-lambda')
+      puppeteerCore = chromium.puppeteer
+      puppeteerOptions.args = chromium.args
+      puppeteerOptions.executablePath = await chromium.executablePath
+    } catch (e) {
+      throw new Error('Missing puppeteer dependency (yarn add puppeteer or yarn add puppeteer-core chrome-aws-lambda)')
+    }
+  }
+
   const state = store.getState()
   const baseDir = state.program.directory
   const publicDir = path.join(baseDir, 'public')
@@ -83,17 +109,7 @@ exports.onPostBuild = async ({ store }) => {
       port: 8899,
     })
 
-  const scale = 3
-
-  const browser = await chromium.puppeteer.launch({
-    defaultViewport: {
-      width: 375 * scale,
-      height: 640,
-    },
-    args: chromium.args,
-    executablePath: await chromium.executablePath,
-    ignoreHTTPSErrors: true,
-  })
+  const browser = await puppeteerCore.launch(puppeteerOptions)
   const pending = async (page) => {
     const lcp = await page.evaluate(() => {
       return window.largestContentfulPaint
