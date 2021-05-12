@@ -4,7 +4,7 @@
  * See: https://www.gatsbyjs.com/docs/node-apis/
  */
 const path = require('path')
-const fs = require('fs/promises')
+const { promises: fs } = require('fs')
 const puppeteer = require('puppeteer')
 const http = require('http')
 const serveHandler = require('serve-handler')
