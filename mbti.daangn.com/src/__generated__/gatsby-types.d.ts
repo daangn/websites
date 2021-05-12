@@ -258,12 +258,10 @@ type Directory_ctimeArgs = {
 
 type Site = Node & {
   readonly buildTime: Maybe<Scalars['Date']>;
-  readonly siteMetadata: Maybe<SiteSiteMetadata>;
+  readonly siteMetadata: SiteMetadata;
   readonly port: Maybe<Scalars['Int']>;
   readonly host: Maybe<Scalars['String']>;
   readonly flags: Maybe<SiteFlags>;
-  readonly polyfill: Maybe<Scalars['Boolean']>;
-  readonly pathPrefix: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly parent: Maybe<Node>;
   readonly children: ReadonlyArray<Node>;
@@ -309,15 +307,15 @@ type SitePage = Node & {
   readonly internalComponentName: Scalars['String'];
   readonly componentChunkName: Scalars['String'];
   readonly matchPath: Maybe<Scalars['String']>;
+  readonly isCreatedByStatefulCreatePages: Maybe<Scalars['Boolean']>;
+  readonly pluginCreator: Maybe<SitePlugin>;
+  readonly pluginCreatorId: Maybe<Scalars['String']>;
+  readonly componentPath: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly parent: Maybe<Node>;
   readonly children: ReadonlyArray<Node>;
   readonly internal: Internal;
-  readonly isCreatedByStatefulCreatePages: Maybe<Scalars['Boolean']>;
   readonly context: Maybe<SitePageContext>;
-  readonly pluginCreator: Maybe<SitePlugin>;
-  readonly pluginCreatorId: Maybe<Scalars['String']>;
-  readonly componentPath: Maybe<Scalars['String']>;
 };
 
 type SitePageContext = {
@@ -762,6 +760,8 @@ type PrismicMbtiTestResultRelationsGroupType = {
 
 type PrismicMbtiTestResultDataType = {
   readonly summary: Maybe<Scalars['String']>;
+  readonly og_description: Maybe<Scalars['String']>;
+  readonly opengraph_image: Maybe<PrismicImageType>;
   readonly comments: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestResultCommentsGroupType>>>;
   readonly thumbnail: PrismicImageType;
   readonly avatar: Maybe<PrismicImageType>;
@@ -807,7 +807,49 @@ type PrismicMbtiTestResult_last_publication_dateArgs = {
   locale: Maybe<Scalars['String']>;
 };
 
-type PrismicAllDocumentTypes = PrismicMbtiTestQuestion | PrismicMbtiTestResult;
+type PrismicMbtiIntroDataType = {
+  readonly title: Maybe<Scalars['String']>;
+  readonly description: Maybe<Scalars['String']>;
+  readonly opengraph_image: Maybe<PrismicImageType>;
+};
+
+type PrismicMbtiIntro = PrismicDocument & Node & {
+  readonly data: Maybe<PrismicMbtiIntroDataType>;
+  readonly dataRaw: Scalars['JSON'];
+  readonly dataString: Scalars['String'];
+  readonly first_publication_date: Scalars['Date'];
+  readonly href: Scalars['String'];
+  readonly url: Maybe<Scalars['String']>;
+  readonly lang: Scalars['String'];
+  readonly last_publication_date: Scalars['Date'];
+  readonly tags: ReadonlyArray<Scalars['String']>;
+  readonly alternate_languages: ReadonlyArray<PrismicLinkType>;
+  readonly type: Scalars['String'];
+  readonly prismicId: Scalars['ID'];
+  readonly _previewable: Scalars['ID'];
+  readonly id: Scalars['ID'];
+  readonly parent: Maybe<Node>;
+  readonly children: ReadonlyArray<Node>;
+  readonly internal: Internal;
+};
+
+
+type PrismicMbtiIntro_first_publication_dateArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+
+type PrismicMbtiIntro_last_publication_dateArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+type PrismicAllDocumentTypes = PrismicMbtiTestQuestion | PrismicMbtiTestResult | PrismicMbtiIntro;
 
 
 type PrismicImageFixedType = {
@@ -1471,6 +1513,12 @@ type PrismicLinkType = {
   readonly raw: Maybe<Scalars['JSON']>;
 };
 
+type SiteMetadata = {
+  readonly siteUrl: Scalars['String'];
+  readonly siteName: Scalars['String'];
+  readonly shortName: Maybe<Scalars['String']>;
+};
+
 type PrismicFaq = Node & {
   readonly id: Scalars['ID'];
   readonly parent: Maybe<Node>;
@@ -1866,6 +1914,7 @@ type SitePluginPluginOptionsEmitPluginDocuments = {
 type SitePluginPluginOptionsSchemas = {
   readonly mbti_test_question: Maybe<SitePluginPluginOptionsSchemasMbti_test_question>;
   readonly mbti_test_result: Maybe<SitePluginPluginOptionsSchemasMbti_test_result>;
+  readonly mbti_intro: Maybe<SitePluginPluginOptionsSchemasMbti_intro>;
 };
 
 type SitePluginPluginOptionsSchemasMbti_test_question = {
@@ -2076,6 +2125,8 @@ type SitePluginPluginOptionsSchemasMbti_test_result = {
 type SitePluginPluginOptionsSchemasMbti_test_resultMain = {
   readonly uid: Maybe<SitePluginPluginOptionsSchemasMbti_test_resultMainUid>;
   readonly summary: Maybe<SitePluginPluginOptionsSchemasMbti_test_resultMainSummary>;
+  readonly og_description: Maybe<SitePluginPluginOptionsSchemasMbti_test_resultMainOg_description>;
+  readonly opengraph_image: Maybe<SitePluginPluginOptionsSchemasMbti_test_resultMainOpengraph_image>;
   readonly comments: Maybe<SitePluginPluginOptionsSchemasMbti_test_resultMainComments>;
   readonly thumbnail: Maybe<SitePluginPluginOptionsSchemasMbti_test_resultMainThumbnail>;
   readonly avatar: Maybe<SitePluginPluginOptionsSchemasMbti_test_resultMainAvatar>;
@@ -2101,6 +2152,30 @@ type SitePluginPluginOptionsSchemasMbti_test_resultMainSummary = {
 
 type SitePluginPluginOptionsSchemasMbti_test_resultMainSummaryConfig = {
   readonly label: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasMbti_test_resultMainOg_description = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasMbti_test_resultMainOg_descriptionConfig>;
+};
+
+type SitePluginPluginOptionsSchemasMbti_test_resultMainOg_descriptionConfig = {
+  readonly label: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasMbti_test_resultMainOpengraph_image = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasMbti_test_resultMainOpengraph_imageConfig>;
+};
+
+type SitePluginPluginOptionsSchemasMbti_test_resultMainOpengraph_imageConfig = {
+  readonly constraint: Maybe<SitePluginPluginOptionsSchemasMbti_test_resultMainOpengraph_imageConfigConstraint>;
+  readonly label: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasMbti_test_resultMainOpengraph_imageConfigConstraint = {
+  readonly width: Maybe<Scalars['Int']>;
+  readonly height: Maybe<Scalars['Int']>;
 };
 
 type SitePluginPluginOptionsSchemasMbti_test_resultMainComments = {
@@ -2259,6 +2334,49 @@ type SitePluginPluginOptionsSchemasMbti_test_resultMainRelationsConfigFieldsRela
   readonly label: Maybe<Scalars['String']>;
 };
 
+type SitePluginPluginOptionsSchemasMbti_intro = {
+  readonly Main: Maybe<SitePluginPluginOptionsSchemasMbti_introMain>;
+};
+
+type SitePluginPluginOptionsSchemasMbti_introMain = {
+  readonly title: Maybe<SitePluginPluginOptionsSchemasMbti_introMainTitle>;
+  readonly description: Maybe<SitePluginPluginOptionsSchemasMbti_introMainDescription>;
+  readonly opengraph_image: Maybe<SitePluginPluginOptionsSchemasMbti_introMainOpengraph_image>;
+};
+
+type SitePluginPluginOptionsSchemasMbti_introMainTitle = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasMbti_introMainTitleConfig>;
+};
+
+type SitePluginPluginOptionsSchemasMbti_introMainTitleConfig = {
+  readonly label: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasMbti_introMainDescription = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasMbti_introMainDescriptionConfig>;
+};
+
+type SitePluginPluginOptionsSchemasMbti_introMainDescriptionConfig = {
+  readonly label: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasMbti_introMainOpengraph_image = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasMbti_introMainOpengraph_imageConfig>;
+};
+
+type SitePluginPluginOptionsSchemasMbti_introMainOpengraph_imageConfig = {
+  readonly constraint: Maybe<SitePluginPluginOptionsSchemasMbti_introMainOpengraph_imageConfigConstraint>;
+  readonly label: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasMbti_introMainOpengraph_imageConfigConstraint = {
+  readonly width: Maybe<Scalars['Int']>;
+  readonly height: Maybe<Scalars['Int']>;
+};
+
 type SitePluginPackageJson = {
   readonly name: Maybe<Scalars['String']>;
   readonly description: Maybe<Scalars['String']>;
@@ -2286,6 +2404,109 @@ type SitePluginPackageJsonPeerDependencies = {
   readonly version: Maybe<Scalars['String']>;
 };
 
+type StaticImage = Node & {
+  readonly id: Scalars['ID'];
+  readonly parent: Maybe<Node>;
+  readonly children: ReadonlyArray<Node>;
+  readonly internal: Internal;
+  readonly sourceInstanceName: Maybe<Scalars['String']>;
+  readonly relativePath: Maybe<Scalars['String']>;
+  readonly extension: Maybe<Scalars['String']>;
+  readonly prettySize: Maybe<Scalars['String']>;
+  readonly modifiedTime: Maybe<Scalars['Date']>;
+  readonly accessTime: Maybe<Scalars['Date']>;
+  readonly changeTime: Maybe<Scalars['Date']>;
+  readonly birthTime: Maybe<Scalars['Date']>;
+  readonly root: Maybe<Scalars['String']>;
+  readonly dir: Maybe<Scalars['String']>;
+  readonly base: Maybe<Scalars['String']>;
+  readonly ext: Maybe<Scalars['String']>;
+  readonly name: Maybe<Scalars['String']>;
+  readonly absolutePath: Maybe<Scalars['String']>;
+  readonly relativeDirectory: Maybe<Scalars['String']>;
+  readonly dev: Maybe<Scalars['Int']>;
+  readonly mode: Maybe<Scalars['Int']>;
+  readonly nlink: Maybe<Scalars['Int']>;
+  readonly uid: Maybe<Scalars['Int']>;
+  readonly rdev: Maybe<Scalars['Int']>;
+  readonly blksize: Maybe<Scalars['Int']>;
+  readonly ino: Maybe<Scalars['Int']>;
+  readonly size: Maybe<Scalars['Int']>;
+  readonly blocks: Maybe<Scalars['Int']>;
+  readonly atimeMs: Maybe<Scalars['Float']>;
+  readonly mtimeMs: Maybe<Scalars['Float']>;
+  readonly ctimeMs: Maybe<Scalars['Float']>;
+  readonly birthtimeMs: Maybe<Scalars['Float']>;
+  readonly atime: Maybe<Scalars['Date']>;
+  readonly mtime: Maybe<Scalars['Date']>;
+  readonly ctime: Maybe<Scalars['Date']>;
+  readonly birthtime: Maybe<Scalars['Date']>;
+};
+
+
+type StaticImage_modifiedTimeArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+
+type StaticImage_accessTimeArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+
+type StaticImage_changeTimeArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+
+type StaticImage_birthTimeArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+
+type StaticImage_atimeArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+
+type StaticImage_mtimeArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+
+type StaticImage_ctimeArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+
+type StaticImage_birthtimeArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
 type Query = {
   readonly file: Maybe<File>;
   readonly allFile: FileConnection;
@@ -2311,6 +2532,8 @@ type Query = {
   readonly allPrismicMbtiTestQuestion: PrismicMbtiTestQuestionConnection;
   readonly prismicMbtiTestResult: Maybe<PrismicMbtiTestResult>;
   readonly allPrismicMbtiTestResult: PrismicMbtiTestResultConnection;
+  readonly prismicMbtiIntro: Maybe<PrismicMbtiIntro>;
+  readonly allPrismicMbtiIntro: PrismicMbtiIntroConnection;
   readonly prismicFaq: Maybe<PrismicFaq>;
   readonly allPrismicFaq: PrismicFaqConnection;
   readonly prismicSiteNavigation: Maybe<PrismicSiteNavigation>;
@@ -2321,6 +2544,8 @@ type Query = {
   readonly allSiteBuildMetadata: SiteBuildMetadataConnection;
   readonly sitePlugin: Maybe<SitePlugin>;
   readonly allSitePlugin: SitePluginConnection;
+  readonly staticImage: Maybe<StaticImage>;
+  readonly allStaticImage: StaticImageConnection;
 };
 
 
@@ -2428,12 +2653,10 @@ type Query_allDirectoryArgs = {
 
 type Query_siteArgs = {
   buildTime: Maybe<DateQueryOperatorInput>;
-  siteMetadata: Maybe<SiteSiteMetadataFilterInput>;
+  siteMetadata: Maybe<SiteMetadataFilterInput>;
   port: Maybe<IntQueryOperatorInput>;
   host: Maybe<StringQueryOperatorInput>;
   flags: Maybe<SiteFlagsFilterInput>;
-  polyfill: Maybe<BooleanQueryOperatorInput>;
-  pathPrefix: Maybe<StringQueryOperatorInput>;
   id: Maybe<StringQueryOperatorInput>;
   parent: Maybe<NodeFilterInput>;
   children: Maybe<NodeFilterListInput>;
@@ -2476,15 +2699,15 @@ type Query_sitePageArgs = {
   internalComponentName: Maybe<StringQueryOperatorInput>;
   componentChunkName: Maybe<StringQueryOperatorInput>;
   matchPath: Maybe<StringQueryOperatorInput>;
+  isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
+  pluginCreator: Maybe<SitePluginFilterInput>;
+  pluginCreatorId: Maybe<StringQueryOperatorInput>;
+  componentPath: Maybe<StringQueryOperatorInput>;
   id: Maybe<StringQueryOperatorInput>;
   parent: Maybe<NodeFilterInput>;
   children: Maybe<NodeFilterListInput>;
   internal: Maybe<InternalFilterInput>;
-  isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
   context: Maybe<SitePageContextFilterInput>;
-  pluginCreator: Maybe<SitePluginFilterInput>;
-  pluginCreatorId: Maybe<StringQueryOperatorInput>;
-  componentPath: Maybe<StringQueryOperatorInput>;
 };
 
 
@@ -2651,6 +2874,35 @@ type Query_allPrismicMbtiTestResultArgs = {
 };
 
 
+type Query_prismicMbtiIntroArgs = {
+  data: Maybe<PrismicMbtiIntroDataTypeFilterInput>;
+  dataRaw: Maybe<JSONQueryOperatorInput>;
+  dataString: Maybe<StringQueryOperatorInput>;
+  first_publication_date: Maybe<DateQueryOperatorInput>;
+  href: Maybe<StringQueryOperatorInput>;
+  url: Maybe<StringQueryOperatorInput>;
+  lang: Maybe<StringQueryOperatorInput>;
+  last_publication_date: Maybe<DateQueryOperatorInput>;
+  tags: Maybe<StringQueryOperatorInput>;
+  alternate_languages: Maybe<PrismicLinkTypeFilterListInput>;
+  type: Maybe<StringQueryOperatorInput>;
+  prismicId: Maybe<IDQueryOperatorInput>;
+  _previewable: Maybe<IDQueryOperatorInput>;
+  id: Maybe<StringQueryOperatorInput>;
+  parent: Maybe<NodeFilterInput>;
+  children: Maybe<NodeFilterListInput>;
+  internal: Maybe<InternalFilterInput>;
+};
+
+
+type Query_allPrismicMbtiIntroArgs = {
+  filter: Maybe<PrismicMbtiIntroFilterInput>;
+  sort: Maybe<PrismicMbtiIntroSortInput>;
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+};
+
+
 type Query_prismicFaqArgs = {
   id: Maybe<StringQueryOperatorInput>;
   parent: Maybe<NodeFilterInput>;
@@ -2775,6 +3027,54 @@ type Query_sitePluginArgs = {
 type Query_allSitePluginArgs = {
   filter: Maybe<SitePluginFilterInput>;
   sort: Maybe<SitePluginSortInput>;
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+};
+
+
+type Query_staticImageArgs = {
+  id: Maybe<StringQueryOperatorInput>;
+  parent: Maybe<NodeFilterInput>;
+  children: Maybe<NodeFilterListInput>;
+  internal: Maybe<InternalFilterInput>;
+  sourceInstanceName: Maybe<StringQueryOperatorInput>;
+  relativePath: Maybe<StringQueryOperatorInput>;
+  extension: Maybe<StringQueryOperatorInput>;
+  prettySize: Maybe<StringQueryOperatorInput>;
+  modifiedTime: Maybe<DateQueryOperatorInput>;
+  accessTime: Maybe<DateQueryOperatorInput>;
+  changeTime: Maybe<DateQueryOperatorInput>;
+  birthTime: Maybe<DateQueryOperatorInput>;
+  root: Maybe<StringQueryOperatorInput>;
+  dir: Maybe<StringQueryOperatorInput>;
+  base: Maybe<StringQueryOperatorInput>;
+  ext: Maybe<StringQueryOperatorInput>;
+  name: Maybe<StringQueryOperatorInput>;
+  absolutePath: Maybe<StringQueryOperatorInput>;
+  relativeDirectory: Maybe<StringQueryOperatorInput>;
+  dev: Maybe<IntQueryOperatorInput>;
+  mode: Maybe<IntQueryOperatorInput>;
+  nlink: Maybe<IntQueryOperatorInput>;
+  uid: Maybe<IntQueryOperatorInput>;
+  rdev: Maybe<IntQueryOperatorInput>;
+  blksize: Maybe<IntQueryOperatorInput>;
+  ino: Maybe<IntQueryOperatorInput>;
+  size: Maybe<IntQueryOperatorInput>;
+  blocks: Maybe<IntQueryOperatorInput>;
+  atimeMs: Maybe<FloatQueryOperatorInput>;
+  mtimeMs: Maybe<FloatQueryOperatorInput>;
+  ctimeMs: Maybe<FloatQueryOperatorInput>;
+  birthtimeMs: Maybe<FloatQueryOperatorInput>;
+  atime: Maybe<DateQueryOperatorInput>;
+  mtime: Maybe<DateQueryOperatorInput>;
+  ctime: Maybe<DateQueryOperatorInput>;
+  birthtime: Maybe<DateQueryOperatorInput>;
+};
+
+
+type Query_allStaticImageArgs = {
+  filter: Maybe<StaticImageFilterInput>;
+  sort: Maybe<StaticImageSortInput>;
   skip: Maybe<Scalars['Int']>;
   limit: Maybe<Scalars['Int']>;
 };
@@ -3519,9 +3819,10 @@ type DirectorySortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type SiteSiteMetadataFilterInput = {
-  readonly title: Maybe<StringQueryOperatorInput>;
-  readonly description: Maybe<StringQueryOperatorInput>;
+type SiteMetadataFilterInput = {
+  readonly siteUrl: Maybe<StringQueryOperatorInput>;
+  readonly siteName: Maybe<StringQueryOperatorInput>;
+  readonly shortName: Maybe<StringQueryOperatorInput>;
 };
 
 type SiteFlagsFilterInput = {
@@ -3579,8 +3880,9 @@ type SiteEdge = {
 
 type SiteFieldsEnum =
   | 'buildTime'
-  | 'siteMetadata.title'
-  | 'siteMetadata.description'
+  | 'siteMetadata.siteUrl'
+  | 'siteMetadata.siteName'
+  | 'siteMetadata.shortName'
   | 'port'
   | 'host'
   | 'flags.FAST_DEV'
@@ -3588,8 +3890,6 @@ type SiteFieldsEnum =
   | 'flags.LAZY_IMAGES'
   | 'flags.PARALLEL_SOURCING'
   | 'flags.DEV_SSR'
-  | 'polyfill'
-  | 'pathPrefix'
   | 'id'
   | 'parent.id'
   | 'parent.parent.id'
@@ -3688,12 +3988,10 @@ type SiteGroupConnection = {
 
 type SiteFilterInput = {
   readonly buildTime: Maybe<DateQueryOperatorInput>;
-  readonly siteMetadata: Maybe<SiteSiteMetadataFilterInput>;
+  readonly siteMetadata: Maybe<SiteMetadataFilterInput>;
   readonly port: Maybe<IntQueryOperatorInput>;
   readonly host: Maybe<StringQueryOperatorInput>;
   readonly flags: Maybe<SiteFlagsFilterInput>;
-  readonly polyfill: Maybe<BooleanQueryOperatorInput>;
-  readonly pathPrefix: Maybe<StringQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
   readonly children: Maybe<NodeFilterListInput>;
@@ -3869,16 +4167,6 @@ type SiteFunctionSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type SitePageContextFilterInput = {
-  readonly id: Maybe<StringQueryOperatorInput>;
-  readonly uid: Maybe<StringQueryOperatorInput>;
-  readonly _xparams: Maybe<SitePageContext_xparamsFilterInput>;
-};
-
-type SitePageContext_xparamsFilterInput = {
-  readonly uid: Maybe<StringQueryOperatorInput>;
-};
-
 type SitePluginFilterInput = {
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
@@ -3948,6 +4236,7 @@ type SitePluginPluginOptionsEmitPluginDocumentsFilterInput = {
 type SitePluginPluginOptionsSchemasFilterInput = {
   readonly mbti_test_question: Maybe<SitePluginPluginOptionsSchemasMbti_test_questionFilterInput>;
   readonly mbti_test_result: Maybe<SitePluginPluginOptionsSchemasMbti_test_resultFilterInput>;
+  readonly mbti_intro: Maybe<SitePluginPluginOptionsSchemasMbti_introFilterInput>;
 };
 
 type SitePluginPluginOptionsSchemasMbti_test_questionFilterInput = {
@@ -4158,6 +4447,8 @@ type SitePluginPluginOptionsSchemasMbti_test_resultFilterInput = {
 type SitePluginPluginOptionsSchemasMbti_test_resultMainFilterInput = {
   readonly uid: Maybe<SitePluginPluginOptionsSchemasMbti_test_resultMainUidFilterInput>;
   readonly summary: Maybe<SitePluginPluginOptionsSchemasMbti_test_resultMainSummaryFilterInput>;
+  readonly og_description: Maybe<SitePluginPluginOptionsSchemasMbti_test_resultMainOg_descriptionFilterInput>;
+  readonly opengraph_image: Maybe<SitePluginPluginOptionsSchemasMbti_test_resultMainOpengraph_imageFilterInput>;
   readonly comments: Maybe<SitePluginPluginOptionsSchemasMbti_test_resultMainCommentsFilterInput>;
   readonly thumbnail: Maybe<SitePluginPluginOptionsSchemasMbti_test_resultMainThumbnailFilterInput>;
   readonly avatar: Maybe<SitePluginPluginOptionsSchemasMbti_test_resultMainAvatarFilterInput>;
@@ -4183,6 +4474,30 @@ type SitePluginPluginOptionsSchemasMbti_test_resultMainSummaryFilterInput = {
 
 type SitePluginPluginOptionsSchemasMbti_test_resultMainSummaryConfigFilterInput = {
   readonly label: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsSchemasMbti_test_resultMainOg_descriptionFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasMbti_test_resultMainOg_descriptionConfigFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasMbti_test_resultMainOg_descriptionConfigFilterInput = {
+  readonly label: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsSchemasMbti_test_resultMainOpengraph_imageFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasMbti_test_resultMainOpengraph_imageConfigFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasMbti_test_resultMainOpengraph_imageConfigFilterInput = {
+  readonly constraint: Maybe<SitePluginPluginOptionsSchemasMbti_test_resultMainOpengraph_imageConfigConstraintFilterInput>;
+  readonly label: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsSchemasMbti_test_resultMainOpengraph_imageConfigConstraintFilterInput = {
+  readonly width: Maybe<IntQueryOperatorInput>;
+  readonly height: Maybe<IntQueryOperatorInput>;
 };
 
 type SitePluginPluginOptionsSchemasMbti_test_resultMainCommentsFilterInput = {
@@ -4341,6 +4656,49 @@ type SitePluginPluginOptionsSchemasMbti_test_resultMainRelationsConfigFieldsRela
   readonly label: Maybe<StringQueryOperatorInput>;
 };
 
+type SitePluginPluginOptionsSchemasMbti_introFilterInput = {
+  readonly Main: Maybe<SitePluginPluginOptionsSchemasMbti_introMainFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasMbti_introMainFilterInput = {
+  readonly title: Maybe<SitePluginPluginOptionsSchemasMbti_introMainTitleFilterInput>;
+  readonly description: Maybe<SitePluginPluginOptionsSchemasMbti_introMainDescriptionFilterInput>;
+  readonly opengraph_image: Maybe<SitePluginPluginOptionsSchemasMbti_introMainOpengraph_imageFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasMbti_introMainTitleFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasMbti_introMainTitleConfigFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasMbti_introMainTitleConfigFilterInput = {
+  readonly label: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsSchemasMbti_introMainDescriptionFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasMbti_introMainDescriptionConfigFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasMbti_introMainDescriptionConfigFilterInput = {
+  readonly label: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsSchemasMbti_introMainOpengraph_imageFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasMbti_introMainOpengraph_imageConfigFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasMbti_introMainOpengraph_imageConfigFilterInput = {
+  readonly constraint: Maybe<SitePluginPluginOptionsSchemasMbti_introMainOpengraph_imageConfigConstraintFilterInput>;
+  readonly label: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsSchemasMbti_introMainOpengraph_imageConfigConstraintFilterInput = {
+  readonly width: Maybe<IntQueryOperatorInput>;
+  readonly height: Maybe<IntQueryOperatorInput>;
+};
+
 type SitePluginPackageJsonFilterInput = {
   readonly name: Maybe<StringQueryOperatorInput>;
   readonly description: Maybe<StringQueryOperatorInput>;
@@ -4378,6 +4736,16 @@ type SitePluginPackageJsonPeerDependenciesFilterListInput = {
 type SitePluginPackageJsonPeerDependenciesFilterInput = {
   readonly name: Maybe<StringQueryOperatorInput>;
   readonly version: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContextFilterInput = {
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly uid: Maybe<StringQueryOperatorInput>;
+  readonly _xparams: Maybe<SitePageContext_xparamsFilterInput>;
+};
+
+type SitePageContext_xparamsFilterInput = {
+  readonly uid: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePageConnection = {
@@ -4431,96 +4799,7 @@ type SitePageFieldsEnum =
   | 'internalComponentName'
   | 'componentChunkName'
   | 'matchPath'
-  | 'id'
-  | 'parent.id'
-  | 'parent.parent.id'
-  | 'parent.parent.parent.id'
-  | 'parent.parent.parent.children'
-  | 'parent.parent.children'
-  | 'parent.parent.children.id'
-  | 'parent.parent.children.children'
-  | 'parent.parent.internal.content'
-  | 'parent.parent.internal.contentDigest'
-  | 'parent.parent.internal.description'
-  | 'parent.parent.internal.fieldOwners'
-  | 'parent.parent.internal.ignoreType'
-  | 'parent.parent.internal.mediaType'
-  | 'parent.parent.internal.owner'
-  | 'parent.parent.internal.type'
-  | 'parent.children'
-  | 'parent.children.id'
-  | 'parent.children.parent.id'
-  | 'parent.children.parent.children'
-  | 'parent.children.children'
-  | 'parent.children.children.id'
-  | 'parent.children.children.children'
-  | 'parent.children.internal.content'
-  | 'parent.children.internal.contentDigest'
-  | 'parent.children.internal.description'
-  | 'parent.children.internal.fieldOwners'
-  | 'parent.children.internal.ignoreType'
-  | 'parent.children.internal.mediaType'
-  | 'parent.children.internal.owner'
-  | 'parent.children.internal.type'
-  | 'parent.internal.content'
-  | 'parent.internal.contentDigest'
-  | 'parent.internal.description'
-  | 'parent.internal.fieldOwners'
-  | 'parent.internal.ignoreType'
-  | 'parent.internal.mediaType'
-  | 'parent.internal.owner'
-  | 'parent.internal.type'
-  | 'children'
-  | 'children.id'
-  | 'children.parent.id'
-  | 'children.parent.parent.id'
-  | 'children.parent.parent.children'
-  | 'children.parent.children'
-  | 'children.parent.children.id'
-  | 'children.parent.children.children'
-  | 'children.parent.internal.content'
-  | 'children.parent.internal.contentDigest'
-  | 'children.parent.internal.description'
-  | 'children.parent.internal.fieldOwners'
-  | 'children.parent.internal.ignoreType'
-  | 'children.parent.internal.mediaType'
-  | 'children.parent.internal.owner'
-  | 'children.parent.internal.type'
-  | 'children.children'
-  | 'children.children.id'
-  | 'children.children.parent.id'
-  | 'children.children.parent.children'
-  | 'children.children.children'
-  | 'children.children.children.id'
-  | 'children.children.children.children'
-  | 'children.children.internal.content'
-  | 'children.children.internal.contentDigest'
-  | 'children.children.internal.description'
-  | 'children.children.internal.fieldOwners'
-  | 'children.children.internal.ignoreType'
-  | 'children.children.internal.mediaType'
-  | 'children.children.internal.owner'
-  | 'children.children.internal.type'
-  | 'children.internal.content'
-  | 'children.internal.contentDigest'
-  | 'children.internal.description'
-  | 'children.internal.fieldOwners'
-  | 'children.internal.ignoreType'
-  | 'children.internal.mediaType'
-  | 'children.internal.owner'
-  | 'children.internal.type'
-  | 'internal.content'
-  | 'internal.contentDigest'
-  | 'internal.description'
-  | 'internal.fieldOwners'
-  | 'internal.ignoreType'
-  | 'internal.mediaType'
-  | 'internal.owner'
-  | 'internal.type'
   | 'isCreatedByStatefulCreatePages'
-  | 'context.id'
-  | 'context.uid'
-  | 'context._xparams.uid'
   | 'pluginCreator.id'
   | 'pluginCreator.parent.id'
   | 'pluginCreator.parent.parent.id'
@@ -4616,7 +4895,96 @@ type SitePageFieldsEnum =
   | 'pluginCreator.packageJson.peerDependencies.version'
   | 'pluginCreator.packageJson.keywords'
   | 'pluginCreatorId'
-  | 'componentPath';
+  | 'componentPath'
+  | 'id'
+  | 'parent.id'
+  | 'parent.parent.id'
+  | 'parent.parent.parent.id'
+  | 'parent.parent.parent.children'
+  | 'parent.parent.children'
+  | 'parent.parent.children.id'
+  | 'parent.parent.children.children'
+  | 'parent.parent.internal.content'
+  | 'parent.parent.internal.contentDigest'
+  | 'parent.parent.internal.description'
+  | 'parent.parent.internal.fieldOwners'
+  | 'parent.parent.internal.ignoreType'
+  | 'parent.parent.internal.mediaType'
+  | 'parent.parent.internal.owner'
+  | 'parent.parent.internal.type'
+  | 'parent.children'
+  | 'parent.children.id'
+  | 'parent.children.parent.id'
+  | 'parent.children.parent.children'
+  | 'parent.children.children'
+  | 'parent.children.children.id'
+  | 'parent.children.children.children'
+  | 'parent.children.internal.content'
+  | 'parent.children.internal.contentDigest'
+  | 'parent.children.internal.description'
+  | 'parent.children.internal.fieldOwners'
+  | 'parent.children.internal.ignoreType'
+  | 'parent.children.internal.mediaType'
+  | 'parent.children.internal.owner'
+  | 'parent.children.internal.type'
+  | 'parent.internal.content'
+  | 'parent.internal.contentDigest'
+  | 'parent.internal.description'
+  | 'parent.internal.fieldOwners'
+  | 'parent.internal.ignoreType'
+  | 'parent.internal.mediaType'
+  | 'parent.internal.owner'
+  | 'parent.internal.type'
+  | 'children'
+  | 'children.id'
+  | 'children.parent.id'
+  | 'children.parent.parent.id'
+  | 'children.parent.parent.children'
+  | 'children.parent.children'
+  | 'children.parent.children.id'
+  | 'children.parent.children.children'
+  | 'children.parent.internal.content'
+  | 'children.parent.internal.contentDigest'
+  | 'children.parent.internal.description'
+  | 'children.parent.internal.fieldOwners'
+  | 'children.parent.internal.ignoreType'
+  | 'children.parent.internal.mediaType'
+  | 'children.parent.internal.owner'
+  | 'children.parent.internal.type'
+  | 'children.children'
+  | 'children.children.id'
+  | 'children.children.parent.id'
+  | 'children.children.parent.children'
+  | 'children.children.children'
+  | 'children.children.children.id'
+  | 'children.children.children.children'
+  | 'children.children.internal.content'
+  | 'children.children.internal.contentDigest'
+  | 'children.children.internal.description'
+  | 'children.children.internal.fieldOwners'
+  | 'children.children.internal.ignoreType'
+  | 'children.children.internal.mediaType'
+  | 'children.children.internal.owner'
+  | 'children.children.internal.type'
+  | 'children.internal.content'
+  | 'children.internal.contentDigest'
+  | 'children.internal.description'
+  | 'children.internal.fieldOwners'
+  | 'children.internal.ignoreType'
+  | 'children.internal.mediaType'
+  | 'children.internal.owner'
+  | 'children.internal.type'
+  | 'internal.content'
+  | 'internal.contentDigest'
+  | 'internal.description'
+  | 'internal.fieldOwners'
+  | 'internal.ignoreType'
+  | 'internal.mediaType'
+  | 'internal.owner'
+  | 'internal.type'
+  | 'context.id'
+  | 'context.uid'
+  | 'context._xparams.uid';
 
 type SitePageGroupConnection = {
   readonly totalCount: Scalars['Int'];
@@ -4633,15 +5001,15 @@ type SitePageFilterInput = {
   readonly internalComponentName: Maybe<StringQueryOperatorInput>;
   readonly componentChunkName: Maybe<StringQueryOperatorInput>;
   readonly matchPath: Maybe<StringQueryOperatorInput>;
+  readonly isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
+  readonly pluginCreator: Maybe<SitePluginFilterInput>;
+  readonly pluginCreatorId: Maybe<StringQueryOperatorInput>;
+  readonly componentPath: Maybe<StringQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
-  readonly isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
   readonly context: Maybe<SitePageContextFilterInput>;
-  readonly pluginCreator: Maybe<SitePluginFilterInput>;
-  readonly pluginCreatorId: Maybe<StringQueryOperatorInput>;
-  readonly componentPath: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePageSortInput = {
@@ -5747,20 +6115,14 @@ type PrismicMbtiTestQuestionSortInput = {
 
 type PrismicMbtiTestResultDataTypeFilterInput = {
   readonly summary: Maybe<StringQueryOperatorInput>;
+  readonly og_description: Maybe<StringQueryOperatorInput>;
+  readonly opengraph_image: Maybe<PrismicImageTypeFilterInput>;
   readonly comments: Maybe<PrismicMbtiTestResultCommentsGroupTypeFilterListInput>;
   readonly thumbnail: Maybe<PrismicImageTypeFilterInput>;
   readonly avatar: Maybe<PrismicImageTypeFilterInput>;
   readonly tags: Maybe<PrismicMbtiTestResultTagsGroupTypeFilterListInput>;
   readonly remarks: Maybe<PrismicMbtiTestResultRemarksGroupTypeFilterListInput>;
   readonly relations: Maybe<PrismicMbtiTestResultRelationsGroupTypeFilterListInput>;
-};
-
-type PrismicMbtiTestResultCommentsGroupTypeFilterListInput = {
-  readonly elemMatch: Maybe<PrismicMbtiTestResultCommentsGroupTypeFilterInput>;
-};
-
-type PrismicMbtiTestResultCommentsGroupTypeFilterInput = {
-  readonly text: Maybe<StringQueryOperatorInput>;
 };
 
 type PrismicImageTypeFilterInput = {
@@ -5805,6 +6167,14 @@ type PrismicImageThumbnailsTypeQueryOperatorInput = {
   readonly ne: Maybe<Scalars['PrismicImageThumbnailsType']>;
   readonly in: Maybe<ReadonlyArray<Maybe<Scalars['PrismicImageThumbnailsType']>>>;
   readonly nin: Maybe<ReadonlyArray<Maybe<Scalars['PrismicImageThumbnailsType']>>>;
+};
+
+type PrismicMbtiTestResultCommentsGroupTypeFilterListInput = {
+  readonly elemMatch: Maybe<PrismicMbtiTestResultCommentsGroupTypeFilterInput>;
+};
+
+type PrismicMbtiTestResultCommentsGroupTypeFilterInput = {
+  readonly text: Maybe<StringQueryOperatorInput>;
 };
 
 type PrismicMbtiTestResultTagsGroupTypeFilterListInput = {
@@ -5881,6 +6251,66 @@ type PrismicMbtiTestResultEdge = {
 
 type PrismicMbtiTestResultFieldsEnum =
   | 'data.summary'
+  | 'data.og_description'
+  | 'data.opengraph_image.alt'
+  | 'data.opengraph_image.copyright'
+  | 'data.opengraph_image.dimensions.width'
+  | 'data.opengraph_image.dimensions.height'
+  | 'data.opengraph_image.url'
+  | 'data.opengraph_image.fixed.base64'
+  | 'data.opengraph_image.fixed.src'
+  | 'data.opengraph_image.fixed.srcSet'
+  | 'data.opengraph_image.fixed.srcWebp'
+  | 'data.opengraph_image.fixed.srcSetWebp'
+  | 'data.opengraph_image.fixed.sizes'
+  | 'data.opengraph_image.fixed.width'
+  | 'data.opengraph_image.fixed.height'
+  | 'data.opengraph_image.fluid.base64'
+  | 'data.opengraph_image.fluid.src'
+  | 'data.opengraph_image.fluid.srcSet'
+  | 'data.opengraph_image.fluid.srcWebp'
+  | 'data.opengraph_image.fluid.srcSetWebp'
+  | 'data.opengraph_image.fluid.sizes'
+  | 'data.opengraph_image.fluid.aspectRatio'
+  | 'data.opengraph_image.localFile.sourceInstanceName'
+  | 'data.opengraph_image.localFile.absolutePath'
+  | 'data.opengraph_image.localFile.relativePath'
+  | 'data.opengraph_image.localFile.extension'
+  | 'data.opengraph_image.localFile.size'
+  | 'data.opengraph_image.localFile.prettySize'
+  | 'data.opengraph_image.localFile.modifiedTime'
+  | 'data.opengraph_image.localFile.accessTime'
+  | 'data.opengraph_image.localFile.changeTime'
+  | 'data.opengraph_image.localFile.birthTime'
+  | 'data.opengraph_image.localFile.root'
+  | 'data.opengraph_image.localFile.dir'
+  | 'data.opengraph_image.localFile.base'
+  | 'data.opengraph_image.localFile.ext'
+  | 'data.opengraph_image.localFile.name'
+  | 'data.opengraph_image.localFile.relativeDirectory'
+  | 'data.opengraph_image.localFile.dev'
+  | 'data.opengraph_image.localFile.mode'
+  | 'data.opengraph_image.localFile.nlink'
+  | 'data.opengraph_image.localFile.uid'
+  | 'data.opengraph_image.localFile.gid'
+  | 'data.opengraph_image.localFile.rdev'
+  | 'data.opengraph_image.localFile.ino'
+  | 'data.opengraph_image.localFile.atimeMs'
+  | 'data.opengraph_image.localFile.mtimeMs'
+  | 'data.opengraph_image.localFile.ctimeMs'
+  | 'data.opengraph_image.localFile.atime'
+  | 'data.opengraph_image.localFile.mtime'
+  | 'data.opengraph_image.localFile.ctime'
+  | 'data.opengraph_image.localFile.birthtime'
+  | 'data.opengraph_image.localFile.birthtimeMs'
+  | 'data.opengraph_image.localFile.blksize'
+  | 'data.opengraph_image.localFile.blocks'
+  | 'data.opengraph_image.localFile.url'
+  | 'data.opengraph_image.localFile.publicURL'
+  | 'data.opengraph_image.localFile.childrenImageSharp'
+  | 'data.opengraph_image.localFile.id'
+  | 'data.opengraph_image.localFile.children'
+  | 'data.opengraph_image.thumbnails'
   | 'data.comments'
   | 'data.comments.text'
   | 'data.thumbnail.alt'
@@ -6167,6 +6597,264 @@ type PrismicMbtiTestResultFilterInput = {
 
 type PrismicMbtiTestResultSortInput = {
   readonly fields: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestResultFieldsEnum>>>;
+  readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
+};
+
+type PrismicMbtiIntroDataTypeFilterInput = {
+  readonly title: Maybe<StringQueryOperatorInput>;
+  readonly description: Maybe<StringQueryOperatorInput>;
+  readonly opengraph_image: Maybe<PrismicImageTypeFilterInput>;
+};
+
+type PrismicMbtiIntroConnection = {
+  readonly totalCount: Scalars['Int'];
+  readonly edges: ReadonlyArray<PrismicMbtiIntroEdge>;
+  readonly nodes: ReadonlyArray<PrismicMbtiIntro>;
+  readonly pageInfo: PageInfo;
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly group: ReadonlyArray<PrismicMbtiIntroGroupConnection>;
+};
+
+
+type PrismicMbtiIntroConnection_distinctArgs = {
+  field: PrismicMbtiIntroFieldsEnum;
+};
+
+
+type PrismicMbtiIntroConnection_maxArgs = {
+  field: PrismicMbtiIntroFieldsEnum;
+};
+
+
+type PrismicMbtiIntroConnection_minArgs = {
+  field: PrismicMbtiIntroFieldsEnum;
+};
+
+
+type PrismicMbtiIntroConnection_sumArgs = {
+  field: PrismicMbtiIntroFieldsEnum;
+};
+
+
+type PrismicMbtiIntroConnection_groupArgs = {
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+  field: PrismicMbtiIntroFieldsEnum;
+};
+
+type PrismicMbtiIntroEdge = {
+  readonly next: Maybe<PrismicMbtiIntro>;
+  readonly node: PrismicMbtiIntro;
+  readonly previous: Maybe<PrismicMbtiIntro>;
+};
+
+type PrismicMbtiIntroFieldsEnum =
+  | 'data.title'
+  | 'data.description'
+  | 'data.opengraph_image.alt'
+  | 'data.opengraph_image.copyright'
+  | 'data.opengraph_image.dimensions.width'
+  | 'data.opengraph_image.dimensions.height'
+  | 'data.opengraph_image.url'
+  | 'data.opengraph_image.fixed.base64'
+  | 'data.opengraph_image.fixed.src'
+  | 'data.opengraph_image.fixed.srcSet'
+  | 'data.opengraph_image.fixed.srcWebp'
+  | 'data.opengraph_image.fixed.srcSetWebp'
+  | 'data.opengraph_image.fixed.sizes'
+  | 'data.opengraph_image.fixed.width'
+  | 'data.opengraph_image.fixed.height'
+  | 'data.opengraph_image.fluid.base64'
+  | 'data.opengraph_image.fluid.src'
+  | 'data.opengraph_image.fluid.srcSet'
+  | 'data.opengraph_image.fluid.srcWebp'
+  | 'data.opengraph_image.fluid.srcSetWebp'
+  | 'data.opengraph_image.fluid.sizes'
+  | 'data.opengraph_image.fluid.aspectRatio'
+  | 'data.opengraph_image.localFile.sourceInstanceName'
+  | 'data.opengraph_image.localFile.absolutePath'
+  | 'data.opengraph_image.localFile.relativePath'
+  | 'data.opengraph_image.localFile.extension'
+  | 'data.opengraph_image.localFile.size'
+  | 'data.opengraph_image.localFile.prettySize'
+  | 'data.opengraph_image.localFile.modifiedTime'
+  | 'data.opengraph_image.localFile.accessTime'
+  | 'data.opengraph_image.localFile.changeTime'
+  | 'data.opengraph_image.localFile.birthTime'
+  | 'data.opengraph_image.localFile.root'
+  | 'data.opengraph_image.localFile.dir'
+  | 'data.opengraph_image.localFile.base'
+  | 'data.opengraph_image.localFile.ext'
+  | 'data.opengraph_image.localFile.name'
+  | 'data.opengraph_image.localFile.relativeDirectory'
+  | 'data.opengraph_image.localFile.dev'
+  | 'data.opengraph_image.localFile.mode'
+  | 'data.opengraph_image.localFile.nlink'
+  | 'data.opengraph_image.localFile.uid'
+  | 'data.opengraph_image.localFile.gid'
+  | 'data.opengraph_image.localFile.rdev'
+  | 'data.opengraph_image.localFile.ino'
+  | 'data.opengraph_image.localFile.atimeMs'
+  | 'data.opengraph_image.localFile.mtimeMs'
+  | 'data.opengraph_image.localFile.ctimeMs'
+  | 'data.opengraph_image.localFile.atime'
+  | 'data.opengraph_image.localFile.mtime'
+  | 'data.opengraph_image.localFile.ctime'
+  | 'data.opengraph_image.localFile.birthtime'
+  | 'data.opengraph_image.localFile.birthtimeMs'
+  | 'data.opengraph_image.localFile.blksize'
+  | 'data.opengraph_image.localFile.blocks'
+  | 'data.opengraph_image.localFile.url'
+  | 'data.opengraph_image.localFile.publicURL'
+  | 'data.opengraph_image.localFile.childrenImageSharp'
+  | 'data.opengraph_image.localFile.id'
+  | 'data.opengraph_image.localFile.children'
+  | 'data.opengraph_image.thumbnails'
+  | 'dataRaw'
+  | 'dataString'
+  | 'first_publication_date'
+  | 'href'
+  | 'url'
+  | 'lang'
+  | 'last_publication_date'
+  | 'tags'
+  | 'alternate_languages'
+  | 'alternate_languages.link_type'
+  | 'alternate_languages.isBroken'
+  | 'alternate_languages.url'
+  | 'alternate_languages.target'
+  | 'alternate_languages.size'
+  | 'alternate_languages.id'
+  | 'alternate_languages.type'
+  | 'alternate_languages.tags'
+  | 'alternate_languages.lang'
+  | 'alternate_languages.slug'
+  | 'alternate_languages.uid'
+  | 'alternate_languages.raw'
+  | 'type'
+  | 'prismicId'
+  | '_previewable'
+  | 'id'
+  | 'parent.id'
+  | 'parent.parent.id'
+  | 'parent.parent.parent.id'
+  | 'parent.parent.parent.children'
+  | 'parent.parent.children'
+  | 'parent.parent.children.id'
+  | 'parent.parent.children.children'
+  | 'parent.parent.internal.content'
+  | 'parent.parent.internal.contentDigest'
+  | 'parent.parent.internal.description'
+  | 'parent.parent.internal.fieldOwners'
+  | 'parent.parent.internal.ignoreType'
+  | 'parent.parent.internal.mediaType'
+  | 'parent.parent.internal.owner'
+  | 'parent.parent.internal.type'
+  | 'parent.children'
+  | 'parent.children.id'
+  | 'parent.children.parent.id'
+  | 'parent.children.parent.children'
+  | 'parent.children.children'
+  | 'parent.children.children.id'
+  | 'parent.children.children.children'
+  | 'parent.children.internal.content'
+  | 'parent.children.internal.contentDigest'
+  | 'parent.children.internal.description'
+  | 'parent.children.internal.fieldOwners'
+  | 'parent.children.internal.ignoreType'
+  | 'parent.children.internal.mediaType'
+  | 'parent.children.internal.owner'
+  | 'parent.children.internal.type'
+  | 'parent.internal.content'
+  | 'parent.internal.contentDigest'
+  | 'parent.internal.description'
+  | 'parent.internal.fieldOwners'
+  | 'parent.internal.ignoreType'
+  | 'parent.internal.mediaType'
+  | 'parent.internal.owner'
+  | 'parent.internal.type'
+  | 'children'
+  | 'children.id'
+  | 'children.parent.id'
+  | 'children.parent.parent.id'
+  | 'children.parent.parent.children'
+  | 'children.parent.children'
+  | 'children.parent.children.id'
+  | 'children.parent.children.children'
+  | 'children.parent.internal.content'
+  | 'children.parent.internal.contentDigest'
+  | 'children.parent.internal.description'
+  | 'children.parent.internal.fieldOwners'
+  | 'children.parent.internal.ignoreType'
+  | 'children.parent.internal.mediaType'
+  | 'children.parent.internal.owner'
+  | 'children.parent.internal.type'
+  | 'children.children'
+  | 'children.children.id'
+  | 'children.children.parent.id'
+  | 'children.children.parent.children'
+  | 'children.children.children'
+  | 'children.children.children.id'
+  | 'children.children.children.children'
+  | 'children.children.internal.content'
+  | 'children.children.internal.contentDigest'
+  | 'children.children.internal.description'
+  | 'children.children.internal.fieldOwners'
+  | 'children.children.internal.ignoreType'
+  | 'children.children.internal.mediaType'
+  | 'children.children.internal.owner'
+  | 'children.children.internal.type'
+  | 'children.internal.content'
+  | 'children.internal.contentDigest'
+  | 'children.internal.description'
+  | 'children.internal.fieldOwners'
+  | 'children.internal.ignoreType'
+  | 'children.internal.mediaType'
+  | 'children.internal.owner'
+  | 'children.internal.type'
+  | 'internal.content'
+  | 'internal.contentDigest'
+  | 'internal.description'
+  | 'internal.fieldOwners'
+  | 'internal.ignoreType'
+  | 'internal.mediaType'
+  | 'internal.owner'
+  | 'internal.type';
+
+type PrismicMbtiIntroGroupConnection = {
+  readonly totalCount: Scalars['Int'];
+  readonly edges: ReadonlyArray<PrismicMbtiIntroEdge>;
+  readonly nodes: ReadonlyArray<PrismicMbtiIntro>;
+  readonly pageInfo: PageInfo;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiIntroFilterInput = {
+  readonly data: Maybe<PrismicMbtiIntroDataTypeFilterInput>;
+  readonly dataRaw: Maybe<JSONQueryOperatorInput>;
+  readonly dataString: Maybe<StringQueryOperatorInput>;
+  readonly first_publication_date: Maybe<DateQueryOperatorInput>;
+  readonly href: Maybe<StringQueryOperatorInput>;
+  readonly url: Maybe<StringQueryOperatorInput>;
+  readonly lang: Maybe<StringQueryOperatorInput>;
+  readonly last_publication_date: Maybe<DateQueryOperatorInput>;
+  readonly tags: Maybe<StringQueryOperatorInput>;
+  readonly alternate_languages: Maybe<PrismicLinkTypeFilterListInput>;
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly prismicId: Maybe<IDQueryOperatorInput>;
+  readonly _previewable: Maybe<IDQueryOperatorInput>;
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly parent: Maybe<NodeFilterInput>;
+  readonly children: Maybe<NodeFilterListInput>;
+  readonly internal: Maybe<InternalFilterInput>;
+};
+
+type PrismicMbtiIntroSortInput = {
+  readonly fields: Maybe<ReadonlyArray<Maybe<PrismicMbtiIntroFieldsEnum>>>;
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
@@ -7371,12 +8059,235 @@ type SitePluginSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type ResultComments_dataFragment = { readonly comments: Maybe<ReadonlyArray<Maybe<Pick<PrismicMbtiTestResultCommentsGroupType, 'text'>>>> };
+type StaticImageConnection = {
+  readonly totalCount: Scalars['Int'];
+  readonly edges: ReadonlyArray<StaticImageEdge>;
+  readonly nodes: ReadonlyArray<StaticImage>;
+  readonly pageInfo: PageInfo;
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly group: ReadonlyArray<StaticImageGroupConnection>;
+};
 
-type ResultRemarks_dataFragment = { readonly remarks: Maybe<ReadonlyArray<Maybe<(
-    Pick<PrismicMbtiTestResultRemarksGroupType, 'remark_name'>
-    & { readonly remark_description: Maybe<Pick<PrismicStructuredTextType, 'text'>> }
-  )>>> };
+
+type StaticImageConnection_distinctArgs = {
+  field: StaticImageFieldsEnum;
+};
+
+
+type StaticImageConnection_maxArgs = {
+  field: StaticImageFieldsEnum;
+};
+
+
+type StaticImageConnection_minArgs = {
+  field: StaticImageFieldsEnum;
+};
+
+
+type StaticImageConnection_sumArgs = {
+  field: StaticImageFieldsEnum;
+};
+
+
+type StaticImageConnection_groupArgs = {
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+  field: StaticImageFieldsEnum;
+};
+
+type StaticImageEdge = {
+  readonly next: Maybe<StaticImage>;
+  readonly node: StaticImage;
+  readonly previous: Maybe<StaticImage>;
+};
+
+type StaticImageFieldsEnum =
+  | 'id'
+  | 'parent.id'
+  | 'parent.parent.id'
+  | 'parent.parent.parent.id'
+  | 'parent.parent.parent.children'
+  | 'parent.parent.children'
+  | 'parent.parent.children.id'
+  | 'parent.parent.children.children'
+  | 'parent.parent.internal.content'
+  | 'parent.parent.internal.contentDigest'
+  | 'parent.parent.internal.description'
+  | 'parent.parent.internal.fieldOwners'
+  | 'parent.parent.internal.ignoreType'
+  | 'parent.parent.internal.mediaType'
+  | 'parent.parent.internal.owner'
+  | 'parent.parent.internal.type'
+  | 'parent.children'
+  | 'parent.children.id'
+  | 'parent.children.parent.id'
+  | 'parent.children.parent.children'
+  | 'parent.children.children'
+  | 'parent.children.children.id'
+  | 'parent.children.children.children'
+  | 'parent.children.internal.content'
+  | 'parent.children.internal.contentDigest'
+  | 'parent.children.internal.description'
+  | 'parent.children.internal.fieldOwners'
+  | 'parent.children.internal.ignoreType'
+  | 'parent.children.internal.mediaType'
+  | 'parent.children.internal.owner'
+  | 'parent.children.internal.type'
+  | 'parent.internal.content'
+  | 'parent.internal.contentDigest'
+  | 'parent.internal.description'
+  | 'parent.internal.fieldOwners'
+  | 'parent.internal.ignoreType'
+  | 'parent.internal.mediaType'
+  | 'parent.internal.owner'
+  | 'parent.internal.type'
+  | 'children'
+  | 'children.id'
+  | 'children.parent.id'
+  | 'children.parent.parent.id'
+  | 'children.parent.parent.children'
+  | 'children.parent.children'
+  | 'children.parent.children.id'
+  | 'children.parent.children.children'
+  | 'children.parent.internal.content'
+  | 'children.parent.internal.contentDigest'
+  | 'children.parent.internal.description'
+  | 'children.parent.internal.fieldOwners'
+  | 'children.parent.internal.ignoreType'
+  | 'children.parent.internal.mediaType'
+  | 'children.parent.internal.owner'
+  | 'children.parent.internal.type'
+  | 'children.children'
+  | 'children.children.id'
+  | 'children.children.parent.id'
+  | 'children.children.parent.children'
+  | 'children.children.children'
+  | 'children.children.children.id'
+  | 'children.children.children.children'
+  | 'children.children.internal.content'
+  | 'children.children.internal.contentDigest'
+  | 'children.children.internal.description'
+  | 'children.children.internal.fieldOwners'
+  | 'children.children.internal.ignoreType'
+  | 'children.children.internal.mediaType'
+  | 'children.children.internal.owner'
+  | 'children.children.internal.type'
+  | 'children.internal.content'
+  | 'children.internal.contentDigest'
+  | 'children.internal.description'
+  | 'children.internal.fieldOwners'
+  | 'children.internal.ignoreType'
+  | 'children.internal.mediaType'
+  | 'children.internal.owner'
+  | 'children.internal.type'
+  | 'internal.content'
+  | 'internal.contentDigest'
+  | 'internal.description'
+  | 'internal.fieldOwners'
+  | 'internal.ignoreType'
+  | 'internal.mediaType'
+  | 'internal.owner'
+  | 'internal.type'
+  | 'sourceInstanceName'
+  | 'relativePath'
+  | 'extension'
+  | 'prettySize'
+  | 'modifiedTime'
+  | 'accessTime'
+  | 'changeTime'
+  | 'birthTime'
+  | 'root'
+  | 'dir'
+  | 'base'
+  | 'ext'
+  | 'name'
+  | 'absolutePath'
+  | 'relativeDirectory'
+  | 'dev'
+  | 'mode'
+  | 'nlink'
+  | 'uid'
+  | 'rdev'
+  | 'blksize'
+  | 'ino'
+  | 'size'
+  | 'blocks'
+  | 'atimeMs'
+  | 'mtimeMs'
+  | 'ctimeMs'
+  | 'birthtimeMs'
+  | 'atime'
+  | 'mtime'
+  | 'ctime'
+  | 'birthtime';
+
+type StaticImageGroupConnection = {
+  readonly totalCount: Scalars['Int'];
+  readonly edges: ReadonlyArray<StaticImageEdge>;
+  readonly nodes: ReadonlyArray<StaticImage>;
+  readonly pageInfo: PageInfo;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+};
+
+type StaticImageFilterInput = {
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly parent: Maybe<NodeFilterInput>;
+  readonly children: Maybe<NodeFilterListInput>;
+  readonly internal: Maybe<InternalFilterInput>;
+  readonly sourceInstanceName: Maybe<StringQueryOperatorInput>;
+  readonly relativePath: Maybe<StringQueryOperatorInput>;
+  readonly extension: Maybe<StringQueryOperatorInput>;
+  readonly prettySize: Maybe<StringQueryOperatorInput>;
+  readonly modifiedTime: Maybe<DateQueryOperatorInput>;
+  readonly accessTime: Maybe<DateQueryOperatorInput>;
+  readonly changeTime: Maybe<DateQueryOperatorInput>;
+  readonly birthTime: Maybe<DateQueryOperatorInput>;
+  readonly root: Maybe<StringQueryOperatorInput>;
+  readonly dir: Maybe<StringQueryOperatorInput>;
+  readonly base: Maybe<StringQueryOperatorInput>;
+  readonly ext: Maybe<StringQueryOperatorInput>;
+  readonly name: Maybe<StringQueryOperatorInput>;
+  readonly absolutePath: Maybe<StringQueryOperatorInput>;
+  readonly relativeDirectory: Maybe<StringQueryOperatorInput>;
+  readonly dev: Maybe<IntQueryOperatorInput>;
+  readonly mode: Maybe<IntQueryOperatorInput>;
+  readonly nlink: Maybe<IntQueryOperatorInput>;
+  readonly uid: Maybe<IntQueryOperatorInput>;
+  readonly rdev: Maybe<IntQueryOperatorInput>;
+  readonly blksize: Maybe<IntQueryOperatorInput>;
+  readonly ino: Maybe<IntQueryOperatorInput>;
+  readonly size: Maybe<IntQueryOperatorInput>;
+  readonly blocks: Maybe<IntQueryOperatorInput>;
+  readonly atimeMs: Maybe<FloatQueryOperatorInput>;
+  readonly mtimeMs: Maybe<FloatQueryOperatorInput>;
+  readonly ctimeMs: Maybe<FloatQueryOperatorInput>;
+  readonly birthtimeMs: Maybe<FloatQueryOperatorInput>;
+  readonly atime: Maybe<DateQueryOperatorInput>;
+  readonly mtime: Maybe<DateQueryOperatorInput>;
+  readonly ctime: Maybe<DateQueryOperatorInput>;
+  readonly birthtime: Maybe<DateQueryOperatorInput>;
+};
+
+type StaticImageSortInput = {
+  readonly fields: Maybe<ReadonlyArray<Maybe<StaticImageFieldsEnum>>>;
+  readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
+};
+
+type ResultPageView_prismicMbtiTestResultFragment = (
+  Pick<PrismicMbtiTestResultDataType, 'summary'>
+  & { readonly relations: ReadonlyArray<{ readonly __typename: 'PrismicMbtiTestResultRelationsGroupType' }>, readonly thumbnail: (
+    Pick<PrismicImageType, 'alt' | 'url'>
+    & { readonly localFile: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }> }
+  ), readonly remarks: Maybe<ReadonlyArray<Maybe<{ readonly __typename: 'PrismicMbtiTestResultRemarksGroupType' }>>> }
+  & ResultTags_dataFragment
+  & ResultComments_dataFragment
+  & ResultRemarks_dataFragment
+  & ResultRelations_dataFragment
+);
 
 type ResultRelations_dataFragment = { readonly relations: ReadonlyArray<(
     Pick<PrismicMbtiTestResultRelationsGroupType, 'relation_type' | 'relation_color'>
@@ -7395,29 +8306,19 @@ type ResultRelations_dataFragment = { readonly relations: ReadonlyArray<(
     )> }
   )> };
 
-type ResultPageView_prismicMbtiTestResultFragment = (
-  Pick<PrismicMbtiTestResultDataType, 'summary'>
-  & { readonly relations: ReadonlyArray<{ readonly __typename: 'PrismicMbtiTestResultRelationsGroupType' }>, readonly thumbnail: (
-    Pick<PrismicImageType, 'alt' | 'url'>
-    & { readonly localFile: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }> }
-  ), readonly remarks: Maybe<ReadonlyArray<Maybe<{ readonly __typename: 'PrismicMbtiTestResultRemarksGroupType' }>>> }
-  & ResultTags_dataFragment
-  & ResultComments_dataFragment
-  & ResultRemarks_dataFragment
-  & ResultRelations_dataFragment
-);
-
 type ResultTags_dataFragment = { readonly tags: Maybe<ReadonlyArray<Maybe<Pick<PrismicMbtiTestResultTagsGroupType, 'tag_name'>>>> };
 
-type MBTITargetResultViewPageQueryVariables = Exact<{
-  uid: Scalars['String'];
-}>;
+type UseSiteMetaQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type MBTITargetResultViewPageQuery = { readonly prismicMbtiTestResult: Maybe<(
-    Pick<PrismicMbtiTestResult, 'id' | 'uid'>
-    & { readonly data: Maybe<ResultPageView_prismicMbtiTestResultFragment> }
-  )> };
+type UseSiteMetaQuery = { readonly site: Maybe<{ readonly siteMetadata: Pick<SiteMetadata, 'siteUrl' | 'siteName'> }> };
+
+type ResultComments_dataFragment = { readonly comments: Maybe<ReadonlyArray<Maybe<Pick<PrismicMbtiTestResultCommentsGroupType, 'text'>>>> };
+
+type ResultRemarks_dataFragment = { readonly remarks: Maybe<ReadonlyArray<Maybe<(
+    Pick<PrismicMbtiTestResultRemarksGroupType, 'remark_name'>
+    & { readonly remark_description: Maybe<Pick<PrismicStructuredTextType, 'text'>> }
+  )>>> };
 
 type MBTITargetResultPageQueryVariables = Exact<{
   uid: Scalars['String'];
@@ -7425,6 +8326,23 @@ type MBTITargetResultPageQueryVariables = Exact<{
 
 
 type MBTITargetResultPageQuery = { readonly prismicMbtiTestResult: Maybe<(
+    Pick<PrismicMbtiTestResult, 'id' | 'uid'>
+    & { readonly data: Maybe<(
+      Pick<PrismicMbtiTestResultDataType, 'summary' | 'og_description'>
+      & { readonly opengraph_image: Maybe<(
+        Pick<PrismicImageType, 'url'>
+        & { readonly dimensions: Pick<PrismicImageDimensionsType, 'width' | 'height'> }
+      )> }
+      & ResultPageView_prismicMbtiTestResultFragment
+    )> }
+  )> };
+
+type MBTITargetResultViewPageQueryVariables = Exact<{
+  uid: Scalars['String'];
+}>;
+
+
+type MBTITargetResultViewPageQuery = { readonly prismicMbtiTestResult: Maybe<(
     Pick<PrismicMbtiTestResult, 'id' | 'uid'>
     & { readonly data: Maybe<ResultPageView_prismicMbtiTestResultFragment> }
   )> };
@@ -7444,6 +8362,11 @@ type GatsbyPrismicImageFluid_noBase64Fragment = Pick<PrismicImageFluidType, 'asp
 type GatsbyPrismicImageFluid_withWebpFragment = Pick<PrismicImageFluidType, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
 type GatsbyPrismicImageFluid_withWebp_noBase64Fragment = Pick<PrismicImageFluidType, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type PagesQueryQuery = { readonly allSiteFunction: { readonly nodes: ReadonlyArray<Pick<SiteFunction, 'apiRoute'>> }, readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
 type MBTIQuestionPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -7500,9 +8423,15 @@ type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio
 
 type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
-type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
+type MBTIIntroPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type PagesQueryQuery = { readonly allSiteFunction: { readonly nodes: ReadonlyArray<Pick<SiteFunction, 'apiRoute'>> }, readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
+type MBTIIntroPageQuery = { readonly prismicMbtiIntro: Maybe<{ readonly data: Maybe<(
+      Pick<PrismicMbtiIntroDataType, 'title' | 'description'>
+      & { readonly opengraph_image: Maybe<(
+        Pick<PrismicImageType, 'url'>
+        & { readonly dimensions: Pick<PrismicImageDimensionsType, 'width' | 'height'> }
+      )> }
+    )> }> };
 
 }

@@ -4,6 +4,7 @@ import { css } from '@emotion/react'
 import { graphql, Link, PageProps } from 'gatsby'
 import { getAccurateAgent } from '@egjs/agent'
 import { withPreview } from 'gatsby-source-prismic'
+import { GatsbySeo } from 'gatsby-plugin-next-seo'
 
 import { clickAfterDimm } from '@src/styles'
 import { MBTI_RESULT_LOCALSTORAGE_KEY } from '@src/constants/mbti'
@@ -61,6 +62,22 @@ const MBTITargetResultPage = ({
 
   return (
     <ResultPageView data={prismicMbtiTestResult.data}>
+      <GatsbySeo
+        title={prismicMbtiTestResult.data.summary}
+        description={prismicMbtiTestResult.data.og_description}
+        openGraph={{
+          images: prismicMbtiTestResult.data.opengraph_image
+            ? [
+                {
+                  ...prismicMbtiTestResult.data.opengraph_image.dimensions,
+                  url: prismicMbtiTestResult.data.opengraph_image.url,
+                },
+              ]
+            : [],
+          title: prismicMbtiTestResult.data.summary,
+          description: prismicMbtiTestResult.data.og_description,
+        }}
+      />
       <ButtonsWrapper>
         <ButtonWrapper>
           <KarrotButton>환상의 케미 이웃 만나러 가기</KarrotButton>
@@ -215,6 +232,16 @@ export const query = graphql`
       id
       uid
       data {
+        summary
+        og_description
+        og_description
+        opengraph_image {
+          url
+          dimensions {
+            width
+            height
+          }
+        }
         ...ResultPageView_prismicMbtiTestResult
       }
     }

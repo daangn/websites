@@ -13,6 +13,13 @@ exports.createSchemaCustomization = ({ actions }) => {
   const gql = String.raw
   actions.createTypes(
     gql`
+      type Site {
+        siteMetadata: SiteMetadata!
+      }
+      type SiteMetadata {
+        siteUrl: String!
+        siteName: String!
+      }
       type PrismicMbtiTestResultDataType {
         relations: [PrismicMbtiTestResultRelationsGroupType!]!
         thumbnail: PrismicImageType!

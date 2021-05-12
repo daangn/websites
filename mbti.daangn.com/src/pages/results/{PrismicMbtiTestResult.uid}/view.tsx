@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { graphql, PageProps } from 'gatsby'
 import { css, Global } from '@emotion/react'
+import { GatsbySeo } from 'gatsby-plugin-next-seo'
 
 import ResultPageView from '@src/components/ResultPage'
 
@@ -25,6 +26,7 @@ const MBTITargetResultViewPage = ({
           }
         `}
       />
+      <GatsbySeo noindex />
     </ResultPageView>
   )
 }

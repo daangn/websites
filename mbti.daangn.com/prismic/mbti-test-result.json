@@ -13,6 +13,23 @@
         "label" : "요약"
       }
     },
+    "og_description" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "페이지 설명"
+      }
+    },
+    "opengraph_image" : {
+      "type" : "Image",
+      "config" : {
+        "constraint" : {
+          "width" : 1200,
+          "height" : 630
+        },
+        "thumbnails" : [ ],
+        "label" : "공유하기 이미지"
+      }
+    },
     "comments" : {
       "type" : "Group",
       "config" : {
