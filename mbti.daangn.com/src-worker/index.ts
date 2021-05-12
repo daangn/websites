@@ -1,14 +1,28 @@
-/// <reference types="@cloudflare/workers-types" />
+import { Router } from 'worktop'
+import * as Cache from 'worktop/cache'
+import { read, write } from 'worktop/kv'
+import { preflight } from 'worktop/cors'
+import type { KV } from 'worktop/kv'
 
-addEventListener('fetch', event => {
-  event.respondWith(handleEvent(event));
-});
+declare let MBTI_TEST: KV.Namespace
 
-async function handleEvent(event: FetchEvent) {
-  const pathname = new URL(event.request.url).pathname;
+const API = new Router()
 
-  return new Response(`'${pathname}' not found`, {
-    status: 404,
-    statusText: 'not found',
-  });
-}
+API.prepare = preflight({ origin: '*', methods: ['GET', 'POST'] })
+
+const PARTICIPANT_COUNT_KEY = `count`
+
+API.add('GET', '/participants', async (req, res) => {
+  const count = (await read<number>(MBTI_TEST, PARTICIPANT_COUNT_KEY)) || 0
+  res.send(200, { count })
+})
+
+API.add('POST', '/participants', async (req, res) => {
+  const count = await read<number>(MBTI_TEST, PARTICIPANT_COUNT_KEY)
+
+  await write(MBTI_TEST, PARTICIPANT_COUNT_KEY, (count || 0) + 1)
+
+  res.send(200, { success: true })
+})
+
+Cache.listen(API.run)

@@ -32,7 +32,7 @@
       "config" : {
         "constraint" : {
           "width" : 1080,
-          "height" : 1200
+          "height" : 1080
         },
         "thumbnails" : [ ],
         "label" : "대표 섬네일 이미지"
@@ -77,7 +77,7 @@
             "type" : "StructuredText",
             "config" : {
               "single" : "paragraph",
-              "label" : "description"
+              "label" : "remark_description"
             }
           }
         },
