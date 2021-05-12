@@ -1,16 +1,17 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { useRecoilValueLoadable } from 'recoil'
 
-import { participantsCount } from '@src/store/mbti'
 import { numberWithCommas } from '@src/utils'
+import { ParticipantState } from '@src/hooks/useParticipants'
 
-const Participants: React.FC = () => {
-  const count = useRecoilValueLoadable(participantsCount)
+interface Props {
+  participants: ParticipantState
+}
 
-  if (count.state === 'hasValue') {
+const Participants: React.FC<Props> = ({ participants }) => {
+  if (participants.state === 'hasValue') {
     return (
-      <ParticipantsParagraph>현재 {numberWithCommas(count.contents)}명의 이웃들이 참여했어요.</ParticipantsParagraph>
+      <ParticipantsParagraph>현재 {numberWithCommas(participants.data)}명의 이웃들이 참여했어요.</ParticipantsParagraph>
     )
   }
   return <ParticipantsParagraph>&nbsp;</ParticipantsParagraph>

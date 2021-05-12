@@ -13,22 +13,15 @@ import { bridge } from '@src/bridge'
 import { useShare } from '@src/hooks/useShare'
 import { useReplaceToResultPage } from '@src/hooks/useReplaceToResultPage'
 import Participants from '@src/components/Intro/Participants'
-import { MBTI_PARTICIPANT_KEY } from '@src/constants/mbti'
-import { postPartipantCount } from '@src/api'
+import { useParticipants } from '@src/hooks/useParticipants'
 
 const MBTIIntroPage: React.FC = () => {
   const { show } = useReplaceToResultPage()
   const handleClickShare = useShare()
+  const [participants, dispatch] = useParticipants()
 
-  const handleClickStart = async () => {
-    const isParticipant = localStorage.getItem(MBTI_PARTICIPANT_KEY)
-    if (!isParticipant) {
-      postPartipantCount()
-        .then(() => {
-          localStorage.setItem(MBTI_PARTICIPANT_KEY, 'true')
-        })
-        .catch(() => null)
-    }
+  const handleClickStart = () => {
+    dispatch({ type: 'req_post' })
   }
   return (
     <Layout>
@@ -65,13 +58,13 @@ const MBTIIntroPage: React.FC = () => {
               formats={['auto']}
               alt="당근마켓"
               style={{ width: '100%', maxWidth: 500 }}
-          />
+            />
           </IllustWrapper>
 
           <Bottom>
-            <Participants />
+            <Participants participants={participants} />
 
-            <Link to="/q/0/" className="karrot-button" onClick={handleClickStart}>
+            <Link to="/q/" className="karrot-button" onClick={handleClickStart}>
               나의 당근 유형 알아보기
             </Link>
             <WhiteButton onClick={handleClickShare}>테스트 공유하기</WhiteButton>

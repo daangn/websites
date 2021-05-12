@@ -4,9 +4,10 @@
  * See: https://www.gatsbyjs.com/docs/node-apis/
  */
 const path = require('path')
-const fs = require('fs')
-
-const mbtiJSON = JSON.parse(fs.readFileSync(path.resolve(__dirname, './data/mbtiQnAData.json')))
+const fs = require('fs/promises')
+const puppeteer = require('puppeteer')
+const http = require('http')
+const serveHandler = require('serve-handler')
 
 // You can delete this file if you're not using it
 exports.createSchemaCustomization = ({ actions }) => {
@@ -28,62 +29,89 @@ exports.createSchemaCustomization = ({ actions }) => {
       type PrismicMbtiTestResultRemarksGroupType {
         remark_name: String!
       }
+
+      type PrismicMbtiTestQuestionDataType {
+        body: [PrismicMbtiTestQuestionBodySlicesType!]!
+      }
     `
   )
-  actions.createTypes(gql`
-    type MBTIAnswerNode {
-      target: String!
-      text: String!
-    }
-    type MBTIQuestionNode implements Node @dontInfer {
-      title: String!
-      answers: [MBTIAnswerNode!]!
-      idx: Int!
-      isLast: Boolean!
-    }
-    type MBTITargetResultRemark {
-      title: String!
-      description: String!
-    }
-    type MBTITargetResult implements Node @dontInfer {
-      code: String!
-      name: String!
-      description: String!
-      tags: [String!]!
-      remark: [MBTITargetResultRemark!]!
-    }
-  `)
 }
 
-exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
-  const questionCount = mbtiJSON.questions.length
+function calcLCP() {
+  window.largestContentfulPaint = 0
 
-  try {
-    mbtiJSON.questions.forEach((question, idx) => {
-      actions.createNode({
-        id: createNodeId(`MBTIQuestionNode:${idx}`),
-        internal: {
-          type: 'MBTIQuestionNode',
-          contentDigest: createContentDigest(question),
-        },
-        ...question,
-        idx: idx,
-        isLast: idx === questionCount - 1,
-      })
-    })
+  const observer = new PerformanceObserver((entryList) => {
+    const entries = entryList.getEntries()
+    const lastEntry = entries[entries.length - 1]
+    window.largestContentfulPaint = lastEntry.renderTime || lastEntry.loadTime
+  })
 
-    mbtiJSON.results.forEach((result) => {
-      actions.createNode({
-        id: createNodeId(`MBTITargetResult:${result.code}`),
-        internal: {
-          type: 'MBTITargetResult',
-          contentDigest: createContentDigest(result),
-        },
-        ...result,
-      })
-    })
-  } catch (e) {
-    console.error(e)
-    process.exit(1)
+  observer.observe({ type: 'largest-contentful-paint', buffered: true })
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') {
+      observer.takeRecords()
+      observer.disconnect()
+      console.log('LCP:', window.largestContentfulPaint)
+    }
+  })
+}
+
+exports.onPostBuild = async ({ store }) => {
+  const state = store.getState()
+  const baseDir = state.program.directory
+  const publicDir = path.join(baseDir, 'public')
+  const resultDir = path.join(publicDir, 'results')
+  const resultNames = (await fs.readdir(resultDir)).filter((name) => !name.startsWith('.'))
+
+  if (resultNames.length === 0) {
+    return
   }
+
+  const server = http
+    .createServer((req, res) => {
+      return serveHandler(req, res, {
+        public: publicDir,
+      })
+    })
+    .listen({
+      hostname: 'localhost',
+      port: 8899,
+    })
+
+  const scale = 3
+
+  const browser = await puppeteer.launch({
+    defaultViewport: {
+      width: 375 * scale,
+      height: 640,
+    },
+  })
+  const pending = async (page) => {
+    const lcp = await page.evaluate(() => {
+      return window.largestContentfulPaint
+    })
+    if (!lcp) {
+      await new Promise((res) => setTimeout(res, 500))
+      return pending(page)
+    }
+  }
+
+  for (const resultName of resultNames) {
+    const page = await browser.newPage()
+    await page.evaluateOnNewDocument(calcLCP)
+    await page.goto(`http://localhost:8899/results/${resultName}/view/`, {
+      waitUntil: 'load',
+    })
+    await pending(page)
+    await page.evaluate(() => {
+      document.documentElement.style.fontSize = `3em`
+    })
+    await (await page.$('#___gatsby')).screenshot({
+      path: path.join(resultDir, resultName, 'view.jpeg'),
+    })
+  }
+
+  await browser.close()
+  server.close()
 }

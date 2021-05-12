@@ -1,8 +1,8 @@
 import React from 'react'
-import { RecoilRoot } from 'recoil'
+import { PreviewStoreProvider } from 'gatsby-source-prismic'
 
 import './src/styles/global.css'
 
 export default ({ element }) => {
-  return <RecoilRoot>{element}</RecoilRoot>
+  return <PreviewStoreProvider>{element}</PreviewStoreProvider>
 }

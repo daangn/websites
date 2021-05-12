@@ -5,6 +5,7 @@ body {
   margin: 0;
   -webkit-tap-highlight-color: transparent;
   user-select: none;
+  background: #f4f1ee;
 }
 .__gatsby {
   position: relative;

@@ -6,12 +6,12 @@ interface Props {
   data: GatsbyTypes.ResultTags_dataFragment
 }
 
-const ResultTags: React.FC<Props> = ({ data: { tags = [] }, data }) => {
+const ResultTags: React.FC<Props> = ({ data: { tags = [] } }) => {
   return (
     <Base>
       <List>
         {tags.map((tag, idx) => (
-          <Item key={idx}># {tag?.tagName}</Item>
+          <Item key={idx}># {tag?.tag_name}</Item>
         ))}
       </List>
     </Base>
@@ -51,7 +51,7 @@ const Item = styled.li`
 export const fragment = graphql`
   fragment ResultTags_data on PrismicMbtiTestResultDataType {
     tags {
-      tagName: tag_name
+      tag_name
     }
   }
 `

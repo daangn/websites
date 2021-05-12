@@ -1,19 +1,20 @@
 import React, { useCallback } from 'react'
 import styled from '@emotion/styled'
-import { useRecoilValue } from 'recoil'
 import { css, Global, keyframes } from '@emotion/react'
 import { colors } from '@daangn/design-token'
 import { navigate } from 'gatsby'
 
-import { mbtiAnswersAtom } from '@src/store/mbti'
 import { Base } from '@src/styles'
-import { getMBTIResult, MBTI_RESULT_LOCALSTORAGE_KEY } from '@src/constants/mbti'
+import { getMBTIResult, MBTIValue, MBTI_RESULT_LOCALSTORAGE_KEY } from '@src/constants/mbti'
 
 import Url from '!!url-loader?modules!@src/images/img_analysis_carrot.png'
 
-const Analysis: React.FC = () => {
+interface Props {
+  allMbtiAnswers: MBTIValue[]
+}
+
+const Analysis: React.FC<Props> = ({ allMbtiAnswers }) => {
   const [spot, setSpot] = React.useState('')
-  const allMBTIAnswers = useRecoilValue(mbtiAnswersAtom)
   const [willUnmount, setWillUnmount] = React.useState(false)
 
   React.useEffect(() => {
@@ -28,15 +29,20 @@ const Analysis: React.FC = () => {
       clearInterval(interval)
       clearTimeout(timer)
     }
-  }, [allMBTIAnswers])
+  }, [allMbtiAnswers])
 
   const handleAnimationEnd = useCallback(() => {
     if (willUnmount) {
-      const result = getMBTIResult(allMBTIAnswers).toLowerCase()
-      localStorage.setItem(MBTI_RESULT_LOCALSTORAGE_KEY, result)
-      navigate(`/results/${result}/`)
+      try {
+        const result = getMBTIResult(allMbtiAnswers).toLowerCase()
+        localStorage.setItem(MBTI_RESULT_LOCALSTORAGE_KEY, result)
+        navigate(`/results/${result}/`)
+      } catch {
+        alert('정답 결과에 문제가 있어요.\n다시 시도해주세요.')
+        navigate(`/`)
+      }
     }
-  }, [allMBTIAnswers, willUnmount])
+  }, [allMbtiAnswers, willUnmount])
 
   return (
     <Container outro={willUnmount} onAnimationEnd={handleAnimationEnd}>

@@ -77,7 +77,7 @@
             "type" : "StructuredText",
             "config" : {
               "single" : "paragraph",
-              "label" : "description"
+              "label" : "remark_description"
             }
           }
         },

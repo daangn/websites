@@ -37,6 +37,7 @@ module.exports = {
         outputPath: 'src/__generated__/gatsby-types.d.ts',
         emitSchema: {
           'src/__generated__/gatsby-introspection.json': true,
+          'src/__generated__/gatsby-schema.graphql': true,
         },
         emitPluginDocuments: {
           'src/__generated__/gatsby-plugin-documents.graphql': true,
@@ -59,9 +60,11 @@ module.exports = {
       resolve: 'gatsby-source-prismic',
       options: {
         repositoryName: 'karrot',
+        shouldDownloadImage: () => true,
+        prismicToolbar: process.env.NODE_ENV === 'development',
         schemas: {
           mbti_test_question: require('./prismic/mbti_test_question.json'),
-          mbti_test_result: require('./prismic/mbti-test-result.json'),
+          'mbti-test-result': require('./prismic/mbti-test-result.json'),
         },
       },
     },

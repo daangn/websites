@@ -2,10 +2,10 @@ export const MBTI_RESULT_LOCALSTORAGE_KEY = 'daangn:eventMbtiResult'
 export const MBTI_PARTICIPANT_KEY = 'daangn:participant'
 
 export const MBTI_GROUPS = [
-  ['M', ['E', 'I']],
-  ['B', ['S', 'N']],
-  ['T', ['T', 'F']],
-  ['I', ['J', 'P']],
+  ['1', ['E', 'I']],
+  ['2', ['S', 'N']],
+  ['3', ['T', 'F']],
+  ['4', ['J', 'P']],
 ] as const
 export type MBTIGroup = typeof MBTI_GROUPS
 
@@ -37,6 +37,7 @@ const getMoreString = (arr: string[]) => {
       return acc
     }, {})
   )
+
   let max = { key: strings[0][0], count: strings[0][1] }
   for (let i = 1; i < strings.length; i++) {
     if (max.count < strings[i][1]) {
@@ -46,8 +47,8 @@ const getMoreString = (arr: string[]) => {
   return max.key
 }
 
-export const getMBTIResult = (selected: Record<any, MBTIValue>) => {
-  const groupValueMap = Object.values(selected).reduce<Record<MBTIGroup[number][0], MBTIValue[]>>((acc, cur) => {
+export const getMBTIResult = (selected: MBTIValue[]) => {
+  const groupValueMap = selected.reduce<Record<MBTIGroup[number][0], MBTIValue[]>>((acc, cur) => {
     const prev = acc[MBTI_REVERSE_INDEX[cur]]
     if (prev) {
       acc[MBTI_REVERSE_INDEX[cur]].push(cur)
