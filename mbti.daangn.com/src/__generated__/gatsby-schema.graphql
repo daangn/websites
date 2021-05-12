@@ -331,8 +331,6 @@ type Site implements Node {
     locale: String
   ): Date
   siteMetadata: SiteSiteMetadata
-  port: Int
-  host: String
   flags: SiteFlags
   polyfill: Boolean
   pathPrefix: String
@@ -2211,13 +2209,13 @@ type SitePluginPluginOptions {
   crossOrigin: String
   include_favicon: Boolean
   cacheDigest: String
+  repositoryName: String
+  prismicToolbar: Boolean
+  schemas: SitePluginPluginOptionsSchemas
   pathCheck: Boolean
   allExtensions: Boolean
   isTSX: Boolean
   jsxPragma: String
-  repositoryName: String
-  prismicToolbar: Boolean
-  schemas: SitePluginPluginOptionsSchemas
 }
 
 type SitePluginPluginOptionsAliases {
@@ -2661,7 +2659,7 @@ type Query {
   allFile(filter: FileFilterInput, sort: FileSortInput, skip: Int, limit: Int): FileConnection!
   directory(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Directory
   allDirectory(filter: DirectoryFilterInput, sort: DirectorySortInput, skip: Int, limit: Int): DirectoryConnection!
-  site(buildTime: DateQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput, port: IntQueryOperatorInput, host: StringQueryOperatorInput, flags: SiteFlagsFilterInput, polyfill: BooleanQueryOperatorInput, pathPrefix: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Site
+  site(buildTime: DateQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput, flags: SiteFlagsFilterInput, polyfill: BooleanQueryOperatorInput, pathPrefix: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Site
   allSite(filter: SiteFilterInput, sort: SiteSortInput, skip: Int, limit: Int): SiteConnection!
   siteFunction(apiRoute: StringQueryOperatorInput, originalFilePath: StringQueryOperatorInput, relativeCompiledFilePath: StringQueryOperatorInput, absoluteCompiledFilePath: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SiteFunction
   allSiteFunction(filter: SiteFunctionFilterInput, sort: SiteFunctionSortInput, skip: Int, limit: Int): SiteFunctionConnection!
@@ -3417,8 +3415,6 @@ enum SiteFieldsEnum {
   buildTime
   siteMetadata___title
   siteMetadata___description
-  port
-  host
   flags___FAST_DEV
   flags___QUERY_ON_DEMAND
   flags___LAZY_IMAGES
@@ -3526,8 +3522,6 @@ type SiteGroupConnection {
 input SiteFilterInput {
   buildTime: DateQueryOperatorInput
   siteMetadata: SiteSiteMetadataFilterInput
-  port: IntQueryOperatorInput
-  host: StringQueryOperatorInput
   flags: SiteFlagsFilterInput
   polyfill: BooleanQueryOperatorInput
   pathPrefix: StringQueryOperatorInput
@@ -3734,13 +3728,13 @@ input SitePluginPluginOptionsFilterInput {
   crossOrigin: StringQueryOperatorInput
   include_favicon: BooleanQueryOperatorInput
   cacheDigest: StringQueryOperatorInput
+  repositoryName: StringQueryOperatorInput
+  prismicToolbar: BooleanQueryOperatorInput
+  schemas: SitePluginPluginOptionsSchemasFilterInput
   pathCheck: BooleanQueryOperatorInput
   allExtensions: BooleanQueryOperatorInput
   isTSX: BooleanQueryOperatorInput
   jsxPragma: StringQueryOperatorInput
-  repositoryName: StringQueryOperatorInput
-  prismicToolbar: BooleanQueryOperatorInput
-  schemas: SitePluginPluginOptionsSchemasFilterInput
 }
 
 input SitePluginPluginOptionsAliasesFilterInput {
@@ -4374,12 +4368,12 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___crossOrigin
   pluginCreator___pluginOptions___include_favicon
   pluginCreator___pluginOptions___cacheDigest
+  pluginCreator___pluginOptions___repositoryName
+  pluginCreator___pluginOptions___prismicToolbar
   pluginCreator___pluginOptions___pathCheck
   pluginCreator___pluginOptions___allExtensions
   pluginCreator___pluginOptions___isTSX
   pluginCreator___pluginOptions___jsxPragma
-  pluginCreator___pluginOptions___repositoryName
-  pluginCreator___pluginOptions___prismicToolbar
   pluginCreator___nodeAPIs
   pluginCreator___browserAPIs
   pluginCreator___ssrAPIs
@@ -6803,12 +6797,12 @@ enum SitePluginFieldsEnum {
   pluginOptions___crossOrigin
   pluginOptions___include_favicon
   pluginOptions___cacheDigest
+  pluginOptions___repositoryName
+  pluginOptions___prismicToolbar
   pluginOptions___pathCheck
   pluginOptions___allExtensions
   pluginOptions___isTSX
   pluginOptions___jsxPragma
-  pluginOptions___repositoryName
-  pluginOptions___prismicToolbar
   nodeAPIs
   browserAPIs
   ssrAPIs

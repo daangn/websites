@@ -5,7 +5,7 @@
  */
 const path = require('path')
 const { promises: fs } = require('fs')
-const puppeteer = require('puppeteer')
+const chromium = require('chrome-aws-lambda')
 const http = require('http')
 const serveHandler = require('serve-handler')
 
@@ -58,6 +58,10 @@ function calcLCP() {
 }
 
 exports.onPostBuild = async ({ store }) => {
+  // if (process.env.GATSBY_CLOUD === 'true') {
+  //   // Note: Gatsby Cloud 에서는 Puppeteer를 못돌린다 이런;;
+  //   return
+  // }
   const state = store.getState()
   const baseDir = state.program.directory
   const publicDir = path.join(baseDir, 'public')
@@ -81,11 +85,14 @@ exports.onPostBuild = async ({ store }) => {
 
   const scale = 3
 
-  const browser = await puppeteer.launch({
+  const browser = await chromium.puppeteer.launch({
     defaultViewport: {
       width: 375 * scale,
       height: 640,
     },
+    args: chromium.args,
+    executablePath: await chromium.executablePath,
+    ignoreHTTPSErrors: true,
   })
   const pending = async (page) => {
     const lcp = await page.evaluate(() => {
