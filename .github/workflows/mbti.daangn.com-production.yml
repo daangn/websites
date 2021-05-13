@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.ORG_GITHUB_READ_TOKEN }}
-      GATSBY_CLOUDFRONT_DOMAIN: https://d2gbdddbstq0dk.cloudfront.net/prod
+      GATSBY_CLOUDFRONT_DOMAIN: https://mbti-image.daangn.com/prod
 
     steps:
       - uses: actions/checkout@v2
