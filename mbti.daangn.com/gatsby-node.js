@@ -28,10 +28,6 @@ exports.createSchemaCustomization = ({ actions }) => {
         width: Int!
         height: Int!
       }
-      type PrismicImageType {
-        url: String!
-        dimensions: PrismicImageDimensionsType!
-      }
       type PrismicMbtiTestResultRemarksGroupType {
         remark_name: String!
       }

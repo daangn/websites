@@ -331,8 +331,6 @@ type Site implements Node {
     locale: String
   ): Date
   siteMetadata: SiteMetadata!
-  port: Int
-  host: String
   flags: SiteFlags
   polyfill: Boolean
   pathPrefix: String
@@ -1001,8 +999,8 @@ type PrismicImageFluidType {
 type PrismicImageType implements PrismicImageInterface {
   alt: String
   copyright: String
-  dimensions: PrismicImageDimensionsType!
-  url: String!
+  dimensions: PrismicImageDimensionsType
+  url(imgixParams: ImgixUrlParamsInput = {}): String
   fixed(width: Int = 400, height: Int, imgixParams: ImgixUrlParamsInput = {}, placeholderImgixParams: ImgixUrlParamsInput = {}): PrismicImageFixedType
   fluid(maxWidth: Int = 800, maxHeight: Int, srcSetBreakpoints: [Int], imgixParams: ImgixUrlParamsInput = {}, placeholderImgixParams: ImgixUrlParamsInput = {}): PrismicImageFluidType
   localFile: File
@@ -2789,7 +2787,7 @@ type Query {
   allFile(filter: FileFilterInput, sort: FileSortInput, skip: Int, limit: Int): FileConnection!
   directory(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Directory
   allDirectory(filter: DirectoryFilterInput, sort: DirectorySortInput, skip: Int, limit: Int): DirectoryConnection!
-  site(buildTime: DateQueryOperatorInput, siteMetadata: SiteMetadataFilterInput, port: IntQueryOperatorInput, host: StringQueryOperatorInput, flags: SiteFlagsFilterInput, polyfill: BooleanQueryOperatorInput, pathPrefix: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Site
+  site(buildTime: DateQueryOperatorInput, siteMetadata: SiteMetadataFilterInput, flags: SiteFlagsFilterInput, polyfill: BooleanQueryOperatorInput, pathPrefix: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Site
   allSite(filter: SiteFilterInput, sort: SiteSortInput, skip: Int, limit: Int): SiteConnection!
   siteFunction(apiRoute: StringQueryOperatorInput, originalFilePath: StringQueryOperatorInput, relativeCompiledFilePath: StringQueryOperatorInput, absoluteCompiledFilePath: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SiteFunction
   allSiteFunction(filter: SiteFunctionFilterInput, sort: SiteFunctionSortInput, skip: Int, limit: Int): SiteFunctionConnection!
@@ -3549,8 +3547,6 @@ enum SiteFieldsEnum {
   siteMetadata___siteUrl
   siteMetadata___siteName
   siteMetadata___shortName
-  port
-  host
   flags___FAST_DEV
   flags___QUERY_ON_DEMAND
   flags___LAZY_IMAGES
@@ -3658,8 +3654,6 @@ type SiteGroupConnection {
 input SiteFilterInput {
   buildTime: DateQueryOperatorInput
   siteMetadata: SiteMetadataFilterInput
-  port: IntQueryOperatorInput
-  host: StringQueryOperatorInput
   flags: SiteFlagsFilterInput
   polyfill: BooleanQueryOperatorInput
   pathPrefix: StringQueryOperatorInput
@@ -5692,7 +5686,7 @@ enum PrismicMbtiTestResultFieldsEnum {
   data___opengraph_image___copyright
   data___opengraph_image___dimensions___width
   data___opengraph_image___dimensions___height
-  data___opengraph_image___url
+  data___opengraph_image___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___opengraph_image___fixed___base64 @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___opengraph_image___fixed___src @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___opengraph_image___fixed___srcSet @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -5753,7 +5747,7 @@ enum PrismicMbtiTestResultFieldsEnum {
   data___thumbnail___copyright
   data___thumbnail___dimensions___width
   data___thumbnail___dimensions___height
-  data___thumbnail___url
+  data___thumbnail___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___thumbnail___fixed___base64 @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___thumbnail___fixed___src @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___thumbnail___fixed___srcSet @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -5812,7 +5806,7 @@ enum PrismicMbtiTestResultFieldsEnum {
   data___avatar___copyright
   data___avatar___dimensions___width
   data___avatar___dimensions___height
-  data___avatar___url
+  data___avatar___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___avatar___fixed___base64 @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___avatar___fixed___src @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___avatar___fixed___srcSet @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -6068,7 +6062,7 @@ enum PrismicMbtiIntroFieldsEnum {
   data___opengraph_image___copyright
   data___opengraph_image___dimensions___width
   data___opengraph_image___dimensions___height
-  data___opengraph_image___url
+  data___opengraph_image___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___opengraph_image___fixed___base64 @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___opengraph_image___fixed___src @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___opengraph_image___fixed___srcSet @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")

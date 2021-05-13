@@ -12,6 +12,12 @@ const Layout: React.FC = ({ children }) => {
     <DaangnThemeProvider colors={colors.light}>
       <GatsbySeo
         title={data.site?.siteMetadata.siteName}
+        metaTags={[
+          {
+            name: 'description',
+            content: data.site?.siteMetadata.siteName,
+          },
+        ]}
         openGraph={{
           type: 'website',
           site_name: data.site?.siteMetadata.siteName,

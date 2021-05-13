@@ -42,8 +42,8 @@ const MBTIIntroPage: React.FC<PageProps<GatsbyTypes.MBTIIntroPageQuery>> = ({ da
           images: prismicMbtiIntro?.data?.opengraph_image
             ? [
                 {
-                  ...prismicMbtiIntro.data.opengraph_image.dimensions,
-                  url: prismicMbtiIntro.data.opengraph_image.url,
+                  ...prismicMbtiIntro.data.opengraph_image.dimensions!,
+                  url: prismicMbtiIntro.data.opengraph_image.url!,
                 },
               ]
             : [],

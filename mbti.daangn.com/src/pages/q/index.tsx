@@ -178,7 +178,7 @@ function MBTIQuestionPage({ data: { prismicMbtiTestQuestion } }: PageProps<Gatsb
                     {idx + 1}/{totalCount}
                   </ProgressText>
                   <ProgressBarWrapper>
-                    <ProgressBar totalCount={totalCount} currentIndex={idx + 1} />
+                    <ProgressBar totalCount={totalCount + 1} currentIndex={idx + 1} />
                   </ProgressBarWrapper>
                 </ProgressWrapper>
               </InnerContainer>
