@@ -48,6 +48,7 @@ const AnswerItemButton = styled.button<{ selected?: boolean }>`
   background: ${({ theme, selected }) => (selected ? theme.colors.carrot500 : '#fff')};
   color: ${({ theme, selected }) => (selected ? '#fff' : theme.colors.gray700)};
   transition: all 125ms;
+  white-space: pre-line;
 `
 
 export default AnswerItem

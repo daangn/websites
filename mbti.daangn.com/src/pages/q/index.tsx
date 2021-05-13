@@ -255,6 +255,7 @@ const Title = styled.h1`
   letter-spacing: -0.03em;
   color: ${({ theme }) => theme.colors.gray900};
   margin: 0.5rem 0 3rem;
+  white-space: pre-line;
 `
 const ProgressWrapper = styled.div``
 const ProgressText = styled.p`
