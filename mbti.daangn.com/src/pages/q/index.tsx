@@ -5,6 +5,7 @@ import styled from '@emotion/styled'
 import { css, Global, keyframes } from '@emotion/react'
 import { mapAbstractType } from '@cometjs/graphql-utils'
 import { withPreview } from 'gatsby-source-prismic'
+import { GatsbySeo } from 'gatsby-plugin-next-seo'
 
 import Layout from '@src/components/Layout'
 import { Base, clickAfterDimm, PaddingContainer } from '@src/styles'
@@ -87,111 +88,117 @@ function MBTIQuestionPage({ data: { prismicMbtiTestQuestion } }: PageProps<Gatsb
 
   const NumberComponent = Numbers[idx]
 
-  return visible && currentQuestionBody ? (
-    <Layout>
-      {!showAnalysis && (
-        <Base>
-          <Navbar
-            iconColor={colors.light.$gray900}
-            theme={bridge.environment}
-            appendRight={<ResetButton onClick={handleReplace}>처음으로</ResetButton>}
+  return (
+    <>
+      {visible && currentQuestionBody ? (
+        <Layout>
+          {!showAnalysis && (
+            <Base>
+              <Navbar
+                iconColor={colors.light.$gray900}
+                theme={bridge.environment}
+                appendRight={<ResetButton onClick={handleReplace}>처음으로</ResetButton>}
+              />
+              <InnerContainer>
+                <ContentWrapper willUnmount={!!selectedAnswer} onAnimationEnd={handleAnimationEnd}>
+                  <NumberAssetWraper>{NumberComponent && <NumberComponent />}</NumberAssetWraper>
+
+                  <Title>{currentQuestionBody.primary?.question}</Title>
+                  <ul>
+                    {mapAbstractType(currentQuestionBody, {
+                      PrismicMbtiTestQuestionBodyIe: (questionBody) => (
+                        <>
+                          <AnswerItem
+                            onSelect={handleSelectAnswer}
+                            selected={selectedAnswer}
+                            target="I"
+                            text={questionBody.primary?.answer_i?.text}
+                          />
+                          <AnswerItem
+                            onSelect={handleSelectAnswer}
+                            selected={selectedAnswer}
+                            target="E"
+                            text={questionBody.primary?.answer_e?.text}
+                          />
+                        </>
+                      ),
+                      PrismicMbtiTestQuestionBodyNs: (questionBody) => (
+                        <>
+                          <AnswerItem
+                            onSelect={handleSelectAnswer}
+                            selected={selectedAnswer}
+                            target="N"
+                            text={questionBody.primary?.answer_n?.text}
+                          />
+                          <AnswerItem
+                            onSelect={handleSelectAnswer}
+                            selected={selectedAnswer}
+                            target="S"
+                            text={questionBody.primary?.answer_s?.text}
+                          />
+                        </>
+                      ),
+                      PrismicMbtiTestQuestionBodyFt: (questionBody) => (
+                        <>
+                          <AnswerItem
+                            onSelect={handleSelectAnswer}
+                            selected={selectedAnswer}
+                            target="F"
+                            text={questionBody.primary?.answer_f?.text}
+                          />
+                          <AnswerItem
+                            onSelect={handleSelectAnswer}
+                            selected={selectedAnswer}
+                            target="T"
+                            text={questionBody.primary?.answer_t?.text}
+                          />
+                        </>
+                      ),
+                      PrismicMbtiTestQuestionBodyPj: (questionBody) => (
+                        <>
+                          <AnswerItem
+                            onSelect={handleSelectAnswer}
+                            selected={selectedAnswer}
+                            target="P"
+                            text={questionBody.primary?.answer_p?.text}
+                          />
+                          <AnswerItem
+                            onSelect={handleSelectAnswer}
+                            selected={selectedAnswer}
+                            target="J"
+                            text={questionBody.primary?.answer_j?.text}
+                          />
+                        </>
+                      ),
+                    })}
+                  </ul>
+                </ContentWrapper>
+                <ProgressWrapper>
+                  <ProgressText>
+                    {idx + 1}/{totalCount}
+                  </ProgressText>
+                  <ProgressBarWrapper>
+                    <ProgressBar totalCount={totalCount + 1} currentIndex={idx + 1} />
+                  </ProgressBarWrapper>
+                </ProgressWrapper>
+              </InnerContainer>
+            </Base>
+          )}
+          <Global
+            styles={css`
+              body {
+                background: #fff;
+              }
+            `}
           />
-          <InnerContainer>
-            <ContentWrapper willUnmount={!!selectedAnswer} onAnimationEnd={handleAnimationEnd}>
-              <NumberAssetWraper>{NumberComponent && <NumberComponent />}</NumberAssetWraper>
 
-              <Title>{currentQuestionBody.primary?.question}</Title>
-              <ul>
-                {mapAbstractType(currentQuestionBody, {
-                  PrismicMbtiTestQuestionBodyIe: (questionBody) => (
-                    <>
-                      <AnswerItem
-                        onSelect={handleSelectAnswer}
-                        selected={selectedAnswer}
-                        target="I"
-                        text={questionBody.primary?.answer_i?.text}
-                      />
-                      <AnswerItem
-                        onSelect={handleSelectAnswer}
-                        selected={selectedAnswer}
-                        target="E"
-                        text={questionBody.primary?.answer_e?.text}
-                      />
-                    </>
-                  ),
-                  PrismicMbtiTestQuestionBodyNs: (questionBody) => (
-                    <>
-                      <AnswerItem
-                        onSelect={handleSelectAnswer}
-                        selected={selectedAnswer}
-                        target="N"
-                        text={questionBody.primary?.answer_n?.text}
-                      />
-                      <AnswerItem
-                        onSelect={handleSelectAnswer}
-                        selected={selectedAnswer}
-                        target="S"
-                        text={questionBody.primary?.answer_s?.text}
-                      />
-                    </>
-                  ),
-                  PrismicMbtiTestQuestionBodyFt: (questionBody) => (
-                    <>
-                      <AnswerItem
-                        onSelect={handleSelectAnswer}
-                        selected={selectedAnswer}
-                        target="F"
-                        text={questionBody.primary?.answer_f?.text}
-                      />
-                      <AnswerItem
-                        onSelect={handleSelectAnswer}
-                        selected={selectedAnswer}
-                        target="T"
-                        text={questionBody.primary?.answer_t?.text}
-                      />
-                    </>
-                  ),
-                  PrismicMbtiTestQuestionBodyPj: (questionBody) => (
-                    <>
-                      <AnswerItem
-                        onSelect={handleSelectAnswer}
-                        selected={selectedAnswer}
-                        target="P"
-                        text={questionBody.primary?.answer_p?.text}
-                      />
-                      <AnswerItem
-                        onSelect={handleSelectAnswer}
-                        selected={selectedAnswer}
-                        target="J"
-                        text={questionBody.primary?.answer_j?.text}
-                      />
-                    </>
-                  ),
-                })}
-              </ul>
-            </ContentWrapper>
-            <ProgressWrapper>
-              <ProgressText>
-                {idx + 1}/{totalCount}
-              </ProgressText>
-              <ProgressBarWrapper>
-                <ProgressBar totalCount={totalCount} currentIndex={idx + 1} />
-              </ProgressBarWrapper>
-            </ProgressWrapper>
-          </InnerContainer>
-        </Base>
-      )}
-      <Global
-        styles={css`
-          body {
-            background: #fff;
-          }
-        `}
-      />
+          {isLast && showAnalysis && <Analysis allMbtiAnswers={allMbtiAnswers} />}
+        </Layout>
+      ) : null}
 
-      {isLast && showAnalysis && <Analysis allMbtiAnswers={allMbtiAnswers} />}
-    </Layout>
-  ) : null
+      <GatsbySeo noindex />
+    </>
+  )
 }
 
 const ResetButton = styled.button`
@@ -248,6 +255,7 @@ const Title = styled.h1`
   letter-spacing: -0.03em;
   color: ${({ theme }) => theme.colors.gray900};
   margin: 0.5rem 0 3rem;
+  white-space: pre-line;
 `
 const ProgressWrapper = styled.div``
 const ProgressText = styled.p`

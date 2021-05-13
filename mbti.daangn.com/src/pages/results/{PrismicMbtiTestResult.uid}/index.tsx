@@ -4,6 +4,7 @@ import { css } from '@emotion/react'
 import { graphql, Link, PageProps } from 'gatsby'
 import { getAccurateAgent } from '@egjs/agent'
 import { withPreview } from 'gatsby-source-prismic'
+import { GatsbySeo } from 'gatsby-plugin-next-seo'
 
 import { clickAfterDimm } from '@src/styles'
 import { MBTI_RESULT_LOCALSTORAGE_KEY } from '@src/constants/mbti'
@@ -13,6 +14,8 @@ import Portal from '@src/components/Portal'
 import DownloadIc from '@src/images/ic_download_outline_m.svg'
 import ResultPageView from '@src/components/ResultPage'
 import { isValidResult } from '@src/utils'
+import { useOpenApp } from '@src/hooks/useOpenApp'
+import { GATSBY_CLOUDFRONT_DOMAIN } from '@src/constants/env'
 
 const checkIsMobileSafari = async () => {
   const agent = await getAccurateAgent()
@@ -31,6 +34,8 @@ const MBTITargetResultPage = ({
     throw new Error('There is no mbtiTargetResult')
   }
 
+  useOpenApp()
+
   const [isUserResult, setIsUserResult] = React.useState(false)
 
   React.useEffect(() => {
@@ -47,7 +52,8 @@ const MBTITargetResultPage = ({
   const [image, setImage] = React.useState<null | string>(null)
 
   const handleClickDownload = React.useCallback(async () => {
-    const image = `/results/${code}/view.jpeg`
+    const image = `${GATSBY_CLOUDFRONT_DOMAIN}/${code}.jpeg`
+
     const isMobileSafari = await checkIsMobileSafari()
     if (isMobileSafari) {
       setImage(image)
@@ -59,11 +65,31 @@ const MBTITargetResultPage = ({
     }
   }, [code])
 
+  const handleClickMeet = () => {
+    location.href = 'https://daangn.onelink.me/oWdR/75984c3'
+  }
+
   return (
     <ResultPageView data={prismicMbtiTestResult.data}>
+      <GatsbySeo
+        title={prismicMbtiTestResult.data.summary}
+        description={prismicMbtiTestResult.data.og_description}
+        openGraph={{
+          images: prismicMbtiTestResult.data.opengraph_image
+            ? [
+                {
+                  ...prismicMbtiTestResult.data.opengraph_image.dimensions,
+                  url: prismicMbtiTestResult.data.opengraph_image.url!,
+                },
+              ]
+            : [],
+          title: prismicMbtiTestResult.data.summary,
+          description: prismicMbtiTestResult.data.og_description,
+        }}
+      />
       <ButtonsWrapper>
         <ButtonWrapper>
-          <KarrotButton>환상의 케미 이웃 만나러 가기</KarrotButton>
+          <KarrotButton onClick={handleClickMeet}>이웃 만나러 가기</KarrotButton>
         </ButtonWrapper>
 
         {isUserResult && (
@@ -215,6 +241,16 @@ export const query = graphql`
       id
       uid
       data {
+        summary
+        og_description
+        og_description
+        opengraph_image {
+          url
+          dimensions {
+            width
+            height
+          }
+        }
         ...ResultPageView_prismicMbtiTestResult
       }
     }

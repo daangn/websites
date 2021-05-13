@@ -3,8 +3,8 @@ import styled from '@emotion/styled'
 import { css, Global, keyframes } from '@emotion/react'
 import { StaticImage } from 'gatsby-plugin-image'
 import { colors } from '@daangn/design-token'
-import { Link } from 'gatsby'
-import { Helmet } from 'react-helmet-async'
+import { graphql, Link, PageProps } from 'gatsby'
+import { GatsbySeo } from 'gatsby-plugin-next-seo'
 
 import Layout from '@src/components/Layout'
 import { clickAfterDimm, Base, PaddingContainer } from '@src/styles'
@@ -14,11 +14,14 @@ import { useShare } from '@src/hooks/useShare'
 import { useReplaceToResultPage } from '@src/hooks/useReplaceToResultPage'
 import Participants from '@src/components/Intro/Participants'
 import { useParticipants } from '@src/hooks/useParticipants'
+import { useOpenApp } from '@src/hooks/useOpenApp'
 
-const MBTIIntroPage: React.FC = () => {
+const MBTIIntroPage: React.FC<PageProps<GatsbyTypes.MBTIIntroPageQuery>> = ({ data: { prismicMbtiIntro } }) => {
   const { show } = useReplaceToResultPage()
   const handleClickShare = useShare()
   const [participants, dispatch] = useParticipants()
+
+  useOpenApp()
 
   const handleClickStart = () => {
     dispatch({ type: 'req_post' })
@@ -32,9 +35,22 @@ const MBTIIntroPage: React.FC = () => {
           }
         `}
       />
-      <Helmet>
-        <title>성격으로 알아보는 당신의 씀씀이 테스트</title>
-      </Helmet>
+      <GatsbySeo
+        title={prismicMbtiIntro?.data?.title}
+        description={prismicMbtiIntro?.data?.description}
+        openGraph={{
+          images: prismicMbtiIntro?.data?.opengraph_image
+            ? [
+                {
+                  ...prismicMbtiIntro.data.opengraph_image.dimensions!,
+                  url: prismicMbtiIntro.data.opengraph_image.url!,
+                },
+              ]
+            : [],
+          title: prismicMbtiIntro?.data?.title,
+          description: prismicMbtiIntro?.data?.description,
+        }}
+      />
       <Container show={show}>
         <Navbar iconColor={colors.light.$gray900} theme={bridge.environment} showClose />
         <InnerContainer>
@@ -65,7 +81,7 @@ const MBTIIntroPage: React.FC = () => {
             <Participants participants={participants} />
 
             <Link to="/q/" className="karrot-button" onClick={handleClickStart}>
-              나의 당근 유형 알아보기
+              테스트 시작하기
             </Link>
             <WhiteButton onClick={handleClickShare}>테스트 공유하기</WhiteButton>
           </Bottom>
@@ -139,6 +155,24 @@ const IllustWrapper = styled(ImageWrapper)`
   display: flex;
   justify-content: center;
   align-items: center;
+`
+
+export const query = graphql`
+  query MBTIIntroPage {
+    prismicMbtiIntro {
+      data {
+        title
+        description
+        opengraph_image {
+          url
+          dimensions {
+            width
+            height
+          }
+        }
+      }
+    }
+  }
 `
 
 export default MBTIIntroPage

@@ -1,14 +1,17 @@
 import * as React from 'react'
-import styled from '@emotion/styled'
 import { withPreviewResolver } from 'gatsby-source-prismic'
 
 import { linkResolver } from '@src/linkResolver'
+import Layout from '@src/components/Layout'
+import ErrorPage from '@src/components/Error'
 
 const Preview: React.FC = () => {
-  return <Base></Base>
+  return (
+    <Layout>
+      <ErrorPage />
+    </Layout>
+  )
 }
-
-const Base = styled.div``
 
 export default withPreviewResolver(Preview, {
   repositoryName: 'karrot',
