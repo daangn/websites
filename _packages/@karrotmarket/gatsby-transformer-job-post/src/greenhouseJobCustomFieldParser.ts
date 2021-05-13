@@ -17,6 +17,40 @@ function findMetadataById<T extends string | number | null = string | number | n
   return metadata && ({ type: metadata.value_type, value: metadata.value as T });
 }
 
+export const corporate: FieldParser<(
+  | 'KARROT_MARKET'
+  | 'KARROT_PAY'
+  | null
+)> = (
+  node,
+  { reporter },
+) => {
+  const fieldId = 6128545003;
+  const field = findMetadataById(node, fieldId);
+  return field && (() => {
+    switch (field.value) {
+      case '당근마켓': return 'KARROT_MARKET';
+      case '당근페이': return 'KARROT_PAY';
+      case null: {
+        reporter.warn(reporter.stripIndent`
+           필드 값이 비어있습니다. (Greenhouse ID: ${node.ghId})
+        `);
+        return null;
+      }
+      default: {
+        reporter.error(reporter.stripIndent`
+          알 수 없는 Corporate 필드 값 입니다. 값: ${field.value}
+
+          Greenhouse 에서 커스텀 필드 형식을 확인하고 코드를 올바르게 변경해주세요.
+
+          See https://app3.greenhouse.io/custom_fields/jobs/${fieldId}
+        `);
+        return null;
+      }
+    }
+  })();
+};
+
 export const employmentType: FieldParser<(
   | 'FULL_TIME'
   | 'CONTRACTOR'
