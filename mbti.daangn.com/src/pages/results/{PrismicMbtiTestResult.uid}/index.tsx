@@ -14,6 +14,7 @@ import Portal from '@src/components/Portal'
 import DownloadIc from '@src/images/ic_download_outline_m.svg'
 import ResultPageView from '@src/components/ResultPage'
 import { isValidResult } from '@src/utils'
+import { useOpenApp } from '@src/hooks/useOpenApp'
 
 const checkIsMobileSafari = async () => {
   const agent = await getAccurateAgent()
@@ -31,6 +32,8 @@ const MBTITargetResultPage = ({
   if (!prismicMbtiTestResult?.data) {
     throw new Error('There is no mbtiTargetResult')
   }
+
+  useOpenApp()
 
   const [isUserResult, setIsUserResult] = React.useState(false)
 

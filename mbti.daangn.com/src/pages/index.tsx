@@ -14,11 +14,14 @@ import { useShare } from '@src/hooks/useShare'
 import { useReplaceToResultPage } from '@src/hooks/useReplaceToResultPage'
 import Participants from '@src/components/Intro/Participants'
 import { useParticipants } from '@src/hooks/useParticipants'
+import { useOpenApp } from '@src/hooks/useOpenApp'
 
 const MBTIIntroPage: React.FC<PageProps<GatsbyTypes.MBTIIntroPageQuery>> = ({ data: { prismicMbtiIntro } }) => {
   const { show } = useReplaceToResultPage()
   const handleClickShare = useShare()
   const [participants, dispatch] = useParticipants()
+
+  useOpenApp()
 
   const handleClickStart = () => {
     dispatch({ type: 'req_post' })
