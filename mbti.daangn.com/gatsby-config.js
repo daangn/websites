@@ -1,7 +1,7 @@
 const siteMetadata = {
   siteUrl: 'https://mbti.daangn.com',
-  siteName: '당신 근처의 MBTI 테스트',
-  shortName: '당근 MBTI',
+  siteName: '성격으로 알아보는 당신의 씀씀이 테스트',
+  shortName: '당신의 씀씀이 테스트',
 }
 
 module.exports = {
