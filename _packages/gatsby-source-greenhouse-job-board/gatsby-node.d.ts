@@ -1,4 +1,5 @@
-import type { NormalizeAPI } from './utils';
-export declare const pluginOptionsSchema: NormalizeAPI<'pluginOptionsSchema'>;
-export declare const createSchemaCustomization: NormalizeAPI<'createSchemaCustomization'>;
-export declare const sourceNodes: NormalizeAPI<'sourceNodes'>;
+import type { GatsbyNode } from 'gatsby';
+export declare const gql: (template: TemplateStringsArray, ...substitutions: any[]) => string;
+export declare const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'];
+export declare const createSchemaCustomization: GatsbyNode['createSchemaCustomization'];
+export declare const sourceNodes: GatsbyNode['sourceNodes'];

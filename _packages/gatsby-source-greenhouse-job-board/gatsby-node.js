@@ -3,11 +3,12 @@
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 exports.__esModule = true;
-exports.sourceNodes = exports.createSchemaCustomization = exports.pluginOptionsSchema = void 0;
+exports.sourceNodes = exports.createSchemaCustomization = exports.pluginOptionsSchema = exports.gql = void 0;
 
 var _got = _interopRequireDefault(require("got"));
 
-var _utils = require("./utils");
+const gql = String.raw;
+exports.gql = gql;
 
 const pluginOptionsSchema = ({
   Joi
@@ -28,7 +29,7 @@ const createSchemaCustomization = ({
   const {
     includeContent
   } = options;
-  actions.createTypes((0, _utils.gql)`
+  actions.createTypes(gql`
     enum GreenhouseJobCustomFieldType {
       SHORT_TEXT
       LONG_TEXT

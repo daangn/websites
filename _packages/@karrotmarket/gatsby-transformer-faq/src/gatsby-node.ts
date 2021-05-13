@@ -1,10 +1,9 @@
-import type {
-  NormalizeAPI,
-  PluginOptions,
-} from './types';
+import type { GatsbyNode } from 'gatsby';
+
+import type { PluginOptions } from './types';
 import { isPrismicFaqNode } from './types';
 
-export const pluginOptionsSchema: NormalizeAPI<'pluginOptionsSchema'> = ({ 
+export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({ 
   Joi,
 }) => {
   return Joi.object({
@@ -14,7 +13,7 @@ export const pluginOptionsSchema: NormalizeAPI<'pluginOptionsSchema'> = ({
 
 const gql = String.raw;
 
-export const createSchemaCustomization: NormalizeAPI<'createSchemaCustomization'> = ({
+export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({
   actions,
 }) => {
   actions.createTypes(gql`
@@ -33,7 +32,7 @@ export const createSchemaCustomization: NormalizeAPI<'createSchemaCustomization'
   `);
 };
 
-export const onCreateNode: NormalizeAPI<'onCreateNode'> = ({
+export const onCreateNode: GatsbyNode['onCreateNode'] = ({
   node,
   actions,
   createNodeId,

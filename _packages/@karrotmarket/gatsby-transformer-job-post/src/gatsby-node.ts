@@ -1,11 +1,14 @@
-import type { Node, NodeInput } from 'gatsby';
-import type { NormalizeAPI } from './types';
+import type {
+  GatsbyNode,
+  Node,
+  NodeInput,
+} from 'gatsby';
 import { isGreenhouseJobNode } from './types';
 
 import * as greenhouseJobBlockParser from './greenhouseJobBlockParser';
 import * as greenhouseJobCustomFieldParser from './greenhouseJobCustomFieldParser';
 
-export const createSchemaCustomization: NormalizeAPI<'createSchemaCustomization'> = ({
+export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({
   actions,
   schema,
   reporter,
@@ -140,7 +143,7 @@ export const createSchemaCustomization: NormalizeAPI<'createSchemaCustomization'
   );
 };
 
-export const onCreateNode: NormalizeAPI<'onCreateNode'> = ctx => {
+export const onCreateNode: GatsbyNode['onCreateNode'] = ctx => {
   const {
     node,
     actions,

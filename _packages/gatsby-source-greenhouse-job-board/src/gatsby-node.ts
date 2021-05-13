@@ -1,12 +1,11 @@
-import type { NodeInput } from 'gatsby';
+import type { GatsbyNode, NodeInput } from 'gatsby';
 import got from 'got';
-
-import type { NormalizeAPI } from './utils';
-import { gql } from './utils';
 
 import type { GreenhouseJob } from './types';
 
-export const pluginOptionsSchema: NormalizeAPI<'pluginOptionsSchema'> = ({
+export const gql = String.raw;
+
+export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
   Joi,
 }) => {
   return Joi.object({
@@ -20,7 +19,7 @@ type PluginOptions = {
   includeContent: boolean,
 };
 
-export const createSchemaCustomization: NormalizeAPI<'createSchemaCustomization'> = ({
+export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({
   actions,
   schema,
 }, options) => {
@@ -114,7 +113,7 @@ export const createSchemaCustomization: NormalizeAPI<'createSchemaCustomization'
   // TODO: Location
 };
 
-export const sourceNodes: NormalizeAPI<'sourceNodes'> = async ({
+export const sourceNodes: GatsbyNode['sourceNodes'] = async ({
   actions,
   createNodeId,
   createContentDigest,

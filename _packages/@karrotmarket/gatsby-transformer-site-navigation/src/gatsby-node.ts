@@ -1,12 +1,11 @@
-import type { Node } from 'gatsby';
+import type { Node, GatsbyNode } from 'gatsby';
 import type {
-  NormalizeAPI,
   PluginOptions,
   PrismicLink,
 } from './types';
 import { isPrismicSiteNavigationNode } from './types';
 
-export const pluginOptionsSchema: NormalizeAPI<'pluginOptionsSchema'> = ({
+export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
   Joi,
 }) => {
   return Joi.object({
@@ -15,7 +14,7 @@ export const pluginOptionsSchema: NormalizeAPI<'pluginOptionsSchema'> = ({
   });
 }
 
-export const createSchemaCustomization: NormalizeAPI<'createSchemaCustomization'> = ({
+export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({
   actions,
   schema,
 }, options) => {
@@ -176,7 +175,7 @@ export const createSchemaCustomization: NormalizeAPI<'createSchemaCustomization'
   ]);
 };
 
-export const onCreateNode: NormalizeAPI<'onCreateNode'> = ({
+export const onCreateNode: GatsbyNode['onCreateNode'] = ({
   node,
   createNodeId,
   createContentDigest,
