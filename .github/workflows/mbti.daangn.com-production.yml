@@ -1,12 +1,15 @@
 name: mbti.daangn.com production build
 
 on:
+  schedule:
+    - cron: "0 0 1 * * *"
   push:
     branches:
       - main
     paths:
       - "mbti.daangn.com/**"
       - ".github/workflows/mbti.daangn.com-production.yml"
+  workflow_dispatch:
 
 jobs:
   release:
