@@ -1,7 +1,7 @@
 "use strict";
 
 exports.__esModule = true;
-exports.chapter = exports.keywords = exports.priorExperience = exports.alternativeCivilianService = exports.employmentType = void 0;
+exports.chapter = exports.keywords = exports.priorExperience = exports.alternativeCivilianService = exports.employmentType = exports.corporate = void 0;
 
 function findMetadataById(node, id) {
   const metadata = node.metadata.find(v => v.id === id);
@@ -10,6 +10,44 @@ function findMetadataById(node, id) {
     value: metadata.value
   };
 }
+
+const corporate = (node, {
+  reporter
+}) => {
+  const fieldId = 6128545003;
+  const field = findMetadataById(node, fieldId);
+  return field && (() => {
+    switch (field.value) {
+      case '당근마켓':
+        return 'KARROT_MARKET';
+
+      case '당근페이':
+        return 'KARROT_PAY';
+
+      case null:
+        {
+          reporter.warn(reporter.stripIndent`
+           필드 값이 비어있습니다. (Greenhouse ID: ${node.ghId})
+        `);
+          return null;
+        }
+
+      default:
+        {
+          reporter.error(reporter.stripIndent`
+          알 수 없는 Corporate 필드 값 입니다. 값: ${field.value}
+
+          Greenhouse 에서 커스텀 필드 형식을 확인하고 코드를 올바르게 변경해주세요.
+
+          See https://app3.greenhouse.io/custom_fields/jobs/${fieldId}
+        `);
+          return null;
+        }
+    }
+  })();
+};
+
+exports.corporate = corporate;
 
 const employmentType = (node, {
   reporter

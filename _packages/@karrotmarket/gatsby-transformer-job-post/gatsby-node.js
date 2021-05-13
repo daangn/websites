@@ -32,6 +32,9 @@ const createSchemaCustomization = ({
       # HTML content (unsafe)
       rawContent: String!
 
+      # 회사 (당근마켓, 망근페이)
+      corporate: JobCorporate
+
       # 고용 형태
       employmentType: JobEmploymentType!
 
@@ -44,10 +47,16 @@ const createSchemaCustomization = ({
       # 소속 챕터 (=직무)
       chapter: String!
 
+      # 검색 키워드
       keywords: [String!]!
     }
   `);
   actions.createTypes(gql`
+    enum JobCorporate {
+      KARROT_MARKET
+      KARROT_PAY
+    }
+
     enum JobEmploymentType {
       FULL_TIME
       CONTRACTOR
@@ -159,6 +168,7 @@ const onCreateNode = ctx => {
       boardUrl: node.absolute_url,
       rawContent,
       content,
+      corporate: fieldParser.corporate(node, ctx),
       employmentType: (_fieldParser$employme = fieldParser.employmentType(node, ctx)) !== null && _fieldParser$employme !== void 0 ? _fieldParser$employme : 'FULL_TIME',
       alternativeCivilianService: (_fieldParser$alternat = fieldParser.alternativeCivilianService(node, ctx)) !== null && _fieldParser$alternat !== void 0 ? _fieldParser$alternat : false,
       priorExperience: (_fieldParser$priorExp = fieldParser.priorExperience(node, ctx)) !== null && _fieldParser$priorExp !== void 0 ? _fieldParser$priorExp : 'YES',

@@ -27,6 +27,9 @@ export const createSchemaCustomization: NormalizeAPI<'createSchemaCustomization'
       # HTML content (unsafe)
       rawContent: String!
 
+      # 회사 (당근마켓, 망근페이)
+      corporate: JobCorporate
+
       # 고용 형태
       employmentType: JobEmploymentType!
 
@@ -39,11 +42,17 @@ export const createSchemaCustomization: NormalizeAPI<'createSchemaCustomization'
       # 소속 챕터 (=직무)
       chapter: String!
 
+      # 검색 키워드
       keywords: [String!]!
     }
   `);
 
   actions.createTypes(gql`
+    enum JobCorporate {
+      KARROT_MARKET
+      KARROT_PAY
+    }
+
     enum JobEmploymentType {
       FULL_TIME
       CONTRACTOR
@@ -150,6 +159,7 @@ export const onCreateNode: NormalizeAPI<'onCreateNode'> = ctx => {
       boardUrl: node.absolute_url,
       rawContent,
       content,
+      corporate: fieldParser.corporate(node, ctx),
       employmentType: fieldParser.employmentType(node, ctx) ?? 'FULL_TIME',
       alternativeCivilianService: fieldParser.alternativeCivilianService(node, ctx) ?? false,
       priorExperience: fieldParser.priorExperience(node, ctx) ?? 'YES',
