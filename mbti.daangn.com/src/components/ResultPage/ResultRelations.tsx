@@ -43,7 +43,7 @@ const Image = styled.img`
   overflow: hidden;
 `
 const RelationTextWrap = styled.div`
-  flex: 1;
+  flex: 1 0 auto;
   margin-left: 1rem;
 `
 const Title = styled.span<{ color: string }>`

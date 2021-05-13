@@ -44,7 +44,7 @@ const Base = styled.div`
   background: #fff;
 `
 const ErrorBase = styled.div`
-  flex: 1;
+  flex: 1 0 auto;
   width: 100%;
   background: #fff;
   padding: 0 0 1.1875rem;
@@ -53,7 +53,7 @@ const ErrorBase = styled.div`
 `
 
 const Contents = styled.div`
-  flex: 1;
+  flex: 1 0 auto;
   width: 100%;
 `
 

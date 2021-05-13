@@ -43,7 +43,7 @@ const Bullit = styled.span`
   background: ${({ theme }) => theme.colors.carrot400};
 `
 const P = styled.p`
-  flex: 1;
+  flex: 1 0 auto;
   margin: 0;
   font-size: 1rem;
   line-height: 150%;

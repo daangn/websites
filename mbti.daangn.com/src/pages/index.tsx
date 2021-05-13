@@ -102,7 +102,7 @@ const Title = styled(ImageWrapper)`
   margin: 0.25rem 0;
 `
 const InnerContainer = styled(PaddingContainer)`
-  flex: 1;
+  flex: 1 0 auto;
   display: flex;
   flex-direction: column;
 `
@@ -151,7 +151,7 @@ const Bottom = styled.div`
 `
 const IllustWrapper = styled(ImageWrapper)`
   margin: 0 0 0.875rem;
-  flex: 1;
+  flex: 1 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
