@@ -57,9 +57,9 @@ const MBTIIntroPage: React.FC<PageProps<GatsbyTypes.MBTIIntroPageQuery>> = ({ da
           <Title>
             <StaticImage
               src="../images/img_main_text.png"
-              width={936}
+              width={624}
               placeholder="none"
-              height={378}
+              height={252}
               formats={['auto']}
               alt="성격으로 알아보는 당신의 씀씀이 테스트"
               style={{ width: '100%', maxWidth: 500 }}
@@ -68,8 +68,8 @@ const MBTIIntroPage: React.FC<PageProps<GatsbyTypes.MBTIIntroPageQuery>> = ({ da
           <IllustWrapper>
             <StaticImage
               src="../images/img_main_illust.png"
-              width={936}
-              height={744}
+              width={624}
+              height={496}
               placeholder="none"
               formats={['auto']}
               alt="당근마켓"
