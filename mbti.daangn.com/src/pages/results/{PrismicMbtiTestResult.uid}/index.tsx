@@ -63,6 +63,10 @@ const MBTITargetResultPage = ({
     }
   }, [code])
 
+  const handleClickMeet = () => {
+    location.href = 'https://daangn.onelink.me/oWdR/75984c3'
+  }
+
   return (
     <ResultPageView data={prismicMbtiTestResult.data}>
       <GatsbySeo
@@ -73,7 +77,7 @@ const MBTITargetResultPage = ({
             ? [
                 {
                   ...prismicMbtiTestResult.data.opengraph_image.dimensions,
-                  url: prismicMbtiTestResult.data.opengraph_image.url,
+                  url: prismicMbtiTestResult.data.opengraph_image.url!,
                 },
               ]
             : [],
@@ -83,7 +87,7 @@ const MBTITargetResultPage = ({
       />
       <ButtonsWrapper>
         <ButtonWrapper>
-          <KarrotButton>환상의 케미 이웃 만나러 가기</KarrotButton>
+          <KarrotButton onClick={handleClickMeet}>이웃 만나러 가기</KarrotButton>
         </ButtonWrapper>
 
         {isUserResult && (

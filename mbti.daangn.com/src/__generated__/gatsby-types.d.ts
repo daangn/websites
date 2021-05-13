@@ -7912,10 +7912,9 @@ type SitePluginSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type ResultRemarks_dataFragment = { readonly remarks: Maybe<ReadonlyArray<Maybe<(
-    Pick<PrismicMbtiTestResultRemarksGroupType, 'remark_name'>
-    & { readonly remark_description: Maybe<Pick<PrismicStructuredTextType, 'text'>> }
-  )>>> };
+type ResultComments_dataFragment = { readonly comments: Maybe<ReadonlyArray<Maybe<Pick<PrismicMbtiTestResultCommentsGroupType, 'text'>>>> };
+
+type ResultTags_dataFragment = { readonly tags: Maybe<ReadonlyArray<Maybe<Pick<PrismicMbtiTestResultTagsGroupType, 'tag_name'>>>> };
 
 type ResultPageView_prismicMbtiTestResultFragment = (
   Pick<PrismicMbtiTestResultDataType, 'summary'>
@@ -7928,6 +7927,26 @@ type ResultPageView_prismicMbtiTestResultFragment = (
   & ResultRemarks_dataFragment
   & ResultRelations_dataFragment
 );
+
+type ResultRemarks_dataFragment = { readonly remarks: Maybe<ReadonlyArray<Maybe<(
+    Pick<PrismicMbtiTestResultRemarksGroupType, 'remark_name'>
+    & { readonly remark_description: Maybe<Pick<PrismicStructuredTextType, 'text'>> }
+  )>>> };
+
+type UseSiteMetaQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type UseSiteMetaQuery = { readonly site: Maybe<{ readonly siteMetadata: Pick<SiteMetadata, 'siteUrl' | 'siteName'> }> };
+
+type MBTITargetResultViewPageQueryVariables = Exact<{
+  uid: Scalars['String'];
+}>;
+
+
+type MBTITargetResultViewPageQuery = { readonly prismicMbtiTestResult: Maybe<(
+    Pick<PrismicMbtiTestResult, 'id' | 'uid'>
+    & { readonly data: Maybe<ResultPageView_prismicMbtiTestResultFragment> }
+  )> };
 
 type ResultRelations_dataFragment = { readonly relations: ReadonlyArray<(
     Pick<PrismicMbtiTestResultRelationsGroupType, 'relation_type' | 'relation_color'>
@@ -7944,54 +7963,6 @@ type ResultRelations_dataFragment = { readonly relations: ReadonlyArray<(
         )> }
       )> }
     )> }
-  )> };
-
-type UseSiteMetaQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type UseSiteMetaQuery = { readonly site: Maybe<{ readonly siteMetadata: Pick<SiteMetadata, 'siteUrl' | 'siteName'> }> };
-
-type ResultComments_dataFragment = { readonly comments: Maybe<ReadonlyArray<Maybe<Pick<PrismicMbtiTestResultCommentsGroupType, 'text'>>>> };
-
-type MBTIQuestionPageQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type MBTIQuestionPageQuery = { readonly prismicMbtiTestQuestion: Maybe<{ readonly data: Maybe<{ readonly body: ReadonlyArray<(
-        { readonly __typename: 'PrismicMbtiTestQuestionBodyIe' }
-        & { readonly primary: Maybe<(
-          Pick<PrismicMbtiTestQuestionBodyIePrimaryType, 'question'>
-          & { readonly answer_i: Maybe<Pick<PrismicStructuredTextType, 'text'>>, readonly answer_e: Maybe<Pick<PrismicStructuredTextType, 'text'>> }
-        )> }
-      ) | (
-        { readonly __typename: 'PrismicMbtiTestQuestionBodyNs' }
-        & { readonly primary: Maybe<(
-          Pick<PrismicMbtiTestQuestionBodyNsPrimaryType, 'question'>
-          & { readonly answer_n: Maybe<Pick<PrismicStructuredTextType, 'text'>>, readonly answer_s: Maybe<Pick<PrismicStructuredTextType, 'text'>> }
-        )> }
-      ) | (
-        { readonly __typename: 'PrismicMbtiTestQuestionBodyFt' }
-        & { readonly primary: Maybe<(
-          Pick<PrismicMbtiTestQuestionBodyFtPrimaryType, 'question'>
-          & { readonly answer_f: Maybe<Pick<PrismicStructuredTextType, 'text'>>, readonly answer_t: Maybe<Pick<PrismicStructuredTextType, 'text'>> }
-        )> }
-      ) | (
-        { readonly __typename: 'PrismicMbtiTestQuestionBodyPj' }
-        & { readonly primary: Maybe<(
-          Pick<PrismicMbtiTestQuestionBodyPjPrimaryType, 'question'>
-          & { readonly answer_p: Maybe<Pick<PrismicStructuredTextType, 'text'>>, readonly answer_j: Maybe<Pick<PrismicStructuredTextType, 'text'>> }
-        )> }
-      )> }> }> };
-
-type ResultTags_dataFragment = { readonly tags: Maybe<ReadonlyArray<Maybe<Pick<PrismicMbtiTestResultTagsGroupType, 'tag_name'>>>> };
-
-type MBTITargetResultViewPageQueryVariables = Exact<{
-  uid: Scalars['String'];
-}>;
-
-
-type MBTITargetResultViewPageQuery = { readonly prismicMbtiTestResult: Maybe<(
-    Pick<PrismicMbtiTestResult, 'id' | 'uid'>
-    & { readonly data: Maybe<ResultPageView_prismicMbtiTestResultFragment> }
   )> };
 
 type MBTITargetResultPageQueryVariables = Exact<{
@@ -8052,6 +8023,35 @@ type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = Pick<ImageSharpFluid, 't
 type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+type MBTIQuestionPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type MBTIQuestionPageQuery = { readonly prismicMbtiTestQuestion: Maybe<{ readonly data: Maybe<{ readonly body: ReadonlyArray<(
+        { readonly __typename: 'PrismicMbtiTestQuestionBodyIe' }
+        & { readonly primary: Maybe<(
+          Pick<PrismicMbtiTestQuestionBodyIePrimaryType, 'question'>
+          & { readonly answer_i: Maybe<Pick<PrismicStructuredTextType, 'text'>>, readonly answer_e: Maybe<Pick<PrismicStructuredTextType, 'text'>> }
+        )> }
+      ) | (
+        { readonly __typename: 'PrismicMbtiTestQuestionBodyNs' }
+        & { readonly primary: Maybe<(
+          Pick<PrismicMbtiTestQuestionBodyNsPrimaryType, 'question'>
+          & { readonly answer_n: Maybe<Pick<PrismicStructuredTextType, 'text'>>, readonly answer_s: Maybe<Pick<PrismicStructuredTextType, 'text'>> }
+        )> }
+      ) | (
+        { readonly __typename: 'PrismicMbtiTestQuestionBodyFt' }
+        & { readonly primary: Maybe<(
+          Pick<PrismicMbtiTestQuestionBodyFtPrimaryType, 'question'>
+          & { readonly answer_f: Maybe<Pick<PrismicStructuredTextType, 'text'>>, readonly answer_t: Maybe<Pick<PrismicStructuredTextType, 'text'>> }
+        )> }
+      ) | (
+        { readonly __typename: 'PrismicMbtiTestQuestionBodyPj' }
+        & { readonly primary: Maybe<(
+          Pick<PrismicMbtiTestQuestionBodyPjPrimaryType, 'question'>
+          & { readonly answer_p: Maybe<Pick<PrismicStructuredTextType, 'text'>>, readonly answer_j: Maybe<Pick<PrismicStructuredTextType, 'text'>> }
+        )> }
+      )> }> }> };
 
 type MBTIIntroPageQueryVariables = Exact<{ [key: string]: never; }>;
 

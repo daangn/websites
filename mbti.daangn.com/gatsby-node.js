@@ -4,7 +4,7 @@
  * See: https://www.gatsbyjs.com/docs/node-apis/
  */
 const path = require('path')
-const { promises: fs } = require('fs')
+const { promises: fs, existsSync } = require('fs')
 
 const buildPageImage = require('./scripts/buildPageImages')
 
@@ -57,7 +57,9 @@ exports.onPostBuild = async ({ store, reporter }) => {
 
   const imageBuildDir = path.join(baseDir, 'tmp')
 
-  await fs.mkdir(imageBuildDir)
+  const isExistImageDir = existsSync(imageBuildDir)
+  !isExistImageDir && (await fs.mkdir(imageBuildDir))
+
   await buildPageImage({
     getPath: (name) => path.join(imageBuildDir, `${name}.jpeg`),
     resultNames,
