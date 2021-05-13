@@ -3,19 +3,19 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { graphql, Link } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 
-import JobPostingListItem from './JobPostingListItem';
+import JobPostSummary from './JobPostSummary';
 import FadeInWhenVisible from './FadeInWhenVisible';
 
-type JobPostingListProps = {
-  jobPosts: GatsbyTypes.JobPostingList_jobPostsFragment,
+type JobPostListProps = {
+  jobPosts: GatsbyTypes.JobPostList_jobPostsFragment,
 };
 
 export const query = graphql`
-  fragment JobPostingList_jobPosts on JobPostConnection {
+  fragment JobPostList_jobPosts on JobPostConnection {
     nodes {
       id
       pagePath: gatsbyPath(filePath: "/jobs/{JobPost.parent__(GreenhouseJob)__ghId}")
-      ...JobPostingListItem_jobPost
+      ...JobPostSummary_jobPost
     }
   }
 `;
@@ -35,7 +35,12 @@ const JobPostLink = styled(Link, {
   },
 });
 
-const JobPostingList: React.FC<JobPostingListProps> = ({
+const JobPostListItem = styled('li', {
+  position: 'relative',
+  display: 'block',
+});
+
+const JobPostList: React.FC<JobPostListProps> = ({
   jobPosts,
 }) => {
   return (
@@ -43,9 +48,11 @@ const JobPostingList: React.FC<JobPostingListProps> = ({
       <AnimatePresence initial={false}>
         {jobPosts.nodes.map(jobPost => (
           <FadeInWhenVisible key={jobPost.id}>
-            <JobPostLink to={jobPost.pagePath}>
-              <JobPostingListItem jobPost={jobPost} />
-            </JobPostLink>
+            <JobPostListItem>
+              <JobPostLink to={jobPost.pagePath!}>
+                <JobPostSummary jobPost={jobPost} />
+              </JobPostLink>
+            </JobPostListItem>
           </FadeInWhenVisible>
         ))}
       </AnimatePresence>
@@ -53,4 +60,4 @@ const JobPostingList: React.FC<JobPostingListProps> = ({
   );
 };
 
-export default JobPostingList;
+export default JobPostList;

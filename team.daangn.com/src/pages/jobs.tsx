@@ -3,16 +3,16 @@ import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import { rem } from 'polished';
 
-import Layout from '~/components/Layout';
 import PageTitle from '~/components/PageTitle';
-import JobPostingList from '~/components/JobPostingList';
+import JobPostList from '~/components/JobPostList';
 
 type JobsPageProps = PageProps<GatsbyTypes.JobsPageQuery>;
 
 export const query = graphql`
   query JobsPage {
+    ...DefaultLayout_query
     allJobPost {
-      ...JobPostingList_jobPosts
+      ...JobPostList_jobPosts
     }
   }
 `;
@@ -21,7 +21,7 @@ const JobsPage: React.FC<JobsPageProps> = ({
   data,
 }) => {
   return (
-    <Layout>
+    <>
       <PageTitle
         size={{ '@sm': 'sm' }}
         css={{
@@ -31,10 +31,10 @@ const JobsPage: React.FC<JobsPageProps> = ({
         {`당근마켓과 함께 할
         멋진 동료를 찾고 있어요!`}
       </PageTitle>
-      <JobPostingList
+      <JobPostList
         jobPosts={data.allJobPost}
       />
-    </Layout>
+    </>
   );
 };
 

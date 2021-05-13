@@ -6,7 +6,6 @@ import { rem } from 'polished';
 import { required } from '@cometjs/core';
 import type { PropOf, RefOf } from '@cometjs/react-utils';
 
-import Layout from '~/components/Layout';
 import _PageTitle from '~/components/PageTitle';
 import _FormField from '~/components/FormField';
 import Button from '~/components/Button';
@@ -15,6 +14,8 @@ type JobApplicationPageProps = PageProps<GatsbyTypes.JobApplicationPageQuery, Ga
 
 export const query = graphql`
   query JobApplicationPage($id: String!) {
+    ...DefaultLayout_query
+    ...JobPostLayout_query
     jobPost(id: { eq: $id }) {
       title
     }
@@ -36,11 +37,6 @@ export const query = graphql`
     }
   }
 `;
-
-const ContentWrapper = styled('div', {
-  maxWidth: rem(560),
-  margin: '0 auto',
-});
 
 const Form = styled('form', {
 });
@@ -95,14 +91,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
   };
 
   return (
-    <Layout>
-      <ContentWrapper>
-      <PageTitle size={{ '@sm': 'sm' }}>
-        지원하기
-      </PageTitle>
-      <JobPostTitle>
-        {data.jobPost.title}
-      </JobPostTitle>
+    <>
       <Form ref={formRef} onSubmit={handleSubmit}>
         <FormField
           variants={{ type: 'text' }}
@@ -179,8 +168,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
           동의 후 제출하기
         </Button>
       </Form>
-      </ContentWrapper>
-    </Layout>
+    </>
   );
 };
 

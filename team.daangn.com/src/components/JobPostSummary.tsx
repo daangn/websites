@@ -3,26 +3,27 @@ import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { rem } from 'polished';
 
-type JobPostingListItemProps = {
-  jobPost: GatsbyTypes.JobPostingListItem_jobPostFragment,
+type JobPostSummaryProps = {
+  jobPost: GatsbyTypes.JobPostSummary_jobPostFragment,
 };
 
 export const query = graphql`
-  fragment JobPostingListItem_jobPost on JobPost {
+  fragment JobPostSummary_jobPost on JobPost {
     id
     title
     chapter
+    corporate
     employmentType
     priorExperience
   }
 `;
 
-const Container = styled('li', {
+const Container = styled('div', {
   display: 'grid',
   gridTemplate: `
-    "title      title       title       title       title" auto
-    "chapter    department  prior       employment  ."     auto /
-    max-content max-content max-content max-content 1fr
+    "title       title       title" auto
+    "corporate   employment  ."     auto /
+     max-content max-content 1fr
   `,
   paddingY: rem(24),
   borderBottom: '1px solid $gray200',
@@ -31,8 +32,8 @@ const Container = styled('li', {
     layout: {
       table: {
         gridTemplate: `
-          "chapter     title department  prior       employment" auto /
-          ${rem(120)}  auto  ${rem(120)} ${rem(120)} ${rem(120)}
+          "title  corporate   employment" auto /
+           auto   ${rem(120)} ${rem(120)}
         `,
       },
     },
@@ -79,26 +80,8 @@ const JobProperty = styled('div', {
   },
 });
 
-const Chapter = styled(JobProperty, {
-  gridArea: 'chapter',
-  color: '$gray600',
-  fontSize: '$caption1',
-
-  variants: {
-    layout: {
-      table: {
-        justifySelf: 'flex-start',
-      },
-    },
-  },
-});
-
-const Department = styled(JobProperty, {
-  gridArea: 'department',
-});
-
-const PriorExperience = styled(JobProperty, {
-  gridArea: 'prior',
+const Corporate = styled(JobProperty, {
+  gridArea: 'corporate',
 });
 
 const EmploymentType = styled(JobProperty, {
@@ -113,27 +96,22 @@ const EmploymentType = styled(JobProperty, {
   },
 });
 
-const JobPostingListItem: React.FC<JobPostingListItemProps> = ({
+const JobPostSummary: React.FC<JobPostSummaryProps> = ({
   jobPost,
 }) => {
   return (
-    <Container layout={{ '@lg': 'table' }}>
+    <Container
+      layout={{ '@lg': 'table' }}
+    >
       <Title size={{ '@sm': 'sm' }}>
-          {jobPost.title}
+        {jobPost.title}
       </Title>
-      <Chapter layout={{ '@lg': 'table' }}>
-        {jobPost.chapter}
-      </Chapter>
-      <Department layout={{ '@lg': 'table' }}>
-        {'당근마켓'}
-      </Department>
-      <PriorExperience layout={{ '@lg': 'table' }}>
+      <Corporate layout={{ '@lg': 'table' }}>
         {{
-          YES: '경력',
-          NO: '신입',
-          WHATEVER: '경력/신입',
-        }[jobPost.priorExperience]}
-      </PriorExperience>
+          KARROT_MARKET: '당근마켓',
+          KARROT_PAY: '당근페이',
+        }[jobPost.corporate || 'KARROT_MARKET']}
+      </Corporate>
       <EmploymentType layout={{ '@lg': 'table' }}>
         {{
           FULL_TIME: '정규직',
@@ -145,4 +123,4 @@ const JobPostingListItem: React.FC<JobPostingListItemProps> = ({
   );
 };
 
-export default JobPostingListItem;
+export default JobPostSummary;
