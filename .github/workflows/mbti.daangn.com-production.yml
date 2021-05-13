@@ -2,7 +2,7 @@ name: mbti.daangn.com production build
 
 on:
   schedule:
-    - cron: "0 0 1 * * *"
+    - cron: "0 1 * * *"
   push:
     branches:
       - main
