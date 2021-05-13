@@ -22,6 +22,10 @@ const Layout: React.FC = ({ children }) => {
           type: 'website',
           site_name: data.site?.siteMetadata.siteName,
           url: data.site?.siteMetadata.siteUrl,
+          locale: 'ko_kr',
+        }}
+        facebook={{
+          appId: '198230258800515',
         }}
         language="ko"
         canonical={data.site?.siteMetadata.siteUrl}
