@@ -1,3 +1,8 @@
+require('dotenv-safe').config({
+  allowEmptyValues: process.env.NODE_ENV !== 'production',
+  example: './.env.example',
+})
+
 const siteMetadata = {
   siteUrl: 'https://mbti.daangn.com',
   siteName: '성격으로 알아보는 당신의 씀씀이 테스트',
