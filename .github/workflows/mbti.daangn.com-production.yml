@@ -12,7 +12,8 @@ jobs:
   release:
     runs-on: ubuntu-latest
     env:
-      GITHUB_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ secrets.ORG_GITHUB_READ_TOKEN }}
+      GATSBY_CLOUDFRONT_DOMAIN: https://d2gbdddbstq0dk.cloudfront.net/prod
 
     steps:
       - uses: actions/checkout@v2
