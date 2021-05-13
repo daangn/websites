@@ -15,6 +15,7 @@ import DownloadIc from '@src/images/ic_download_outline_m.svg'
 import ResultPageView from '@src/components/ResultPage'
 import { isValidResult } from '@src/utils'
 import { useOpenApp } from '@src/hooks/useOpenApp'
+import { GATSBY_CLOUDFRONT_DOMAIN } from '@src/constants/env'
 
 const checkIsMobileSafari = async () => {
   const agent = await getAccurateAgent()
@@ -51,7 +52,8 @@ const MBTITargetResultPage = ({
   const [image, setImage] = React.useState<null | string>(null)
 
   const handleClickDownload = React.useCallback(async () => {
-    const image = `/results/${code}/view.jpeg`
+    const image = `${GATSBY_CLOUDFRONT_DOMAIN}/${code}.jpeg`
+
     const isMobileSafari = await checkIsMobileSafari()
     if (isMobileSafari) {
       setImage(image)
