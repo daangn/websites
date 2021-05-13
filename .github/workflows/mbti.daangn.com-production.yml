@@ -34,17 +34,17 @@ jobs:
       - name: Build app
         run: |
           yarn workspace mbti.daangn.com build
-      # - name: Configure AWS credentials
-      #   uses: aws-actions/configure-aws-credentials@v1
-      #   with:
-      #     aws-access-key-id: ${{ secrets.ORG_AWS_ACCESS_KEY_ID }}
-      #     aws-secret-access-key: ${{ secrets.ORG_AWS_SECRET_ACCESS_KEY }}
-      #     aws-region: ap-northeast-2
-      # - name: S3 upload
-      #   run: |
-      #     aws s3 sync ./mbti.daangn.com/tmp/* s3://{BUCKET_NAME}/prod/
-      # - name: CloudFront Invalidate
-      #   run: |
-      #     aws cloudfront create-invalidation \
-      #     --distribution-id ${{ secrets.CF_DISTRIBUTION_ID }} \
-      #     --paths /prod/*
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.ORG_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.ORG_AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+      - name: S3 upload
+        run: |
+          aws s3 sync ./mbti.daangn.com/tmp/* s3://mbti.daangn.com/prod/
+      - name: CloudFront Invalidate
+        run: |
+          aws cloudfront create-invalidation \
+          --distribution-id ${{ secrets.CF_DISTRIBUTION_ID }} \
+          --paths /prod/*
