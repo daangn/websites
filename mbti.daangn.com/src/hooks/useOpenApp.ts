@@ -18,7 +18,7 @@ export const useOpenApp = () => {
 
   useEffect(() => {
     ;(async () => {
-      const valid = shouldOpenKarrotApp()
+      const valid = await shouldOpenKarrotApp()
       if (valid && !opened && bridge.environment === 'Web') {
         location.href = `karrot://minikarrot/router?remote=${encodeURIComponent(location.href)}&navbar=false`
         handleOpen()
