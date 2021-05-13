@@ -4,13 +4,13 @@ import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { rem } from 'polished';
 
-import Layout from '~/components/Layout';
 import FaqAccordion from '~/components/FaqAccordion';
 
 type FaqPageProps = PageProps<GatsbyTypes.FaqPageQuery, GatsbyTypes.SitePageContext>;
 
 export const query = graphql`
   query FaqPage {
+    ...DefaultLayout_query
     faq {
       ...FaqAccordion_faq
     }
@@ -42,12 +42,12 @@ const FaqPage: React.FC<FaqPageProps> = ({
   }
 
   return (
-    <Layout>
+    <>
       <Title size={{ '@sm': 'sm' }}>
         자주 묻는 질문
       </Title>
       <FaqAccordion faq={data.faq} />
-    </Layout>
+    </>
   );
 };
 

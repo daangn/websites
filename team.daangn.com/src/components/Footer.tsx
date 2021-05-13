@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { mapAbstractType } from '@cometjs/graphql-utils';
 import { graphql, Link } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
@@ -109,10 +110,10 @@ const SocialServiceProfileItem = styled('li', {
   justifyContent: 'center',
 });
 
-export default function Footer({
+const Footer: React.FC<FooterProps> = ({
   className,
   navigation,
-}: FooterProps) {
+}) => {
   return (
     <Container role="contentinfo" className={className}>
       <Content wide={{ '@sm': true }}>
@@ -150,4 +151,6 @@ export default function Footer({
       </Content>
     </Container>
   );
-}
+};
+
+export default Footer;

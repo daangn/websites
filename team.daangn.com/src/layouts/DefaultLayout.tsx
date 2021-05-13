@@ -1,38 +1,30 @@
 import * as React from 'react';
+import type { PageProps } from 'gatsby';
 import { Helmet } from 'react-helmet-async';
-import { graphql, useStaticQuery } from 'gatsby';
-import { global, styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { graphql } from 'gatsby';
+import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { rem } from 'polished';
+import type { OverrideProps } from '@cometjs/core';
 import { required } from '@cometjs/core';
 
-import _Header from './layout/Header';
-import _Footer from './layout/Footer';
+import _Header from '~/components/Header';
+import _Footer from '~/components/Footer';
 
-const globalStyles = global({
-  '*': {
-    margin: 0,
-    fontFamily: 'inherit',
-  },
-  'body': {
-    color: '$gray900',
-    fontFamily: '$body',
-    textRendering: 'optimizeLegibility',
-    wordBreak: 'break-word',
-    WebkitFontSmoothing: 'antialiased'
-  },
-  'body:lang(ko)': {
-    wordBreak: 'keep-all',
-  },
-  'a': {
-    color: '$carrot500',
-  },
-  '@media (prefers-reduced-motion: no-preference)': {
-    ':focus': {
-      transition: 'outline-offset .25s ease',
-      outlineOffset: '3px',
-    },
-  },
-});
+type DefaultLayoutProps = OverrideProps<
+  PageProps<GatsbyTypes.DefaultLayout_queryFragment>,
+  {
+    children: React.ReactNode,
+  }
+>;
+
+export const query = graphql`
+  fragment DefaultLayout_query on Query {
+    siteNavigation {
+      ...Header_navigation
+      ...Footer_navigation
+    }
+  }
+`;
 
 const Header = styled(_Header, {
   marginBottom: rem(36),
@@ -71,21 +63,12 @@ const Main = styled('main', {
   },
 });
 
-const Layout: React.FC = ({
+const DefaultLayout: React.FC<DefaultLayoutProps> = ({
+  data,
   children,
 }) => {
-  globalStyles();
-
-  const data = useStaticQuery<GatsbyTypes.LayoutStaticQuery>(graphql`
-    query LayoutStatic {
-      siteNavigation {
-        ...Header_navigation
-        ...Footer_navigation
-      }
-    }
-  `);
-
   required(data.siteNavigation);
+
   return (
     <>
       <Helmet key="helmet">
@@ -111,4 +94,4 @@ const Layout: React.FC = ({
   );
 }
 
-export default Layout;
+export default DefaultLayout;

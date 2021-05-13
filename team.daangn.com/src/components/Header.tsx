@@ -1,10 +1,10 @@
-import { Link, graphql } from 'gatsby';
+import * as React from 'react';
+import { graphql, Link } from 'gatsby';
 import { rem } from 'polished';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 
 import NavigationMenu from './header/NavigationMenu';
-
-import { ReactComponent as LogoSvg } from './logo.svg';
+import { ReactComponent as LogoSvg } from './header/logo.svg';
 
 type HeaderProps = {
   className?: string,
@@ -80,15 +80,15 @@ const Logo = styled(LogoSvg, {
   },
 });
 
-export default function Header({
+const Header: React.FC<HeaderProps> = ({
   className,
   navigation,
-}: HeaderProps) {
+}) => {
   return (
     <div className={className}>
       <Placer size={{ '@sm': 'sm' }} />
       <Container size={{ '@sm': 'sm' }}>
-        <Content wide={{ initial: false, '@sm': true }}>
+        <Content wide={{ '@sm': true }}>
           <HomeLink to="/">
             <Logo size={{ '@sm': 'sm' }} />
           </HomeLink>
@@ -100,4 +100,6 @@ export default function Header({
       </Container>
     </div>
   );
-}
+};
+
+export default Header;
