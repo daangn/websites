@@ -7912,7 +7912,22 @@ type SitePluginSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type ResultComments_dataFragment = { readonly comments: Maybe<ReadonlyArray<Maybe<Pick<PrismicMbtiTestResultCommentsGroupType, 'text'>>>> };
+type ResultRemarks_dataFragment = { readonly remarks: Maybe<ReadonlyArray<Maybe<(
+    Pick<PrismicMbtiTestResultRemarksGroupType, 'remark_name'>
+    & { readonly remark_description: Maybe<Pick<PrismicStructuredTextType, 'text'>> }
+  )>>> };
+
+type ResultPageView_prismicMbtiTestResultFragment = (
+  Pick<PrismicMbtiTestResultDataType, 'summary'>
+  & { readonly relations: ReadonlyArray<{ readonly __typename: 'PrismicMbtiTestResultRelationsGroupType' }>, readonly thumbnail: (
+    Pick<PrismicImageType, 'alt' | 'url'>
+    & { readonly localFile: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }> }
+  ), readonly remarks: Maybe<ReadonlyArray<Maybe<{ readonly __typename: 'PrismicMbtiTestResultRemarksGroupType' }>>> }
+  & ResultTags_dataFragment
+  & ResultComments_dataFragment
+  & ResultRemarks_dataFragment
+  & ResultRelations_dataFragment
+);
 
 type ResultRelations_dataFragment = { readonly relations: ReadonlyArray<(
     Pick<PrismicMbtiTestResultRelationsGroupType, 'relation_type' | 'relation_color'>
@@ -7931,29 +7946,12 @@ type ResultRelations_dataFragment = { readonly relations: ReadonlyArray<(
     )> }
   )> };
 
-type ResultRemarks_dataFragment = { readonly remarks: Maybe<ReadonlyArray<Maybe<(
-    Pick<PrismicMbtiTestResultRemarksGroupType, 'remark_name'>
-    & { readonly remark_description: Maybe<Pick<PrismicStructuredTextType, 'text'>> }
-  )>>> };
-
 type UseSiteMetaQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type UseSiteMetaQuery = { readonly site: Maybe<{ readonly siteMetadata: Pick<SiteMetadata, 'siteUrl' | 'siteName'> }> };
 
-type ResultTags_dataFragment = { readonly tags: Maybe<ReadonlyArray<Maybe<Pick<PrismicMbtiTestResultTagsGroupType, 'tag_name'>>>> };
-
-type ResultPageView_prismicMbtiTestResultFragment = (
-  Pick<PrismicMbtiTestResultDataType, 'summary'>
-  & { readonly relations: ReadonlyArray<{ readonly __typename: 'PrismicMbtiTestResultRelationsGroupType' }>, readonly thumbnail: (
-    Pick<PrismicImageType, 'alt' | 'url'>
-    & { readonly localFile: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }> }
-  ), readonly remarks: Maybe<ReadonlyArray<Maybe<{ readonly __typename: 'PrismicMbtiTestResultRemarksGroupType' }>>> }
-  & ResultTags_dataFragment
-  & ResultComments_dataFragment
-  & ResultRemarks_dataFragment
-  & ResultRelations_dataFragment
-);
+type ResultComments_dataFragment = { readonly comments: Maybe<ReadonlyArray<Maybe<Pick<PrismicMbtiTestResultCommentsGroupType, 'text'>>>> };
 
 type MBTIQuestionPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -7984,6 +7982,8 @@ type MBTIQuestionPageQuery = { readonly prismicMbtiTestQuestion: Maybe<{ readonl
         )> }
       )> }> }> };
 
+type ResultTags_dataFragment = { readonly tags: Maybe<ReadonlyArray<Maybe<Pick<PrismicMbtiTestResultTagsGroupType, 'tag_name'>>>> };
+
 type MBTITargetResultViewPageQueryVariables = Exact<{
   uid: Scalars['String'];
 }>;
@@ -7993,22 +7993,6 @@ type MBTITargetResultViewPageQuery = { readonly prismicMbtiTestResult: Maybe<(
     Pick<PrismicMbtiTestResult, 'id' | 'uid'>
     & { readonly data: Maybe<ResultPageView_prismicMbtiTestResultFragment> }
   )> };
-
-type GatsbyPrismicImageFixedFragment = Pick<PrismicImageFixedType, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyPrismicImageFixed_noBase64Fragment = Pick<PrismicImageFixedType, 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyPrismicImageFixed_withWebpFragment = Pick<PrismicImageFixedType, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyPrismicImageFixed_withWebp_noBase64Fragment = Pick<PrismicImageFixedType, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyPrismicImageFluidFragment = Pick<PrismicImageFluidType, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyPrismicImageFluid_noBase64Fragment = Pick<PrismicImageFluidType, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyPrismicImageFluid_withWebpFragment = Pick<PrismicImageFluidType, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyPrismicImageFluid_withWebp_noBase64Fragment = Pick<PrismicImageFluidType, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
 type MBTITargetResultPageQueryVariables = Exact<{
   uid: Scalars['String'];
@@ -8026,6 +8010,22 @@ type MBTITargetResultPageQuery = { readonly prismicMbtiTestResult: Maybe<(
       & ResultPageView_prismicMbtiTestResultFragment
     )> }
   )> };
+
+type GatsbyPrismicImageFixedFragment = Pick<PrismicImageFixedType, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
+
+type GatsbyPrismicImageFixed_noBase64Fragment = Pick<PrismicImageFixedType, 'width' | 'height' | 'src' | 'srcSet'>;
+
+type GatsbyPrismicImageFixed_withWebpFragment = Pick<PrismicImageFixedType, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+
+type GatsbyPrismicImageFixed_withWebp_noBase64Fragment = Pick<PrismicImageFixedType, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+
+type GatsbyPrismicImageFluidFragment = Pick<PrismicImageFluidType, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyPrismicImageFluid_noBase64Fragment = Pick<PrismicImageFluidType, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyPrismicImageFluid_withWebpFragment = Pick<PrismicImageFluidType, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+type GatsbyPrismicImageFluid_withWebp_noBase64Fragment = Pick<PrismicImageFluidType, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
