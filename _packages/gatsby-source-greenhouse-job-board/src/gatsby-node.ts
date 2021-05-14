@@ -3,7 +3,7 @@ import got from 'got';
 
 import type { GreenhouseJob } from './types';
 
-export const gql = String.raw;
+const gql = String.raw;
 
 export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
   Joi,
