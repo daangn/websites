@@ -20,6 +20,17 @@ module.exports = {
   },
   siteMetadata,
   plugins: [
+    process.env.SENTRY_DSN
+      ? {
+          resolve: '@sentry/gatsby',
+          options: {
+            tracesSampleRate: 0,
+            dsn: 'https://a028fb86647944f8a0a81e7808191d81@o24217.ingest.sentry.io/5764615',
+            environment: 'development',
+            sampleRate: 0.7,
+          },
+        }
+      : null,
     'gatsby-plugin-svgr',
     `gatsby-plugin-image`,
     `gatsby-plugin-advanced-sitemap`,
@@ -91,5 +102,5 @@ module.exports = {
         },
       },
     },
-  ],
+  ].filter((d) => !!d),
 }
