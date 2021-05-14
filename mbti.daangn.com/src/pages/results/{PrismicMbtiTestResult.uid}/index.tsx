@@ -49,7 +49,9 @@ const MBTITargetResultPage = ({
     const image = `${GATSBY_CLOUDFRONT_DOMAIN}/${code}.jpeg`
 
     const isMobileSafari = await checkIsMobileSafari()
-    if (isMobileSafari || bridge.environment !== 'Web') {
+    if (bridge.environment === 'Android') {
+      window.open(image)
+    } else if (isMobileSafari) {
       setImage(image)
     } else {
       const link = document.createElement('a')
