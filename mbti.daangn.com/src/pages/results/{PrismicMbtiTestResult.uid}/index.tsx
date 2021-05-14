@@ -16,6 +16,7 @@ import ResultPageView from '@src/components/ResultPage'
 import { useOpenApp } from '@src/hooks/useOpenApp'
 import { GATSBY_CLOUDFRONT_DOMAIN } from '@src/constants/env'
 import { useSiteMeta } from '@src/hooks/useSiteMeta'
+import { bridge } from '@src/bridge'
 
 const checkIsMobileSafari = async () => {
   const agent = await getAccurateAgent()
@@ -48,7 +49,7 @@ const MBTITargetResultPage = ({
     const image = `${GATSBY_CLOUDFRONT_DOMAIN}/${code}.jpeg`
 
     const isMobileSafari = await checkIsMobileSafari()
-    if (isMobileSafari) {
+    if (isMobileSafari || bridge.environment !== 'Web') {
       setImage(image)
     } else {
       const link = document.createElement('a')
