@@ -16,6 +16,7 @@ import ResultPageView from '@src/components/ResultPage'
 import { isValidResult } from '@src/utils'
 import { useOpenApp } from '@src/hooks/useOpenApp'
 import { GATSBY_CLOUDFRONT_DOMAIN } from '@src/constants/env'
+import { useSiteMeta } from '@src/hooks/useSiteMeta'
 
 const checkIsMobileSafari = async () => {
   const agent = await getAccurateAgent()
@@ -69,6 +70,8 @@ const MBTITargetResultPage = ({
     location.href = 'https://daangn.onelink.me/oWdR/75984c3'
   }
 
+  const data = useSiteMeta()
+  const url = `${data.site?.siteMetadata.siteUrl}/results/${code}`
   return (
     <ResultPageView data={prismicMbtiTestResult.data}>
       <GatsbySeo
@@ -85,7 +88,9 @@ const MBTITargetResultPage = ({
             : [],
           title: prismicMbtiTestResult.data.summary,
           description: prismicMbtiTestResult.data.og_description,
+          url,
         }}
+        canonical={url}
       />
       <ButtonsWrapper>
         <ButtonWrapper>

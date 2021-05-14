@@ -130,7 +130,7 @@ const ResultPageView: React.FC<Props> = ({ data, children, preview }) => {
 const Container = styled(Base)`
   height: auto;
   min-height: 100vh;
-  flex: 1;
+  flex: 1 0 auto;
 `
 const ImageWrapper = styled.div`
   display: flex;
@@ -179,12 +179,12 @@ const ImageArea = styled.div`
 const CardWrapper = styled.div`
   position: relative;
   margin-top: -0.5rem;
-  flex: 1;
+  flex: 1 0 auto;
   display: flex;
   flex-direction: column;
 `
 const Card = styled.div`
-  flex: 1;
+  flex: 1 0 auto;
   background: #ffffff;
   box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.04);
   border-top-left-radius: 0.875rem;

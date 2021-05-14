@@ -15,7 +15,6 @@ export const Base = styled(Container)`
   display: flex;
   flex-direction: column;
   width: 100%;
-  overflow: hidden;
 `
 
 export const PaddingContainer = styled.div`

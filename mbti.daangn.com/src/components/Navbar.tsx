@@ -178,7 +178,7 @@ interface CenterProps {
   showNavigationBg: boolean
 }
 const Center = styled.div<CenterProps>`
-  flex: 1;
+  flex: 1 0 auto;
   display: flex;
   align-items: center;
   overflow: hidden;

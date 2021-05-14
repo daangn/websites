@@ -210,7 +210,7 @@ const ResetButton = styled.button`
   color: ${({ theme }) => theme.colors.gray900};
 `
 const InnerContainer = styled(PaddingContainer)`
-  flex: 1;
+  flex: 1 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -240,7 +240,7 @@ const fadeOut = keyframes`
   
 `
 const ContentWrapper = styled.div<{ willUnmount: boolean }>`
-  flex: 1;
+  flex: 1 0 auto;
   animation: 350ms ${({ willUnmount }) => (willUnmount ? fadeOut : fadeUp)} 0ms forwards;
   opacity: 0;
 
