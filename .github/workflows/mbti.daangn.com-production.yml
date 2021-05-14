@@ -46,7 +46,7 @@ jobs:
           aws-region: ap-northeast-2
       - name: S3 upload
         run: |
-          aws s3 sync ./mbti.daangn.com/tmp s3://mbti-image.daangn.com/results/
+          aws s3 sync ./mbti.daangn.com/tmp s3://mbti-image.daangn.com/results/ --content-disposition attachment
       - name: CloudFront Invalidate
         run: |
           aws cloudfront create-invalidation \
