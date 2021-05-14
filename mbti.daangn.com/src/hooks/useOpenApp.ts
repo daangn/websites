@@ -8,7 +8,7 @@ const shouldOpenKarrotApp = async () => {
   const agent = await getAccurateAgent()
 
   if (agent) {
-    return agent.browser.webkit || !agent.isMobile
+    return agent.browser.webkit || agent.isMobile
   }
   return false
 }

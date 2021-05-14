@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.ORG_GITHUB_READ_TOKEN }}
-      GATSBY_CLOUDFRONT_DOMAIN: https://mbti-image.daangn.com/prod
+      GATSBY_CLOUDFRONT_DOMAIN: https://mbti-image.daangn.com/results
 
     steps:
       - uses: actions/checkout@v2
@@ -46,9 +46,9 @@ jobs:
           aws-region: ap-northeast-2
       - name: S3 upload
         run: |
-          aws s3 sync ./mbti.daangn.com/tmp/* s3://mbti.daangn.com/prod/
+          aws s3 sync ./mbti.daangn.com/tmp s3://mbti-image.daangn.com/results/
       - name: CloudFront Invalidate
         run: |
           aws cloudfront create-invalidation \
           --distribution-id ${{ secrets.MBTI_CF_DISTRIBUTION_ID }} \
-          --paths /prod/*
+          --paths /results/*
