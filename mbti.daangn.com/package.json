@@ -33,6 +33,7 @@
     "@daangn/webview-bridge-modern": "^4.7.0",
     "@egjs/agent": "^2.3.0",
     "@emotion/eslint-plugin": "^11.2.0",
+    "@sentry/gatsby": "^6.3.6",
     "@svgr/webpack": "^5.5.0",
     "@types/lodash.debounce": "^4.0.6",
     "@types/lodash.throttle": "^4.1.6",
