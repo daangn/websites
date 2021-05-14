@@ -4,6 +4,7 @@ import { css } from '@emotion/react'
 
 import { bridge } from '@src/bridge'
 import Portal from '@src/components/Portal'
+import { IS_DAANGN_WEBVIEW } from '@src/constants/env'
 
 import IconClose from './icons/Close'
 import IconBack from './icons/Back'
@@ -53,13 +54,22 @@ const Navbar = React.forwardRef<NavbarRef, NavbarProps>(
       }
     }, [theme])
 
+    const handleClickClose = () => {
+      if (IS_DAANGN_WEBVIEW) {
+        try {
+          bridge.router.close()
+        } catch {
+          history.back()
+        }
+      } else {
+        history.back()
+      }
+    }
+
     const leftIconInstance = React.useMemo(
       () =>
         showClose ? (
-          <Back
-            onClick={() => {
-              bridge.environment === 'Web' ? history.back() : bridge.router.close()
-            }}>
+          <Back onClick={handleClickClose}>
             <IconClose color={iconColor} />
           </Back>
         ) : (

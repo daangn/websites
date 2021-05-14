@@ -14,7 +14,7 @@ import Portal from '@src/components/Portal'
 import DownloadIc from '@src/images/ic_download_outline_m.svg'
 import ResultPageView from '@src/components/ResultPage'
 import { useOpenApp } from '@src/hooks/useOpenApp'
-import { GATSBY_CLOUDFRONT_DOMAIN } from '@src/constants/env'
+import { GATSBY_CLOUDFRONT_DOMAIN, IS_ANDROID } from '@src/constants/env'
 import { useSiteMeta } from '@src/hooks/useSiteMeta'
 import { bridge } from '@src/bridge'
 
@@ -49,7 +49,7 @@ const MBTITargetResultPage = ({
     const image = `${GATSBY_CLOUDFRONT_DOMAIN}/${code}.jpeg`
 
     const isMobileSafari = await checkIsMobileSafari()
-    if (bridge.environment === 'Android') {
+    if (IS_ANDROID) {
       window.open(image)
     } else if (isMobileSafari) {
       setImage(image)
