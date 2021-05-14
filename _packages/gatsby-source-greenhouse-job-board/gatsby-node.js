@@ -3,12 +3,11 @@
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 exports.__esModule = true;
-exports.sourceNodes = exports.createSchemaCustomization = exports.pluginOptionsSchema = exports.gql = void 0;
+exports.sourceNodes = exports.createSchemaCustomization = exports.pluginOptionsSchema = void 0;
 
 var _got = _interopRequireDefault(require("got"));
 
 const gql = String.raw;
-exports.gql = gql;
 
 const pluginOptionsSchema = ({
   Joi
