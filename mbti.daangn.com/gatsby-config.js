@@ -20,12 +20,12 @@ module.exports = {
   },
   siteMetadata,
   plugins: [
-    process.env.SENTRY_DSN
+    process.env.GATSBY_SENTRY_DSN
       ? {
           resolve: '@sentry/gatsby',
           options: {
             tracesSampleRate: 0,
-            dsn: 'https://a028fb86647944f8a0a81e7808191d81@o24217.ingest.sentry.io/5764615',
+            dsn: process.env.GATSBY_SENTRY_DSN,
             environment: 'development',
             sampleRate: 0.7,
           },
