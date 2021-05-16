@@ -62,7 +62,7 @@ const ResultPageView: React.FC<Props> = ({ data, children, preview }) => {
 
   return (
     <Layout>
-      <Container>
+      <Container id="daangn-mbti-result-page-container">
         {preview ? (
           <Margin />
         ) : (

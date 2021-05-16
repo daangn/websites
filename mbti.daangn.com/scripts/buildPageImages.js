@@ -84,7 +84,7 @@ module.exports = async ({ resultNames, getPath, publicDir, reporter }) => {
     await page.evaluate(() => {
       document.documentElement.style.fontSize = `3em`
     })
-    await (await page.$('#___gatsby')).screenshot({
+    await (await page.$('#daangn-mbti-result-page-container')).screenshot({
       path: getPath(resultName),
     })
   }
