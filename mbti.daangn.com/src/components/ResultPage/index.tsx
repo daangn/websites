@@ -129,7 +129,7 @@ const ResultPageView: React.FC<Props> = ({ data, children, preview }) => {
 
 const Container = styled(Base)`
   height: auto;
-  min-height: 100vh;
+  min-height: 100%;
   flex: 1 0 auto;
 `
 const ImageWrapper = styled.div`

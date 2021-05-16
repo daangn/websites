@@ -11,7 +11,7 @@ export const Container = styled.div`
   } ;
 `
 export const Base = styled(Container)`
-  min-height: 100vh;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   width: 100%;
