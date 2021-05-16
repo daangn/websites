@@ -1,0 +1,13 @@
+name = 'team-daangn-com'
+type = 'javascript'
+account_id = 'aad5c82543cd1f267b89737d0f56405e'
+usage_model = ''
+zone_id = ''
+route = ''
+workers_dev = true
+
+[build]
+command = 'yarn esbuild src-worker/index.ts --bundle --outfile=dist/worker.js --format=esm'
+
+[build.upload]
+format = 'service-worker'

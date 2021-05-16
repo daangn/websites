@@ -1,4 +1,5 @@
-.cache/
-public/
+/.cache/
+/public/
+/dist/
 
 /*.js
