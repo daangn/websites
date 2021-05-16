@@ -331,6 +331,8 @@ type Site implements Node {
     locale: String
   ): Date
   siteMetadata: SiteMetadata!
+  port: Int
+  host: String
   flags: SiteFlags
   polyfill: Boolean
   pathPrefix: String
@@ -2239,10 +2241,6 @@ type SitePlugin implements Node {
 }
 
 type SitePluginPluginOptions {
-  tracesSampleRate: Int
-  dsn: String
-  environment: String
-  sampleRate: Float
   name: String
   path: String
   id: String
@@ -2798,7 +2796,7 @@ type Query {
   allFile(filter: FileFilterInput, sort: FileSortInput, skip: Int, limit: Int): FileConnection!
   directory(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Directory
   allDirectory(filter: DirectoryFilterInput, sort: DirectorySortInput, skip: Int, limit: Int): DirectoryConnection!
-  site(buildTime: DateQueryOperatorInput, siteMetadata: SiteMetadataFilterInput, flags: SiteFlagsFilterInput, polyfill: BooleanQueryOperatorInput, pathPrefix: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Site
+  site(buildTime: DateQueryOperatorInput, siteMetadata: SiteMetadataFilterInput, port: IntQueryOperatorInput, host: StringQueryOperatorInput, flags: SiteFlagsFilterInput, polyfill: BooleanQueryOperatorInput, pathPrefix: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Site
   allSite(filter: SiteFilterInput, sort: SiteSortInput, skip: Int, limit: Int): SiteConnection!
   siteFunction(apiRoute: StringQueryOperatorInput, originalFilePath: StringQueryOperatorInput, relativeCompiledFilePath: StringQueryOperatorInput, absoluteCompiledFilePath: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SiteFunction
   allSiteFunction(filter: SiteFunctionFilterInput, sort: SiteFunctionSortInput, skip: Int, limit: Int): SiteFunctionConnection!
@@ -3558,6 +3556,8 @@ enum SiteFieldsEnum {
   siteMetadata___siteUrl
   siteMetadata___siteName
   siteMetadata___shortName
+  port
+  host
   flags___FAST_DEV
   flags___QUERY_ON_DEMAND
   flags___LAZY_IMAGES
@@ -3665,6 +3665,8 @@ type SiteGroupConnection {
 input SiteFilterInput {
   buildTime: DateQueryOperatorInput
   siteMetadata: SiteMetadataFilterInput
+  port: IntQueryOperatorInput
+  host: StringQueryOperatorInput
   flags: SiteFlagsFilterInput
   polyfill: BooleanQueryOperatorInput
   pathPrefix: StringQueryOperatorInput
@@ -3844,10 +3846,6 @@ input SitePluginFilterInput {
 }
 
 input SitePluginPluginOptionsFilterInput {
-  tracesSampleRate: IntQueryOperatorInput
-  dsn: StringQueryOperatorInput
-  environment: StringQueryOperatorInput
-  sampleRate: FloatQueryOperatorInput
   name: StringQueryOperatorInput
   path: StringQueryOperatorInput
   id: StringQueryOperatorInput
@@ -4565,10 +4563,6 @@ enum SitePageFieldsEnum {
   pluginCreator___resolve
   pluginCreator___name
   pluginCreator___version
-  pluginCreator___pluginOptions___tracesSampleRate
-  pluginCreator___pluginOptions___dsn
-  pluginCreator___pluginOptions___environment
-  pluginCreator___pluginOptions___sampleRate
   pluginCreator___pluginOptions___name
   pluginCreator___pluginOptions___path
   pluginCreator___pluginOptions___id
@@ -7294,10 +7288,6 @@ enum SitePluginFieldsEnum {
   resolve
   name
   version
-  pluginOptions___tracesSampleRate
-  pluginOptions___dsn
-  pluginOptions___environment
-  pluginOptions___sampleRate
   pluginOptions___name
   pluginOptions___path
   pluginOptions___id

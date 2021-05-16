@@ -1,6 +1,9 @@
 html {
   font-size: 16px;
 }
+html, body, #___gatsby, #___gatsby > div:first-child, .___gatsby {
+  height: 100%;
+}
 body {
   margin: 0;
   -webkit-tap-highlight-color: transparent;
