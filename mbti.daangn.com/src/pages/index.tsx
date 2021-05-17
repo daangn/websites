@@ -80,10 +80,12 @@ const MBTIIntroPage: React.FC<PageProps<GatsbyTypes.MBTIIntroPageQuery>> = ({ da
           <Bottom>
             <Participants participants={participants} />
 
-            <Link to="/q/" className="karrot-button" onClick={handleClickStart}>
+            <Link id="start-test" to="/q/" className="karrot-button" onClick={handleClickStart}>
               테스트 시작하기
             </Link>
-            <WhiteButton onClick={handleClickShare}>테스트 공유하기</WhiteButton>
+            <WhiteButton id="share-intro" onClick={handleClickShare}>
+              테스트 공유하기
+            </WhiteButton>
           </Bottom>
         </InnerContainer>
       </Container>

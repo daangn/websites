@@ -21,14 +21,21 @@ export const useShare = (href?: string) => {
         alert('주소가 복사되었어요!')
       }
     }
-    if (IS_DAANGN_WEBVIEW) {
-      try {
-        bridge.share.open({ text: '당근마켓 MBTI', url: href || window.location.href })
-      } catch {
+    try {
+      if (IS_DAANGN_WEBVIEW) {
+        try {
+          bridge.share.open({ text: '당신의 씀씀이 테스트', url: href || window.location.href })
+        } catch {
+          openWebNativeShare()
+        }
+      } else {
         openWebNativeShare()
       }
-    } else {
-      openWebNativeShare()
+    } finally {
+      window.gtag?.('event', 'share', {
+        content_type: 'mbti',
+        item_id: window.location.pathname,
+      })
     }
   }, [href])
 }

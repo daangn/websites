@@ -42,11 +42,12 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-google-tagmanager',
+      resolve: 'gatsby-plugin-google-gtag',
       options: {
-        id: 'GTM-P5P3KT9',
-
-        defaultDataLayer: {},
+        trackingIds: ['GTM-P5P3KT9'],
+        pluginConfig: {
+          exclude: ['/preview/**'],
+        },
       },
     },
     `gatsby-plugin-sharp`,

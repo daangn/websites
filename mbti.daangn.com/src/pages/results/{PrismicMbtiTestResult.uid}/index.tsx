@@ -89,22 +89,28 @@ const MBTITargetResultPage = ({
       />
       <ButtonsWrapper>
         <ButtonWrapper>
-          <KarrotButton onClick={handleClickMeet}>이웃 만나러 가기</KarrotButton>
+          <KarrotButton id="visit-karrot" onClick={handleClickMeet}>
+            이웃 만나러 가기
+          </KarrotButton>
         </ButtonWrapper>
 
         <ButtonWrapper>
-          <OutlineWhiteButton onClick={handleClickDownload}>결과 이미지 저장하기</OutlineWhiteButton>
+          <OutlineWhiteButton id="download-result" onClick={handleClickDownload}>
+            결과 이미지 저장하기
+          </OutlineWhiteButton>
         </ButtonWrapper>
 
         <RetryButtonWrapper>
-          <Link to="/" onClick={handleClickRetryButton} className="mbti-test-retry-button">
+          <Link id="restart-test" to="/" onClick={handleClickRetryButton} className="mbti-test-retry-button">
             테스트 다시하기
           </Link>
         </RetryButtonWrapper>
       </ButtonsWrapper>
 
       <Portal>
-        <DownloadButton onClick={handleClickShare}>나의 유형 결과 공유하기</DownloadButton>
+        <DownloadButton id="share-result" onClick={handleClickShare}>
+          나의 유형 결과 공유하기
+        </DownloadButton>
       </Portal>
 
       <Modal
