@@ -21,3 +21,23 @@ if (IS_DAANGN_WEBVIEW) {
 }
 
 export const wrapRootElement = wrapWithProvider
+
+export const onClientEntry = () => {
+  if (typeof window.gtag === 'function') {
+    return
+  }
+
+  window.addEventListener('click', (e) => {
+    const target = e.target
+    if (!(target && target.closest)) {
+      return
+    }
+
+    const closestEl = target.closest('a[id], button[id], input[id]')
+    if (closestEl) {
+      return
+    }
+
+    window.gtag('event', 'click', { element_id: closestEl.id })
+  })
+}
