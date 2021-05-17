@@ -7335,6 +7335,11 @@ gatsby-plugin-advanced-sitemap@^1.6.0:
     moment "2.29.1"
     xml "^1.0.1"
 
+gatsby-plugin-concurrent-mode@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-concurrent-mode/-/gatsby-plugin-concurrent-mode-0.1.0.tgz#5d748685ba82b181db052a2c85a11cea0cab74f3"
+  integrity sha512-8KjCIGfe0+acNTcvpSc+OcNBZcp+ySvl/K634MG1+t6ijdNMEbuAk56XgBW1EFpXbVF1NRJjgm5VdDWEdVp42w==
+
 gatsby-plugin-emotion@^6.5.0:
   version "6.5.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-emotion/-/gatsby-plugin-emotion-6.5.0.tgz#93454ce164dec52be47488fe2410a663c592bf55"

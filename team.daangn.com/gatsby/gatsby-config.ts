@@ -21,6 +21,7 @@ const config: GatsbyConfig = {
     siteUrl: siteUrl.origin,
   },
   plugins: [
+    'gatsby-plugin-concurrent-mode',
     'gatsby-theme-stitches',
     'gatsby-plugin-svgr',
     'gatsby-plugin-image',
