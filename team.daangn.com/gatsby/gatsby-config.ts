@@ -1,7 +1,8 @@
 import type { GatsbyConfig } from 'gatsby';
-import dotenv from 'dotenv-safe';
 
-dotenv.config();
+// No environment variable required yet
+// import dotenv from 'dotenv-safe';
+// dotenv.config();
 
 const siteMetadata = {
   siteUrl: 'https://team.daangn.com/',
@@ -57,6 +58,7 @@ const config: GatsbyConfig = {
       options: {
         repositoryName: 'karrot',
         accessToken: process.env.PRISMIC_ACCESS_TOKEN,
+        prismicToolbar: process.env.NODE_ENV === 'development',
         schemas: {
           faq: require('@karrotmarket/prismic-config/schema/faq.json'),
           site_navigation: require('@karrotmarket/prismic-config/schema/site_navigation.json'),

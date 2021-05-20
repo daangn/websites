@@ -14,7 +14,7 @@
     }
   ],
   "scripts": {
-    "prepare-gatsby": "babel gatsby -d . -x .ts,.tsx --config-file ./gatsby/babel.config.json",
+    "prepare-gatsby": "babel gatsby -d . -x .ts,.tsx --presets gatsby-package",
     "postinstall": "yarn prepare-gatsby",
     "develop": "yarn prepare-gatsby && gatsby develop",
     "build": "yarn prepare-gatsby && gatsby build",

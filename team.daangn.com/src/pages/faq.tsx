@@ -1,8 +1,10 @@
 import * as React from 'react';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
+import { withPreview } from 'gatsby-source-prismic'
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { rem } from 'polished';
+import { required } from '@cometjs/core';
 
 import FaqAccordion from '~/components/FaqAccordion';
 
@@ -36,18 +38,15 @@ const Title = styled('h1', {
 const FaqPage: React.FC<FaqPageProps> = ({
   data,
 }) => {
-  if (!data.prismicFaq) {
-    throw new Error('prismicFaq 컨텐츠 데이터가 제대로 주입되지 않았습니다.');
-  }
-
+  required(data.prismicFaq);
   return (
     <>
       <Title size={{ '@sm': 'sm' }}>
         자주 묻는 질문
       </Title>
-      <FaqAccordion faq={data.prismicFaq.data} />
+      <FaqAccordion faqData={data.prismicFaq.data} />
     </>
   );
 };
 
-export default FaqPage;
+export default withPreview(FaqPage);

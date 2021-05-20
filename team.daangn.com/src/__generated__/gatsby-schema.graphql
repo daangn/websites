@@ -2947,7 +2947,7 @@ input SitePluginPluginOptionsFilterInput {
   emitSchema: SitePluginPluginOptionsEmitSchemaFilterInput
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocumentsFilterInput
   repositoryName: StringQueryOperatorInput
-  accessToken: StringQueryOperatorInput
+  prismicToolbar: BooleanQueryOperatorInput
   schemas: SitePluginPluginOptionsSchemasFilterInput
   boardToken: StringQueryOperatorInput
   includeContent: BooleanQueryOperatorInput
@@ -3464,7 +3464,7 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_introspection_json
   pluginCreator___pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
   pluginCreator___pluginOptions___repositoryName
-  pluginCreator___pluginOptions___accessToken
+  pluginCreator___pluginOptions___prismicToolbar
   pluginCreator___pluginOptions___boardToken
   pluginCreator___pluginOptions___includeContent
   pluginCreator___pluginOptions___path
@@ -6005,7 +6005,7 @@ enum SitePluginFieldsEnum {
   pluginOptions___emitSchema___src___generated___gatsby_introspection_json
   pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
   pluginOptions___repositoryName
-  pluginOptions___accessToken
+  pluginOptions___prismicToolbar
   pluginOptions___boardToken
   pluginOptions___includeContent
   pluginOptions___path
@@ -6536,7 +6536,7 @@ type SitePluginPluginOptions {
   emitSchema: SitePluginPluginOptionsEmitSchema
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocuments
   repositoryName: String
-  accessToken: String
+  prismicToolbar: Boolean
   schemas: SitePluginPluginOptionsSchemas
   boardToken: String
   includeContent: Boolean

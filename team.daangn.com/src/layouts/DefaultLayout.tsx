@@ -1,9 +1,10 @@
 import * as React from 'react';
-import type { PageProps } from 'gatsby';
 import { Helmet } from 'react-helmet-async';
+import { rem } from 'polished';
+import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
-import { rem } from 'polished';
+import { withPreview } from 'gatsby-source-prismic';
 import type { OverrideProps } from '@cometjs/core';
 import { required } from '@cometjs/core';
 
@@ -13,7 +14,7 @@ import _Footer from '~/components/Footer';
 type DefaultLayoutProps = OverrideProps<
   PageProps<GatsbyTypes.DefaultLayout_queryFragment>,
   {
-    children: React.ReactNode,
+    children: any,
   }
 >;
 
@@ -96,4 +97,4 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
   );
 }
 
-export default DefaultLayout;
+export default withPreview(DefaultLayout);

@@ -25593,11 +25593,11 @@
             "deprecationReason": null
           },
           {
-            "name": "accessToken",
+            "name": "prismicToolbar",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringQueryOperatorInput",
+              "name": "BooleanQueryOperatorInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -29376,7 +29376,7 @@
             "deprecationReason": null
           },
           {
-            "name": "pluginCreator___pluginOptions___accessToken",
+            "name": "pluginCreator___pluginOptions___prismicToolbar",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -49685,7 +49685,7 @@
             "deprecationReason": null
           },
           {
-            "name": "pluginOptions___accessToken",
+            "name": "pluginOptions___prismicToolbar",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -54041,12 +54041,12 @@
             "deprecationReason": null
           },
           {
-            "name": "accessToken",
+            "name": "prismicToolbar",
             "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "String",
+              "name": "Boolean",
               "ofType": null
             },
             "isDeprecated": false,
