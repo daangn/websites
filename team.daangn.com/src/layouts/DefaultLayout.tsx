@@ -1,9 +1,10 @@
 import * as React from 'react';
-import type { PageProps } from 'gatsby';
 import { Helmet } from 'react-helmet-async';
+import { rem } from 'polished';
+import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
-import { rem } from 'polished';
+import { withPreview } from 'gatsby-source-prismic';
 import type { OverrideProps } from '@cometjs/core';
 import { required } from '@cometjs/core';
 
@@ -13,15 +14,17 @@ import _Footer from '~/components/Footer';
 type DefaultLayoutProps = OverrideProps<
   PageProps<GatsbyTypes.DefaultLayout_queryFragment>,
   {
-    children: React.ReactNode,
+    children: any,
   }
 >;
 
 export const query = graphql`
   fragment DefaultLayout_query on Query {
-    siteNavigation {
-      ...Header_navigation
-      ...Footer_navigation
+    prismicSiteNavigation(uid: { eq: "team.daangn.com" }) {
+      data {
+        ...Header_navigationData
+        ...Footer_navigationData
+      }
     }
   }
 `;
@@ -67,7 +70,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
   data,
   children,
 }) => {
-  required(data.siteNavigation);
+  required(data.prismicSiteNavigation);
 
   return (
     <>
@@ -76,7 +79,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
       </Helmet>
       <Header
         key="header"
-        navigation={data.siteNavigation}
+        navigationData={data.prismicSiteNavigation.data}
         wide={{ '@sm': true }}
       />
       <Main
@@ -87,11 +90,11 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
       </Main>
       <Footer
         key="footer"
-        navigation={data.siteNavigation}
+        navigationData={data.prismicSiteNavigation.data}
         wide={{ '@sm': true }}
       />
     </>
   );
 }
 
-export default DefaultLayout;
+export default withPreview(DefaultLayout);

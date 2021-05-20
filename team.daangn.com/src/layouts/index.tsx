@@ -48,8 +48,12 @@ const LayoutSwitch: React.FC<LayoutSwitchProps> = ({
 
   const { pathname: path } = useLocation();
 
-  if (/dev-.*/.test(path)) {
-    return <>{children}</>;
+  if (path === '/') {
+    return (
+      <DefaultLayout {...props}>
+        {children}
+      </DefaultLayout>
+    );
   }
 
   if (/\/jobs\/.+/.test(path)) {
@@ -62,11 +66,15 @@ const LayoutSwitch: React.FC<LayoutSwitchProps> = ({
     );
   }
 
-  return (
-    <DefaultLayout {...props}>
-      {children}
-    </DefaultLayout>
-  );
+  if (/\/(faq|jobs|preview)\/?/.test(path)) {
+    return (
+      <DefaultLayout {...props}>
+        {children}
+      </DefaultLayout>
+    );
+  }
+
+  return <>{children}</>;
 }
 
 export default LayoutSwitch;

@@ -31,7 +31,7 @@ const Button = styled(Link, {
         },
       },
     },
-    fullWidget: {
+    fullWidth: {
       true: {
         width: '100%',
       },
@@ -42,7 +42,7 @@ const Button = styled(Link, {
   },
   defaultVariants: {
     type: 'default',
-    fullWidget: false,
+    fullWidth: false,
   },
 });
 

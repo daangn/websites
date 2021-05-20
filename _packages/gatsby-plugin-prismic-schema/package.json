@@ -1,13 +1,17 @@
 {
-  "name": "@karrotmarket/gatsby-transformer-faq",
-  "version": "0.0.1",
+  "name": "gatsby-plugin-prismic-schema",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "build": "concurrently \"yarn:build:*\"",
-    "build:babel": "babel src -d . -x .ts",
+    "build:babel": "babel gatsby -d . -x .ts,.tsx --presets gatsby-package",
     "build:dts": "tsc --emitDeclarationOnly --skipLibCheck",
     "prepack": "yarn build"
   },
+  "files": [
+    "index.js",
+    "gatsby-node.js"
+  ],
   "peerDependencies": {
     "gatsby": "^2.25.0 || ^3.0.0"
   },

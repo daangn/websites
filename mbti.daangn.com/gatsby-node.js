@@ -24,14 +24,9 @@ exports.createSchemaCustomization = ({ actions }) => {
         relations: [PrismicMbtiTestResultRelationsGroupType!]!
         thumbnail: PrismicImageType!
       }
-      type PrismicImageDimensionsType {
-        width: Int!
-        height: Int!
-      }
       type PrismicMbtiTestResultRemarksGroupType {
         remark_name: String!
       }
-
       type PrismicMbtiTestQuestionDataType {
         body: [PrismicMbtiTestQuestionBodySlicesType!]!
       }

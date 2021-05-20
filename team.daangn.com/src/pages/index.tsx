@@ -1,6 +1,7 @@
 import * as React from 'react';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
+import { withPreview } from 'gatsby-source-prismic';
 
 import PageTitle from '~/components/PageTitle';
 
@@ -23,4 +24,4 @@ const IndexPage: React.FC<IndexPageProps> = () => {
   );
 };
 
-export default IndexPage;
+export default withPreview(IndexPage);

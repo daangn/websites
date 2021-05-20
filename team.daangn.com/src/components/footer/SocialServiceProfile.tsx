@@ -14,9 +14,11 @@ type SocialServiceProfileProps = {
 };
 
 export const query = graphql`
-  fragment SocialServiceProfile_profile on SocialProfileEntry {
+  fragment SocialServiceProfile_profile on PrismicSiteNavigationSnsProfilesGroupType {
     service
-    url
+    link {
+      url
+    }
   }
 `;
 
@@ -32,23 +34,23 @@ const Icon = styled('img', {
 });
 
 const socialServiceProfileConfigMap: Record<string, { src: string, alt: string }> = {
-  GITHUB: {
+  'github': {
     src: githubIconUrl,
     alt: 'GitHub',
   },
-  TWITTER: {
+  'twitter': {
     src: twitterIconUrl,
     alt: 'Twitter',
   },
-  FACEBOOK: {
+  'facebook': {
     src: facebookIconUrl,
     alt: 'Facebook',
   },
-  INSTAGRAM: {
+  'instagram': {
     src: instagramIconUrl,
     alt: 'Instagram',
   },
-  MEDIUM: {
+  'medium': {
     src: mediumIconUrl,
     alt: 'Medium',
   },
@@ -58,15 +60,21 @@ export default function SocialServiceProfile({
   className,
   profile,
 }: SocialServiceProfileProps) {
-  const config = socialServiceProfileConfigMap[profile.service];
+  const config = socialServiceProfileConfigMap[profile.service || ''];
   if (!config) {
     console.warn(`${profile.service} has no implementation`);
     return null;
   }
+
+  if (!profile.link) {
+    console.warn('link is empty');
+    return null;
+  }
+
   return (
     <Container
       className={className}
-      href={profile.url}
+      href={profile.link.url}
       target="_blank"
       rel="external noopener"
     >

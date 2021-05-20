@@ -7,11 +7,11 @@ import FaqAccordionItem from './FaqAccordionItem';
 
 type FaqAccordionProps = {
   className?: string,
-  faq: GatsbyTypes.FaqAccordion_faqFragment,
+  faqData: GatsbyTypes.FaqAccordion_faqDataFragment,
 };
 
 export const query = graphql`
-  fragment FaqAccordion_faq on Faq {
+  fragment FaqAccordion_faqData on PrismicFaqDataType {
     entries {
       ...FaqAccordionItem_entry
     }
@@ -52,20 +52,23 @@ const reducer: React.Reducer<State, Action> = (state, action) => {
 
 const FaqAccordion: React.FC<FaqAccordionProps> = ({
   className,
-  faq,
+  faqData,
 }) => {
   const [state, dispatch] = React.useReducer(reducer, initialState);
 
   return (
     <Container className={className}>
       <AnimatePresence initial={false}>
-        {faq.entries.map(entry => (
+        {faqData.entries
+        .filter(entry => entry.question && entry.answer)
+        .map(entry => (
           <FaqAccordionItem
-            key={entry.id}
+            key={entry.question!}
+            id={entry.question!}
             entry={entry}
-            open={state.id === entry.id}
-            onClick={() => dispatch({ type: 'CLICK', id: entry.id })}
-            onFocus={() => dispatch({ type: 'FOCUS', id: entry.id })}
+            open={state.id === entry.question!}
+            onClick={() => dispatch({ type: 'CLICK', id: entry.question! })}
+            onFocus={() => dispatch({ type: 'FOCUS', id: entry.question! })}
           />
         ))}
       </AnimatePresence>

@@ -1,13 +1,12 @@
 import type { GatsbyConfig } from 'gatsby';
-import dotenv from 'dotenv-safe';
 
-dotenv.config();
+// No environment variable required yet
+// import dotenv from 'dotenv-safe';
+// dotenv.config();
 
-const siteUrl = new URL(
-  process.env.NODE_ENV === 'development'
-  ? 'http://localhost:8000'
-  : (process.env.SITE_URL || 'https://team.daangn.com')
-);
+const siteMetadata = {
+  siteUrl: 'https://team.daangn.com/',
+};
 
 const config: GatsbyConfig = {
   // See https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby/src/utils/flags.ts
@@ -17,10 +16,9 @@ const config: GatsbyConfig = {
     LAZY_IMAGES: true,
     PARALLEL_SOURCING: true,
   },
-  siteMetadata: {
-    siteUrl: siteUrl.origin,
-  },
+  siteMetadata,
   plugins: [
+    'gatsby-plugin-concurrent-mode',
     'gatsby-theme-stitches',
     'gatsby-plugin-svgr',
     'gatsby-plugin-image',
@@ -47,6 +45,7 @@ const config: GatsbyConfig = {
       options: {
         outputPath: 'src/__generated__/gatsby-types.d.ts',
         emitSchema: {
+          'src/__generated__/gatsby-schema.graphql': true,
           'src/__generated__/gatsby-introspection.json': true,
         },
         emitPluginDocuments: {
@@ -59,10 +58,11 @@ const config: GatsbyConfig = {
       options: {
         repositoryName: 'karrot',
         accessToken: process.env.PRISMIC_ACCESS_TOKEN,
+        prismicToolbar: process.env.NODE_ENV === 'development',
         schemas: {
-          faq: require('./prismic/schemas/faq.json'),
-          site_navigation: require('./prismic/schemas/site-navigation.json'),
-          terms_and_conditions: require('./prismic/schemas/terms-and-conditions.json'),
+          faq: require('@karrotmarket/prismic-config/schema/faq.json'),
+          site_navigation: require('@karrotmarket/prismic-config/schema/site_navigation.json'),
+          terms_and_conditions: require('@karrotmarket/prismic-config/schema/terms_and_conditions.json'),
         },
       },
     },
@@ -70,25 +70,13 @@ const config: GatsbyConfig = {
     // 커스텀 플러그인
     '@karrotmarket/gatsby-transformer-job-post',
     {
-      resolve: '@karrotmarket/gatsby-transformer-faq',
-      options: {
-        uid: 'team.daangn.com',
-      },
-    },
-    {
-      resolve: '@karrotmarket/gatsby-transformer-site-navigation',
-      options: {
-        baseUrl: 'https://team.daangn.com',
-        uid: 'team.daangn.com',
-      },
-    },
-    {
       resolve: '@karrotmarket/gatsby-source-greenhouse-job-board',
       options: {
         boardToken: 'daangn',
         includeContent: true,
       },
     },
+    'gatsby-plugin-prismic-schema',
   ],
 };
 

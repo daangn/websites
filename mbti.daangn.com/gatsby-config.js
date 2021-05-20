@@ -33,7 +33,7 @@ module.exports = {
       : null,
     'gatsby-plugin-svgr',
     `gatsby-plugin-image`,
-    `gatsby-plugin-advanced-sitemap`,
+    'gatsby-plugin-advanced-sitemap',
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -103,5 +103,6 @@ module.exports = {
         },
       },
     },
-  ].filter((d) => !!d),
+    'gatsby-plugin-prismic-schema',
+  ].filter(Boolean),
 }
