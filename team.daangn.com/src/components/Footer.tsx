@@ -1,30 +1,25 @@
 import * as React from 'react';
-import { mapAbstractType } from '@cometjs/graphql-utils';
+import { rem } from 'polished';
 import { graphql, Link } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
-import { rem } from 'polished';
+import { useLinkParser, mapLink } from '~/link';
 
 import SocialServiceProfile from './footer/SocialServiceProfile';
 
 type FooterProps = {
   className?: string,
-  navigation: GatsbyTypes.Footer_navigationFragment,
+  navigationData: GatsbyTypes.Footer_navigationDataFragment,
 };
 
 export const query = graphql`
-  fragment Footer_navigation on SiteNavigation {
-    footerEntries {
-      __typename
-      href
-      displayName
-      ...on SiteNavigationEntryInternal {
-        pathname
-      }
-      ...on SiteNavigationEntryExternal {
+  fragment Footer_navigationData on PrismicSiteNavigationDataType {
+    footer_entries {
+      display_text
+      link {
         url
       }
     }
-    socialProfiles {
+    sns_profiles {
       ...SocialServiceProfile_profile
     }
   }
@@ -112,29 +107,33 @@ const SocialServiceProfileItem = styled('li', {
 
 const Footer: React.FC<FooterProps> = ({
   className,
-  navigation,
+  navigationData,
 }) => {
+  const parseLink = useLinkParser();
+
   return (
     <Container role="contentinfo" className={className}>
       <Content wide={{ '@sm': true }}>
         <FooterEntryList wide={{ '@sm': true }}>
           <Copyright>© 당근마켓</Copyright>
-          {navigation.footerEntries.map((entry, i) => (
-            <FooterEntryItem key={`${entry.href}#${i}`}>
-              {mapAbstractType(entry, {
-                SiteNavigationEntryInternal: entry => (
-                  <FooterEntryLink to={entry.pathname}>
-                    {entry.displayName}
+          {navigationData.footer_entries
+          .filter(entry => entry.link)
+          .map(entry => (
+            <FooterEntryItem key={entry.link!.url}>
+              {mapLink(parseLink(entry.link!.url), {
+                Internal: link => (
+                  <FooterEntryLink to={link.pathname}>
+                    {entry.display_text}
                   </FooterEntryLink>
                 ),
-                SiteNavigationEntryExternal: entry => (
+                External: link => (
                   <FooterEntryLink
                     as="a"
                     target="_blank"
                     rel="external noopener"
-                    href={entry.url}
+                    href={link.url.href}
                   >
-                    {entry.displayName}
+                    {entry.display_text}
                   </FooterEntryLink>
                 ),
               })}
@@ -142,8 +141,10 @@ const Footer: React.FC<FooterProps> = ({
           ))}
         </FooterEntryList>
         <SocialServiceProfileList>
-          {navigation.socialProfiles.map(profile => (
-            <SocialServiceProfileItem key={profile.url}>
+          {navigationData.sns_profiles
+          .filter(profile => profile.link)
+          .map(profile => (
+            <SocialServiceProfileItem key={profile.link!.url}>
               <SocialServiceProfile profile={profile} />
             </SocialServiceProfileItem>
           ))}

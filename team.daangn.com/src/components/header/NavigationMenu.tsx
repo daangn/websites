@@ -1,27 +1,23 @@
+import * as React from 'react';
 import { Link, graphql } from 'gatsby';
 import { rem } from 'polished';
 import { useLocation } from '@reach/router';
-import { mapAbstractType } from '@cometjs/graphql-utils';
 import { styled } from '~/gatsby-theme-stitches/stitches.config';
+import { mapLink, useLinkParser } from '~/link';
 
-type HamburgerMenuProps = {
+type NavigationMenuProps = {
   controlId: string,
   className?: string,
-  navigation: GatsbyTypes.NavigationMenu_navigationFragment,
+  data: GatsbyTypes.NavigationMenu_dataFragment,
 };
 
 export const query = graphql`
-  fragment NavigationMenu_navigation on SiteNavigation {
-    headerEntries {
-      __typename
-      href
-      displayName
-      ...on SiteNavigationEntryInternal {
-        pathname
-      }
-      ...on SiteNavigationEntryExternal {
+  fragment NavigationMenu_data on PrismicSiteNavigationDataType {
+    header_entries {
+      link {
         url
       }
+      display_text
     }
   }
 `;
@@ -76,6 +72,7 @@ const Line = styled('path', {
 const NavigationList = styled('ul', {
   display: 'flex',
   flexDirection: 'column',
+  gap: rem(36),
   listStyle: 'none',
 
   paddingX: rem(24),
@@ -99,6 +96,7 @@ const NavigationList = styled('ul', {
     fixed: {
       false: {
         flexDirection: 'row',
+        gap: rem(56),
         position: 'relative',
         transform: 'none',
         paddingX: 0,
@@ -154,12 +152,13 @@ const NavigationLink = styled(Link, {
   },
 });
 
-export default function NavigationMenu({
+const NavigationMenu: React.FC<NavigationMenuProps> = ({
   controlId,
   className,
-  navigation,
-}: HamburgerMenuProps) {
+  data,
+}) => {
   const location = useLocation();
+  const parseLink = useLinkParser();
 
   return (
     <Container className={className}>
@@ -175,25 +174,34 @@ export default function NavigationMenu({
         </HamburgerSvg>
       </Hamburger>
       <NavigationList fixed={{ initial: true, '@sm': false }}>
-        {navigation.headerEntries.map(entry => (
-          <NavigationListItem key={entry.href} size={{ '@sm': 'sm' }}>
-            {mapAbstractType(entry, {
-              SiteNavigationEntryInternal: entry => (
+        {data.header_entries
+          .filter(entry => entry.link)
+          .map(entry => (
+            <NavigationListItem
+              key={entry.link!.url}
+              size={{ '@sm': 'sm' }}
+            >
+            {mapLink(parseLink(entry.link!.url), {
+              Internal: link => (
                 <NavigationLink
-                  to={entry.pathname}
-                  active={location.pathname.startsWith(entry.pathname)}
+                  to={link.pathname}
+                  active={
+                    link.pathname === '/'
+                      ? location.pathname === '/'
+                      : location.pathname.startsWith(link.pathname)
+                  }
                 >
-                  {entry.displayName}
+                  {entry.display_text}
                 </NavigationLink>
               ),
-              SiteNavigationEntryExternal: entry => (
+              External: link => (
                 <NavigationLink
                   as="a"
                   target="_blank"
                   rel="external noopener"
-                  href={entry.url}
+                  href={link.url.href}
                 >
-                  {entry.displayName}
+                  {entry.display_text}
                 </NavigationLink>
               ),
             })}
@@ -202,4 +210,6 @@ export default function NavigationMenu({
       </NavigationList>
     </Container>
   );
-}
+};
+
+export default NavigationMenu;

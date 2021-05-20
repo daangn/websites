@@ -19,9 +19,11 @@ type DefaultLayoutProps = OverrideProps<
 
 export const query = graphql`
   fragment DefaultLayout_query on Query {
-    siteNavigation {
-      ...Header_navigation
-      ...Footer_navigation
+    prismicSiteNavigation(uid: { eq: "team.daangn.com" }) {
+      data {
+        ...Header_navigationData
+        ...Footer_navigationData
+      }
     }
   }
 `;
@@ -67,7 +69,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
   data,
   children,
 }) => {
-  required(data.siteNavigation);
+  required(data.prismicSiteNavigation);
 
   return (
     <>
@@ -76,7 +78,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
       </Helmet>
       <Header
         key="header"
-        navigation={data.siteNavigation}
+        navigationData={data.prismicSiteNavigation.data}
         wide={{ '@sm': true }}
       />
       <Main
@@ -87,7 +89,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
       </Main>
       <Footer
         key="footer"
-        navigation={data.siteNavigation}
+        navigationData={data.prismicSiteNavigation.data}
         wide={{ '@sm': true }}
       />
     </>

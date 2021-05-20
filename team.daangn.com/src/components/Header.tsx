@@ -8,12 +8,12 @@ import { ReactComponent as LogoSvg } from './header/logo.svg';
 
 type HeaderProps = {
   className?: string,
-  navigation: GatsbyTypes.Header_navigationFragment,
+  navigationData: GatsbyTypes.Header_navigationDataFragment,
 };
 
 export const query = graphql`
-  fragment Header_navigation on SiteNavigation {
-    ...NavigationMenu_navigation
+  fragment Header_navigationData on PrismicSiteNavigationDataType {
+    ...NavigationMenu_data
   }
 `;
 
@@ -82,7 +82,7 @@ const Logo = styled(LogoSvg, {
 
 const Header: React.FC<HeaderProps> = ({
   className,
-  navigation,
+  navigationData,
 }) => {
   return (
     <div className={className}>
@@ -94,7 +94,7 @@ const Header: React.FC<HeaderProps> = ({
           </HomeLink>
           <NavigationMenu
             controlId="navigation-menu"
-            navigation={navigation}
+            data={navigationData}
           />
         </Content>
       </Container>

@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import chevronIconUrl from '!!file-loader?modules!./faqAccordionItem/chevron.svg';
 
 type FaqAccordionItemProps = {
+  id: string,
   entry: GatsbyTypes.FaqAccordionItem_entryFragment,
   className?: string,
   open?: boolean,
@@ -15,10 +16,11 @@ type FaqAccordionItemProps = {
 };
 
 export const query = graphql`
-  fragment FaqAccordionItem_entry on FaqEntry {
-    id
+  fragment FaqAccordionItem_entry on PrismicFaqEntriesGroupType {
     question
-    answerHtml
+    answer {
+      html
+    }
   }
 `;
 
@@ -95,6 +97,7 @@ const transition = {
 };
 
 const FaqAccordionItem: React.FC<FaqAccordionItemProps> = ({
+  id,
   entry,
   className,
   onClick,
@@ -106,8 +109,8 @@ const FaqAccordionItem: React.FC<FaqAccordionItemProps> = ({
       <Header as="h2" size={{ '@sm': 'sm' }}>
         <Button
           id={entry.id}
-          onClick={() => onClick?.(entry.id)}
-          onFocus={() => onFocus?.(entry.id)}
+          onClick={() => onClick?.(id)}
+          onFocus={() => onFocus?.(id)}
         >
           {entry.question}
           <ChevronIcon
@@ -127,7 +130,7 @@ const FaqAccordionItem: React.FC<FaqAccordionItemProps> = ({
         >
           <Content
             aria-hidden={!open}
-            dangerouslySetInnerHTML={{ __html: entry.answerHtml }}
+            dangerouslySetInnerHTML={{ __html: entry.answer?.html ?? '' }}
           />
         </motion.div>
       </Panel>

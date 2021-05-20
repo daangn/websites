@@ -251,7 +251,7 @@ type Directory_ctimeArgs = {
 
 type Site = Node & {
   readonly buildTime: Maybe<Scalars['Date']>;
-  readonly siteMetadata: Maybe<SiteSiteMetadata>;
+  readonly siteMetadata: SiteMetadata;
   readonly port: Maybe<Scalars['Int']>;
   readonly host: Maybe<Scalars['String']>;
   readonly flags: Maybe<SiteFlags>;
@@ -281,7 +281,6 @@ type SiteFlags = {
 type SiteSiteMetadata = {
   readonly title: Maybe<Scalars['String']>;
   readonly description: Maybe<Scalars['String']>;
-  readonly siteUrl: Maybe<Scalars['String']>;
 };
 
 type SiteFunction = Node & {
@@ -578,11 +577,11 @@ type PrismicFaqEntriesGroupType = {
 };
 
 type PrismicFaqDataType = {
-  readonly entries: Maybe<ReadonlyArray<Maybe<PrismicFaqEntriesGroupType>>>;
+  readonly entries: ReadonlyArray<PrismicFaqEntriesGroupType>;
 };
 
 type PrismicFaq = PrismicDocument & Node & {
-  readonly data: Maybe<PrismicFaqDataType>;
+  readonly data: PrismicFaqDataType;
   readonly dataRaw: Scalars['JSON'];
   readonly dataString: Scalars['String'];
   readonly first_publication_date: Scalars['Date'];
@@ -667,31 +666,32 @@ type PrismicDocument_last_publication_dateArgs = {
 };
 
 type PrismicSiteNavigationHeaderEntriesGroupType = {
-  readonly display_name: Maybe<Scalars['String']>;
+  readonly display_text: Maybe<Scalars['String']>;
   readonly link: Maybe<PrismicLinkType>;
-  readonly category: Maybe<Scalars['String']>;
+  readonly group: Maybe<Scalars['String']>;
 };
 
 type PrismicSiteNavigationFooterEntriesGroupType = {
-  readonly display_name: Maybe<Scalars['String']>;
+  readonly display_text: Maybe<Scalars['String']>;
   readonly link: Maybe<PrismicLinkType>;
-  readonly category: Maybe<Scalars['String']>;
+  readonly group: Maybe<Scalars['String']>;
 };
 
-type PrismicSiteNavigationSocialEntriesGroupType = {
-  readonly social_type: Maybe<Scalars['String']>;
+type PrismicSiteNavigationSnsProfilesGroupType = {
+  readonly service: Maybe<Scalars['String']>;
   readonly link: Maybe<PrismicLinkType>;
 };
 
 type PrismicSiteNavigationDataType = {
-  readonly canonical_link: Maybe<PrismicLinkType>;
-  readonly header_entries: Maybe<ReadonlyArray<Maybe<PrismicSiteNavigationHeaderEntriesGroupType>>>;
-  readonly footer_entries: Maybe<ReadonlyArray<Maybe<PrismicSiteNavigationFooterEntriesGroupType>>>;
-  readonly social_entries: Maybe<ReadonlyArray<Maybe<PrismicSiteNavigationSocialEntriesGroupType>>>;
+  readonly address: Maybe<Scalars['String']>;
+  readonly tel: Maybe<Scalars['String']>;
+  readonly header_entries: ReadonlyArray<PrismicSiteNavigationHeaderEntriesGroupType>;
+  readonly footer_entries: ReadonlyArray<PrismicSiteNavigationFooterEntriesGroupType>;
+  readonly sns_profiles: ReadonlyArray<PrismicSiteNavigationSnsProfilesGroupType>;
 };
 
 type PrismicSiteNavigation = PrismicDocument & Node & {
-  readonly data: Maybe<PrismicSiteNavigationDataType>;
+  readonly data: PrismicSiteNavigationDataType;
   readonly dataRaw: Scalars['JSON'];
   readonly dataString: Scalars['String'];
   readonly first_publication_date: Scalars['Date'];
@@ -705,10 +705,6 @@ type PrismicSiteNavigation = PrismicDocument & Node & {
   readonly prismicId: Scalars['ID'];
   readonly _previewable: Scalars['ID'];
   readonly uid: Maybe<Scalars['String']>;
-  /** Returns all children nodes filtered by type SiteNavigation */
-  readonly childrenSiteNavigation: Maybe<ReadonlyArray<Maybe<SiteNavigation>>>;
-  /** Returns the first child node of type SiteNavigation or null if there are no children of given type on this node */
-  readonly childSiteNavigation: Maybe<SiteNavigation>;
   readonly id: Scalars['ID'];
   readonly parent: Maybe<Node>;
   readonly children: ReadonlyArray<Node>;
@@ -1343,20 +1339,15 @@ type PrismicImageThumbnailType_fluidArgs = {
 
 /** A text field with formatting options. */
 type PrismicStructuredTextType = {
-  /** The HTML value of the text using `prismic-dom` and the HTML serializer. */
-  readonly html: Maybe<Scalars['String']>;
-  /** The plain text value of the text using `prismic-dom`. */
-  readonly text: Maybe<Scalars['String']>;
-  /** The field's value without transformations exactly as it comes from the Prismic API. */
-  readonly raw: Maybe<Scalars['JSON']>;
+  readonly html: Scalars['String'];
+  readonly text: Scalars['String'];
+  readonly raw: Scalars['JSON'];
 };
 
 /** A field for storing geo-coordinates. */
 type PrismicGeoPointType = {
-  /** The latitude value of the geo-coordinate. */
-  readonly latitude: Maybe<Scalars['Float']>;
-  /** The longitude value of the geo-coordinate. */
-  readonly longitude: Maybe<Scalars['Float']>;
+  readonly latitude: Scalars['Float'];
+  readonly longitude: Scalars['Float'];
 };
 
 /** Embed videos, songs, tweets, slices, etc. */
@@ -1407,9 +1398,7 @@ type PrismicEmbedType = {
 
 /** Dimensions for images. */
 type PrismicImageDimensionsType = {
-  /** Width of the image in pixels. */
   readonly width: Scalars['Int'];
-  /** Height of the image in pixels. */
   readonly height: Scalars['Int'];
 };
 
@@ -1428,12 +1417,9 @@ type PrismicLinkTypes =
 type PrismicLinkType = {
   /** The type of link. */
   readonly link_type: PrismicLinkTypes;
-  /** If a Document link, `true` if linked document does not exist, `false` otherwise. */
-  readonly isBroken: Maybe<Scalars['Boolean']>;
-  /** The document's URL derived via the link resolver. */
-  readonly url: Maybe<Scalars['String']>;
-  /** The link's target. */
-  readonly target: Maybe<Scalars['String']>;
+  readonly isBroken: Scalars['Boolean'];
+  readonly url: Scalars['String'];
+  readonly target: Scalars['String'];
   /** If a Media link, the size of the file. */
   readonly size: Maybe<Scalars['Int']>;
   /** If a Document link, the linked document's Prismic ID. */
@@ -1450,8 +1436,7 @@ type PrismicLinkType = {
   readonly uid: Maybe<Scalars['String']>;
   /** If a Document link, the linked document. */
   readonly document: Maybe<PrismicAllDocumentTypes>;
-  /** The field's value without transformations exactly as it comes from the Prismic API. */
-  readonly raw: Maybe<Scalars['JSON']>;
+  readonly raw: Scalars['JSON'];
 };
 
 type PrismicSliceType = {
@@ -1533,63 +1518,6 @@ type JobPostContentSection = {
   readonly rawContent: Scalars['String'];
 };
 
-type Faq = Node & {
-  readonly entries: ReadonlyArray<FaqEntry>;
-  readonly id: Scalars['ID'];
-  readonly parent: Maybe<Node>;
-  readonly children: ReadonlyArray<Node>;
-  readonly internal: Internal;
-};
-
-type FaqEntry = {
-  readonly id: Scalars['ID'];
-  readonly question: Scalars['String'];
-  readonly answerHtml: Scalars['String'];
-};
-
-type SiteNavigation = Node & {
-  readonly headerEntries: ReadonlyArray<SiteNavigationEntry>;
-  readonly footerEntries: ReadonlyArray<SiteNavigationEntry>;
-  readonly socialProfiles: ReadonlyArray<SocialProfileEntry>;
-  readonly id: Scalars['ID'];
-  readonly parent: Maybe<Node>;
-  readonly children: ReadonlyArray<Node>;
-  readonly internal: Internal;
-};
-
-type SocialService =
-  | 'FACEBOOK'
-  | 'INSTAGRAM'
-  | 'TWITTER'
-  | 'LINKEDIN'
-  | 'MEDIUM'
-  | 'GITHUB';
-
-type SiteNavigationEntry = {
-  readonly href: Scalars['String'];
-  readonly displayName: Scalars['String'];
-  readonly category: Maybe<Scalars['String']>;
-};
-
-type SiteNavigationEntryInternal = SiteNavigationEntry & {
-  readonly href: Scalars['String'];
-  readonly displayName: Scalars['String'];
-  readonly category: Maybe<Scalars['String']>;
-  readonly pathname: Scalars['String'];
-};
-
-type SiteNavigationEntryExternal = SiteNavigationEntry & {
-  readonly href: Scalars['String'];
-  readonly displayName: Scalars['String'];
-  readonly category: Maybe<Scalars['String']>;
-  readonly url: Scalars['String'];
-};
-
-type SocialProfileEntry = {
-  readonly service: SocialService;
-  readonly url: Scalars['String'];
-};
-
 type GreenhouseJobCustomFieldType =
   | 'SHORT_TEXT'
   | 'LONG_TEXT'
@@ -1636,783 +1564,12 @@ type GreenhouseJobCustomFieldMetadata = {
   readonly value: Maybe<Scalars['String']>;
 };
 
-type PrismicMbtiTestQuestion = Node & {
-  readonly id: Scalars['ID'];
-  readonly parent: Maybe<Node>;
-  readonly children: ReadonlyArray<Node>;
-  readonly internal: Internal;
-  readonly type: Maybe<Scalars['String']>;
-  readonly href: Maybe<Scalars['String']>;
-  readonly first_publication_date: Maybe<Scalars['Date']>;
-  readonly last_publication_date: Maybe<Scalars['Date']>;
-  readonly slugs: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
-  readonly lang: Maybe<Scalars['String']>;
-  readonly data: Maybe<PrismicMbtiTestQuestionData>;
-  readonly prismicId: Maybe<Scalars['String']>;
-  readonly dataString: Maybe<Scalars['String']>;
-  readonly dataRaw: Maybe<PrismicMbtiTestQuestionDataRaw>;
-  readonly _previewable: Maybe<Scalars['String']>;
-};
-
-
-type PrismicMbtiTestQuestion_first_publication_dateArgs = {
-  formatString: Maybe<Scalars['String']>;
-  fromNow: Maybe<Scalars['Boolean']>;
-  difference: Maybe<Scalars['String']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-
-type PrismicMbtiTestQuestion_last_publication_dateArgs = {
-  formatString: Maybe<Scalars['String']>;
-  fromNow: Maybe<Scalars['Boolean']>;
-  difference: Maybe<Scalars['String']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiTestQuestionData = {
-  readonly body: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataBody>>>;
-};
-
-type PrismicMbtiTestQuestionDataBody = {
-  readonly slice_type: Maybe<Scalars['String']>;
-  readonly primary: Maybe<PrismicMbtiTestQuestionDataBodyPrimary>;
-};
-
-type PrismicMbtiTestQuestionDataBodyPrimary = {
-  readonly question: Maybe<Scalars['String']>;
-  readonly answer_i: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_i>>>;
-  readonly answer_e: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_e>>>;
-  readonly answer_n: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_n>>>;
-  readonly answer_s: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_s>>>;
-  readonly answer_f: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_f>>>;
-  readonly answer_t: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_t>>>;
-  readonly answer_p: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_p>>>;
-  readonly answer_j: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_j>>>;
-};
-
-type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_i = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly text: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_e = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly text: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_n = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly text: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_s = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly text: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_f = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly text: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_t = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly text: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_p = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly text: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_j = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly text: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiTestQuestionDataRaw = {
-  readonly body: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataRawBody>>>;
-};
-
-type PrismicMbtiTestQuestionDataRawBody = {
-  readonly slice_type: Maybe<Scalars['String']>;
-  readonly primary: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimary>;
-};
-
-type PrismicMbtiTestQuestionDataRawBodyPrimary = {
-  readonly question: Maybe<Scalars['String']>;
-  readonly answer_i: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_i>>>;
-  readonly answer_e: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_e>>>;
-  readonly answer_n: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_n>>>;
-  readonly answer_s: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_s>>>;
-  readonly answer_f: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_f>>>;
-  readonly answer_t: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_t>>>;
-  readonly answer_p: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_p>>>;
-  readonly answer_j: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_j>>>;
-};
-
-type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_i = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly text: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_e = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly text: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_n = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly text: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_s = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly text: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_f = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly text: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_t = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly text: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_p = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly text: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_j = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly text: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiIntro = Node & {
-  readonly id: Scalars['ID'];
-  readonly parent: Maybe<Node>;
-  readonly children: ReadonlyArray<Node>;
-  readonly internal: Internal;
-  readonly type: Maybe<Scalars['String']>;
-  readonly href: Maybe<Scalars['String']>;
-  readonly first_publication_date: Maybe<Scalars['Date']>;
-  readonly last_publication_date: Maybe<Scalars['Date']>;
-  readonly slugs: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
-  readonly lang: Maybe<Scalars['String']>;
-  readonly data: Maybe<PrismicMbtiIntroData>;
-  readonly prismicId: Maybe<Scalars['String']>;
-  readonly dataString: Maybe<Scalars['String']>;
-  readonly dataRaw: Maybe<PrismicMbtiIntroDataRaw>;
-  readonly _previewable: Maybe<Scalars['String']>;
-};
-
-
-type PrismicMbtiIntro_first_publication_dateArgs = {
-  formatString: Maybe<Scalars['String']>;
-  fromNow: Maybe<Scalars['Boolean']>;
-  difference: Maybe<Scalars['String']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-
-type PrismicMbtiIntro_last_publication_dateArgs = {
-  formatString: Maybe<Scalars['String']>;
-  fromNow: Maybe<Scalars['Boolean']>;
-  difference: Maybe<Scalars['String']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiIntroData = {
-  readonly title: Maybe<Scalars['String']>;
-  readonly description: Maybe<Scalars['String']>;
-  readonly opengraph_image: Maybe<PrismicMbtiIntroDataOpengraph_image>;
-};
-
-type PrismicMbtiIntroDataOpengraph_image = {
-  readonly dimensions: Maybe<PrismicMbtiIntroDataOpengraph_imageDimensions>;
-  readonly url: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiIntroDataOpengraph_imageDimensions = {
-  readonly width: Maybe<Scalars['Int']>;
-  readonly height: Maybe<Scalars['Int']>;
-};
-
-type PrismicMbtiIntroDataRaw = {
-  readonly title: Maybe<Scalars['String']>;
-  readonly description: Maybe<Scalars['String']>;
-  readonly opengraph_image: Maybe<PrismicMbtiIntroDataRawOpengraph_image>;
-};
-
-type PrismicMbtiIntroDataRawOpengraph_image = {
-  readonly dimensions: Maybe<PrismicMbtiIntroDataRawOpengraph_imageDimensions>;
-  readonly url: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiIntroDataRawOpengraph_imageDimensions = {
-  readonly width: Maybe<Scalars['Int']>;
-  readonly height: Maybe<Scalars['Int']>;
-};
-
-type PrismicMbtiTestResult = Node & {
-  readonly id: Scalars['ID'];
-  readonly parent: Maybe<Node>;
-  readonly children: ReadonlyArray<Node>;
-  readonly internal: Internal;
-  readonly uid: Maybe<Scalars['String']>;
-  readonly type: Maybe<Scalars['String']>;
-  readonly href: Maybe<Scalars['String']>;
-  readonly tags: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
-  readonly first_publication_date: Maybe<Scalars['Date']>;
-  readonly last_publication_date: Maybe<Scalars['Date']>;
-  readonly slugs: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
-  readonly lang: Maybe<Scalars['String']>;
-  readonly data: Maybe<PrismicMbtiTestResultData>;
-  readonly prismicId: Maybe<Scalars['String']>;
-  readonly dataString: Maybe<Scalars['String']>;
-  readonly dataRaw: Maybe<PrismicMbtiTestResultDataRaw>;
-  readonly _previewable: Maybe<Scalars['String']>;
-};
-
-
-type PrismicMbtiTestResult_first_publication_dateArgs = {
-  formatString: Maybe<Scalars['String']>;
-  fromNow: Maybe<Scalars['Boolean']>;
-  difference: Maybe<Scalars['String']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-
-type PrismicMbtiTestResult_last_publication_dateArgs = {
-  formatString: Maybe<Scalars['String']>;
-  fromNow: Maybe<Scalars['Boolean']>;
-  difference: Maybe<Scalars['String']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiTestResultData = {
-  readonly summary: Maybe<Scalars['String']>;
-  readonly opengraph_image: Maybe<PrismicMbtiTestResultDataOpengraph_image>;
-  readonly comments: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestResultDataComments>>>;
-  readonly thumbnail: Maybe<PrismicMbtiTestResultDataThumbnail>;
-  readonly avatar: Maybe<PrismicMbtiTestResultDataAvatar>;
-  readonly tags: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestResultDataTags>>>;
-  readonly remarks: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestResultDataRemarks>>>;
-  readonly relations: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestResultDataRelations>>>;
-};
-
-type PrismicMbtiTestResultDataOpengraph_image = {
-  readonly dimensions: Maybe<PrismicMbtiTestResultDataOpengraph_imageDimensions>;
-  readonly url: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiTestResultDataOpengraph_imageDimensions = {
-  readonly width: Maybe<Scalars['Int']>;
-  readonly height: Maybe<Scalars['Int']>;
-};
-
-type PrismicMbtiTestResultDataComments = {
-  readonly text: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiTestResultDataThumbnail = {
-  readonly dimensions: Maybe<PrismicMbtiTestResultDataThumbnailDimensions>;
-  readonly url: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiTestResultDataThumbnailDimensions = {
-  readonly width: Maybe<Scalars['Int']>;
-  readonly height: Maybe<Scalars['Int']>;
-};
-
-type PrismicMbtiTestResultDataAvatar = {
-  readonly dimensions: Maybe<PrismicMbtiTestResultDataAvatarDimensions>;
-  readonly url: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiTestResultDataAvatarDimensions = {
-  readonly width: Maybe<Scalars['Int']>;
-  readonly height: Maybe<Scalars['Int']>;
-};
-
-type PrismicMbtiTestResultDataTags = {
-  readonly tag_name: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiTestResultDataRemarks = {
-  readonly remark_name: Maybe<Scalars['String']>;
-  readonly remark_description: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestResultDataRemarksRemark_description>>>;
-};
-
-type PrismicMbtiTestResultDataRemarksRemark_description = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly text: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiTestResultDataRelations = {
-  readonly relation_type: Maybe<Scalars['String']>;
-  readonly relation_color: Maybe<Scalars['String']>;
-  readonly relation_entry: Maybe<PrismicMbtiTestResultDataRelationsRelation_entry>;
-};
-
-type PrismicMbtiTestResultDataRelationsRelation_entry = {
-  readonly id: Maybe<Scalars['String']>;
-  readonly type: Maybe<Scalars['String']>;
-  readonly tags: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
-  readonly slug: Maybe<Scalars['String']>;
-  readonly lang: Maybe<Scalars['String']>;
-  readonly uid: Maybe<Scalars['String']>;
-  readonly link_type: Maybe<Scalars['String']>;
-  readonly isBroken: Maybe<Scalars['Boolean']>;
-};
-
-type PrismicMbtiTestResultDataRaw = {
-  readonly summary: Maybe<Scalars['String']>;
-  readonly opengraph_image: Maybe<PrismicMbtiTestResultDataRawOpengraph_image>;
-  readonly comments: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestResultDataRawComments>>>;
-  readonly thumbnail: Maybe<PrismicMbtiTestResultDataRawThumbnail>;
-  readonly avatar: Maybe<PrismicMbtiTestResultDataRawAvatar>;
-  readonly tags: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestResultDataRawTags>>>;
-  readonly remarks: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestResultDataRawRemarks>>>;
-  readonly relations: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestResultDataRawRelations>>>;
-};
-
-type PrismicMbtiTestResultDataRawOpengraph_image = {
-  readonly dimensions: Maybe<PrismicMbtiTestResultDataRawOpengraph_imageDimensions>;
-  readonly url: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiTestResultDataRawOpengraph_imageDimensions = {
-  readonly width: Maybe<Scalars['Int']>;
-  readonly height: Maybe<Scalars['Int']>;
-};
-
-type PrismicMbtiTestResultDataRawComments = {
-  readonly text: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiTestResultDataRawThumbnail = {
-  readonly dimensions: Maybe<PrismicMbtiTestResultDataRawThumbnailDimensions>;
-  readonly url: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiTestResultDataRawThumbnailDimensions = {
-  readonly width: Maybe<Scalars['Int']>;
-  readonly height: Maybe<Scalars['Int']>;
-};
-
-type PrismicMbtiTestResultDataRawAvatar = {
-  readonly dimensions: Maybe<PrismicMbtiTestResultDataRawAvatarDimensions>;
-  readonly url: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiTestResultDataRawAvatarDimensions = {
-  readonly width: Maybe<Scalars['Int']>;
-  readonly height: Maybe<Scalars['Int']>;
-};
-
-type PrismicMbtiTestResultDataRawTags = {
-  readonly tag_name: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiTestResultDataRawRemarks = {
-  readonly remark_name: Maybe<Scalars['String']>;
-  readonly remark_description: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestResultDataRawRemarksRemark_description>>>;
-};
-
-type PrismicMbtiTestResultDataRawRemarksRemark_description = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly text: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiTestResultDataRawRelations = {
-  readonly relation_type: Maybe<Scalars['String']>;
-  readonly relation_color: Maybe<Scalars['String']>;
-  readonly relation_entry: Maybe<PrismicMbtiTestResultDataRawRelationsRelation_entry>;
-};
-
-type PrismicMbtiTestResultDataRawRelationsRelation_entry = {
-  readonly id: Maybe<Scalars['String']>;
-  readonly type: Maybe<Scalars['String']>;
-  readonly tags: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
-  readonly slug: Maybe<Scalars['String']>;
-  readonly lang: Maybe<Scalars['String']>;
-  readonly uid: Maybe<Scalars['String']>;
-  readonly link_type: Maybe<Scalars['String']>;
-  readonly isBroken: Maybe<Scalars['Boolean']>;
-};
-
-type SiteBuildMetadata = Node & {
-  readonly id: Scalars['ID'];
-  readonly parent: Maybe<Node>;
-  readonly children: ReadonlyArray<Node>;
-  readonly internal: Internal;
-  readonly buildTime: Maybe<Scalars['Date']>;
-};
-
-
-type SiteBuildMetadata_buildTimeArgs = {
-  formatString: Maybe<Scalars['String']>;
-  fromNow: Maybe<Scalars['Boolean']>;
-  difference: Maybe<Scalars['String']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-type SitePlugin = Node & {
-  readonly id: Scalars['ID'];
-  readonly parent: Maybe<Node>;
-  readonly children: ReadonlyArray<Node>;
-  readonly internal: Internal;
-  readonly resolve: Maybe<Scalars['String']>;
-  readonly name: Maybe<Scalars['String']>;
-  readonly version: Maybe<Scalars['String']>;
-  readonly pluginOptions: Maybe<SitePluginPluginOptions>;
-  readonly nodeAPIs: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
-  readonly browserAPIs: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
-  readonly ssrAPIs: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
-  readonly pluginFilepath: Maybe<Scalars['String']>;
-  readonly packageJson: Maybe<SitePluginPackageJson>;
-};
-
-type SitePluginPluginOptions = {
-  readonly base64Width: Maybe<Scalars['Int']>;
-  readonly stripMetadata: Maybe<Scalars['Boolean']>;
-  readonly defaultQuality: Maybe<Scalars['Int']>;
-  readonly failOnError: Maybe<Scalars['Boolean']>;
-  readonly root: Maybe<Scalars['String']>;
-  readonly aliases: Maybe<SitePluginPluginOptionsAliases>;
-  readonly component: Maybe<Scalars['String']>;
-  readonly outputPath: Maybe<Scalars['String']>;
-  readonly emitSchema: Maybe<SitePluginPluginOptionsEmitSchema>;
-  readonly emitPluginDocuments: Maybe<SitePluginPluginOptionsEmitPluginDocuments>;
-  readonly repositoryName: Maybe<Scalars['String']>;
-  readonly accessToken: Maybe<Scalars['String']>;
-  readonly schemas: Maybe<SitePluginPluginOptionsSchemas>;
-  readonly uid: Maybe<Scalars['String']>;
-  readonly baseUrl: Maybe<Scalars['String']>;
-  readonly boardToken: Maybe<Scalars['String']>;
-  readonly includeContent: Maybe<Scalars['Boolean']>;
-  readonly path: Maybe<Scalars['String']>;
-  readonly pathCheck: Maybe<Scalars['Boolean']>;
-  readonly allExtensions: Maybe<Scalars['Boolean']>;
-  readonly isTSX: Maybe<Scalars['Boolean']>;
-  readonly jsxPragma: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsAliases = {
-  readonly _: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsEmitSchema = {
-  readonly src___generated___gatsby_introspection_json: Maybe<Scalars['Boolean']>;
-};
-
-type SitePluginPluginOptionsEmitPluginDocuments = {
-  readonly src___generated___gatsby_plugin_documents_graphql: Maybe<Scalars['Boolean']>;
-};
-
-type SitePluginPluginOptionsSchemas = {
-  readonly faq: Maybe<SitePluginPluginOptionsSchemasFaq>;
-  readonly site_navigation: Maybe<SitePluginPluginOptionsSchemasSite_navigation>;
-  readonly terms_and_conditions: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditions>;
-};
-
-type SitePluginPluginOptionsSchemasFaq = {
-  readonly Main: Maybe<SitePluginPluginOptionsSchemasFaqMain>;
-};
-
-type SitePluginPluginOptionsSchemasFaqMain = {
-  readonly uid: Maybe<SitePluginPluginOptionsSchemasFaqMainUid>;
-  readonly entries: Maybe<SitePluginPluginOptionsSchemasFaqMainEntries>;
-};
-
-type SitePluginPluginOptionsSchemasFaqMainUid = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasFaqMainUidConfig>;
-};
-
-type SitePluginPluginOptionsSchemasFaqMainUidConfig = {
-  readonly label: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasFaqMainEntries = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasFaqMainEntriesConfig>;
-};
-
-type SitePluginPluginOptionsSchemasFaqMainEntriesConfig = {
-  readonly fields: Maybe<SitePluginPluginOptionsSchemasFaqMainEntriesConfigFields>;
-  readonly label: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasFaqMainEntriesConfigFields = {
-  readonly question: Maybe<SitePluginPluginOptionsSchemasFaqMainEntriesConfigFieldsQuestion>;
-  readonly answer: Maybe<SitePluginPluginOptionsSchemasFaqMainEntriesConfigFieldsAnswer>;
-};
-
-type SitePluginPluginOptionsSchemasFaqMainEntriesConfigFieldsQuestion = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasFaqMainEntriesConfigFieldsQuestionConfig>;
-};
-
-type SitePluginPluginOptionsSchemasFaqMainEntriesConfigFieldsQuestionConfig = {
-  readonly label: Maybe<Scalars['String']>;
-  readonly placeholder: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasFaqMainEntriesConfigFieldsAnswer = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasFaqMainEntriesConfigFieldsAnswerConfig>;
-};
-
-type SitePluginPluginOptionsSchemasFaqMainEntriesConfigFieldsAnswerConfig = {
-  readonly multi: Maybe<Scalars['String']>;
-  readonly label: Maybe<Scalars['String']>;
-  readonly placeholder: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigation = {
-  readonly Main: Maybe<SitePluginPluginOptionsSchemasSite_navigationMain>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMain = {
-  readonly uid: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainUid>;
-  readonly canonical_link: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainCanonical_link>;
-  readonly header_entries: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainHeader_entries>;
-  readonly footer_entries: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainFooter_entries>;
-  readonly social_entries: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainSocial_entries>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainUid = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainUidConfig>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainUidConfig = {
-  readonly label: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainCanonical_link = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainCanonical_linkConfig>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainCanonical_linkConfig = {
-  readonly label: Maybe<Scalars['String']>;
-  readonly placeholder: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainHeader_entries = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfig>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfig = {
-  readonly fields: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfigFields>;
-  readonly label: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfigFields = {
-  readonly display_name: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfigFieldsDisplay_name>;
-  readonly link: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfigFieldsLink>;
-  readonly category: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfigFieldsCategory>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfigFieldsDisplay_name = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfigFieldsDisplay_nameConfig>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfigFieldsDisplay_nameConfig = {
-  readonly label: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfigFieldsLink = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfigFieldsLinkConfig>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfigFieldsLinkConfig = {
-  readonly label: Maybe<Scalars['String']>;
-  readonly placeholder: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfigFieldsCategory = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfigFieldsCategoryConfig>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfigFieldsCategoryConfig = {
-  readonly label: Maybe<Scalars['String']>;
-  readonly placeholder: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainFooter_entries = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfig>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfig = {
-  readonly fields: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfigFields>;
-  readonly label: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfigFields = {
-  readonly display_name: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfigFieldsDisplay_name>;
-  readonly link: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfigFieldsLink>;
-  readonly category: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfigFieldsCategory>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfigFieldsDisplay_name = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfigFieldsDisplay_nameConfig>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfigFieldsDisplay_nameConfig = {
-  readonly label: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfigFieldsLink = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfigFieldsLinkConfig>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfigFieldsLinkConfig = {
-  readonly label: Maybe<Scalars['String']>;
-  readonly placeholder: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfigFieldsCategory = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfigFieldsCategoryConfig>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfigFieldsCategoryConfig = {
-  readonly label: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainSocial_entries = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainSocial_entriesConfig>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainSocial_entriesConfig = {
-  readonly fields: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainSocial_entriesConfigFields>;
-  readonly label: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainSocial_entriesConfigFields = {
-  readonly social_type: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainSocial_entriesConfigFieldsSocial_type>;
-  readonly link: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainSocial_entriesConfigFieldsLink>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainSocial_entriesConfigFieldsSocial_type = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainSocial_entriesConfigFieldsSocial_typeConfig>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainSocial_entriesConfigFieldsSocial_typeConfig = {
-  readonly options: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
-  readonly label: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainSocial_entriesConfigFieldsLink = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainSocial_entriesConfigFieldsLinkConfig>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainSocial_entriesConfigFieldsLinkConfig = {
-  readonly label: Maybe<Scalars['String']>;
-  readonly placeholder: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasTerms_and_conditions = {
-  readonly Main: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMain>;
-};
-
-type SitePluginPluginOptionsSchemasTerms_and_conditionsMain = {
-  readonly uid: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainUid>;
-  readonly description: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainDescription>;
-  readonly revision_date: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainRevision_date>;
-  readonly content: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainContent>;
-};
-
-type SitePluginPluginOptionsSchemasTerms_and_conditionsMainUid = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainUidConfig>;
-};
-
-type SitePluginPluginOptionsSchemasTerms_and_conditionsMainUidConfig = {
-  readonly label: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasTerms_and_conditionsMainDescription = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainDescriptionConfig>;
-};
-
-type SitePluginPluginOptionsSchemasTerms_and_conditionsMainDescriptionConfig = {
-  readonly label: Maybe<Scalars['String']>;
-  readonly placeholder: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasTerms_and_conditionsMainRevision_date = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainRevision_dateConfig>;
-};
-
-type SitePluginPluginOptionsSchemasTerms_and_conditionsMainRevision_dateConfig = {
-  readonly label: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasTerms_and_conditionsMainContent = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainContentConfig>;
-};
-
-type SitePluginPluginOptionsSchemasTerms_and_conditionsMainContentConfig = {
-  readonly multi: Maybe<Scalars['String']>;
-  readonly label: Maybe<Scalars['String']>;
-  readonly placeholder: Maybe<Scalars['String']>;
-};
-
-type SitePluginPackageJson = {
-  readonly name: Maybe<Scalars['String']>;
-  readonly description: Maybe<Scalars['String']>;
-  readonly version: Maybe<Scalars['String']>;
-  readonly main: Maybe<Scalars['String']>;
-  readonly license: Maybe<Scalars['String']>;
-  readonly dependencies: Maybe<ReadonlyArray<Maybe<SitePluginPackageJsonDependencies>>>;
-  readonly devDependencies: Maybe<ReadonlyArray<Maybe<SitePluginPackageJsonDevDependencies>>>;
-  readonly peerDependencies: Maybe<ReadonlyArray<Maybe<SitePluginPackageJsonPeerDependencies>>>;
-  readonly keywords: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
-};
-
-type SitePluginPackageJsonDependencies = {
-  readonly name: Maybe<Scalars['String']>;
-  readonly version: Maybe<Scalars['String']>;
-};
-
-type SitePluginPackageJsonDevDependencies = {
-  readonly name: Maybe<Scalars['String']>;
-  readonly version: Maybe<Scalars['String']>;
-};
-
-type SitePluginPackageJsonPeerDependencies = {
-  readonly name: Maybe<Scalars['String']>;
-  readonly version: Maybe<Scalars['String']>;
-};
-
 type Query = {
+  readonly site: Maybe<Site>;
   readonly file: Maybe<File>;
   readonly allFile: FileConnection;
   readonly directory: Maybe<Directory>;
   readonly allDirectory: DirectoryConnection;
-  readonly site: Maybe<Site>;
   readonly allSite: SiteConnection;
   readonly siteFunction: Maybe<SiteFunction>;
   readonly allSiteFunction: SiteFunctionConnection;
@@ -2428,22 +1585,33 @@ type Query = {
   readonly allPrismicTermsAndConditions: PrismicTermsAndConditionsConnection;
   readonly jobPost: Maybe<JobPost>;
   readonly allJobPost: JobPostConnection;
-  readonly faq: Maybe<Faq>;
-  readonly allFaq: FaqConnection;
-  readonly siteNavigation: Maybe<SiteNavigation>;
-  readonly allSiteNavigation: SiteNavigationConnection;
   readonly greenhouseJob: Maybe<GreenhouseJob>;
   readonly allGreenhouseJob: GreenhouseJobConnection;
-  readonly prismicMbtiTestQuestion: Maybe<PrismicMbtiTestQuestion>;
-  readonly allPrismicMbtiTestQuestion: PrismicMbtiTestQuestionConnection;
   readonly prismicMbtiIntro: Maybe<PrismicMbtiIntro>;
   readonly allPrismicMbtiIntro: PrismicMbtiIntroConnection;
+  readonly prismicMbtiTestQuestion: Maybe<PrismicMbtiTestQuestion>;
+  readonly allPrismicMbtiTestQuestion: PrismicMbtiTestQuestionConnection;
   readonly prismicMbtiTestResult: Maybe<PrismicMbtiTestResult>;
   readonly allPrismicMbtiTestResult: PrismicMbtiTestResultConnection;
   readonly siteBuildMetadata: Maybe<SiteBuildMetadata>;
   readonly allSiteBuildMetadata: SiteBuildMetadataConnection;
   readonly sitePlugin: Maybe<SitePlugin>;
   readonly allSitePlugin: SitePluginConnection;
+};
+
+
+type Query_siteArgs = {
+  buildTime: Maybe<DateQueryOperatorInput>;
+  siteMetadata: Maybe<SiteMetadataFilterInput>;
+  port: Maybe<IntQueryOperatorInput>;
+  host: Maybe<StringQueryOperatorInput>;
+  flags: Maybe<SiteFlagsFilterInput>;
+  polyfill: Maybe<BooleanQueryOperatorInput>;
+  pathPrefix: Maybe<StringQueryOperatorInput>;
+  id: Maybe<StringQueryOperatorInput>;
+  parent: Maybe<NodeFilterInput>;
+  children: Maybe<NodeFilterListInput>;
+  internal: Maybe<InternalFilterInput>;
 };
 
 
@@ -2540,21 +1708,6 @@ type Query_allDirectoryArgs = {
   sort: Maybe<DirectorySortInput>;
   skip: Maybe<Scalars['Int']>;
   limit: Maybe<Scalars['Int']>;
-};
-
-
-type Query_siteArgs = {
-  buildTime: Maybe<DateQueryOperatorInput>;
-  siteMetadata: Maybe<SiteSiteMetadataFilterInput>;
-  port: Maybe<IntQueryOperatorInput>;
-  host: Maybe<StringQueryOperatorInput>;
-  flags: Maybe<SiteFlagsFilterInput>;
-  polyfill: Maybe<BooleanQueryOperatorInput>;
-  pathPrefix: Maybe<StringQueryOperatorInput>;
-  id: Maybe<StringQueryOperatorInput>;
-  parent: Maybe<NodeFilterInput>;
-  children: Maybe<NodeFilterListInput>;
-  internal: Maybe<InternalFilterInput>;
 };
 
 
@@ -2678,8 +1831,6 @@ type Query_prismicSiteNavigationArgs = {
   prismicId: Maybe<IDQueryOperatorInput>;
   _previewable: Maybe<IDQueryOperatorInput>;
   uid: Maybe<StringQueryOperatorInput>;
-  childrenSiteNavigation: Maybe<SiteNavigationFilterListInput>;
-  childSiteNavigation: Maybe<SiteNavigationFilterInput>;
   id: Maybe<StringQueryOperatorInput>;
   parent: Maybe<NodeFilterInput>;
   children: Maybe<NodeFilterListInput>;
@@ -2752,42 +1903,6 @@ type Query_allJobPostArgs = {
 };
 
 
-type Query_faqArgs = {
-  entries: Maybe<FaqEntryFilterListInput>;
-  id: Maybe<StringQueryOperatorInput>;
-  parent: Maybe<NodeFilterInput>;
-  children: Maybe<NodeFilterListInput>;
-  internal: Maybe<InternalFilterInput>;
-};
-
-
-type Query_allFaqArgs = {
-  filter: Maybe<FaqFilterInput>;
-  sort: Maybe<FaqSortInput>;
-  skip: Maybe<Scalars['Int']>;
-  limit: Maybe<Scalars['Int']>;
-};
-
-
-type Query_siteNavigationArgs = {
-  headerEntries: Maybe<SiteNavigationEntryFilterListInput>;
-  footerEntries: Maybe<SiteNavigationEntryFilterListInput>;
-  socialProfiles: Maybe<SocialProfileEntryFilterListInput>;
-  id: Maybe<StringQueryOperatorInput>;
-  parent: Maybe<NodeFilterInput>;
-  children: Maybe<NodeFilterListInput>;
-  internal: Maybe<InternalFilterInput>;
-};
-
-
-type Query_allSiteNavigationArgs = {
-  filter: Maybe<SiteNavigationFilterInput>;
-  sort: Maybe<SiteNavigationSortInput>;
-  skip: Maybe<Scalars['Int']>;
-  limit: Maybe<Scalars['Int']>;
-};
-
-
 type Query_greenhouseJobArgs = {
   ghId: Maybe<StringQueryOperatorInput>;
   title: Maybe<StringQueryOperatorInput>;
@@ -2807,33 +1922,6 @@ type Query_greenhouseJobArgs = {
 type Query_allGreenhouseJobArgs = {
   filter: Maybe<GreenhouseJobFilterInput>;
   sort: Maybe<GreenhouseJobSortInput>;
-  skip: Maybe<Scalars['Int']>;
-  limit: Maybe<Scalars['Int']>;
-};
-
-
-type Query_prismicMbtiTestQuestionArgs = {
-  id: Maybe<StringQueryOperatorInput>;
-  parent: Maybe<NodeFilterInput>;
-  children: Maybe<NodeFilterListInput>;
-  internal: Maybe<InternalFilterInput>;
-  type: Maybe<StringQueryOperatorInput>;
-  href: Maybe<StringQueryOperatorInput>;
-  first_publication_date: Maybe<DateQueryOperatorInput>;
-  last_publication_date: Maybe<DateQueryOperatorInput>;
-  slugs: Maybe<StringQueryOperatorInput>;
-  lang: Maybe<StringQueryOperatorInput>;
-  data: Maybe<PrismicMbtiTestQuestionDataFilterInput>;
-  prismicId: Maybe<StringQueryOperatorInput>;
-  dataString: Maybe<StringQueryOperatorInput>;
-  dataRaw: Maybe<PrismicMbtiTestQuestionDataRawFilterInput>;
-  _previewable: Maybe<StringQueryOperatorInput>;
-};
-
-
-type Query_allPrismicMbtiTestQuestionArgs = {
-  filter: Maybe<PrismicMbtiTestQuestionFilterInput>;
-  sort: Maybe<PrismicMbtiTestQuestionSortInput>;
   skip: Maybe<Scalars['Int']>;
   limit: Maybe<Scalars['Int']>;
 };
@@ -2861,6 +1949,33 @@ type Query_prismicMbtiIntroArgs = {
 type Query_allPrismicMbtiIntroArgs = {
   filter: Maybe<PrismicMbtiIntroFilterInput>;
   sort: Maybe<PrismicMbtiIntroSortInput>;
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+};
+
+
+type Query_prismicMbtiTestQuestionArgs = {
+  id: Maybe<StringQueryOperatorInput>;
+  parent: Maybe<NodeFilterInput>;
+  children: Maybe<NodeFilterListInput>;
+  internal: Maybe<InternalFilterInput>;
+  type: Maybe<StringQueryOperatorInput>;
+  href: Maybe<StringQueryOperatorInput>;
+  first_publication_date: Maybe<DateQueryOperatorInput>;
+  last_publication_date: Maybe<DateQueryOperatorInput>;
+  slugs: Maybe<StringQueryOperatorInput>;
+  lang: Maybe<StringQueryOperatorInput>;
+  data: Maybe<PrismicMbtiTestQuestionDataFilterInput>;
+  prismicId: Maybe<StringQueryOperatorInput>;
+  dataString: Maybe<StringQueryOperatorInput>;
+  dataRaw: Maybe<PrismicMbtiTestQuestionDataRawFilterInput>;
+  _previewable: Maybe<StringQueryOperatorInput>;
+};
+
+
+type Query_allPrismicMbtiTestQuestionArgs = {
+  filter: Maybe<PrismicMbtiTestQuestionFilterInput>;
+  sort: Maybe<PrismicMbtiTestQuestionSortInput>;
   skip: Maybe<Scalars['Int']>;
   limit: Maybe<Scalars['Int']>;
 };
@@ -2936,6 +2051,21 @@ type Query_allSitePluginArgs = {
   limit: Maybe<Scalars['Int']>;
 };
 
+type DateQueryOperatorInput = {
+  readonly eq: Maybe<Scalars['Date']>;
+  readonly ne: Maybe<Scalars['Date']>;
+  readonly gt: Maybe<Scalars['Date']>;
+  readonly gte: Maybe<Scalars['Date']>;
+  readonly lt: Maybe<Scalars['Date']>;
+  readonly lte: Maybe<Scalars['Date']>;
+  readonly in: Maybe<ReadonlyArray<Maybe<Scalars['Date']>>>;
+  readonly nin: Maybe<ReadonlyArray<Maybe<Scalars['Date']>>>;
+};
+
+type SiteMetadataFilterInput = {
+  readonly siteUrl: Maybe<StringQueryOperatorInput>;
+};
+
 type StringQueryOperatorInput = {
   readonly eq: Maybe<Scalars['String']>;
   readonly ne: Maybe<Scalars['String']>;
@@ -2956,15 +2086,40 @@ type IntQueryOperatorInput = {
   readonly nin: Maybe<ReadonlyArray<Maybe<Scalars['Int']>>>;
 };
 
-type DateQueryOperatorInput = {
-  readonly eq: Maybe<Scalars['Date']>;
-  readonly ne: Maybe<Scalars['Date']>;
-  readonly gt: Maybe<Scalars['Date']>;
-  readonly gte: Maybe<Scalars['Date']>;
-  readonly lt: Maybe<Scalars['Date']>;
-  readonly lte: Maybe<Scalars['Date']>;
-  readonly in: Maybe<ReadonlyArray<Maybe<Scalars['Date']>>>;
-  readonly nin: Maybe<ReadonlyArray<Maybe<Scalars['Date']>>>;
+type SiteFlagsFilterInput = {
+  readonly FAST_DEV: Maybe<BooleanQueryOperatorInput>;
+  readonly QUERY_ON_DEMAND: Maybe<BooleanQueryOperatorInput>;
+  readonly LAZY_IMAGES: Maybe<BooleanQueryOperatorInput>;
+  readonly PARALLEL_SOURCING: Maybe<BooleanQueryOperatorInput>;
+};
+
+type BooleanQueryOperatorInput = {
+  readonly eq: Maybe<Scalars['Boolean']>;
+  readonly ne: Maybe<Scalars['Boolean']>;
+  readonly in: Maybe<ReadonlyArray<Maybe<Scalars['Boolean']>>>;
+  readonly nin: Maybe<ReadonlyArray<Maybe<Scalars['Boolean']>>>;
+};
+
+type NodeFilterInput = {
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly parent: Maybe<NodeFilterInput>;
+  readonly children: Maybe<NodeFilterListInput>;
+  readonly internal: Maybe<InternalFilterInput>;
+};
+
+type NodeFilterListInput = {
+  readonly elemMatch: Maybe<NodeFilterInput>;
+};
+
+type InternalFilterInput = {
+  readonly content: Maybe<StringQueryOperatorInput>;
+  readonly contentDigest: Maybe<StringQueryOperatorInput>;
+  readonly description: Maybe<StringQueryOperatorInput>;
+  readonly fieldOwners: Maybe<StringQueryOperatorInput>;
+  readonly ignoreType: Maybe<BooleanQueryOperatorInput>;
+  readonly mediaType: Maybe<StringQueryOperatorInput>;
+  readonly owner: Maybe<StringQueryOperatorInput>;
+  readonly type: Maybe<StringQueryOperatorInput>;
 };
 
 type FloatQueryOperatorInput = {
@@ -3044,35 +2199,6 @@ type ImageSharpResizeFilterInput = {
   readonly height: Maybe<IntQueryOperatorInput>;
   readonly aspectRatio: Maybe<FloatQueryOperatorInput>;
   readonly originalName: Maybe<StringQueryOperatorInput>;
-};
-
-type NodeFilterInput = {
-  readonly id: Maybe<StringQueryOperatorInput>;
-  readonly parent: Maybe<NodeFilterInput>;
-  readonly children: Maybe<NodeFilterListInput>;
-  readonly internal: Maybe<InternalFilterInput>;
-};
-
-type NodeFilterListInput = {
-  readonly elemMatch: Maybe<NodeFilterInput>;
-};
-
-type InternalFilterInput = {
-  readonly content: Maybe<StringQueryOperatorInput>;
-  readonly contentDigest: Maybe<StringQueryOperatorInput>;
-  readonly description: Maybe<StringQueryOperatorInput>;
-  readonly fieldOwners: Maybe<StringQueryOperatorInput>;
-  readonly ignoreType: Maybe<BooleanQueryOperatorInput>;
-  readonly mediaType: Maybe<StringQueryOperatorInput>;
-  readonly owner: Maybe<StringQueryOperatorInput>;
-  readonly type: Maybe<StringQueryOperatorInput>;
-};
-
-type BooleanQueryOperatorInput = {
-  readonly eq: Maybe<Scalars['Boolean']>;
-  readonly ne: Maybe<Scalars['Boolean']>;
-  readonly in: Maybe<ReadonlyArray<Maybe<Scalars['Boolean']>>>;
-  readonly nin: Maybe<ReadonlyArray<Maybe<Scalars['Boolean']>>>;
 };
 
 type FileConnection = {
@@ -3664,19 +2790,6 @@ type DirectorySortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type SiteSiteMetadataFilterInput = {
-  readonly title: Maybe<StringQueryOperatorInput>;
-  readonly description: Maybe<StringQueryOperatorInput>;
-  readonly siteUrl: Maybe<StringQueryOperatorInput>;
-};
-
-type SiteFlagsFilterInput = {
-  readonly FAST_DEV: Maybe<BooleanQueryOperatorInput>;
-  readonly QUERY_ON_DEMAND: Maybe<BooleanQueryOperatorInput>;
-  readonly LAZY_IMAGES: Maybe<BooleanQueryOperatorInput>;
-  readonly PARALLEL_SOURCING: Maybe<BooleanQueryOperatorInput>;
-};
-
 type SiteConnection = {
   readonly totalCount: Scalars['Int'];
   readonly edges: ReadonlyArray<SiteEdge>;
@@ -3724,8 +2837,6 @@ type SiteEdge = {
 
 type SiteFieldsEnum =
   | 'buildTime'
-  | 'siteMetadata.title'
-  | 'siteMetadata.description'
   | 'siteMetadata.siteUrl'
   | 'port'
   | 'host'
@@ -3833,7 +2944,7 @@ type SiteGroupConnection = {
 
 type SiteFilterInput = {
   readonly buildTime: Maybe<DateQueryOperatorInput>;
-  readonly siteMetadata: Maybe<SiteSiteMetadataFilterInput>;
+  readonly siteMetadata: Maybe<SiteMetadataFilterInput>;
   readonly port: Maybe<IntQueryOperatorInput>;
   readonly host: Maybe<StringQueryOperatorInput>;
   readonly flags: Maybe<SiteFlagsFilterInput>;
@@ -4054,8 +3165,6 @@ type SitePluginPluginOptionsFilterInput = {
   readonly repositoryName: Maybe<StringQueryOperatorInput>;
   readonly accessToken: Maybe<StringQueryOperatorInput>;
   readonly schemas: Maybe<SitePluginPluginOptionsSchemasFilterInput>;
-  readonly uid: Maybe<StringQueryOperatorInput>;
-  readonly baseUrl: Maybe<StringQueryOperatorInput>;
   readonly boardToken: Maybe<StringQueryOperatorInput>;
   readonly includeContent: Maybe<BooleanQueryOperatorInput>;
   readonly path: Maybe<StringQueryOperatorInput>;
@@ -4070,6 +3179,7 @@ type SitePluginPluginOptionsAliasesFilterInput = {
 };
 
 type SitePluginPluginOptionsEmitSchemaFilterInput = {
+  readonly src___generated___gatsby_schema_graphql: Maybe<BooleanQueryOperatorInput>;
   readonly src___generated___gatsby_introspection_json: Maybe<BooleanQueryOperatorInput>;
 };
 
@@ -4139,14 +3249,15 @@ type SitePluginPluginOptionsSchemasFaqMainEntriesConfigFieldsAnswerConfigFilterI
 
 type SitePluginPluginOptionsSchemasSite_navigationFilterInput = {
   readonly Main: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainFilterInput>;
+  readonly Header: Maybe<SitePluginPluginOptionsSchemasSite_navigationHeaderFilterInput>;
+  readonly Footer: Maybe<SitePluginPluginOptionsSchemasSite_navigationFooterFilterInput>;
+  readonly SNS_Profile: Maybe<SitePluginPluginOptionsSchemasSite_navigationSNS_ProfileFilterInput>;
 };
 
 type SitePluginPluginOptionsSchemasSite_navigationMainFilterInput = {
   readonly uid: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainUidFilterInput>;
-  readonly canonical_link: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainCanonical_linkFilterInput>;
-  readonly header_entries: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesFilterInput>;
-  readonly footer_entries: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesFilterInput>;
-  readonly social_entries: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainSocial_entriesFilterInput>;
+  readonly address: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainAddressFilterInput>;
+  readonly tel: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainTelFilterInput>;
 };
 
 type SitePluginPluginOptionsSchemasSite_navigationMainUidFilterInput = {
@@ -4158,136 +3269,157 @@ type SitePluginPluginOptionsSchemasSite_navigationMainUidConfigFilterInput = {
   readonly label: Maybe<StringQueryOperatorInput>;
 };
 
-type SitePluginPluginOptionsSchemasSite_navigationMainCanonical_linkFilterInput = {
+type SitePluginPluginOptionsSchemasSite_navigationMainAddressFilterInput = {
   readonly type: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainCanonical_linkConfigFilterInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainAddressConfigFilterInput>;
 };
 
-type SitePluginPluginOptionsSchemasSite_navigationMainCanonical_linkConfigFilterInput = {
+type SitePluginPluginOptionsSchemasSite_navigationMainAddressConfigFilterInput = {
+  readonly label: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationMainTelFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainTelConfigFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationMainTelConfigFilterInput = {
+  readonly label: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationHeaderFilterInput = {
+  readonly header_entries: Maybe<SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfigFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfigFilterInput = {
+  readonly fields: Maybe<SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfigFieldsFilterInput>;
+  readonly label: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfigFieldsFilterInput = {
+  readonly display_text: Maybe<SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfigFieldsDisplay_textFilterInput>;
+  readonly link: Maybe<SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfigFieldsLinkFilterInput>;
+  readonly group: Maybe<SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfigFieldsGroupFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfigFieldsDisplay_textFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfigFieldsDisplay_textConfigFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfigFieldsDisplay_textConfigFilterInput = {
+  readonly label: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfigFieldsLinkFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfigFieldsLinkConfigFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfigFieldsLinkConfigFilterInput = {
   readonly label: Maybe<StringQueryOperatorInput>;
   readonly placeholder: Maybe<StringQueryOperatorInput>;
 };
 
-type SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesFilterInput = {
+type SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfigFieldsGroupFilterInput = {
   readonly type: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfigFilterInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfigFieldsGroupConfigFilterInput>;
 };
 
-type SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfigFilterInput = {
-  readonly fields: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfigFieldsFilterInput>;
-  readonly label: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfigFieldsFilterInput = {
-  readonly display_name: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfigFieldsDisplay_nameFilterInput>;
-  readonly link: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfigFieldsLinkFilterInput>;
-  readonly category: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfigFieldsCategoryFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfigFieldsDisplay_nameFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfigFieldsDisplay_nameConfigFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfigFieldsDisplay_nameConfigFilterInput = {
-  readonly label: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfigFieldsLinkFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfigFieldsLinkConfigFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfigFieldsLinkConfigFilterInput = {
+type SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfigFieldsGroupConfigFilterInput = {
   readonly label: Maybe<StringQueryOperatorInput>;
   readonly placeholder: Maybe<StringQueryOperatorInput>;
 };
 
-type SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfigFieldsCategoryFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfigFieldsCategoryConfigFilterInput>;
+type SitePluginPluginOptionsSchemasSite_navigationFooterFilterInput = {
+  readonly footer_entries: Maybe<SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesFilterInput>;
 };
 
-type SitePluginPluginOptionsSchemasSite_navigationMainHeader_entriesConfigFieldsCategoryConfigFilterInput = {
+type SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfigFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfigFilterInput = {
+  readonly fields: Maybe<SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfigFieldsFilterInput>;
+  readonly label: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfigFieldsFilterInput = {
+  readonly display_text: Maybe<SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfigFieldsDisplay_textFilterInput>;
+  readonly link: Maybe<SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfigFieldsLinkFilterInput>;
+  readonly group: Maybe<SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfigFieldsGroupFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfigFieldsDisplay_textFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfigFieldsDisplay_textConfigFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfigFieldsDisplay_textConfigFilterInput = {
+  readonly label: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfigFieldsLinkFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfigFieldsLinkConfigFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfigFieldsLinkConfigFilterInput = {
   readonly label: Maybe<StringQueryOperatorInput>;
   readonly placeholder: Maybe<StringQueryOperatorInput>;
 };
 
-type SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesFilterInput = {
+type SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfigFieldsGroupFilterInput = {
   readonly type: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfigFilterInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfigFieldsGroupConfigFilterInput>;
 };
 
-type SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfigFilterInput = {
-  readonly fields: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfigFieldsFilterInput>;
-  readonly label: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfigFieldsFilterInput = {
-  readonly display_name: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfigFieldsDisplay_nameFilterInput>;
-  readonly link: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfigFieldsLinkFilterInput>;
-  readonly category: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfigFieldsCategoryFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfigFieldsDisplay_nameFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfigFieldsDisplay_nameConfigFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfigFieldsDisplay_nameConfigFilterInput = {
-  readonly label: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfigFieldsLinkFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfigFieldsLinkConfigFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfigFieldsLinkConfigFilterInput = {
+type SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfigFieldsGroupConfigFilterInput = {
   readonly label: Maybe<StringQueryOperatorInput>;
   readonly placeholder: Maybe<StringQueryOperatorInput>;
 };
 
-type SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfigFieldsCategoryFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfigFieldsCategoryConfigFilterInput>;
+type SitePluginPluginOptionsSchemasSite_navigationSNS_ProfileFilterInput = {
+  readonly sns_profiles: Maybe<SitePluginPluginOptionsSchemasSite_navigationSNS_ProfileSns_profilesFilterInput>;
 };
 
-type SitePluginPluginOptionsSchemasSite_navigationMainFooter_entriesConfigFieldsCategoryConfigFilterInput = {
+type SitePluginPluginOptionsSchemasSite_navigationSNS_ProfileSns_profilesFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationSNS_ProfileSns_profilesConfigFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationSNS_ProfileSns_profilesConfigFilterInput = {
+  readonly fields: Maybe<SitePluginPluginOptionsSchemasSite_navigationSNS_ProfileSns_profilesConfigFieldsFilterInput>;
   readonly label: Maybe<StringQueryOperatorInput>;
 };
 
-type SitePluginPluginOptionsSchemasSite_navigationMainSocial_entriesFilterInput = {
+type SitePluginPluginOptionsSchemasSite_navigationSNS_ProfileSns_profilesConfigFieldsFilterInput = {
+  readonly service: Maybe<SitePluginPluginOptionsSchemasSite_navigationSNS_ProfileSns_profilesConfigFieldsServiceFilterInput>;
+  readonly link: Maybe<SitePluginPluginOptionsSchemasSite_navigationSNS_ProfileSns_profilesConfigFieldsLinkFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationSNS_ProfileSns_profilesConfigFieldsServiceFilterInput = {
   readonly type: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainSocial_entriesConfigFilterInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationSNS_ProfileSns_profilesConfigFieldsServiceConfigFilterInput>;
 };
 
-type SitePluginPluginOptionsSchemasSite_navigationMainSocial_entriesConfigFilterInput = {
-  readonly fields: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainSocial_entriesConfigFieldsFilterInput>;
-  readonly label: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainSocial_entriesConfigFieldsFilterInput = {
-  readonly social_type: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainSocial_entriesConfigFieldsSocial_typeFilterInput>;
-  readonly link: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainSocial_entriesConfigFieldsLinkFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainSocial_entriesConfigFieldsSocial_typeFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainSocial_entriesConfigFieldsSocial_typeConfigFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasSite_navigationMainSocial_entriesConfigFieldsSocial_typeConfigFilterInput = {
+type SitePluginPluginOptionsSchemasSite_navigationSNS_ProfileSns_profilesConfigFieldsServiceConfigFilterInput = {
   readonly options: Maybe<StringQueryOperatorInput>;
   readonly label: Maybe<StringQueryOperatorInput>;
 };
 
-type SitePluginPluginOptionsSchemasSite_navigationMainSocial_entriesConfigFieldsLinkFilterInput = {
+type SitePluginPluginOptionsSchemasSite_navigationSNS_ProfileSns_profilesConfigFieldsLinkFilterInput = {
   readonly type: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainSocial_entriesConfigFieldsLinkConfigFilterInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationSNS_ProfileSns_profilesConfigFieldsLinkConfigFilterInput>;
 };
 
-type SitePluginPluginOptionsSchemasSite_navigationMainSocial_entriesConfigFieldsLinkConfigFilterInput = {
+type SitePluginPluginOptionsSchemasSite_navigationSNS_ProfileSns_profilesConfigFieldsLinkConfigFilterInput = {
   readonly label: Maybe<StringQueryOperatorInput>;
   readonly placeholder: Maybe<StringQueryOperatorInput>;
 };
@@ -4571,12 +3703,11 @@ type SitePageFieldsEnum =
   | 'pluginCreator.pluginOptions.aliases._'
   | 'pluginCreator.pluginOptions.component'
   | 'pluginCreator.pluginOptions.outputPath'
+  | 'pluginCreator.pluginOptions.emitSchema.src___generated___gatsby_schema_graphql'
   | 'pluginCreator.pluginOptions.emitSchema.src___generated___gatsby_introspection_json'
   | 'pluginCreator.pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql'
   | 'pluginCreator.pluginOptions.repositoryName'
   | 'pluginCreator.pluginOptions.accessToken'
-  | 'pluginCreator.pluginOptions.uid'
-  | 'pluginCreator.pluginOptions.baseUrl'
   | 'pluginCreator.pluginOptions.boardToken'
   | 'pluginCreator.pluginOptions.includeContent'
   | 'pluginCreator.pluginOptions.path'
@@ -5065,10 +4196,11 @@ type PrismicFaqSortInput = {
 };
 
 type PrismicSiteNavigationDataTypeFilterInput = {
-  readonly canonical_link: Maybe<PrismicLinkTypeFilterInput>;
+  readonly address: Maybe<StringQueryOperatorInput>;
+  readonly tel: Maybe<StringQueryOperatorInput>;
   readonly header_entries: Maybe<PrismicSiteNavigationHeaderEntriesGroupTypeFilterListInput>;
   readonly footer_entries: Maybe<PrismicSiteNavigationFooterEntriesGroupTypeFilterListInput>;
-  readonly social_entries: Maybe<PrismicSiteNavigationSocialEntriesGroupTypeFilterListInput>;
+  readonly sns_profiles: Maybe<PrismicSiteNavigationSnsProfilesGroupTypeFilterListInput>;
 };
 
 type PrismicSiteNavigationHeaderEntriesGroupTypeFilterListInput = {
@@ -5076,9 +4208,9 @@ type PrismicSiteNavigationHeaderEntriesGroupTypeFilterListInput = {
 };
 
 type PrismicSiteNavigationHeaderEntriesGroupTypeFilterInput = {
-  readonly display_name: Maybe<StringQueryOperatorInput>;
+  readonly display_text: Maybe<StringQueryOperatorInput>;
   readonly link: Maybe<PrismicLinkTypeFilterInput>;
-  readonly category: Maybe<StringQueryOperatorInput>;
+  readonly group: Maybe<StringQueryOperatorInput>;
 };
 
 type PrismicSiteNavigationFooterEntriesGroupTypeFilterListInput = {
@@ -5086,58 +4218,18 @@ type PrismicSiteNavigationFooterEntriesGroupTypeFilterListInput = {
 };
 
 type PrismicSiteNavigationFooterEntriesGroupTypeFilterInput = {
-  readonly display_name: Maybe<StringQueryOperatorInput>;
+  readonly display_text: Maybe<StringQueryOperatorInput>;
   readonly link: Maybe<PrismicLinkTypeFilterInput>;
-  readonly category: Maybe<StringQueryOperatorInput>;
+  readonly group: Maybe<StringQueryOperatorInput>;
 };
 
-type PrismicSiteNavigationSocialEntriesGroupTypeFilterListInput = {
-  readonly elemMatch: Maybe<PrismicSiteNavigationSocialEntriesGroupTypeFilterInput>;
+type PrismicSiteNavigationSnsProfilesGroupTypeFilterListInput = {
+  readonly elemMatch: Maybe<PrismicSiteNavigationSnsProfilesGroupTypeFilterInput>;
 };
 
-type PrismicSiteNavigationSocialEntriesGroupTypeFilterInput = {
-  readonly social_type: Maybe<StringQueryOperatorInput>;
+type PrismicSiteNavigationSnsProfilesGroupTypeFilterInput = {
+  readonly service: Maybe<StringQueryOperatorInput>;
   readonly link: Maybe<PrismicLinkTypeFilterInput>;
-};
-
-type SiteNavigationFilterListInput = {
-  readonly elemMatch: Maybe<SiteNavigationFilterInput>;
-};
-
-type SiteNavigationFilterInput = {
-  readonly headerEntries: Maybe<SiteNavigationEntryFilterListInput>;
-  readonly footerEntries: Maybe<SiteNavigationEntryFilterListInput>;
-  readonly socialProfiles: Maybe<SocialProfileEntryFilterListInput>;
-  readonly id: Maybe<StringQueryOperatorInput>;
-  readonly parent: Maybe<NodeFilterInput>;
-  readonly children: Maybe<NodeFilterListInput>;
-  readonly internal: Maybe<InternalFilterInput>;
-};
-
-type SiteNavigationEntryFilterListInput = {
-  readonly elemMatch: Maybe<SiteNavigationEntryFilterInput>;
-};
-
-type SiteNavigationEntryFilterInput = {
-  readonly href: Maybe<StringQueryOperatorInput>;
-  readonly displayName: Maybe<StringQueryOperatorInput>;
-  readonly category: Maybe<StringQueryOperatorInput>;
-};
-
-type SocialProfileEntryFilterListInput = {
-  readonly elemMatch: Maybe<SocialProfileEntryFilterInput>;
-};
-
-type SocialProfileEntryFilterInput = {
-  readonly service: Maybe<SocialServiceQueryOperatorInput>;
-  readonly url: Maybe<StringQueryOperatorInput>;
-};
-
-type SocialServiceQueryOperatorInput = {
-  readonly eq: Maybe<SocialService>;
-  readonly ne: Maybe<SocialService>;
-  readonly in: Maybe<ReadonlyArray<Maybe<SocialService>>>;
-  readonly nin: Maybe<ReadonlyArray<Maybe<SocialService>>>;
 };
 
 type PrismicSiteNavigationConnection = {
@@ -5186,20 +4278,10 @@ type PrismicSiteNavigationEdge = {
 };
 
 type PrismicSiteNavigationFieldsEnum =
-  | 'data.canonical_link.link_type'
-  | 'data.canonical_link.isBroken'
-  | 'data.canonical_link.url'
-  | 'data.canonical_link.target'
-  | 'data.canonical_link.size'
-  | 'data.canonical_link.id'
-  | 'data.canonical_link.type'
-  | 'data.canonical_link.tags'
-  | 'data.canonical_link.lang'
-  | 'data.canonical_link.slug'
-  | 'data.canonical_link.uid'
-  | 'data.canonical_link.raw'
+  | 'data.address'
+  | 'data.tel'
   | 'data.header_entries'
-  | 'data.header_entries.display_name'
+  | 'data.header_entries.display_text'
   | 'data.header_entries.link.link_type'
   | 'data.header_entries.link.isBroken'
   | 'data.header_entries.link.url'
@@ -5212,9 +4294,9 @@ type PrismicSiteNavigationFieldsEnum =
   | 'data.header_entries.link.slug'
   | 'data.header_entries.link.uid'
   | 'data.header_entries.link.raw'
-  | 'data.header_entries.category'
+  | 'data.header_entries.group'
   | 'data.footer_entries'
-  | 'data.footer_entries.display_name'
+  | 'data.footer_entries.display_text'
   | 'data.footer_entries.link.link_type'
   | 'data.footer_entries.link.isBroken'
   | 'data.footer_entries.link.url'
@@ -5227,21 +4309,21 @@ type PrismicSiteNavigationFieldsEnum =
   | 'data.footer_entries.link.slug'
   | 'data.footer_entries.link.uid'
   | 'data.footer_entries.link.raw'
-  | 'data.footer_entries.category'
-  | 'data.social_entries'
-  | 'data.social_entries.social_type'
-  | 'data.social_entries.link.link_type'
-  | 'data.social_entries.link.isBroken'
-  | 'data.social_entries.link.url'
-  | 'data.social_entries.link.target'
-  | 'data.social_entries.link.size'
-  | 'data.social_entries.link.id'
-  | 'data.social_entries.link.type'
-  | 'data.social_entries.link.tags'
-  | 'data.social_entries.link.lang'
-  | 'data.social_entries.link.slug'
-  | 'data.social_entries.link.uid'
-  | 'data.social_entries.link.raw'
+  | 'data.footer_entries.group'
+  | 'data.sns_profiles'
+  | 'data.sns_profiles.service'
+  | 'data.sns_profiles.link.link_type'
+  | 'data.sns_profiles.link.isBroken'
+  | 'data.sns_profiles.link.url'
+  | 'data.sns_profiles.link.target'
+  | 'data.sns_profiles.link.size'
+  | 'data.sns_profiles.link.id'
+  | 'data.sns_profiles.link.type'
+  | 'data.sns_profiles.link.tags'
+  | 'data.sns_profiles.link.lang'
+  | 'data.sns_profiles.link.slug'
+  | 'data.sns_profiles.link.uid'
+  | 'data.sns_profiles.link.raw'
   | 'dataRaw'
   | 'dataString'
   | 'first_publication_date'
@@ -5267,105 +4349,6 @@ type PrismicSiteNavigationFieldsEnum =
   | 'prismicId'
   | '_previewable'
   | 'uid'
-  | 'childrenSiteNavigation'
-  | 'childrenSiteNavigation.headerEntries'
-  | 'childrenSiteNavigation.headerEntries.href'
-  | 'childrenSiteNavigation.headerEntries.displayName'
-  | 'childrenSiteNavigation.headerEntries.category'
-  | 'childrenSiteNavigation.footerEntries'
-  | 'childrenSiteNavigation.footerEntries.href'
-  | 'childrenSiteNavigation.footerEntries.displayName'
-  | 'childrenSiteNavigation.footerEntries.category'
-  | 'childrenSiteNavigation.socialProfiles'
-  | 'childrenSiteNavigation.socialProfiles.service'
-  | 'childrenSiteNavigation.socialProfiles.url'
-  | 'childrenSiteNavigation.id'
-  | 'childrenSiteNavigation.parent.id'
-  | 'childrenSiteNavigation.parent.parent.id'
-  | 'childrenSiteNavigation.parent.parent.children'
-  | 'childrenSiteNavigation.parent.children'
-  | 'childrenSiteNavigation.parent.children.id'
-  | 'childrenSiteNavigation.parent.children.children'
-  | 'childrenSiteNavigation.parent.internal.content'
-  | 'childrenSiteNavigation.parent.internal.contentDigest'
-  | 'childrenSiteNavigation.parent.internal.description'
-  | 'childrenSiteNavigation.parent.internal.fieldOwners'
-  | 'childrenSiteNavigation.parent.internal.ignoreType'
-  | 'childrenSiteNavigation.parent.internal.mediaType'
-  | 'childrenSiteNavigation.parent.internal.owner'
-  | 'childrenSiteNavigation.parent.internal.type'
-  | 'childrenSiteNavigation.children'
-  | 'childrenSiteNavigation.children.id'
-  | 'childrenSiteNavigation.children.parent.id'
-  | 'childrenSiteNavigation.children.parent.children'
-  | 'childrenSiteNavigation.children.children'
-  | 'childrenSiteNavigation.children.children.id'
-  | 'childrenSiteNavigation.children.children.children'
-  | 'childrenSiteNavigation.children.internal.content'
-  | 'childrenSiteNavigation.children.internal.contentDigest'
-  | 'childrenSiteNavigation.children.internal.description'
-  | 'childrenSiteNavigation.children.internal.fieldOwners'
-  | 'childrenSiteNavigation.children.internal.ignoreType'
-  | 'childrenSiteNavigation.children.internal.mediaType'
-  | 'childrenSiteNavigation.children.internal.owner'
-  | 'childrenSiteNavigation.children.internal.type'
-  | 'childrenSiteNavigation.internal.content'
-  | 'childrenSiteNavigation.internal.contentDigest'
-  | 'childrenSiteNavigation.internal.description'
-  | 'childrenSiteNavigation.internal.fieldOwners'
-  | 'childrenSiteNavigation.internal.ignoreType'
-  | 'childrenSiteNavigation.internal.mediaType'
-  | 'childrenSiteNavigation.internal.owner'
-  | 'childrenSiteNavigation.internal.type'
-  | 'childSiteNavigation.headerEntries'
-  | 'childSiteNavigation.headerEntries.href'
-  | 'childSiteNavigation.headerEntries.displayName'
-  | 'childSiteNavigation.headerEntries.category'
-  | 'childSiteNavigation.footerEntries'
-  | 'childSiteNavigation.footerEntries.href'
-  | 'childSiteNavigation.footerEntries.displayName'
-  | 'childSiteNavigation.footerEntries.category'
-  | 'childSiteNavigation.socialProfiles'
-  | 'childSiteNavigation.socialProfiles.service'
-  | 'childSiteNavigation.socialProfiles.url'
-  | 'childSiteNavigation.id'
-  | 'childSiteNavigation.parent.id'
-  | 'childSiteNavigation.parent.parent.id'
-  | 'childSiteNavigation.parent.parent.children'
-  | 'childSiteNavigation.parent.children'
-  | 'childSiteNavigation.parent.children.id'
-  | 'childSiteNavigation.parent.children.children'
-  | 'childSiteNavigation.parent.internal.content'
-  | 'childSiteNavigation.parent.internal.contentDigest'
-  | 'childSiteNavigation.parent.internal.description'
-  | 'childSiteNavigation.parent.internal.fieldOwners'
-  | 'childSiteNavigation.parent.internal.ignoreType'
-  | 'childSiteNavigation.parent.internal.mediaType'
-  | 'childSiteNavigation.parent.internal.owner'
-  | 'childSiteNavigation.parent.internal.type'
-  | 'childSiteNavigation.children'
-  | 'childSiteNavigation.children.id'
-  | 'childSiteNavigation.children.parent.id'
-  | 'childSiteNavigation.children.parent.children'
-  | 'childSiteNavigation.children.children'
-  | 'childSiteNavigation.children.children.id'
-  | 'childSiteNavigation.children.children.children'
-  | 'childSiteNavigation.children.internal.content'
-  | 'childSiteNavigation.children.internal.contentDigest'
-  | 'childSiteNavigation.children.internal.description'
-  | 'childSiteNavigation.children.internal.fieldOwners'
-  | 'childSiteNavigation.children.internal.ignoreType'
-  | 'childSiteNavigation.children.internal.mediaType'
-  | 'childSiteNavigation.children.internal.owner'
-  | 'childSiteNavigation.children.internal.type'
-  | 'childSiteNavigation.internal.content'
-  | 'childSiteNavigation.internal.contentDigest'
-  | 'childSiteNavigation.internal.description'
-  | 'childSiteNavigation.internal.fieldOwners'
-  | 'childSiteNavigation.internal.ignoreType'
-  | 'childSiteNavigation.internal.mediaType'
-  | 'childSiteNavigation.internal.owner'
-  | 'childSiteNavigation.internal.type'
   | 'id'
   | 'parent.id'
   | 'parent.parent.id'
@@ -5477,8 +4460,6 @@ type PrismicSiteNavigationFilterInput = {
   readonly prismicId: Maybe<IDQueryOperatorInput>;
   readonly _previewable: Maybe<IDQueryOperatorInput>;
   readonly uid: Maybe<StringQueryOperatorInput>;
-  readonly childrenSiteNavigation: Maybe<SiteNavigationFilterListInput>;
-  readonly childSiteNavigation: Maybe<SiteNavigationFilterInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
   readonly children: Maybe<NodeFilterListInput>;
@@ -5911,333 +4892,6 @@ type JobPostSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type FaqEntryFilterListInput = {
-  readonly elemMatch: Maybe<FaqEntryFilterInput>;
-};
-
-type FaqEntryFilterInput = {
-  readonly id: Maybe<IDQueryOperatorInput>;
-  readonly question: Maybe<StringQueryOperatorInput>;
-  readonly answerHtml: Maybe<StringQueryOperatorInput>;
-};
-
-type FaqConnection = {
-  readonly totalCount: Scalars['Int'];
-  readonly edges: ReadonlyArray<FaqEdge>;
-  readonly nodes: ReadonlyArray<Faq>;
-  readonly pageInfo: PageInfo;
-  readonly distinct: ReadonlyArray<Scalars['String']>;
-  readonly max: Maybe<Scalars['Float']>;
-  readonly min: Maybe<Scalars['Float']>;
-  readonly sum: Maybe<Scalars['Float']>;
-  readonly group: ReadonlyArray<FaqGroupConnection>;
-};
-
-
-type FaqConnection_distinctArgs = {
-  field: FaqFieldsEnum;
-};
-
-
-type FaqConnection_maxArgs = {
-  field: FaqFieldsEnum;
-};
-
-
-type FaqConnection_minArgs = {
-  field: FaqFieldsEnum;
-};
-
-
-type FaqConnection_sumArgs = {
-  field: FaqFieldsEnum;
-};
-
-
-type FaqConnection_groupArgs = {
-  skip: Maybe<Scalars['Int']>;
-  limit: Maybe<Scalars['Int']>;
-  field: FaqFieldsEnum;
-};
-
-type FaqEdge = {
-  readonly next: Maybe<Faq>;
-  readonly node: Faq;
-  readonly previous: Maybe<Faq>;
-};
-
-type FaqFieldsEnum =
-  | 'entries'
-  | 'entries.id'
-  | 'entries.question'
-  | 'entries.answerHtml'
-  | 'id'
-  | 'parent.id'
-  | 'parent.parent.id'
-  | 'parent.parent.parent.id'
-  | 'parent.parent.parent.children'
-  | 'parent.parent.children'
-  | 'parent.parent.children.id'
-  | 'parent.parent.children.children'
-  | 'parent.parent.internal.content'
-  | 'parent.parent.internal.contentDigest'
-  | 'parent.parent.internal.description'
-  | 'parent.parent.internal.fieldOwners'
-  | 'parent.parent.internal.ignoreType'
-  | 'parent.parent.internal.mediaType'
-  | 'parent.parent.internal.owner'
-  | 'parent.parent.internal.type'
-  | 'parent.children'
-  | 'parent.children.id'
-  | 'parent.children.parent.id'
-  | 'parent.children.parent.children'
-  | 'parent.children.children'
-  | 'parent.children.children.id'
-  | 'parent.children.children.children'
-  | 'parent.children.internal.content'
-  | 'parent.children.internal.contentDigest'
-  | 'parent.children.internal.description'
-  | 'parent.children.internal.fieldOwners'
-  | 'parent.children.internal.ignoreType'
-  | 'parent.children.internal.mediaType'
-  | 'parent.children.internal.owner'
-  | 'parent.children.internal.type'
-  | 'parent.internal.content'
-  | 'parent.internal.contentDigest'
-  | 'parent.internal.description'
-  | 'parent.internal.fieldOwners'
-  | 'parent.internal.ignoreType'
-  | 'parent.internal.mediaType'
-  | 'parent.internal.owner'
-  | 'parent.internal.type'
-  | 'children'
-  | 'children.id'
-  | 'children.parent.id'
-  | 'children.parent.parent.id'
-  | 'children.parent.parent.children'
-  | 'children.parent.children'
-  | 'children.parent.children.id'
-  | 'children.parent.children.children'
-  | 'children.parent.internal.content'
-  | 'children.parent.internal.contentDigest'
-  | 'children.parent.internal.description'
-  | 'children.parent.internal.fieldOwners'
-  | 'children.parent.internal.ignoreType'
-  | 'children.parent.internal.mediaType'
-  | 'children.parent.internal.owner'
-  | 'children.parent.internal.type'
-  | 'children.children'
-  | 'children.children.id'
-  | 'children.children.parent.id'
-  | 'children.children.parent.children'
-  | 'children.children.children'
-  | 'children.children.children.id'
-  | 'children.children.children.children'
-  | 'children.children.internal.content'
-  | 'children.children.internal.contentDigest'
-  | 'children.children.internal.description'
-  | 'children.children.internal.fieldOwners'
-  | 'children.children.internal.ignoreType'
-  | 'children.children.internal.mediaType'
-  | 'children.children.internal.owner'
-  | 'children.children.internal.type'
-  | 'children.internal.content'
-  | 'children.internal.contentDigest'
-  | 'children.internal.description'
-  | 'children.internal.fieldOwners'
-  | 'children.internal.ignoreType'
-  | 'children.internal.mediaType'
-  | 'children.internal.owner'
-  | 'children.internal.type'
-  | 'internal.content'
-  | 'internal.contentDigest'
-  | 'internal.description'
-  | 'internal.fieldOwners'
-  | 'internal.ignoreType'
-  | 'internal.mediaType'
-  | 'internal.owner'
-  | 'internal.type';
-
-type FaqGroupConnection = {
-  readonly totalCount: Scalars['Int'];
-  readonly edges: ReadonlyArray<FaqEdge>;
-  readonly nodes: ReadonlyArray<Faq>;
-  readonly pageInfo: PageInfo;
-  readonly field: Scalars['String'];
-  readonly fieldValue: Maybe<Scalars['String']>;
-};
-
-type FaqFilterInput = {
-  readonly entries: Maybe<FaqEntryFilterListInput>;
-  readonly id: Maybe<StringQueryOperatorInput>;
-  readonly parent: Maybe<NodeFilterInput>;
-  readonly children: Maybe<NodeFilterListInput>;
-  readonly internal: Maybe<InternalFilterInput>;
-};
-
-type FaqSortInput = {
-  readonly fields: Maybe<ReadonlyArray<Maybe<FaqFieldsEnum>>>;
-  readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
-};
-
-type SiteNavigationConnection = {
-  readonly totalCount: Scalars['Int'];
-  readonly edges: ReadonlyArray<SiteNavigationEdge>;
-  readonly nodes: ReadonlyArray<SiteNavigation>;
-  readonly pageInfo: PageInfo;
-  readonly distinct: ReadonlyArray<Scalars['String']>;
-  readonly max: Maybe<Scalars['Float']>;
-  readonly min: Maybe<Scalars['Float']>;
-  readonly sum: Maybe<Scalars['Float']>;
-  readonly group: ReadonlyArray<SiteNavigationGroupConnection>;
-};
-
-
-type SiteNavigationConnection_distinctArgs = {
-  field: SiteNavigationFieldsEnum;
-};
-
-
-type SiteNavigationConnection_maxArgs = {
-  field: SiteNavigationFieldsEnum;
-};
-
-
-type SiteNavigationConnection_minArgs = {
-  field: SiteNavigationFieldsEnum;
-};
-
-
-type SiteNavigationConnection_sumArgs = {
-  field: SiteNavigationFieldsEnum;
-};
-
-
-type SiteNavigationConnection_groupArgs = {
-  skip: Maybe<Scalars['Int']>;
-  limit: Maybe<Scalars['Int']>;
-  field: SiteNavigationFieldsEnum;
-};
-
-type SiteNavigationEdge = {
-  readonly next: Maybe<SiteNavigation>;
-  readonly node: SiteNavigation;
-  readonly previous: Maybe<SiteNavigation>;
-};
-
-type SiteNavigationFieldsEnum =
-  | 'headerEntries'
-  | 'headerEntries.href'
-  | 'headerEntries.displayName'
-  | 'headerEntries.category'
-  | 'footerEntries'
-  | 'footerEntries.href'
-  | 'footerEntries.displayName'
-  | 'footerEntries.category'
-  | 'socialProfiles'
-  | 'socialProfiles.service'
-  | 'socialProfiles.url'
-  | 'id'
-  | 'parent.id'
-  | 'parent.parent.id'
-  | 'parent.parent.parent.id'
-  | 'parent.parent.parent.children'
-  | 'parent.parent.children'
-  | 'parent.parent.children.id'
-  | 'parent.parent.children.children'
-  | 'parent.parent.internal.content'
-  | 'parent.parent.internal.contentDigest'
-  | 'parent.parent.internal.description'
-  | 'parent.parent.internal.fieldOwners'
-  | 'parent.parent.internal.ignoreType'
-  | 'parent.parent.internal.mediaType'
-  | 'parent.parent.internal.owner'
-  | 'parent.parent.internal.type'
-  | 'parent.children'
-  | 'parent.children.id'
-  | 'parent.children.parent.id'
-  | 'parent.children.parent.children'
-  | 'parent.children.children'
-  | 'parent.children.children.id'
-  | 'parent.children.children.children'
-  | 'parent.children.internal.content'
-  | 'parent.children.internal.contentDigest'
-  | 'parent.children.internal.description'
-  | 'parent.children.internal.fieldOwners'
-  | 'parent.children.internal.ignoreType'
-  | 'parent.children.internal.mediaType'
-  | 'parent.children.internal.owner'
-  | 'parent.children.internal.type'
-  | 'parent.internal.content'
-  | 'parent.internal.contentDigest'
-  | 'parent.internal.description'
-  | 'parent.internal.fieldOwners'
-  | 'parent.internal.ignoreType'
-  | 'parent.internal.mediaType'
-  | 'parent.internal.owner'
-  | 'parent.internal.type'
-  | 'children'
-  | 'children.id'
-  | 'children.parent.id'
-  | 'children.parent.parent.id'
-  | 'children.parent.parent.children'
-  | 'children.parent.children'
-  | 'children.parent.children.id'
-  | 'children.parent.children.children'
-  | 'children.parent.internal.content'
-  | 'children.parent.internal.contentDigest'
-  | 'children.parent.internal.description'
-  | 'children.parent.internal.fieldOwners'
-  | 'children.parent.internal.ignoreType'
-  | 'children.parent.internal.mediaType'
-  | 'children.parent.internal.owner'
-  | 'children.parent.internal.type'
-  | 'children.children'
-  | 'children.children.id'
-  | 'children.children.parent.id'
-  | 'children.children.parent.children'
-  | 'children.children.children'
-  | 'children.children.children.id'
-  | 'children.children.children.children'
-  | 'children.children.internal.content'
-  | 'children.children.internal.contentDigest'
-  | 'children.children.internal.description'
-  | 'children.children.internal.fieldOwners'
-  | 'children.children.internal.ignoreType'
-  | 'children.children.internal.mediaType'
-  | 'children.children.internal.owner'
-  | 'children.children.internal.type'
-  | 'children.internal.content'
-  | 'children.internal.contentDigest'
-  | 'children.internal.description'
-  | 'children.internal.fieldOwners'
-  | 'children.internal.ignoreType'
-  | 'children.internal.mediaType'
-  | 'children.internal.owner'
-  | 'children.internal.type'
-  | 'internal.content'
-  | 'internal.contentDigest'
-  | 'internal.description'
-  | 'internal.fieldOwners'
-  | 'internal.ignoreType'
-  | 'internal.mediaType'
-  | 'internal.owner'
-  | 'internal.type';
-
-type SiteNavigationGroupConnection = {
-  readonly totalCount: Scalars['Int'];
-  readonly edges: ReadonlyArray<SiteNavigationEdge>;
-  readonly nodes: ReadonlyArray<SiteNavigation>;
-  readonly pageInfo: PageInfo;
-  readonly field: Scalars['String'];
-  readonly fieldValue: Maybe<Scalars['String']>;
-};
-
-type SiteNavigationSortInput = {
-  readonly fields: Maybe<ReadonlyArray<Maybe<SiteNavigationFieldsEnum>>>;
-  readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
-};
-
 type GreenhouseJobCustomFieldMetadataFilterListInput = {
   readonly elemMatch: Maybe<GreenhouseJobCustomFieldMetadataFilterInput>;
 };
@@ -6537,396 +5191,6 @@ type GreenhouseJobSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type PrismicMbtiTestQuestionDataFilterInput = {
-  readonly body: Maybe<PrismicMbtiTestQuestionDataBodyFilterListInput>;
-};
-
-type PrismicMbtiTestQuestionDataBodyFilterListInput = {
-  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataBodyFilterInput>;
-};
-
-type PrismicMbtiTestQuestionDataBodyFilterInput = {
-  readonly slice_type: Maybe<StringQueryOperatorInput>;
-  readonly primary: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryFilterInput>;
-};
-
-type PrismicMbtiTestQuestionDataBodyPrimaryFilterInput = {
-  readonly question: Maybe<StringQueryOperatorInput>;
-  readonly answer_i: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_iFilterListInput>;
-  readonly answer_e: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_eFilterListInput>;
-  readonly answer_n: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_nFilterListInput>;
-  readonly answer_s: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_sFilterListInput>;
-  readonly answer_f: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_fFilterListInput>;
-  readonly answer_t: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_tFilterListInput>;
-  readonly answer_p: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_pFilterListInput>;
-  readonly answer_j: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_jFilterListInput>;
-};
-
-type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_iFilterListInput = {
-  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_iFilterInput>;
-};
-
-type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_iFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly text: Maybe<StringQueryOperatorInput>;
-};
-
-type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_eFilterListInput = {
-  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_eFilterInput>;
-};
-
-type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_eFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly text: Maybe<StringQueryOperatorInput>;
-};
-
-type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_nFilterListInput = {
-  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_nFilterInput>;
-};
-
-type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_nFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly text: Maybe<StringQueryOperatorInput>;
-};
-
-type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_sFilterListInput = {
-  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_sFilterInput>;
-};
-
-type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_sFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly text: Maybe<StringQueryOperatorInput>;
-};
-
-type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_fFilterListInput = {
-  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_fFilterInput>;
-};
-
-type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_fFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly text: Maybe<StringQueryOperatorInput>;
-};
-
-type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_tFilterListInput = {
-  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_tFilterInput>;
-};
-
-type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_tFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly text: Maybe<StringQueryOperatorInput>;
-};
-
-type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_pFilterListInput = {
-  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_pFilterInput>;
-};
-
-type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_pFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly text: Maybe<StringQueryOperatorInput>;
-};
-
-type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_jFilterListInput = {
-  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_jFilterInput>;
-};
-
-type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_jFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly text: Maybe<StringQueryOperatorInput>;
-};
-
-type PrismicMbtiTestQuestionDataRawFilterInput = {
-  readonly body: Maybe<PrismicMbtiTestQuestionDataRawBodyFilterListInput>;
-};
-
-type PrismicMbtiTestQuestionDataRawBodyFilterListInput = {
-  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataRawBodyFilterInput>;
-};
-
-type PrismicMbtiTestQuestionDataRawBodyFilterInput = {
-  readonly slice_type: Maybe<StringQueryOperatorInput>;
-  readonly primary: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryFilterInput>;
-};
-
-type PrismicMbtiTestQuestionDataRawBodyPrimaryFilterInput = {
-  readonly question: Maybe<StringQueryOperatorInput>;
-  readonly answer_i: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_iFilterListInput>;
-  readonly answer_e: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_eFilterListInput>;
-  readonly answer_n: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_nFilterListInput>;
-  readonly answer_s: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_sFilterListInput>;
-  readonly answer_f: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_fFilterListInput>;
-  readonly answer_t: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_tFilterListInput>;
-  readonly answer_p: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_pFilterListInput>;
-  readonly answer_j: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_jFilterListInput>;
-};
-
-type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_iFilterListInput = {
-  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_iFilterInput>;
-};
-
-type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_iFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly text: Maybe<StringQueryOperatorInput>;
-};
-
-type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_eFilterListInput = {
-  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_eFilterInput>;
-};
-
-type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_eFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly text: Maybe<StringQueryOperatorInput>;
-};
-
-type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_nFilterListInput = {
-  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_nFilterInput>;
-};
-
-type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_nFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly text: Maybe<StringQueryOperatorInput>;
-};
-
-type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_sFilterListInput = {
-  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_sFilterInput>;
-};
-
-type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_sFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly text: Maybe<StringQueryOperatorInput>;
-};
-
-type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_fFilterListInput = {
-  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_fFilterInput>;
-};
-
-type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_fFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly text: Maybe<StringQueryOperatorInput>;
-};
-
-type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_tFilterListInput = {
-  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_tFilterInput>;
-};
-
-type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_tFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly text: Maybe<StringQueryOperatorInput>;
-};
-
-type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_pFilterListInput = {
-  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_pFilterInput>;
-};
-
-type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_pFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly text: Maybe<StringQueryOperatorInput>;
-};
-
-type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_jFilterListInput = {
-  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_jFilterInput>;
-};
-
-type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_jFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly text: Maybe<StringQueryOperatorInput>;
-};
-
-type PrismicMbtiTestQuestionConnection = {
-  readonly totalCount: Scalars['Int'];
-  readonly edges: ReadonlyArray<PrismicMbtiTestQuestionEdge>;
-  readonly nodes: ReadonlyArray<PrismicMbtiTestQuestion>;
-  readonly pageInfo: PageInfo;
-  readonly distinct: ReadonlyArray<Scalars['String']>;
-  readonly max: Maybe<Scalars['Float']>;
-  readonly min: Maybe<Scalars['Float']>;
-  readonly sum: Maybe<Scalars['Float']>;
-  readonly group: ReadonlyArray<PrismicMbtiTestQuestionGroupConnection>;
-};
-
-
-type PrismicMbtiTestQuestionConnection_distinctArgs = {
-  field: PrismicMbtiTestQuestionFieldsEnum;
-};
-
-
-type PrismicMbtiTestQuestionConnection_maxArgs = {
-  field: PrismicMbtiTestQuestionFieldsEnum;
-};
-
-
-type PrismicMbtiTestQuestionConnection_minArgs = {
-  field: PrismicMbtiTestQuestionFieldsEnum;
-};
-
-
-type PrismicMbtiTestQuestionConnection_sumArgs = {
-  field: PrismicMbtiTestQuestionFieldsEnum;
-};
-
-
-type PrismicMbtiTestQuestionConnection_groupArgs = {
-  skip: Maybe<Scalars['Int']>;
-  limit: Maybe<Scalars['Int']>;
-  field: PrismicMbtiTestQuestionFieldsEnum;
-};
-
-type PrismicMbtiTestQuestionEdge = {
-  readonly next: Maybe<PrismicMbtiTestQuestion>;
-  readonly node: PrismicMbtiTestQuestion;
-  readonly previous: Maybe<PrismicMbtiTestQuestion>;
-};
-
-type PrismicMbtiTestQuestionFieldsEnum =
-  | 'id'
-  | 'parent.id'
-  | 'parent.parent.id'
-  | 'parent.parent.parent.id'
-  | 'parent.parent.parent.children'
-  | 'parent.parent.children'
-  | 'parent.parent.children.id'
-  | 'parent.parent.children.children'
-  | 'parent.parent.internal.content'
-  | 'parent.parent.internal.contentDigest'
-  | 'parent.parent.internal.description'
-  | 'parent.parent.internal.fieldOwners'
-  | 'parent.parent.internal.ignoreType'
-  | 'parent.parent.internal.mediaType'
-  | 'parent.parent.internal.owner'
-  | 'parent.parent.internal.type'
-  | 'parent.children'
-  | 'parent.children.id'
-  | 'parent.children.parent.id'
-  | 'parent.children.parent.children'
-  | 'parent.children.children'
-  | 'parent.children.children.id'
-  | 'parent.children.children.children'
-  | 'parent.children.internal.content'
-  | 'parent.children.internal.contentDigest'
-  | 'parent.children.internal.description'
-  | 'parent.children.internal.fieldOwners'
-  | 'parent.children.internal.ignoreType'
-  | 'parent.children.internal.mediaType'
-  | 'parent.children.internal.owner'
-  | 'parent.children.internal.type'
-  | 'parent.internal.content'
-  | 'parent.internal.contentDigest'
-  | 'parent.internal.description'
-  | 'parent.internal.fieldOwners'
-  | 'parent.internal.ignoreType'
-  | 'parent.internal.mediaType'
-  | 'parent.internal.owner'
-  | 'parent.internal.type'
-  | 'children'
-  | 'children.id'
-  | 'children.parent.id'
-  | 'children.parent.parent.id'
-  | 'children.parent.parent.children'
-  | 'children.parent.children'
-  | 'children.parent.children.id'
-  | 'children.parent.children.children'
-  | 'children.parent.internal.content'
-  | 'children.parent.internal.contentDigest'
-  | 'children.parent.internal.description'
-  | 'children.parent.internal.fieldOwners'
-  | 'children.parent.internal.ignoreType'
-  | 'children.parent.internal.mediaType'
-  | 'children.parent.internal.owner'
-  | 'children.parent.internal.type'
-  | 'children.children'
-  | 'children.children.id'
-  | 'children.children.parent.id'
-  | 'children.children.parent.children'
-  | 'children.children.children'
-  | 'children.children.children.id'
-  | 'children.children.children.children'
-  | 'children.children.internal.content'
-  | 'children.children.internal.contentDigest'
-  | 'children.children.internal.description'
-  | 'children.children.internal.fieldOwners'
-  | 'children.children.internal.ignoreType'
-  | 'children.children.internal.mediaType'
-  | 'children.children.internal.owner'
-  | 'children.children.internal.type'
-  | 'children.internal.content'
-  | 'children.internal.contentDigest'
-  | 'children.internal.description'
-  | 'children.internal.fieldOwners'
-  | 'children.internal.ignoreType'
-  | 'children.internal.mediaType'
-  | 'children.internal.owner'
-  | 'children.internal.type'
-  | 'internal.content'
-  | 'internal.contentDigest'
-  | 'internal.description'
-  | 'internal.fieldOwners'
-  | 'internal.ignoreType'
-  | 'internal.mediaType'
-  | 'internal.owner'
-  | 'internal.type'
-  | 'type'
-  | 'href'
-  | 'first_publication_date'
-  | 'last_publication_date'
-  | 'slugs'
-  | 'lang'
-  | 'data.body'
-  | 'data.body.slice_type'
-  | 'data.body.primary.question'
-  | 'data.body.primary.answer_i'
-  | 'data.body.primary.answer_e'
-  | 'data.body.primary.answer_n'
-  | 'data.body.primary.answer_s'
-  | 'data.body.primary.answer_f'
-  | 'data.body.primary.answer_t'
-  | 'data.body.primary.answer_p'
-  | 'data.body.primary.answer_j'
-  | 'prismicId'
-  | 'dataString'
-  | 'dataRaw.body'
-  | 'dataRaw.body.slice_type'
-  | 'dataRaw.body.primary.question'
-  | 'dataRaw.body.primary.answer_i'
-  | 'dataRaw.body.primary.answer_e'
-  | 'dataRaw.body.primary.answer_n'
-  | 'dataRaw.body.primary.answer_s'
-  | 'dataRaw.body.primary.answer_f'
-  | 'dataRaw.body.primary.answer_t'
-  | 'dataRaw.body.primary.answer_p'
-  | 'dataRaw.body.primary.answer_j'
-  | '_previewable';
-
-type PrismicMbtiTestQuestionGroupConnection = {
-  readonly totalCount: Scalars['Int'];
-  readonly edges: ReadonlyArray<PrismicMbtiTestQuestionEdge>;
-  readonly nodes: ReadonlyArray<PrismicMbtiTestQuestion>;
-  readonly pageInfo: PageInfo;
-  readonly field: Scalars['String'];
-  readonly fieldValue: Maybe<Scalars['String']>;
-};
-
-type PrismicMbtiTestQuestionFilterInput = {
-  readonly id: Maybe<StringQueryOperatorInput>;
-  readonly parent: Maybe<NodeFilterInput>;
-  readonly children: Maybe<NodeFilterListInput>;
-  readonly internal: Maybe<InternalFilterInput>;
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly href: Maybe<StringQueryOperatorInput>;
-  readonly first_publication_date: Maybe<DateQueryOperatorInput>;
-  readonly last_publication_date: Maybe<DateQueryOperatorInput>;
-  readonly slugs: Maybe<StringQueryOperatorInput>;
-  readonly lang: Maybe<StringQueryOperatorInput>;
-  readonly data: Maybe<PrismicMbtiTestQuestionDataFilterInput>;
-  readonly prismicId: Maybe<StringQueryOperatorInput>;
-  readonly dataString: Maybe<StringQueryOperatorInput>;
-  readonly dataRaw: Maybe<PrismicMbtiTestQuestionDataRawFilterInput>;
-  readonly _previewable: Maybe<StringQueryOperatorInput>;
-};
-
-type PrismicMbtiTestQuestionSortInput = {
-  readonly fields: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionFieldsEnum>>>;
-  readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
-};
-
 type PrismicMbtiIntroDataFilterInput = {
   readonly title: Maybe<StringQueryOperatorInput>;
   readonly description: Maybe<StringQueryOperatorInput>;
@@ -7143,8 +5407,399 @@ type PrismicMbtiIntroSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
+type PrismicMbtiTestQuestionDataFilterInput = {
+  readonly body: Maybe<PrismicMbtiTestQuestionDataBodyFilterListInput>;
+};
+
+type PrismicMbtiTestQuestionDataBodyFilterListInput = {
+  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataBodyFilterInput>;
+};
+
+type PrismicMbtiTestQuestionDataBodyFilterInput = {
+  readonly slice_type: Maybe<StringQueryOperatorInput>;
+  readonly primary: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryFilterInput>;
+};
+
+type PrismicMbtiTestQuestionDataBodyPrimaryFilterInput = {
+  readonly question: Maybe<StringQueryOperatorInput>;
+  readonly answer_n: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_nFilterListInput>;
+  readonly answer_s: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_sFilterListInput>;
+  readonly answer_i: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_iFilterListInput>;
+  readonly answer_e: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_eFilterListInput>;
+  readonly answer_p: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_pFilterListInput>;
+  readonly answer_j: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_jFilterListInput>;
+  readonly answer_f: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_fFilterListInput>;
+  readonly answer_t: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_tFilterListInput>;
+};
+
+type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_nFilterListInput = {
+  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_nFilterInput>;
+};
+
+type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_nFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly text: Maybe<StringQueryOperatorInput>;
+};
+
+type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_sFilterListInput = {
+  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_sFilterInput>;
+};
+
+type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_sFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly text: Maybe<StringQueryOperatorInput>;
+};
+
+type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_iFilterListInput = {
+  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_iFilterInput>;
+};
+
+type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_iFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly text: Maybe<StringQueryOperatorInput>;
+};
+
+type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_eFilterListInput = {
+  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_eFilterInput>;
+};
+
+type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_eFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly text: Maybe<StringQueryOperatorInput>;
+};
+
+type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_pFilterListInput = {
+  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_pFilterInput>;
+};
+
+type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_pFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly text: Maybe<StringQueryOperatorInput>;
+};
+
+type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_jFilterListInput = {
+  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_jFilterInput>;
+};
+
+type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_jFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly text: Maybe<StringQueryOperatorInput>;
+};
+
+type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_fFilterListInput = {
+  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_fFilterInput>;
+};
+
+type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_fFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly text: Maybe<StringQueryOperatorInput>;
+};
+
+type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_tFilterListInput = {
+  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_tFilterInput>;
+};
+
+type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_tFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly text: Maybe<StringQueryOperatorInput>;
+};
+
+type PrismicMbtiTestQuestionDataRawFilterInput = {
+  readonly body: Maybe<PrismicMbtiTestQuestionDataRawBodyFilterListInput>;
+};
+
+type PrismicMbtiTestQuestionDataRawBodyFilterListInput = {
+  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataRawBodyFilterInput>;
+};
+
+type PrismicMbtiTestQuestionDataRawBodyFilterInput = {
+  readonly slice_type: Maybe<StringQueryOperatorInput>;
+  readonly primary: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryFilterInput>;
+};
+
+type PrismicMbtiTestQuestionDataRawBodyPrimaryFilterInput = {
+  readonly question: Maybe<StringQueryOperatorInput>;
+  readonly answer_n: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_nFilterListInput>;
+  readonly answer_s: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_sFilterListInput>;
+  readonly answer_i: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_iFilterListInput>;
+  readonly answer_e: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_eFilterListInput>;
+  readonly answer_p: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_pFilterListInput>;
+  readonly answer_j: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_jFilterListInput>;
+  readonly answer_f: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_fFilterListInput>;
+  readonly answer_t: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_tFilterListInput>;
+};
+
+type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_nFilterListInput = {
+  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_nFilterInput>;
+};
+
+type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_nFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly text: Maybe<StringQueryOperatorInput>;
+};
+
+type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_sFilterListInput = {
+  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_sFilterInput>;
+};
+
+type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_sFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly text: Maybe<StringQueryOperatorInput>;
+};
+
+type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_iFilterListInput = {
+  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_iFilterInput>;
+};
+
+type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_iFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly text: Maybe<StringQueryOperatorInput>;
+};
+
+type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_eFilterListInput = {
+  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_eFilterInput>;
+};
+
+type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_eFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly text: Maybe<StringQueryOperatorInput>;
+};
+
+type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_pFilterListInput = {
+  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_pFilterInput>;
+};
+
+type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_pFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly text: Maybe<StringQueryOperatorInput>;
+};
+
+type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_jFilterListInput = {
+  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_jFilterInput>;
+};
+
+type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_jFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly text: Maybe<StringQueryOperatorInput>;
+};
+
+type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_fFilterListInput = {
+  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_fFilterInput>;
+};
+
+type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_fFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly text: Maybe<StringQueryOperatorInput>;
+};
+
+type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_tFilterListInput = {
+  readonly elemMatch: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_tFilterInput>;
+};
+
+type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_tFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly text: Maybe<StringQueryOperatorInput>;
+};
+
+type PrismicMbtiTestQuestionConnection = {
+  readonly totalCount: Scalars['Int'];
+  readonly edges: ReadonlyArray<PrismicMbtiTestQuestionEdge>;
+  readonly nodes: ReadonlyArray<PrismicMbtiTestQuestion>;
+  readonly pageInfo: PageInfo;
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly group: ReadonlyArray<PrismicMbtiTestQuestionGroupConnection>;
+};
+
+
+type PrismicMbtiTestQuestionConnection_distinctArgs = {
+  field: PrismicMbtiTestQuestionFieldsEnum;
+};
+
+
+type PrismicMbtiTestQuestionConnection_maxArgs = {
+  field: PrismicMbtiTestQuestionFieldsEnum;
+};
+
+
+type PrismicMbtiTestQuestionConnection_minArgs = {
+  field: PrismicMbtiTestQuestionFieldsEnum;
+};
+
+
+type PrismicMbtiTestQuestionConnection_sumArgs = {
+  field: PrismicMbtiTestQuestionFieldsEnum;
+};
+
+
+type PrismicMbtiTestQuestionConnection_groupArgs = {
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+  field: PrismicMbtiTestQuestionFieldsEnum;
+};
+
+type PrismicMbtiTestQuestionEdge = {
+  readonly next: Maybe<PrismicMbtiTestQuestion>;
+  readonly node: PrismicMbtiTestQuestion;
+  readonly previous: Maybe<PrismicMbtiTestQuestion>;
+};
+
+type PrismicMbtiTestQuestionFieldsEnum =
+  | 'id'
+  | 'parent.id'
+  | 'parent.parent.id'
+  | 'parent.parent.parent.id'
+  | 'parent.parent.parent.children'
+  | 'parent.parent.children'
+  | 'parent.parent.children.id'
+  | 'parent.parent.children.children'
+  | 'parent.parent.internal.content'
+  | 'parent.parent.internal.contentDigest'
+  | 'parent.parent.internal.description'
+  | 'parent.parent.internal.fieldOwners'
+  | 'parent.parent.internal.ignoreType'
+  | 'parent.parent.internal.mediaType'
+  | 'parent.parent.internal.owner'
+  | 'parent.parent.internal.type'
+  | 'parent.children'
+  | 'parent.children.id'
+  | 'parent.children.parent.id'
+  | 'parent.children.parent.children'
+  | 'parent.children.children'
+  | 'parent.children.children.id'
+  | 'parent.children.children.children'
+  | 'parent.children.internal.content'
+  | 'parent.children.internal.contentDigest'
+  | 'parent.children.internal.description'
+  | 'parent.children.internal.fieldOwners'
+  | 'parent.children.internal.ignoreType'
+  | 'parent.children.internal.mediaType'
+  | 'parent.children.internal.owner'
+  | 'parent.children.internal.type'
+  | 'parent.internal.content'
+  | 'parent.internal.contentDigest'
+  | 'parent.internal.description'
+  | 'parent.internal.fieldOwners'
+  | 'parent.internal.ignoreType'
+  | 'parent.internal.mediaType'
+  | 'parent.internal.owner'
+  | 'parent.internal.type'
+  | 'children'
+  | 'children.id'
+  | 'children.parent.id'
+  | 'children.parent.parent.id'
+  | 'children.parent.parent.children'
+  | 'children.parent.children'
+  | 'children.parent.children.id'
+  | 'children.parent.children.children'
+  | 'children.parent.internal.content'
+  | 'children.parent.internal.contentDigest'
+  | 'children.parent.internal.description'
+  | 'children.parent.internal.fieldOwners'
+  | 'children.parent.internal.ignoreType'
+  | 'children.parent.internal.mediaType'
+  | 'children.parent.internal.owner'
+  | 'children.parent.internal.type'
+  | 'children.children'
+  | 'children.children.id'
+  | 'children.children.parent.id'
+  | 'children.children.parent.children'
+  | 'children.children.children'
+  | 'children.children.children.id'
+  | 'children.children.children.children'
+  | 'children.children.internal.content'
+  | 'children.children.internal.contentDigest'
+  | 'children.children.internal.description'
+  | 'children.children.internal.fieldOwners'
+  | 'children.children.internal.ignoreType'
+  | 'children.children.internal.mediaType'
+  | 'children.children.internal.owner'
+  | 'children.children.internal.type'
+  | 'children.internal.content'
+  | 'children.internal.contentDigest'
+  | 'children.internal.description'
+  | 'children.internal.fieldOwners'
+  | 'children.internal.ignoreType'
+  | 'children.internal.mediaType'
+  | 'children.internal.owner'
+  | 'children.internal.type'
+  | 'internal.content'
+  | 'internal.contentDigest'
+  | 'internal.description'
+  | 'internal.fieldOwners'
+  | 'internal.ignoreType'
+  | 'internal.mediaType'
+  | 'internal.owner'
+  | 'internal.type'
+  | 'type'
+  | 'href'
+  | 'first_publication_date'
+  | 'last_publication_date'
+  | 'slugs'
+  | 'lang'
+  | 'data.body'
+  | 'data.body.slice_type'
+  | 'data.body.primary.question'
+  | 'data.body.primary.answer_n'
+  | 'data.body.primary.answer_s'
+  | 'data.body.primary.answer_i'
+  | 'data.body.primary.answer_e'
+  | 'data.body.primary.answer_p'
+  | 'data.body.primary.answer_j'
+  | 'data.body.primary.answer_f'
+  | 'data.body.primary.answer_t'
+  | 'prismicId'
+  | 'dataString'
+  | 'dataRaw.body'
+  | 'dataRaw.body.slice_type'
+  | 'dataRaw.body.primary.question'
+  | 'dataRaw.body.primary.answer_n'
+  | 'dataRaw.body.primary.answer_s'
+  | 'dataRaw.body.primary.answer_i'
+  | 'dataRaw.body.primary.answer_e'
+  | 'dataRaw.body.primary.answer_p'
+  | 'dataRaw.body.primary.answer_j'
+  | 'dataRaw.body.primary.answer_f'
+  | 'dataRaw.body.primary.answer_t'
+  | '_previewable';
+
+type PrismicMbtiTestQuestionGroupConnection = {
+  readonly totalCount: Scalars['Int'];
+  readonly edges: ReadonlyArray<PrismicMbtiTestQuestionEdge>;
+  readonly nodes: ReadonlyArray<PrismicMbtiTestQuestion>;
+  readonly pageInfo: PageInfo;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestQuestionFilterInput = {
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly parent: Maybe<NodeFilterInput>;
+  readonly children: Maybe<NodeFilterListInput>;
+  readonly internal: Maybe<InternalFilterInput>;
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly href: Maybe<StringQueryOperatorInput>;
+  readonly first_publication_date: Maybe<DateQueryOperatorInput>;
+  readonly last_publication_date: Maybe<DateQueryOperatorInput>;
+  readonly slugs: Maybe<StringQueryOperatorInput>;
+  readonly lang: Maybe<StringQueryOperatorInput>;
+  readonly data: Maybe<PrismicMbtiTestQuestionDataFilterInput>;
+  readonly prismicId: Maybe<StringQueryOperatorInput>;
+  readonly dataString: Maybe<StringQueryOperatorInput>;
+  readonly dataRaw: Maybe<PrismicMbtiTestQuestionDataRawFilterInput>;
+  readonly _previewable: Maybe<StringQueryOperatorInput>;
+};
+
+type PrismicMbtiTestQuestionSortInput = {
+  readonly fields: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionFieldsEnum>>>;
+  readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
+};
+
 type PrismicMbtiTestResultDataFilterInput = {
   readonly summary: Maybe<StringQueryOperatorInput>;
+  readonly og_description: Maybe<StringQueryOperatorInput>;
   readonly opengraph_image: Maybe<PrismicMbtiTestResultDataOpengraph_imageFilterInput>;
   readonly comments: Maybe<PrismicMbtiTestResultDataCommentsFilterListInput>;
   readonly thumbnail: Maybe<PrismicMbtiTestResultDataThumbnailFilterInput>;
@@ -7241,6 +5896,7 @@ type PrismicMbtiTestResultDataRelationsRelation_entryFilterInput = {
 
 type PrismicMbtiTestResultDataRawFilterInput = {
   readonly summary: Maybe<StringQueryOperatorInput>;
+  readonly og_description: Maybe<StringQueryOperatorInput>;
   readonly opengraph_image: Maybe<PrismicMbtiTestResultDataRawOpengraph_imageFilterInput>;
   readonly comments: Maybe<PrismicMbtiTestResultDataRawCommentsFilterListInput>;
   readonly thumbnail: Maybe<PrismicMbtiTestResultDataRawThumbnailFilterInput>;
@@ -7476,6 +6132,7 @@ type PrismicMbtiTestResultFieldsEnum =
   | 'slugs'
   | 'lang'
   | 'data.summary'
+  | 'data.og_description'
   | 'data.opengraph_image.dimensions.width'
   | 'data.opengraph_image.dimensions.height'
   | 'data.opengraph_image.url'
@@ -7508,6 +6165,7 @@ type PrismicMbtiTestResultFieldsEnum =
   | 'prismicId'
   | 'dataString'
   | 'dataRaw.summary'
+  | 'dataRaw.og_description'
   | 'dataRaw.opengraph_image.dimensions.width'
   | 'dataRaw.opengraph_image.dimensions.height'
   | 'dataRaw.opengraph_image.url'
@@ -7872,12 +6530,11 @@ type SitePluginFieldsEnum =
   | 'pluginOptions.aliases._'
   | 'pluginOptions.component'
   | 'pluginOptions.outputPath'
+  | 'pluginOptions.emitSchema.src___generated___gatsby_schema_graphql'
   | 'pluginOptions.emitSchema.src___generated___gatsby_introspection_json'
   | 'pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql'
   | 'pluginOptions.repositoryName'
   | 'pluginOptions.accessToken'
-  | 'pluginOptions.uid'
-  | 'pluginOptions.baseUrl'
   | 'pluginOptions.boardToken'
   | 'pluginOptions.includeContent'
   | 'pluginOptions.path'
@@ -7919,45 +6576,843 @@ type SitePluginSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
+type SiteMetadata = {
+  readonly siteUrl: Scalars['String'];
+};
+
+type PrismicMbtiIntro = Node & {
+  readonly id: Scalars['ID'];
+  readonly parent: Maybe<Node>;
+  readonly children: ReadonlyArray<Node>;
+  readonly internal: Internal;
+  readonly type: Maybe<Scalars['String']>;
+  readonly href: Maybe<Scalars['String']>;
+  readonly first_publication_date: Maybe<Scalars['Date']>;
+  readonly last_publication_date: Maybe<Scalars['Date']>;
+  readonly slugs: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly lang: Maybe<Scalars['String']>;
+  readonly data: Maybe<PrismicMbtiIntroData>;
+  readonly prismicId: Maybe<Scalars['String']>;
+  readonly dataString: Maybe<Scalars['String']>;
+  readonly dataRaw: Maybe<PrismicMbtiIntroDataRaw>;
+  readonly _previewable: Maybe<Scalars['String']>;
+};
+
+
+type PrismicMbtiIntro_first_publication_dateArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+
+type PrismicMbtiIntro_last_publication_dateArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiIntroData = {
+  readonly title: Maybe<Scalars['String']>;
+  readonly description: Maybe<Scalars['String']>;
+  readonly opengraph_image: Maybe<PrismicMbtiIntroDataOpengraph_image>;
+};
+
+type PrismicMbtiIntroDataOpengraph_image = {
+  readonly dimensions: Maybe<PrismicMbtiIntroDataOpengraph_imageDimensions>;
+  readonly url: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiIntroDataOpengraph_imageDimensions = {
+  readonly width: Maybe<Scalars['Int']>;
+  readonly height: Maybe<Scalars['Int']>;
+};
+
+type PrismicMbtiIntroDataRaw = {
+  readonly title: Maybe<Scalars['String']>;
+  readonly description: Maybe<Scalars['String']>;
+  readonly opengraph_image: Maybe<PrismicMbtiIntroDataRawOpengraph_image>;
+};
+
+type PrismicMbtiIntroDataRawOpengraph_image = {
+  readonly dimensions: Maybe<PrismicMbtiIntroDataRawOpengraph_imageDimensions>;
+  readonly url: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiIntroDataRawOpengraph_imageDimensions = {
+  readonly width: Maybe<Scalars['Int']>;
+  readonly height: Maybe<Scalars['Int']>;
+};
+
+type PrismicMbtiTestQuestion = Node & {
+  readonly id: Scalars['ID'];
+  readonly parent: Maybe<Node>;
+  readonly children: ReadonlyArray<Node>;
+  readonly internal: Internal;
+  readonly type: Maybe<Scalars['String']>;
+  readonly href: Maybe<Scalars['String']>;
+  readonly first_publication_date: Maybe<Scalars['Date']>;
+  readonly last_publication_date: Maybe<Scalars['Date']>;
+  readonly slugs: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly lang: Maybe<Scalars['String']>;
+  readonly data: Maybe<PrismicMbtiTestQuestionData>;
+  readonly prismicId: Maybe<Scalars['String']>;
+  readonly dataString: Maybe<Scalars['String']>;
+  readonly dataRaw: Maybe<PrismicMbtiTestQuestionDataRaw>;
+  readonly _previewable: Maybe<Scalars['String']>;
+};
+
+
+type PrismicMbtiTestQuestion_first_publication_dateArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+
+type PrismicMbtiTestQuestion_last_publication_dateArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestQuestionData = {
+  readonly body: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataBody>>>;
+};
+
+type PrismicMbtiTestQuestionDataBody = {
+  readonly slice_type: Maybe<Scalars['String']>;
+  readonly primary: Maybe<PrismicMbtiTestQuestionDataBodyPrimary>;
+};
+
+type PrismicMbtiTestQuestionDataBodyPrimary = {
+  readonly question: Maybe<Scalars['String']>;
+  readonly answer_n: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_n>>>;
+  readonly answer_s: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_s>>>;
+  readonly answer_i: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_i>>>;
+  readonly answer_e: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_e>>>;
+  readonly answer_p: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_p>>>;
+  readonly answer_j: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_j>>>;
+  readonly answer_f: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_f>>>;
+  readonly answer_t: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataBodyPrimaryAnswer_t>>>;
+};
+
+type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_n = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly text: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_s = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly text: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_i = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly text: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_e = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly text: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_p = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly text: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_j = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly text: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_f = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly text: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestQuestionDataBodyPrimaryAnswer_t = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly text: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestQuestionDataRaw = {
+  readonly body: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataRawBody>>>;
+};
+
+type PrismicMbtiTestQuestionDataRawBody = {
+  readonly slice_type: Maybe<Scalars['String']>;
+  readonly primary: Maybe<PrismicMbtiTestQuestionDataRawBodyPrimary>;
+};
+
+type PrismicMbtiTestQuestionDataRawBodyPrimary = {
+  readonly question: Maybe<Scalars['String']>;
+  readonly answer_n: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_n>>>;
+  readonly answer_s: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_s>>>;
+  readonly answer_i: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_i>>>;
+  readonly answer_e: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_e>>>;
+  readonly answer_p: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_p>>>;
+  readonly answer_j: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_j>>>;
+  readonly answer_f: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_f>>>;
+  readonly answer_t: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_t>>>;
+};
+
+type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_n = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly text: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_s = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly text: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_i = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly text: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_e = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly text: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_p = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly text: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_j = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly text: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_f = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly text: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestQuestionDataRawBodyPrimaryAnswer_t = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly text: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestResult = Node & {
+  readonly id: Scalars['ID'];
+  readonly parent: Maybe<Node>;
+  readonly children: ReadonlyArray<Node>;
+  readonly internal: Internal;
+  readonly uid: Maybe<Scalars['String']>;
+  readonly type: Maybe<Scalars['String']>;
+  readonly href: Maybe<Scalars['String']>;
+  readonly tags: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly first_publication_date: Maybe<Scalars['Date']>;
+  readonly last_publication_date: Maybe<Scalars['Date']>;
+  readonly slugs: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly lang: Maybe<Scalars['String']>;
+  readonly data: Maybe<PrismicMbtiTestResultData>;
+  readonly prismicId: Maybe<Scalars['String']>;
+  readonly dataString: Maybe<Scalars['String']>;
+  readonly dataRaw: Maybe<PrismicMbtiTestResultDataRaw>;
+  readonly _previewable: Maybe<Scalars['String']>;
+};
+
+
+type PrismicMbtiTestResult_first_publication_dateArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+
+type PrismicMbtiTestResult_last_publication_dateArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestResultData = {
+  readonly summary: Maybe<Scalars['String']>;
+  readonly og_description: Maybe<Scalars['String']>;
+  readonly opengraph_image: Maybe<PrismicMbtiTestResultDataOpengraph_image>;
+  readonly comments: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestResultDataComments>>>;
+  readonly thumbnail: Maybe<PrismicMbtiTestResultDataThumbnail>;
+  readonly avatar: Maybe<PrismicMbtiTestResultDataAvatar>;
+  readonly tags: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestResultDataTags>>>;
+  readonly remarks: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestResultDataRemarks>>>;
+  readonly relations: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestResultDataRelations>>>;
+};
+
+type PrismicMbtiTestResultDataOpengraph_image = {
+  readonly dimensions: Maybe<PrismicMbtiTestResultDataOpengraph_imageDimensions>;
+  readonly url: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestResultDataOpengraph_imageDimensions = {
+  readonly width: Maybe<Scalars['Int']>;
+  readonly height: Maybe<Scalars['Int']>;
+};
+
+type PrismicMbtiTestResultDataComments = {
+  readonly text: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestResultDataThumbnail = {
+  readonly dimensions: Maybe<PrismicMbtiTestResultDataThumbnailDimensions>;
+  readonly url: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestResultDataThumbnailDimensions = {
+  readonly width: Maybe<Scalars['Int']>;
+  readonly height: Maybe<Scalars['Int']>;
+};
+
+type PrismicMbtiTestResultDataAvatar = {
+  readonly dimensions: Maybe<PrismicMbtiTestResultDataAvatarDimensions>;
+  readonly url: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestResultDataAvatarDimensions = {
+  readonly width: Maybe<Scalars['Int']>;
+  readonly height: Maybe<Scalars['Int']>;
+};
+
+type PrismicMbtiTestResultDataTags = {
+  readonly tag_name: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestResultDataRemarks = {
+  readonly remark_name: Maybe<Scalars['String']>;
+  readonly remark_description: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestResultDataRemarksRemark_description>>>;
+};
+
+type PrismicMbtiTestResultDataRemarksRemark_description = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly text: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestResultDataRelations = {
+  readonly relation_type: Maybe<Scalars['String']>;
+  readonly relation_color: Maybe<Scalars['String']>;
+  readonly relation_entry: Maybe<PrismicMbtiTestResultDataRelationsRelation_entry>;
+};
+
+type PrismicMbtiTestResultDataRelationsRelation_entry = {
+  readonly id: Maybe<Scalars['String']>;
+  readonly type: Maybe<Scalars['String']>;
+  readonly tags: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly slug: Maybe<Scalars['String']>;
+  readonly lang: Maybe<Scalars['String']>;
+  readonly uid: Maybe<Scalars['String']>;
+  readonly link_type: Maybe<Scalars['String']>;
+  readonly isBroken: Maybe<Scalars['Boolean']>;
+};
+
+type PrismicMbtiTestResultDataRaw = {
+  readonly summary: Maybe<Scalars['String']>;
+  readonly og_description: Maybe<Scalars['String']>;
+  readonly opengraph_image: Maybe<PrismicMbtiTestResultDataRawOpengraph_image>;
+  readonly comments: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestResultDataRawComments>>>;
+  readonly thumbnail: Maybe<PrismicMbtiTestResultDataRawThumbnail>;
+  readonly avatar: Maybe<PrismicMbtiTestResultDataRawAvatar>;
+  readonly tags: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestResultDataRawTags>>>;
+  readonly remarks: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestResultDataRawRemarks>>>;
+  readonly relations: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestResultDataRawRelations>>>;
+};
+
+type PrismicMbtiTestResultDataRawOpengraph_image = {
+  readonly dimensions: Maybe<PrismicMbtiTestResultDataRawOpengraph_imageDimensions>;
+  readonly url: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestResultDataRawOpengraph_imageDimensions = {
+  readonly width: Maybe<Scalars['Int']>;
+  readonly height: Maybe<Scalars['Int']>;
+};
+
+type PrismicMbtiTestResultDataRawComments = {
+  readonly text: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestResultDataRawThumbnail = {
+  readonly dimensions: Maybe<PrismicMbtiTestResultDataRawThumbnailDimensions>;
+  readonly url: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestResultDataRawThumbnailDimensions = {
+  readonly width: Maybe<Scalars['Int']>;
+  readonly height: Maybe<Scalars['Int']>;
+};
+
+type PrismicMbtiTestResultDataRawAvatar = {
+  readonly dimensions: Maybe<PrismicMbtiTestResultDataRawAvatarDimensions>;
+  readonly url: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestResultDataRawAvatarDimensions = {
+  readonly width: Maybe<Scalars['Int']>;
+  readonly height: Maybe<Scalars['Int']>;
+};
+
+type PrismicMbtiTestResultDataRawTags = {
+  readonly tag_name: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestResultDataRawRemarks = {
+  readonly remark_name: Maybe<Scalars['String']>;
+  readonly remark_description: Maybe<ReadonlyArray<Maybe<PrismicMbtiTestResultDataRawRemarksRemark_description>>>;
+};
+
+type PrismicMbtiTestResultDataRawRemarksRemark_description = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly text: Maybe<Scalars['String']>;
+};
+
+type PrismicMbtiTestResultDataRawRelations = {
+  readonly relation_type: Maybe<Scalars['String']>;
+  readonly relation_color: Maybe<Scalars['String']>;
+  readonly relation_entry: Maybe<PrismicMbtiTestResultDataRawRelationsRelation_entry>;
+};
+
+type PrismicMbtiTestResultDataRawRelationsRelation_entry = {
+  readonly id: Maybe<Scalars['String']>;
+  readonly type: Maybe<Scalars['String']>;
+  readonly tags: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly slug: Maybe<Scalars['String']>;
+  readonly lang: Maybe<Scalars['String']>;
+  readonly uid: Maybe<Scalars['String']>;
+  readonly link_type: Maybe<Scalars['String']>;
+  readonly isBroken: Maybe<Scalars['Boolean']>;
+};
+
+type SiteBuildMetadata = Node & {
+  readonly id: Scalars['ID'];
+  readonly parent: Maybe<Node>;
+  readonly children: ReadonlyArray<Node>;
+  readonly internal: Internal;
+  readonly buildTime: Maybe<Scalars['Date']>;
+};
+
+
+type SiteBuildMetadata_buildTimeArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+type SitePlugin = Node & {
+  readonly id: Scalars['ID'];
+  readonly parent: Maybe<Node>;
+  readonly children: ReadonlyArray<Node>;
+  readonly internal: Internal;
+  readonly resolve: Maybe<Scalars['String']>;
+  readonly name: Maybe<Scalars['String']>;
+  readonly version: Maybe<Scalars['String']>;
+  readonly pluginOptions: Maybe<SitePluginPluginOptions>;
+  readonly nodeAPIs: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly browserAPIs: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly ssrAPIs: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly pluginFilepath: Maybe<Scalars['String']>;
+  readonly packageJson: Maybe<SitePluginPackageJson>;
+};
+
+type SitePluginPluginOptions = {
+  readonly base64Width: Maybe<Scalars['Int']>;
+  readonly stripMetadata: Maybe<Scalars['Boolean']>;
+  readonly defaultQuality: Maybe<Scalars['Int']>;
+  readonly failOnError: Maybe<Scalars['Boolean']>;
+  readonly root: Maybe<Scalars['String']>;
+  readonly aliases: Maybe<SitePluginPluginOptionsAliases>;
+  readonly component: Maybe<Scalars['String']>;
+  readonly outputPath: Maybe<Scalars['String']>;
+  readonly emitSchema: Maybe<SitePluginPluginOptionsEmitSchema>;
+  readonly emitPluginDocuments: Maybe<SitePluginPluginOptionsEmitPluginDocuments>;
+  readonly repositoryName: Maybe<Scalars['String']>;
+  readonly accessToken: Maybe<Scalars['String']>;
+  readonly schemas: Maybe<SitePluginPluginOptionsSchemas>;
+  readonly boardToken: Maybe<Scalars['String']>;
+  readonly includeContent: Maybe<Scalars['Boolean']>;
+  readonly path: Maybe<Scalars['String']>;
+  readonly pathCheck: Maybe<Scalars['Boolean']>;
+  readonly allExtensions: Maybe<Scalars['Boolean']>;
+  readonly isTSX: Maybe<Scalars['Boolean']>;
+  readonly jsxPragma: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsAliases = {
+  readonly _: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsEmitSchema = {
+  readonly src___generated___gatsby_schema_graphql: Maybe<Scalars['Boolean']>;
+  readonly src___generated___gatsby_introspection_json: Maybe<Scalars['Boolean']>;
+};
+
+type SitePluginPluginOptionsEmitPluginDocuments = {
+  readonly src___generated___gatsby_plugin_documents_graphql: Maybe<Scalars['Boolean']>;
+};
+
+type SitePluginPluginOptionsSchemas = {
+  readonly faq: Maybe<SitePluginPluginOptionsSchemasFaq>;
+  readonly site_navigation: Maybe<SitePluginPluginOptionsSchemasSite_navigation>;
+  readonly terms_and_conditions: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditions>;
+};
+
+type SitePluginPluginOptionsSchemasFaq = {
+  readonly Main: Maybe<SitePluginPluginOptionsSchemasFaqMain>;
+};
+
+type SitePluginPluginOptionsSchemasFaqMain = {
+  readonly uid: Maybe<SitePluginPluginOptionsSchemasFaqMainUid>;
+  readonly entries: Maybe<SitePluginPluginOptionsSchemasFaqMainEntries>;
+};
+
+type SitePluginPluginOptionsSchemasFaqMainUid = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasFaqMainUidConfig>;
+};
+
+type SitePluginPluginOptionsSchemasFaqMainUidConfig = {
+  readonly label: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasFaqMainEntries = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasFaqMainEntriesConfig>;
+};
+
+type SitePluginPluginOptionsSchemasFaqMainEntriesConfig = {
+  readonly fields: Maybe<SitePluginPluginOptionsSchemasFaqMainEntriesConfigFields>;
+  readonly label: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasFaqMainEntriesConfigFields = {
+  readonly question: Maybe<SitePluginPluginOptionsSchemasFaqMainEntriesConfigFieldsQuestion>;
+  readonly answer: Maybe<SitePluginPluginOptionsSchemasFaqMainEntriesConfigFieldsAnswer>;
+};
+
+type SitePluginPluginOptionsSchemasFaqMainEntriesConfigFieldsQuestion = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasFaqMainEntriesConfigFieldsQuestionConfig>;
+};
+
+type SitePluginPluginOptionsSchemasFaqMainEntriesConfigFieldsQuestionConfig = {
+  readonly label: Maybe<Scalars['String']>;
+  readonly placeholder: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasFaqMainEntriesConfigFieldsAnswer = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasFaqMainEntriesConfigFieldsAnswerConfig>;
+};
+
+type SitePluginPluginOptionsSchemasFaqMainEntriesConfigFieldsAnswerConfig = {
+  readonly multi: Maybe<Scalars['String']>;
+  readonly label: Maybe<Scalars['String']>;
+  readonly placeholder: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigation = {
+  readonly Main: Maybe<SitePluginPluginOptionsSchemasSite_navigationMain>;
+  readonly Header: Maybe<SitePluginPluginOptionsSchemasSite_navigationHeader>;
+  readonly Footer: Maybe<SitePluginPluginOptionsSchemasSite_navigationFooter>;
+  readonly SNS_Profile: Maybe<SitePluginPluginOptionsSchemasSite_navigationSNS_Profile>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationMain = {
+  readonly uid: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainUid>;
+  readonly address: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainAddress>;
+  readonly tel: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainTel>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationMainUid = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainUidConfig>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationMainUidConfig = {
+  readonly label: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationMainAddress = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainAddressConfig>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationMainAddressConfig = {
+  readonly label: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationMainTel = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainTelConfig>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationMainTelConfig = {
+  readonly label: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationHeader = {
+  readonly header_entries: Maybe<SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entries>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entries = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfig>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfig = {
+  readonly fields: Maybe<SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfigFields>;
+  readonly label: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfigFields = {
+  readonly display_text: Maybe<SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfigFieldsDisplay_text>;
+  readonly link: Maybe<SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfigFieldsLink>;
+  readonly group: Maybe<SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfigFieldsGroup>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfigFieldsDisplay_text = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfigFieldsDisplay_textConfig>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfigFieldsDisplay_textConfig = {
+  readonly label: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfigFieldsLink = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfigFieldsLinkConfig>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfigFieldsLinkConfig = {
+  readonly label: Maybe<Scalars['String']>;
+  readonly placeholder: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfigFieldsGroup = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfigFieldsGroupConfig>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationHeaderHeader_entriesConfigFieldsGroupConfig = {
+  readonly label: Maybe<Scalars['String']>;
+  readonly placeholder: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationFooter = {
+  readonly footer_entries: Maybe<SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entries>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entries = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfig>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfig = {
+  readonly fields: Maybe<SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfigFields>;
+  readonly label: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfigFields = {
+  readonly display_text: Maybe<SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfigFieldsDisplay_text>;
+  readonly link: Maybe<SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfigFieldsLink>;
+  readonly group: Maybe<SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfigFieldsGroup>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfigFieldsDisplay_text = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfigFieldsDisplay_textConfig>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfigFieldsDisplay_textConfig = {
+  readonly label: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfigFieldsLink = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfigFieldsLinkConfig>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfigFieldsLinkConfig = {
+  readonly label: Maybe<Scalars['String']>;
+  readonly placeholder: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfigFieldsGroup = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfigFieldsGroupConfig>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationFooterFooter_entriesConfigFieldsGroupConfig = {
+  readonly label: Maybe<Scalars['String']>;
+  readonly placeholder: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationSNS_Profile = {
+  readonly sns_profiles: Maybe<SitePluginPluginOptionsSchemasSite_navigationSNS_ProfileSns_profiles>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationSNS_ProfileSns_profiles = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationSNS_ProfileSns_profilesConfig>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationSNS_ProfileSns_profilesConfig = {
+  readonly fields: Maybe<SitePluginPluginOptionsSchemasSite_navigationSNS_ProfileSns_profilesConfigFields>;
+  readonly label: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationSNS_ProfileSns_profilesConfigFields = {
+  readonly service: Maybe<SitePluginPluginOptionsSchemasSite_navigationSNS_ProfileSns_profilesConfigFieldsService>;
+  readonly link: Maybe<SitePluginPluginOptionsSchemasSite_navigationSNS_ProfileSns_profilesConfigFieldsLink>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationSNS_ProfileSns_profilesConfigFieldsService = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationSNS_ProfileSns_profilesConfigFieldsServiceConfig>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationSNS_ProfileSns_profilesConfigFieldsServiceConfig = {
+  readonly options: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly label: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationSNS_ProfileSns_profilesConfigFieldsLink = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationSNS_ProfileSns_profilesConfigFieldsLinkConfig>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationSNS_ProfileSns_profilesConfigFieldsLinkConfig = {
+  readonly label: Maybe<Scalars['String']>;
+  readonly placeholder: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasTerms_and_conditions = {
+  readonly Main: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMain>;
+};
+
+type SitePluginPluginOptionsSchemasTerms_and_conditionsMain = {
+  readonly uid: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainUid>;
+  readonly description: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainDescription>;
+  readonly revision_date: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainRevision_date>;
+  readonly content: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainContent>;
+};
+
+type SitePluginPluginOptionsSchemasTerms_and_conditionsMainUid = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainUidConfig>;
+};
+
+type SitePluginPluginOptionsSchemasTerms_and_conditionsMainUidConfig = {
+  readonly label: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasTerms_and_conditionsMainDescription = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainDescriptionConfig>;
+};
+
+type SitePluginPluginOptionsSchemasTerms_and_conditionsMainDescriptionConfig = {
+  readonly label: Maybe<Scalars['String']>;
+  readonly placeholder: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasTerms_and_conditionsMainRevision_date = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainRevision_dateConfig>;
+};
+
+type SitePluginPluginOptionsSchemasTerms_and_conditionsMainRevision_dateConfig = {
+  readonly label: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasTerms_and_conditionsMainContent = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasTerms_and_conditionsMainContentConfig>;
+};
+
+type SitePluginPluginOptionsSchemasTerms_and_conditionsMainContentConfig = {
+  readonly multi: Maybe<Scalars['String']>;
+  readonly label: Maybe<Scalars['String']>;
+  readonly placeholder: Maybe<Scalars['String']>;
+};
+
+type SitePluginPackageJson = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly description: Maybe<Scalars['String']>;
+  readonly version: Maybe<Scalars['String']>;
+  readonly main: Maybe<Scalars['String']>;
+  readonly license: Maybe<Scalars['String']>;
+  readonly dependencies: Maybe<ReadonlyArray<Maybe<SitePluginPackageJsonDependencies>>>;
+  readonly devDependencies: Maybe<ReadonlyArray<Maybe<SitePluginPackageJsonDevDependencies>>>;
+  readonly peerDependencies: Maybe<ReadonlyArray<Maybe<SitePluginPackageJsonPeerDependencies>>>;
+  readonly keywords: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+};
+
+type SitePluginPackageJsonDependencies = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly version: Maybe<Scalars['String']>;
+};
+
+type SitePluginPackageJsonDevDependencies = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly version: Maybe<Scalars['String']>;
+};
+
+type SitePluginPackageJsonPeerDependencies = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly version: Maybe<Scalars['String']>;
+};
+
 type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type PagesQueryQuery = { readonly allSiteFunction: { readonly nodes: ReadonlyArray<Pick<SiteFunction, 'apiRoute'>> }, readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
-type DefaultLayout_queryFragment = { readonly siteNavigation: Maybe<(
-    Header_navigationFragment
-    & Footer_navigationFragment
+type DefaultLayout_queryFragment = { readonly prismicSiteNavigation: Maybe<{ readonly data: (
+      Header_navigationDataFragment
+      & Footer_navigationDataFragment
+    ) }> };
+
+type Header_navigationDataFragment = NavigationMenu_dataFragment;
+
+type NavigationMenu_dataFragment = { readonly header_entries: ReadonlyArray<(
+    Pick<PrismicSiteNavigationHeaderEntriesGroupType, 'display_text'>
+    & { readonly link: Maybe<Pick<PrismicLinkType, 'url'>> }
   )> };
 
-type Header_navigationFragment = NavigationMenu_navigationFragment;
+type Footer_navigationDataFragment = { readonly footer_entries: ReadonlyArray<(
+    Pick<PrismicSiteNavigationFooterEntriesGroupType, 'display_text'>
+    & { readonly link: Maybe<Pick<PrismicLinkType, 'url'>> }
+  )>, readonly sns_profiles: ReadonlyArray<SocialServiceProfile_profileFragment> };
 
-type NavigationMenu_navigationFragment = { readonly headerEntries: ReadonlyArray<(
-    { readonly __typename: 'SiteNavigationEntryInternal' }
-    & Pick<SiteNavigationEntryInternal, 'pathname' | 'href' | 'displayName'>
-  ) | (
-    { readonly __typename: 'SiteNavigationEntryExternal' }
-    & Pick<SiteNavigationEntryExternal, 'url' | 'href' | 'displayName'>
-  )> };
+type SocialServiceProfile_profileFragment = (
+  Pick<PrismicSiteNavigationSnsProfilesGroupType, 'service'>
+  & { readonly link: Maybe<Pick<PrismicLinkType, 'url'>> }
+);
 
-type Footer_navigationFragment = { readonly footerEntries: ReadonlyArray<(
-    { readonly __typename: 'SiteNavigationEntryInternal' }
-    & Pick<SiteNavigationEntryInternal, 'pathname' | 'href' | 'displayName'>
-  ) | (
-    { readonly __typename: 'SiteNavigationEntryExternal' }
-    & Pick<SiteNavigationEntryExternal, 'url' | 'href' | 'displayName'>
-  )>, readonly socialProfiles: ReadonlyArray<SocialServiceProfile_profileFragment> };
+type FaqAccordion_faqDataFragment = { readonly entries: ReadonlyArray<FaqAccordionItem_entryFragment> };
 
-type SocialServiceProfile_profileFragment = Pick<SocialProfileEntry, 'service' | 'url'>;
-
-type FaqAccordion_faqFragment = { readonly entries: ReadonlyArray<FaqAccordionItem_entryFragment> };
-
-type FaqAccordionItem_entryFragment = Pick<FaqEntry, 'id' | 'question' | 'answerHtml'>;
+type FaqAccordionItem_entryFragment = (
+  Pick<PrismicFaqEntriesGroupType, 'question'>
+  & { readonly answer: Maybe<Pick<PrismicStructuredTextType, 'html'>> }
+);
 
 type FaqPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type FaqPageQuery = (
-  { readonly faq: Maybe<FaqAccordion_faqFragment> }
+  { readonly prismicFaq: Maybe<{ readonly data: FaqAccordion_faqDataFragment }> }
   & DefaultLayout_queryFragment
 );
 
@@ -8074,5 +7529,10 @@ type GatsbyPrismicImageFluid_noBase64Fragment = Pick<PrismicImageFluidType, 'asp
 type GatsbyPrismicImageFluid_withWebpFragment = Pick<PrismicImageFluidType, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
 type GatsbyPrismicImageFluid_withWebp_noBase64Fragment = Pick<PrismicImageFluidType, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+type UseSiteMetadataStaticQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type UseSiteMetadataStaticQuery = { readonly site: Maybe<{ readonly siteMetadata: Pick<SiteMetadata, 'siteUrl'> }> };
 
 }

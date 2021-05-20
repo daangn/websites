@@ -11,8 +11,10 @@ type FaqPageProps = PageProps<GatsbyTypes.FaqPageQuery, GatsbyTypes.SitePageCont
 export const query = graphql`
   query FaqPage {
     ...DefaultLayout_query
-    faq {
-      ...FaqAccordion_faq
+    prismicFaq(uid: { eq: "team.daangn.com" }) {
+      data {
+        ...FaqAccordion_faqData
+      }
     }
   }
 `;
@@ -34,11 +36,8 @@ const Title = styled('h1', {
 const FaqPage: React.FC<FaqPageProps> = ({
   data,
 }) => {
-  if (!data.faq) {
-    throw new Error(`
-      faq 데이터가 주입되지 않았습니다.
-      @karrotmarket/gatsby-transformer-faq 옵션이 올바른지 확인하세요!
-    `);
+  if (!data.prismicFaq) {
+    throw new Error('prismicFaq 컨텐츠 데이터가 제대로 주입되지 않았습니다.');
   }
 
   return (
@@ -46,7 +45,7 @@ const FaqPage: React.FC<FaqPageProps> = ({
       <Title size={{ '@sm': 'sm' }}>
         자주 묻는 질문
       </Title>
-      <FaqAccordion faq={data.faq} />
+      <FaqAccordion faq={data.prismicFaq.data} />
     </>
   );
 };
