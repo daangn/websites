@@ -67,6 +67,7 @@ const config: GatsbyConfig = {
         },
       },
     },
+    'gatsby-plugin-prismic-schema',
 
     // 커스텀 플러그인
     '@karrotmarket/gatsby-transformer-job-post',
