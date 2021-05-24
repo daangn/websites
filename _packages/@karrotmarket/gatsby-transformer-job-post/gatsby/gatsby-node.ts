@@ -20,7 +20,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       @dontInfer
       @childOf(types: ["GreenhouseJob"])
     {
-      ghId: Int!
+      ghId: String!
 
       title: String!
 
@@ -160,7 +160,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ctx => {
 
     const nodeSource = {
       id: createNodeId(`GreenhouseJob:${node.id} >>> JobPost`),
-      ghId: node.ghId,
+      ghId: node.ghId.toString(),
       title: node.title,
       boardUrl: node.absolute_url,
       rawContent,

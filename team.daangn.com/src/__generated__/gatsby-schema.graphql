@@ -1779,6 +1779,7 @@ interface PrismicSliceType {
 }
 
 type JobPost implements Node {
+  ghId: String!
   title: String!
   boardUrl: String!
   content: [JobPostContentSection!]!
@@ -1922,7 +1923,7 @@ type Query {
   allPrismicSiteNavigation(filter: PrismicSiteNavigationFilterInput, sort: PrismicSiteNavigationSortInput, skip: Int, limit: Int): PrismicSiteNavigationConnection!
   prismicTermsAndConditions(data: PrismicTermsAndConditionsDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, dataString: StringQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, url: StringQueryOperatorInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, tags: StringQueryOperatorInput, alternate_languages: PrismicLinkTypeFilterListInput, type: StringQueryOperatorInput, prismicId: IDQueryOperatorInput, _previewable: IDQueryOperatorInput, uid: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): PrismicTermsAndConditions
   allPrismicTermsAndConditions(filter: PrismicTermsAndConditionsFilterInput, sort: PrismicTermsAndConditionsSortInput, skip: Int, limit: Int): PrismicTermsAndConditionsConnection!
-  jobPost(title: StringQueryOperatorInput, boardUrl: StringQueryOperatorInput, content: JobPostContentSectionFilterListInput, rawContent: StringQueryOperatorInput, corporate: JobCorporateQueryOperatorInput, employmentType: JobEmploymentTypeQueryOperatorInput, alternativeCivilianService: BooleanQueryOperatorInput, priorExperience: JobPriorExperienceQueryOperatorInput, chapter: StringQueryOperatorInput, keywords: StringQueryOperatorInput, gatsbyPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): JobPost
+  jobPost(ghId: StringQueryOperatorInput, title: StringQueryOperatorInput, boardUrl: StringQueryOperatorInput, content: JobPostContentSectionFilterListInput, rawContent: StringQueryOperatorInput, corporate: JobCorporateQueryOperatorInput, employmentType: JobEmploymentTypeQueryOperatorInput, alternativeCivilianService: BooleanQueryOperatorInput, priorExperience: JobPriorExperienceQueryOperatorInput, chapter: StringQueryOperatorInput, keywords: StringQueryOperatorInput, gatsbyPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): JobPost
   allJobPost(filter: JobPostFilterInput, sort: JobPostSortInput, skip: Int, limit: Int): JobPostConnection!
   greenhouseJob(ghId: StringQueryOperatorInput, title: StringQueryOperatorInput, boardUrl: StringQueryOperatorInput, content: StringQueryOperatorInput, updatedAt: DateQueryOperatorInput, metadata: GreenhouseJobCustomFieldMetadataFilterListInput, childrenJobPost: JobPostFilterListInput, childJobPost: JobPostFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): GreenhouseJob
   allGreenhouseJob(filter: GreenhouseJobFilterInput, sort: GreenhouseJobSortInput, skip: Int, limit: Int): GreenhouseJobConnection!
@@ -4386,6 +4387,7 @@ type JobPostEdge {
 }
 
 enum JobPostFieldsEnum {
+  ghId
   title
   boardUrl
   content
@@ -4498,6 +4500,7 @@ type JobPostGroupConnection {
 }
 
 input JobPostFilterInput {
+  ghId: StringQueryOperatorInput
   title: StringQueryOperatorInput
   boardUrl: StringQueryOperatorInput
   content: JobPostContentSectionFilterListInput
@@ -4572,6 +4575,7 @@ enum GreenhouseJobFieldsEnum {
   metadata___type
   metadata___value
   childrenJobPost
+  childrenJobPost___ghId
   childrenJobPost___title
   childrenJobPost___boardUrl
   childrenJobPost___content
@@ -4624,6 +4628,7 @@ enum GreenhouseJobFieldsEnum {
   childrenJobPost___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childrenJobPost___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childrenJobPost___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___ghId
   childJobPost___title
   childJobPost___boardUrl
   childJobPost___content

@@ -6,8 +6,10 @@ zone_id = ''
 route = ''
 workers_dev = true
 
+vars = { GH_JOBBOARD_TOKEN = "daangn" }
+
 [build]
-command = 'yarn esbuild src-worker/index.ts --bundle --outfile=dist/worker.js --format=esm'
+command = 'yarn esbuild src/worker/index.ts --bundle --outfile=dist/worker.js --format=esm'
 
 [build.upload]
 format = 'service-worker'

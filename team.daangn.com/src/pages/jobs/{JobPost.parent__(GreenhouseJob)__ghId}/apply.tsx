@@ -17,6 +17,7 @@ export const query = graphql`
     ...DefaultLayout_query
     ...JobPostLayout_query
     jobPost(id: { eq: $id }) {
+      ghId
       title
     }
     privacyPolicy: prismicTermsAndConditions(uid: { eq: "job-application-privacy" }) {
@@ -45,24 +46,6 @@ const FormField = styled(_FormField, {
   marginBottom: rem(40),
 });
 
-const PageTitle = styled(_PageTitle, {
-  marginBottom: rem(25),
-
-  variants: {
-    size: {
-      sm: {
-        marginBottom: rem(16),
-      },
-    },
-  },
-});
-
-const JobPostTitle = styled('p', {
-  fontSize: '$subtitle3',
-  fontWeight: 'bold',
-  marginBottom: rem(65),
-});
-
 const greenhouseAcceptedMimeTypes = [
   'text/plain',
   'application/rtf',
@@ -86,13 +69,34 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
       return;
     }
     const formData = new FormData(formRef.current);
-    console.warn('TODO');
-    console.warn([...formData.entries()]);
+
+    const resume = formData.get('resume') as File | null;
+    const portfolio = formData.get('portfolio') as File | null;
+
+    if (data.jobPost) {
+      fetch(`http://localhost:8787/jobs/${data.jobPost.ghId}/application/submit`, {
+        method: 'POST',
+        cache: 'no-cache',
+        credentials: 'omit',
+        body: formData,
+        headers: {
+          ...resume && { 'X-Upload-Resume': resume.name },
+          ...portfolio && { 'X-Upload-Portfolio': portfolio.name },
+        },
+      }).then(res => res.text()).then(res => console.log(res));
+      console.warn('TODO');
+      console.warn([...formData.entries()]);
+    }
   };
 
   return (
     <>
-      <Form ref={formRef} onSubmit={handleSubmit}>
+      <Form
+        ref={formRef}
+        method="post"
+        action={`http://localhost:8787/jobs/${data.jobPost.ghId}/application/submit`}
+        onSubmit={handleSubmit}
+      >
         <FormField
           variants={{ type: 'text' }}
           name="name"
@@ -142,6 +146,30 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
           placeholder="https://"
           description="블로그나 GitHub 링크 등 자유롭게 입력해주세요."
         />
+        <FormField
+          variants={{
+            type: 'select',
+            options: [
+              { label: '해당 없음', value: 'no' },
+              { label: '일반', value: 'normal' },
+              { label: '산재', value: 'industry' },
+              { label: '보훈', value: 'military' },
+            ],
+          }}
+          label="장애사항"
+          name="disability"
+          required
+        />
+        <FormField
+          variants={{ type: 'checkbox' }}
+          name="alternative_civilian"
+          label="산업기능요원 해당"
+        />
+        <FormField
+          variants={{ type: 'checkbox' }}
+          name="veterans"
+          label="보훈 대상"
+        />
         {data.privacyPolicy?.data?.content?.html && (
           <FormField
             variants={{
@@ -164,7 +192,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
             required
           />
         )}
-        <Button as="button" type="primary" fullWidget>
+        <Button as="button" type="primary" fullWidth>
           동의 후 제출하기
         </Button>
       </Form>

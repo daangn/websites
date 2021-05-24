@@ -16,6 +16,16 @@ type FormFieldVariants = (
     type: 'email',
   }
   | {
+    type: 'select',
+    options: {
+      value: string,
+      label: string,
+    }[],
+  }
+  | {
+    type: 'checkbox',
+  }
+  | {
     type: 'file',
     accepts: string[],
   }
@@ -105,6 +115,27 @@ const TermsInput = styled(Input, {
   },
 });
 
+const Select = styled(Input, {
+  boxSizing: 'border-box',
+  display: 'grid',
+  gridTemplateAreas: '"select"',
+  gridArea: 'select',
+  alignItems: 'center',
+  appearance: 'none',
+  '&::-ms-expand': {
+    display: 'none',
+  },
+  '&::after': {
+    content: '""',
+    gridArea: 'select',
+    justifySelf: 'end',
+    width: '0.8em',
+    height: '0.5em',
+    clipPath: 'polygon(100% 0%, 0 0%, 50% 100%)',
+    background: '$gray500',
+  },
+});
+
 const Description = styled('p', {
   color: '$gray600',
   marginTop: rem(16),
@@ -134,7 +165,7 @@ const FormField: React.FC<FormFieldProps> = ({
   switch (variants.type) {
     case 'text':
     case 'email':
-    case 'tel':
+    case 'tel': {
       return (
         <Container className={className}>
           <Label htmlFor={id} required={required}>
@@ -151,7 +182,38 @@ const FormField: React.FC<FormFieldProps> = ({
           )}
         </Container>
       );
-    case 'file':
+    }
+    case 'select': {
+      return (
+        <Container className={className}>
+          <Label htmlFor={id} required={required}>
+            {label}
+          </Label>
+          <Select
+            as="select"
+            id={id}
+            name={name}
+          >
+            {variants.options.map(option => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </Select>
+        </Container>
+      );
+    }
+    case 'checkbox': {
+      return (
+        <Container className={className}>
+          <label>
+            <input type="checkbox" name={name} />
+            {label}
+          </label>
+        </Container>
+      );
+    }
+    case 'file': {
       return (
         <Container className={className}>
           <input
@@ -176,7 +238,8 @@ const FormField: React.FC<FormFieldProps> = ({
           )}
         </Container>
       );
-    case 'terms':
+    }
+    case 'terms': {
       return (
         <Container className={className}>
           <Label as="div" required={required}>
@@ -188,6 +251,7 @@ const FormField: React.FC<FormFieldProps> = ({
           )}
         </Container>
       );
+    }
   }
 };
 

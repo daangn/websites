@@ -11510,6 +11510,22 @@
         "specifiedByUrl": null,
         "fields": [
           {
+            "name": "ghId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "title",
             "description": null,
             "args": [],
@@ -15401,6 +15417,18 @@
             "name": "jobPost",
             "description": null,
             "args": [
+              {
+                "name": "ghId",
+                "description": null,
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "StringQueryOperatorInput",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
               {
                 "name": "title",
                 "description": null,
@@ -37119,6 +37147,12 @@
         "interfaces": null,
         "enumValues": [
           {
+            "name": "ghId",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "title",
             "description": null,
             "isDeprecated": false,
@@ -37848,6 +37882,18 @@
         "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
+          {
+            "name": "ghId",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "title",
             "description": null,
@@ -38666,6 +38712,12 @@
             "deprecationReason": null
           },
           {
+            "name": "childrenJobPost___ghId",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "childrenJobPost___title",
             "description": null,
             "isDeprecated": false,
@@ -38976,6 +39028,12 @@
             "description": null,
             "isDeprecated": true,
             "deprecationReason": "Sorting on fields that need arguments to resolve is deprecated."
+          },
+          {
+            "name": "childJobPost___ghId",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "childJobPost___title",
