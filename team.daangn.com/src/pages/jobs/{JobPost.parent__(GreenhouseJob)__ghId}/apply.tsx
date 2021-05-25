@@ -73,6 +73,8 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
 }) => {
   required(data.jobPost);
 
+  const jobApplicationFormEndpoint = `${process.env.GATSBY_JOB_APPLICATION_FORM_HOST || 'http://localhost:8787'}/jobs/${data.jobPost.ghId}/application/submit`;
+
   type FormRef = RefOf<typeof Form>;
   const formRef = React.useRef<FormRef>(null);
 
@@ -88,24 +90,19 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
     const portfolio = formData.get('portfolio') as File | null;
 
     (async () => {
-      if (!data.jobPost) {
-        return;
-      }
+      required(data.jobPost);
 
       try {
-        const response = await fetch(
-          `${process.env.GATSBY_JOB_APPLICATION_FORM_HOST || 'http://localhost:8787'}/jobs/${data.jobPost.ghId}/application/submit`,
-          {
-            method: 'POST',
-            cache: 'no-cache',
-            credentials: 'omit',
-            body: formData,
-            headers: {
-              ...resume && { 'X-Upload-Resume': resume.name },
-              ...portfolio && { 'X-Upload-Portfolio': portfolio.name },
-            },
+        const response = await fetch(jobApplicationFormEndpoint, {
+          method: 'POST',
+          cache: 'no-cache',
+          credentials: 'omit',
+          body: formData,
+          headers: {
+            ...resume && { 'X-Upload-Resume': resume.name },
+            ...portfolio && { 'X-Upload-Portfolio': portfolio.name },
           },
-        );
+        });
         if (response.ok) {
           window.alert('지원서가 제출되었습니다. 빠른 시일 내에 검토 후 연락드리겠습니다 :)');
         } else {
@@ -124,7 +121,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
       <Form
         ref={formRef}
         method="post"
-        action={`http://localhost:8787/jobs/${data.jobPost.ghId}/application/submit`}
+        action={jobApplicationFormEndpoint}
         onSubmit={handleSubmit}
       >
         <FormField
