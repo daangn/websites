@@ -1457,6 +1457,7 @@ type JobPost = Node & {
   readonly alternativeCivilianService: Scalars['Boolean'];
   readonly priorExperience: JobPriorExperience;
   readonly chapter: Scalars['String'];
+  readonly portfolioRequired: Scalars['Boolean'];
   readonly keywords: ReadonlyArray<Scalars['String']>;
   readonly gatsbyPath: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
@@ -1888,6 +1889,7 @@ type Query_jobPostArgs = {
   alternativeCivilianService: Maybe<BooleanQueryOperatorInput>;
   priorExperience: Maybe<JobPriorExperienceQueryOperatorInput>;
   chapter: Maybe<StringQueryOperatorInput>;
+  portfolioRequired: Maybe<BooleanQueryOperatorInput>;
   keywords: Maybe<StringQueryOperatorInput>;
   gatsbyPath: Maybe<StringQueryOperatorInput>;
   id: Maybe<StringQueryOperatorInput>;
@@ -4774,6 +4776,7 @@ type JobPostFieldsEnum =
   | 'alternativeCivilianService'
   | 'priorExperience'
   | 'chapter'
+  | 'portfolioRequired'
   | 'keywords'
   | 'gatsbyPath'
   | 'id'
@@ -4883,6 +4886,7 @@ type JobPostFilterInput = {
   readonly alternativeCivilianService: Maybe<BooleanQueryOperatorInput>;
   readonly priorExperience: Maybe<JobPriorExperienceQueryOperatorInput>;
   readonly chapter: Maybe<StringQueryOperatorInput>;
+  readonly portfolioRequired: Maybe<BooleanQueryOperatorInput>;
   readonly keywords: Maybe<StringQueryOperatorInput>;
   readonly gatsbyPath: Maybe<StringQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
@@ -4988,6 +4992,7 @@ type GreenhouseJobFieldsEnum =
   | 'childrenJobPost.alternativeCivilianService'
   | 'childrenJobPost.priorExperience'
   | 'childrenJobPost.chapter'
+  | 'childrenJobPost.portfolioRequired'
   | 'childrenJobPost.keywords'
   | 'childrenJobPost.gatsbyPath'
   | 'childrenJobPost.id'
@@ -5041,6 +5046,7 @@ type GreenhouseJobFieldsEnum =
   | 'childJobPost.alternativeCivilianService'
   | 'childJobPost.priorExperience'
   | 'childJobPost.chapter'
+  | 'childJobPost.portfolioRequired'
   | 'childJobPost.keywords'
   | 'childJobPost.gatsbyPath'
   | 'childJobPost.id'
@@ -7493,7 +7499,7 @@ type JobApplicationPageQueryVariables = Exact<{
 
 
 type JobApplicationPageQuery = (
-  { readonly jobPost: Maybe<Pick<JobPost, 'ghId' | 'title'>>, readonly privacyPolicy: Maybe<(
+  { readonly jobPost: Maybe<Pick<JobPost, 'ghId' | 'title' | 'portfolioRequired'>>, readonly privacyPolicy: Maybe<(
     Pick<PrismicTermsAndConditions, 'id'>
     & { readonly data: Maybe<{ readonly content: Maybe<Pick<PrismicStructuredTextType, 'html'>> }> }
   )>, readonly sensitiveInfoPolicy: Maybe<(

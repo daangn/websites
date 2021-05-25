@@ -19,6 +19,7 @@ export const query = graphql`
     jobPost(id: { eq: $id }) {
       ghId
       title
+      portfolioRequired
     }
     privacyPolicy: prismicTermsAndConditions(uid: { eq: "job-application-privacy" }) {
       id
@@ -164,7 +165,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
           name="portfolio"
           label="포트폴리오"
           placeholder="파일 첨부하기"
-          description="포트폴리오를 필수로 첨부해야 하는 포지션은 확인 후 첨부해주세요."
+          required={data.jobPost.portfolioRequired}
         />
         <FormField
           variants={{

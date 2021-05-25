@@ -1789,6 +1789,7 @@ type JobPost implements Node {
   alternativeCivilianService: Boolean!
   priorExperience: JobPriorExperience!
   chapter: String!
+  portfolioRequired: Boolean!
   keywords: [String!]!
   gatsbyPath(filePath: String): String
   id: ID!
@@ -1923,7 +1924,7 @@ type Query {
   allPrismicSiteNavigation(filter: PrismicSiteNavigationFilterInput, sort: PrismicSiteNavigationSortInput, skip: Int, limit: Int): PrismicSiteNavigationConnection!
   prismicTermsAndConditions(data: PrismicTermsAndConditionsDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, dataString: StringQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, url: StringQueryOperatorInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, tags: StringQueryOperatorInput, alternate_languages: PrismicLinkTypeFilterListInput, type: StringQueryOperatorInput, prismicId: IDQueryOperatorInput, _previewable: IDQueryOperatorInput, uid: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): PrismicTermsAndConditions
   allPrismicTermsAndConditions(filter: PrismicTermsAndConditionsFilterInput, sort: PrismicTermsAndConditionsSortInput, skip: Int, limit: Int): PrismicTermsAndConditionsConnection!
-  jobPost(ghId: StringQueryOperatorInput, title: StringQueryOperatorInput, boardUrl: StringQueryOperatorInput, content: JobPostContentSectionFilterListInput, rawContent: StringQueryOperatorInput, corporate: JobCorporateQueryOperatorInput, employmentType: JobEmploymentTypeQueryOperatorInput, alternativeCivilianService: BooleanQueryOperatorInput, priorExperience: JobPriorExperienceQueryOperatorInput, chapter: StringQueryOperatorInput, keywords: StringQueryOperatorInput, gatsbyPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): JobPost
+  jobPost(ghId: StringQueryOperatorInput, title: StringQueryOperatorInput, boardUrl: StringQueryOperatorInput, content: JobPostContentSectionFilterListInput, rawContent: StringQueryOperatorInput, corporate: JobCorporateQueryOperatorInput, employmentType: JobEmploymentTypeQueryOperatorInput, alternativeCivilianService: BooleanQueryOperatorInput, priorExperience: JobPriorExperienceQueryOperatorInput, chapter: StringQueryOperatorInput, portfolioRequired: BooleanQueryOperatorInput, keywords: StringQueryOperatorInput, gatsbyPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): JobPost
   allJobPost(filter: JobPostFilterInput, sort: JobPostSortInput, skip: Int, limit: Int): JobPostConnection!
   greenhouseJob(ghId: StringQueryOperatorInput, title: StringQueryOperatorInput, boardUrl: StringQueryOperatorInput, content: StringQueryOperatorInput, updatedAt: DateQueryOperatorInput, metadata: GreenhouseJobCustomFieldMetadataFilterListInput, childrenJobPost: JobPostFilterListInput, childJobPost: JobPostFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): GreenhouseJob
   allGreenhouseJob(filter: GreenhouseJobFilterInput, sort: GreenhouseJobSortInput, skip: Int, limit: Int): GreenhouseJobConnection!
@@ -4400,6 +4401,7 @@ enum JobPostFieldsEnum {
   alternativeCivilianService
   priorExperience
   chapter
+  portfolioRequired
   keywords
   gatsbyPath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -4510,6 +4512,7 @@ input JobPostFilterInput {
   alternativeCivilianService: BooleanQueryOperatorInput
   priorExperience: JobPriorExperienceQueryOperatorInput
   chapter: StringQueryOperatorInput
+  portfolioRequired: BooleanQueryOperatorInput
   keywords: StringQueryOperatorInput
   gatsbyPath: StringQueryOperatorInput
   id: StringQueryOperatorInput
@@ -4588,6 +4591,7 @@ enum GreenhouseJobFieldsEnum {
   childrenJobPost___alternativeCivilianService
   childrenJobPost___priorExperience
   childrenJobPost___chapter
+  childrenJobPost___portfolioRequired
   childrenJobPost___keywords
   childrenJobPost___gatsbyPath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childrenJobPost___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -4641,6 +4645,7 @@ enum GreenhouseJobFieldsEnum {
   childJobPost___alternativeCivilianService
   childJobPost___priorExperience
   childJobPost___chapter
+  childJobPost___portfolioRequired
   childJobPost___keywords
   childJobPost___gatsbyPath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childJobPost___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")

@@ -11674,6 +11674,22 @@
             "deprecationReason": null
           },
           {
+            "name": "portfolioRequired",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "keywords",
             "description": null,
             "args": [],
@@ -15531,6 +15547,18 @@
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "StringQueryOperatorInput",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "portfolioRequired",
+                "description": null,
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "BooleanQueryOperatorInput",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -37225,6 +37253,12 @@
             "deprecationReason": null
           },
           {
+            "name": "portfolioRequired",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "keywords",
             "description": null,
             "isDeprecated": false,
@@ -37996,6 +38030,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "StringQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "portfolioRequired",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "BooleanQueryOperatorInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -38790,6 +38836,12 @@
             "deprecationReason": null
           },
           {
+            "name": "childrenJobPost___portfolioRequired",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "childrenJobPost___keywords",
             "description": null,
             "isDeprecated": false,
@@ -39103,6 +39155,12 @@
           },
           {
             "name": "childJobPost___chapter",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "childJobPost___portfolioRequired",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
