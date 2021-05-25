@@ -43,8 +43,22 @@ const Form = styled('form', {
 });
 
 const FormField = styled(_FormField, {
-  marginBottom: rem(40),
+  marginBottom: rem(32),
 });
+
+const FormFieldGroup = styled('div', {
+  display: 'flex',
+  gap: rem(32),
+  marginBottom: rem(32),
+});
+
+const FormHelpText = styled('p', {
+  color: '$gray600',
+  fontSize: '$caption1',
+  marginBottom: rem(48),
+});
+
+const CheckboxField = _FormField;
 
 const greenhouseAcceptedMimeTypes = [
   'text/plain',
@@ -160,16 +174,21 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
           name="disability"
           required
         />
-        <FormField
-          variants={{ type: 'checkbox' }}
-          name="alternative_civilian"
-          label="산업기능요원 해당"
-        />
-        <FormField
-          variants={{ type: 'checkbox' }}
-          name="veterans"
-          label="보훈 대상"
-        />
+        <FormFieldGroup>
+          <CheckboxField
+            variants={{ type: 'checkbox' }}
+            name="alternative_civilian"
+            label="산업기능요원 해당"
+          />
+          <CheckboxField
+            variants={{ type: 'checkbox' }}
+            name="veterans"
+            label="보훈 대상"
+          />
+        </FormFieldGroup>
+        <FormHelpText>
+          * 보훈 및 장애 사항은 채용 과정에서 불이익이 없습니다.
+        </FormHelpText>
         {data.privacyPolicy?.data?.content?.html && (
           <FormField
             variants={{
