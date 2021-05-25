@@ -167,13 +167,6 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
           description="포트폴리오를 필수로 첨부해야 하는 포지션은 확인 후 첨부해주세요."
         />
         <FormField
-          variants={{ type: 'text' }}
-          name="url"
-          label="링크"
-          placeholder="https://"
-          description="블로그나 GitHub 링크 등 자유롭게 입력해주세요."
-        />
-        <FormField
           variants={{
             type: 'select',
             options: [
