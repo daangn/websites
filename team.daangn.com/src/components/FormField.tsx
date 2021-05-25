@@ -212,13 +212,6 @@ const FormField: React.FC<FormFieldProps> = ({
   };
 
   switch (variants.type) {
-    case 'group': {
-      return (
-        <Container className={className}>
-          {children}
-        </Container>
-      );
-    }
     case 'text':
     case 'email':
     case 'tel': {
@@ -263,7 +256,7 @@ const FormField: React.FC<FormFieldProps> = ({
       return (
         <CheckboxContainer className={className}>
           <Checkbox>
-            <CheckboxControl type="checkbox" name={name} />
+            <CheckboxControl type="checkbox" name={name} defaultChecked={false} />
             <Checkmark>
               <CheckmarkSvg viewBox="0 0 24 24" fill="none">
                 <rect width="24" height="24" rx="4" fill="white"/>

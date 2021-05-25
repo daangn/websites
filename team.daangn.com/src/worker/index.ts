@@ -36,6 +36,17 @@ API.add('GET', '/ping', (_req, res) => {
   res.send(200, 'pong');
 });
 
+function extractExtension(filename: string): string {
+  const fileExtensionRegExp = '/.*\.(.*)$/';
+  const match = filename.match(fileExtensionRegExp);
+  const ext = match && `.${match[1]}`;
+  return ext ?? '';
+}
+
+function getYYYYMMDD(date: Date = new Date()): string {
+  return `${date.getFullYear()}-${date.getMonth().toString().padStart(2, '0')}-${date.getSeconds().toString().padStart(2, '0')}`;
+}
+
 interface MakeRemoteForm {
   (props: {
     name: FormDataEntryValue | null,
@@ -61,31 +72,28 @@ const makeRemoteForm: MakeRemoteForm = ({
   phoneNumber,
   resume,
   portfolio,
-  veterans,
   disability,
+  veterans,
   alternativeCivilian,
 }) => {
   const missing = [];
-  if (name == null) {
-    missing.push('name');
+  if (!name) {
+    missing.push('이름');
   }
-  if (email == null) {
-    missing.push('email');
+  if (!email) {
+    missing.push('이메일');
   }
-  if (phoneNumber == null) {
-    missing.push('phone_number');
+  if (!phoneNumber) {
+    missing.push('전화번호');
   }
   if (resume == null) {
-    missing.push('resume');
-  }
-  if (veterans == null) {
-    missing.push('veterans');
+    missing.push('이력서');
   }
   if (disability == null) {
-    missing.push('disability');
+    missing.push('장애사항');
   }
   if (missing.length > 0) {
-    throw new Error(`missing ${missing.join(', ')} fields are required`);
+    throw new Error(`${missing.join(', ')}을 입력해주세요!`);
   }
 
   if (typeof name !== 'string') {
@@ -97,22 +105,22 @@ const makeRemoteForm: MakeRemoteForm = ({
   if (typeof phoneNumber !== 'string') {
     throw new Error('phone_number must be a string');
   }
-  if (typeof veterans !== 'string') {
-    throw new Error('veterans must be a string');
-  }
   if (typeof disability !== 'string') {
     throw new Error('disability must be a string');
   }
-  if (!(alternativeCivilian == null || typeof alternativeCivilian == 'string')) {
+  if (!(alternativeCivilian == null || typeof alternativeCivilian === 'string')) {
     throw new Error('alternative_civilian must be a string or null');
+  }
+  if (!(veterans == null || typeof veterans === 'string')) {
+    throw new Error('veterans must be a string or null');
   }
 
   const veteransQuestion = 'question_5942639003';
   const veteransAnswer: Record<string, string> = {
-    yes: '12699586003',
-    no: '12699587003',
+    on: '12699586003',
+    off: '12699587003',
   };
-  if (veteransAnswer[veterans] == null) {
+  if (veterans != null && veteransAnswer[veterans] == null) {
     throw new Error(
       `veterans must be one of ${Object.keys(veteransAnswer).join(', ')}`,
     );
@@ -133,10 +141,10 @@ const makeRemoteForm: MakeRemoteForm = ({
 
   const alternativeCivilianQuestion = 'question_6354170003';
   const alternativeCivilianAnswer: Record<string, string> = {
-    yes: '1',
-    no: '0',
+    on: '1',
+    off: '0',
   };
-  if (alternativeCivilian != null && alternativeCivilianAnswer[alternativeCivilian]) {
+  if (alternativeCivilian != null && alternativeCivilianAnswer[alternativeCivilian] == null) {
     throw new Error(
       `alternativeCivilian must be one of ${Object.keys(alternativeCivilianAnswer).join(', ')}`,
     );
@@ -149,10 +157,13 @@ const makeRemoteForm: MakeRemoteForm = ({
   formData.set('phone' , phoneNumber);
   formData.set('resume', resume!.blob, resume!.filename);
 
-  formData.set(veteransQuestion, veteransAnswer[veterans]);
   formData.set(disabilityQuestion, disabilityAnswer[disability]);
 
-  if (alternativeCivilian != null) {
+  if (veterans && veteransAnswer[veterans] != null) {
+    formData.set(veteransQuestion, veteransAnswer[veterans]);
+  }
+
+  if (alternativeCivilian && alternativeCivilianAnswer[alternativeCivilian] != null) {
     formData.set(alternativeCivilianQuestion, alternativeCivilianAnswer[alternativeCivilian]);
   }
 
@@ -181,9 +192,9 @@ API.add('POST', '/jobs/:jobId/application/submit', async (req, res) => {
   const phoneNumber = formData.get('phone_number');
   const resume = formData.get('resume');
   const portfolio = formData.get('portfolio');
-  const veterans = formData.get('veterans');
   const disability = formData.get('disability');
-  const alternativeCivilian = formData.get('alternative_civilian');
+  const veterans = formData.get('veterans') || 'off';
+  const alternativeCivilian = formData.get('alternative_civilian') || 'off';
 
   let remoteFormData: FormData;
   try {
@@ -195,11 +206,11 @@ API.add('POST', '/jobs/:jobId/application/submit', async (req, res) => {
       disability,
       alternativeCivilian,
       resume: resume && resumeFilename ? {
-        filename: resumeFilename,
+        filename: `resume-${name}-${getYYYYMMDD()}${extractExtension(resumeFilename)}`,
         blob: new Blob([Uint8Array.from(resume as unknown as Iterable<number>)]),
       } : null,
       portfolio: portfolio && portfolioFilename ? {
-        filename: portfolioFilename,
+        filename: `portfolio-${name}-${getYYYYMMDD()}${extractExtension(portfolioFilename)}`,
         blob: new Blob([Uint8Array.from(portfolio as unknown as Iterable<number>)]),
       } : null,
     });

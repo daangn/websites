@@ -87,20 +87,33 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
     const resume = formData.get('resume') as File | null;
     const portfolio = formData.get('portfolio') as File | null;
 
-    if (data.jobPost) {
-      fetch(`http://localhost:8787/jobs/${data.jobPost.ghId}/application/submit`, {
-        method: 'POST',
-        cache: 'no-cache',
-        credentials: 'omit',
-        body: formData,
-        headers: {
-          ...resume && { 'X-Upload-Resume': resume.name },
-          ...portfolio && { 'X-Upload-Portfolio': portfolio.name },
-        },
-      }).then(res => res.text()).then(res => console.log(res));
-      console.warn('TODO');
-      console.warn([...formData.entries()]);
-    }
+    (async () => {
+      if (!data.jobPost) {
+        return;
+      }
+
+      try {
+        const response = await fetch(`http://localhost:8787/jobs/${data.jobPost.ghId}/application/submit`, {
+          method: 'POST',
+          cache: 'no-cache',
+          credentials: 'omit',
+          body: formData,
+          headers: {
+            ...resume && { 'X-Upload-Resume': resume.name },
+            ...portfolio && { 'X-Upload-Portfolio': portfolio.name },
+          },
+        });
+        if (response.ok) {
+          window.alert('지원서가 제출되었습니다. 빠른 시일 내에 검토 후 연락드리겠습니다 :)');
+        } else {
+          const message = await response.text();
+          window.alert(message);
+        }
+      } catch (e) {
+        console.error(e);
+        window.alert('지원서 제출에 실패했습니다. 문제가 지속되는 경우 recruit@daangn.com 으로 문의주시면 도움 드리겠습니다.');
+      }
+    })();
   };
 
   return (
