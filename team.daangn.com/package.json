@@ -71,6 +71,7 @@
     "@cloudflare/wrangler": "^1.16.1",
     "@svgr/webpack": "^5.5.0",
     "@types/busboy": "^0.2.3",
+    "@types/dotenv-safe": "^8.1.1",
     "@types/formidable": "^1.2.2",
     "@types/node": "^14.14.41",
     "@types/react": "^17.0.3",

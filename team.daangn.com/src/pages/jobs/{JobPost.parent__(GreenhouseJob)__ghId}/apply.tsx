@@ -93,16 +93,19 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
       }
 
       try {
-        const response = await fetch(`http://localhost:8787/jobs/${data.jobPost.ghId}/application/submit`, {
-          method: 'POST',
-          cache: 'no-cache',
-          credentials: 'omit',
-          body: formData,
-          headers: {
-            ...resume && { 'X-Upload-Resume': resume.name },
-            ...portfolio && { 'X-Upload-Portfolio': portfolio.name },
+        const response = await fetch(
+          `${process.env.GATSBY_JOB_APPLICATION_FORM_HOST || 'http://localhost:8787'}/jobs/${data.jobPost.ghId}/application/submit`,
+          {
+            method: 'POST',
+            cache: 'no-cache',
+            credentials: 'omit',
+            body: formData,
+            headers: {
+              ...resume && { 'X-Upload-Resume': resume.name },
+              ...portfolio && { 'X-Upload-Portfolio': portfolio.name },
+            },
           },
-        });
+        );
         if (response.ok) {
           window.alert('지원서가 제출되었습니다. 빠른 시일 내에 검토 후 연락드리겠습니다 :)');
         } else {
