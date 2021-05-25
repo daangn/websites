@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "concurrently \"yarn:build:*\"",
-    "build:babel": "babel src -d . -x .ts",
+    "build:babel": "babel gatsby -d . -x .ts --presets gatsby-package",
     "build:dts": "tsc --emitDeclarationOnly --skipLibCheck",
     "prepack": "yarn build"
   },

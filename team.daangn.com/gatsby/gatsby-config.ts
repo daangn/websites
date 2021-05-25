@@ -1,8 +1,7 @@
 import type { GatsbyConfig } from 'gatsby';
 
-// No environment variable required yet
-// import dotenv from 'dotenv-safe';
-// dotenv.config();
+import dotenv from 'dotenv-safe';
+dotenv.config();
 
 const siteMetadata = {
   siteUrl: 'https://team.daangn.com/',

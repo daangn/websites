@@ -17,6 +17,7 @@ export const query = graphql`
     ...DefaultLayout_query
     ...JobPostLayout_query
     jobPost(id: { eq: $id }) {
+      ghId
       title
     }
     privacyPolicy: prismicTermsAndConditions(uid: { eq: "job-application-privacy" }) {
@@ -42,26 +43,22 @@ const Form = styled('form', {
 });
 
 const FormField = styled(_FormField, {
-  marginBottom: rem(40),
+  marginBottom: rem(32),
 });
 
-const PageTitle = styled(_PageTitle, {
-  marginBottom: rem(25),
-
-  variants: {
-    size: {
-      sm: {
-        marginBottom: rem(16),
-      },
-    },
-  },
+const FormFieldGroup = styled('div', {
+  display: 'flex',
+  gap: rem(32),
+  marginBottom: rem(32),
 });
 
-const JobPostTitle = styled('p', {
-  fontSize: '$subtitle3',
-  fontWeight: 'bold',
-  marginBottom: rem(65),
+const FormHelpText = styled('p', {
+  color: '$gray600',
+  fontSize: '$caption1',
+  marginBottom: rem(48),
 });
+
+const CheckboxField = _FormField;
 
 const greenhouseAcceptedMimeTypes = [
   'text/plain',
@@ -76,6 +73,8 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
 }) => {
   required(data.jobPost);
 
+  const jobApplicationFormEndpoint = `${process.env.GATSBY_JOB_APPLICATION_FORM_HOST || 'http://localhost:8787'}/jobs/${data.jobPost.ghId}/application/submit`;
+
   type FormRef = RefOf<typeof Form>;
   const formRef = React.useRef<FormRef>(null);
 
@@ -86,13 +85,45 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
       return;
     }
     const formData = new FormData(formRef.current);
-    console.warn('TODO');
-    console.warn([...formData.entries()]);
+
+    const resume = formData.get('resume') as File | null;
+    const portfolio = formData.get('portfolio') as File | null;
+
+    (async () => {
+      required(data.jobPost);
+
+      try {
+        const response = await fetch(jobApplicationFormEndpoint, {
+          method: 'POST',
+          cache: 'no-cache',
+          credentials: 'omit',
+          body: formData,
+          headers: {
+            ...resume && { 'X-Upload-Resume': resume.name },
+            ...portfolio && { 'X-Upload-Portfolio': portfolio.name },
+          },
+        });
+        if (response.ok) {
+          window.alert('지원서가 제출되었습니다. 빠른 시일 내에 검토 후 연락드리겠습니다 :)');
+        } else {
+          const message = await response.text();
+          window.alert(message);
+        }
+      } catch (e) {
+        console.error(e);
+        window.alert('지원서 제출에 실패했습니다. 문제가 지속되는 경우 recruit@daangn.com 으로 문의주시면 도움 드리겠습니다.');
+      }
+    })();
   };
 
   return (
     <>
-      <Form ref={formRef} onSubmit={handleSubmit}>
+      <Form
+        ref={formRef}
+        method="post"
+        action={jobApplicationFormEndpoint}
+        onSubmit={handleSubmit}
+      >
         <FormField
           variants={{ type: 'text' }}
           name="name"
@@ -142,6 +173,35 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
           placeholder="https://"
           description="블로그나 GitHub 링크 등 자유롭게 입력해주세요."
         />
+        <FormField
+          variants={{
+            type: 'select',
+            options: [
+              { label: '해당 없음', value: 'no' },
+              { label: '일반', value: 'normal' },
+              { label: '산재', value: 'industry' },
+              { label: '보훈', value: 'military' },
+            ],
+          }}
+          label="장애사항"
+          name="disability"
+          required
+        />
+        <FormFieldGroup>
+          <CheckboxField
+            variants={{ type: 'checkbox' }}
+            name="alternative_civilian"
+            label="산업기능요원 해당"
+          />
+          <CheckboxField
+            variants={{ type: 'checkbox' }}
+            name="veterans"
+            label="보훈 대상"
+          />
+        </FormFieldGroup>
+        <FormHelpText>
+          * 보훈 및 장애 사항은 채용 과정에서 불이익이 없습니다.
+        </FormHelpText>
         {data.privacyPolicy?.data?.content?.html && (
           <FormField
             variants={{
@@ -164,7 +224,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
             required
           />
         )}
-        <Button as="button" type="primary" fullWidget>
+        <Button as="button" type="primary" fullWidth>
           동의 후 제출하기
         </Button>
       </Form>
