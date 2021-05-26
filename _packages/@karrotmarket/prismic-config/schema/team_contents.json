@@ -1,0 +1,265 @@
+{
+  "Main" : {
+    "main_page_title" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1",
+        "label" : "페이지 제목"
+      }
+    },
+    "main_body" : {
+      "type" : "Slices",
+      "fieldset" : "Slice zone",
+      "config" : {
+        "labels" : {
+          "key_visual_with_text" : [ ],
+          "summary_and_detail" : [ ],
+          "paragraph" : [ ],
+          "single_illustration" : [ ],
+          "member_quote_carousel" : [ ]
+        },
+        "choices" : {
+          "key_visual_with_text" : {
+            "type" : "Slice",
+            "fieldset" : "Key Visual with Text",
+            "description" : "대표 이미지와 설명 텍스트로 구성된 섹션",
+            "icon" : "subtitles",
+            "non-repeat" : {
+              "key_visual_image" : {
+                "type" : "Image",
+                "config" : {
+                  "constraint" : {
+                    "width" : 1920,
+                    "height" : 1080
+                  },
+                 "thumbnails" : [ ],
+                  "label" : "키 비주얼 이미지"
+                }
+              },
+              "description" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "single" : "paragraph, strong, em, hyperlink",
+                  "label" : "설명 텍스트",
+                  "placeholder" : "설명 텍스트를 적어주세요"
+                }
+              }
+            },
+            "repeat" : { }
+          },
+          "summary_and_detail" : {
+            "type" : "Slice",
+            "fieldset" : "Summary and Detail",
+            "description" : "\"자세히 보기\" 링크(옵션)와 요약 문구가 있는 섹션",
+            "icon" : "open_in_new",
+            "display" : "list",
+            "non-repeat" : {
+              "key_text" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "키 텍스트",
+                  "placeholder" : "짧은 키 텍스트 (한 단어)"
+                }
+              },
+              "summary" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "single" : "heading2",
+                  "label" : "요약 문구"
+                }
+              },
+              "link" : {
+                "type" : "Link",
+                "config" : {
+                  "label" : "링크",
+                  "placeholder" : "웹 URL만 사용할 수 있습니다. (미입력 시 \"자세히 보기\" 안나옴)"
+                }
+              }
+            },
+            "repeat" : { }
+          },
+          "paragraph" : {
+            "type" : "Slice",
+            "fieldset" : "Paragraph",
+            "description" : "일반 텍스트 문단",
+            "icon" : "face",
+            "display" : "list",
+            "non-repeat" : {
+              "content" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "multi" : "paragraph, strong, em, hyperlink",
+                  "label" : "텍스트"
+                }
+              }
+            },
+            "repeat" : { }
+          },
+          "single_illustration" : {
+            "type" : "Slice",
+            "fieldset" : "Single Illustration",
+            "description" : "한 장 짜리 일러스트 이미지",
+            "icon" : "image",
+            "display" : "list",
+            "non-repeat" : {
+              "illustration" : {
+                "type" : "Image",
+                "config" : {
+                  "constraint" : {
+                    "width" : 960,
+                    "height" : 720
+                  },
+                  "thumbnails" : [ ],
+                  "label" : "일러스트"
+                }
+              }
+            },
+            "repeat" : { }
+          },
+          "member_quote_carousel" : {
+            "type" : "Slice",
+            "fieldset" : "Member Quote Carousel",
+            "description" : "동료의 한 마디 캐로셀 슬라이드 섹션",
+            "icon" : "question_answer",
+            "display" : "list",
+            "non-repeat" : { },
+            "repeat" : {
+              "member" : {
+                "type" : "Link",
+                "config" : {
+                  "select" : "document",
+                  "customtypes" : [ "member_profile" ],
+                  "label" : "팀 멤버"
+                }
+              },
+              "quote" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "한 마디",
+                  "placeholder" : "무슨 말을 했나요?"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "Culture" : {
+    "culture_page_title" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1",
+        "label" : "페이지 제목"
+      }
+    },
+    "culture_body" : {
+      "type" : "Slices",
+      "fieldset" : "Slice zone",
+      "config" : {
+        "labels" : { },
+        "choices" : {
+          "key_visual_with_text" : {
+            "type" : "Slice",
+            "fieldset" : "Key Visual with Text",
+            "description" : "대표 이미지와 설명 텍스트로 구성된 섹션",
+            "icon" : "subtitles",
+            "non-repeat" : {
+              "key_visual_image" : {
+                "type" : "Image",
+                "config" : {
+                  "constraint" : {
+                    "width" : 1920,
+                    "height" : 1080
+                  },
+                  "thumbnails" : [ ],
+                  "label" : "키 비주얼 이미지"
+                }
+              },
+              "description" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "single" : "paragraph, strong, em, hyperlink",
+                  "label" : "설명 텍스트",
+                  "placeholder" : "설명 텍스트를 적어주세요"
+                }
+              }
+            },
+            "repeat" : { }
+          }
+        }
+      }
+    }
+  },
+  "Life" : {
+    "life_page_title" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1",
+        "label" : "페이지 제목"
+      }
+    },
+    "life_body" : {
+      "type" : "Slices",
+      "fieldset" : "Slice zone",
+      "config" : {
+        "labels" : {
+          "title_and_description" : [ ],
+          "thumbnail" : [ ]
+        },
+        "choices" : {
+          "title_and_description" : {
+            "type" : "Slice",
+            "fieldset" : "Title and Description",
+            "description" : "단순 제목과 설명으로 구성된 섹션",
+            "icon" : "menu",
+            "display" : "list",
+            "non-repeat" : {
+              "title" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "single" : "heading2",
+                  "label" : "제목"
+                }
+              },
+              "description" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "multi" : "paragraph, strong, em, hyperlink",
+                  "label" : "설명"
+                }
+              }
+            },
+            "repeat" : { }
+          },
+          "thumbnail" : {
+            "type" : "Slice",
+            "fieldset" : "Thumbnail",
+            "description" : "썸네일(이미지) 섹션",
+            "icon" : "image",
+            "display" : "list",
+            "non-repeat" : {
+              "thumbnail_image" : {
+                "type" : "Image",
+                "config" : {
+                  "constraint" : {
+                    "width" : 1920
+                  },
+                  "thumbnails" : [ ],
+                  "label" : "thumbnail_image"
+                }
+              },
+              "thumbnail_caption" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "캡션 텍스트"
+                }
+              }
+            },
+            "repeat" : { }
+          }
+        }
+      }
+    }
+  }
+}

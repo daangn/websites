@@ -12732,7 +12732,7 @@ react-dev-utils@^11.0.3:
     strip-ansi "6.0.0"
     text-table "0.2.0"
 
-react-dom@experimental:
+react-dom@0.0.0-experimental-ea155e226, react-dom@experimental:
   version "0.0.0-experimental-ea155e226"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-0.0.0-experimental-ea155e226.tgz#79cc7cda0c84182897287085539e0dd540ff9916"
   integrity sha512-KTqP2O4ARIRn2K2pXuQtOpH3xLkZsaXRnRIE6k+jAwdkD4/kaS10POHogxylBaYfAn7WvhrIbzeMnRD1kTGxYQ==
@@ -12782,7 +12782,7 @@ react-refresh@^0.9.0:
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.9.0.tgz#71863337adc3e5c2f8a6bfddd12ae3bfe32aafbf"
   integrity sha512-Gvzk7OZpiqKSkxsQvO/mbTN1poglhmAV7gR/DdIrRrSMXraRQQlfikRJOr3Nb9GTMPC5kof948Zy6jJZIFtDvQ==
 
-react@experimental:
+react@0.0.0-experimental-ea155e226, react@experimental:
   version "0.0.0-experimental-ea155e226"
   resolved "https://registry.yarnpkg.com/react/-/react-0.0.0-experimental-ea155e226.tgz#bba2b6a345ec88b7c40336b39954f216ae7657f9"
   integrity sha512-kILZA+DX1hon+mp3hned96hJ/KQodq2uyI8wXsO0kP9PX4D/sUf5dZFmkVpxib+SrrlTP2z5Qq4AHK31uU4EDg==
@@ -15419,7 +15419,7 @@ webpack-virtual-modules@^0.3.2:
   dependencies:
     debug "^3.0.0"
 
-webpack@^5.35.0, webpack@^5.36.2:
+webpack@5.36.2, webpack@^5.35.0, webpack@^5.36.2:
   version "5.36.2"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.36.2.tgz#6ef1fb2453ad52faa61e78d486d353d07cca8a0f"
   integrity sha512-XJumVnnGoH2dV+Pk1VwgY4YT6AiMKpVoudUFCNOXMIVrEKPUgEwdIfWPjIuGLESAiS8EdIHX5+TiJz/5JccmRg==

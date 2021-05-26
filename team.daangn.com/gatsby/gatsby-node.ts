@@ -59,4 +59,44 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       sns_profiles: [PrismicSiteNavigationSnsProfilesGroupType!]!
     }
   `);
+
+  // Type assertions for Teams Contents
+  actions.createTypes(gql`
+    type PrismicTeamContents {
+      data: PrismicTeamContentsDataType!
+    }
+
+    type PrismicTeamContentsDataType {
+      main_body: [PrismicTeamContentsMainBodySlicesType!]!
+      culture_body: [PrismicTeamContentsCultureBodySlicesType!]!
+      life_body: [PrismicTeamContentsLifeBodySlicesType!]!
+    }
+
+    type PrismicTeamContentsMainBodyKeyVisualWithText {
+      primary: PrismicTeamContentsMainBodyKeyVisualWithTextPrimaryType!
+    }
+
+    type PrismicTeamContentsMainBodySummaryAndDetail {
+      primary: PrismicTeamContentsMainBodySummaryAndDetailPrimaryType!
+    }
+
+    type PrismicTeamContentsMainBodyParagraph {
+      primary: PrismicTeamContentsMainBodyParagraphPrimaryType!
+    }
+
+    type PrismicTeamContentsMainBodySingleIllustration {
+      primary: PrismicTeamContentsMainBodySingleIllustrationPrimaryType!
+    }
+
+    type PrismicTeamContentsMainBodyMemberQuoteCarousel {
+      items: [PrismicTeamContentsMainBodyMemberQuoteCarouselItemType!]!
+    }
+  `);
+
+  // Type assertions for Member Profiles
+  actions.createTypes(gql`
+    type PrismicMemberProfile {
+      data: PrismicMemberProfileDataType!
+    }
+  `);
 };

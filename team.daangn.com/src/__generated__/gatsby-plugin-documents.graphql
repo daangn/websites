@@ -106,3 +106,137 @@ fragment GatsbyImageSharpFluid_withWebp_noBase64 on ImageSharpFluid {
   srcSetWebp
   sizes
 }
+fragment GatsbyPrismicImageFixed on PrismicImageFixedType {
+  base64
+  width
+  height
+  src
+  srcSet
+}
+
+fragment GatsbyPrismicImageFixed_noBase64 on PrismicImageFixedType {
+  width
+  height
+  src
+  srcSet
+}
+
+fragment GatsbyPrismicImageFixed_withWebp on PrismicImageFixedType {
+  base64
+  width
+  height
+  src
+  srcSet
+  srcWebp
+  srcSetWebp
+}
+
+fragment GatsbyPrismicImageFixed_withWebp_noBase64 on PrismicImageFixedType {
+  width
+  height
+  src
+  srcSet
+  srcWebp
+  srcSetWebp
+}
+
+fragment GatsbyPrismicImageFluid on PrismicImageFluidType {
+  base64
+  aspectRatio
+  src
+  srcSet
+  sizes
+}
+
+fragment GatsbyPrismicImageFluid_noBase64 on PrismicImageFluidType {
+  aspectRatio
+  src
+  srcSet
+  sizes
+}
+
+fragment GatsbyPrismicImageFluid_withWebp on PrismicImageFluidType {
+  base64
+  aspectRatio
+  src
+  srcSet
+  srcWebp
+  srcSetWebp
+  sizes
+}
+
+fragment GatsbyPrismicImageFluid_withWebp_noBase64 on PrismicImageFluidType {
+  aspectRatio
+  src
+  srcSet
+  srcWebp
+  srcSetWebp
+  sizes
+}
+fragment GatsbyPrismicImageFixed on PrismicImageFixedType {
+  base64
+  width
+  height
+  src
+  srcSet
+}
+
+fragment GatsbyPrismicImageFixed_noBase64 on PrismicImageFixedType {
+  width
+  height
+  src
+  srcSet
+}
+
+fragment GatsbyPrismicImageFixed_withWebp on PrismicImageFixedType {
+  base64
+  width
+  height
+  src
+  srcSet
+  srcWebp
+  srcSetWebp
+}
+
+fragment GatsbyPrismicImageFixed_withWebp_noBase64 on PrismicImageFixedType {
+  width
+  height
+  src
+  srcSet
+  srcWebp
+  srcSetWebp
+}
+
+fragment GatsbyPrismicImageFluid on PrismicImageFluidType {
+  base64
+  aspectRatio
+  src
+  srcSet
+  sizes
+}
+
+fragment GatsbyPrismicImageFluid_noBase64 on PrismicImageFluidType {
+  aspectRatio
+  src
+  srcSet
+  sizes
+}
+
+fragment GatsbyPrismicImageFluid_withWebp on PrismicImageFluidType {
+  base64
+  aspectRatio
+  src
+  srcSet
+  srcWebp
+  srcSetWebp
+  sizes
+}
+
+fragment GatsbyPrismicImageFluid_withWebp_noBase64 on PrismicImageFluidType {
+  aspectRatio
+  src
+  srcSet
+  srcWebp
+  srcSetWebp
+  sizes
+}

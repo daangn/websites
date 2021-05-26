@@ -62,7 +62,10 @@ const config: GatsbyConfig = {
           faq: require('@karrotmarket/prismic-config/schema/faq.json'),
           site_navigation: require('@karrotmarket/prismic-config/schema/site_navigation.json'),
           terms_and_conditions: require('@karrotmarket/prismic-config/schema/terms_and_conditions.json'),
+          member_profile: require('@karrotmarket/prismic-config/schema/member_profile.json'),
+          team_contents: require('@karrotmarket/prismic-config/schema/team_contents.json'),
         },
+        shouldDownloadImage: () => true,
       },
     },
 
