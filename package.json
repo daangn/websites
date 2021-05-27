@@ -6,7 +6,8 @@
   "workspaces": [
     "_packages/**",
     "team.daangn.com",
-    "mbti.daangn.com"
+    "mbti.daangn.com",
+    "uk.karrotmarket.com"
   ],
   "resolutions": {
     "react": "0.0.0-experimental-ea155e226",

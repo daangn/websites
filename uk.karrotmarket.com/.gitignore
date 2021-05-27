@@ -1,0 +1,8 @@
+/.cache/
+/public/
+/dist/
+
+# gatsby-plugin-typegen v3 를 기다리며...
+/src/__generated__/
+
+/*.js
