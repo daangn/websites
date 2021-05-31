@@ -4,10 +4,11 @@ import { rem } from 'polished';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
-import { withPreview } from 'gatsby-source-prismic';
+import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
 import type { OverrideProps } from '@cometjs/core';
 import { required } from '@cometjs/core';
 
+import { linkResolver } from '~/previewLinkResolver';
 import _Header from '~/components/Header';
 import _Footer from '~/components/Footer';
 
@@ -97,4 +98,9 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
   );
 }
 
-export default withPreview(DefaultLayout);
+export default withPrismicPreview(DefaultLayout, [
+  {
+    repositoryName: 'karrot',
+    linkResolver,
+  },
+]);

@@ -11,6 +11,7 @@ export const query = graphql`
   query CulturePage {
     ...DefaultLayout_query
     prismicTeamContents {
+      _previewable
       data {
         culture_page_title {
           text

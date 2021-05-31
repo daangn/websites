@@ -5,7 +5,7 @@ import { createCss } from '@stitches/react';
 import { convertColorScheme } from './colors';
 
 // should exports `styled`, `css` and `getCssString`
-export const { styled, css, global, getCssString } = createCss({
+export const { styled, css, global, getCssString, theme } = createCss({
   // follows Bootstrap's breakpoints practice
   // See https://getbootstrap.com/docs/5.0/layout/breakpoints/#available-breakpoints
   media: {
@@ -42,6 +42,14 @@ export const { styled, css, global, getCssString } = createCss({
     },
   },
   utils: {
+    gridFullColumns: _config => (value: boolean) => value ? ({
+      gridColumnStart: 1,
+      gridColumnEnd: 'end',
+    }) : undefined,
+    gridFullRows: _config => (value: boolean) => value ? ({
+      gridRowStart: 1,
+      gridRowEnd: 'end',
+    }) : undefined,
     marginX: _config => value => ({
       marginLeft: value,
       marginRight: value,
@@ -60,3 +68,5 @@ export const { styled, css, global, getCssString } = createCss({
     }),
   },
 });
+
+const darkTheme = theme('dark-theme', {});

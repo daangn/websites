@@ -4,8 +4,8 @@ import { navigate } from '@reach/router';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
-import type { WithPreviewResolverProps } from 'gatsby-source-prismic';
-import { withPreviewResolver } from 'gatsby-source-prismic';
+import type { WithPrismicPreviewResolverProps } from 'gatsby-plugin-prismic-previews';
+import { withPrismicPreviewResolver } from 'gatsby-plugin-prismic-previews';
 
 import { linkResolver } from '~/previewLinkResolver';
 
@@ -13,7 +13,7 @@ import { ReactComponent as DaangniLoading } from '~/assets/daangni_loading.svg';
 
 type PreviewResolverPageProps = (
   & PageProps<GatsbyTypes.PreviewResolverPageQuery, GatsbyTypes.SitePageContext>
-  & WithPreviewResolverProps
+  & WithPrismicPreviewResolverProps
 );
 
 export const query = graphql`
@@ -32,7 +32,8 @@ const Container = styled('div', {
 });
 
 const Illustration = styled(DaangniLoading, {
-  maxWidth: rem(500),
+  maxWidth: rem(300),
+  marginLeft: rem(-50),
 });
 
 const Description = styled('p', {
@@ -49,8 +50,13 @@ const Description = styled('p', {
   },
 });
 
+const Note = styled('p', {
+  fontSize: '$caption1',
+  color: '$gray400',
+});
+
 const PreviewResolverPage: React.FC<PreviewResolverPageProps> = ({
-  isPreview,
+  isPrismicPreview,
 }) => {
   const [count, countUpToThree] = React.useReducer(c => (c % 4) + 1, 1);
   React.useEffect(() => {
@@ -59,14 +65,10 @@ const PreviewResolverPage: React.FC<PreviewResolverPageProps> = ({
   }, []);
 
   React.useEffect(() => {
-    if (isPreview === false) {
+    if (isPrismicPreview === false) {
       navigate('/not-found/', { replace: true });
     }
-  }, [isPreview]);
-
-  if (!isPreview) {
-    return null;
-  }
+  }, [isPrismicPreview]);
 
   return (
     <Container>
@@ -75,11 +77,16 @@ const PreviewResolverPage: React.FC<PreviewResolverPageProps> = ({
         미리보기 로딩중이에요
         {Array(count).fill('.')}
       </Description>
+      <Note>
+        라이브러리 베타버전이라 버그가 있어서 프리뷰가 동작을 안해요 ㅠㅠ
+      </Note>
     </Container>
   );
 };
 
-export default withPreviewResolver(PreviewResolverPage, {
-  repositoryName: 'karrot',
-  linkResolver,
-});
+export default withPrismicPreviewResolver(PreviewResolverPage, [
+  {
+    repositoryName: 'karrot',
+    linkResolver,
+  },
+]);

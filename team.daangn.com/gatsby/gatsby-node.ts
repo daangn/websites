@@ -43,7 +43,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
     }
 
     type PrismicFaqDataType {
-      entries: [PrismicFaqEntriesGroupType!]!
+      entries: [PrismicFaqDataEntries!]!
     }
   `);
 
@@ -54,9 +54,9 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
     }
 
     type PrismicSiteNavigationDataType {
-      header_entries: [PrismicSiteNavigationHeaderEntriesGroupType!]!
-      footer_entries: [PrismicSiteNavigationFooterEntriesGroupType!]!
-      sns_profiles: [PrismicSiteNavigationSnsProfilesGroupType!]!
+      header_entries: [PrismicSiteNavigationDataHeaderEntries!]!
+      footer_entries: [PrismicSiteNavigationDataFooterEntries!]!
+      sns_profiles: [PrismicSiteNavigationDataSnsProfiles!]!
     }
   `);
 
@@ -67,29 +67,17 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
     }
 
     type PrismicTeamContentsDataType {
-      main_body: [PrismicTeamContentsMainBodySlicesType!]!
-      culture_body: [PrismicTeamContentsCultureBodySlicesType!]!
-      life_body: [PrismicTeamContentsLifeBodySlicesType!]!
+      main_body: [PrismicTeamContentsDataMainBodySlicesType!]!
+      culture_body: [PrismicTeamContentsDataCultureBodySlicesType!]!
+      life_body: [PrismicTeamContentsDataLifeBodySlicesType!]!
     }
 
-    type PrismicTeamContentsMainBodyKeyVisualWithText {
-      primary: PrismicTeamContentsMainBodyKeyVisualWithTextPrimaryType!
-    }
-
-    type PrismicTeamContentsMainBodySummaryAndDetail {
-      primary: PrismicTeamContentsMainBodySummaryAndDetailPrimaryType!
-    }
-
-    type PrismicTeamContentsMainBodyParagraph {
-      primary: PrismicTeamContentsMainBodyParagraphPrimaryType!
-    }
-
-    type PrismicTeamContentsMainBodySingleIllustration {
-      primary: PrismicTeamContentsMainBodySingleIllustrationPrimaryType!
+    type PrismicTeamContentsMainBodyKeyVisual {
+      primary: PrismicTeamContentsDataMainBodyKeyVisualPrimary!
     }
 
     type PrismicTeamContentsMainBodyMemberQuoteCarousel {
-      items: [PrismicTeamContentsMainBodyMemberQuoteCarouselItemType!]!
+      items: [PrismicTeamContentsDataMainBodyMemberQuoteCarouselItem!]!
     }
   `);
 

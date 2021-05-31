@@ -12,17 +12,16 @@
       "fieldset" : "Slice zone",
       "config" : {
         "labels" : {
-          "key_visual_with_text" : [ ],
-          "summary_and_detail" : [ ],
-          "paragraph" : [ ],
-          "single_illustration" : [ ],
-          "member_quote_carousel" : [ ]
+          "key_visual" : [ ],
+          "member_quote_carousel" : [ ],
+          "title_and_description" : [ ],
+          "title_and_illustration" : [ ]
         },
         "choices" : {
-          "key_visual_with_text" : {
+          "key_visual" : {
             "type" : "Slice",
-            "fieldset" : "Key Visual with Text",
-            "description" : "대표 이미지와 설명 텍스트로 구성된 섹션",
+            "fieldset" : "Key Visual",
+            "description" : "대표 이미지 섹션",
             "icon" : "subtitles",
             "non-repeat" : {
               "key_visual_image" : {
@@ -32,8 +31,17 @@
                     "width" : 1920,
                     "height" : 1080
                   },
-                 "thumbnails" : [ ],
+                  "thumbnails" : [ ],
                   "label" : "키 비주얼 이미지"
+               }
+              },
+              "expanded" : {
+                "type" : "Boolean",
+                "config" : {
+                  "placeholder_false" : "양 옆에 마진",
+                  "placeholder_true" : "화면에 꽉 채우기",
+                  "default_value" : false,
+                  "label" : "작은 화면에서 이미지 영역 조절"
                 }
               },
               "description" : {
@@ -42,75 +50,6 @@
                   "single" : "paragraph, strong, em, hyperlink",
                   "label" : "설명 텍스트",
                   "placeholder" : "설명 텍스트를 적어주세요"
-                }
-              }
-            },
-            "repeat" : { }
-          },
-          "summary_and_detail" : {
-            "type" : "Slice",
-            "fieldset" : "Summary and Detail",
-            "description" : "\"자세히 보기\" 링크(옵션)와 요약 문구가 있는 섹션",
-            "icon" : "open_in_new",
-            "display" : "list",
-            "non-repeat" : {
-              "key_text" : {
-                "type" : "Text",
-                "config" : {
-                  "label" : "키 텍스트",
-                  "placeholder" : "짧은 키 텍스트 (한 단어)"
-                }
-              },
-              "summary" : {
-                "type" : "StructuredText",
-                "config" : {
-                  "single" : "heading2",
-                  "label" : "요약 문구"
-                }
-              },
-              "link" : {
-                "type" : "Link",
-                "config" : {
-                  "label" : "링크",
-                  "placeholder" : "웹 URL만 사용할 수 있습니다. (미입력 시 \"자세히 보기\" 안나옴)"
-                }
-              }
-            },
-            "repeat" : { }
-          },
-          "paragraph" : {
-            "type" : "Slice",
-            "fieldset" : "Paragraph",
-            "description" : "일반 텍스트 문단",
-            "icon" : "face",
-            "display" : "list",
-            "non-repeat" : {
-              "content" : {
-                "type" : "StructuredText",
-                "config" : {
-                  "multi" : "paragraph, strong, em, hyperlink",
-                  "label" : "텍스트"
-                }
-              }
-            },
-            "repeat" : { }
-          },
-          "single_illustration" : {
-            "type" : "Slice",
-            "fieldset" : "Single Illustration",
-            "description" : "한 장 짜리 일러스트 이미지",
-            "icon" : "image",
-            "display" : "list",
-            "non-repeat" : {
-              "illustration" : {
-                "type" : "Image",
-                "config" : {
-                  "constraint" : {
-                    "width" : 960,
-                    "height" : 720
-                  },
-                  "thumbnails" : [ ],
-                  "label" : "일러스트"
                 }
               }
             },
@@ -140,6 +79,84 @@
                 }
               }
             }
+          },
+          "title_and_description" : {
+            "type" : "Slice",
+            "fieldset" : "Title and Description",
+            "description" : "제목과 설명 텍스트가 있는 섹션",
+            "icon" : "subtitles",
+            "display" : "grid",
+            "non-repeat" : {
+              "key_text" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "키 텍스트 (한 단어)"
+                }
+              },
+              "title" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "single" : "heading1",
+                  "label" : "섹션 제목"
+                }
+              },
+              "link" : {
+                "type" : "Link",
+                "config" : {
+                  "label" : "링크",
+                  "placeholder" : "\"자세히 보기\" 링크"
+                }
+              },
+              "description" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "multi" : "paragraph, strong, em, hyperlink",
+                  "label" : "설명"
+                }
+              }
+            },
+            "repeat" : { }
+          },
+          "title_and_illustration" : {
+            "type" : "Slice",
+            "fieldset" : "Title and Illustration",
+            "description" : "제목과 일러스트가 있는 섹션",
+            "icon" : "subtitles",
+            "display" : "list",
+            "non-repeat" : {
+              "key_text" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "키 텍스트 (한 단어)"
+                }
+              },
+              "title" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "single" : "heading1",
+                  "label" : "섹션 제목"
+                }
+              },
+              "link" : {
+                "type" : "Link",
+                "config" : {
+                  "label" : "자세히 보기 링크",
+                  "placeholder" : "값이 있으면 \"자세히 보기\" 링크를 표시합니다."
+                }
+              },
+              "illustration" : {
+                "type" : "Image",
+                "config" : {
+                  "constraint" : {
+                    "width" : 560,
+                    "height" : 420
+                  },
+                  "thumbnails" : [ ],
+                  "label" : "일러스트 이미지"
+                }
+              }
+            },
+            "repeat" : { }
           }
         }
       }
@@ -159,10 +176,10 @@
       "config" : {
         "labels" : { },
         "choices" : {
-          "key_visual_with_text" : {
+          "key_visual" : {
             "type" : "Slice",
-            "fieldset" : "Key Visual with Text",
-            "description" : "대표 이미지와 설명 텍스트로 구성된 섹션",
+            "fieldset" : "Key Visual",
+            "description" : "대표 이미지 섹션",
             "icon" : "subtitles",
             "non-repeat" : {
               "key_visual_image" : {
@@ -176,6 +193,15 @@
                   "label" : "키 비주얼 이미지"
                 }
               },
+              "expanded" : {
+                "type" : "Boolean",
+                "config" : {
+                  "placeholder_false" : "양 옆에 마진",
+                  "placeholder_true" : "화면에 꽉 채우기",
+                  "default_value" : false,
+                  "label" : "작은 화면에서 이미지 영역 조절"
+                }
+              },
               "description" : {
                 "type" : "StructuredText",
                 "config" : {
@@ -185,7 +211,8 @@
                 }
               }
             },
-            "repeat" : { }
+            "repeat" : { },
+            "display" : "list"
           }
         }
       }
@@ -204,59 +231,50 @@
       "fieldset" : "Slice zone",
       "config" : {
         "labels" : {
-          "title_and_description" : [ ],
-          "thumbnail" : [ ]
+          "life_content" : [ ]
         },
         "choices" : {
-          "title_and_description" : {
+          "life_content" : {
             "type" : "Slice",
-            "fieldset" : "Title and Description",
-            "description" : "단순 제목과 설명으로 구성된 섹션",
-            "icon" : "menu",
+            "fieldset" : "Life Content",
+            "description" : "팀 생활 엿보기 섹션",
+            "icon" : "subtitles",
             "display" : "list",
             "non-repeat" : {
               "title" : {
                 "type" : "StructuredText",
                 "config" : {
                   "single" : "heading2",
-                  "label" : "제목"
+                  "label" : "섹션 타이틀"
                 }
               },
-              "description" : {
+              "body_text" : {
                 "type" : "StructuredText",
                 "config" : {
                   "multi" : "paragraph, strong, em, hyperlink",
-                  "label" : "설명"
+                  "label" : "섹션 내용"
                 }
               }
             },
-            "repeat" : { }
-          },
-          "thumbnail" : {
-            "type" : "Slice",
-            "fieldset" : "Thumbnail",
-            "description" : "썸네일(이미지) 섹션",
-            "icon" : "image",
-            "display" : "list",
-            "non-repeat" : {
+            "repeat" : {
               "thumbnail_image" : {
                 "type" : "Image",
                 "config" : {
                   "constraint" : {
-                    "width" : 1920
+                    "width" : 760
                   },
                   "thumbnails" : [ ],
-                  "label" : "thumbnail_image"
+                  "label" : "섬네일 이미지"
                 }
               },
-              "thumbnail_caption" : {
-                "type" : "Text",
+              "thumbnail_description" : {
+                "type" : "StructuredText",
                 "config" : {
-                  "label" : "캡션 텍스트"
+                  "single" : "paragraph, strong, em, hyperlink",
+                  "label" : "섬네일 설명"
                 }
               }
-            },
-            "repeat" : { }
+            }
           }
         }
       }
