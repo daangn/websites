@@ -5,6 +5,8 @@ import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { getImage, GatsbyImage } from 'gatsby-plugin-image';
 import { mapLink, useLinkParser } from '~/link';
 
+import DetailLink from '~/components/DetailLink';
+
 type PrismicTeamContentsDataMainBodyTitleAndIllustrationProps = {
   data: GatsbyTypes.PrismicTeamContentsDataMainBodyTitleAndIllustration_dataFragment,
   className?: string,
@@ -47,7 +49,7 @@ const Container = styled('section', {
 
 const TitleContainer = styled('div', {
   display: 'grid',
-  gridTemplateRows: 'min-content auto min-content',
+  gridTemplateRows: 'repeat(3, min-content)',
 });
 
 const KeyText = styled('span', {
@@ -92,10 +94,7 @@ const PrismicTeamContentsDataMainBodyTitleAndIllustration: React.FC<PrismicTeamC
       <TitleContainer>
         <KeyText>{data.primary.key_text}</KeyText>
         <Title>{data.primary.title?.text}</Title>
-        {link && mapLink(link, {
-          Internal: null,
-          External: null,
-        })}
+        {link && <DetailLink link={link}>자세히 보기</DetailLink>}
       </TitleContainer>
       {image && (
         <Illustration
