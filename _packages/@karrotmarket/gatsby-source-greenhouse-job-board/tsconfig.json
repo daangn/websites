@@ -1,13 +1,13 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../../tsconfig.json",
   "compilerOptions": {
-    "rootDir": "src",
+    "rootDir": "gatsby",
     "declarationDir": "."
   },
   "include": [
-    "src"
+    "gatsby"
   ],
   "exclude": [
-    "__noop"
+    "node_modules"
   ]
 }
