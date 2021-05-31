@@ -13,7 +13,7 @@ export const query = graphql`
     prismicTeamContents {
       _previewable
       data {
-        culture_page_title {
+        life_page_title {
           text
         }
       }
@@ -28,7 +28,7 @@ const LifePage: React.FC<LifePageProps> = ({
   return (
     <>
       <PageTitle size={{ '@sm': 'sm' }}>
-        {data.prismicTeamContents.data.culture_page_title?.text}
+        {data.prismicTeamContents.data.life_page_title?.text}
       </PageTitle>
     </>
   );

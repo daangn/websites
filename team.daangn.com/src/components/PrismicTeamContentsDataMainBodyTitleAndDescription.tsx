@@ -2,7 +2,9 @@ import * as React from 'react';
 import { rem } from 'polished';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
-import { mapLink, useLinkParser } from '~/link';
+import { useLinkParser } from '~/link';
+
+import DetailLink from './DetailLink';
 
 type PrismicTeamContentsDataMainBodyTitleAndDescriptionProps = {
   data: GatsbyTypes.PrismicTeamContentsDataMainBodyTitleAndDescription_dataFragment,
@@ -38,7 +40,7 @@ const Container = styled('section', {
 
 const TitleContainer = styled('div', {
   display: 'grid',
-  gridTemplateRows: 'min-content auto min-content',
+  gridTemplateRows: 'repeat(3, min-content)',
 });
 
 const KeyText = styled('span', {
@@ -64,12 +66,16 @@ const Title = styled('h1', {
 });
 
 const Description = styled('div', {
+  color: '$gray700',
+
   '& > p': {
+    fontSize: '$body2',
     marginBottom: rem(32),
   },
 
   '@md': {
     '& > p': {
+      fontSize: '$body1',
       marginBottom: rem(40),
     },
 
@@ -92,10 +98,7 @@ const PrismicTeamContentsDataMainBodyTitleAndDescription: React.FC<PrismicTeamCo
       <TitleContainer>
         <KeyText>{data.primary.key_text}</KeyText>
         <Title>{data.primary.title?.text}</Title>
-        {link && mapLink(link, {
-          Internal: null,
-          External: null,
-        })}
+        {link && <DetailLink link={link}>자세히 보기</DetailLink>}
       </TitleContainer>
       <Description dangerouslySetInnerHTML={{ __html: data.primary.description?.html || '' }}/>
     </Container>
