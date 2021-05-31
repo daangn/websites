@@ -10,8 +10,8 @@
     "uk.karrotmarket.com"
   ],
   "resolutions": {
-    "react": "0.0.0-experimental-ea155e226",
-    "react-dom": "0.0.0-experimental-ea155e226",
+    "react": "0.0.0-experimental-d75105fa9",
+    "react-dom": "0.0.0-experimental-d75105fa9",
     "webpack": "5.36.2",
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.3.0"

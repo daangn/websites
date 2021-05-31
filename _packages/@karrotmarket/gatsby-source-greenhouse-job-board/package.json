@@ -10,6 +10,7 @@
     "prepack": "yarn build"
   },
   "files": [
+    "src",
     "index.js",
     "utils.js",
     "gatsby-node.js",

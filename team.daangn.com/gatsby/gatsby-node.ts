@@ -43,7 +43,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
     }
 
     type PrismicFaqDataType {
-      entries: [PrismicFaqEntriesGroupType!]!
+      entries: [PrismicFaqDataEntries!]!
     }
   `);
 
@@ -54,9 +54,37 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
     }
 
     type PrismicSiteNavigationDataType {
-      header_entries: [PrismicSiteNavigationHeaderEntriesGroupType!]!
-      footer_entries: [PrismicSiteNavigationFooterEntriesGroupType!]!
-      sns_profiles: [PrismicSiteNavigationSnsProfilesGroupType!]!
+      header_entries: [PrismicSiteNavigationDataHeaderEntries!]!
+      footer_entries: [PrismicSiteNavigationDataFooterEntries!]!
+      sns_profiles: [PrismicSiteNavigationDataSnsProfiles!]!
+    }
+  `);
+
+  // Type assertions for Teams Contents
+  actions.createTypes(gql`
+    type PrismicTeamContents {
+      data: PrismicTeamContentsDataType!
+    }
+
+    type PrismicTeamContentsDataType {
+      main_body: [PrismicTeamContentsDataMainBodySlicesType!]!
+      culture_body: [PrismicTeamContentsDataCultureBodySlicesType!]!
+      life_body: [PrismicTeamContentsDataLifeBodySlicesType!]!
+    }
+
+    type PrismicTeamContentsMainBodyKeyVisual {
+      primary: PrismicTeamContentsDataMainBodyKeyVisualPrimary!
+    }
+
+    type PrismicTeamContentsMainBodyMemberQuoteCarousel {
+      items: [PrismicTeamContentsDataMainBodyMemberQuoteCarouselItem!]!
+    }
+  `);
+
+  // Type assertions for Member Profiles
+  actions.createTypes(gql`
+    type PrismicMemberProfile {
+      data: PrismicMemberProfileDataType!
     }
   `);
 };
