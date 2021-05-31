@@ -22,6 +22,7 @@ type DefaultLayoutProps = OverrideProps<
 export const query = graphql`
   fragment DefaultLayout_query on Query {
     prismicSiteNavigation(uid: { eq: "team.daangn.com" }) {
+      _previewable
       data {
         ...Header_navigationData
         ...Footer_navigationData
