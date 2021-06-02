@@ -25,6 +25,24 @@ const config: GatsbyConfig = {
     'gatsby-plugin-react-helmet-async',
     'gatsby-transformer-sharp',
     {
+      resolve: 'gatsby-plugin-image',
+      options: {
+        defaults: {
+          formats: ['avif', 'webp', 'auto'],
+          placeholder: 'dominantColor',
+          quality: 80,
+          breakpoints: [576, 768, 992, 1200, 1400, 1920],
+          backgroundColor: 'transparent',
+          tracedSVGOptions: {},
+          blurredOptions: {},
+          jpgOptions: {},
+          pngOptions: {},
+          webpOptions: {},
+          avifOptions: {},
+        },
+      },
+    },
+    {
       resolve: 'gatsby-plugin-module-resolver',
       options: {
         root: './src',
@@ -57,12 +75,26 @@ const config: GatsbyConfig = {
       options: {
         repositoryName: 'karrot',
         accessToken: process.env.PRISMIC_ACCESS_TOKEN,
-        prismicToolbar: process.env.NODE_ENV === 'development',
         schemas: {
+          'mbti-test-result': {},
+          mbti_intro: {},
+          mbti_test_question: {},
+          ads_intro: {},
+          global_contents: {},
           faq: require('@karrotmarket/prismic-config/schema/faq.json'),
           site_navigation: require('@karrotmarket/prismic-config/schema/site_navigation.json'),
           terms_and_conditions: require('@karrotmarket/prismic-config/schema/terms_and_conditions.json'),
+          member_profile: require('@karrotmarket/prismic-config/schema/member_profile.json'),
+          team_contents: require('@karrotmarket/prismic-config/schema/team_contents.json'),
         },
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-prismic-previews',
+      options: {
+        repositoryName: 'karrot',
+        accessToken: process.env.PRISMIC_ACCESS_TOKEN,
+        toolbar: 'new',
       },
     },
 

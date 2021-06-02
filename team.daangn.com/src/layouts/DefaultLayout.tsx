@@ -4,10 +4,11 @@ import { rem } from 'polished';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
-import { withPreview } from 'gatsby-source-prismic';
+import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
 import type { OverrideProps } from '@cometjs/core';
 import { required } from '@cometjs/core';
 
+import { linkResolver } from '~/previewLinkResolver';
 import _Header from '~/components/Header';
 import _Footer from '~/components/Footer';
 
@@ -21,6 +22,7 @@ type DefaultLayoutProps = OverrideProps<
 export const query = graphql`
   fragment DefaultLayout_query on Query {
     prismicSiteNavigation(uid: { eq: "team.daangn.com" }) {
+      _previewable
       data {
         ...Header_navigationData
         ...Footer_navigationData
@@ -97,4 +99,9 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
   );
 }
 
-export default withPreview(DefaultLayout);
+export default withPrismicPreview(DefaultLayout, [
+  {
+    repositoryName: 'karrot',
+    linkResolver,
+  },
+]);

@@ -1,27 +1,100 @@
 import * as React from 'react';
+import { rem } from 'polished';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
-import { withPreview } from 'gatsby-source-prismic';
+import { styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
+import { required } from '@cometjs/core';
+import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
 
-import PageTitle from '~/components/PageTitle';
+import _PageTitle from '~/components/PageTitle';
+import PrismicTeamContentsDataMainBodyKeyVisual from '~/components/PrismicTeamContentsDataMainBodyKeyVisual';
+import PrismicTeamContentsDataMainBodyMemberQuoteCarousel from '~/components/PrismicTeamContentsDataMainBodyMemberQuoteCarousel';
+import PrismicTeamContentsDataMainBodyTitleAndDescription from '~/components/PrismicTeamContentsDataMainBodyTitleAndDescription';
+import PrismicTeamContentsDataMainBodyTitleAndIllustration from '~/components/PrismicTeamContentsDataMainBodyTitleAndIllustration';
 
 type IndexPageProps = PageProps<GatsbyTypes.IndexPageQuery, GatsbyTypes.SitePageContext>;
 
 export const query = graphql`
   query IndexPage {
     ...DefaultLayout_query
+    prismicTeamContents {
+      _previewable
+      data {
+        main_page_title {
+          text
+        }
+        main_body {
+          __typename
+          ...PrismicTeamContentsDataMainBodyKeyVisual_data
+          ...PrismicTeamContentsDataMainBodyMemberQuoteCarousel_data
+          ...PrismicTeamContentsDataMainBodyTitleAndDescription_data
+          ...PrismicTeamContentsDataMainBodyTitleAndIllustration_data
+        }
+      }
+    }
   }
 `;
 
-const IndexPage: React.FC<IndexPageProps> = () => {
+const PageTitle = styled(_PageTitle, {
+  marginBottom: rem(40),
+
+  '@md': {
+    marginBottom: rem(80),
+  },
+});
+
+const Content = styled('div', {
+  display: 'grid',
+  gap: rem(80),
+
+  '@md': {
+    gap: rem(160),
+  },
+});
+
+const IndexPage: React.FC<IndexPageProps> = ({
+  data,
+}) => {
+  required(data.prismicTeamContents);
   return (
     <>
       <PageTitle size={{ '@sm': 'sm' }}>
-        {`이웃과 더 가까워지는
-        따듯한 세상을 만들어요.`}
+        {data.prismicTeamContents.data.main_page_title?.text}
       </PageTitle>
+      <Content>
+        {data.prismicTeamContents.data.main_body
+          .map((data, i) => mapAbstractTypeWithDefault(data, {
+            PrismicTeamContentsDataMainBodyKeyVisual: data => (
+              <PrismicTeamContentsDataMainBodyKeyVisual
+                key={i}
+                data={data}
+              />
+            ),
+            PrismicTeamContentsDataMainBodyMemberQuoteCarousel: data => (
+              <PrismicTeamContentsDataMainBodyMemberQuoteCarousel
+                key={i}
+                data={data}
+              />
+            ),
+            PrismicTeamContentsDataMainBodyTitleAndDescription: data => (
+              <PrismicTeamContentsDataMainBodyTitleAndDescription
+                key={i}
+                data={data}
+              />
+            ),
+            PrismicTeamContentsDataMainBodyTitleAndIllustration: data => (
+              <PrismicTeamContentsDataMainBodyTitleAndIllustration
+                key={i}
+                data={data}
+              />
+            ),
+            _: null,
+          }))
+        }
+      </Content>
     </>
   );
 };
 
-export default withPreview(IndexPage);
+export default withPrismicPreview(IndexPage, []);

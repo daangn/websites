@@ -8,9 +8,6 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
   actions.createTypes(gql`
     type PrismicLinkType {
       isBroken: Boolean!
-      url: String!
-      target: String!
-      raw: JSON!
     }
 
     type PrismicImageDimensionsType {

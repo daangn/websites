@@ -16,11 +16,11 @@ type FaqAccordionItemProps = {
 };
 
 export const query = graphql`
-    fragment FaqAccordionItem_entry on PrismicFaqEntriesGroupType {
-        question
-        answer {
-            html
-        }
+
+  fragment FaqAccordionItem_entry on PrismicFaqDataEntries {
+    question
+    answer {
+      html
     }
 `;
 
