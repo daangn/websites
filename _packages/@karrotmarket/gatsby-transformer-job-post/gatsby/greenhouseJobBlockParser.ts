@@ -2,7 +2,7 @@ import * as cheerio from 'cheerio';
 import { decode as decodeEntities } from 'html-entities';
 
 export function parseHtml(contentHtml: string) {
-  const $ = cheerio.load(decodeEntities(contentHtml), null, false);
+  const $ = cheerio.load(decodeEntities(contentHtml));
   $('.content-intro').remove();
   $('.content-conclusion').remove();
 
