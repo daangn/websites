@@ -1,6 +1,7 @@
 import React from "react";
-import { styled } from "gatsby-theme-stitches/src/stitches.config";
 import { graphql } from "gatsby";
+import { styled } from "gatsby-theme-stitches/src/stitches.config";
+import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 
 import { Html } from "@src/components/Html";
 import { Flex } from "@src/components/Flex";
@@ -36,23 +37,24 @@ export const query = graphql`
 `;
 
 const Section = styled("section", {
+    overflow: "hidden",
     height: "400px",
     width: "100%",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "180%",
-    backgroundAttachment: "fixed",
+    position: "relative",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-
     "@md": {
-        backgroundSize: "cover",
         height: "600px",
     },
 });
 
 const Container = styled("div", {
+    position: "absolute",
+    left: "50%",
+    top: "50%",
+    transform: "translate(-50%,-50%)",
+    zIndex: 1,
     width: "$maxContent",
     margin: "0 auto",
     color: "white",
@@ -70,6 +72,23 @@ const TopText = styled("div", {
     },
 });
 
+const Background = styled("div", {
+    height: "560px",
+    width: "100%",
+    backgroundPosition: "bottom 40% left 50%",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "160%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+
+    "@md": {
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        height: "600px",
+    },
+});
+
 const ParallaxSection: React.FC<ParallaxSectionProps> = ({ content }) => {
     if (!content.primary) return <></>;
 
@@ -77,17 +96,22 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({ content }) => {
     const TopIcon = ParallaxIcon[top_icon as ParallaxIconType];
 
     return (
-        <Section css={{ backgroundImage: `url(${background_image?.url})` }}>
-            <Container>
-                <Flex rowCenterY>
-                    <TopIcon></TopIcon>
-                    <Space w={4}></Space>
-                    <TopText>{top_text?.text}</TopText>
-                </Flex>
-                <Space h={12}></Space>
-                <Html html={title?.html as string}></Html>
-            </Container>
-        </Section>
+        <ParallaxProvider>
+            <Section>
+                <Parallax y={[-30, 30]} styleInner={{ height: "100%" }} styleOuter={{ width: "100%" }}>
+                    <Background css={{ backgroundImage: `url(${background_image?.url})` }}></Background>
+                </Parallax>
+                <Container>
+                    <Flex rowCenterY>
+                        <TopIcon></TopIcon>
+                        <Space w={4}></Space>
+                        <TopText>{top_text?.text}</TopText>
+                    </Flex>
+                    <Space h={12}></Space>
+                    <Html html={title?.html as string}></Html>
+                </Container>
+            </Section>
+        </ParallaxProvider>
     );
 };
 
