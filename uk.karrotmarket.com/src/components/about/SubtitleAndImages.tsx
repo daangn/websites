@@ -26,6 +26,7 @@ export const query = graphql`
                     width
                     height
                 }
+                alt
                 thumbnails {
                     mobile {
                         url
@@ -60,6 +61,7 @@ const SubtitleAndImages: React.FC<SubtitleAndImagesProps> = ({ content }) => {
                 {content.items.map((item) => (
                     <Image
                         src={item?.image?.url}
+                        alt={item?.image?.alt}
                         width={{ "@i": item?.image?.thumbnails?.mobile?.dimensions?.width, "@md": item?.image?.dimensions?.width }}
                     ></Image>
                 ))}

@@ -32,6 +32,7 @@ const ItemContainer = styled("a", {
     display: "flex",
     flexDirection: "column",
     color: "$gray900",
+    textDecoration: "none",
     "&:hover": {
         cursor: "pointer",
     },
@@ -61,8 +62,8 @@ const ItemRegion = styled("div", {
     fontFamily: "$default",
 });
 
-const Item: React.FC<ItemProps> = ({ first_image, price, region }) => (
-    <ItemContainer>
+const Item: React.FC<ItemProps> = ({ first_image, price, region, id }) => (
+    <ItemContainer href={`https://uk.karrotmarket.com/articles/${id}`}>
         <ItemImage src={first_image.file}></ItemImage>
         <ItemPrice>£ {Number(price)}</ItemPrice>
         <ItemRegion>{region.display_name}</ItemRegion>
@@ -149,7 +150,7 @@ const PopularSection: React.FC<ParallaxSectionProps> = ({ content }) => {
                         ></Item>
                     ))}
                 </Grid>
-                <MoreButton>{more_button}</MoreButton>
+                <MoreButton href="https://uk.karrotmarket.com/hot_articles">{more_button}</MoreButton>
             </Container>
         </Section>
     );

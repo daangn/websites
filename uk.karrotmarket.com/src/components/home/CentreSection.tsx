@@ -28,6 +28,7 @@ export const query = graphql`
                     width
                     height
                 }
+                alt
                 thumbnails {
                     mobile {
                         url
@@ -64,7 +65,12 @@ const CentreSection: React.FC<CentreSectionProps> = ({ content }) => {
 
     return (
         <Section>
-            <Image src={image?.url} width={{ "@i": image?.thumbnails?.mobile?.dimensions?.width, "@md": image?.dimensions?.width }}></Image>
+            <Image
+                src={image?.url}
+                alt={image?.alt}
+                width={{ "@i": image?.thumbnails?.mobile?.dimensions?.width, "@md": image?.dimensions?.width }}
+                height={{ "@i": image?.thumbnails?.mobile?.dimensions?.height, "@md": image?.dimensions?.height }}
+            ></Image>
             <Flex colCenterX>
                 <Html html={title?.html} marginBottom={{ "@i": 6, "@md": 14 }}></Html>
                 <Html html={text?.html} fontSize={{ "@i": "$body1", "@md": "$subtitle3" }} marginBottom={{ "@i": 16 }}></Html>

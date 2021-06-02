@@ -29,6 +29,7 @@ export const query = graphql`
                     width
                     height
                 }
+                alt
                 thumbnails {
                     mobile {
                         url
@@ -89,7 +90,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({ content }) => {
                 <Flex ai="flex-end">
                     <Image
                         src={side_image?.url}
+                        alt={side_image?.alt}
                         width={{ "@i": side_image?.thumbnails?.mobile?.dimensions?.width, "@md": side_image?.dimensions?.width }}
+                        height={{ "@i": side_image?.thumbnails?.mobile?.dimensions?.height, "@md": side_image?.dimensions?.height }}
                     ></Image>
                 </Flex>
             </Container>
