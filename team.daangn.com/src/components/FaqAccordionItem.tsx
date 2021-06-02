@@ -21,6 +21,7 @@ export const query = graphql`
     answer {
       html
     }
+  }
 `;
 
 const Container = styled("div", {
