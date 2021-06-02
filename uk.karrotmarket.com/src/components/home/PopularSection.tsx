@@ -30,6 +30,7 @@ interface ItemProps {
 
 const ItemContainer = styled("a", {
     display: "flex",
+    position: "relative",
     flexDirection: "column",
     color: "$gray900",
     textDecoration: "none",
@@ -38,8 +39,12 @@ const ItemContainer = styled("a", {
     },
 });
 const ItemImage = styled("img", {
-    width: rem(156),
-    height: rem(156),
+    width: "100%",
+    height: "auto",
+    minWidth: rem(100),
+    minHeight: rem(100),
+    // width: rem(156),
+    // height: rem(156),
 
     objectFit: "cover",
     borderRadius: rem(6),
@@ -136,6 +141,8 @@ const PopularSection: React.FC<ParallaxSectionProps> = ({ content }) => {
                     rowGap={{ "@i": 16, "@md": 0 }}
                     columnGap={{ "@i": 16, "@md": 26 }}
                     marginTop={{ "@i": 28, "@md": 56 }}
+                    width={{ "@i": "100%", "@md": "auto" }}
+                    padding={{ "@i": 16, "@md": 0 }}
                 >
                     {/* {[...Array(6).keys()].map((i) => (
                         <Item key={i} img={MOCK_IMAGE} price="£ 15.00" region="Everton, Liverpool"></Item>
