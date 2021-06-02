@@ -1,9 +1,9 @@
 import { PhoneMockUpChatData } from "./_type";
 
 //@ts-ignore
-import LocationImg from "!!url-loader?modules!@src/images/img_location.png";
+import LocationImg from "!!url-loader?modules!@src/images/img_chat_location.png";
 //@ts-ignore
-import ItemImg from "!!url-loader?modules!@src/images/img_item.png";
+import ItemImg from "../../../images/img_chat_item.png";
 
 export const data: PhoneMockUpChatData = {
     header: {
@@ -40,7 +40,7 @@ export const data: PhoneMockUpChatData = {
     ],
 };
 
-export const chatAnimationInfiteLoop = true;
+export const chatAnimationInfiteLoop = false;
 
 export const messageMotionOption = {
     initial: {
@@ -55,7 +55,6 @@ export const messageMotionOption = {
     },
     transition: {
         duration: 0.5,
-        ease: "anticipate",
     },
     exit: {
         scale: 0,

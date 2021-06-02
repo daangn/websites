@@ -1,12 +1,13 @@
 import React from "react";
-import { rem } from "polished";
 import { graphql } from "gatsby";
 import { styled } from "gatsby-theme-stitches/src/stitches.config";
 
 import { Html } from "@src/components/Html";
 import { Space } from "@src/components/Space";
 import AppLink from "@src/components/AppLink";
-import Image from "../Image";
+
+// @ts-ignore
+import { ReactComponent as KarrotLogoIcon } from "@src/icons/karrot_logo.svg";
 
 type DownloadSectionProps = {
     content: GatsbyTypes.PrismicGlobalContentsBodyDownloadSection;
@@ -51,17 +52,13 @@ const Container = styled("div", {
 const DownloadSection: React.FC<DownloadSectionProps> = ({ content }) => {
     if (!content.primary) return <></>;
 
-    const { title, app_logo_image } = content.primary;
+    const { title } = content.primary;
 
     return (
         <Section>
             <Container>
-                <Image
-                    src={app_logo_image?.url}
-                    alt={app_logo_image?.alt}
-                    width={app_logo_image?.dimensions?.width}
-                    height={app_logo_image?.dimensions?.height}
-                ></Image>
+                <KarrotLogoIcon></KarrotLogoIcon>
+
                 <Space h={28}></Space>
                 <Html html={title?.html} marginBottom={{ "@i": 0, "@md": 42 }}></Html>
                 <AppLink theme="light" type="desktop"></AppLink>

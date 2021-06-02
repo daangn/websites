@@ -2,6 +2,7 @@ import React from "react";
 
 import { em, rem } from "polished";
 import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import { styled } from "gatsby-theme-stitches/src/stitches.config";
 
 import Phone from "./Phone";
@@ -10,6 +11,15 @@ import Profile from "./phoneMockupVerify/Profile";
 import Ratings from "./phoneMockupVerify/Ratings";
 
 import { data } from "./phoneMockupVerify/_config";
+import { Space } from "../Space";
+
+const Wrapper = styled(motion.div, {
+    position: "relative",
+    width: rem(288),
+    "@md": {
+        width: rem(490),
+    },
+});
 
 const Header = styled("div", {
     fontWeight: "bold",
@@ -26,17 +36,37 @@ const FloatingContainer = styled(motion.div, {
     },
 });
 
-const Wrapper = styled("div", {
-    position: "relative",
-    width: rem(288),
-    "@md": {
-        width: rem(490),
-    },
+const EmptySpace = styled("div", {
+    fontSize: rem(7.5),
+    "@md": { fontSize: rem(13) },
+
+    width: em(1),
+    height: em(600),
 });
 
-const PhoneMockupVerify: React.FC = (props) => {
+interface PhoneMockupVerifyProps {
+    inView: boolean;
+}
+
+const PhoneMockupVerify: React.FC<PhoneMockupVerifyProps> = ({ inView }) => {
+    if (!inView) return <EmptySpace></EmptySpace>;
     return (
-        <Wrapper>
+        <Wrapper
+            {...{
+                initial: {
+                    opacity: 0,
+                    y: 200,
+                },
+                animate: {
+                    opacity: 1,
+                    y: 0,
+                },
+                transition: {
+                    duration: 1.5,
+                    ease: [0.16, 1, 0.3, 1],
+                },
+            }}
+        >
             <Phone
                 align="left"
                 height={600}

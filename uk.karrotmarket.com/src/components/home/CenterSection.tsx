@@ -8,12 +8,12 @@ import { Flex } from "@src/components/Flex";
 import { Space } from "@src/components/Space";
 import Image from "../Image";
 
-type CentreSectionProps = {
+type CenereSectionProps = {
     content: GatsbyTypes.PrismicGlobalContentsBodyCentreSection;
 };
 
 export const query = graphql`
-    fragment CentreSection_content on PrismicGlobalContentsBodyCentreSection {
+    fragment CenterSection_content on PrismicGlobalContentsBodyCentreSection {
         primary {
             title {
                 html
@@ -58,7 +58,7 @@ const Section = styled("section", {
     },
 });
 
-const CentreSection: React.FC<CentreSectionProps> = ({ content }) => {
+const CenterSection: React.FC<CenereSectionProps> = ({ content }) => {
     if (!content.primary) return <></>;
 
     const { title, image, text } = content.primary;
@@ -80,4 +80,4 @@ const CentreSection: React.FC<CentreSectionProps> = ({ content }) => {
     );
 };
 
-export default CentreSection;
+export default CenterSection;

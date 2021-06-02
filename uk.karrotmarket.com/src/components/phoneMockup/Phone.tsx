@@ -68,11 +68,11 @@ const Screen = styled("div", {
 
 const Wrapper = styled("div", {
     width: em(500),
-    fontSize: rem(10),
     overflow: "hidden",
     "*": {
         fontFamily: "$default",
     },
+    fontSize: rem(10),
     "@md": {
         fontSize: rem(16),
     },

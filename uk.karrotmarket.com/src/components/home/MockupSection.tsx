@@ -1,5 +1,5 @@
 import React from "react";
-import { rem } from "polished";
+import { em, rem } from "polished";
 import { graphql } from "gatsby";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -145,26 +145,9 @@ const MockupSection: React.FC<MockupSectionProps> = ({ content }) => {
                     </Grid>
                 </Flex>
                 <Flex rowCenterY justifyContent={{ "@i": "center", "@md": "flex-start" }}>
-                    {inView && (
-                        <motion.div
-                            {...{
-                                initial: {
-                                    opacity: 0,
-                                    y: 200,
-                                },
-                                animate: {
-                                    opacity: 1,
-                                    y: 0,
-                                },
-                                transition: {
-                                    duration: 1.5,
-                                    ease: [0.16, 1, 0.3, 1],
-                                },
-                            }}
-                        >
-                            <PhoneMockupComponent></PhoneMockupComponent>
-                        </motion.div>
-                    )}
+                    <div ref={ref}>
+                        <PhoneMockupComponent inView={inView}></PhoneMockupComponent>
+                    </div>
                 </Flex>
             </Container>
         </Section>
