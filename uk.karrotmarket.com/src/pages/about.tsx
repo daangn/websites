@@ -107,6 +107,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
                     title: about_page_title,
                     description: about_page_description,
                 }}
+                language="en"
             />
             <BackgroundImage css={{ backgroundImage: `url(${about_background_image?.url})` }}></BackgroundImage>
             <Container>

@@ -73,8 +73,8 @@ export const MOCK_ARTICLES = [
             height: 1440,
             id: 1435077,
             picture_id: "gb-29474#1398600716860268544",
-            file: MOCK_IMAGE,
-            // "https://d2ck053ghd6q1f.cloudfront.net/origin/article/202105/5c45605bbe574a9c789c875060d6cba15806d9b736d5e4fd499278c82d70e013.webp?q=82&s=300x300&t=crop",
+            file:
+                "https://d2ck053ghd6q1f.cloudfront.net/origin/article/202105/5c45605bbe574a9c789c875060d6cba15806d9b736d5e4fd499278c82d70e013.webp?q=82&s=300x300&t=crop",
         },
     },
     {

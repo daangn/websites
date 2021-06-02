@@ -24,6 +24,7 @@ export const query = graphql`
                     width
                     height
                 }
+                alt
             }
         }
     }
@@ -55,7 +56,12 @@ const DownloadSection: React.FC<DownloadSectionProps> = ({ content }) => {
     return (
         <Section>
             <Container>
-                <Image src={app_logo_image?.url} width={app_logo_image?.dimensions?.width}></Image>
+                <Image
+                    src={app_logo_image?.url}
+                    alt={app_logo_image?.alt}
+                    width={app_logo_image?.dimensions?.width}
+                    height={app_logo_image?.dimensions?.height}
+                ></Image>
                 <Space h={28}></Space>
                 <Html html={title?.html} marginBottom={{ "@i": 0, "@md": 42 }}></Html>
                 <AppLink theme="light" type="desktop"></AppLink>
