@@ -33,7 +33,7 @@
     "easy-peasy": "^5.0.3",
     "framer-motion": "^4.1.17",
     "gatsby": "^3.5.0",
-    "gatsby-plugin-concurrent-mode": "^0.1.0",
+    "gatsby-plugin-concurrent-mode": "^0.2.1",
     "gatsby-plugin-image": "^1.6.0",
     "gatsby-plugin-prismic-schema": "*",
     "gatsby-plugin-react-helmet-async": "^1.2.0",
