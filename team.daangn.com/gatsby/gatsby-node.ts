@@ -21,6 +21,30 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
 }) => {
   const gql = String.raw;
 
+  // FIXME
+  // see https://github.com/angeloashmore/gatsby-source-prismic/issues/382
+  actions.createTypes(gql`
+    type PrismicImageFixedType {
+      base64: String
+      width: Int
+      height: Int
+      src: String
+      srcSet: String
+      srcWebp: String
+      srcSetWebp: String
+    }
+
+    type PrismicImageFluidType {
+      base64: String
+      aspectRatio: Float
+      src: String
+      srcSet: String
+      srcWebp: String
+      srcSetWebp: String
+      sizes: String
+    }
+  `);
+
   // Type assertions for Site metadata
   actions.createTypes(gql`
     type Query {
@@ -43,7 +67,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
     }
 
     type PrismicFaqDataType {
-      entries: [PrismicFaqEntriesGroupType!]!
+      entries: [PrismicFaqDataEntries!]!
     }
   `);
 
@@ -54,9 +78,43 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
     }
 
     type PrismicSiteNavigationDataType {
-      header_entries: [PrismicSiteNavigationHeaderEntriesGroupType!]!
-      footer_entries: [PrismicSiteNavigationFooterEntriesGroupType!]!
-      sns_profiles: [PrismicSiteNavigationSnsProfilesGroupType!]!
+      header_entries: [PrismicSiteNavigationDataHeaderEntries!]!
+      footer_entries: [PrismicSiteNavigationDataFooterEntries!]!
+      sns_profiles: [PrismicSiteNavigationDataSnsProfiles!]!
+    }
+  `);
+
+  // Type assertions for Teams Contents
+  actions.createTypes(gql`
+    type PrismicTeamContents {
+      data: PrismicTeamContentsDataType!
+    }
+
+    type PrismicTeamContentsDataType {
+      main_body: [PrismicTeamContentsDataMainBodySlicesType!]!
+      culture_body: [PrismicTeamContentsDataCultureBodySlicesType!]!
+      life_body: [PrismicTeamContentsDataLifeBodySlicesType!]!
+    }
+
+    # Avoid conflict
+    # type PrismicTeamContentsDataMainBodyKeyVisual {
+    #   primary: PrismicTeamContentsDataMainBodyKeyVisualPrimary!
+    # }
+
+    type PrismicTeamContentsDataMainBodyMemberQuoteCarousel {
+      items: [PrismicTeamContentsDataMainBodyMemberQuoteCarouselItem!]!
+    }
+
+    type PrismicTeamContentsDataLifeBodyLifeContent {
+      primary: PrismicTeamContentsDataLifeBodyLifeContentPrimary! 
+      items: [PrismicTeamContentsDataLifeBodyLifeContentItem!]!
+    }
+  `);
+
+  // Type assertions for Member Profiles
+  actions.createTypes(gql`
+    type PrismicMemberProfile {
+      data: PrismicMemberProfileDataType!
     }
   `);
 };

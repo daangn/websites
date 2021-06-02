@@ -13,7 +13,7 @@ type ExternalLink = {
   url: URL,
 };
 
-type LinkType = InternalLink | ExternalLink;
+export type LinkType = InternalLink | ExternalLink;
 
 export function isInternalLink(link: LinkType): link is InternalLink {
   return link.t === 'Internal';

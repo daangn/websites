@@ -1,0 +1,283 @@
+{
+  "Main" : {
+    "main_page_title" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1",
+        "label" : "페이지 제목"
+      }
+    },
+    "main_body" : {
+      "type" : "Slices",
+      "fieldset" : "Slice zone",
+      "config" : {
+        "labels" : {
+          "key_visual" : [ ],
+          "member_quote_carousel" : [ ],
+          "title_and_description" : [ ],
+          "title_and_illustration" : [ ]
+        },
+        "choices" : {
+          "key_visual" : {
+            "type" : "Slice",
+            "fieldset" : "Key Visual",
+            "description" : "대표 이미지 섹션",
+            "icon" : "subtitles",
+            "non-repeat" : {
+              "key_visual_image" : {
+                "type" : "Image",
+                "config" : {
+                  "constraint" : {
+                    "width" : 1920,
+                    "height" : 1080
+                  },
+                  "thumbnails" : [ ],
+                  "label" : "키 비주얼 이미지"
+               }
+              },
+              "expanded" : {
+                "type" : "Boolean",
+                "config" : {
+                  "placeholder_false" : "양 옆에 마진",
+                  "placeholder_true" : "화면에 꽉 채우기",
+                  "default_value" : false,
+                  "label" : "작은 화면에서 이미지 영역 조절"
+                }
+              },
+              "description" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "single" : "paragraph, strong, em, hyperlink",
+                  "label" : "설명 텍스트",
+                  "placeholder" : "설명 텍스트를 적어주세요"
+                }
+              }
+            },
+            "repeat" : { }
+          },
+          "member_quote_carousel" : {
+            "type" : "Slice",
+            "fieldset" : "Member Quote Carousel",
+            "description" : "동료의 한 마디 캐로셀 슬라이드 섹션",
+            "icon" : "question_answer",
+            "display" : "list",
+            "non-repeat" : { },
+            "repeat" : {
+              "member" : {
+                "type" : "Link",
+                "config" : {
+                  "select" : "document",
+                  "customtypes" : [ "member_profile" ],
+                  "label" : "팀 멤버"
+                }
+              },
+              "quote" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "한 마디",
+                  "placeholder" : "무슨 말을 했나요?"
+                }
+              }
+            }
+          },
+          "title_and_description" : {
+            "type" : "Slice",
+            "fieldset" : "Title and Description",
+            "description" : "제목과 설명 텍스트가 있는 섹션",
+            "icon" : "subtitles",
+            "display" : "grid",
+            "non-repeat" : {
+              "key_text" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "키 텍스트 (한 단어)"
+                }
+              },
+              "title" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "single" : "heading1",
+                  "label" : "섹션 제목"
+                }
+              },
+              "link" : {
+                "type" : "Link",
+                "config" : {
+                  "label" : "링크",
+                  "placeholder" : "\"자세히 보기\" 링크"
+                }
+              },
+              "description" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "multi" : "paragraph, strong, em, hyperlink",
+                  "label" : "설명"
+                }
+              }
+            },
+            "repeat" : { }
+          },
+          "title_and_illustration" : {
+            "type" : "Slice",
+            "fieldset" : "Title and Illustration",
+            "description" : "제목과 일러스트가 있는 섹션",
+            "icon" : "subtitles",
+            "display" : "list",
+            "non-repeat" : {
+              "key_text" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "키 텍스트 (한 단어)"
+                }
+              },
+              "title" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "single" : "heading1",
+                  "label" : "섹션 제목"
+                }
+              },
+              "link" : {
+                "type" : "Link",
+                "config" : {
+                  "label" : "자세히 보기 링크",
+                  "placeholder" : "값이 있으면 \"자세히 보기\" 링크를 표시합니다."
+                }
+              },
+              "illustration" : {
+                "type" : "Image",
+                "config" : {
+                  "constraint" : {
+                    "width" : 560,
+                    "height" : 420
+                  },
+                  "thumbnails" : [ ],
+                  "label" : "일러스트 이미지"
+                }
+              }
+            },
+            "repeat" : { }
+          }
+        }
+      }
+    }
+  },
+  "Culture" : {
+    "culture_page_title" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1",
+        "label" : "페이지 제목"
+      }
+    },
+    "culture_body" : {
+      "type" : "Slices",
+      "fieldset" : "Slice zone",
+      "config" : {
+        "labels" : { },
+        "choices" : {
+          "key_visual" : {
+            "type" : "Slice",
+            "fieldset" : "Key Visual",
+            "description" : "대표 이미지 섹션",
+            "icon" : "subtitles",
+            "non-repeat" : {
+              "key_visual_image" : {
+                "type" : "Image",
+                "config" : {
+                  "constraint" : {
+                    "width" : 1920,
+                    "height" : 1080
+                  },
+                  "thumbnails" : [ ],
+                  "label" : "키 비주얼 이미지"
+                }
+              },
+              "expanded" : {
+                "type" : "Boolean",
+                "config" : {
+                  "placeholder_false" : "양 옆에 마진",
+                  "placeholder_true" : "화면에 꽉 채우기",
+                  "default_value" : false,
+                  "label" : "작은 화면에서 이미지 영역 조절"
+                }
+              },
+              "description" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "single" : "paragraph, strong, em, hyperlink",
+                  "label" : "설명 텍스트",
+                  "placeholder" : "설명 텍스트를 적어주세요"
+                }
+              }
+            },
+            "repeat" : { },
+            "display" : "list"
+          }
+        }
+      }
+    }
+  },
+  "Life" : {
+    "life_page_title" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1",
+        "label" : "페이지 제목"
+      }
+    },
+    "life_body" : {
+      "type" : "Slices",
+      "fieldset" : "Slice zone",
+      "config" : {
+        "labels" : {
+          "life_content" : [ ]
+        },
+        "choices" : {
+          "life_content" : {
+            "type" : "Slice",
+            "fieldset" : "Life Content",
+            "description" : "팀 생활 엿보기 섹션",
+            "icon" : "subtitles",
+            "display" : "list",
+            "non-repeat" : {
+              "title" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "single" : "heading2",
+                  "label" : "섹션 타이틀"
+                }
+              },
+              "body_text" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "multi" : "paragraph, strong, em, hyperlink",
+                  "label" : "섹션 내용"
+                }
+              }
+            },
+            "repeat" : {
+              "thumbnail_image" : {
+                "type" : "Image",
+                "config" : {
+                  "constraint" : {
+                    "width" : 760
+                  },
+                  "thumbnails" : [ ],
+                  "label" : "섬네일 이미지"
+                }
+              },
+              "thumbnail_description" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "single" : "paragraph, strong, em, hyperlink",
+                  "label" : "섬네일 설명"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

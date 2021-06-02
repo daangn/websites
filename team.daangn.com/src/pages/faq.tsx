@@ -1,7 +1,6 @@
 import * as React from 'react';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
-import { withPreview } from 'gatsby-source-prismic'
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { rem } from 'polished';
 import { required } from '@cometjs/core';
@@ -14,6 +13,7 @@ export const query = graphql`
   query FaqPage {
     ...DefaultLayout_query
     prismicFaq(uid: { eq: "team.daangn.com" }) {
+      _previewable
       data {
         ...FaqAccordion_faqData
       }
@@ -49,4 +49,4 @@ const FaqPage: React.FC<FaqPageProps> = ({
   );
 };
 
-export default withPreview(FaqPage);
+export default FaqPage;
