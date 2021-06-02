@@ -106,19 +106,10 @@ const FaqAccordionItem: React.FC<FaqAccordionItemProps> = ({
 }) => {
   return (
     <Container className={className}>
-      <Header as="h2" size={{ '@sm': 'sm' }}>
-        <Button
-          id={entry.id}
-          onClick={() => onClick?.(id)}
-          onFocus={() => onFocus?.(id)}
-        >
+      <Header as="h2" size={{ "@sm": "sm" }}>
+        <Button id={id} onClick={() => onClick?.(id)} onFocus={() => onFocus?.(id)}>
           {entry.question}
-          <ChevronIcon
-            rotate={open}
-            src={chevronIconUrl}
-            alt=""
-            aria-hidden
-          />
+          <ChevronIcon rotate={open} src={chevronIconUrl} alt="" aria-hidden />
         </Button>
       </Header>
       <Panel>
@@ -128,14 +119,11 @@ const FaqAccordionItem: React.FC<FaqAccordionItemProps> = ({
           initial="collapsed"
           animate={open ? 'open' : 'collapsed'}
         >
-          <Content
-            aria-hidden={!open}
-            dangerouslySetInnerHTML={{ __html: entry.answer?.html ?? '' }}
-          />
+          <Content aria-hidden={!open} dangerouslySetInnerHTML={{ __html: entry.answer?.html || '' }} />
         </motion.div>
       </Panel>
     </Container>
   );
-}
+};
 
 export default FaqAccordionItem;

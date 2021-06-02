@@ -1,13 +1,12 @@
 {
-  "extends": "../tsconfig.json",
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "baseUrl": ".",
-    "paths": {
-      "gatsby-theme-stitches/src/*": ["./src/gatsby-theme-stitches/*"]
-    }
-  },
-  "include": [
-    "src/**/*"
-  ]
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "jsx": "react-jsx",
+        "baseUrl": ".",
+        "paths": {
+            "@src/*": ["./src/*"],
+            "gatsby-theme-stitches/src/*": ["./src/gatsby-theme-stitches/*"]
+        }
+    },
+    "include": ["src/**/*"]
 }
