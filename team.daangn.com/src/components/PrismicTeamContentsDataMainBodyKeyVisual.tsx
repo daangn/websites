@@ -18,7 +18,7 @@ export const query = graphql`
           childImageSharp {
             gatsbyImageData(
               width: 1920
-              layout: FULL_WIDTH
+              layout: CONSTRAINED
               quality: 100
             )
           }
@@ -26,7 +26,6 @@ export const query = graphql`
       }
       description {
         text
-        html
       }
       expanded
     }
@@ -38,30 +37,37 @@ const Container = styled('section', {
   gridTemplateRows: 'auto auto',
   gap: rem(40),
 
-  '@sm': {
+  '@md': {
+    contentArea: true,
     gap: rem(80),
   },
 });
 
-const KeyVisual = styled(GatsbyImage, {
+const ImageContainer = styled('figure', {
   variants: {
     expanded: {
       true: {
-        marginX: rem(-24),
       },
       false: {
-        marginX: 0,
+        paddingX: rem(24),
       },
     },
   },
 });
+const KeyVisual = styled(GatsbyImage, {
+
+});
 
 const Description = styled('p', {
+  contentArea: true,
+
   fontSize: '$body2',
   fontWeight: 'bold',
+  paddingX: rem(24),
 
-  '@sm': {
+  '@md': {
     fontSize: '$subtitle2',
+    paddingX: rem(0),
   },
 });
 
@@ -77,11 +83,14 @@ const PrismicTeamContentsDataMainBodyKeyVisual: React.FC<PrismicTeamContentsData
   return (
     <Container className={className}>
       {keyVisualImage && (
-        <KeyVisual
-          image={keyVisualImage}
-          alt={data.primary.key_visual_image.alt ?? ''}
-          expanded={{ '@initial': data.primary.expanded ?? false, '@md': false }}
-        />
+        <ImageContainer
+          expanded={{ '@initial': data.primary.expanded ?? false, '@md': true }}
+        >
+          <KeyVisual
+            image={keyVisualImage}
+            alt={data.primary.key_visual_image.alt ?? ''}
+          />
+        </ImageContainer>
       )}
       <Description>
         {data.primary.description?.text}

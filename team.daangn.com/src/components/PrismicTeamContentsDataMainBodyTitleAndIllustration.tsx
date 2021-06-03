@@ -19,6 +19,7 @@ export const query = graphql`
       title {
         text
       }
+      is_left
       illustration {
         alt
         localFile {
@@ -38,16 +39,34 @@ export const query = graphql`
 `;
 
 const Container = styled('section', {
+  contentArea: true,
+
   display: 'grid',
+  gap: rem(24),
   gridTemplateColumns: 'auto',
 
   '@md': {
-    gridTemplateColumns: '1fr 1fr',
     gap: rem(40),
+  },
+
+  variants: {
+    alignTitle: {
+      left: {
+        '@md': {
+          gridTemplateColumns: 'title illust',
+        },
+      },
+      right: {
+        '@md': {
+          gridTemplateColumns: 'illust title',
+        },
+      },
+    },
   },
 });
 
 const TitleContainer = styled('div', {
+  gridArea: 'title',
   display: 'grid',
   gridTemplateRows: 'repeat(3, min-content)',
 });
@@ -75,6 +94,7 @@ const Title = styled('h1', {
 });
 
 const Illustration = styled(GatsbyImage, {
+  gridArea: 'illust',
 });
 
 const PrismicTeamContentsDataMainBodyTitleAndIllustration: React.FC<PrismicTeamContentsDataMainBodyTitleAndIllustrationProps> = ({
@@ -90,7 +110,9 @@ const PrismicTeamContentsDataMainBodyTitleAndIllustration: React.FC<PrismicTeamC
   const link = data.primary.link?.url && parseLink(data.primary.link.url);
 
   return (
-    <Container>
+    <Container
+      alignTitle={data.primary.is_left ? 'left' : 'right'}
+    >
       <TitleContainer>
         <KeyText>{data.primary.key_text}</KeyText>
         <Title>{data.primary.title?.text}</Title>

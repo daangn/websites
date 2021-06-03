@@ -1,6 +1,7 @@
 import * as React from 'react';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
+import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { required } from '@cometjs/core';
 
 import PageTitle from '~/components/PageTitle';
@@ -21,16 +22,20 @@ export const query = graphql`
   }
 `;
 
+const Container = styled('div', {
+  contentArea: true,
+});
+
 const CulturePage: React.FC<CulturePageProps> = ({
   data,
 }) => {
   required(data.prismicTeamContents);
   return (
-    <>
+    <Container>
       <PageTitle size={{ '@sm': 'sm' }}>
         {data.prismicTeamContents.data.culture_page_title?.text}
       </PageTitle>
-    </>
+    </Container>
   );
 };
 

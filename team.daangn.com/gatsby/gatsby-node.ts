@@ -106,7 +106,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
     }
 
     type PrismicTeamContentsDataLifeBodyLifeContent {
-      primary: PrismicTeamContentsDataLifeBodyLifeContentPrimary! 
+    #  primary: PrismicTeamContentsDataLifeBodyLifeContentPrimary! 
       items: [PrismicTeamContentsDataLifeBodyLifeContentItem!]!
     }
   `);

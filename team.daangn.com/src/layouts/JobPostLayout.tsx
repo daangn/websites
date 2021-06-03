@@ -33,14 +33,8 @@ export const query = graphql`
 `;
 
 const Container = styled('div', {
-  variants: {
-    wide: {
-      true: {
-        maxWidth: rem(760),
-        margin: '0 auto',
-      },
-    },
-  },
+  contentArea: true,
+  maxWidth: rem(760),
 });
 
 const PageTitle = styled(_PageTitle, {
@@ -156,7 +150,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
   ].filter(Boolean) as string[];
 
   return (
-    <Container wide={{ '@sm': true }}>
+    <Container>
       <PageTitle size={{ '@sm': 'sm' }}>
         {jobPost.title}
       </PageTitle>

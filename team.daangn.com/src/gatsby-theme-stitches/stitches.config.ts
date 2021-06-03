@@ -66,6 +66,11 @@ export const { styled, css, global, getCssString, theme } = createCss({
       paddingTop: value,
       paddingBottom: value,
     }),
+    contentArea: _config => (value: boolean) => value ? ({
+      maxWidth: '$maxContent',
+      margin: '0 auto',
+      paddingX: rem(24),
+    }) : undefined,
   },
 });
 

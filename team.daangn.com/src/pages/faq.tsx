@@ -5,6 +5,7 @@ import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { rem } from 'polished';
 import { required } from '@cometjs/core';
 
+import _PageTitle from '~/components/PageTitle';
 import FaqAccordion from '~/components/FaqAccordion';
 
 type FaqPageProps = PageProps<GatsbyTypes.FaqPageQuery, GatsbyTypes.SitePageContext>;
@@ -21,17 +22,16 @@ export const query = graphql`
   }
 `;
 
-const Title = styled('h1', {
-  fontSize: '$subtitle2',
+const Container = styled('section', {
+  contentArea: true,
+  maxWidth: rem(760),
+});
+
+const PageTitle = styled(_PageTitle, {
   marginBottom: rem(80),
 
-  variants: {
-    size: {
-      sm: {
-        fontSize: '$heading3',
-        marginBottom: rem(100),
-      },
-    },
+  '@sm': {
+    marginBottom: rem(100),
   },
 });
 
@@ -40,12 +40,12 @@ const FaqPage: React.FC<FaqPageProps> = ({
 }) => {
   required(data.prismicFaq);
   return (
-    <>
-      <Title size={{ '@sm': 'sm' }}>
+    <Container>
+      <PageTitle size={{ '@sm': 'sm' }}>
         자주 묻는 질문
-      </Title>
+      </PageTitle>
       <FaqAccordion faqData={data.prismicFaq.data} />
-    </>
+    </Container>
   );
 };
 

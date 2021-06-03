@@ -83,7 +83,7 @@ const PrismicTeamContentsDataLifeBodyLifeContent: React.FC<PrismicTeamContentsDa
   data,
   className,
 }) => {
-  if (!data.primary.title?.text) {
+  if (!data.primary?.title?.text) {
     return null;
   }
 
