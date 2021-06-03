@@ -156,7 +156,7 @@ const makeRemoteForm: MakeRemoteForm = ({
 
   const formData = new FormData();
   formData.set('first_name', name);
-  formData.set('last_name', '님');
+  formData.set('last_name', '\u200b');
   formData.set('email', email);
   formData.set('phone' , phoneNumber);
   formData.set('resume', resume!.blob, resume!.filename);
