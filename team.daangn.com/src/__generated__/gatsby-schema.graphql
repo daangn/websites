@@ -2396,14 +2396,124 @@ type PrismicTeamContentsDataMainBodyKeyVisualPrimary {
   key_visual_image: PrismicTeamContentsDataMainBodyKeyVisualPrimaryKeyVisualImageImageType
 }
 
+type PrismicTeamContentsDataMainBodyMemberQuoteCarouselItemsImageImageType {
+  alt: String
+  copyright: String
+  dimensions: PrismicImageDimensionsType
+
+  # A plain imgix URL with the URL and params applied.
+  url(imgixParams: ImgixParamsInput = {}): String
+
+  # Should be used to generate fixed-width images (i.e. the size of the image doesn't change when the size of the browser changes, and are "fixed"). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFixed fragment should be used. See the project's README for more information.
+  fixed(
+    # The fixed image width to render, in px.
+    width: Int = 8192
+
+    # The fixed image height to render, in px.
+    height: Int
+
+    # The image quality to use for compression. Range: 0-100, with 100 being highest quality. This setting is not recommended as the quality is already optimized by decreasing quality as the dpr increases to reduce image size while retaining visual quality.
+    quality: Int
+
+    # The imgix parameters (transformations) to apply to the image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    imgixParams: ImgixParamsInput = {}
+
+    # Any imgix parameters to use only for the blur-up/placeholder image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    placeholderImgixParams: ImgixParamsInput = {}
+  ): ImgixFixed
+
+  # Should be used to generate fluid-width images (i.e. images that change when the size of the browser changes). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFluid fragment should be used. See the project's README for more information.
+  fluid(
+    # The imgix parameters (transformations) to apply to the image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    imgixParams: ImgixParamsInput = {}
+
+    # The maximum px width of the *image* to be *requested*. This does NOT affect the width of the image displayed. The width of the image displayed can be controlled by adding a sizes parameter to the GatsbyImage component. For more information, see this project's readme.
+    maxWidth: Int = 8192
+
+    # The maximum px height of the *image* to be *requested*. This does NOT affect the height of the image displayed.
+    maxHeight: Int
+
+    # A custom set of widths (in px) to use for the srcset widths. This feature is not recommended as the default widths are optimized for imgix's caching infrastructure.
+    srcSetBreakpoints: [Int]
+
+    # Any imgix parameters to use only for the blur-up/placeholder image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    placeholderImgixParams: ImgixParamsInput = {}
+  ): ImgixFluid
+  gatsbyImageData(
+    # The layout for the image.
+    # FIXED: A static image sized, that does not resize according to the screen width
+    # FULL_WIDTH: The image resizes to fit its container. Pass a "sizes" option if it isn't going to be the full width of the screen.
+    # CONSTRAINED: Resizes to fit its container, up to a maximum width, at which point it will remain fixed in size.
+    layout: GatsbyImageLayout
+
+    # The display width of the generated image for layout = FIXED, and the display width of the largest image for layout = CONSTRAINED.
+    # The actual largest image resolution will be this value multiplied by the largest value in outputPixelDensities
+    # Ignored if layout = FLUID.
+    width: Int
+
+    # If set, the height of the generated image. If omitted, it is calculated from the supplied width, matching the aspect ratio of the source image.
+    height: Int
+
+    # If set along with width or height, this will set the value of the other dimension to match the provided aspect ratio, cropping the image if needed. 
+    # If neither width or height is provided, height will be set based on the intrinsic width of the source image.
+    aspectRatio: Float
+
+    # A list of image pixel densities to generate for FIXED and CONSTRAINED images. You should rarely need to change this. It will never generate images larger than the source, and will always include a 1x image.
+    # Default is [ 1, 2 ] for fixed images, meaning 1x, 2x, 3x, and [0.25, 0.5, 1, 2] for fluid. In this case, an image with a fluid layout and width = 400 would generate images at 100, 200, 400 and 800px wide.
+    outputPixelDensities: [Float]
+
+    # Specifies the image widths to generate. You should rarely need to change this. For FIXED and CONSTRAINED images it is better to allow these to be determined automatically,
+    # based on the image size. For FULL_WIDTH images this can be used to override the default, which is [750, 1080, 1366, 1920].
+    # It will never generate any images larger than the source.
+    breakpoints: [Int]
+
+    # The "sizes" property, passed to the img tag. This describes the display size of the image.
+    # This does not affect the generated images, but is used by the browser to decide which images to download. You can leave this blank for fixed images, or if the responsive image
+    # container will be the full width of the screen. In these cases we will generate an appropriate value.
+    sizes: String
+
+    # Background color applied to the wrapper, or when "letterboxing" an image to another aspect ratio.
+    backgroundColor: String
+
+    # This argument is used to set parameters to instruct imgix to transform the image. 
+    #         
+    #         All of imgix's parameters can be found here: https://docs.imgix.com/apis/rendering
+    imgixParams: ImgixParamsInput
+
+    # This argument is used to set parameters to instruct imgix to transform the placeholder image. By default all parameters passed to 'imgixParams' are already set here, but this can be used to override or set extra parameters. 
+    #         
+    #         All of imgix's parameters can be found here: https://docs.imgix.com/apis/rendering
+    placeholderImgixParams: ImgixParamsInput
+
+    # Format of generated placeholder image, displayed while the main image loads.
+    # BLURRED: a blurred, low resolution image, encoded as a base64 data URI (default)
+    # DOMINANT_COLOR: a solid color, calculated from the dominant color of the image.
+    # NONE: no placeholder. Set "backgroundColor" to use a fixed background color.
+    placeholder: ImgixPlaceholder
+
+    # This argument affects the breakpoints used for the srcsets, dictates the maximum tolerated size difference between an image's downloaded size and its rendered size. For example: setting this value to 0.1 means that an image will not render more than 10% larger or smaller than its native size. In practice, the image URLs generated for a width-based srcset attribute will grow by twice this rate. A lower tolerance means images will render closer to their native size (thereby increasing perceived image quality), but a large srcset list will be generated and consequently users may experience lower rates of cache-hit for pre-rendered images on your site.
+    #
+    # By default this rate is set to 8 percent, which we consider to be the ideal rate for maximizing cache hits without sacrificing visual quality. Users can specify their own width tolerance by providing a positive scalar value as widthTolerance to the third options object:
+    widthTolerance: Float = 0.08
+
+    # This argument determines the minimum srcset width that is generated. The default is 100px.
+    srcSetMinWidth: Int = 100
+
+    # This argument determines the maximum srcset width that is generated, if the layout type is FULL_WIDTH. If the layout type is CONSTRAINED, the width argument will be used. Furthermore, in every case, the maximum srcset width is constrained by the width of the source image. The default is 8192px, which is the render limit of the imgix service.
+    srcSetMaxWidth: Int = 8192
+  ): JSON
+  localFile: File
+}
+
 type PrismicTeamContentsDataMainBodyMemberQuoteCarouselItem {
-  member: PrismicLinkType
+  image: PrismicTeamContentsDataMainBodyMemberQuoteCarouselItemsImageImageType
   quote: String
+  who: String
 }
 
 type PrismicTeamContentsDataMainBodyTitleAndDescriptionPrimary {
   description: PrismicStructuredTextType
-  is_left: Boolean
+  inverted: Boolean
   key_text: String
   link: PrismicLinkType
   title: PrismicStructuredTextType
@@ -2520,7 +2630,7 @@ type PrismicTeamContentsDataMainBodyTitleAndIllustrationPrimaryIllustrationImage
 
 type PrismicTeamContentsDataMainBodyTitleAndIllustrationPrimary {
   illustration: PrismicTeamContentsDataMainBodyTitleAndIllustrationPrimaryIllustrationImageType
-  is_left: Boolean
+  inverted: Boolean
   key_text: String
   link: PrismicLinkType
   title: PrismicStructuredTextType
@@ -4000,12 +4110,14 @@ input SitePluginPluginOptionsFilterInput {
   emitSchema: SitePluginPluginOptionsEmitSchemaFilterInput
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocumentsFilterInput
   repositoryName: StringQueryOperatorInput
-  toolbar: StringQueryOperatorInput
-  promptForAccessToken: BooleanQueryOperatorInput
+  schemas: SitePluginPluginOptionsSchemasFilterInput
   apiEndpoint: StringQueryOperatorInput
+  customTypesApiEndpoint: StringQueryOperatorInput
   lang: StringQueryOperatorInput
   imageImgixParams: SitePluginPluginOptionsImageImgixParamsFilterInput
   imagePlaceholderImgixParams: SitePluginPluginOptionsImagePlaceholderImgixParamsFilterInput
+  toolbar: StringQueryOperatorInput
+  promptForAccessToken: BooleanQueryOperatorInput
   boardToken: StringQueryOperatorInput
   includeContent: BooleanQueryOperatorInput
   path: StringQueryOperatorInput
@@ -4013,8 +4125,6 @@ input SitePluginPluginOptionsFilterInput {
   allExtensions: BooleanQueryOperatorInput
   isTSX: BooleanQueryOperatorInput
   jsxPragma: StringQueryOperatorInput
-  schemas: SitePluginPluginOptionsSchemasFilterInput
-  customTypesApiEndpoint: StringQueryOperatorInput
 }
 
 input SitePluginPluginOptionsDefaultsFilterInput {
@@ -4036,17 +4146,6 @@ input SitePluginPluginOptionsEmitSchemaFilterInput {
 
 input SitePluginPluginOptionsEmitPluginDocumentsFilterInput {
   src___generated___gatsby_plugin_documents_graphql: BooleanQueryOperatorInput
-}
-
-input SitePluginPluginOptionsImageImgixParamsFilterInput {
-  auto: StringQueryOperatorInput
-  fit: StringQueryOperatorInput
-  q: IntQueryOperatorInput
-}
-
-input SitePluginPluginOptionsImagePlaceholderImgixParamsFilterInput {
-  w: IntQueryOperatorInput
-  blur: IntQueryOperatorInput
 }
 
 input SitePluginPluginOptionsSchemasFilterInput {
@@ -4444,7 +4543,31 @@ input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyFilterInput {
 }
 
 input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigFilterInput {
+  labels: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigLabelsFilterInput
   choices: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesFilterInput
+}
+
+input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigLabelsFilterInput {
+  title_and_description: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigLabelsTitle_and_descriptionFilterListInput
+  title_and_illustration: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigLabelsTitle_and_illustrationFilterListInput
+}
+
+input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigLabelsTitle_and_descriptionFilterListInput {
+  elemMatch: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigLabelsTitle_and_descriptionFilterInput
+}
+
+input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigLabelsTitle_and_descriptionFilterInput {
+  name: StringQueryOperatorInput
+  display: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigLabelsTitle_and_illustrationFilterListInput {
+  elemMatch: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigLabelsTitle_and_illustrationFilterInput
+}
+
+input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigLabelsTitle_and_illustrationFilterInput {
+  name: StringQueryOperatorInput
+  display: StringQueryOperatorInput
 }
 
 input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesFilterInput {
@@ -4517,19 +4640,24 @@ input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMembe
 }
 
 input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatFilterInput {
-  member: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatMemberFilterInput
+  image: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatImageFilterInput
   quote: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatQuoteFilterInput
+  who: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatWhoFilterInput
 }
 
-input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatMemberFilterInput {
+input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatImageFilterInput {
   type: StringQueryOperatorInput
-  config: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatMemberConfigFilterInput
+  config: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatImageConfigFilterInput
 }
 
-input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatMemberConfigFilterInput {
-  select: StringQueryOperatorInput
-  customtypes: StringQueryOperatorInput
+input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatImageConfigFilterInput {
+  constraint: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatImageConfigConstraintFilterInput
   label: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatImageConfigConstraintFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
 }
 
 input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatQuoteFilterInput {
@@ -4540,6 +4668,15 @@ input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMembe
 input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatQuoteConfigFilterInput {
   label: StringQueryOperatorInput
   placeholder: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatWhoFilterInput {
+  type: StringQueryOperatorInput
+  config: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatWhoConfigFilterInput
+}
+
+input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatWhoConfigFilterInput {
+  label: StringQueryOperatorInput
 }
 
 input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_descriptionFilterInput {
@@ -4554,7 +4691,7 @@ input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle
 input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_descriptionNon_repeatFilterInput {
   key_text: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_descriptionNon_repeatKey_textFilterInput
   title: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_descriptionNon_repeatTitleFilterInput
-  is_left: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_descriptionNon_repeatIs_leftFilterInput
+  inverted: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_descriptionNon_repeatInvertedFilterInput
   link: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_descriptionNon_repeatLinkFilterInput
   description: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_descriptionNon_repeatDescriptionFilterInput
 }
@@ -4578,12 +4715,12 @@ input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle
   label: StringQueryOperatorInput
 }
 
-input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_descriptionNon_repeatIs_leftFilterInput {
+input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_descriptionNon_repeatInvertedFilterInput {
   type: StringQueryOperatorInput
-  config: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_descriptionNon_repeatIs_leftConfigFilterInput
+  config: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_descriptionNon_repeatInvertedConfigFilterInput
 }
 
-input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_descriptionNon_repeatIs_leftConfigFilterInput {
+input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_descriptionNon_repeatInvertedConfigFilterInput {
   placeholder_false: StringQueryOperatorInput
   placeholder_true: StringQueryOperatorInput
   default_value: BooleanQueryOperatorInput
@@ -4615,14 +4752,13 @@ input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle
   fieldset: StringQueryOperatorInput
   description: StringQueryOperatorInput
   icon: StringQueryOperatorInput
-  display: StringQueryOperatorInput
   non_repeat: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationNon_repeatFilterInput
 }
 
 input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationNon_repeatFilterInput {
   key_text: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationNon_repeatKey_textFilterInput
   title: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationNon_repeatTitleFilterInput
-  is_left: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationNon_repeatIs_leftFilterInput
+  inverted: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationNon_repeatInvertedFilterInput
   link: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationNon_repeatLinkFilterInput
   illustration: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationNon_repeatIllustrationFilterInput
 }
@@ -4646,12 +4782,12 @@ input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle
   label: StringQueryOperatorInput
 }
 
-input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationNon_repeatIs_leftFilterInput {
+input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationNon_repeatInvertedFilterInput {
   type: StringQueryOperatorInput
-  config: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationNon_repeatIs_leftConfigFilterInput
+  config: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationNon_repeatInvertedConfigFilterInput
 }
 
-input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationNon_repeatIs_leftConfigFilterInput {
+input SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationNon_repeatInvertedConfigFilterInput {
   placeholder_false: StringQueryOperatorInput
   placeholder_true: StringQueryOperatorInput
   default_value: BooleanQueryOperatorInput
@@ -4930,6 +5066,17 @@ input SitePluginPluginOptionsSchemasTeam_contentsLifeLife_bodyConfigChoicesLife_
   label: StringQueryOperatorInput
 }
 
+input SitePluginPluginOptionsImageImgixParamsFilterInput {
+  auto: StringQueryOperatorInput
+  fit: StringQueryOperatorInput
+  q: IntQueryOperatorInput
+}
+
+input SitePluginPluginOptionsImagePlaceholderImgixParamsFilterInput {
+  w: IntQueryOperatorInput
+  blur: IntQueryOperatorInput
+}
+
 input SitePluginPackageJsonFilterInput {
   name: StringQueryOperatorInput
   description: StringQueryOperatorInput
@@ -5062,15 +5209,16 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_introspection_json
   pluginCreator___pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
   pluginCreator___pluginOptions___repositoryName
-  pluginCreator___pluginOptions___toolbar
-  pluginCreator___pluginOptions___promptForAccessToken
   pluginCreator___pluginOptions___apiEndpoint
+  pluginCreator___pluginOptions___customTypesApiEndpoint
   pluginCreator___pluginOptions___lang
   pluginCreator___pluginOptions___imageImgixParams___auto
   pluginCreator___pluginOptions___imageImgixParams___fit
   pluginCreator___pluginOptions___imageImgixParams___q
   pluginCreator___pluginOptions___imagePlaceholderImgixParams___w
   pluginCreator___pluginOptions___imagePlaceholderImgixParams___blur
+  pluginCreator___pluginOptions___toolbar
+  pluginCreator___pluginOptions___promptForAccessToken
   pluginCreator___pluginOptions___boardToken
   pluginCreator___pluginOptions___includeContent
   pluginCreator___pluginOptions___path
@@ -5078,7 +5226,6 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___allExtensions
   pluginCreator___pluginOptions___isTSX
   pluginCreator___pluginOptions___jsxPragma
-  pluginCreator___pluginOptions___customTypesApiEndpoint
   pluginCreator___nodeAPIs
   pluginCreator___browserAPIs
   pluginCreator___ssrAPIs
@@ -8210,15 +8357,16 @@ enum SitePluginFieldsEnum {
   pluginOptions___emitSchema___src___generated___gatsby_introspection_json
   pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
   pluginOptions___repositoryName
-  pluginOptions___toolbar
-  pluginOptions___promptForAccessToken
   pluginOptions___apiEndpoint
+  pluginOptions___customTypesApiEndpoint
   pluginOptions___lang
   pluginOptions___imageImgixParams___auto
   pluginOptions___imageImgixParams___fit
   pluginOptions___imageImgixParams___q
   pluginOptions___imagePlaceholderImgixParams___w
   pluginOptions___imagePlaceholderImgixParams___blur
+  pluginOptions___toolbar
+  pluginOptions___promptForAccessToken
   pluginOptions___boardToken
   pluginOptions___includeContent
   pluginOptions___path
@@ -8226,7 +8374,6 @@ enum SitePluginFieldsEnum {
   pluginOptions___allExtensions
   pluginOptions___isTSX
   pluginOptions___jsxPragma
-  pluginOptions___customTypesApiEndpoint
   nodeAPIs
   browserAPIs
   ssrAPIs
@@ -8315,12 +8462,14 @@ type SitePluginPluginOptions {
   emitSchema: SitePluginPluginOptionsEmitSchema
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocuments
   repositoryName: String
-  toolbar: String
-  promptForAccessToken: Boolean
+  schemas: SitePluginPluginOptionsSchemas
   apiEndpoint: String
+  customTypesApiEndpoint: String
   lang: String
   imageImgixParams: SitePluginPluginOptionsImageImgixParams
   imagePlaceholderImgixParams: SitePluginPluginOptionsImagePlaceholderImgixParams
+  toolbar: String
+  promptForAccessToken: Boolean
   boardToken: String
   includeContent: Boolean
   path: String
@@ -8328,8 +8477,6 @@ type SitePluginPluginOptions {
   allExtensions: Boolean
   isTSX: Boolean
   jsxPragma: String
-  schemas: SitePluginPluginOptionsSchemas
-  customTypesApiEndpoint: String
 }
 
 type SitePluginPluginOptionsDefaults {
@@ -8351,17 +8498,6 @@ type SitePluginPluginOptionsEmitSchema {
 
 type SitePluginPluginOptionsEmitPluginDocuments {
   src___generated___gatsby_plugin_documents_graphql: Boolean
-}
-
-type SitePluginPluginOptionsImageImgixParams {
-  auto: String
-  fit: String
-  q: Int
-}
-
-type SitePluginPluginOptionsImagePlaceholderImgixParams {
-  w: Int
-  blur: Int
 }
 
 type SitePluginPluginOptionsSchemas {
@@ -8755,7 +8891,23 @@ type SitePluginPluginOptionsSchemasTeam_contentsMainMain_body {
 }
 
 type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfig {
+  labels: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigLabels
   choices: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoices
+}
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigLabels {
+  title_and_description: [SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigLabelsTitle_and_description]
+  title_and_illustration: [SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigLabelsTitle_and_illustration]
+}
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigLabelsTitle_and_description {
+  name: String
+  display: String
+}
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigLabelsTitle_and_illustration {
+  name: String
+  display: String
 }
 
 type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoices {
@@ -8828,19 +8980,24 @@ type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember
 }
 
 type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeat {
-  member: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatMember
+  image: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatImage
   quote: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatQuote
+  who: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatWho
 }
 
-type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatMember {
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatImage {
   type: String
-  config: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatMemberConfig
+  config: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatImageConfig
 }
 
-type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatMemberConfig {
-  select: String
-  customtypes: [String]
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatImageConfig {
+  constraint: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatImageConfigConstraint
   label: String
+}
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatImageConfigConstraint {
+  width: Int
+  height: Int
 }
 
 type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatQuote {
@@ -8851,6 +9008,15 @@ type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember
 type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatQuoteConfig {
   label: String
   placeholder: String
+}
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatWho {
+  type: String
+  config: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatWhoConfig
+}
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselRepeatWhoConfig {
+  label: String
 }
 
 type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_description {
@@ -8865,7 +9031,7 @@ type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_
 type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_descriptionNon_repeat {
   key_text: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_descriptionNon_repeatKey_text
   title: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_descriptionNon_repeatTitle
-  is_left: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_descriptionNon_repeatIs_left
+  inverted: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_descriptionNon_repeatInverted
   link: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_descriptionNon_repeatLink
   description: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_descriptionNon_repeatDescription
 }
@@ -8889,12 +9055,12 @@ type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_
   label: String
 }
 
-type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_descriptionNon_repeatIs_left {
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_descriptionNon_repeatInverted {
   type: String
-  config: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_descriptionNon_repeatIs_leftConfig
+  config: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_descriptionNon_repeatInvertedConfig
 }
 
-type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_descriptionNon_repeatIs_leftConfig {
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_descriptionNon_repeatInvertedConfig {
   placeholder_false: String
   placeholder_true: String
   default_value: Boolean
@@ -8926,14 +9092,13 @@ type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_
   fieldset: String
   description: String
   icon: String
-  display: String
   non_repeat: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationNon_repeat
 }
 
 type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationNon_repeat {
   key_text: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationNon_repeatKey_text
   title: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationNon_repeatTitle
-  is_left: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationNon_repeatIs_left
+  inverted: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationNon_repeatInverted
   link: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationNon_repeatLink
   illustration: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationNon_repeatIllustration
 }
@@ -8957,12 +9122,12 @@ type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_
   label: String
 }
 
-type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationNon_repeatIs_left {
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationNon_repeatInverted {
   type: String
-  config: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationNon_repeatIs_leftConfig
+  config: SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationNon_repeatInvertedConfig
 }
 
-type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationNon_repeatIs_leftConfig {
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationNon_repeatInvertedConfig {
   placeholder_false: String
   placeholder_true: String
   default_value: Boolean
@@ -9239,6 +9404,17 @@ type SitePluginPluginOptionsSchemasTeam_contentsLifeLife_bodyConfigChoicesLife_c
 type SitePluginPluginOptionsSchemasTeam_contentsLifeLife_bodyConfigChoicesLife_contentRepeatThumbnail_descriptionConfig {
   single: String
   label: String
+}
+
+type SitePluginPluginOptionsImageImgixParams {
+  auto: String
+  fit: String
+  q: Int
+}
+
+type SitePluginPluginOptionsImagePlaceholderImgixParams {
+  w: Int
+  blur: Int
 }
 
 type SitePluginPackageJson {
