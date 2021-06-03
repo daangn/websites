@@ -20,12 +20,9 @@ const config: GatsbyConfig = {
     'gatsby-plugin-concurrent-mode',
     'gatsby-theme-stitches',
     'gatsby-plugin-svgr',
-    'gatsby-plugin-image',
-    'gatsby-plugin-sharp',
     'gatsby-plugin-react-helmet-async',
-    'gatsby-transformer-sharp',
     {
-      resolve: 'gatsby-plugin-image',
+      resolve: 'gatsby-plugin-sharp',
       options: {
         defaults: {
           formats: ['avif', 'webp', 'auto'],
@@ -42,6 +39,8 @@ const config: GatsbyConfig = {
         },
       },
     },
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-image',
     {
       resolve: 'gatsby-plugin-module-resolver',
       options: {
