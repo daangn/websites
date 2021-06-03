@@ -5,7 +5,7 @@ import { em } from "polished";
 import { messageMotionOption } from "./_config";
 
 const Pin = () => (
-    <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={em(46)} height={em(46)} viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
             d="M26.5418 40.6874C35.898 39.0154 43 30.8371 43 21C43 9.9543 34.0457 1 23 1C11.9543 1 3 9.9543 3 21C3 30.8371 10.1019 39.0154 19.4582 40.6874L22.1679 44.55C22.5638 45.1437 23.4362 45.1437 23.832 44.55L26.5418 40.6874Z"
             fill="#FF7E36"
@@ -72,7 +72,7 @@ const LocationMessage: React.FC<LocationMessageProps> = ({ buttonText, image, us
         query {
             locationImage: file(relativePath: { eq: "img_chat_item.png" }) {
                 childImageSharp {
-                    fluid(maxWidth: 750) {
+                    fluid(quality: 100) {
                         ...GatsbyImageSharpFluid
                     }
                 }
@@ -86,7 +86,6 @@ const LocationMessage: React.FC<LocationMessageProps> = ({ buttonText, image, us
         <Wrapper userType={userType} {...messageMotionOption}>
             <Container>
                 <Image src={image} />
-                <Image src={"../../../images/img_chat_location.png"} />
                 <Button>{buttonText}</Button>
                 <CenterContainer>
                     <Pin></Pin>

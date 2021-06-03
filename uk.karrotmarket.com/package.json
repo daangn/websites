@@ -30,6 +30,7 @@
     "@daangn/design-token": "^0.1.7",
     "@stitches/react": "^0.1.9",
     "@svgr/webpack": "^5.5.0",
+    "date-fns": "^2.22.1",
     "easy-peasy": "^5.0.3",
     "framer-motion": "^4.1.17",
     "gatsby": "^3.5.0",
@@ -49,6 +50,7 @@
     "react-dom": "experimental",
     "react-helmet-async": "^1.0.9",
     "react-intersection-observer": "^8.32.0",
+    "react-scroll-parallax": "^2.4.0",
     "sharp": "^0.28.3",
     "swr": "^0.5.6",
     "unfetch": "^4.2.0"

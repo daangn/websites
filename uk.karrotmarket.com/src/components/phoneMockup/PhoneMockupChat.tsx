@@ -38,7 +38,7 @@ const EmptySpace = styled("div", {
 });
 
 interface PhoneMockupChatProps {
-    inView: boolean;
+    inView?: boolean;
 }
 
 const PhoneMockupChat: React.FC<PhoneMockupChatProps> = ({ inView }) => {

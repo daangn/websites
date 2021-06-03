@@ -1,7 +1,6 @@
 import React from "react";
-import { em, rem } from "polished";
+import { rem } from "polished";
 import { graphql } from "gatsby";
-import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { styled } from "gatsby-theme-stitches/src/stitches.config";
 
@@ -71,7 +70,7 @@ const Container = styled("div", {
     height: "100%",
     flexDirection: "column",
     textAlign: "center",
-    padding: `${rem(56)} ${rem(32)}`,
+    padding: `${rem(56)} ${rem(26)}`,
 
     variants: {
         textPosition: {

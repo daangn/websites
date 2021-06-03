@@ -46,6 +46,13 @@ const config: GatsbyConfig = {
             },
         },
         {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                name: `images`,
+                path: `${__dirname}/src/images`,
+            },
+        },
+        {
             resolve: "gatsby-plugin-typegen",
             options: {
                 outputPath: "src/__generated__/gatsby-types.d.ts",

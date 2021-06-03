@@ -73,19 +73,22 @@ const TopText = styled("div", {
 });
 
 const Background = styled("div", {
-    height: "560px",
+    height: "800px",
     width: "100%",
-    backgroundPosition: "bottom 40% left 50%",
+    backgroundPosition: "bottom 50% left 50%",
     backgroundRepeat: "no-repeat",
     backgroundSize: "160%",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
 
+    "@sm": {
+        backgroundPosition: "bottom 30% left 50%",
+    },
     "@md": {
-        backgroundPosition: "center",
+        backgroundPosition: "bottom 20% left 50%",
         backgroundSize: "cover",
-        height: "600px",
+        height: "800px",
     },
 });
 
@@ -98,7 +101,7 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({ content }) => {
     return (
         <ParallaxProvider>
             <Section>
-                <Parallax y={[-30, 30]} styleInner={{ height: "100%" }} styleOuter={{ width: "100%" }}>
+                <Parallax y={[-25, 25]} styleInner={{ height: "100%" }} styleOuter={{ width: "100%" }}>
                     <Background css={{ backgroundImage: `url(${background_image?.url})` }}></Background>
                 </Parallax>
                 <Container>

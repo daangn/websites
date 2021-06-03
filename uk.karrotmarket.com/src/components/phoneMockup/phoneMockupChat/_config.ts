@@ -46,7 +46,7 @@ export const messageMotionOption = {
     initial: {
         opacity: 0,
         y: 50,
-        scale: 0.7,
+        scale: 0.8,
     },
     animate: {
         opacity: 1,
@@ -54,7 +54,7 @@ export const messageMotionOption = {
         scale: 1,
     },
     transition: {
-        duration: 0.5,
+        duration: 0.3,
     },
     exit: {
         scale: 0,

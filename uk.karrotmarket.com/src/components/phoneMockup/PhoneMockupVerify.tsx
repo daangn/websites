@@ -45,7 +45,7 @@ const EmptySpace = styled("div", {
 });
 
 interface PhoneMockupVerifyProps {
-    inView: boolean;
+    inView?: boolean;
 }
 
 const PhoneMockupVerify: React.FC<PhoneMockupVerifyProps> = ({ inView }) => {

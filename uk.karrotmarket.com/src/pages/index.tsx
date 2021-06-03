@@ -12,7 +12,7 @@ import AppLink from "@src/components/AppLink";
 import HeroSection from "@src/components/home/HeroSection";
 import MockupSection from "@src/components/home/MockupSection";
 import ReviewSection from "@src/components/home/ReviewSection";
-import CentreSection from "@src/components/home/CentreSection";
+import CenterSection from "@src/components/home/CenterSection";
 import PopularSection from "@src/components/home/PopularSection";
 import DownloadSection from "@src/components/home/DownloadSection";
 import ParallaxSection from "@src/components/home/ParallaxSection";
@@ -37,7 +37,7 @@ export const query = graphql`
                     ...ParallaxSection_content
                     ...MockupSection_content
                     ...ReviewSection_content
-                    ...CentreSection_content
+                    ...CenterSection_content
                     ...DownloadSection_content
                 }
             }
@@ -49,15 +49,8 @@ const Wrapper = styled("div", {});
 
 const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
     if (!data.prismicGlobalContents?.data?.body) throw new Error("No data");
-    const {
-        main_page_title,
-        main_page_description,
-        main_opengraph_image_link,
-        body,
-        google_play_link,
-        app_store_link,
-        popular_items_api,
-    } = data.prismicGlobalContents?.data;
+    const { main_page_title, main_page_description, main_opengraph_image_link, body, google_play_link, app_store_link, popular_items_api } =
+        data.prismicGlobalContents?.data;
     return (
         <StoreProvider store={createStore({ google_play_link, app_store_link, popular_items_api })}>
             <GatsbySeo
@@ -83,13 +76,13 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
                         PrismicGlobalContentsBodyPopularSection: (content) => <PopularSection key={i} content={content} />,
                         PrismicGlobalContentsBodyParallaxSection: (content) => <ParallaxSection key={i} content={content} />,
                         PrismicGlobalContentsBodyMockupSection: (content) => <MockupSection key={i} content={content} />,
-                        PrismicGlobalContentsBodyCentreSection: (content) => <CentreSection key={i} content={content} />,
+                        PrismicGlobalContentsBodyCenterSection: (content) => <CenterSection key={i} content={content} />,
                         PrismicGlobalContentsBodyReviewSection: (content) => <ReviewSection key={i} content={content} />,
                         PrismicGlobalContentsBodyDownloadSection: (content) => <DownloadSection key={i} content={content} />,
                     })
                 )}
                 <AppLink type="mobile" theme="primary"></AppLink>
-                <Space h={86}></Space>
+                <Space h={{ "@i": 86, "@md": 0 }}></Space>
             </Wrapper>
         </StoreProvider>
     );
