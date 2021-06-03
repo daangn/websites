@@ -15,7 +15,8 @@
           "key_visual" : [ ],
           "member_quote_carousel" : [ ],
           "title_and_description" : [ ],
-          "title_and_illustration" : [ ]
+          "title_and_illustration" : [ ],
+          "wide_banner" : [ ]
         },
         "choices" : {
           "key_visual" : {
@@ -32,8 +33,8 @@
                     "height" : 1080
                   },
                   "thumbnails" : [ ],
-                  "label" : "키 비주얼 이미지"
-               }
+                  "label": "키 비주얼 이미지"
+                }
               },
               "expanded" : {
                 "type" : "Boolean",
@@ -153,6 +154,55 @@
                   },
                   "thumbnails" : [ ],
                   "label" : "일러스트 이미지"
+                }
+              }
+            },
+            "repeat" : { }
+          },
+          "wide_banner" : {
+            "type" : "Slice",
+            "fieldset" : "Wide Banner",
+            "description" : "넓은 영역에 걸쳐 섬네일과 문구가 있는 섹션",
+            "icon" : "panorama",
+            "display" : "list",
+            "non-repeat" : {
+              "thumbnail" : {
+                "type" : "Image",
+                "config" : {
+                  "constraint" : {
+                    "width" : 2160,
+                    "height" : 675
+                  },
+                  "thumbnails" : [ ],
+                  "label" : "섬네일 이미지"
+                }
+              },
+              "title" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "single" : "heading1",
+                  "label" : "제목"
+                }
+              },
+              "link" : {
+                "type" : "Link",
+                "config" : {
+                  "label" : "웹 링크",
+                  "placeholder" : "웹 바로가기 링크 (없으면 안나옴)"
+                }
+              },
+              "link_text" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "링크 텍스트",
+                  "placeholder" : "값이 없는 경우 '자세히 보기'로 표시 됨"
+                }
+              },
+              "background_colo" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "배경 색상 코드",
+                  "placeholder" : "e.g. #01AB1C, $carrot500, rgba(0,0,0,0.5)"
                 }
               }
             },
