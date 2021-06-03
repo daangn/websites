@@ -286,8 +286,10 @@ type SiteSiteMetadata = {
 };
 
 type SiteFunction = Node & {
-  readonly apiRoute: Scalars['String'];
-  readonly originalFilePath: Scalars['String'];
+  readonly functionRoute: Scalars['String'];
+  readonly pluginName: Scalars['String'];
+  readonly originalAbsoluteFilePath: Scalars['String'];
+  readonly originalRelativeFilePath: Scalars['String'];
   readonly relativeCompiledFilePath: Scalars['String'];
   readonly absoluteCompiledFilePath: Scalars['String'];
   readonly matchPath: Maybe<Scalars['String']>;
@@ -1831,6 +1833,69 @@ type PrismicTeamContentsDataMainBodyTitleAndIllustrationPrimary = {
   readonly title: Maybe<PrismicStructuredTextType>;
 };
 
+type PrismicTeamContentsDataMainBodyWideBannerPrimaryThumbnailImageType = {
+  readonly alt: Maybe<Scalars['String']>;
+  readonly copyright: Maybe<Scalars['String']>;
+  readonly dimensions: Maybe<PrismicImageDimensionsType>;
+  /** A plain imgix URL with the URL and params applied. */
+  readonly url: Maybe<Scalars['String']>;
+  /** Should be used to generate fixed-width images (i.e. the size of the image doesn't change when the size of the browser changes, and are "fixed"). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFixed fragment should be used. See the project's README for more information. */
+  readonly fixed: Maybe<ImgixFixed>;
+  /** Should be used to generate fluid-width images (i.e. images that change when the size of the browser changes). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFluid fragment should be used. See the project's README for more information. */
+  readonly fluid: Maybe<ImgixFluid>;
+  readonly gatsbyImageData: Maybe<Scalars['JSON']>;
+  readonly localFile: Maybe<File>;
+};
+
+
+type PrismicTeamContentsDataMainBodyWideBannerPrimaryThumbnailImageType_urlArgs = {
+  imgixParams?: Maybe<ImgixParamsInput>;
+};
+
+
+type PrismicTeamContentsDataMainBodyWideBannerPrimaryThumbnailImageType_fixedArgs = {
+  width?: Maybe<Scalars['Int']>;
+  height: Maybe<Scalars['Int']>;
+  quality: Maybe<Scalars['Int']>;
+  imgixParams?: Maybe<ImgixParamsInput>;
+  placeholderImgixParams?: Maybe<ImgixParamsInput>;
+};
+
+
+type PrismicTeamContentsDataMainBodyWideBannerPrimaryThumbnailImageType_fluidArgs = {
+  imgixParams?: Maybe<ImgixParamsInput>;
+  maxWidth?: Maybe<Scalars['Int']>;
+  maxHeight: Maybe<Scalars['Int']>;
+  srcSetBreakpoints: Maybe<ReadonlyArray<Maybe<Scalars['Int']>>>;
+  placeholderImgixParams?: Maybe<ImgixParamsInput>;
+};
+
+
+type PrismicTeamContentsDataMainBodyWideBannerPrimaryThumbnailImageType_gatsbyImageDataArgs = {
+  layout: Maybe<GatsbyImageLayout>;
+  width: Maybe<Scalars['Int']>;
+  height: Maybe<Scalars['Int']>;
+  aspectRatio: Maybe<Scalars['Float']>;
+  outputPixelDensities: Maybe<ReadonlyArray<Maybe<Scalars['Float']>>>;
+  breakpoints: Maybe<ReadonlyArray<Maybe<Scalars['Int']>>>;
+  sizes: Maybe<Scalars['String']>;
+  backgroundColor: Maybe<Scalars['String']>;
+  imgixParams: Maybe<ImgixParamsInput>;
+  placeholderImgixParams: Maybe<ImgixParamsInput>;
+  placeholder: Maybe<ImgixPlaceholder>;
+  widthTolerance?: Maybe<Scalars['Float']>;
+  srcSetMinWidth?: Maybe<Scalars['Int']>;
+  srcSetMaxWidth?: Maybe<Scalars['Int']>;
+};
+
+type PrismicTeamContentsDataMainBodyWideBannerPrimary = {
+  readonly background_colo: Maybe<Scalars['String']>;
+  readonly link: Maybe<PrismicLinkType>;
+  readonly link_text: Maybe<Scalars['String']>;
+  readonly thumbnail: Maybe<PrismicTeamContentsDataMainBodyWideBannerPrimaryThumbnailImageType>;
+  readonly title: Maybe<PrismicStructuredTextType>;
+};
+
 type PrismicTeamContentsDataMainBodyKeyVisual = PrismicSliceType & {
   readonly primary: Maybe<PrismicTeamContentsDataMainBodyKeyVisualPrimary>;
   readonly id: Scalars['ID'];
@@ -1859,7 +1924,14 @@ type PrismicTeamContentsDataMainBodyTitleAndIllustration = PrismicSliceType & {
   readonly slice_label: Maybe<Scalars['String']>;
 };
 
-type PrismicTeamContentsDataMainBodySlicesType = PrismicTeamContentsDataMainBodyKeyVisual | PrismicTeamContentsDataMainBodyMemberQuoteCarousel | PrismicTeamContentsDataMainBodyTitleAndDescription | PrismicTeamContentsDataMainBodyTitleAndIllustration;
+type PrismicTeamContentsDataMainBodyWideBanner = PrismicSliceType & {
+  readonly primary: Maybe<PrismicTeamContentsDataMainBodyWideBannerPrimary>;
+  readonly id: Scalars['ID'];
+  readonly slice_type: Scalars['String'];
+  readonly slice_label: Maybe<Scalars['String']>;
+};
+
+type PrismicTeamContentsDataMainBodySlicesType = PrismicTeamContentsDataMainBodyKeyVisual | PrismicTeamContentsDataMainBodyMemberQuoteCarousel | PrismicTeamContentsDataMainBodyTitleAndDescription | PrismicTeamContentsDataMainBodyTitleAndIllustration | PrismicTeamContentsDataMainBodyWideBanner;
 
 type PrismicTeamContentsDataType = {
   readonly culture_body: ReadonlyArray<PrismicTeamContentsDataCultureBodySlicesType>;
@@ -2268,8 +2340,10 @@ type Query_allSiteArgs = {
 
 
 type Query_siteFunctionArgs = {
-  apiRoute: Maybe<StringQueryOperatorInput>;
-  originalFilePath: Maybe<StringQueryOperatorInput>;
+  functionRoute: Maybe<StringQueryOperatorInput>;
+  pluginName: Maybe<StringQueryOperatorInput>;
+  originalAbsoluteFilePath: Maybe<StringQueryOperatorInput>;
+  originalRelativeFilePath: Maybe<StringQueryOperatorInput>;
   relativeCompiledFilePath: Maybe<StringQueryOperatorInput>;
   absoluteCompiledFilePath: Maybe<StringQueryOperatorInput>;
   matchPath: Maybe<StringQueryOperatorInput>;
@@ -3697,8 +3771,10 @@ type SiteFunctionEdge = {
 };
 
 type SiteFunctionFieldsEnum =
-  | 'apiRoute'
-  | 'originalFilePath'
+  | 'functionRoute'
+  | 'pluginName'
+  | 'originalAbsoluteFilePath'
+  | 'originalRelativeFilePath'
   | 'relativeCompiledFilePath'
   | 'absoluteCompiledFilePath'
   | 'matchPath'
@@ -3799,8 +3875,10 @@ type SiteFunctionGroupConnection = {
 };
 
 type SiteFunctionFilterInput = {
-  readonly apiRoute: Maybe<StringQueryOperatorInput>;
-  readonly originalFilePath: Maybe<StringQueryOperatorInput>;
+  readonly functionRoute: Maybe<StringQueryOperatorInput>;
+  readonly pluginName: Maybe<StringQueryOperatorInput>;
+  readonly originalAbsoluteFilePath: Maybe<StringQueryOperatorInput>;
+  readonly originalRelativeFilePath: Maybe<StringQueryOperatorInput>;
   readonly relativeCompiledFilePath: Maybe<StringQueryOperatorInput>;
   readonly absoluteCompiledFilePath: Maybe<StringQueryOperatorInput>;
   readonly matchPath: Maybe<StringQueryOperatorInput>;
@@ -3832,11 +3910,11 @@ type SitePluginFilterInput = {
 };
 
 type SitePluginPluginOptionsFilterInput = {
+  readonly defaults: Maybe<SitePluginPluginOptionsDefaultsFilterInput>;
   readonly base64Width: Maybe<IntQueryOperatorInput>;
   readonly stripMetadata: Maybe<BooleanQueryOperatorInput>;
   readonly defaultQuality: Maybe<IntQueryOperatorInput>;
   readonly failOnError: Maybe<BooleanQueryOperatorInput>;
-  readonly defaults: Maybe<SitePluginPluginOptionsDefaultsFilterInput>;
   readonly root: Maybe<StringQueryOperatorInput>;
   readonly aliases: Maybe<SitePluginPluginOptionsAliasesFilterInput>;
   readonly component: Maybe<StringQueryOperatorInput>;
@@ -4285,6 +4363,7 @@ type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesFilter
   readonly member_quote_carousel: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carouselFilterInput>;
   readonly title_and_description: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_descriptionFilterInput>;
   readonly title_and_illustration: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationFilterInput>;
+  readonly wide_banner: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerFilterInput>;
 };
 
 type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesKey_visualFilterInput = {
@@ -4487,6 +4566,78 @@ type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_
 type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationNon_repeatIllustrationConfigConstraintFilterInput = {
   readonly width: Maybe<IntQueryOperatorInput>;
   readonly height: Maybe<IntQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly fieldset: Maybe<StringQueryOperatorInput>;
+  readonly description: Maybe<StringQueryOperatorInput>;
+  readonly icon: Maybe<StringQueryOperatorInput>;
+  readonly display: Maybe<StringQueryOperatorInput>;
+  readonly non_repeat: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatFilterInput = {
+  readonly thumbnail: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatThumbnailFilterInput>;
+  readonly title: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatTitleFilterInput>;
+  readonly link: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatLinkFilterInput>;
+  readonly link_text: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatLink_textFilterInput>;
+  readonly background_colo: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatBackground_coloFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatThumbnailFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatThumbnailConfigFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatThumbnailConfigFilterInput = {
+  readonly constraint: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatThumbnailConfigConstraintFilterInput>;
+  readonly label: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatThumbnailConfigConstraintFilterInput = {
+  readonly width: Maybe<IntQueryOperatorInput>;
+  readonly height: Maybe<IntQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatTitleFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatTitleConfigFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatTitleConfigFilterInput = {
+  readonly single: Maybe<StringQueryOperatorInput>;
+  readonly label: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatLinkFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatLinkConfigFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatLinkConfigFilterInput = {
+  readonly label: Maybe<StringQueryOperatorInput>;
+  readonly placeholder: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatLink_textFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatLink_textConfigFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatLink_textConfigFilterInput = {
+  readonly label: Maybe<StringQueryOperatorInput>;
+  readonly placeholder: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatBackground_coloFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatBackground_coloConfigFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatBackground_coloConfigFilterInput = {
+  readonly label: Maybe<StringQueryOperatorInput>;
+  readonly placeholder: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePluginPluginOptionsSchemasTeam_contentsCultureFilterInput = {
@@ -4817,15 +4968,15 @@ type SitePageFieldsEnum =
   | 'pluginCreator.resolve'
   | 'pluginCreator.name'
   | 'pluginCreator.version'
-  | 'pluginCreator.pluginOptions.base64Width'
-  | 'pluginCreator.pluginOptions.stripMetadata'
-  | 'pluginCreator.pluginOptions.defaultQuality'
-  | 'pluginCreator.pluginOptions.failOnError'
   | 'pluginCreator.pluginOptions.defaults.formats'
   | 'pluginCreator.pluginOptions.defaults.placeholder'
   | 'pluginCreator.pluginOptions.defaults.quality'
   | 'pluginCreator.pluginOptions.defaults.breakpoints'
   | 'pluginCreator.pluginOptions.defaults.backgroundColor'
+  | 'pluginCreator.pluginOptions.base64Width'
+  | 'pluginCreator.pluginOptions.stripMetadata'
+  | 'pluginCreator.pluginOptions.defaultQuality'
+  | 'pluginCreator.pluginOptions.failOnError'
   | 'pluginCreator.pluginOptions.root'
   | 'pluginCreator.pluginOptions.aliases._'
   | 'pluginCreator.pluginOptions.component'
@@ -8407,15 +8558,15 @@ type SitePluginFieldsEnum =
   | 'resolve'
   | 'name'
   | 'version'
-  | 'pluginOptions.base64Width'
-  | 'pluginOptions.stripMetadata'
-  | 'pluginOptions.defaultQuality'
-  | 'pluginOptions.failOnError'
   | 'pluginOptions.defaults.formats'
   | 'pluginOptions.defaults.placeholder'
   | 'pluginOptions.defaults.quality'
   | 'pluginOptions.defaults.breakpoints'
   | 'pluginOptions.defaults.backgroundColor'
+  | 'pluginOptions.base64Width'
+  | 'pluginOptions.stripMetadata'
+  | 'pluginOptions.defaultQuality'
+  | 'pluginOptions.failOnError'
   | 'pluginOptions.root'
   | 'pluginOptions.aliases._'
   | 'pluginOptions.component'
@@ -8512,11 +8663,11 @@ type SitePlugin = Node & {
 };
 
 type SitePluginPluginOptions = {
+  readonly defaults: Maybe<SitePluginPluginOptionsDefaults>;
   readonly base64Width: Maybe<Scalars['Int']>;
   readonly stripMetadata: Maybe<Scalars['Boolean']>;
   readonly defaultQuality: Maybe<Scalars['Int']>;
   readonly failOnError: Maybe<Scalars['Boolean']>;
-  readonly defaults: Maybe<SitePluginPluginOptionsDefaults>;
   readonly root: Maybe<Scalars['String']>;
   readonly aliases: Maybe<SitePluginPluginOptionsAliases>;
   readonly component: Maybe<Scalars['String']>;
@@ -8961,6 +9112,7 @@ type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoices = {
   readonly member_quote_carousel: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesMember_quote_carousel>;
   readonly title_and_description: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_description>;
   readonly title_and_illustration: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustration>;
+  readonly wide_banner: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_banner>;
 };
 
 type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesKey_visual = {
@@ -9163,6 +9315,78 @@ type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_
 type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesTitle_and_illustrationNon_repeatIllustrationConfigConstraint = {
   readonly width: Maybe<Scalars['Int']>;
   readonly height: Maybe<Scalars['Int']>;
+};
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_banner = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly fieldset: Maybe<Scalars['String']>;
+  readonly description: Maybe<Scalars['String']>;
+  readonly icon: Maybe<Scalars['String']>;
+  readonly display: Maybe<Scalars['String']>;
+  readonly non_repeat: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeat>;
+};
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeat = {
+  readonly thumbnail: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatThumbnail>;
+  readonly title: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatTitle>;
+  readonly link: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatLink>;
+  readonly link_text: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatLink_text>;
+  readonly background_colo: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatBackground_colo>;
+};
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatThumbnail = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatThumbnailConfig>;
+};
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatThumbnailConfig = {
+  readonly constraint: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatThumbnailConfigConstraint>;
+  readonly label: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatThumbnailConfigConstraint = {
+  readonly width: Maybe<Scalars['Int']>;
+  readonly height: Maybe<Scalars['Int']>;
+};
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatTitle = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatTitleConfig>;
+};
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatTitleConfig = {
+  readonly single: Maybe<Scalars['String']>;
+  readonly label: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatLink = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatLinkConfig>;
+};
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatLinkConfig = {
+  readonly label: Maybe<Scalars['String']>;
+  readonly placeholder: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatLink_text = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatLink_textConfig>;
+};
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatLink_textConfig = {
+  readonly label: Maybe<Scalars['String']>;
+  readonly placeholder: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatBackground_colo = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatBackground_coloConfig>;
+};
+
+type SitePluginPluginOptionsSchemasTeam_contentsMainMain_bodyConfigChoicesWide_bannerNon_repeatBackground_coloConfig = {
+  readonly label: Maybe<Scalars['String']>;
+  readonly placeholder: Maybe<Scalars['String']>;
 };
 
 type SitePluginPluginOptionsSchemasTeam_contentsCulture = {
@@ -9381,7 +9605,7 @@ type SitePluginPackageJsonPeerDependencies = {
 type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type PagesQueryQuery = { readonly allSiteFunction: { readonly nodes: ReadonlyArray<Pick<SiteFunction, 'apiRoute'>> }, readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
+type PagesQueryQuery = { readonly allSiteFunction: { readonly nodes: ReadonlyArray<Pick<SiteFunction, 'functionRoute'>> }, readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
 type DefaultLayout_queryFragment = { readonly prismicSiteNavigation: Maybe<(
     Pick<PrismicSiteNavigation, '_previewable'>
@@ -9493,7 +9717,7 @@ type IndexPageQuery = (
       ) | (
         { readonly __typename: 'PrismicTeamContentsDataMainBodyTitleAndIllustration' }
         & PrismicTeamContentsDataMainBodyTitleAndIllustration_dataFragment
-      )> } }
+      ) | { readonly __typename: 'PrismicTeamContentsDataMainBodyWideBanner' }> } }
   )> }
   & DefaultLayout_queryFragment
 );
@@ -9589,11 +9813,6 @@ type JobApplicationPageQuery = (
   & JobPostLayout_queryFragment
 );
 
-type UseSiteMetadataStaticQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type UseSiteMetadataStaticQuery = { readonly site: Maybe<{ readonly siteMetadata: Pick<SiteMetadata, 'siteUrl'> }> };
-
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
 type GatsbyImageSharpFixed_tracedSVGFragment = Pick<ImageSharpFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
@@ -9620,6 +9839,11 @@ type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio
 
 type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
+type UseSiteMetadataStaticQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type UseSiteMetadataStaticQuery = { readonly site: Maybe<{ readonly siteMetadata: Pick<SiteMetadata, 'siteUrl'> }> };
+
 type GatsbyImgixFluidFragment = Pick<ImgixFluid, 'aspectRatio' | 'src' | 'srcWebp' | 'srcSet' | 'srcSetWebp' | 'sizes' | 'base64'>;
 
 type GatsbyImgixFluid_noBase64Fragment = Pick<ImgixFluid, 'aspectRatio' | 'src' | 'srcWebp' | 'srcSet' | 'srcSetWebp' | 'sizes'>;
@@ -9628,20 +9852,20 @@ type GatsbyImgixFixedFragment = Pick<ImgixFixed, 'base64' | 'width' | 'height' |
 
 type GatsbyImgixFixed_noBase64Fragment = Pick<ImgixFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
 
-type GatsbyPrismicImageFixedFragment = Pick<PrismicImageFixedType, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
+type GatsbyPrismicImageFixedFragment = GatsbyImgixFixedFragment;
 
-type GatsbyPrismicImageFixed_noBase64Fragment = Pick<PrismicImageFixedType, 'width' | 'height' | 'src' | 'srcSet'>;
+type GatsbyPrismicImageFixed_noBase64Fragment = GatsbyImgixFixed_noBase64Fragment;
 
-type GatsbyPrismicImageFixed_withWebpFragment = Pick<PrismicImageFixedType, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+type GatsbyPrismicImageFixed_withWebpFragment = GatsbyImgixFixedFragment;
 
-type GatsbyPrismicImageFixed_withWebp_noBase64Fragment = Pick<PrismicImageFixedType, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+type GatsbyPrismicImageFixed_withWebp_noBase64Fragment = GatsbyImgixFixed_noBase64Fragment;
 
-type GatsbyPrismicImageFluidFragment = Pick<PrismicImageFluidType, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+type GatsbyPrismicImageFluidFragment = GatsbyImgixFluidFragment;
 
-type GatsbyPrismicImageFluid_noBase64Fragment = Pick<PrismicImageFluidType, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+type GatsbyPrismicImageFluid_noBase64Fragment = GatsbyImgixFluid_noBase64Fragment;
 
-type GatsbyPrismicImageFluid_withWebpFragment = Pick<PrismicImageFluidType, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+type GatsbyPrismicImageFluid_withWebpFragment = GatsbyImgixFluidFragment;
 
-type GatsbyPrismicImageFluid_withWebp_noBase64Fragment = Pick<PrismicImageFluidType, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+type GatsbyPrismicImageFluid_withWebp_noBase64Fragment = GatsbyImgixFluid_noBase64Fragment;
 
 }
