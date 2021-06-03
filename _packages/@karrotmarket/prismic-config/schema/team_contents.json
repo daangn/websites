@@ -100,101 +100,6 @@
               }
             }
           },
-          "title_and_description": {
-            "type": "Slice",
-            "fieldset": "Title and Description",
-            "description": "제목과 설명 텍스트가 있는 섹션",
-            "icon": "subtitles",
-            "display": "list",
-            "non-repeat": {
-              "key_text": {
-                "type": "Text",
-                "config": {
-                  "label": "키 텍스트 (한 단어)"
-                }
-              },
-              "title": {
-                "type": "StructuredText",
-                "config": {
-                  "single": "heading1",
-                  "label": "섹션 제목"
-                }
-              },
-              "inverted": {
-                "type": "Boolean",
-                "config": {
-                  "placeholder_false": "왼쪽",
-                  "placeholder_true": "오른쪽",
-                  "default_value": false,
-                  "label": "넓은 화면에서 제목 위치"
-                }
-              },
-              "link": {
-                "type": "Link",
-                "config": {
-                  "label": "링크",
-                  "placeholder": "\"자세히 보기\" 링크"
-                }
-              },
-              "description": {
-                "type": "StructuredText",
-                "config": {
-                  "multi": "paragraph, strong, em, hyperlink",
-                  "label": "설명"
-                }
-              }
-            },
-            "repeat": {}
-          },
-          "title_and_illustration": {
-            "type": "Slice",
-            "fieldset": "Title and Illustration",
-            "description": "제목과 일러스트가 있는 섹션",
-            "icon": "subtitles",
-            "non-repeat": {
-              "key_text": {
-                "type": "Text",
-                "config": {
-                  "label": "키 텍스트 (한 단어)"
-                }
-              },
-              "title": {
-                "type": "StructuredText",
-                "config": {
-                  "single": "heading1",
-                  "label": "섹션 제목"
-                }
-              },
-              "inverted": {
-                "type": "Boolean",
-                "config": {
-                  "placeholder_false": "왼쪽",
-                  "placeholder_true": "오른쪽",
-                  "default_value": false,
-                  "label": "넓은 화면에서 제목 위치"
-                }
-              },
-              "link": {
-                "type": "Link",
-                "config": {
-                  "label": "자세히 보기 링크",
-                  "placeholder": "값이 있으면 \"자세히 보기\" 링크를 표시합니다."
-                }
-              },
-              "illustration": {
-                "type": "Image",
-                "config": {
-                  "constraint": {
-                    "width": 560,
-                    "height": 420
-                  },
-                  "thumbnails": [],
-                  "label": "일러스트 이미지"
-                }
-              }
-            },
-            "repeat": {}
-          },
           "wide_banner": {
             "type": "Slice",
             "fieldset": "Wide Banner",
@@ -243,6 +148,123 @@
               }
             },
             "repeat": {}
+          },
+          "title_and_description": {
+            "type": "Slice",
+            "fieldset": "Title and Description",
+            "description": "제목과 설명 텍스트가 있는 섹션",
+            "icon": "subtitles",
+            "non-repeat": {
+              "key_text": {
+                "type": "Text",
+                "config": {
+                  "label": "키 텍스트 (한 단어)"
+                }
+              },
+              "title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading1",
+                  "label": "섹션 제목"
+                }
+              },
+              "inverted": {
+                "type": "Boolean",
+                "config": {
+                  "placeholder_false": "왼쪽",
+                  "placeholder_true": "오른쪽",
+                  "default_value": false,
+                  "label": "넓은 화면에서 제목 위치"
+                }
+              },
+              "link": {
+                "type": "Link",
+                "config": {
+                  "label": "링크",
+                  "placeholder": "바로가기 링크"
+                }
+              },
+              "link_text": {
+                "type": "Text",
+                "config": {
+                  "label": "링크 텍스트",
+                  "placeholder": "바로가기 링크 텍스트 (기본 값: 자세히 보기)"
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, strong, em, hyperlink",
+                  "label": "설명"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "title_and_illustration": {
+            "type": "Slice",
+            "fieldset": "Title and Illustration",
+            "description": "제목과 일러스트가 있는 섹션",
+            "icon": "subtitles",
+            "non-repeat": {
+              "key_text": {
+                "type": "Text",
+                "config": {
+                  "label": "키 텍스트 (한 단어)"
+                }
+              },
+              "title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading1",
+                  "label": "섹션 제목"
+                }
+              },
+              "inverted": {
+                "type": "Boolean",
+                "config": {
+                  "placeholder_false": "왼쪽",
+                  "placeholder_true": "오른쪽",
+                  "default_value": false,
+                  "label": "넓은 화면에서 제목 위치"
+                }
+              },
+              "link": {
+                "type": "Link",
+                "config": {
+                  "label": "바로가기 링크",
+                  "placeholder": "바로가기 링크"
+                }
+              },
+              "link_text": {
+                "type": "Text",
+                "config": {
+                  "label": "링크 텍스트",
+                  "placeholder": "바로가기 링크 텍스트 (기본값: 자세히 보기)"
+                }
+              },
+              "illustration": {
+                "type": "Image",
+                "config": {
+                  "constraint": {
+                    "width": 560,
+                    "height": 420
+                  },
+                  "thumbnails": [],
+                  "label": "일러스트 이미지"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "divider": {
+            "type": "Slice",
+            "fieldset": "Divider",
+            "description": "페이지에 선 한줄 긋고 싶을 때",
+            "icon": "remove",
+            "display": "list",
+            "non-repeat": {},
+            "repeat": {}
           }
         }
       }
@@ -260,7 +282,22 @@
       "type": "Slices",
       "fieldset": "Slice zone",
       "config": {
-        "labels": {},
+        "labels": {
+          "divider": [
+            {
+              "name": "divider",
+              "display": "Divider"
+            }
+          ],
+          "illustration_and_description": [
+            {
+              "name": "illustration_and_description",
+              "display": "Illustration and Description"
+            }
+          ],
+          "how_we_work": [],
+          "benefit": []
+        },
         "choices": {
           "key_visual": {
             "type": "Slice",
@@ -299,6 +336,251 @@
             },
             "repeat": {},
             "display": "list"
+          },
+          "divider": {
+            "type": "Slice",
+            "fieldset": "Divider",
+            "description": "페이지에 선 한줄 긋고 싶을 때",
+            "icon": "remove",
+            "non-repeat": {},
+            "repeat": {}
+          },
+          "title_and_description": {
+            "type": "Slice",
+            "fieldset": "Title and Description",
+            "description": "제목과 설명 텍스트가 있는 섹션",
+            "icon": "subtitles",
+            "non-repeat": {
+              "key_text": {
+                "type": "Text",
+                "config": {
+                  "label": "키 텍스트 (한 단어)"
+                }
+              },
+              "title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading1",
+                  "label": "섹션 제목"
+                }
+              },
+              "inverted": {
+                "type": "Boolean",
+                "config": {
+                  "placeholder_false": "왼쪽",
+                  "placeholder_true": "오른쪽",
+                  "default_value": false,
+                  "label": "넓은 화면에서 제목 위치"
+                }
+              },
+              "link": {
+                "type": "Link",
+                "config": {
+                  "label": "링크",
+                  "placeholder": "바로가기 링크"
+                }
+              },
+              "link_text": {
+                "type": "Text",
+                "config": {
+                  "label": "링크 텍스트",
+                  "placeholder": "바로가기 링크 텍스트 (기본 값: 자세히 보기)"
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, strong, em, hyperlink",
+                  "label": "설명"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "title_and_illustration": {
+            "type": "Slice",
+            "fieldset": "Title and Illustration",
+            "description": "제목과 일러스트가 있는 섹션",
+            "icon": "subtitles",
+            "non-repeat": {
+              "key_text": {
+                "type": "Text",
+                "config": {
+                  "label": "키 텍스트 (한 단어)"
+                }
+              },
+              "title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading1",
+                  "label": "섹션 제목"
+                }
+              },
+              "inverted": {
+                "type": "Boolean",
+                "config": {
+                  "placeholder_false": "왼쪽",
+                  "placeholder_true": "오른쪽",
+                  "default_value": false,
+                  "label": "넓은 화면에서 제목 위치"
+                }
+              },
+              "link": {
+                "type": "Link",
+                "config": {
+                  "label": "바로가기 링크",
+                  "placeholder": "값이 있으면 \"자세히 보기\" 링크를 표시합니다."
+                }
+              },
+              "link_text": {
+                "type": "Text",
+                "config": {
+                  "label": "링크 텍스트",
+                  "placeholder": "바로가기 링크 텍스트 (기본값: 자세히 보기)"
+                }
+              },
+              "illustration": {
+                "type": "Image",
+                "config": {
+                  "constraint": {
+                    "width": 560,
+                    "height": 420
+                  },
+                  "thumbnails": [],
+                  "label": "일러스트 이미지"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "illustration_and_description": {
+            "type": "Slice",
+            "fieldset": "Illustration and Description",
+            "description": "제목 없이 일러스트와 설명이 나란히 있는 섹션",
+            "icon": "art_track",
+            "display": "list",
+            "non-repeat": {
+              "illustration": {
+                "type": "Image",
+                "config": {
+                  "constraint": {
+                    "width": 1920,
+                    "height": 1080
+                  },
+                  "thumbnails": [],
+                  "label": "일러스트 이미지"
+                }
+              },
+              "expanded": {
+                "type": "Boolean",
+                "config": {
+                  "placeholder_false": "영역 딱 절반만",
+                  "placeholder_true": "이미지를 가로로 더 넓게",
+                  "default_value": false,
+                  "label": "넓은 화면에서 이미지 너비 확장"
+                }
+              },
+              "inverted": {
+                "type": "Boolean",
+                "config": {
+                  "placeholder_false": "왼쪽",
+                  "placeholder_true": "오른쪽",
+                  "default_value": false,
+                  "label": "넓은 화면에서 이미지 위치"
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, strong, em",
+                  "label": "설명 텍스트"
+                }
+              },
+              "link": {
+                "type": "Link",
+                "config": {
+                  "label": "링크",
+                  "placeholder": "바로가기 링크"
+                }
+              },
+              "link_text": {
+                "type": "Text",
+                "config": {
+                  "label": "링크 텍스트",
+                  "placeholder": "바로가기 링크 텍스트 (기본값: 자세히 보기)"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "how_we_work": {
+            "type": "Slice",
+            "fieldset": "How We Work",
+            "description": "우리는 이렇게 일해요",
+            "icon": "face",
+            "display": "list",
+            "non-repeat": {
+              "title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading1",
+                  "label": "섹션 제목",
+                  "placeholder": "우리는 이렇게 일해요"
+                }
+              }
+            },
+            "repeat": {
+              "group": {
+                "type": "Text",
+                "config": {
+                  "label": "그룹"
+                }
+              },
+              "key_text": {
+                "type": "Text",
+                "config": {
+                  "label": "키 텍스트"
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "paragraph",
+                  "label": "설명 텍스트"
+                }
+              }
+            }
+          },
+          "benefit": {
+            "type": "Slice",
+            "fieldset": "Benefit",
+            "description": "지원 내용",
+            "icon": "face",
+            "display": "list",
+            "non-repeat": {
+              "title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading1",
+                  "label": "섹션 제목"
+                }
+              }
+            },
+            "repeat": {
+              "subtitle": {
+                "type": "Text",
+                "config": {
+                  "label": "서브타이틀"
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "list-item",
+                  "label": "내용"
+                }
+              }
+            }
           }
         }
       }

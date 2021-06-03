@@ -102,12 +102,22 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
     # }
 
     type PrismicTeamContentsDataMainBodyMemberQuoteCarousel {
-      items: [PrismicTeamContentsDataMainBodyMemberQuoteCarouselItem!]!
+      items: [PrismicTeamContentsDataMainBodyMemberQuoteCarouselItem!]
+    }
+
+    type PrismicTeamContentsDataCultureBodyHowWeWork {
+    #  primary: PrismicTeamContentsDataCultureBodyHowWeWorkPrimary! 
+      items: [PrismicTeamContentsDataCultureBodyHowWeWorkItem!]
+    }
+
+    type PrismicTeamContentsDataCultureBodyBenefit {
+    #  primary: PrismicTeamContentsDataCultureBodyHowWeWorkPrimary! 
+      items: [PrismicTeamContentsDataCultureBodyBenefitItem!]
     }
 
     type PrismicTeamContentsDataLifeBodyLifeContent {
     #  primary: PrismicTeamContentsDataLifeBodyLifeContentPrimary! 
-      items: [PrismicTeamContentsDataLifeBodyLifeContentItem!]!
+      items: [PrismicTeamContentsDataLifeBodyLifeContentItem!]
     }
   `);
 
