@@ -67,6 +67,7 @@ export const { styled, css, global, getCssString, theme } = createCss({
       paddingBottom: value,
     }),
     contentArea: _config => (value: boolean) => value ? ({
+      boxSizing: 'border-box',
       maxWidth: '$maxContent',
       margin: '0 auto',
       paddingX: rem(24),

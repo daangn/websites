@@ -14,8 +14,18 @@
         "labels": {
           "key_visual": [],
           "member_quote_carousel": [],
-          "title_and_description": [],
-          "title_and_illustration": [],
+          "title_and_description": [
+            {
+              "name": "title_and_description",
+              "display": "Title and Description"
+            }
+          ],
+          "title_and_illustration": [
+            {
+              "name": "title_and_illustration",
+              "display": "Title and Illustration"
+            }
+          ],
           "wide_banner": []
         },
         "choices": {
@@ -26,7 +36,7 @@
             "icon": "subtitles",
             "non-repeat": {
               "key_visual_image": {
-                "type": "Image",
+               "type": "Image",
                 "config": {
                   "constraint": {
                     "width": 1920,
@@ -34,7 +44,7 @@
                   },
                   "thumbnails": [],
                   "label": "키 비주얼 이미지"
-               }
+                }
               },
               "expanded": {
                 "type": "Boolean",
@@ -64,14 +74,15 @@
             "display": "list",
             "non-repeat": {},
             "repeat": {
-              "member": {
-                "type": "Link",
+              "image": {
+                "type": "Image",
                 "config": {
-                  "select": "document",
-                  "customtypes": [
-                    "member_profile"
-                  ],
-                  "label": "팀 멤버"
+                  "constraint": {
+                    "width": 1120,
+                    "height": 840
+                  },
+                  "thumbnails": [],
+                  "label": "이미지"
                 }
               },
               "quote": {
@@ -79,6 +90,12 @@
                 "config": {
                   "label": "한 마디",
                   "placeholder": "무슨 말을 했나요?"
+                }
+              },
+              "who": {
+                "type": "Text",
+                "config": {
+                  "label": "누가?"
                 }
               }
             }
@@ -88,7 +105,7 @@
             "fieldset": "Title and Description",
             "description": "제목과 설명 텍스트가 있는 섹션",
             "icon": "subtitles",
-            "display": "grid",
+            "display": "list",
             "non-repeat": {
               "key_text": {
                 "type": "Text",
@@ -103,7 +120,7 @@
                   "label": "섹션 제목"
                 }
               },
-              "is_left": {
+              "inverted": {
                 "type": "Boolean",
                 "config": {
                   "placeholder_false": "왼쪽",
@@ -134,7 +151,6 @@
             "fieldset": "Title and Illustration",
             "description": "제목과 일러스트가 있는 섹션",
             "icon": "subtitles",
-            "display": "list",
             "non-repeat": {
               "key_text": {
                 "type": "Text",
@@ -149,7 +165,7 @@
                   "label": "섹션 제목"
                 }
               },
-              "is_left": {
+              "inverted": {
                 "type": "Boolean",
                 "config": {
                   "placeholder_false": "왼쪽",

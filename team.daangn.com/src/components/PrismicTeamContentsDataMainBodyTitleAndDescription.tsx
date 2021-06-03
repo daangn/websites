@@ -18,7 +18,7 @@ export const query = graphql`
       title {
         text
       }
-      is_left
+      inverted
       description {
         html
       }
@@ -34,21 +34,30 @@ const Container = styled('section', {
 
   display: 'grid',
   gap: rem(24),
+  gridTemplateAreas: [
+    '"title"',
+    '"description"',
+  ].join('\n'),
 
   '@md': {
     gap: rem(40),
+    gridTemplateColumns: '1fr 1fr',
   },
 
   variants: {
     alignTitle: {
       left: {
         '@md': {
-          gridTemplateColumns: 'title description',
+          gridTemplateAreas: [
+            '"title description"',
+          ].join('\n'),
         },
       },
       right: {
         '@md': {
-          gridTemplateColumns: 'description title',
+          gridTemplateAreas: [
+            '"title description"',
+          ].join('\n'),
         },
       },
     },
@@ -114,7 +123,7 @@ const PrismicTeamContentsDataMainBodyTitleAndDescription: React.FC<PrismicTeamCo
 
   return (
     <Container
-      alignTitle={data.primary.is_left ? 'left' : 'right'}
+      alignTitle={data.primary.inverted === true ? 'right' : 'left'}
     >
       <TitleContainer>
         <KeyText>{data.primary.key_text}</KeyText>

@@ -17,8 +17,7 @@ export const query = graphql`
         localFile {
           childImageSharp {
             gatsbyImageData(
-              width: 1920
-              layout: CONSTRAINED
+              layout: FULL_WIDTH
               quality: 100
             )
           }
@@ -36,6 +35,7 @@ const Container = styled('section', {
   display: 'grid',
   gridTemplateRows: 'auto auto',
   gap: rem(40),
+  width: '100%',
 
   '@md': {
     contentArea: true,

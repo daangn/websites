@@ -56,8 +56,7 @@ const Content = styled('div', {
   variants: {
     wide: {
       true: {
-        maxWidth: '$maxContent',
-        margin: '0 auto',
+        contentArea: true,
       },
     },
   },
