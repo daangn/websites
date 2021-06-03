@@ -100,8 +100,12 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
           credentials: 'omit',
           body: formData,
           headers: {
-            ...resume && { 'X-Upload-Resume': resume.name },
-            ...portfolio && { 'X-Upload-Portfolio': portfolio.name },
+            ...resume && {
+              'X-Upload-Resume': encodeURIComponent(resume.name),
+            },
+            ...portfolio && {
+              'X-Upload-Portfolio': encodeURIComponent(portfolio.name),
+            },
           },
         });
         if (response.ok) {

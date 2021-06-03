@@ -37,14 +37,18 @@ API.add('GET', '/ping', (_req, res) => {
 });
 
 function extractExtension(filename: string): string {
-  const fileExtensionRegExp = '/.*\.(.*)$/';
-  const match = filename.match(fileExtensionRegExp);
-  const ext = match && `.${match[1]}`;
-  return ext ?? '';
+  const match = filename.match(/\.(\w+)$/);
+  return match ? match[0] : '';
 }
 
-function getYYYYMMDD(date: Date = new Date()): string {
-  return `${date.getFullYear()}-${date.getMonth().toString().padStart(2, '0')}-${date.getSeconds().toString().padStart(2, '0')}`;
+function getYYYYMMDD(date: Date): string {
+  // KST 날짜 보정
+  const dateChange = (date.getUTCHours() + 9) / 24 > 1 ? 1 : 0;
+
+  const YYYY = date.getFullYear();
+  const MM = (date.getMonth() + 1).toString().padStart(2, '0');
+  const DD = (date.getDate() + dateChange).toString().padStart(2, '0');
+  return `${YYYY}-${MM}-${DD}`;
 }
 
 interface MakeRemoteForm {
@@ -152,7 +156,7 @@ const makeRemoteForm: MakeRemoteForm = ({
 
   const formData = new FormData();
   formData.set('first_name', name);
-  formData.set('last_name', '님');
+  formData.set('last_name', '\u200b');
   formData.set('email', email);
   formData.set('phone' , phoneNumber);
   formData.set('resume', resume!.blob, resume!.filename);
@@ -197,6 +201,7 @@ API.add('POST', '/jobs/:jobId/application/submit', async (req, res) => {
   const alternativeCivilian = formData.get('alternative_civilian') || 'off';
 
   let remoteFormData: FormData;
+
   try {
     remoteFormData = makeRemoteForm({
       name,
@@ -206,11 +211,11 @@ API.add('POST', '/jobs/:jobId/application/submit', async (req, res) => {
       disability,
       alternativeCivilian,
       resume: resume && resumeFilename ? {
-        filename: `resume-${name}-${getYYYYMMDD()}${extractExtension(resumeFilename)}`,
+        filename: `resume-${name}-${getYYYYMMDD(new Date())}${extractExtension(resumeFilename)}`,
         blob: new Blob([Uint8Array.from(resume as unknown as Iterable<number>)]),
       } : null,
       portfolio: portfolio && portfolioFilename ? {
-        filename: `portfolio-${name}-${getYYYYMMDD()}${extractExtension(portfolioFilename)}`,
+        filename: `portfolio-${name}-${getYYYYMMDD(new Date())}${extractExtension(portfolioFilename)}`,
         blob: new Blob([Uint8Array.from(portfolio as unknown as Iterable<number>)]),
       } : null,
     });
