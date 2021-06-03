@@ -4,13 +4,13 @@ import { graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 
-type PrismicTeamContentsDataMainBodyKeyVisualProps = {
-  data: GatsbyTypes.PrismicTeamContentsDataMainBodyKeyVisual_dataFragment,
+type PrismicTeamContentsDataCultureBodyKeyVisualProps = {
+  data: GatsbyTypes.PrismicTeamContentsDataCultureBodyKeyVisual_dataFragment,
   className?: string,
 };
 
 export const query = graphql`
-  fragment PrismicTeamContentsDataMainBodyKeyVisual_data on PrismicTeamContentsDataMainBodyKeyVisual {
+  fragment PrismicTeamContentsDataCultureBodyKeyVisual_data on PrismicTeamContentsDataCultureBodyKeyVisual {
     primary {
       key_visual_image {
         alt
@@ -47,6 +47,7 @@ const ImageContainer = styled('figure', {
   variants: {
     expanded: {
       true: {
+        paddingX: 0,
       },
       false: {
         paddingX: rem(24),
@@ -68,7 +69,7 @@ const Description = styled('p', {
   },
 });
 
-const PrismicTeamContentsDataMainBodyKeyVisual: React.FC<PrismicTeamContentsDataMainBodyKeyVisualProps> = ({
+const PrismicTeamContentsDataCultureBodyKeyVisual: React.FC<PrismicTeamContentsDataCultureBodyKeyVisualProps> = ({
   data,
   className,
 }) => {
@@ -84,7 +85,12 @@ const PrismicTeamContentsDataMainBodyKeyVisual: React.FC<PrismicTeamContentsData
     <Container className={className}>
       {image && (
         <ImageContainer
-          expanded={{ '@initial': data.primary.expanded ?? false, '@md': true }}
+          expanded={data.primary?.expanded ?? false}
+          css={{
+            '@md': {
+              paddingX: 0,
+            },
+          }}
         >
           <GatsbyImage
             image={image}
@@ -93,10 +99,10 @@ const PrismicTeamContentsDataMainBodyKeyVisual: React.FC<PrismicTeamContentsData
         </ImageContainer>
       )}
       <Description>
-        {data.primary.description?.text}
+        {data.primary?.description?.text}
       </Description>
     </Container>
   );
 };
 
-export default PrismicTeamContentsDataMainBodyKeyVisual;
+export default PrismicTeamContentsDataCultureBodyKeyVisual;
