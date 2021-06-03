@@ -18,6 +18,7 @@ export const query = graphql`
       title {
         text
       }
+      is_left
       description {
         html
       }
@@ -29,16 +30,33 @@ export const query = graphql`
 `;
 
 const Container = styled('section', {
+  contentArea: true,
+
   display: 'grid',
-  gridTemplateColumns: 'auto',
+  gap: rem(24),
 
   '@md': {
-    gridTemplateColumns: '1fr 1fr',
     gap: rem(40),
+  },
+
+  variants: {
+    alignTitle: {
+      left: {
+        '@md': {
+          gridTemplateColumns: 'title description',
+        },
+      },
+      right: {
+        '@md': {
+          gridTemplateColumns: 'description title',
+        },
+      },
+    },
   },
 });
 
 const TitleContainer = styled('div', {
+  gridArea: 'title',
   display: 'grid',
   gridTemplateRows: 'repeat(3, min-content)',
 });
@@ -66,6 +84,7 @@ const Title = styled('h1', {
 });
 
 const Description = styled('div', {
+  gridArea: 'description',
   color: '$gray700',
 
   '& > p': {
@@ -94,7 +113,9 @@ const PrismicTeamContentsDataMainBodyTitleAndDescription: React.FC<PrismicTeamCo
   const link = data.primary.link?.url && parseLink(data.primary.link.url);
 
   return (
-    <Container>
+    <Container
+      alignTitle={data.primary.is_left ? 'left' : 'right'}
+    >
       <TitleContainer>
         <KeyText>{data.primary.key_text}</KeyText>
         <Title>{data.primary.title?.text}</Title>
