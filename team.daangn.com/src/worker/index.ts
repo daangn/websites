@@ -206,11 +206,11 @@ API.add('POST', '/jobs/:jobId/application/submit', async (req, res) => {
       disability,
       alternativeCivilian,
       resume: resume && resumeFilename ? {
-        filename: `resume-${name}-${getYYYYMMDD()}${extractExtension(resumeFilename)}`,
+        filename: `resume-${name}-${getYYYYMMDD()}${extractExtension(decodeURIComponent(resumeFilename))}`,
         blob: new Blob([Uint8Array.from(resume as unknown as Iterable<number>)]),
       } : null,
       portfolio: portfolio && portfolioFilename ? {
-        filename: `portfolio-${name}-${getYYYYMMDD()}${extractExtension(portfolioFilename)}`,
+        filename: `portfolio-${name}-${getYYYYMMDD()}${extractExtension(decodeURIComponent(portfolioFilename))}`,
         blob: new Blob([Uint8Array.from(portfolio as unknown as Iterable<number>)]),
       } : null,
     });
