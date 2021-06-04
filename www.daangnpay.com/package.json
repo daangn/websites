@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@stitches/react": "^0.1.9",
-    "gatsby": "^3.6.0",
+    "gatsby": "^3.6.2",
     "gatsby-plugin-concurrent-mode": "^0.2.1",
     "gatsby-plugin-image": "^1.6.0",
     "gatsby-plugin-react-helmet-async": "^1.2.0",
@@ -50,6 +50,6 @@
     "@karrotmarket/react-stitches": "^0.1.1-0",
     "babel-plugin-polished": "^1.1.0",
     "babel-preset-gatsby-package": "^1.6.0",
-    "typescript": "^4.2.4"
+    "typescript": "^4.3.2"
   }
 }
