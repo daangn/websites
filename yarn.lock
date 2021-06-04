@@ -1166,7 +1166,7 @@
   dependencies:
     "@cometjs/core" "1.2.0"
 
-"@daangn/design-token@^0.1.6", "@daangn/design-token@^0.1.7":
+"@daangn/design-token@^0.1.7":
   version "0.1.7"
   resolved "https://npm.pkg.github.com/download/@daangn/design-token/0.1.7/12007d08495742ef71a11ec20e1731dbe91b44b8b1e243c21e13b33615f57116#4baed7945e2e46bdf0eab0c025cb0e90b52901a0"
   integrity sha512-57EmiWq1FfrDQgSBlBw99MFu+dogI5U/vYwdFP8JnGtAlzGvQizoURwZ5cKShDt00fIMLFZeiLE8D9LEpBIF+Q==
@@ -2037,6 +2037,11 @@
   version "0.1.8-1"
   resolved "https://registry.yarnpkg.com/@karrotmarket/design-token/-/design-token-0.1.8-1.tgz#ed7eb68f9629bed62eda551c56b8deb5b4544f3f"
   integrity sha512-YMxUgUOcmwWdM58sCRDXP5Qqdo4VaBkaZpHe7SFgici1wU70NDNLPIv32nAGRasQ77Bjcm71uJEkFbddGKjDbw==
+
+"@karrotmarket/design-token@^0.1.8-2":
+  version "0.1.8-2"
+  resolved "https://registry.yarnpkg.com/@karrotmarket/design-token/-/design-token-0.1.8-2.tgz#78e3d6e6f21815329e4926581fe3e3b93f2b19f8"
+  integrity sha512-VSIUHDpaZltR1O/8rt1wj7rukNEbCGsIA4GDxvH0b/Os5hbIGEhwmqyjelzBisqoCufJ3tvsVn6CkkiCCBP6wQ==
 
 "@karrotmarket/react-emotion-theme@^0.3.1-0":
   version "0.3.1-0"
