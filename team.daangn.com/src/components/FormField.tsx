@@ -26,6 +26,13 @@ type FormFieldVariants = (
     type: 'checkbox',
   }
   | {
+    type: 'radio',
+    options: {
+      value: string,
+      label: string,
+    }[],
+  }
+  | {
     type: 'file',
     accepts: string[],
   }
@@ -126,6 +133,7 @@ const Select = styled(Input, {
   gridArea: 'select',
   alignItems: 'center',
   appearance: 'none',
+  backgroundColor: '$white',
   '&::-ms-expand': {
     display: 'none',
   },
@@ -182,6 +190,56 @@ const CheckmarkSvg = styled('svg', {
   'input:checked + * > &': {
     transform: 'scale(1)',
   }
+});
+
+const RadioGroupContainer = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr',
+});
+
+const RadioButton = styled('label', {
+  display: 'flex',
+  alignItems: 'center',
+  fontSize: '$body2',
+  color: '$gray700',
+  cursor: 'pointer',
+});
+
+const RadioButtonInput = styled('input', {
+  appearance: 'none',
+});
+
+const Radiomark = styled('span', {
+  display: 'grid',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: rem(16),
+  height: rem(16),
+  borderRadius: '50%',
+  border: '2px solid $gray500',
+  marginRight: rem(14),
+  color: '$carrot500',
+  transition: 'box-shadow .25s ease',
+
+  'input:focus + &': {
+    boxShadow: '0 0 0 0.05em #fff, 0 0 0.15em 0.1em currentColor',
+  },
+
+  'input:checked + &': {
+    borderColor: '$carrot500',
+  },
+
+  'input:checked + &::after': {
+    background: '$carrot500',
+  },
+
+  '&::after': {
+    content: '',
+    width: rem(10),
+    height: rem(10),
+    borderRadius: '50%',
+  },
+
 });
 
 const Description = styled('p', {
@@ -259,7 +317,7 @@ const FormField: React.FC<FormFieldProps> = ({
             <CheckboxControl type="checkbox" name={name} defaultChecked={false} />
             <Checkmark>
               <CheckmarkSvg viewBox="0 0 24 24" fill="none">
-                <rect width="24" height="24" rx="4" fill="white"/>
+                <rect width="24" height="24" rx="4" fill="none"/>
                 <rect width="24" height="24" rx="4" stroke="currentColor"/>
                 <path d="M18.4711 7.52876C18.7314 7.78911 18.7314 8.21122 18.4711 8.47157L10.4711 16.4716C10.2107 16.7319 9.78862 16.7319 9.52827 16.4716L5.52827 12.4716C5.26792 12.2112 5.26792 11.7891 5.52827 11.5288C5.78862 11.2684 6.21073 11.2684 6.47108 11.5288L9.99967 15.0574L17.5283 7.52876C17.7886 7.26841 18.2107 7.26841 18.4711 7.52876Z" fill="currentColor" />
               </CheckmarkSvg>
@@ -267,6 +325,23 @@ const FormField: React.FC<FormFieldProps> = ({
           </Checkbox>
           <CheckboxLabel>{label}</CheckboxLabel>
         </CheckboxContainer>
+      );
+    }
+    case 'radio': {
+      return (
+        <RadioGroupContainer className={className}>
+          {variants.options.map(option => (
+            <RadioButton key={option.value}>
+              <RadioButtonInput
+                type="radio"
+                name={name}
+                value={option.value}
+              />
+              <Radiomark />
+              {option.label}
+            </RadioButton>
+          ))}
+        </RadioGroupContainer>
       );
     }
     case 'file': {
