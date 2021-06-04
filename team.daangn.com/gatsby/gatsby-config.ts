@@ -22,6 +22,14 @@ const config: GatsbyConfig = {
     'gatsby-plugin-svgr',
     'gatsby-plugin-react-helmet-async',
     {
+      resolve: 'gatsby-plugin-use-dark-mode',
+      options: {
+        classNameLight: 'dark-light',
+        classNameDark: 'dark-theme',
+        minify: true,
+      },
+    },
+    {
       resolve: 'gatsby-plugin-sharp',
       options: {
         defaults: {
