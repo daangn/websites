@@ -243,7 +243,6 @@ const ContentWrapper = styled.div<{ willUnmount: boolean }>`
   flex: 1 0 auto;
   animation: 350ms ${({ willUnmount }) => (willUnmount ? fadeOut : fadeUp)} 0ms forwards;
   opacity: 0;
-
   .number-asset > div {
     display: none;
   }

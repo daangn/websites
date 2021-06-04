@@ -1,7 +1,6 @@
 import React from "react";
 import { rem } from "polished";
 import { graphql } from "gatsby";
-import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { styled } from "gatsby-theme-stitches/src/stitches.config";
 
@@ -71,7 +70,7 @@ const Container = styled("div", {
     height: "100%",
     flexDirection: "column",
     textAlign: "center",
-    padding: `${rem(56)} ${rem(32)}`,
+    padding: `${rem(56)} ${rem(26)}`,
 
     variants: {
         textPosition: {
@@ -145,26 +144,9 @@ const MockupSection: React.FC<MockupSectionProps> = ({ content }) => {
                     </Grid>
                 </Flex>
                 <Flex rowCenterY justifyContent={{ "@i": "center", "@md": "flex-start" }}>
-                    {inView && (
-                        <motion.div
-                            {...{
-                                initial: {
-                                    opacity: 0,
-                                    y: 200,
-                                },
-                                animate: {
-                                    opacity: 1,
-                                    y: 0,
-                                },
-                                transition: {
-                                    duration: 1.5,
-                                    ease: [0.16, 1, 0.3, 1],
-                                },
-                            }}
-                        >
-                            <PhoneMockupComponent></PhoneMockupComponent>
-                        </motion.div>
-                    )}
+                    <div ref={ref}>
+                        <PhoneMockupComponent inView={inView}></PhoneMockupComponent>
+                    </div>
                 </Flex>
             </Container>
         </Section>

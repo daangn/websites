@@ -30,10 +30,10 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ name, temperature, info }) => (
     <Flex column>
         <Flex rowCenterY>
-            <UserName>Emilia</UserName>
-            <UserTemperature>36.8</UserTemperature>
+            <UserName>{name}</UserName>
+            <UserTemperature>{temperature}</UserTemperature>
         </Flex>
-        <Info>within 10 mins</Info>
+        <Info>{info}</Info>
     </Flex>
 );
 

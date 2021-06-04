@@ -1,6 +1,7 @@
 import React from "react";
 import { rem } from "polished";
 import { graphql } from "gatsby";
+import { format } from "date-fns";
 import { styled } from "gatsby-theme-stitches/src/stitches.config";
 
 import { Grid } from "@src/components/Grid";
@@ -55,7 +56,7 @@ const SubtitleAndLinks: React.FC<SubtitleAndLinksProps> = ({ content }) => {
                 {content.items.map((item) => (
                     <LinkContainer>
                         <Link href={item?.link?.url}>{item?.text}</Link>
-                        {item?.date}
+                        {format(new Date(item?.date as string), "MMM d, y")}
                     </LinkContainer>
                 ))}
             </Grid>

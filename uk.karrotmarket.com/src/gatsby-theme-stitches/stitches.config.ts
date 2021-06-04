@@ -24,7 +24,7 @@ export const { styled, css, global, getCssString, theme, media, utils } = create
         colors: convertColorScheme(colors.light),
         fonts: {
             default:
-                '-apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", BlinkMacSystemFont, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+                'apple-system, BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"',
         },
         fontSizes: {
             heading1: rem(72),

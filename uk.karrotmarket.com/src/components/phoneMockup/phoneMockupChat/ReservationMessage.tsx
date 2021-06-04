@@ -52,7 +52,7 @@ const IconContainer = styled("div", {
 
 const Wrapper = styled(motion.div, {
     background: "$gray100",
-    padding: `${em(30)} ${em(18)}`,
+    padding: `${em(16)} ${em(18)}`,
     borderRadius: em(16),
     marginBottom: em(14),
     display: "flex",
