@@ -1,8 +1,7 @@
 import * as React from 'react'
 import styled from '@emotion/styled'
-import { css, Global, keyframes } from '@emotion/react'
+import { css, useTheme, Global, keyframes } from '@emotion/react'
 import { StaticImage } from 'gatsby-plugin-image'
-import { colors } from '@daangn/design-token'
 import { graphql, Link, PageProps } from 'gatsby'
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 
@@ -17,6 +16,8 @@ import { useParticipants } from '@src/hooks/useParticipants'
 import { useOpenApp } from '@src/hooks/useOpenApp'
 
 const MBTIIntroPage: React.FC<PageProps<GatsbyTypes.MBTIIntroPageQuery>> = ({ data: { prismicMbtiIntro } }) => {
+  const theme = useTheme()
+
   const { show } = useReplaceToResultPage()
   const handleClickShare = useShare()
   const [participants, dispatch] = useParticipants()
@@ -52,7 +53,7 @@ const MBTIIntroPage: React.FC<PageProps<GatsbyTypes.MBTIIntroPageQuery>> = ({ da
         }}
       />
       <Container show={show}>
-        <Navbar iconColor={colors.light.$gray900} theme={bridge.environment} showClose />
+        <Navbar iconColor={theme.colors.$gray900} theme={bridge.environment} showClose />
         <InnerContainer>
           <Title>
             <StaticImage
@@ -135,8 +136,8 @@ const buttonStyle = css`
 `
 const WhiteButton = styled.button`
   ${buttonStyle};
-  background: #ffffff;
-  color: ${({ theme }) => theme.colors.carrot500};
+  background: ${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.colors.$carrot500};
   animation: 300ms ${fadeIn} 250ms forwards;
 `
 const Bottom = styled.div`
@@ -144,8 +145,8 @@ const Bottom = styled.div`
 
   .karrot-button {
     ${buttonStyle};
-    background: ${({ theme }) => theme.colors.carrot500};
-    color: #fff;
+    background: ${({ theme }) => theme.colors.$carrot500};
+    background: ${({ theme }) => theme.colors.$white};
     box-shadow: 0 0.25rem 0.625rem rgba(255, 138, 61, 0.4);
     margin: 0 0 1rem;
     animation: 300ms ${fadeIn} 150ms forwards;

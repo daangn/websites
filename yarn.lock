@@ -1173,11 +1173,6 @@
   dependencies:
     core-js "^3.9.1"
 
-"@daangn/emotion-react-theme@^0.3.0":
-  version "0.3.0"
-  resolved "https://npm.pkg.github.com/download/@daangn/emotion-react-theme/0.3.0/8a3f48789c67b3ab6a7d7a1f1d31ee2efe2497f8cb469766c91212dadc2c576e#632efd3eeaac8f903995a53e62c3953d24a898b3"
-  integrity sha512-/K5OH51/+NjOCumgQoAXOIN0Et7m0TIW35L10nEIBNoDCmrBuHaNFswNDL9KVMsMzVIzoi8zg1eAoJat0+TKfg==
-
 "@daangn/eslint-config-karrot@^2.0.2":
   version "2.0.2"
   resolved "https://npm.pkg.github.com/download/@daangn/eslint-config-karrot/2.0.2/e45d5427068c9468533ccbcc89c452ad8470e1d92ce1aa3c72d216f95bc9fa9c#759a6609288c09b4f097104b3227166bed6ebaa0"
@@ -2031,10 +2026,25 @@
     "@babel/runtime" "^7.7.2"
     regenerator-runtime "^0.13.3"
 
+"@karrotmarket/design-token@0.1.8-0":
+  version "0.1.8-0"
+  resolved "https://registry.yarnpkg.com/@karrotmarket/design-token/-/design-token-0.1.8-0.tgz#861db2f4ed298291e6712b6e3263c61067932638"
+  integrity sha512-cK43lN8jlozeoCUm7gVEPZv/OKfWMZTXrfPk0bLC1OBvo5J4TijGELa7sca8DJ6CAV3kcrIblirD2omKrwy1OQ==
+  dependencies:
+    core-js "^3.9.1"
+
 "@karrotmarket/design-token@0.1.8-1":
   version "0.1.8-1"
   resolved "https://registry.yarnpkg.com/@karrotmarket/design-token/-/design-token-0.1.8-1.tgz#ed7eb68f9629bed62eda551c56b8deb5b4544f3f"
   integrity sha512-YMxUgUOcmwWdM58sCRDXP5Qqdo4VaBkaZpHe7SFgici1wU70NDNLPIv32nAGRasQ77Bjcm71uJEkFbddGKjDbw==
+
+"@karrotmarket/react-emotion-theme@^0.3.1-0":
+  version "0.3.1-0"
+  resolved "https://registry.yarnpkg.com/@karrotmarket/react-emotion-theme/-/react-emotion-theme-0.3.1-0.tgz#84a86c4152082ff7a6bb50eb09e8578d9758daa9"
+  integrity sha512-g7kWnHYCBlrb0yxvne4lJjm7Y6j/l5nbZihF7DpuPhJEca50wXyXw9J5X998hC8If6fF7EcVUkoIz/W+SaT7AQ==
+  dependencies:
+    "@karrotmarket/design-token" "0.1.8-0"
+    use-dark-mode "^2.3.1"
 
 "@karrotmarket/react-stitches@^0.1.1-0":
   version "0.1.1-0"
@@ -2862,6 +2872,11 @@
   dependencies:
     "@typescript-eslint/types" "4.26.0"
     eslint-visitor-keys "^2.0.0"
+
+"@use-it/event-listener@^0.1.2":
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/@use-it/event-listener/-/event-listener-0.1.6.tgz#5776274fec72f3f25af9ead1898e7f45bc435812"
+  integrity sha512-e6V7vbU8xpuqy4GZkTLExHffOFgxmGHo3kNWnlhzM/zcX2v+idbD/HaJ9sKdQMgTh+L7MIhdRDXGX3SdAViZzA==
 
 "@webassemblyjs/ast@1.11.0":
   version "1.11.0"
@@ -7198,6 +7213,14 @@ gatsby-plugin-typescript@^3.6.0:
     "@babel/preset-typescript" "^7.12.1"
     "@babel/runtime" "^7.12.5"
     babel-plugin-remove-graphql-queries "^3.6.0"
+
+gatsby-plugin-use-dark-mode@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-use-dark-mode/-/gatsby-plugin-use-dark-mode-1.3.0.tgz#995ab84e3b867fe94797b7b1c081e90c7c12c8dc"
+  integrity sha512-AdUlgzZV9kzTdff2LUEfeyWhQhD45qXFVat6jcAW9EeZXS2266GUiz1ihbX8rzJ32vDRJocJHCsxp5ee9w3M5A==
+  dependencies:
+    prop-types "^15.7.2"
+    terser "^4.0.0"
 
 gatsby-plugin-utils@^1.6.0:
   version "1.6.0"
@@ -12047,7 +12070,7 @@ react-device-detect@^1.17.0:
   dependencies:
     ua-parser-js "^0.7.24"
 
-react-dom@0.0.0-experimental-44cdfd6b7, react-dom@experimental:
+react-dom@experimental:
   version "0.0.0-experimental-44cdfd6b7"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-0.0.0-experimental-44cdfd6b7.tgz#80a6db85965ef7f2276ec20de9b6f5730d3a31ad"
   integrity sha512-Fkw2672/ie+2PVJt1DDUtpDRg9Y0oIeX2R02bkNYbxEd892sXNqSbjeXZcUf5zkVoFd+7Ftc0fc7GebWEUOgDw==
@@ -12137,7 +12160,7 @@ react-style-singleton@^2.1.0:
     invariant "^2.2.4"
     tslib "^1.0.0"
 
-react@0.0.0-experimental-44cdfd6b7, react@experimental:
+react@experimental:
   version "0.0.0-experimental-44cdfd6b7"
   resolved "https://registry.yarnpkg.com/react/-/react-0.0.0-experimental-44cdfd6b7.tgz#109d703b3cba8b7d5f9fde20f40c218f7cd703ec"
   integrity sha512-ymgM8UVLUMcTNE9l7s6gsGzL9bgG58W4Ftv6GBd1a4gX/2QB3eXFTc8sMTWk9kDixVNT1P4uIVYE6++DTwvndw==
@@ -13208,7 +13231,7 @@ source-map-resolve@^0.5.0:
     source-map-url "^0.4.0"
     urix "^0.1.0"
 
-source-map-support@^0.5.17, source-map-support@^0.5.19, source-map-support@~0.5.19:
+source-map-support@^0.5.17, source-map-support@^0.5.19, source-map-support@~0.5.12, source-map-support@~0.5.19:
   version "0.5.19"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.19.tgz#a98b62f86dcaf4f67399648c085291ab9e8fed61"
   integrity sha512-Wonm7zOCIJzBGQdB+thsPar0kYuCIzYvxZwlBa87yi/Mdjv7Tip2cyVbLj5o0cFPN4EVkuTwb3GDDyUx2DGnGw==
@@ -13853,6 +13876,15 @@ terser-webpack-plugin@^5.1.1:
     serialize-javascript "^5.0.1"
     source-map "^0.6.1"
     terser "^5.7.0"
+
+terser@^4.0.0:
+  version "4.8.0"
+  resolved "https://registry.yarnpkg.com/terser/-/terser-4.8.0.tgz#63056343d7c70bb29f3af665865a46fe03a0df17"
+  integrity sha512-EAPipTNeWsb/3wLPeup1tVPaXfIaU68xMnVdPafIL1TV05OhASArYyIfFvnvJCNrR2NIOvDVNNTFRa+Re2MWyw==
+  dependencies:
+    commander "^2.20.0"
+    source-map "~0.6.1"
+    source-map-support "~0.5.12"
 
 terser@^5.7.0:
   version "5.7.0"
@@ -14561,6 +14593,21 @@ use-callback-ref@^1.2.1, use-callback-ref@^1.2.3:
   resolved "https://registry.yarnpkg.com/use-callback-ref/-/use-callback-ref-1.2.5.tgz#6115ed242cfbaed5915499c0a9842ca2912f38a5"
   integrity sha512-gN3vgMISAgacF7sqsLPByqoePooY3n2emTH59Ur5d/M8eg4WTWu1xp8i8DHjohftIyEx0S08RiYxbffr4j8Peg==
 
+use-dark-mode@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/use-dark-mode/-/use-dark-mode-2.3.1.tgz#d506349c7b7e09e9977cb8a6ab4470896aa3779a"
+  integrity sha512-hmcdJR96tTustRQdaQwe6jMrZHnmPqXBxgy4jaQ4gsfhwajsCpjECuq9prgDe9XxMx/f9r96o2/md6O4Lwhwjg==
+  dependencies:
+    "@use-it/event-listener" "^0.1.2"
+    use-persisted-state "^0.3.0"
+
+use-persisted-state@^0.3.0:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/use-persisted-state/-/use-persisted-state-0.3.3.tgz#5e0f2236967cec7c34de33abc07ae6818e7c7451"
+  integrity sha512-pCNlvYC8+XjRxwnIut4teGC9f2p9aD88R8OGseQGZa2dvqG/h1vEGk1vRE1IZG0Vf161UDpn+NlW4+UGubQflQ==
+  dependencies:
+    "@use-it/event-listener" "^0.1.2"
+
 use-sidecar@^1.0.1:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/use-sidecar/-/use-sidecar-1.0.5.tgz#ffff2a17c1df42e348624b699ba6e5c220527f2b"
@@ -14824,7 +14871,7 @@ webpack-virtual-modules@^0.3.2:
   dependencies:
     debug "^3.0.0"
 
-webpack@5.36.2, webpack@^5.35.0, webpack@^5.36.2:
+webpack@^5.35.0, webpack@^5.36.2:
   version "5.36.2"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.36.2.tgz#6ef1fb2453ad52faa61e78d486d353d07cca8a0f"
   integrity sha512-XJumVnnGoH2dV+Pk1VwgY4YT6AiMKpVoudUFCNOXMIVrEKPUgEwdIfWPjIuGLESAiS8EdIHX5+TiJz/5JccmRg==

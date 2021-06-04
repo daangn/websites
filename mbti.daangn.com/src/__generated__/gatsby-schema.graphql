@@ -356,8 +356,10 @@ type SiteSiteMetadata {
 }
 
 type SiteFunction implements Node {
-  apiRoute: String!
-  originalFilePath: String!
+  functionRoute: String!
+  pluginName: String!
+  originalAbsoluteFilePath: String!
+  originalRelativeFilePath: String!
   relativeCompiledFilePath: String!
   absoluteCompiledFilePath: String!
   matchPath: String
@@ -1708,23 +1710,15 @@ type PrismicImageThumbnailType implements PrismicImageInterface {
 
 # A text field with formatting options.
 type PrismicStructuredTextType {
-  # The HTML value of the text using `prismic-dom` and the HTML serializer.
-  html: String
-
-  # The plain text value of the text using `prismic-dom`.
-  text: String
-
-  # The field's value without transformations exactly as it comes from the Prismic API.
-  raw: JSON
+  html: String!
+  text: String!
+  raw: JSON!
 }
 
 # A field for storing geo-coordinates.
 type PrismicGeoPointType {
-  # The latitude value of the geo-coordinate.
-  latitude: Float
-
-  # The longitude value of the geo-coordinate.
-  longitude: Float
+  latitude: Float!
+  longitude: Float!
 }
 
 # Embed videos, songs, tweets, slices, etc.
@@ -1818,9 +1812,7 @@ enum PrismicLinkTypes {
 type PrismicLinkType {
   # The type of link.
   link_type: PrismicLinkTypes!
-
-  # If a Document link, `true` if linked document does not exist, `false` otherwise.
-  isBroken: Boolean
+  isBroken: Boolean!
 
   # The document's URL derived via the link resolver.
   url: String
@@ -1860,6 +1852,122 @@ type SiteMetadata {
   siteUrl: String!
   siteName: String!
   shortName: String
+}
+
+type PrismicTermsAndConditions implements Node {
+  id: ID!
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
+  uid: String
+  type: String
+  href: String
+  tags: [String]
+  first_publication_date(
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date
+  last_publication_date(
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date
+  slugs: [String]
+  lang: String
+  data: PrismicTermsAndConditionsData
+  prismicId: String
+  dataString: String
+  dataRaw: PrismicTermsAndConditionsDataRaw
+  _previewable: String
+}
+
+type PrismicTermsAndConditionsData {
+  description: String
+  revision_date(
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date
+  content: [PrismicTermsAndConditionsDataContent]
+}
+
+type PrismicTermsAndConditionsDataContent {
+  type: String
+  text: String
+  spans: [PrismicTermsAndConditionsDataContentSpans]
+}
+
+type PrismicTermsAndConditionsDataContentSpans {
+  start: Int
+  end: Int
+  type: String
+  data: PrismicTermsAndConditionsDataContentSpansData
+}
+
+type PrismicTermsAndConditionsDataContentSpansData {
+  link_type: String
+  url: String
+}
+
+type PrismicTermsAndConditionsDataRaw {
+  description: String
+  revision_date(
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date
+  content: [PrismicTermsAndConditionsDataRawContent]
+}
+
+type PrismicTermsAndConditionsDataRawContent {
+  type: String
+  text: String
+  spans: [PrismicTermsAndConditionsDataRawContentSpans]
+}
+
+type PrismicTermsAndConditionsDataRawContentSpans {
+  start: Int
+  end: Int
+  type: String
+  data: PrismicTermsAndConditionsDataRawContentSpansData
+}
+
+type PrismicTermsAndConditionsDataRawContentSpansData {
+  link_type: String
+  url: String
 }
 
 type PrismicFaq implements Node {
@@ -2005,19 +2113,12 @@ type PrismicSiteNavigation implements Node {
 }
 
 type PrismicSiteNavigationData {
-  canonical_link: PrismicSiteNavigationDataCanonical_link
   header_entries: [PrismicSiteNavigationDataHeader_entries]
-  footer_entries: [PrismicSiteNavigationDataFooter_entries]
-  social_entries: [PrismicSiteNavigationDataSocial_entries]
-}
-
-type PrismicSiteNavigationDataCanonical_link {
-  link_type: String
-  url: String
+  sns_profiles: [PrismicSiteNavigationDataSns_profiles]
 }
 
 type PrismicSiteNavigationDataHeader_entries {
-  display_name: String
+  display_text: String
   link: PrismicSiteNavigationDataHeader_entriesLink
 }
 
@@ -2026,40 +2127,23 @@ type PrismicSiteNavigationDataHeader_entriesLink {
   url: String
 }
 
-type PrismicSiteNavigationDataFooter_entries {
-  display_name: String
-  link: PrismicSiteNavigationDataFooter_entriesLink
+type PrismicSiteNavigationDataSns_profiles {
+  service: String
+  link: PrismicSiteNavigationDataSns_profilesLink
 }
 
-type PrismicSiteNavigationDataFooter_entriesLink {
-  link_type: String
-  url: String
-}
-
-type PrismicSiteNavigationDataSocial_entries {
-  social_type: String
-  link: PrismicSiteNavigationDataSocial_entriesLink
-}
-
-type PrismicSiteNavigationDataSocial_entriesLink {
+type PrismicSiteNavigationDataSns_profilesLink {
   link_type: String
   url: String
 }
 
 type PrismicSiteNavigationDataRaw {
-  canonical_link: PrismicSiteNavigationDataRawCanonical_link
   header_entries: [PrismicSiteNavigationDataRawHeader_entries]
-  footer_entries: [PrismicSiteNavigationDataRawFooter_entries]
-  social_entries: [PrismicSiteNavigationDataRawSocial_entries]
-}
-
-type PrismicSiteNavigationDataRawCanonical_link {
-  link_type: String
-  url: String
+  sns_profiles: [PrismicSiteNavigationDataRawSns_profiles]
 }
 
 type PrismicSiteNavigationDataRawHeader_entries {
-  display_name: String
+  display_text: String
   link: PrismicSiteNavigationDataRawHeader_entriesLink
 }
 
@@ -2068,32 +2152,21 @@ type PrismicSiteNavigationDataRawHeader_entriesLink {
   url: String
 }
 
-type PrismicSiteNavigationDataRawFooter_entries {
-  display_name: String
-  link: PrismicSiteNavigationDataRawFooter_entriesLink
+type PrismicSiteNavigationDataRawSns_profiles {
+  service: String
+  link: PrismicSiteNavigationDataRawSns_profilesLink
 }
 
-type PrismicSiteNavigationDataRawFooter_entriesLink {
+type PrismicSiteNavigationDataRawSns_profilesLink {
   link_type: String
   url: String
 }
 
-type PrismicSiteNavigationDataRawSocial_entries {
-  social_type: String
-  link: PrismicSiteNavigationDataRawSocial_entriesLink
-}
-
-type PrismicSiteNavigationDataRawSocial_entriesLink {
-  link_type: String
-  url: String
-}
-
-type PrismicTermsAndConditions implements Node {
+type PrismicGlobalContents implements Node {
   id: ID!
   parent: Node
   children: [Node!]!
   internal: Internal!
-  uid: String
   type: String
   href: String
   tags: [String]
@@ -2125,16 +2198,193 @@ type PrismicTermsAndConditions implements Node {
   ): Date
   slugs: [String]
   lang: String
-  data: PrismicTermsAndConditionsData
+  alternate_languages: [PrismicGlobalContentsAlternate_languages]
+  data: PrismicGlobalContentsData
   prismicId: String
   dataString: String
-  dataRaw: PrismicTermsAndConditionsDataRaw
+  dataRaw: PrismicGlobalContentsDataRaw
   _previewable: String
 }
 
-type PrismicTermsAndConditionsData {
-  description: String
-  revision_date(
+type PrismicGlobalContentsAlternate_languages {
+  id: String
+  type: String
+  lang: String
+}
+
+type PrismicGlobalContentsData {
+  main_page_title: String
+  main_page_description: String
+  main_opengraph_image_link: String
+  google_play_link: String
+  app_store_link: String
+  popular_items_api: String
+  body: [PrismicGlobalContentsDataBody]
+  about_page_title: String
+  about_page_description: String
+  about_opengraph_image_link: String
+  about_title: [PrismicGlobalContentsDataAbout_title]
+  about_background_image: PrismicGlobalContentsDataAbout_background_image
+  body1: [PrismicGlobalContentsDataBody1]
+}
+
+type PrismicGlobalContentsDataBody {
+  slice_type: String
+  items: [PrismicGlobalContentsDataBodyItems]
+  primary: PrismicGlobalContentsDataBodyPrimary
+}
+
+type PrismicGlobalContentsDataBodyItems {
+  icon: String
+  text: String
+  user_name: String
+  user_region: String
+  content: [PrismicGlobalContentsDataBodyItemsContent]
+  text_highlight_color: String
+}
+
+type PrismicGlobalContentsDataBodyItemsContent {
+  type: String
+  text: String
+  spans: [PrismicGlobalContentsDataBodyItemsContentSpans]
+}
+
+type PrismicGlobalContentsDataBodyItemsContentSpans {
+  start: Int
+  end: Int
+  type: String
+}
+
+type PrismicGlobalContentsDataBodyPrimary {
+  title: [PrismicGlobalContentsDataBodyPrimaryTitle]
+  background_image: PrismicGlobalContentsDataBodyPrimaryBackground_image
+  side_image: PrismicGlobalContentsDataBodyPrimarySide_image
+  more_button: String
+  top_icon: String
+  top_text: [PrismicGlobalContentsDataBodyPrimaryTop_text]
+  text: [PrismicGlobalContentsDataBodyPrimaryText]
+  background_color: String
+  text_highlight_color: String
+  phone_mockup_component: String
+  text_on_right: Boolean
+  image: PrismicGlobalContentsDataBodyPrimaryImage
+}
+
+type PrismicGlobalContentsDataBodyPrimaryTitle {
+  type: String
+  text: String
+}
+
+type PrismicGlobalContentsDataBodyPrimaryBackground_image {
+  dimensions: PrismicGlobalContentsDataBodyPrimaryBackground_imageDimensions
+  alt: String
+  url: String
+}
+
+type PrismicGlobalContentsDataBodyPrimaryBackground_imageDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicGlobalContentsDataBodyPrimarySide_image {
+  dimensions: PrismicGlobalContentsDataBodyPrimarySide_imageDimensions
+  alt: String
+  url: String
+  mobile: PrismicGlobalContentsDataBodyPrimarySide_imageMobile
+}
+
+type PrismicGlobalContentsDataBodyPrimarySide_imageDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicGlobalContentsDataBodyPrimarySide_imageMobile {
+  dimensions: PrismicGlobalContentsDataBodyPrimarySide_imageMobileDimensions
+  url: String
+}
+
+type PrismicGlobalContentsDataBodyPrimarySide_imageMobileDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicGlobalContentsDataBodyPrimaryTop_text {
+  type: String
+  text: String
+}
+
+type PrismicGlobalContentsDataBodyPrimaryText {
+  type: String
+  text: String
+  spans: [PrismicGlobalContentsDataBodyPrimaryTextSpans]
+}
+
+type PrismicGlobalContentsDataBodyPrimaryTextSpans {
+  start: Int
+  end: Int
+  type: String
+}
+
+type PrismicGlobalContentsDataBodyPrimaryImage {
+  dimensions: PrismicGlobalContentsDataBodyPrimaryImageDimensions
+  alt: String
+  url: String
+  mobile: PrismicGlobalContentsDataBodyPrimaryImageMobile
+  test: PrismicGlobalContentsDataBodyPrimaryImageTest
+}
+
+type PrismicGlobalContentsDataBodyPrimaryImageDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicGlobalContentsDataBodyPrimaryImageMobile {
+  dimensions: PrismicGlobalContentsDataBodyPrimaryImageMobileDimensions
+  url: String
+}
+
+type PrismicGlobalContentsDataBodyPrimaryImageMobileDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicGlobalContentsDataBodyPrimaryImageTest {
+  dimensions: PrismicGlobalContentsDataBodyPrimaryImageTestDimensions
+  url: String
+}
+
+type PrismicGlobalContentsDataBodyPrimaryImageTestDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicGlobalContentsDataAbout_title {
+  type: String
+  text: String
+}
+
+type PrismicGlobalContentsDataAbout_background_image {
+  dimensions: PrismicGlobalContentsDataAbout_background_imageDimensions
+  alt: String
+  url: String
+}
+
+type PrismicGlobalContentsDataAbout_background_imageDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicGlobalContentsDataBody1 {
+  slice_type: String
+  items: [PrismicGlobalContentsDataBody1Items]
+  primary: PrismicGlobalContentsDataBody1Primary
+}
+
+type PrismicGlobalContentsDataBody1Items {
+  image: PrismicGlobalContentsDataBody1ItemsImage
+  text: String
+  link: PrismicGlobalContentsDataBody1ItemsLink
+  date(
     # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
     formatString: String
 
@@ -2147,30 +2397,247 @@ type PrismicTermsAndConditionsData {
     # Configures the locale Moment.js will use to format the date.
     locale: String
   ): Date
-  content: [PrismicTermsAndConditionsDataContent]
 }
 
-type PrismicTermsAndConditionsDataContent {
-  type: String
-  text: String
-  spans: [PrismicTermsAndConditionsDataContentSpans]
+type PrismicGlobalContentsDataBody1ItemsImage {
+  dimensions: PrismicGlobalContentsDataBody1ItemsImageDimensions
+  alt: String
+  url: String
+  media: PrismicGlobalContentsDataBody1ItemsImageMedia
+  mobile: PrismicGlobalContentsDataBody1ItemsImageMobile
 }
 
-type PrismicTermsAndConditionsDataContentSpans {
-  start: Int
-  end: Int
-  type: String
-  data: PrismicTermsAndConditionsDataContentSpansData
+type PrismicGlobalContentsDataBody1ItemsImageDimensions {
+  width: Int
+  height: Int
 }
 
-type PrismicTermsAndConditionsDataContentSpansData {
+type PrismicGlobalContentsDataBody1ItemsImageMedia {
+  dimensions: PrismicGlobalContentsDataBody1ItemsImageMediaDimensions
+  url: String
+}
+
+type PrismicGlobalContentsDataBody1ItemsImageMediaDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicGlobalContentsDataBody1ItemsImageMobile {
+  dimensions: PrismicGlobalContentsDataBody1ItemsImageMobileDimensions
+  url: String
+}
+
+type PrismicGlobalContentsDataBody1ItemsImageMobileDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicGlobalContentsDataBody1ItemsLink {
   link_type: String
   url: String
 }
 
-type PrismicTermsAndConditionsDataRaw {
-  description: String
-  revision_date(
+type PrismicGlobalContentsDataBody1Primary {
+  subtitle: [PrismicGlobalContentsDataBody1PrimarySubtitle]
+  text: [PrismicGlobalContentsDataBody1PrimaryText]
+}
+
+type PrismicGlobalContentsDataBody1PrimarySubtitle {
+  type: String
+  text: String
+}
+
+type PrismicGlobalContentsDataBody1PrimaryText {
+  type: String
+  text: String
+  spans: [PrismicGlobalContentsDataBody1PrimaryTextSpans]
+}
+
+type PrismicGlobalContentsDataBody1PrimaryTextSpans {
+  start: Int
+  end: Int
+  type: String
+  data: PrismicGlobalContentsDataBody1PrimaryTextSpansData
+}
+
+type PrismicGlobalContentsDataBody1PrimaryTextSpansData {
+  link_type: String
+  url: String
+}
+
+type PrismicGlobalContentsDataRaw {
+  main_page_title: String
+  main_page_description: String
+  main_opengraph_image_link: String
+  google_play_link: String
+  app_store_link: String
+  popular_items_api: String
+  body: [PrismicGlobalContentsDataRawBody]
+  about_page_title: String
+  about_page_description: String
+  about_opengraph_image_link: String
+  about_title: [PrismicGlobalContentsDataRawAbout_title]
+  about_background_image: PrismicGlobalContentsDataRawAbout_background_image
+  body1: [PrismicGlobalContentsDataRawBody1]
+}
+
+type PrismicGlobalContentsDataRawBody {
+  slice_type: String
+  items: [PrismicGlobalContentsDataRawBodyItems]
+  primary: PrismicGlobalContentsDataRawBodyPrimary
+}
+
+type PrismicGlobalContentsDataRawBodyItems {
+  icon: String
+  text: String
+  user_name: String
+  user_region: String
+  content: [PrismicGlobalContentsDataRawBodyItemsContent]
+  text_highlight_color: String
+}
+
+type PrismicGlobalContentsDataRawBodyItemsContent {
+  type: String
+  text: String
+  spans: [PrismicGlobalContentsDataRawBodyItemsContentSpans]
+}
+
+type PrismicGlobalContentsDataRawBodyItemsContentSpans {
+  start: Int
+  end: Int
+  type: String
+}
+
+type PrismicGlobalContentsDataRawBodyPrimary {
+  title: [PrismicGlobalContentsDataRawBodyPrimaryTitle]
+  background_image: PrismicGlobalContentsDataRawBodyPrimaryBackground_image
+  side_image: PrismicGlobalContentsDataRawBodyPrimarySide_image
+  more_button: String
+  top_icon: String
+  top_text: [PrismicGlobalContentsDataRawBodyPrimaryTop_text]
+  text: [PrismicGlobalContentsDataRawBodyPrimaryText]
+  background_color: String
+  text_highlight_color: String
+  phone_mockup_component: String
+  text_on_right: Boolean
+  image: PrismicGlobalContentsDataRawBodyPrimaryImage
+}
+
+type PrismicGlobalContentsDataRawBodyPrimaryTitle {
+  type: String
+  text: String
+}
+
+type PrismicGlobalContentsDataRawBodyPrimaryBackground_image {
+  dimensions: PrismicGlobalContentsDataRawBodyPrimaryBackground_imageDimensions
+  alt: String
+  url: String
+}
+
+type PrismicGlobalContentsDataRawBodyPrimaryBackground_imageDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicGlobalContentsDataRawBodyPrimarySide_image {
+  dimensions: PrismicGlobalContentsDataRawBodyPrimarySide_imageDimensions
+  alt: String
+  url: String
+  mobile: PrismicGlobalContentsDataRawBodyPrimarySide_imageMobile
+}
+
+type PrismicGlobalContentsDataRawBodyPrimarySide_imageDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicGlobalContentsDataRawBodyPrimarySide_imageMobile {
+  dimensions: PrismicGlobalContentsDataRawBodyPrimarySide_imageMobileDimensions
+  url: String
+}
+
+type PrismicGlobalContentsDataRawBodyPrimarySide_imageMobileDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicGlobalContentsDataRawBodyPrimaryTop_text {
+  type: String
+  text: String
+}
+
+type PrismicGlobalContentsDataRawBodyPrimaryText {
+  type: String
+  text: String
+  spans: [PrismicGlobalContentsDataRawBodyPrimaryTextSpans]
+}
+
+type PrismicGlobalContentsDataRawBodyPrimaryTextSpans {
+  start: Int
+  end: Int
+  type: String
+}
+
+type PrismicGlobalContentsDataRawBodyPrimaryImage {
+  dimensions: PrismicGlobalContentsDataRawBodyPrimaryImageDimensions
+  alt: String
+  url: String
+  mobile: PrismicGlobalContentsDataRawBodyPrimaryImageMobile
+  test: PrismicGlobalContentsDataRawBodyPrimaryImageTest
+}
+
+type PrismicGlobalContentsDataRawBodyPrimaryImageDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicGlobalContentsDataRawBodyPrimaryImageMobile {
+  dimensions: PrismicGlobalContentsDataRawBodyPrimaryImageMobileDimensions
+  url: String
+}
+
+type PrismicGlobalContentsDataRawBodyPrimaryImageMobileDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicGlobalContentsDataRawBodyPrimaryImageTest {
+  dimensions: PrismicGlobalContentsDataRawBodyPrimaryImageTestDimensions
+  url: String
+}
+
+type PrismicGlobalContentsDataRawBodyPrimaryImageTestDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicGlobalContentsDataRawAbout_title {
+  type: String
+  text: String
+}
+
+type PrismicGlobalContentsDataRawAbout_background_image {
+  dimensions: PrismicGlobalContentsDataRawAbout_background_imageDimensions
+  alt: String
+  url: String
+}
+
+type PrismicGlobalContentsDataRawAbout_background_imageDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicGlobalContentsDataRawBody1 {
+  slice_type: String
+  items: [PrismicGlobalContentsDataRawBody1Items]
+  primary: PrismicGlobalContentsDataRawBody1Primary
+}
+
+type PrismicGlobalContentsDataRawBody1Items {
+  image: PrismicGlobalContentsDataRawBody1ItemsImage
+  text: String
+  link: PrismicGlobalContentsDataRawBody1ItemsLink
+  date(
     # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
     formatString: String
 
@@ -2183,25 +2650,535 @@ type PrismicTermsAndConditionsDataRaw {
     # Configures the locale Moment.js will use to format the date.
     locale: String
   ): Date
-  content: [PrismicTermsAndConditionsDataRawContent]
 }
 
-type PrismicTermsAndConditionsDataRawContent {
+type PrismicGlobalContentsDataRawBody1ItemsImage {
+  dimensions: PrismicGlobalContentsDataRawBody1ItemsImageDimensions
+  alt: String
+  url: String
+  media: PrismicGlobalContentsDataRawBody1ItemsImageMedia
+  mobile: PrismicGlobalContentsDataRawBody1ItemsImageMobile
+}
+
+type PrismicGlobalContentsDataRawBody1ItemsImageDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicGlobalContentsDataRawBody1ItemsImageMedia {
+  dimensions: PrismicGlobalContentsDataRawBody1ItemsImageMediaDimensions
+  url: String
+}
+
+type PrismicGlobalContentsDataRawBody1ItemsImageMediaDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicGlobalContentsDataRawBody1ItemsImageMobile {
+  dimensions: PrismicGlobalContentsDataRawBody1ItemsImageMobileDimensions
+  url: String
+}
+
+type PrismicGlobalContentsDataRawBody1ItemsImageMobileDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicGlobalContentsDataRawBody1ItemsLink {
+  link_type: String
+  url: String
+}
+
+type PrismicGlobalContentsDataRawBody1Primary {
+  subtitle: [PrismicGlobalContentsDataRawBody1PrimarySubtitle]
+  text: [PrismicGlobalContentsDataRawBody1PrimaryText]
+}
+
+type PrismicGlobalContentsDataRawBody1PrimarySubtitle {
   type: String
   text: String
-  spans: [PrismicTermsAndConditionsDataRawContentSpans]
 }
 
-type PrismicTermsAndConditionsDataRawContentSpans {
+type PrismicGlobalContentsDataRawBody1PrimaryText {
+  type: String
+  text: String
+  spans: [PrismicGlobalContentsDataRawBody1PrimaryTextSpans]
+}
+
+type PrismicGlobalContentsDataRawBody1PrimaryTextSpans {
   start: Int
   end: Int
   type: String
-  data: PrismicTermsAndConditionsDataRawContentSpansData
+  data: PrismicGlobalContentsDataRawBody1PrimaryTextSpansData
 }
 
-type PrismicTermsAndConditionsDataRawContentSpansData {
+type PrismicGlobalContentsDataRawBody1PrimaryTextSpansData {
   link_type: String
   url: String
+}
+
+type PrismicTeamContents implements Node {
+  id: ID!
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
+  type: String
+  href: String
+  tags: [String]
+  first_publication_date(
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date
+  last_publication_date(
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date
+  slugs: [String]
+  lang: String
+  data: PrismicTeamContentsData
+  prismicId: String
+  dataString: String
+  dataRaw: PrismicTeamContentsDataRaw
+  _previewable: String
+}
+
+type PrismicTeamContentsData {
+  main_page_title: [PrismicTeamContentsDataMain_page_title]
+  main_body: [PrismicTeamContentsDataMain_body]
+  culture_page_title: [PrismicTeamContentsDataCulture_page_title]
+  culture_body: [PrismicTeamContentsDataCulture_body]
+  life_page_title: [PrismicTeamContentsDataLife_page_title]
+  life_body: [PrismicTeamContentsDataLife_body]
+}
+
+type PrismicTeamContentsDataMain_page_title {
+  type: String
+  text: String
+}
+
+type PrismicTeamContentsDataMain_body {
+  slice_type: String
+  items: [PrismicTeamContentsDataMain_bodyItems]
+  primary: PrismicTeamContentsDataMain_bodyPrimary
+}
+
+type PrismicTeamContentsDataMain_bodyItems {
+  image: PrismicTeamContentsDataMain_bodyItemsImage
+  quote: String
+  who: String
+}
+
+type PrismicTeamContentsDataMain_bodyItemsImage {
+  dimensions: PrismicTeamContentsDataMain_bodyItemsImageDimensions
+  url: String
+}
+
+type PrismicTeamContentsDataMain_bodyItemsImageDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicTeamContentsDataMain_bodyPrimary {
+  key_visual_image: PrismicTeamContentsDataMain_bodyPrimaryKey_visual_image
+  expanded: Boolean
+  description: [PrismicTeamContentsDataMain_bodyPrimaryDescription]
+  key_text: String
+  title: [PrismicTeamContentsDataMain_bodyPrimaryTitle]
+  inverted: Boolean
+  link: PrismicTeamContentsDataMain_bodyPrimaryLink
+  link_text: String
+  illustration: PrismicTeamContentsDataMain_bodyPrimaryIllustration
+  thumbnail: PrismicTeamContentsDataMain_bodyPrimaryThumbnail
+  background_color: String
+}
+
+type PrismicTeamContentsDataMain_bodyPrimaryKey_visual_image {
+  dimensions: PrismicTeamContentsDataMain_bodyPrimaryKey_visual_imageDimensions
+  url: String
+}
+
+type PrismicTeamContentsDataMain_bodyPrimaryKey_visual_imageDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicTeamContentsDataMain_bodyPrimaryDescription {
+  type: String
+  text: String
+}
+
+type PrismicTeamContentsDataMain_bodyPrimaryTitle {
+  type: String
+  text: String
+}
+
+type PrismicTeamContentsDataMain_bodyPrimaryLink {
+  link_type: String
+  url: String
+}
+
+type PrismicTeamContentsDataMain_bodyPrimaryIllustration {
+  dimensions: PrismicTeamContentsDataMain_bodyPrimaryIllustrationDimensions
+  url: String
+}
+
+type PrismicTeamContentsDataMain_bodyPrimaryIllustrationDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicTeamContentsDataMain_bodyPrimaryThumbnail {
+  dimensions: PrismicTeamContentsDataMain_bodyPrimaryThumbnailDimensions
+  url: String
+}
+
+type PrismicTeamContentsDataMain_bodyPrimaryThumbnailDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicTeamContentsDataCulture_page_title {
+  type: String
+  text: String
+}
+
+type PrismicTeamContentsDataCulture_body {
+  slice_type: String
+  items: [PrismicTeamContentsDataCulture_bodyItems]
+  primary: PrismicTeamContentsDataCulture_bodyPrimary
+}
+
+type PrismicTeamContentsDataCulture_bodyItems {
+  group: String
+  key_text: String
+  description: [PrismicTeamContentsDataCulture_bodyItemsDescription]
+  subtitle: String
+}
+
+type PrismicTeamContentsDataCulture_bodyItemsDescription {
+  type: String
+  text: String
+}
+
+type PrismicTeamContentsDataCulture_bodyPrimary {
+  key_visual_image: PrismicTeamContentsDataCulture_bodyPrimaryKey_visual_image
+  expanded: Boolean
+  description: [PrismicTeamContentsDataCulture_bodyPrimaryDescription]
+  title: [PrismicTeamContentsDataCulture_bodyPrimaryTitle]
+  illustration: PrismicTeamContentsDataCulture_bodyPrimaryIllustration
+  inverted: Boolean
+  link: PrismicTeamContentsDataCulture_bodyPrimaryLink
+  link_text: String
+}
+
+type PrismicTeamContentsDataCulture_bodyPrimaryKey_visual_image {
+  dimensions: PrismicTeamContentsDataCulture_bodyPrimaryKey_visual_imageDimensions
+  url: String
+}
+
+type PrismicTeamContentsDataCulture_bodyPrimaryKey_visual_imageDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicTeamContentsDataCulture_bodyPrimaryDescription {
+  type: String
+  text: String
+}
+
+type PrismicTeamContentsDataCulture_bodyPrimaryTitle {
+  type: String
+  text: String
+}
+
+type PrismicTeamContentsDataCulture_bodyPrimaryIllustration {
+  dimensions: PrismicTeamContentsDataCulture_bodyPrimaryIllustrationDimensions
+  url: String
+}
+
+type PrismicTeamContentsDataCulture_bodyPrimaryIllustrationDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicTeamContentsDataCulture_bodyPrimaryLink {
+  link_type: String
+  url: String
+}
+
+type PrismicTeamContentsDataLife_page_title {
+  type: String
+  text: String
+}
+
+type PrismicTeamContentsDataLife_body {
+  slice_type: String
+  items: [PrismicTeamContentsDataLife_bodyItems]
+  primary: PrismicTeamContentsDataLife_bodyPrimary
+}
+
+type PrismicTeamContentsDataLife_bodyItems {
+  thumbnail_image: PrismicTeamContentsDataLife_bodyItemsThumbnail_image
+  thumbnail_description: [PrismicTeamContentsDataLife_bodyItemsThumbnail_description]
+}
+
+type PrismicTeamContentsDataLife_bodyItemsThumbnail_image {
+  dimensions: PrismicTeamContentsDataLife_bodyItemsThumbnail_imageDimensions
+  url: String
+}
+
+type PrismicTeamContentsDataLife_bodyItemsThumbnail_imageDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicTeamContentsDataLife_bodyItemsThumbnail_description {
+  type: String
+  text: String
+}
+
+type PrismicTeamContentsDataLife_bodyPrimary {
+  title: [PrismicTeamContentsDataLife_bodyPrimaryTitle]
+  body_text: [PrismicTeamContentsDataLife_bodyPrimaryBody_text]
+}
+
+type PrismicTeamContentsDataLife_bodyPrimaryTitle {
+  type: String
+  text: String
+}
+
+type PrismicTeamContentsDataLife_bodyPrimaryBody_text {
+  type: String
+  text: String
+}
+
+type PrismicTeamContentsDataRaw {
+  main_page_title: [PrismicTeamContentsDataRawMain_page_title]
+  main_body: [PrismicTeamContentsDataRawMain_body]
+  culture_page_title: [PrismicTeamContentsDataRawCulture_page_title]
+  culture_body: [PrismicTeamContentsDataRawCulture_body]
+  life_page_title: [PrismicTeamContentsDataRawLife_page_title]
+  life_body: [PrismicTeamContentsDataRawLife_body]
+}
+
+type PrismicTeamContentsDataRawMain_page_title {
+  type: String
+  text: String
+}
+
+type PrismicTeamContentsDataRawMain_body {
+  slice_type: String
+  items: [PrismicTeamContentsDataRawMain_bodyItems]
+  primary: PrismicTeamContentsDataRawMain_bodyPrimary
+}
+
+type PrismicTeamContentsDataRawMain_bodyItems {
+  image: PrismicTeamContentsDataRawMain_bodyItemsImage
+  quote: String
+  who: String
+}
+
+type PrismicTeamContentsDataRawMain_bodyItemsImage {
+  dimensions: PrismicTeamContentsDataRawMain_bodyItemsImageDimensions
+  url: String
+}
+
+type PrismicTeamContentsDataRawMain_bodyItemsImageDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicTeamContentsDataRawMain_bodyPrimary {
+  key_visual_image: PrismicTeamContentsDataRawMain_bodyPrimaryKey_visual_image
+  expanded: Boolean
+  description: [PrismicTeamContentsDataRawMain_bodyPrimaryDescription]
+  key_text: String
+  title: [PrismicTeamContentsDataRawMain_bodyPrimaryTitle]
+  inverted: Boolean
+  link: PrismicTeamContentsDataRawMain_bodyPrimaryLink
+  link_text: String
+  illustration: PrismicTeamContentsDataRawMain_bodyPrimaryIllustration
+  thumbnail: PrismicTeamContentsDataRawMain_bodyPrimaryThumbnail
+  background_color: String
+}
+
+type PrismicTeamContentsDataRawMain_bodyPrimaryKey_visual_image {
+  dimensions: PrismicTeamContentsDataRawMain_bodyPrimaryKey_visual_imageDimensions
+  url: String
+}
+
+type PrismicTeamContentsDataRawMain_bodyPrimaryKey_visual_imageDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicTeamContentsDataRawMain_bodyPrimaryDescription {
+  type: String
+  text: String
+}
+
+type PrismicTeamContentsDataRawMain_bodyPrimaryTitle {
+  type: String
+  text: String
+}
+
+type PrismicTeamContentsDataRawMain_bodyPrimaryLink {
+  link_type: String
+  url: String
+}
+
+type PrismicTeamContentsDataRawMain_bodyPrimaryIllustration {
+  dimensions: PrismicTeamContentsDataRawMain_bodyPrimaryIllustrationDimensions
+  url: String
+}
+
+type PrismicTeamContentsDataRawMain_bodyPrimaryIllustrationDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicTeamContentsDataRawMain_bodyPrimaryThumbnail {
+  dimensions: PrismicTeamContentsDataRawMain_bodyPrimaryThumbnailDimensions
+  url: String
+}
+
+type PrismicTeamContentsDataRawMain_bodyPrimaryThumbnailDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicTeamContentsDataRawCulture_page_title {
+  type: String
+  text: String
+}
+
+type PrismicTeamContentsDataRawCulture_body {
+  slice_type: String
+  items: [PrismicTeamContentsDataRawCulture_bodyItems]
+  primary: PrismicTeamContentsDataRawCulture_bodyPrimary
+}
+
+type PrismicTeamContentsDataRawCulture_bodyItems {
+  group: String
+  key_text: String
+  description: [PrismicTeamContentsDataRawCulture_bodyItemsDescription]
+  subtitle: String
+}
+
+type PrismicTeamContentsDataRawCulture_bodyItemsDescription {
+  type: String
+  text: String
+}
+
+type PrismicTeamContentsDataRawCulture_bodyPrimary {
+  key_visual_image: PrismicTeamContentsDataRawCulture_bodyPrimaryKey_visual_image
+  expanded: Boolean
+  description: [PrismicTeamContentsDataRawCulture_bodyPrimaryDescription]
+  title: [PrismicTeamContentsDataRawCulture_bodyPrimaryTitle]
+  illustration: PrismicTeamContentsDataRawCulture_bodyPrimaryIllustration
+  inverted: Boolean
+  link: PrismicTeamContentsDataRawCulture_bodyPrimaryLink
+  link_text: String
+}
+
+type PrismicTeamContentsDataRawCulture_bodyPrimaryKey_visual_image {
+  dimensions: PrismicTeamContentsDataRawCulture_bodyPrimaryKey_visual_imageDimensions
+  url: String
+}
+
+type PrismicTeamContentsDataRawCulture_bodyPrimaryKey_visual_imageDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicTeamContentsDataRawCulture_bodyPrimaryDescription {
+  type: String
+  text: String
+}
+
+type PrismicTeamContentsDataRawCulture_bodyPrimaryTitle {
+  type: String
+  text: String
+}
+
+type PrismicTeamContentsDataRawCulture_bodyPrimaryIllustration {
+  dimensions: PrismicTeamContentsDataRawCulture_bodyPrimaryIllustrationDimensions
+  url: String
+}
+
+type PrismicTeamContentsDataRawCulture_bodyPrimaryIllustrationDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicTeamContentsDataRawCulture_bodyPrimaryLink {
+  link_type: String
+  url: String
+}
+
+type PrismicTeamContentsDataRawLife_page_title {
+  type: String
+  text: String
+}
+
+type PrismicTeamContentsDataRawLife_body {
+  slice_type: String
+  items: [PrismicTeamContentsDataRawLife_bodyItems]
+  primary: PrismicTeamContentsDataRawLife_bodyPrimary
+}
+
+type PrismicTeamContentsDataRawLife_bodyItems {
+  thumbnail_image: PrismicTeamContentsDataRawLife_bodyItemsThumbnail_image
+  thumbnail_description: [PrismicTeamContentsDataRawLife_bodyItemsThumbnail_description]
+}
+
+type PrismicTeamContentsDataRawLife_bodyItemsThumbnail_image {
+  dimensions: PrismicTeamContentsDataRawLife_bodyItemsThumbnail_imageDimensions
+  url: String
+}
+
+type PrismicTeamContentsDataRawLife_bodyItemsThumbnail_imageDimensions {
+  width: Int
+  height: Int
+}
+
+type PrismicTeamContentsDataRawLife_bodyItemsThumbnail_description {
+  type: String
+  text: String
+}
+
+type PrismicTeamContentsDataRawLife_bodyPrimary {
+  title: [PrismicTeamContentsDataRawLife_bodyPrimaryTitle]
+  body_text: [PrismicTeamContentsDataRawLife_bodyPrimaryBody_text]
+}
+
+type PrismicTeamContentsDataRawLife_bodyPrimaryTitle {
+  type: String
+  text: String
+}
+
+type PrismicTeamContentsDataRawLife_bodyPrimaryBody_text {
+  type: String
+  text: String
 }
 
 type SiteBuildMetadata implements Node {
@@ -2243,10 +3220,8 @@ type SitePlugin implements Node {
 type SitePluginPluginOptions {
   name: String
   path: String
-  id: String
-  defaultDataLayer: SitePluginPluginOptionsDefaultDataLayer
-  includeInDevelopment: Boolean
-  routeChangeEventName: String
+  trackingIds: [String]
+  pluginConfig: SitePluginPluginOptionsPluginConfig
   base64Width: Int
   stripMetadata: Boolean
   defaultQuality: Int
@@ -2272,17 +3247,17 @@ type SitePluginPluginOptions {
   crossOrigin: String
   include_favicon: Boolean
   cacheDigest: String
+  repositoryName: String
+  prismicToolbar: Boolean
+  schemas: SitePluginPluginOptionsSchemas
   pathCheck: Boolean
   allExtensions: Boolean
   isTSX: Boolean
   jsxPragma: String
-  repositoryName: String
-  prismicToolbar: Boolean
-  schemas: SitePluginPluginOptionsSchemas
 }
 
-type SitePluginPluginOptionsDefaultDataLayer {
-  type: String
+type SitePluginPluginOptionsPluginConfig {
+  exclude: [String]
 }
 
 type SitePluginPluginOptionsAliases {
@@ -2798,7 +3773,7 @@ type Query {
   allDirectory(filter: DirectoryFilterInput, sort: DirectorySortInput, skip: Int, limit: Int): DirectoryConnection!
   site(buildTime: DateQueryOperatorInput, siteMetadata: SiteMetadataFilterInput, port: IntQueryOperatorInput, host: StringQueryOperatorInput, flags: SiteFlagsFilterInput, polyfill: BooleanQueryOperatorInput, pathPrefix: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Site
   allSite(filter: SiteFilterInput, sort: SiteSortInput, skip: Int, limit: Int): SiteConnection!
-  siteFunction(apiRoute: StringQueryOperatorInput, originalFilePath: StringQueryOperatorInput, relativeCompiledFilePath: StringQueryOperatorInput, absoluteCompiledFilePath: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SiteFunction
+  siteFunction(functionRoute: StringQueryOperatorInput, pluginName: StringQueryOperatorInput, originalAbsoluteFilePath: StringQueryOperatorInput, originalRelativeFilePath: StringQueryOperatorInput, relativeCompiledFilePath: StringQueryOperatorInput, absoluteCompiledFilePath: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SiteFunction
   allSiteFunction(filter: SiteFunctionFilterInput, sort: SiteFunctionSortInput, skip: Int, limit: Int): SiteFunctionConnection!
   sitePage(path: StringQueryOperatorInput, component: StringQueryOperatorInput, internalComponentName: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, context: SitePageContextFilterInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput): SitePage
   allSitePage(filter: SitePageFilterInput, sort: SitePageSortInput, skip: Int, limit: Int): SitePageConnection!
@@ -2818,12 +3793,16 @@ type Query {
   allPrismicMbtiTestResult(filter: PrismicMbtiTestResultFilterInput, sort: PrismicMbtiTestResultSortInput, skip: Int, limit: Int): PrismicMbtiTestResultConnection!
   prismicMbtiIntro(data: PrismicMbtiIntroDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, dataString: StringQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, url: StringQueryOperatorInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, tags: StringQueryOperatorInput, alternate_languages: PrismicLinkTypeFilterListInput, type: StringQueryOperatorInput, prismicId: IDQueryOperatorInput, _previewable: IDQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): PrismicMbtiIntro
   allPrismicMbtiIntro(filter: PrismicMbtiIntroFilterInput, sort: PrismicMbtiIntroSortInput, skip: Int, limit: Int): PrismicMbtiIntroConnection!
+  prismicTermsAndConditions(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, uid: StringQueryOperatorInput, type: StringQueryOperatorInput, href: StringQueryOperatorInput, tags: StringQueryOperatorInput, first_publication_date: DateQueryOperatorInput, last_publication_date: DateQueryOperatorInput, slugs: StringQueryOperatorInput, lang: StringQueryOperatorInput, data: PrismicTermsAndConditionsDataFilterInput, prismicId: StringQueryOperatorInput, dataString: StringQueryOperatorInput, dataRaw: PrismicTermsAndConditionsDataRawFilterInput, _previewable: StringQueryOperatorInput): PrismicTermsAndConditions
+  allPrismicTermsAndConditions(filter: PrismicTermsAndConditionsFilterInput, sort: PrismicTermsAndConditionsSortInput, skip: Int, limit: Int): PrismicTermsAndConditionsConnection!
   prismicFaq(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, uid: StringQueryOperatorInput, type: StringQueryOperatorInput, href: StringQueryOperatorInput, tags: StringQueryOperatorInput, first_publication_date: DateQueryOperatorInput, last_publication_date: DateQueryOperatorInput, slugs: StringQueryOperatorInput, lang: StringQueryOperatorInput, data: PrismicFaqDataFilterInput, prismicId: StringQueryOperatorInput, dataString: StringQueryOperatorInput, dataRaw: PrismicFaqDataRawFilterInput, _previewable: StringQueryOperatorInput): PrismicFaq
   allPrismicFaq(filter: PrismicFaqFilterInput, sort: PrismicFaqSortInput, skip: Int, limit: Int): PrismicFaqConnection!
   prismicSiteNavigation(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, uid: StringQueryOperatorInput, type: StringQueryOperatorInput, href: StringQueryOperatorInput, tags: StringQueryOperatorInput, first_publication_date: DateQueryOperatorInput, last_publication_date: DateQueryOperatorInput, slugs: StringQueryOperatorInput, lang: StringQueryOperatorInput, data: PrismicSiteNavigationDataFilterInput, prismicId: StringQueryOperatorInput, dataString: StringQueryOperatorInput, dataRaw: PrismicSiteNavigationDataRawFilterInput, _previewable: StringQueryOperatorInput): PrismicSiteNavigation
   allPrismicSiteNavigation(filter: PrismicSiteNavigationFilterInput, sort: PrismicSiteNavigationSortInput, skip: Int, limit: Int): PrismicSiteNavigationConnection!
-  prismicTermsAndConditions(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, uid: StringQueryOperatorInput, type: StringQueryOperatorInput, href: StringQueryOperatorInput, tags: StringQueryOperatorInput, first_publication_date: DateQueryOperatorInput, last_publication_date: DateQueryOperatorInput, slugs: StringQueryOperatorInput, lang: StringQueryOperatorInput, data: PrismicTermsAndConditionsDataFilterInput, prismicId: StringQueryOperatorInput, dataString: StringQueryOperatorInput, dataRaw: PrismicTermsAndConditionsDataRawFilterInput, _previewable: StringQueryOperatorInput): PrismicTermsAndConditions
-  allPrismicTermsAndConditions(filter: PrismicTermsAndConditionsFilterInput, sort: PrismicTermsAndConditionsSortInput, skip: Int, limit: Int): PrismicTermsAndConditionsConnection!
+  prismicGlobalContents(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, type: StringQueryOperatorInput, href: StringQueryOperatorInput, tags: StringQueryOperatorInput, first_publication_date: DateQueryOperatorInput, last_publication_date: DateQueryOperatorInput, slugs: StringQueryOperatorInput, lang: StringQueryOperatorInput, alternate_languages: PrismicGlobalContentsAlternate_languagesFilterListInput, data: PrismicGlobalContentsDataFilterInput, prismicId: StringQueryOperatorInput, dataString: StringQueryOperatorInput, dataRaw: PrismicGlobalContentsDataRawFilterInput, _previewable: StringQueryOperatorInput): PrismicGlobalContents
+  allPrismicGlobalContents(filter: PrismicGlobalContentsFilterInput, sort: PrismicGlobalContentsSortInput, skip: Int, limit: Int): PrismicGlobalContentsConnection!
+  prismicTeamContents(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, type: StringQueryOperatorInput, href: StringQueryOperatorInput, tags: StringQueryOperatorInput, first_publication_date: DateQueryOperatorInput, last_publication_date: DateQueryOperatorInput, slugs: StringQueryOperatorInput, lang: StringQueryOperatorInput, data: PrismicTeamContentsDataFilterInput, prismicId: StringQueryOperatorInput, dataString: StringQueryOperatorInput, dataRaw: PrismicTeamContentsDataRawFilterInput, _previewable: StringQueryOperatorInput): PrismicTeamContents
+  allPrismicTeamContents(filter: PrismicTeamContentsFilterInput, sort: PrismicTeamContentsSortInput, skip: Int, limit: Int): PrismicTeamContentsConnection!
   siteBuildMetadata(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, buildTime: DateQueryOperatorInput): SiteBuildMetadata
   allSiteBuildMetadata(filter: SiteBuildMetadataFilterInput, sort: SiteBuildMetadataSortInput, skip: Int, limit: Int): SiteBuildMetadataConnection!
   sitePlugin(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, resolve: StringQueryOperatorInput, name: StringQueryOperatorInput, version: StringQueryOperatorInput, pluginOptions: SitePluginPluginOptionsFilterInput, nodeAPIs: StringQueryOperatorInput, browserAPIs: StringQueryOperatorInput, ssrAPIs: StringQueryOperatorInput, pluginFilepath: StringQueryOperatorInput, packageJson: SitePluginPackageJsonFilterInput): SitePlugin
@@ -3700,8 +4679,10 @@ type SiteFunctionEdge {
 }
 
 enum SiteFunctionFieldsEnum {
-  apiRoute
-  originalFilePath
+  functionRoute
+  pluginName
+  originalAbsoluteFilePath
+  originalRelativeFilePath
   relativeCompiledFilePath
   absoluteCompiledFilePath
   matchPath
@@ -3803,8 +4784,10 @@ type SiteFunctionGroupConnection {
 }
 
 input SiteFunctionFilterInput {
-  apiRoute: StringQueryOperatorInput
-  originalFilePath: StringQueryOperatorInput
+  functionRoute: StringQueryOperatorInput
+  pluginName: StringQueryOperatorInput
+  originalAbsoluteFilePath: StringQueryOperatorInput
+  originalRelativeFilePath: StringQueryOperatorInput
   relativeCompiledFilePath: StringQueryOperatorInput
   absoluteCompiledFilePath: StringQueryOperatorInput
   matchPath: StringQueryOperatorInput
@@ -3848,10 +4831,8 @@ input SitePluginFilterInput {
 input SitePluginPluginOptionsFilterInput {
   name: StringQueryOperatorInput
   path: StringQueryOperatorInput
-  id: StringQueryOperatorInput
-  defaultDataLayer: SitePluginPluginOptionsDefaultDataLayerFilterInput
-  includeInDevelopment: BooleanQueryOperatorInput
-  routeChangeEventName: StringQueryOperatorInput
+  trackingIds: StringQueryOperatorInput
+  pluginConfig: SitePluginPluginOptionsPluginConfigFilterInput
   base64Width: IntQueryOperatorInput
   stripMetadata: BooleanQueryOperatorInput
   defaultQuality: IntQueryOperatorInput
@@ -3877,17 +4858,17 @@ input SitePluginPluginOptionsFilterInput {
   crossOrigin: StringQueryOperatorInput
   include_favicon: BooleanQueryOperatorInput
   cacheDigest: StringQueryOperatorInput
+  repositoryName: StringQueryOperatorInput
+  prismicToolbar: BooleanQueryOperatorInput
+  schemas: SitePluginPluginOptionsSchemasFilterInput
   pathCheck: BooleanQueryOperatorInput
   allExtensions: BooleanQueryOperatorInput
   isTSX: BooleanQueryOperatorInput
   jsxPragma: StringQueryOperatorInput
-  repositoryName: StringQueryOperatorInput
-  prismicToolbar: BooleanQueryOperatorInput
-  schemas: SitePluginPluginOptionsSchemasFilterInput
 }
 
-input SitePluginPluginOptionsDefaultDataLayerFilterInput {
-  type: StringQueryOperatorInput
+input SitePluginPluginOptionsPluginConfigFilterInput {
+  exclude: StringQueryOperatorInput
 }
 
 input SitePluginPluginOptionsAliasesFilterInput {
@@ -4565,10 +5546,8 @@ enum SitePageFieldsEnum {
   pluginCreator___version
   pluginCreator___pluginOptions___name
   pluginCreator___pluginOptions___path
-  pluginCreator___pluginOptions___id
-  pluginCreator___pluginOptions___defaultDataLayer___type
-  pluginCreator___pluginOptions___includeInDevelopment
-  pluginCreator___pluginOptions___routeChangeEventName
+  pluginCreator___pluginOptions___trackingIds
+  pluginCreator___pluginOptions___pluginConfig___exclude
   pluginCreator___pluginOptions___base64Width
   pluginCreator___pluginOptions___stripMetadata
   pluginCreator___pluginOptions___defaultQuality
@@ -4595,12 +5574,12 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___crossOrigin
   pluginCreator___pluginOptions___include_favicon
   pluginCreator___pluginOptions___cacheDigest
+  pluginCreator___pluginOptions___repositoryName
+  pluginCreator___pluginOptions___prismicToolbar
   pluginCreator___pluginOptions___pathCheck
   pluginCreator___pluginOptions___allExtensions
   pluginCreator___pluginOptions___isTSX
   pluginCreator___pluginOptions___jsxPragma
-  pluginCreator___pluginOptions___repositoryName
-  pluginCreator___pluginOptions___prismicToolbar
   pluginCreator___nodeAPIs
   pluginCreator___browserAPIs
   pluginCreator___ssrAPIs
@@ -6286,6 +7265,240 @@ input PrismicMbtiIntroSortInput {
   order: [SortOrderEnum] = [ASC]
 }
 
+input PrismicTermsAndConditionsDataFilterInput {
+  description: StringQueryOperatorInput
+  revision_date: DateQueryOperatorInput
+  content: PrismicTermsAndConditionsDataContentFilterListInput
+}
+
+input PrismicTermsAndConditionsDataContentFilterListInput {
+  elemMatch: PrismicTermsAndConditionsDataContentFilterInput
+}
+
+input PrismicTermsAndConditionsDataContentFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+  spans: PrismicTermsAndConditionsDataContentSpansFilterListInput
+}
+
+input PrismicTermsAndConditionsDataContentSpansFilterListInput {
+  elemMatch: PrismicTermsAndConditionsDataContentSpansFilterInput
+}
+
+input PrismicTermsAndConditionsDataContentSpansFilterInput {
+  start: IntQueryOperatorInput
+  end: IntQueryOperatorInput
+  type: StringQueryOperatorInput
+  data: PrismicTermsAndConditionsDataContentSpansDataFilterInput
+}
+
+input PrismicTermsAndConditionsDataContentSpansDataFilterInput {
+  link_type: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicTermsAndConditionsDataRawFilterInput {
+  description: StringQueryOperatorInput
+  revision_date: DateQueryOperatorInput
+  content: PrismicTermsAndConditionsDataRawContentFilterListInput
+}
+
+input PrismicTermsAndConditionsDataRawContentFilterListInput {
+  elemMatch: PrismicTermsAndConditionsDataRawContentFilterInput
+}
+
+input PrismicTermsAndConditionsDataRawContentFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+  spans: PrismicTermsAndConditionsDataRawContentSpansFilterListInput
+}
+
+input PrismicTermsAndConditionsDataRawContentSpansFilterListInput {
+  elemMatch: PrismicTermsAndConditionsDataRawContentSpansFilterInput
+}
+
+input PrismicTermsAndConditionsDataRawContentSpansFilterInput {
+  start: IntQueryOperatorInput
+  end: IntQueryOperatorInput
+  type: StringQueryOperatorInput
+  data: PrismicTermsAndConditionsDataRawContentSpansDataFilterInput
+}
+
+input PrismicTermsAndConditionsDataRawContentSpansDataFilterInput {
+  link_type: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+}
+
+type PrismicTermsAndConditionsConnection {
+  totalCount: Int!
+  edges: [PrismicTermsAndConditionsEdge!]!
+  nodes: [PrismicTermsAndConditions!]!
+  pageInfo: PageInfo!
+  distinct(field: PrismicTermsAndConditionsFieldsEnum!): [String!]!
+  max(field: PrismicTermsAndConditionsFieldsEnum!): Float
+  min(field: PrismicTermsAndConditionsFieldsEnum!): Float
+  sum(field: PrismicTermsAndConditionsFieldsEnum!): Float
+  group(skip: Int, limit: Int, field: PrismicTermsAndConditionsFieldsEnum!): [PrismicTermsAndConditionsGroupConnection!]!
+}
+
+type PrismicTermsAndConditionsEdge {
+  next: PrismicTermsAndConditions
+  node: PrismicTermsAndConditions!
+  previous: PrismicTermsAndConditions
+}
+
+enum PrismicTermsAndConditionsFieldsEnum {
+  id
+  parent___id
+  parent___parent___id
+  parent___parent___parent___id
+  parent___parent___parent___children
+  parent___parent___children
+  parent___parent___children___id
+  parent___parent___children___children
+  parent___parent___internal___content
+  parent___parent___internal___contentDigest
+  parent___parent___internal___description
+  parent___parent___internal___fieldOwners
+  parent___parent___internal___ignoreType
+  parent___parent___internal___mediaType
+  parent___parent___internal___owner
+  parent___parent___internal___type
+  parent___children
+  parent___children___id
+  parent___children___parent___id
+  parent___children___parent___children
+  parent___children___children
+  parent___children___children___id
+  parent___children___children___children
+  parent___children___internal___content
+  parent___children___internal___contentDigest
+  parent___children___internal___description
+  parent___children___internal___fieldOwners
+  parent___children___internal___ignoreType
+  parent___children___internal___mediaType
+  parent___children___internal___owner
+  parent___children___internal___type
+  parent___internal___content
+  parent___internal___contentDigest
+  parent___internal___description
+  parent___internal___fieldOwners
+  parent___internal___ignoreType
+  parent___internal___mediaType
+  parent___internal___owner
+  parent___internal___type
+  children
+  children___id
+  children___parent___id
+  children___parent___parent___id
+  children___parent___parent___children
+  children___parent___children
+  children___parent___children___id
+  children___parent___children___children
+  children___parent___internal___content
+  children___parent___internal___contentDigest
+  children___parent___internal___description
+  children___parent___internal___fieldOwners
+  children___parent___internal___ignoreType
+  children___parent___internal___mediaType
+  children___parent___internal___owner
+  children___parent___internal___type
+  children___children
+  children___children___id
+  children___children___parent___id
+  children___children___parent___children
+  children___children___children
+  children___children___children___id
+  children___children___children___children
+  children___children___internal___content
+  children___children___internal___contentDigest
+  children___children___internal___description
+  children___children___internal___fieldOwners
+  children___children___internal___ignoreType
+  children___children___internal___mediaType
+  children___children___internal___owner
+  children___children___internal___type
+  children___internal___content
+  children___internal___contentDigest
+  children___internal___description
+  children___internal___fieldOwners
+  children___internal___ignoreType
+  children___internal___mediaType
+  children___internal___owner
+  children___internal___type
+  internal___content
+  internal___contentDigest
+  internal___description
+  internal___fieldOwners
+  internal___ignoreType
+  internal___mediaType
+  internal___owner
+  internal___type
+  uid
+  type
+  href
+  tags
+  first_publication_date
+  last_publication_date
+  slugs
+  lang
+  data___description
+  data___revision_date
+  data___content
+  data___content___type
+  data___content___text
+  data___content___spans
+  data___content___spans___start
+  data___content___spans___end
+  data___content___spans___type
+  prismicId
+  dataString
+  dataRaw___description
+  dataRaw___revision_date
+  dataRaw___content
+  dataRaw___content___type
+  dataRaw___content___text
+  dataRaw___content___spans
+  dataRaw___content___spans___start
+  dataRaw___content___spans___end
+  dataRaw___content___spans___type
+  _previewable
+}
+
+type PrismicTermsAndConditionsGroupConnection {
+  totalCount: Int!
+  edges: [PrismicTermsAndConditionsEdge!]!
+  nodes: [PrismicTermsAndConditions!]!
+  pageInfo: PageInfo!
+  field: String!
+  fieldValue: String
+}
+
+input PrismicTermsAndConditionsFilterInput {
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+  uid: StringQueryOperatorInput
+  type: StringQueryOperatorInput
+  href: StringQueryOperatorInput
+  tags: StringQueryOperatorInput
+  first_publication_date: DateQueryOperatorInput
+  last_publication_date: DateQueryOperatorInput
+  slugs: StringQueryOperatorInput
+  lang: StringQueryOperatorInput
+  data: PrismicTermsAndConditionsDataFilterInput
+  prismicId: StringQueryOperatorInput
+  dataString: StringQueryOperatorInput
+  dataRaw: PrismicTermsAndConditionsDataRawFilterInput
+  _previewable: StringQueryOperatorInput
+}
+
+input PrismicTermsAndConditionsSortInput {
+  fields: [PrismicTermsAndConditionsFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
+}
+
 input PrismicFaqDataFilterInput {
   entries: PrismicFaqDataEntriesFilterListInput
 }
@@ -6529,15 +7742,8 @@ input PrismicFaqSortInput {
 }
 
 input PrismicSiteNavigationDataFilterInput {
-  canonical_link: PrismicSiteNavigationDataCanonical_linkFilterInput
   header_entries: PrismicSiteNavigationDataHeader_entriesFilterListInput
-  footer_entries: PrismicSiteNavigationDataFooter_entriesFilterListInput
-  social_entries: PrismicSiteNavigationDataSocial_entriesFilterListInput
-}
-
-input PrismicSiteNavigationDataCanonical_linkFilterInput {
-  link_type: StringQueryOperatorInput
-  url: StringQueryOperatorInput
+  sns_profiles: PrismicSiteNavigationDataSns_profilesFilterListInput
 }
 
 input PrismicSiteNavigationDataHeader_entriesFilterListInput {
@@ -6545,7 +7751,7 @@ input PrismicSiteNavigationDataHeader_entriesFilterListInput {
 }
 
 input PrismicSiteNavigationDataHeader_entriesFilterInput {
-  display_name: StringQueryOperatorInput
+  display_text: StringQueryOperatorInput
   link: PrismicSiteNavigationDataHeader_entriesLinkFilterInput
 }
 
@@ -6554,44 +7760,23 @@ input PrismicSiteNavigationDataHeader_entriesLinkFilterInput {
   url: StringQueryOperatorInput
 }
 
-input PrismicSiteNavigationDataFooter_entriesFilterListInput {
-  elemMatch: PrismicSiteNavigationDataFooter_entriesFilterInput
+input PrismicSiteNavigationDataSns_profilesFilterListInput {
+  elemMatch: PrismicSiteNavigationDataSns_profilesFilterInput
 }
 
-input PrismicSiteNavigationDataFooter_entriesFilterInput {
-  display_name: StringQueryOperatorInput
-  link: PrismicSiteNavigationDataFooter_entriesLinkFilterInput
+input PrismicSiteNavigationDataSns_profilesFilterInput {
+  service: StringQueryOperatorInput
+  link: PrismicSiteNavigationDataSns_profilesLinkFilterInput
 }
 
-input PrismicSiteNavigationDataFooter_entriesLinkFilterInput {
-  link_type: StringQueryOperatorInput
-  url: StringQueryOperatorInput
-}
-
-input PrismicSiteNavigationDataSocial_entriesFilterListInput {
-  elemMatch: PrismicSiteNavigationDataSocial_entriesFilterInput
-}
-
-input PrismicSiteNavigationDataSocial_entriesFilterInput {
-  social_type: StringQueryOperatorInput
-  link: PrismicSiteNavigationDataSocial_entriesLinkFilterInput
-}
-
-input PrismicSiteNavigationDataSocial_entriesLinkFilterInput {
+input PrismicSiteNavigationDataSns_profilesLinkFilterInput {
   link_type: StringQueryOperatorInput
   url: StringQueryOperatorInput
 }
 
 input PrismicSiteNavigationDataRawFilterInput {
-  canonical_link: PrismicSiteNavigationDataRawCanonical_linkFilterInput
   header_entries: PrismicSiteNavigationDataRawHeader_entriesFilterListInput
-  footer_entries: PrismicSiteNavigationDataRawFooter_entriesFilterListInput
-  social_entries: PrismicSiteNavigationDataRawSocial_entriesFilterListInput
-}
-
-input PrismicSiteNavigationDataRawCanonical_linkFilterInput {
-  link_type: StringQueryOperatorInput
-  url: StringQueryOperatorInput
+  sns_profiles: PrismicSiteNavigationDataRawSns_profilesFilterListInput
 }
 
 input PrismicSiteNavigationDataRawHeader_entriesFilterListInput {
@@ -6599,7 +7784,7 @@ input PrismicSiteNavigationDataRawHeader_entriesFilterListInput {
 }
 
 input PrismicSiteNavigationDataRawHeader_entriesFilterInput {
-  display_name: StringQueryOperatorInput
+  display_text: StringQueryOperatorInput
   link: PrismicSiteNavigationDataRawHeader_entriesLinkFilterInput
 }
 
@@ -6608,30 +7793,16 @@ input PrismicSiteNavigationDataRawHeader_entriesLinkFilterInput {
   url: StringQueryOperatorInput
 }
 
-input PrismicSiteNavigationDataRawFooter_entriesFilterListInput {
-  elemMatch: PrismicSiteNavigationDataRawFooter_entriesFilterInput
+input PrismicSiteNavigationDataRawSns_profilesFilterListInput {
+  elemMatch: PrismicSiteNavigationDataRawSns_profilesFilterInput
 }
 
-input PrismicSiteNavigationDataRawFooter_entriesFilterInput {
-  display_name: StringQueryOperatorInput
-  link: PrismicSiteNavigationDataRawFooter_entriesLinkFilterInput
+input PrismicSiteNavigationDataRawSns_profilesFilterInput {
+  service: StringQueryOperatorInput
+  link: PrismicSiteNavigationDataRawSns_profilesLinkFilterInput
 }
 
-input PrismicSiteNavigationDataRawFooter_entriesLinkFilterInput {
-  link_type: StringQueryOperatorInput
-  url: StringQueryOperatorInput
-}
-
-input PrismicSiteNavigationDataRawSocial_entriesFilterListInput {
-  elemMatch: PrismicSiteNavigationDataRawSocial_entriesFilterInput
-}
-
-input PrismicSiteNavigationDataRawSocial_entriesFilterInput {
-  social_type: StringQueryOperatorInput
-  link: PrismicSiteNavigationDataRawSocial_entriesLinkFilterInput
-}
-
-input PrismicSiteNavigationDataRawSocial_entriesLinkFilterInput {
+input PrismicSiteNavigationDataRawSns_profilesLinkFilterInput {
   link_type: StringQueryOperatorInput
   url: StringQueryOperatorInput
 }
@@ -6749,36 +7920,24 @@ enum PrismicSiteNavigationFieldsEnum {
   last_publication_date
   slugs
   lang
-  data___canonical_link___link_type
-  data___canonical_link___url
   data___header_entries
-  data___header_entries___display_name
+  data___header_entries___display_text
   data___header_entries___link___link_type
   data___header_entries___link___url
-  data___footer_entries
-  data___footer_entries___display_name
-  data___footer_entries___link___link_type
-  data___footer_entries___link___url
-  data___social_entries
-  data___social_entries___social_type
-  data___social_entries___link___link_type
-  data___social_entries___link___url
+  data___sns_profiles
+  data___sns_profiles___service
+  data___sns_profiles___link___link_type
+  data___sns_profiles___link___url
   prismicId
   dataString
-  dataRaw___canonical_link___link_type
-  dataRaw___canonical_link___url
   dataRaw___header_entries
-  dataRaw___header_entries___display_name
+  dataRaw___header_entries___display_text
   dataRaw___header_entries___link___link_type
   dataRaw___header_entries___link___url
-  dataRaw___footer_entries
-  dataRaw___footer_entries___display_name
-  dataRaw___footer_entries___link___link_type
-  dataRaw___footer_entries___link___url
-  dataRaw___social_entries
-  dataRaw___social_entries___social_type
-  dataRaw___social_entries___link___link_type
-  dataRaw___social_entries___link___url
+  dataRaw___sns_profiles
+  dataRaw___sns_profiles___service
+  dataRaw___sns_profiles___link___link_type
+  dataRaw___sns_profiles___link___url
   _previewable
 }
 
@@ -6816,89 +7975,629 @@ input PrismicSiteNavigationSortInput {
   order: [SortOrderEnum] = [ASC]
 }
 
-input PrismicTermsAndConditionsDataFilterInput {
-  description: StringQueryOperatorInput
-  revision_date: DateQueryOperatorInput
-  content: PrismicTermsAndConditionsDataContentFilterListInput
+input PrismicGlobalContentsAlternate_languagesFilterListInput {
+  elemMatch: PrismicGlobalContentsAlternate_languagesFilterInput
 }
 
-input PrismicTermsAndConditionsDataContentFilterListInput {
-  elemMatch: PrismicTermsAndConditionsDataContentFilterInput
+input PrismicGlobalContentsAlternate_languagesFilterInput {
+  id: StringQueryOperatorInput
+  type: StringQueryOperatorInput
+  lang: StringQueryOperatorInput
 }
 
-input PrismicTermsAndConditionsDataContentFilterInput {
+input PrismicGlobalContentsDataFilterInput {
+  main_page_title: StringQueryOperatorInput
+  main_page_description: StringQueryOperatorInput
+  main_opengraph_image_link: StringQueryOperatorInput
+  google_play_link: StringQueryOperatorInput
+  app_store_link: StringQueryOperatorInput
+  popular_items_api: StringQueryOperatorInput
+  body: PrismicGlobalContentsDataBodyFilterListInput
+  about_page_title: StringQueryOperatorInput
+  about_page_description: StringQueryOperatorInput
+  about_opengraph_image_link: StringQueryOperatorInput
+  about_title: PrismicGlobalContentsDataAbout_titleFilterListInput
+  about_background_image: PrismicGlobalContentsDataAbout_background_imageFilterInput
+  body1: PrismicGlobalContentsDataBody1FilterListInput
+}
+
+input PrismicGlobalContentsDataBodyFilterListInput {
+  elemMatch: PrismicGlobalContentsDataBodyFilterInput
+}
+
+input PrismicGlobalContentsDataBodyFilterInput {
+  slice_type: StringQueryOperatorInput
+  items: PrismicGlobalContentsDataBodyItemsFilterListInput
+  primary: PrismicGlobalContentsDataBodyPrimaryFilterInput
+}
+
+input PrismicGlobalContentsDataBodyItemsFilterListInput {
+  elemMatch: PrismicGlobalContentsDataBodyItemsFilterInput
+}
+
+input PrismicGlobalContentsDataBodyItemsFilterInput {
+  icon: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+  user_name: StringQueryOperatorInput
+  user_region: StringQueryOperatorInput
+  content: PrismicGlobalContentsDataBodyItemsContentFilterListInput
+  text_highlight_color: StringQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataBodyItemsContentFilterListInput {
+  elemMatch: PrismicGlobalContentsDataBodyItemsContentFilterInput
+}
+
+input PrismicGlobalContentsDataBodyItemsContentFilterInput {
   type: StringQueryOperatorInput
   text: StringQueryOperatorInput
-  spans: PrismicTermsAndConditionsDataContentSpansFilterListInput
+  spans: PrismicGlobalContentsDataBodyItemsContentSpansFilterListInput
 }
 
-input PrismicTermsAndConditionsDataContentSpansFilterListInput {
-  elemMatch: PrismicTermsAndConditionsDataContentSpansFilterInput
+input PrismicGlobalContentsDataBodyItemsContentSpansFilterListInput {
+  elemMatch: PrismicGlobalContentsDataBodyItemsContentSpansFilterInput
 }
 
-input PrismicTermsAndConditionsDataContentSpansFilterInput {
+input PrismicGlobalContentsDataBodyItemsContentSpansFilterInput {
   start: IntQueryOperatorInput
   end: IntQueryOperatorInput
   type: StringQueryOperatorInput
-  data: PrismicTermsAndConditionsDataContentSpansDataFilterInput
 }
 
-input PrismicTermsAndConditionsDataContentSpansDataFilterInput {
+input PrismicGlobalContentsDataBodyPrimaryFilterInput {
+  title: PrismicGlobalContentsDataBodyPrimaryTitleFilterListInput
+  background_image: PrismicGlobalContentsDataBodyPrimaryBackground_imageFilterInput
+  side_image: PrismicGlobalContentsDataBodyPrimarySide_imageFilterInput
+  more_button: StringQueryOperatorInput
+  top_icon: StringQueryOperatorInput
+  top_text: PrismicGlobalContentsDataBodyPrimaryTop_textFilterListInput
+  text: PrismicGlobalContentsDataBodyPrimaryTextFilterListInput
+  background_color: StringQueryOperatorInput
+  text_highlight_color: StringQueryOperatorInput
+  phone_mockup_component: StringQueryOperatorInput
+  text_on_right: BooleanQueryOperatorInput
+  image: PrismicGlobalContentsDataBodyPrimaryImageFilterInput
+}
+
+input PrismicGlobalContentsDataBodyPrimaryTitleFilterListInput {
+  elemMatch: PrismicGlobalContentsDataBodyPrimaryTitleFilterInput
+}
+
+input PrismicGlobalContentsDataBodyPrimaryTitleFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataBodyPrimaryBackground_imageFilterInput {
+  dimensions: PrismicGlobalContentsDataBodyPrimaryBackground_imageDimensionsFilterInput
+  alt: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataBodyPrimaryBackground_imageDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataBodyPrimarySide_imageFilterInput {
+  dimensions: PrismicGlobalContentsDataBodyPrimarySide_imageDimensionsFilterInput
+  alt: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+  mobile: PrismicGlobalContentsDataBodyPrimarySide_imageMobileFilterInput
+}
+
+input PrismicGlobalContentsDataBodyPrimarySide_imageDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataBodyPrimarySide_imageMobileFilterInput {
+  dimensions: PrismicGlobalContentsDataBodyPrimarySide_imageMobileDimensionsFilterInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataBodyPrimarySide_imageMobileDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataBodyPrimaryTop_textFilterListInput {
+  elemMatch: PrismicGlobalContentsDataBodyPrimaryTop_textFilterInput
+}
+
+input PrismicGlobalContentsDataBodyPrimaryTop_textFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataBodyPrimaryTextFilterListInput {
+  elemMatch: PrismicGlobalContentsDataBodyPrimaryTextFilterInput
+}
+
+input PrismicGlobalContentsDataBodyPrimaryTextFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+  spans: PrismicGlobalContentsDataBodyPrimaryTextSpansFilterListInput
+}
+
+input PrismicGlobalContentsDataBodyPrimaryTextSpansFilterListInput {
+  elemMatch: PrismicGlobalContentsDataBodyPrimaryTextSpansFilterInput
+}
+
+input PrismicGlobalContentsDataBodyPrimaryTextSpansFilterInput {
+  start: IntQueryOperatorInput
+  end: IntQueryOperatorInput
+  type: StringQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataBodyPrimaryImageFilterInput {
+  dimensions: PrismicGlobalContentsDataBodyPrimaryImageDimensionsFilterInput
+  alt: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+  mobile: PrismicGlobalContentsDataBodyPrimaryImageMobileFilterInput
+  test: PrismicGlobalContentsDataBodyPrimaryImageTestFilterInput
+}
+
+input PrismicGlobalContentsDataBodyPrimaryImageDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataBodyPrimaryImageMobileFilterInput {
+  dimensions: PrismicGlobalContentsDataBodyPrimaryImageMobileDimensionsFilterInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataBodyPrimaryImageMobileDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataBodyPrimaryImageTestFilterInput {
+  dimensions: PrismicGlobalContentsDataBodyPrimaryImageTestDimensionsFilterInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataBodyPrimaryImageTestDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataAbout_titleFilterListInput {
+  elemMatch: PrismicGlobalContentsDataAbout_titleFilterInput
+}
+
+input PrismicGlobalContentsDataAbout_titleFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataAbout_background_imageFilterInput {
+  dimensions: PrismicGlobalContentsDataAbout_background_imageDimensionsFilterInput
+  alt: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataAbout_background_imageDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataBody1FilterListInput {
+  elemMatch: PrismicGlobalContentsDataBody1FilterInput
+}
+
+input PrismicGlobalContentsDataBody1FilterInput {
+  slice_type: StringQueryOperatorInput
+  items: PrismicGlobalContentsDataBody1ItemsFilterListInput
+  primary: PrismicGlobalContentsDataBody1PrimaryFilterInput
+}
+
+input PrismicGlobalContentsDataBody1ItemsFilterListInput {
+  elemMatch: PrismicGlobalContentsDataBody1ItemsFilterInput
+}
+
+input PrismicGlobalContentsDataBody1ItemsFilterInput {
+  image: PrismicGlobalContentsDataBody1ItemsImageFilterInput
+  text: StringQueryOperatorInput
+  link: PrismicGlobalContentsDataBody1ItemsLinkFilterInput
+  date: DateQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataBody1ItemsImageFilterInput {
+  dimensions: PrismicGlobalContentsDataBody1ItemsImageDimensionsFilterInput
+  alt: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+  media: PrismicGlobalContentsDataBody1ItemsImageMediaFilterInput
+  mobile: PrismicGlobalContentsDataBody1ItemsImageMobileFilterInput
+}
+
+input PrismicGlobalContentsDataBody1ItemsImageDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataBody1ItemsImageMediaFilterInput {
+  dimensions: PrismicGlobalContentsDataBody1ItemsImageMediaDimensionsFilterInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataBody1ItemsImageMediaDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataBody1ItemsImageMobileFilterInput {
+  dimensions: PrismicGlobalContentsDataBody1ItemsImageMobileDimensionsFilterInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataBody1ItemsImageMobileDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataBody1ItemsLinkFilterInput {
   link_type: StringQueryOperatorInput
   url: StringQueryOperatorInput
 }
 
-input PrismicTermsAndConditionsDataRawFilterInput {
-  description: StringQueryOperatorInput
-  revision_date: DateQueryOperatorInput
-  content: PrismicTermsAndConditionsDataRawContentFilterListInput
+input PrismicGlobalContentsDataBody1PrimaryFilterInput {
+  subtitle: PrismicGlobalContentsDataBody1PrimarySubtitleFilterListInput
+  text: PrismicGlobalContentsDataBody1PrimaryTextFilterListInput
 }
 
-input PrismicTermsAndConditionsDataRawContentFilterListInput {
-  elemMatch: PrismicTermsAndConditionsDataRawContentFilterInput
+input PrismicGlobalContentsDataBody1PrimarySubtitleFilterListInput {
+  elemMatch: PrismicGlobalContentsDataBody1PrimarySubtitleFilterInput
 }
 
-input PrismicTermsAndConditionsDataRawContentFilterInput {
+input PrismicGlobalContentsDataBody1PrimarySubtitleFilterInput {
   type: StringQueryOperatorInput
   text: StringQueryOperatorInput
-  spans: PrismicTermsAndConditionsDataRawContentSpansFilterListInput
 }
 
-input PrismicTermsAndConditionsDataRawContentSpansFilterListInput {
-  elemMatch: PrismicTermsAndConditionsDataRawContentSpansFilterInput
+input PrismicGlobalContentsDataBody1PrimaryTextFilterListInput {
+  elemMatch: PrismicGlobalContentsDataBody1PrimaryTextFilterInput
 }
 
-input PrismicTermsAndConditionsDataRawContentSpansFilterInput {
+input PrismicGlobalContentsDataBody1PrimaryTextFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+  spans: PrismicGlobalContentsDataBody1PrimaryTextSpansFilterListInput
+}
+
+input PrismicGlobalContentsDataBody1PrimaryTextSpansFilterListInput {
+  elemMatch: PrismicGlobalContentsDataBody1PrimaryTextSpansFilterInput
+}
+
+input PrismicGlobalContentsDataBody1PrimaryTextSpansFilterInput {
   start: IntQueryOperatorInput
   end: IntQueryOperatorInput
   type: StringQueryOperatorInput
-  data: PrismicTermsAndConditionsDataRawContentSpansDataFilterInput
+  data: PrismicGlobalContentsDataBody1PrimaryTextSpansDataFilterInput
 }
 
-input PrismicTermsAndConditionsDataRawContentSpansDataFilterInput {
+input PrismicGlobalContentsDataBody1PrimaryTextSpansDataFilterInput {
   link_type: StringQueryOperatorInput
   url: StringQueryOperatorInput
 }
 
-type PrismicTermsAndConditionsConnection {
+input PrismicGlobalContentsDataRawFilterInput {
+  main_page_title: StringQueryOperatorInput
+  main_page_description: StringQueryOperatorInput
+  main_opengraph_image_link: StringQueryOperatorInput
+  google_play_link: StringQueryOperatorInput
+  app_store_link: StringQueryOperatorInput
+  popular_items_api: StringQueryOperatorInput
+  body: PrismicGlobalContentsDataRawBodyFilterListInput
+  about_page_title: StringQueryOperatorInput
+  about_page_description: StringQueryOperatorInput
+  about_opengraph_image_link: StringQueryOperatorInput
+  about_title: PrismicGlobalContentsDataRawAbout_titleFilterListInput
+  about_background_image: PrismicGlobalContentsDataRawAbout_background_imageFilterInput
+  body1: PrismicGlobalContentsDataRawBody1FilterListInput
+}
+
+input PrismicGlobalContentsDataRawBodyFilterListInput {
+  elemMatch: PrismicGlobalContentsDataRawBodyFilterInput
+}
+
+input PrismicGlobalContentsDataRawBodyFilterInput {
+  slice_type: StringQueryOperatorInput
+  items: PrismicGlobalContentsDataRawBodyItemsFilterListInput
+  primary: PrismicGlobalContentsDataRawBodyPrimaryFilterInput
+}
+
+input PrismicGlobalContentsDataRawBodyItemsFilterListInput {
+  elemMatch: PrismicGlobalContentsDataRawBodyItemsFilterInput
+}
+
+input PrismicGlobalContentsDataRawBodyItemsFilterInput {
+  icon: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+  user_name: StringQueryOperatorInput
+  user_region: StringQueryOperatorInput
+  content: PrismicGlobalContentsDataRawBodyItemsContentFilterListInput
+  text_highlight_color: StringQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataRawBodyItemsContentFilterListInput {
+  elemMatch: PrismicGlobalContentsDataRawBodyItemsContentFilterInput
+}
+
+input PrismicGlobalContentsDataRawBodyItemsContentFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+  spans: PrismicGlobalContentsDataRawBodyItemsContentSpansFilterListInput
+}
+
+input PrismicGlobalContentsDataRawBodyItemsContentSpansFilterListInput {
+  elemMatch: PrismicGlobalContentsDataRawBodyItemsContentSpansFilterInput
+}
+
+input PrismicGlobalContentsDataRawBodyItemsContentSpansFilterInput {
+  start: IntQueryOperatorInput
+  end: IntQueryOperatorInput
+  type: StringQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataRawBodyPrimaryFilterInput {
+  title: PrismicGlobalContentsDataRawBodyPrimaryTitleFilterListInput
+  background_image: PrismicGlobalContentsDataRawBodyPrimaryBackground_imageFilterInput
+  side_image: PrismicGlobalContentsDataRawBodyPrimarySide_imageFilterInput
+  more_button: StringQueryOperatorInput
+  top_icon: StringQueryOperatorInput
+  top_text: PrismicGlobalContentsDataRawBodyPrimaryTop_textFilterListInput
+  text: PrismicGlobalContentsDataRawBodyPrimaryTextFilterListInput
+  background_color: StringQueryOperatorInput
+  text_highlight_color: StringQueryOperatorInput
+  phone_mockup_component: StringQueryOperatorInput
+  text_on_right: BooleanQueryOperatorInput
+  image: PrismicGlobalContentsDataRawBodyPrimaryImageFilterInput
+}
+
+input PrismicGlobalContentsDataRawBodyPrimaryTitleFilterListInput {
+  elemMatch: PrismicGlobalContentsDataRawBodyPrimaryTitleFilterInput
+}
+
+input PrismicGlobalContentsDataRawBodyPrimaryTitleFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataRawBodyPrimaryBackground_imageFilterInput {
+  dimensions: PrismicGlobalContentsDataRawBodyPrimaryBackground_imageDimensionsFilterInput
+  alt: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataRawBodyPrimaryBackground_imageDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataRawBodyPrimarySide_imageFilterInput {
+  dimensions: PrismicGlobalContentsDataRawBodyPrimarySide_imageDimensionsFilterInput
+  alt: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+  mobile: PrismicGlobalContentsDataRawBodyPrimarySide_imageMobileFilterInput
+}
+
+input PrismicGlobalContentsDataRawBodyPrimarySide_imageDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataRawBodyPrimarySide_imageMobileFilterInput {
+  dimensions: PrismicGlobalContentsDataRawBodyPrimarySide_imageMobileDimensionsFilterInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataRawBodyPrimarySide_imageMobileDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataRawBodyPrimaryTop_textFilterListInput {
+  elemMatch: PrismicGlobalContentsDataRawBodyPrimaryTop_textFilterInput
+}
+
+input PrismicGlobalContentsDataRawBodyPrimaryTop_textFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataRawBodyPrimaryTextFilterListInput {
+  elemMatch: PrismicGlobalContentsDataRawBodyPrimaryTextFilterInput
+}
+
+input PrismicGlobalContentsDataRawBodyPrimaryTextFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+  spans: PrismicGlobalContentsDataRawBodyPrimaryTextSpansFilterListInput
+}
+
+input PrismicGlobalContentsDataRawBodyPrimaryTextSpansFilterListInput {
+  elemMatch: PrismicGlobalContentsDataRawBodyPrimaryTextSpansFilterInput
+}
+
+input PrismicGlobalContentsDataRawBodyPrimaryTextSpansFilterInput {
+  start: IntQueryOperatorInput
+  end: IntQueryOperatorInput
+  type: StringQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataRawBodyPrimaryImageFilterInput {
+  dimensions: PrismicGlobalContentsDataRawBodyPrimaryImageDimensionsFilterInput
+  alt: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+  mobile: PrismicGlobalContentsDataRawBodyPrimaryImageMobileFilterInput
+  test: PrismicGlobalContentsDataRawBodyPrimaryImageTestFilterInput
+}
+
+input PrismicGlobalContentsDataRawBodyPrimaryImageDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataRawBodyPrimaryImageMobileFilterInput {
+  dimensions: PrismicGlobalContentsDataRawBodyPrimaryImageMobileDimensionsFilterInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataRawBodyPrimaryImageMobileDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataRawBodyPrimaryImageTestFilterInput {
+  dimensions: PrismicGlobalContentsDataRawBodyPrimaryImageTestDimensionsFilterInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataRawBodyPrimaryImageTestDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataRawAbout_titleFilterListInput {
+  elemMatch: PrismicGlobalContentsDataRawAbout_titleFilterInput
+}
+
+input PrismicGlobalContentsDataRawAbout_titleFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataRawAbout_background_imageFilterInput {
+  dimensions: PrismicGlobalContentsDataRawAbout_background_imageDimensionsFilterInput
+  alt: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataRawAbout_background_imageDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataRawBody1FilterListInput {
+  elemMatch: PrismicGlobalContentsDataRawBody1FilterInput
+}
+
+input PrismicGlobalContentsDataRawBody1FilterInput {
+  slice_type: StringQueryOperatorInput
+  items: PrismicGlobalContentsDataRawBody1ItemsFilterListInput
+  primary: PrismicGlobalContentsDataRawBody1PrimaryFilterInput
+}
+
+input PrismicGlobalContentsDataRawBody1ItemsFilterListInput {
+  elemMatch: PrismicGlobalContentsDataRawBody1ItemsFilterInput
+}
+
+input PrismicGlobalContentsDataRawBody1ItemsFilterInput {
+  image: PrismicGlobalContentsDataRawBody1ItemsImageFilterInput
+  text: StringQueryOperatorInput
+  link: PrismicGlobalContentsDataRawBody1ItemsLinkFilterInput
+  date: DateQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataRawBody1ItemsImageFilterInput {
+  dimensions: PrismicGlobalContentsDataRawBody1ItemsImageDimensionsFilterInput
+  alt: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+  media: PrismicGlobalContentsDataRawBody1ItemsImageMediaFilterInput
+  mobile: PrismicGlobalContentsDataRawBody1ItemsImageMobileFilterInput
+}
+
+input PrismicGlobalContentsDataRawBody1ItemsImageDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataRawBody1ItemsImageMediaFilterInput {
+  dimensions: PrismicGlobalContentsDataRawBody1ItemsImageMediaDimensionsFilterInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataRawBody1ItemsImageMediaDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataRawBody1ItemsImageMobileFilterInput {
+  dimensions: PrismicGlobalContentsDataRawBody1ItemsImageMobileDimensionsFilterInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataRawBody1ItemsImageMobileDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataRawBody1ItemsLinkFilterInput {
+  link_type: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataRawBody1PrimaryFilterInput {
+  subtitle: PrismicGlobalContentsDataRawBody1PrimarySubtitleFilterListInput
+  text: PrismicGlobalContentsDataRawBody1PrimaryTextFilterListInput
+}
+
+input PrismicGlobalContentsDataRawBody1PrimarySubtitleFilterListInput {
+  elemMatch: PrismicGlobalContentsDataRawBody1PrimarySubtitleFilterInput
+}
+
+input PrismicGlobalContentsDataRawBody1PrimarySubtitleFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input PrismicGlobalContentsDataRawBody1PrimaryTextFilterListInput {
+  elemMatch: PrismicGlobalContentsDataRawBody1PrimaryTextFilterInput
+}
+
+input PrismicGlobalContentsDataRawBody1PrimaryTextFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+  spans: PrismicGlobalContentsDataRawBody1PrimaryTextSpansFilterListInput
+}
+
+input PrismicGlobalContentsDataRawBody1PrimaryTextSpansFilterListInput {
+  elemMatch: PrismicGlobalContentsDataRawBody1PrimaryTextSpansFilterInput
+}
+
+input PrismicGlobalContentsDataRawBody1PrimaryTextSpansFilterInput {
+  start: IntQueryOperatorInput
+  end: IntQueryOperatorInput
+  type: StringQueryOperatorInput
+  data: PrismicGlobalContentsDataRawBody1PrimaryTextSpansDataFilterInput
+}
+
+input PrismicGlobalContentsDataRawBody1PrimaryTextSpansDataFilterInput {
+  link_type: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+}
+
+type PrismicGlobalContentsConnection {
   totalCount: Int!
-  edges: [PrismicTermsAndConditionsEdge!]!
-  nodes: [PrismicTermsAndConditions!]!
+  edges: [PrismicGlobalContentsEdge!]!
+  nodes: [PrismicGlobalContents!]!
   pageInfo: PageInfo!
-  distinct(field: PrismicTermsAndConditionsFieldsEnum!): [String!]!
-  max(field: PrismicTermsAndConditionsFieldsEnum!): Float
-  min(field: PrismicTermsAndConditionsFieldsEnum!): Float
-  sum(field: PrismicTermsAndConditionsFieldsEnum!): Float
-  group(skip: Int, limit: Int, field: PrismicTermsAndConditionsFieldsEnum!): [PrismicTermsAndConditionsGroupConnection!]!
+  distinct(field: PrismicGlobalContentsFieldsEnum!): [String!]!
+  max(field: PrismicGlobalContentsFieldsEnum!): Float
+  min(field: PrismicGlobalContentsFieldsEnum!): Float
+  sum(field: PrismicGlobalContentsFieldsEnum!): Float
+  group(skip: Int, limit: Int, field: PrismicGlobalContentsFieldsEnum!): [PrismicGlobalContentsGroupConnection!]!
 }
 
-type PrismicTermsAndConditionsEdge {
-  next: PrismicTermsAndConditions
-  node: PrismicTermsAndConditions!
-  previous: PrismicTermsAndConditions
+type PrismicGlobalContentsEdge {
+  next: PrismicGlobalContents
+  node: PrismicGlobalContents!
+  previous: PrismicGlobalContents
 }
 
-enum PrismicTermsAndConditionsFieldsEnum {
+enum PrismicGlobalContentsFieldsEnum {
   id
   parent___id
   parent___parent___id
@@ -6985,7 +8684,6 @@ enum PrismicTermsAndConditionsFieldsEnum {
   internal___mediaType
   internal___owner
   internal___type
-  uid
   type
   href
   tags
@@ -6993,44 +8691,111 @@ enum PrismicTermsAndConditionsFieldsEnum {
   last_publication_date
   slugs
   lang
-  data___description
-  data___revision_date
-  data___content
-  data___content___type
-  data___content___text
-  data___content___spans
-  data___content___spans___start
-  data___content___spans___end
-  data___content___spans___type
+  alternate_languages
+  alternate_languages___id
+  alternate_languages___type
+  alternate_languages___lang
+  data___main_page_title
+  data___main_page_description
+  data___main_opengraph_image_link
+  data___google_play_link
+  data___app_store_link
+  data___popular_items_api
+  data___body
+  data___body___slice_type
+  data___body___items
+  data___body___items___icon
+  data___body___items___text
+  data___body___items___user_name
+  data___body___items___user_region
+  data___body___items___content
+  data___body___items___text_highlight_color
+  data___body___primary___title
+  data___body___primary___more_button
+  data___body___primary___top_icon
+  data___body___primary___top_text
+  data___body___primary___text
+  data___body___primary___background_color
+  data___body___primary___text_highlight_color
+  data___body___primary___phone_mockup_component
+  data___body___primary___text_on_right
+  data___about_page_title
+  data___about_page_description
+  data___about_opengraph_image_link
+  data___about_title
+  data___about_title___type
+  data___about_title___text
+  data___about_background_image___dimensions___width
+  data___about_background_image___dimensions___height
+  data___about_background_image___alt
+  data___about_background_image___url
+  data___body1
+  data___body1___slice_type
+  data___body1___items
+  data___body1___items___text
+  data___body1___items___date
+  data___body1___primary___subtitle
+  data___body1___primary___text
   prismicId
   dataString
-  dataRaw___description
-  dataRaw___revision_date
-  dataRaw___content
-  dataRaw___content___type
-  dataRaw___content___text
-  dataRaw___content___spans
-  dataRaw___content___spans___start
-  dataRaw___content___spans___end
-  dataRaw___content___spans___type
+  dataRaw___main_page_title
+  dataRaw___main_page_description
+  dataRaw___main_opengraph_image_link
+  dataRaw___google_play_link
+  dataRaw___app_store_link
+  dataRaw___popular_items_api
+  dataRaw___body
+  dataRaw___body___slice_type
+  dataRaw___body___items
+  dataRaw___body___items___icon
+  dataRaw___body___items___text
+  dataRaw___body___items___user_name
+  dataRaw___body___items___user_region
+  dataRaw___body___items___content
+  dataRaw___body___items___text_highlight_color
+  dataRaw___body___primary___title
+  dataRaw___body___primary___more_button
+  dataRaw___body___primary___top_icon
+  dataRaw___body___primary___top_text
+  dataRaw___body___primary___text
+  dataRaw___body___primary___background_color
+  dataRaw___body___primary___text_highlight_color
+  dataRaw___body___primary___phone_mockup_component
+  dataRaw___body___primary___text_on_right
+  dataRaw___about_page_title
+  dataRaw___about_page_description
+  dataRaw___about_opengraph_image_link
+  dataRaw___about_title
+  dataRaw___about_title___type
+  dataRaw___about_title___text
+  dataRaw___about_background_image___dimensions___width
+  dataRaw___about_background_image___dimensions___height
+  dataRaw___about_background_image___alt
+  dataRaw___about_background_image___url
+  dataRaw___body1
+  dataRaw___body1___slice_type
+  dataRaw___body1___items
+  dataRaw___body1___items___text
+  dataRaw___body1___items___date
+  dataRaw___body1___primary___subtitle
+  dataRaw___body1___primary___text
   _previewable
 }
 
-type PrismicTermsAndConditionsGroupConnection {
+type PrismicGlobalContentsGroupConnection {
   totalCount: Int!
-  edges: [PrismicTermsAndConditionsEdge!]!
-  nodes: [PrismicTermsAndConditions!]!
+  edges: [PrismicGlobalContentsEdge!]!
+  nodes: [PrismicGlobalContents!]!
   pageInfo: PageInfo!
   field: String!
   fieldValue: String
 }
 
-input PrismicTermsAndConditionsFilterInput {
+input PrismicGlobalContentsFilterInput {
   id: StringQueryOperatorInput
   parent: NodeFilterInput
   children: NodeFilterListInput
   internal: InternalFilterInput
-  uid: StringQueryOperatorInput
   type: StringQueryOperatorInput
   href: StringQueryOperatorInput
   tags: StringQueryOperatorInput
@@ -7038,15 +8803,800 @@ input PrismicTermsAndConditionsFilterInput {
   last_publication_date: DateQueryOperatorInput
   slugs: StringQueryOperatorInput
   lang: StringQueryOperatorInput
-  data: PrismicTermsAndConditionsDataFilterInput
+  alternate_languages: PrismicGlobalContentsAlternate_languagesFilterListInput
+  data: PrismicGlobalContentsDataFilterInput
   prismicId: StringQueryOperatorInput
   dataString: StringQueryOperatorInput
-  dataRaw: PrismicTermsAndConditionsDataRawFilterInput
+  dataRaw: PrismicGlobalContentsDataRawFilterInput
   _previewable: StringQueryOperatorInput
 }
 
-input PrismicTermsAndConditionsSortInput {
-  fields: [PrismicTermsAndConditionsFieldsEnum]
+input PrismicGlobalContentsSortInput {
+  fields: [PrismicGlobalContentsFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
+}
+
+input PrismicTeamContentsDataFilterInput {
+  main_page_title: PrismicTeamContentsDataMain_page_titleFilterListInput
+  main_body: PrismicTeamContentsDataMain_bodyFilterListInput
+  culture_page_title: PrismicTeamContentsDataCulture_page_titleFilterListInput
+  culture_body: PrismicTeamContentsDataCulture_bodyFilterListInput
+  life_page_title: PrismicTeamContentsDataLife_page_titleFilterListInput
+  life_body: PrismicTeamContentsDataLife_bodyFilterListInput
+}
+
+input PrismicTeamContentsDataMain_page_titleFilterListInput {
+  elemMatch: PrismicTeamContentsDataMain_page_titleFilterInput
+}
+
+input PrismicTeamContentsDataMain_page_titleFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataMain_bodyFilterListInput {
+  elemMatch: PrismicTeamContentsDataMain_bodyFilterInput
+}
+
+input PrismicTeamContentsDataMain_bodyFilterInput {
+  slice_type: StringQueryOperatorInput
+  items: PrismicTeamContentsDataMain_bodyItemsFilterListInput
+  primary: PrismicTeamContentsDataMain_bodyPrimaryFilterInput
+}
+
+input PrismicTeamContentsDataMain_bodyItemsFilterListInput {
+  elemMatch: PrismicTeamContentsDataMain_bodyItemsFilterInput
+}
+
+input PrismicTeamContentsDataMain_bodyItemsFilterInput {
+  image: PrismicTeamContentsDataMain_bodyItemsImageFilterInput
+  quote: StringQueryOperatorInput
+  who: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataMain_bodyItemsImageFilterInput {
+  dimensions: PrismicTeamContentsDataMain_bodyItemsImageDimensionsFilterInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataMain_bodyItemsImageDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicTeamContentsDataMain_bodyPrimaryFilterInput {
+  key_visual_image: PrismicTeamContentsDataMain_bodyPrimaryKey_visual_imageFilterInput
+  expanded: BooleanQueryOperatorInput
+  description: PrismicTeamContentsDataMain_bodyPrimaryDescriptionFilterListInput
+  key_text: StringQueryOperatorInput
+  title: PrismicTeamContentsDataMain_bodyPrimaryTitleFilterListInput
+  inverted: BooleanQueryOperatorInput
+  link: PrismicTeamContentsDataMain_bodyPrimaryLinkFilterInput
+  link_text: StringQueryOperatorInput
+  illustration: PrismicTeamContentsDataMain_bodyPrimaryIllustrationFilterInput
+  thumbnail: PrismicTeamContentsDataMain_bodyPrimaryThumbnailFilterInput
+  background_color: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataMain_bodyPrimaryKey_visual_imageFilterInput {
+  dimensions: PrismicTeamContentsDataMain_bodyPrimaryKey_visual_imageDimensionsFilterInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataMain_bodyPrimaryKey_visual_imageDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicTeamContentsDataMain_bodyPrimaryDescriptionFilterListInput {
+  elemMatch: PrismicTeamContentsDataMain_bodyPrimaryDescriptionFilterInput
+}
+
+input PrismicTeamContentsDataMain_bodyPrimaryDescriptionFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataMain_bodyPrimaryTitleFilterListInput {
+  elemMatch: PrismicTeamContentsDataMain_bodyPrimaryTitleFilterInput
+}
+
+input PrismicTeamContentsDataMain_bodyPrimaryTitleFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataMain_bodyPrimaryLinkFilterInput {
+  link_type: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataMain_bodyPrimaryIllustrationFilterInput {
+  dimensions: PrismicTeamContentsDataMain_bodyPrimaryIllustrationDimensionsFilterInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataMain_bodyPrimaryIllustrationDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicTeamContentsDataMain_bodyPrimaryThumbnailFilterInput {
+  dimensions: PrismicTeamContentsDataMain_bodyPrimaryThumbnailDimensionsFilterInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataMain_bodyPrimaryThumbnailDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicTeamContentsDataCulture_page_titleFilterListInput {
+  elemMatch: PrismicTeamContentsDataCulture_page_titleFilterInput
+}
+
+input PrismicTeamContentsDataCulture_page_titleFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataCulture_bodyFilterListInput {
+  elemMatch: PrismicTeamContentsDataCulture_bodyFilterInput
+}
+
+input PrismicTeamContentsDataCulture_bodyFilterInput {
+  slice_type: StringQueryOperatorInput
+  items: PrismicTeamContentsDataCulture_bodyItemsFilterListInput
+  primary: PrismicTeamContentsDataCulture_bodyPrimaryFilterInput
+}
+
+input PrismicTeamContentsDataCulture_bodyItemsFilterListInput {
+  elemMatch: PrismicTeamContentsDataCulture_bodyItemsFilterInput
+}
+
+input PrismicTeamContentsDataCulture_bodyItemsFilterInput {
+  group: StringQueryOperatorInput
+  key_text: StringQueryOperatorInput
+  description: PrismicTeamContentsDataCulture_bodyItemsDescriptionFilterListInput
+  subtitle: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataCulture_bodyItemsDescriptionFilterListInput {
+  elemMatch: PrismicTeamContentsDataCulture_bodyItemsDescriptionFilterInput
+}
+
+input PrismicTeamContentsDataCulture_bodyItemsDescriptionFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataCulture_bodyPrimaryFilterInput {
+  key_visual_image: PrismicTeamContentsDataCulture_bodyPrimaryKey_visual_imageFilterInput
+  expanded: BooleanQueryOperatorInput
+  description: PrismicTeamContentsDataCulture_bodyPrimaryDescriptionFilterListInput
+  title: PrismicTeamContentsDataCulture_bodyPrimaryTitleFilterListInput
+  illustration: PrismicTeamContentsDataCulture_bodyPrimaryIllustrationFilterInput
+  inverted: BooleanQueryOperatorInput
+  link: PrismicTeamContentsDataCulture_bodyPrimaryLinkFilterInput
+  link_text: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataCulture_bodyPrimaryKey_visual_imageFilterInput {
+  dimensions: PrismicTeamContentsDataCulture_bodyPrimaryKey_visual_imageDimensionsFilterInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataCulture_bodyPrimaryKey_visual_imageDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicTeamContentsDataCulture_bodyPrimaryDescriptionFilterListInput {
+  elemMatch: PrismicTeamContentsDataCulture_bodyPrimaryDescriptionFilterInput
+}
+
+input PrismicTeamContentsDataCulture_bodyPrimaryDescriptionFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataCulture_bodyPrimaryTitleFilterListInput {
+  elemMatch: PrismicTeamContentsDataCulture_bodyPrimaryTitleFilterInput
+}
+
+input PrismicTeamContentsDataCulture_bodyPrimaryTitleFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataCulture_bodyPrimaryIllustrationFilterInput {
+  dimensions: PrismicTeamContentsDataCulture_bodyPrimaryIllustrationDimensionsFilterInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataCulture_bodyPrimaryIllustrationDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicTeamContentsDataCulture_bodyPrimaryLinkFilterInput {
+  link_type: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataLife_page_titleFilterListInput {
+  elemMatch: PrismicTeamContentsDataLife_page_titleFilterInput
+}
+
+input PrismicTeamContentsDataLife_page_titleFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataLife_bodyFilterListInput {
+  elemMatch: PrismicTeamContentsDataLife_bodyFilterInput
+}
+
+input PrismicTeamContentsDataLife_bodyFilterInput {
+  slice_type: StringQueryOperatorInput
+  items: PrismicTeamContentsDataLife_bodyItemsFilterListInput
+  primary: PrismicTeamContentsDataLife_bodyPrimaryFilterInput
+}
+
+input PrismicTeamContentsDataLife_bodyItemsFilterListInput {
+  elemMatch: PrismicTeamContentsDataLife_bodyItemsFilterInput
+}
+
+input PrismicTeamContentsDataLife_bodyItemsFilterInput {
+  thumbnail_image: PrismicTeamContentsDataLife_bodyItemsThumbnail_imageFilterInput
+  thumbnail_description: PrismicTeamContentsDataLife_bodyItemsThumbnail_descriptionFilterListInput
+}
+
+input PrismicTeamContentsDataLife_bodyItemsThumbnail_imageFilterInput {
+  dimensions: PrismicTeamContentsDataLife_bodyItemsThumbnail_imageDimensionsFilterInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataLife_bodyItemsThumbnail_imageDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicTeamContentsDataLife_bodyItemsThumbnail_descriptionFilterListInput {
+  elemMatch: PrismicTeamContentsDataLife_bodyItemsThumbnail_descriptionFilterInput
+}
+
+input PrismicTeamContentsDataLife_bodyItemsThumbnail_descriptionFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataLife_bodyPrimaryFilterInput {
+  title: PrismicTeamContentsDataLife_bodyPrimaryTitleFilterListInput
+  body_text: PrismicTeamContentsDataLife_bodyPrimaryBody_textFilterListInput
+}
+
+input PrismicTeamContentsDataLife_bodyPrimaryTitleFilterListInput {
+  elemMatch: PrismicTeamContentsDataLife_bodyPrimaryTitleFilterInput
+}
+
+input PrismicTeamContentsDataLife_bodyPrimaryTitleFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataLife_bodyPrimaryBody_textFilterListInput {
+  elemMatch: PrismicTeamContentsDataLife_bodyPrimaryBody_textFilterInput
+}
+
+input PrismicTeamContentsDataLife_bodyPrimaryBody_textFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawFilterInput {
+  main_page_title: PrismicTeamContentsDataRawMain_page_titleFilterListInput
+  main_body: PrismicTeamContentsDataRawMain_bodyFilterListInput
+  culture_page_title: PrismicTeamContentsDataRawCulture_page_titleFilterListInput
+  culture_body: PrismicTeamContentsDataRawCulture_bodyFilterListInput
+  life_page_title: PrismicTeamContentsDataRawLife_page_titleFilterListInput
+  life_body: PrismicTeamContentsDataRawLife_bodyFilterListInput
+}
+
+input PrismicTeamContentsDataRawMain_page_titleFilterListInput {
+  elemMatch: PrismicTeamContentsDataRawMain_page_titleFilterInput
+}
+
+input PrismicTeamContentsDataRawMain_page_titleFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawMain_bodyFilterListInput {
+  elemMatch: PrismicTeamContentsDataRawMain_bodyFilterInput
+}
+
+input PrismicTeamContentsDataRawMain_bodyFilterInput {
+  slice_type: StringQueryOperatorInput
+  items: PrismicTeamContentsDataRawMain_bodyItemsFilterListInput
+  primary: PrismicTeamContentsDataRawMain_bodyPrimaryFilterInput
+}
+
+input PrismicTeamContentsDataRawMain_bodyItemsFilterListInput {
+  elemMatch: PrismicTeamContentsDataRawMain_bodyItemsFilterInput
+}
+
+input PrismicTeamContentsDataRawMain_bodyItemsFilterInput {
+  image: PrismicTeamContentsDataRawMain_bodyItemsImageFilterInput
+  quote: StringQueryOperatorInput
+  who: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawMain_bodyItemsImageFilterInput {
+  dimensions: PrismicTeamContentsDataRawMain_bodyItemsImageDimensionsFilterInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawMain_bodyItemsImageDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawMain_bodyPrimaryFilterInput {
+  key_visual_image: PrismicTeamContentsDataRawMain_bodyPrimaryKey_visual_imageFilterInput
+  expanded: BooleanQueryOperatorInput
+  description: PrismicTeamContentsDataRawMain_bodyPrimaryDescriptionFilterListInput
+  key_text: StringQueryOperatorInput
+  title: PrismicTeamContentsDataRawMain_bodyPrimaryTitleFilterListInput
+  inverted: BooleanQueryOperatorInput
+  link: PrismicTeamContentsDataRawMain_bodyPrimaryLinkFilterInput
+  link_text: StringQueryOperatorInput
+  illustration: PrismicTeamContentsDataRawMain_bodyPrimaryIllustrationFilterInput
+  thumbnail: PrismicTeamContentsDataRawMain_bodyPrimaryThumbnailFilterInput
+  background_color: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawMain_bodyPrimaryKey_visual_imageFilterInput {
+  dimensions: PrismicTeamContentsDataRawMain_bodyPrimaryKey_visual_imageDimensionsFilterInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawMain_bodyPrimaryKey_visual_imageDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawMain_bodyPrimaryDescriptionFilterListInput {
+  elemMatch: PrismicTeamContentsDataRawMain_bodyPrimaryDescriptionFilterInput
+}
+
+input PrismicTeamContentsDataRawMain_bodyPrimaryDescriptionFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawMain_bodyPrimaryTitleFilterListInput {
+  elemMatch: PrismicTeamContentsDataRawMain_bodyPrimaryTitleFilterInput
+}
+
+input PrismicTeamContentsDataRawMain_bodyPrimaryTitleFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawMain_bodyPrimaryLinkFilterInput {
+  link_type: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawMain_bodyPrimaryIllustrationFilterInput {
+  dimensions: PrismicTeamContentsDataRawMain_bodyPrimaryIllustrationDimensionsFilterInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawMain_bodyPrimaryIllustrationDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawMain_bodyPrimaryThumbnailFilterInput {
+  dimensions: PrismicTeamContentsDataRawMain_bodyPrimaryThumbnailDimensionsFilterInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawMain_bodyPrimaryThumbnailDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawCulture_page_titleFilterListInput {
+  elemMatch: PrismicTeamContentsDataRawCulture_page_titleFilterInput
+}
+
+input PrismicTeamContentsDataRawCulture_page_titleFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawCulture_bodyFilterListInput {
+  elemMatch: PrismicTeamContentsDataRawCulture_bodyFilterInput
+}
+
+input PrismicTeamContentsDataRawCulture_bodyFilterInput {
+  slice_type: StringQueryOperatorInput
+  items: PrismicTeamContentsDataRawCulture_bodyItemsFilterListInput
+  primary: PrismicTeamContentsDataRawCulture_bodyPrimaryFilterInput
+}
+
+input PrismicTeamContentsDataRawCulture_bodyItemsFilterListInput {
+  elemMatch: PrismicTeamContentsDataRawCulture_bodyItemsFilterInput
+}
+
+input PrismicTeamContentsDataRawCulture_bodyItemsFilterInput {
+  group: StringQueryOperatorInput
+  key_text: StringQueryOperatorInput
+  description: PrismicTeamContentsDataRawCulture_bodyItemsDescriptionFilterListInput
+  subtitle: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawCulture_bodyItemsDescriptionFilterListInput {
+  elemMatch: PrismicTeamContentsDataRawCulture_bodyItemsDescriptionFilterInput
+}
+
+input PrismicTeamContentsDataRawCulture_bodyItemsDescriptionFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawCulture_bodyPrimaryFilterInput {
+  key_visual_image: PrismicTeamContentsDataRawCulture_bodyPrimaryKey_visual_imageFilterInput
+  expanded: BooleanQueryOperatorInput
+  description: PrismicTeamContentsDataRawCulture_bodyPrimaryDescriptionFilterListInput
+  title: PrismicTeamContentsDataRawCulture_bodyPrimaryTitleFilterListInput
+  illustration: PrismicTeamContentsDataRawCulture_bodyPrimaryIllustrationFilterInput
+  inverted: BooleanQueryOperatorInput
+  link: PrismicTeamContentsDataRawCulture_bodyPrimaryLinkFilterInput
+  link_text: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawCulture_bodyPrimaryKey_visual_imageFilterInput {
+  dimensions: PrismicTeamContentsDataRawCulture_bodyPrimaryKey_visual_imageDimensionsFilterInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawCulture_bodyPrimaryKey_visual_imageDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawCulture_bodyPrimaryDescriptionFilterListInput {
+  elemMatch: PrismicTeamContentsDataRawCulture_bodyPrimaryDescriptionFilterInput
+}
+
+input PrismicTeamContentsDataRawCulture_bodyPrimaryDescriptionFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawCulture_bodyPrimaryTitleFilterListInput {
+  elemMatch: PrismicTeamContentsDataRawCulture_bodyPrimaryTitleFilterInput
+}
+
+input PrismicTeamContentsDataRawCulture_bodyPrimaryTitleFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawCulture_bodyPrimaryIllustrationFilterInput {
+  dimensions: PrismicTeamContentsDataRawCulture_bodyPrimaryIllustrationDimensionsFilterInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawCulture_bodyPrimaryIllustrationDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawCulture_bodyPrimaryLinkFilterInput {
+  link_type: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawLife_page_titleFilterListInput {
+  elemMatch: PrismicTeamContentsDataRawLife_page_titleFilterInput
+}
+
+input PrismicTeamContentsDataRawLife_page_titleFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawLife_bodyFilterListInput {
+  elemMatch: PrismicTeamContentsDataRawLife_bodyFilterInput
+}
+
+input PrismicTeamContentsDataRawLife_bodyFilterInput {
+  slice_type: StringQueryOperatorInput
+  items: PrismicTeamContentsDataRawLife_bodyItemsFilterListInput
+  primary: PrismicTeamContentsDataRawLife_bodyPrimaryFilterInput
+}
+
+input PrismicTeamContentsDataRawLife_bodyItemsFilterListInput {
+  elemMatch: PrismicTeamContentsDataRawLife_bodyItemsFilterInput
+}
+
+input PrismicTeamContentsDataRawLife_bodyItemsFilterInput {
+  thumbnail_image: PrismicTeamContentsDataRawLife_bodyItemsThumbnail_imageFilterInput
+  thumbnail_description: PrismicTeamContentsDataRawLife_bodyItemsThumbnail_descriptionFilterListInput
+}
+
+input PrismicTeamContentsDataRawLife_bodyItemsThumbnail_imageFilterInput {
+  dimensions: PrismicTeamContentsDataRawLife_bodyItemsThumbnail_imageDimensionsFilterInput
+  url: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawLife_bodyItemsThumbnail_imageDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawLife_bodyItemsThumbnail_descriptionFilterListInput {
+  elemMatch: PrismicTeamContentsDataRawLife_bodyItemsThumbnail_descriptionFilterInput
+}
+
+input PrismicTeamContentsDataRawLife_bodyItemsThumbnail_descriptionFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawLife_bodyPrimaryFilterInput {
+  title: PrismicTeamContentsDataRawLife_bodyPrimaryTitleFilterListInput
+  body_text: PrismicTeamContentsDataRawLife_bodyPrimaryBody_textFilterListInput
+}
+
+input PrismicTeamContentsDataRawLife_bodyPrimaryTitleFilterListInput {
+  elemMatch: PrismicTeamContentsDataRawLife_bodyPrimaryTitleFilterInput
+}
+
+input PrismicTeamContentsDataRawLife_bodyPrimaryTitleFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsDataRawLife_bodyPrimaryBody_textFilterListInput {
+  elemMatch: PrismicTeamContentsDataRawLife_bodyPrimaryBody_textFilterInput
+}
+
+input PrismicTeamContentsDataRawLife_bodyPrimaryBody_textFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+type PrismicTeamContentsConnection {
+  totalCount: Int!
+  edges: [PrismicTeamContentsEdge!]!
+  nodes: [PrismicTeamContents!]!
+  pageInfo: PageInfo!
+  distinct(field: PrismicTeamContentsFieldsEnum!): [String!]!
+  max(field: PrismicTeamContentsFieldsEnum!): Float
+  min(field: PrismicTeamContentsFieldsEnum!): Float
+  sum(field: PrismicTeamContentsFieldsEnum!): Float
+  group(skip: Int, limit: Int, field: PrismicTeamContentsFieldsEnum!): [PrismicTeamContentsGroupConnection!]!
+}
+
+type PrismicTeamContentsEdge {
+  next: PrismicTeamContents
+  node: PrismicTeamContents!
+  previous: PrismicTeamContents
+}
+
+enum PrismicTeamContentsFieldsEnum {
+  id
+  parent___id
+  parent___parent___id
+  parent___parent___parent___id
+  parent___parent___parent___children
+  parent___parent___children
+  parent___parent___children___id
+  parent___parent___children___children
+  parent___parent___internal___content
+  parent___parent___internal___contentDigest
+  parent___parent___internal___description
+  parent___parent___internal___fieldOwners
+  parent___parent___internal___ignoreType
+  parent___parent___internal___mediaType
+  parent___parent___internal___owner
+  parent___parent___internal___type
+  parent___children
+  parent___children___id
+  parent___children___parent___id
+  parent___children___parent___children
+  parent___children___children
+  parent___children___children___id
+  parent___children___children___children
+  parent___children___internal___content
+  parent___children___internal___contentDigest
+  parent___children___internal___description
+  parent___children___internal___fieldOwners
+  parent___children___internal___ignoreType
+  parent___children___internal___mediaType
+  parent___children___internal___owner
+  parent___children___internal___type
+  parent___internal___content
+  parent___internal___contentDigest
+  parent___internal___description
+  parent___internal___fieldOwners
+  parent___internal___ignoreType
+  parent___internal___mediaType
+  parent___internal___owner
+  parent___internal___type
+  children
+  children___id
+  children___parent___id
+  children___parent___parent___id
+  children___parent___parent___children
+  children___parent___children
+  children___parent___children___id
+  children___parent___children___children
+  children___parent___internal___content
+  children___parent___internal___contentDigest
+  children___parent___internal___description
+  children___parent___internal___fieldOwners
+  children___parent___internal___ignoreType
+  children___parent___internal___mediaType
+  children___parent___internal___owner
+  children___parent___internal___type
+  children___children
+  children___children___id
+  children___children___parent___id
+  children___children___parent___children
+  children___children___children
+  children___children___children___id
+  children___children___children___children
+  children___children___internal___content
+  children___children___internal___contentDigest
+  children___children___internal___description
+  children___children___internal___fieldOwners
+  children___children___internal___ignoreType
+  children___children___internal___mediaType
+  children___children___internal___owner
+  children___children___internal___type
+  children___internal___content
+  children___internal___contentDigest
+  children___internal___description
+  children___internal___fieldOwners
+  children___internal___ignoreType
+  children___internal___mediaType
+  children___internal___owner
+  children___internal___type
+  internal___content
+  internal___contentDigest
+  internal___description
+  internal___fieldOwners
+  internal___ignoreType
+  internal___mediaType
+  internal___owner
+  internal___type
+  type
+  href
+  tags
+  first_publication_date
+  last_publication_date
+  slugs
+  lang
+  data___main_page_title
+  data___main_page_title___type
+  data___main_page_title___text
+  data___main_body
+  data___main_body___slice_type
+  data___main_body___items
+  data___main_body___items___quote
+  data___main_body___items___who
+  data___main_body___primary___expanded
+  data___main_body___primary___description
+  data___main_body___primary___key_text
+  data___main_body___primary___title
+  data___main_body___primary___inverted
+  data___main_body___primary___link_text
+  data___main_body___primary___background_color
+  data___culture_page_title
+  data___culture_page_title___type
+  data___culture_page_title___text
+  data___culture_body
+  data___culture_body___slice_type
+  data___culture_body___items
+  data___culture_body___items___group
+  data___culture_body___items___key_text
+  data___culture_body___items___description
+  data___culture_body___items___subtitle
+  data___culture_body___primary___expanded
+  data___culture_body___primary___description
+  data___culture_body___primary___title
+  data___culture_body___primary___inverted
+  data___culture_body___primary___link_text
+  data___life_page_title
+  data___life_page_title___type
+  data___life_page_title___text
+  data___life_body
+  data___life_body___slice_type
+  data___life_body___items
+  data___life_body___items___thumbnail_description
+  data___life_body___primary___title
+  data___life_body___primary___body_text
+  prismicId
+  dataString
+  dataRaw___main_page_title
+  dataRaw___main_page_title___type
+  dataRaw___main_page_title___text
+  dataRaw___main_body
+  dataRaw___main_body___slice_type
+  dataRaw___main_body___items
+  dataRaw___main_body___items___quote
+  dataRaw___main_body___items___who
+  dataRaw___main_body___primary___expanded
+  dataRaw___main_body___primary___description
+  dataRaw___main_body___primary___key_text
+  dataRaw___main_body___primary___title
+  dataRaw___main_body___primary___inverted
+  dataRaw___main_body___primary___link_text
+  dataRaw___main_body___primary___background_color
+  dataRaw___culture_page_title
+  dataRaw___culture_page_title___type
+  dataRaw___culture_page_title___text
+  dataRaw___culture_body
+  dataRaw___culture_body___slice_type
+  dataRaw___culture_body___items
+  dataRaw___culture_body___items___group
+  dataRaw___culture_body___items___key_text
+  dataRaw___culture_body___items___description
+  dataRaw___culture_body___items___subtitle
+  dataRaw___culture_body___primary___expanded
+  dataRaw___culture_body___primary___description
+  dataRaw___culture_body___primary___title
+  dataRaw___culture_body___primary___inverted
+  dataRaw___culture_body___primary___link_text
+  dataRaw___life_page_title
+  dataRaw___life_page_title___type
+  dataRaw___life_page_title___text
+  dataRaw___life_body
+  dataRaw___life_body___slice_type
+  dataRaw___life_body___items
+  dataRaw___life_body___items___thumbnail_description
+  dataRaw___life_body___primary___title
+  dataRaw___life_body___primary___body_text
+  _previewable
+}
+
+type PrismicTeamContentsGroupConnection {
+  totalCount: Int!
+  edges: [PrismicTeamContentsEdge!]!
+  nodes: [PrismicTeamContents!]!
+  pageInfo: PageInfo!
+  field: String!
+  fieldValue: String
+}
+
+input PrismicTeamContentsFilterInput {
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+  type: StringQueryOperatorInput
+  href: StringQueryOperatorInput
+  tags: StringQueryOperatorInput
+  first_publication_date: DateQueryOperatorInput
+  last_publication_date: DateQueryOperatorInput
+  slugs: StringQueryOperatorInput
+  lang: StringQueryOperatorInput
+  data: PrismicTeamContentsDataFilterInput
+  prismicId: StringQueryOperatorInput
+  dataString: StringQueryOperatorInput
+  dataRaw: PrismicTeamContentsDataRawFilterInput
+  _previewable: StringQueryOperatorInput
+}
+
+input PrismicTeamContentsSortInput {
+  fields: [PrismicTeamContentsFieldsEnum]
   order: [SortOrderEnum] = [ASC]
 }
 
@@ -7290,10 +9840,8 @@ enum SitePluginFieldsEnum {
   version
   pluginOptions___name
   pluginOptions___path
-  pluginOptions___id
-  pluginOptions___defaultDataLayer___type
-  pluginOptions___includeInDevelopment
-  pluginOptions___routeChangeEventName
+  pluginOptions___trackingIds
+  pluginOptions___pluginConfig___exclude
   pluginOptions___base64Width
   pluginOptions___stripMetadata
   pluginOptions___defaultQuality
@@ -7320,12 +9868,12 @@ enum SitePluginFieldsEnum {
   pluginOptions___crossOrigin
   pluginOptions___include_favicon
   pluginOptions___cacheDigest
+  pluginOptions___repositoryName
+  pluginOptions___prismicToolbar
   pluginOptions___pathCheck
   pluginOptions___allExtensions
   pluginOptions___isTSX
   pluginOptions___jsxPragma
-  pluginOptions___repositoryName
-  pluginOptions___prismicToolbar
   nodeAPIs
   browserAPIs
   ssrAPIs

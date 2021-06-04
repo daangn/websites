@@ -1,17 +1,19 @@
 import React from 'react'
+import { useTheme } from '@emotion/react'
 import styled from '@emotion/styled'
 import { StaticImage } from 'gatsby-plugin-image'
 import { Link } from 'gatsby'
-import { colors } from '@daangn/design-token'
 
 import { bridge } from '@src/bridge'
 
 import Navbar from './Navbar'
 
 const ErrorPage: React.FC = () => {
+  const theme = useTheme()
+
   return (
     <Base>
-      <Navbar theme={bridge.environment} iconColor={colors.light.$gray900} showClose showNavigationBg />
+      <Navbar theme={bridge.environment} iconColor={theme.colors.$gray900} showClose showNavigationBg />
       <ErrorBase>
         <Contents>
           <IconWrapper>
