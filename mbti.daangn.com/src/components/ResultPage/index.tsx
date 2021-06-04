@@ -1,7 +1,6 @@
 import * as React from 'react'
 import styled from '@emotion/styled'
-import { colors } from '@daangn/design-token'
-import { css, Global } from '@emotion/react'
+import { css, Global, useTheme } from '@emotion/react'
 import throttle from 'lodash.throttle'
 import debounce from 'lodash.debounce'
 import { graphql } from 'gatsby'
@@ -22,6 +21,8 @@ interface Props {
 }
 
 const ResultPageView: React.FC<Props> = ({ data, children, preview }) => {
+  const theme = useTheme()
+
   const navbarRef = React.useRef<NavbarRef>(null)
   const cardEl = React.useRef<HTMLDivElement>(null)
   const [showNavbarBg, setShowNavbarBg] = React.useState(false)
@@ -68,7 +69,7 @@ const ResultPageView: React.FC<Props> = ({ data, children, preview }) => {
         ) : (
           <Navbar
             showClose
-            iconColor={colors.light.$gray900}
+            iconColor={theme.colors.$gray900}
             theme={bridge.environment}
             ref={navbarRef}
             showNavigationBg={showNavbarBg}
@@ -185,7 +186,7 @@ const CardWrapper = styled.div`
 `
 const Card = styled.div`
   flex: 1 0 auto;
-  background: #ffffff;
+  background: ${({ theme }) => theme.colors.background};
   box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.04);
   border-top-left-radius: 0.875rem;
   border-top-right-radius: 0.875rem;
@@ -198,7 +199,7 @@ const Divider = styled.hr`
   margin: 0;
   width: 100%;
   border: none;
-  border-top: 1px solid ${({ theme }) => theme.colors.gray200};
+  border-top: 1px solid ${({ theme }) => theme.colors.$gray200};
   margin: 0 0 2rem;
 `
 

@@ -1,6 +1,4 @@
-import React from 'react'
-import { colors } from '@daangn/design-token'
-import { DaangnThemeProvider } from '@daangn/emotion-react-theme'
+import * as React from 'react'
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import { Helmet } from 'react-helmet-async'
 
@@ -8,8 +6,9 @@ import { useSiteMeta } from '@src/hooks/useSiteMeta'
 
 const Layout: React.FC = ({ children }) => {
   const data = useSiteMeta()
+
   return (
-    <DaangnThemeProvider colors={colors.light}>
+    <>
       <GatsbySeo
         title={data.site?.siteMetadata.siteName}
         metaTags={[
@@ -39,7 +38,7 @@ const Layout: React.FC = ({ children }) => {
       </Helmet>
 
       {children}
-    </DaangnThemeProvider>
+    </>
   )
 }
 

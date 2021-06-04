@@ -140,7 +140,6 @@ const defaultButtonStyles = css`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #ffffff;
   width: 100%;
   transition: all 200ms;
   font-size: 1.125rem;
@@ -152,9 +151,9 @@ const OutlineWhiteButton = styled.button`
   ${defaultButtonStyles};
   ${clickAfterDimm}
 
-  background: #fff;
-  color: ${({ theme }) => theme.colors.gray700};
-  border: 1px solid ${({ theme }) => theme.colors.gray300};
+  background: ${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.colors.$gray700};
+  border: 1px solid ${({ theme }) => theme.colors.$gray300};
 
   :disabled::before {
     content: '';
@@ -169,9 +168,9 @@ const OutlineWhiteButton = styled.button`
 
 const KarrotButton = styled(OutlineWhiteButton)`
   ${defaultButtonStyles}
-  background: #fff;
-  border-color: ${({ theme }) => theme.colors.carrot500};
-  color: ${({ theme }) => theme.colors.carrot500};
+  background: ${({ theme }) => theme.colors.background};
+  border-color: ${({ theme }) => theme.colors.$carrot500};
+  color: ${({ theme }) => theme.colors.$carrot500};
 `
 
 const ButtonWrapper = styled.div`
@@ -190,7 +189,7 @@ const RetryButtonWrapper = styled.div`
     line-height: 150%;
     text-align: center;
     letter-spacing: -0.02em;
-    color: ${({ theme }) => theme.colors.gray600};
+    color: ${({ theme }) => theme.colors.$gray600};
   }
 `
 const DownloadButton = styled.button`
@@ -202,7 +201,7 @@ const DownloadButton = styled.button`
   right: 0;
   width: 100%;
   min-height: 3.5rem;
-  background: ${({ theme }) => theme.colors.carrot500};
+  background: ${({ theme }) => theme.colors.$carrot500};
   padding: 0.875rem;
   font-weight: bold;
   font-size: 1.1875rem;
@@ -212,7 +211,7 @@ const DownloadButton = styled.button`
   justify-content: center;
   text-align: center;
   letter-spacing: -0.03em;
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.$white};
 `
 
 const DownloadImage = styled.img`
@@ -231,7 +230,7 @@ const DownloadImageGuideMessage = styled.p`
   font-size: 1rem;
   line-height: 150%;
   letter-spacing: -0.02em;
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.$white};
 `
 const DownloadIconImage = styled.img`
   width: 24px;
