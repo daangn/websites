@@ -1,6 +1,7 @@
 import { styled } from "@src/gatsby-theme-stitches/stitches.config";
 import { motion } from "framer-motion";
 import { graphql, useStaticQuery } from "gatsby";
+import { getImage } from "gatsby-plugin-image";
 import { em } from "polished";
 import { messageMotionOption } from "./_config";
 
@@ -68,20 +69,6 @@ interface LocationMessageProps {
 }
 
 const LocationMessage: React.FC<LocationMessageProps> = ({ buttonText, image, userType }) => {
-    const data = useStaticQuery(graphql`
-        query {
-            locationImage: file(relativePath: { eq: "img_chat_item.png" }) {
-                childImageSharp {
-                    fluid(quality: 100) {
-                        ...GatsbyImageSharpFluid
-                    }
-                }
-            }
-        }
-    `);
-
-    console.log({ data });
-
     return (
         <Wrapper userType={userType} {...messageMotionOption}>
             <Container>

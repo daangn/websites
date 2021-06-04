@@ -19,14 +19,6 @@ export const query = graphql`
             title {
                 html
             }
-            app_logo_image {
-                url
-                dimensions {
-                    width
-                    height
-                }
-                alt
-            }
         }
     }
 `;
@@ -40,7 +32,6 @@ const Section = styled("section", {
 });
 
 const Container = styled("div", {
-    // width: "$maxContent",
     height: "100%",
     margin: "0 auto",
     display: "flex",
@@ -58,7 +49,6 @@ const DownloadSection: React.FC<DownloadSectionProps> = ({ content }) => {
         <Section>
             <Container>
                 <KarrotLogoIcon></KarrotLogoIcon>
-
                 <Space h={28}></Space>
                 <Html html={title?.html} marginBottom={{ "@i": 0, "@md": 42 }}></Html>
                 <AppLink theme="light" type="desktop"></AppLink>

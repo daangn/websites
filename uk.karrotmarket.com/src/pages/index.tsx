@@ -76,7 +76,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
                         PrismicGlobalContentsBodyPopularSection: (content) => <PopularSection key={i} content={content} />,
                         PrismicGlobalContentsBodyParallaxSection: (content) => <ParallaxSection key={i} content={content} />,
                         PrismicGlobalContentsBodyMockupSection: (content) => <MockupSection key={i} content={content} />,
-                        PrismicGlobalContentsBodyCenterSection: (content) => <CenterSection key={i} content={content} />,
+                        PrismicGlobalContentsBodyCentreSection: (content) => <CenterSection key={i} content={content} />,
                         PrismicGlobalContentsBodyReviewSection: (content) => <ReviewSection key={i} content={content} />,
                         PrismicGlobalContentsBodyDownloadSection: (content) => <DownloadSection key={i} content={content} />,
                     })

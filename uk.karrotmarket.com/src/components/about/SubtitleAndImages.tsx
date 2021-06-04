@@ -1,6 +1,7 @@
 import React from "react";
 import { rem } from "polished";
 import { graphql } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { styled } from "gatsby-theme-stitches/src/stitches.config";
 
 import { Grid } from "@src/components/Grid";
@@ -21,6 +22,11 @@ export const query = graphql`
         }
         items {
             image {
+                localFile {
+                    childImageSharp {
+                        gatsbyImageData(quality: 100)
+                    }
+                }
                 url
                 dimensions {
                     width
@@ -45,6 +51,7 @@ const Section = styled("section", {});
 
 const SubtitleAndImages: React.FC<SubtitleAndImagesProps> = ({ content }) => {
     if (!content.primary || !content.items) throw new Error("No data");
+    if (!content.items[0]?.image?.localFile) return <></>;
 
     const { subtitle } = content.primary;
 
@@ -60,7 +67,7 @@ const SubtitleAndImages: React.FC<SubtitleAndImagesProps> = ({ content }) => {
             >
                 {content.items.map((item) => (
                     <Image
-                        src={item?.image?.url}
+                        image={item?.image?.localFile?.childImageSharp?.gatsbyImageData}
                         alt={item?.image?.alt}
                         width={{ "@i": item?.image?.thumbnails?.mobile?.dimensions?.width, "@md": item?.image?.dimensions?.width }}
                     ></Image>

@@ -12,6 +12,7 @@ import { Space } from "@src/components/Space";
 import SubtitleAndText from "@src/components/about/SubtitleAndText";
 import SubtitleAndLinks from "@src/components/about/SubtitleAndLinks";
 import SubtitleAndImages from "@src/components/about/SubtitleAndImages";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 type AboutPageProps = PageProps<GatsbyTypes.AboutPageQueryQuery>;
 
@@ -27,7 +28,11 @@ export const query = graphql`
                     html
                 }
                 about_background_image {
-                    url
+                    localFile {
+                        childImageSharp {
+                            gatsbyImageData(quality: 100)
+                        }
+                    }
                 }
                 body1 {
                     __typename
@@ -40,7 +45,7 @@ export const query = graphql`
     }
 `;
 
-const BackgroundImage = styled("div", {
+const BackgroundImage = styled(GatsbyImage, {
     height: "208px",
     width: "100%",
     backgroundRepeat: "no-repeat",
@@ -83,14 +88,11 @@ const Wrapper = styled("div", {
 const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
     if (!data.prismicGlobalContents?.data?.body1) throw new Error("No data");
 
-    const {
-        about_page_title,
-        about_page_description,
-        about_opengraph_image_link,
-        about_background_image,
-        about_title,
-        body1,
-    } = data.prismicGlobalContents?.data;
+    const { about_page_title, about_page_description, about_opengraph_image_link, about_background_image, about_title, body1 } =
+        data.prismicGlobalContents?.data;
+
+    const backgroundImage = getImage(about_background_image?.localFile?.childImageSharp?.gatsbyImageData as any);
+
     return (
         <Wrapper id="about-page">
             <GatsbySeo
@@ -109,7 +111,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
                 }}
                 language="en"
             />
-            <BackgroundImage css={{ backgroundImage: `url(${about_background_image?.url})` }}></BackgroundImage>
+            <BackgroundImage image={backgroundImage}></BackgroundImage>
             <Container>
                 <Html html={about_title?.html} marginTop={{ "@i": rem(36), "@md": rem(60) }}></Html>
                 {body1.map((content: any, i) =>

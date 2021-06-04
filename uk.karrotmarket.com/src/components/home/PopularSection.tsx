@@ -22,6 +22,7 @@ interface ItemProps {
     price: string;
     region: {
         display_name: string;
+        fullname: string;
     };
     first_image: {
         file: string;
@@ -71,7 +72,7 @@ const Item: React.FC<ItemProps> = ({ first_image, price, region, id }) => (
     <ItemContainer href={`https://uk.karrotmarket.com/articles/${id}`}>
         <ItemImage src={first_image.file}></ItemImage>
         <ItemPrice>£ {Number(price)}</ItemPrice>
-        <ItemRegion>{region.display_name}</ItemRegion>
+        <ItemRegion>{region.fullname}</ItemRegion>
     </ItemContainer>
 );
 

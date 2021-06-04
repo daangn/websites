@@ -66,6 +66,12 @@ export const query = graphql`
             }
             image {
                 url
+                localFile {
+                    publicURL
+                    childImageSharp {
+                        gatsbyImageData(quality: 100)
+                    }
+                }
             }
         }
         items {
@@ -110,7 +116,7 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({ content }) => {
     if (!content.primary || !content.items) return <></>;
     const { title, image } = content.primary;
     return (
-        <Section css={{ backgroundImage: `url(${image?.url})` }}>
+        <Section css={{ backgroundImage: `url(${image?.localFile?.publicURL})` }}>
             <Container>
                 <Html html={title?.html} fontSize="$heading5"></Html>
                 <Grid

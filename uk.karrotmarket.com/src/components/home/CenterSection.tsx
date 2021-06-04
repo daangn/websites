@@ -8,7 +8,7 @@ import { Flex } from "@src/components/Flex";
 import { Space } from "@src/components/Space";
 import Image from "../Image";
 
-type CenereSectionProps = {
+type CentereSectionProps = {
     content: GatsbyTypes.PrismicGlobalContentsBodyCentreSection;
 };
 
@@ -24,6 +24,11 @@ export const query = graphql`
             }
             image {
                 url
+                localFile {
+                    childImageSharp {
+                        gatsbyImageData(quality: 100)
+                    }
+                }
                 dimensions {
                     width
                     height
@@ -58,7 +63,7 @@ const Section = styled("section", {
     },
 });
 
-const CenterSection: React.FC<CenereSectionProps> = ({ content }) => {
+const CenterSection: React.FC<CentereSectionProps> = ({ content }) => {
     if (!content.primary) return <></>;
 
     const { title, image, text } = content.primary;
@@ -66,7 +71,7 @@ const CenterSection: React.FC<CenereSectionProps> = ({ content }) => {
     return (
         <Section>
             <Image
-                src={image?.url}
+                image={image?.localFile?.childImageSharp?.gatsbyImageData}
                 alt={image?.alt}
                 width={{ "@i": image?.thumbnails?.mobile?.dimensions?.width, "@md": image?.dimensions?.width }}
                 height={{ "@i": image?.thumbnails?.mobile?.dimensions?.height, "@md": image?.dimensions?.height }}

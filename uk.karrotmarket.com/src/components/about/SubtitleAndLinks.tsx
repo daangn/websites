@@ -45,8 +45,6 @@ const Link = styled("a", {
 const SubtitleAndLinks: React.FC<SubtitleAndLinksProps> = ({ content }) => {
     if (!content.primary || !content.items) throw new Error("No data");
 
-    console.log(content.items);
-
     const { subtitle } = content.primary;
 
     return (

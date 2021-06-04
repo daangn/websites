@@ -19,9 +19,26 @@ const config: GatsbyConfig = {
         "gatsby-plugin-concurrent-mode",
         "gatsby-theme-stitches",
         "gatsby-plugin-svgr",
-        "gatsby-plugin-image",
-        "gatsby-plugin-sharp",
+        {
+            resolve: "gatsby-plugin-sharp",
+            options: {
+                defaults: {
+                    formats: ["avif", "webp", "auto"],
+                    placeholder: "dominantColor",
+                    quality: 80,
+                    breakpoints: [576, 768, 992, 1200, 1400, 1920],
+                    backgroundColor: "transparent",
+                    tracedSVGOptions: {},
+                    blurredOptions: {},
+                    jpgOptions: {},
+                    pngOptions: {},
+                    webpOptions: {},
+                    avifOptions: {},
+                },
+            },
+        },
         "gatsby-transformer-sharp",
+        "gatsby-plugin-image",
         "gatsby-plugin-react-helmet-async",
         {
             resolve: "gatsby-plugin-module-resolver",
@@ -80,6 +97,7 @@ const config: GatsbyConfig = {
                 repositoryName: "karrot",
                 accessToken: process.env.PRISMIC_ACCESS_TOKEN,
                 prismicToolbar: process.env.NODE_ENV === "development",
+                shouldDownloadImage: () => true,
                 schemas: {
                     global_contents: require("./prismic/global_contents.json"),
                 },

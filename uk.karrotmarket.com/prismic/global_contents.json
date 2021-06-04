@@ -288,7 +288,7 @@
           "download_section" : {
             "type" : "Slice",
             "fieldset" : "Download Section",
-            "description" : "앱 로고 + 제목",
+            "description" : "제목",
             "icon" : "file_download",
             "display" : "list",
             "non-repeat" : {
@@ -298,17 +298,6 @@
                   "single" : "heading2",
                   "label" : "제목"
                 }
-              },
-              "app_logo_image" : {
-                "type" : "Image",
-                "config" : {
-                  "constraint" : {
-                    "width" : 170,
-                    "height" : 170
-                  },
-                  "thumbnails" : [ ],
-                  "label" : "앱 로고 이미지"
-                }
               }
             },
             "repeat" : { }
@@ -316,7 +305,7 @@
           "popular_section" : {
             "type" : "Slice",
             "fieldset" : "Popular Section",
-            "description" : "인기매물 제목 + 버튼 이름 + api",
+            "description" : "인기매물 제목 + 버튼 이름",
             "icon" : "whatshot",
             "display" : "list",
             "non-repeat" : {
