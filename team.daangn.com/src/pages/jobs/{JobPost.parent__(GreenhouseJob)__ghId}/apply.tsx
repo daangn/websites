@@ -47,19 +47,11 @@ const FormField = styled(_FormField, {
   marginBottom: rem(32),
 });
 
-const FormFieldGroup = styled('div', {
-  display: 'flex',
-  gap: rem(32),
-  marginBottom: rem(32),
-});
-
 const FormHelpText = styled('p', {
   color: '$gray600',
   fontSize: '$caption1',
   marginBottom: rem(48),
 });
-
-const CheckboxField = _FormField;
 
 const greenhouseAcceptedMimeTypes = [
   'text/plain',
@@ -100,8 +92,12 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
           credentials: 'omit',
           body: formData,
           headers: {
-            ...resume && { 'X-Upload-Resume': resume.name },
-            ...portfolio && { 'X-Upload-Portfolio': portfolio.name },
+            ...resume && {
+              'X-Upload-Resume': encodeURIComponent(resume.name),
+            },
+            ...portfolio && {
+              'X-Upload-Portfolio': encodeURIComponent(portfolio.name),
+            },
           },
         });
         if (response.ok) {
@@ -169,6 +165,17 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
         />
         <FormField
           variants={{
+            type: 'radio',
+            options: [
+              { label: '해당', value: 'on' },
+              { label: '비해당', value: 'off' },
+            ],
+          }}
+          name="alternative_civilian"
+          label="산업기능요원"
+        />
+        <FormField
+          variants={{
             type: 'select',
             options: [
               { label: '해당 없음', value: 'no' },
@@ -181,18 +188,17 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
           name="disability"
           required
         />
-        <FormFieldGroup>
-          <CheckboxField
-            variants={{ type: 'checkbox' }}
-            name="alternative_civilian"
-            label="산업기능요원 해당"
-          />
-          <CheckboxField
-            variants={{ type: 'checkbox' }}
-            name="veterans"
-            label="보훈 대상"
-          />
-        </FormFieldGroup>
+        <FormField
+          variants={{
+            type: 'radio',
+            options: [
+              { label: '대상', value: 'on' },
+              { label: '비대상', value: 'off' },
+            ],
+          }}
+          name="veterans"
+          label="보훈대상 여부"
+        />
         <FormHelpText>
           * 보훈 및 장애 사항은 채용 과정에서 불이익이 없습니다.
         </FormHelpText>

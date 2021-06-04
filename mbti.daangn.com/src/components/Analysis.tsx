@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react'
 import styled from '@emotion/styled'
-import { css, Global, keyframes } from '@emotion/react'
-import { colors } from '@daangn/design-token'
+import { css, Global, useTheme, keyframes } from '@emotion/react'
 import { navigate } from 'gatsby'
 
 import { Base } from '@src/styles'
@@ -14,6 +13,8 @@ interface Props {
 }
 
 const Analysis: React.FC<Props> = ({ allMbtiAnswers }) => {
+  const theme = useTheme()
+
   const [spot, setSpot] = React.useState('')
   const [willUnmount, setWillUnmount] = React.useState(false)
 
@@ -56,7 +57,7 @@ const Analysis: React.FC<Props> = ({ allMbtiAnswers }) => {
       <Global
         styles={css`
           body {
-            background-color: ${willUnmount ? '#F4F1EE' : colors.light.$carrot500};
+            background-color: ${willUnmount ? '#F4F1EE' : theme.colors.$carrot500};
             transition: background-color 250ms;
           }
         `}

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import type { PageProps } from 'gatsby';
+import useDarkMode from 'use-dark-mode';
 import { global } from 'gatsby-theme-stitches/src/stitches.config';
 import { useLocation } from '@reach/router';
 import type { OverrideProps } from '@cometjs/core';
@@ -18,6 +19,9 @@ const globalStyles = global({
   '*': {
     margin: 0,
     fontFamily: 'inherit',
+  },
+  ':root': {
+    colorSchema: 'light dark',
   },
   'body': {
     color: '$gray900',
@@ -44,6 +48,11 @@ const LayoutSwitch: React.FC<LayoutSwitchProps> = ({
   children,
   ...props
 }) => {
+  useDarkMode(false, {
+    classNameLight: 'light-theme',
+    classNameDark: 'dark-theme',
+  });
+
   globalStyles();
 
   const { pathname: path } = useLocation();

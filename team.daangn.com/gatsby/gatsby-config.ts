@@ -20,12 +20,17 @@ const config: GatsbyConfig = {
     'gatsby-plugin-concurrent-mode',
     'gatsby-theme-stitches',
     'gatsby-plugin-svgr',
-    'gatsby-plugin-image',
-    'gatsby-plugin-sharp',
     'gatsby-plugin-react-helmet-async',
-    'gatsby-transformer-sharp',
     {
-      resolve: 'gatsby-plugin-image',
+      resolve: 'gatsby-plugin-use-dark-mode',
+      options: {
+        classNameLight: 'dark-light',
+        classNameDark: 'dark-theme',
+        minify: true,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-sharp',
       options: {
         defaults: {
           formats: ['avif', 'webp', 'auto'],
@@ -42,6 +47,8 @@ const config: GatsbyConfig = {
         },
       },
     },
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-image',
     {
       resolve: 'gatsby-plugin-module-resolver',
       options: {
@@ -75,18 +82,7 @@ const config: GatsbyConfig = {
       options: {
         repositoryName: 'karrot',
         accessToken: process.env.PRISMIC_ACCESS_TOKEN,
-        schemas: {
-          'mbti-test-result': {},
-          mbti_intro: {},
-          mbti_test_question: {},
-          ads_intro: {},
-          global_contents: {},
-          faq: require('@karrotmarket/prismic-config/schema/faq.json'),
-          site_navigation: require('@karrotmarket/prismic-config/schema/site_navigation.json'),
-          terms_and_conditions: require('@karrotmarket/prismic-config/schema/terms_and_conditions.json'),
-          member_profile: require('@karrotmarket/prismic-config/schema/member_profile.json'),
-          team_contents: require('@karrotmarket/prismic-config/schema/team_contents.json'),
-        },
+        schemas: require('@karrotmarket/prismic-config/schema'),
       },
     },
     {

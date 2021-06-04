@@ -7,11 +7,12 @@
     "_packages/**",
     "team.daangn.com",
     "mbti.daangn.com",
-    "uk.karrotmarket.com"
+    "uk.karrotmarket.com",
+    "www.daangnpay.com"
   ],
   "resolutions": {
-    "react": "0.0.0-experimental-d75105fa9",
-    "react-dom": "0.0.0-experimental-d75105fa9",
+    "react": "0.0.0-experimental-44cdfd6b7",
+    "react-dom": "0.0.0-experimental-44cdfd6b7",
     "webpack": "5.36.2",
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.3.0"
@@ -21,13 +22,13 @@
     "init:plugins": "ultra --recursive --filter \"_packages/*\" build",
     "init:sites": "ultra --recursive prepare-gatsby"
   },
-  "devDependencies": {
-    "@types/node": "^14.14.37",
-    "typescript": "^4.2.4",
-    "ultra-runner": "^3.10.5"
-  },
   "dependencies": {
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.37",
+    "typescript": "^4.3.2",
+    "ultra-runner": "^3.10.5"
   }
 }

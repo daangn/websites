@@ -1,5 +1,5 @@
 import { em, rem } from 'polished';
-import { colors } from '@daangn/design-token';
+import { colors } from '@karrotmarket/design-token';
 import { createCss } from '@stitches/react';
 
 import { convertColorScheme } from './colors';
@@ -16,7 +16,7 @@ export const { styled, css, global, getCssString, theme } = createCss({
     xxl: `(min-width: ${em(1400)})`,
   },
   theme: {
-    colors: convertColorScheme(colors.light),
+    colors: convertColorScheme(colors.light.scheme),
     fonts: {
       body: '-apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", BlinkMacSystemFont, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
     },
@@ -66,7 +66,15 @@ export const { styled, css, global, getCssString, theme } = createCss({
       paddingTop: value,
       paddingBottom: value,
     }),
+    contentArea: _config => (value: boolean) => value ? ({
+      boxSizing: 'border-box',
+      maxWidth: '$maxContent',
+      margin: '0 auto',
+      paddingX: rem(24),
+    }) : undefined,
   },
 });
 
-const darkTheme = theme('dark-theme', {});
+export const darkTheme = theme('dark-theme', {
+  colors: convertColorScheme(colors.dark.scheme),
+});

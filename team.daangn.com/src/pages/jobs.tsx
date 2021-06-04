@@ -1,6 +1,7 @@
 import * as React from 'react';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
+import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { rem } from 'polished';
 
 import PageTitle from '~/components/PageTitle';
@@ -17,11 +18,15 @@ export const query = graphql`
   }
 `;
 
+const Container = styled('section', {
+  contentArea: true,
+});
+
 const JobsPage: React.FC<JobsPageProps> = ({
   data,
 }) => {
   return (
-    <>
+    <Container>
       <PageTitle
         size={{ '@sm': 'sm' }}
         css={{
@@ -34,7 +39,7 @@ const JobsPage: React.FC<JobsPageProps> = ({
       <JobPostList
         jobPosts={data.allJobPost}
       />
-    </>
+    </Container>
   );
 };
 

@@ -1,0 +1,55 @@
+{
+  "name": "www.daangnpay.com",
+  "version": "0.0.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daangn/websites.git",
+    "directory": "daangnpay.com"
+  },
+  "maintainers": [
+    {
+      "name": "Dylan Ju",
+      "email": "dylan@daangn.com"
+    },
+    {
+      "name": "Tim Kim",
+      "email": "tim@daangn.com"
+    }
+  ],
+  "scripts": {
+    "prepare-gatsby": "babel gatsby -d . -x .ts,.tsx --presets gatsby-package",
+    "postinstall": "yarn prepare-gatsby",
+    "develop": "yarn prepare-gatsby && gatsby develop",
+    "build": "yarn prepare-gatsby && gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "@stitches/react": "^0.1.9",
+    "gatsby": "^3.6.2",
+    "gatsby-plugin-concurrent-mode": "^0.2.1",
+    "gatsby-plugin-image": "^1.6.0",
+    "gatsby-plugin-react-helmet-async": "^1.2.0",
+    "gatsby-plugin-sharp": "^3.6.0",
+    "gatsby-plugin-svgr": "^3.0.0-beta.0",
+    "gatsby-plugin-typegen": "^2.2.4",
+    "gatsby-source-prismic": "^3.3.6",
+    "gatsby-theme-stitches": "^0.1.1",
+    "polished": "^4.1.2",
+    "react": "experimental",
+    "react-dom": "experimental",
+    "react-helmet-async": "^1.0.9",
+    "sharp": "^0.28.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.3",
+    "@babel/core": "^7.14.3",
+    "@babel/plugin-transform-react-jsx": "^7.14.3",
+    "@babel/plugin-transform-typescript": "^7.14.3",
+    "@karrotmarket/react-stitches": "^0.1.1-0",
+    "babel-plugin-polished": "^1.1.0",
+    "babel-preset-gatsby-package": "^1.6.0",
+    "typescript": "^4.3.2"
+  }
+}

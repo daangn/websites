@@ -19,6 +19,7 @@ export const query = graphql`
       title {
         text
       }
+      inverted
       illustration {
         alt
         localFile {
@@ -38,16 +39,42 @@ export const query = graphql`
 `;
 
 const Container = styled('section', {
+  contentArea: true,
+
   display: 'grid',
-  gridTemplateColumns: 'auto',
+  gap: rem(60),
+  gridTemplateAreas: [
+    '"title"',
+    '"illust"',
+  ].join('\n'),
 
   '@md': {
-    gridTemplateColumns: '1fr 1fr',
     gap: rem(40),
+    gridTemplateColumns: '1fr 1fr',
+  },
+
+  variants: {
+    alignTitle: {
+      left: {
+        '@md': {
+          gridTemplateAreas: [
+            '"title illust"',
+          ].join('\n'),
+        },
+      },
+      right: {
+        '@md': {
+          gridTemplateAreas: [
+            '"illust title"',
+          ].join('\n'),
+        },
+      },
+    },
   },
 });
 
 const TitleContainer = styled('div', {
+  gridArea: 'title',
   display: 'grid',
   gridTemplateRows: 'repeat(3, min-content)',
 });
@@ -75,6 +102,7 @@ const Title = styled('h1', {
 });
 
 const Illustration = styled(GatsbyImage, {
+  gridArea: 'illust',
 });
 
 const PrismicTeamContentsDataMainBodyTitleAndIllustration: React.FC<PrismicTeamContentsDataMainBodyTitleAndIllustrationProps> = ({
@@ -90,7 +118,9 @@ const PrismicTeamContentsDataMainBodyTitleAndIllustration: React.FC<PrismicTeamC
   const link = data.primary.link?.url && parseLink(data.primary.link.url);
 
   return (
-    <Container>
+    <Container
+      alignTitle={data.primary.inverted === true ? 'right' : 'left'}
+    >
       <TitleContainer>
         <KeyText>{data.primary.key_text}</KeyText>
         <Title>{data.primary.title?.text}</Title>

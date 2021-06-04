@@ -15,7 +15,6 @@ import { chatAnimationInfiteLoop, data } from "./phoneMockupChat/_config";
 import { Message } from "./phoneMockupChat/_type";
 
 const Wrapper = styled(motion.div, {});
-
 const ChatBox = styled(motion.div, {
     display: "flex",
     flexDirection: "column",

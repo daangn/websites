@@ -40,7 +40,7 @@ const Bullit = styled.span`
   width: 0.25rem;
   height: 0.25rem;
   border-radius: 0.25rem;
-  background: ${({ theme }) => theme.colors.carrot400};
+  background: ${({ theme }) => theme.colors.$carrot400};
 `
 const P = styled.p`
   flex: 1;
@@ -49,7 +49,7 @@ const P = styled.p`
   line-height: 150%;
   align-items: center;
   letter-spacing: -0.02em;
-  color: ${({ theme }) => theme.colors.gray900};
+  color: ${({ theme }) => theme.colors.$gray900};
 `
 
 export const fragment = graphql`

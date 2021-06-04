@@ -56,16 +56,6 @@ const Footer = styled(_Footer, {
 });
 
 const Main = styled('main', {
-  paddingX: rem(24),
-
-  variants: {
-    wide: {
-      true: {
-        maxWidth: '$maxContent',
-        margin: '0 auto',
-      },
-    },
-  },
 });
 
 const DefaultLayout: React.FC<DefaultLayoutProps> = ({
@@ -84,10 +74,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
         navigationData={data.prismicSiteNavigation.data}
         wide={{ '@sm': true }}
       />
-      <Main
-        key="main"
-        wide={{ '@sm': true }}
-      >
+      <Main key="main">
         {children}
       </Main>
       <Footer

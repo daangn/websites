@@ -39,18 +39,18 @@ const Bullit = styled.span`
   width: 0.25rem;
   height: 0.25rem;
   border-radius: 0.25rem;
-  background: ${({ theme }) => theme.colors.gray600};
+  background: ${({ theme }) => theme.colors.$gray600};
 `
 const Title = styled.strong`
   font-size: 0.75rem;
   line-height: 150%;
   letter-spacing: -0.02em;
-  color: ${({ theme }) => theme.colors.gray600};
+  color: ${({ theme }) => theme.colors.$gray600};
 `
 const Description = styled.p`
   font-size: 0.75rem;
   line-height: 150%;
-  color: ${({ theme }) => theme.colors.gray600};
+  color: ${({ theme }) => theme.colors.$gray600};
   margin: 0.125rem 0 0;
 `
 
