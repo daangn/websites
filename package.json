@@ -7,7 +7,8 @@
     "_packages/**",
     "team.daangn.com",
     "mbti.daangn.com",
-    "uk.karrotmarket.com"
+    "uk.karrotmarket.com",
+    "www.daangnpay.com"
   ],
   "resolutions": {
     "react": "0.0.0-experimental-d75105fa9",
