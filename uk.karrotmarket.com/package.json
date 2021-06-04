@@ -32,7 +32,7 @@
     "@svgr/webpack": "^5.5.0",
     "easy-peasy": "^5.0.3",
     "framer-motion": "^4.1.17",
-    "gatsby": "^3.5.0",
+    "gatsby": "^3.6.2",
     "gatsby-plugin-concurrent-mode": "^0.2.1",
     "gatsby-plugin-image": "^1.6.0",
     "gatsby-plugin-prismic-schema": "*",

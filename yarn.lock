@@ -7369,7 +7369,7 @@ gatsby-transformer-sharp@^3.3.0, gatsby-transformer-sharp@^3.4.0, gatsby-transfo
     semver "^7.3.4"
     sharp "^0.28.0"
 
-gatsby@^3.5.0, gatsby@^3.6.0:
+gatsby@^3.6.2:
   version "3.6.2"
   resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-3.6.2.tgz#73e2e0e185974c39bf2fe1ccf269fdd977b0094a"
   integrity sha512-gzwnyk37sGTrT/oqAWKbfwJCPeLWOlX5wgq2pumCJDOGBo0yjL95pRiBeH1GG3jQGadcx2lG/6MoM46M6v3w9A==
