@@ -1173,11 +1173,6 @@
   dependencies:
     core-js "^3.9.1"
 
-"@daangn/emotion-react-theme@^0.3.0":
-  version "0.3.0"
-  resolved "https://npm.pkg.github.com/download/@daangn/emotion-react-theme/0.3.0/8a3f48789c67b3ab6a7d7a1f1d31ee2efe2497f8cb469766c91212dadc2c576e#632efd3eeaac8f903995a53e62c3953d24a898b3"
-  integrity sha512-/K5OH51/+NjOCumgQoAXOIN0Et7m0TIW35L10nEIBNoDCmrBuHaNFswNDL9KVMsMzVIzoi8zg1eAoJat0+TKfg==
-
 "@daangn/eslint-config-karrot@^2.0.2":
   version "2.0.2"
   resolved "https://npm.pkg.github.com/download/@daangn/eslint-config-karrot/2.0.2/e45d5427068c9468533ccbcc89c452ad8470e1d92ce1aa3c72d216f95bc9fa9c#759a6609288c09b4f097104b3227166bed6ebaa0"

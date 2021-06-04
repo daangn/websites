@@ -28,7 +28,6 @@
   },
   "dependencies": {
     "@cometjs/graphql-utils": "^1.1.0",
-    "@daangn/emotion-react-theme": "^0.3.0",
     "@daangn/webview-bridge-modern": "^4.7.0",
     "@egjs/agent": "^2.3.0",
     "@emotion/eslint-plugin": "^11.2.0",
