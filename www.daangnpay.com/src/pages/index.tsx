@@ -10,7 +10,7 @@ const Box = styled('div', {
 const IndexPage: React.FC<PageProps> = ({
 }) => {
   return (
-    <Box>Hello, 당근페이!</Box>
+    <Box>Hello, dylan!</Box>
   );
 };
 
