@@ -1,0 +1,8 @@
+/*.js
+/*.d.ts
+
+/.cache/
+/public/
+
+# v3 존버
+/src/__generated__/
