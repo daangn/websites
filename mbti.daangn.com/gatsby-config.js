@@ -32,8 +32,17 @@ module.exports = {
         }
       : null,
     'gatsby-plugin-svgr',
-    `gatsby-plugin-image`,
+    'gatsby-plugin-image',
     'gatsby-plugin-advanced-sitemap',
+    {
+      resolve: 'gatsby-plugin-use-dark-mode',
+      options: {
+        classNameDark: 'dark-theme',
+        classNameLight: 'light-theme',
+        storageKey: 'darkMode',
+        minify: true,
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
