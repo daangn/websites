@@ -1775,6 +1775,7 @@ type PrismicSiteNavigationDataSnsProfiles = {
 
 type PrismicSiteNavigationDataType = {
   readonly address: Maybe<Scalars['String']>;
+  readonly copyright: Maybe<PrismicStructuredTextType>;
   readonly footer_entries: ReadonlyArray<PrismicSiteNavigationDataFooterEntries>;
   readonly header_entries: ReadonlyArray<PrismicSiteNavigationDataHeaderEntries>;
   readonly sns_profiles: ReadonlyArray<PrismicSiteNavigationDataSnsProfiles>;
@@ -4960,6 +4961,7 @@ type SitePluginPluginOptionsSchemasSite_navigationFilterInput = {
 
 type SitePluginPluginOptionsSchemasSite_navigationMainFilterInput = {
   readonly uid: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainUidFilterInput>;
+  readonly copyright: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainCopyrightFilterInput>;
   readonly address: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainAddressFilterInput>;
   readonly tel: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainTelFilterInput>;
 };
@@ -4970,6 +4972,16 @@ type SitePluginPluginOptionsSchemasSite_navigationMainUidFilterInput = {
 };
 
 type SitePluginPluginOptionsSchemasSite_navigationMainUidConfigFilterInput = {
+  readonly label: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationMainCopyrightFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainCopyrightConfigFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationMainCopyrightConfigFilterInput = {
+  readonly single: Maybe<StringQueryOperatorInput>;
   readonly label: Maybe<StringQueryOperatorInput>;
 };
 
@@ -8584,6 +8596,7 @@ type PrismicPayContentsSortInput = {
 
 type PrismicSiteNavigationDataTypeFilterInput = {
   readonly address: Maybe<StringQueryOperatorInput>;
+  readonly copyright: Maybe<PrismicStructuredTextTypeFilterInput>;
   readonly footer_entries: Maybe<PrismicSiteNavigationDataFooterEntriesFilterListInput>;
   readonly header_entries: Maybe<PrismicSiteNavigationDataHeaderEntriesFilterListInput>;
   readonly sns_profiles: Maybe<PrismicSiteNavigationDataSnsProfilesFilterListInput>;
@@ -8690,6 +8703,9 @@ type PrismicSiteNavigationEdge = {
 type PrismicSiteNavigationFieldsEnum =
   | 'uid'
   | 'data.address'
+  | 'data.copyright.text'
+  | 'data.copyright.html'
+  | 'data.copyright.raw'
   | 'data.footer_entries'
   | 'data.footer_entries.display_text'
   | 'data.footer_entries.group'
@@ -10676,6 +10692,7 @@ type SitePluginPluginOptionsSchemasSite_navigation = {
 
 type SitePluginPluginOptionsSchemasSite_navigationMain = {
   readonly uid: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainUid>;
+  readonly copyright: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainCopyright>;
   readonly address: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainAddress>;
   readonly tel: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainTel>;
 };
@@ -10686,6 +10703,16 @@ type SitePluginPluginOptionsSchemasSite_navigationMainUid = {
 };
 
 type SitePluginPluginOptionsSchemasSite_navigationMainUidConfig = {
+  readonly label: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationMainCopyright = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainCopyrightConfig>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationMainCopyrightConfig = {
+  readonly single: Maybe<Scalars['String']>;
   readonly label: Maybe<Scalars['String']>;
 };
 
@@ -11909,10 +11936,13 @@ type NavigationMenu_dataFragment = { readonly header_entries: ReadonlyArray<(
     & { readonly link: Maybe<Pick<PrismicLinkType, 'url'>> }
   )> };
 
-type Footer_navigationDataFragment = { readonly footer_entries: ReadonlyArray<(
+type Footer_navigationDataFragment = (
+  Pick<PrismicSiteNavigationDataType, 'address'>
+  & { readonly copyright: Maybe<Pick<PrismicStructuredTextType, 'html'>>, readonly footer_entries: ReadonlyArray<(
     Pick<PrismicSiteNavigationDataFooterEntries, 'display_text'>
     & { readonly link: Maybe<Pick<PrismicLinkType, 'url'>> }
-  )>, readonly sns_profiles: ReadonlyArray<SocialServiceProfile_profileFragment> };
+  )>, readonly sns_profiles: ReadonlyArray<SocialServiceProfile_profileFragment> }
+);
 
 type SocialServiceProfile_profileFragment = (
   Pick<PrismicSiteNavigationDataSnsProfiles, 'service'>
@@ -12147,6 +12177,11 @@ type JobApplicationPageQuery = (
   & JobPostLayout_queryFragment
 );
 
+type UseSiteMetadataStaticQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type UseSiteMetadataStaticQuery = { readonly site: Maybe<{ readonly siteMetadata: Pick<SiteMetadata, 'siteUrl'> }> };
+
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
 type GatsbyImageSharpFixed_tracedSVGFragment = Pick<ImageSharpFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
@@ -12172,11 +12207,6 @@ type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = Pick<ImageSharpFluid, 't
 type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type UseSiteMetadataStaticQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type UseSiteMetadataStaticQuery = { readonly site: Maybe<{ readonly siteMetadata: Pick<SiteMetadata, 'siteUrl'> }> };
 
 type GatsbyImgixFluidFragment = Pick<ImgixFluid, 'aspectRatio' | 'src' | 'srcWebp' | 'srcSet' | 'srcSetWebp' | 'sizes' | 'base64'>;
 

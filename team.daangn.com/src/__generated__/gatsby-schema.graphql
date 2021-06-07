@@ -2412,6 +2412,7 @@ type PrismicSiteNavigationDataSnsProfiles {
 
 type PrismicSiteNavigationDataType {
   address: String
+  copyright: PrismicStructuredTextType
   footer_entries: [PrismicSiteNavigationDataFooterEntries!]!
   header_entries: [PrismicSiteNavigationDataHeaderEntries!]!
   sns_profiles: [PrismicSiteNavigationDataSnsProfiles!]!
@@ -5341,6 +5342,7 @@ input SitePluginPluginOptionsSchemasSite_navigationFilterInput {
 
 input SitePluginPluginOptionsSchemasSite_navigationMainFilterInput {
   uid: SitePluginPluginOptionsSchemasSite_navigationMainUidFilterInput
+  copyright: SitePluginPluginOptionsSchemasSite_navigationMainCopyrightFilterInput
   address: SitePluginPluginOptionsSchemasSite_navigationMainAddressFilterInput
   tel: SitePluginPluginOptionsSchemasSite_navigationMainTelFilterInput
 }
@@ -5351,6 +5353,16 @@ input SitePluginPluginOptionsSchemasSite_navigationMainUidFilterInput {
 }
 
 input SitePluginPluginOptionsSchemasSite_navigationMainUidConfigFilterInput {
+  label: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsSchemasSite_navigationMainCopyrightFilterInput {
+  type: StringQueryOperatorInput
+  config: SitePluginPluginOptionsSchemasSite_navigationMainCopyrightConfigFilterInput
+}
+
+input SitePluginPluginOptionsSchemasSite_navigationMainCopyrightConfigFilterInput {
+  single: StringQueryOperatorInput
   label: StringQueryOperatorInput
 }
 
@@ -8653,6 +8665,7 @@ input PrismicPayContentsSortInput {
 
 input PrismicSiteNavigationDataTypeFilterInput {
   address: StringQueryOperatorInput
+  copyright: PrismicStructuredTextTypeFilterInput
   footer_entries: PrismicSiteNavigationDataFooterEntriesFilterListInput
   header_entries: PrismicSiteNavigationDataHeaderEntriesFilterListInput
   sns_profiles: PrismicSiteNavigationDataSnsProfilesFilterListInput
@@ -8732,6 +8745,9 @@ type PrismicSiteNavigationEdge {
 enum PrismicSiteNavigationFieldsEnum {
   uid
   data___address
+  data___copyright___text
+  data___copyright___html
+  data___copyright___raw
   data___footer_entries
   data___footer_entries___display_text
   data___footer_entries___group
@@ -10567,6 +10583,7 @@ type SitePluginPluginOptionsSchemasSite_navigation {
 
 type SitePluginPluginOptionsSchemasSite_navigationMain {
   uid: SitePluginPluginOptionsSchemasSite_navigationMainUid
+  copyright: SitePluginPluginOptionsSchemasSite_navigationMainCopyright
   address: SitePluginPluginOptionsSchemasSite_navigationMainAddress
   tel: SitePluginPluginOptionsSchemasSite_navigationMainTel
 }
@@ -10577,6 +10594,16 @@ type SitePluginPluginOptionsSchemasSite_navigationMainUid {
 }
 
 type SitePluginPluginOptionsSchemasSite_navigationMainUidConfig {
+  label: String
+}
+
+type SitePluginPluginOptionsSchemasSite_navigationMainCopyright {
+  type: String
+  config: SitePluginPluginOptionsSchemasSite_navigationMainCopyrightConfig
+}
+
+type SitePluginPluginOptionsSchemasSite_navigationMainCopyrightConfig {
+  single: String
   label: String
 }
 

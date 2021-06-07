@@ -13,6 +13,10 @@ type FooterProps = {
 
 export const query = graphql`
   fragment Footer_navigationData on PrismicSiteNavigationDataType {
+    copyright {
+      html
+    }
+    address
     footer_entries {
       display_text
       link {
@@ -26,18 +30,31 @@ export const query = graphql`
 `;
 
 const Container = styled('footer', {
+  display: 'grid',
+  paddingTop: rem(32),
+  paddingBottom: rem(96),
   borderTop: '1px solid $gray400',
+
+  '@sm': {
+    paddingTop: rem(70),
+  },
 });
 
-const Content = styled('div', {
+const ContentWrapper = styled('div', {
+  contentArea: true,
+  width: '100%',
+  display: 'grid',
+  gap: rem(42),
+
+  '@sm': {
+    gap: rem(36),
+  },
+});
+
+const TopContent = styled('section', {
+  width: '100%',
   display: 'flex',
   flexDirection: 'column',
-  paddingTop: rem(32),
-  paddingBottom: rem(80),
-  paddingX: rem(24),
-  '> * + *': {
-    marginTop: rem(28),
-  },
 
   '@sm': {
     flexDirection: 'row',
@@ -45,13 +62,33 @@ const Content = styled('div', {
     justifyContent: 'space-between',
     maxWidth: '$maxContent',
     marginX: 'auto',
-    '> * + *': {
+  },
+
+  '> * + *': {
+    marginTop: rem(28),
+
+    '@sm': {
       marginTop: 0,
     },
   },
 });
 
-const Copyright = styled('p', {
+const InfoWrapper = styled('section', {
+  display: 'flex',
+  gap: rem(16),
+  flexDirection: 'column',
+  color: '$gray600',
+  fontSize: '$caption1',
+
+  '@sm': {
+    flexDirection: 'row',
+  },
+});
+
+const Info = styled('p', {
+});
+
+const Copyright = styled('div', {
   fontSize: '$caption2',
 });
 
@@ -105,12 +142,13 @@ const Footer: React.FC<FooterProps> = ({
   navigationData,
 }) => {
   const parseLink = useLinkParser();
+  console.log(navigationData);
 
   return (
     <Container role="contentinfo" className={className}>
-      <Content>
+      <ContentWrapper>
+      <TopContent>
         <FooterEntryList>
-          <Copyright>© 당근마켓</Copyright>
           {navigationData.footer_entries
           .filter(entry => entry.link)
           .map(entry => (
@@ -144,7 +182,18 @@ const Footer: React.FC<FooterProps> = ({
             </SocialServiceProfileItem>
           ))}
         </SocialServiceProfileList>
-      </Content>
+      </TopContent>
+      <InfoWrapper>
+        {navigationData.copyright?.html && (
+          <Copyright
+            dangerouslySetInnerHTML={{ __html: navigationData.copyright.html }}
+          />
+        )}
+        {navigationData.address && (
+          <Info>{navigationData.address}</Info>
+        )}
+      </InfoWrapper>
+      </ContentWrapper>
     </Container>
   );
 };
