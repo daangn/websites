@@ -8,7 +8,7 @@ import type { GatsbySSR, GatsbyBrowser } from 'gatsby';
 
 type WrapRootElement = (GatsbySSR | GatsbyBrowser)['wrapRootElement'];
 
-export const wrapRootElement: WrapRootElement = (element: any) => {
+export const wrapRootElement: WrapRootElement = ({ element }: any) => {
   return (
     <>
       {element}

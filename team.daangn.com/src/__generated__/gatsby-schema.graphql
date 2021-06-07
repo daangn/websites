@@ -797,7 +797,7 @@ enum GatsbyImageLayout {
 
 type PrismicLinkType {
   link_type: PrismicLinkTypeEnum
-  isBroken: Boolean!
+  isBroken: Boolean
   url: String
   target: String
   size: Int
@@ -826,9 +826,9 @@ interface PrismicSliceType {
 }
 
 type PrismicStructuredTextType {
-  text: String!
-  html: String!
-  raw: JSON!
+  text: String
+  html: String
+  raw: JSON
 }
 
 type PrismicTypePathType implements Node {
@@ -1582,12 +1582,12 @@ type PrismicFaqDataEntries {
 }
 
 type PrismicFaqDataType {
-  entries: [PrismicFaqDataEntries!]!
+  entries: [PrismicFaqDataEntries]
 }
 
 type PrismicFaq implements Node {
   uid: String!
-  data: PrismicFaqDataType!
+  data: PrismicFaqDataType
   dataRaw: JSON!
   prismicId: ID!
   alternate_languages: [PrismicAlternateLanguageType!]!
@@ -1793,7 +1793,12 @@ type PrismicMbtiTestQuestion implements Node {
   internal: Internal!
 }
 
-type PrismicMemberProfileDataBodyHeroPrimaryImageImageType {
+type PrismicMemberProfileDataImageImageThumbnailsType {
+  small_banner: PrismicImageThumbnailType
+  wide_banner: PrismicImageThumbnailType
+}
+
+type PrismicMemberProfileDataImageImageType {
   alt: String
   copyright: String
   dimensions: PrismicImageDimensionsType
@@ -1900,292 +1905,19 @@ type PrismicMemberProfileDataBodyHeroPrimaryImageImageType {
     srcSetMaxWidth: Int = 8192
   ): JSON
   localFile: File
+  thumbnails: PrismicMemberProfileDataImageImageThumbnailsType
 }
-
-type PrismicMemberProfileDataBodyHeroPrimary {
-  image: PrismicMemberProfileDataBodyHeroPrimaryImageImageType
-}
-
-type PrismicMemberProfileDataBodyTitleAndDescriptionPrimary {
-  description: PrismicStructuredTextType
-  inverted: Boolean
-  key_text: String
-  link: PrismicLinkType
-  link_text: String
-  title: PrismicStructuredTextType
-}
-
-type PrismicMemberProfileDataBodyTitleAndIllustrationPrimaryIllustrationImageType {
-  alt: String
-  copyright: String
-  dimensions: PrismicImageDimensionsType
-
-  # A plain imgix URL with the URL and params applied.
-  url(imgixParams: ImgixParamsInput = {}): String
-
-  # Should be used to generate fixed-width images (i.e. the size of the image doesn't change when the size of the browser changes, and are "fixed"). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFixed fragment should be used. See the project's README for more information.
-  fixed(
-    # The fixed image width to render, in px.
-    width: Int = 8192
-
-    # The fixed image height to render, in px.
-    height: Int
-
-    # The image quality to use for compression. Range: 0-100, with 100 being highest quality. This setting is not recommended as the quality is already optimized by decreasing quality as the dpr increases to reduce image size while retaining visual quality.
-    quality: Int
-
-    # The imgix parameters (transformations) to apply to the image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
-    imgixParams: ImgixParamsInput = {}
-
-    # Any imgix parameters to use only for the blur-up/placeholder image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
-    placeholderImgixParams: ImgixParamsInput = {}
-  ): ImgixFixed
-
-  # Should be used to generate fluid-width images (i.e. images that change when the size of the browser changes). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFluid fragment should be used. See the project's README for more information.
-  fluid(
-    # The imgix parameters (transformations) to apply to the image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
-    imgixParams: ImgixParamsInput = {}
-
-    # The maximum px width of the *image* to be *requested*. This does NOT affect the width of the image displayed. The width of the image displayed can be controlled by adding a sizes parameter to the GatsbyImage component. For more information, see this project's readme.
-    maxWidth: Int = 8192
-
-    # The maximum px height of the *image* to be *requested*. This does NOT affect the height of the image displayed.
-    maxHeight: Int
-
-    # A custom set of widths (in px) to use for the srcset widths. This feature is not recommended as the default widths are optimized for imgix's caching infrastructure.
-    srcSetBreakpoints: [Int]
-
-    # Any imgix parameters to use only for the blur-up/placeholder image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
-    placeholderImgixParams: ImgixParamsInput = {}
-  ): ImgixFluid
-  gatsbyImageData(
-    # The layout for the image.
-    # FIXED: A static image sized, that does not resize according to the screen width
-    # FULL_WIDTH: The image resizes to fit its container. Pass a "sizes" option if it isn't going to be the full width of the screen.
-    # CONSTRAINED: Resizes to fit its container, up to a maximum width, at which point it will remain fixed in size.
-    layout: GatsbyImageLayout
-
-    # The display width of the generated image for layout = FIXED, and the display width of the largest image for layout = CONSTRAINED.
-    # The actual largest image resolution will be this value multiplied by the largest value in outputPixelDensities
-    # Ignored if layout = FLUID.
-    width: Int
-
-    # If set, the height of the generated image. If omitted, it is calculated from the supplied width, matching the aspect ratio of the source image.
-    height: Int
-
-    # If set along with width or height, this will set the value of the other dimension to match the provided aspect ratio, cropping the image if needed. 
-    # If neither width or height is provided, height will be set based on the intrinsic width of the source image.
-    aspectRatio: Float
-
-    # A list of image pixel densities to generate for FIXED and CONSTRAINED images. You should rarely need to change this. It will never generate images larger than the source, and will always include a 1x image.
-    # Default is [ 1, 2 ] for fixed images, meaning 1x, 2x, 3x, and [0.25, 0.5, 1, 2] for fluid. In this case, an image with a fluid layout and width = 400 would generate images at 100, 200, 400 and 800px wide.
-    outputPixelDensities: [Float]
-
-    # Specifies the image widths to generate. You should rarely need to change this. For FIXED and CONSTRAINED images it is better to allow these to be determined automatically,
-    # based on the image size. For FULL_WIDTH images this can be used to override the default, which is [750, 1080, 1366, 1920].
-    # It will never generate any images larger than the source.
-    breakpoints: [Int]
-
-    # The "sizes" property, passed to the img tag. This describes the display size of the image.
-    # This does not affect the generated images, but is used by the browser to decide which images to download. You can leave this blank for fixed images, or if the responsive image
-    # container will be the full width of the screen. In these cases we will generate an appropriate value.
-    sizes: String
-
-    # Background color applied to the wrapper, or when "letterboxing" an image to another aspect ratio.
-    backgroundColor: String
-
-    # This argument is used to set parameters to instruct imgix to transform the image. 
-    #         
-    #         All of imgix's parameters can be found here: https://docs.imgix.com/apis/rendering
-    imgixParams: ImgixParamsInput
-
-    # This argument is used to set parameters to instruct imgix to transform the placeholder image. By default all parameters passed to 'imgixParams' are already set here, but this can be used to override or set extra parameters. 
-    #         
-    #         All of imgix's parameters can be found here: https://docs.imgix.com/apis/rendering
-    placeholderImgixParams: ImgixParamsInput
-
-    # Format of generated placeholder image, displayed while the main image loads.
-    # BLURRED: a blurred, low resolution image, encoded as a base64 data URI (default)
-    # DOMINANT_COLOR: a solid color, calculated from the dominant color of the image.
-    # NONE: no placeholder. Set "backgroundColor" to use a fixed background color.
-    placeholder: ImgixPlaceholder
-
-    # This argument affects the breakpoints used for the srcsets, dictates the maximum tolerated size difference between an image's downloaded size and its rendered size. For example: setting this value to 0.1 means that an image will not render more than 10% larger or smaller than its native size. In practice, the image URLs generated for a width-based srcset attribute will grow by twice this rate. A lower tolerance means images will render closer to their native size (thereby increasing perceived image quality), but a large srcset list will be generated and consequently users may experience lower rates of cache-hit for pre-rendered images on your site.
-    #
-    # By default this rate is set to 8 percent, which we consider to be the ideal rate for maximizing cache hits without sacrificing visual quality. Users can specify their own width tolerance by providing a positive scalar value as widthTolerance to the third options object:
-    widthTolerance: Float = 0.08
-
-    # This argument determines the minimum srcset width that is generated. The default is 100px.
-    srcSetMinWidth: Int = 100
-
-    # This argument determines the maximum srcset width that is generated, if the layout type is FULL_WIDTH. If the layout type is CONSTRAINED, the width argument will be used. Furthermore, in every case, the maximum srcset width is constrained by the width of the source image. The default is 8192px, which is the render limit of the imgix service.
-    srcSetMaxWidth: Int = 8192
-  ): JSON
-  localFile: File
-}
-
-type PrismicMemberProfileDataBodyTitleAndIllustrationPrimary {
-  illustration: PrismicMemberProfileDataBodyTitleAndIllustrationPrimaryIllustrationImageType
-  inverted: Boolean
-  key_text: String
-  link: PrismicLinkType
-  link_text: String
-  title: PrismicStructuredTextType
-}
-
-type PrismicMemberProfileDataBodyWideBannerPrimaryThumbnailImageType {
-  alt: String
-  copyright: String
-  dimensions: PrismicImageDimensionsType
-
-  # A plain imgix URL with the URL and params applied.
-  url(imgixParams: ImgixParamsInput = {}): String
-
-  # Should be used to generate fixed-width images (i.e. the size of the image doesn't change when the size of the browser changes, and are "fixed"). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFixed fragment should be used. See the project's README for more information.
-  fixed(
-    # The fixed image width to render, in px.
-    width: Int = 8192
-
-    # The fixed image height to render, in px.
-    height: Int
-
-    # The image quality to use for compression. Range: 0-100, with 100 being highest quality. This setting is not recommended as the quality is already optimized by decreasing quality as the dpr increases to reduce image size while retaining visual quality.
-    quality: Int
-
-    # The imgix parameters (transformations) to apply to the image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
-    imgixParams: ImgixParamsInput = {}
-
-    # Any imgix parameters to use only for the blur-up/placeholder image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
-    placeholderImgixParams: ImgixParamsInput = {}
-  ): ImgixFixed
-
-  # Should be used to generate fluid-width images (i.e. images that change when the size of the browser changes). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFluid fragment should be used. See the project's README for more information.
-  fluid(
-    # The imgix parameters (transformations) to apply to the image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
-    imgixParams: ImgixParamsInput = {}
-
-    # The maximum px width of the *image* to be *requested*. This does NOT affect the width of the image displayed. The width of the image displayed can be controlled by adding a sizes parameter to the GatsbyImage component. For more information, see this project's readme.
-    maxWidth: Int = 8192
-
-    # The maximum px height of the *image* to be *requested*. This does NOT affect the height of the image displayed.
-    maxHeight: Int
-
-    # A custom set of widths (in px) to use for the srcset widths. This feature is not recommended as the default widths are optimized for imgix's caching infrastructure.
-    srcSetBreakpoints: [Int]
-
-    # Any imgix parameters to use only for the blur-up/placeholder image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
-    placeholderImgixParams: ImgixParamsInput = {}
-  ): ImgixFluid
-  gatsbyImageData(
-    # The layout for the image.
-    # FIXED: A static image sized, that does not resize according to the screen width
-    # FULL_WIDTH: The image resizes to fit its container. Pass a "sizes" option if it isn't going to be the full width of the screen.
-    # CONSTRAINED: Resizes to fit its container, up to a maximum width, at which point it will remain fixed in size.
-    layout: GatsbyImageLayout
-
-    # The display width of the generated image for layout = FIXED, and the display width of the largest image for layout = CONSTRAINED.
-    # The actual largest image resolution will be this value multiplied by the largest value in outputPixelDensities
-    # Ignored if layout = FLUID.
-    width: Int
-
-    # If set, the height of the generated image. If omitted, it is calculated from the supplied width, matching the aspect ratio of the source image.
-    height: Int
-
-    # If set along with width or height, this will set the value of the other dimension to match the provided aspect ratio, cropping the image if needed. 
-    # If neither width or height is provided, height will be set based on the intrinsic width of the source image.
-    aspectRatio: Float
-
-    # A list of image pixel densities to generate for FIXED and CONSTRAINED images. You should rarely need to change this. It will never generate images larger than the source, and will always include a 1x image.
-    # Default is [ 1, 2 ] for fixed images, meaning 1x, 2x, 3x, and [0.25, 0.5, 1, 2] for fluid. In this case, an image with a fluid layout and width = 400 would generate images at 100, 200, 400 and 800px wide.
-    outputPixelDensities: [Float]
-
-    # Specifies the image widths to generate. You should rarely need to change this. For FIXED and CONSTRAINED images it is better to allow these to be determined automatically,
-    # based on the image size. For FULL_WIDTH images this can be used to override the default, which is [750, 1080, 1366, 1920].
-    # It will never generate any images larger than the source.
-    breakpoints: [Int]
-
-    # The "sizes" property, passed to the img tag. This describes the display size of the image.
-    # This does not affect the generated images, but is used by the browser to decide which images to download. You can leave this blank for fixed images, or if the responsive image
-    # container will be the full width of the screen. In these cases we will generate an appropriate value.
-    sizes: String
-
-    # Background color applied to the wrapper, or when "letterboxing" an image to another aspect ratio.
-    backgroundColor: String
-
-    # This argument is used to set parameters to instruct imgix to transform the image. 
-    #         
-    #         All of imgix's parameters can be found here: https://docs.imgix.com/apis/rendering
-    imgixParams: ImgixParamsInput
-
-    # This argument is used to set parameters to instruct imgix to transform the placeholder image. By default all parameters passed to 'imgixParams' are already set here, but this can be used to override or set extra parameters. 
-    #         
-    #         All of imgix's parameters can be found here: https://docs.imgix.com/apis/rendering
-    placeholderImgixParams: ImgixParamsInput
-
-    # Format of generated placeholder image, displayed while the main image loads.
-    # BLURRED: a blurred, low resolution image, encoded as a base64 data URI (default)
-    # DOMINANT_COLOR: a solid color, calculated from the dominant color of the image.
-    # NONE: no placeholder. Set "backgroundColor" to use a fixed background color.
-    placeholder: ImgixPlaceholder
-
-    # This argument affects the breakpoints used for the srcsets, dictates the maximum tolerated size difference between an image's downloaded size and its rendered size. For example: setting this value to 0.1 means that an image will not render more than 10% larger or smaller than its native size. In practice, the image URLs generated for a width-based srcset attribute will grow by twice this rate. A lower tolerance means images will render closer to their native size (thereby increasing perceived image quality), but a large srcset list will be generated and consequently users may experience lower rates of cache-hit for pre-rendered images on your site.
-    #
-    # By default this rate is set to 8 percent, which we consider to be the ideal rate for maximizing cache hits without sacrificing visual quality. Users can specify their own width tolerance by providing a positive scalar value as widthTolerance to the third options object:
-    widthTolerance: Float = 0.08
-
-    # This argument determines the minimum srcset width that is generated. The default is 100px.
-    srcSetMinWidth: Int = 100
-
-    # This argument determines the maximum srcset width that is generated, if the layout type is FULL_WIDTH. If the layout type is CONSTRAINED, the width argument will be used. Furthermore, in every case, the maximum srcset width is constrained by the width of the source image. The default is 8192px, which is the render limit of the imgix service.
-    srcSetMaxWidth: Int = 8192
-  ): JSON
-  localFile: File
-}
-
-type PrismicMemberProfileDataBodyWideBannerPrimary {
-  background_color: String
-  link: PrismicLinkType
-  link_text: String
-  thumbnail: PrismicMemberProfileDataBodyWideBannerPrimaryThumbnailImageType
-  title: PrismicStructuredTextType
-}
-
-type PrismicMemberProfileDataBodyHero implements PrismicSliceType {
-  primary: PrismicMemberProfileDataBodyHeroPrimary
-  id: ID!
-  slice_type: String!
-  slice_label: String
-}
-
-type PrismicMemberProfileDataBodyTitleAndDescription implements PrismicSliceType {
-  primary: PrismicMemberProfileDataBodyTitleAndDescriptionPrimary
-  id: ID!
-  slice_type: String!
-  slice_label: String
-}
-
-type PrismicMemberProfileDataBodyTitleAndIllustration implements PrismicSliceType {
-  primary: PrismicMemberProfileDataBodyTitleAndIllustrationPrimary
-  id: ID!
-  slice_type: String!
-  slice_label: String
-}
-
-type PrismicMemberProfileDataBodyWideBanner implements PrismicSliceType {
-  primary: PrismicMemberProfileDataBodyWideBannerPrimary
-  id: ID!
-  slice_type: String!
-  slice_label: String
-}
-
-union PrismicMemberProfileDataBodySlicesType = PrismicMemberProfileDataBodyHero | PrismicMemberProfileDataBodyTitleAndDescription | PrismicMemberProfileDataBodyTitleAndIllustration | PrismicMemberProfileDataBodyWideBanner
 
 type PrismicMemberProfileDataType {
-  body: [PrismicMemberProfileDataBodySlicesType]
+  email: String
+  image: PrismicMemberProfileDataImageImageType
+  name: String
+  nickname: String
+  role: String
 }
 
 type PrismicMemberProfile implements Node {
-  data: PrismicMemberProfileDataType!
+  data: PrismicMemberProfileDataType
   dataRaw: JSON!
   prismicId: ID!
   alternate_languages: [PrismicAlternateLanguageType!]!
@@ -2680,15 +2412,15 @@ type PrismicSiteNavigationDataSnsProfiles {
 
 type PrismicSiteNavigationDataType {
   address: String
-  footer_entries: [PrismicSiteNavigationDataFooterEntries!]!
-  header_entries: [PrismicSiteNavigationDataHeaderEntries!]!
-  sns_profiles: [PrismicSiteNavigationDataSnsProfiles!]!
+  footer_entries: [PrismicSiteNavigationDataFooterEntries]
+  header_entries: [PrismicSiteNavigationDataHeaderEntries]
+  sns_profiles: [PrismicSiteNavigationDataSnsProfiles]
   tel: String
 }
 
 type PrismicSiteNavigation implements Node {
   uid: String!
-  data: PrismicSiteNavigationDataType!
+  data: PrismicSiteNavigationDataType
   dataRaw: JSON!
   prismicId: ID!
   alternate_languages: [PrismicAlternateLanguageType!]!
@@ -3110,7 +2842,7 @@ type PrismicTeamContentsDataCultureBodyTitleAndIllustrationPrimary {
 }
 
 type PrismicTeamContentsDataCultureBodyBenefit implements PrismicSliceType {
-  items: [PrismicTeamContentsDataCultureBodyBenefitItem!]
+  items: [PrismicTeamContentsDataCultureBodyBenefitItem]
   primary: PrismicTeamContentsDataCultureBodyBenefitPrimary
   id: ID!
   slice_type: String!
@@ -3124,7 +2856,7 @@ type PrismicTeamContentsDataCultureBodyDivider implements PrismicSliceType {
 }
 
 type PrismicTeamContentsDataCultureBodyHowWeWork implements PrismicSliceType {
-  items: [PrismicTeamContentsDataCultureBodyHowWeWorkItem!]
+  items: [PrismicTeamContentsDataCultureBodyHowWeWorkItem]
   primary: PrismicTeamContentsDataCultureBodyHowWeWorkPrimary
   id: ID!
   slice_type: String!
@@ -3281,7 +3013,7 @@ type PrismicTeamContentsDataLifeBodyLifeContentPrimary {
 }
 
 type PrismicTeamContentsDataLifeBodyLifeContent implements PrismicSliceType {
-  items: [PrismicTeamContentsDataLifeBodyLifeContentItem!]
+  items: [PrismicTeamContentsDataLifeBodyLifeContentItem]
   primary: PrismicTeamContentsDataLifeBodyLifeContentPrimary
   id: ID!
   slice_type: String!
@@ -3778,7 +3510,7 @@ type PrismicTeamContentsDataMainBodyKeyVisual implements PrismicSliceType {
 }
 
 type PrismicTeamContentsDataMainBodyMemberQuoteCarousel implements PrismicSliceType {
-  items: [PrismicTeamContentsDataMainBodyMemberQuoteCarouselItem!]
+  items: [PrismicTeamContentsDataMainBodyMemberQuoteCarouselItem]
   id: ID!
   slice_type: String!
   slice_label: String
@@ -3808,16 +3540,16 @@ type PrismicTeamContentsDataMainBodyWideBanner implements PrismicSliceType {
 union PrismicTeamContentsDataMainBodySlicesType = PrismicTeamContentsDataMainBodyDivider | PrismicTeamContentsDataMainBodyKeyVisual | PrismicTeamContentsDataMainBodyMemberQuoteCarousel | PrismicTeamContentsDataMainBodyTitleAndDescription | PrismicTeamContentsDataMainBodyTitleAndIllustration | PrismicTeamContentsDataMainBodyWideBanner
 
 type PrismicTeamContentsDataType {
-  culture_body: [PrismicTeamContentsDataCultureBodySlicesType!]!
+  culture_body: [PrismicTeamContentsDataCultureBodySlicesType]
   culture_page_title: PrismicStructuredTextType
-  life_body: [PrismicTeamContentsDataLifeBodySlicesType!]!
+  life_body: [PrismicTeamContentsDataLifeBodySlicesType]
   life_page_title: PrismicStructuredTextType
-  main_body: [PrismicTeamContentsDataMainBodySlicesType!]!
+  main_body: [PrismicTeamContentsDataMainBodySlicesType]
   main_page_title: PrismicStructuredTextType
 }
 
 type PrismicTeamContents implements Node {
-  data: PrismicTeamContentsDataType!
+  data: PrismicTeamContentsDataType
   dataRaw: JSON!
   prismicId: ID!
   alternate_languages: [PrismicAlternateLanguageType!]!
@@ -4099,7 +3831,7 @@ type Query {
   allPrismicMbtiIntro(filter: PrismicMbtiIntroFilterInput, sort: PrismicMbtiIntroSortInput, skip: Int, limit: Int): PrismicMbtiIntroConnection!
   prismicMbtiTestQuestion(prismicId: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput, _previewable: IDQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): PrismicMbtiTestQuestion
   allPrismicMbtiTestQuestion(filter: PrismicMbtiTestQuestionFilterInput, sort: PrismicMbtiTestQuestionSortInput, skip: Int, limit: Int): PrismicMbtiTestQuestionConnection!
-  prismicMemberProfile(dataRaw: JSONQueryOperatorInput, prismicId: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput, _previewable: IDQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): PrismicMemberProfile
+  prismicMemberProfile(data: PrismicMemberProfileDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, prismicId: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput, _previewable: IDQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): PrismicMemberProfile
   allPrismicMemberProfile(filter: PrismicMemberProfileFilterInput, sort: PrismicMemberProfileSortInput, skip: Int, limit: Int): PrismicMemberProfileConnection!
   prismicPayContents(dataRaw: JSONQueryOperatorInput, prismicId: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput, _previewable: IDQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): PrismicPayContents
   allPrismicPayContents(filter: PrismicPayContentsFilterInput, sort: PrismicPayContentsSortInput, skip: Int, limit: Int): PrismicPayContentsConnection!
@@ -5132,6 +4864,13 @@ input SitePluginPluginOptionsFilterInput {
   outputPath: StringQueryOperatorInput
   emitSchema: SitePluginPluginOptionsEmitSchemaFilterInput
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocumentsFilterInput
+  boardToken: StringQueryOperatorInput
+  includeContent: BooleanQueryOperatorInput
+  path: StringQueryOperatorInput
+  pathCheck: BooleanQueryOperatorInput
+  allExtensions: BooleanQueryOperatorInput
+  isTSX: BooleanQueryOperatorInput
+  jsxPragma: StringQueryOperatorInput
   repositoryName: StringQueryOperatorInput
   schemas: SitePluginPluginOptionsSchemasFilterInput
   apiEndpoint: StringQueryOperatorInput
@@ -5141,13 +4880,6 @@ input SitePluginPluginOptionsFilterInput {
   imagePlaceholderImgixParams: SitePluginPluginOptionsImagePlaceholderImgixParamsFilterInput
   toolbar: StringQueryOperatorInput
   promptForAccessToken: BooleanQueryOperatorInput
-  boardToken: StringQueryOperatorInput
-  includeContent: BooleanQueryOperatorInput
-  path: StringQueryOperatorInput
-  pathCheck: BooleanQueryOperatorInput
-  allExtensions: BooleanQueryOperatorInput
-  isTSX: BooleanQueryOperatorInput
-  jsxPragma: StringQueryOperatorInput
 }
 
 input SitePluginPluginOptionsDefaultsFilterInput {
@@ -5239,287 +4971,77 @@ input SitePluginPluginOptionsSchemasMember_profileFilterInput {
 }
 
 input SitePluginPluginOptionsSchemasMember_profileMainFilterInput {
-  body: SitePluginPluginOptionsSchemasMember_profileMainBodyFilterInput
+  nickname: SitePluginPluginOptionsSchemasMember_profileMainNicknameFilterInput
+  name: SitePluginPluginOptionsSchemasMember_profileMainNameFilterInput
+  email: SitePluginPluginOptionsSchemasMember_profileMainEmailFilterInput
+  role: SitePluginPluginOptionsSchemasMember_profileMainRoleFilterInput
+  image: SitePluginPluginOptionsSchemasMember_profileMainImageFilterInput
 }
 
-input SitePluginPluginOptionsSchemasMember_profileMainBodyFilterInput {
+input SitePluginPluginOptionsSchemasMember_profileMainNicknameFilterInput {
   type: StringQueryOperatorInput
-  fieldset: StringQueryOperatorInput
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigFilterInput
+  config: SitePluginPluginOptionsSchemasMember_profileMainNicknameConfigFilterInput
 }
 
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigFilterInput {
-  choices: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesFilterInput
+input SitePluginPluginOptionsSchemasMember_profileMainNicknameConfigFilterInput {
+  label: StringQueryOperatorInput
+  placeholder: StringQueryOperatorInput
 }
 
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesFilterInput {
-  hero: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroFilterInput
-  title_and_description: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionFilterInput
-  title_and_illustration: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationFilterInput
-  wide_banner: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerFilterInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroFilterInput {
+input SitePluginPluginOptionsSchemasMember_profileMainNameFilterInput {
   type: StringQueryOperatorInput
-  fieldset: StringQueryOperatorInput
-  description: StringQueryOperatorInput
-  icon: StringQueryOperatorInput
-  display: StringQueryOperatorInput
-  non_repeat: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeatFilterInput
+  config: SitePluginPluginOptionsSchemasMember_profileMainNameConfigFilterInput
 }
 
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeatFilterInput {
-  image: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeatImageFilterInput
+input SitePluginPluginOptionsSchemasMember_profileMainNameConfigFilterInput {
+  label: StringQueryOperatorInput
+  placeholder: StringQueryOperatorInput
 }
 
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeatImageFilterInput {
+input SitePluginPluginOptionsSchemasMember_profileMainEmailFilterInput {
   type: StringQueryOperatorInput
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeatImageConfigFilterInput
+  config: SitePluginPluginOptionsSchemasMember_profileMainEmailConfigFilterInput
 }
 
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeatImageConfigFilterInput {
-  constraint: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeatImageConfigConstraintFilterInput
+input SitePluginPluginOptionsSchemasMember_profileMainEmailConfigFilterInput {
+  label: StringQueryOperatorInput
+  placeholder: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsSchemasMember_profileMainRoleFilterInput {
+  type: StringQueryOperatorInput
+  config: SitePluginPluginOptionsSchemasMember_profileMainRoleConfigFilterInput
+}
+
+input SitePluginPluginOptionsSchemasMember_profileMainRoleConfigFilterInput {
+  label: StringQueryOperatorInput
+  placeholder: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsSchemasMember_profileMainImageFilterInput {
+  type: StringQueryOperatorInput
+  config: SitePluginPluginOptionsSchemasMember_profileMainImageConfigFilterInput
+}
+
+input SitePluginPluginOptionsSchemasMember_profileMainImageConfigFilterInput {
+  constraint: SitePluginPluginOptionsSchemasMember_profileMainImageConfigConstraintFilterInput
+  thumbnails: SitePluginPluginOptionsSchemasMember_profileMainImageConfigThumbnailsFilterListInput
   label: StringQueryOperatorInput
 }
 
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeatImageConfigConstraintFilterInput {
+input SitePluginPluginOptionsSchemasMember_profileMainImageConfigConstraintFilterInput {
   width: IntQueryOperatorInput
   height: IntQueryOperatorInput
 }
 
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionFilterInput {
-  type: StringQueryOperatorInput
-  fieldset: StringQueryOperatorInput
-  description: StringQueryOperatorInput
-  icon: StringQueryOperatorInput
-  display: StringQueryOperatorInput
-  non_repeat: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatFilterInput
+input SitePluginPluginOptionsSchemasMember_profileMainImageConfigThumbnailsFilterListInput {
+  elemMatch: SitePluginPluginOptionsSchemasMember_profileMainImageConfigThumbnailsFilterInput
 }
 
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatFilterInput {
-  key_text: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatKey_textFilterInput
-  title: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatTitleFilterInput
-  inverted: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatInvertedFilterInput
-  link: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLinkFilterInput
-  link_text: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLink_textFilterInput
-  description: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatDescriptionFilterInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatKey_textFilterInput {
-  type: StringQueryOperatorInput
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatKey_textConfigFilterInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatKey_textConfigFilterInput {
-  label: StringQueryOperatorInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatTitleFilterInput {
-  type: StringQueryOperatorInput
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatTitleConfigFilterInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatTitleConfigFilterInput {
-  single: StringQueryOperatorInput
-  label: StringQueryOperatorInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatInvertedFilterInput {
-  type: StringQueryOperatorInput
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatInvertedConfigFilterInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatInvertedConfigFilterInput {
-  placeholder_false: StringQueryOperatorInput
-  placeholder_true: StringQueryOperatorInput
-  default_value: BooleanQueryOperatorInput
-  label: StringQueryOperatorInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLinkFilterInput {
-  type: StringQueryOperatorInput
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLinkConfigFilterInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLinkConfigFilterInput {
-  label: StringQueryOperatorInput
-  placeholder: StringQueryOperatorInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLink_textFilterInput {
-  type: StringQueryOperatorInput
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLink_textConfigFilterInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLink_textConfigFilterInput {
-  label: StringQueryOperatorInput
-  placeholder: StringQueryOperatorInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatDescriptionFilterInput {
-  type: StringQueryOperatorInput
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatDescriptionConfigFilterInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatDescriptionConfigFilterInput {
-  multi: StringQueryOperatorInput
-  label: StringQueryOperatorInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationFilterInput {
-  type: StringQueryOperatorInput
-  fieldset: StringQueryOperatorInput
-  description: StringQueryOperatorInput
-  icon: StringQueryOperatorInput
-  display: StringQueryOperatorInput
-  non_repeat: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatFilterInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatFilterInput {
-  key_text: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatKey_textFilterInput
-  title: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatTitleFilterInput
-  inverted: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatInvertedFilterInput
-  link: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLinkFilterInput
-  link_text: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLink_textFilterInput
-  illustration: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatIllustrationFilterInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatKey_textFilterInput {
-  type: StringQueryOperatorInput
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatKey_textConfigFilterInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatKey_textConfigFilterInput {
-  label: StringQueryOperatorInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatTitleFilterInput {
-  type: StringQueryOperatorInput
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatTitleConfigFilterInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatTitleConfigFilterInput {
-  single: StringQueryOperatorInput
-  label: StringQueryOperatorInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatInvertedFilterInput {
-  type: StringQueryOperatorInput
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatInvertedConfigFilterInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatInvertedConfigFilterInput {
-  placeholder_false: StringQueryOperatorInput
-  placeholder_true: StringQueryOperatorInput
-  default_value: BooleanQueryOperatorInput
-  label: StringQueryOperatorInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLinkFilterInput {
-  type: StringQueryOperatorInput
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLinkConfigFilterInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLinkConfigFilterInput {
-  label: StringQueryOperatorInput
-  placeholder: StringQueryOperatorInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLink_textFilterInput {
-  type: StringQueryOperatorInput
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLink_textConfigFilterInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLink_textConfigFilterInput {
-  label: StringQueryOperatorInput
-  placeholder: StringQueryOperatorInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatIllustrationFilterInput {
-  type: StringQueryOperatorInput
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatIllustrationConfigFilterInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatIllustrationConfigFilterInput {
-  constraint: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatIllustrationConfigConstraintFilterInput
-  label: StringQueryOperatorInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatIllustrationConfigConstraintFilterInput {
+input SitePluginPluginOptionsSchemasMember_profileMainImageConfigThumbnailsFilterInput {
+  name: StringQueryOperatorInput
   width: IntQueryOperatorInput
   height: IntQueryOperatorInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerFilterInput {
-  type: StringQueryOperatorInput
-  fieldset: StringQueryOperatorInput
-  description: StringQueryOperatorInput
-  icon: StringQueryOperatorInput
-  display: StringQueryOperatorInput
-  non_repeat: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatFilterInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatFilterInput {
-  thumbnail: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatThumbnailFilterInput
-  title: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatTitleFilterInput
-  link: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLinkFilterInput
-  link_text: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLink_textFilterInput
-  background_color: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatBackground_colorFilterInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatThumbnailFilterInput {
-  type: StringQueryOperatorInput
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatThumbnailConfigFilterInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatThumbnailConfigFilterInput {
-  constraint: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatThumbnailConfigConstraintFilterInput
-  label: StringQueryOperatorInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatThumbnailConfigConstraintFilterInput {
-  width: IntQueryOperatorInput
-  height: IntQueryOperatorInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatTitleFilterInput {
-  type: StringQueryOperatorInput
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatTitleConfigFilterInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatTitleConfigFilterInput {
-  single: StringQueryOperatorInput
-  label: StringQueryOperatorInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLinkFilterInput {
-  type: StringQueryOperatorInput
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLinkConfigFilterInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLinkConfigFilterInput {
-  label: StringQueryOperatorInput
-  placeholder: StringQueryOperatorInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLink_textFilterInput {
-  type: StringQueryOperatorInput
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLink_textConfigFilterInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLink_textConfigFilterInput {
-  label: StringQueryOperatorInput
-  placeholder: StringQueryOperatorInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatBackground_colorFilterInput {
-  type: StringQueryOperatorInput
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatBackground_colorConfigFilterInput
-}
-
-input SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatBackground_colorConfigFilterInput {
-  label: StringQueryOperatorInput
-  placeholder: StringQueryOperatorInput
 }
 
 input SitePluginPluginOptionsSchemasPay_contentsFilterInput {
@@ -7156,6 +6678,13 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_schema_graphql
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_introspection_json
   pluginCreator___pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
+  pluginCreator___pluginOptions___boardToken
+  pluginCreator___pluginOptions___includeContent
+  pluginCreator___pluginOptions___path
+  pluginCreator___pluginOptions___pathCheck
+  pluginCreator___pluginOptions___allExtensions
+  pluginCreator___pluginOptions___isTSX
+  pluginCreator___pluginOptions___jsxPragma
   pluginCreator___pluginOptions___repositoryName
   pluginCreator___pluginOptions___apiEndpoint
   pluginCreator___pluginOptions___customTypesApiEndpoint
@@ -7167,13 +6696,6 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___imagePlaceholderImgixParams___blur
   pluginCreator___pluginOptions___toolbar
   pluginCreator___pluginOptions___promptForAccessToken
-  pluginCreator___pluginOptions___boardToken
-  pluginCreator___pluginOptions___includeContent
-  pluginCreator___pluginOptions___path
-  pluginCreator___pluginOptions___pathCheck
-  pluginCreator___pluginOptions___allExtensions
-  pluginCreator___pluginOptions___isTSX
-  pluginCreator___pluginOptions___jsxPragma
   pluginCreator___nodeAPIs
   pluginCreator___browserAPIs
   pluginCreator___ssrAPIs
@@ -8694,6 +8216,68 @@ input PrismicMbtiTestQuestionSortInput {
   order: [SortOrderEnum] = [ASC]
 }
 
+input PrismicMemberProfileDataTypeFilterInput {
+  email: StringQueryOperatorInput
+  image: PrismicMemberProfileDataImageImageTypeFilterInput
+  name: StringQueryOperatorInput
+  nickname: StringQueryOperatorInput
+  role: StringQueryOperatorInput
+}
+
+input PrismicMemberProfileDataImageImageTypeFilterInput {
+  alt: StringQueryOperatorInput
+  copyright: StringQueryOperatorInput
+  dimensions: PrismicImageDimensionsTypeFilterInput
+  url: StringQueryOperatorInput
+  fixed: ImgixFixedFilterInput
+  fluid: ImgixFluidFilterInput
+  gatsbyImageData: JSONQueryOperatorInput
+  localFile: FileFilterInput
+  thumbnails: PrismicMemberProfileDataImageImageThumbnailsTypeFilterInput
+}
+
+input PrismicImageDimensionsTypeFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input ImgixFixedFilterInput {
+  base64: StringQueryOperatorInput
+  src: StringQueryOperatorInput
+  srcSet: StringQueryOperatorInput
+  srcWebp: StringQueryOperatorInput
+  srcSetWebp: StringQueryOperatorInput
+  sizes: StringQueryOperatorInput
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input ImgixFluidFilterInput {
+  base64: StringQueryOperatorInput
+  src: StringQueryOperatorInput
+  srcSet: StringQueryOperatorInput
+  srcWebp: StringQueryOperatorInput
+  srcSetWebp: StringQueryOperatorInput
+  sizes: StringQueryOperatorInput
+  aspectRatio: FloatQueryOperatorInput
+}
+
+input PrismicMemberProfileDataImageImageThumbnailsTypeFilterInput {
+  small_banner: PrismicImageThumbnailTypeFilterInput
+  wide_banner: PrismicImageThumbnailTypeFilterInput
+}
+
+input PrismicImageThumbnailTypeFilterInput {
+  alt: StringQueryOperatorInput
+  copyright: StringQueryOperatorInput
+  dimensions: PrismicImageDimensionsTypeFilterInput
+  url: StringQueryOperatorInput
+  fixed: ImgixFixedFilterInput
+  fluid: ImgixFluidFilterInput
+  gatsbyImageData: JSONQueryOperatorInput
+  localFile: FileFilterInput
+}
+
 type PrismicMemberProfileConnection {
   totalCount: Int!
   edges: [PrismicMemberProfileEdge!]!
@@ -8713,6 +8297,68 @@ type PrismicMemberProfileEdge {
 }
 
 enum PrismicMemberProfileFieldsEnum {
+  data___email
+  data___image___alt
+  data___image___copyright
+  data___image___dimensions___width
+  data___image___dimensions___height
+  data___image___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___fixed___base64 @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___fixed___src @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___fixed___srcSet @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___fixed___srcWebp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___fixed___srcSetWebp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___fixed___sizes @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___fixed___width @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___fixed___height @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___fluid___base64 @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___fluid___src @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___fluid___srcSet @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___fluid___srcWebp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___fluid___srcSetWebp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___fluid___sizes @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___fluid___aspectRatio @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___gatsbyImageData @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___sourceInstanceName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___absolutePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___relativePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___extension @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___size @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___prettySize @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___modifiedTime @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___accessTime @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___changeTime @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___birthTime @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___root @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___dir @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___base @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___ext @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___name @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___relativeDirectory @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___dev @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___mode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___nlink @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___uid @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___gid @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___rdev @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___ino @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___atimeMs @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___mtimeMs @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___ctimeMs @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___atime @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___mtime @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___ctime @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___birthtime @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___birthtimeMs @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___blksize @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___blocks @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___childrenImageSharp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___name
+  data___nickname
+  data___role
   dataRaw
   prismicId
   alternate_languages
@@ -8827,6 +8473,7 @@ type PrismicMemberProfileGroupConnection {
 }
 
 input PrismicMemberProfileFilterInput {
+  data: PrismicMemberProfileDataTypeFilterInput
   dataRaw: JSONQueryOperatorInput
   prismicId: IDQueryOperatorInput
   alternate_languages: PrismicAlternateLanguageTypeFilterListInput
@@ -10338,6 +9985,13 @@ enum SitePluginFieldsEnum {
   pluginOptions___emitSchema___src___generated___gatsby_schema_graphql
   pluginOptions___emitSchema___src___generated___gatsby_introspection_json
   pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
+  pluginOptions___boardToken
+  pluginOptions___includeContent
+  pluginOptions___path
+  pluginOptions___pathCheck
+  pluginOptions___allExtensions
+  pluginOptions___isTSX
+  pluginOptions___jsxPragma
   pluginOptions___repositoryName
   pluginOptions___apiEndpoint
   pluginOptions___customTypesApiEndpoint
@@ -10349,13 +10003,6 @@ enum SitePluginFieldsEnum {
   pluginOptions___imagePlaceholderImgixParams___blur
   pluginOptions___toolbar
   pluginOptions___promptForAccessToken
-  pluginOptions___boardToken
-  pluginOptions___includeContent
-  pluginOptions___path
-  pluginOptions___pathCheck
-  pluginOptions___allExtensions
-  pluginOptions___isTSX
-  pluginOptions___jsxPragma
   nodeAPIs
   browserAPIs
   ssrAPIs
@@ -10447,6 +10094,13 @@ type SitePluginPluginOptions {
   outputPath: String
   emitSchema: SitePluginPluginOptionsEmitSchema
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocuments
+  boardToken: String
+  includeContent: Boolean
+  path: String
+  pathCheck: Boolean
+  allExtensions: Boolean
+  isTSX: Boolean
+  jsxPragma: String
   repositoryName: String
   schemas: SitePluginPluginOptionsSchemas
   apiEndpoint: String
@@ -10456,13 +10110,6 @@ type SitePluginPluginOptions {
   imagePlaceholderImgixParams: SitePluginPluginOptionsImagePlaceholderImgixParams
   toolbar: String
   promptForAccessToken: Boolean
-  boardToken: String
-  includeContent: Boolean
-  path: String
-  pathCheck: Boolean
-  allExtensions: Boolean
-  isTSX: Boolean
-  jsxPragma: String
 }
 
 type SitePluginPluginOptionsDefaults {
@@ -10554,287 +10201,73 @@ type SitePluginPluginOptionsSchemasMember_profile {
 }
 
 type SitePluginPluginOptionsSchemasMember_profileMain {
-  body: SitePluginPluginOptionsSchemasMember_profileMainBody
+  nickname: SitePluginPluginOptionsSchemasMember_profileMainNickname
+  name: SitePluginPluginOptionsSchemasMember_profileMainName
+  email: SitePluginPluginOptionsSchemasMember_profileMainEmail
+  role: SitePluginPluginOptionsSchemasMember_profileMainRole
+  image: SitePluginPluginOptionsSchemasMember_profileMainImage
 }
 
-type SitePluginPluginOptionsSchemasMember_profileMainBody {
+type SitePluginPluginOptionsSchemasMember_profileMainNickname {
   type: String
-  fieldset: String
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfig
+  config: SitePluginPluginOptionsSchemasMember_profileMainNicknameConfig
 }
 
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfig {
-  choices: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoices
+type SitePluginPluginOptionsSchemasMember_profileMainNicknameConfig {
+  label: String
+  placeholder: String
 }
 
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoices {
-  hero: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHero
-  title_and_description: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_description
-  title_and_illustration: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustration
-  wide_banner: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_banner
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHero {
+type SitePluginPluginOptionsSchemasMember_profileMainName {
   type: String
-  fieldset: String
-  description: String
-  icon: String
-  display: String
-  non_repeat: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeat
+  config: SitePluginPluginOptionsSchemasMember_profileMainNameConfig
 }
 
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeat {
-  image: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeatImage
+type SitePluginPluginOptionsSchemasMember_profileMainNameConfig {
+  label: String
+  placeholder: String
 }
 
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeatImage {
+type SitePluginPluginOptionsSchemasMember_profileMainEmail {
   type: String
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeatImageConfig
+  config: SitePluginPluginOptionsSchemasMember_profileMainEmailConfig
 }
 
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeatImageConfig {
-  constraint: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeatImageConfigConstraint
+type SitePluginPluginOptionsSchemasMember_profileMainEmailConfig {
+  label: String
+  placeholder: String
+}
+
+type SitePluginPluginOptionsSchemasMember_profileMainRole {
+  type: String
+  config: SitePluginPluginOptionsSchemasMember_profileMainRoleConfig
+}
+
+type SitePluginPluginOptionsSchemasMember_profileMainRoleConfig {
+  label: String
+  placeholder: String
+}
+
+type SitePluginPluginOptionsSchemasMember_profileMainImage {
+  type: String
+  config: SitePluginPluginOptionsSchemasMember_profileMainImageConfig
+}
+
+type SitePluginPluginOptionsSchemasMember_profileMainImageConfig {
+  constraint: SitePluginPluginOptionsSchemasMember_profileMainImageConfigConstraint
+  thumbnails: [SitePluginPluginOptionsSchemasMember_profileMainImageConfigThumbnails]
   label: String
 }
 
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeatImageConfigConstraint {
+type SitePluginPluginOptionsSchemasMember_profileMainImageConfigConstraint {
   width: Int
   height: Int
 }
 
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_description {
-  type: String
-  fieldset: String
-  description: String
-  icon: String
-  display: String
-  non_repeat: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeat
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeat {
-  key_text: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatKey_text
-  title: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatTitle
-  inverted: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatInverted
-  link: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLink
-  link_text: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLink_text
-  description: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatDescription
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatKey_text {
-  type: String
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatKey_textConfig
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatKey_textConfig {
-  label: String
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatTitle {
-  type: String
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatTitleConfig
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatTitleConfig {
-  single: String
-  label: String
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatInverted {
-  type: String
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatInvertedConfig
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatInvertedConfig {
-  placeholder_false: String
-  placeholder_true: String
-  default_value: Boolean
-  label: String
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLink {
-  type: String
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLinkConfig
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLinkConfig {
-  label: String
-  placeholder: String
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLink_text {
-  type: String
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLink_textConfig
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLink_textConfig {
-  label: String
-  placeholder: String
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatDescription {
-  type: String
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatDescriptionConfig
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatDescriptionConfig {
-  multi: String
-  label: String
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustration {
-  type: String
-  fieldset: String
-  description: String
-  icon: String
-  display: String
-  non_repeat: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeat
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeat {
-  key_text: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatKey_text
-  title: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatTitle
-  inverted: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatInverted
-  link: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLink
-  link_text: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLink_text
-  illustration: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatIllustration
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatKey_text {
-  type: String
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatKey_textConfig
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatKey_textConfig {
-  label: String
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatTitle {
-  type: String
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatTitleConfig
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatTitleConfig {
-  single: String
-  label: String
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatInverted {
-  type: String
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatInvertedConfig
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatInvertedConfig {
-  placeholder_false: String
-  placeholder_true: String
-  default_value: Boolean
-  label: String
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLink {
-  type: String
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLinkConfig
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLinkConfig {
-  label: String
-  placeholder: String
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLink_text {
-  type: String
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLink_textConfig
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLink_textConfig {
-  label: String
-  placeholder: String
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatIllustration {
-  type: String
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatIllustrationConfig
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatIllustrationConfig {
-  constraint: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatIllustrationConfigConstraint
-  label: String
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatIllustrationConfigConstraint {
+type SitePluginPluginOptionsSchemasMember_profileMainImageConfigThumbnails {
+  name: String
   width: Int
   height: Int
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_banner {
-  type: String
-  fieldset: String
-  description: String
-  icon: String
-  display: String
-  non_repeat: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeat
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeat {
-  thumbnail: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatThumbnail
-  title: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatTitle
-  link: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLink
-  link_text: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLink_text
-  background_color: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatBackground_color
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatThumbnail {
-  type: String
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatThumbnailConfig
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatThumbnailConfig {
-  constraint: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatThumbnailConfigConstraint
-  label: String
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatThumbnailConfigConstraint {
-  width: Int
-  height: Int
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatTitle {
-  type: String
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatTitleConfig
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatTitleConfig {
-  single: String
-  label: String
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLink {
-  type: String
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLinkConfig
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLinkConfig {
-  label: String
-  placeholder: String
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLink_text {
-  type: String
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLink_textConfig
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLink_textConfig {
-  label: String
-  placeholder: String
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatBackground_color {
-  type: String
-  config: SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatBackground_colorConfig
-}
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatBackground_colorConfig {
-  label: String
-  placeholder: String
 }
 
 type SitePluginPluginOptionsSchemasPay_contents {

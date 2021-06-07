@@ -13,4 +13,4 @@ export const linkResolver: LinkResolver = doc => {
     }
   }
   return '/';
-}
+};

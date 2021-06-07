@@ -77,24 +77,9 @@ const config: GatsbyConfig = {
         },
       },
     },
-    {
-      resolve: 'gatsby-source-prismic',
-      options: {
-        repositoryName: 'karrot',
-        accessToken: process.env.PRISMIC_ACCESS_TOKEN,
-        schemas: require('@karrotmarket/prismic-config/schema'),
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-prismic-previews',
-      options: {
-        repositoryName: 'karrot',
-        accessToken: process.env.PRISMIC_ACCESS_TOKEN,
-        toolbar: 'new',
-      },
-    },
 
     // 커스텀 플러그인
+    '@karrotmarket/gatsby-theme-prismic',
     '@karrotmarket/gatsby-transformer-job-post',
     {
       resolve: '@karrotmarket/gatsby-source-greenhouse-job-board',
@@ -103,7 +88,7 @@ const config: GatsbyConfig = {
         includeContent: true,
       },
     },
-    'gatsby-plugin-prismic-schema',
+//    'gatsby-plugin-prismic-schema',
   ],
 };
 

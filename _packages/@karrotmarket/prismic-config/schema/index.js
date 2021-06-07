@@ -5,7 +5,7 @@ module.exports = {
   ads_intro: {},
   global_contents: {},
   faq: require('./faq.json'),
-  member_profile: require('./pay_contents.json'),
+  member_profile: require('./member_profile.json'),
   pay_contents: require('./pay_contents.json'),
   site_navigation: require('./site_navigation.json'),
   team_contents: require('./team_contents.json'),

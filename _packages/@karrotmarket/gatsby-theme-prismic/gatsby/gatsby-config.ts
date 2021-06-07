@@ -1,7 +1,5 @@
 import type { GatsbyConfig } from 'gatsby';
 
-import type { PluginOptions } from './types';
-
 const repositoryName = 'karrot';
 const accessToken = process.env.PRISMIC_ACCESS_TOKEN;
 
@@ -12,7 +10,6 @@ const config: GatsbyConfig = {
       options: {
         repositoryName,
         accessToken,
-        typePrefix: 'Karrot',
         schemas: require('@karrotmarket/prismic-config/schema'),
       },
     },
@@ -24,7 +21,6 @@ const config: GatsbyConfig = {
         toolbar: 'new',
       },
     },
-
   ],
 };
 

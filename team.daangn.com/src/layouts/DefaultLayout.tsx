@@ -5,6 +5,7 @@ import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
+import { defaultRepositoryConfig } from '@karrotmarket/gatsby-theme-prismic/src/defaultRepositoryConfig';
 import type { OverrideProps } from '@cometjs/core';
 import { required } from '@cometjs/core';
 
@@ -87,8 +88,5 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
 }
 
 export default withPrismicPreview(DefaultLayout, [
-  {
-    repositoryName: 'karrot',
-    linkResolver,
-  },
+  defaultRepositoryConfig,
 ]);
