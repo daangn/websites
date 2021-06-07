@@ -1,46 +1,41 @@
 {
-  "name": "@karrotmarket/gatsby-theme-prismic",
+  "name": "@karrotmarket/gatsby-theme-website",
   "version": "0.0.1",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/daangn/websites",
-    "directory": "_packages/@karrotmarket/gatsby-theme-prismic"
-  },
+  "private": true,
   "scripts": {
     "build": "concurrently \"yarn:build:*\"",
     "build:babel": "babel gatsby -d . -x .ts,.tsx --presets gatsby-package",
     "build:dts": "tsc --emitDeclarationOnly --skipLibCheck",
     "prepack": "yarn build"
   },
-  "files": [
-    "index.js",
-    "src",
-    "gatsby-browser.js",
-    "gatsby-config.js",
-    "gatsby-node.js",
-    "gatsby-ssr.js"
-  ],
   "peerDependencies": {
+    "@stitches/react": "^0.1.0",
     "gatsby": "^2.25.0 || ^3.0.0",
-    "gatsby-source-prismic": "beta",
     "gatsby-plugin-prismic-previews": "beta",
+    "gatsby-source-prismic": "beta",
+    "gatsby-theme-prismic": "*",
+    "polished": "^4.0.0",
     "react": "^16.8.0 || ^17.0.0 || experimental",
     "react-dom": "^16.8.0 || ^17.0.0 || experimental"
   },
   "dependencies": {
-    "@karrotmarket/prismic-config": "*"
+    "@cometjs/core": "^1.2.0",
+    "@svgr/webpack": "^5.5.0",
+    "gatsby-plugin-svgr": "^3.0.0-beta.0",
+    "gatsby-theme-stitches": "^0.1.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.3",
     "@babel/core": "^7.14.3",
+    "@stitches/react": "^0.1.9",
     "@types/node": "^15.12.1",
     "@types/react": "^17.0.9",
     "@types/react-dom": "^17.0.6",
     "babel-preset-gatsby-package": "^1.6.0",
-    "concurrently": "^6.2.0",
     "gatsby": "^3.6.2",
-    "gatsby-source-prismic": "^4.0.0-beta.11",
     "gatsby-plugin-prismic-previews": "^4.0.0-beta.13",
+    "gatsby-source-prismic": "^4.0.0-beta.11",
+    "polished": "^4.1.3",
     "react": "experimental",
     "react-dom": "experimental",
     "typescript": "^4.3.2"

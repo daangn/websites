@@ -31,6 +31,7 @@
     "@karrotmarket/design-token": "^0.1.8-2",
     "@karrotmarket/gatsby-source-greenhouse-job-board": "*",
     "@karrotmarket/gatsby-theme-prismic": "*",
+    "@karrotmarket/gatsby-theme-website": "*",
     "@karrotmarket/gatsby-transformer-job-post": "*",
     "@karrotmarket/prismic-config": "*",
     "@karrotmarket/react-stitches": "^0.1.1-0",

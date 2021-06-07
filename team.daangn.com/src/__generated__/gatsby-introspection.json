@@ -15199,12 +15199,20 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "LIST",
+              "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "OBJECT",
-                "name": "PrismicSiteNavigationDataFooterEntries",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "PrismicSiteNavigationDataFooterEntries",
+                    "ofType": null
+                  }
+                }
               }
             },
             "isDeprecated": false,
@@ -15215,12 +15223,20 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "LIST",
+              "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "OBJECT",
-                "name": "PrismicSiteNavigationDataHeaderEntries",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "PrismicSiteNavigationDataHeaderEntries",
+                    "ofType": null
+                  }
+                }
               }
             },
             "isDeprecated": false,
@@ -15231,12 +15247,20 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "LIST",
+              "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "OBJECT",
-                "name": "PrismicSiteNavigationDataSnsProfiles",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "PrismicSiteNavigationDataSnsProfiles",
+                    "ofType": null
+                  }
+                }
               }
             },
             "isDeprecated": false,
@@ -15287,9 +15311,13 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "OBJECT",
-              "name": "PrismicSiteNavigationDataType",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "PrismicSiteNavigationDataType",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -38040,90 +38068,6 @@
             "deprecationReason": null
           },
           {
-            "name": "boardToken",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringQueryOperatorInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "includeContent",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "BooleanQueryOperatorInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "path",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringQueryOperatorInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pathCheck",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "BooleanQueryOperatorInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "allExtensions",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "BooleanQueryOperatorInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "isTSX",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "BooleanQueryOperatorInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "jsxPragma",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringQueryOperatorInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "repositoryName",
             "description": null,
             "type": {
@@ -38225,6 +38169,90 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "BooleanQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "boardToken",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "includeContent",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "BooleanQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "path",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pathCheck",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "BooleanQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "allExtensions",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "BooleanQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "isTSX",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "BooleanQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "jsxPragma",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringQueryOperatorInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -51921,48 +51949,6 @@
             "deprecationReason": null
           },
           {
-            "name": "pluginCreator___pluginOptions___boardToken",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pluginCreator___pluginOptions___includeContent",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pluginCreator___pluginOptions___path",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pluginCreator___pluginOptions___pathCheck",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pluginCreator___pluginOptions___allExtensions",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pluginCreator___pluginOptions___isTSX",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pluginCreator___pluginOptions___jsxPragma",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "pluginCreator___pluginOptions___repositoryName",
             "description": null,
             "isDeprecated": false,
@@ -52024,6 +52010,48 @@
           },
           {
             "name": "pluginCreator___pluginOptions___promptForAccessToken",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginCreator___pluginOptions___boardToken",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginCreator___pluginOptions___includeContent",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginCreator___pluginOptions___path",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginCreator___pluginOptions___pathCheck",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginCreator___pluginOptions___allExtensions",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginCreator___pluginOptions___isTSX",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginCreator___pluginOptions___jsxPragma",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -79073,48 +79101,6 @@
             "deprecationReason": null
           },
           {
-            "name": "pluginOptions___boardToken",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pluginOptions___includeContent",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pluginOptions___path",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pluginOptions___pathCheck",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pluginOptions___allExtensions",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pluginOptions___isTSX",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pluginOptions___jsxPragma",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "pluginOptions___repositoryName",
             "description": null,
             "isDeprecated": false,
@@ -79176,6 +79162,48 @@
           },
           {
             "name": "pluginOptions___promptForAccessToken",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginOptions___boardToken",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginOptions___includeContent",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginOptions___path",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginOptions___pathCheck",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginOptions___allExtensions",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginOptions___isTSX",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginOptions___jsxPragma",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -80029,90 +80057,6 @@
             "deprecationReason": null
           },
           {
-            "name": "boardToken",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "includeContent",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "path",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pathCheck",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "allExtensions",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "isTSX",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "jsxPragma",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "repositoryName",
             "description": null,
             "args": [],
@@ -80215,6 +80159,90 @@
             "type": {
               "kind": "SCALAR",
               "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "boardToken",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "includeContent",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "path",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pathCheck",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "allExtensions",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "isTSX",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "jsxPragma",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,

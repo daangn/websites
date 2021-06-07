@@ -2,7 +2,7 @@ import * as React from 'react';
 import { rem } from 'polished';
 import { graphql, Link } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
-import { useLinkParser, mapLink } from '~/link';
+import { useLinkParser, mapLink } from '../link';
 
 import SocialServiceProfile from './footer/SocialServiceProfile';
 
@@ -38,18 +38,15 @@ const Content = styled('div', {
   '> * + *': {
     marginTop: rem(28),
   },
-  variants: {
-    wide: {
-      true: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        maxWidth: '$maxContent',
-        marginX: 'auto',
-        '> * + *': {
-          marginTop: 0,
-        },
-      },
+
+  '@sm': {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    maxWidth: '$maxContent',
+    marginX: 'auto',
+    '> * + *': {
+      marginTop: 0,
     },
   },
 });
@@ -63,19 +60,17 @@ const FooterEntryList = styled('ul', {
   flexDirection: 'column',
   padding: 0,
   listStyle: 'none',
-  '> * + *': {
+
+  '& > * + *': {
     marginTop: rem(28),
-  },
-  variants: {
-    wide: {
-      true: {
-        flexDirection: 'row',
-        '> * + *': {
-          marginTop: 0,
-          marginLeft: rem(48),
-        },
-      },
+    '@sm': {
+      marginTop: 0,
+      marginLeft: rem(48),
     },
+  },
+
+  '@sm': {
+    flexDirection: 'row',
   },
 });
 
@@ -113,8 +108,8 @@ const Footer: React.FC<FooterProps> = ({
 
   return (
     <Container role="contentinfo" className={className}>
-      <Content wide={{ '@sm': true }}>
-        <FooterEntryList wide={{ '@sm': true }}>
+      <Content>
+        <FooterEntryList>
           <Copyright>© 당근마켓</Copyright>
           {navigationData.footer_entries
           .filter(entry => entry.link)

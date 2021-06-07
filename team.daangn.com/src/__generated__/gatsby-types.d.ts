@@ -1775,15 +1775,15 @@ type PrismicSiteNavigationDataSnsProfiles = {
 
 type PrismicSiteNavigationDataType = {
   readonly address: Maybe<Scalars['String']>;
-  readonly footer_entries: Maybe<ReadonlyArray<Maybe<PrismicSiteNavigationDataFooterEntries>>>;
-  readonly header_entries: Maybe<ReadonlyArray<Maybe<PrismicSiteNavigationDataHeaderEntries>>>;
-  readonly sns_profiles: Maybe<ReadonlyArray<Maybe<PrismicSiteNavigationDataSnsProfiles>>>;
+  readonly footer_entries: ReadonlyArray<PrismicSiteNavigationDataFooterEntries>;
+  readonly header_entries: ReadonlyArray<PrismicSiteNavigationDataHeaderEntries>;
+  readonly sns_profiles: ReadonlyArray<PrismicSiteNavigationDataSnsProfiles>;
   readonly tel: Maybe<Scalars['String']>;
 };
 
 type PrismicSiteNavigation = Node & {
   readonly uid: Scalars['String'];
-  readonly data: Maybe<PrismicSiteNavigationDataType>;
+  readonly data: PrismicSiteNavigationDataType;
   readonly dataRaw: Scalars['JSON'];
   readonly prismicId: Scalars['ID'];
   readonly alternate_languages: ReadonlyArray<PrismicAlternateLanguageType>;
@@ -4483,13 +4483,6 @@ type SitePluginPluginOptionsFilterInput = {
   readonly outputPath: Maybe<StringQueryOperatorInput>;
   readonly emitSchema: Maybe<SitePluginPluginOptionsEmitSchemaFilterInput>;
   readonly emitPluginDocuments: Maybe<SitePluginPluginOptionsEmitPluginDocumentsFilterInput>;
-  readonly boardToken: Maybe<StringQueryOperatorInput>;
-  readonly includeContent: Maybe<BooleanQueryOperatorInput>;
-  readonly path: Maybe<StringQueryOperatorInput>;
-  readonly pathCheck: Maybe<BooleanQueryOperatorInput>;
-  readonly allExtensions: Maybe<BooleanQueryOperatorInput>;
-  readonly isTSX: Maybe<BooleanQueryOperatorInput>;
-  readonly jsxPragma: Maybe<StringQueryOperatorInput>;
   readonly repositoryName: Maybe<StringQueryOperatorInput>;
   readonly schemas: Maybe<SitePluginPluginOptionsSchemasFilterInput>;
   readonly apiEndpoint: Maybe<StringQueryOperatorInput>;
@@ -4499,6 +4492,13 @@ type SitePluginPluginOptionsFilterInput = {
   readonly imagePlaceholderImgixParams: Maybe<SitePluginPluginOptionsImagePlaceholderImgixParamsFilterInput>;
   readonly toolbar: Maybe<StringQueryOperatorInput>;
   readonly promptForAccessToken: Maybe<BooleanQueryOperatorInput>;
+  readonly boardToken: Maybe<StringQueryOperatorInput>;
+  readonly includeContent: Maybe<BooleanQueryOperatorInput>;
+  readonly path: Maybe<StringQueryOperatorInput>;
+  readonly pathCheck: Maybe<BooleanQueryOperatorInput>;
+  readonly allExtensions: Maybe<BooleanQueryOperatorInput>;
+  readonly isTSX: Maybe<BooleanQueryOperatorInput>;
+  readonly jsxPragma: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePluginPluginOptionsDefaultsFilterInput = {
@@ -6324,13 +6324,6 @@ type SitePageFieldsEnum =
   | 'pluginCreator.pluginOptions.emitSchema.src___generated___gatsby_schema_graphql'
   | 'pluginCreator.pluginOptions.emitSchema.src___generated___gatsby_introspection_json'
   | 'pluginCreator.pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql'
-  | 'pluginCreator.pluginOptions.boardToken'
-  | 'pluginCreator.pluginOptions.includeContent'
-  | 'pluginCreator.pluginOptions.path'
-  | 'pluginCreator.pluginOptions.pathCheck'
-  | 'pluginCreator.pluginOptions.allExtensions'
-  | 'pluginCreator.pluginOptions.isTSX'
-  | 'pluginCreator.pluginOptions.jsxPragma'
   | 'pluginCreator.pluginOptions.repositoryName'
   | 'pluginCreator.pluginOptions.apiEndpoint'
   | 'pluginCreator.pluginOptions.customTypesApiEndpoint'
@@ -6342,6 +6335,13 @@ type SitePageFieldsEnum =
   | 'pluginCreator.pluginOptions.imagePlaceholderImgixParams.blur'
   | 'pluginCreator.pluginOptions.toolbar'
   | 'pluginCreator.pluginOptions.promptForAccessToken'
+  | 'pluginCreator.pluginOptions.boardToken'
+  | 'pluginCreator.pluginOptions.includeContent'
+  | 'pluginCreator.pluginOptions.path'
+  | 'pluginCreator.pluginOptions.pathCheck'
+  | 'pluginCreator.pluginOptions.allExtensions'
+  | 'pluginCreator.pluginOptions.isTSX'
+  | 'pluginCreator.pluginOptions.jsxPragma'
   | 'pluginCreator.nodeAPIs'
   | 'pluginCreator.browserAPIs'
   | 'pluginCreator.ssrAPIs'
@@ -10099,13 +10099,6 @@ type SitePluginFieldsEnum =
   | 'pluginOptions.emitSchema.src___generated___gatsby_schema_graphql'
   | 'pluginOptions.emitSchema.src___generated___gatsby_introspection_json'
   | 'pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql'
-  | 'pluginOptions.boardToken'
-  | 'pluginOptions.includeContent'
-  | 'pluginOptions.path'
-  | 'pluginOptions.pathCheck'
-  | 'pluginOptions.allExtensions'
-  | 'pluginOptions.isTSX'
-  | 'pluginOptions.jsxPragma'
   | 'pluginOptions.repositoryName'
   | 'pluginOptions.apiEndpoint'
   | 'pluginOptions.customTypesApiEndpoint'
@@ -10117,6 +10110,13 @@ type SitePluginFieldsEnum =
   | 'pluginOptions.imagePlaceholderImgixParams.blur'
   | 'pluginOptions.toolbar'
   | 'pluginOptions.promptForAccessToken'
+  | 'pluginOptions.boardToken'
+  | 'pluginOptions.includeContent'
+  | 'pluginOptions.path'
+  | 'pluginOptions.pathCheck'
+  | 'pluginOptions.allExtensions'
+  | 'pluginOptions.isTSX'
+  | 'pluginOptions.jsxPragma'
   | 'nodeAPIs'
   | 'browserAPIs'
   | 'ssrAPIs'
@@ -10203,13 +10203,6 @@ type SitePluginPluginOptions = {
   readonly outputPath: Maybe<Scalars['String']>;
   readonly emitSchema: Maybe<SitePluginPluginOptionsEmitSchema>;
   readonly emitPluginDocuments: Maybe<SitePluginPluginOptionsEmitPluginDocuments>;
-  readonly boardToken: Maybe<Scalars['String']>;
-  readonly includeContent: Maybe<Scalars['Boolean']>;
-  readonly path: Maybe<Scalars['String']>;
-  readonly pathCheck: Maybe<Scalars['Boolean']>;
-  readonly allExtensions: Maybe<Scalars['Boolean']>;
-  readonly isTSX: Maybe<Scalars['Boolean']>;
-  readonly jsxPragma: Maybe<Scalars['String']>;
   readonly repositoryName: Maybe<Scalars['String']>;
   readonly schemas: Maybe<SitePluginPluginOptionsSchemas>;
   readonly apiEndpoint: Maybe<Scalars['String']>;
@@ -10219,6 +10212,13 @@ type SitePluginPluginOptions = {
   readonly imagePlaceholderImgixParams: Maybe<SitePluginPluginOptionsImagePlaceholderImgixParams>;
   readonly toolbar: Maybe<Scalars['String']>;
   readonly promptForAccessToken: Maybe<Scalars['Boolean']>;
+  readonly boardToken: Maybe<Scalars['String']>;
+  readonly includeContent: Maybe<Scalars['Boolean']>;
+  readonly path: Maybe<Scalars['String']>;
+  readonly pathCheck: Maybe<Scalars['Boolean']>;
+  readonly allExtensions: Maybe<Scalars['Boolean']>;
+  readonly isTSX: Maybe<Scalars['Boolean']>;
+  readonly jsxPragma: Maybe<Scalars['String']>;
 };
 
 type SitePluginPluginOptionsDefaults = {
@@ -11896,23 +11896,23 @@ type PagesQueryQuery = { readonly allSiteFunction: { readonly nodes: ReadonlyArr
 
 type DefaultLayout_queryFragment = { readonly prismicSiteNavigation: Maybe<(
     Pick<PrismicSiteNavigation, '_previewable'>
-    & { readonly data: Maybe<(
+    & { readonly data: (
       Header_navigationDataFragment
       & Footer_navigationDataFragment
-    )> }
+    ) }
   )> };
 
 type Header_navigationDataFragment = NavigationMenu_dataFragment;
 
-type NavigationMenu_dataFragment = { readonly header_entries: Maybe<ReadonlyArray<Maybe<(
+type NavigationMenu_dataFragment = { readonly header_entries: ReadonlyArray<(
     Pick<PrismicSiteNavigationDataHeaderEntries, 'display_text'>
     & { readonly link: Maybe<Pick<PrismicLinkType, 'url'>> }
-  )>>> };
+  )> };
 
-type Footer_navigationDataFragment = { readonly footer_entries: Maybe<ReadonlyArray<Maybe<(
+type Footer_navigationDataFragment = { readonly footer_entries: ReadonlyArray<(
     Pick<PrismicSiteNavigationDataFooterEntries, 'display_text'>
     & { readonly link: Maybe<Pick<PrismicLinkType, 'url'>> }
-  )>>>, readonly sns_profiles: Maybe<ReadonlyArray<Maybe<SocialServiceProfile_profileFragment>>> };
+  )>, readonly sns_profiles: ReadonlyArray<SocialServiceProfile_profileFragment> };
 
 type SocialServiceProfile_profileFragment = (
   Pick<PrismicSiteNavigationDataSnsProfiles, 'service'>
@@ -12147,11 +12147,6 @@ type JobApplicationPageQuery = (
   & JobPostLayout_queryFragment
 );
 
-type UseSiteMetadataStaticQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type UseSiteMetadataStaticQuery = { readonly site: Maybe<{ readonly siteMetadata: Pick<SiteMetadata, 'siteUrl'> }> };
-
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
 type GatsbyImageSharpFixed_tracedSVGFragment = Pick<ImageSharpFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
@@ -12178,6 +12173,19 @@ type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio
 
 type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
+type UseSiteMetadataStaticQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type UseSiteMetadataStaticQuery = { readonly site: Maybe<{ readonly siteMetadata: Pick<SiteMetadata, 'siteUrl'> }> };
+
+type GatsbyImgixFluidFragment = Pick<ImgixFluid, 'aspectRatio' | 'src' | 'srcWebp' | 'srcSet' | 'srcSetWebp' | 'sizes' | 'base64'>;
+
+type GatsbyImgixFluid_noBase64Fragment = Pick<ImgixFluid, 'aspectRatio' | 'src' | 'srcWebp' | 'srcSet' | 'srcSetWebp' | 'sizes'>;
+
+type GatsbyImgixFixedFragment = Pick<ImgixFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+
+type GatsbyImgixFixed_noBase64Fragment = Pick<ImgixFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+
 type GatsbyPrismicImageFixedFragment = GatsbyImgixFixedFragment;
 
 type GatsbyPrismicImageFixed_noBase64Fragment = GatsbyImgixFixed_noBase64Fragment;
@@ -12193,13 +12201,5 @@ type GatsbyPrismicImageFluid_noBase64Fragment = GatsbyImgixFluid_noBase64Fragmen
 type GatsbyPrismicImageFluid_withWebpFragment = GatsbyImgixFluidFragment;
 
 type GatsbyPrismicImageFluid_withWebp_noBase64Fragment = GatsbyImgixFluid_noBase64Fragment;
-
-type GatsbyImgixFluidFragment = Pick<ImgixFluid, 'aspectRatio' | 'src' | 'srcWebp' | 'srcSet' | 'srcSetWebp' | 'sizes' | 'base64'>;
-
-type GatsbyImgixFluid_noBase64Fragment = Pick<ImgixFluid, 'aspectRatio' | 'src' | 'srcWebp' | 'srcSet' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyImgixFixedFragment = Pick<ImgixFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyImgixFixed_noBase64Fragment = Pick<ImgixFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
 
 }

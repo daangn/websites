@@ -80,6 +80,7 @@ const config: GatsbyConfig = {
 
     // 커스텀 플러그인
     '@karrotmarket/gatsby-theme-prismic',
+    '@karrotmarket/gatsby-theme-website',
     '@karrotmarket/gatsby-transformer-job-post',
     {
       resolve: '@karrotmarket/gatsby-source-greenhouse-job-board',

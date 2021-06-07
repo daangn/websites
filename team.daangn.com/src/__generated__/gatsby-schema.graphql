@@ -2412,15 +2412,15 @@ type PrismicSiteNavigationDataSnsProfiles {
 
 type PrismicSiteNavigationDataType {
   address: String
-  footer_entries: [PrismicSiteNavigationDataFooterEntries]
-  header_entries: [PrismicSiteNavigationDataHeaderEntries]
-  sns_profiles: [PrismicSiteNavigationDataSnsProfiles]
+  footer_entries: [PrismicSiteNavigationDataFooterEntries!]!
+  header_entries: [PrismicSiteNavigationDataHeaderEntries!]!
+  sns_profiles: [PrismicSiteNavigationDataSnsProfiles!]!
   tel: String
 }
 
 type PrismicSiteNavigation implements Node {
   uid: String!
-  data: PrismicSiteNavigationDataType
+  data: PrismicSiteNavigationDataType!
   dataRaw: JSON!
   prismicId: ID!
   alternate_languages: [PrismicAlternateLanguageType!]!
@@ -4864,13 +4864,6 @@ input SitePluginPluginOptionsFilterInput {
   outputPath: StringQueryOperatorInput
   emitSchema: SitePluginPluginOptionsEmitSchemaFilterInput
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocumentsFilterInput
-  boardToken: StringQueryOperatorInput
-  includeContent: BooleanQueryOperatorInput
-  path: StringQueryOperatorInput
-  pathCheck: BooleanQueryOperatorInput
-  allExtensions: BooleanQueryOperatorInput
-  isTSX: BooleanQueryOperatorInput
-  jsxPragma: StringQueryOperatorInput
   repositoryName: StringQueryOperatorInput
   schemas: SitePluginPluginOptionsSchemasFilterInput
   apiEndpoint: StringQueryOperatorInput
@@ -4880,6 +4873,13 @@ input SitePluginPluginOptionsFilterInput {
   imagePlaceholderImgixParams: SitePluginPluginOptionsImagePlaceholderImgixParamsFilterInput
   toolbar: StringQueryOperatorInput
   promptForAccessToken: BooleanQueryOperatorInput
+  boardToken: StringQueryOperatorInput
+  includeContent: BooleanQueryOperatorInput
+  path: StringQueryOperatorInput
+  pathCheck: BooleanQueryOperatorInput
+  allExtensions: BooleanQueryOperatorInput
+  isTSX: BooleanQueryOperatorInput
+  jsxPragma: StringQueryOperatorInput
 }
 
 input SitePluginPluginOptionsDefaultsFilterInput {
@@ -6678,13 +6678,6 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_schema_graphql
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_introspection_json
   pluginCreator___pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
-  pluginCreator___pluginOptions___boardToken
-  pluginCreator___pluginOptions___includeContent
-  pluginCreator___pluginOptions___path
-  pluginCreator___pluginOptions___pathCheck
-  pluginCreator___pluginOptions___allExtensions
-  pluginCreator___pluginOptions___isTSX
-  pluginCreator___pluginOptions___jsxPragma
   pluginCreator___pluginOptions___repositoryName
   pluginCreator___pluginOptions___apiEndpoint
   pluginCreator___pluginOptions___customTypesApiEndpoint
@@ -6696,6 +6689,13 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___imagePlaceholderImgixParams___blur
   pluginCreator___pluginOptions___toolbar
   pluginCreator___pluginOptions___promptForAccessToken
+  pluginCreator___pluginOptions___boardToken
+  pluginCreator___pluginOptions___includeContent
+  pluginCreator___pluginOptions___path
+  pluginCreator___pluginOptions___pathCheck
+  pluginCreator___pluginOptions___allExtensions
+  pluginCreator___pluginOptions___isTSX
+  pluginCreator___pluginOptions___jsxPragma
   pluginCreator___nodeAPIs
   pluginCreator___browserAPIs
   pluginCreator___ssrAPIs
@@ -9985,13 +9985,6 @@ enum SitePluginFieldsEnum {
   pluginOptions___emitSchema___src___generated___gatsby_schema_graphql
   pluginOptions___emitSchema___src___generated___gatsby_introspection_json
   pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
-  pluginOptions___boardToken
-  pluginOptions___includeContent
-  pluginOptions___path
-  pluginOptions___pathCheck
-  pluginOptions___allExtensions
-  pluginOptions___isTSX
-  pluginOptions___jsxPragma
   pluginOptions___repositoryName
   pluginOptions___apiEndpoint
   pluginOptions___customTypesApiEndpoint
@@ -10003,6 +9996,13 @@ enum SitePluginFieldsEnum {
   pluginOptions___imagePlaceholderImgixParams___blur
   pluginOptions___toolbar
   pluginOptions___promptForAccessToken
+  pluginOptions___boardToken
+  pluginOptions___includeContent
+  pluginOptions___path
+  pluginOptions___pathCheck
+  pluginOptions___allExtensions
+  pluginOptions___isTSX
+  pluginOptions___jsxPragma
   nodeAPIs
   browserAPIs
   ssrAPIs
@@ -10094,13 +10094,6 @@ type SitePluginPluginOptions {
   outputPath: String
   emitSchema: SitePluginPluginOptionsEmitSchema
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocuments
-  boardToken: String
-  includeContent: Boolean
-  path: String
-  pathCheck: Boolean
-  allExtensions: Boolean
-  isTSX: Boolean
-  jsxPragma: String
   repositoryName: String
   schemas: SitePluginPluginOptionsSchemas
   apiEndpoint: String
@@ -10110,6 +10103,13 @@ type SitePluginPluginOptions {
   imagePlaceholderImgixParams: SitePluginPluginOptionsImagePlaceholderImgixParams
   toolbar: String
   promptForAccessToken: Boolean
+  boardToken: String
+  includeContent: Boolean
+  path: String
+  pathCheck: Boolean
+  allExtensions: Boolean
+  isTSX: Boolean
+  jsxPragma: String
 }
 
 type SitePluginPluginOptionsDefaults {
