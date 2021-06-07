@@ -663,7 +663,7 @@ type GatsbyImageLayout =
 
 type PrismicLinkType = {
   readonly link_type: Maybe<PrismicLinkTypeEnum>;
-  readonly isBroken: Scalars['Boolean'];
+  readonly isBroken: Maybe<Scalars['Boolean']>;
   readonly url: Maybe<Scalars['String']>;
   readonly target: Maybe<Scalars['String']>;
   readonly size: Maybe<Scalars['Int']>;
@@ -691,9 +691,9 @@ type PrismicSliceType = {
 };
 
 type PrismicStructuredTextType = {
-  readonly text: Scalars['String'];
-  readonly html: Scalars['String'];
-  readonly raw: Scalars['JSON'];
+  readonly text: Maybe<Scalars['String']>;
+  readonly html: Maybe<Scalars['String']>;
+  readonly raw: Maybe<Scalars['JSON']>;
 };
 
 type PrismicTypePathType = Node & {
@@ -1217,12 +1217,12 @@ type PrismicFaqDataEntries = {
 };
 
 type PrismicFaqDataType = {
-  readonly entries: ReadonlyArray<PrismicFaqDataEntries>;
+  readonly entries: Maybe<ReadonlyArray<Maybe<PrismicFaqDataEntries>>>;
 };
 
 type PrismicFaq = Node & {
   readonly uid: Scalars['String'];
-  readonly data: PrismicFaqDataType;
+  readonly data: Maybe<PrismicFaqDataType>;
   readonly dataRaw: Scalars['JSON'];
   readonly prismicId: Scalars['ID'];
   readonly alternate_languages: ReadonlyArray<PrismicAlternateLanguageType>;
@@ -1388,7 +1388,12 @@ type PrismicMbtiTestQuestion_last_publication_dateArgs = {
   locale: Maybe<Scalars['String']>;
 };
 
-type PrismicMemberProfileDataBodyHeroPrimaryImageImageType = {
+type PrismicMemberProfileDataImageImageThumbnailsType = {
+  readonly small_banner: Maybe<PrismicImageThumbnailType>;
+  readonly wide_banner: Maybe<PrismicImageThumbnailType>;
+};
+
+type PrismicMemberProfileDataImageImageType = {
   readonly alt: Maybe<Scalars['String']>;
   readonly copyright: Maybe<Scalars['String']>;
   readonly dimensions: Maybe<PrismicImageDimensionsType>;
@@ -1400,15 +1405,16 @@ type PrismicMemberProfileDataBodyHeroPrimaryImageImageType = {
   readonly fluid: Maybe<ImgixFluid>;
   readonly gatsbyImageData: Maybe<Scalars['JSON']>;
   readonly localFile: Maybe<File>;
+  readonly thumbnails: Maybe<PrismicMemberProfileDataImageImageThumbnailsType>;
 };
 
 
-type PrismicMemberProfileDataBodyHeroPrimaryImageImageType_urlArgs = {
+type PrismicMemberProfileDataImageImageType_urlArgs = {
   imgixParams?: Maybe<ImgixParamsInput>;
 };
 
 
-type PrismicMemberProfileDataBodyHeroPrimaryImageImageType_fixedArgs = {
+type PrismicMemberProfileDataImageImageType_fixedArgs = {
   width?: Maybe<Scalars['Int']>;
   height: Maybe<Scalars['Int']>;
   quality: Maybe<Scalars['Int']>;
@@ -1417,7 +1423,7 @@ type PrismicMemberProfileDataBodyHeroPrimaryImageImageType_fixedArgs = {
 };
 
 
-type PrismicMemberProfileDataBodyHeroPrimaryImageImageType_fluidArgs = {
+type PrismicMemberProfileDataImageImageType_fluidArgs = {
   imgixParams?: Maybe<ImgixParamsInput>;
   maxWidth?: Maybe<Scalars['Int']>;
   maxHeight: Maybe<Scalars['Int']>;
@@ -1426,7 +1432,7 @@ type PrismicMemberProfileDataBodyHeroPrimaryImageImageType_fluidArgs = {
 };
 
 
-type PrismicMemberProfileDataBodyHeroPrimaryImageImageType_gatsbyImageDataArgs = {
+type PrismicMemberProfileDataImageImageType_gatsbyImageDataArgs = {
   layout: Maybe<GatsbyImageLayout>;
   width: Maybe<Scalars['Int']>;
   height: Maybe<Scalars['Int']>;
@@ -1442,183 +1448,17 @@ type PrismicMemberProfileDataBodyHeroPrimaryImageImageType_gatsbyImageDataArgs =
   srcSetMinWidth?: Maybe<Scalars['Int']>;
   srcSetMaxWidth?: Maybe<Scalars['Int']>;
 };
-
-type PrismicMemberProfileDataBodyHeroPrimary = {
-  readonly image: Maybe<PrismicMemberProfileDataBodyHeroPrimaryImageImageType>;
-};
-
-type PrismicMemberProfileDataBodyTitleAndDescriptionPrimary = {
-  readonly description: Maybe<PrismicStructuredTextType>;
-  readonly inverted: Maybe<Scalars['Boolean']>;
-  readonly key_text: Maybe<Scalars['String']>;
-  readonly link: Maybe<PrismicLinkType>;
-  readonly link_text: Maybe<Scalars['String']>;
-  readonly title: Maybe<PrismicStructuredTextType>;
-};
-
-type PrismicMemberProfileDataBodyTitleAndIllustrationPrimaryIllustrationImageType = {
-  readonly alt: Maybe<Scalars['String']>;
-  readonly copyright: Maybe<Scalars['String']>;
-  readonly dimensions: Maybe<PrismicImageDimensionsType>;
-  /** A plain imgix URL with the URL and params applied. */
-  readonly url: Maybe<Scalars['String']>;
-  /** Should be used to generate fixed-width images (i.e. the size of the image doesn't change when the size of the browser changes, and are "fixed"). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFixed fragment should be used. See the project's README for more information. */
-  readonly fixed: Maybe<ImgixFixed>;
-  /** Should be used to generate fluid-width images (i.e. images that change when the size of the browser changes). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFluid fragment should be used. See the project's README for more information. */
-  readonly fluid: Maybe<ImgixFluid>;
-  readonly gatsbyImageData: Maybe<Scalars['JSON']>;
-  readonly localFile: Maybe<File>;
-};
-
-
-type PrismicMemberProfileDataBodyTitleAndIllustrationPrimaryIllustrationImageType_urlArgs = {
-  imgixParams?: Maybe<ImgixParamsInput>;
-};
-
-
-type PrismicMemberProfileDataBodyTitleAndIllustrationPrimaryIllustrationImageType_fixedArgs = {
-  width?: Maybe<Scalars['Int']>;
-  height: Maybe<Scalars['Int']>;
-  quality: Maybe<Scalars['Int']>;
-  imgixParams?: Maybe<ImgixParamsInput>;
-  placeholderImgixParams?: Maybe<ImgixParamsInput>;
-};
-
-
-type PrismicMemberProfileDataBodyTitleAndIllustrationPrimaryIllustrationImageType_fluidArgs = {
-  imgixParams?: Maybe<ImgixParamsInput>;
-  maxWidth?: Maybe<Scalars['Int']>;
-  maxHeight: Maybe<Scalars['Int']>;
-  srcSetBreakpoints: Maybe<ReadonlyArray<Maybe<Scalars['Int']>>>;
-  placeholderImgixParams?: Maybe<ImgixParamsInput>;
-};
-
-
-type PrismicMemberProfileDataBodyTitleAndIllustrationPrimaryIllustrationImageType_gatsbyImageDataArgs = {
-  layout: Maybe<GatsbyImageLayout>;
-  width: Maybe<Scalars['Int']>;
-  height: Maybe<Scalars['Int']>;
-  aspectRatio: Maybe<Scalars['Float']>;
-  outputPixelDensities: Maybe<ReadonlyArray<Maybe<Scalars['Float']>>>;
-  breakpoints: Maybe<ReadonlyArray<Maybe<Scalars['Int']>>>;
-  sizes: Maybe<Scalars['String']>;
-  backgroundColor: Maybe<Scalars['String']>;
-  imgixParams: Maybe<ImgixParamsInput>;
-  placeholderImgixParams: Maybe<ImgixParamsInput>;
-  placeholder: Maybe<ImgixPlaceholder>;
-  widthTolerance?: Maybe<Scalars['Float']>;
-  srcSetMinWidth?: Maybe<Scalars['Int']>;
-  srcSetMaxWidth?: Maybe<Scalars['Int']>;
-};
-
-type PrismicMemberProfileDataBodyTitleAndIllustrationPrimary = {
-  readonly illustration: Maybe<PrismicMemberProfileDataBodyTitleAndIllustrationPrimaryIllustrationImageType>;
-  readonly inverted: Maybe<Scalars['Boolean']>;
-  readonly key_text: Maybe<Scalars['String']>;
-  readonly link: Maybe<PrismicLinkType>;
-  readonly link_text: Maybe<Scalars['String']>;
-  readonly title: Maybe<PrismicStructuredTextType>;
-};
-
-type PrismicMemberProfileDataBodyWideBannerPrimaryThumbnailImageType = {
-  readonly alt: Maybe<Scalars['String']>;
-  readonly copyright: Maybe<Scalars['String']>;
-  readonly dimensions: Maybe<PrismicImageDimensionsType>;
-  /** A plain imgix URL with the URL and params applied. */
-  readonly url: Maybe<Scalars['String']>;
-  /** Should be used to generate fixed-width images (i.e. the size of the image doesn't change when the size of the browser changes, and are "fixed"). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFixed fragment should be used. See the project's README for more information. */
-  readonly fixed: Maybe<ImgixFixed>;
-  /** Should be used to generate fluid-width images (i.e. images that change when the size of the browser changes). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFluid fragment should be used. See the project's README for more information. */
-  readonly fluid: Maybe<ImgixFluid>;
-  readonly gatsbyImageData: Maybe<Scalars['JSON']>;
-  readonly localFile: Maybe<File>;
-};
-
-
-type PrismicMemberProfileDataBodyWideBannerPrimaryThumbnailImageType_urlArgs = {
-  imgixParams?: Maybe<ImgixParamsInput>;
-};
-
-
-type PrismicMemberProfileDataBodyWideBannerPrimaryThumbnailImageType_fixedArgs = {
-  width?: Maybe<Scalars['Int']>;
-  height: Maybe<Scalars['Int']>;
-  quality: Maybe<Scalars['Int']>;
-  imgixParams?: Maybe<ImgixParamsInput>;
-  placeholderImgixParams?: Maybe<ImgixParamsInput>;
-};
-
-
-type PrismicMemberProfileDataBodyWideBannerPrimaryThumbnailImageType_fluidArgs = {
-  imgixParams?: Maybe<ImgixParamsInput>;
-  maxWidth?: Maybe<Scalars['Int']>;
-  maxHeight: Maybe<Scalars['Int']>;
-  srcSetBreakpoints: Maybe<ReadonlyArray<Maybe<Scalars['Int']>>>;
-  placeholderImgixParams?: Maybe<ImgixParamsInput>;
-};
-
-
-type PrismicMemberProfileDataBodyWideBannerPrimaryThumbnailImageType_gatsbyImageDataArgs = {
-  layout: Maybe<GatsbyImageLayout>;
-  width: Maybe<Scalars['Int']>;
-  height: Maybe<Scalars['Int']>;
-  aspectRatio: Maybe<Scalars['Float']>;
-  outputPixelDensities: Maybe<ReadonlyArray<Maybe<Scalars['Float']>>>;
-  breakpoints: Maybe<ReadonlyArray<Maybe<Scalars['Int']>>>;
-  sizes: Maybe<Scalars['String']>;
-  backgroundColor: Maybe<Scalars['String']>;
-  imgixParams: Maybe<ImgixParamsInput>;
-  placeholderImgixParams: Maybe<ImgixParamsInput>;
-  placeholder: Maybe<ImgixPlaceholder>;
-  widthTolerance?: Maybe<Scalars['Float']>;
-  srcSetMinWidth?: Maybe<Scalars['Int']>;
-  srcSetMaxWidth?: Maybe<Scalars['Int']>;
-};
-
-type PrismicMemberProfileDataBodyWideBannerPrimary = {
-  readonly background_color: Maybe<Scalars['String']>;
-  readonly link: Maybe<PrismicLinkType>;
-  readonly link_text: Maybe<Scalars['String']>;
-  readonly thumbnail: Maybe<PrismicMemberProfileDataBodyWideBannerPrimaryThumbnailImageType>;
-  readonly title: Maybe<PrismicStructuredTextType>;
-};
-
-type PrismicMemberProfileDataBodyHero = PrismicSliceType & {
-  readonly primary: Maybe<PrismicMemberProfileDataBodyHeroPrimary>;
-  readonly id: Scalars['ID'];
-  readonly slice_type: Scalars['String'];
-  readonly slice_label: Maybe<Scalars['String']>;
-};
-
-type PrismicMemberProfileDataBodyTitleAndDescription = PrismicSliceType & {
-  readonly primary: Maybe<PrismicMemberProfileDataBodyTitleAndDescriptionPrimary>;
-  readonly id: Scalars['ID'];
-  readonly slice_type: Scalars['String'];
-  readonly slice_label: Maybe<Scalars['String']>;
-};
-
-type PrismicMemberProfileDataBodyTitleAndIllustration = PrismicSliceType & {
-  readonly primary: Maybe<PrismicMemberProfileDataBodyTitleAndIllustrationPrimary>;
-  readonly id: Scalars['ID'];
-  readonly slice_type: Scalars['String'];
-  readonly slice_label: Maybe<Scalars['String']>;
-};
-
-type PrismicMemberProfileDataBodyWideBanner = PrismicSliceType & {
-  readonly primary: Maybe<PrismicMemberProfileDataBodyWideBannerPrimary>;
-  readonly id: Scalars['ID'];
-  readonly slice_type: Scalars['String'];
-  readonly slice_label: Maybe<Scalars['String']>;
-};
-
-type PrismicMemberProfileDataBodySlicesType = PrismicMemberProfileDataBodyHero | PrismicMemberProfileDataBodyTitleAndDescription | PrismicMemberProfileDataBodyTitleAndIllustration | PrismicMemberProfileDataBodyWideBanner;
 
 type PrismicMemberProfileDataType = {
-  readonly body: Maybe<ReadonlyArray<Maybe<PrismicMemberProfileDataBodySlicesType>>>;
+  readonly email: Maybe<Scalars['String']>;
+  readonly image: Maybe<PrismicMemberProfileDataImageImageType>;
+  readonly name: Maybe<Scalars['String']>;
+  readonly nickname: Maybe<Scalars['String']>;
+  readonly role: Maybe<Scalars['String']>;
 };
 
 type PrismicMemberProfile = Node & {
-  readonly data: PrismicMemberProfileDataType;
+  readonly data: Maybe<PrismicMemberProfileDataType>;
   readonly dataRaw: Scalars['JSON'];
   readonly prismicId: Scalars['ID'];
   readonly alternate_languages: ReadonlyArray<PrismicAlternateLanguageType>;
@@ -1935,6 +1775,7 @@ type PrismicSiteNavigationDataSnsProfiles = {
 
 type PrismicSiteNavigationDataType = {
   readonly address: Maybe<Scalars['String']>;
+  readonly copyright: Maybe<PrismicStructuredTextType>;
   readonly footer_entries: ReadonlyArray<PrismicSiteNavigationDataFooterEntries>;
   readonly header_entries: ReadonlyArray<PrismicSiteNavigationDataHeaderEntries>;
   readonly sns_profiles: ReadonlyArray<PrismicSiteNavigationDataSnsProfiles>;
@@ -2195,7 +2036,7 @@ type PrismicTeamContentsDataCultureBodyTitleAndIllustrationPrimary = {
 };
 
 type PrismicTeamContentsDataCultureBodyBenefit = PrismicSliceType & {
-  readonly items: Maybe<ReadonlyArray<PrismicTeamContentsDataCultureBodyBenefitItem>>;
+  readonly items: Maybe<ReadonlyArray<Maybe<PrismicTeamContentsDataCultureBodyBenefitItem>>>;
   readonly primary: Maybe<PrismicTeamContentsDataCultureBodyBenefitPrimary>;
   readonly id: Scalars['ID'];
   readonly slice_type: Scalars['String'];
@@ -2209,7 +2050,7 @@ type PrismicTeamContentsDataCultureBodyDivider = PrismicSliceType & {
 };
 
 type PrismicTeamContentsDataCultureBodyHowWeWork = PrismicSliceType & {
-  readonly items: Maybe<ReadonlyArray<PrismicTeamContentsDataCultureBodyHowWeWorkItem>>;
+  readonly items: Maybe<ReadonlyArray<Maybe<PrismicTeamContentsDataCultureBodyHowWeWorkItem>>>;
   readonly primary: Maybe<PrismicTeamContentsDataCultureBodyHowWeWorkPrimary>;
   readonly id: Scalars['ID'];
   readonly slice_type: Scalars['String'];
@@ -2312,7 +2153,7 @@ type PrismicTeamContentsDataLifeBodyLifeContentPrimary = {
 };
 
 type PrismicTeamContentsDataLifeBodyLifeContent = PrismicSliceType & {
-  readonly items: Maybe<ReadonlyArray<PrismicTeamContentsDataLifeBodyLifeContentItem>>;
+  readonly items: Maybe<ReadonlyArray<Maybe<PrismicTeamContentsDataLifeBodyLifeContentItem>>>;
   readonly primary: Maybe<PrismicTeamContentsDataLifeBodyLifeContentPrimary>;
   readonly id: Scalars['ID'];
   readonly slice_type: Scalars['String'];
@@ -2593,7 +2434,7 @@ type PrismicTeamContentsDataMainBodyKeyVisual = PrismicSliceType & {
 };
 
 type PrismicTeamContentsDataMainBodyMemberQuoteCarousel = PrismicSliceType & {
-  readonly items: Maybe<ReadonlyArray<PrismicTeamContentsDataMainBodyMemberQuoteCarouselItem>>;
+  readonly items: Maybe<ReadonlyArray<Maybe<PrismicTeamContentsDataMainBodyMemberQuoteCarouselItem>>>;
   readonly id: Scalars['ID'];
   readonly slice_type: Scalars['String'];
   readonly slice_label: Maybe<Scalars['String']>;
@@ -2623,16 +2464,16 @@ type PrismicTeamContentsDataMainBodyWideBanner = PrismicSliceType & {
 type PrismicTeamContentsDataMainBodySlicesType = PrismicTeamContentsDataMainBodyDivider | PrismicTeamContentsDataMainBodyKeyVisual | PrismicTeamContentsDataMainBodyMemberQuoteCarousel | PrismicTeamContentsDataMainBodyTitleAndDescription | PrismicTeamContentsDataMainBodyTitleAndIllustration | PrismicTeamContentsDataMainBodyWideBanner;
 
 type PrismicTeamContentsDataType = {
-  readonly culture_body: ReadonlyArray<PrismicTeamContentsDataCultureBodySlicesType>;
+  readonly culture_body: Maybe<ReadonlyArray<Maybe<PrismicTeamContentsDataCultureBodySlicesType>>>;
   readonly culture_page_title: Maybe<PrismicStructuredTextType>;
-  readonly life_body: ReadonlyArray<PrismicTeamContentsDataLifeBodySlicesType>;
+  readonly life_body: Maybe<ReadonlyArray<Maybe<PrismicTeamContentsDataLifeBodySlicesType>>>;
   readonly life_page_title: Maybe<PrismicStructuredTextType>;
-  readonly main_body: ReadonlyArray<PrismicTeamContentsDataMainBodySlicesType>;
+  readonly main_body: Maybe<ReadonlyArray<Maybe<PrismicTeamContentsDataMainBodySlicesType>>>;
   readonly main_page_title: Maybe<PrismicStructuredTextType>;
 };
 
 type PrismicTeamContents = Node & {
-  readonly data: PrismicTeamContentsDataType;
+  readonly data: Maybe<PrismicTeamContentsDataType>;
   readonly dataRaw: Scalars['JSON'];
   readonly prismicId: Scalars['ID'];
   readonly alternate_languages: ReadonlyArray<PrismicAlternateLanguageType>;
@@ -3293,6 +3134,7 @@ type Query_allPrismicMbtiTestQuestionArgs = {
 
 
 type Query_prismicMemberProfileArgs = {
+  data: Maybe<PrismicMemberProfileDataTypeFilterInput>;
   dataRaw: Maybe<JSONQueryOperatorInput>;
   prismicId: Maybe<IDQueryOperatorInput>;
   alternate_languages: Maybe<PrismicAlternateLanguageTypeFilterListInput>;
@@ -4749,287 +4591,77 @@ type SitePluginPluginOptionsSchemasMember_profileFilterInput = {
 };
 
 type SitePluginPluginOptionsSchemasMember_profileMainFilterInput = {
-  readonly body: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyFilterInput>;
+  readonly nickname: Maybe<SitePluginPluginOptionsSchemasMember_profileMainNicknameFilterInput>;
+  readonly name: Maybe<SitePluginPluginOptionsSchemasMember_profileMainNameFilterInput>;
+  readonly email: Maybe<SitePluginPluginOptionsSchemasMember_profileMainEmailFilterInput>;
+  readonly role: Maybe<SitePluginPluginOptionsSchemasMember_profileMainRoleFilterInput>;
+  readonly image: Maybe<SitePluginPluginOptionsSchemasMember_profileMainImageFilterInput>;
 };
 
-type SitePluginPluginOptionsSchemasMember_profileMainBodyFilterInput = {
+type SitePluginPluginOptionsSchemasMember_profileMainNicknameFilterInput = {
   readonly type: Maybe<StringQueryOperatorInput>;
-  readonly fieldset: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigFilterInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainNicknameConfigFilterInput>;
 };
 
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigFilterInput = {
-  readonly choices: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesFilterInput>;
+type SitePluginPluginOptionsSchemasMember_profileMainNicknameConfigFilterInput = {
+  readonly label: Maybe<StringQueryOperatorInput>;
+  readonly placeholder: Maybe<StringQueryOperatorInput>;
 };
 
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesFilterInput = {
-  readonly hero: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroFilterInput>;
-  readonly title_and_description: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionFilterInput>;
-  readonly title_and_illustration: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationFilterInput>;
-  readonly wide_banner: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroFilterInput = {
+type SitePluginPluginOptionsSchemasMember_profileMainNameFilterInput = {
   readonly type: Maybe<StringQueryOperatorInput>;
-  readonly fieldset: Maybe<StringQueryOperatorInput>;
-  readonly description: Maybe<StringQueryOperatorInput>;
-  readonly icon: Maybe<StringQueryOperatorInput>;
-  readonly display: Maybe<StringQueryOperatorInput>;
-  readonly non_repeat: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeatFilterInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainNameConfigFilterInput>;
 };
 
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeatFilterInput = {
-  readonly image: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeatImageFilterInput>;
+type SitePluginPluginOptionsSchemasMember_profileMainNameConfigFilterInput = {
+  readonly label: Maybe<StringQueryOperatorInput>;
+  readonly placeholder: Maybe<StringQueryOperatorInput>;
 };
 
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeatImageFilterInput = {
+type SitePluginPluginOptionsSchemasMember_profileMainEmailFilterInput = {
   readonly type: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeatImageConfigFilterInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainEmailConfigFilterInput>;
 };
 
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeatImageConfigFilterInput = {
-  readonly constraint: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeatImageConfigConstraintFilterInput>;
+type SitePluginPluginOptionsSchemasMember_profileMainEmailConfigFilterInput = {
+  readonly label: Maybe<StringQueryOperatorInput>;
+  readonly placeholder: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsSchemasMember_profileMainRoleFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainRoleConfigFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasMember_profileMainRoleConfigFilterInput = {
+  readonly label: Maybe<StringQueryOperatorInput>;
+  readonly placeholder: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsSchemasMember_profileMainImageFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainImageConfigFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasMember_profileMainImageConfigFilterInput = {
+  readonly constraint: Maybe<SitePluginPluginOptionsSchemasMember_profileMainImageConfigConstraintFilterInput>;
+  readonly thumbnails: Maybe<SitePluginPluginOptionsSchemasMember_profileMainImageConfigThumbnailsFilterListInput>;
   readonly label: Maybe<StringQueryOperatorInput>;
 };
 
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeatImageConfigConstraintFilterInput = {
+type SitePluginPluginOptionsSchemasMember_profileMainImageConfigConstraintFilterInput = {
   readonly width: Maybe<IntQueryOperatorInput>;
   readonly height: Maybe<IntQueryOperatorInput>;
 };
 
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly fieldset: Maybe<StringQueryOperatorInput>;
-  readonly description: Maybe<StringQueryOperatorInput>;
-  readonly icon: Maybe<StringQueryOperatorInput>;
-  readonly display: Maybe<StringQueryOperatorInput>;
-  readonly non_repeat: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatFilterInput>;
+type SitePluginPluginOptionsSchemasMember_profileMainImageConfigThumbnailsFilterListInput = {
+  readonly elemMatch: Maybe<SitePluginPluginOptionsSchemasMember_profileMainImageConfigThumbnailsFilterInput>;
 };
 
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatFilterInput = {
-  readonly key_text: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatKey_textFilterInput>;
-  readonly title: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatTitleFilterInput>;
-  readonly inverted: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatInvertedFilterInput>;
-  readonly link: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLinkFilterInput>;
-  readonly link_text: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLink_textFilterInput>;
-  readonly description: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatDescriptionFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatKey_textFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatKey_textConfigFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatKey_textConfigFilterInput = {
-  readonly label: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatTitleFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatTitleConfigFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatTitleConfigFilterInput = {
-  readonly single: Maybe<StringQueryOperatorInput>;
-  readonly label: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatInvertedFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatInvertedConfigFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatInvertedConfigFilterInput = {
-  readonly placeholder_false: Maybe<StringQueryOperatorInput>;
-  readonly placeholder_true: Maybe<StringQueryOperatorInput>;
-  readonly default_value: Maybe<BooleanQueryOperatorInput>;
-  readonly label: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLinkFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLinkConfigFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLinkConfigFilterInput = {
-  readonly label: Maybe<StringQueryOperatorInput>;
-  readonly placeholder: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLink_textFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLink_textConfigFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLink_textConfigFilterInput = {
-  readonly label: Maybe<StringQueryOperatorInput>;
-  readonly placeholder: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatDescriptionFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatDescriptionConfigFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatDescriptionConfigFilterInput = {
-  readonly multi: Maybe<StringQueryOperatorInput>;
-  readonly label: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly fieldset: Maybe<StringQueryOperatorInput>;
-  readonly description: Maybe<StringQueryOperatorInput>;
-  readonly icon: Maybe<StringQueryOperatorInput>;
-  readonly display: Maybe<StringQueryOperatorInput>;
-  readonly non_repeat: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatFilterInput = {
-  readonly key_text: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatKey_textFilterInput>;
-  readonly title: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatTitleFilterInput>;
-  readonly inverted: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatInvertedFilterInput>;
-  readonly link: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLinkFilterInput>;
-  readonly link_text: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLink_textFilterInput>;
-  readonly illustration: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatIllustrationFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatKey_textFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatKey_textConfigFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatKey_textConfigFilterInput = {
-  readonly label: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatTitleFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatTitleConfigFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatTitleConfigFilterInput = {
-  readonly single: Maybe<StringQueryOperatorInput>;
-  readonly label: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatInvertedFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatInvertedConfigFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatInvertedConfigFilterInput = {
-  readonly placeholder_false: Maybe<StringQueryOperatorInput>;
-  readonly placeholder_true: Maybe<StringQueryOperatorInput>;
-  readonly default_value: Maybe<BooleanQueryOperatorInput>;
-  readonly label: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLinkFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLinkConfigFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLinkConfigFilterInput = {
-  readonly label: Maybe<StringQueryOperatorInput>;
-  readonly placeholder: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLink_textFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLink_textConfigFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLink_textConfigFilterInput = {
-  readonly label: Maybe<StringQueryOperatorInput>;
-  readonly placeholder: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatIllustrationFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatIllustrationConfigFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatIllustrationConfigFilterInput = {
-  readonly constraint: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatIllustrationConfigConstraintFilterInput>;
-  readonly label: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatIllustrationConfigConstraintFilterInput = {
+type SitePluginPluginOptionsSchemasMember_profileMainImageConfigThumbnailsFilterInput = {
+  readonly name: Maybe<StringQueryOperatorInput>;
   readonly width: Maybe<IntQueryOperatorInput>;
   readonly height: Maybe<IntQueryOperatorInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly fieldset: Maybe<StringQueryOperatorInput>;
-  readonly description: Maybe<StringQueryOperatorInput>;
-  readonly icon: Maybe<StringQueryOperatorInput>;
-  readonly display: Maybe<StringQueryOperatorInput>;
-  readonly non_repeat: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatFilterInput = {
-  readonly thumbnail: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatThumbnailFilterInput>;
-  readonly title: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatTitleFilterInput>;
-  readonly link: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLinkFilterInput>;
-  readonly link_text: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLink_textFilterInput>;
-  readonly background_color: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatBackground_colorFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatThumbnailFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatThumbnailConfigFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatThumbnailConfigFilterInput = {
-  readonly constraint: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatThumbnailConfigConstraintFilterInput>;
-  readonly label: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatThumbnailConfigConstraintFilterInput = {
-  readonly width: Maybe<IntQueryOperatorInput>;
-  readonly height: Maybe<IntQueryOperatorInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatTitleFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatTitleConfigFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatTitleConfigFilterInput = {
-  readonly single: Maybe<StringQueryOperatorInput>;
-  readonly label: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLinkFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLinkConfigFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLinkConfigFilterInput = {
-  readonly label: Maybe<StringQueryOperatorInput>;
-  readonly placeholder: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLink_textFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLink_textConfigFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLink_textConfigFilterInput = {
-  readonly label: Maybe<StringQueryOperatorInput>;
-  readonly placeholder: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatBackground_colorFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatBackground_colorConfigFilterInput>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatBackground_colorConfigFilterInput = {
-  readonly label: Maybe<StringQueryOperatorInput>;
-  readonly placeholder: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePluginPluginOptionsSchemasPay_contentsFilterInput = {
@@ -5329,6 +4961,7 @@ type SitePluginPluginOptionsSchemasSite_navigationFilterInput = {
 
 type SitePluginPluginOptionsSchemasSite_navigationMainFilterInput = {
   readonly uid: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainUidFilterInput>;
+  readonly copyright: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainCopyrightFilterInput>;
   readonly address: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainAddressFilterInput>;
   readonly tel: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainTelFilterInput>;
 };
@@ -5339,6 +4972,16 @@ type SitePluginPluginOptionsSchemasSite_navigationMainUidFilterInput = {
 };
 
 type SitePluginPluginOptionsSchemasSite_navigationMainUidConfigFilterInput = {
+  readonly label: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationMainCopyrightFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainCopyrightConfigFilterInput>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationMainCopyrightConfigFilterInput = {
+  readonly single: Maybe<StringQueryOperatorInput>;
   readonly label: Maybe<StringQueryOperatorInput>;
 };
 
@@ -8464,6 +8107,68 @@ type PrismicMbtiTestQuestionSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
+type PrismicMemberProfileDataTypeFilterInput = {
+  readonly email: Maybe<StringQueryOperatorInput>;
+  readonly image: Maybe<PrismicMemberProfileDataImageImageTypeFilterInput>;
+  readonly name: Maybe<StringQueryOperatorInput>;
+  readonly nickname: Maybe<StringQueryOperatorInput>;
+  readonly role: Maybe<StringQueryOperatorInput>;
+};
+
+type PrismicMemberProfileDataImageImageTypeFilterInput = {
+  readonly alt: Maybe<StringQueryOperatorInput>;
+  readonly copyright: Maybe<StringQueryOperatorInput>;
+  readonly dimensions: Maybe<PrismicImageDimensionsTypeFilterInput>;
+  readonly url: Maybe<StringQueryOperatorInput>;
+  readonly fixed: Maybe<ImgixFixedFilterInput>;
+  readonly fluid: Maybe<ImgixFluidFilterInput>;
+  readonly gatsbyImageData: Maybe<JSONQueryOperatorInput>;
+  readonly localFile: Maybe<FileFilterInput>;
+  readonly thumbnails: Maybe<PrismicMemberProfileDataImageImageThumbnailsTypeFilterInput>;
+};
+
+type PrismicImageDimensionsTypeFilterInput = {
+  readonly width: Maybe<IntQueryOperatorInput>;
+  readonly height: Maybe<IntQueryOperatorInput>;
+};
+
+type ImgixFixedFilterInput = {
+  readonly base64: Maybe<StringQueryOperatorInput>;
+  readonly src: Maybe<StringQueryOperatorInput>;
+  readonly srcSet: Maybe<StringQueryOperatorInput>;
+  readonly srcWebp: Maybe<StringQueryOperatorInput>;
+  readonly srcSetWebp: Maybe<StringQueryOperatorInput>;
+  readonly sizes: Maybe<StringQueryOperatorInput>;
+  readonly width: Maybe<IntQueryOperatorInput>;
+  readonly height: Maybe<IntQueryOperatorInput>;
+};
+
+type ImgixFluidFilterInput = {
+  readonly base64: Maybe<StringQueryOperatorInput>;
+  readonly src: Maybe<StringQueryOperatorInput>;
+  readonly srcSet: Maybe<StringQueryOperatorInput>;
+  readonly srcWebp: Maybe<StringQueryOperatorInput>;
+  readonly srcSetWebp: Maybe<StringQueryOperatorInput>;
+  readonly sizes: Maybe<StringQueryOperatorInput>;
+  readonly aspectRatio: Maybe<FloatQueryOperatorInput>;
+};
+
+type PrismicMemberProfileDataImageImageThumbnailsTypeFilterInput = {
+  readonly small_banner: Maybe<PrismicImageThumbnailTypeFilterInput>;
+  readonly wide_banner: Maybe<PrismicImageThumbnailTypeFilterInput>;
+};
+
+type PrismicImageThumbnailTypeFilterInput = {
+  readonly alt: Maybe<StringQueryOperatorInput>;
+  readonly copyright: Maybe<StringQueryOperatorInput>;
+  readonly dimensions: Maybe<PrismicImageDimensionsTypeFilterInput>;
+  readonly url: Maybe<StringQueryOperatorInput>;
+  readonly fixed: Maybe<ImgixFixedFilterInput>;
+  readonly fluid: Maybe<ImgixFluidFilterInput>;
+  readonly gatsbyImageData: Maybe<JSONQueryOperatorInput>;
+  readonly localFile: Maybe<FileFilterInput>;
+};
+
 type PrismicMemberProfileConnection = {
   readonly totalCount: Scalars['Int'];
   readonly edges: ReadonlyArray<PrismicMemberProfileEdge>;
@@ -8510,6 +8215,68 @@ type PrismicMemberProfileEdge = {
 };
 
 type PrismicMemberProfileFieldsEnum =
+  | 'data.email'
+  | 'data.image.alt'
+  | 'data.image.copyright'
+  | 'data.image.dimensions.width'
+  | 'data.image.dimensions.height'
+  | 'data.image.url'
+  | 'data.image.fixed.base64'
+  | 'data.image.fixed.src'
+  | 'data.image.fixed.srcSet'
+  | 'data.image.fixed.srcWebp'
+  | 'data.image.fixed.srcSetWebp'
+  | 'data.image.fixed.sizes'
+  | 'data.image.fixed.width'
+  | 'data.image.fixed.height'
+  | 'data.image.fluid.base64'
+  | 'data.image.fluid.src'
+  | 'data.image.fluid.srcSet'
+  | 'data.image.fluid.srcWebp'
+  | 'data.image.fluid.srcSetWebp'
+  | 'data.image.fluid.sizes'
+  | 'data.image.fluid.aspectRatio'
+  | 'data.image.gatsbyImageData'
+  | 'data.image.localFile.sourceInstanceName'
+  | 'data.image.localFile.absolutePath'
+  | 'data.image.localFile.relativePath'
+  | 'data.image.localFile.extension'
+  | 'data.image.localFile.size'
+  | 'data.image.localFile.prettySize'
+  | 'data.image.localFile.modifiedTime'
+  | 'data.image.localFile.accessTime'
+  | 'data.image.localFile.changeTime'
+  | 'data.image.localFile.birthTime'
+  | 'data.image.localFile.root'
+  | 'data.image.localFile.dir'
+  | 'data.image.localFile.base'
+  | 'data.image.localFile.ext'
+  | 'data.image.localFile.name'
+  | 'data.image.localFile.relativeDirectory'
+  | 'data.image.localFile.dev'
+  | 'data.image.localFile.mode'
+  | 'data.image.localFile.nlink'
+  | 'data.image.localFile.uid'
+  | 'data.image.localFile.gid'
+  | 'data.image.localFile.rdev'
+  | 'data.image.localFile.ino'
+  | 'data.image.localFile.atimeMs'
+  | 'data.image.localFile.mtimeMs'
+  | 'data.image.localFile.ctimeMs'
+  | 'data.image.localFile.atime'
+  | 'data.image.localFile.mtime'
+  | 'data.image.localFile.ctime'
+  | 'data.image.localFile.birthtime'
+  | 'data.image.localFile.birthtimeMs'
+  | 'data.image.localFile.blksize'
+  | 'data.image.localFile.blocks'
+  | 'data.image.localFile.url'
+  | 'data.image.localFile.childrenImageSharp'
+  | 'data.image.localFile.id'
+  | 'data.image.localFile.children'
+  | 'data.name'
+  | 'data.nickname'
+  | 'data.role'
   | 'dataRaw'
   | 'prismicId'
   | 'alternate_languages'
@@ -8623,6 +8390,7 @@ type PrismicMemberProfileGroupConnection = {
 };
 
 type PrismicMemberProfileFilterInput = {
+  readonly data: Maybe<PrismicMemberProfileDataTypeFilterInput>;
   readonly dataRaw: Maybe<JSONQueryOperatorInput>;
   readonly prismicId: Maybe<IDQueryOperatorInput>;
   readonly alternate_languages: Maybe<PrismicAlternateLanguageTypeFilterListInput>;
@@ -8828,6 +8596,7 @@ type PrismicPayContentsSortInput = {
 
 type PrismicSiteNavigationDataTypeFilterInput = {
   readonly address: Maybe<StringQueryOperatorInput>;
+  readonly copyright: Maybe<PrismicStructuredTextTypeFilterInput>;
   readonly footer_entries: Maybe<PrismicSiteNavigationDataFooterEntriesFilterListInput>;
   readonly header_entries: Maybe<PrismicSiteNavigationDataHeaderEntriesFilterListInput>;
   readonly sns_profiles: Maybe<PrismicSiteNavigationDataSnsProfilesFilterListInput>;
@@ -8934,6 +8703,9 @@ type PrismicSiteNavigationEdge = {
 type PrismicSiteNavigationFieldsEnum =
   | 'uid'
   | 'data.address'
+  | 'data.copyright.text'
+  | 'data.copyright.html'
+  | 'data.copyright.raw'
   | 'data.footer_entries'
   | 'data.footer_entries.display_text'
   | 'data.footer_entries.group'
@@ -10554,287 +10326,73 @@ type SitePluginPluginOptionsSchemasMember_profile = {
 };
 
 type SitePluginPluginOptionsSchemasMember_profileMain = {
-  readonly body: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBody>;
+  readonly nickname: Maybe<SitePluginPluginOptionsSchemasMember_profileMainNickname>;
+  readonly name: Maybe<SitePluginPluginOptionsSchemasMember_profileMainName>;
+  readonly email: Maybe<SitePluginPluginOptionsSchemasMember_profileMainEmail>;
+  readonly role: Maybe<SitePluginPluginOptionsSchemasMember_profileMainRole>;
+  readonly image: Maybe<SitePluginPluginOptionsSchemasMember_profileMainImage>;
 };
 
-type SitePluginPluginOptionsSchemasMember_profileMainBody = {
+type SitePluginPluginOptionsSchemasMember_profileMainNickname = {
   readonly type: Maybe<Scalars['String']>;
-  readonly fieldset: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfig>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainNicknameConfig>;
 };
 
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfig = {
-  readonly choices: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoices>;
+type SitePluginPluginOptionsSchemasMember_profileMainNicknameConfig = {
+  readonly label: Maybe<Scalars['String']>;
+  readonly placeholder: Maybe<Scalars['String']>;
 };
 
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoices = {
-  readonly hero: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHero>;
-  readonly title_and_description: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_description>;
-  readonly title_and_illustration: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustration>;
-  readonly wide_banner: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_banner>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHero = {
+type SitePluginPluginOptionsSchemasMember_profileMainName = {
   readonly type: Maybe<Scalars['String']>;
-  readonly fieldset: Maybe<Scalars['String']>;
-  readonly description: Maybe<Scalars['String']>;
-  readonly icon: Maybe<Scalars['String']>;
-  readonly display: Maybe<Scalars['String']>;
-  readonly non_repeat: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeat>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainNameConfig>;
 };
 
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeat = {
-  readonly image: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeatImage>;
+type SitePluginPluginOptionsSchemasMember_profileMainNameConfig = {
+  readonly label: Maybe<Scalars['String']>;
+  readonly placeholder: Maybe<Scalars['String']>;
 };
 
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeatImage = {
+type SitePluginPluginOptionsSchemasMember_profileMainEmail = {
   readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeatImageConfig>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainEmailConfig>;
 };
 
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeatImageConfig = {
-  readonly constraint: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeatImageConfigConstraint>;
+type SitePluginPluginOptionsSchemasMember_profileMainEmailConfig = {
+  readonly label: Maybe<Scalars['String']>;
+  readonly placeholder: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasMember_profileMainRole = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainRoleConfig>;
+};
+
+type SitePluginPluginOptionsSchemasMember_profileMainRoleConfig = {
+  readonly label: Maybe<Scalars['String']>;
+  readonly placeholder: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasMember_profileMainImage = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainImageConfig>;
+};
+
+type SitePluginPluginOptionsSchemasMember_profileMainImageConfig = {
+  readonly constraint: Maybe<SitePluginPluginOptionsSchemasMember_profileMainImageConfigConstraint>;
+  readonly thumbnails: Maybe<ReadonlyArray<Maybe<SitePluginPluginOptionsSchemasMember_profileMainImageConfigThumbnails>>>;
   readonly label: Maybe<Scalars['String']>;
 };
 
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesHeroNon_repeatImageConfigConstraint = {
+type SitePluginPluginOptionsSchemasMember_profileMainImageConfigConstraint = {
   readonly width: Maybe<Scalars['Int']>;
   readonly height: Maybe<Scalars['Int']>;
 };
 
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_description = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly fieldset: Maybe<Scalars['String']>;
-  readonly description: Maybe<Scalars['String']>;
-  readonly icon: Maybe<Scalars['String']>;
-  readonly display: Maybe<Scalars['String']>;
-  readonly non_repeat: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeat>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeat = {
-  readonly key_text: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatKey_text>;
-  readonly title: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatTitle>;
-  readonly inverted: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatInverted>;
-  readonly link: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLink>;
-  readonly link_text: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLink_text>;
-  readonly description: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatDescription>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatKey_text = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatKey_textConfig>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatKey_textConfig = {
-  readonly label: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatTitle = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatTitleConfig>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatTitleConfig = {
-  readonly single: Maybe<Scalars['String']>;
-  readonly label: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatInverted = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatInvertedConfig>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatInvertedConfig = {
-  readonly placeholder_false: Maybe<Scalars['String']>;
-  readonly placeholder_true: Maybe<Scalars['String']>;
-  readonly default_value: Maybe<Scalars['Boolean']>;
-  readonly label: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLink = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLinkConfig>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLinkConfig = {
-  readonly label: Maybe<Scalars['String']>;
-  readonly placeholder: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLink_text = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLink_textConfig>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatLink_textConfig = {
-  readonly label: Maybe<Scalars['String']>;
-  readonly placeholder: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatDescription = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatDescriptionConfig>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_descriptionNon_repeatDescriptionConfig = {
-  readonly multi: Maybe<Scalars['String']>;
-  readonly label: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustration = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly fieldset: Maybe<Scalars['String']>;
-  readonly description: Maybe<Scalars['String']>;
-  readonly icon: Maybe<Scalars['String']>;
-  readonly display: Maybe<Scalars['String']>;
-  readonly non_repeat: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeat>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeat = {
-  readonly key_text: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatKey_text>;
-  readonly title: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatTitle>;
-  readonly inverted: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatInverted>;
-  readonly link: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLink>;
-  readonly link_text: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLink_text>;
-  readonly illustration: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatIllustration>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatKey_text = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatKey_textConfig>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatKey_textConfig = {
-  readonly label: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatTitle = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatTitleConfig>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatTitleConfig = {
-  readonly single: Maybe<Scalars['String']>;
-  readonly label: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatInverted = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatInvertedConfig>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatInvertedConfig = {
-  readonly placeholder_false: Maybe<Scalars['String']>;
-  readonly placeholder_true: Maybe<Scalars['String']>;
-  readonly default_value: Maybe<Scalars['Boolean']>;
-  readonly label: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLink = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLinkConfig>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLinkConfig = {
-  readonly label: Maybe<Scalars['String']>;
-  readonly placeholder: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLink_text = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLink_textConfig>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatLink_textConfig = {
-  readonly label: Maybe<Scalars['String']>;
-  readonly placeholder: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatIllustration = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatIllustrationConfig>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatIllustrationConfig = {
-  readonly constraint: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatIllustrationConfigConstraint>;
-  readonly label: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesTitle_and_illustrationNon_repeatIllustrationConfigConstraint = {
+type SitePluginPluginOptionsSchemasMember_profileMainImageConfigThumbnails = {
+  readonly name: Maybe<Scalars['String']>;
   readonly width: Maybe<Scalars['Int']>;
   readonly height: Maybe<Scalars['Int']>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_banner = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly fieldset: Maybe<Scalars['String']>;
-  readonly description: Maybe<Scalars['String']>;
-  readonly icon: Maybe<Scalars['String']>;
-  readonly display: Maybe<Scalars['String']>;
-  readonly non_repeat: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeat>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeat = {
-  readonly thumbnail: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatThumbnail>;
-  readonly title: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatTitle>;
-  readonly link: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLink>;
-  readonly link_text: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLink_text>;
-  readonly background_color: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatBackground_color>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatThumbnail = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatThumbnailConfig>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatThumbnailConfig = {
-  readonly constraint: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatThumbnailConfigConstraint>;
-  readonly label: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatThumbnailConfigConstraint = {
-  readonly width: Maybe<Scalars['Int']>;
-  readonly height: Maybe<Scalars['Int']>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatTitle = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatTitleConfig>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatTitleConfig = {
-  readonly single: Maybe<Scalars['String']>;
-  readonly label: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLink = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLinkConfig>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLinkConfig = {
-  readonly label: Maybe<Scalars['String']>;
-  readonly placeholder: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLink_text = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLink_textConfig>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatLink_textConfig = {
-  readonly label: Maybe<Scalars['String']>;
-  readonly placeholder: Maybe<Scalars['String']>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatBackground_color = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly config: Maybe<SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatBackground_colorConfig>;
-};
-
-type SitePluginPluginOptionsSchemasMember_profileMainBodyConfigChoicesWide_bannerNon_repeatBackground_colorConfig = {
-  readonly label: Maybe<Scalars['String']>;
-  readonly placeholder: Maybe<Scalars['String']>;
 };
 
 type SitePluginPluginOptionsSchemasPay_contents = {
@@ -11134,6 +10692,7 @@ type SitePluginPluginOptionsSchemasSite_navigation = {
 
 type SitePluginPluginOptionsSchemasSite_navigationMain = {
   readonly uid: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainUid>;
+  readonly copyright: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainCopyright>;
   readonly address: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainAddress>;
   readonly tel: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainTel>;
 };
@@ -11144,6 +10703,16 @@ type SitePluginPluginOptionsSchemasSite_navigationMainUid = {
 };
 
 type SitePluginPluginOptionsSchemasSite_navigationMainUidConfig = {
+  readonly label: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationMainCopyright = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly config: Maybe<SitePluginPluginOptionsSchemasSite_navigationMainCopyrightConfig>;
+};
+
+type SitePluginPluginOptionsSchemasSite_navigationMainCopyrightConfig = {
+  readonly single: Maybe<Scalars['String']>;
   readonly label: Maybe<Scalars['String']>;
 };
 
@@ -12367,10 +11936,13 @@ type NavigationMenu_dataFragment = { readonly header_entries: ReadonlyArray<(
     & { readonly link: Maybe<Pick<PrismicLinkType, 'url'>> }
   )> };
 
-type Footer_navigationDataFragment = { readonly footer_entries: ReadonlyArray<(
+type Footer_navigationDataFragment = (
+  Pick<PrismicSiteNavigationDataType, 'address'>
+  & { readonly copyright: Maybe<Pick<PrismicStructuredTextType, 'html'>>, readonly footer_entries: ReadonlyArray<(
     Pick<PrismicSiteNavigationDataFooterEntries, 'display_text'>
     & { readonly link: Maybe<Pick<PrismicLinkType, 'url'>> }
-  )>, readonly sns_profiles: ReadonlyArray<SocialServiceProfile_profileFragment> };
+  )>, readonly sns_profiles: ReadonlyArray<SocialServiceProfile_profileFragment> }
+);
 
 type SocialServiceProfile_profileFragment = (
   Pick<PrismicSiteNavigationDataSnsProfiles, 'service'>
@@ -12390,15 +11962,15 @@ type PrismicTeamContentsDataCultureBodyKeyVisual_dataFragment = { readonly prima
     )>, readonly description: Maybe<Pick<PrismicStructuredTextType, 'text'>> }
   )> };
 
-type PrismicTeamContentsDataCultureBodyHowWeWork_dataFragment = { readonly primary: Maybe<{ readonly title: Maybe<Pick<PrismicStructuredTextType, 'text'>> }>, readonly items: Maybe<ReadonlyArray<(
+type PrismicTeamContentsDataCultureBodyHowWeWork_dataFragment = { readonly primary: Maybe<{ readonly title: Maybe<Pick<PrismicStructuredTextType, 'text'>> }>, readonly items: Maybe<ReadonlyArray<Maybe<(
     Pick<PrismicTeamContentsDataCultureBodyHowWeWorkItem, 'group' | 'key_text'>
     & { readonly description: Maybe<Pick<PrismicStructuredTextType, 'text'>> }
-  )>> };
+  )>>> };
 
-type PrismicTeamContentsDataCultureBodyBenefit_dataFragment = { readonly primary: Maybe<{ readonly title: Maybe<Pick<PrismicStructuredTextType, 'text'>> }>, readonly items: Maybe<ReadonlyArray<(
+type PrismicTeamContentsDataCultureBodyBenefit_dataFragment = { readonly primary: Maybe<{ readonly title: Maybe<Pick<PrismicStructuredTextType, 'text'>> }>, readonly items: Maybe<ReadonlyArray<Maybe<(
     Pick<PrismicTeamContentsDataCultureBodyBenefitItem, 'subtitle'>
     & { readonly description: Maybe<Pick<PrismicStructuredTextType, 'html'>> }
-  )>> };
+  )>>> };
 
 type PrismicTeamContentsDataCultureBodyIllustrationAndDescription_dataFragment = { readonly primary: Maybe<(
     Pick<PrismicTeamContentsDataCultureBodyIllustrationAndDescriptionPrimary, 'expanded' | 'inverted' | 'link_text'>
@@ -12414,7 +11986,7 @@ type CulturePageQueryVariables = Exact<{ [key: string]: never; }>;
 type CulturePageQuery = (
   { readonly prismicTeamContents: Maybe<(
     Pick<PrismicTeamContents, '_previewable'>
-    & { readonly data: { readonly culture_page_title: Maybe<Pick<PrismicStructuredTextType, 'text'>>, readonly culture_body: ReadonlyArray<(
+    & { readonly data: Maybe<{ readonly culture_page_title: Maybe<Pick<PrismicStructuredTextType, 'text'>>, readonly culture_body: Maybe<ReadonlyArray<Maybe<(
         { readonly __typename: 'PrismicTeamContentsDataCultureBodyBenefit' }
         & PrismicTeamContentsDataCultureBodyBenefit_dataFragment
       ) | { readonly __typename: 'PrismicTeamContentsDataCultureBodyDivider' } | (
@@ -12426,12 +11998,12 @@ type CulturePageQuery = (
       ) | (
         { readonly __typename: 'PrismicTeamContentsDataCultureBodyKeyVisual' }
         & PrismicTeamContentsDataCultureBodyKeyVisual_dataFragment
-      ) | { readonly __typename: 'PrismicTeamContentsDataCultureBodyTitleAndDescription' } | { readonly __typename: 'PrismicTeamContentsDataCultureBodyTitleAndIllustration' }> } }
+      ) | { readonly __typename: 'PrismicTeamContentsDataCultureBodyTitleAndDescription' } | { readonly __typename: 'PrismicTeamContentsDataCultureBodyTitleAndIllustration' }>>> }> }
   )> }
   & DefaultLayout_queryFragment
 );
 
-type FaqAccordion_faqDataFragment = { readonly entries: ReadonlyArray<FaqAccordionItem_entryFragment> };
+type FaqAccordion_faqDataFragment = { readonly entries: Maybe<ReadonlyArray<Maybe<FaqAccordionItem_entryFragment>>> };
 
 type FaqAccordionItem_entryFragment = (
   Pick<PrismicFaqDataEntries, 'question'>
@@ -12444,7 +12016,7 @@ type FaqPageQueryVariables = Exact<{ [key: string]: never; }>;
 type FaqPageQuery = (
   { readonly prismicFaq: Maybe<(
     Pick<PrismicFaq, '_previewable'>
-    & { readonly data: FaqAccordion_faqDataFragment }
+    & { readonly data: Maybe<FaqAccordion_faqDataFragment> }
   )> }
   & DefaultLayout_queryFragment
 );
@@ -12457,7 +12029,7 @@ type PrismicTeamContentsDataMainBodyKeyVisual_dataFragment = { readonly primary:
     )>, readonly description: Maybe<Pick<PrismicStructuredTextType, 'text'>> }
   )> };
 
-type PrismicTeamContentsDataMainBodyMemberQuoteCarousel_dataFragment = { readonly items: Maybe<ReadonlyArray<CarouselItem_itemFragment>> };
+type PrismicTeamContentsDataMainBodyMemberQuoteCarousel_dataFragment = { readonly items: Maybe<ReadonlyArray<Maybe<CarouselItem_itemFragment>>> };
 
 type CarouselItem_itemFragment = (
   Pick<PrismicTeamContentsDataMainBodyMemberQuoteCarouselItem, 'quote' | 'who'>
@@ -12494,7 +12066,7 @@ type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
 type IndexPageQuery = (
   { readonly prismicTeamContents: Maybe<(
     Pick<PrismicTeamContents, '_previewable'>
-    & { readonly data: { readonly main_page_title: Maybe<Pick<PrismicStructuredTextType, 'text'>>, readonly main_body: ReadonlyArray<{ readonly __typename: 'PrismicTeamContentsDataMainBodyDivider' } | (
+    & { readonly data: Maybe<{ readonly main_page_title: Maybe<Pick<PrismicStructuredTextType, 'text'>>, readonly main_body: Maybe<ReadonlyArray<Maybe<{ readonly __typename: 'PrismicTeamContentsDataMainBodyDivider' } | (
         { readonly __typename: 'PrismicTeamContentsDataMainBodyKeyVisual' }
         & PrismicTeamContentsDataMainBodyKeyVisual_dataFragment
       ) | (
@@ -12509,7 +12081,7 @@ type IndexPageQuery = (
       ) | (
         { readonly __typename: 'PrismicTeamContentsDataMainBodyWideBanner' }
         & PrismicTeamContentsDataMainBodyWideBanner_dataFragment
-      )> } }
+      )>>> }> }
   )> }
   & DefaultLayout_queryFragment
 );
@@ -12530,10 +12102,10 @@ type JobsPageQuery = (
   & DefaultLayout_queryFragment
 );
 
-type PrismicTeamContentsDataLifeBodyLifeContent_dataFragment = { readonly primary: Maybe<{ readonly title: Maybe<Pick<PrismicStructuredTextType, 'text'>>, readonly body_text: Maybe<Pick<PrismicStructuredTextType, 'html'>> }>, readonly items: Maybe<ReadonlyArray<{ readonly thumbnail_description: Maybe<Pick<PrismicStructuredTextType, 'text'>>, readonly thumbnail_image: Maybe<(
+type PrismicTeamContentsDataLifeBodyLifeContent_dataFragment = { readonly primary: Maybe<{ readonly title: Maybe<Pick<PrismicStructuredTextType, 'text'>>, readonly body_text: Maybe<Pick<PrismicStructuredTextType, 'html'>> }>, readonly items: Maybe<ReadonlyArray<Maybe<{ readonly thumbnail_description: Maybe<Pick<PrismicStructuredTextType, 'text'>>, readonly thumbnail_image: Maybe<(
       Pick<PrismicTeamContentsDataLifeBodyLifeContentItemsThumbnailImageImageType, 'alt'>
       & { readonly localFile: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }> }
-    )> }>> };
+    )> }>>> };
 
 type LifePageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -12541,10 +12113,10 @@ type LifePageQueryVariables = Exact<{ [key: string]: never; }>;
 type LifePageQuery = (
   { readonly prismicTeamContents: Maybe<(
     Pick<PrismicTeamContents, '_previewable'>
-    & { readonly data: { readonly life_page_title: Maybe<Pick<PrismicStructuredTextType, 'text'>>, readonly life_body: ReadonlyArray<(
+    & { readonly data: Maybe<{ readonly life_page_title: Maybe<Pick<PrismicStructuredTextType, 'text'>>, readonly life_body: Maybe<ReadonlyArray<Maybe<(
         { readonly __typename: 'PrismicTeamContentsDataLifeBodyLifeContent' }
         & PrismicTeamContentsDataLifeBodyLifeContent_dataFragment
-      )> } }
+      )>>> }> }
   )> }
   & DefaultLayout_queryFragment
 );
@@ -12636,6 +12208,14 @@ type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio
 
 type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
+type GatsbyImgixFluidFragment = Pick<ImgixFluid, 'aspectRatio' | 'src' | 'srcWebp' | 'srcSet' | 'srcSetWebp' | 'sizes' | 'base64'>;
+
+type GatsbyImgixFluid_noBase64Fragment = Pick<ImgixFluid, 'aspectRatio' | 'src' | 'srcWebp' | 'srcSet' | 'srcSetWebp' | 'sizes'>;
+
+type GatsbyImgixFixedFragment = Pick<ImgixFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+
+type GatsbyImgixFixed_noBase64Fragment = Pick<ImgixFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+
 type GatsbyPrismicImageFixedFragment = GatsbyImgixFixedFragment;
 
 type GatsbyPrismicImageFixed_noBase64Fragment = GatsbyImgixFixed_noBase64Fragment;
@@ -12651,13 +12231,5 @@ type GatsbyPrismicImageFluid_noBase64Fragment = GatsbyImgixFluid_noBase64Fragmen
 type GatsbyPrismicImageFluid_withWebpFragment = GatsbyImgixFluidFragment;
 
 type GatsbyPrismicImageFluid_withWebp_noBase64Fragment = GatsbyImgixFluid_noBase64Fragment;
-
-type GatsbyImgixFluidFragment = Pick<ImgixFluid, 'aspectRatio' | 'src' | 'srcWebp' | 'srcSet' | 'srcSetWebp' | 'sizes' | 'base64'>;
-
-type GatsbyImgixFluid_noBase64Fragment = Pick<ImgixFluid, 'aspectRatio' | 'src' | 'srcWebp' | 'srcSet' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyImgixFixedFragment = Pick<ImgixFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyImgixFixed_noBase64Fragment = Pick<ImgixFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
 
 }

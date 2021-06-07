@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Link, graphql } from 'gatsby';
 import { rem } from 'polished';
+import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { useLocation } from '@reach/router';
-import { styled } from '~/gatsby-theme-stitches/stitches.config';
-import { mapLink, useLinkParser } from '~/link';
+
+import { mapLink, useLinkParser } from '../../link';
 
 type NavigationMenuProps = {
   controlId: string,
@@ -122,14 +123,10 @@ const NavigationListItem = styled('li', {
     transform: 'none',
   },
 
-  variants: {
-    size: {
-      sm: {
-        fontSize: '$body2',
-        opacity: 1,
-        transform: 'none',
-      },
-    },
+  '@sm': {
+    fontSize: '$body2',
+    opacity: 1,
+    transform: 'none',
   },
 });
 
@@ -165,7 +162,6 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({
       <HamburgerControl type="checkbox" id={controlId} />
       <Hamburger
         htmlFor={controlId}
-        aria-label="네비게이션 메뉴 토글"
         disabled={{ '@sm': true }}
       >
         <HamburgerSvg viewBox="0 0 100 100">
@@ -175,12 +171,9 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({
       </Hamburger>
       <NavigationList fixed={{ initial: true, '@sm': false }}>
         {data.header_entries
-          .filter(entry => entry.link)
-          .map(entry => (
-            <NavigationListItem
-              key={entry.link!.url}
-              size={{ '@sm': 'sm' }}
-            >
+        .filter(entry => entry.link)
+        .map(entry => (
+          <NavigationListItem key={entry.link!.url}>
             {mapLink(parseLink(entry.link!.url), {
               Internal: link => (
                 <NavigationLink

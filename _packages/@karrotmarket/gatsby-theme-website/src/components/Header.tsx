@@ -25,24 +25,16 @@ const Container = styled('header', {
   height: rem(58),
   zIndex: 1,
 
-  variants: {
-    size: {
-      sm: {
-        height: rem(68),
-      },
-    },
+  '@sm': {
+    height: rem(68),
   },
 });
 
 const Placer = styled('div', {
   height: rem(58),
 
-  variants: {
-    size: {
-      sm: {
-        height: rem(68),
-      },
-    },
+  '@sm': {
+    height: rem(68),
   },
 });
 
@@ -53,12 +45,8 @@ const Content = styled('div', {
   height: '100%',
   paddingX: rem(24),
 
-  variants: {
-    wide: {
-      true: {
-        contentArea: true,
-      },
-    },
+  '@sm': {
+    contentArea: true,
   },
 });
 
@@ -70,12 +58,8 @@ const HomeLink = styled(Link, {
 const Logo = styled(LogoSvg, {
   height: rem(26),
 
-  variants: {
-    size: {
-      sm: {
-        height: rem(32),
-      },
-    },
+  '@sm': {
+    height: rem(32),
   },
 });
 
@@ -85,11 +69,11 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   return (
     <div className={className}>
-      <Placer size={{ '@sm': 'sm' }} />
-      <Container size={{ '@sm': 'sm' }}>
-        <Content wide={{ '@sm': true }}>
+      <Placer />
+      <Container>
+        <Content>
           <HomeLink to="/">
-            <Logo size={{ '@sm': 'sm' }} />
+            <Logo />
           </HomeLink>
           <NavigationMenu
             controlId="navigation-menu"

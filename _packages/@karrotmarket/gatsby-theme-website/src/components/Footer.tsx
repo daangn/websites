@@ -2,7 +2,7 @@ import * as React from 'react';
 import { rem } from 'polished';
 import { graphql, Link } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
-import { useLinkParser, mapLink } from '~/link';
+import { useLinkParser, mapLink } from '../link';
 
 import SocialServiceProfile from './footer/SocialServiceProfile';
 
@@ -13,6 +13,10 @@ type FooterProps = {
 
 export const query = graphql`
   fragment Footer_navigationData on PrismicSiteNavigationDataType {
+    copyright {
+      html
+    }
+    address
     footer_entries {
       display_text
       link {
@@ -26,35 +30,65 @@ export const query = graphql`
 `;
 
 const Container = styled('footer', {
+  display: 'grid',
+  paddingTop: rem(32),
+  paddingBottom: rem(96),
   borderTop: '1px solid $gray400',
+
+  '@sm': {
+    paddingTop: rem(70),
+  },
 });
 
-const Content = styled('div', {
+const ContentWrapper = styled('div', {
+  contentArea: true,
+  width: '100%',
+  display: 'grid',
+  gap: rem(42),
+
+  '@sm': {
+    gap: rem(36),
+  },
+});
+
+const TopContent = styled('section', {
+  width: '100%',
   display: 'flex',
   flexDirection: 'column',
-  paddingTop: rem(32),
-  paddingBottom: rem(80),
-  paddingX: rem(24),
+
+  '@sm': {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    maxWidth: '$maxContent',
+    marginX: 'auto',
+  },
+
   '> * + *': {
     marginTop: rem(28),
-  },
-  variants: {
-    wide: {
-      true: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        maxWidth: '$maxContent',
-        marginX: 'auto',
-        '> * + *': {
-          marginTop: 0,
-        },
-      },
+
+    '@sm': {
+      marginTop: 0,
     },
   },
 });
 
-const Copyright = styled('p', {
+const InfoWrapper = styled('section', {
+  display: 'flex',
+  gap: rem(16),
+  flexDirection: 'column',
+  color: '$gray600',
+  fontSize: '$caption1',
+
+  '@sm': {
+    flexDirection: 'row',
+  },
+});
+
+const Info = styled('p', {
+});
+
+const Copyright = styled('div', {
   fontSize: '$caption2',
 });
 
@@ -63,19 +97,17 @@ const FooterEntryList = styled('ul', {
   flexDirection: 'column',
   padding: 0,
   listStyle: 'none',
-  '> * + *': {
+
+  '& > * + *': {
     marginTop: rem(28),
-  },
-  variants: {
-    wide: {
-      true: {
-        flexDirection: 'row',
-        '> * + *': {
-          marginTop: 0,
-          marginLeft: rem(48),
-        },
-      },
+    '@sm': {
+      marginTop: 0,
+      marginLeft: rem(48),
     },
+  },
+
+  '@sm': {
+    flexDirection: 'row',
   },
 });
 
@@ -110,17 +142,18 @@ const Footer: React.FC<FooterProps> = ({
   navigationData,
 }) => {
   const parseLink = useLinkParser();
+  console.log(navigationData);
 
   return (
     <Container role="contentinfo" className={className}>
-      <Content wide={{ '@sm': true }}>
-        <FooterEntryList wide={{ '@sm': true }}>
-          <Copyright>© 당근마켓</Copyright>
+      <ContentWrapper>
+      <TopContent>
+        <FooterEntryList>
           {navigationData.footer_entries
-          .filter(entry => entry.link)
+          .filter(entry => entry.link?.url)
           .map(entry => (
-            <FooterEntryItem key={entry.link!.url}>
-              {mapLink(parseLink(entry.link!.url), {
+            <FooterEntryItem key={entry.link!.url!}>
+              {mapLink(parseLink(entry.link!.url!), {
                 Internal: link => (
                   <FooterEntryLink to={link.pathname}>
                     {entry.display_text}
@@ -149,7 +182,18 @@ const Footer: React.FC<FooterProps> = ({
             </SocialServiceProfileItem>
           ))}
         </SocialServiceProfileList>
-      </Content>
+      </TopContent>
+      <InfoWrapper>
+        {navigationData.copyright?.html && (
+          <Copyright
+            dangerouslySetInnerHTML={{ __html: navigationData.copyright.html }}
+          />
+        )}
+        {navigationData.address && (
+          <Info>{navigationData.address}</Info>
+        )}
+      </InfoWrapper>
+      </ContentWrapper>
     </Container>
   );
 };
