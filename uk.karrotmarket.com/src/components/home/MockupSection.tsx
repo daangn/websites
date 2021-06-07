@@ -22,7 +22,7 @@ import { ReactComponent as ReservationIcon } from "@src/icons/reservation.svg";
 import { ReactComponent as WriteIcon } from "@src/icons/write.svg";
 
 export const query = graphql`
-    fragment MockupSection_content on PrismicGlobalContentsBodyMockupSection {
+    fragment MockupSection_content on PrismicGlobalContentsDataBodyMockupSection {
         primary {
             text {
                 html
@@ -54,7 +54,7 @@ const MockupIcon: { [key in MockupIconType]: React.FC } = {
 };
 
 type MockupSectionProps = {
-    content: GatsbyTypes.PrismicGlobalContentsBodyMockupSection;
+    content: GatsbyTypes.MockupSection_contentFragment;
 };
 
 const Section = styled("section", {

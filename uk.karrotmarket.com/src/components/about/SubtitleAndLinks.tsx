@@ -9,11 +9,11 @@ import { Html } from "@src/components/Html";
 import { Space } from "@src/components/Space";
 
 type SubtitleAndLinksProps = {
-    content: GatsbyTypes.PrismicGlobalContentsBody1SubtitleAndLinks;
+    content: GatsbyTypes.SubtitleAndLinks_contentFragment;
 };
 
 export const query = graphql`
-    fragment SubtitleAndLinks_content on PrismicGlobalContentsBody1SubtitleAndLinks {
+    fragment SubtitleAndLinks_content on PrismicGlobalContentsDataBody1SubtitleAndLinks {
         primary {
             subtitle {
                 html

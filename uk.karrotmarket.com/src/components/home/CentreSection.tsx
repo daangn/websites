@@ -9,11 +9,11 @@ import { Space } from "@src/components/Space";
 import Image from "../Image";
 
 type CentreSectionProps = {
-    content: GatsbyTypes.PrismicGlobalContentsBodyCentreSection;
+    content: GatsbyTypes.CentreSection_contentFragment;
 };
 
 export const query = graphql`
-    fragment CentreSection_content on PrismicGlobalContentsBodyCentreSection {
+    fragment CentreSection_content on PrismicGlobalContentsDataBodyCentreSection {
         primary {
             title {
                 html

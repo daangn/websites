@@ -3,7 +3,7 @@ module.exports = {
   mbti_intro: {},
   mbti_test_question: {},
   ads_intro: {},
-  global_contents: {},
+  global_contents: require('./global_contents.json'),
   faq: require('./faq.json'),
   member_profile: require('./member_profile.json'),
   pay_contents: require('./pay_contents.json'),

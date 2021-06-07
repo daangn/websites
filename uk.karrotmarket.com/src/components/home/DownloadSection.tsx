@@ -10,11 +10,11 @@ import AppLink from "@src/components/AppLink";
 import { ReactComponent as KarrotLogoIcon } from "@src/icons/karrot_logo.svg";
 
 type DownloadSectionProps = {
-    content: GatsbyTypes.PrismicGlobalContentsBodyDownloadSection;
+    content: GatsbyTypes.DownloadSection_contentFragment;
 };
 
 export const query = graphql`
-    fragment DownloadSection_content on PrismicGlobalContentsBodyDownloadSection {
+    fragment DownloadSection_content on PrismicGlobalContentsDataBodyDownloadSection {
         primary {
             title {
                 html

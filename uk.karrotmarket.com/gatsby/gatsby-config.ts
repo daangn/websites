@@ -12,7 +12,6 @@ const config: GatsbyConfig = {
         QUERY_ON_DEMAND: true,
         LAZY_IMAGES: true,
         PARALLEL_SOURCING: true,
-        DEV_SSR: false,
     },
     siteMetadata,
     plugins: [
@@ -91,19 +90,9 @@ const config: GatsbyConfig = {
                 icon: "src/assets/favicon.svg",
             },
         },
-        {
-            resolve: "gatsby-source-prismic",
-            options: {
-                repositoryName: "karrot",
-                accessToken: process.env.PRISMIC_ACCESS_TOKEN,
-                prismicToolbar: process.env.NODE_ENV === "development",
-                shouldDownloadImage: () => true,
-                schemas: {
-                    global_contents: require("./prismic/global_contents.json"),
-                },
-            },
-        },
-        "gatsby-plugin-prismic-schema",
+
+        "@karrotmarket/gatsby-theme-prismic",
+        "@karrotmarket/gatsby-theme-website",
     ],
 };
 

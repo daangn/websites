@@ -2,8 +2,9 @@ import React from "react";
 
 import { graphql, PageProps } from "gatsby";
 import { GatsbySeo } from "gatsby-plugin-next-seo";
-import { withPreview } from "gatsby-source-prismic";
+import { withPrismicPreview } from "gatsby-plugin-prismic-previews";
 import { createStore, StoreProvider } from "easy-peasy";
+import { defaultRepositoryConfig } from "@karrotmarket/gatsby-theme-prismic/src/defaultRepositoryConfig";
 import { mapAbstractType } from "@cometjs/graphql-utils";
 import { styled } from "@src/gatsby-theme-stitches/stitches.config";
 
@@ -22,6 +23,7 @@ type IndexPageProps = PageProps<GatsbyTypes.IndexPageQueryQuery>;
 export const query = graphql`
     query IndexPageQuery {
         prismicGlobalContents(lang: { eq: "en-gb" }) {
+            _previewable
             data {
                 main_page_title
                 main_page_description
@@ -88,4 +90,6 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
     );
 };
 
-export default withPreview(IndexPage);
+export default withPrismicPreview(IndexPage, [
+    defaultRepositoryConfig,
+]);
