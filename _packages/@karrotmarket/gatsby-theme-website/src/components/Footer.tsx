@@ -150,10 +150,10 @@ const Footer: React.FC<FooterProps> = ({
       <TopContent>
         <FooterEntryList>
           {navigationData.footer_entries
-          .filter(entry => entry.link)
+          .filter(entry => entry.link?.url)
           .map(entry => (
-            <FooterEntryItem key={entry.link!.url}>
-              {mapLink(parseLink(entry.link!.url), {
+            <FooterEntryItem key={entry.link!.url!}>
+              {mapLink(parseLink(entry.link!.url!), {
                 Internal: link => (
                   <FooterEntryLink to={link.pathname}>
                     {entry.display_text}
