@@ -146,7 +146,7 @@ const Bottom = styled.div`
   .karrot-button {
     ${buttonStyle};
     background: ${({ theme }) => theme.colors.$carrot500};
-    background: ${({ theme }) => theme.colors.$white};
+    color: ${({ theme }) => theme.colors.$white};
     box-shadow: 0 0.25rem 0.625rem rgba(255, 138, 61, 0.4);
     margin: 0 0 1rem;
     animation: 300ms ${fadeIn} 150ms forwards;
