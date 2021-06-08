@@ -1,9 +1,6 @@
 import React from "react";
-import { rem } from "polished";
 import { graphql } from "gatsby";
-import { getImage, GatsbyImage } from "gatsby-plugin-image";
-import { convertToBgImage } from "gbimage-bridge";
-import BackgroundImage from "gatsby-background-image";
+import { getImage } from "gatsby-plugin-image";
 import { styled } from "gatsby-theme-stitches/src/stitches.config";
 
 import { Html } from "@src/components/Html";
@@ -11,9 +8,11 @@ import { Flex } from "@src/components/Flex";
 import { Space } from "@src/components/Space";
 import AppLink from "@src/components/AppLink";
 import Image from "../Image";
+import BackgroundImage from "../BackgroundImage";
 
 type HeroSectionProps = {
   content: GatsbyTypes.HeroSection_contentFragment;
+  links: GatsbyTypes.DownloadSection_linksFragment;
 };
 
 export const query = graphql`
@@ -24,16 +23,13 @@ export const query = graphql`
         html
       }
       background_image {
-        url
         localFile {
-          publicURL
           childImageSharp {
             gatsbyImageData(quality: 100)
           }
         }
       }
       side_image {
-        url
         localFile {
           childImageSharp {
             gatsbyImageData(quality: 100, placeholder: NONE)
@@ -46,7 +42,6 @@ export const query = graphql`
         alt
         thumbnails {
           mobile {
-            url
             dimensions {
               width
               height
@@ -56,17 +51,17 @@ export const query = graphql`
       }
     }
   }
+  fragment HeroSection_links on PrismicGlobalContentsDataType {
+    ...AppLink_links
+  }
 `;
 
 const Section = styled("section", {
   height: "582px",
   width: "100%",
-  backgroundPosition: "bottom 0px right -70px;",
-  backgroundRepeat: "no-repeat",
-  backgroundSize: "cover",
+  position: "relative",
   "@md": {
     height: "780px",
-    backgroundPosition: "center",
   },
 });
 
@@ -87,32 +82,29 @@ const Container = styled("div", {
   },
 });
 
-const HeroSection: React.FC<HeroSectionProps> = ({ content }) => {
-  if (!content.primary) return <></>;
+const HeroSection: React.FC<HeroSectionProps> = ({ content, links }) => {
+  if (!content.primary || !links) return <></>;
   const { title, background_image, side_image } = content.primary;
 
-  const mainImage = getImage(
+  const bgImage = getImage(
     background_image?.localFile?.childImageSharp?.gatsbyImageData as any
   );
-  const mainBgImage = convertToBgImage(mainImage);
-
-  console.log(background_image?.localFile?.url);
 
   const sideImage = getImage(
     side_image?.localFile?.childImageSharp?.gatsbyImageData as any
   );
 
   return (
-    <Section
-      css={{
-        backgroundImage: `url(${background_image?.localFile?.publicURL})`,
-      }}
-    >
+    <Section>
+      <BackgroundImage
+        image={bgImage}
+        objectPosition={{ "@i": "bottom 0px right -70px", "@md": "50% 50%" }}
+      ></BackgroundImage>
       <Container>
         <Flex colCenterY>
           <Html html={title?.html} />
           <Space h={{ "@i": 0, "@md": 36 }}></Space>
-          <AppLink theme="dark" type="desktop"></AppLink>
+          <AppLink theme="dark" type="desktop" links={links}></AppLink>
         </Flex>
 
         <Flex ai="flex-end">

@@ -29,9 +29,7 @@ export const query = graphql`
         main_page_description
         main_opengraph_image_link
 
-        popular_items_api
-        app_store_link
-        google_play_link
+        ...AppLink_links
         main_body {
           __typename
           ...HeroSection_content
@@ -67,13 +65,6 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
   } = data.prismicGlobalContents?.data;
 
   return (
-    // <StoreProvider
-    //   store={createStore({
-    //     google_play_link,
-    //     app_store_link,
-    //     popular_items_api,
-    //   })}
-    // >
     <>
       <GatsbySeo
         title={main_page_title}
@@ -95,7 +86,11 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
         {main_body.map((content: any, i) =>
           mapAbstractType(content, {
             PrismicGlobalContentsDataMainBodyHeroSection: (content) => (
-              <HeroSection key={i} content={content} />
+              <HeroSection
+                key={i}
+                content={content}
+                links={data.prismicGlobalContents?.data}
+              />
             ),
             PrismicGlobalContentsDataMainBodyPopularSection: (content) => (
               <PopularSection
@@ -117,11 +112,19 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
               <ReviewSection key={i} content={content} />
             ),
             PrismicGlobalContentsDataMainBodyDownloadSection: (content) => (
-              <DownloadSection key={i} content={content} />
+              <DownloadSection
+                key={i}
+                content={content}
+                links={data.prismicGlobalContents?.data}
+              />
             ),
           })
         )}
-        <AppLink type="mobile" theme="primary"></AppLink>
+        <AppLink
+          type="mobile"
+          theme="primary"
+          links={data.prismicGlobalContents?.data}
+        ></AppLink>
         <Space h={{ "@i": 86, "@md": 0 }}></Space>
       </Wrapper>
       {/* </StoreProvider> */}
