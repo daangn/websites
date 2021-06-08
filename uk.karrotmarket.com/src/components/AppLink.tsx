@@ -13,137 +13,149 @@ import { ReactComponent as AppStoreIcon } from "@src/icons/app_store.svg";
 import { ReactComponent as GooglePlayIcon } from "@src/icons/google_play.svg";
 
 interface TLinkButton {
-    theme: "dark" | "light" | "primary";
-    width: "full" | "fit";
+  theme: "dark" | "light" | "primary";
+  width: "full" | "fit";
 
-    icon?: any;
-    href?: string;
+  icon?: any;
+  href?: string;
 }
 
 const SLinkButton = styled("a", {
-    height: rem(54),
-    borderRadius: rem(10),
-    fontSize: "$body1",
-    display: "flex",
-    alignItems: "center",
-    transition: "background 0.3s",
-    textDecoration: "none",
+  height: rem(54),
+  borderRadius: rem(10),
+  fontSize: "$body1",
+  display: "flex",
+  alignItems: "center",
+  transition: "background 0.3s",
+  textDecoration: "none",
 
-    "&:hover": {
-        cursor: "pointer",
-    },
+  "&:hover": {
+    cursor: "pointer",
+  },
 
-    variants: {
-        theme: {
-            dark: {
-                color: "white",
-                background: "$gray900",
-                "& path": {
-                    fill: "white",
-                },
-                "&:hover": {
-                    background: "black",
-                },
-            },
-            light: {
-                color: "$gray900",
-                background: "$gray100",
-                "& path": {
-                    fill: "$gray900",
-                },
-                "&:hover": {
-                    background: "$gray200",
-                },
-            },
-            primary: {
-                color: "white",
-                background: "$carrot500",
-            },
+  variants: {
+    theme: {
+      dark: {
+        color: "white",
+        background: "$gray900",
+        "& path": {
+          fill: "white",
         },
-        width: {
-            full: {
-                width: "100%",
-                justifyContent: "center",
-            },
-            fit: {
-                padding: `0 ${rem(28)}`,
-                boxSizing: "border-box",
-            },
+        "&:hover": {
+          background: "black",
         },
+      },
+      light: {
+        color: "$gray900",
+        background: "$gray100",
+        "& path": {
+          fill: "$gray900",
+        },
+        "&:hover": {
+          background: "$gray200",
+        },
+      },
+      primary: {
+        color: "white",
+        background: "$carrot500",
+      },
     },
+    width: {
+      full: {
+        width: "100%",
+        justifyContent: "center",
+      },
+      fit: {
+        padding: `0 ${rem(28)}`,
+        boxSizing: "border-box",
+      },
+    },
+  },
 });
 
-const LinkButton: React.FC<TLinkButton> = ({ icon, href, children, theme, width }) => {
-    return (
-        <SLinkButton theme={theme} width={width} href={href}>
-            {icon && (
-                <>
-                    {icon}
-                    <Space w={12}></Space>
-                </>
-            )}
-            {children}
-        </SLinkButton>
-    );
+const LinkButton: React.FC<TLinkButton> = ({
+  icon,
+  href,
+  children,
+  theme,
+  width,
+}) => {
+  return (
+    <SLinkButton theme={theme} width={width} href={href}>
+      {icon && (
+        <>
+          {icon}
+          <Space w={12}></Space>
+        </>
+      )}
+      {children}
+    </SLinkButton>
+  );
 };
 
 interface TAppLink {
-    type: "mobile" | "desktop";
-    theme: "dark" | "light" | "primary";
+  type: "mobile" | "desktop";
+  theme: "dark" | "light" | "primary";
 }
 
 const SAppLink = styled("div", {
-    variants: {
-        type: {
-            desktop: {
-                display: "none",
-                "@md": {
-                    display: "flex",
-                },
-            },
-            mobile: {
-                display: "flex",
-                position: "fixed",
-                bottom: 0,
-                width: "100%",
-                padding: rem(16),
-                boxSizing: "border-box",
-                zIndex: 1,
-                "@md": {
-                    display: "none",
-                },
-            },
+  variants: {
+    type: {
+      desktop: {
+        display: "none",
+        "@md": {
+          display: "flex",
         },
+      },
+      mobile: {
+        display: "flex",
+        position: "fixed",
+        bottom: 0,
+        width: "100%",
+        padding: rem(16),
+        boxSizing: "border-box",
+        zIndex: 1,
+        "@md": {
+          display: "none",
+        },
+      },
     },
+  },
 });
 
 const AppLink: React.FC<TAppLink> = ({ type, theme }) => {
-    const googlePlayLink = useStoreState((state: any) => state.google_play_link);
-    const appStoreLink = useStoreState((state: any) => state.app_store_link);
+  //   const googlePlayLink = useStoreState((state: any) => state.google_play_link);
+  //   const appStoreLink = useStoreState((state: any) => state.app_store_link);
+  const googlePlayLink = "";
+  const appStoreLink = "";
 
-    return (
-        <SAppLink type={type}>
-            {type === "desktop" ? (
-                <Flex row>
-                    <LinkButton href={appStoreLink} theme={theme} width="fit">
-                        <AppStoreIcon />
-                        <Space w={12}></Space>
-                        App Store
-                    </LinkButton>
-                    <Space w={12}></Space>
-                    <LinkButton href={googlePlayLink} theme={theme} width="fit">
-                        <GooglePlayIcon />
-                        <Space w={12}></Space>
-                        Google Play
-                    </LinkButton>
-                </Flex>
-            ) : (
-                <LinkButton href={isMacOs || isIOS ? appStoreLink : googlePlayLink} theme="primary" width="full">
-                    App download
-                </LinkButton>
-            )}
-        </SAppLink>
-    );
+  return (
+    <SAppLink type={type}>
+      {type === "desktop" ? (
+        <Flex row>
+          <LinkButton href={appStoreLink} theme={theme} width="fit">
+            <AppStoreIcon />
+            <Space w={12}></Space>
+            App Store
+          </LinkButton>
+          <Space w={12}></Space>
+          <LinkButton href={googlePlayLink} theme={theme} width="fit">
+            <GooglePlayIcon />
+            <Space w={12}></Space>
+            Google Play
+          </LinkButton>
+        </Flex>
+      ) : (
+        <LinkButton
+          href={isMacOs || isIOS ? appStoreLink : googlePlayLink}
+          theme="primary"
+          width="full"
+        >
+          App download
+        </LinkButton>
+      )}
+    </SAppLink>
+  );
 };
 
 export default AppLink;
