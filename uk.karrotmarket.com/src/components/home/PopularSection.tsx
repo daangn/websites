@@ -77,11 +77,11 @@ const Item: React.FC<ItemProps> = ({ first_image, price, region, id }) => (
 );
 
 type ParallaxSectionProps = {
-    content: GatsbyTypes.PrismicGlobalContentsBodyPopularSection;
+    content: GatsbyTypes.PopularSection_contentFragment;
 };
 
 export const query = graphql`
-    fragment PopularSection_content on PrismicGlobalContentsBodyPopularSection {
+    fragment PopularSection_content on PrismicGlobalContentsDataBodyPopularSection {
         primary {
             title {
                 html

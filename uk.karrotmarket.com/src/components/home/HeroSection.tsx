@@ -13,11 +13,11 @@ import AppLink from "@src/components/AppLink";
 import Image from "../Image";
 
 type HeroSectionProps = {
-    content: GatsbyTypes.PrismicGlobalContentsBodyHeroSection;
+    content: GatsbyTypes.HeroSection_contentFragment;
 };
 
 export const query = graphql`
-    fragment HeroSection_content on PrismicGlobalContentsBodyHeroSection {
+    fragment HeroSection_content on PrismicGlobalContentsDataBodyHeroSection {
         primary {
             title {
                 text

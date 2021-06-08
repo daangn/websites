@@ -10,11 +10,11 @@ import { Space } from "@src/components/Space";
 import Image from "../Image";
 
 type SubtitleAndImagesProps = {
-    content: GatsbyTypes.PrismicGlobalContentsBody1SubtitleAndImages;
+    content: GatsbyTypes.SubtitleAndImages_contentFragment;
 };
 
 export const query = graphql`
-    fragment SubtitleAndImages_content on PrismicGlobalContentsBody1SubtitleAndImages {
+    fragment SubtitleAndImages_content on PrismicGlobalContentsDataBody1SubtitleAndImages {
         primary {
             subtitle {
                 html

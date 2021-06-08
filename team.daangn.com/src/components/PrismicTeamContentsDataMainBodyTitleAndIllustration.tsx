@@ -3,7 +3,7 @@ import { rem } from 'polished';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { getImage, GatsbyImage } from 'gatsby-plugin-image';
-import { mapLink, useLinkParser } from '~/link';
+import { mapLink, useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
 
 import DetailLink from '~/components/DetailLink';
 

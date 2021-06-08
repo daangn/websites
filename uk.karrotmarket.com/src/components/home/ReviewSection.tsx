@@ -55,11 +55,11 @@ const Review: React.FC<ReviewProps> = ({ content, text_highlight_color, user_nam
 );
 
 type ReviewSectionProps = {
-    content: GatsbyTypes.PrismicGlobalContentsBodyReviewSection;
+    content: GatsbyTypes.ReviewSection_contentFragment;
 };
 
 export const query = graphql`
-    fragment ReviewSection_content on PrismicGlobalContentsBodyReviewSection {
+    fragment ReviewSection_content on PrismicGlobalContentsDataBodyReviewSection {
         primary {
             title {
                 html

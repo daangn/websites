@@ -16,11 +16,11 @@ const ParallaxIcon: { [key in ParallaxIconType]: React.FC } = {
 };
 
 type ParallaxSectionProps = {
-    content: GatsbyTypes.PrismicGlobalContentsBodyParallaxSection;
+    content: GatsbyTypes.ParallaxSection_contentFragment;
 };
 
 export const query = graphql`
-    fragment ParallaxSection_content on PrismicGlobalContentsBodyParallaxSection {
+    fragment ParallaxSection_content on PrismicGlobalContentsDataBodyParallaxSection {
         primary {
             title {
                 html

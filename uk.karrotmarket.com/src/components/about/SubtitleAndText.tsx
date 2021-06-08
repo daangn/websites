@@ -7,11 +7,11 @@ import { Html } from "@src/components/Html";
 import { Space } from "@src/components/Space";
 
 type SubtitleAndTextProps = {
-    content: GatsbyTypes.PrismicGlobalContentsBody1SubtitleAndText;
+    content: GatsbyTypes.SubtitleAndText_contentFragment;
 };
 
 export const query = graphql`
-    fragment SubtitleAndText_content on PrismicGlobalContentsBody1SubtitleAndText {
+    fragment SubtitleAndText_content on PrismicGlobalContentsDataBody1SubtitleAndText {
         primary {
             subtitle {
                 html

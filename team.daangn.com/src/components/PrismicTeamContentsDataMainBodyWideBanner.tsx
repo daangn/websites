@@ -3,7 +3,7 @@ import { rem } from 'polished';
 import { graphql } from 'gatsby';
 import { getImage, GatsbyImage } from 'gatsby-plugin-image';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
-import { useLinkParser } from '~/link';
+import { useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
 import _DetailLink from '~/components/DetailLink';
 
 type PrismicTeamContentsDataMainBodyWideBannerProps = {
