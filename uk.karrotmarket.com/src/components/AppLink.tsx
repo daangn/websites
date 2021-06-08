@@ -1,7 +1,5 @@
 import React from "react";
 import { rem } from "polished";
-import { useStoreState } from "easy-peasy";
-import { isMacOs, isIOS } from "react-device-detect";
 import { styled } from "gatsby-theme-stitches/src/stitches.config";
 
 import { Flex } from "@src/components/Flex";
@@ -11,6 +9,7 @@ import { Space } from "@src/components/Space";
 import { ReactComponent as AppStoreIcon } from "@src/icons/app_store.svg";
 // @ts-ignore
 import { ReactComponent as GooglePlayIcon } from "@src/icons/google_play.svg";
+import { graphql } from "gatsby";
 
 interface TLinkButton {
   theme: "dark" | "light" | "primary";
@@ -93,11 +92,6 @@ const LinkButton: React.FC<TLinkButton> = ({
   );
 };
 
-interface TAppLink {
-  type: "mobile" | "desktop";
-  theme: "dark" | "light" | "primary";
-}
-
 const SAppLink = styled("div", {
   variants: {
     type: {
@@ -123,38 +117,48 @@ const SAppLink = styled("div", {
   },
 });
 
-const AppLink: React.FC<TAppLink> = ({ type, theme }) => {
-  //   const googlePlayLink = useStoreState((state: any) => state.google_play_link);
-  //   const appStoreLink = useStoreState((state: any) => state.app_store_link);
-  const googlePlayLink = "";
-  const appStoreLink = "";
+export const query = graphql`
+  fragment AppLink_links on PrismicGlobalContentsDataType {
+    app_store_link
+    google_play_link
+    one_link
+  }
+`;
+
+interface TAppLink {
+  type: "mobile" | "desktop";
+  theme: "dark" | "light" | "primary";
+  links: GatsbyTypes.AppLink_linkFragment;
+}
+
+const AppLink: React.FC<TAppLink> = ({ type, theme, links }) => {
+  const { google_play_link, app_store_link, one_link } = links;
 
   return (
-    <SAppLink type={type}>
-      {type === "desktop" ? (
-        <Flex row>
-          <LinkButton href={appStoreLink} theme={theme} width="fit">
-            <AppStoreIcon />
+    <>
+      <SAppLink type={type}>
+        {type === "desktop" ? (
+          <Flex row>
+            <LinkButton href={app_store_link} theme={theme} width="fit">
+              <AppStoreIcon />
+              <Space w={12}></Space>
+              App Store
+            </LinkButton>
             <Space w={12}></Space>
-            App Store
+            <LinkButton href={google_play_link} theme={theme} width="fit">
+              <GooglePlayIcon />
+              <Space w={12}></Space>
+              Google Play
+            </LinkButton>
+          </Flex>
+        ) : (
+          <LinkButton href={one_link} theme="primary" width="full">
+            App download
           </LinkButton>
-          <Space w={12}></Space>
-          <LinkButton href={googlePlayLink} theme={theme} width="fit">
-            <GooglePlayIcon />
-            <Space w={12}></Space>
-            Google Play
-          </LinkButton>
-        </Flex>
-      ) : (
-        <LinkButton
-          href={isMacOs || isIOS ? appStoreLink : googlePlayLink}
-          theme="primary"
-          width="full"
-        >
-          App download
-        </LinkButton>
-      )}
-    </SAppLink>
+        )}
+      </SAppLink>
+      {type === "mobile" && <Space h={{ "@i": 86, "@md": 0 }}></Space>}
+    </>
   );
 };
 

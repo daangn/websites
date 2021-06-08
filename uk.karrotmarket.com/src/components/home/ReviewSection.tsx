@@ -12,6 +12,8 @@ import { Space } from "@src/components/Space";
 import { ReactComponent as LocationIcon } from "@src/icons/location_filled.svg";
 // @ts-ignore
 import { ReactComponent as QuoteIcon } from "@src/icons/quote.svg";
+import BackgroundImage from "../BackgroundImage";
+import { getImage } from "gatsby-plugin-image";
 
 interface ReviewProps {
   user_name: string;
@@ -74,9 +76,7 @@ export const query = graphql`
         html
       }
       image {
-        url
         localFile {
-          publicURL
           childImageSharp {
             gatsbyImageData(quality: 100)
           }
@@ -99,6 +99,7 @@ const Section = styled("section", {
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
+  position: "relative",
   "@md": {
     height: "780px",
   },
@@ -124,8 +125,17 @@ const Container = styled("div", {
 const ReviewSection: React.FC<ReviewSectionProps> = ({ content }) => {
   if (!content.primary || !content.items) return <></>;
   const { title, image } = content.primary;
+
+  const bgImage = getImage(
+    image?.localFile?.childImageSharp?.gatsbyImageData as any
+  );
+
   return (
-    <Section css={{ backgroundImage: `url(${image?.localFile?.publicURL})` }}>
+    <Section>
+      <BackgroundImage
+        image={bgImage}
+        objectPosition={{ "@i": "bottom 0px right -70px", "@md": "50% 50%" }}
+      ></BackgroundImage>
       <Container>
         <Html html={title?.html} fontSize="$heading5"></Html>
         <Grid

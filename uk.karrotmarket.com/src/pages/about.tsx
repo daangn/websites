@@ -13,6 +13,7 @@ import SubtitleAndText from "@src/components/about/SubtitleAndText";
 import SubtitleAndLinks from "@src/components/about/SubtitleAndLinks";
 import SubtitleAndImages from "@src/components/about/SubtitleAndImages";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { withPrismicPreview } from "gatsby-plugin-prismic-previews";
 
 type AboutPageProps = PageProps<GatsbyTypes.AboutPageQueryQuery>;
 
@@ -145,5 +146,4 @@ const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
   );
 };
 
-export default AboutPage;
-// export default withPrismicPreview(AboutPage, []);
+export default withPrismicPreview(AboutPage, []);

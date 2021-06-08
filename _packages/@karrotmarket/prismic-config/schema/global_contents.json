@@ -148,7 +148,7 @@
               "text": {
                 "type": "StructuredText",
                 "config": {
-                  "multi": "heading1, heading2, heading3, strong",
+                  "multi": "heading3, strong",
                   "label": "텍스트"
                 }
               },
@@ -514,6 +514,12 @@
             "non-repeat": {},
             "repeat": {
               "label": {
+                "type": "Text",
+                "config": {
+                  "label": "레이블"
+                }
+              },
+              "text": {
                 "type": "Text",
                 "config": {
                   "label": "텍스트"

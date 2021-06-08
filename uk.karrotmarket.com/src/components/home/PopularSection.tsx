@@ -118,7 +118,6 @@ const MoreButton = styled("a", {
 
 const PopularSection: React.FC<ParallaxSectionProps> = (props) => {
   const { content, items } = props;
-  console.log(props);
   if (!content.primary || !items) return <></>;
   const { more_button, title } = content.primary;
 

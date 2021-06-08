@@ -9,6 +9,8 @@ import { Space } from "@src/components/Space";
 
 // @ts-ignore
 import { ReactComponent as KarrotIcon } from "@src/icons/karrot.svg";
+import BackgroundImage from "../BackgroundImage";
+import { getImage } from "gatsby-plugin-image";
 
 type ParallaxIconType = "Karrot";
 const ParallaxIcon: { [key in ParallaxIconType]: React.FC } = {
@@ -30,7 +32,11 @@ export const query = graphql`
         text
       }
       background_image {
-        url
+        localFile {
+          childImageSharp {
+            gatsbyImageData(quality: 100)
+          }
+        }
       }
     }
   }
@@ -73,21 +79,11 @@ const TopText = styled("div", {
 });
 
 const Background = styled("div", {
-  height: "800px",
+  height: "600px",
   width: "100%",
-  backgroundPosition: "bottom 50% left 50%",
-  backgroundRepeat: "no-repeat",
-  backgroundSize: "160%",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
+  position: "relative",
 
-  "@sm": {
-    backgroundPosition: "bottom 30% left 50%",
-  },
   "@md": {
-    backgroundPosition: "bottom 20% left 50%",
-    backgroundSize: "cover",
     height: "800px",
   },
 });
@@ -98,6 +94,10 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({ content }) => {
   const { title, top_icon, top_text, background_image } = content.primary;
   const TopIcon = ParallaxIcon[top_icon as ParallaxIconType];
 
+  const bgImage = getImage(
+    background_image?.localFile?.childImageSharp?.gatsbyImageData as any
+  );
+
   return (
     <ParallaxProvider>
       <Section>
@@ -106,9 +106,16 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({ content }) => {
           styleInner={{ height: "100%" }}
           styleOuter={{ width: "100%" }}
         >
-          <Background
-            css={{ backgroundImage: `url(${background_image?.url})` }}
-          ></Background>
+          <Background>
+            <BackgroundImage
+              image={bgImage}
+              objectPosition={{
+                "@i": "bottom 50% left 45%",
+                "@sm": "bottom 30% left 50%",
+                "@md": "bottom 20% left 50%",
+              }}
+            ></BackgroundImage>
+          </Background>
         </Parallax>
         <Container>
           <Flex rowCenterY>
