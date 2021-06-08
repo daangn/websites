@@ -30,13 +30,19 @@
         "label": "앱 스토어 링크"
       }
     },
+    "one_link": {
+      "type": "Text",
+      "config": {
+        "label": "원 링크"
+      }
+    },
     "popular_items_api": {
       "type": "Text",
       "config": {
         "label": "인기매물 api"
       }
     },
-    "body": {
+    "main_body": {
       "type": "Slices",
       "fieldset": "Slice zone",
       "config": {
@@ -142,7 +148,7 @@
               "text": {
                 "type": "StructuredText",
                 "config": {
-                  "multi": "heading1, heading2, heading3, strong",
+                  "multi": "heading3, strong",
                   "label": "텍스트"
                 }
               },
@@ -394,11 +400,13 @@
         "label": "배경 이미지"
       }
     },
-    "body1": {
+    "about_body": {
       "type": "Slices",
       "fieldset": "Slice zone",
       "config": {
-        "labels": {},
+        "labels": {
+          "list_of_texts": []
+        },
         "choices": {
           "subtitle_and_text": {
             "type": "Slice",
@@ -493,6 +501,28 @@
                 "type": "Date",
                 "config": {
                   "label": "링크 날짜"
+                }
+              }
+            }
+          },
+          "list_of_texts": {
+            "type": "Slice",
+            "fieldset": "List of rows",
+            "description": "다수의 레이블 + 텍스트를 포함하는 열을 넣을수 있는 섹션",
+            "icon": "format_list_bulleted",
+            "display": "list",
+            "non-repeat": {},
+            "repeat": {
+              "label": {
+                "type": "Text",
+                "config": {
+                  "label": "레이블"
+                }
+              },
+              "text": {
+                "type": "Text",
+                "config": {
+                  "label": "텍스트"
                 }
               }
             }

@@ -10,52 +10,59 @@ import AppLink from "@src/components/AppLink";
 import { ReactComponent as KarrotLogoIcon } from "@src/icons/karrot_logo.svg";
 
 type DownloadSectionProps = {
-    content: GatsbyTypes.PrismicGlobalContentsBodyDownloadSection;
+  content: GatsbyTypes.DownloadSection_contentFragment;
+  links: GatsbyTypes.DownloadSection_linksFragment;
 };
 
 export const query = graphql`
-    fragment DownloadSection_content on PrismicGlobalContentsBodyDownloadSection {
-        primary {
-            title {
-                html
-            }
-        }
+  fragment DownloadSection_content on PrismicGlobalContentsDataMainBodyDownloadSection {
+    primary {
+      title {
+        html
+      }
     }
+  }
+  fragment DownloadSection_links on PrismicGlobalContentsDataType {
+    ...AppLink_links
+  }
 `;
 
 const Section = styled("section", {
-    height: "410px",
-    width: "100%",
-    "@md": {
-        height: "610px",
-    },
+  width: "100%",
+  height: "410px",
+  "@md": {
+    height: "610px",
+  },
 });
 
 const Container = styled("div", {
-    height: "100%",
-    margin: "0 auto",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
+  height: "100%",
+  margin: "0 auto",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
 });
 
-const DownloadSection: React.FC<DownloadSectionProps> = ({ content }) => {
-    if (!content.primary) return <></>;
+const DownloadSection: React.FC<DownloadSectionProps> = ({
+  content,
+  links,
+}) => {
+  if (!content.primary || !links) return <></>;
 
-    const { title } = content.primary;
+  const { title } = content.primary;
 
-    return (
-        <Section>
-            <Container>
-                <KarrotLogoIcon></KarrotLogoIcon>
-                <Space h={28}></Space>
-                <Html html={title?.html} marginBottom={{ "@i": 0, "@md": 42 }}></Html>
-                <AppLink theme="light" type="desktop"></AppLink>
-                <Space h={24}></Space>
-            </Container>
-        </Section>
-    );
+  return (
+    <Section>
+      <Container>
+        <KarrotLogoIcon></KarrotLogoIcon>
+        <Space h={28}></Space>
+        <Html html={title?.html} marginBottom={{ "@i": 0, "@md": 42 }}></Html>
+        <AppLink theme="light" type="desktop" links={links}></AppLink>
+        <Space h={24}></Space>
+      </Container>
+    </Section>
+  );
 };
 
 export default DownloadSection;
