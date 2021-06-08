@@ -3,12 +3,10 @@ import React from "react";
 import { graphql, PageProps } from "gatsby";
 import { GatsbySeo } from "gatsby-plugin-next-seo";
 import { withPrismicPreview } from "gatsby-plugin-prismic-previews";
-import { createStore, StoreProvider } from "easy-peasy";
 import { defaultRepositoryConfig } from "@karrotmarket/gatsby-theme-prismic/src/defaultRepositoryConfig";
 import { mapAbstractType } from "@cometjs/graphql-utils";
 import { styled } from "@src/gatsby-theme-stitches/stitches.config";
 
-import { Space } from "@src/components/Space";
 import AppLink from "@src/components/AppLink";
 import HeroSection from "@src/components/home/HeroSection";
 import MockupSection from "@src/components/home/MockupSection";
@@ -22,6 +20,7 @@ type IndexPageProps = PageProps<GatsbyTypes.IndexPageQueryQuery>;
 
 export const query = graphql`
   query IndexPageQuery {
+    ...DefaultLayout_query
     prismicGlobalContents(lang: { eq: "en-gb" }) {
       _previewable
       data {
@@ -125,13 +124,10 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
           theme="primary"
           links={data.prismicGlobalContents?.data}
         ></AppLink>
-        <Space h={{ "@i": 86, "@md": 0 }}></Space>
       </Wrapper>
       {/* </StoreProvider> */}
     </>
   );
 };
 
-export default IndexPage;
-
-// export default withPrismicPreview(IndexPage, [defaultRepositoryConfig]);
+export default withPrismicPreview(IndexPage, [defaultRepositoryConfig]);

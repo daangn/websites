@@ -28,8 +28,8 @@ export const query = graphql`
 `;
 
 const Section = styled("section", {
-  height: "410px",
   width: "100%",
+  height: "410px",
   "@md": {
     height: "610px",
   },

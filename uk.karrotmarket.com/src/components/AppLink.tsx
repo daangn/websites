@@ -157,7 +157,7 @@ const AppLink: React.FC<TAppLink> = ({ type, theme, links }) => {
           </LinkButton>
         )}
       </SAppLink>
-      {type === "mobile" && <Space h={{ "@i": 86, "@md": 0 }}></Space>}
+      {/* {type === "mobile" && <Space h={{ "@i": 86, "@md": 0 }}></Space>} */}
     </>
   );
 };

@@ -28,6 +28,9 @@
   "dependencies": {
     "@cometjs/graphql-utils": "^1.1.0",
     "@daangn/design-token": "^0.1.7",
+    "@karrotmarket/gatsby-theme-prismic": "*",
+    "@karrotmarket/gatsby-theme-website": "*",
+    "@reach/router": "^1.3.4",
     "@stitches/react": "^0.1.9",
     "@svgr/webpack": "^5.5.0",
     "axios": "^0.21.1",

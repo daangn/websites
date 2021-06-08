@@ -3,7 +3,6 @@ import React from "react";
 import { rem } from "polished";
 import { graphql, PageProps } from "gatsby";
 import { GatsbySeo } from "gatsby-plugin-next-seo";
-// import { withPrismicPreview } from "gatsby-plugin-prismic-previews";
 import { mapAbstractType } from "@cometjs/graphql-utils";
 import { styled } from "gatsby-theme-stitches/src/stitches.config";
 
@@ -19,6 +18,7 @@ type AboutPageProps = PageProps<GatsbyTypes.AboutPageQueryQuery>;
 
 export const query = graphql`
   query AboutPageQuery {
+    ...DefaultLayout_query
     prismicGlobalContents(lang: { eq: "en-gb" }) {
       _previewable
       data {

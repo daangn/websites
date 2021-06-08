@@ -27,7 +27,7 @@ const ReviewContianer = styled("div", {
   padding: `${rem(52)} ${rem(36)} ${rem(36)} ${rem(36)}`,
   display: "flex",
   flexDirection: "column",
-  borderRadius: rem(10),
+  borderRadius: rem(50),
 });
 const ReviewContent = styled(Html, {});
 const ReviewrName = styled("div", {
