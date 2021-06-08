@@ -147,8 +147,8 @@ const Layout: React.FC<LayoutProps> = ({ children, data }) => {
     };
 
     if (location.pathname === "/") {
-      isTransparent.current = true;
-      setTransparent(true);
+      isTransparent.current = false;
+      onScroll();
       window.addEventListener("scroll", onScroll, { passive: true });
     } else {
       setTransparent(false);
