@@ -27,7 +27,7 @@ const List = styled('ol', {
 });
 
 const Item = styled('li', {
-  fontSize: '$body2',
+  typography: '$body2',
   marginBottom: rem(8),
 });
 

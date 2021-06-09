@@ -41,16 +41,12 @@ const Container = styled('div', {
 });
 
 const Title = styled('h3', {
-  fontSize: '$body2',
+  typography: '$body2',
   gridArea: 'title',
   marginBottom: rem(8),
 
-  variants: {
-    size: {
-      sm: {
-        fontSize: '$subtitle2',
-      },
-    },
+  '@sm': {
+    typography: '$subtitle2',
   },
 });
 
@@ -59,7 +55,7 @@ const JobProperty = styled('div', {
   alignItems: 'center',
   justifyContent: 'center',
   color: '$gray600',
-  fontSize: '$caption1',
+  typography: '$caption1',
 
   '& + &:before': {
     content: '""',
@@ -103,9 +99,7 @@ const JobPostSummary: React.FC<JobPostSummaryProps> = ({
     <Container
       layout={{ '@lg': 'table' }}
     >
-      <Title size={{ '@sm': 'sm' }}>
-        {jobPost.title}
-      </Title>
+      <Title>{jobPost.title}</Title>
       <Corporate layout={{ '@lg': 'table' }}>
         {{
           KARROT_MARKET: '당근마켓',

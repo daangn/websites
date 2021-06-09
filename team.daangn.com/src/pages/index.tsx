@@ -4,7 +4,7 @@ import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
-import { required } from '@cometjs/core';
+import { required, Option } from '@cometjs/core';
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
 
 import _PageTitle from '~/components/PageTitle';
@@ -45,10 +45,10 @@ const TitleContainer = styled('div', {
 });
 
 const PageTitle = styled(_PageTitle, {
-  marginBottom: rem(40),
+  marginBottom: rem(32),
 
   '@md': {
-    marginBottom: rem(80),
+    marginBottom: rem(88),
   },
 });
 
@@ -64,7 +64,7 @@ const Content = styled('div', {
 const IndexPage: React.FC<IndexPageProps> = ({
   data,
 }) => {
-  required(data.prismicTeamContents);
+  required(data.prismicTeamContents?.data);
   return (
     <>
       <TitleContainer>
@@ -74,7 +74,8 @@ const IndexPage: React.FC<IndexPageProps> = ({
       </TitleContainer>
       <Content>
         {data.prismicTeamContents.data.main_body
-          .map((data, i) => mapAbstractTypeWithDefault(data, {
+          ?.filter(Boolean)
+          ?.map((data, i) => mapAbstractTypeWithDefault(data!, {
             PrismicTeamContentsDataMainBodyKeyVisual: data => (
               <PrismicTeamContentsDataMainBodyKeyVisual
                 key={i}

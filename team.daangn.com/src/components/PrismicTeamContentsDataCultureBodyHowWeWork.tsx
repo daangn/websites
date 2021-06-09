@@ -43,9 +43,9 @@ const Header = styled('header', {
 });
 
 const Title = styled('h1', {
-  fontSize: '$subtitle2',
+  typography: '$subtitle2',
   '@md': {
-    fontSize: '$heading4',
+    typography: '$heading4',
   },
 });
 
@@ -91,7 +91,7 @@ const EntryGroupNavButton = styled('button', {
   background: 'none',
   border: 'none',
   cursor: 'pointer',
-  fontSize: '$subtitle3',
+  typography: '$subtitle3',
   variants: {
     active: {
       true: {
@@ -116,7 +116,7 @@ const EntryGroup = styled('section', {
 });
 
 const EntryGroupTitle = styled('h2', {
-  fontSize: '$body2',
+  typography: '$body2',
   color: '$carrot500',
 
   '@md': {
@@ -149,15 +149,15 @@ const Entry = styled('section', {
 });
 
 const EntryTitle = styled('h3', {
-  fontSize: '$subtitle3',
+  typography: '$subtitle3',
 
   '@md': {
-    fontSize: '$subtitle1',
+    typography: '$subtitle1',
   },
 });
 
 const EntryDescription = styled('p', {
-  fontSize: '$body2',
+  typography: '$body2',
   color: '$gray700',
 });
 
