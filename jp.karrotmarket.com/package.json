@@ -1,11 +1,11 @@
 {
-  "name": "uk.karrotmarket.com",
+  "name": "jp.karrotmarket.com",
   "version": "0.0.0",
   "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/daangn/websites.git",
-    "directory": "uk.karrotmarket.com"
+    "directory": "jp.karrotmarket.com"
   },
   "scripts": {
     "build": "gatsby build",

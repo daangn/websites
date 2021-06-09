@@ -80,7 +80,7 @@ const Header: React.FC<HeaderProps> = ({
   navigationData,
   transparent,
   placer = true,
-  sns = true,
+  sns,
 }) => {
   return (
     <div className={className}>
