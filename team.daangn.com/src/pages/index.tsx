@@ -14,6 +14,8 @@ import PrismicTeamContentsDataMainBodyTitleAndDescription from '~/components/Pri
 import PrismicTeamContentsDataMainBodyTitleAndIllustration from '~/components/PrismicTeamContentsDataMainBodyTitleAndIllustration';
 import PrismicTeamContentsDataMainBodyWideBanner from '~/components/PrismicTeamContentsDataMainBodyWideBanner';
 
+import { linkResolver } from '@karrotmarket/gatsby-theme-prismic/src/linkResolver';
+
 type IndexPageProps = PageProps<GatsbyTypes.IndexPageQuery, GatsbyTypes.SitePageContext>;
 
 export const query = graphql`

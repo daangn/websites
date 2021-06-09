@@ -1,15 +1,15 @@
 import { PhoneMockUpVerifyData } from "./_type";
 
 //@ts-ignore
-import VerifyLocationImg from "!!url-loader?modules!@src/images/img_verify_location.png";
+import VerifyLocationImg from "../../../images/img_verify_location.png";
 //@ts-ignore
-import ProfileImg from "!!url-loader?modules!@src/images/img_profile.png";
+import ProfileImg from "../../../images/img_verify_profile.png";
 
 export const data: PhoneMockUpVerifyData = {
     verify: {
         mapImage: VerifyLocationImg,
         location: "Woolston",
-        buttonText: "Verify",
+        buttonText: "Verified",
     },
     profile: {
         image: ProfileImg,

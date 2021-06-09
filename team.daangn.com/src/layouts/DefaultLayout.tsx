@@ -5,12 +5,12 @@ import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
+import { defaultRepositoryConfig } from '@karrotmarket/gatsby-theme-prismic/src/defaultRepositoryConfig';
 import type { OverrideProps } from '@cometjs/core';
 import { required } from '@cometjs/core';
 
-import { linkResolver } from '~/previewLinkResolver';
-import _Header from '~/components/Header';
-import _Footer from '~/components/Footer';
+import _Header from '@karrotmarket/gatsby-theme-website/src/components/Header';
+import _Footer from '@karrotmarket/gatsby-theme-website/src/components/Footer';
 
 type DefaultLayoutProps = OverrideProps<
   PageProps<GatsbyTypes.DefaultLayout_queryFragment>,
@@ -34,24 +34,16 @@ export const query = graphql`
 const Header = styled(_Header, {
   marginBottom: rem(36),
 
-  variants: {
-    wide: {
-      true: {
-        marginBottom: rem(100),
-      },
-    },
+  '@sm': {
+    marginBottom: rem(100),
   },
 });
 
 const Footer = styled(_Footer, {
   marginTop: rem(120),
 
-  variants: {
-    wide: {
-      true: {
-        marginTop: rem(160),
-      },
-    },
+  '@sm': {
+    marginTop: rem(160),
   },
 });
 
@@ -72,7 +64,6 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
       <Header
         key="header"
         navigationData={data.prismicSiteNavigation.data}
-        wide={{ '@sm': true }}
       />
       <Main key="main">
         {children}
@@ -80,15 +71,11 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
       <Footer
         key="footer"
         navigationData={data.prismicSiteNavigation.data}
-        wide={{ '@sm': true }}
       />
     </>
   );
 }
 
 export default withPrismicPreview(DefaultLayout, [
-  {
-    repositoryName: 'karrot',
-    linkResolver,
-  },
+  defaultRepositoryConfig,
 ]);

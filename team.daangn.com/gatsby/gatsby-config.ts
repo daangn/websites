@@ -22,6 +22,14 @@ const config: GatsbyConfig = {
     'gatsby-plugin-svgr',
     'gatsby-plugin-react-helmet-async',
     {
+      resolve: 'gatsby-plugin-use-dark-mode',
+      options: {
+        classNameLight: 'dark-light',
+        classNameDark: 'dark-theme',
+        minify: true,
+      },
+    },
+    {
       resolve: 'gatsby-plugin-sharp',
       options: {
         defaults: {
@@ -69,35 +77,10 @@ const config: GatsbyConfig = {
         },
       },
     },
-    {
-      resolve: 'gatsby-source-prismic',
-      options: {
-        repositoryName: 'karrot',
-        accessToken: process.env.PRISMIC_ACCESS_TOKEN,
-        schemas: {
-          'mbti-test-result': {},
-          mbti_intro: {},
-          mbti_test_question: {},
-          ads_intro: {},
-          global_contents: {},
-          faq: require('@karrotmarket/prismic-config/schema/faq.json'),
-          site_navigation: require('@karrotmarket/prismic-config/schema/site_navigation.json'),
-          terms_and_conditions: require('@karrotmarket/prismic-config/schema/terms_and_conditions.json'),
-          member_profile: require('@karrotmarket/prismic-config/schema/member_profile.json'),
-          team_contents: require('@karrotmarket/prismic-config/schema/team_contents.json'),
-        },
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-prismic-previews',
-      options: {
-        repositoryName: 'karrot',
-        accessToken: process.env.PRISMIC_ACCESS_TOKEN,
-        toolbar: 'new',
-      },
-    },
 
     // 커스텀 플러그인
+    '@karrotmarket/gatsby-theme-prismic',
+    '@karrotmarket/gatsby-theme-website',
     '@karrotmarket/gatsby-transformer-job-post',
     {
       resolve: '@karrotmarket/gatsby-source-greenhouse-job-board',
@@ -106,7 +89,7 @@ const config: GatsbyConfig = {
         includeContent: true,
       },
     },
-    'gatsby-plugin-prismic-schema',
+//    'gatsby-plugin-prismic-schema',
   ],
 };
 

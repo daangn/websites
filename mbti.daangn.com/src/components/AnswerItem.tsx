@@ -35,7 +35,7 @@ const Base = styled.li`
 const AnswerItemButton = styled.button<{ selected?: boolean }>`
   width: 100%;
   text-align: start;
-  border: 1px solid ${({ theme, selected }) => (selected ? theme.colors.carrot500 : theme.colors.gray200)};
+  border: 1px solid ${({ theme, selected }) => (selected ? theme.colors.$carrot500 : theme.colors.$gray200)};
   box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.1);
   border-radius: 0.875rem;
   padding: 1.5rem;
@@ -45,8 +45,8 @@ const AnswerItemButton = styled.button<{ selected?: boolean }>`
   font-size: 1rem;
   line-height: 150%;
   letter-spacing: -0.02em;
-  background: ${({ theme, selected }) => (selected ? theme.colors.carrot500 : '#fff')};
-  color: ${({ theme, selected }) => (selected ? '#fff' : theme.colors.gray700)};
+  background: ${({ theme, selected }) => (selected ? theme.colors.$carrot500 : theme.colors.background)};
+  color: ${({ theme, selected }) => (selected ? '#fff' : theme.colors.$gray700)};
   transition: all 125ms;
   white-space: pre-line;
 `

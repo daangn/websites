@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import { em } from "polished";
+import { em, rem } from "polished";
 import { motion, AnimatePresence } from "framer-motion";
 import { styled } from "gatsby-theme-stitches/src/stitches.config";
 
@@ -14,6 +14,7 @@ import ReservationMessage from "./phoneMockupChat/ReservationMessage";
 import { chatAnimationInfiteLoop, data } from "./phoneMockupChat/_config";
 import { Message } from "./phoneMockupChat/_type";
 
+const Wrapper = styled(motion.div, {});
 const ChatBox = styled(motion.div, {
     display: "flex",
     flexDirection: "column",
@@ -25,16 +26,28 @@ const ChatBox = styled(motion.div, {
     boxSizing: "border-box",
 });
 
-const Wrapper = styled("div", {});
+const EmptySpace = styled("div", {
+    fontSize: rem(10),
+    "@md": {
+        fontSize: rem(16),
+    },
 
-const PhoneMockupChat: React.FC = () => {
+    width: em(1),
+    height: em(600),
+});
+
+interface PhoneMockupChatProps {
+    inView?: boolean;
+}
+
+const PhoneMockupChat: React.FC<PhoneMockupChatProps> = ({ inView }) => {
     const [messages, setMessages] = useState<Message[]>([]);
     const ref = useRef();
     const interval = useRef<any>();
     const messageIndex = useRef<number>(0);
 
     useEffect(() => {
-        if (!interval.current) {
+        if (!interval.current && inView) {
             interval.current = setInterval(() => {
                 if (messageIndex.current < 0) return messageIndex.current++;
 
@@ -55,10 +68,27 @@ const PhoneMockupChat: React.FC = () => {
         return () => {
             clearInterval(interval.current);
         };
-    }, []);
+    }, [inView]);
+
+    if (!inView) return <EmptySpace></EmptySpace>;
 
     return (
-        <Wrapper>
+        <Wrapper
+            {...{
+                initial: {
+                    opacity: 0,
+                    y: 200,
+                },
+                animate: {
+                    opacity: 1,
+                    y: 0,
+                },
+                transition: {
+                    duration: 1.5,
+                    ease: [0.16, 1, 0.3, 1],
+                },
+            }}
+        >
             <Phone frameColor="green" header={<Header {...data.header} />}>
                 <Item {...data.item} />
                 <ChatBox ref={ref as any}>

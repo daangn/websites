@@ -59,7 +59,7 @@ const Name = styled.span`
   font-size: 1.125rem;
   line-height: 135%;
   letter-spacing: -0.03em;
-  color: ${({ theme }) => theme.colors.gray900};
+  color: ${({ theme }) => theme.colors.$gray900};
 `
 
 export const fragments = graphql`

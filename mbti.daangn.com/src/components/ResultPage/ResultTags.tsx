@@ -35,16 +35,16 @@ const Item = styled.li`
   white-space: nowrap;
 
   :nth-of-type(3n) {
-    background: ${({ theme }) => theme.colors.blue50};
+    background: ${({ theme }) => theme.colors.$blue50};
     color: #2db0cb;
   }
   :nth-of-type(3n - 1) {
-    background: ${({ theme }) => theme.colors.green50};
-    color: ${({ theme }) => theme.colors.green500};
+    background: ${({ theme }) => theme.colors.$green50};
+    color: ${({ theme }) => theme.colors.$green500};
   }
   :nth-of-type(3n - 2) {
-    background: ${({ theme }) => theme.colors.carrot50};
-    color: ${({ theme }) => theme.colors.carrot600};
+    background: ${({ theme }) => theme.colors.$carrot50};
+    color: ${({ theme }) => theme.colors.$carrot600};
   }
 `
 
