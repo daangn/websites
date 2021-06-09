@@ -1,0 +1,32 @@
+{
+  "name": "jp.karrotmarket.com",
+  "version": "0.0.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daangn/websites.git",
+    "directory": "jp.karrotmarket.com"
+  },
+  "scripts": {
+    "prepare-gatsby": "babel gatsby -d . -x .ts,.tsx --presets gatsby-package",
+    "postinstall": "yarn prepare-gatsby",
+    "build": "gatsby build",
+    "clean": "gatsby clean",
+    "develop": "gatsby develop"
+  },
+  "dependencies": {
+    "@karrotmarket/gatsby-theme-global-website": "*",
+    "gatsby": "^3.5.0",
+    "react": "experimental",
+    "react-dom": "experimental"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.3",
+    "@babel/core": "^7.14.3",
+    "@babel/plugin-transform-react-jsx": "^7.14.3",
+    "@babel/plugin-transform-typescript": "^7.14.3",
+    "babel-plugin-polished": "^1.1.0",
+    "babel-preset-gatsby-package": "^1.6.0",
+    "typescript": "^4.3.2"
+  }
+}
