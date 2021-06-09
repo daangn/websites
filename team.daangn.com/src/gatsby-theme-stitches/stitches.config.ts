@@ -35,6 +35,21 @@ export const { styled, css, global, getCssString, theme } = createCss({
       caption1: rem(14),
       caption2: rem(13),
     },
+    lineHeights: {
+      heading1: rem(90),
+      heading2: rem(80),
+      heading3: rem(73),
+      heading4: rem(57),
+      subtitle1: rem(48),
+      subtitle2: rem(39),
+      subtitle3: rem(31),
+      subtitle4: rem(28),
+      body1: rem(30),
+      body2: rem(28),
+      body3: rem(26),
+      caption1: rem(24),
+      caption2: rem(22),
+    },
     sizes: {
       maxContent: rem(1200),
     },
@@ -42,6 +57,10 @@ export const { styled, css, global, getCssString, theme } = createCss({
     },
   },
   utils: {
+    typography: config => (value: `$${keyof typeof config['theme']['fontSizes'] | (string & {})}`) => ({
+      fontSize: value,
+      lineHeight: value,
+    }),
     gridFullColumns: _config => (value: boolean) => value ? ({
       gridColumnStart: 1,
       gridColumnEnd: 'end',

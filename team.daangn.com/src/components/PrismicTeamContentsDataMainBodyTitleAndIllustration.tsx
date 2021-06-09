@@ -80,23 +80,23 @@ const TitleContainer = styled('div', {
 });
 
 const KeyText = styled('span', {
-  fontSize: '$body2',
+  typography: '$body2',
   fontWeight: 'bold',
   marginBottom: rem(16),
 
   '@md': {
-    fontSize: '$subtitle3',
+    typography: '$subtitle3',
     marginBottom: rem(24),
   },
 });
 
 const Title = styled('h1', {
   whiteSpace: 'pre-line',
-  fontSize: '$subtitle2',
+  typography: '$subtitle2',
   marginBottom: rem(24),
 
   '@md': {
-    fontSize: '$heading4',
+    typography: '$heading4',
     marginBottom: rem(32),
   },
 });

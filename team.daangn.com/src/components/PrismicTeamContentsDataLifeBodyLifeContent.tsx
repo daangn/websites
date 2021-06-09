@@ -44,15 +44,15 @@ const Container = styled('section', {
 });
 
 const Title = styled('h2', {
-  fontSize: '$subtitle3',
+  typography: '$subtitle3',
 
   '@md': {
-    fontSize: '$subtitle2',
+    typography: '$subtitle2',
   },
 });
 
 const BodyText = styled('div', {
-  fontSize: '$body2',
+  typography: '$body2',
   color: '$gray700',
 });
 
@@ -75,7 +75,7 @@ const ThumbnailImage = styled(GatsbyImage, {
 });
 
 const ThumbnailCaption = styled('figcaption', {
-  fontSize: '$caption1',
+  typography: '$caption1',
   color: '$gray500',
 });
 

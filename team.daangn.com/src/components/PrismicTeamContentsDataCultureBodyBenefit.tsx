@@ -42,10 +42,10 @@ const Header = styled('header', {
 
 const Title = styled('h2', {
   whiteSpace: 'pre-line',
-  fontSize: '$subtitle2',
+  typography: '$subtitle2',
 
   '@md': {
-    fontSize: '$heading4',
+    typography: '$heading4',
   },
 });
 
@@ -68,10 +68,10 @@ const BenefitGroup = styled('li', {
 
 const BenefitGroupTitle = styled('h3', {
   display: 'inline-flex',
-  fontSize: '$subtitle3',
+  typography: '$subtitle3',
 
   '@md': {
-    fontSize: '$subtitle1',
+    typography: '$subtitle1',
   },
 
   '&::before': {

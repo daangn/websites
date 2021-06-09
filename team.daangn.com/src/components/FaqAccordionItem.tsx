@@ -33,14 +33,10 @@ const Container = styled('div', {
 
 const Header = styled('h2', {
   display: 'flex',
-  fontSize: '$body2',
+  typography: '$body2',
 
-  variants: {
-    size: {
-      sm: {
-        fontSize: '$subtitle3',
-      },
-    },
+  '@sm': {
+    fontSize: '$subtitle3',
   },
 });
 
@@ -106,7 +102,7 @@ const FaqAccordionItem: React.FC<FaqAccordionItemProps> = ({
 }) => {
   return (
     <Container className={className}>
-      <Header as="h2" size={{ "@sm": "sm" }}>
+      <Header as="h2">
         <Button id={id} onClick={() => onClick?.(id)} onFocus={() => onFocus?.(id)}>
           {entry.question}
           <ChevronIcon rotate={open} src={chevronIconUrl} alt="" aria-hidden />

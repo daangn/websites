@@ -113,10 +113,10 @@ const DescriptionContainer = styled('div', {
 });
 
 const Description = styled('p', {
-  fontSize: '$body2',
+  typography: '$body2',
 
   '@sm': {
-    fontSize: '$subtitle3',
+    typography: '$subtitle3',
   },
 });
 

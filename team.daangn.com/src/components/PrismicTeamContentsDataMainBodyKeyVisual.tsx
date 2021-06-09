@@ -22,6 +22,19 @@ export const query = graphql`
             )
           }
         }
+        thumbnails {
+          portrait {
+            alt
+            localFile {
+              childImageSharp {
+                gatsbyImageData(
+                  layout: FULL_WIDTH
+                  quality: 100
+                )
+              }
+            }
+          }
+        }
       }
       description {
         text
@@ -34,16 +47,18 @@ export const query = graphql`
 const Container = styled('section', {
   display: 'grid',
   gridTemplateRows: 'auto auto',
+  gridTemplateColumns: 'repeat(3, 1fr)',
   gap: rem(40),
   width: '100%',
 
   '@md': {
     contentArea: true,
-    gap: rem(80),
+    gap: rem(48),
   },
 });
 
 const ImageContainer = styled('figure', {
+  gridFullColumns: true,
   variants: {
     expanded: {
       true: {
@@ -55,16 +70,39 @@ const ImageContainer = styled('figure', {
   },
 });
 
+const Image = styled(GatsbyImage, {
+  variants: {
+    layout: {
+      landscape: {
+        display: 'none',
+        '@md': {
+          display: 'block',
+        },
+      },
+      portrait: {
+        display: 'block',
+        '@md': {
+          display: 'none',
+        },
+      },
+    },
+  },
+});
+
 const Description = styled('p', {
   contentArea: true,
+  gridColumnStart: 1,
+  gridColumnEnd: 'end',
 
-  fontSize: '$body2',
+  typography: '$body2',
   fontWeight: 'bold',
   paddingX: rem(24),
 
   '@md': {
-    fontSize: '$subtitle2',
+    typography: '$subtitle2',
+    lineHeight: rem(40),
     paddingX: rem(0),
+    gridColumnEnd: 3,
   },
 });
 
@@ -72,7 +110,11 @@ const PrismicTeamContentsDataMainBodyKeyVisual: React.FC<PrismicTeamContentsData
   data,
   className,
 }) => {
-  const image = data.primary?.key_visual_image?.localFile?.childImageSharp?.gatsbyImageData && getImage(
+  if (data.primary == null) {
+    return null;
+  }
+
+  const image = data.primary.key_visual_image?.localFile?.childImageSharp?.gatsbyImageData && getImage(
     data.primary.key_visual_image.localFile.childImageSharp.gatsbyImageData
   );
 
@@ -80,14 +122,28 @@ const PrismicTeamContentsDataMainBodyKeyVisual: React.FC<PrismicTeamContentsData
     return null;
   }
 
+  // Note: 선택적으로 art-direction 적용
+  // CMS 에서 portrait 추가 이미지 업로드하면 사용, landscape 이미지가 항상 우선 됨
+  const portraitImage = (
+    data.primary.key_visual_image?.thumbnails?.portrait?.localFile?.childImageSharp?.gatsbyImageData && getImage(
+      data.primary.key_visual_image.thumbnails.portrait.localFile.childImageSharp.gatsbyImageData,
+    )
+  ) ?? image;
+
   return (
     <Container className={className}>
       {image && (
         <ImageContainer
           expanded={{ '@initial': data.primary.expanded ?? false, '@md': true }}
         >
-          <GatsbyImage
+          <Image
+            layout="landscape"
             image={image}
+            alt={data.primary?.key_visual_image?.alt ?? ''}
+          />
+          <Image
+            layout="portrait"
+            image={portraitImage}
             alt={data.primary?.key_visual_image?.alt ?? ''}
           />
         </ImageContainer>

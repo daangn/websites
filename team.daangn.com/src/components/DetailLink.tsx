@@ -18,11 +18,11 @@ const Base = styled(Link, {
   alignItems: 'center',
   color: '$gray900',
   textDecoration: 'none',
-  fontSize: '$body2',
+  typography: '$body2',
   fontWeight: 'bold',
 
   '@md': {
-    fontSize: '$subtitle3',
+    typography: '$subtitle3',
   },
 
   transition: 'opacity 0.2s ease-in-out',

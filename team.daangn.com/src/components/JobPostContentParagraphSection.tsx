@@ -23,7 +23,7 @@ const Title = styled('h3', {
 });
 
 const Paragraph = styled('p', {
-  fontSize: '$body2',
+  typography: '$body2',
 });
 
 const JobPostContentParagraphSection: React.FC<JobPostContentParagraphSectionProps> = ({

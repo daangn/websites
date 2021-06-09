@@ -22,6 +22,19 @@ export const query = graphql`
             )
           }
         }
+        thumbnails {
+          portrait {
+            alt
+            localFile {
+              childImageSharp {
+                gatsbyImageData(
+                  layout: FULL_WIDTH
+                  quality: 100
+                )
+              }
+            }
+          }
+        }
       }
       description {
         text
@@ -56,15 +69,34 @@ const ImageContainer = styled('figure', {
   },
 });
 
+const Image = styled(GatsbyImage, {
+  variants: {
+    layout: {
+      landscape: {
+        display: 'none',
+        '@md': {
+          display: 'block',
+        },
+      },
+      portrait: {
+        display: 'block',
+        '@md': {
+          display: 'none',
+        },
+      },
+    },
+  },
+});
+
 const Description = styled('p', {
   contentArea: true,
 
-  fontSize: '$body2',
+  typography: '$body2',
   fontWeight: 'bold',
   paddingX: rem(24),
 
   '@md': {
-    fontSize: '$subtitle2',
+    typography: '$subtitle2',
     paddingX: rem(0),
   },
 });
@@ -73,13 +105,25 @@ const PrismicTeamContentsDataCultureBodyKeyVisual: React.FC<PrismicTeamContentsD
   data,
   className,
 }) => {
-  const image = data.primary?.key_visual_image?.localFile?.childImageSharp?.gatsbyImageData && getImage(
+  if (data.primary == null) {
+    return null;
+  }
+
+  const image = data.primary.key_visual_image?.localFile?.childImageSharp?.gatsbyImageData && getImage(
     data.primary.key_visual_image.localFile.childImageSharp.gatsbyImageData
   );
 
   if (image == null) {
     return null;
   }
+
+  // Note: 선택적으로 art-direction 적용
+  // CMS 에서 portrait 추가 이미지 업로드하면 사용, landscape 이미지가 항상 우선 됨
+  const portraitImage = (
+    data.primary.key_visual_image?.thumbnails?.portrait?.localFile?.childImageSharp?.gatsbyImageData && getImage(
+      data.primary.key_visual_image.thumbnails.portrait.localFile.childImageSharp.gatsbyImageData,
+    )
+  ) ?? image;
 
   return (
     <Container className={className}>
@@ -92,8 +136,14 @@ const PrismicTeamContentsDataCultureBodyKeyVisual: React.FC<PrismicTeamContentsD
             },
           }}
         >
-          <GatsbyImage
+          <Image
+            layout="landscape"
             image={image}
+            alt={data.primary?.key_visual_image?.alt ?? ''}
+          />
+          <Image
+            layout="portrait"
+            image={portraitImage}
             alt={data.primary?.key_visual_image?.alt ?? ''}
           />
         </ImageContainer>

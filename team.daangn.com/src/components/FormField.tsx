@@ -61,7 +61,7 @@ const Label = styled('label', {
   display: 'inline-flex',
   alignItems: 'center',
   color: '$gray700',
-  fontSize: '$body2',
+  typography: '$body2',
   marginBottom: rem(8),
   variants: {
     required: {
@@ -86,7 +86,7 @@ const Input = styled('input', {
   height: rem(52),
   border: '1px solid $gray400',
   borderRadius: rem(8),
-  fontSize: '$body2',
+  typography: '$body2',
   paddingX: rem(20),
   '&:focus': {
     border: '1px solid $carrot500',
@@ -200,7 +200,7 @@ const RadioGroupContainer = styled('div', {
 const RadioButton = styled('label', {
   display: 'flex',
   alignItems: 'center',
-  fontSize: '$body2',
+  typography: '$body2',
   color: '$gray700',
   cursor: 'pointer',
 });

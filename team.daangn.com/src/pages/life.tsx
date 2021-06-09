@@ -30,8 +30,7 @@ export const query = graphql`
 `;
 
 const Container = styled('div', {
-  maxWidth: rem(760),
-  margin: '0 auto',
+  contentArea: true,
 });
 
 const PageTitle = styled(_PageTitle, {
@@ -53,7 +52,7 @@ const LifePage: React.FC<LifePageProps> = ({
   required(data.prismicTeamContents);
   return (
     <Container>
-      <PageTitle size={{ '@sm': 'sm' }}>
+      <PageTitle>
         {data.prismicTeamContents.data.life_page_title?.text}
       </PageTitle>
       <Content>

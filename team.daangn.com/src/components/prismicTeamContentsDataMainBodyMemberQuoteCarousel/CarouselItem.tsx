@@ -30,6 +30,7 @@ export const query = graphql`
 
 const Container = styled('article', {
   display: 'grid',
+  gridTemplateRows: 'repeat(2, min-content)',
   justifyContent: 'center',
   gap: rem(32),
 });
@@ -47,20 +48,20 @@ const QuoteContainer = styled('figure', {
 });
 
 const Quote = styled('blockquote', {
+  typography: '$subtitle4',
   fontWeight: 'bold',
-  fontSize: '$subtitle4',
 
   '@md': {
-    fontSize: '$subtitle2',
+    typography: '$subtitle2',
   },
 });
 
 const By = styled('figcaption', {
-  fontSize: '$body2',
+  typography: '$body2',
   color: '$gray700',
 
   '@md': {
-    fontSize: '$subtitle3',
+    typography: '$subtitle3',
   },
 });
 

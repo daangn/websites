@@ -22,7 +22,8 @@ export const query = graphql`
         localFile {
           childImageSharp {
             gatsbyImageData(
-              layout: FULL_WIDTH
+              height: 540
+              layout: CONSTRAINED
               quality: 100
             )
           }
@@ -40,11 +41,8 @@ export const query = graphql`
 const Container = styled('section', {
 });
 
-const ImageContainer = styled('figure', {
-  maxHeight: rem(450),
-  objectFit: 'cover',
-  objectPosition: 'center',
-  overflowY: 'clip',
+const BannerImage = styled(GatsbyImage, {
+  width: '100%',
 });
 
 const BannerContainer = styled('section', {
@@ -61,10 +59,10 @@ const BannerContainer = styled('section', {
 
 const Title = styled('h1', {
   textAlign: 'center',
-  fontSize: '$subtitle2',
+  typography: '$subtitle2',
 
   '@md': {
-    fontSize: '$heading4',
+    typography: '$heading4',
   },
 });
 
@@ -89,9 +87,12 @@ const PrismicTeamContentsDataMainBodyWideBanner: React.FC<PrismicTeamContentsDat
   return (
     <Container className={className}>
       {thumbnailImage && (
-        <ImageContainer>
-          <GatsbyImage image={thumbnailImage} alt={data.primary.thumbnail?.alt || ''} />
-        </ImageContainer>
+        <BannerImage
+          image={thumbnailImage}
+          objectFit="cover"
+          objectPosition="center"
+          alt={data.primary.thumbnail?.alt || ''}
+        />
       )}
       <BannerContainer
         css={{
