@@ -58,6 +58,8 @@
     "gatsby-transformer-sharp": "^3.4.0",
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
+    "react": "experimental",
+    "react-dom": "experimental",
     "react-helmet-async": "^1.0.9",
     "worktop": "^0.6.3"
   },
