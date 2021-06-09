@@ -8,8 +8,6 @@
     "directory": "us.karrotmarket.com"
   },
   "scripts": {
-    "prepare-gatsby": "babel gatsby -d . -x .ts,.tsx --presets gatsby-package",
-    "postinstall": "yarn prepare-gatsby",
     "build": "gatsby build",
     "clean": "gatsby clean",
     "develop": "gatsby develop"

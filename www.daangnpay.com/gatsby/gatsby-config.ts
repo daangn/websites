@@ -66,6 +66,7 @@ const config: GatsbyConfig = {
       options: {
         repositoryName: 'karrot',
         accessToken: process.env.PRISMIC_ACCESS_TOKEN,
+        shouldDownloadImage: () => true,
         schemas: {
           pay_contents: require('@karrotmarket/prismic-config/schema/pay_contents.json'),
         },
