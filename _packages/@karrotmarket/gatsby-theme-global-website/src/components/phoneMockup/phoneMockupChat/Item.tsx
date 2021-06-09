@@ -1,3 +1,5 @@
+import * as React from "react";
+
 import { Flex } from "../../Flex";
 import { Space } from "../../Space";
 import { styled } from "../../../gatsby-theme-stitches/stitches.config";

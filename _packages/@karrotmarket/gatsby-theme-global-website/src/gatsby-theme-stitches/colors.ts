@@ -1,6 +1,4 @@
-import type { ColorScheme, ColorToken } from '@daangn/design-token';
-
-export type DaangnColorScheme = ConvertedColorScheme;
+import type { ColorScheme, ColorToken } from '@karrotmarket/design-token';
 
 type RemoveTokenPrefix<Token> = Token extends `$${infer Rest}` ? Rest : Token;
 

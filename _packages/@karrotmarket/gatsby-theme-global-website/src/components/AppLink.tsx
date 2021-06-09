@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { rem } from "polished";
 import { styled } from "../gatsby-theme-stitches/stitches.config";
 

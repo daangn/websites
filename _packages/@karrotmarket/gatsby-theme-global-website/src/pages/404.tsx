@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import type { PageProps } from "gatsby";
 
 import { Flex } from "../components/Flex";

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import * as React from "react";
 import { rem } from "polished";
 import { graphql, PageProps } from "gatsby";
 // import { useLocation } from "@reach/router";
@@ -143,10 +143,10 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children, data }) => {
   const location = useLocation();
-  const [transparent, setTransparent] = useState(location.pathname === "/");
-  const isTransparent = useRef(false);
+  const [transparent, setTransparent] = React.useState(location.pathname === "/");
+  const isTransparent = React.useRef(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const onScroll = () => {
       if (window.scrollY <= 2 && isTransparent.current === false) {
         isTransparent.current = true;

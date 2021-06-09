@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import * as React from "react";
 import { MediaTypeMap, styled } from "../gatsby-theme-stitches/stitches.config";
 
 import { parseMediaProps } from "../util";
@@ -16,6 +16,6 @@ const SSpace = styled("div", {
 });
 
 export const Space: React.FC<TSpace> = (props) => {
-  const css = useMemo(() => parseMediaProps(props), [props]);
+  const css = React.useMemo(() => parseMediaProps(props), [props]);
   return <SSpace css={css} />;
 };
