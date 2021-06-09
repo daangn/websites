@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { styled } from "gatsby-theme-stitches/src/stitches.config";
 import { Flex } from "../../Flex";
 import { em } from "polished";

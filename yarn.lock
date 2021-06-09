@@ -1166,13 +1166,6 @@
   dependencies:
     "@cometjs/core" "1.2.0"
 
-"@daangn/design-token@^0.1.7":
-  version "0.1.7"
-  resolved "https://npm.pkg.github.com/download/@daangn/design-token/0.1.7/12007d08495742ef71a11ec20e1731dbe91b44b8b1e243c21e13b33615f57116#4baed7945e2e46bdf0eab0c025cb0e90b52901a0"
-  integrity sha512-57EmiWq1FfrDQgSBlBw99MFu+dogI5U/vYwdFP8JnGtAlzGvQizoURwZ5cKShDt00fIMLFZeiLE8D9LEpBIF+Q==
-  dependencies:
-    core-js "^3.9.1"
-
 "@daangn/eslint-config-karrot@^2.0.2":
   version "2.0.2"
   resolved "https://npm.pkg.github.com/download/@daangn/eslint-config-karrot/2.0.2/e45d5427068c9468533ccbcc89c452ad8470e1d92ce1aa3c72d216f95bc9fa9c#759a6609288c09b4f097104b3227166bed6ebaa0"
@@ -2026,7 +2019,7 @@
     "@babel/runtime" "^7.7.2"
     regenerator-runtime "^0.13.3"
 
-"@karrotmarket/design-token@0.1.8-0":
+"@karrotmarket/design-token@0.1.8-0", "@karrotmarket/design-token@^0.1.8-0":
   version "0.1.8-0"
   resolved "https://registry.yarnpkg.com/@karrotmarket/design-token/-/design-token-0.1.8-0.tgz#861db2f4ed298291e6712b6e3263c61067932638"
   integrity sha512-cK43lN8jlozeoCUm7gVEPZv/OKfWMZTXrfPk0bLC1OBvo5J4TijGELa7sca8DJ6CAV3kcrIblirD2omKrwy1OQ==

@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import * as React from "react";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { MediaTypeMap, styled } from "../gatsby-theme-stitches/stitches.config";
 import { parseMediaProps } from "../util";
@@ -26,7 +26,7 @@ const SBackgroundImage = styled(GatsbyImage, {
 });
 
 const BackgroundImage: React.FC<TBackgroundImage> = (props) => {
-  const css = useMemo(() => parseMediaProps(props, ["image", "alt"]), [props]);
+  const css = React.useMemo(() => parseMediaProps(props, ["image", "alt"]), [props]);
   return (
     <Wrapper>
       <SBackgroundImage

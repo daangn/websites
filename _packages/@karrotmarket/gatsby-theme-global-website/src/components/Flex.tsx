@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import * as React from "react";
 
 import { parseMediaProps } from "../util";
 import { MediaTypeMap, styled } from "../gatsby-theme-stitches/stitches.config";
@@ -36,6 +36,6 @@ const SFlex = styled("div", {
 });
 
 export const Flex: React.FC<TFlex> = (props) => {
-  const css = useMemo(() => parseMediaProps(props), [props]);
+  const css = React.useMemo(() => parseMediaProps(props), [props]);
   return <SFlex css={css}>{props.children}</SFlex>;
 };

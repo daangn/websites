@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import * as React from "react";
 
 import { em, rem } from "polished";
 import { motion, AnimatePresence } from "framer-motion";
@@ -42,12 +42,12 @@ interface PhoneMockupChatProps {
 }
 
 const PhoneMockupChat: React.FC<PhoneMockupChatProps> = ({ inView }) => {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const ref = useRef();
-  const interval = useRef<any>();
-  const messageIndex = useRef<number>(0);
+  const [messages, setMessages] = React.useState<Message[]>([]);
+  const ref = React.useRef();
+  const interval = React.useRef<any>();
+  const messageIndex = React.useRef<number>(0);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!interval.current && inView) {
       interval.current = setInterval(() => {
         if (messageIndex.current < 0) return messageIndex.current++;

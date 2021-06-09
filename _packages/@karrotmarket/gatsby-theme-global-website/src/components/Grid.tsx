@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import * as React from "react";
 import { MediaTypeMap, styled } from "../gatsby-theme-stitches/stitches.config";
 
 import { parseMediaProps } from "../util";
@@ -21,6 +21,6 @@ const SGrid = styled("div", {
 });
 
 export const Grid: React.FC<TGrid> = (props) => {
-  const css = useMemo(() => parseMediaProps(props), [props]);
+  const css = React.useMemo(() => parseMediaProps(props), [props]);
   return <SGrid css={css}>{props.children}</SGrid>;
 };

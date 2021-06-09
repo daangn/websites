@@ -43,22 +43,6 @@ export const sourceNodes: GatsbyNode["sourceNodes"] = async (
   return;
 };
 
-export const onCreateBabelConfig: GatsbyNode["onCreateBabelConfig"] = ({
-  actions,
-}) => {
-  actions.setBabelPlugin({
-    name: require.resolve("@babel/plugin-transform-react-jsx"),
-    options: {
-      runtime: "automatic",
-    },
-  });
-
-  actions.setBabelPlugin({
-    name: require.resolve("babel-plugin-polished"),
-    options: {},
-  });
-};
-
 export const createPages: GatsbyNode["createPages"] = (
   { actions },
   options

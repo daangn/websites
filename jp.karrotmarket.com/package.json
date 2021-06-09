@@ -13,8 +13,11 @@
     "develop": "gatsby develop"
   },
   "dependencies": {
+    "@karrotmarket/design-token": "^0.1.8-2",
     "@karrotmarket/gatsby-theme-global-website": "*",
+    "@karrotmarket/react-stitches": "^0.1.1-0",
     "gatsby": "^3.5.0",
+    "gatsby-plugin-concurrent-mode": "^0.2.1",
     "react": "experimental",
     "react-dom": "experimental"
   },
