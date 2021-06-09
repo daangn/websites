@@ -1,40 +1,30 @@
 {
   "Main": {
+    "logo_icon": {
+      "type": "Image",
+      "config": {
+        "constraint": {
+          "width": 443,
+          "height": 584
+        },
+        "thumbnails": [],
+        "label": "Logo Icon"
+      }
+    },
     "body": {
       "type": "Slices",
       "fieldset": "Slice zone",
       "config": {
         "labels": {
-          "hero": []
+          "hero": [],
+          "logo_icon": []
         },
         "choices": {
-          "hero": {
-            "type": "Slice",
-            "fieldset": "Hero",
-            "description": "Hero 섹션",
-            "icon": "face",
-            "display": "list",
-            "non-repeat": {
-              "image": {
-                "type": "Image",
-                "config": {
-                  "constraint": {
-                    "width": 1920,
-                    "height": 1080
-                  },
-                  "thumbnails": [],
-                  "label": "이미지"
-                }
-              }
-            },
-            "repeat": {}
-          },
           "title_and_description": {
             "type": "Slice",
             "fieldset": "Title and Description",
             "description": "제목과 설명 텍스트가 있는 섹션",
             "icon": "subtitles",
-            "display": "grid",
             "non-repeat": {
               "key_text": {
                 "type": "Text",
@@ -87,7 +77,6 @@
             "fieldset": "Title and Illustration",
             "description": "제목과 일러스트가 있는 섹션",
             "icon": "subtitles",
-            "display": "list",
             "non-repeat": {
               "key_text": {
                 "type": "Text",
@@ -100,6 +89,13 @@
                 "config": {
                   "single": "heading1",
                   "label": "섹션 제목"
+                }
+              },
+              "sub_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading6",
+                  "label": "sub title"
                 }
               },
               "inverted": {
@@ -129,8 +125,8 @@
                 "type": "Image",
                 "config": {
                   "constraint": {
-                    "width": 560,
-                    "height": 420
+                    "width": 500,
+                    "height": 280
                   },
                   "thumbnails": [],
                   "label": "일러스트 이미지"
@@ -144,7 +140,6 @@
             "fieldset": "Wide Banner",
             "description": "넓은 영역에 걸쳐 섬네일과 문구가 있는 섹션",
             "icon": "panorama",
-            "display": "list",
             "non-repeat": {
               "thumbnail": {
                 "type": "Image",
@@ -183,6 +178,26 @@
                 "config": {
                   "label": "배경 색상 코드",
                   "placeholder": "e.g. #01AB1C, $carrot500, rgba(0,0,0,0.5)"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "hero": {
+            "type": "Slice",
+            "fieldset": "Hero",
+            "description": "Hero 섹션",
+            "icon": "face",
+            "non-repeat": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {
+                    "width": 1920,
+                    "height": 1080
+                  },
+                  "thumbnails": [],
+                  "label": "이미지"
                 }
               }
             },
