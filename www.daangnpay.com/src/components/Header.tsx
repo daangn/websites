@@ -8,7 +8,7 @@ interface Props {
   alt?: string;
 }
 
-const Header: FC<Props> = ({ image_data, alt }) => {
+const Header: FC<Props> = ({ image_data, alt = "" }) => {
   const image = image_data && getImage(image_data);
 
   const onLinkClick = () => {
@@ -19,7 +19,7 @@ const Header: FC<Props> = ({ image_data, alt }) => {
     <Wrapper>
       <Box>
         <Logo>
-          <GatsbyImage image={image} alt={alt || ""} />
+          <GatsbyImage image={image} alt={alt} />
           <LogoText>당근페이</LogoText>
         </Logo>
 
