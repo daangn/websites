@@ -100,8 +100,10 @@ const Description = styled('p', {
 
   '@md': {
     typography: '$subtitle2',
-    lineHeight: rem(40),
     paddingX: rem(0),
+  },
+
+  '@lg': {
     gridColumnEnd: 3,
   },
 });
