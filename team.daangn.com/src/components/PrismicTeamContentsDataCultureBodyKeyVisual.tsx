@@ -47,6 +47,7 @@ export const query = graphql`
 const Container = styled('section', {
   display: 'grid',
   gridTemplateRows: 'auto auto',
+  gridTemplateColumns: 'repeat(3, 1fr)',
   gap: rem(40),
   width: '100%',
 
@@ -57,6 +58,7 @@ const Container = styled('section', {
 });
 
 const ImageContainer = styled('figure', {
+  gridFullColumns: true,
   variants: {
     expanded: {
       true: {
@@ -90,6 +92,8 @@ const Image = styled(GatsbyImage, {
 
 const Description = styled('p', {
   contentArea: true,
+  gridColumnStart: 1,
+  gridColumnEnd: 'end',
 
   typography: '$body2',
   fontWeight: 'bold',

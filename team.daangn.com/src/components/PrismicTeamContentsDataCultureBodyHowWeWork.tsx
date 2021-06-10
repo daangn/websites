@@ -141,6 +141,7 @@ const Entries = styled('div', {
 
 const Entry = styled('section', {
   display: 'grid',
+  gridTemplateRows: 'min-content',
   gap: rem(16),
 
   '@md': {
