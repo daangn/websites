@@ -16,7 +16,6 @@
     "@karrotmarket/design-token": "^0.1.8-0",
     "@karrotmarket/gatsby-theme-global-website": "*",
     "@karrotmarket/react-stitches": "^0.1.1-0",
-    "@stitches/react": "^0.2.0-canary.4",
     "framer-motion": "^4.1.17",
     "gatsby": "^3.5.0",
     "gatsby-plugin-concurrent-mode": "^0.2.1",
