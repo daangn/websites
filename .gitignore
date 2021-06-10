@@ -2,7 +2,6 @@
 .ultra.cache.json
 .env
 .envrc
-.cache
 
 *.DS_Store
 *.log
