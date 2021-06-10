@@ -59,7 +59,7 @@ const SubtitleAndImages: React.FC<SubtitleAndImagesProps> = ({ content }) => {
     <Section>
       <Space h={72}></Space>
       <Html html={subtitle?.html}></Html>
-      <Space h={12}></Space>
+      <Space h={14}></Space>
       <Grid
         gridTemplateColumns={{
           "@i": "repeat(2, 1fr)",

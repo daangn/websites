@@ -2,7 +2,7 @@ import React from "react";
 import { rem } from "polished";
 import { graphql } from "gatsby";
 import { useInView } from "react-intersection-observer";
-import { styled } from "../../gatsby-theme-stitches/stitches.config";
+import { styled } from "gatsby-theme-stitches/src/stitches.config";
 
 import { Grid } from "../Grid";
 import { Html } from "../Html";
@@ -30,7 +30,7 @@ export const query = graphql`
       background_color
       text_highlight_color
       phone_mockup_component
-      text_on_right
+      inverted
     }
     items {
       icon
@@ -73,14 +73,14 @@ const Container = styled("div", {
   padding: `${rem(56)} ${rem(26)}`,
 
   variants: {
-    textPosition: {
-      left: {
+    inverted: {
+      true: {
         flexDirection: "column",
         "@md": {
           flexDirection: "row",
         },
       },
-      right: {
+      false: {
         flexDirection: "column",
         "@md": {
           flexDirection: "row-reverse",
@@ -121,14 +121,14 @@ const MockupSection: React.FC<MockupSectionProps> = ({ content }) => {
     background_color,
     text_highlight_color,
     phone_mockup_component,
-    text_on_right,
+    inverted,
   } = content.primary;
   const PhoneMockupComponent =
     PhoneMockup[phone_mockup_component as PhoneMockupType];
 
   return (
     <Section css={{ background: background_color }} ref={ref}>
-      <Container textPosition={text_on_right ? "right" : "left"}>
+      <Container inverted={inverted}>
         <Flex colCenterY alignItems={{ "@i": "center", "@md": "flex-start" }}>
           <Html html={text?.html} highlightColor={text_highlight_color} />
           <Grid

@@ -1,6 +1,7 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { styled } from "../../gatsby-theme-stitches/stitches.config";
+import { styled } from "gatsby-theme-stitches/src/stitches.config";
+
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 
 import { Html } from "../Html";

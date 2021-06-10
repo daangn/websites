@@ -39,6 +39,7 @@ const Hamburger = styled("label", {
   transform: "translateY(-50%)",
   zIndex: 2,
   cursor: "pointer",
+  lineHeight: "100%",
 
   variants: {
     disabled: {

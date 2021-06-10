@@ -8,17 +8,22 @@ import { styled } from "gatsby-theme-stitches/src/stitches.config";
 
 import { Html } from "../Html";
 import { Space } from "../Space";
+import _Layout from "../Layout";
 import SubtitleAndText from "../about/SubtitleAndText";
 import SubtitleAndLinks from "../about/SubtitleAndLinks";
 import SubtitleAndImages from "../about/SubtitleAndImages";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { withPrismicPreview } from "gatsby-plugin-prismic-previews";
+import DetailsList from "../about/DetailsList";
 
 type AboutPageProps = PageProps<GatsbyTypes.AboutPageQueryQuery>;
 
 export const query = graphql`
   query AboutPageQuery($lang: String) {
-    ...DefaultLayout_query
+    prismicSiteNavigation(uid: { eq: "global" }, lang: { eq: $lang }) {
+      _previewable
+      ...DefaultLayout_data
+    }
     prismicGlobalContents(lang: { eq: $lang }) {
       _previewable
       data {
@@ -41,6 +46,7 @@ export const query = graphql`
           ...SubtitleAndImages_content
           ...SubtitleAndLinks_content
           ...SubtitleAndText_content
+          ...DetailsList_content
         }
       }
     }
@@ -71,7 +77,7 @@ const Container = styled("div", {
   },
 });
 
-const Wrapper = styled("div", {
+const Wrapper = styled(_Layout, {
   h3: {
     fontSize: "$heading4",
     "@md": {
@@ -104,7 +110,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
   );
 
   return (
-    <Wrapper id="about-page">
+    <Wrapper id="about-page" data={data.prismicSiteNavigation.data}>
       <GatsbySeo
         title={about_page_title}
         description={about_page_description}
@@ -137,6 +143,9 @@ const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
             ),
             PrismicGlobalContentsDataAboutBodySubtitleAndLinks: (content) => (
               <SubtitleAndLinks key={i} content={content} />
+            ),
+            PrismicGlobalContentsDataAboutBodyDetailsList: (content) => (
+              <DetailsList key={i} content={content} />
             ),
           })
         )}

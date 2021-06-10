@@ -1,9 +1,8 @@
 const siteMetadata = {
-  siteUrl: "https://uk.karrotmarket.com/",
-  siteName:
-    "Karrot - Your Local Buying &amp; Selling Community for Verified Locals",
+  siteUrl: "https://jp.karrotmarket.com/",
+  siteName: "お住まいのまちのキャロット（Karrot）",
   description:
-    "Karrot - the app for verified locals to buy &amp; sell. See what&#39;s for offer today!",
+    "お住まいのまちのフリマアプリ、Karrot(キャロット)！ご近所さんと心あたたまる取引をしませんか？",
 };
 
 module.exports = {
@@ -15,7 +14,7 @@ module.exports = {
   },
   siteMetadata,
   plugins: [
-    'gatsby-plugin-concurrent-mode',
+    "gatsby-plugin-concurrent-mode",
     {
       resolve: "gatsby-plugin-manifest",
       options: {

@@ -2,7 +2,7 @@ import { em, rem } from "polished";
 import { colors } from "@karrotmarket/design-token";
 import { createCss } from "@stitches/react";
 
-import { convertColorScheme } from './colors';
+import { convertColorScheme } from "./colors";
 
 export type MediaType = `@${"i" | "sm" | "md" | "lg" | "xl" | "xxl"}`;
 export const MediaTypeList: MediaType[] = [
@@ -32,8 +32,10 @@ export const { styled, css, global, getCssString, theme, media, utils } =
       // @ts-ignore
       colors: convertColorScheme(colors.light.scheme),
       fonts: {
+        noto: '"Noto Sans JP" sans-serif',
+        gilroy: "Gilroy",
         default:
-          'apple-system, BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"',
+          '-apple-system, BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"',
       },
       fontSizes: {
         heading1: rem(72),

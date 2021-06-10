@@ -41,7 +41,7 @@ const SubtitleAndText: React.FC<SubtitleAndTextProps> = ({ content }) => {
     <Section>
       <Space h={72}></Space>
       <Html html={subtitle?.html}></Html>
-      <Space h={12}></Space>
+      <Space h={14}></Space>
       <Html html={text?.html} fontFamily="$default"></Html>
     </Section>
   );

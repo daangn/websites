@@ -1,7 +1,7 @@
 import React from "react";
 import { graphql } from "gatsby";
 import { getImage } from "gatsby-plugin-image";
-import { styled } from "../../gatsby-theme-stitches/stitches.config";
+import { styled } from "gatsby-theme-stitches/src/stitches.config";
 
 import { Html } from "../Html";
 import { Flex } from "../Flex";
@@ -19,9 +19,14 @@ export const query = graphql`
   fragment HeroSection_content on PrismicGlobalContentsDataMainBodyHeroSection {
     primary {
       title {
-        text
         html
+        text
       }
+      text {
+        html
+        text
+      }
+      background_color
       background_image {
         localFile {
           childImageSharp {
@@ -41,6 +46,13 @@ export const query = graphql`
         }
         alt
         thumbnails {
+          japan {
+            localFile {
+              childImageSharp {
+                gatsbyImageData(quality: 100, placeholder: NONE)
+              }
+            }
+          }
           mobile {
             dimensions {
               width
