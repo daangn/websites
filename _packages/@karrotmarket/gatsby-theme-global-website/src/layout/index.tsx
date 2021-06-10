@@ -143,7 +143,9 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children, data }) => {
   const location = useLocation();
-  const [transparent, setTransparent] = React.useState(location.pathname === "/");
+  const [transparent, setTransparent] = React.useState(
+    location.pathname === "/"
+  );
   const isTransparent = React.useRef(false);
 
   React.useEffect(() => {
@@ -182,7 +184,6 @@ const Layout: React.FC<LayoutProps> = ({ children, data }) => {
   return (
     <>
       <Helmet key="helmet">
-        <html lang="en" />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1"

@@ -36,12 +36,6 @@
         "label": "원 링크"
       }
     },
-    "popular_items_api": {
-      "type": "Text",
-      "config": {
-        "label": "인기매물 api"
-      }
-    },
     "main_body": {
       "type": "Slices",
       "fieldset": "Slice zone",
@@ -51,7 +45,8 @@
           "parallax_section": [],
           "download_section": [],
           "popular_section": [],
-          "centre_section": []
+          "centre_section": [],
+          "illustration_section": []
         },
         "choices": {
           "hero_section": {
@@ -64,9 +59,24 @@
               "title": {
                 "type": "StructuredText",
                 "config": {
-                  "multi": "heading1",
+                  "multi": "paragraph, heading1",
+                  "label": "제목",
+                  "placeholder": "필수"
+                }
+              },
+              "text": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph",
                   "allowTargetBlank": true,
-                  "label": "제목"
+                  "label": "텍스트",
+                  "placeholder": "선택"
+                }
+              },
+              "background_color": {
+                "type": "Text",
+                "config": {
+                  "label": "배경 색상"
                 }
               },
               "background_image": {
@@ -89,6 +99,11 @@
                       "name": "mobile",
                       "width": 288,
                       "height": 365
+                    },
+                    {
+                      "name": "japan",
+                      "width": 558,
+                      "height": 595
                     }
                   ],
                   "label": "사이드 이미지"
@@ -182,13 +197,13 @@
                   "label": "폰목업 컴포넌트"
                 }
               },
-              "text_on_right": {
+              "inverted": {
                 "type": "Boolean",
                 "config": {
                   "placeholder_false": "왼쪽",
                   "placeholder_true": "오른쪽",
                   "default_value": false,
-                  "label": "텍스트 위치"
+                  "label": "폰목업 위치"
                 }
               }
             },
@@ -336,7 +351,7 @@
           },
           "popular_section": {
             "type": "Slice",
-            "fieldset": "Popular Section",
+            "fieldset": "HotArticle Section",
             "description": "인기매물 제목 + 버튼 이름",
             "icon": "whatshot",
             "display": "list",
@@ -354,6 +369,47 @@
                 "config": {
                   "label": "더보기 버튼",
                   "placeholder": "Discover more"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "illustration_section": {
+            "type": "Slice",
+            "fieldset": "Illustration Section",
+            "description": "제목 + 텍스트 + 일러스트",
+            "icon": "image",
+            "display": "list",
+            "non-repeat": {
+              "title": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph",
+                  "label": "제목"
+                }
+              },
+              "text": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph",
+                  "label": "텍스트"
+                }
+              },
+              "inverted": {
+                "type": "Boolean",
+                "config": {
+                  "placeholder_false": "왼쪽",
+                  "placeholder_true": "오른쪽",
+                  "default_value": false,
+                  "label": "일러스트 위치"
+                }
+              },
+              "image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "일러스트 이미지"
                 }
               }
             },
@@ -405,7 +461,8 @@
       "fieldset": "Slice zone",
       "config": {
         "labels": {
-          "list_of_texts": []
+          "list_of_texts": [],
+          "details_list": []
         },
         "choices": {
           "subtitle_and_text": {
@@ -505,10 +562,10 @@
               }
             }
           },
-          "list_of_texts": {
+          "details_list": {
             "type": "Slice",
-            "fieldset": "List of rows",
-            "description": "다수의 레이블 + 텍스트를 포함하는 열을 넣을수 있는 섹션",
+            "fieldset": "Details List",
+            "description": "다수의 레이블 + 텍스트를 넣을수 있는 섹션",
             "icon": "format_list_bulleted",
             "display": "list",
             "non-repeat": {},

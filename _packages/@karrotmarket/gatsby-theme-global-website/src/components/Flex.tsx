@@ -36,6 +36,5 @@ const SFlex = styled("div", {
 });
 
 export const Flex: React.FC<TFlex> = (props) => {
-  const css = React.useMemo(() => parseMediaProps(props), [props]);
-  return <SFlex css={css}>{props.children}</SFlex>;
+  return <SFlex css={parseMediaProps(props)}>{props.children}</SFlex>;
 };

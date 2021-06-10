@@ -32,13 +32,13 @@ export const { styled, css, global, getCssString, theme, media, utils } =
       // @ts-ignore
       colors: convertColorScheme(colors.light.scheme),
       fonts: {
-        noto: '"Noto Sans JP" sans-serif',
+        noto: '"Noto Sans JP", sans-serif',
         gilroy: "Gilroy",
         default:
           '-apple-system, BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"',
       },
       fontSizes: {
-        heading1: rem(72),
+        heading1: rem(68),
         heading2: rem(58),
         heading3: rem(42),
         heading4: rem(28),

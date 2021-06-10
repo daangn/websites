@@ -13,8 +13,13 @@ interface TImage {
 const SImage = styled(GatsbyImage, {});
 
 const Image: React.FC<TImage> = (props) => {
-  const css = React.useMemo(() => parseMediaProps(props, ["image", "alt"]), [props]);
-  return <SImage image={props.image} alt={props.alt} css={css} />;
+  return (
+    <SImage
+      image={props.image}
+      alt={props.alt}
+      css={parseMediaProps(props, ["image", "alt"])}
+    />
+  );
 };
 
 export default Image;

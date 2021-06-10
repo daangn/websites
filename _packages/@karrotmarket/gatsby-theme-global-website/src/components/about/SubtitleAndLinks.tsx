@@ -51,7 +51,7 @@ const SubtitleAndLinks: React.FC<SubtitleAndLinksProps> = ({ content }) => {
     <Section>
       <Space h={72}></Space>
       <Html html={subtitle?.html}></Html>
-      <Space h={12}></Space>
+      <Space h={14}></Space>
       <Grid rowGap={{ "@i": 20, "@md": 12 }}>
         {content.items.map((item) => (
           <LinkContainer>

@@ -21,6 +21,5 @@ const SGrid = styled("div", {
 });
 
 export const Grid: React.FC<TGrid> = (props) => {
-  const css = React.useMemo(() => parseMediaProps(props), [props]);
-  return <SGrid css={css}>{props.children}</SGrid>;
+  return <SGrid css={parseMediaProps(props)}>{props.children}</SGrid>;
 };

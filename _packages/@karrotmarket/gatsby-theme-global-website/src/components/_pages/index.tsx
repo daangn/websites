@@ -15,12 +15,18 @@ import CenterSection from "../home/CenterSection";
 import PopularSection from "../home/PopularSection";
 import DownloadSection from "../home/DownloadSection";
 import ParallaxSection from "../home/ParallaxSection";
+import IllustrationSection from "../home/IllustrationSection";
+import Layout from "../Layout";
+import { useInView } from "react-intersection-observer";
 
 type IndexPageProps = PageProps<GatsbyTypes.IndexPageQueryQuery>;
 
 export const query = graphql`
   query IndexPageQuery($lang: String) {
-    ...DefaultLayout_query
+    prismicSiteNavigation(uid: { eq: "global" }, lang: { eq: $lang }) {
+      _previewable
+      ...DefaultLayout_data
+    }
     prismicGlobalContents(lang: { eq: $lang }) {
       _previewable
       data {
@@ -38,6 +44,7 @@ export const query = graphql`
           ...ReviewSection_content
           ...CenterSection_content
           ...DownloadSection_content
+          ...IllustrationSection_content
         }
       }
     }
@@ -51,7 +58,14 @@ export const query = graphql`
 
 const Wrapper = styled("div", {});
 
+const Placer = styled("div", {
+  position: "absolute",
+  height: 1,
+});
+
 const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
+  const [ref, inView] = useInView({ threshold: 1 });
+
   if (!data.prismicGlobalContents?.data?.main_body || !data.hotArticles.nodes)
     return <></>;
   const {
@@ -59,12 +73,15 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
     main_page_description,
     main_opengraph_image_link,
     main_body,
-    google_play_link,
-    app_store_link,
   } = data.prismicGlobalContents?.data;
 
   return (
-    <>
+    <Layout
+      data={data.prismicSiteNavigation.data}
+      transparent={inView}
+      placer={false}
+    >
+      <Placer ref={ref}></Placer>
       <GatsbySeo
         title={main_page_title}
         description={main_page_description}
@@ -117,6 +134,9 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
                 links={data.prismicGlobalContents?.data}
               />
             ),
+            PrismicGlobalContentsDataMainBodyIllustrationSection: (content) => (
+              <IllustrationSection key={i} content={content} />
+            ),
           })
         )}
         <AppLink
@@ -125,8 +145,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
           links={data.prismicGlobalContents?.data}
         ></AppLink>
       </Wrapper>
-      {/* </StoreProvider> */}
-    </>
+    </Layout>
   );
 };
 

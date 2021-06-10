@@ -16,6 +16,5 @@ const SSpace = styled("div", {
 });
 
 export const Space: React.FC<TSpace> = (props) => {
-  const css = React.useMemo(() => parseMediaProps(props), [props]);
-  return <SSpace css={css} />;
+  return <SSpace css={parseMediaProps(props)} />;
 };

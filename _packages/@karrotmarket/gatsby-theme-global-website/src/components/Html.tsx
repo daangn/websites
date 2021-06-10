@@ -24,8 +24,10 @@ interface THtml {
 const SHtml = styled("div", {});
 
 export const Html: React.FC<THtml> = (props) => {
-  const css = React.useMemo(() => parseMediaProps(props, ["html"], "*"), [props]);
   return (
-    <SHtml dangerouslySetInnerHTML={{ __html: props.html || "" }} css={css} />
+    <SHtml
+      dangerouslySetInnerHTML={{ __html: props.html || "" }}
+      css={parseMediaProps(props, ["html"], "*")}
+    />
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { styled } from "../../gatsby-theme-stitches/stitches.config";
+import { styled } from "gatsby-theme-stitches/src/stitches.config";
 
 import { Html } from "../Html";
 import { Space } from "../Space";

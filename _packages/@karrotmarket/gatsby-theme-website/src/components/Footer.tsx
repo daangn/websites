@@ -117,6 +117,13 @@ const FooterEntryItem = styled("li", {
 
 const FooterEntryLink = styled(Link, {
   color: "$gray900",
+  textDecoration: "none",
+  opacity: 1,
+  transition: "opacity 0.3s",
+
+  "&:hover": {
+    opacity: 0.64,
+  },
 });
 
 const SocialServiceProfileList = styled("ul", {

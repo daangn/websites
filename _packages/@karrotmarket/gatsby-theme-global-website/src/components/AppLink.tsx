@@ -12,7 +12,7 @@ import { ReactComponent as GooglePlayIcon } from "../icons/google_play.svg";
 import { graphql } from "gatsby";
 
 interface TLinkButton {
-  theme: "dark" | "light" | "primary";
+  theme: "dark" | "light" | "primary" | "white";
   width: "full" | "fit";
 
   icon?: any;
@@ -57,6 +57,10 @@ const SLinkButton = styled("a", {
       primary: {
         color: "white",
         background: "$carrot500",
+      },
+      white: {
+        color: "$gray900",
+        background: "white",
       },
     },
     width: {
@@ -114,6 +118,13 @@ const SAppLink = styled("div", {
         },
       },
     },
+    inverted: {
+      true: {
+        div: {
+          flexDirection: "row-reverse",
+        },
+      },
+    },
   },
 });
 
@@ -126,17 +137,18 @@ export const query = graphql`
 `;
 
 interface TAppLink {
-  type: "mobile" | "desktop";
-  theme: "dark" | "light" | "primary";
   links: GatsbyTypes.AppLink_linkFragment;
+  type: "mobile" | "desktop";
+  theme: "dark" | "light" | "primary" | "white";
+  inverted?: boolean;
 }
 
-const AppLink: React.FC<TAppLink> = ({ type, theme, links }) => {
+const AppLink: React.FC<TAppLink> = ({ type, theme, links, inverted }) => {
   const { google_play_link, app_store_link, one_link } = links;
 
   return (
     <>
-      <SAppLink type={type}>
+      <SAppLink type={type} inverted={inverted}>
         {type === "desktop" ? (
           <Flex row>
             <LinkButton href={app_store_link} theme={theme} width="fit">
