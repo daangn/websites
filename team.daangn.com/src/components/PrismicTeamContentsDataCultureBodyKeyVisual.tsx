@@ -53,12 +53,13 @@ const Container = styled('section', {
 
   '@md': {
     contentArea: true,
-    gap: rem(80),
+    gap: rem(48),
   },
 });
 
 const ImageContainer = styled('figure', {
   gridFullColumns: true,
+
   variants: {
     expanded: {
       true: {
@@ -102,6 +103,10 @@ const Description = styled('p', {
   '@md': {
     typography: '$subtitle2',
     paddingX: rem(0),
+  },
+
+  '@lg': {
+    gridColumnEnd: 3,
   },
 });
 
