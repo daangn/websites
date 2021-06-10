@@ -2,8 +2,9 @@ import * as React from "react";
 import { rem } from "polished";
 import { graphql, Link } from "gatsby";
 import { styled } from "gatsby-theme-stitches/src/stitches.config";
-import { useLinkParser, mapLink } from "../link";
+import { useLocation } from "@reach/router";
 
+import { useLinkParser, mapLink } from "../link";
 import SocialServiceProfile from "./footer/SocialServiceProfile";
 
 type FooterProps = {
@@ -155,6 +156,7 @@ const SocialServiceProfileItem = styled("li", {
 
 const Footer: React.FC<FooterProps> = ({ className, navigationData }) => {
   const parseLink = useLinkParser();
+  const location = useLocation();
 
   return (
     <Container role="contentinfo" className={className}>
