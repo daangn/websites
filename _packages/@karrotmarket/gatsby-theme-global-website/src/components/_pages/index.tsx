@@ -64,7 +64,7 @@ const Placer = styled("div", {
 });
 
 const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
-  const [ref, inView] = useInView({ threshold: 1 });
+  const [ref, inView] = useInView({ threshold: 1, initialInView: true });
 
   if (!data.prismicGlobalContents?.data?.main_body || !data.hotArticles.nodes)
     return <></>;

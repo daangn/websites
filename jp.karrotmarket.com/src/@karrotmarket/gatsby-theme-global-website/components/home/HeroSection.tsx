@@ -20,7 +20,8 @@ const Section = styled("section", {
   width: "100%",
   position: "relative",
   "@md": {
-    height: "710px",
+    paddingTop: rem(70),
+    paddingBottom: rem(80),
   },
 });
 
@@ -35,25 +36,36 @@ const Container = styled("div", {
   padding: rem(24),
   paddingTop: rem(70),
   paddingBottom: rem(40),
+  boxSizing: "border-box",
+
+  "@sm": {
+    width: rem(540),
+  },
   "@md": {
     padding: 0,
-    width: "$maxContent",
     flexDirection: "row",
     textAlign: "left",
     justifyContent: "initial",
     alignItems: "center",
+    width: rem(720),
+  },
+  "@lg": {
+    width: rem(960),
+  },
+  "@xl": {
+    width: rem(1140),
   },
 });
 
 const Title = styled("h2", {
   marginBottom: rem(24),
-
+  whiteSpace: "nowrap",
   "*": {
     fontFamily: "$noto",
     fontSize: "$heading3",
     lineHeight: "120%",
 
-    "@md": {
+    "@lg": {
       lineHeight: "115%",
       fontSize: "$heading1",
     },
@@ -67,9 +79,8 @@ const Text = styled("div", {
     color: "#4D5159",
     fontFamily: "$noto",
     fontSize: "$subtitle2",
-    "@md": {
+    "@lg": {
       fontSize: "$subtitle1",
-      marginBottom: rem(48),
     },
   },
 });
@@ -97,19 +108,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ content, links }) => {
           ></AppLink>
         </Flex>
 
-        <Flex ai="center">
-          <Image
-            image={sideImage}
-            alt={side_image?.alt}
-            // width={{
-            //   "@i": side_image?.thumbnails?.mobile?.dimensions?.width,
-            //   "@md": side_image?.dimensions?.width,
-            // }}
-            // height={{
-            //   "@i": side_image?.thumbnails?.mobile?.dimensions?.height,
-            //   "@md": side_image?.dimensions?.height,
-            // }}
-          ></Image>
+        <Flex ai="center" flex={1}>
+          <Image image={sideImage} alt={side_image?.alt}></Image>
         </Flex>
       </Container>
     </Section>

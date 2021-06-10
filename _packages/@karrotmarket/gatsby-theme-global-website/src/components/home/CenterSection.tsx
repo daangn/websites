@@ -88,6 +88,7 @@ const CenterSection: React.FC<CentereSectionProps> = ({ content }) => {
           html={text?.html}
           fontSize={{ "@i": "$body1", "@md": "$subtitle3" }}
           marginBottom={{ "@i": 16 }}
+          textAlign="center"
         ></Html>
         <Space h={12}></Space>
       </Flex>

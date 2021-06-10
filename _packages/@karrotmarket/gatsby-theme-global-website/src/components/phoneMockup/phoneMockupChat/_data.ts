@@ -12,7 +12,7 @@ export const data: PhoneMockUpChatData = {
     info: "within 10 mins",
   },
   item: {
-    name: "Pram",
+    name: "Cozy Chair",
     image: ItemImg,
     price: "£120.00",
   },
