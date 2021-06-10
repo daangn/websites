@@ -1,17 +1,17 @@
-import * as React from 'react';
-import { graphql } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/stitches.config';
-import { rem } from 'polished';
+import * as React from "react";
+import { graphql } from "gatsby";
+import { styled } from "gatsby-theme-stitches/src/stitches.config";
+import { rem } from "polished";
 
-import githubIconUrl from '!!file-loader?modules!./socialServiceProfile/github.svg';
-import facebookIconUrl from '!!file-loader?modules!./socialServiceProfile/facebook.svg';
-import twitterIconUrl from '!!file-loader?modules!./socialServiceProfile/twitter.svg';
-import mediumIconUrl from '!!file-loader?modules!./socialServiceProfile/medium.svg';
-import instagramIconUrl from '!!file-loader?modules!./socialServiceProfile/instagram.svg';
+import githubIconUrl from "!!file-loader?modules!./socialServiceProfile/github.svg";
+import facebookIconUrl from "!!file-loader?modules!./socialServiceProfile/facebook.svg";
+import twitterIconUrl from "!!file-loader?modules!./socialServiceProfile/twitter.svg";
+import mediumIconUrl from "!!file-loader?modules!./socialServiceProfile/medium.svg";
+import instagramIconUrl from "!!file-loader?modules!./socialServiceProfile/instagram.svg";
 
 type SocialServiceProfileProps = {
-  className?: string,
-  profile: GatsbyTypes.SocialServiceProfile_profileFragment,
+  className?: string;
+  profile: GatsbyTypes.SocialServiceProfile_profileFragment;
 };
 
 export const query = graphql`
@@ -23,37 +23,44 @@ export const query = graphql`
   }
 `;
 
-const Container = styled('a', {
-  display: 'inline-block',
+const Container = styled("a", {
+  display: "inline-block",
   fontSize: rem(24),
   lineHeight: 0,
+
+  "&:hover, &:focus": {
+    opacity: 0.64,
+  },
 });
 
-const Icon = styled('img', {
-  width: '1em',
-  height: '1em',
+const Icon = styled("img", {
+  width: "1em",
+  height: "1em",
 });
 
-const socialServiceProfileConfigMap: Record<string, { src: string, alt: string }> = {
-  'github': {
+const socialServiceProfileConfigMap: Record<
+  string,
+  { src: string; alt: string }
+> = {
+  github: {
     src: githubIconUrl,
-    alt: 'GitHub',
+    alt: "GitHub",
   },
-  'twitter': {
+  twitter: {
     src: twitterIconUrl,
-    alt: 'Twitter',
+    alt: "Twitter",
   },
-  'facebook': {
+  facebook: {
     src: facebookIconUrl,
-    alt: 'Facebook',
+    alt: "Facebook",
   },
-  'instagram': {
+  instagram: {
     src: instagramIconUrl,
-    alt: 'Instagram',
+    alt: "Instagram",
   },
-  'medium': {
+  medium: {
     src: mediumIconUrl,
-    alt: 'Medium',
+    alt: "Medium",
   },
 };
 
@@ -61,14 +68,14 @@ export default function SocialServiceProfile({
   className,
   profile,
 }: SocialServiceProfileProps) {
-  const config = socialServiceProfileConfigMap[profile.service || ''];
+  const config = socialServiceProfileConfigMap[profile.service || ""];
   if (!config) {
     console.warn(`${profile.service} has no implementation`);
     return null;
   }
 
   if (!profile.link) {
-    console.warn('link is empty');
+    console.warn("link is empty");
     return null;
   }
 

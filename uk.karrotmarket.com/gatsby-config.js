@@ -28,7 +28,7 @@ module.exports = {
     {
       resolve: "@karrotmarket/gatsby-theme-global-website",
       options: {
-        lang: "en-gb",
+        locale: "en-gb",
         hot_articles_api:
           "https://uk.karrotmarket.com/hot_articles.json?limit=6",
       },

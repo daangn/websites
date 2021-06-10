@@ -44,7 +44,7 @@ const Section = styled("section", {
   position: "relative",
   marginTop: rem(120),
 
-  "@md": {
+  "@lg": {
     marginTop: rem(160),
     height: "500px",
   },
@@ -60,14 +60,28 @@ const Container = styled(motion.div, {
   textAlign: "left",
   paddingLeft: rem(24),
   paddingRight: rem(24),
+  boxSizing: "border-box",
+
+  "@sm": {
+    width: rem(540),
+  },
   "@md": {
-    padding: 0,
-    width: "$maxContent",
+    gap: rem(30),
+
     flexDirection: "row",
     textAlign: "left",
     justifyContent: "initial",
     alignItems: "initial",
+
+    width: rem(720),
   },
+  "@lg": {
+    width: rem(960),
+  },
+  "@xl": {
+    width: rem(1140),
+  },
+
   variants: {
     inverted: {
       false: {
@@ -84,7 +98,7 @@ const Title = styled("h2", {
   "*": {
     marginBottom: rem(24),
     fontSize: "$heading3",
-    "@md": {
+    "@lg": {
       fontSize: "$heading2",
       lineHeight: "115%",
     },
@@ -95,7 +109,7 @@ const Text = styled("div", {
   "*": {
     marginBottom: rem(64),
     fontSize: "$subtitle2",
-    "@md": {
+    "@lg": {
       marginBottom: rem(0),
       fontSize: "$subtitle1",
       marginRight: rem(40),
@@ -132,7 +146,7 @@ const IllustrationSection: React.FC<IllustrationSectionProps> = ({
           <Text dangerouslySetInnerHTML={{ __html: text.html }}></Text>
         </Flex>
 
-        <Flex ai="flex-end" flex={1}>
+        <Flex colCenterY flex={1}>
           <Image image={sideImage}></Image>
         </Flex>
       </Container>

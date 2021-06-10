@@ -75,7 +75,10 @@ const ReservationMessage: React.FC = ({ children }) => (
     <IconContainer>
       <ReservationIcon />
     </IconContainer>
-    <div dangerouslySetInnerHTML={{ __html: children as string }} />
+    <div
+      dangerouslySetInnerHTML={{ __html: children as string }}
+      style={{ textAlign: "left" }}
+    />
   </Wrapper>
 );
 

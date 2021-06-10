@@ -37,6 +37,7 @@ const Image = styled("img", {
   width: em(226),
   height: em(130),
   verticalAlign: "middle",
+  objectFit: "cover",
 });
 const Button = styled("div", {
   display: "flex",

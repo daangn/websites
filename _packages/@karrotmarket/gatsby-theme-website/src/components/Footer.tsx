@@ -2,8 +2,9 @@ import * as React from "react";
 import { rem } from "polished";
 import { graphql, Link } from "gatsby";
 import { styled } from "gatsby-theme-stitches/src/stitches.config";
-import { useLinkParser, mapLink } from "../link";
+import { useLocation } from "@reach/router";
 
+import { useLinkParser, mapLink } from "../link";
 import SocialServiceProfile from "./footer/SocialServiceProfile";
 
 type FooterProps = {
@@ -119,10 +120,20 @@ const FooterEntryLink = styled(Link, {
   color: "$gray900",
   textDecoration: "none",
   opacity: 1,
-  transition: "opacity 0.3s",
 
   "&:hover": {
     opacity: 0.64,
+  },
+
+  variants: {
+    active: {
+      true: {
+        color: "$carrot500",
+        "&:hover, &:active, &:focus": {
+          color: "$carrot600",
+        },
+      },
+    },
   },
 });
 
@@ -145,6 +156,7 @@ const SocialServiceProfileItem = styled("li", {
 
 const Footer: React.FC<FooterProps> = ({ className, navigationData }) => {
   const parseLink = useLinkParser();
+  const location = useLocation();
 
   return (
     <Container role="contentinfo" className={className}>
@@ -157,7 +169,14 @@ const Footer: React.FC<FooterProps> = ({ className, navigationData }) => {
                 <FooterEntryItem key={entry.link!.url!}>
                   {mapLink(parseLink(entry.link!.url!), {
                     Internal: (link) => (
-                      <FooterEntryLink to={link.pathname}>
+                      <FooterEntryLink
+                        to={link.pathname}
+                        active={
+                          link.pathname === "/"
+                            ? location.pathname === "/"
+                            : location.pathname.startsWith(link.pathname)
+                        }
+                      >
                         {entry.display_text}
                       </FooterEntryLink>
                     ),

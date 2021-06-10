@@ -10,6 +10,7 @@ import { parseMediaProps } from "../util";
 type FontSize = `$${keyof typeof theme.fontSizes}`;
 type FontFamily = `$${keyof typeof theme.fonts}`;
 type FontWeight = "bold" | "normal";
+type TextAlign = "center" | "left" | "right";
 
 interface THtml {
   html?: string;
@@ -19,6 +20,7 @@ interface THtml {
   fontWeight?: FontWeight | MediaTypeMap<FontWeight>;
   marginTop?: string | number | MediaTypeMap<string | number>;
   marginBottom?: string | number | MediaTypeMap<string | number>;
+  textAlign: TextAlign | MediaTypeMap<TextAlign>;
 }
 
 const SHtml = styled("div", {});

@@ -16,7 +16,8 @@ const Header = styled(_Header, {
   "ul > ul > li > a": {
     fontSize: rem(22),
   },
-  "@md": {
+
+  "@sm": {
     fontSize: "initial",
     "nav > ul": {
       padding: 0,

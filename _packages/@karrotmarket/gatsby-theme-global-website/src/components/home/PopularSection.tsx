@@ -131,7 +131,7 @@ const PopularSection: React.FC<ParallaxSectionProps> = (props) => {
             "@md": "repeat(6, 1fr)",
           }}
           gridTemplateRows={{ "@i": "repeat(3, 1fr)", "@md": "1fr" }}
-          rowGap={{ "@i": 16, "@md": 0 }}
+          rowGap={{ "@i": 32, "@md": 0 }}
           columnGap={{ "@i": 16, "@md": 26 }}
           marginTop={{ "@i": 28, "@md": 56 }}
           width={{ "@i": "100%", "@md": "auto" }}
