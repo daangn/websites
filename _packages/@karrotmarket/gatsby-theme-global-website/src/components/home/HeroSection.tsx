@@ -46,13 +46,6 @@ export const query = graphql`
         }
         alt
         thumbnails {
-          japan {
-            localFile {
-              childImageSharp {
-                gatsbyImageData(quality: 100, placeholder: NONE)
-              }
-            }
-          }
           mobile {
             dimensions {
               width
@@ -121,15 +114,15 @@ const HeroSection: React.FC<HeroSectionProps> = ({ content, links }) => {
 
         <Flex ai="flex-end">
           <Image
+            alt="side-image"
             image={sideImage}
-            alt={side_image?.alt}
             width={{
-              "@i": side_image?.thumbnails?.mobile?.dimensions?.width,
-              "@md": side_image?.dimensions?.width,
+              "@i": side_image?.thumbnails?.mobile?.dimensions?.width / 2,
+              "@md": side_image?.dimensions?.width / 2,
             }}
             height={{
-              "@i": side_image?.thumbnails?.mobile?.dimensions?.height,
-              "@md": side_image?.dimensions?.height,
+              "@i": side_image?.thumbnails?.mobile?.dimensions?.height / 2,
+              "@md": side_image?.dimensions?.height / 2,
             }}
           ></Image>
         </Flex>

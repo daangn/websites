@@ -60,7 +60,7 @@ type MockupSectionProps = {
 const Section = styled("section", {
   width: "100%",
   "@md": {
-    height: "780px",
+    height: "700px",
   },
 });
 

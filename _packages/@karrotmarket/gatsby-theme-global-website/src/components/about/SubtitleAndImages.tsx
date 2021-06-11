@@ -58,7 +58,7 @@ const SubtitleAndImages: React.FC<SubtitleAndImagesProps> = ({ content }) => {
   return (
     <Section>
       <Space h={72}></Space>
-      <Html html={subtitle?.html}></Html>
+      <Html html={subtitle?.html} fontSize={"$heading5"}></Html>
       <Space h={14}></Space>
       <Grid
         gridTemplateColumns={{
@@ -70,11 +70,11 @@ const SubtitleAndImages: React.FC<SubtitleAndImagesProps> = ({ content }) => {
       >
         {content.items.map((item) => (
           <Image
+            alt={"inverstor" || item?.image?.alt}
             image={item?.image?.localFile?.childImageSharp?.gatsbyImageData}
-            alt={item?.image?.alt}
             width={{
-              "@i": item?.image?.thumbnails?.mobile?.dimensions?.width,
-              "@md": item?.image?.dimensions?.width,
+              "@i": item?.image?.thumbnails?.mobile?.dimensions?.width / 3,
+              "@md": item?.image?.dimensions?.width / 2,
             }}
           ></Image>
         ))}

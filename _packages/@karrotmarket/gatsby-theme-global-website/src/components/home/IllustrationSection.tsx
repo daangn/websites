@@ -98,6 +98,8 @@ const Title = styled("h2", {
   "*": {
     marginBottom: rem(24),
     fontSize: "$heading3",
+    lineHeight: "120%",
+
     "@lg": {
       fontSize: "$heading2",
       lineHeight: "115%",
@@ -109,10 +111,12 @@ const Text = styled("div", {
   "*": {
     marginBottom: rem(64),
     fontSize: "$subtitle2",
+    color: "#4D5159",
+    letterSpacing: "-0.055em",
     "@lg": {
       marginBottom: rem(0),
       fontSize: "$subtitle1",
-      marginRight: rem(40),
+      marginRight: rem(36),
     },
   },
 });

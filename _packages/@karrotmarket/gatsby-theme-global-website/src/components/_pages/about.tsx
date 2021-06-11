@@ -125,12 +125,12 @@ const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
           title: about_page_title,
           description: about_page_description,
         }}
-        language="en"
       />
       <BackgroundImage image={backgroundImage}></BackgroundImage>
       <Container>
         <Html
           html={about_title?.html}
+          fontSize={{ "@i": "$heading4", "@md": "$heading3" }}
           marginTop={{ "@i": rem(36), "@md": rem(60) }}
         ></Html>
         {about_body.map((content: any, i) =>

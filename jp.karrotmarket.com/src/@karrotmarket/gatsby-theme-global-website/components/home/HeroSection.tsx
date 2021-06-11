@@ -74,14 +74,32 @@ const Title = styled("h2", {
 
 const Text = styled("div", {
   marginBottom: rem(24),
-
+  // marginRight: rem(70),
   "*": {
     color: "#4D5159",
+    letterSpacing: "-0.055em",
     fontFamily: "$noto",
     fontSize: "$subtitle2",
+
+    "@md": {
+      marginRight: rem(40),
+    },
     "@lg": {
       fontSize: "$subtitle1",
     },
+    "@xl": {
+      marginRight: rem(60),
+    },
+  },
+});
+
+const TextContainer = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  flex: 1,
+  "@md": {
+    maxWidth: "50%",
   },
 });
 
@@ -90,14 +108,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({ content, links }) => {
   const { title, text, background_color, side_image } = content.primary;
 
   const sideImage = getImage(
-    side_image?.thumbnails.japan.localFile?.childImageSharp
-      ?.gatsbyImageData as any
+    side_image?.localFile?.childImageSharp?.gatsbyImageData as any
   );
 
   return (
     <Section css={{ background: background_color }}>
       <Container>
-        <Flex colCenterY flex={1}>
+        <TextContainer>
           <Title dangerouslySetInnerHTML={{ __html: title.html }}></Title>
           <Text dangerouslySetInnerHTML={{ __html: text.html }}></Text>
           <AppLink
@@ -106,7 +123,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ content, links }) => {
             links={links}
             inverted
           ></AppLink>
-        </Flex>
+        </TextContainer>
 
         <Flex ai="center" flex={1}>
           <Image image={sideImage} alt={side_image?.alt}></Image>
