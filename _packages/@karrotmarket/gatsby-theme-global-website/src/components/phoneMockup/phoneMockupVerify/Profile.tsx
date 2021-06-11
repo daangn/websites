@@ -1,47 +1,9 @@
 import * as React from "react";
-import { styled } from "gatsby-theme-stitches/src/stitches.config";
-import { Flex } from "../../Flex";
 import { em } from "polished";
 import { motion } from "framer-motion";
+import { styled } from "../../../gatsby-theme-stitches/stitches.config";
 
-const Image = styled("img", {
-  width: em(70),
-  height: em(70),
-  borderRadius: em(70),
-  marginRight: em(20),
-});
-const Name = styled("div", {
-  fontSize: em(18),
-  fontWeight: "bold",
-  marginRight: em(6),
-});
-const IdText = styled("div", {
-  fontSize: em(14),
-});
-const Button = styled("button", {
-  border: `${em(1)} solid $gray300`,
-  height: em(46),
-  background: "white",
-  fontSize: em(12),
-  borderRadius: em(6),
-  padding: `0 ${em(64)}`,
-  fontWeight: "bold",
-  marginTop: em(14),
-});
-
-const Wrapper = styled(motion.div, {
-  display: "flex",
-  flexDirection: "row",
-  padding: em(24),
-  background: "white",
-  borderRadius: em(24),
-  boxShadow: `${em(2)} ${em(6)} ${em(16)} ${em(8)} #00000010`,
-  width: em(260),
-  marginBottom: em(20),
-  "*": {
-    fontFamily: "$default",
-  },
-});
+import { Flex } from "../../Flex";
 
 interface ProfileProps {
   image: string;
@@ -71,5 +33,44 @@ const Profile: React.FC<ProfileProps> = ({ image, name, id, buttonText }) => {
     </Wrapper>
   );
 };
+
+const Wrapper = styled(motion.div, {
+  display: "flex",
+  flexDirection: "row",
+  padding: em(24),
+  background: "white",
+  borderRadius: em(24),
+  boxShadow: `${em(2)} ${em(6)} ${em(16)} ${em(8)} #00000010`,
+  width: em(260),
+  marginBottom: em(20),
+  "*": {
+    fontFamily: "$system",
+  },
+});
+
+const Image = styled("img", {
+  width: em(70),
+  height: em(70),
+  borderRadius: em(70),
+  marginRight: em(20),
+});
+const Name = styled("div", {
+  fontSize: em(18),
+  fontWeight: "bold",
+  marginRight: em(6),
+});
+const IdText = styled("div", {
+  fontSize: em(14),
+});
+const Button = styled("button", {
+  border: `${em(1)} solid $gray300`,
+  height: em(46),
+  background: "white",
+  fontSize: em(12),
+  borderRadius: em(6),
+  padding: `0 ${em(64)}`,
+  fontWeight: "bold",
+  marginTop: em(14),
+});
 
 export default Profile;

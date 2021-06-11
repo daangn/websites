@@ -1,15 +1,13 @@
 import * as React from "react";
 import { rem } from "polished";
+import { graphql } from "gatsby";
 import { styled } from "../gatsby-theme-stitches/stitches.config";
 
 import { Flex } from "./Flex";
 import { Space } from "./Space";
 
-// @ts-ignore
 import { ReactComponent as AppStoreIcon } from "../icons/app_store.svg";
-// @ts-ignore
 import { ReactComponent as GooglePlayIcon } from "../icons/google_play.svg";
-import { graphql } from "gatsby";
 
 interface TLinkButton {
   theme: "dark" | "light" | "primary" | "white";

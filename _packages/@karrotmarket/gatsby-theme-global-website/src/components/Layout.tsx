@@ -1,6 +1,8 @@
-import { graphql } from "gatsby";
 import * as React from "react";
+import { graphql } from "gatsby";
+
 import globalStyles from "../styles/global";
+
 interface LayoutProps {
   data: GatsbyTypes.DefaultLayout_queryFragment;
 }

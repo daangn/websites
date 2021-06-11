@@ -11,31 +11,9 @@ import UserMessage from "./phoneMockupChat/UserMessage";
 import LocationMessage from "./phoneMockupChat/LocationMessage";
 import ReservationMessage from "./phoneMockupChat/ReservationMessage";
 
-import { chatAnimationInfiteLoop } from "./phoneMockupChat/_config";
 import { data } from "./phoneMockupChat/_data";
 import { Message } from "./phoneMockupChat/_type";
-
-const Wrapper = styled(motion.div, {});
-const ChatBox = styled(motion.div, {
-  display: "flex",
-  flexDirection: "column",
-  padding: em(16),
-  position: "absolute",
-  bottom: 0,
-  minHeight: `calc(100% - ${em(146)})`,
-  width: "100%",
-  boxSizing: "border-box",
-});
-
-const EmptySpace = styled("div", {
-  fontSize: rem(10),
-  "@md": {
-    fontSize: rem(16),
-  },
-
-  width: em(1),
-  height: em(600),
-});
+import { chatAnimationInfiteLoop } from "./phoneMockupChat/_config";
 
 interface PhoneMockupChatProps {
   inView?: boolean;
@@ -127,5 +105,27 @@ const PhoneMockupChat: React.FC<PhoneMockupChatProps> = ({ inView }) => {
     </Wrapper>
   );
 };
+
+const Wrapper = styled(motion.div, {});
+const ChatBox = styled(motion.div, {
+  display: "flex",
+  flexDirection: "column",
+  padding: em(16),
+  position: "absolute",
+  bottom: 0,
+  minHeight: `calc(100% - ${em(146)})`,
+  width: "100%",
+  boxSizing: "border-box",
+});
+
+const EmptySpace = styled("div", {
+  fontSize: rem(10),
+  "@md": {
+    fontSize: rem(16),
+  },
+
+  width: em(1),
+  height: em(600),
+});
 
 export default React.memo(PhoneMockupChat);

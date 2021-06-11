@@ -2,11 +2,14 @@ import React from "react";
 
 import { graphql, PageProps } from "gatsby";
 import { GatsbySeo } from "gatsby-plugin-next-seo";
+import { useInView } from "react-intersection-observer";
+import { mapAbstractType } from "@cometjs/graphql-utils";
 import { withPrismicPreview } from "gatsby-plugin-prismic-previews";
 import { defaultRepositoryConfig } from "@karrotmarket/gatsby-theme-prismic/src/defaultRepositoryConfig";
-import { mapAbstractType } from "@cometjs/graphql-utils";
-import { styled } from "gatsby-theme-stitches/src/stitches.config";
 
+import { styled } from "../../gatsby-theme-stitches/stitches.config";
+
+import Layout from "../Layout";
 import AppLink from "../AppLink";
 import HeroSection from "../home/HeroSection";
 import MockupSection from "../home/MockupSection";
@@ -16,8 +19,6 @@ import PopularSection from "../home/PopularSection";
 import DownloadSection from "../home/DownloadSection";
 import ParallaxSection from "../home/ParallaxSection";
 import IllustrationSection from "../home/IllustrationSection";
-import Layout from "../Layout";
-import { useInView } from "react-intersection-observer";
 
 type IndexPageProps = PageProps<GatsbyTypes.IndexPageQueryQuery>;
 
@@ -56,13 +57,6 @@ export const query = graphql`
   }
 `;
 
-const Wrapper = styled("div", {});
-
-const Placer = styled("div", {
-  position: "absolute",
-  height: 1,
-});
-
 const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
   const [ref, inView] = useInView({ threshold: 1, initialInView: true });
 
@@ -77,6 +71,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
 
   return (
     <Layout
+      id="index-page"
       data={data.prismicSiteNavigation.data}
       transparent={inView}
       placer={false}
@@ -97,7 +92,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
           description: main_page_description,
         }}
       />
-      <Wrapper id="index-page">
+      <Wrapper>
         {main_body.map((content: any, i) =>
           mapAbstractType(content, {
             PrismicGlobalContentsDataMainBodyHeroSection: (content) => (
@@ -147,5 +142,12 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
     </Layout>
   );
 };
+
+const Wrapper = styled("div", {});
+
+const Placer = styled("div", {
+  position: "absolute",
+  height: 1,
+});
 
 export default withPrismicPreview(IndexPage, [defaultRepositoryConfig]);

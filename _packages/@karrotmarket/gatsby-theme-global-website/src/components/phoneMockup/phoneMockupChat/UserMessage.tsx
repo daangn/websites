@@ -1,9 +1,33 @@
 import * as React from "react";
 
-import { styled } from "../../../gatsby-theme-stitches/stitches.config";
-import { motion } from "framer-motion";
 import { em } from "polished";
+import { motion } from "framer-motion";
+import { styled } from "../../../gatsby-theme-stitches/stitches.config";
 import { messageMotionOption } from "./_config";
+
+interface UserMessageProps {
+  userType?: "sender" | "receiver";
+}
+
+const UserMessage: React.FC<UserMessageProps> = ({ children, userType }) => (
+  <Wrapper userType={userType} {...messageMotionOption}>
+    <Message userType={userType}>{children}</Message>
+  </Wrapper>
+);
+
+const Wrapper = styled(motion.div, {
+  display: "flex",
+  variants: {
+    userType: {
+      sender: {
+        justifyContent: "flex-end",
+      },
+      receiver: {
+        justifyContent: "flex-start",
+      },
+    },
+  },
+});
 
 const Message = styled("div", {
   display: "flex",
@@ -27,29 +51,5 @@ const Message = styled("div", {
     },
   },
 });
-
-const Wrapper = styled(motion.div, {
-  display: "flex",
-  variants: {
-    userType: {
-      sender: {
-        justifyContent: "flex-end",
-      },
-      receiver: {
-        justifyContent: "flex-start",
-      },
-    },
-  },
-});
-
-interface UserMessageProps {
-  userType?: "sender" | "receiver";
-}
-
-const UserMessage: React.FC<UserMessageProps> = ({ children, userType }) => (
-  <Wrapper userType={userType} {...messageMotionOption}>
-    <Message userType={userType}>{children}</Message>
-  </Wrapper>
-);
 
 export default UserMessage;

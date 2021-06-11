@@ -1,6 +1,9 @@
 import * as React from "react";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { MediaTypeMap, styled } from "../gatsby-theme-stitches/stitches.config";
+import {
+  MediaTypeMap,
+  styled,
+} from "gatsby-theme-stitches/src/stitches.config";
 import { parseMediaProps } from "../util";
 
 interface TBackgroundImage {

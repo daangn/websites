@@ -1,7 +1,8 @@
 import * as React from "react";
-import { styled } from "../../../gatsby-theme-stitches/stitches.config";
-import { motion } from "framer-motion";
 import { em } from "polished";
+import { motion } from "framer-motion";
+import { styled } from "../../../gatsby-theme-stitches/stitches.config";
+
 import { Space } from "../../Space";
 
 const Pin = () => (
@@ -40,55 +41,11 @@ const Check = () => (
   </svg>
 );
 
-const Map = styled(motion.div, {
-  height: em(260),
-  width: "100%",
-  position: "relative",
-  backgroundSize: "cover",
-});
-const CenterContainer = styled("div", {
-  position: "absolute",
-  left: "50%",
-  top: "50%",
-  transform: "translate(-50%,-50%)",
-});
-const Range = styled(motion.div, {
-  background: "$carrot500",
-  opacity: 0.15,
-  width: em(160),
-  height: em(160),
-  borderRadius: em(80),
-});
-const PinContainer = styled(motion.div, {});
-const LocationText = styled(motion.div, {
-  fontSize: em(16),
-  marginBottom: em(30),
-  textAlign: "left",
-});
-const Button = styled(motion.button, {
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  background: "$carrot500",
-  color: "white",
-  width: "100%",
-  height: em(50),
-  borderRadius: em(6),
-  border: "none",
-  fontSize: em(16),
-  fontWeight: "bold",
-});
-const BottomSection = styled(motion.div, {
-  padding: em(20),
-});
-
 interface VerifyProps {
   mapImage: string;
   buttonText: string;
   location: string;
 }
-
-const Wrapper = styled("div", {});
 
 const Verify: React.FC<VerifyProps> = ({ mapImage, buttonText, location }) => {
   return (
@@ -159,5 +116,49 @@ const Verify: React.FC<VerifyProps> = ({ mapImage, buttonText, location }) => {
     </Wrapper>
   );
 };
+
+const Wrapper = styled("div", {});
+
+const Map = styled(motion.div, {
+  height: em(260),
+  width: "100%",
+  position: "relative",
+  backgroundSize: "cover",
+});
+const CenterContainer = styled("div", {
+  position: "absolute",
+  left: "50%",
+  top: "50%",
+  transform: "translate(-50%,-50%)",
+});
+const Range = styled(motion.div, {
+  background: "$carrot500",
+  opacity: 0.15,
+  width: em(160),
+  height: em(160),
+  borderRadius: em(80),
+});
+const PinContainer = styled(motion.div, {});
+const LocationText = styled(motion.div, {
+  fontSize: em(16),
+  marginBottom: em(30),
+  textAlign: "left",
+});
+const Button = styled(motion.button, {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  background: "$carrot500",
+  color: "white",
+  width: "100%",
+  height: em(50),
+  borderRadius: em(6),
+  border: "none",
+  fontSize: em(16),
+  fontWeight: "bold",
+});
+const BottomSection = styled(motion.div, {
+  padding: em(20),
+});
 
 export default Verify;

@@ -5,8 +5,9 @@ import _Footer from "@karrotmarket/gatsby-theme-website/src/components/Footer";
 
 const Footer = styled(_Footer, {
   "*": {
-    fontFamily: "$default",
+    fontFamily: "$system",
   },
+
   borderTop: "1px solid $gray300",
   paddingBottom: rem(86),
   paddingTop: rem(32),
@@ -20,6 +21,7 @@ const Footer = styled(_Footer, {
   "section ul:nth-child(2) a": {
     fontSize: rem(22),
   },
+
   "@md": {
     paddingBottom: rem(156),
     paddingTop: rem(72),

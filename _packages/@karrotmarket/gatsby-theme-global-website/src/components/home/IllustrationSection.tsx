@@ -1,14 +1,15 @@
-import React from "react";
-import { styled } from "gatsby-theme-stitches/src/stitches.config";
-import { useInView } from "react-intersection-observer";
-import { graphql } from "gatsby";
+import * as React from "react";
 
-import { Flex } from "../Flex";
-import { Space } from "../Space";
-import Image from "../Image";
-import { getImage } from "gatsby-plugin-image";
+import { graphql } from "gatsby";
 import { rem } from "polished";
 import { motion } from "framer-motion";
+import { getImage } from "gatsby-plugin-image";
+import { useInView } from "react-intersection-observer";
+
+import { styled } from "../../gatsby-theme-stitches/stitches.config";
+
+import { Flex } from "../Flex";
+import Image from "../Image";
 
 type IllustrationSectionProps = {
   content: GatsbyTypes.IllustrationSection_contentFragment;
@@ -34,6 +35,43 @@ export const query = graphql`
     }
   }
 `;
+
+const IllustrationSection: React.FC<IllustrationSectionProps> = ({
+  content,
+}) => {
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
+
+  if (!content.primary) return <></>;
+  const { title, text, image, inverted } = content.primary;
+
+  const sideImage = getImage(
+    image?.localFile?.childImageSharp?.gatsbyImageData as any
+  );
+
+  return (
+    <Section ref={ref}>
+      <Container
+        inverted={inverted}
+        animate={{
+          opacity: inView ? 1 : 0,
+          y: inView ? 0 : 130,
+        }}
+        transition={{
+          duration: 0.5,
+        }}
+      >
+        <Flex colCenterY flex={1}>
+          <Title dangerouslySetInnerHTML={{ __html: title.html }}></Title>
+          <Text dangerouslySetInnerHTML={{ __html: text.html }}></Text>
+        </Flex>
+
+        <Flex colCenterY flex={1}>
+          <Image image={sideImage}></Image>
+        </Flex>
+      </Container>
+    </Section>
+  );
+};
 
 const Section = styled("section", {
   "*": {
@@ -120,42 +158,5 @@ const Text = styled("div", {
     },
   },
 });
-
-const IllustrationSection: React.FC<IllustrationSectionProps> = ({
-  content,
-}) => {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
-
-  if (!content.primary) return <></>;
-  const { title, text, image, inverted } = content.primary;
-
-  const sideImage = getImage(
-    image?.localFile?.childImageSharp?.gatsbyImageData as any
-  );
-
-  return (
-    <Section ref={ref}>
-      <Container
-        inverted={inverted}
-        animate={{
-          opacity: inView ? 1 : 0,
-          y: inView ? 0 : 130,
-        }}
-        transition={{
-          duration: 0.5,
-        }}
-      >
-        <Flex colCenterY flex={1}>
-          <Title dangerouslySetInnerHTML={{ __html: title.html }}></Title>
-          <Text dangerouslySetInnerHTML={{ __html: text.html }}></Text>
-        </Flex>
-
-        <Flex colCenterY flex={1}>
-          <Image image={sideImage}></Image>
-        </Flex>
-      </Container>
-    </Section>
-  );
-};
 
 export default IllustrationSection;

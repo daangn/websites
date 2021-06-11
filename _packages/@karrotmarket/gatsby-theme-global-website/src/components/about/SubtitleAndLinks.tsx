@@ -1,22 +1,18 @@
-import React from "react";
+import * as React from "react";
+
 import { rem } from "polished";
 import { graphql } from "gatsby";
 import { format } from "date-fns";
 import { styled } from "../../gatsby-theme-stitches/stitches.config";
 
 import { Grid } from "../Grid";
-import { Html } from "../Html";
 import { Space } from "../Space";
-
-type SubtitleAndLinksProps = {
-  content: GatsbyTypes.SubtitleAndLinks_contentFragment;
-};
 
 export const query = graphql`
   fragment SubtitleAndLinks_content on PrismicGlobalContentsDataAboutBodySubtitleAndLinks {
     primary {
       subtitle {
-        html
+        text
       }
     }
     items {
@@ -29,18 +25,9 @@ export const query = graphql`
   }
 `;
 
-const Section = styled("section", {});
-
-const LinkContainer = styled("div", {
-  display: "inline",
-  color: "$gray600",
-  fontFamily: "$default",
-});
-
-const Link = styled("a", {
-  marginRight: rem(8),
-  fontFamily: "$default",
-});
+type SubtitleAndLinksProps = {
+  content: GatsbyTypes.SubtitleAndLinks_contentFragment;
+};
 
 const SubtitleAndLinks: React.FC<SubtitleAndLinksProps> = ({ content }) => {
   if (!content.primary || !content.items) throw new Error("No data");
@@ -50,7 +37,7 @@ const SubtitleAndLinks: React.FC<SubtitleAndLinksProps> = ({ content }) => {
   return (
     <Section>
       <Space h={72}></Space>
-      <Html html={subtitle?.html}></Html>
+      <Title>{subtitle.text}</Title>
       <Space h={14}></Space>
       <Grid rowGap={{ "@i": 20, "@md": 12 }}>
         {content.items.map((item) => (
@@ -63,5 +50,23 @@ const SubtitleAndLinks: React.FC<SubtitleAndLinksProps> = ({ content }) => {
     </Section>
   );
 };
+
+const Section = styled("section", {});
+
+const Title = styled("h2", {
+  fontSize: "$heading5",
+  lineHeight: "$heading5",
+});
+
+const LinkContainer = styled("div", {
+  display: "inline",
+  color: "$gray600",
+  fontFamily: "$system",
+});
+
+const Link = styled("a", {
+  marginRight: rem(8),
+  fontFamily: "$system",
+});
 
 export default SubtitleAndLinks;

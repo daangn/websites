@@ -11,37 +11,6 @@ import Ratings from "./phoneMockupVerify/Ratings";
 
 import { data } from "./phoneMockupVerify/_data";
 
-const Wrapper = styled(motion.div, {
-  position: "relative",
-  width: rem(288),
-  "@md": {
-    width: rem(490),
-  },
-});
-
-const Header = styled("div", {
-  fontWeight: "bold",
-});
-
-const FloatingContainer = styled(motion.div, {
-  position: "absolute",
-  bottom: em(26),
-  right: 0,
-  zIndex: 0,
-  fontSize: rem(9.5),
-  "@md": {
-    fontSize: rem(16),
-  },
-});
-
-const EmptySpace = styled("div", {
-  fontSize: rem(7.5),
-  "@md": { fontSize: rem(13) },
-
-  width: em(1),
-  height: em(600),
-});
-
 interface PhoneMockupVerifyProps {
   inView?: boolean;
 }
@@ -84,5 +53,36 @@ const PhoneMockupVerify: React.FC<PhoneMockupVerifyProps> = ({ inView }) => {
     </Wrapper>
   );
 };
+
+const Wrapper = styled(motion.div, {
+  position: "relative",
+  width: rem(288),
+  "@md": {
+    width: rem(490),
+  },
+});
+
+const Header = styled("div", {
+  fontWeight: "bold",
+});
+
+const FloatingContainer = styled(motion.div, {
+  position: "absolute",
+  bottom: em(26),
+  right: 0,
+  zIndex: 0,
+  fontSize: rem(9.5),
+  "@md": {
+    fontSize: rem(16),
+  },
+});
+
+const EmptySpace = styled("div", {
+  fontSize: rem(7.5),
+  "@md": { fontSize: rem(13) },
+
+  width: em(1),
+  height: em(600),
+});
 
 export default PhoneMockupVerify;

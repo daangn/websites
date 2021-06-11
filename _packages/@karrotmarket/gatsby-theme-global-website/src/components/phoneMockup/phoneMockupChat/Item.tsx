@@ -1,9 +1,9 @@
 import * as React from "react";
+import { em } from "polished";
+import { styled } from "../../../gatsby-theme-stitches/stitches.config";
 
 import { Flex } from "../../Flex";
 import { Space } from "../../Space";
-import { styled } from "../../../gatsby-theme-stitches/stitches.config";
-import { em } from "polished";
 
 const Wrapper = styled("div", {
   width: "100%",
