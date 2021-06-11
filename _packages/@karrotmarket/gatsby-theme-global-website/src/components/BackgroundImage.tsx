@@ -26,13 +26,12 @@ const SBackgroundImage = styled(GatsbyImage, {
 });
 
 const BackgroundImage: React.FC<TBackgroundImage> = (props) => {
-  const css = React.useMemo(() => parseMediaProps(props, ["image", "alt"]), [props]);
   return (
     <Wrapper>
       <SBackgroundImage
+        alt={"background-image" || props.alt}
         image={props.image}
-        alt={props.alt}
-        css={{ img: css }}
+        css={{ img: parseMediaProps(props, ["image", "alt"]) }}
       />
     </Wrapper>
   );

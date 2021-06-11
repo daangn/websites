@@ -96,7 +96,6 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
           title: main_page_title,
           description: main_page_description,
         }}
-        language="en"
       />
       <Wrapper id="index-page">
         {main_body.map((content: any, i) =>

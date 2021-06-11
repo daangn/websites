@@ -30,5 +30,13 @@ module.exports = {
         locale: "ja-jp",
       },
     },
+    {
+      resolve: "gatsby-plugin-web-font-loader",
+      options: {
+        google: {
+          families: ["Noto Sans JP:500,800"],
+        },
+      },
+    },
   ],
 };

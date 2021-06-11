@@ -58,7 +58,7 @@ const Section = styled("section", {
   padding: `${rem(56)} ${rem(36)}`,
   "@md": {
     flexDirection: "column",
-    height: "780px",
+    height: "700px",
     padding: 0,
   },
 });
@@ -71,15 +71,15 @@ const CenterSection: React.FC<CentereSectionProps> = ({ content }) => {
   return (
     <Section>
       <Image
+        alt={"center-image" || image?.alt}
         image={image?.localFile?.childImageSharp?.gatsbyImageData}
-        alt={image?.alt}
         width={{
-          "@i": image?.thumbnails?.mobile?.dimensions?.width,
-          "@md": image?.dimensions?.width,
+          "@i": image?.thumbnails?.mobile?.dimensions?.width / 2,
+          "@md": image?.dimensions?.width / 2,
         }}
         height={{
-          "@i": image?.thumbnails?.mobile?.dimensions?.height,
-          "@md": image?.dimensions?.height,
+          "@i": image?.thumbnails?.mobile?.dimensions?.height / 2,
+          "@md": image?.dimensions?.height / 2,
         }}
       ></Image>
       <Flex colCenterX>

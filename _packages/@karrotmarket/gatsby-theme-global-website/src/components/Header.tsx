@@ -25,7 +25,7 @@ const Header = styled(_Header, {
       a: {
         fontSize: "$body1",
       },
-      "ul li a": {
+      "& > ul > li > a": {
         fontSize: rem(18),
       },
     },

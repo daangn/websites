@@ -38,7 +38,7 @@ export const { styled, css, global, getCssString, theme, media, utils } =
           '-apple-system, BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"',
       },
       fontSizes: {
-        heading1: rem(68),
+        heading1: rem(72),
         heading2: rem(58),
         heading3: rem(42),
         heading4: rem(28),
