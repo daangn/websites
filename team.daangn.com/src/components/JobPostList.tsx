@@ -8,6 +8,9 @@ import FadeInWhenVisible from './FadeInWhenVisible';
 
 type JobPostListProps = {
   jobPosts: GatsbyTypes.JobPostList_jobPostsFragment,
+  className?: string,
+  filterChapter?: string,
+  filterEmploymentType?: string,
 };
 
 export const query = graphql`
@@ -15,6 +18,8 @@ export const query = graphql`
     nodes {
       id
       pagePath: gatsbyPath(filePath: "/jobs/{JobPost.parent__(GreenhouseJob)__ghId}")
+      chapter
+      employmentType
       ...JobPostSummary_jobPost
     }
   }
@@ -42,11 +47,23 @@ const JobPostListItem = styled('li', {
 
 const JobPostList: React.FC<JobPostListProps> = ({
   jobPosts,
+  className,
+  filterChapter = '',
+  filterEmploymentType = '',
 }) => {
   return (
-    <Container>
+    <Container className={className}>
       <AnimatePresence initial={false}>
-        {jobPosts.nodes.map(jobPost => (
+        {jobPosts.nodes
+        .filter(jobPost => {
+          if (filterChapter === '') return true;
+          return jobPost.chapter === filterChapter;
+        })
+        .filter(jobPost => {
+          if (filterEmploymentType === '') return true;
+          return jobPost.employmentType === filterEmploymentType;
+        })
+        .map(jobPost => (
           <FadeInWhenVisible key={jobPost.id}>
             <JobPostListItem>
               <JobPostLink to={jobPost.pagePath!}>

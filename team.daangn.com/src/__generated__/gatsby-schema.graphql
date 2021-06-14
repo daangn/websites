@@ -152,6 +152,9 @@ type File implements Node {
   ): Date!
   birthtime: Date @deprecated(reason: "Use `birthTime` instead")
   birthtimeMs: Float @deprecated(reason: "Use `birthTime` instead")
+  blksize: Int
+  blocks: Int
+  url: String
 
   # Returns all children nodes filtered by type ImageSharp
   childrenImageSharp: [ImageSharp]
@@ -323,6 +326,8 @@ type Site implements Node {
     locale: String
   ): Date
   siteMetadata: SiteMetadata!
+  port: Int
+  host: String
   flags: SiteFlags
   polyfill: Boolean
   pathPrefix: String
@@ -364,14 +369,14 @@ type SitePage implements Node {
   internalComponentName: String!
   componentChunkName: String!
   matchPath: String
+  isCreatedByStatefulCreatePages: Boolean
+  pluginCreator: SitePlugin
+  pluginCreatorId: String
   id: ID!
   parent: Node
   children: [Node!]!
   internal: Internal!
-  isCreatedByStatefulCreatePages: Boolean
   context: SitePageContext
-  pluginCreator: SitePlugin
-  pluginCreatorId: String
 }
 
 type SitePageContext {
@@ -1733,7 +1738,7 @@ type PrismicGlobalContentsDataAboutBackgroundImageImageType {
   localFile: File
 }
 
-type PrismicGlobalContentsDataAboutBodyListOfTextsItem {
+type PrismicGlobalContentsDataAboutBodyDetailsListItem {
   label: String
   text: String
 }
@@ -1887,8 +1892,8 @@ type PrismicGlobalContentsDataAboutBodySubtitleAndTextPrimary {
   text: PrismicStructuredTextType
 }
 
-type PrismicGlobalContentsDataAboutBodyListOfTexts implements PrismicSliceType {
-  items: [PrismicGlobalContentsDataAboutBodyListOfTextsItem]
+type PrismicGlobalContentsDataAboutBodyDetailsList implements PrismicSliceType {
+  items: [PrismicGlobalContentsDataAboutBodyDetailsListItem]
   id: ID!
   slice_type: String!
   slice_label: String
@@ -1917,7 +1922,7 @@ type PrismicGlobalContentsDataAboutBodySubtitleAndText implements PrismicSliceTy
   slice_label: String
 }
 
-union PrismicGlobalContentsDataAboutBodySlicesType = PrismicGlobalContentsDataAboutBodyListOfTexts | PrismicGlobalContentsDataAboutBodySubtitleAndImages | PrismicGlobalContentsDataAboutBodySubtitleAndLinks | PrismicGlobalContentsDataAboutBodySubtitleAndText
+union PrismicGlobalContentsDataAboutBodySlicesType = PrismicGlobalContentsDataAboutBodyDetailsList | PrismicGlobalContentsDataAboutBodySubtitleAndImages | PrismicGlobalContentsDataAboutBodySubtitleAndLinks | PrismicGlobalContentsDataAboutBodySubtitleAndText
 
 type PrismicGlobalContentsDataMainBodyCentreSectionPrimaryImageImageThumbnailsType {
   mobile: PrismicImageThumbnailType
@@ -2267,8 +2272,126 @@ type PrismicGlobalContentsDataMainBodyHeroSectionPrimarySideImageImageType {
 }
 
 type PrismicGlobalContentsDataMainBodyHeroSectionPrimary {
+  background_color: String
   background_image: PrismicGlobalContentsDataMainBodyHeroSectionPrimaryBackgroundImageImageType
   side_image: PrismicGlobalContentsDataMainBodyHeroSectionPrimarySideImageImageType
+  text: PrismicStructuredTextType
+  title: PrismicStructuredTextType
+}
+
+type PrismicGlobalContentsDataMainBodyIllustrationSectionPrimaryImageImageType {
+  alt: String
+  copyright: String
+  dimensions: PrismicImageDimensionsType
+
+  # A plain imgix URL with the URL and params applied.
+  url(imgixParams: ImgixParamsInput = {}): String
+
+  # Should be used to generate fixed-width images (i.e. the size of the image doesn't change when the size of the browser changes, and are "fixed"). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFixed fragment should be used. See the project's README for more information.
+  fixed(
+    # The fixed image width to render, in px.
+    width: Int = 8192
+
+    # The fixed image height to render, in px.
+    height: Int
+
+    # The image quality to use for compression. Range: 0-100, with 100 being highest quality. This setting is not recommended as the quality is already optimized by decreasing quality as the dpr increases to reduce image size while retaining visual quality.
+    quality: Int
+
+    # The imgix parameters (transformations) to apply to the image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    imgixParams: ImgixParamsInput = {}
+
+    # Any imgix parameters to use only for the blur-up/placeholder image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    placeholderImgixParams: ImgixParamsInput = {}
+  ): ImgixFixed
+
+  # Should be used to generate fluid-width images (i.e. images that change when the size of the browser changes). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFluid fragment should be used. See the project's README for more information.
+  fluid(
+    # The imgix parameters (transformations) to apply to the image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    imgixParams: ImgixParamsInput = {}
+
+    # The maximum px width of the *image* to be *requested*. This does NOT affect the width of the image displayed. The width of the image displayed can be controlled by adding a sizes parameter to the GatsbyImage component. For more information, see this project's readme.
+    maxWidth: Int = 8192
+
+    # The maximum px height of the *image* to be *requested*. This does NOT affect the height of the image displayed.
+    maxHeight: Int
+
+    # A custom set of widths (in px) to use for the srcset widths. This feature is not recommended as the default widths are optimized for imgix's caching infrastructure.
+    srcSetBreakpoints: [Int]
+
+    # Any imgix parameters to use only for the blur-up/placeholder image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    placeholderImgixParams: ImgixParamsInput = {}
+  ): ImgixFluid
+  gatsbyImageData(
+    # The layout for the image.
+    # FIXED: A static image sized, that does not resize according to the screen width
+    # FULL_WIDTH: The image resizes to fit its container. Pass a "sizes" option if it isn't going to be the full width of the screen.
+    # CONSTRAINED: Resizes to fit its container, up to a maximum width, at which point it will remain fixed in size.
+    layout: GatsbyImageLayout
+
+    # The display width of the generated image for layout = FIXED, and the display width of the largest image for layout = CONSTRAINED.
+    # The actual largest image resolution will be this value multiplied by the largest value in outputPixelDensities
+    # Ignored if layout = FLUID.
+    width: Int
+
+    # If set, the height of the generated image. If omitted, it is calculated from the supplied width, matching the aspect ratio of the source image.
+    height: Int
+
+    # If set along with width or height, this will set the value of the other dimension to match the provided aspect ratio, cropping the image if needed. 
+    # If neither width or height is provided, height will be set based on the intrinsic width of the source image.
+    aspectRatio: Float
+
+    # A list of image pixel densities to generate for FIXED and CONSTRAINED images. You should rarely need to change this. It will never generate images larger than the source, and will always include a 1x image.
+    # Default is [ 1, 2 ] for fixed images, meaning 1x, 2x, 3x, and [0.25, 0.5, 1, 2] for fluid. In this case, an image with a fluid layout and width = 400 would generate images at 100, 200, 400 and 800px wide.
+    outputPixelDensities: [Float]
+
+    # Specifies the image widths to generate. You should rarely need to change this. For FIXED and CONSTRAINED images it is better to allow these to be determined automatically,
+    # based on the image size. For FULL_WIDTH images this can be used to override the default, which is [750, 1080, 1366, 1920].
+    # It will never generate any images larger than the source.
+    breakpoints: [Int]
+
+    # The "sizes" property, passed to the img tag. This describes the display size of the image.
+    # This does not affect the generated images, but is used by the browser to decide which images to download. You can leave this blank for fixed images, or if the responsive image
+    # container will be the full width of the screen. In these cases we will generate an appropriate value.
+    sizes: String
+
+    # Background color applied to the wrapper, or when "letterboxing" an image to another aspect ratio.
+    backgroundColor: String
+
+    # This argument is used to set parameters to instruct imgix to transform the image. 
+    #         
+    #         All of imgix's parameters can be found here: https://docs.imgix.com/apis/rendering
+    imgixParams: ImgixParamsInput
+
+    # This argument is used to set parameters to instruct imgix to transform the placeholder image. By default all parameters passed to 'imgixParams' are already set here, but this can be used to override or set extra parameters. 
+    #         
+    #         All of imgix's parameters can be found here: https://docs.imgix.com/apis/rendering
+    placeholderImgixParams: ImgixParamsInput
+
+    # Format of generated placeholder image, displayed while the main image loads.
+    # BLURRED: a blurred, low resolution image, encoded as a base64 data URI (default)
+    # DOMINANT_COLOR: a solid color, calculated from the dominant color of the image.
+    # NONE: no placeholder. Set "backgroundColor" to use a fixed background color.
+    placeholder: ImgixPlaceholder
+
+    # This argument affects the breakpoints used for the srcsets, dictates the maximum tolerated size difference between an image's downloaded size and its rendered size. For example: setting this value to 0.1 means that an image will not render more than 10% larger or smaller than its native size. In practice, the image URLs generated for a width-based srcset attribute will grow by twice this rate. A lower tolerance means images will render closer to their native size (thereby increasing perceived image quality), but a large srcset list will be generated and consequently users may experience lower rates of cache-hit for pre-rendered images on your site.
+    #
+    # By default this rate is set to 8 percent, which we consider to be the ideal rate for maximizing cache hits without sacrificing visual quality. Users can specify their own width tolerance by providing a positive scalar value as widthTolerance to the third options object:
+    widthTolerance: Float = 0.08
+
+    # This argument determines the minimum srcset width that is generated. The default is 100px.
+    srcSetMinWidth: Int = 100
+
+    # This argument determines the maximum srcset width that is generated, if the layout type is FULL_WIDTH. If the layout type is CONSTRAINED, the width argument will be used. Furthermore, in every case, the maximum srcset width is constrained by the width of the source image. The default is 8192px, which is the render limit of the imgix service.
+    srcSetMaxWidth: Int = 8192
+  ): JSON
+  localFile: File
+}
+
+type PrismicGlobalContentsDataMainBodyIllustrationSectionPrimary {
+  image: PrismicGlobalContentsDataMainBodyIllustrationSectionPrimaryImageImageType
+  inverted: Boolean
+  text: PrismicStructuredTextType
   title: PrismicStructuredTextType
 }
 
@@ -2279,10 +2402,10 @@ type PrismicGlobalContentsDataMainBodyMockupSectionItem {
 
 type PrismicGlobalContentsDataMainBodyMockupSectionPrimary {
   background_color: String
+  inverted: Boolean
   phone_mockup_component: String
   text: PrismicStructuredTextType
   text_highlight_color: String
-  text_on_right: Boolean
 }
 
 type PrismicGlobalContentsDataMainBodyParallaxSectionPrimaryBackgroundImageImageType {
@@ -2548,6 +2671,13 @@ type PrismicGlobalContentsDataMainBodyHeroSection implements PrismicSliceType {
   slice_label: String
 }
 
+type PrismicGlobalContentsDataMainBodyIllustrationSection implements PrismicSliceType {
+  primary: PrismicGlobalContentsDataMainBodyIllustrationSectionPrimary
+  id: ID!
+  slice_type: String!
+  slice_label: String
+}
+
 type PrismicGlobalContentsDataMainBodyMockupSection implements PrismicSliceType {
   items: [PrismicGlobalContentsDataMainBodyMockupSectionItem]
   primary: PrismicGlobalContentsDataMainBodyMockupSectionPrimary
@@ -2578,7 +2708,7 @@ type PrismicGlobalContentsDataMainBodyReviewSection implements PrismicSliceType 
   slice_label: String
 }
 
-union PrismicGlobalContentsDataMainBodySlicesType = PrismicGlobalContentsDataMainBodyCentreSection | PrismicGlobalContentsDataMainBodyDownloadSection | PrismicGlobalContentsDataMainBodyHeroSection | PrismicGlobalContentsDataMainBodyMockupSection | PrismicGlobalContentsDataMainBodyParallaxSection | PrismicGlobalContentsDataMainBodyPopularSection | PrismicGlobalContentsDataMainBodyReviewSection
+union PrismicGlobalContentsDataMainBodySlicesType = PrismicGlobalContentsDataMainBodyCentreSection | PrismicGlobalContentsDataMainBodyDownloadSection | PrismicGlobalContentsDataMainBodyHeroSection | PrismicGlobalContentsDataMainBodyIllustrationSection | PrismicGlobalContentsDataMainBodyMockupSection | PrismicGlobalContentsDataMainBodyParallaxSection | PrismicGlobalContentsDataMainBodyPopularSection | PrismicGlobalContentsDataMainBodyReviewSection
 
 type PrismicGlobalContentsDataType {
   about_background_image: PrismicGlobalContentsDataAboutBackgroundImageImageType
@@ -2594,7 +2724,6 @@ type PrismicGlobalContentsDataType {
   main_page_description: String
   main_page_title: String
   one_link: String
-  popular_items_api: String
 }
 
 type PrismicGlobalContents implements Node {
@@ -5022,15 +5151,15 @@ type PrismicImageFluidType {
 }
 
 type Query {
-  site(buildTime: DateQueryOperatorInput, siteMetadata: SiteMetadataFilterInput, flags: SiteFlagsFilterInput, polyfill: BooleanQueryOperatorInput, pathPrefix: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Site
-  file(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, childrenImageSharp: ImageSharpFilterListInput, childImageSharp: ImageSharpFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): File
+  site(buildTime: DateQueryOperatorInput, siteMetadata: SiteMetadataFilterInput, port: IntQueryOperatorInput, host: StringQueryOperatorInput, flags: SiteFlagsFilterInput, polyfill: BooleanQueryOperatorInput, pathPrefix: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Site
+  file(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, url: StringQueryOperatorInput, childrenImageSharp: ImageSharpFilterListInput, childImageSharp: ImageSharpFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): File
   allFile(filter: FileFilterInput, sort: FileSortInput, skip: Int, limit: Int): FileConnection!
   directory(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Directory
   allDirectory(filter: DirectoryFilterInput, sort: DirectorySortInput, skip: Int, limit: Int): DirectoryConnection!
   allSite(filter: SiteFilterInput, sort: SiteSortInput, skip: Int, limit: Int): SiteConnection!
   siteFunction(functionRoute: StringQueryOperatorInput, pluginName: StringQueryOperatorInput, originalAbsoluteFilePath: StringQueryOperatorInput, originalRelativeFilePath: StringQueryOperatorInput, relativeCompiledFilePath: StringQueryOperatorInput, absoluteCompiledFilePath: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SiteFunction
   allSiteFunction(filter: SiteFunctionFilterInput, sort: SiteFunctionSortInput, skip: Int, limit: Int): SiteFunctionConnection!
-  sitePage(path: StringQueryOperatorInput, component: StringQueryOperatorInput, internalComponentName: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, context: SitePageContextFilterInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput): SitePage
+  sitePage(path: StringQueryOperatorInput, component: StringQueryOperatorInput, internalComponentName: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, context: SitePageContextFilterInput): SitePage
   allSitePage(filter: SitePageFilterInput, sort: SitePageSortInput, skip: Int, limit: Int): SitePageConnection!
   imageSharp(fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, gatsbyImageData: JSONQueryOperatorInput, original: ImageSharpOriginalFilterInput, resize: ImageSharpResizeFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): ImageSharp
   allImageSharp(filter: ImageSharpFilterInput, sort: ImageSharpSortInput, skip: Int, limit: Int): ImageSharpConnection!
@@ -5064,10 +5193,10 @@ type Query {
   allJobPost(filter: JobPostFilterInput, sort: JobPostSortInput, skip: Int, limit: Int): JobPostConnection!
   greenhouseJob(ghId: StringQueryOperatorInput, title: StringQueryOperatorInput, boardUrl: StringQueryOperatorInput, content: StringQueryOperatorInput, updatedAt: DateQueryOperatorInput, metadata: GreenhouseJobCustomFieldMetadataFilterListInput, childrenJobPost: JobPostFilterListInput, childJobPost: JobPostFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): GreenhouseJob
   allGreenhouseJob(filter: GreenhouseJobFilterInput, sort: GreenhouseJobSortInput, skip: Int, limit: Int): GreenhouseJobConnection!
-  siteBuildMetadata(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, buildTime: DateQueryOperatorInput): SiteBuildMetadata
-  allSiteBuildMetadata(filter: SiteBuildMetadataFilterInput, sort: SiteBuildMetadataSortInput, skip: Int, limit: Int): SiteBuildMetadataConnection!
   sitePlugin(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, resolve: StringQueryOperatorInput, name: StringQueryOperatorInput, version: StringQueryOperatorInput, pluginOptions: SitePluginPluginOptionsFilterInput, nodeAPIs: StringQueryOperatorInput, browserAPIs: StringQueryOperatorInput, ssrAPIs: StringQueryOperatorInput, pluginFilepath: StringQueryOperatorInput, packageJson: SitePluginPackageJsonFilterInput): SitePlugin
   allSitePlugin(filter: SitePluginFilterInput, sort: SitePluginSortInput, skip: Int, limit: Int): SitePluginConnection!
+  siteBuildMetadata(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, buildTime: DateQueryOperatorInput): SiteBuildMetadata
+  allSiteBuildMetadata(filter: SiteBuildMetadataFilterInput, sort: SiteBuildMetadataSortInput, skip: Int, limit: Int): SiteBuildMetadataConnection!
 }
 
 input DateQueryOperatorInput {
@@ -5092,6 +5221,17 @@ input StringQueryOperatorInput {
   nin: [String]
   regex: String
   glob: String
+}
+
+input IntQueryOperatorInput {
+  eq: Int
+  ne: Int
+  gt: Int
+  gte: Int
+  lt: Int
+  lte: Int
+  in: [Int]
+  nin: [Int]
 }
 
 input SiteFlagsFilterInput {
@@ -5128,17 +5268,6 @@ input InternalFilterInput {
   mediaType: StringQueryOperatorInput
   owner: StringQueryOperatorInput
   type: StringQueryOperatorInput
-}
-
-input IntQueryOperatorInput {
-  eq: Int
-  ne: Int
-  gt: Int
-  gte: Int
-  lt: Int
-  lte: Int
-  in: [Int]
-  nin: [Int]
 }
 
 input FloatQueryOperatorInput {
@@ -5280,6 +5409,9 @@ enum FileFieldsEnum {
   ctime
   birthtime
   birthtimeMs
+  blksize
+  blocks
+  url
   childrenImageSharp
   childrenImageSharp___fixed___base64 @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childrenImageSharp___fixed___tracedSVG @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -5550,6 +5682,9 @@ input FileFilterInput {
   ctime: DateQueryOperatorInput
   birthtime: DateQueryOperatorInput
   birthtimeMs: FloatQueryOperatorInput
+  blksize: IntQueryOperatorInput
+  blocks: IntQueryOperatorInput
+  url: StringQueryOperatorInput
   childrenImageSharp: ImageSharpFilterListInput
   childImageSharp: ImageSharpFilterInput
   id: StringQueryOperatorInput
@@ -5779,6 +5914,8 @@ type SiteEdge {
 enum SiteFieldsEnum {
   buildTime
   siteMetadata___siteUrl
+  port
+  host
   flags___FAST_DEV
   flags___QUERY_ON_DEMAND
   flags___LAZY_IMAGES
@@ -5885,6 +6022,8 @@ type SiteGroupConnection {
 input SiteFilterInput {
   buildTime: DateQueryOperatorInput
   siteMetadata: SiteMetadataFilterInput
+  port: IntQueryOperatorInput
+  host: StringQueryOperatorInput
   flags: SiteFlagsFilterInput
   polyfill: BooleanQueryOperatorInput
   pathPrefix: StringQueryOperatorInput
@@ -6041,16 +6180,6 @@ input SiteFunctionSortInput {
   order: [SortOrderEnum] = [ASC]
 }
 
-input SitePageContextFilterInput {
-  id: StringQueryOperatorInput
-  parent__ghId: StringQueryOperatorInput
-  _xparams: SitePageContext_xparamsFilterInput
-}
-
-input SitePageContext_xparamsFilterInput {
-  parent__ghId: StringQueryOperatorInput
-}
-
 input SitePluginFilterInput {
   id: StringQueryOperatorInput
   parent: NodeFilterInput
@@ -6155,7 +6284,6 @@ input SitePluginPluginOptionsSchemasGlobal_contentsMainFilterInput {
   google_play_link: SitePluginPluginOptionsSchemasGlobal_contentsMainGoogle_play_linkFilterInput
   app_store_link: SitePluginPluginOptionsSchemasGlobal_contentsMainApp_store_linkFilterInput
   one_link: SitePluginPluginOptionsSchemasGlobal_contentsMainOne_linkFilterInput
-  popular_items_api: SitePluginPluginOptionsSchemasGlobal_contentsMainPopular_items_apiFilterInput
   main_body: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyFilterInput
 }
 
@@ -6213,15 +6341,6 @@ input SitePluginPluginOptionsSchemasGlobal_contentsMainOne_linkConfigFilterInput
   label: StringQueryOperatorInput
 }
 
-input SitePluginPluginOptionsSchemasGlobal_contentsMainPopular_items_apiFilterInput {
-  type: StringQueryOperatorInput
-  config: SitePluginPluginOptionsSchemasGlobal_contentsMainPopular_items_apiConfigFilterInput
-}
-
-input SitePluginPluginOptionsSchemasGlobal_contentsMainPopular_items_apiConfigFilterInput {
-  label: StringQueryOperatorInput
-}
-
 input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyFilterInput {
   type: StringQueryOperatorInput
   fieldset: StringQueryOperatorInput
@@ -6240,6 +6359,7 @@ input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesFil
   review_section: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesReview_sectionFilterInput
   download_section: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesDownload_sectionFilterInput
   popular_section: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesPopular_sectionFilterInput
+  illustration_section: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionFilterInput
 }
 
 input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionFilterInput {
@@ -6253,6 +6373,8 @@ input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHer
 
 input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatFilterInput {
   title: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatTitleFilterInput
+  text: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatTextFilterInput
+  background_color: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatBackground_colorFilterInput
   background_image: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatBackground_imageFilterInput
   side_image: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatSide_imageFilterInput
 }
@@ -6264,7 +6386,28 @@ input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHer
 
 input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatTitleConfigFilterInput {
   multi: StringQueryOperatorInput
+  label: StringQueryOperatorInput
+  placeholder: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatTextFilterInput {
+  type: StringQueryOperatorInput
+  config: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatTextConfigFilterInput
+}
+
+input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatTextConfigFilterInput {
+  multi: StringQueryOperatorInput
   allowTargetBlank: BooleanQueryOperatorInput
+  label: StringQueryOperatorInput
+  placeholder: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatBackground_colorFilterInput {
+  type: StringQueryOperatorInput
+  config: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatBackground_colorConfigFilterInput
+}
+
+input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatBackground_colorConfigFilterInput {
   label: StringQueryOperatorInput
 }
 
@@ -6283,14 +6426,8 @@ input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHer
 }
 
 input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatSide_imageConfigFilterInput {
-  constraint: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatSide_imageConfigConstraintFilterInput
   thumbnails: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatSide_imageConfigThumbnailsFilterListInput
   label: StringQueryOperatorInput
-}
-
-input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatSide_imageConfigConstraintFilterInput {
-  width: IntQueryOperatorInput
-  height: IntQueryOperatorInput
 }
 
 input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatSide_imageConfigThumbnailsFilterListInput {
@@ -6373,7 +6510,7 @@ input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesMoc
   background_color: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesMockup_sectionNon_repeatBackground_colorFilterInput
   text_highlight_color: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesMockup_sectionNon_repeatText_highlight_colorFilterInput
   phone_mockup_component: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesMockup_sectionNon_repeatPhone_mockup_componentFilterInput
-  text_on_right: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesMockup_sectionNon_repeatText_on_rightFilterInput
+  inverted: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesMockup_sectionNon_repeatInvertedFilterInput
 }
 
 input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesMockup_sectionNon_repeatTextFilterInput {
@@ -6416,12 +6553,12 @@ input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesMoc
   label: StringQueryOperatorInput
 }
 
-input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesMockup_sectionNon_repeatText_on_rightFilterInput {
+input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesMockup_sectionNon_repeatInvertedFilterInput {
   type: StringQueryOperatorInput
-  config: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesMockup_sectionNon_repeatText_on_rightConfigFilterInput
+  config: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesMockup_sectionNon_repeatInvertedConfigFilterInput
 }
 
-input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesMockup_sectionNon_repeatText_on_rightConfigFilterInput {
+input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesMockup_sectionNon_repeatInvertedConfigFilterInput {
   placeholder_false: StringQueryOperatorInput
   placeholder_true: StringQueryOperatorInput
   default_value: BooleanQueryOperatorInput
@@ -6658,6 +6795,69 @@ input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesPop
   placeholder: StringQueryOperatorInput
 }
 
+input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionFilterInput {
+  type: StringQueryOperatorInput
+  fieldset: StringQueryOperatorInput
+  description: StringQueryOperatorInput
+  icon: StringQueryOperatorInput
+  display: StringQueryOperatorInput
+  non_repeat: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatFilterInput
+}
+
+input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatFilterInput {
+  title: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatTitleFilterInput
+  text: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatTextFilterInput
+  inverted: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatInvertedFilterInput
+  image: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatImageFilterInput
+}
+
+input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatTitleFilterInput {
+  type: StringQueryOperatorInput
+  config: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatTitleConfigFilterInput
+}
+
+input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatTitleConfigFilterInput {
+  multi: StringQueryOperatorInput
+  label: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatTextFilterInput {
+  type: StringQueryOperatorInput
+  config: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatTextConfigFilterInput
+}
+
+input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatTextConfigFilterInput {
+  multi: StringQueryOperatorInput
+  label: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatInvertedFilterInput {
+  type: StringQueryOperatorInput
+  config: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatInvertedConfigFilterInput
+}
+
+input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatInvertedConfigFilterInput {
+  placeholder_false: StringQueryOperatorInput
+  placeholder_true: StringQueryOperatorInput
+  default_value: BooleanQueryOperatorInput
+  label: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatImageFilterInput {
+  type: StringQueryOperatorInput
+  config: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatImageConfigFilterInput
+}
+
+input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatImageConfigFilterInput {
+  constraint: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatImageConfigConstraintFilterInput
+  label: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatImageConfigConstraintFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
 input SitePluginPluginOptionsSchemasGlobal_contentsAboutFilterInput {
   about_page_title: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_page_titleFilterInput
   about_page_description: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_page_descriptionFilterInput
@@ -6733,7 +6933,7 @@ input SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesF
   subtitle_and_text: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesSubtitle_and_textFilterInput
   subtitle_and_images: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesSubtitle_and_imagesFilterInput
   subtitle_and_links: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesSubtitle_and_linksFilterInput
-  list_of_texts: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesList_of_textsFilterInput
+  details_list: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesDetails_listFilterInput
 }
 
 input SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesSubtitle_and_textFilterInput {
@@ -6883,35 +7083,35 @@ input SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesS
   label: StringQueryOperatorInput
 }
 
-input SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesList_of_textsFilterInput {
+input SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesDetails_listFilterInput {
   type: StringQueryOperatorInput
   fieldset: StringQueryOperatorInput
   description: StringQueryOperatorInput
   icon: StringQueryOperatorInput
   display: StringQueryOperatorInput
-  repeat: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesList_of_textsRepeatFilterInput
+  repeat: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesDetails_listRepeatFilterInput
 }
 
-input SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesList_of_textsRepeatFilterInput {
-  label: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesList_of_textsRepeatLabelFilterInput
-  text: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesList_of_textsRepeatTextFilterInput
+input SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesDetails_listRepeatFilterInput {
+  label: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesDetails_listRepeatLabelFilterInput
+  text: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesDetails_listRepeatTextFilterInput
 }
 
-input SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesList_of_textsRepeatLabelFilterInput {
+input SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesDetails_listRepeatLabelFilterInput {
   type: StringQueryOperatorInput
-  config: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesList_of_textsRepeatLabelConfigFilterInput
+  config: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesDetails_listRepeatLabelConfigFilterInput
 }
 
-input SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesList_of_textsRepeatLabelConfigFilterInput {
+input SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesDetails_listRepeatLabelConfigFilterInput {
   label: StringQueryOperatorInput
 }
 
-input SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesList_of_textsRepeatTextFilterInput {
+input SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesDetails_listRepeatTextFilterInput {
   type: StringQueryOperatorInput
-  config: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesList_of_textsRepeatTextConfigFilterInput
+  config: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesDetails_listRepeatTextConfigFilterInput
 }
 
-input SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesList_of_textsRepeatTextConfigFilterInput {
+input SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesDetails_listRepeatTextConfigFilterInput {
   label: StringQueryOperatorInput
 }
 
@@ -8694,6 +8894,16 @@ input SitePluginPackageJsonPeerDependenciesFilterInput {
   version: StringQueryOperatorInput
 }
 
+input SitePageContextFilterInput {
+  id: StringQueryOperatorInput
+  parent__ghId: StringQueryOperatorInput
+  _xparams: SitePageContext_xparamsFilterInput
+}
+
+input SitePageContext_xparamsFilterInput {
+  parent__ghId: StringQueryOperatorInput
+}
+
 type SitePageConnection {
   totalCount: Int!
   edges: [SitePageEdge!]!
@@ -8718,96 +8928,7 @@ enum SitePageFieldsEnum {
   internalComponentName
   componentChunkName
   matchPath
-  id
-  parent___id
-  parent___parent___id
-  parent___parent___parent___id
-  parent___parent___parent___children
-  parent___parent___children
-  parent___parent___children___id
-  parent___parent___children___children
-  parent___parent___internal___content
-  parent___parent___internal___contentDigest
-  parent___parent___internal___description
-  parent___parent___internal___fieldOwners
-  parent___parent___internal___ignoreType
-  parent___parent___internal___mediaType
-  parent___parent___internal___owner
-  parent___parent___internal___type
-  parent___children
-  parent___children___id
-  parent___children___parent___id
-  parent___children___parent___children
-  parent___children___children
-  parent___children___children___id
-  parent___children___children___children
-  parent___children___internal___content
-  parent___children___internal___contentDigest
-  parent___children___internal___description
-  parent___children___internal___fieldOwners
-  parent___children___internal___ignoreType
-  parent___children___internal___mediaType
-  parent___children___internal___owner
-  parent___children___internal___type
-  parent___internal___content
-  parent___internal___contentDigest
-  parent___internal___description
-  parent___internal___fieldOwners
-  parent___internal___ignoreType
-  parent___internal___mediaType
-  parent___internal___owner
-  parent___internal___type
-  children
-  children___id
-  children___parent___id
-  children___parent___parent___id
-  children___parent___parent___children
-  children___parent___children
-  children___parent___children___id
-  children___parent___children___children
-  children___parent___internal___content
-  children___parent___internal___contentDigest
-  children___parent___internal___description
-  children___parent___internal___fieldOwners
-  children___parent___internal___ignoreType
-  children___parent___internal___mediaType
-  children___parent___internal___owner
-  children___parent___internal___type
-  children___children
-  children___children___id
-  children___children___parent___id
-  children___children___parent___children
-  children___children___children
-  children___children___children___id
-  children___children___children___children
-  children___children___internal___content
-  children___children___internal___contentDigest
-  children___children___internal___description
-  children___children___internal___fieldOwners
-  children___children___internal___ignoreType
-  children___children___internal___mediaType
-  children___children___internal___owner
-  children___children___internal___type
-  children___internal___content
-  children___internal___contentDigest
-  children___internal___description
-  children___internal___fieldOwners
-  children___internal___ignoreType
-  children___internal___mediaType
-  children___internal___owner
-  children___internal___type
-  internal___content
-  internal___contentDigest
-  internal___description
-  internal___fieldOwners
-  internal___ignoreType
-  internal___mediaType
-  internal___owner
-  internal___type
   isCreatedByStatefulCreatePages
-  context___id
-  context___parent__ghId
-  context____xparams___parent__ghId
   pluginCreator___id
   pluginCreator___parent___id
   pluginCreator___parent___parent___id
@@ -8907,6 +9028,95 @@ enum SitePageFieldsEnum {
   pluginCreator___packageJson___peerDependencies___version
   pluginCreator___packageJson___keywords
   pluginCreatorId
+  id
+  parent___id
+  parent___parent___id
+  parent___parent___parent___id
+  parent___parent___parent___children
+  parent___parent___children
+  parent___parent___children___id
+  parent___parent___children___children
+  parent___parent___internal___content
+  parent___parent___internal___contentDigest
+  parent___parent___internal___description
+  parent___parent___internal___fieldOwners
+  parent___parent___internal___ignoreType
+  parent___parent___internal___mediaType
+  parent___parent___internal___owner
+  parent___parent___internal___type
+  parent___children
+  parent___children___id
+  parent___children___parent___id
+  parent___children___parent___children
+  parent___children___children
+  parent___children___children___id
+  parent___children___children___children
+  parent___children___internal___content
+  parent___children___internal___contentDigest
+  parent___children___internal___description
+  parent___children___internal___fieldOwners
+  parent___children___internal___ignoreType
+  parent___children___internal___mediaType
+  parent___children___internal___owner
+  parent___children___internal___type
+  parent___internal___content
+  parent___internal___contentDigest
+  parent___internal___description
+  parent___internal___fieldOwners
+  parent___internal___ignoreType
+  parent___internal___mediaType
+  parent___internal___owner
+  parent___internal___type
+  children
+  children___id
+  children___parent___id
+  children___parent___parent___id
+  children___parent___parent___children
+  children___parent___children
+  children___parent___children___id
+  children___parent___children___children
+  children___parent___internal___content
+  children___parent___internal___contentDigest
+  children___parent___internal___description
+  children___parent___internal___fieldOwners
+  children___parent___internal___ignoreType
+  children___parent___internal___mediaType
+  children___parent___internal___owner
+  children___parent___internal___type
+  children___children
+  children___children___id
+  children___children___parent___id
+  children___children___parent___children
+  children___children___children
+  children___children___children___id
+  children___children___children___children
+  children___children___internal___content
+  children___children___internal___contentDigest
+  children___children___internal___description
+  children___children___internal___fieldOwners
+  children___children___internal___ignoreType
+  children___children___internal___mediaType
+  children___children___internal___owner
+  children___children___internal___type
+  children___internal___content
+  children___internal___contentDigest
+  children___internal___description
+  children___internal___fieldOwners
+  children___internal___ignoreType
+  children___internal___mediaType
+  children___internal___owner
+  children___internal___type
+  internal___content
+  internal___contentDigest
+  internal___description
+  internal___fieldOwners
+  internal___ignoreType
+  internal___mediaType
+  internal___owner
+  internal___type
+  context___id
+  context___parent__ghId
+  context____xparams___parent__ghId
 }
 
 type SitePageGroupConnection {
@@ -8924,14 +9134,14 @@ input SitePageFilterInput {
   internalComponentName: StringQueryOperatorInput
   componentChunkName: StringQueryOperatorInput
   matchPath: StringQueryOperatorInput
+  isCreatedByStatefulCreatePages: BooleanQueryOperatorInput
+  pluginCreator: SitePluginFilterInput
+  pluginCreatorId: StringQueryOperatorInput
   id: StringQueryOperatorInput
   parent: NodeFilterInput
   children: NodeFilterListInput
   internal: InternalFilterInput
-  isCreatedByStatefulCreatePages: BooleanQueryOperatorInput
   context: SitePageContextFilterInput
-  pluginCreator: SitePluginFilterInput
-  pluginCreatorId: StringQueryOperatorInput
 }
 
 input SitePageSortInput {
@@ -9718,7 +9928,6 @@ input PrismicGlobalContentsDataTypeFilterInput {
   main_page_description: StringQueryOperatorInput
   main_page_title: StringQueryOperatorInput
   one_link: StringQueryOperatorInput
-  popular_items_api: StringQueryOperatorInput
 }
 
 input PrismicGlobalContentsDataAboutBackgroundImageImageTypeFilterInput {
@@ -9829,6 +10038,9 @@ enum PrismicGlobalContentsFieldsEnum {
   data___about_background_image___localFile___ctime @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___about_background_image___localFile___birthtime @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___about_background_image___localFile___birthtimeMs @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___about_background_image___localFile___blksize @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___about_background_image___localFile___blocks @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___about_background_image___localFile___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___about_background_image___localFile___childrenImageSharp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___about_background_image___localFile___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___about_background_image___localFile___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -9844,7 +10056,6 @@ enum PrismicGlobalContentsFieldsEnum {
   data___main_page_description
   data___main_page_title
   data___one_link
-  data___popular_items_api
   dataRaw
   prismicId
   alternate_languages
@@ -10549,6 +10760,9 @@ enum PrismicMemberProfileFieldsEnum {
   data___image___localFile___ctime @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___image___localFile___birthtime @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___image___localFile___birthtimeMs @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___blksize @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___blocks @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___image___localFile___childrenImageSharp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___image___localFile___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___image___localFile___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -10778,6 +10992,9 @@ enum PrismicPayContentsFieldsEnum {
   data___logo_icon___localFile___ctime @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___logo_icon___localFile___birthtime @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___logo_icon___localFile___birthtimeMs @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___logo_icon___localFile___blksize @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___logo_icon___localFile___blocks @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___logo_icon___localFile___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___logo_icon___localFile___childrenImageSharp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___logo_icon___localFile___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___logo_icon___localFile___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -11998,136 +12215,6 @@ input GreenhouseJobSortInput {
   order: [SortOrderEnum] = [ASC]
 }
 
-type SiteBuildMetadataConnection {
-  totalCount: Int!
-  edges: [SiteBuildMetadataEdge!]!
-  nodes: [SiteBuildMetadata!]!
-  pageInfo: PageInfo!
-  distinct(field: SiteBuildMetadataFieldsEnum!): [String!]!
-  max(field: SiteBuildMetadataFieldsEnum!): Float
-  min(field: SiteBuildMetadataFieldsEnum!): Float
-  sum(field: SiteBuildMetadataFieldsEnum!): Float
-  group(skip: Int, limit: Int, field: SiteBuildMetadataFieldsEnum!): [SiteBuildMetadataGroupConnection!]!
-}
-
-type SiteBuildMetadataEdge {
-  next: SiteBuildMetadata
-  node: SiteBuildMetadata!
-  previous: SiteBuildMetadata
-}
-
-enum SiteBuildMetadataFieldsEnum {
-  id
-  parent___id
-  parent___parent___id
-  parent___parent___parent___id
-  parent___parent___parent___children
-  parent___parent___children
-  parent___parent___children___id
-  parent___parent___children___children
-  parent___parent___internal___content
-  parent___parent___internal___contentDigest
-  parent___parent___internal___description
-  parent___parent___internal___fieldOwners
-  parent___parent___internal___ignoreType
-  parent___parent___internal___mediaType
-  parent___parent___internal___owner
-  parent___parent___internal___type
-  parent___children
-  parent___children___id
-  parent___children___parent___id
-  parent___children___parent___children
-  parent___children___children
-  parent___children___children___id
-  parent___children___children___children
-  parent___children___internal___content
-  parent___children___internal___contentDigest
-  parent___children___internal___description
-  parent___children___internal___fieldOwners
-  parent___children___internal___ignoreType
-  parent___children___internal___mediaType
-  parent___children___internal___owner
-  parent___children___internal___type
-  parent___internal___content
-  parent___internal___contentDigest
-  parent___internal___description
-  parent___internal___fieldOwners
-  parent___internal___ignoreType
-  parent___internal___mediaType
-  parent___internal___owner
-  parent___internal___type
-  children
-  children___id
-  children___parent___id
-  children___parent___parent___id
-  children___parent___parent___children
-  children___parent___children
-  children___parent___children___id
-  children___parent___children___children
-  children___parent___internal___content
-  children___parent___internal___contentDigest
-  children___parent___internal___description
-  children___parent___internal___fieldOwners
-  children___parent___internal___ignoreType
-  children___parent___internal___mediaType
-  children___parent___internal___owner
-  children___parent___internal___type
-  children___children
-  children___children___id
-  children___children___parent___id
-  children___children___parent___children
-  children___children___children
-  children___children___children___id
-  children___children___children___children
-  children___children___internal___content
-  children___children___internal___contentDigest
-  children___children___internal___description
-  children___children___internal___fieldOwners
-  children___children___internal___ignoreType
-  children___children___internal___mediaType
-  children___children___internal___owner
-  children___children___internal___type
-  children___internal___content
-  children___internal___contentDigest
-  children___internal___description
-  children___internal___fieldOwners
-  children___internal___ignoreType
-  children___internal___mediaType
-  children___internal___owner
-  children___internal___type
-  internal___content
-  internal___contentDigest
-  internal___description
-  internal___fieldOwners
-  internal___ignoreType
-  internal___mediaType
-  internal___owner
-  internal___type
-  buildTime
-}
-
-type SiteBuildMetadataGroupConnection {
-  totalCount: Int!
-  edges: [SiteBuildMetadataEdge!]!
-  nodes: [SiteBuildMetadata!]!
-  pageInfo: PageInfo!
-  field: String!
-  fieldValue: String
-}
-
-input SiteBuildMetadataFilterInput {
-  id: StringQueryOperatorInput
-  parent: NodeFilterInput
-  children: NodeFilterListInput
-  internal: InternalFilterInput
-  buildTime: DateQueryOperatorInput
-}
-
-input SiteBuildMetadataSortInput {
-  fields: [SiteBuildMetadataFieldsEnum]
-  order: [SortOrderEnum] = [ASC]
-}
-
 type SitePluginConnection {
   totalCount: Int!
   edges: [SitePluginEdge!]!
@@ -12309,28 +12396,138 @@ input SitePluginSortInput {
   order: [SortOrderEnum] = [ASC]
 }
 
-type SiteMetadata {
-  siteUrl: String!
+type SiteBuildMetadataConnection {
+  totalCount: Int!
+  edges: [SiteBuildMetadataEdge!]!
+  nodes: [SiteBuildMetadata!]!
+  pageInfo: PageInfo!
+  distinct(field: SiteBuildMetadataFieldsEnum!): [String!]!
+  max(field: SiteBuildMetadataFieldsEnum!): Float
+  min(field: SiteBuildMetadataFieldsEnum!): Float
+  sum(field: SiteBuildMetadataFieldsEnum!): Float
+  group(skip: Int, limit: Int, field: SiteBuildMetadataFieldsEnum!): [SiteBuildMetadataGroupConnection!]!
 }
 
-type SiteBuildMetadata implements Node {
-  id: ID!
-  parent: Node
-  children: [Node!]!
-  internal: Internal!
-  buildTime(
-    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
-    formatString: String
+type SiteBuildMetadataEdge {
+  next: SiteBuildMetadata
+  node: SiteBuildMetadata!
+  previous: SiteBuildMetadata
+}
 
-    # Returns a string generated with Moment.js' `fromNow` function
-    fromNow: Boolean
+enum SiteBuildMetadataFieldsEnum {
+  id
+  parent___id
+  parent___parent___id
+  parent___parent___parent___id
+  parent___parent___parent___children
+  parent___parent___children
+  parent___parent___children___id
+  parent___parent___children___children
+  parent___parent___internal___content
+  parent___parent___internal___contentDigest
+  parent___parent___internal___description
+  parent___parent___internal___fieldOwners
+  parent___parent___internal___ignoreType
+  parent___parent___internal___mediaType
+  parent___parent___internal___owner
+  parent___parent___internal___type
+  parent___children
+  parent___children___id
+  parent___children___parent___id
+  parent___children___parent___children
+  parent___children___children
+  parent___children___children___id
+  parent___children___children___children
+  parent___children___internal___content
+  parent___children___internal___contentDigest
+  parent___children___internal___description
+  parent___children___internal___fieldOwners
+  parent___children___internal___ignoreType
+  parent___children___internal___mediaType
+  parent___children___internal___owner
+  parent___children___internal___type
+  parent___internal___content
+  parent___internal___contentDigest
+  parent___internal___description
+  parent___internal___fieldOwners
+  parent___internal___ignoreType
+  parent___internal___mediaType
+  parent___internal___owner
+  parent___internal___type
+  children
+  children___id
+  children___parent___id
+  children___parent___parent___id
+  children___parent___parent___children
+  children___parent___children
+  children___parent___children___id
+  children___parent___children___children
+  children___parent___internal___content
+  children___parent___internal___contentDigest
+  children___parent___internal___description
+  children___parent___internal___fieldOwners
+  children___parent___internal___ignoreType
+  children___parent___internal___mediaType
+  children___parent___internal___owner
+  children___parent___internal___type
+  children___children
+  children___children___id
+  children___children___parent___id
+  children___children___parent___children
+  children___children___children
+  children___children___children___id
+  children___children___children___children
+  children___children___internal___content
+  children___children___internal___contentDigest
+  children___children___internal___description
+  children___children___internal___fieldOwners
+  children___children___internal___ignoreType
+  children___children___internal___mediaType
+  children___children___internal___owner
+  children___children___internal___type
+  children___internal___content
+  children___internal___contentDigest
+  children___internal___description
+  children___internal___fieldOwners
+  children___internal___ignoreType
+  children___internal___mediaType
+  children___internal___owner
+  children___internal___type
+  internal___content
+  internal___contentDigest
+  internal___description
+  internal___fieldOwners
+  internal___ignoreType
+  internal___mediaType
+  internal___owner
+  internal___type
+  buildTime
+}
 
-    # Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
-    difference: String
+type SiteBuildMetadataGroupConnection {
+  totalCount: Int!
+  edges: [SiteBuildMetadataEdge!]!
+  nodes: [SiteBuildMetadata!]!
+  pageInfo: PageInfo!
+  field: String!
+  fieldValue: String
+}
 
-    # Configures the locale Moment.js will use to format the date.
-    locale: String
-  ): Date
+input SiteBuildMetadataFilterInput {
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+  buildTime: DateQueryOperatorInput
+}
+
+input SiteBuildMetadataSortInput {
+  fields: [SiteBuildMetadataFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
+}
+
+type SiteMetadata {
+  siteUrl: String!
 }
 
 type SitePlugin implements Node {
@@ -12437,7 +12634,6 @@ type SitePluginPluginOptionsSchemasGlobal_contentsMain {
   google_play_link: SitePluginPluginOptionsSchemasGlobal_contentsMainGoogle_play_link
   app_store_link: SitePluginPluginOptionsSchemasGlobal_contentsMainApp_store_link
   one_link: SitePluginPluginOptionsSchemasGlobal_contentsMainOne_link
-  popular_items_api: SitePluginPluginOptionsSchemasGlobal_contentsMainPopular_items_api
   main_body: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_body
 }
 
@@ -12495,15 +12691,6 @@ type SitePluginPluginOptionsSchemasGlobal_contentsMainOne_linkConfig {
   label: String
 }
 
-type SitePluginPluginOptionsSchemasGlobal_contentsMainPopular_items_api {
-  type: String
-  config: SitePluginPluginOptionsSchemasGlobal_contentsMainPopular_items_apiConfig
-}
-
-type SitePluginPluginOptionsSchemasGlobal_contentsMainPopular_items_apiConfig {
-  label: String
-}
-
 type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_body {
   type: String
   fieldset: String
@@ -12522,6 +12709,7 @@ type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoices {
   review_section: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesReview_section
   download_section: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesDownload_section
   popular_section: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesPopular_section
+  illustration_section: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_section
 }
 
 type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_section {
@@ -12535,6 +12723,8 @@ type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero
 
 type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeat {
   title: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatTitle
+  text: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatText
+  background_color: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatBackground_color
   background_image: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatBackground_image
   side_image: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatSide_image
 }
@@ -12546,7 +12736,28 @@ type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero
 
 type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatTitleConfig {
   multi: String
+  label: String
+  placeholder: String
+}
+
+type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatText {
+  type: String
+  config: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatTextConfig
+}
+
+type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatTextConfig {
+  multi: String
   allowTargetBlank: Boolean
+  label: String
+  placeholder: String
+}
+
+type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatBackground_color {
+  type: String
+  config: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatBackground_colorConfig
+}
+
+type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatBackground_colorConfig {
   label: String
 }
 
@@ -12565,14 +12776,8 @@ type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero
 }
 
 type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatSide_imageConfig {
-  constraint: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatSide_imageConfigConstraint
   thumbnails: [SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatSide_imageConfigThumbnails]
   label: String
-}
-
-type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatSide_imageConfigConstraint {
-  width: Int
-  height: Int
 }
 
 type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesHero_sectionNon_repeatSide_imageConfigThumbnails {
@@ -12651,7 +12856,7 @@ type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesMock
   background_color: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesMockup_sectionNon_repeatBackground_color
   text_highlight_color: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesMockup_sectionNon_repeatText_highlight_color
   phone_mockup_component: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesMockup_sectionNon_repeatPhone_mockup_component
-  text_on_right: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesMockup_sectionNon_repeatText_on_right
+  inverted: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesMockup_sectionNon_repeatInverted
 }
 
 type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesMockup_sectionNon_repeatText {
@@ -12694,12 +12899,12 @@ type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesMock
   label: String
 }
 
-type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesMockup_sectionNon_repeatText_on_right {
+type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesMockup_sectionNon_repeatInverted {
   type: String
-  config: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesMockup_sectionNon_repeatText_on_rightConfig
+  config: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesMockup_sectionNon_repeatInvertedConfig
 }
 
-type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesMockup_sectionNon_repeatText_on_rightConfig {
+type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesMockup_sectionNon_repeatInvertedConfig {
   placeholder_false: String
   placeholder_true: String
   default_value: Boolean
@@ -12932,6 +13137,69 @@ type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesPopu
   placeholder: String
 }
 
+type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_section {
+  type: String
+  fieldset: String
+  description: String
+  icon: String
+  display: String
+  non_repeat: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeat
+}
+
+type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeat {
+  title: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatTitle
+  text: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatText
+  inverted: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatInverted
+  image: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatImage
+}
+
+type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatTitle {
+  type: String
+  config: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatTitleConfig
+}
+
+type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatTitleConfig {
+  multi: String
+  label: String
+}
+
+type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatText {
+  type: String
+  config: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatTextConfig
+}
+
+type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatTextConfig {
+  multi: String
+  label: String
+}
+
+type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatInverted {
+  type: String
+  config: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatInvertedConfig
+}
+
+type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatInvertedConfig {
+  placeholder_false: String
+  placeholder_true: String
+  default_value: Boolean
+  label: String
+}
+
+type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatImage {
+  type: String
+  config: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatImageConfig
+}
+
+type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatImageConfig {
+  constraint: SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatImageConfigConstraint
+  label: String
+}
+
+type SitePluginPluginOptionsSchemasGlobal_contentsMainMain_bodyConfigChoicesIllustration_sectionNon_repeatImageConfigConstraint {
+  width: Int
+  height: Int
+}
+
 type SitePluginPluginOptionsSchemasGlobal_contentsAbout {
   about_page_title: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_page_title
   about_page_description: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_page_description
@@ -13007,7 +13275,7 @@ type SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoices {
   subtitle_and_text: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesSubtitle_and_text
   subtitle_and_images: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesSubtitle_and_images
   subtitle_and_links: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesSubtitle_and_links
-  list_of_texts: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesList_of_texts
+  details_list: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesDetails_list
 }
 
 type SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesSubtitle_and_text {
@@ -13153,35 +13421,35 @@ type SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesSu
   label: String
 }
 
-type SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesList_of_texts {
+type SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesDetails_list {
   type: String
   fieldset: String
   description: String
   icon: String
   display: String
-  repeat: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesList_of_textsRepeat
+  repeat: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesDetails_listRepeat
 }
 
-type SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesList_of_textsRepeat {
-  label: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesList_of_textsRepeatLabel
-  text: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesList_of_textsRepeatText
+type SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesDetails_listRepeat {
+  label: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesDetails_listRepeatLabel
+  text: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesDetails_listRepeatText
 }
 
-type SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesList_of_textsRepeatLabel {
+type SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesDetails_listRepeatLabel {
   type: String
-  config: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesList_of_textsRepeatLabelConfig
+  config: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesDetails_listRepeatLabelConfig
 }
 
-type SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesList_of_textsRepeatLabelConfig {
+type SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesDetails_listRepeatLabelConfig {
   label: String
 }
 
-type SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesList_of_textsRepeatText {
+type SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesDetails_listRepeatText {
   type: String
-  config: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesList_of_textsRepeatTextConfig
+  config: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesDetails_listRepeatTextConfig
 }
 
-type SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesList_of_textsRepeatTextConfig {
+type SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyConfigChoicesDetails_listRepeatTextConfig {
   label: String
 }
 
@@ -14918,4 +15186,24 @@ type SitePluginPackageJsonDevDependencies {
 type SitePluginPackageJsonPeerDependencies {
   name: String
   version: String
+}
+
+type SiteBuildMetadata implements Node {
+  id: ID!
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
+  buildTime(
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date
 }
