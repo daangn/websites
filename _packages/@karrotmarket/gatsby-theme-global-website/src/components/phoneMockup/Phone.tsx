@@ -1,14 +1,10 @@
 import * as React from "react";
-
 import { em, rem } from "polished";
+
 import {
   MediaTypeMap,
   styled,
 } from "../../gatsby-theme-stitches/stitches.config";
-
-interface FontSize {
-  fontSize: string;
-}
 
 const BackIcon = () => (
   <svg
@@ -24,6 +20,63 @@ const BackIcon = () => (
     />
   </svg>
 );
+
+interface FontSize {
+  fontSize: string;
+}
+
+interface PhoneProps {
+  frameColor?: "orange" | "green";
+  header?: any;
+  fontSize?: MediaTypeMap<FontSize>;
+  height?: number;
+  align?: "left" | "center";
+}
+
+const Phone: React.FC<PhoneProps> = ({
+  frameColor,
+  header,
+  fontSize,
+  height,
+  align,
+  children,
+}) => {
+  return (
+    <Wrapper
+      css={{
+        height: em(height || 500),
+        ...fontSize,
+      }}
+    >
+      <PhoneFrame
+        frameColor={frameColor}
+        css={{
+          height: em(height || 500),
+          margin: align !== "left" ? "0 auto" : 0,
+        }}
+      >
+        <TopSection></TopSection>
+        <HeaderSection>
+          <BackIcon></BackIcon>
+          <Header>{header}</Header>
+        </HeaderSection>
+        <Screen>{children}</Screen>
+      </PhoneFrame>
+    </Wrapper>
+  );
+};
+
+const Wrapper = styled("div", {
+  width: em(500),
+  overflow: "hidden",
+  "*": {
+    fontFamily: "$system",
+  },
+  fontSize: rem(10),
+  "@md": {
+    fontSize: rem(16),
+  },
+});
 
 const PhoneFrame = styled("div", {
   width: em(376),
@@ -74,59 +127,5 @@ const Screen = styled("div", {
   flex: 1,
   flexDirection: "column",
 });
-
-const Wrapper = styled("div", {
-  width: em(500),
-  overflow: "hidden",
-  "*": {
-    fontFamily: "$default",
-  },
-  fontSize: rem(10),
-  "@md": {
-    fontSize: rem(16),
-  },
-});
-
-interface PhoneProps {
-  frameColor?: "orange" | "green";
-  header?: any;
-  fontSize?: MediaTypeMap<FontSize>;
-  height?: number;
-  align?: "left" | "center";
-}
-
-const Phone: React.FC<PhoneProps> = ({
-  frameColor,
-  header,
-  fontSize,
-  height,
-  align,
-  children,
-}) => {
-  return (
-    <Wrapper
-      css={{
-        height: em(height || 500),
-
-        ...fontSize,
-      }}
-    >
-      <PhoneFrame
-        frameColor={frameColor}
-        css={{
-          height: em(height || 500),
-          margin: align !== "left" ? "0 auto" : 0,
-        }}
-      >
-        <TopSection></TopSection>
-        <HeaderSection>
-          <BackIcon></BackIcon>
-          <Header>{header}</Header>
-        </HeaderSection>
-        <Screen>{children}</Screen>
-      </PhoneFrame>
-    </Wrapper>
-  );
-};
 
 export default Phone;

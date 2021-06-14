@@ -1,8 +1,9 @@
 import * as React from "react";
+import { em } from "polished";
+import { motion } from "framer-motion";
 
 import { styled } from "../../../gatsby-theme-stitches/stitches.config";
-import { motion } from "framer-motion";
-import { em } from "polished";
+
 import { messageMotionOption } from "./_config";
 
 const ReservationIcon = () => (
@@ -44,19 +45,17 @@ const ReservationIcon = () => (
   </svg>
 );
 
-const IconContainer = styled("div", {
-  display: "flex",
-  flexShrink: 0,
-  justifyContent: "center",
-  alignItems: "center",
-  minWidth: em(32),
-  maxWidth: em(32),
-  minHeight: em(32),
-  maxHeight: em(32),
-  borderRadius: em(16),
-  marginRight: em(12),
-  background: "white",
-});
+const ReservationMessage: React.FC = ({ children }) => (
+  <Wrapper {...messageMotionOption}>
+    <IconContainer>
+      <ReservationIcon />
+    </IconContainer>
+    <div
+      dangerouslySetInnerHTML={{ __html: children as string }}
+      style={{ textAlign: "left" }}
+    />
+  </Wrapper>
+);
 
 const Wrapper = styled(motion.div, {
   background: "$gray100",
@@ -70,16 +69,18 @@ const Wrapper = styled(motion.div, {
   },
 });
 
-const ReservationMessage: React.FC = ({ children }) => (
-  <Wrapper {...messageMotionOption}>
-    <IconContainer>
-      <ReservationIcon />
-    </IconContainer>
-    <div
-      dangerouslySetInnerHTML={{ __html: children as string }}
-      style={{ textAlign: "left" }}
-    />
-  </Wrapper>
-);
+const IconContainer = styled("div", {
+  display: "flex",
+  flexShrink: 0,
+  justifyContent: "center",
+  alignItems: "center",
+  minWidth: em(32),
+  maxWidth: em(32),
+  minHeight: em(32),
+  maxHeight: em(32),
+  borderRadius: em(16),
+  marginRight: em(12),
+  background: "white",
+});
 
 export default ReservationMessage;

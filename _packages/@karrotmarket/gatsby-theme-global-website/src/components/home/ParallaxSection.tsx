@@ -1,25 +1,20 @@
-import React from "react";
-import { graphql } from "gatsby";
-import { styled } from "gatsby-theme-stitches/src/stitches.config";
+import * as React from "react";
 
+import { graphql } from "gatsby";
+import { getImage } from "gatsby-plugin-image";
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 
-import { Html } from "../Html";
+import { styled } from "../../gatsby-theme-stitches/stitches.config";
+
 import { Flex } from "../Flex";
 import { Space } from "../Space";
-
-// @ts-ignore
-import { ReactComponent as KarrotIcon } from "../../icons/karrot.svg";
 import BackgroundImage from "../BackgroundImage";
-import { getImage } from "gatsby-plugin-image";
+
+import { ReactComponent as KarrotIcon } from "../../icons/karrot.svg";
 
 type ParallaxIconType = "Karrot";
 const ParallaxIcon: { [key in ParallaxIconType]: React.FC } = {
   Karrot: KarrotIcon,
-};
-
-type ParallaxSectionProps = {
-  content: GatsbyTypes.ParallaxSection_contentFragment;
 };
 
 export const query = graphql`
@@ -43,51 +38,9 @@ export const query = graphql`
   }
 `;
 
-const Section = styled("section", {
-  overflow: "hidden",
-  height: "400px",
-  width: "100%",
-  position: "relative",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  "@md": {
-    height: "600px",
-  },
-});
-
-const Container = styled("div", {
-  position: "absolute",
-  left: "50%",
-  top: "50%",
-  transform: "translate(-50%,-50%)",
-  zIndex: 0,
-  width: "$maxContent",
-  margin: "0 auto",
-  color: "white",
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
-  textAlign: "center",
-});
-
-const TopText = styled("div", {
-  fontSize: "$body1",
-  "@md": {
-    fontSize: "$subtitle3",
-  },
-});
-
-const Background = styled("div", {
-  height: "600px",
-  width: "100%",
-  position: "relative",
-
-  "@md": {
-    height: "800px",
-  },
-});
+type ParallaxSectionProps = {
+  content: GatsbyTypes.ParallaxSection_contentFragment;
+};
 
 const ParallaxSection: React.FC<ParallaxSectionProps> = ({ content }) => {
   if (!content.primary) return <></>;
@@ -125,11 +78,71 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({ content }) => {
             <TopText>{top_text?.text}</TopText>
           </Flex>
           <Space h={12}></Space>
-          <Html html={title?.html as string}></Html>
+          <Title dangerouslySetInnerHTML={{ __html: title.html }}></Title>
         </Container>
       </Section>
     </ParallaxProvider>
   );
 };
+
+const Section = styled("section", {
+  overflow: "hidden",
+  height: "400px",
+  width: "100%",
+  position: "relative",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  "@md": {
+    height: "600px",
+  },
+});
+
+const Container = styled("div", {
+  position: "absolute",
+  left: "50%",
+  top: "50%",
+  transform: "translate(-50%,-50%)",
+  zIndex: 0,
+  width: "$maxContent",
+  margin: "0 auto",
+  color: "white",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  textAlign: "center",
+});
+
+const Title = styled("h2", {
+  "*": {
+    fontSize: "$heading5",
+    lineHeight: "$heading5",
+
+    "@md": {
+      fontSize: "$heading2",
+      lineHeight: "$heading2",
+    },
+  },
+});
+
+const TopText = styled("div", {
+  fontSize: "$body1",
+  lineHeight: "$body1",
+  "@md": {
+    fontSize: "$subtitle3",
+    lineHeight: "$subtitle3",
+  },
+});
+
+const Background = styled("div", {
+  height: "600px",
+  width: "100%",
+  position: "relative",
+
+  "@md": {
+    height: "800px",
+  },
+});
 
 export default ParallaxSection;

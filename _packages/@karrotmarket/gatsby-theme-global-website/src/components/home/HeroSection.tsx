@@ -1,30 +1,24 @@
-import React from "react";
+import * as React from "react";
 import { graphql } from "gatsby";
 import { getImage } from "gatsby-plugin-image";
-import { styled } from "gatsby-theme-stitches/src/stitches.config";
 
-import { Html } from "../Html";
+import { styled } from "../../gatsby-theme-stitches/stitches.config";
+
 import { Flex } from "../Flex";
 import { Space } from "../Space";
 import AppLink from "../AppLink";
 import Image from "../Image";
 import BackgroundImage from "../BackgroundImage";
-
-type HeroSectionProps = {
-  content: GatsbyTypes.HeroSection_contentFragment;
-  links: GatsbyTypes.DownloadSection_linksFragment;
-};
+import { rem } from "polished";
 
 export const query = graphql`
   fragment HeroSection_content on PrismicGlobalContentsDataMainBodyHeroSection {
     primary {
       title {
         html
-        text
       }
       text {
         html
-        text
       }
       background_color
       background_image {
@@ -61,6 +55,55 @@ export const query = graphql`
   }
 `;
 
+type HeroSectionProps = {
+  content: GatsbyTypes.HeroSection_contentFragment;
+  links: GatsbyTypes.DownloadSection_linksFragment;
+};
+
+const HeroSection: React.FC<HeroSectionProps> = ({ content, links }) => {
+  if (!content.primary || !links) return <></>;
+  const { title, background_image, side_image } = content.primary;
+
+  const bgImage = getImage(
+    background_image?.localFile?.childImageSharp?.gatsbyImageData as any
+  );
+
+  const sideImage = getImage(
+    side_image?.localFile?.childImageSharp?.gatsbyImageData as any
+  );
+
+  return (
+    <Section>
+      <BackgroundImage
+        image={bgImage}
+        objectPosition={{ "@i": "bottom 0px right -70px", "@md": "50% 50%" }}
+      ></BackgroundImage>
+      <Container>
+        <Flex colCenterY>
+          <Title dangerouslySetInnerHTML={{ __html: title?.html }} />
+          <Space h={{ "@i": 0, "@md": 36 }}></Space>
+          <AppLink theme="dark" type="desktop" links={links}></AppLink>
+        </Flex>
+
+        <Flex ai="flex-end">
+          <Image
+            alt="side-image"
+            image={sideImage}
+            width={{
+              "@i": side_image?.thumbnails?.mobile?.dimensions?.width / 2,
+              "@md": side_image?.dimensions?.width / 2,
+            }}
+            height={{
+              "@i": side_image?.thumbnails?.mobile?.dimensions?.height / 2,
+              "@md": side_image?.dimensions?.height / 2,
+            }}
+          ></Image>
+        </Flex>
+      </Container>
+    </Section>
+  );
+};
+
 const Section = styled("section", {
   height: "582px",
   width: "100%",
@@ -87,48 +130,15 @@ const Container = styled("div", {
   },
 });
 
-const HeroSection: React.FC<HeroSectionProps> = ({ content, links }) => {
-  if (!content.primary || !links) return <></>;
-  const { title, background_image, side_image } = content.primary;
-
-  const bgImage = getImage(
-    background_image?.localFile?.childImageSharp?.gatsbyImageData as any
-  );
-
-  const sideImage = getImage(
-    side_image?.localFile?.childImageSharp?.gatsbyImageData as any
-  );
-
-  return (
-    <Section>
-      <BackgroundImage
-        image={bgImage}
-        objectPosition={{ "@i": "bottom 0px right -70px", "@md": "50% 50%" }}
-      ></BackgroundImage>
-      <Container>
-        <Flex colCenterY>
-          <Html html={title?.html} />
-          <Space h={{ "@i": 0, "@md": 36 }}></Space>
-          <AppLink theme="dark" type="desktop" links={links}></AppLink>
-        </Flex>
-
-        <Flex ai="flex-end">
-          <Image
-            alt="side-image"
-            image={sideImage}
-            width={{
-              "@i": side_image?.thumbnails?.mobile?.dimensions?.width / 2,
-              "@md": side_image?.dimensions?.width / 2,
-            }}
-            height={{
-              "@i": side_image?.thumbnails?.mobile?.dimensions?.height / 2,
-              "@md": side_image?.dimensions?.height / 2,
-            }}
-          ></Image>
-        </Flex>
-      </Container>
-    </Section>
-  );
-};
+const Title = styled("div", {
+  "*": {
+    fontSize: rem(32),
+    lineHeight: "120%",
+    "@md": {
+      fontSize: "$heading1",
+      lineHeight: "$heading1",
+    },
+  },
+});
 
 export default HeroSection;

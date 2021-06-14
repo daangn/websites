@@ -1,7 +1,7 @@
-import React from "react";
+import * as React from "react";
+
 import { rem } from "polished";
 import { graphql } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { styled } from "../../gatsby-theme-stitches/stitches.config";
 
 type DetailsListProps = {
@@ -16,27 +16,6 @@ export const query = graphql`
     }
   }
 `;
-
-const Section = styled("section", {});
-
-const Grid = styled("div", {
-  display: "grid",
-  gridTemplateColumns: "max-content 1fr",
-  gridColumnGap: rem(24),
-  gridRowGap: rem(2),
-  marginTop: rem(28),
-  "*": {
-    fontSize: "$body1",
-    fontFamily: "$default",
-  },
-});
-
-const Label = styled("div", {
-  color: "$gray900",
-});
-const Text = styled("div", {
-  color: "$gray600",
-});
 
 const DetailsList: React.FC<DetailsListProps> = ({ content }) => {
   if (!content.items) return <></>;
@@ -54,5 +33,27 @@ const DetailsList: React.FC<DetailsListProps> = ({ content }) => {
     </Section>
   );
 };
+
+const Section = styled("section", {});
+
+const Grid = styled("div", {
+  display: "grid",
+  gridTemplateColumns: "max-content 1fr",
+  gridColumnGap: rem(24),
+  gridRowGap: rem(2),
+  marginTop: rem(28),
+
+  "*": {
+    fontSize: "$body1",
+    fontFamily: "$system",
+  },
+});
+
+const Label = styled("div", {
+  color: "$gray900",
+});
+const Text = styled("div", {
+  color: "$gray600",
+});
 
 export default DetailsList;

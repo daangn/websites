@@ -1,8 +1,9 @@
 import * as React from "react";
+import { em } from "polished";
+import { motion } from "framer-motion";
 
 import { styled } from "../../../gatsby-theme-stitches/stitches.config";
-import { motion } from "framer-motion";
-import { em } from "polished";
+
 import { messageMotionOption } from "./_config";
 
 const Pin = () => (
@@ -25,49 +26,6 @@ const Pin = () => (
     />
   </svg>
 );
-
-const Container = styled("div", {
-  border: `${em(1)} solid $gray200`,
-  borderRadius: em(16),
-  overflow: "hidden",
-  marginBottom: em(14),
-  position: "relative",
-});
-const Image = styled("img", {
-  width: em(226),
-  height: em(130),
-  verticalAlign: "middle",
-  objectFit: "cover",
-});
-const Button = styled("div", {
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  height: em(42),
-  width: "100%",
-  fontSize: em(16),
-  color: "$gray700",
-});
-
-const Wrapper = styled(motion.div, {
-  display: "flex",
-  variants: {
-    userType: {
-      sender: {
-        justifyContent: "flex-end",
-      },
-      receiver: {
-        justifyContent: "flex-start",
-      },
-    },
-  },
-});
-const CenterContainer = styled("div", {
-  position: "absolute",
-  left: "50%",
-  top: "40%",
-  transform: "translate(-50%,-50%)",
-});
 
 interface LocationMessageProps {
   buttonText: string;
@@ -92,5 +50,49 @@ const LocationMessage: React.FC<LocationMessageProps> = ({
     </Wrapper>
   );
 };
+
+const Wrapper = styled(motion.div, {
+  display: "flex",
+  variants: {
+    userType: {
+      sender: {
+        justifyContent: "flex-end",
+      },
+      receiver: {
+        justifyContent: "flex-start",
+      },
+    },
+  },
+});
+
+const Container = styled("div", {
+  border: `${em(1)} solid $gray200`,
+  borderRadius: em(16),
+  overflow: "hidden",
+  marginBottom: em(14),
+  position: "relative",
+});
+const Image = styled("img", {
+  width: em(226),
+  height: em(130),
+  verticalAlign: "middle",
+  objectFit: "cover",
+});
+const Button = styled("div", {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  height: em(42),
+  width: "100%",
+  fontSize: em(16),
+  color: "$gray700",
+});
+
+const CenterContainer = styled("div", {
+  position: "absolute",
+  left: "50%",
+  top: "40%",
+  transform: "translate(-50%,-50%)",
+});
 
 export default LocationMessage;

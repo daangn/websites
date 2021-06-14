@@ -4,17 +4,17 @@ import { rem } from "polished";
 import { graphql, PageProps } from "gatsby";
 import { GatsbySeo } from "gatsby-plugin-next-seo";
 import { mapAbstractType } from "@cometjs/graphql-utils";
-import { styled } from "gatsby-theme-stitches/src/stitches.config";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { withPrismicPreview } from "gatsby-plugin-prismic-previews";
 
-import { Html } from "../Html";
+import { styled } from "../../gatsby-theme-stitches/stitches.config";
+
 import { Space } from "../Space";
-import _Layout from "../Layout";
+import Layout from "../Layout";
+import DetailsList from "../about/DetailsList";
 import SubtitleAndText from "../about/SubtitleAndText";
 import SubtitleAndLinks from "../about/SubtitleAndLinks";
 import SubtitleAndImages from "../about/SubtitleAndImages";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import { withPrismicPreview } from "gatsby-plugin-prismic-previews";
-import DetailsList from "../about/DetailsList";
 
 type AboutPageProps = PageProps<GatsbyTypes.AboutPageQueryQuery>;
 
@@ -32,7 +32,7 @@ export const query = graphql`
         about_opengraph_image_link
 
         about_title {
-          html
+          text
         }
         about_background_image {
           localFile {
@@ -53,46 +53,6 @@ export const query = graphql`
   }
 `;
 
-const BackgroundImage = styled(GatsbyImage, {
-  height: "208px",
-  width: "100%",
-  backgroundRepeat: "no-repeat",
-  backgroundSize: "cover",
-  backgroundPosition: "bottom 0 right 65%",
-  "@md": {
-    height: "440px",
-    backgroundPosition: "center",
-  },
-});
-
-const Container = styled("div", {
-  height: "100%",
-  margin: "0 auto",
-  display: "flex",
-  flexDirection: "column",
-  padding: `0 ${rem(24)}`,
-
-  "@md": {
-    width: rem(668),
-  },
-});
-
-const Wrapper = styled(_Layout, {
-  h3: {
-    fontSize: "$heading4",
-    "@md": {
-      fontSize: "$heading3",
-      lineHeight: "120%",
-    },
-  },
-  h5: {
-    fontSize: "$heading5",
-    "@md": {
-      fontSize: "$heading5",
-    },
-  },
-});
-
 const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
   if (!data.prismicGlobalContents?.data?.about_body) throw new Error("No data");
 
@@ -109,8 +69,10 @@ const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
     about_background_image?.localFile?.childImageSharp?.gatsbyImageData as any
   );
 
+  console.log(about_title.html);
+
   return (
-    <Wrapper id="about-page" data={data.prismicSiteNavigation.data}>
+    <Layout id="about-page" data={data.prismicSiteNavigation.data}>
       <GatsbySeo
         title={about_page_title}
         description={about_page_description}
@@ -128,11 +90,8 @@ const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
       />
       <BackgroundImage image={backgroundImage}></BackgroundImage>
       <Container>
-        <Html
-          html={about_title?.html}
-          fontSize={{ "@i": "$heading4", "@md": "$heading3" }}
-          marginTop={{ "@i": rem(36), "@md": rem(60) }}
-        ></Html>
+        <Title>{about_title.text}</Title>
+
         {about_body.map((content: any, i) =>
           mapAbstractType(content, {
             PrismicGlobalContentsDataAboutBodySubtitleAndText: (content) => (
@@ -151,8 +110,44 @@ const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
         )}
       </Container>
       <Space h={100}></Space>
-    </Wrapper>
+    </Layout>
   );
 };
+
+const BackgroundImage = styled(GatsbyImage, {
+  height: "208px",
+  width: "100%",
+  backgroundRepeat: "no-repeat",
+  backgroundSize: "cover",
+  backgroundPosition: "bottom 0 right 65%",
+
+  "@md": {
+    height: "440px",
+    backgroundPosition: "center",
+  },
+});
+
+const Container = styled("div", {
+  height: "100%",
+  margin: "0 auto",
+  display: "flex",
+  flexDirection: "column",
+  padding: `0 ${rem(24)}`,
+
+  "@md": {
+    width: rem(668),
+  },
+});
+
+const Title = styled("h1", {
+  fontSize: "$heading4",
+  lineHeight: "$heading4",
+  marginTop: rem(36),
+  "@md": {
+    fontSize: "$heading3",
+    lineHeight: "$heading3",
+    marginTop: rem(60),
+  },
+});
 
 export default withPrismicPreview(AboutPage, []);

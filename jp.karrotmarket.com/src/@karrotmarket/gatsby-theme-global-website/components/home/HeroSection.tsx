@@ -4,7 +4,6 @@ import { getImage } from "gatsby-plugin-image";
 import { styled } from "gatsby-theme-stitches/src/stitches.config";
 
 import { Flex } from "@karrotmarket/gatsby-theme-global-website/src/components/Flex";
-import { Space } from "@karrotmarket/gatsby-theme-global-website/src/components/Space";
 import AppLink from "@karrotmarket/gatsby-theme-global-website/src/components/AppLink";
 import Image from "@karrotmarket/gatsby-theme-global-website/src/components/Image";
 
@@ -13,9 +12,37 @@ type HeroSectionProps = {
   links: GatsbyTypes.DownloadSection_linksFragment;
 };
 
-const Section = styled("section", {
-  // height: "582px",
+const HeroSection: React.FC<HeroSectionProps> = ({ content, links }) => {
+  if (!content.primary || !links) return <></>;
+  const { title, text, background_color, side_image } = content.primary;
 
+  const sideImage = getImage(
+    side_image?.localFile?.childImageSharp?.gatsbyImageData as any
+  );
+
+  return (
+    <Section css={{ background: background_color }}>
+      <Container>
+        <TextContainer>
+          <Title dangerouslySetInnerHTML={{ __html: title.html }}></Title>
+          <Text dangerouslySetInnerHTML={{ __html: text.html }}></Text>
+          <AppLink
+            theme="white"
+            type="desktop"
+            links={links}
+            inverted
+          ></AppLink>
+        </TextContainer>
+
+        <Flex ai="center" flex={1}>
+          <Image image={sideImage} alt={side_image?.alt}></Image>
+        </Flex>
+      </Container>
+    </Section>
+  );
+};
+
+const Section = styled("section", {
   height: "auto",
   width: "100%",
   position: "relative",
@@ -74,7 +101,6 @@ const Title = styled("h2", {
 
 const Text = styled("div", {
   marginBottom: rem(24),
-  // marginRight: rem(70),
   "*": {
     color: "#4D5159",
     letterSpacing: "-0.055em",
@@ -102,35 +128,5 @@ const TextContainer = styled("div", {
     maxWidth: "50%",
   },
 });
-
-const HeroSection: React.FC<HeroSectionProps> = ({ content, links }) => {
-  if (!content.primary || !links) return <></>;
-  const { title, text, background_color, side_image } = content.primary;
-
-  const sideImage = getImage(
-    side_image?.localFile?.childImageSharp?.gatsbyImageData as any
-  );
-
-  return (
-    <Section css={{ background: background_color }}>
-      <Container>
-        <TextContainer>
-          <Title dangerouslySetInnerHTML={{ __html: title.html }}></Title>
-          <Text dangerouslySetInnerHTML={{ __html: text.html }}></Text>
-          <AppLink
-            theme="white"
-            type="desktop"
-            links={links}
-            inverted
-          ></AppLink>
-        </TextContainer>
-
-        <Flex ai="center" flex={1}>
-          <Image image={sideImage} alt={side_image?.alt}></Image>
-        </Flex>
-      </Container>
-    </Section>
-  );
-};
 
 export default HeroSection;

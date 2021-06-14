@@ -34,7 +34,7 @@ export const { styled, css, global, getCssString, theme, media, utils } =
       fonts: {
         noto: '"Noto Sans JP" sans-serif',
         gilroy: "Gilroy",
-        default:
+        system:
           '-apple-system, BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"',
       },
       fontSizes: {
@@ -50,6 +50,20 @@ export const { styled, css, global, getCssString, theme, media, utils } =
         body2: rem(14),
         caption1: rem(13),
         caption2: rem(12),
+      },
+      lineHeights: {
+        heading1: "115%",
+        heading2: "115%",
+        heading3: "120%",
+        heading4: "120%",
+        heading5: "120%",
+        subtitle1: "120%",
+        subtitle2: "120%",
+        subtitle3: "140%",
+        body1: "140%",
+        body2: "140%",
+        caption1: "140%",
+        caption2: "140%",
       },
       sizes: {
         maxContent: rem(1150),

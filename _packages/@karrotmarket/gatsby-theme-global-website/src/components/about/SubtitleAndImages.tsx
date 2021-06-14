@@ -1,23 +1,17 @@
-import React from "react";
-import { rem } from "polished";
+import * as React from "react";
+
 import { graphql } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { styled } from "../../gatsby-theme-stitches/stitches.config";
 
 import { Grid } from "../Grid";
-import { Html } from "../Html";
 import { Space } from "../Space";
 import Image from "../Image";
-
-type SubtitleAndImagesProps = {
-  content: GatsbyTypes.SubtitleAndImages_contentFragment;
-};
 
 export const query = graphql`
   fragment SubtitleAndImages_content on PrismicGlobalContentsDataAboutBodySubtitleAndImages {
     primary {
       subtitle {
-        html
+        text
       }
     }
     items {
@@ -47,7 +41,9 @@ export const query = graphql`
   }
 `;
 
-const Section = styled("section", {});
+type SubtitleAndImagesProps = {
+  content: GatsbyTypes.SubtitleAndImages_contentFragment;
+};
 
 const SubtitleAndImages: React.FC<SubtitleAndImagesProps> = ({ content }) => {
   if (!content.primary || !content.items) throw new Error("No data");
@@ -58,7 +54,7 @@ const SubtitleAndImages: React.FC<SubtitleAndImagesProps> = ({ content }) => {
   return (
     <Section>
       <Space h={72}></Space>
-      <Html html={subtitle?.html} fontSize={"$heading5"}></Html>
+      <Title>{subtitle.text}</Title>
       <Space h={14}></Space>
       <Grid
         gridTemplateColumns={{
@@ -82,5 +78,12 @@ const SubtitleAndImages: React.FC<SubtitleAndImagesProps> = ({ content }) => {
     </Section>
   );
 };
+
+const Section = styled("section", {});
+
+const Title = styled("h2", {
+  fontSize: "$heading5",
+  lineHeight: "$heading5",
+});
 
 export default SubtitleAndImages;

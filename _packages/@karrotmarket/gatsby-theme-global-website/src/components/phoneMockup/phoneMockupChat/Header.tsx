@@ -1,8 +1,24 @@
 import * as React from "react";
+import { em } from "polished";
 
 import { Flex } from "../../Flex";
 import { styled } from "../../../gatsby-theme-stitches/stitches.config";
-import { em } from "polished";
+
+interface HeaderProps {
+  name: string;
+  temperature: number;
+  info: string;
+}
+
+const Header: React.FC<HeaderProps> = ({ name, temperature, info }) => (
+  <Flex column>
+    <Flex rowCenterY>
+      <UserName>{name}</UserName>
+      <UserTemperature>{temperature}</UserTemperature>
+    </Flex>
+    <Info>{info}</Info>
+  </Flex>
+);
 
 const UserName = styled("div", {
   color: "$gray900",
@@ -22,21 +38,5 @@ const Info = styled("div", {
   color: "$gray600",
   fontSize: em(12.25),
 });
-
-interface HeaderProps {
-  name: string;
-  temperature: number;
-  info: string;
-}
-
-const Header: React.FC<HeaderProps> = ({ name, temperature, info }) => (
-  <Flex column>
-    <Flex rowCenterY>
-      <UserName>{name}</UserName>
-      <UserTemperature>{temperature}</UserTemperature>
-    </Flex>
-    <Info>{info}</Info>
-  </Flex>
-);
 
 export default Header;
