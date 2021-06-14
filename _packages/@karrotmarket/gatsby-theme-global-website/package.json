@@ -9,21 +9,18 @@
     "prepack": "yarn build"
   },
   "peerDependencies": {
-    "@karrotmarket/design-token": "prerelease || ^1.0.0",
-    "@karrotmarket/react-stitches": "prerelease || ^1.0.0",
+    "@karrotmarket/design-token": "*",
+    "@karrotmarket/react-stitches": "*",
     "@stitches/react": "^0.1.0",
     "gatsby": "^2.25.0 || ^3.0.0",
-    "gatsby-plugin-prismic-previews": "beta",
-    "gatsby-source-prismic": "beta",
-    "gatsby-theme-prismic": "*",
     "polished": "^4.0.0",
-    "react": "^16.8.0 || ^17.0.0 || experimental",
-    "react-dom": "^16.8.0 || ^17.0.0 || experimental"
+    "react": "*",
+    "react-dom": "*"
   },
   "dependencies": {
     "@cometjs/graphql-utils": "^1.1.0",
-    "@karrotmarket/gatsby-theme-prismic": "*",
-    "@karrotmarket/gatsby-theme-website": "*",
+    "@karrotmarket/gatsby-theme-prismic": "workspace:_packages/@karrotmarket/gatsby-theme-prismic",
+    "@karrotmarket/gatsby-theme-website": "workspace:_packages/@karrotmarket/gatsby-theme-website",
     "@reach/router": "^1.3.4",
     "@stitches/react": "^0.1.9",
     "@svgr/webpack": "^5.5.0",
@@ -32,7 +29,7 @@
     "framer-motion": "^4.1.17",
     "gatsby-plugin-image": "^1.6.0",
     "gatsby-plugin-prismic-previews": "^4.0.0-beta.13",
-    "gatsby-plugin-prismic-schema": "*",
+    "gatsby-plugin-prismic-schema": "workspace:_packages/gatsby-plugin-prismic-schema",
     "gatsby-plugin-react-helmet-async": "^1.2.0",
     "gatsby-plugin-sharp": "^3.6.0",
     "gatsby-plugin-svgr": "^3.0.0-beta.0",
@@ -48,8 +45,10 @@
   "devDependencies": {
     "@babel/cli": "^7.14.3",
     "@babel/core": "^7.14.3",
+    "@babel/plugin-transform-typescript": "^7.14.5",
     "@karrotmarket/design-token": "^0.1.8-0",
     "@karrotmarket/react-stitches": "^0.1.1-0",
+    "@types/node": "^15.12.2",
     "babel-preset-gatsby-package": "^1.6.0",
     "concurrently": "^6.2.0",
     "gatsby": "^3.7.1",

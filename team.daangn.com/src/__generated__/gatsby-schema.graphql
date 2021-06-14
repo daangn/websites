@@ -6213,12 +6213,14 @@ input SitePluginPluginOptionsFilterInput {
   emitSchema: SitePluginPluginOptionsEmitSchemaFilterInput
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocumentsFilterInput
   repositoryName: StringQueryOperatorInput
-  toolbar: StringQueryOperatorInput
-  promptForAccessToken: BooleanQueryOperatorInput
+  schemas: SitePluginPluginOptionsSchemasFilterInput
   apiEndpoint: StringQueryOperatorInput
+  customTypesApiEndpoint: StringQueryOperatorInput
   lang: StringQueryOperatorInput
   imageImgixParams: SitePluginPluginOptionsImageImgixParamsFilterInput
   imagePlaceholderImgixParams: SitePluginPluginOptionsImagePlaceholderImgixParamsFilterInput
+  toolbar: StringQueryOperatorInput
+  promptForAccessToken: BooleanQueryOperatorInput
   boardToken: StringQueryOperatorInput
   includeContent: BooleanQueryOperatorInput
   path: StringQueryOperatorInput
@@ -6226,8 +6228,6 @@ input SitePluginPluginOptionsFilterInput {
   allExtensions: BooleanQueryOperatorInput
   isTSX: BooleanQueryOperatorInput
   jsxPragma: StringQueryOperatorInput
-  schemas: SitePluginPluginOptionsSchemasFilterInput
-  customTypesApiEndpoint: StringQueryOperatorInput
 }
 
 input SitePluginPluginOptionsDefaultsFilterInput {
@@ -6249,17 +6249,6 @@ input SitePluginPluginOptionsEmitSchemaFilterInput {
 
 input SitePluginPluginOptionsEmitPluginDocumentsFilterInput {
   src___generated___gatsby_plugin_documents_graphql: BooleanQueryOperatorInput
-}
-
-input SitePluginPluginOptionsImageImgixParamsFilterInput {
-  auto: StringQueryOperatorInput
-  fit: StringQueryOperatorInput
-  q: IntQueryOperatorInput
-}
-
-input SitePluginPluginOptionsImagePlaceholderImgixParamsFilterInput {
-  w: IntQueryOperatorInput
-  blur: IntQueryOperatorInput
 }
 
 input SitePluginPluginOptionsSchemasFilterInput {
@@ -8855,6 +8844,17 @@ input SitePluginPluginOptionsSchemasTerms_and_conditionsMainContentConfigFilterI
   placeholder: StringQueryOperatorInput
 }
 
+input SitePluginPluginOptionsImageImgixParamsFilterInput {
+  auto: StringQueryOperatorInput
+  fit: StringQueryOperatorInput
+  q: IntQueryOperatorInput
+}
+
+input SitePluginPluginOptionsImagePlaceholderImgixParamsFilterInput {
+  w: IntQueryOperatorInput
+  blur: IntQueryOperatorInput
+}
+
 input SitePluginPackageJsonFilterInput {
   name: StringQueryOperatorInput
   description: StringQueryOperatorInput
@@ -8991,15 +8991,16 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_introspection_json
   pluginCreator___pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
   pluginCreator___pluginOptions___repositoryName
-  pluginCreator___pluginOptions___toolbar
-  pluginCreator___pluginOptions___promptForAccessToken
   pluginCreator___pluginOptions___apiEndpoint
+  pluginCreator___pluginOptions___customTypesApiEndpoint
   pluginCreator___pluginOptions___lang
   pluginCreator___pluginOptions___imageImgixParams___auto
   pluginCreator___pluginOptions___imageImgixParams___fit
   pluginCreator___pluginOptions___imageImgixParams___q
   pluginCreator___pluginOptions___imagePlaceholderImgixParams___w
   pluginCreator___pluginOptions___imagePlaceholderImgixParams___blur
+  pluginCreator___pluginOptions___toolbar
+  pluginCreator___pluginOptions___promptForAccessToken
   pluginCreator___pluginOptions___boardToken
   pluginCreator___pluginOptions___includeContent
   pluginCreator___pluginOptions___path
@@ -9007,7 +9008,6 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___allExtensions
   pluginCreator___pluginOptions___isTSX
   pluginCreator___pluginOptions___jsxPragma
-  pluginCreator___pluginOptions___customTypesApiEndpoint
   pluginCreator___nodeAPIs
   pluginCreator___browserAPIs
   pluginCreator___ssrAPIs
@@ -12344,15 +12344,16 @@ enum SitePluginFieldsEnum {
   pluginOptions___emitSchema___src___generated___gatsby_introspection_json
   pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
   pluginOptions___repositoryName
-  pluginOptions___toolbar
-  pluginOptions___promptForAccessToken
   pluginOptions___apiEndpoint
+  pluginOptions___customTypesApiEndpoint
   pluginOptions___lang
   pluginOptions___imageImgixParams___auto
   pluginOptions___imageImgixParams___fit
   pluginOptions___imageImgixParams___q
   pluginOptions___imagePlaceholderImgixParams___w
   pluginOptions___imagePlaceholderImgixParams___blur
+  pluginOptions___toolbar
+  pluginOptions___promptForAccessToken
   pluginOptions___boardToken
   pluginOptions___includeContent
   pluginOptions___path
@@ -12360,7 +12361,6 @@ enum SitePluginFieldsEnum {
   pluginOptions___allExtensions
   pluginOptions___isTSX
   pluginOptions___jsxPragma
-  pluginOptions___customTypesApiEndpoint
   nodeAPIs
   browserAPIs
   ssrAPIs
@@ -12563,12 +12563,14 @@ type SitePluginPluginOptions {
   emitSchema: SitePluginPluginOptionsEmitSchema
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocuments
   repositoryName: String
-  toolbar: String
-  promptForAccessToken: Boolean
+  schemas: SitePluginPluginOptionsSchemas
   apiEndpoint: String
+  customTypesApiEndpoint: String
   lang: String
   imageImgixParams: SitePluginPluginOptionsImageImgixParams
   imagePlaceholderImgixParams: SitePluginPluginOptionsImagePlaceholderImgixParams
+  toolbar: String
+  promptForAccessToken: Boolean
   boardToken: String
   includeContent: Boolean
   path: String
@@ -12576,8 +12578,6 @@ type SitePluginPluginOptions {
   allExtensions: Boolean
   isTSX: Boolean
   jsxPragma: String
-  schemas: SitePluginPluginOptionsSchemas
-  customTypesApiEndpoint: String
 }
 
 type SitePluginPluginOptionsDefaults {
@@ -12599,17 +12599,6 @@ type SitePluginPluginOptionsEmitSchema {
 
 type SitePluginPluginOptionsEmitPluginDocuments {
   src___generated___gatsby_plugin_documents_graphql: Boolean
-}
-
-type SitePluginPluginOptionsImageImgixParams {
-  auto: String
-  fit: String
-  q: Int
-}
-
-type SitePluginPluginOptionsImagePlaceholderImgixParams {
-  w: Int
-  blur: Int
 }
 
 type SitePluginPluginOptionsSchemas {
@@ -15159,6 +15148,17 @@ type SitePluginPluginOptionsSchemasTerms_and_conditionsMainContentConfig {
   multi: String
   label: String
   placeholder: String
+}
+
+type SitePluginPluginOptionsImageImgixParams {
+  auto: String
+  fit: String
+  q: Int
+}
+
+type SitePluginPluginOptionsImagePlaceholderImgixParams {
+  w: Int
+  blur: Int
 }
 
 type SitePluginPackageJson {
