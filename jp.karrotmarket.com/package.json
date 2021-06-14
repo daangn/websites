@@ -17,7 +17,7 @@
     "@karrotmarket/gatsby-theme-global-website": "*",
     "@karrotmarket/react-stitches": "^0.1.1-0",
     "framer-motion": "^4.1.17",
-    "gatsby": "^3.5.0",
+    "gatsby": "^3.7.1",
     "gatsby-plugin-concurrent-mode": "^0.2.1",
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "polished": "^4.1.3",

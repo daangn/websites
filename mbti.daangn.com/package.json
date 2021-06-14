@@ -38,7 +38,7 @@
     "@types/lodash.throttle": "^4.1.6",
     "axios": "^0.21.1",
     "copy-text-to-clipboard": "^3.0.1",
-    "gatsby": "^3.6.2",
+    "gatsby": "^3.7.1",
     "gatsby-plugin-advanced-sitemap": "^1.6.0",
     "gatsby-plugin-emotion": "^6.5.0",
     "gatsby-plugin-gatsby-cloud": "^2.4.1",
