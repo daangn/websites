@@ -16,9 +16,7 @@
   "resolutions": {
     "react": "0.0.0-experimental-44cdfd6b7",
     "react-dom": "0.0.0-experimental-44cdfd6b7",
-    "webpack": "5.36.2",
-    "@emotion/react": "^11.1.5",
-    "@emotion/styled": "^11.3.0"
+    "webpack": "5.36.2"
   },
   "scripts": {
     "postinstall": "yarn init:plugins && yarn init:sites",
@@ -26,7 +24,7 @@
     "init:sites": "ultra --recursive prepare-gatsby"
   },
   "devDependencies": {
-    "@types/node": "^14.14.37",
+    "@types/node": "^15.12.2",
     "@yarnpkg/pnpify": "^3.0.0-rc.6",
     "typescript": "^4.3.2",
     "ultra-runner": "^3.10.5"
