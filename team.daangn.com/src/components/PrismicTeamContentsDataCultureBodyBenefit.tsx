@@ -17,6 +17,7 @@ export const query = graphql`
     }
     items {
       subtitle
+      subtext
       description {
         html
       }
@@ -90,9 +91,23 @@ const BenefitGroupTitle = styled('h3', {
   },
 });
 
-const Benefits = styled('div', {
+const Benefit = styled('div', {
+  display: 'grid',
+  gap: rem(8),
+
+  '@md': {
+    gap: rem(24),
+  },
+});
+
+const BenefitSummary = styled('p', {
+  typography: '$body2',
   color: '$gray700',
-  lineHeight: 1.5,
+});
+
+const BenefitDetail = styled('div', {
+  typography: '$body2',
+  color: '$gray700',
   '& > ul': {
     paddingLeft: rem(24),
     display: 'grid',
@@ -117,9 +132,14 @@ const PrismicTeamContentsDataCultureBodyBenefit: React.FC<PrismicTeamContentsDat
             <BenefitGroupTitle data-num={(i + 1).toString().padStart(2, '0')}>
               {item.subtitle}
             </BenefitGroupTitle>
-            <Benefits
-              dangerouslySetInnerHTML={{ __html: item.description?.html || '' }}
-            />
+            <Benefit>
+              <BenefitSummary>
+                {item.subtext}
+              </BenefitSummary>
+              <BenefitDetail
+                dangerouslySetInnerHTML={{ __html: item.description?.html || '' }}
+              />
+            </Benefit>
           </BenefitGroup>
         ))}
       </BenefitGroupList>

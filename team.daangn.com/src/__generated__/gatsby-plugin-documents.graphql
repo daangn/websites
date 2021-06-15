@@ -106,12 +106,6 @@ fragment GatsbyImageSharpFluid_withWebp_noBase64 on ImageSharpFluid {
   srcSetWebp
   sizes
 }
-fragment SocialServiceProfile_profile on PrismicSiteNavigationDataSnsProfiles {
-  service
-  link {
-    url
-  }
-}
 fragment Footer_navigationData on PrismicSiteNavigationDataType {
   copyright {
     html
@@ -127,6 +121,26 @@ fragment Footer_navigationData on PrismicSiteNavigationDataType {
     ...SocialServiceProfile_profile
   }
 }
+fragment SocialServiceProfile_profile on PrismicSiteNavigationDataSnsProfiles {
+  service
+  link {
+    url
+  }
+}
+fragment Header_navigationData on PrismicSiteNavigationDataType {
+  ...NavigationMenu_data
+}
+fragment NavigationMenu_data on PrismicSiteNavigationDataType {
+  header_entries {
+    link {
+      url
+    }
+    display_text
+  }
+  sns_profiles {
+    ...SocialServiceProfile_profile
+  }
+}
 query UseSiteMetadataStatic {
   site {
     siteMetadata {
@@ -134,8 +148,36 @@ query UseSiteMetadataStatic {
     }
   }
 }
-fragment Header_navigationData on PrismicSiteNavigationDataType {
-  ...NavigationMenu_data
+fragment GatsbyPrismicImageFixed on ImgixFixed {
+  ...GatsbyImgixFixed
+}
+
+fragment GatsbyPrismicImageFixed_noBase64 on ImgixFixed {
+  ...GatsbyImgixFixed_noBase64
+}
+
+fragment GatsbyPrismicImageFixed_withWebp on ImgixFixed {
+  ...GatsbyImgixFixed
+}
+
+fragment GatsbyPrismicImageFixed_withWebp_noBase64 on ImgixFixed {
+  ...GatsbyImgixFixed_noBase64
+}
+
+fragment GatsbyPrismicImageFluid on ImgixFluid {
+  ...GatsbyImgixFluid
+}
+
+fragment GatsbyPrismicImageFluid_noBase64 on ImgixFluid {
+  ...GatsbyImgixFluid_noBase64
+}
+
+fragment GatsbyPrismicImageFluid_withWebp on ImgixFluid {
+  ...GatsbyImgixFluid
+}
+
+fragment GatsbyPrismicImageFluid_withWebp_noBase64 on ImgixFluid {
+  ...GatsbyImgixFluid_noBase64
 }
 fragment GatsbyImgixFluid on ImgixFluid {
   aspectRatio
@@ -173,46 +215,4 @@ fragment GatsbyImgixFixed_noBase64 on ImgixFixed {
   srcSet
   srcWebp
   srcSetWebp
-}
-fragment NavigationMenu_data on PrismicSiteNavigationDataType {
-  header_entries {
-    link {
-      url
-    }
-    display_text
-  }
-  sns_profiles {
-    ...SocialServiceProfile_profile
-  }
-}
-fragment GatsbyPrismicImageFixed on ImgixFixed {
-  ...GatsbyImgixFixed
-}
-
-fragment GatsbyPrismicImageFixed_noBase64 on ImgixFixed {
-  ...GatsbyImgixFixed_noBase64
-}
-
-fragment GatsbyPrismicImageFixed_withWebp on ImgixFixed {
-  ...GatsbyImgixFixed
-}
-
-fragment GatsbyPrismicImageFixed_withWebp_noBase64 on ImgixFixed {
-  ...GatsbyImgixFixed_noBase64
-}
-
-fragment GatsbyPrismicImageFluid on ImgixFluid {
-  ...GatsbyImgixFluid
-}
-
-fragment GatsbyPrismicImageFluid_noBase64 on ImgixFluid {
-  ...GatsbyImgixFluid_noBase64
-}
-
-fragment GatsbyPrismicImageFluid_withWebp on ImgixFluid {
-  ...GatsbyImgixFluid
-}
-
-fragment GatsbyPrismicImageFluid_withWebp_noBase64 on ImgixFluid {
-  ...GatsbyImgixFluid_noBase64
 }

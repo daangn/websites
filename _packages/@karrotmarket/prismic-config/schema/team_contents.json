@@ -570,7 +570,13 @@
               "subtitle" : {
                 "type" : "Text",
                 "config" : {
-                  "label" : "서브타이틀"
+                  "label" : "그룹 제목"
+                }
+              },
+              "subtext" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "설명"
                 }
               },
               "description" : {
