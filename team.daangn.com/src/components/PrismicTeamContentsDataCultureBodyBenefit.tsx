@@ -63,11 +63,13 @@ const BenefitGroupList = styled('ol', {
 
 const BenefitGroup = styled('li', {
   display: 'grid',
+  gridTemplateRows: 'min-content',
   gap: rem(24),
 });
 
 const BenefitGroupTitle = styled('h3', {
   display: 'inline-flex',
+  alignItems: 'flex-start',
   typography: '$subtitle3',
 
   '@md': {
@@ -78,8 +80,9 @@ const BenefitGroupTitle = styled('h3', {
     content: 'attr(data-num)',
     color: '$carrot500',
     fontSize: '0.8em',
+    lineHeight: 1,
     marginRight: rem(16),
-    transform: 'translateY(10%)',
+    transform: 'translateY(50%)',
 
     '@md': {
       fontSize: '0.6em',
