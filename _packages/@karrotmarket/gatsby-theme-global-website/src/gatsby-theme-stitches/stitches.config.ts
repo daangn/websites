@@ -192,6 +192,9 @@ export const { styled, css, global, getCssString, theme, media, utils } =
         flexDirection: "column",
         justifyContent: "center",
       }),
+      scale: (_config) => (value: number) => ({
+        transform: `scale(${value})`,
+      }),
 
       contentArea: (_config) => (value: boolean) =>
         value

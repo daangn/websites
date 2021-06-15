@@ -28,6 +28,7 @@ const Footer = styled(_Footer, {
     "section ul:nth-child(2) a": {
       fontSize: rem(18),
     },
+    minWidth: rem(1230),
   },
 });
 

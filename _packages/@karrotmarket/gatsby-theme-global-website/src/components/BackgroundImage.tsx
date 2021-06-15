@@ -12,6 +12,7 @@ interface TBackgroundImage {
   width?: string | number | MediaTypeMap<string | number>;
   height?: string | number | MediaTypeMap<string | number>;
   objectPosition?: string | MediaTypeMap<string>;
+  scale?: number | MediaTypeMap<string>;
 }
 
 const Wrapper = styled("div", {

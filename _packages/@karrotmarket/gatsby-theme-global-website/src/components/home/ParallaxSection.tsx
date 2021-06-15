@@ -2,15 +2,21 @@ import * as React from "react";
 
 import { graphql } from "gatsby";
 import { getImage } from "gatsby-plugin-image";
-import { Parallax, ParallaxProvider } from "react-scroll-parallax";
+import {
+  Parallax,
+  ParallaxBanner,
+  ParallaxProvider,
+} from "react-scroll-parallax";
 
 import { styled } from "../../gatsby-theme-stitches/stitches.config";
 
 import { Flex } from "../Flex";
 import { Space } from "../Space";
 import BackgroundImage from "../BackgroundImage";
+import Image from "../Image";
 
 import { ReactComponent as KarrotIcon } from "../../icons/karrot.svg";
+import { rem } from "polished";
 
 type ParallaxIconType = "Karrot";
 const ParallaxIcon: { [key in ParallaxIconType]: React.FC } = {
@@ -55,31 +61,41 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({ content }) => {
   return (
     <ParallaxProvider>
       <Section>
-        <Parallax
-          y={[-25, 25]}
-          styleInner={{ height: "100%" }}
-          styleOuter={{ width: "100%" }}
+        <ParallaxBanner
+          style={{ height: "100%" }}
+          layers={[
+            {
+              children: (
+                <Background>
+                  <BackgroundImage
+                    image={bgImage}
+                    objectPosition={{
+                      "@i": "bottom 50% left 50%",
+                      "@sm": "bottom 50% left 50%",
+                      "@md": "bottom 50% left 50%",
+                    }}
+                    height={{
+                      "@i": "75%!important",
+                      "@md": "100%!important",
+                    }}
+                  ></BackgroundImage>
+                </Background>
+              ),
+              amount: 0.1,
+              expanded: true,
+            },
+          ]}
         >
-          <Background>
-            <BackgroundImage
-              image={bgImage}
-              objectPosition={{
-                "@i": "bottom 50% left 45%",
-                "@sm": "bottom 30% left 50%",
-                "@md": "bottom 20% left 50%",
-              }}
-            ></BackgroundImage>
-          </Background>
-        </Parallax>
-        <Container>
-          <Flex rowCenterY>
-            <TopIcon></TopIcon>
-            <Space w={4}></Space>
-            <TopText>{top_text?.text}</TopText>
-          </Flex>
-          <Space h={12}></Space>
-          <Title dangerouslySetInnerHTML={{ __html: title.html }}></Title>
-        </Container>
+          <Container>
+            <Flex rowCenterY>
+              <TopIcon></TopIcon>
+              <Space w={4}></Space>
+              <TopText>{top_text?.text}</TopText>
+            </Flex>
+            <Space h={12}></Space>
+            <Title dangerouslySetInnerHTML={{ __html: title.html }}></Title>
+          </Container>
+        </ParallaxBanner>
       </Section>
     </ParallaxProvider>
   );
@@ -112,9 +128,10 @@ const Container = styled("div", {
   justifyContent: "center",
   alignItems: "center",
   textAlign: "center",
+  height: "100%",
 });
 
-const Title = styled("h2", {
+const Title = styled("div", {
   "*": {
     fontSize: "$heading5",
     lineHeight: "$heading5",

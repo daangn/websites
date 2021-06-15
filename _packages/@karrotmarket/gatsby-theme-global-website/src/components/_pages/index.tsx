@@ -19,6 +19,7 @@ import PopularSection from "../home/PopularSection";
 import DownloadSection from "../home/DownloadSection";
 import ParallaxSection from "../home/ParallaxSection";
 import IllustrationSection from "../home/IllustrationSection";
+import { rem } from "polished";
 
 type IndexPageProps = PageProps<GatsbyTypes.IndexPageQueryQuery>;
 
@@ -139,6 +140,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
           links={data.prismicGlobalContents?.data}
         ></AppLink>
       </Wrapper>
+      <div style={{ minWidth: rem(1230) }}></div>
     </Layout>
   );
 };

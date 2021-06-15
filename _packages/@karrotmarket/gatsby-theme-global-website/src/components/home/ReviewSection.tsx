@@ -8,7 +8,6 @@ import { styled } from "../../gatsby-theme-stitches/stitches.config";
 import { Grid } from "../Grid";
 import { Flex } from "../Flex";
 import { Space } from "../Space";
-import BackgroundImage from "../BackgroundImage";
 
 import { ReactComponent as LocationIcon } from "../../icons/location_filled.svg";
 import { ReactComponent as QuoteIcon } from "../../icons/quote.svg";
@@ -19,13 +18,7 @@ export const query = graphql`
       title {
         html
       }
-      image {
-        localFile {
-          childImageSharp {
-            gatsbyImageData(quality: 100)
-          }
-        }
-      }
+      background_color
     }
     items {
       user_name
@@ -44,18 +37,14 @@ type ReviewSectionProps = {
 
 const ReviewSection: React.FC<ReviewSectionProps> = ({ content }) => {
   if (!content.primary || !content.items) return <></>;
-  const { title, image } = content.primary;
+  const { title, image, background_color } = content.primary;
 
   const bgImage = getImage(
     image?.localFile?.childImageSharp?.gatsbyImageData as any
   );
 
   return (
-    <Section>
-      <BackgroundImage
-        image={bgImage}
-        objectPosition={{ "@i": "bottom 0px right -70px", "@md": "50% 50%" }}
-      ></BackgroundImage>
+    <Section css={{ background: background_color }}>
       <Container>
         <Title dangerouslySetInnerHTML={{ __html: title.html }}></Title>
         <Grid
@@ -102,7 +91,7 @@ const Container = styled("div", {
   },
 });
 
-const Title = styled("h2", {
+const Title = styled("div", {
   "*": {
     fontSize: "$heading5",
     lineHeight: "$heading5",
