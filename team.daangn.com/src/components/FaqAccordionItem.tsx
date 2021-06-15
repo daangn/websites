@@ -26,9 +26,6 @@ export const query = graphql`
 
 const Container = styled('div', {
   borderBottom: '1px solid $gray200',
-  '&:hover, &:focus-within, &:active': {
-    backgroundColor: '$gray100',
-  },
 });
 
 const Header = styled('h2', {
