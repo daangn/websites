@@ -13,11 +13,11 @@ interface RatingProps {
 const Filters: React.FC<RatingProps> = ({ filters }) => {
   return (
     <Wrapper
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{
-        duration: 0.4,
-      }}
+    // initial={{ opacity: 0, y: 30 }}
+    // animate={{ opacity: 1, y: 0 }}
+    // transition={{
+    //   duration: 0.4,
+    // }}
     >
       {filters.map((filter, i) => {
         const Icon = filter.icon;

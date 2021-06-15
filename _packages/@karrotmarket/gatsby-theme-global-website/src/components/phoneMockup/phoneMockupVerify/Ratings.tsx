@@ -45,7 +45,7 @@ const Wrapper = styled(motion.div, {
   background: "white",
   borderRadius: em(24),
   boxShadow: `${em(2)} ${em(6)} ${em(16)} ${em(8)} #00000010`,
-  width: em(260),
+  width: em(270),
   "*": {
     fontFamily: "$system",
   },

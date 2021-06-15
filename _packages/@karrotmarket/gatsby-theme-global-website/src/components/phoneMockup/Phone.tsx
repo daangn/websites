@@ -63,14 +63,16 @@ const Phone: React.FC<PhoneProps> = ({
           margin: align !== "left" ? "0 auto" : 0,
         }}
       >
-        <TopSection></TopSection>
         {headerSection ? (
           headerSection
         ) : (
-          <HeaderSection>
-            <BackIcon></BackIcon>
-            <Header>{header}</Header>
-          </HeaderSection>
+          <>
+            <TopSection></TopSection>
+            <HeaderSection>
+              <BackIcon></BackIcon>
+              <Header>{header}</Header>
+            </HeaderSection>
+          </>
         )}
 
         <Screen>{children}</Screen>
