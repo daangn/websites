@@ -31,6 +31,9 @@ export const query = graphql`
 
 const Container = styled('div', {
   contentArea: true,
+
+  maxWidth: rem(760),
+  margin: '0 auto',
 });
 
 const PageTitle = styled(_PageTitle, {
