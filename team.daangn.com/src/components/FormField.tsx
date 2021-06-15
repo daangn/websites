@@ -248,7 +248,7 @@ const Radiomark = styled('span', {
   width: rem(16),
   height: rem(16),
   borderRadius: '50%',
-  border: '2px solid $gray500',
+  border: '1px solid $gray500',
   marginRight: rem(14),
   color: '$carrot500',
   transition: 'box-shadow .25s ease',
