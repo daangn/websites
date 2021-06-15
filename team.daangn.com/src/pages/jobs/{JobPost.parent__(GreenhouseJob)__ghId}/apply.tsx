@@ -173,6 +173,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
           }}
           name="alternative_civilian"
           label="산업기능요원"
+          required
         />
         <FormField
           variants={{
@@ -198,6 +199,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
           }}
           name="veterans"
           label="보훈대상 여부"
+          required
         />
         <FormHelpText>
           * 보훈 및 장애 사항은 채용 과정에서 불이익이 없습니다.
