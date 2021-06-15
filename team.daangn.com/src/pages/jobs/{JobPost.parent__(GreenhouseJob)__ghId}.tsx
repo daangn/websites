@@ -73,7 +73,7 @@ const JobPostPage: React.FC<JobPostPageProps> = ({
         <Button to={data.jobPost.applyPath!} type="primary">
           지원하기
         </Button>
-        <Button to="/faq/">
+        <Button to="/jobs/faq/">
           자주 묻는 질문
         </Button>
       </ButtonContainer>

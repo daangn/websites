@@ -3,7 +3,6 @@ import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { rem } from 'polished';
-import { required } from '@cometjs/core';
 
 import _PageTitle from '~/components/PageTitle';
 import FaqAccordion from '~/components/FaqAccordion';
@@ -38,10 +37,13 @@ const PageTitle = styled(_PageTitle, {
 const FaqPage: React.FC<FaqPageProps> = ({
   data,
 }) => {
-  required(data.prismicFaq);
+  if (data.prismicFaq == null) {
+    console.warn('faq 데이터가 없습니다');
+    return null;
+  }
   return (
     <Container>
-      <PageTitle size={{ '@sm': 'sm' }}>
+      <PageTitle>
         자주 묻는 질문
       </PageTitle>
       <FaqAccordion faqData={data.prismicFaq.data} />
