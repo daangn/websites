@@ -55,6 +55,12 @@ const SLinkButton = styled("a", {
       primary: {
         color: "white",
         background: "$carrot500",
+        "& path": {
+          fill: "white",
+        },
+        "&:hover": {
+          background: "$carrot600",
+        },
       },
       white: {
         color: "$gray900",

@@ -28,16 +28,22 @@ interface FontSize {
 interface PhoneProps {
   frameColor?: "orange" | "green";
   header?: any;
+  headerSection?: any;
   fontSize?: MediaTypeMap<FontSize>;
   height?: number;
+  width?: number;
+  containerWidth?: number;
   align?: "left" | "center";
 }
 
 const Phone: React.FC<PhoneProps> = ({
   frameColor,
   header,
+  headerSection,
   fontSize,
   height,
+  width,
+  containerWidth,
   align,
   children,
 }) => {
@@ -45,6 +51,7 @@ const Phone: React.FC<PhoneProps> = ({
     <Wrapper
       css={{
         height: em(height || 500),
+        width: em(containerWidth || 500),
         ...fontSize,
       }}
     >
@@ -52,14 +59,20 @@ const Phone: React.FC<PhoneProps> = ({
         frameColor={frameColor}
         css={{
           height: em(height || 500),
+          width: em(width || 376),
           margin: align !== "left" ? "0 auto" : 0,
         }}
       >
         <TopSection></TopSection>
-        <HeaderSection>
-          <BackIcon></BackIcon>
-          <Header>{header}</Header>
-        </HeaderSection>
+        {headerSection ? (
+          headerSection
+        ) : (
+          <HeaderSection>
+            <BackIcon></BackIcon>
+            <Header>{header}</Header>
+          </HeaderSection>
+        )}
+
         <Screen>{children}</Screen>
       </PhoneFrame>
     </Wrapper>

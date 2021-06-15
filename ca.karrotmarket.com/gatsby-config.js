@@ -1,5 +1,5 @@
 const siteMetadata = {
-  siteUrl: "https://uk.karrotmarket.com/",
+  siteUrl: "https://ca.karrotmarket.com/",
   siteName:
     "Karrot - Your Local Buying &amp; Selling Community for Verified Locals",
   description:

@@ -1,15 +1,14 @@
 import * as React from "react";
 import { graphql } from "gatsby";
-import { getImage } from "gatsby-plugin-image";
 
 import { styled } from "../../gatsby-theme-stitches/stitches.config";
 
 import { Flex } from "../Flex";
 import { Space } from "../Space";
 import AppLink from "../AppLink";
-import Image from "../Image";
-import BackgroundImage from "../BackgroundImage";
 import { rem } from "polished";
+import PhoneMockupHome from "../phoneMockup/PhoneMockupHome";
+import HeroSectionBackground from "./HeroSectionBackground";
 
 export const query = graphql`
   fragment HeroSection_content on PrismicGlobalContentsDataMainBodyHeroSection {
@@ -21,14 +20,8 @@ export const query = graphql`
         html
       }
       background_color
-      background_image {
-        localFile {
-          childImageSharp {
-            gatsbyImageData(quality: 100)
-          }
-        }
-      }
       side_image {
+        url
         localFile {
           childImageSharp {
             gatsbyImageData(quality: 100, placeholder: NONE)
@@ -37,15 +30,6 @@ export const query = graphql`
         dimensions {
           width
           height
-        }
-        alt
-        thumbnails {
-          mobile {
-            dimensions {
-              width
-              height
-            }
-          }
         }
       }
     }
@@ -62,42 +46,19 @@ type HeroSectionProps = {
 
 const HeroSection: React.FC<HeroSectionProps> = ({ content, links }) => {
   if (!content.primary || !links) return <></>;
-  const { title, background_image, side_image } = content.primary;
-
-  const bgImage = getImage(
-    background_image?.localFile?.childImageSharp?.gatsbyImageData as any
-  );
-
-  const sideImage = getImage(
-    side_image?.localFile?.childImageSharp?.gatsbyImageData as any
-  );
+  const { title, background_color } = content.primary;
 
   return (
-    <Section>
-      <BackgroundImage
-        image={bgImage}
-        objectPosition={{ "@i": "bottom 0px right -70px", "@md": "50% 50%" }}
-      ></BackgroundImage>
+    <Section css={{ background: background_color }}>
+      <HeroSectionBackground></HeroSectionBackground>
       <Container>
         <Flex colCenterY>
           <Title dangerouslySetInnerHTML={{ __html: title?.html }} />
           <Space h={{ "@i": 0, "@md": 36 }}></Space>
-          <AppLink theme="dark" type="desktop" links={links}></AppLink>
+          <AppLink theme="primary" type="desktop" links={links}></AppLink>
         </Flex>
-
-        <Flex ai="flex-end">
-          <Image
-            alt="side-image"
-            image={sideImage}
-            width={{
-              "@i": side_image?.thumbnails?.mobile?.dimensions?.width / 2,
-              "@md": side_image?.dimensions?.width / 2,
-            }}
-            height={{
-              "@i": side_image?.thumbnails?.mobile?.dimensions?.height / 2,
-              "@md": side_image?.dimensions?.height / 2,
-            }}
-          ></Image>
+        <Flex ai="flex-end" jc="center" flex={1}>
+          <PhoneMockupHome></PhoneMockupHome>
         </Flex>
       </Container>
     </Section>
@@ -108,6 +69,7 @@ const Section = styled("section", {
   height: "582px",
   width: "100%",
   position: "relative",
+  overflow: "hidden",
   "@md": {
     height: "780px",
   },
@@ -121,6 +83,7 @@ const Container = styled("div", {
   alignItems: "center",
   justifyContent: "flex-end",
   textAlign: "center",
+  position: "relative",
   "@md": {
     width: "$maxContent",
     flexDirection: "row",
@@ -134,6 +97,7 @@ const Title = styled("div", {
   "*": {
     fontSize: rem(32),
     lineHeight: "120%",
+    marginTop: rem(82),
     "@md": {
       fontSize: "$heading1",
       lineHeight: "$heading1",

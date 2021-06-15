@@ -8,6 +8,7 @@ interface TImage {
   alt?: any;
   width?: string | number | MediaTypeMap<string | number>;
   height?: string | number | MediaTypeMap<string | number>;
+  objectPosition?: string | MediaTypeMap<string>;
 }
 
 const SImage = styled(GatsbyImage, {});

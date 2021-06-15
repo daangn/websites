@@ -69,8 +69,6 @@ const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
     about_background_image?.localFile?.childImageSharp?.gatsbyImageData as any
   );
 
-  console.log(about_title.html);
-
   return (
     <Layout id="about-page" data={data.prismicSiteNavigation.data}>
       <GatsbySeo
@@ -117,13 +115,15 @@ const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
 const BackgroundImage = styled(GatsbyImage, {
   height: "208px",
   width: "100%",
-  backgroundRepeat: "no-repeat",
-  backgroundSize: "cover",
-  backgroundPosition: "bottom 0 right 65%",
+  img: {
+    objectPosition: "bottom 0 right 5%",
+    "@md": {
+      objectPosition: "center",
+    },
+  },
 
   "@md": {
     height: "440px",
-    backgroundPosition: "center",
   },
 });
 
