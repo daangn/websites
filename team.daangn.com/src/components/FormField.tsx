@@ -192,9 +192,41 @@ const CheckmarkSvg = styled('svg', {
   }
 });
 
+// fieldset 이면 좋겠으나...
+// See https://bugs.chromium.org/p/chromium/issues/detail?id=375693
 const RadioGroupContainer = styled('div', {
   display: 'grid',
-  gridTemplateColumns: '1fr 1fr',
+  border: 'none',
+  padding: 0,
+});
+
+// legend 이면 좋겠으나...
+// See https://bugs.chromium.org/p/chromium/issues/detail?id=375693
+const RadioGroupLabel = styled('div', {
+  display: 'inline-flex',
+  alignItems: 'center',
+  color: '$gray700',
+  typography: '$body2',
+  marginBottom: rem(8),
+  variants: {
+    required: {
+      true: {
+        '&::after': {
+          content: '""',
+          display: 'inline-block',
+          marginLeft: rem(4),
+          width: rem(6),
+          height: rem(6),
+          background: '$carrot500',
+          borderRadius: '50%',
+        },
+      },
+    },
+  },
+});
+
+const RadioButtonContainer = styled('div', {
+  display: 'grid',
 });
 
 const RadioButton = styled('label', {
@@ -329,18 +361,32 @@ const FormField: React.FC<FormFieldProps> = ({
     }
     case 'radio': {
       return (
-        <RadioGroupContainer className={className}>
-          {variants.options.map(option => (
-            <RadioButton key={option.value}>
-              <RadioButtonInput
-                type="radio"
-                name={name}
-                value={option.value}
-              />
-              <Radiomark />
-              {option.label}
-            </RadioButton>
-          ))}
+        <RadioGroupContainer
+          className={className}
+          aria-role="radiogroup"
+        >
+          {label && (
+            <RadioGroupLabel key="label" required={required}>
+              {label}
+            </RadioGroupLabel>
+          )}
+          <RadioButtonContainer
+            css={{
+              gridTemplateColumns: `repeat(${variants.options.length}, 1fr)`,
+            }}
+          >
+            {variants.options.map(option => (
+              <RadioButton key={option.value}>
+                <RadioButtonInput
+                  type="radio"
+                  name={name}
+                  value={option.value}
+                />
+                <Radiomark />
+                {option.label}
+              </RadioButton>
+            ))}
+          </RadioButtonContainer>
         </RadioGroupContainer>
       );
     }
