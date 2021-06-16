@@ -12,7 +12,12 @@ type JobsPageProps = PageProps<GatsbyTypes.JobsPageQuery>;
 export const query = graphql`
   query JobsPage {
     ...DefaultLayout_query
-    allJobPost {
+    allJobPost(
+      sort: {
+        fields: title
+        order: ASC
+      }
+    ) {
       ...JobPostList_jobPosts
 
       totalCount
