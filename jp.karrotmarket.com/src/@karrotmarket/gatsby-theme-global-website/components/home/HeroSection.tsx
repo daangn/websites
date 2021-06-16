@@ -88,7 +88,7 @@ const Title = styled("h2", {
   marginBottom: rem(24),
   whiteSpace: "nowrap",
   "*": {
-    fontFamily: "$noto",
+    fontFamily: "$gilroy",
     fontSize: "$heading3",
     lineHeight: "120%",
 
@@ -104,7 +104,7 @@ const Text = styled("div", {
   "*": {
     color: "#4D5159",
     letterSpacing: "-0.055em",
-    fontFamily: "$noto",
+    fontFamily: "$gilroy",
     fontSize: "$subtitle2",
 
     "@md": {

@@ -19,7 +19,7 @@ export const query = graphql`
 
 interface LayoutProps {
   data: GatsbyTypes.DefaultLayout_queryFragment;
-  transparent?: boolean;
+  id?: string;
 }
 
 const Header = styled(_Header, {
@@ -30,7 +30,7 @@ const Header = styled(_Header, {
   },
 });
 
-const Layout: React.FC<LayoutProps> = ({ children, data, transparent }) => {
+const Layout: React.FC<LayoutProps> = ({ children, data, id }) => {
   if (!data) return <></>;
 
   globalStyles();
@@ -45,7 +45,7 @@ const Layout: React.FC<LayoutProps> = ({ children, data, transparent }) => {
       </Helmet>
       <GatsbySeo language="ja" />
       <Header key="header" navigationData={data} sns />
-      <main>
+      <main id={id}>
         {children}
         <Space h={120}></Space>
       </main>

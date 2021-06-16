@@ -31,6 +31,15 @@ module.exports = {
       },
     },
     {
+      resolve: "gatsby-plugin-google-gtag",
+      options: {
+        trackingIds: ["GTM-KT237BF"],
+        pluginConfig: {
+          exclude: ["/preview/**"],
+        },
+      },
+    },
+    {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
         google: {

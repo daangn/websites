@@ -21,7 +21,7 @@ const globalStyles = global({
   },
   "#about-page": {
     "@md": {
-      minWidth: rem(748),
+      minWidth: rem(788),
     },
   },
 });

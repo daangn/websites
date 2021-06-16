@@ -72,7 +72,7 @@ const Name = styled("div", {
   fontSize: em(12),
   fontWeight: "bold",
   alignSelf: "center",
-  transform: `translateY(${em(2)})`,
+  // transform: `translateY(${em(2)})`,
 
   "@md": {
     transform: `translateY(${em(0)})`,

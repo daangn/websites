@@ -454,8 +454,8 @@
       "type": "Image",
       "config": {
         "constraint": {
-          "width": 2880,
-          "height": 880
+          "width": null,
+          "height": null
         },
         "thumbnails": [],
         "label": "배경 이미지"

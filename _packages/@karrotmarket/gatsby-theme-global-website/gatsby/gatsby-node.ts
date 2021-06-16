@@ -1,5 +1,5 @@
 import type { GatsbyNode } from "gatsby";
-import axios from "axios";
+import got from "got";
 
 type LocaleType = "en-gb" | "en-us" | "en-ca" | "ja-jp";
 
@@ -10,7 +10,14 @@ const CURRENCY_SIGN: { [i in LocaleType]: string } = {
   "ja-jp": "JPY",
 };
 
-interface HotArticle {
+const DATE_FORMAT: { [i in LocaleType]: string } = {
+  "en-gb": "MMM D, y",
+  "en-us": "MMM D, y",
+  "en-ca": "MMM D, y",
+  "ja-jp": "Y.M.D",
+};
+
+interface Article {
   id: string;
   first_image: {
     file: string;
@@ -25,7 +32,10 @@ export const pluginOptionsSchema: GatsbyNode["pluginOptionsSchema"] = ({
   Joi,
 }) => {
   return Joi.object({
-    locale: Joi.string().required().description(`prismic locale 값`),
+    locale: Joi.string()
+      .required()
+      .default("en-gb")
+      .description(`prismic locale 값`),
     hot_articles_api: Joi.string()
       .default("https://uk.karrotmarket.com/hot_articles.json?limit=6")
       .description(`인기매물 api`),
@@ -38,9 +48,14 @@ export const sourceNodes: GatsbyNode["sourceNodes"] = async (
 ) => {
   const { createNode } = actions;
 
-  const fetchHotArticles = () => axios.get(options.hot_articles_api as string);
-  const res = await fetchHotArticles();
-  res.data.articles.map((article: HotArticle) => {
+  const response = await got<{ articles: Article[] }>(
+    options.hot_articles_api as string,
+    {
+      responseType: "json",
+    }
+  );
+
+  response.body.articles.map((article) => {
     createNode({
       id: createNodeId(`HotArticle - ${article.id}`),
       parent: `__SOURCE__`,
@@ -48,8 +63,6 @@ export const sourceNodes: GatsbyNode["sourceNodes"] = async (
         type: `HotArticle`,
         contentDigest: createContentDigest(article),
       },
-      children: [],
-
       image: article.first_image.file,
       region: article.region.fullname,
       price: Number(article.price).toLocaleString(
@@ -73,14 +86,15 @@ export const createPages: GatsbyNode["createPages"] = (
     path: "/",
     component: require.resolve("./src/components/_pages/index.tsx"),
     context: {
-      lang: options.locale || "en-gb",
+      lang: options.locale,
     },
   });
   actions.createPage({
     path: "/about",
     component: require.resolve("./src/components/_pages/about.tsx"),
     context: {
-      lang: options.locale || "en-gb",
+      lang: options.locale,
+      dateFormat: DATE_FORMAT[options.locale as LocaleType],
     },
   });
 };

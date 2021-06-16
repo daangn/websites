@@ -16,14 +16,14 @@ const HeroSectionBackground: React.FC = (props) => {
     <ParallaxProvider>
       <Wrapper>
         <TopContianer>
-          <HeroPainting y={[-50, 25]}>
+          <HeroPainting y={[-50, 30]}>
             <HeroPaintingSvg></HeroPaintingSvg>
           </HeroPainting>
           <HeroCeilingLightContainer>
             <HeroCeilingLightCable>
               <HeroCeilingLightCableSvg></HeroCeilingLightCableSvg>
             </HeroCeilingLightCable>
-            <HeroCeilingLight y={[-50, 25]}>
+            <HeroCeilingLight y={[-50, 32]}>
               <HeroCeilingLightSvg></HeroCeilingLightSvg>
             </HeroCeilingLight>
           </HeroCeilingLightContainer>

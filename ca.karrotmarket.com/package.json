@@ -15,6 +15,7 @@
   "dependencies": {
     "@karrotmarket/gatsby-theme-global-website": "*",
     "gatsby": "^3.7.1",
+    "gatsby-plugin-google-gtag": "^3.7.1",
     "react": "experimental",
     "react-dom": "experimental"
   },
