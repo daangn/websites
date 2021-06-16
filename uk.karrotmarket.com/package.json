@@ -8,7 +8,7 @@
     "directory": "uk.karrotmarket.com"
   },
   "scripts": {
-    "build": "gatsby build",
+    "build": "gatsby build --prefix-paths",
     "clean": "gatsby clean",
     "develop": "gatsby develop"
   },
