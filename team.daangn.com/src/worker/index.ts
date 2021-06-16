@@ -41,14 +41,17 @@ function extractExtension(filename: string): string {
   return match ? match[0] : '';
 }
 
-function getYYYYMMDD(date: Date): string {
+function formatDate(date: Date): string {
   // KST 날짜 보정
-  const dateChange = (date.getUTCHours() + 9) / 24 > 1 ? 1 : 0;
+  const kstOffsetHours = 9;
+  const kstOffsetDays = (date.getUTCHours() + kstOffsetHours) / 24 > 1 ? 1 : 0;
 
   const YYYY = date.getFullYear();
   const MM = (date.getMonth() + 1).toString().padStart(2, '0');
-  const DD = (date.getDate() + dateChange).toString().padStart(2, '0');
-  return `${YYYY}-${MM}-${DD}`;
+  const DD = (date.getDate() + kstOffsetDays).toString().padStart(2, '0');
+  const HH = (date.getHours() + kstOffsetHours).toString().padStart(2, '0');
+  const mm = (date.getMinutes()).toString().padStart(2, '0');
+  return `${YYYY}-${MM}-${DD}-${HH}-${mm}`;
 }
 
 interface MakeRemoteForm {
@@ -56,14 +59,8 @@ interface MakeRemoteForm {
     name: FormDataEntryValue | null,
     email: FormDataEntryValue | null,
     phoneNumber: FormDataEntryValue | null,
-    resume: {
-      filename: string,
-      blob: Blob,
-    } | null,
-    portfolio: {
-      filename: string,
-      blob: Blob,
-    } | null,
+    resume: File | null,
+    portfolio: File | null,
     veterans: FormDataEntryValue | null,
     disability: FormDataEntryValue | null,
     alternativeCivilian: FormDataEntryValue | null,
@@ -159,7 +156,7 @@ const makeRemoteForm: MakeRemoteForm = ({
   formData.set('last_name', '\u200b');
   formData.set('email', email);
   formData.set('phone' , phoneNumber);
-  formData.set('resume', resume!.blob, resume!.filename);
+  formData.set('resume', resume!, resume!.name);
 
   formData.set(disabilityQuestion, disabilityAnswer[disability]);
 
@@ -172,7 +169,7 @@ const makeRemoteForm: MakeRemoteForm = ({
   }
 
   if (portfolio != null) {
-    formData.set('question_5552480003', portfolio.blob, portfolio.filename);
+    formData.set('question_5552480003', portfolio, portfolio.name);
   }
 
   return formData;
@@ -210,14 +207,14 @@ API.add('POST', '/jobs/:jobId/application/submit', async (req, res) => {
       veterans,
       disability,
       alternativeCivilian,
-      resume: resume && resumeFilename ? {
-        filename: `resume-${name}-${getYYYYMMDD(new Date())}${extractExtension(resumeFilename)}`,
-        blob: new Blob([Uint8Array.from(resume as unknown as Iterable<number>)]),
-      } : null,
-      portfolio: portfolio && portfolioFilename ? {
-        filename: `portfolio-${name}-${getYYYYMMDD(new Date())}${extractExtension(portfolioFilename)}`,
-        blob: new Blob([Uint8Array.from(portfolio as unknown as Iterable<number>)]),
-      } : null,
+      resume: resume && resumeFilename ? (() => {
+        const filename = `resume-${name}-${formatDate(new Date())}${extractExtension(resumeFilename)}`;
+        return new File([resume], filename);
+      })() : null,
+      portfolio: portfolio && portfolioFilename ? (() => {
+        const filename = `portfolio-${name}-${formatDate(new Date())}${extractExtension(portfolioFilename)}`;
+        return new File([portfolio], filename);
+      })() : null,
     });
   } catch (e) {
     return res.send(400, e.message);
