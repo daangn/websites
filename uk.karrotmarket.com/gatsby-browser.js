@@ -1,3 +1,8 @@
-import wrapWithProvider from "./wrapWithProvider";
+"use strict";
 
-export const wrapRootElement = wrapWithProvider;
+exports.__esModule = true;
+exports.wrapRootElement = void 0;
+
+var _wrapRootElement = require("./wrapRootElement");
+
+exports.wrapRootElement = _wrapRootElement.wrapRootElement;

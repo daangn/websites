@@ -5,7 +5,6 @@ import { GatsbySeo } from "gatsby-plugin-next-seo";
 import { useInView } from "react-intersection-observer";
 import { mapAbstractType } from "@cometjs/graphql-utils";
 import { withPrismicPreview } from "gatsby-plugin-prismic-previews";
-import { defaultRepositoryConfig } from "@karrotmarket/gatsby-theme-prismic/src/defaultRepositoryConfig";
 
 import { styled } from "../../gatsby-theme-stitches/stitches.config";
 
@@ -152,4 +151,4 @@ const Placer = styled("div", {
   height: 1,
 });
 
-export default withPrismicPreview(IndexPage, [defaultRepositoryConfig]);
+export default withPrismicPreview(IndexPage, []);

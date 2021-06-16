@@ -27,7 +27,7 @@ const Articles: React.FC<RatingProps> = ({ articles }) => {
       {articles.map((article, i) => {
         return (
           <Container key={i}>
-            <Image src={article.image}></Image>
+            <Image src={article.image} alt="article"></Image>
             <RightContainer>
               <Name>{article.name}</Name>
               <InfoContainer>

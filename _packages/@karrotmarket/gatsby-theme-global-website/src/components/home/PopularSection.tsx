@@ -122,7 +122,12 @@ interface ItemProps {
 
 const Item: React.FC<ItemProps> = ({ image, price, region, id }) => (
   <ItemContainer href={`https://uk.karrotmarket.com/articles/${id}`}>
-    <ItemImage src={image}></ItemImage>
+    <ItemImage
+      src={image}
+      width="100%"
+      height="100%"
+      alt="hot-article"
+    ></ItemImage>
     <ItemPrice>{price}</ItemPrice>
     <ItemRegion>{region}</ItemRegion>
   </ItemContainer>

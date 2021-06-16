@@ -26,8 +26,9 @@ const config: GatsbyConfig = {
     "gatsby-transformer-sharp",
     `gatsby-plugin-preload-fonts`,
     "gatsby-plugin-react-helmet-async",
-    "@karrotmarket/gatsby-theme-prismic",
+
     "@karrotmarket/gatsby-theme-website",
+    "@karrotmarket/gatsby-theme-prismic",
   ],
 };
 
