@@ -4,9 +4,9 @@ import { ReactComponent as PopularIcon } from "../../../icons/popular.svg";
 import { ReactComponent as NearbyIcon } from "../../../icons/nearby.svg";
 import { ReactComponent as MostSearchedIcon } from "../../../icons/most-searched.svg";
 
-import TableImg from "../../../images/img_home_table.png";
-import PotImg from "../../../images/img_home_pot.png";
-import AirpodImg from "../../../images/img_home_airpod.png";
+import TableImg from "../../../images/img_home_table.jpg";
+import PotImg from "../../../images/img_home_pot.jpg";
+import AirpodImg from "../../../images/img_home_airpod.jpg";
 
 export const data: PhoneMockupHomeData = {
   region: "Woolston",

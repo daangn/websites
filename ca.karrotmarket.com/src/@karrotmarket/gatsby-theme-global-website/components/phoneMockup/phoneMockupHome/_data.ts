@@ -4,9 +4,9 @@ import { ReactComponent as PopularIcon } from "@karrotmarket/gatsby-theme-global
 import { ReactComponent as NearbyIcon } from "@karrotmarket/gatsby-theme-global-website/src/icons/nearby.svg";
 import { ReactComponent as MostSearchedIcon } from "@karrotmarket/gatsby-theme-global-website/src/icons/most-searched.svg";
 
-import TableImg from "@karrotmarket/gatsby-theme-global-website/src/images/img_home_table.png";
-import PotImg from "@karrotmarket/gatsby-theme-global-website/src/images/img_home_pot.png";
-import AirpodImg from "@karrotmarket/gatsby-theme-global-website/src/images/img_home_airpod.png";
+import TableImg from "@karrotmarket/gatsby-theme-global-website/src/images/img_home_table.jpg";
+import PotImg from "@karrotmarket/gatsby-theme-global-website/src/images/img_home_pot.jpg";
+import AirpodImg from "@karrotmarket/gatsby-theme-global-website/src/images/img_home_airpod.jpg";
 
 export const data: PhoneMockupHomeData = {
   region: "Bay Street Corridor",
