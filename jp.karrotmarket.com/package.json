@@ -8,7 +8,7 @@
     "directory": "jp.karrotmarket.com"
   },
   "scripts": {
-    "build": "gatsby build && rsync -av --delete public/ public/xxx",
+    "build": "gatsby build --prefix-paths",
     "clean": "gatsby clean",
     "develop": "gatsby develop",
     "serve": "gatsby serve"
