@@ -24,8 +24,8 @@ const Ratings: React.FC<RatingProps> = ({ ratings }) => {
       }}
     >
       <Title>Ratings</Title>
-      {ratings.map((rating) => (
-        <Flex>
+      {ratings.map((rating, i) => (
+        <Flex key={i}>
           <Count>
             <GroupIcon width={em(21)} height={em(21)}></GroupIcon>
             <span>{rating.count}</span>

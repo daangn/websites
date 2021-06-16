@@ -22,12 +22,6 @@ const config: GatsbyConfig = {
   plugins: [
     "gatsby-plugin-concurrent-mode",
     {
-      resolve: "gatsby-plugin-webpack-bundle-analyser-v2",
-      options: {
-        devMode: true,
-      },
-    },
-    {
       resolve: "gatsby-plugin-manifest",
       options: {
         name: siteMetadata.siteName,
