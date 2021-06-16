@@ -113,7 +113,6 @@ const PhoneFrame = styled("div", {
 
 const TopSection = styled("div", {
   height: em(10),
-  background: "white",
   zIndex: 1,
   width: "100%",
   position: "relative",
@@ -128,6 +127,8 @@ const HeaderSection = styled("div", {
   padding: `0 ${em(20)}`,
   zIndex: 1,
   background: "white",
+  borderTopLeftRadius: em(54),
+  borderTopRightRadius: em(54),
 });
 
 const Header = styled("div", {

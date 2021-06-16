@@ -75,7 +75,7 @@ const IllustrationSection: React.FC<IllustrationSectionProps> = ({
 
 const Section = styled("section", {
   "*": {
-    fontFamily: "$noto",
+    fontFamily: "$gilroy",
   },
   height: "auto",
   width: "100%",

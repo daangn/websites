@@ -8,9 +8,10 @@
     "directory": "jp.karrotmarket.com"
   },
   "scripts": {
-    "build": "gatsby build",
+    "build": "gatsby build && rsync -av --delete public/ public/xxx",
     "clean": "gatsby clean",
-    "develop": "gatsby develop"
+    "develop": "gatsby develop",
+    "serve": "gatsby serve"
   },
   "dependencies": {
     "@karrotmarket/design-token": "^0.1.8-0",
@@ -19,6 +20,7 @@
     "framer-motion": "^4.1.17",
     "gatsby": "^3.7.1",
     "gatsby-plugin-concurrent-mode": "^0.2.1",
+    "gatsby-plugin-google-gtag": "^3.7.1",
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "polished": "^4.1.3",
     "react": "experimental",

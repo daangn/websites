@@ -75,13 +75,14 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({ content }) => {
                       "@md": "bottom 50% left 50%",
                     }}
                     height={{
-                      "@i": "75%!important",
+                      "@i": "70%!important",
+                      "@sm": "100%!important",
                       "@md": "100%!important",
                     }}
                   ></BackgroundImage>
                 </Background>
               ),
-              amount: 0.1,
+              amount: 0.2,
               expanded: true,
             },
           ]}
@@ -153,12 +154,17 @@ const TopText = styled("div", {
 });
 
 const Background = styled("div", {
+  transform: "translateY(12%)",
   height: "600px",
   width: "100%",
   position: "relative",
 
+  "@sm": {
+    transform: "translateY(0%)",
+  },
   "@md": {
     height: "800px",
+    transform: "translateY(5%)",
   },
 });
 

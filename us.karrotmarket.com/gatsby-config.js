@@ -26,6 +26,15 @@ module.exports = {
       },
     },
     {
+      resolve: "gatsby-plugin-google-gtag",
+      options: {
+        trackingIds: ["GTM-PMLPXBH"],
+        pluginConfig: {
+          exclude: ["/preview/**"],
+        },
+      },
+    },
+    {
       resolve: "@karrotmarket/gatsby-theme-global-website",
       options: {
         locale: "en-us",

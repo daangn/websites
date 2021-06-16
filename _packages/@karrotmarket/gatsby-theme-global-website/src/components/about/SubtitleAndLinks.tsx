@@ -2,7 +2,6 @@ import * as React from "react";
 
 import { rem } from "polished";
 import { graphql } from "gatsby";
-import { format } from "date-fns";
 import { styled } from "../../gatsby-theme-stitches/stitches.config";
 
 import { Grid } from "../Grid";
@@ -20,7 +19,7 @@ export const query = graphql`
       link {
         url
       }
-      date
+      date(formatString: $dateFormat)
     }
   }
 `;
@@ -43,7 +42,7 @@ const SubtitleAndLinks: React.FC<SubtitleAndLinksProps> = ({ content }) => {
         {content.items.map((item) => (
           <LinkContainer>
             <Link href={item?.link?.url}>{item?.text}</Link>
-            {format(new Date(item?.date as string), "MMM d, y")}
+            {item.date}
           </LinkContainer>
         ))}
       </Grid>

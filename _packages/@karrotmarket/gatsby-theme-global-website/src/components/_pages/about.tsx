@@ -19,7 +19,7 @@ import SubtitleAndImages from "../about/SubtitleAndImages";
 type AboutPageProps = PageProps<GatsbyTypes.AboutPageQueryQuery>;
 
 export const query = graphql`
-  query AboutPageQuery($lang: String) {
+  query AboutPageQuery($lang: String, $dateFormat: String) {
     prismicSiteNavigation(uid: { eq: "global" }, lang: { eq: $lang }) {
       _previewable
       ...DefaultLayout_data
@@ -86,7 +86,10 @@ const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
           description: about_page_description,
         }}
       />
-      <BackgroundImage image={backgroundImage}></BackgroundImage>
+      <ImageContianer>
+        <Image image={backgroundImage}></Image>
+      </ImageContianer>
+
       <Container>
         <Title>{about_title.text}</Title>
 
@@ -112,18 +115,32 @@ const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
   );
 };
 
-const BackgroundImage = styled(GatsbyImage, {
+const ImageContianer = styled("div", {
   height: "208px",
   width: "100%",
-  img: {
-    objectPosition: "bottom 0 right 5%",
-    "@md": {
-      objectPosition: "center",
-    },
-  },
-
+  overflow: "hidden",
   "@md": {
     height: "440px",
+  },
+});
+
+const Image = styled(GatsbyImage, {
+  height: "115%",
+  width: "100%",
+  "@md": {
+    height: "100%",
+  },
+  img: {
+    // objectFit: "",
+    width: "100%",
+    height: "100%",
+    objectPosition: "bottom 0% left 50%",
+    transform: "translateY(-20%)",
+    "@md": {
+      objectPosition: "center",
+
+      height: "100%",
+    },
   },
 });
 
@@ -139,7 +156,8 @@ const Container = styled("div", {
   },
 });
 
-const Title = styled("h1", {
+const Title = styled("div", {
+  fontWeight: "bold",
   fontSize: "$heading4",
   lineHeight: "$heading4",
   marginTop: rem(36),

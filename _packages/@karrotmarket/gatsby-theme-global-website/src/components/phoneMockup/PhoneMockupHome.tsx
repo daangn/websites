@@ -22,16 +22,25 @@ const PhoneMockupHome: React.FC<PhoneMockupHomeProps> = () => {
         frameColor="green"
         containerWidth={450}
         width={330}
-        height={530}
+        height={510}
         headerSection={<Header region={data.region} />}
       >
         <Filters filters={data.filters} />
         <Articles articles={data.articles} />
+        <Gradient></Gradient>
       </Phone>
     </Wrapper>
   );
 };
 
 const Wrapper = styled(motion.div, {});
+const Gradient = styled("div", {
+  position: "absolute",
+  bottom: em(8),
+  left: 0,
+  right: 0,
+  height: em(48),
+  background: "linear-gradient(to bottom, #F6F6F600, #FCFCFC)",
+});
 
 export default React.memo(PhoneMockupHome);
