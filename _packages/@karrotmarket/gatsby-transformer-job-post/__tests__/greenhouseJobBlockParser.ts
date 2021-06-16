@@ -71,23 +71,25 @@ describe('Greenhouse content block parser', () => {
       </ul>
     `;
     expect(parseHtml(input)).toEqual({
-      content: {
-        level: 'H3',
-        title: '제목',
-        type: 'UnorderedList',
-        items: [
-          '내용 1',
-          '내용 2',
-          '내용 3',
-        ],
-        rawBody: stripIndent`
-          <ul>
-            <li>내용 1</li>
-            <li>내용 2</li>
-            <li>내용 3</li>
-          </ul>
-        `,
-      },
+      content: [
+        {
+          level: 'H3',
+          title: '제목',
+          type: 'UnorderedList',
+          items: [
+            '내용 1',
+            '내용 2',
+            '내용 3',
+          ],
+          rawBody: stripIndent`
+            <ul>
+              <li>내용 1</li>
+              <li>내용 2</li>
+              <li>내용 3</li>
+            </ul>
+          `,
+        },
+      ],
       rawContent: stripIndent`
         <h3>제목</h3>
         <ul>
@@ -109,23 +111,25 @@ describe('Greenhouse content block parser', () => {
       </ol>
     `;
     expect(parseHtml(input)).toEqual({
-      content: {
-        level: 'H3',
-        title: '제목',
-        type: 'OrderedList',
-        items: [
-          '내용 1',
-          '내용 2',
-          '내용 3',
-        ],
-        rawBody: stripIndent`
-          <ol>
-            <li>내용 1</li>
-            <li>내용 2</li>
-            <li>내용 3</li>
-          </ol>
-        `,
-      },
+      content: [
+        {
+          level: 'H3',
+          title: '제목',
+          type: 'OrderedList',
+          items: [
+            '내용 1',
+            '내용 2',
+            '내용 3',
+          ],
+          rawBody: stripIndent`
+            <ol>
+              <li>내용 1</li>
+              <li>내용 2</li>
+              <li>내용 3</li>
+            </ol>
+          `,
+        },
+      ],
       rawContent: stripIndent`
         <h3>제목</h3>
         <ol>
@@ -152,23 +156,25 @@ describe('Greenhouse content block parser', () => {
       </ul>
       <p>내용</p>
     `)).toEqual({
-      content: {
-        level: 'H3',
-        title: '제목',
-        type: 'OrderedList',
-        items: [
-          '내용 1',
-          '내용 2',
-          '내용 3',
-        ],
-        rawBody: stripIndent`
-          <ol>
-            <li>내용 1</li>
-            <li>내용 2</li>
-            <li>내용 3</li>
-          </ol>
-        `,
-      },
+      content: [
+        {
+          level: 'H3',
+          title: '제목',
+          type: 'OrderedList',
+          items: [
+            '내용 1',
+            '내용 2',
+            '내용 3',
+          ],
+          rawBody: stripIndent`
+            <ol>
+              <li>내용 1</li>
+              <li>내용 2</li>
+              <li>내용 3</li>
+            </ol>
+          `,
+        },
+      ],
       rawContent: stripIndent`
         <h3>제목</h3>
         <ol>
@@ -193,23 +199,25 @@ describe('Greenhouse content block parser', () => {
         <li>내용 3</li>
       </ol>
     `)).toEqual({
-      content: {
-        level: 'H3',
-        title: '제목',
-        type: 'UnorderedList',
-        items: [
-          '내용 1',
-          '내용 2',
-          '내용 3',
-        ],
-        rawBody: stripIndent`
-          <ul>
-            <li>내용 1</li>
-            <li>내용 2</li>
-            <li>내용 3</li>
-          </ul>
-        `,
-      },
+      content: [
+        {
+          level: 'H3',
+          title: '제목',
+          type: 'UnorderedList',
+          items: [
+            '내용 1',
+            '내용 2',
+            '내용 3',
+          ],
+          rawBody: stripIndent`
+            <ul>
+              <li>내용 1</li>
+              <li>내용 2</li>
+              <li>내용 3</li>
+            </ul>
+          `,
+        },
+      ],
       rawContent: stripIndent`
         <h3>제목</h3>
         <ul>
@@ -236,21 +244,23 @@ describe('Greenhouse content block parser', () => {
         <li>내용 3</li>
       </ol>
     `)).toEqual({
-      content: {
-        level: 'H3',
-        title: '제목',
-        type: 'MultipleParagraph',
-        items: [
-          '내용1',
-          '내용2',
-          '내용3',
-        ],
-        rawBody: stripIndent`
-          <p>내용1</p>
-          <p>내용2</p>
-          <p>내용3</p>
-        `,
-      },
+      content: [
+        {
+          level: 'H3',
+          title: '제목',
+          type: 'MultipleParagraph',
+          items: [
+            '내용1',
+            '내용2',
+            '내용3',
+          ],
+          rawBody: stripIndent`
+            <p>내용1</p>
+            <p>내용2</p>
+            <p>내용3</p>
+          `,
+        },
+      ],
       rawContent: stripIndent`
         <h3>제목</h3>
         <p>내용1</p>
