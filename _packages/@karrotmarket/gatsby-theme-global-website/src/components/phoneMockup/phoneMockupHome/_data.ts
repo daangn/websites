@@ -6,7 +6,7 @@ import { ReactComponent as MostSearchedIcon } from "../../../icons/most-searched
 
 import TableImg from "../../../images/img_home_table.jpg";
 import PotImg from "../../../images/img_home_pot.jpg";
-import AirpodImg from "../../../images/img_home_airpod.png";
+import AirpodImg from "../../../images/img_home_airpod.jpg";
 
 export const data: PhoneMockupHomeData = {
   region: "Woolston",

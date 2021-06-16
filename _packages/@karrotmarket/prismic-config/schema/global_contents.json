@@ -240,7 +240,7 @@
               "text": {
                 "type": "StructuredText",
                 "config": {
-                  "multi": "heading5",
+                  "multi": "paragraph",
                   "label": "텍스트"
                 }
               },
