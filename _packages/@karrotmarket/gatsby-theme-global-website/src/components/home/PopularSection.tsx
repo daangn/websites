@@ -38,18 +38,7 @@ const PopularSection: React.FC<ParallaxSectionProps> = (props) => {
     <Section>
       <Container>
         <Title>{title.text}</Title>
-        <Grid
-          gridTemplateColumns={{
-            "@i": "repeat(2, 1fr)",
-            "@md": "repeat(6, 1fr)",
-          }}
-          gridTemplateRows={{ "@i": "repeat(3, 1fr)", "@md": "1fr" }}
-          rowGap={{ "@i": 32, "@md": 0 }}
-          columnGap={{ "@i": 16, "@md": 26 }}
-          marginTop={{ "@i": 28, "@md": 56 }}
-          width={{ "@i": "100%", "@md": "auto" }}
-          padding={{ "@i": 16, "@md": 0 }}
-        >
+        <ItemList>
           {articles.map(({ id, price, region, image }) => (
             <Item
               key={id}
@@ -59,7 +48,7 @@ const PopularSection: React.FC<ParallaxSectionProps> = (props) => {
               region={region}
             ></Item>
           ))}
-        </Grid>
+        </ItemList>
         <MoreButton href="https://uk.karrotmarket.com/hot_articles">
           {more_button}
         </MoreButton>
@@ -84,6 +73,25 @@ const Container = styled("div", {
   padding: `${rem(56)} 0`,
   "@md": {
     width: "$maxContent",
+    padding: 0,
+  },
+});
+
+const ItemList = styled("div", {
+  display: "grid",
+  gridTemplateColumns: "repeat(2, 1fr)",
+  gridTemplateRows: "1fr",
+  marginTop: rem(28),
+  columnGap: rem(16),
+  rowGap: rem(32),
+  padding: rem(16),
+
+  "@md": {
+    display: "flex",
+    flexDirection: "row",
+    marginTop: rem(56),
+    columnGap: rem(26),
+    rowGap: 0,
     padding: 0,
   },
 });

@@ -4,7 +4,6 @@ import { Helmet } from "react-helmet-async";
 import Header from "@karrotmarket/gatsby-theme-global-website/src/components/Header";
 import Footer from "@karrotmarket/gatsby-theme-global-website/src/components/Footer";
 import globalStyles from "@karrotmarket/gatsby-theme-global-website/src/styles/global";
-import { Space } from "@karrotmarket/gatsby-theme-global-website/src/components/Space";
 
 export const query = graphql`
   fragment DefaultLayout_data on PrismicSiteNavigation {
@@ -46,10 +45,10 @@ const Layout: React.FC<LayoutProps> = ({
         key="header"
         navigationData={data}
         transparent={transparent}
-        sns
         placer={placer}
+        sns
       />
-      <main id={id}>{children}</main>
+      <main {...(id ? { id } : {})}>{children}</main>
 
       <Footer key="footer" navigationData={data} />
     </>
