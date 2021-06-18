@@ -8,9 +8,11 @@
     "directory": "jp.karrotmarket.com"
   },
   "scripts": {
-    "build": "gatsby build --prefix-paths",
+    "prepare-gatsby": "babel gatsby -d . -x .ts,.tsx --presets gatsby-package",
+    "postinstall": "yarn prepare-gatsby",
+    "develop": "yarn prepare-gatsby && gatsby develop",
+    "build": "yarn prepare-gatsby && gatsby build  --prefix-paths",
     "clean": "gatsby clean",
-    "develop": "gatsby develop",
     "serve": "gatsby serve"
   },
   "dependencies": {
