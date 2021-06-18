@@ -49,9 +49,7 @@ const PopularSection: React.FC<ParallaxSectionProps> = (props) => {
             ></Item>
           ))}
         </ItemList>
-        <MoreButton href="https://uk.karrotmarket.com/hot_articles">
-          {more_button}
-        </MoreButton>
+        <MoreButton href="/hot_articles">{more_button}</MoreButton>
       </Container>
     </Section>
   );
