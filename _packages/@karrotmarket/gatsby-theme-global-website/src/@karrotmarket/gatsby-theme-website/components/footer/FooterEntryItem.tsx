@@ -50,21 +50,27 @@ const FooterEntryItem: React.FC<FooterEntryItemProps> = ({ entry }) => {
   return (
     <FooterEntryItemContainer key={entry.link!.url!}>
       {mapLink(parseLink(entry.link!.url!), {
-        Internal: (link) => (
-          <FooterEntryLink
-            {...(link.pathname === "/" || link.pathname === "/about"
-              ? {
-                  to: link.pathname,
-                  active: link.pathname === location.pathname,
-                }
-              : {
-                  as: "a",
-                  href: link.pathname,
-                })}
-          >
-            {entry.display_text}
-          </FooterEntryLink>
-        ),
+        Internal: (link) => {
+          console.log(
+            link,
+            link.pathname === "/" || link.pathname === "/about"
+          );
+          return (
+            <FooterEntryLink
+              {...(link.pathname === "/" || link.pathname === "/about"
+                ? {
+                    to: link.pathname,
+                    active: link.pathname === location.pathname,
+                  }
+                : {
+                    as: "a",
+                    href: link.pathname,
+                  })}
+            >
+              {entry.display_text}
+            </FooterEntryLink>
+          );
+        },
         External: (link) => (
           <FooterEntryLink
             as="a"
