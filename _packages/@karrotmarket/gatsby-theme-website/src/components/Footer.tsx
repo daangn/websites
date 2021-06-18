@@ -1,11 +1,10 @@
 import * as React from "react";
 import { rem } from "polished";
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
 import { styled } from "gatsby-theme-stitches/src/stitches.config";
-import { useLocation } from "@reach/router";
 
-import { useLinkParser, mapLink } from "../link";
 import SocialServiceProfile from "./footer/SocialServiceProfile";
+import FooterEntryItem from "./footer/FooterEntryItem";
 
 type FooterProps = {
   className?: string;
@@ -111,32 +110,6 @@ const FooterEntryList = styled("ul", {
   },
 });
 
-const FooterEntryItem = styled("li", {
-  fontSize: "$caption2",
-  fontWeight: 700,
-});
-
-const FooterEntryLink = styled(Link, {
-  color: "$gray900",
-  textDecoration: "none",
-  opacity: 1,
-
-  "&:hover": {
-    opacity: 0.64,
-  },
-
-  variants: {
-    active: {
-      true: {
-        color: "$carrot500",
-        "&:hover, &:active, &:focus": {
-          color: "$carrot600",
-        },
-      },
-    },
-  },
-});
-
 const SocialServiceProfileList = styled("ul", {
   display: "flex",
   padding: 0,
@@ -155,9 +128,6 @@ const SocialServiceProfileItem = styled("li", {
 });
 
 const Footer: React.FC<FooterProps> = ({ className, navigationData }) => {
-  const parseLink = useLinkParser();
-  const location = useLocation();
-
   return (
     <Container role="contentinfo" className={className}>
       <ContentWrapper>
@@ -166,32 +136,7 @@ const Footer: React.FC<FooterProps> = ({ className, navigationData }) => {
             {navigationData.footer_entries
               .filter((entry) => entry.link?.url)
               .map((entry) => (
-                <FooterEntryItem key={entry.link!.url!}>
-                  {mapLink(parseLink(entry.link!.url!), {
-                    Internal: (link) => (
-                      <FooterEntryLink
-                        to={link.pathname}
-                        active={
-                          link.pathname === "/"
-                            ? location.pathname === "/"
-                            : location.pathname.startsWith(link.pathname)
-                        }
-                      >
-                        {entry.display_text}
-                      </FooterEntryLink>
-                    ),
-                    External: (link) => (
-                      <FooterEntryLink
-                        as="a"
-                        target="_blank"
-                        rel="external noopener"
-                        href={link.url.href}
-                      >
-                        {entry.display_text}
-                      </FooterEntryLink>
-                    ),
-                  })}
-                </FooterEntryItem>
+                <FooterEntryItem entry={entry}></FooterEntryItem>
               ))}
           </FooterEntryList>
           <SocialServiceProfileList>

@@ -1,11 +1,12 @@
 import * as React from "react";
-import { Link, graphql } from "gatsby";
+import { graphql } from "gatsby";
 import { rem } from "polished";
 import { styled } from "gatsby-theme-stitches/src/stitches.config";
 import { useLocation } from "@reach/router";
 
 import { mapLink, useLinkParser } from "../../link";
 import SocialServiceProfile from "../footer/SocialServiceProfile";
+import NavigationListItem from "./NavigationListItem";
 
 type NavigationMenuProps = {
   controlId: string;
@@ -114,45 +115,6 @@ const NavigationList = styled("ul", {
   },
 });
 
-const NavigationListItem = styled("li", {
-  fontSize: "$subtitle2",
-  fontWeight: "bold",
-
-  opacity: 0.5,
-  transform: "translateY(50%)",
-  transition: ["opacity .3s", "transform .3s"].join(","),
-
-  ":checked ~ ul > &": {
-    opacity: 1,
-    transform: "none",
-  },
-
-  "@sm": {
-    fontSize: "$body2",
-    opacity: 1,
-    transform: "none",
-  },
-});
-
-const NavigationLink = styled(Link, {
-  textDecoration: "none",
-  color: "$gray900",
-  "&:hover, &:active, &:focus": {
-    color: "$gray600",
-  },
-
-  variants: {
-    active: {
-      true: {
-        color: "$carrot500",
-        "&:hover, &:active, &:focus": {
-          color: "$carrot600",
-        },
-      },
-    },
-  },
-});
-
 const SocialServiceProfileList = styled("ul", {
   display: "flex",
   justifyContent: "flex-end",
@@ -207,32 +169,7 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({
         {data.header_entries
           .filter((entry) => entry.link)
           .map((entry) => (
-            <NavigationListItem key={entry.link!.url}>
-              {mapLink(parseLink(entry.link!.url), {
-                Internal: (link) => (
-                  <NavigationLink
-                    to={link.pathname}
-                    active={
-                      link.pathname === "/"
-                        ? location.pathname === "/"
-                        : location.pathname.startsWith(link.pathname)
-                    }
-                  >
-                    {entry.display_text}
-                  </NavigationLink>
-                ),
-                External: (link) => (
-                  <NavigationLink
-                    as="a"
-                    target="_blank"
-                    rel="external noopener"
-                    href={link.url.href}
-                  >
-                    {entry.display_text}
-                  </NavigationLink>
-                ),
-              })}
-            </NavigationListItem>
+            <NavigationListItem entry={entry}></NavigationListItem>
           ))}
         {sns && (
           <SocialServiceProfileList fixed={{ initial: true, "@sm": false }}>
