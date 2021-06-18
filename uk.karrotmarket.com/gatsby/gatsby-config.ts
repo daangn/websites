@@ -28,15 +28,6 @@ const config: GatsbyConfig = {
         start_url: "/",
         background_color: "#FFFFFF",
         icon: "src/assets/favicon.svg",
-        icons: [48, 72, 96, 144, 192, 256, 384, 512].map((size) => ({
-          src: `${
-            process.env.ASSET_PREFIX
-              ? `https://${process.env.ASSET_PREFIX}`
-              : ""
-          }/icons/icon-${size}x${size}.png`,
-          sizes: `${size}x${size}`,
-          type: `image/png`,
-        })),
       },
     },
     {
