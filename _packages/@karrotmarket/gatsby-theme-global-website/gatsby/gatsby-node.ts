@@ -63,6 +63,7 @@ export const sourceNodes: GatsbyNode["sourceNodes"] = async (
         type: `HotArticle`,
         contentDigest: createContentDigest(article),
       },
+      articleId: article.id,
       image: article.first_image.file,
       region: article.region.fullname,
       price: Number(article.price).toLocaleString(

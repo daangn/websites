@@ -27,6 +27,7 @@ export const { styled, css, global, getCssString, theme, media, utils } =
       lg: `(min-width: ${em(992)})`,
       xl: `(min-width: ${em(1200)})`,
       xxl: `(min-width: ${em(1400)})`,
+      mc: `(min-width: ${em(1230)})`,
     },
     theme: {
       // @ts-ignore

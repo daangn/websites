@@ -4,8 +4,6 @@ import { rem } from "polished";
 import { graphql } from "gatsby";
 import { styled } from "../../gatsby-theme-stitches/stitches.config";
 
-import { Grid } from "../Grid";
-
 export const query = graphql`
   fragment PopularSection_content on PrismicGlobalContentsDataMainBodyPopularSection {
     primary {
@@ -19,7 +17,7 @@ export const query = graphql`
     price
     region
     image
-    id
+    articleId
   }
 `;
 
@@ -39,10 +37,10 @@ const PopularSection: React.FC<ParallaxSectionProps> = (props) => {
       <Container>
         <Title>{title.text}</Title>
         <ItemList>
-          {articles.map(({ id, price, region, image }) => (
+          {articles.map(({ articleId, price, region, image }) => (
             <Item
-              key={id}
-              id={id}
+              key={articleId}
+              id={articleId}
               image={image}
               price={price}
               region={region}
@@ -83,6 +81,8 @@ const ItemList = styled("div", {
   columnGap: rem(16),
   rowGap: rem(32),
   padding: rem(16),
+  width: "100%",
+  boxSizing: "border-box",
 
   "@md": {
     display: "flex",
@@ -91,6 +91,7 @@ const ItemList = styled("div", {
     columnGap: rem(26),
     rowGap: 0,
     padding: 0,
+    width: "initial",
   },
 });
 
@@ -127,7 +128,7 @@ interface ItemProps {
 }
 
 const Item: React.FC<ItemProps> = ({ image, price, region, id }) => (
-  <ItemContainer href={`https://uk.karrotmarket.com/articles/${id}`}>
+  <ItemContainer href={`/articles/${id}`}>
     <ItemImage
       src={image}
       width="100%"
