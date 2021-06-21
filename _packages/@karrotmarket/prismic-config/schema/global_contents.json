@@ -36,6 +36,24 @@
         "label": "원 링크"
       }
     },
+    "one_link_button_text": {
+      "type": "Text",
+      "config": {
+        "label": "원 링크 버튼 텍스트",
+        "placeholder": "App download"
+      }
+    },
+    "main_opengraph_image": {
+      "type": "Image",
+      "config": {
+        "constraint": {
+          "width": 1200,
+          "height": 630
+        },
+        "thumbnails": [],
+        "label": "공유하기 이미지"
+      }
+    },
     "main_body": {
       "type": "Slices",
       "fieldset": "Slice zone",
@@ -448,6 +466,17 @@
       "config": {
         "single": "heading3",
         "label": "제목"
+      }
+    },
+    "about_opengraph_image": {
+      "type": "Image",
+      "config": {
+        "constraint": {
+          "width": 1200,
+          "height": 630
+        },
+        "thumbnails": [],
+        "label": "공유하기 이미지"
       }
     },
     "about_background_image": {

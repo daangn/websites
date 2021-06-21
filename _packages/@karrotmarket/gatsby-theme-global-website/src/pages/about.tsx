@@ -7,14 +7,14 @@ import { mapAbstractType } from "@cometjs/graphql-utils";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { withPrismicPreview } from "gatsby-plugin-prismic-previews";
 
-import { styled } from "../../gatsby-theme-stitches/stitches.config";
+import { styled } from "../gatsby-theme-stitches/stitches.config";
 
-import { Space } from "../Space";
-import Layout from "../Layout";
-import DetailsList from "../about/DetailsList";
-import SubtitleAndText from "../about/SubtitleAndText";
-import SubtitleAndLinks from "../about/SubtitleAndLinks";
-import SubtitleAndImages from "../about/SubtitleAndImages";
+import { Space } from "../components/Space";
+import Layout from "../components/Layout";
+import DetailsList from "../components/about/DetailsList";
+import SubtitleAndText from "../components/about/SubtitleAndText";
+import SubtitleAndLinks from "../components/about/SubtitleAndLinks";
+import SubtitleAndImages from "../components/about/SubtitleAndImages";
 
 type AboutPageProps = PageProps<GatsbyTypes.AboutPageQueryQuery>;
 
@@ -29,6 +29,13 @@ export const query = graphql`
       data {
         about_page_title
         about_page_description
+        about_opengraph_image {
+          url
+          dimensions {
+            width
+            height
+          }
+        }
         about_opengraph_image_link
 
         about_title {
@@ -59,6 +66,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
   const {
     about_page_title,
     about_page_description,
+    about_opengraph_image,
     about_opengraph_image_link,
     about_background_image,
     about_title,
@@ -75,13 +83,18 @@ const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
         title={about_page_title}
         description={about_page_description}
         openGraph={{
-          images: about_opengraph_image_link
-            ? [
-                {
-                  url: about_opengraph_image_link,
-                },
-              ]
-            : [],
+          images:
+            about_opengraph_image || about_opengraph_image_link
+              ? [
+                  {
+                    ...(about_opengraph_image?.dimensions
+                      ? about_opengraph_image?.dimensions
+                      : {}),
+                    url:
+                      about_opengraph_image?.url || about_opengraph_image_link,
+                  },
+                ]
+              : [],
           title: about_page_title,
           description: about_page_description,
         }}

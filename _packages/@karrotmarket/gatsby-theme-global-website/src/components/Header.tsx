@@ -22,7 +22,6 @@ const Header = styled(_Header, {
 
   svg: {
     height: rem(26),
-
     "@sm": {
       height: rem(28),
     },

@@ -96,12 +96,15 @@ const Container = styled(motion.div, {
   alignItems: "center",
   justifyContent: "flex-end",
   textAlign: "left",
-  paddingLeft: rem(24),
-  paddingRight: rem(24),
+  // paddingLeft: rem(24),
+  // paddingRight: rem(24),
   boxSizing: "border-box",
-
+  paddingLeft: rem(16),
+  paddingRight: rem(16),
   "@sm": {
     width: rem(540),
+    paddingLeft: rem(24),
+    paddingRight: rem(24),
   },
   "@md": {
     gap: rem(30),
@@ -117,7 +120,7 @@ const Container = styled(motion.div, {
     width: rem(960),
   },
   "@xl": {
-    width: rem(1140),
+    width: rem(1150),
   },
 
   variants: {
