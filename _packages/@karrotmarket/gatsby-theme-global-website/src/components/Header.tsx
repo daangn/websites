@@ -20,6 +20,14 @@ const Header = styled(_Header, {
     },
   },
 
+  svg: {
+    height: rem(26),
+
+    "@sm": {
+      height: rem(28),
+    },
+  },
+
   "@sm": {
     fontSize: "initial",
     "nav > ul": {
@@ -31,6 +39,18 @@ const Header = styled(_Header, {
       "ul > li > a": {
         fontSize: rem(18),
       },
+    },
+  },
+
+  "@md": {
+    "header > div": {
+      paddingRight: rem(40),
+      paddingLeft: rem(40),
+    },
+  },
+  "@mc": {
+    "header > div": {
+      padding: 0,
     },
   },
 });
