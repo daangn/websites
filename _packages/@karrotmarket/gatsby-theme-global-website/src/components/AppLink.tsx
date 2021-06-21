@@ -137,6 +137,7 @@ export const query = graphql`
     app_store_link
     google_play_link
     one_link
+    one_link_button_text
   }
 `;
 
@@ -148,7 +149,8 @@ interface TAppLink {
 }
 
 const AppLink: React.FC<TAppLink> = ({ type, theme, links, inverted }) => {
-  const { google_play_link, app_store_link, one_link } = links;
+  const { google_play_link, app_store_link, one_link, one_link_button_text } =
+    links;
 
   return (
     <>
@@ -169,11 +171,10 @@ const AppLink: React.FC<TAppLink> = ({ type, theme, links, inverted }) => {
           </Flex>
         ) : (
           <LinkButton href={one_link} theme="primary" width="full">
-            App download
+            {one_link_button_text || "App download"}
           </LinkButton>
         )}
       </SAppLink>
-      {/* {type === "mobile" && <Space h={{ "@i": 86, "@md": 0 }}></Space>} */}
     </>
   );
 };

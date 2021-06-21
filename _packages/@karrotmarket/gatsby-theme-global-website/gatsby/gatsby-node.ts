@@ -79,21 +79,16 @@ export const sourceNodes: GatsbyNode["sourceNodes"] = async (
   return;
 };
 
-export const createPages: GatsbyNode["createPages"] = (
-  { actions },
+export const onCreatePage: GatsbyNode["onCreatePage"] = (
+  { page, actions },
   options
 ) => {
-  actions.createPage({
-    path: "/",
-    component: require.resolve("./src/components/_pages/index.tsx"),
+  const { createPage, deletePage } = actions;
+  deletePage(page);
+  createPage({
+    ...page,
     context: {
-      lang: options.locale,
-    },
-  });
-  actions.createPage({
-    path: "/about",
-    component: require.resolve("./src/components/_pages/about.tsx"),
-    context: {
+      ...page.context,
       lang: options.locale,
       dateFormat: DATE_FORMAT[options.locale as LocaleType],
     },

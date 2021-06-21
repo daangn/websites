@@ -6,18 +6,18 @@ import { useInView } from "react-intersection-observer";
 import { mapAbstractType } from "@cometjs/graphql-utils";
 import { withPrismicPreview } from "gatsby-plugin-prismic-previews";
 
-import { styled } from "../../gatsby-theme-stitches/stitches.config";
+import { styled } from "../gatsby-theme-stitches/stitches.config";
 
-import Layout from "../Layout";
-import AppLink from "../AppLink";
-import HeroSection from "../home/HeroSection";
-import MockupSection from "../home/MockupSection";
-import ReviewSection from "../home/ReviewSection";
-import CenterSection from "../home/CenterSection";
-import PopularSection from "../home/PopularSection";
-import DownloadSection from "../home/DownloadSection";
-import ParallaxSection from "../home/ParallaxSection";
-import IllustrationSection from "../home/IllustrationSection";
+import Layout from "../components/Layout";
+import AppLink from "../components/AppLink";
+import HeroSection from "../components/home/HeroSection";
+import MockupSection from "../components/home/MockupSection";
+import ReviewSection from "../components/home/ReviewSection";
+import CenterSection from "../components/home/CenterSection";
+import PopularSection from "../components/home/PopularSection";
+import DownloadSection from "../components/home/DownloadSection";
+import ParallaxSection from "../components/home/ParallaxSection";
+import IllustrationSection from "../components/home/IllustrationSection";
 import { rem } from "polished";
 
 type IndexPageProps = PageProps<GatsbyTypes.IndexPageQueryQuery>;
@@ -34,6 +34,13 @@ export const query = graphql`
         main_page_title
         main_page_description
         main_opengraph_image_link
+        main_opengraph_image {
+          url
+          dimensions {
+            width
+            height
+          }
+        }
 
         ...AppLink_links
         main_body {
@@ -65,6 +72,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
   const {
     main_page_title,
     main_page_description,
+    main_opengraph_image,
     main_opengraph_image_link,
     main_body,
   } = data.prismicGlobalContents?.data;
@@ -81,13 +89,17 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
         title={main_page_title}
         description={main_page_description}
         openGraph={{
-          images: main_opengraph_image_link
-            ? [
-                {
-                  url: main_opengraph_image_link,
-                },
-              ]
-            : [],
+          images:
+            main_opengraph_image || main_opengraph_image_link
+              ? [
+                  {
+                    ...(main_opengraph_image?.dimensions
+                      ? main_opengraph_image?.dimensions
+                      : {}),
+                    url: main_opengraph_image?.url || main_opengraph_image_link,
+                  },
+                ]
+              : [],
           title: main_page_title,
           description: main_page_description,
         }}

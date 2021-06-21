@@ -64,6 +64,8 @@ const Container = styled("div", {
   paddingTop: rem(70),
   paddingBottom: rem(40),
   boxSizing: "border-box",
+  paddingLeft: rem(16),
+  paddingRight: rem(16),
 
   "@sm": {
     width: rem(540),
@@ -80,7 +82,7 @@ const Container = styled("div", {
     width: rem(960),
   },
   "@xl": {
-    width: rem(1140),
+    width: rem(1150),
   },
 });
 

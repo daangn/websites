@@ -7,6 +7,7 @@ import Footer from "@karrotmarket/gatsby-theme-global-website/src/components/Foo
 import globalStyles from "@karrotmarket/gatsby-theme-global-website/src/styles/global";
 import { Space } from "@karrotmarket/gatsby-theme-global-website/src/components/Space";
 import { styled } from "@karrotmarket/gatsby-theme-global-website/src/gatsby-theme-stitches/stitches.config";
+import { rem } from "polished";
 
 export const query = graphql`
   fragment DefaultLayout_data on PrismicSiteNavigation {
@@ -26,6 +27,26 @@ const Header = styled(_Header, {
   "@sm": {
     "nav > ul > li:first-child": {
       display: "none",
+    },
+  },
+
+  "header > div": {
+    "@sm": {
+      widht: "100%",
+      // width: rem(540),
+      paddingLeft: rem(16),
+      paddingRight: rem(16),
+    },
+    "@md": {
+      paddingLeft: rem(0),
+      paddingRight: rem(0),
+      width: rem(720),
+    },
+    "@lg": {
+      width: rem(960),
+    },
+    "@xl": {
+      width: rem(1150),
     },
   },
 });
