@@ -93,8 +93,6 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
         }}
       />
       <Wrapper>
-        {/*  */}
-        {/*  */}
         {main_body.map((content: any, i) =>
           mapAbstractType(content, {
             PrismicGlobalContentsDataMainBodyHeroSection: (content) => (
