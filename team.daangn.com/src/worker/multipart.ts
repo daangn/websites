@@ -18,9 +18,13 @@ type FormFieldInfo = (
   }
 );
 
-export async function formData(req: Request): Promise<FormData> {
+interface Body {
+  arrayBuffer(): Promise<ArrayBuffer>;
+}
+
+export async function parseFormData(body: Body): Promise<FormData> {
   const decoder = new TextDecoder();
-  const bytes = await req.arrayBuffer() as Uint8Array;
+  const bytes = await body.arrayBuffer() as Uint8Array;
   const formData = new FormData();
 
   for (const part of parseMimeMultipart(bytes)) {
@@ -46,7 +50,7 @@ export async function formData(req: Request): Promise<FormData> {
   return formData;
 }
 
-export function parsePartHeader(headers: PartHeader[]): FormFieldInfo {
+function parsePartHeader(headers: PartHeader[]): FormFieldInfo {
   const contentType = headers.find(h => /^content-type$/i.test(h.name));
   const contentDisposition = headers.find(h => /^content-disposition$/i.test(h.name));
 
@@ -55,7 +59,7 @@ export function parsePartHeader(headers: PartHeader[]): FormFieldInfo {
   }
 
   function parseFieldValue(name: string) {
-    const pattern = /(?<key>key)=\"(?<value>\w+)\"/;
+    const pattern = /(?<key>[\w\-]+)=\"(?<value>.+)\"/;
     const match = name.match(pattern);
     if (match?.groups == null) {
       throw new Error('No field name');
@@ -86,7 +90,6 @@ export function parsePartHeader(headers: PartHeader[]): FormFieldInfo {
 // See https://github.com/TomasHubelbauer/mime-multipart
 function* parseMimeMultipart(uint8Array: Uint8Array) {
   const textDecoder = new TextDecoder();
-
 
   type Boundary = { type: 'boundary', boundary: string };
   type HeaderName = { type: 'header-name', boundary: string, name: string, value: '', headers: PartHeader[] };

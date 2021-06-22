@@ -79,9 +79,6 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
     }
     const formData = new FormData(formRef.current);
 
-    const resume = formData.get('resume') as File | null;
-    const portfolio = formData.get('portfolio') as File | null;
-
     (async () => {
       required(data.jobPost);
 
@@ -91,14 +88,6 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
           cache: 'no-cache',
           credentials: 'omit',
           body: formData,
-          headers: {
-            ...resume && {
-              'X-Upload-Resume': encodeURIComponent(resume.name),
-            },
-            ...portfolio && {
-              'X-Upload-Portfolio': encodeURIComponent(portfolio.name),
-            },
-          },
         });
         if (response.ok) {
           window.alert('지원서가 제출되었습니다. 빠른 시일 내에 검토 후 연락드리겠습니다 :)');

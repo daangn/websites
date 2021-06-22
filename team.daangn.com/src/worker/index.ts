@@ -4,6 +4,8 @@ import { Router, listen } from 'worktop';
 import * as CORS from 'worktop/cors';
 import * as Base64 from 'worktop/base64';
 
+import { parseFormData } from './multipart';
+
 /**
  * Greenhouse Jobboard API Key
  *
@@ -21,16 +23,7 @@ declare var GH_JOBBOARD_TOKEN: string;
 
 const API = new Router();
 
-API.prepare = CORS.preflight({
-  origin: '*',
-  headers: [
-    'Cache-Control',
-    'Content-Type',
-    'X-Upload-Resume',
-    'X-Upload-Portfolio',
-  ],
-  methods: ['GET', 'HEAD', 'POST'],
-});
+API.prepare = CORS.preflight();
 
 API.add('GET', '/ping', (_req, res) => {
   res.send(200, 'pong');
@@ -59,8 +52,8 @@ interface MakeRemoteForm {
     name: FormDataEntryValue | null,
     email: FormDataEntryValue | null,
     phoneNumber: FormDataEntryValue | null,
-    resume: File | null,
-    portfolio: File | null,
+    resume: FormDataEntryValue | null,
+    portfolio: FormDataEntryValue | null,
     veterans: FormDataEntryValue | null,
     disability: FormDataEntryValue | null,
     alternativeCivilian: FormDataEntryValue | null,
@@ -114,6 +107,12 @@ const makeRemoteForm: MakeRemoteForm = ({
   }
   if (!(veterans == null || typeof veterans === 'string')) {
     throw new Error('veterans must be a string or null');
+  }
+  if (!(resume instanceof File)) {
+    throw new Error('resume must be a file');
+  }
+  if (!(portfolio == null || portfolio instanceof File)) {
+    throw new Error('portfolio must be a file');
   }
 
   const veteransQuestion = 'question_5942639003';
@@ -183,10 +182,7 @@ API.add('POST', '/jobs/:jobId/application/submit', async (req, res) => {
     'Authorization': `Basic ${Base64.encode(`${GH_JOBBOARD_API_KEY}:`)}`,
   });
 
-  const resumeFilename = req.headers.get('x-upload-resume');
-  const portfolioFilename = req.headers.get('x-upload-portfolio');
-
-  const formData = await req.body.formData();
+  const formData = await parseFormData(req.body);
 
   const name = formData.get('name');
   const email = formData.get('email');
@@ -207,14 +203,8 @@ API.add('POST', '/jobs/:jobId/application/submit', async (req, res) => {
       veterans,
       disability,
       alternativeCivilian,
-      resume: resume && resumeFilename ? (() => {
-        const filename = `resume-${name}-${formatDate(new Date())}${extractExtension(resumeFilename)}`;
-        return new File([resume], filename);
-      })() : null,
-      portfolio: portfolio && portfolioFilename ? (() => {
-        const filename = `portfolio-${name}-${formatDate(new Date())}${extractExtension(portfolioFilename)}`;
-        return new File([portfolio], filename);
-      })() : null,
+      resume,
+      portfolio,
     });
   } catch (e) {
     return res.send(400, e.message);
