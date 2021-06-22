@@ -7,11 +7,9 @@ const siteMetadata = {
   siteName: "Karrot - Your Local Buying &amp; Selling Community for Verified Locals",
   description: "Karrot - the app for verified locals to buy &amp; sell. See what&#39;s for offer today!"
 };
-const config = {
-  // ...(process.env.ASSET_PREFIX && {
-  //   assetPrefix: process.env.ASSET_PREFIX,
-  // }),
-  assetPrefix: "/test",
+const config = { ...(process.env.ASSET_PREFIX && {
+    assetPrefix: process.env.ASSET_PREFIX
+  }),
   flags: {
     FAST_DEV: true,
     QUERY_ON_DEMAND: true,

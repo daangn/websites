@@ -29,21 +29,23 @@ export const query = graphql`
       data {
         about_page_title
         about_page_description
+        about_opengraph_image_link
         about_opengraph_image {
           dimensions {
             width
             height
           }
-          childImageSharp {
-            gatsbyImageData(
-              quality: 100
-              formats: JPG
-              breakpoints: 0
-              placeholder: NONE
-            )
+          localFile {
+            childImageSharp {
+              gatsbyImageData(
+                quality: 100
+                formats: JPG
+                breakpoints: 0
+                placeholder: NONE
+              )
+            }
           }
         }
-        about_opengraph_image_link
 
         about_title {
           text
