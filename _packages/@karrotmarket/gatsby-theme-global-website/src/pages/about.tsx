@@ -48,7 +48,7 @@ export const query = graphql`
         }
 
         about_title {
-          text
+          html
         }
         about_background_image {
           localFile {
@@ -181,14 +181,16 @@ const Container = styled("div", {
 });
 
 const Title = styled("div", {
-  fontWeight: "bold",
-  fontSize: "$heading4",
-  lineHeight: "$heading4",
-  marginTop: rem(36),
-  "@md": {
-    fontSize: "$heading3",
-    lineHeight: "$heading3",
-    marginTop: rem(60),
+  "*": {
+    fontWeight: "bold",
+    fontSize: "$heading4",
+    lineHeight: "$heading4",
+    marginTop: rem(36),
+    "@md": {
+      fontSize: "$heading3",
+      lineHeight: "$heading3",
+      marginTop: rem(60),
+    },
   },
 });
 
