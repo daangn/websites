@@ -12,7 +12,7 @@ export const data: PhoneMockUpChatData = {
     info: "within 10 mins",
   },
   item: {
-    name: "Cozy Chair",
+    name: "Cosy Chair",
     image: ItemImg,
     price: "£120.00",
   },
@@ -24,7 +24,7 @@ export const data: PhoneMockUpChatData = {
     },
     {
       type: "reservation",
-      text: "Emilia has set up an appointment on <b>February 26th at 7:00 pm.</b>",
+      text: "Emilia set a Meet Up for <br/> <b>26 Feb, 7:00 pm</b>",
     },
     {
       type: "location",

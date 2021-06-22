@@ -35,10 +35,19 @@ export const query = graphql`
         main_page_description
         main_opengraph_image_link
         main_opengraph_image {
-          url
           dimensions {
             width
             height
+          }
+          localFile {
+            childImageSharp {
+              gatsbyImageData(
+                quality: 100
+                formats: JPG
+                breakpoints: 0
+                placeholder: NONE
+              )
+            }
           }
         }
 
@@ -77,6 +86,10 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
     main_body,
   } = data.prismicGlobalContents?.data;
 
+  const localMainOgImage =
+    main_opengraph_image?.localFile?.childImageSharp?.gatsbyImageData?.images
+      ?.fallback?.src;
+
   return (
     <Layout
       id="index-page"
@@ -90,13 +103,13 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
         description={main_page_description}
         openGraph={{
           images:
-            main_opengraph_image || main_opengraph_image_link
+            localMainOgImage || main_opengraph_image_link
               ? [
                   {
                     ...(main_opengraph_image?.dimensions
                       ? main_opengraph_image?.dimensions
                       : {}),
-                    url: main_opengraph_image?.url || main_opengraph_image_link,
+                    url: localMainOgImage || main_opengraph_image_link,
                   },
                 ]
               : [],

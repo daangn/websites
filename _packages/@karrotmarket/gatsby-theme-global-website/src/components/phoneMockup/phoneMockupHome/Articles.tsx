@@ -100,14 +100,20 @@ const Price = styled("div", {
 const InfoContainer = styled("div", {
   display: "grid",
   gridTemplateColumns: "repeat(3, max-content)",
-  gridColumnGap: em(4),
+  gridColumnGap: em(6),
   marginBottom: em(1),
 });
 const Info = styled("div", {
   fontSize: em(12),
   color: "$gray600",
 });
-const Spacer = styled("div", {});
+const Spacer = styled("div", {
+  width: em(2),
+  height: em(2),
+  borderRadius: em(2),
+  background: "$gray600",
+  alignSelf: "center",
+});
 const CountInfoContainer = styled("div", {
   display: "grid",
   gridTemplateColumns: "repeat(2, max-content)",

@@ -23,7 +23,7 @@ const Ratings: React.FC<RatingProps> = ({ ratings }) => {
         duration: 0.5,
       }}
     >
-      <Title>Ratings</Title>
+      <Title>Feedback</Title>
       {ratings.map((rating, i) => (
         <Flex key={i}>
           <Count>
