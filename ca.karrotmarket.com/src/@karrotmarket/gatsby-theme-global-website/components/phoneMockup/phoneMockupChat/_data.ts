@@ -22,7 +22,7 @@ export const data: PhoneMockUpChatData = {
     },
     {
       type: "reservation",
-      text: "Emilia has set up an appointment on <b>February 26th at 7:00 pm.</b>",
+      text: "Emilia set a Meet Up for <br/> <b>26 Feb, 7:00 pm</b>",
     },
     {
       type: "location",

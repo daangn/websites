@@ -29,14 +29,23 @@ export const query = graphql`
       data {
         about_page_title
         about_page_description
+        about_opengraph_image_link
         about_opengraph_image {
-          url
           dimensions {
             width
             height
           }
+          localFile {
+            childImageSharp {
+              gatsbyImageData(
+                quality: 100
+                formats: JPG
+                breakpoints: 0
+                placeholder: NONE
+              )
+            }
+          }
         }
-        about_opengraph_image_link
 
         about_title {
           text
@@ -77,6 +86,10 @@ const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
     about_background_image?.localFile?.childImageSharp?.gatsbyImageData as any
   );
 
+  const localAboutOgImage =
+    about_opengraph_image?.localFile?.childImageSharp?.gatsbyImageData?.images
+      ?.fallback?.src;
+
   return (
     <Layout id="about-page" data={data.prismicSiteNavigation.data}>
       <GatsbySeo
@@ -84,14 +97,13 @@ const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
         description={about_page_description}
         openGraph={{
           images:
-            about_opengraph_image || about_opengraph_image_link
+            localAboutOgImage || about_opengraph_image_link
               ? [
                   {
                     ...(about_opengraph_image?.dimensions
                       ? about_opengraph_image?.dimensions
                       : {}),
-                    url:
-                      about_opengraph_image?.url || about_opengraph_image_link,
+                    url: localAboutOgImage || about_opengraph_image_link,
                   },
                 ]
               : [],
@@ -104,7 +116,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
       </ImageContianer>
 
       <Container>
-        <Title>{about_title.text}</Title>
+        <Title dangerouslySetInnerHTML={{ __html: about_title.html }}></Title>
 
         {about_body.map((content: any, i) =>
           mapAbstractType(content, {
@@ -144,7 +156,6 @@ const Image = styled(GatsbyImage, {
     height: "100%",
   },
   img: {
-    // objectFit: "",
     width: "100%",
     height: "100%",
     objectPosition: "bottom 0% left 50%",

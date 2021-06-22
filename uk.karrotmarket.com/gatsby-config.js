@@ -37,7 +37,7 @@ const config = { ...(process.env.ASSET_PREFIX && {
     resolve: "@karrotmarket/gatsby-theme-global-website",
     options: {
       locale: "en-gb",
-      hot_articles_api: "https://uk.karrotmarket.com/hot_articles.json?limit=6"
+      hot_articles_api: "https://webapp.uk.karrotmarket.com/hot_articles.json?limit=6"
     }
   }, "@karrotmarket/gatsby-theme-prismic"]
 };

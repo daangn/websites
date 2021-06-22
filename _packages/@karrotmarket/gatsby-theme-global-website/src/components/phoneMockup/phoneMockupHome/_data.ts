@@ -9,7 +9,7 @@ import PotImg from "../../../images/img_home_pot.jpg";
 import AirpodImg from "../../../images/img_home_airpod.jpg";
 
 export const data: PhoneMockupHomeData = {
-  region: "Woolston",
+  region: "City Centre",
   filters: [
     { name: "All" },
     { name: "Popular", icon: PopularIcon },
@@ -18,29 +18,29 @@ export const data: PhoneMockupHomeData = {
   ],
   articles: [
     {
-      name: "Table",
+      name: "Dining table",
       image: TableImg,
       price: "£120.00",
       date: "2 sec ago",
-      region: "Woolston",
+      region: "Altrincham",
       interestCount: 8,
       chatCount: 24,
     },
     {
-      name: "Take 5 pots at a low price.",
+      name: "5 plant pot bundle",
       image: PotImg,
       price: "£10.00",
       date: "10 sec ago",
-      region: "Harefield",
+      region: "Salford",
       interestCount: 6,
       chatCount: 3,
     },
     {
-      name: "It's a new AirPod.",
+      name: "New unused airpods",
       image: AirpodImg,
       price: "£46.50",
       date: "53 sec ago",
-      region: "Woolston",
+      region: "Chorlton",
     },
   ],
 };

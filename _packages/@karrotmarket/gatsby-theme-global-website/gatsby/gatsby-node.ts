@@ -37,7 +37,7 @@ export const pluginOptionsSchema: GatsbyNode["pluginOptionsSchema"] = ({
       .default("en-gb")
       .description(`prismic locale 값`),
     hot_articles_api: Joi.string()
-      .default("https://uk.karrotmarket.com/hot_articles.json?limit=6")
+      .default("https://webapp.uk.karrotmarket.com/hot_articles.json?limit=6")
       .description(`인기매물 api`),
   });
 };

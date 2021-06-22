@@ -1,619 +1,591 @@
 {
-  "Main": {
-    "main_page_title": {
-      "type": "Text",
-      "config": {
-        "label": "페이지 제목"
+  "Main" : {
+    "main_page_title" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "페이지 제목"
       }
     },
-    "main_page_description": {
-      "type": "Text",
-      "config": {
-        "label": "페이지 설명"
+    "main_page_description" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "페이지 설명"
       }
     },
-    "main_opengraph_image_link": {
-      "type": "Text",
-      "config": {
-        "label": "공유 이미지 링크"
+    "main_opengraph_image_link" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "공유 이미지 링크"
       }
     },
-    "google_play_link": {
-      "type": "Text",
-      "config": {
-        "label": "구글 플레이 링크"
+    "google_play_link" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "구글 플레이 링크"
       }
     },
-    "app_store_link": {
-      "type": "Text",
-      "config": {
-        "label": "앱 스토어 링크"
+    "app_store_link" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "앱 스토어 링크"
       }
     },
-    "one_link": {
-      "type": "Text",
-      "config": {
-        "label": "원 링크"
+    "one_link" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "원 링크"
       }
     },
-    "one_link_button_text": {
-      "type": "Text",
-      "config": {
-        "label": "원 링크 버튼 텍스트",
-        "placeholder": "App download"
+    "one_link_button_text" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "원 링크 버튼 텍스트",
+        "placeholder" : "App download"
       }
     },
-    "main_opengraph_image": {
-      "type": "Image",
-      "config": {
-        "constraint": {
-          "width": 1200,
-          "height": 630
+    "main_opengraph_image" : {
+      "type" : "Image",
+      "config" : {
+        "constraint" : {
+          "width" : 1200,
+          "height" : 630
         },
-        "thumbnails": [],
-        "label": "공유하기 이미지"
+        "thumbnails" : [ ],
+        "label" : "공유하기 이미지"
       }
     },
-    "main_body": {
-      "type": "Slices",
-      "fieldset": "Slice zone",
-      "config": {
-        "labels": {
-          "hero_section": [],
-          "parallax_section": [],
-          "download_section": [],
-          "popular_section": [],
-          "centre_section": [],
-          "illustration_section": []
+    "main_body" : {
+      "type" : "Slices",
+      "fieldset" : "Slice zone",
+      "config" : {
+        "labels" : {
+          "hero_section" : [ ],
+          "parallax_section" : [ ],
+          "download_section" : [ ],
+          "popular_section" : [ ],
+          "centre_section" : [ ],
+          "illustration_section" : [ ]
         },
-        "choices": {
-          "hero_section": {
-            "type": "Slice",
-            "fieldset": "Hero Section",
-            "description": "배경/사이드 이미지 + 제목 ",
-            "icon": "domain",
-            "display": "list",
-            "non-repeat": {
-              "title": {
-                "type": "StructuredText",
-                "config": {
-                  "multi": "paragraph, heading1",
-                  "label": "제목",
-                  "placeholder": "필수"
+        "choices" : {
+          "hero_section" : {
+            "type" : "Slice",
+            "fieldset" : "Hero Section",
+            "description" : "배경/사이드 이미지 + 제목 ",
+            "icon" : "domain",
+            "display" : "list",
+            "non-repeat" : {
+              "title" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "multi" : "paragraph,heading1",
+                  "label" : "제목",
+                  "placeholder" : "필수"
                 }
               },
-              "text": {
-                "type": "StructuredText",
-                "config": {
-                  "multi": "paragraph",
-                  "allowTargetBlank": true,
-                  "label": "텍스트",
-                  "placeholder": "선택"
+              "text" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "multi" : "paragraph",
+                  "allowTargetBlank" : true,
+                  "label" : "텍스트",
+                  "placeholder" : "선택"
                 }
               },
-              "background_color": {
-                "type": "Text",
-                "config": {
-                  "label": "배경 색상"
+              "background_color" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "배경 색상"
                 }
               },
-              "background_image": {
-                "type": "Image",
-                "config": {
-                  "constraint": {},
-                  "thumbnails": [],
-                  "label": "배경 이미지"
+              "background_image" : {
+                "type" : "Image",
+                "config" : {
+                  "constraint" : { },
+                  "thumbnails" : [ ],
+                  "label" : "배경 이미지"
                 }
               },
-              "side_image": {
-                "type": "Image",
-                "config": {
-                  "constraint": {
-                    "width": null,
-                    "height": null
+              "side_image" : {
+                "type" : "Image",
+                "config" : {
+                  "constraint" : {
+                    "width" : null,
+                    "height" : null
                   },
-                  "thumbnails": [
-                    {
-                      "name": "mobile",
-                      "width": 576,
-                      "height": 730
-                    }
-                  ],
-                  "label": "사이드 이미지"
+                  "thumbnails" : [ {
+                    "name" : "mobile",
+                    "width" : 576,
+                    "height" : 730
+                  } ],
+                  "label" : "사이드 이미지"
                 }
               }
             },
-            "repeat": {}
+            "repeat" : { }
           },
-          "parallax_section": {
-            "type": "Slice",
-            "fieldset": "Parallax Section",
-            "description": "배경 이미지+ 제목 + 상단 텍스트",
-            "icon": "arrow_drop_down_circle",
-            "display": "list",
-            "non-repeat": {
-              "title": {
-                "type": "StructuredText",
-                "config": {
-                  "multi": "heading2",
-                  "label": "제목"
+          "parallax_section" : {
+            "type" : "Slice",
+            "fieldset" : "Parallax Section",
+            "description" : "배경 이미지+ 제목 + 상단 텍스트",
+            "icon" : "arrow_drop_down_circle",
+            "display" : "list",
+            "non-repeat" : {
+              "title" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "multi" : "heading2",
+                  "label" : "제목"
                 }
               },
-              "top_icon": {
-                "type": "Select",
-                "config": {
-                  "options": [
-                    "Karrot"
-                  ],
-                  "label": "상단 아이콘"
+              "top_icon" : {
+                "type" : "Select",
+                "config" : {
+                  "options" : [ "Karrot" ],
+                  "label" : "상단 아이콘"
                 }
               },
-              "top_text": {
-                "type": "StructuredText",
-                "config": {
-                  "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, rtl",
-                  "label": "상단 텍스트"
+              "top_text" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "multi" : "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+                  "label" : "상단 텍스트"
                 }
               },
-              "background_image": {
-                "type": "Image",
-                "config": {
-                  "constraint": {},
-                  "thumbnails": [],
-                  "label": "배경 이미지"
+              "background_image" : {
+                "type" : "Image",
+                "config" : {
+                  "constraint" : { },
+                  "thumbnails" : [ ],
+                  "label" : "배경 이미지"
                 }
               }
             },
-            "repeat": {}
+            "repeat" : { }
           },
-          "mockup_section": {
-            "type": "Slice",
-            "fieldset": "Mockup Section",
-            "description": "폰목업 + 텍스트 + 기타 정보들",
-            "icon": "smartphone",
-            "display": "list",
-            "non-repeat": {
-              "text": {
-                "type": "StructuredText",
-                "config": {
-                  "multi": "heading3, strong",
-                  "label": "텍스트"
+          "mockup_section" : {
+            "type" : "Slice",
+            "fieldset" : "Mockup Section",
+            "description" : "폰목업 + 텍스트 + 기타 정보들",
+            "icon" : "smartphone",
+            "display" : "list",
+            "non-repeat" : {
+              "text" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "multi" : "heading3,strong",
+                  "label" : "텍스트"
                 }
               },
-              "background_color": {
-                "type": "Select",
-                "config": {
-                  "options": [
-                    "#FBF7F2",
-                    "$green50"
-                  ],
-                  "label": "배경 색상"
+              "background_color" : {
+                "type" : "Select",
+                "config" : {
+                  "options" : [ "#FBF7F2", "$green50" ],
+                  "label" : "배경 색상"
                 }
               },
-              "text_highlight_color": {
-                "type": "Select",
-                "config": {
-                  "options": [
-                    "$carrot500",
-                    "$green500"
-                  ],
-                  "label": "텍스트 하이라이트 색상"
+              "text_highlight_color" : {
+                "type" : "Select",
+                "config" : {
+                  "options" : [ "$carrot500", "$green500" ],
+                  "label" : "텍스트 하이라이트 색상"
                 }
               },
-              "phone_mockup_component": {
-                "type": "Select",
-                "config": {
-                  "options": [
-                    "PhoneMockupVerify",
-                    "PhoneMockupChat"
-                  ],
-                  "label": "폰목업 컴포넌트"
+              "phone_mockup_component" : {
+                "type" : "Select",
+                "config" : {
+                  "options" : [ "PhoneMockupVerify", "PhoneMockupChat" ],
+                  "label" : "폰목업 컴포넌트"
                 }
               },
-              "inverted": {
-                "type": "Boolean",
-                "config": {
-                  "placeholder_false": "왼쪽",
-                  "placeholder_true": "오른쪽",
-                  "default_value": false,
-                  "label": "폰목업 위치"
+              "inverted" : {
+                "type" : "Boolean",
+                "config" : {
+                  "placeholder_false" : "왼쪽",
+                  "placeholder_true" : "오른쪽",
+                  "default_value" : false,
+                  "label" : "폰목업 위치"
                 }
               }
             },
-            "repeat": {
-              "icon": {
-                "type": "Select",
-                "config": {
-                  "options": [
-                    "Location",
-                    "Write",
-                    "Keyword",
-                    "Reservation"
-                  ],
-                  "label": "아이콘"
+            "repeat" : {
+              "icon" : {
+                "type" : "Select",
+                "config" : {
+                  "options" : [ "Location", "Write", "Keyword", "Reservation" ],
+                  "label" : "아이콘"
                 }
               },
-              "text": {
-                "type": "Text",
-                "config": {
-                  "label": "텍스트"
+              "text" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "텍스트"
                 }
               }
             }
           },
-          "centre_section": {
-            "type": "Slice",
-            "fieldset": "Center Section",
-            "description": "이미지 + 제목 + 텍스트",
-            "icon": "format_align_center",
-            "display": "list",
-            "non-repeat": {
-              "title": {
-                "type": "StructuredText",
-                "config": {
-                  "single": "heading2",
-                  "label": "제목"
+          "centre_section" : {
+            "type" : "Slice",
+            "fieldset" : "Center Section",
+            "description" : "이미지 + 제목 + 텍스트",
+            "icon" : "format_align_center",
+            "display" : "list",
+            "non-repeat" : {
+              "title" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "single" : "heading2",
+                  "label" : "제목"
                 }
               },
-              "text": {
-                "type": "StructuredText",
-                "config": {
-                  "multi": "paragraph",
-                  "label": "텍스트"
+              "text" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "multi" : "paragraph",
+                  "label" : "텍스트"
                 }
               },
-              "image": {
-                "type": "Image",
-                "config": {
-                  "constraint": {
-                    "width": 800,
-                    "height": 840
+              "image" : {
+                "type" : "Image",
+                "config" : {
+                  "constraint" : {
+                    "width" : 800,
+                    "height" : 840
                   },
-                  "thumbnails": [
-                    {
-                      "name": "mobile",
-                      "width": 576,
-                      "height": 604
-                    }
-                  ],
-                  "label": "이미지"
+                  "thumbnails" : [ {
+                    "name" : "mobile",
+                    "width" : 576,
+                    "height" : 604
+                  } ],
+                  "label" : "이미지"
                 }
               }
             },
-            "repeat": {}
+            "repeat" : { }
           },
-          "review_section": {
-            "type": "Slice",
-            "fieldset": "Review Section",
-            "description": "배경 이미지 + 제목 + 리뷰들",
-            "icon": "rate_review",
-            "display": "list",
-            "non-repeat": {
-              "title": {
-                "type": "StructuredText",
-                "config": {
-                  "single": "heading5",
-                  "label": "제목"
+          "review_section" : {
+            "type" : "Slice",
+            "fieldset" : "Review Section",
+            "description" : "배경 이미지 + 제목 + 리뷰들",
+            "icon" : "rate_review",
+            "display" : "list",
+            "non-repeat" : {
+              "title" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "single" : "heading5",
+                  "label" : "제목"
                 }
               },
-              "background_color": {
-                "type": "Text",
-                "config": {
-                  "label": "배경 색상",
-                  "placeholder": "#FBF7F2, $carrot500"
+              "background_color" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "배경 색상",
+                  "placeholder" : "#FBF7F2, $carrot500"
                 }
               },
-              "image": {
-                "type": "Image",
-                "config": {
-                  "constraint": {
-                    "width": 1440,
-                    "height": 780
+              "image" : {
+                "type" : "Image",
+                "config" : {
+                  "constraint" : {
+                    "width" : 1440,
+                    "height" : 780
                   },
-                  "thumbnails": [],
-                  "label": "이미지"
+                  "thumbnails" : [ ],
+                  "label" : "이미지"
                 }
               }
             },
-            "repeat": {
-              "user_name": {
-                "type": "Text",
-                "config": {
-                  "label": "사용자 이름",
-                  "placeholder": "Bill"
+            "repeat" : {
+              "user_name" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "사용자 이름",
+                  "placeholder" : "Bill"
                 }
               },
-              "user_region": {
-                "type": "Text",
-                "config": {
-                  "label": "사용자 지역",
-                  "placeholder": "London, England"
+              "user_region" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "사용자 지역",
+                  "placeholder" : "London, England"
                 }
               },
-              "content": {
-                "type": "StructuredText",
-                "config": {
-                  "multi": "paragraph, strong",
-                  "label": "리뷰 내용"
+              "content" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "multi" : "paragraph,strong",
+                  "label" : "리뷰 내용"
                 }
               },
-              "text_highlight_color": {
-                "type": "Select",
-                "config": {
-                  "options": [
-                    "$carrot500",
-                    "$blue500",
-                    "#69C9DE",
-                    "$yellow700",
-                    "#EEAD00"
-                  ],
-                  "label": "텍스트 하이라이트 색상"
+              "text_highlight_color" : {
+                "type" : "Select",
+                "config" : {
+                  "options" : [ "$carrot500", "$blue500", "#69C9DE", "$yellow700", "#EEAD00" ],
+                  "label" : "텍스트 하이라이트 색상"
                 }
               }
             }
           },
-          "download_section": {
-            "type": "Slice",
-            "fieldset": "Download Section",
-            "description": "제목",
-            "icon": "file_download",
-            "display": "list",
-            "non-repeat": {
-              "title": {
-                "type": "StructuredText",
-                "config": {
-                  "single": "heading2",
-                  "label": "제목"
+          "download_section" : {
+            "type" : "Slice",
+            "fieldset" : "Download Section",
+            "description" : "제목",
+            "icon" : "file_download",
+            "display" : "list",
+            "non-repeat" : {
+              "title" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "single" : "heading2",
+                  "label" : "제목"
                 }
               }
             },
-            "repeat": {}
+            "repeat" : { }
           },
-          "popular_section": {
-            "type": "Slice",
-            "fieldset": "HotArticle Section",
-            "description": "인기매물 제목 + 버튼 이름",
-            "icon": "whatshot",
-            "display": "list",
-            "non-repeat": {
-              "title": {
-                "type": "StructuredText",
-                "config": {
-                  "single": "heading5",
-                  "label": "제목",
-                  "placeholder": "What's popular right now"
+          "popular_section" : {
+            "type" : "Slice",
+            "fieldset" : "HotArticle Section",
+            "description" : "인기매물 제목 + 버튼 이름",
+            "icon" : "whatshot",
+            "display" : "list",
+            "non-repeat" : {
+              "title" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "single" : "heading5",
+                  "label" : "제목",
+                  "placeholder" : "What's popular right now"
                 }
               },
-              "more_button": {
-                "type": "Text",
-                "config": {
-                  "label": "더보기 버튼",
-                  "placeholder": "Discover more"
+              "more_button" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "더보기 버튼",
+                  "placeholder" : "Discover more"
                 }
               }
             },
-            "repeat": {}
+            "repeat" : { }
           },
-          "illustration_section": {
-            "type": "Slice",
-            "fieldset": "Illustration Section",
-            "description": "제목 + 텍스트 + 일러스트",
-            "icon": "image",
-            "display": "list",
-            "non-repeat": {
-              "title": {
-                "type": "StructuredText",
-                "config": {
-                  "multi": "paragraph",
-                  "label": "제목"
+          "illustration_section" : {
+            "type" : "Slice",
+            "fieldset" : "Illustration Section",
+            "description" : "제목 + 텍스트 + 일러스트",
+            "icon" : "image",
+            "display" : "list",
+            "non-repeat" : {
+              "title" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "multi" : "paragraph",
+                  "label" : "제목"
                 }
               },
-              "text": {
-                "type": "StructuredText",
-                "config": {
-                  "multi": "paragraph",
-                  "label": "텍스트"
+              "text" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "multi" : "paragraph",
+                  "label" : "텍스트"
                 }
               },
-              "inverted": {
-                "type": "Boolean",
-                "config": {
-                  "placeholder_false": "왼쪽",
-                  "placeholder_true": "오른쪽",
-                  "default_value": false,
-                  "label": "일러스트 위치"
+              "inverted" : {
+                "type" : "Boolean",
+                "config" : {
+                  "placeholder_false" : "왼쪽",
+                  "placeholder_true" : "오른쪽",
+                  "default_value" : false,
+                  "label" : "일러스트 위치"
                 }
               },
-              "image": {
-                "type": "Image",
-                "config": {
-                  "constraint": {
-                    "width": 1020,
-                    "height": 976
+              "image" : {
+                "type" : "Image",
+                "config" : {
+                  "constraint" : {
+                    "width" : 1020,
+                    "height" : 976
                   },
-                  "thumbnails": [],
-                  "label": "일러스트 이미지"
+                  "thumbnails" : [ ],
+                  "label" : "일러스트 이미지"
                 }
               }
             },
-            "repeat": {}
+            "repeat" : { }
           }
         }
       }
     }
   },
-  "About": {
-    "about_page_title": {
-      "type": "Text",
-      "config": {
-        "label": "페이지 제목"
+  "About" : {
+    "about_page_title" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "페이지 제목"
       }
     },
-    "about_page_description": {
-      "type": "Text",
-      "config": {
-        "label": "페이지 설명"
+    "about_page_description" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "페이지 설명"
       }
     },
-    "about_opengraph_image_link": {
-      "type": "Text",
-      "config": {
-        "label": "공유 이미지 링크"
+    "about_opengraph_image_link" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "공유 이미지 링크"
       }
     },
-    "about_title": {
-      "type": "StructuredText",
-      "config": {
-        "single": "heading3",
-        "label": "제목"
+    "about_title" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading3",
+        "label" : "제목"
       }
     },
-    "about_opengraph_image": {
-      "type": "Image",
-      "config": {
-        "constraint": {
-          "width": 1200,
-          "height": 630
+    "about_opengraph_image" : {
+      "type" : "Image",
+      "config" : {
+        "constraint" : {
+          "width" : 1200,
+          "height" : 630
         },
-        "thumbnails": [],
-        "label": "공유하기 이미지"
+        "thumbnails" : [ ],
+        "label" : "공유하기 이미지"
       }
     },
-    "about_background_image": {
-      "type": "Image",
-      "config": {
-        "constraint": {
-          "width": null,
-          "height": null
+    "about_background_image" : {
+      "type" : "Image",
+      "config" : {
+        "constraint" : {
+          "width" : null,
+          "height" : null
         },
-        "thumbnails": [],
-        "label": "배경 이미지"
+        "thumbnails" : [ ],
+        "label" : "배경 이미지"
       }
     },
-    "about_body": {
-      "type": "Slices",
-      "fieldset": "Slice zone",
-      "config": {
-        "labels": {
-          "list_of_texts": [],
-          "details_list": []
+    "about_body" : {
+      "type" : "Slices",
+      "fieldset" : "Slice zone",
+      "config" : {
+        "labels" : {
+          "list_of_texts" : [ ],
+          "details_list" : [ ]
         },
-        "choices": {
-          "subtitle_and_text": {
-            "type": "Slice",
-            "fieldset": "Subtitle and Text",
-            "description": "부제목이랑 텍스트 형식 넣을수 있는 섹션",
-            "icon": "text_fields",
-            "display": "list",
-            "non-repeat": {
-              "subtitle": {
-                "type": "StructuredText",
-                "config": {
-                  "single": "heading5, heading6",
-                  "label": "부제목"
+        "choices" : {
+          "subtitle_and_text" : {
+            "type" : "Slice",
+            "fieldset" : "Subtitle and Text",
+            "description" : "부제목이랑 텍스트 형식 넣을수 있는 섹션",
+            "icon" : "text_fields",
+            "display" : "list",
+            "non-repeat" : {
+              "subtitle" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "single" : "heading5,heading6",
+                  "label" : "부제목"
                 }
               },
-              "text": {
-                "type": "StructuredText",
-                "config": {
-                  "multi": "paragraph, hyperlink",
-                  "label": "text"
+              "text" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "multi" : "paragraph,hyperlink",
+                  "label" : "text"
                 }
               }
             },
-            "repeat": {}
+            "repeat" : { }
           },
-          "subtitle_and_images": {
-            "type": "Slice",
-            "fieldset": "Subtitle and Images",
-            "description": "부제목이랑 다수의 이미지 넣을수 있는 섹션",
-            "icon": "perm_media",
-            "display": "list",
-            "non-repeat": {
-              "subtitle": {
-                "type": "StructuredText",
-                "config": {
-                  "single": "heading5, heading6",
-                  "label": "부제목"
+          "subtitle_and_images" : {
+            "type" : "Slice",
+            "fieldset" : "Subtitle and Images",
+            "description" : "부제목이랑 다수의 이미지 넣을수 있는 섹션",
+            "icon" : "perm_media",
+            "display" : "list",
+            "non-repeat" : {
+              "subtitle" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "single" : "heading5,heading6",
+                  "label" : "부제목"
                 }
               }
             },
-            "repeat": {
-              "image": {
-                "type": "Image",
-                "config": {
-                  "constraint": {
-                    "width": 340,
-                    "height": 192
+            "repeat" : {
+              "image" : {
+                "type" : "Image",
+                "config" : {
+                  "constraint" : {
+                    "width" : 340,
+                    "height" : 192
                   },
-                  "thumbnails": [
-                    {
-                      "name": "mobile",
-                      "width": 402,
-                      "height": 228
-                    }
-                  ],
-                  "label": "이미지"
+                  "thumbnails" : [ {
+                    "name" : "mobile",
+                    "width" : 402,
+                    "height" : 228
+                  } ],
+                  "label" : "이미지"
                 }
               }
             }
           },
-          "subtitle_and_links": {
-            "type": "Slice",
-            "fieldset": "Subtitle and Links",
-            "description": "부제목이랑 다수의 링크를 넣을수 있는 섹션",
-            "icon": "insert_link",
-            "display": "list",
-            "non-repeat": {
-              "subtitle": {
-                "type": "StructuredText",
-                "config": {
-                  "single": "heading5, heading6",
-                  "label": "부제목"
+          "subtitle_and_links" : {
+            "type" : "Slice",
+            "fieldset" : "Subtitle and Links",
+            "description" : "부제목이랑 다수의 링크를 넣을수 있는 섹션",
+            "icon" : "insert_link",
+            "display" : "list",
+            "non-repeat" : {
+              "subtitle" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "single" : "heading5,heading6",
+                  "label" : "부제목"
                 }
               }
             },
-            "repeat": {
-              "text": {
-                "type": "Text",
-                "config": {
-                  "label": "텍스트",
-                  "placeholder": "[Techcrunch] Danggeun Market, the..."
+            "repeat" : {
+              "text" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "텍스트",
+                  "placeholder" : "[Techcrunch] Danggeun Market, the..."
                 }
               },
-              "link": {
-                "type": "Link",
-                "config": {
-                  "label": "링크",
-                  "placeholder": "https://techcrunch.com/2020/06/01/..."
+              "link" : {
+                "type" : "Link",
+                "config" : {
+                  "label" : "링크",
+                  "placeholder" : "https://techcrunch.com/2020/06/01/..."
                 }
               },
-              "date": {
-                "type": "Date",
-                "config": {
-                  "label": "링크 날짜"
+              "date" : {
+                "type" : "Date",
+                "config" : {
+                  "label" : "링크 날짜"
                 }
               }
             }
           },
-          "details_list": {
-            "type": "Slice",
-            "fieldset": "Details List",
-            "description": "다수의 레이블 + 텍스트를 넣을수 있는 섹션",
-            "icon": "format_list_bulleted",
-            "display": "list",
-            "non-repeat": {},
-            "repeat": {
-              "label": {
-                "type": "Text",
-                "config": {
-                  "label": "레이블"
+          "details_list" : {
+            "type" : "Slice",
+            "fieldset" : "Details List",
+            "description" : "다수의 레이블 + 텍스트를 넣을수 있는 섹션",
+            "icon" : "format_list_bulleted",
+            "display" : "list",
+            "non-repeat" : { },
+            "repeat" : {
+              "label" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "레이블"
                 }
               },
-              "text": {
-                "type": "Text",
-                "config": {
-                  "label": "텍스트"
+              "text" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "텍스트"
                 }
               }
             }
