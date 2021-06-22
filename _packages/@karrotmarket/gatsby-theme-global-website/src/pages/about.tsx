@@ -145,7 +145,6 @@ const ImageContianer = styled("div", {
   "@md": {
     height: "440px",
   },
-  //
 });
 
 const Image = styled(GatsbyImage, {
