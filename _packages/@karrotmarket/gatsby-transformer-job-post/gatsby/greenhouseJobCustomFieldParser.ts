@@ -33,18 +33,14 @@ export const corporate: FieldParser<(
       case '당근페이': return 'KARROT_PAY';
       case null: {
         reporter.warn(reporter.stripIndent`
-           필드 값이 비어있습니다.
-
-           https://app3.greenhouse.io/plans/${node.ghId}
+          Corporate 필드 값이 비어있습니다. (See https://app3.greenhouse.io/plans/${node.ghId})
         `);
         return null;
       }
       default: {
         reporter.error(reporter.stripIndent`
           알 수 없는 Corporate 필드 값 입니다. 값: ${field.value}
-
           Greenhouse 에서 커스텀 필드 형식을 확인하고 코드를 올바르게 변경해주세요.
-
           See https://app3.greenhouse.io/custom_fields/jobs/${fieldId}
         `);
         return null;
@@ -70,9 +66,7 @@ export const employmentType: FieldParser<(
       case '인턴': return 'INTERN';
       case null: {
         reporter.warn(reporter.stripIndent`
-          Employment Type 필드 값이 비어있습니다.
-
-          See https://app3.greenhouse.io/plans/${node.ghId}
+          Employment Type 필드 값이 비어있습니다. (https://app3.greenhouse.io/plans/${node.ghId})
         `);
         return 'FULL_TIME';
       }
@@ -98,9 +92,7 @@ export const alternativeCivilianService: FieldParser<boolean> = (
     if (field.type === 'yes_no') {
       if (field.value == null) {
         reporter.warn(reporter.stripIndent`
-          Alternative Civilian Service 필드 값이 비어있습니다.
-
-          See https://app3.greenhouse.io/plans/${node.ghId}
+          Alternative Civilian Service 필드 값이 비어있습니다. (See https://app3.greenhouse.io/plans/${node.ghId})
         `);
         return false;
       }
@@ -135,9 +127,7 @@ export const priorExperience: FieldParser<(
       case '신입/경력': return 'WHATEVER';
       case null: {
           reporter.warn(reporter.stripIndent`
-            Prior Experience 필드 값이 비어있습니다.
-
-            See https://app3.greenhouse.io/plans/${node.ghId}
+            Prior Experience 필드 값이 비어있습니다. (See https://app3.greenhouse.io/plans/${node.ghId})
           `);
         return 'YES';
       }
@@ -187,9 +177,7 @@ export const portfolioRequirement: FieldParser<boolean> = (
       }
       case null: {
         reporter.warn(reporter.stripIndent`
-           필드 값이 비어있습니다.
-
-           See https://app3.greenhouse.io/plans/${node.ghId}
+           Portfolio Requirement 필드 값이 비어있습니다. (See https://app3.greenhouse.io/plans/${node.ghId})
         `);
         break;
       }
