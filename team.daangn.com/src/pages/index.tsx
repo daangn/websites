@@ -5,7 +5,7 @@ import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
-import { useLocation } from '@reach/router';
+import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
 import { required } from '@cometjs/core';
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
 
@@ -84,7 +84,7 @@ const Content = styled('div', {
 const IndexPage: React.FC<IndexPageProps> = ({
   data,
 }) => {
-  const location = useLocation();
+  const siteOrigin = useSiteOrigin();
 
   required(data.prismicTeamContents?.data);
 
@@ -100,7 +100,7 @@ const IndexPage: React.FC<IndexPageProps> = ({
           description: data.prismicTeamContents.data.main_page_meta_description,
           ...metaImage && {
             images: [{
-              url: location.origin + metaImage.src,
+              url: siteOrigin + metaImage.src,
               width: metaImage.width,
               height: metaImage.height,
             }],
