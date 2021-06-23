@@ -211,6 +211,11 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
         description={prismicTeamContents.data.jobs_page_meta_description}
         datePosted={jobPost.datePosted}
         employmentType={jobPost.employmentType}
+        experienceRequirements={{
+          YES: '경력',
+          NO: '신입',
+          WHATEVER: ['경력', '신입'],
+        }[jobPost.priorExperience]}
         organization={{
           KARROT_MARKET: {
             name: '당근마켓',
