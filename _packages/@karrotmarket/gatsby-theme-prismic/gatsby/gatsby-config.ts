@@ -11,6 +11,11 @@ const config: GatsbyConfig = {
         repositoryName,
         accessToken,
         schemas: require('@karrotmarket/prismic-config/schema'),
+        imageImgixParams: {
+          auto: 'compress,format',
+          fit: 'max',
+          q: 100,
+        },
       },
     },
     {
