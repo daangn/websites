@@ -19,6 +19,7 @@ interface JobPostingJsonLdProps extends DeferSeoProps, Overrides<JobPosting> {
   datePosted?: string,
   validThrough?: string,
   employmentType?: EmploymentType,
+  experienceRequirements?: string | string[],
   locations?: {
     postalCode: string,
     streetAddress?: string,
@@ -44,6 +45,7 @@ const JobPostingJsonLd: React.FC<JobPostingJsonLdProps> = ({
   datePosted,
   validThrough,
   employmentType,
+  experienceRequirements,
   locations,
   organization,
   identifier,
@@ -58,6 +60,7 @@ const JobPostingJsonLd: React.FC<JobPostingJsonLdProps> = ({
     datePosted,
     validThrough,
     employmentType,
+    experienceRequirements,
     ...locations && {
       jobLocation: locations.map(location => ({
         '@type': 'Place',
