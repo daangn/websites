@@ -61,7 +61,7 @@ export const employmentType: FieldParser<(
   node,
   { reporter },
 ) => {
-  const fieldId = 503398003;
+  const fieldId = 5033980003;
   const field = findMetadataById(node, fieldId);
   return field && (() => {
     switch (field.value) {
