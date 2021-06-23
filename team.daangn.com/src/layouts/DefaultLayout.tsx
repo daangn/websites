@@ -4,7 +4,7 @@ import { rem } from 'polished';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
-import { GatsbySeo } from 'gatsby-plugin-next-seo';
+import { GatsbySeo, LogoJsonLd, SocialProfileJsonLd } from 'gatsby-plugin-next-seo';
 import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
 import { useLocation } from '@reach/router';
 import { defaultRepositoryConfig } from '@karrotmarket/gatsby-theme-prismic/src/defaultRepositoryConfig';
@@ -14,6 +14,8 @@ import { required } from '@cometjs/core';
 
 import _Header from '@karrotmarket/gatsby-theme-website/src/components/Header';
 import _Footer from '@karrotmarket/gatsby-theme-website/src/components/Footer';
+
+import logoUrl from '~/assets/logo.png';
 
 type DefaultLayoutProps = OverrideProps<
   PageProps<GatsbyTypes.DefaultLayout_queryFragment>,
@@ -36,6 +38,12 @@ export const query = graphql`
       data {
         ...Header_navigationData
         ...Footer_navigationData
+
+        sns_profiles {
+          link {
+            url
+          }
+        }
       }
     }
   }
@@ -73,14 +81,13 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
 
   return (
     <>
-      <Helmet key="meta">
+      <Helmet>
         <html
           lang="ko"
           prefix="og: https://ogp.me/ns/website#"
         />
       </Helmet>
       <GatsbySeo
-        key="seo"
         canonical={siteOrigin + currentPath}
         openGraph={{
           type: 'website',
@@ -94,15 +101,24 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
           site: data.prismicTeamContents.data.twitter_site_handle,
         } : undefined}
       />
+      <LogoJsonLd
+        url="https://www.daangn.com"
+        logo={currentOrigin + logoUrl}
+      />
+      <SocialProfileJsonLd
+        type="Organization"
+        name="당근마켓 팀"
+        url={siteOrigin}
+        sameAs={data.prismicSiteNavigation.data.sns_profiles
+          .map(profile => profile.link?.url)
+          .filter(Boolean) as string[]
+        }
+      />
       <Header
-        key="header"
         navigationData={data.prismicSiteNavigation.data}
       />
-      <Main key="main">
-        {children}
-      </Main>
+      <Main>{children}</Main>
       <Footer
-        key="footer"
         navigationData={data.prismicSiteNavigation.data}
       />
     </>

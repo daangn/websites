@@ -11,6 +11,7 @@ import { useLocation } from '@reach/router';
 
 import _PageTitle from '~/components/PageTitle';
 import JobPostingJsonLd from '~/components/JobPostingJsonLd';
+import logoPath from '~/assets/logo.png';
 
 type JobPostLayoutProps = OverrideProps<
   PageProps<GatsbyTypes.JobPostLayout_queryFragment>,
@@ -154,7 +155,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
   children,
   data: { jobPost, prismicTeamContents },
 }) => {
-  const { pathname: currentPath, origin } = useLocation();
+  const { pathname: currentPath, origin: currentOrigin } = useLocation();
 
   required(jobPost);
   required(prismicTeamContents?.data);
@@ -163,6 +164,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
   const metaImage = prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
 
   const corporate = jobPost.corporate || 'KARROT_MARKET';
+  const logoUrl = currentOrigin + logoPath;
 
   const properties = [
     {
@@ -192,7 +194,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
           description: prismicTeamContents.data.jobs_page_meta_description,
           ...metaImage && {
             images: [{
-              url: origin + metaImage.src,
+              url: currentOrigin + metaImage.src,
               width: metaImage.width,
               height: metaImage.height,
             }],
@@ -213,10 +215,12 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
           KARROT_MARKET: {
             name: '당근마켓',
             url: 'https://www.daangn.com',
+            logoUrl,
           },
           KARROT_PAY: {
             name: '당근페이',
             url: 'https://www.daangnpay.com',
+            logoUrl,
           },
         }[corporate]}
         locations={[

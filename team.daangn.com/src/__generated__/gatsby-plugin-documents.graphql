@@ -1,24 +1,3 @@
-fragment Footer_navigationData on PrismicSiteNavigationDataType {
-  copyright {
-    html
-  }
-  address
-  footer_entries {
-    display_text
-    link {
-      url
-    }
-  }
-  sns_profiles {
-    ...SocialServiceProfile_profile
-  }
-}
-fragment SocialServiceProfile_profile on PrismicSiteNavigationDataSnsProfiles {
-  service
-  link {
-    url
-  }
-}
 fragment GatsbyImageSharpFixed on ImageSharpFixed {
   base64
   width
@@ -127,15 +106,20 @@ fragment GatsbyImageSharpFluid_withWebp_noBase64 on ImageSharpFluid {
   srcSetWebp
   sizes
 }
-query UseSiteMetadataStatic {
-  site {
-    siteMetadata {
-      siteUrl
+fragment Footer_navigationData on PrismicSiteNavigationDataType {
+  copyright {
+    html
+  }
+  address
+  footer_entries {
+    display_text
+    link {
+      url
     }
   }
-}
-fragment Header_navigationData on PrismicSiteNavigationDataType {
-  ...NavigationMenu_data
+  sns_profiles {
+    ...SocialServiceProfile_profile
+  }
 }
 fragment NavigationMenu_data on PrismicSiteNavigationDataType {
   header_entries {
@@ -147,6 +131,40 @@ fragment NavigationMenu_data on PrismicSiteNavigationDataType {
   sns_profiles {
     ...SocialServiceProfile_profile
   }
+}
+fragment Header_navigationData on PrismicSiteNavigationDataType {
+  ...NavigationMenu_data
+}
+fragment GatsbyPrismicImageFixed on ImgixFixed {
+  ...GatsbyImgixFixed
+}
+
+fragment GatsbyPrismicImageFixed_noBase64 on ImgixFixed {
+  ...GatsbyImgixFixed_noBase64
+}
+
+fragment GatsbyPrismicImageFixed_withWebp on ImgixFixed {
+  ...GatsbyImgixFixed
+}
+
+fragment GatsbyPrismicImageFixed_withWebp_noBase64 on ImgixFixed {
+  ...GatsbyImgixFixed_noBase64
+}
+
+fragment GatsbyPrismicImageFluid on ImgixFluid {
+  ...GatsbyImgixFluid
+}
+
+fragment GatsbyPrismicImageFluid_noBase64 on ImgixFluid {
+  ...GatsbyImgixFluid_noBase64
+}
+
+fragment GatsbyPrismicImageFluid_withWebp on ImgixFluid {
+  ...GatsbyImgixFluid
+}
+
+fragment GatsbyPrismicImageFluid_withWebp_noBase64 on ImgixFluid {
+  ...GatsbyImgixFluid_noBase64
 }
 fragment GatsbyImgixFluid on ImgixFluid {
   aspectRatio
@@ -185,34 +203,16 @@ fragment GatsbyImgixFixed_noBase64 on ImgixFixed {
   srcWebp
   srcSetWebp
 }
-fragment GatsbyPrismicImageFixed on ImgixFixed {
-  ...GatsbyImgixFixed
+query UseSiteMetadataStatic {
+  site {
+    siteMetadata {
+      siteUrl
+    }
+  }
 }
-
-fragment GatsbyPrismicImageFixed_noBase64 on ImgixFixed {
-  ...GatsbyImgixFixed_noBase64
-}
-
-fragment GatsbyPrismicImageFixed_withWebp on ImgixFixed {
-  ...GatsbyImgixFixed
-}
-
-fragment GatsbyPrismicImageFixed_withWebp_noBase64 on ImgixFixed {
-  ...GatsbyImgixFixed_noBase64
-}
-
-fragment GatsbyPrismicImageFluid on ImgixFluid {
-  ...GatsbyImgixFluid
-}
-
-fragment GatsbyPrismicImageFluid_noBase64 on ImgixFluid {
-  ...GatsbyImgixFluid_noBase64
-}
-
-fragment GatsbyPrismicImageFluid_withWebp on ImgixFluid {
-  ...GatsbyImgixFluid
-}
-
-fragment GatsbyPrismicImageFluid_withWebp_noBase64 on ImgixFluid {
-  ...GatsbyImgixFluid_noBase64
+fragment SocialServiceProfile_profile on PrismicSiteNavigationDataSnsProfiles {
+  service
+  link {
+    url
+  }
 }
