@@ -4,7 +4,7 @@ import dotenv from 'dotenv-safe';
 dotenv.config();
 
 const siteMetadata = {
-  siteUrl: 'https://team.daangn.com/',
+  siteUrl: 'https://team.daangn.com',
 };
 
 const config: GatsbyConfig = {
@@ -21,6 +21,35 @@ const config: GatsbyConfig = {
     'gatsby-theme-stitches',
     'gatsby-plugin-svgr',
     'gatsby-plugin-react-helmet-async',
+    {
+      resolve: 'gatsby-plugin-advanced-sitemap',
+      options: {
+        exclude: [
+          '/dev-404-page/',
+          '/404/',
+          '/404.html',
+          '/offline-plugin-app-shell-fallback/',
+          '/preview/',
+          '/completed/',
+        ],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: siteMetadata.siteUrl,
+        sitemap: `${siteMetadata.siteUrl}/sitemap.xml`,
+        policy: [
+          { userAgent: '*', allow: '/' },
+          { userAgent: '*', disallow: '/dev-404-page/' },
+          { userAgent: '*', disallow: '/404/' },
+          { userAgent: '*', disallow: '/404.html' },
+          { userAgent: '*', disallow: '/offline-plugin-app-shell-fallback/' },
+          { userAgent: '*', disallow: '/preview/' },
+          { userAgent: '*', disallow: '/completed/' },
+        ],
+      },
+    },
     {
       resolve: 'gatsby-plugin-use-dark-mode',
       options: {
