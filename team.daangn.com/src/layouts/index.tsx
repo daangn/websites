@@ -73,7 +73,7 @@ const LayoutSwitch: React.FC<LayoutSwitchProps> = ({
     );
   }
 
-  if (/\/jobs\/\d+\/?$/.test(path)) {
+  if (/\/jobs\/\d+\/?/.test(path)) {
     return (
       <DefaultLayout {...props}>
         <JobPostLayout {...props}>
@@ -83,7 +83,7 @@ const LayoutSwitch: React.FC<LayoutSwitchProps> = ({
     );
   }
 
-  if (/\/jobs\/.+\/?$/.test(path)) {
+  if (/\/jobs\/.+\/?/.test(path)) {
     return (
       <DefaultLayout {...props}>
         {children}
