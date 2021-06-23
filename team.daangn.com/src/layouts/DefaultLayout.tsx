@@ -4,8 +4,11 @@ import { rem } from 'polished';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
+import { useLocation } from '@reach/router';
 import { defaultRepositoryConfig } from '@karrotmarket/gatsby-theme-prismic/src/defaultRepositoryConfig';
+import { useSiteMetadata } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
 import type { OverrideProps } from '@cometjs/core';
 import { required } from '@cometjs/core';
 
@@ -21,6 +24,13 @@ type DefaultLayoutProps = OverrideProps<
 
 export const query = graphql`
   fragment DefaultLayout_query on Query {
+    prismicTeamContents {
+      _previewable
+      data {
+        fb_app_id
+        twitter_site_handle
+      }
+    }
     prismicSiteNavigation(uid: { eq: "team.daangn.com" }) {
       _previewable
       data {
@@ -54,13 +64,36 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
   data,
   children,
 }) => {
+  const { siteUrl } = useSiteMetadata();
+  const { origin: siteOrigin } = new URL(siteUrl);
+  const { pathname: currentPath, origin: currentOrigin } = useLocation();
+
   required(data.prismicSiteNavigation);
+  required(data.prismicTeamContents?.data);
 
   return (
     <>
-      <Helmet key="helmet">
-        <html lang="ko" />
+      <Helmet key="meta">
+        <html
+          lang="ko"
+          prefix="og: https://ogp.me/ns/website#"
+        />
       </Helmet>
+      <GatsbySeo
+        key="seo"
+        canonical={siteOrigin + currentPath}
+        openGraph={{
+          type: 'website',
+          url: currentOrigin + currentPath,
+        }}
+        facebook={data.prismicTeamContents.data.fb_app_id != null ? {
+          appId: data.prismicTeamContents.data.fb_app_id,
+        } : undefined}
+        twitter={data.prismicTeamContents.data.twitter_site_handle != null ? {
+          cardType: 'summary',
+          site: data.prismicTeamContents.data.twitter_site_handle,
+        } : undefined}
+      />
       <Header
         key="header"
         navigationData={data.prismicSiteNavigation.data}

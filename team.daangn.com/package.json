@@ -47,6 +47,7 @@
     "gatsby-plugin-layout": "^2.5.0",
     "gatsby-plugin-manifest": "^3.8.0",
     "gatsby-plugin-module-resolver": "^1.0.3",
+    "gatsby-plugin-next-seo": "^1.7.0",
     "gatsby-plugin-prismic-previews": "^4.0.0-beta.13",
     "gatsby-plugin-prismic-schema": "*",
     "gatsby-plugin-react-helmet-async": "^1.2.0",
@@ -64,6 +65,7 @@
     "react-dom": "experimental",
     "react-helmet-async": "^1.0.9",
     "react-intersection-observer": "^8.31.1",
+    "schema-dts": "^0.8.3",
     "use-dark-mode": "^2.3.1"
   },
   "devDependencies": {

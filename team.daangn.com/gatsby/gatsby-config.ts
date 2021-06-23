@@ -22,6 +22,7 @@ const config: GatsbyConfig = {
     'gatsby-theme-stitches',
     'gatsby-plugin-svgr',
     'gatsby-plugin-react-helmet-async',
+    'gatsby-plugin-next-seo',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {

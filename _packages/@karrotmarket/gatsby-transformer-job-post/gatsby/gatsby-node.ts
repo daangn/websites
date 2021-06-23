@@ -22,6 +22,8 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
     {
       ghId: String!
 
+      updatedAt: Date! @dateformat
+
       title: String!
 
       boardUrl: String!
@@ -163,6 +165,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ctx => {
 
     const nodeSource = {
       id: createNodeId(`GreenhouseJob:${node.id} >>> JobPost`),
+      updatedAt: node.updated_at,
       ghId: node.ghId.toString(),
       title: node.title,
       boardUrl: node.absolute_url,

@@ -2,7 +2,9 @@ import * as React from 'react';
 import type { PageProps } from 'gatsby';
 import { graphql, navigate } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import { rem } from 'polished';
+import { required } from '@cometjs/core';
 
 import PageTitle from '~/components/PageTitle';
 import _JobPostList from '~/components/JobPostList';
@@ -12,6 +14,29 @@ type JobsPageTemplateProps = PageProps<GatsbyTypes.JobsPageTemplateQuery, Gatsby
 export const query = graphql`
   query JobsPageTemplate($pattern: String) {
     ...DefaultLayout_query
+
+    prismicTeamContents {
+      _previewable
+      data {
+        jobs_page_meta_title
+        jobs_page_meta_description
+        jobs_page_meta_image {
+          localFile {
+            childImageSharp {
+              fixed(width: 1200, height: 630, toFormat: JPG) {
+                src
+                width
+                height
+              }
+            }
+          }
+        }
+        jobs_page_title {
+          text
+        }
+      }
+    }
+
     currentJobPosts: allJobPost(
       filter: {
         slug: { regex: $pattern }
@@ -122,15 +147,38 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
     }
   }, [filterChapter]);
 
+  required(data.prismicTeamContents?.data);
+
+  const metaImage = data.prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
+
   return (
     <Container>
+      <GatsbySeo
+        title={data.prismicTeamContents.data.jobs_page_meta_title}
+        description={data.prismicTeamContents.data.jobs_page_meta_description}
+        openGraph={{
+          title: data.prismicTeamContents.data.jobs_page_meta_title,
+          description: data.prismicTeamContents.data.jobs_page_meta_description,
+          ...metaImage && {
+            images: [{
+              url: location.origin + metaImage.src,
+              width: metaImage.width,
+              height: metaImage.height,
+            }],
+          },
+        }}
+        twitter={{
+          ...metaImage && {
+            cardType: 'summary_large_image',
+          },
+        }}
+      />
       <PageTitle
         css={{
           marginBottom: rem(56),
         }}
       >
-        {`당근마켓과 함께 할
-        멋진 동료를 찾고 있어요!`}
+        {data.prismicTeamContents.data?.jobs_page_title?.text}
       </PageTitle>
       <Content>
         <Filters>

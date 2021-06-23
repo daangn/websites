@@ -3,8 +3,10 @@ import { rem } from 'polished';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
-import { required, Option } from '@cometjs/core';
+import { useLocation } from '@reach/router';
+import { required } from '@cometjs/core';
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
 
 import _PageTitle from '~/components/PageTitle';
@@ -24,6 +26,19 @@ export const query = graphql`
     prismicTeamContents {
       _previewable
       data {
+        main_page_meta_title
+        main_page_meta_description
+        main_page_meta_image {
+          localFile {
+            childImageSharp {
+              fixed(width: 1200, height: 630, toFormat: JPG) {
+                src
+                width
+                height
+              }
+            }
+          }
+        }
         main_page_title {
           text
         }
@@ -64,11 +79,36 @@ const Content = styled('div', {
 const IndexPage: React.FC<IndexPageProps> = ({
   data,
 }) => {
+  const location = useLocation();
+
   required(data.prismicTeamContents?.data);
+
+  const metaImage = data.prismicTeamContents.data.main_page_meta_image?.localFile?.childImageSharp?.fixed;
+
   return (
     <>
+      <GatsbySeo
+        title={data.prismicTeamContents.data.main_page_meta_title}
+        description={data.prismicTeamContents.data.main_page_meta_description}
+        openGraph={{
+          title: data.prismicTeamContents.data.main_page_meta_title,
+          description: data.prismicTeamContents.data.main_page_meta_description,
+          ...metaImage && {
+            images: [{
+              url: location.origin + metaImage.src,
+              width: metaImage.width,
+              height: metaImage.height,
+            }],
+          },
+        }}
+        twitter={{
+          ...metaImage && {
+            cardType: 'summary_large_image',
+          },
+        }}
+      />
       <TitleContainer>
-        <PageTitle size={{ '@sm': 'sm' }}>
+        <PageTitle>
           {data.prismicTeamContents.data.main_page_title?.text}
         </PageTitle>
       </TitleContainer>
