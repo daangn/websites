@@ -6,12 +6,11 @@ import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { GatsbySeo, LogoJsonLd, SocialProfileJsonLd } from 'gatsby-plugin-next-seo';
 import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
-import { useLocation } from '@reach/router';
 import { defaultRepositoryConfig } from '@karrotmarket/gatsby-theme-prismic/src/defaultRepositoryConfig';
-import { useSiteMetadata } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
+import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
 import type { OverrideProps } from '@cometjs/core';
 import { required } from '@cometjs/core';
-
+import { useLocation } from '@reach/router';
 import _Header from '@karrotmarket/gatsby-theme-website/src/components/Header';
 import _Footer from '@karrotmarket/gatsby-theme-website/src/components/Footer';
 
@@ -72,9 +71,8 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
   data,
   children,
 }) => {
-  const { siteUrl } = useSiteMetadata();
-  const { origin: siteOrigin } = new URL(siteUrl);
-  const { pathname: currentPath, origin: currentOrigin } = useLocation();
+  const siteOrigin = useSiteOrigin();
+  const { pathname: currentPath } = useLocation();
 
   required(data.prismicSiteNavigation);
   required(data.prismicTeamContents?.data);
@@ -91,7 +89,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
         canonical={siteOrigin + currentPath}
         openGraph={{
           type: 'website',
-          url: currentOrigin + currentPath,
+          url: siteOrigin + currentPath,
         }}
         facebook={data.prismicTeamContents.data.fb_app_id != null ? {
           appId: data.prismicTeamContents.data.fb_app_id,
@@ -103,7 +101,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
       />
       <LogoJsonLd
         url="https://www.daangn.com"
-        logo={currentOrigin + logoUrl}
+        logo={siteOrigin + logoUrl}
       />
       <SocialProfileJsonLd
         type="Organization"

@@ -7,6 +7,7 @@ import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import type { OverrideProps } from '@cometjs/core';
 import { required } from '@cometjs/core';
+import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
 import { useLocation } from '@reach/router';
 
 import _PageTitle from '~/components/PageTitle';
@@ -160,7 +161,8 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
   children,
   data: { jobPost, prismicTeamContents },
 }) => {
-  const { pathname: currentPath, origin: currentOrigin } = useLocation();
+  const siteOrigin = useSiteOrigin();
+  const { pathname: currentPath } = useLocation();
 
   required(jobPost);
   required(prismicTeamContents?.data);
@@ -169,7 +171,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
   const metaImage = prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
 
   const corporate = jobPost.corporate || 'KARROT_MARKET';
-  const logoUrl = currentOrigin + logoPath;
+  const logoUrl = siteOrigin + logoPath;
 
   const properties = [
     {
@@ -199,7 +201,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
           description: prismicTeamContents.data.jobs_page_meta_description,
           ...metaImage && {
             images: [{
-              url: currentOrigin + metaImage.src,
+              url: siteOrigin + metaImage.src,
               width: metaImage.width,
               height: metaImage.height,
             }],

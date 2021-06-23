@@ -17,3 +17,9 @@ export function useSiteMetadata() {
 
   return data.site.siteMetadata;
 }
+
+export function useSiteOrigin(): string {
+  const siteMetadata = useSiteMetadata();
+  const { origin } = new URL(siteMetadata.siteUrl);
+  return origin;
+}

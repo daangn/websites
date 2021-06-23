@@ -5,8 +5,8 @@ import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import { required } from '@cometjs/core';
-import { useLocation } from '@reach/router';
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
+import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
 
 import _PageTitle from '~/components/PageTitle';
 import PrismicTeamContentsDataLifeBodyLifeContent from '~/components/PrismicTeamContentsDataLifeBodyLifeContent';
@@ -72,7 +72,7 @@ const Content = styled('div', {
 const LifePage: React.FC<LifePageProps> = ({
   data,
 }) => {
-  const location = useLocation();
+  const siteOrigin = useSiteOrigin();
 
   required(data.prismicTeamContents?.data?.life_body);
 
@@ -88,7 +88,7 @@ const LifePage: React.FC<LifePageProps> = ({
           description: data.prismicTeamContents.data.life_page_meta_description,
           ...metaImage && {
             images: [{
-              url: location.origin + metaImage.src,
+              url: siteOrigin + metaImage.src,
               width: metaImage.width,
               height: metaImage.height,
             }],
