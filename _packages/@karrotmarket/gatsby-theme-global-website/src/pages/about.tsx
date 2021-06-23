@@ -37,12 +37,7 @@ export const query = graphql`
           }
           localFile {
             childImageSharp {
-              gatsbyImageData(
-                quality: 100
-                formats: JPG
-                breakpoints: 0
-                placeholder: NONE
-              )
+              gatsbyImageData(quality: 100, formats: PNG, placeholder: NONE)
             }
           }
         }
