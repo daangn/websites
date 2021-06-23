@@ -11,12 +11,14 @@ export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
   return Joi.object({
     boardToken: Joi.string().required(),
     includeContent: Joi.boolean().default(false),
+    forceGC: Joi.boolean().default(false),
   });
 };
 
 type PluginOptions = {
   boardToken: string,
   includeContent: boolean,
+  forceGC: boolean,
 };
 
 export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({
@@ -117,9 +119,14 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async ({
   actions,
   createNodeId,
   createContentDigest,
+  getNodesByType,
 }, options) => {
-  // already validated by `pluginOptionsSchema`
-  const { boardToken, includeContent } = options as unknown as PluginOptions;
+  // must validated by `pluginOptionsSchema`
+  const {
+    boardToken,
+    includeContent,
+    forceGC,
+  } = options as unknown as PluginOptions;
 
   type Response = {
     jobs: GreenhouseJob[],
@@ -130,6 +137,13 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async ({
 
   const url = new URL(`https://boards-api.greenhouse.io/v1/boards/${boardToken}/jobs?content=${includeContent}`);
   const response = await got<Response>(url, { responseType: 'json' });
+
+  if (forceGC) {
+    const nodes = getNodesByType('GreenhouseJob');
+    for (const node of nodes) {
+      actions.deleteNode(node);
+    }
+  }
 
   for (const job of response.body.jobs) {
     const { id: ghId, ...content } = job;

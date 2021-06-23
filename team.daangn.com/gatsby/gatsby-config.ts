@@ -87,6 +87,7 @@ const config: GatsbyConfig = {
       options: {
         boardToken: 'daangn',
         includeContent: true,
+        forceGC: true,
       },
     },
 //    'gatsby-plugin-prismic-schema',
