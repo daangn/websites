@@ -51,7 +51,7 @@ const config: GatsbyConfig = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: siteMetadata.siteUrl,
+        host: null,
         sitemap: `${siteMetadata.siteUrl}/sitemap.xml`,
         policy: [
           { userAgent: '*', allow: '/' },
