@@ -135,7 +135,10 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
   const { pathname: currentPath } = useLocation();
 
   const properties = [
-    jobPost.corporate,
+    {
+      KARROT_MARKET: '당근마켓',
+      KARROT_PAY: '당근페이',
+    }[jobPost.corporate],
     jobPost.chapter,
     {
       FULL_TIME: '정규직',
