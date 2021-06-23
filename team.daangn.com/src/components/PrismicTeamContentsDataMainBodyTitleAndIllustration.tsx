@@ -40,7 +40,7 @@ export const query = graphql`
 
 const Container = styled('section', {
   contentArea: true,
-
+  width: '100%',
   display: 'grid',
   gap: rem(60),
   gridTemplateAreas: [
