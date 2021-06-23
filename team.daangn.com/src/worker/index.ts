@@ -49,13 +49,17 @@ const convertForm: ConvertForm = form => {
     phone: form.phoneNumber,
     resume_content: form.resume.content,
     resume_content_filename: form.resume.filename,
+
+    // FIXME: Custom question id 를 알 수 없는 구조이므로 일단 CV 폼으로 때웠음
     ...form.portfolio && {
-      portfolio_content: form.portfolio.content,
-      portfolio_content_filename: form.portfolio.filename,
+      cover_letter_content: form.portfolio.content,
+      cover_letter_content_filename: form.portfolio.filename,
     },
 
     // TODO: Custom questions
     // See https://developers.greenhouse.io/job-board.html#retrieve-a-job
+    //
+    // 결국 폼빌더를 만들어서 쓰는 쪽으로 다 갈아엎어야 한다
   };
 };
 
