@@ -4,13 +4,18 @@ import { rem } from 'polished';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { GatsbySeo, LogoJsonLd, SocialProfileJsonLd } from 'gatsby-plugin-next-seo';
 import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
+import { useLocation } from '@reach/router';
 import { defaultRepositoryConfig } from '@karrotmarket/gatsby-theme-prismic/src/defaultRepositoryConfig';
+import { useSiteMetadata } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
 import type { OverrideProps } from '@cometjs/core';
 import { required } from '@cometjs/core';
 
 import _Header from '@karrotmarket/gatsby-theme-website/src/components/Header';
 import _Footer from '@karrotmarket/gatsby-theme-website/src/components/Footer';
+
+import logoUrl from '~/assets/logo.png';
 
 type DefaultLayoutProps = OverrideProps<
   PageProps<GatsbyTypes.DefaultLayout_queryFragment>,
@@ -21,11 +26,24 @@ type DefaultLayoutProps = OverrideProps<
 
 export const query = graphql`
   fragment DefaultLayout_query on Query {
+    prismicTeamContents {
+      _previewable
+      data {
+        fb_app_id
+        twitter_site_handle
+      }
+    }
     prismicSiteNavigation(uid: { eq: "team.daangn.com" }) {
       _previewable
       data {
         ...Header_navigationData
         ...Footer_navigationData
+
+        sns_profiles {
+          link {
+            url
+          }
+        }
       }
     }
   }
@@ -54,22 +72,53 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
   data,
   children,
 }) => {
+  const { siteUrl } = useSiteMetadata();
+  const { origin: siteOrigin } = new URL(siteUrl);
+  const { pathname: currentPath, origin: currentOrigin } = useLocation();
+
   required(data.prismicSiteNavigation);
+  required(data.prismicTeamContents?.data);
 
   return (
     <>
-      <Helmet key="helmet">
-        <html lang="ko" />
+      <Helmet>
+        <html
+          lang="ko"
+          prefix="og: https://ogp.me/ns/website#"
+        />
       </Helmet>
+      <GatsbySeo
+        canonical={siteOrigin + currentPath}
+        openGraph={{
+          type: 'website',
+          url: currentOrigin + currentPath,
+        }}
+        facebook={data.prismicTeamContents.data.fb_app_id != null ? {
+          appId: data.prismicTeamContents.data.fb_app_id,
+        } : undefined}
+        twitter={data.prismicTeamContents.data.twitter_site_handle != null ? {
+          cardType: 'summary',
+          site: data.prismicTeamContents.data.twitter_site_handle,
+        } : undefined}
+      />
+      <LogoJsonLd
+        url="https://www.daangn.com"
+        logo={currentOrigin + logoUrl}
+      />
+      <SocialProfileJsonLd
+        type="Organization"
+        name="당근마켓 팀"
+        url={siteOrigin}
+        sameAs={data.prismicSiteNavigation.data.sns_profiles
+          .map(profile => profile.link?.url)
+          .filter(Boolean) as string[]
+        }
+      />
       <Header
-        key="header"
         navigationData={data.prismicSiteNavigation.data}
       />
-      <Main key="main">
-        {children}
-      </Main>
+      <Main>{children}</Main>
       <Footer
-        key="footer"
         navigationData={data.prismicSiteNavigation.data}
       />
     </>

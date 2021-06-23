@@ -3,6 +3,7 @@ import { rem } from 'polished';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { GatsbySeo } from 'gatsby-plugin-next-seo';
 
 import { ReactComponent as DaangniThanks } from '~/assets/daangni_thanks.svg';
 import DefaultLayout from '~/layouts/DefaultLayout';
@@ -46,6 +47,7 @@ const CompletedPage: React.FC<CompletedPageProps> = ({
 }) => {
   return (
     <DefaultLayout {...pageProps}>
+      <GatsbySeo noindex nofollow />
       <Container>
         <Illustration />
         <MessageContainer>

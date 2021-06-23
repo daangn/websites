@@ -4,11 +4,14 @@ import { rem } from 'polished';
 import { motion, AnimateSharedLayout } from 'framer-motion';
 import { graphql, Link } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import type { OverrideProps } from '@cometjs/core';
 import { required } from '@cometjs/core';
 import { useLocation } from '@reach/router';
 
 import _PageTitle from '~/components/PageTitle';
+import JobPostingJsonLd from '~/components/JobPostingJsonLd';
+import logoPath from '~/assets/logo.png';
 
 type JobPostLayoutProps = OverrideProps<
   PageProps<GatsbyTypes.JobPostLayout_queryFragment>,
@@ -19,6 +22,27 @@ type JobPostLayoutProps = OverrideProps<
 
 export const query = graphql`
   fragment JobPostLayout_query on Query {
+    prismicTeamContents {
+      data {
+        jobs_page_meta_title
+        jobs_page_meta_description
+        jobs_page_meta_image {
+          localFile {
+            childImageSharp {
+              fixed(width: 1200, height: 630, toFormat: JPG) {
+                src
+                width
+                height
+              }
+            }
+          }
+        }
+        jobs_page_title {
+          text
+        }
+      }
+    }
+
     jobPost(id: { eq: $id }) {
       id
       title
@@ -26,6 +50,7 @@ export const query = graphql`
       corporate
       employmentType
       priorExperience
+      datePosted: updatedAt(formatString: "YYYY-MM-DD", locale: "ko")
       viewPath: gatsbyPath(filePath: "/jobs/{JobPost.parent__(GreenhouseJob)__ghId}")
       applyPath: gatsbyPath(filePath: "/jobs/{JobPost.parent__(GreenhouseJob)__ghId}/apply")
     }
@@ -128,17 +153,24 @@ const TabLink = styled(motion(Link), {
 
 const JobPostLayout: React.FC<JobPostLayoutProps> = ({
   children,
-  data: { jobPost },
+  data: { jobPost, prismicTeamContents },
 }) => {
-  required(jobPost);
+  const { pathname: currentPath, origin: currentOrigin } = useLocation();
 
-  const { pathname: currentPath } = useLocation();
+  required(jobPost);
+  required(prismicTeamContents?.data);
+
+  const metaTitle = `${jobPost.title} | ${prismicTeamContents.data.jobs_page_meta_title}`;
+  const metaImage = prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
+
+  const corporate = jobPost.corporate || 'KARROT_MARKET';
+  const logoUrl = currentOrigin + logoPath;
 
   const properties = [
     {
       KARROT_MARKET: '당근마켓',
       KARROT_PAY: '당근페이',
-    }[jobPost.corporate],
+    }[corporate],
     jobPost.chapter,
     {
       FULL_TIME: '정규직',
@@ -154,6 +186,53 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
 
   return (
     <Container>
+      <GatsbySeo
+        title={metaTitle}
+        description={prismicTeamContents.data.jobs_page_meta_description}
+        openGraph={{
+          title: metaTitle,
+          description: prismicTeamContents.data.jobs_page_meta_description,
+          ...metaImage && {
+            images: [{
+              url: currentOrigin + metaImage.src,
+              width: metaImage.width,
+              height: metaImage.height,
+            }],
+          },
+        }}
+        twitter={{
+          ...metaImage && {
+            cardType: 'summary_large_image',
+          },
+        }}
+      />
+      <JobPostingJsonLd
+        title={jobPost.title}
+        description={prismicTeamContents.data.jobs_page_meta_description}
+        datePosted={jobPost.datePosted}
+        employmentType={jobPost.employmentType}
+        organization={{
+          KARROT_MARKET: {
+            name: '당근마켓',
+            url: 'https://www.daangn.com',
+            logoUrl,
+          },
+          KARROT_PAY: {
+            name: '당근페이',
+            url: 'https://www.daangnpay.com',
+            logoUrl,
+          },
+        }[corporate]}
+        locations={[
+          {
+            postalCode: '06611',
+            addressLocality: '서초구',
+            addressRegion: '서울특별시',
+            addressCountry: '대한민국',
+            streetAddress: '강남대로 465, 교보타워 11층',
+          }
+        ]}
+      />
       <PageTitle size={{ '@sm': 'sm' }}>
         {jobPost.title}
       </PageTitle>

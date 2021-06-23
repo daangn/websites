@@ -3,6 +3,7 @@ import { rem } from 'polished';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import { ReactComponent as DaangniEmbarrassed } from '~/assets/daangni_embarrassed.svg';
 import DefaultLayout from '~/layouts/DefaultLayout';
 import ButtonLink from '~/components/Button';
@@ -61,6 +62,7 @@ const NotFoundPage: React.FC<NotFoundPageProps> = ({
 }) => {
   return (
     <DefaultLayout {...pageProps}>
+      <GatsbySeo noindex nofollow />
       <Container>
         <Title size={{ '@sm': 'sm' }}>페이지를 찾을 수 없어요</Title>
         <Illustration />
