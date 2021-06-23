@@ -5,6 +5,7 @@ import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 
 import JobPostSummary from './JobPostSummary';
 import FadeInWhenVisible from './FadeInWhenVisible';
+import EmptyPlaceholder from './jobPostList/EmptyPlaceholder';
 
 type JobPostListProps = {
   jobPosts: GatsbyTypes.JobPostList_jobPostsFragment,
@@ -25,7 +26,11 @@ export const query = graphql`
   }
 `;
 
-const Container = styled(motion.ul, {
+const Container = styled('div', {
+  display: 'grid',
+});
+
+const List = styled(motion.ul, {
   listStyle: 'none',
   padding: 0,
 });
@@ -51,28 +56,35 @@ const JobPostList: React.FC<JobPostListProps> = ({
   filterChapter = '',
   filterEmploymentType = '',
 }) => {
+  const filteredJobPosts = jobPosts.nodes
+    .filter(jobPost => {
+      if (filterChapter === '') return true;
+      return jobPost.chapter === filterChapter;
+    })
+    .filter(jobPost => {
+      if (filterEmploymentType === '') return true;
+      return jobPost.employmentType === filterEmploymentType;
+    });
+
   return (
     <Container className={className}>
-      <AnimatePresence initial={false}>
-        {jobPosts.nodes
-        .filter(jobPost => {
-          if (filterChapter === '') return true;
-          return jobPost.chapter === filterChapter;
-        })
-        .filter(jobPost => {
-          if (filterEmploymentType === '') return true;
-          return jobPost.employmentType === filterEmploymentType;
-        })
-        .map(jobPost => (
-          <FadeInWhenVisible key={jobPost.id}>
-            <JobPostListItem>
-              <JobPostLink to={jobPost.pagePath!}>
-                <JobPostSummary jobPost={jobPost} />
-              </JobPostLink>
-            </JobPostListItem>
-          </FadeInWhenVisible>
-        ))}
-      </AnimatePresence>
+      {filteredJobPosts.length > 0 ? (
+        <List>
+          <AnimatePresence initial={false}>
+            {filteredJobPosts.map(jobPost => (
+              <FadeInWhenVisible key={jobPost.id}>
+                <JobPostListItem>
+                  <JobPostLink to={jobPost.pagePath!}>
+                    <JobPostSummary jobPost={jobPost} />
+                  </JobPostLink>
+                </JobPostListItem>
+              </FadeInWhenVisible>
+            ))}
+          </AnimatePresence>
+        </List>
+      ) : (
+        <EmptyPlaceholder />
+      )}
     </Container>
   );
 };

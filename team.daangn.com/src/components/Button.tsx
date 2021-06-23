@@ -36,6 +36,7 @@ const Button = styled(Link, {
         width: '100%',
       },
       false: {
+        width: 'min-content',
         minWidth: rem(260),
       },
     },
