@@ -23,7 +23,12 @@ export const query = graphql`
         jobs_page_meta_image {
           localFile {
             childImageSharp {
-              fixed(width: 1200, height: 630, toFormat: JPG) {
+              fixed(
+                width: 1200
+                height: 630
+                toFormat: JPG
+                quality: 90
+              ) {
                 src
                 width
                 height
