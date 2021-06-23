@@ -21,9 +21,11 @@ type FormFieldVariants = (
       value: string,
       label: string,
     }[],
+    defaultValue?: string,
   }
   | {
     type: 'checkbox',
+    defaultChecked?: boolean,
   }
   | {
     type: 'radio',
@@ -31,6 +33,7 @@ type FormFieldVariants = (
       value: string,
       label: string,
     }[],
+    defaultValue?: string,
   }
   | {
     type: 'file',
@@ -332,6 +335,7 @@ const FormField: React.FC<FormFieldProps> = ({
             as="select"
             id={id}
             name={name}
+            defaultValue={variants.defaultValue}
           >
             {variants.options.map(option => (
               <option key={option.value} value={option.value}>
@@ -346,7 +350,7 @@ const FormField: React.FC<FormFieldProps> = ({
       return (
         <CheckboxContainer className={className}>
           <Checkbox>
-            <CheckboxControl type="checkbox" name={name} defaultChecked={false} />
+            <CheckboxControl type="checkbox" name={name} defaultChecked={variants.defaultChecked} />
             <Checkmark>
               <CheckmarkSvg viewBox="0 0 24 24" fill="none">
                 <rect width="24" height="24" rx="4" fill="none"/>
@@ -381,6 +385,7 @@ const FormField: React.FC<FormFieldProps> = ({
                   type="radio"
                   name={name}
                   value={option.value}
+                  defaultChecked={option.value === variants.defaultValue}
                 />
                 <Radiomark />
                 {option.label}

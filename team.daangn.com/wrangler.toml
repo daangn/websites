@@ -1,7 +1,7 @@
 name = 'team-daangn-com'
 type = 'javascript'
 account_id = 'aad5c82543cd1f267b89737d0f56405e'
-usage_model = ''
+usage_model = 'unbound'
 zone_id = ''
 route = ''
 workers_dev = true

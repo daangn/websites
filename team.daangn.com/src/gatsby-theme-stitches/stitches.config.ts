@@ -5,7 +5,7 @@ import { createCss } from '@stitches/react';
 import { convertColorScheme } from './colors';
 
 // should exports `styled`, `css` and `getCssString`
-export const { styled, css, global, getCssString, theme } = createCss({
+export const { styled, css, global, getCssString, theme, keyframes } = createCss({
   // follows Bootstrap's breakpoints practice
   // See https://getbootstrap.com/docs/5.0/layout/breakpoints/#available-breakpoints
   media: {
