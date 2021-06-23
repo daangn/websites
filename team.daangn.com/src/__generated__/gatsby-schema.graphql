@@ -152,6 +152,9 @@ type File implements Node {
   ): Date!
   birthtime: Date @deprecated(reason: "Use `birthTime` instead")
   birthtimeMs: Float @deprecated(reason: "Use `birthTime` instead")
+  blksize: Int
+  blocks: Int
+  url: String
 
   # Returns all children nodes filtered by type ImageSharp
   childrenImageSharp: [ImageSharp]
@@ -323,6 +326,8 @@ type Site implements Node {
     locale: String
   ): Date
   siteMetadata: SiteMetadata!
+  port: Int
+  host: String
   flags: SiteFlags
   polyfill: Boolean
   pathPrefix: String
@@ -364,14 +369,14 @@ type SitePage implements Node {
   internalComponentName: String!
   componentChunkName: String!
   matchPath: String
+  isCreatedByStatefulCreatePages: Boolean
+  pluginCreator: SitePlugin
+  pluginCreatorId: String
   id: ID!
   parent: Node
   children: [Node!]!
   internal: Internal!
-  isCreatedByStatefulCreatePages: Boolean
   context: SitePageContext
-  pluginCreator: SitePlugin
-  pluginCreatorId: String
 }
 
 type SitePageContext {
@@ -5148,15 +5153,15 @@ type PrismicImageFluidType {
 }
 
 type Query {
-  site(buildTime: DateQueryOperatorInput, siteMetadata: SiteMetadataFilterInput, flags: SiteFlagsFilterInput, polyfill: BooleanQueryOperatorInput, pathPrefix: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Site
-  file(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, childrenImageSharp: ImageSharpFilterListInput, childImageSharp: ImageSharpFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): File
+  site(buildTime: DateQueryOperatorInput, siteMetadata: SiteMetadataFilterInput, port: IntQueryOperatorInput, host: StringQueryOperatorInput, flags: SiteFlagsFilterInput, polyfill: BooleanQueryOperatorInput, pathPrefix: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Site
+  file(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, url: StringQueryOperatorInput, childrenImageSharp: ImageSharpFilterListInput, childImageSharp: ImageSharpFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): File
   allFile(filter: FileFilterInput, sort: FileSortInput, skip: Int, limit: Int): FileConnection!
   directory(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Directory
   allDirectory(filter: DirectoryFilterInput, sort: DirectorySortInput, skip: Int, limit: Int): DirectoryConnection!
   allSite(filter: SiteFilterInput, sort: SiteSortInput, skip: Int, limit: Int): SiteConnection!
   siteFunction(functionRoute: StringQueryOperatorInput, pluginName: StringQueryOperatorInput, originalAbsoluteFilePath: StringQueryOperatorInput, originalRelativeFilePath: StringQueryOperatorInput, relativeCompiledFilePath: StringQueryOperatorInput, absoluteCompiledFilePath: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SiteFunction
   allSiteFunction(filter: SiteFunctionFilterInput, sort: SiteFunctionSortInput, skip: Int, limit: Int): SiteFunctionConnection!
-  sitePage(path: StringQueryOperatorInput, component: StringQueryOperatorInput, internalComponentName: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, context: SitePageContextFilterInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput): SitePage
+  sitePage(path: StringQueryOperatorInput, component: StringQueryOperatorInput, internalComponentName: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, context: SitePageContextFilterInput): SitePage
   allSitePage(filter: SitePageFilterInput, sort: SitePageSortInput, skip: Int, limit: Int): SitePageConnection!
   imageSharp(fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, gatsbyImageData: JSONQueryOperatorInput, original: ImageSharpOriginalFilterInput, resize: ImageSharpResizeFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): ImageSharp
   allImageSharp(filter: ImageSharpFilterInput, sort: ImageSharpSortInput, skip: Int, limit: Int): ImageSharpConnection!
@@ -5220,6 +5225,17 @@ input StringQueryOperatorInput {
   glob: String
 }
 
+input IntQueryOperatorInput {
+  eq: Int
+  ne: Int
+  gt: Int
+  gte: Int
+  lt: Int
+  lte: Int
+  in: [Int]
+  nin: [Int]
+}
+
 input SiteFlagsFilterInput {
   FAST_DEV: BooleanQueryOperatorInput
   QUERY_ON_DEMAND: BooleanQueryOperatorInput
@@ -5254,17 +5270,6 @@ input InternalFilterInput {
   mediaType: StringQueryOperatorInput
   owner: StringQueryOperatorInput
   type: StringQueryOperatorInput
-}
-
-input IntQueryOperatorInput {
-  eq: Int
-  ne: Int
-  gt: Int
-  gte: Int
-  lt: Int
-  lte: Int
-  in: [Int]
-  nin: [Int]
 }
 
 input FloatQueryOperatorInput {
@@ -5406,6 +5411,9 @@ enum FileFieldsEnum {
   ctime
   birthtime
   birthtimeMs
+  blksize
+  blocks
+  url
   childrenImageSharp
   childrenImageSharp___fixed___base64 @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childrenImageSharp___fixed___tracedSVG @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -5676,6 +5684,9 @@ input FileFilterInput {
   ctime: DateQueryOperatorInput
   birthtime: DateQueryOperatorInput
   birthtimeMs: FloatQueryOperatorInput
+  blksize: IntQueryOperatorInput
+  blocks: IntQueryOperatorInput
+  url: StringQueryOperatorInput
   childrenImageSharp: ImageSharpFilterListInput
   childImageSharp: ImageSharpFilterInput
   id: StringQueryOperatorInput
@@ -5905,6 +5916,8 @@ type SiteEdge {
 enum SiteFieldsEnum {
   buildTime
   siteMetadata___siteUrl
+  port
+  host
   flags___FAST_DEV
   flags___QUERY_ON_DEMAND
   flags___LAZY_IMAGES
@@ -6011,6 +6024,8 @@ type SiteGroupConnection {
 input SiteFilterInput {
   buildTime: DateQueryOperatorInput
   siteMetadata: SiteMetadataFilterInput
+  port: IntQueryOperatorInput
+  host: StringQueryOperatorInput
   flags: SiteFlagsFilterInput
   polyfill: BooleanQueryOperatorInput
   pathPrefix: StringQueryOperatorInput
@@ -6167,16 +6182,6 @@ input SiteFunctionSortInput {
   order: [SortOrderEnum] = [ASC]
 }
 
-input SitePageContextFilterInput {
-  id: StringQueryOperatorInput
-  parent__ghId: StringQueryOperatorInput
-  _xparams: SitePageContext_xparamsFilterInput
-}
-
-input SitePageContext_xparamsFilterInput {
-  parent__ghId: StringQueryOperatorInput
-}
-
 input SitePluginFilterInput {
   id: StringQueryOperatorInput
   parent: NodeFilterInput
@@ -6210,12 +6215,14 @@ input SitePluginPluginOptionsFilterInput {
   emitSchema: SitePluginPluginOptionsEmitSchemaFilterInput
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocumentsFilterInput
   repositoryName: StringQueryOperatorInput
-  toolbar: StringQueryOperatorInput
-  promptForAccessToken: BooleanQueryOperatorInput
+  schemas: SitePluginPluginOptionsSchemasFilterInput
   apiEndpoint: StringQueryOperatorInput
+  customTypesApiEndpoint: StringQueryOperatorInput
   lang: StringQueryOperatorInput
   imageImgixParams: SitePluginPluginOptionsImageImgixParamsFilterInput
   imagePlaceholderImgixParams: SitePluginPluginOptionsImagePlaceholderImgixParamsFilterInput
+  toolbar: StringQueryOperatorInput
+  promptForAccessToken: BooleanQueryOperatorInput
   boardToken: StringQueryOperatorInput
   includeContent: BooleanQueryOperatorInput
   path: StringQueryOperatorInput
@@ -6223,8 +6230,6 @@ input SitePluginPluginOptionsFilterInput {
   allExtensions: BooleanQueryOperatorInput
   isTSX: BooleanQueryOperatorInput
   jsxPragma: StringQueryOperatorInput
-  schemas: SitePluginPluginOptionsSchemasFilterInput
-  customTypesApiEndpoint: StringQueryOperatorInput
 }
 
 input SitePluginPluginOptionsDefaultsFilterInput {
@@ -6246,17 +6251,6 @@ input SitePluginPluginOptionsEmitSchemaFilterInput {
 
 input SitePluginPluginOptionsEmitPluginDocumentsFilterInput {
   src___generated___gatsby_plugin_documents_graphql: BooleanQueryOperatorInput
-}
-
-input SitePluginPluginOptionsImageImgixParamsFilterInput {
-  auto: StringQueryOperatorInput
-  fit: StringQueryOperatorInput
-  q: IntQueryOperatorInput
-}
-
-input SitePluginPluginOptionsImagePlaceholderImgixParamsFilterInput {
-  w: IntQueryOperatorInput
-  blur: IntQueryOperatorInput
 }
 
 input SitePluginPluginOptionsSchemasFilterInput {
@@ -6918,13 +6912,7 @@ input SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_background_imageFi
 }
 
 input SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_background_imageConfigFilterInput {
-  constraint: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_background_imageConfigConstraintFilterInput
   label: StringQueryOperatorInput
-}
-
-input SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_background_imageConfigConstraintFilterInput {
-  width: IntQueryOperatorInput
-  height: IntQueryOperatorInput
 }
 
 input SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_bodyFilterInput {
@@ -8873,6 +8861,17 @@ input SitePluginPluginOptionsSchemasTerms_and_conditionsMainContentConfigFilterI
   placeholder: StringQueryOperatorInput
 }
 
+input SitePluginPluginOptionsImageImgixParamsFilterInput {
+  auto: StringQueryOperatorInput
+  fit: StringQueryOperatorInput
+  q: IntQueryOperatorInput
+}
+
+input SitePluginPluginOptionsImagePlaceholderImgixParamsFilterInput {
+  w: IntQueryOperatorInput
+  blur: IntQueryOperatorInput
+}
+
 input SitePluginPackageJsonFilterInput {
   name: StringQueryOperatorInput
   description: StringQueryOperatorInput
@@ -8912,6 +8911,16 @@ input SitePluginPackageJsonPeerDependenciesFilterInput {
   version: StringQueryOperatorInput
 }
 
+input SitePageContextFilterInput {
+  id: StringQueryOperatorInput
+  parent__ghId: StringQueryOperatorInput
+  _xparams: SitePageContext_xparamsFilterInput
+}
+
+input SitePageContext_xparamsFilterInput {
+  parent__ghId: StringQueryOperatorInput
+}
+
 type SitePageConnection {
   totalCount: Int!
   edges: [SitePageEdge!]!
@@ -8936,6 +8945,106 @@ enum SitePageFieldsEnum {
   internalComponentName
   componentChunkName
   matchPath
+  isCreatedByStatefulCreatePages
+  pluginCreator___id
+  pluginCreator___parent___id
+  pluginCreator___parent___parent___id
+  pluginCreator___parent___parent___children
+  pluginCreator___parent___children
+  pluginCreator___parent___children___id
+  pluginCreator___parent___children___children
+  pluginCreator___parent___internal___content
+  pluginCreator___parent___internal___contentDigest
+  pluginCreator___parent___internal___description
+  pluginCreator___parent___internal___fieldOwners
+  pluginCreator___parent___internal___ignoreType
+  pluginCreator___parent___internal___mediaType
+  pluginCreator___parent___internal___owner
+  pluginCreator___parent___internal___type
+  pluginCreator___children
+  pluginCreator___children___id
+  pluginCreator___children___parent___id
+  pluginCreator___children___parent___children
+  pluginCreator___children___children
+  pluginCreator___children___children___id
+  pluginCreator___children___children___children
+  pluginCreator___children___internal___content
+  pluginCreator___children___internal___contentDigest
+  pluginCreator___children___internal___description
+  pluginCreator___children___internal___fieldOwners
+  pluginCreator___children___internal___ignoreType
+  pluginCreator___children___internal___mediaType
+  pluginCreator___children___internal___owner
+  pluginCreator___children___internal___type
+  pluginCreator___internal___content
+  pluginCreator___internal___contentDigest
+  pluginCreator___internal___description
+  pluginCreator___internal___fieldOwners
+  pluginCreator___internal___ignoreType
+  pluginCreator___internal___mediaType
+  pluginCreator___internal___owner
+  pluginCreator___internal___type
+  pluginCreator___resolve
+  pluginCreator___name
+  pluginCreator___version
+  pluginCreator___pluginOptions___classNameLight
+  pluginCreator___pluginOptions___classNameDark
+  pluginCreator___pluginOptions___minify
+  pluginCreator___pluginOptions___storageKey
+  pluginCreator___pluginOptions___defaults___formats
+  pluginCreator___pluginOptions___defaults___placeholder
+  pluginCreator___pluginOptions___defaults___quality
+  pluginCreator___pluginOptions___defaults___breakpoints
+  pluginCreator___pluginOptions___defaults___backgroundColor
+  pluginCreator___pluginOptions___base64Width
+  pluginCreator___pluginOptions___stripMetadata
+  pluginCreator___pluginOptions___defaultQuality
+  pluginCreator___pluginOptions___failOnError
+  pluginCreator___pluginOptions___root
+  pluginCreator___pluginOptions___aliases____
+  pluginCreator___pluginOptions___component
+  pluginCreator___pluginOptions___outputPath
+  pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_schema_graphql
+  pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_introspection_json
+  pluginCreator___pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
+  pluginCreator___pluginOptions___repositoryName
+  pluginCreator___pluginOptions___apiEndpoint
+  pluginCreator___pluginOptions___customTypesApiEndpoint
+  pluginCreator___pluginOptions___lang
+  pluginCreator___pluginOptions___imageImgixParams___auto
+  pluginCreator___pluginOptions___imageImgixParams___fit
+  pluginCreator___pluginOptions___imageImgixParams___q
+  pluginCreator___pluginOptions___imagePlaceholderImgixParams___w
+  pluginCreator___pluginOptions___imagePlaceholderImgixParams___blur
+  pluginCreator___pluginOptions___toolbar
+  pluginCreator___pluginOptions___promptForAccessToken
+  pluginCreator___pluginOptions___boardToken
+  pluginCreator___pluginOptions___includeContent
+  pluginCreator___pluginOptions___path
+  pluginCreator___pluginOptions___pathCheck
+  pluginCreator___pluginOptions___allExtensions
+  pluginCreator___pluginOptions___isTSX
+  pluginCreator___pluginOptions___jsxPragma
+  pluginCreator___nodeAPIs
+  pluginCreator___browserAPIs
+  pluginCreator___ssrAPIs
+  pluginCreator___pluginFilepath
+  pluginCreator___packageJson___name
+  pluginCreator___packageJson___description
+  pluginCreator___packageJson___version
+  pluginCreator___packageJson___main
+  pluginCreator___packageJson___license
+  pluginCreator___packageJson___dependencies
+  pluginCreator___packageJson___dependencies___name
+  pluginCreator___packageJson___dependencies___version
+  pluginCreator___packageJson___devDependencies
+  pluginCreator___packageJson___devDependencies___name
+  pluginCreator___packageJson___devDependencies___version
+  pluginCreator___packageJson___peerDependencies
+  pluginCreator___packageJson___peerDependencies___name
+  pluginCreator___packageJson___peerDependencies___version
+  pluginCreator___packageJson___keywords
+  pluginCreatorId
   id
   parent___id
   parent___parent___id
@@ -9022,109 +9131,9 @@ enum SitePageFieldsEnum {
   internal___mediaType
   internal___owner
   internal___type
-  isCreatedByStatefulCreatePages
   context___id
   context___parent__ghId
   context____xparams___parent__ghId
-  pluginCreator___id
-  pluginCreator___parent___id
-  pluginCreator___parent___parent___id
-  pluginCreator___parent___parent___children
-  pluginCreator___parent___children
-  pluginCreator___parent___children___id
-  pluginCreator___parent___children___children
-  pluginCreator___parent___internal___content
-  pluginCreator___parent___internal___contentDigest
-  pluginCreator___parent___internal___description
-  pluginCreator___parent___internal___fieldOwners
-  pluginCreator___parent___internal___ignoreType
-  pluginCreator___parent___internal___mediaType
-  pluginCreator___parent___internal___owner
-  pluginCreator___parent___internal___type
-  pluginCreator___children
-  pluginCreator___children___id
-  pluginCreator___children___parent___id
-  pluginCreator___children___parent___children
-  pluginCreator___children___children
-  pluginCreator___children___children___id
-  pluginCreator___children___children___children
-  pluginCreator___children___internal___content
-  pluginCreator___children___internal___contentDigest
-  pluginCreator___children___internal___description
-  pluginCreator___children___internal___fieldOwners
-  pluginCreator___children___internal___ignoreType
-  pluginCreator___children___internal___mediaType
-  pluginCreator___children___internal___owner
-  pluginCreator___children___internal___type
-  pluginCreator___internal___content
-  pluginCreator___internal___contentDigest
-  pluginCreator___internal___description
-  pluginCreator___internal___fieldOwners
-  pluginCreator___internal___ignoreType
-  pluginCreator___internal___mediaType
-  pluginCreator___internal___owner
-  pluginCreator___internal___type
-  pluginCreator___resolve
-  pluginCreator___name
-  pluginCreator___version
-  pluginCreator___pluginOptions___classNameLight
-  pluginCreator___pluginOptions___classNameDark
-  pluginCreator___pluginOptions___minify
-  pluginCreator___pluginOptions___storageKey
-  pluginCreator___pluginOptions___defaults___formats
-  pluginCreator___pluginOptions___defaults___placeholder
-  pluginCreator___pluginOptions___defaults___quality
-  pluginCreator___pluginOptions___defaults___breakpoints
-  pluginCreator___pluginOptions___defaults___backgroundColor
-  pluginCreator___pluginOptions___base64Width
-  pluginCreator___pluginOptions___stripMetadata
-  pluginCreator___pluginOptions___defaultQuality
-  pluginCreator___pluginOptions___failOnError
-  pluginCreator___pluginOptions___root
-  pluginCreator___pluginOptions___aliases____
-  pluginCreator___pluginOptions___component
-  pluginCreator___pluginOptions___outputPath
-  pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_schema_graphql
-  pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_introspection_json
-  pluginCreator___pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
-  pluginCreator___pluginOptions___repositoryName
-  pluginCreator___pluginOptions___toolbar
-  pluginCreator___pluginOptions___promptForAccessToken
-  pluginCreator___pluginOptions___apiEndpoint
-  pluginCreator___pluginOptions___lang
-  pluginCreator___pluginOptions___imageImgixParams___auto
-  pluginCreator___pluginOptions___imageImgixParams___fit
-  pluginCreator___pluginOptions___imageImgixParams___q
-  pluginCreator___pluginOptions___imagePlaceholderImgixParams___w
-  pluginCreator___pluginOptions___imagePlaceholderImgixParams___blur
-  pluginCreator___pluginOptions___boardToken
-  pluginCreator___pluginOptions___includeContent
-  pluginCreator___pluginOptions___path
-  pluginCreator___pluginOptions___pathCheck
-  pluginCreator___pluginOptions___allExtensions
-  pluginCreator___pluginOptions___isTSX
-  pluginCreator___pluginOptions___jsxPragma
-  pluginCreator___pluginOptions___customTypesApiEndpoint
-  pluginCreator___nodeAPIs
-  pluginCreator___browserAPIs
-  pluginCreator___ssrAPIs
-  pluginCreator___pluginFilepath
-  pluginCreator___packageJson___name
-  pluginCreator___packageJson___description
-  pluginCreator___packageJson___version
-  pluginCreator___packageJson___main
-  pluginCreator___packageJson___license
-  pluginCreator___packageJson___dependencies
-  pluginCreator___packageJson___dependencies___name
-  pluginCreator___packageJson___dependencies___version
-  pluginCreator___packageJson___devDependencies
-  pluginCreator___packageJson___devDependencies___name
-  pluginCreator___packageJson___devDependencies___version
-  pluginCreator___packageJson___peerDependencies
-  pluginCreator___packageJson___peerDependencies___name
-  pluginCreator___packageJson___peerDependencies___version
-  pluginCreator___packageJson___keywords
-  pluginCreatorId
 }
 
 type SitePageGroupConnection {
@@ -9142,14 +9151,14 @@ input SitePageFilterInput {
   internalComponentName: StringQueryOperatorInput
   componentChunkName: StringQueryOperatorInput
   matchPath: StringQueryOperatorInput
+  isCreatedByStatefulCreatePages: BooleanQueryOperatorInput
+  pluginCreator: SitePluginFilterInput
+  pluginCreatorId: StringQueryOperatorInput
   id: StringQueryOperatorInput
   parent: NodeFilterInput
   children: NodeFilterListInput
   internal: InternalFilterInput
-  isCreatedByStatefulCreatePages: BooleanQueryOperatorInput
   context: SitePageContextFilterInput
-  pluginCreator: SitePluginFilterInput
-  pluginCreatorId: StringQueryOperatorInput
 }
 
 input SitePageSortInput {
@@ -10046,6 +10055,9 @@ enum PrismicGlobalContentsFieldsEnum {
   data___about_background_image___localFile___ctime @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___about_background_image___localFile___birthtime @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___about_background_image___localFile___birthtimeMs @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___about_background_image___localFile___blksize @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___about_background_image___localFile___blocks @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___about_background_image___localFile___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___about_background_image___localFile___childrenImageSharp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___about_background_image___localFile___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___about_background_image___localFile___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -10765,6 +10777,9 @@ enum PrismicMemberProfileFieldsEnum {
   data___image___localFile___ctime @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___image___localFile___birthtime @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___image___localFile___birthtimeMs @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___blksize @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___blocks @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___image___localFile___childrenImageSharp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___image___localFile___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___image___localFile___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -10994,6 +11009,9 @@ enum PrismicPayContentsFieldsEnum {
   data___logo_icon___localFile___ctime @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___logo_icon___localFile___birthtime @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___logo_icon___localFile___birthtimeMs @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___logo_icon___localFile___blksize @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___logo_icon___localFile___blocks @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___logo_icon___localFile___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___logo_icon___localFile___childrenImageSharp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___logo_icon___localFile___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   data___logo_icon___localFile___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -12343,15 +12361,16 @@ enum SitePluginFieldsEnum {
   pluginOptions___emitSchema___src___generated___gatsby_introspection_json
   pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
   pluginOptions___repositoryName
-  pluginOptions___toolbar
-  pluginOptions___promptForAccessToken
   pluginOptions___apiEndpoint
+  pluginOptions___customTypesApiEndpoint
   pluginOptions___lang
   pluginOptions___imageImgixParams___auto
   pluginOptions___imageImgixParams___fit
   pluginOptions___imageImgixParams___q
   pluginOptions___imagePlaceholderImgixParams___w
   pluginOptions___imagePlaceholderImgixParams___blur
+  pluginOptions___toolbar
+  pluginOptions___promptForAccessToken
   pluginOptions___boardToken
   pluginOptions___includeContent
   pluginOptions___path
@@ -12359,7 +12378,6 @@ enum SitePluginFieldsEnum {
   pluginOptions___allExtensions
   pluginOptions___isTSX
   pluginOptions___jsxPragma
-  pluginOptions___customTypesApiEndpoint
   nodeAPIs
   browserAPIs
   ssrAPIs
@@ -12562,12 +12580,14 @@ type SitePluginPluginOptions {
   emitSchema: SitePluginPluginOptionsEmitSchema
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocuments
   repositoryName: String
-  toolbar: String
-  promptForAccessToken: Boolean
+  schemas: SitePluginPluginOptionsSchemas
   apiEndpoint: String
+  customTypesApiEndpoint: String
   lang: String
   imageImgixParams: SitePluginPluginOptionsImageImgixParams
   imagePlaceholderImgixParams: SitePluginPluginOptionsImagePlaceholderImgixParams
+  toolbar: String
+  promptForAccessToken: Boolean
   boardToken: String
   includeContent: Boolean
   path: String
@@ -12575,8 +12595,6 @@ type SitePluginPluginOptions {
   allExtensions: Boolean
   isTSX: Boolean
   jsxPragma: String
-  schemas: SitePluginPluginOptionsSchemas
-  customTypesApiEndpoint: String
 }
 
 type SitePluginPluginOptionsDefaults {
@@ -12598,17 +12616,6 @@ type SitePluginPluginOptionsEmitSchema {
 
 type SitePluginPluginOptionsEmitPluginDocuments {
   src___generated___gatsby_plugin_documents_graphql: Boolean
-}
-
-type SitePluginPluginOptionsImageImgixParams {
-  auto: String
-  fit: String
-  q: Int
-}
-
-type SitePluginPluginOptionsImagePlaceholderImgixParams {
-  w: Int
-  blur: Int
 }
 
 type SitePluginPluginOptionsSchemas {
@@ -13262,13 +13269,7 @@ type SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_background_image {
 }
 
 type SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_background_imageConfig {
-  constraint: SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_background_imageConfigConstraint
   label: String
-}
-
-type SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_background_imageConfigConstraint {
-  width: Int
-  height: Int
 }
 
 type SitePluginPluginOptionsSchemasGlobal_contentsAboutAbout_body {
@@ -15179,6 +15180,17 @@ type SitePluginPluginOptionsSchemasTerms_and_conditionsMainContentConfig {
   multi: String
   label: String
   placeholder: String
+}
+
+type SitePluginPluginOptionsImageImgixParams {
+  auto: String
+  fit: String
+  q: Int
+}
+
+type SitePluginPluginOptionsImagePlaceholderImgixParams {
+  w: Int
+  blur: Int
 }
 
 type SitePluginPackageJson {

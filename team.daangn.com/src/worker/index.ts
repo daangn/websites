@@ -3,8 +3,10 @@
 import { Router, listen } from 'worktop';
 import * as CORS from 'worktop/cors';
 import * as Base64 from 'worktop/base64';
+import { Result } from '@cometjs/core';
 
-import { parseFormData } from './multipart';
+import type { ApplicationFormPayload } from '../utils/applicationForm';
+import { parsePayload } from '../utils/applicationForm';
 
 /**
  * Greenhouse Jobboard API Key
@@ -29,201 +31,72 @@ API.add('GET', '/ping', (_req, res) => {
   res.send(200, 'pong');
 });
 
-function extractExtension(filename: string): string {
-  const match = filename.match(/\.(\w+)$/);
-  return match ? match[0] : '';
+type RemoteForm = {
+  [fieldName: string]: string,
+};
+
+interface ConvertForm {
+  (form: ApplicationFormPayload): RemoteForm;
 }
 
-function formatDate(date: Date): string {
-  // KST 날짜 보정
-  const kstOffsetHours = 9;
-  const kstOffsetDays = (date.getUTCHours() + kstOffsetHours) / 24 > 1 ? 1 : 0;
+const convertForm: ConvertForm = form => {
+  return {
+    // Note: Greenhouse 는... 무려 이름을 first_name, last_name 으로 나눠서 받는다.. 심지어 둘다 필수라 생략이 불가능함
+    first_name: form.name,
+    // Zero-width space 나 먹어라
+    last_name: '\u200b',
+    email: form.email,
+    phone: form.phoneNumber,
+    resume_content: form.resume.content,
+    resume_content_filename: form.resume.filename,
+    ...form.portfolio && {
+      portfolio_content: form.portfolio.content,
+      portfolio_content_filename: form.portfolio.filename,
+    },
 
-  const YYYY = date.getFullYear();
-  const MM = (date.getMonth() + 1).toString().padStart(2, '0');
-  const DD = (date.getDate() + kstOffsetDays).toString().padStart(2, '0');
-  const HH = (date.getHours() + kstOffsetHours).toString().padStart(2, '0');
-  const mm = (date.getMinutes()).toString().padStart(2, '0');
-  return `${YYYY}-${MM}-${DD}-${HH}-${mm}`;
-}
-
-interface MakeRemoteForm {
-  (props: {
-    name: FormDataEntryValue | null,
-    email: FormDataEntryValue | null,
-    phoneNumber: FormDataEntryValue | null,
-    resume: FormDataEntryValue | null,
-    portfolio: FormDataEntryValue | null,
-    veterans: FormDataEntryValue | null,
-    disability: FormDataEntryValue | null,
-    alternativeCivilian: FormDataEntryValue | null,
-  }): FormData;
-}
-
-const makeRemoteForm: MakeRemoteForm = ({
-  name,
-  email,
-  phoneNumber,
-  resume,
-  portfolio,
-  disability,
-  veterans,
-  alternativeCivilian,
-}) => {
-  const missing = [];
-  if (!name) {
-    missing.push('이름');
-  }
-  if (!email) {
-    missing.push('이메일');
-  }
-  if (!phoneNumber) {
-    missing.push('전화번호');
-  }
-  if (resume == null) {
-    missing.push('이력서');
-  }
-  if (disability == null) {
-    missing.push('장애사항');
-  }
-  if (missing.length > 0) {
-    throw new Error(`${missing.join(', ')}을 입력해주세요!`);
-  }
-
-  if (typeof name !== 'string') {
-    throw new Error('name must be a string');
-  }
-  if (typeof email !== 'string') {
-    throw new Error('email must be a string');
-  }
-  if (typeof phoneNumber !== 'string') {
-    throw new Error('phone_number must be a string');
-  }
-  if (typeof disability !== 'string') {
-    throw new Error('disability must be a string');
-  }
-  if (!(alternativeCivilian == null || typeof alternativeCivilian === 'string')) {
-    throw new Error('alternative_civilian must be a string or null');
-  }
-  if (!(veterans == null || typeof veterans === 'string')) {
-    throw new Error('veterans must be a string or null');
-  }
-  if (!(resume instanceof File)) {
-    throw new Error('resume must be a file');
-  }
-  if (!(portfolio == null || portfolio instanceof File)) {
-    throw new Error('portfolio must be a file');
-  }
-
-  const veteransQuestion = 'question_5942639003';
-  const veteransAnswer: Record<string, string> = {
-    on: '12699586003',
-    off: '12699587003',
+    // TODO: Custom questions
+    // See https://developers.greenhouse.io/job-board.html#retrieve-a-job
   };
-  if (veterans != null && veteransAnswer[veterans] == null) {
-    throw new Error(
-      `veterans must be one of ${Object.keys(veteransAnswer).join(', ')}`,
-    );
-  }
-
-  const disabilityQuestion = 'question_5942640003';
-  const disabilityAnswer: Record<string, string> = {
-    no: '12699588003',
-    normal: '12699589003',
-    industry: '12699590003',
-    military: '12699591003',
-  };
-  if (disabilityAnswer[disability] == null) {
-    throw new Error(
-      `disability must be one of ${Object.keys(disabilityAnswer).join(', ')}`,
-    );
-  }
-
-  const alternativeCivilianQuestion = 'question_6354170003';
-  const alternativeCivilianAnswer: Record<string, string> = {
-    on: '1',
-    off: '0',
-  };
-  if (alternativeCivilian != null && alternativeCivilianAnswer[alternativeCivilian] == null) {
-    throw new Error(
-      `alternativeCivilian must be one of ${Object.keys(alternativeCivilianAnswer).join(', ')}`,
-    );
-  }
-
-  const formData = new FormData();
-  formData.set('first_name', name);
-  formData.set('last_name', '\u200b');
-  formData.set('email', email);
-  formData.set('phone' , phoneNumber);
-  formData.set('resume', resume!, resume!.name);
-
-  formData.set(disabilityQuestion, disabilityAnswer[disability]);
-
-  if (veterans && veteransAnswer[veterans] != null) {
-    formData.set(veteransQuestion, veteransAnswer[veterans]);
-  }
-
-  if (alternativeCivilian && alternativeCivilianAnswer[alternativeCivilian] != null) {
-    formData.set(alternativeCivilianQuestion, alternativeCivilianAnswer[alternativeCivilian]);
-  }
-
-  if (portfolio != null) {
-    formData.set('question_5552480003', portfolio, portfolio.name);
-  }
-
-  return formData;
 };
 
 API.add('POST', '/jobs/:jobId/application/submit', async (req, res) => {
   const { jobId } = req.params;
   const greenhouseEndpoint = `https://boards-api.greenhouse.io/v1/boards/${GH_JOBBOARD_TOKEN}/jobs/${jobId}`;
-  const headers = new Headers({
-    'Accept': 'application/json',
-    'Authorization': `Basic ${Base64.encode(`${GH_JOBBOARD_API_KEY}:`)}`,
-  });
 
-  const formData = await parseFormData(req.body);
+  const form = await req.body.json<ApplicationFormPayload>();
+  const parseResult = parsePayload(form);
+  if (Result.isOk(parseResult)) {
+    const form = Result.getExn(parseResult);
+    const remoteForm = convertForm(form);
+    try {
+      const response = await fetch(greenhouseEndpoint, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': `Basic ${Base64.encode(`${GH_JOBBOARD_API_KEY}:`)}`,
+        },
+        body: JSON.stringify(remoteForm),
+      });
+      const data = await response.json();
+      return res.send(
+        data.status,
+        data,
+        Object.fromEntries(response.headers.entries()),
+      );
+    } catch (e) {
+      return res.send(500, 'Internal Server Error');
+    }
+  } else {
+    const { fields } = Result.getErrExn(parseResult);
 
-  const name = formData.get('name');
-  const email = formData.get('email');
-  const phoneNumber = formData.get('phone_number');
-  const resume = formData.get('resume');
-  const portfolio = formData.get('portfolio');
-  const disability = formData.get('disability');
-  const veterans = formData.get('veterans') || 'off';
-  const alternativeCivilian = formData.get('alternative_civilian') || 'off';
+    const reason: string[] = [];
+    if (!fields.name) reason.push('이름');
+    if (!fields.email) reason.push('이메일');
+    if (!fields.phoneNumber) reason.push('전화번호');
+    if (!fields.resume) reason.push('이력서');
 
-  let remoteFormData: FormData;
-
-  try {
-    remoteFormData = makeRemoteForm({
-      name,
-      email,
-      phoneNumber,
-      veterans,
-      disability,
-      alternativeCivilian,
-      resume,
-      portfolio,
-    });
-  } catch (e) {
-    return res.send(400, e.message);
-  }
-
-  try {
-    const result = await fetch(greenhouseEndpoint, {
-      method: 'POST',
-      headers,
-      body: remoteFormData,
-    });
-    const data = await result.json();
-    return res.send(
-      data.status,
-      data,
-      Object.fromEntries(result.headers.entries()),
-    );
-  } catch (e) {
-    return res.send(500, 'Internal Server Error');
+    return res.send(400, `${reason.join(', ')}을(를) 입력해주세요`);
   }
 });
 
