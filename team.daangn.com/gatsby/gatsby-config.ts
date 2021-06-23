@@ -5,6 +5,7 @@ dotenv.config();
 
 const siteMetadata = {
   siteUrl: 'https://team.daangn.com',
+  siteName: '당근마켓 팀',
 };
 
 const config: GatsbyConfig = {
@@ -21,6 +22,18 @@ const config: GatsbyConfig = {
     'gatsby-theme-stitches',
     'gatsby-plugin-svgr',
     'gatsby-plugin-react-helmet-async',
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: siteMetadata.siteName,
+        short_name: siteMetadata.siteName,
+        start_url: '/',
+        theme_color: '#ff7e36',
+        background_color: '#ffffff',
+        display: 'minimal-ui',
+        icon: 'src/assets/favicon.svg',
+      },
+    },
     {
       resolve: 'gatsby-plugin-advanced-sitemap',
       options: {
