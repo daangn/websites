@@ -1,5 +1,13 @@
 import type { GatsbyNode } from 'gatsby';
 
+const gql = String.raw;
+
+function slugify(str: string) {
+  return str.trim()
+    .replace(/[\s|\(|\)|\/]/g, '-')
+    .replace(/-$/, '');
+};
+
 export const onCreateBabelConfig: GatsbyNode['onCreateBabelConfig'] = ({
   actions,
 }) => {
@@ -18,9 +26,8 @@ export const onCreateBabelConfig: GatsbyNode['onCreateBabelConfig'] = ({
 
 export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({
   actions,
+  schema,
 }) => {
-  const gql = String.raw;
-
   // FIXME
   // see https://github.com/angeloashmore/gatsby-source-prismic/issues/382
   actions.createTypes(gql`
@@ -114,4 +121,76 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
 //      data: PrismicMemberProfileDataType!
 //    }
 //  `);
+  
+  actions.createTypes([
+    schema.buildObjectType({
+      name: 'JobPost',
+      interfaces: ['Node'],
+      fields: {
+        slug: {
+          type: 'String!',
+          resolve(source: { chapter: string }) {
+            return slugify(source.chapter);
+          },
+        },
+      },
+    }),
+  ]);
+};
+
+export const createPages: GatsbyNode['createPages'] = async ({
+  graphql,
+  actions,
+}) => {
+  type Data = {
+    allJobPost: {
+      group: {
+        nodes: {
+          chapter: string,
+          slug: string,
+        }[],
+      }[],
+    },
+  };
+
+  const { data, errors } = await graphql<Data>(gql`
+    {
+      allJobPost {
+        group(field: chapter, limit: 1) {
+          nodes {
+            chapter
+            slug
+          }
+        }
+      }
+    }
+  `);
+
+  if (errors) {
+    throw errors;
+  }
+
+  actions.createPage({
+    path: `/jobs/`,
+    component: require.resolve('./src/templates/jobs.tsx'),
+    context: {
+      pattern: `/.*/`,
+      chapter: null,
+      slug: null,
+    },
+  });
+
+  for (const group of data.allJobPost.group) {
+    const { chapter, slug } = group.nodes[0];
+
+    actions.createPage({
+      path: `/jobs/${slug}/`,
+      component: require.resolve('./src/templates/jobs.tsx'),
+      context: {
+        pattern: `/${slug}/`,
+        chapter,
+        slug,
+      },
+    });
+  }
 };

@@ -1,30 +1,44 @@
 import * as React from 'react';
 import type { PageProps } from 'gatsby';
-import { graphql } from 'gatsby';
+import { graphql, navigate } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { rem } from 'polished';
 
 import PageTitle from '~/components/PageTitle';
 import _JobPostList from '~/components/JobPostList';
 
-type JobsPageProps = PageProps<GatsbyTypes.JobsPageQuery>;
+type JobsPageTemplateProps = PageProps<GatsbyTypes.JobsPageTemplateQuery, GatsbyTypes.SitePageContext>;
 
 export const query = graphql`
-  query JobsPage {
+  query JobsPageTemplate($pattern: String) {
     ...DefaultLayout_query
-    allJobPost(
+    currentJobPosts: allJobPost(
+      filter: {
+        slug: { regex: $pattern }
+      }
       sort: {
         fields: title
         order: ASC
       }
     ) {
       ...JobPostList_jobPosts
+    }
 
+    allJobPost(
+      sort: {
+        fields: title
+        order: ASC
+      }
+    ) {
       totalCount
 
-      allChapter: group(field: chapter) {
+      allChapter: group(field: chapter, limit: 1) {
         fieldValue
         totalCount
+        nodes {
+          chapter
+          slug
+        }
       }
 
       allEmploymentType: group(field: employmentType) {
@@ -86,14 +100,28 @@ const Select = styled('select', {
 });
 
 const JobPostList = styled(_JobPostList, {
-  minHeight: '100vh',
+  minHeight: '80vh',
 });
 
-const JobsPage: React.FC<JobsPageProps> = ({
+const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
   data,
+  pageContext,
 }) => {
-  const [filterChapter, setFilterChapter] = React.useState('');
-  const [filterEmploymentType, setFilterEmployementType] = React.useState('');
+  const [filterChapter, setFilterChapter] = React.useState(pageContext.chapter || '');
+  const [filterEmploymentType, setFilterEmploymentType] = React.useState('');
+
+  React.useEffect(() => {
+    const selectedChapterGroup = data.allJobPost.allChapter
+      .find(chapterGroup => chapterGroup.nodes[0]?.chapter === filterChapter);
+
+    if (selectedChapterGroup) {
+      const { slug } = selectedChapterGroup.nodes[0];
+      navigate(`/jobs/${slug}/${window.location.search}`);
+    } else {
+      navigate(`/jobs/${window.location.search}`);
+    }
+  }, [filterChapter]);
+
   return (
     <Container>
       <PageTitle
@@ -107,7 +135,7 @@ const JobsPage: React.FC<JobsPageProps> = ({
       <Content>
         <Filters>
           <Select
-            value={filterChapter}
+            defaultValue={pageContext.chapter || ''}
             onChange={e => setFilterChapter(e.target.value)}
           >
             <option
@@ -117,40 +145,29 @@ const JobsPage: React.FC<JobsPageProps> = ({
               {`전체 직군 (${data.allJobPost.totalCount})`}
             </option>
             {data.allJobPost.allChapter
-            .map(chapter => (
-              <option
-                key={chapter.fieldValue}
-                value={chapter.fieldValue}
-              >
-                {`${chapter.fieldValue} (${chapter.totalCount})`}
-              </option>
-            ))}
+            .map(chapterGroup => {
+              return (
+                <option
+                  key={chapterGroup.fieldValue}
+                  value={chapterGroup.fieldValue}
+                >
+                  {`${chapterGroup.fieldValue} (${chapterGroup.totalCount})`}
+                </option>
+              )
+            })}
           </Select>
-          <Select>
-            <option
-              key=""
-              value=""
-            >
-              전체 고용형태
-            </option>
-            {data.allJobPost.allEmploymentType
-            .map(employmentType => (
-              <option
-                key={employmentType.fieldValue}
-                value={employmentType.fieldValue}
-              >
-                {{
-                  'FULL_TIME': '정규직',
-                  'CONTRACTOR': '계약직',
-                  'INTERN': '인턴',
-                }[employmentType.fieldValue || '']}
-              </option>
-            ))}
+          <Select
+            value={filterEmploymentType}
+            onChange={e => setFilterEmploymentType(e.target.value)}
+          >
+            <option value="">전체 고용형태</option>
+            <option value="FULL_TIME">정규직</option>
+            <option value="CONTRACTOR">계약직</option>
+            <option value="INTERN">인턴</option>
           </Select>
         </Filters>
         <JobPostList
-          jobPosts={data.allJobPost}
-          filterChapter={filterChapter}
+          jobPosts={data.currentJobPosts}
           filterEmploymentType={filterEmploymentType}
         />
       </Content>
@@ -158,4 +175,4 @@ const JobsPage: React.FC<JobsPageProps> = ({
   );
 };
 
-export default JobsPage;
+export default JobsPageTemplate;
