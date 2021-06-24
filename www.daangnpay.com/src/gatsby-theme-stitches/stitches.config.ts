@@ -8,4 +8,5 @@ export {
 
 export const globalStyles = global({
   '*': { margin: 0, padding: 0 },
+  body: { fontFamily: '$system' },
 });
