@@ -42,6 +42,10 @@ const globalStyles = global({
       outlineOffset: '3px',
     },
   },
+  // @See https://github.com/angeloashmore/gatsby-source-prismic/issues/397#issuecomment-867133145
+  '#prismic-toolbar-v2': {
+    visibility: 'hidden',
+  },
 });
 
 const LayoutSwitch: React.FC<LayoutSwitchProps> = ({
