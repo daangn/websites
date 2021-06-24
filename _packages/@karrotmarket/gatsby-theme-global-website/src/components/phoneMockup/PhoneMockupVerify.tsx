@@ -38,7 +38,7 @@ const PhoneMockupVerify: React.FC<PhoneMockupVerifyProps> = ({ inView }) => {
         align="left"
         height={600}
         frameColor="orange"
-        header={<Header>Vertify</Header>}
+        header={<Header>Verify</Header>}
         fontSize={{
           "@i": { fontSize: rem(7.5) },
           "@md": { fontSize: rem(13) },
