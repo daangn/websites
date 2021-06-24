@@ -36,6 +36,7 @@ const Container = styled('article', {
 });
 
 const ImageContainer = styled('figure', {
+  display: 'grid',
 });
 
 const QuoteContainer = styled('figure', {

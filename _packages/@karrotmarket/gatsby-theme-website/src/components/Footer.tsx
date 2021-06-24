@@ -112,11 +112,10 @@ const FooterEntryList = styled("ul", {
 
 const SocialServiceProfileList = styled("ul", {
   display: "flex",
+  flexWrap: "wrap",
+  gap: rem(24),
   padding: 0,
   listStyle: "none",
-  "> * + *": {
-    marginLeft: rem(24),
-  },
 });
 
 const SocialServiceProfileItem = styled("li", {

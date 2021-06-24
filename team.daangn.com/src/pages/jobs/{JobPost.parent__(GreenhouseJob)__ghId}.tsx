@@ -41,12 +41,8 @@ const ButtonContainer = styled('div', {
   flexDirection: 'column',
   gap: rem(20),
 
-  variants: {
-    layout: {
-      column: {
-        flexDirection: 'row',
-      },
-    },
+  '@sm': {
+    flexDirection: 'row',
   },
 });
 
@@ -69,11 +65,18 @@ const JobPostPage: React.FC<JobPostPageProps> = ({
           ),
         }))}
       </ContentWrapper>
-      <ButtonContainer layout={{ '@sm': 'column' }}>
-        <Button to={data.jobPost.applyPath!} type="primary">
+      <ButtonContainer>
+        <Button
+          type="primary"
+          to={data.jobPost.applyPath!}
+          fullWidth={{ '@initial': true, '@sm': false }}
+        >
           지원하기
         </Button>
-        <Button to="/jobs/faq/">
+        <Button
+          to="/jobs/faq/"
+          fullWidth={{ '@initial': true, '@sm': false }}
+        >
           자주 묻는 질문
         </Button>
       </ButtonContainer>

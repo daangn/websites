@@ -8,6 +8,7 @@ const ArrowButton = styled('button', {
   border: 'none',
   background: 'none',
   padding: 0,
+  cursor: 'pointer',
   transition: 'opacity 0.2s ease-in-out',
   '&:hover': {
     opacity: 0.64,
