@@ -65,7 +65,6 @@ const PageTitle = styled("h1", {
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
-  marginTop: em(20),
   fontSize: rem(48),
   color: "white",
   textAlign: "center",
