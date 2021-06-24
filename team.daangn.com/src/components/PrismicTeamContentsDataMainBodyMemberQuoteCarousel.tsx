@@ -28,7 +28,7 @@ const Container = styled('section', {
   display: 'grid',
   gap: rem(40),
   
-  '@md': {
+  '@lg': {
     gap: rem(56),
   },
 });
@@ -44,7 +44,9 @@ const Slide = styled('div', {
   '& > *': {
     flexShrink: 0,
     width: '100%',
-    maxWidth: rem(560),
+    '@lg': {
+      maxWidth: rem(560),
+    },
   },
 });
 
@@ -114,7 +116,7 @@ const Dots = styled('div', {
   justifyContent: 'center',
   gap: rem(32),
 
-  '@md': {
+  '@lg': {
     '& > :nth-child(2n)': {
       display: 'none',
     },
@@ -177,7 +179,7 @@ const PrismicTeamContentsDataMainBodyMemberQuoteCarousel: React.FC<PrismicTeamCo
         <Slide
           css={{
             transform: `translateX(calc(-100% * ${slide} - ${rem(40 * slide)}))`,
-            '@md': {
+            '@lg': {
               transform: `translateX(-${rem((560 + 40) * slide)})`,
             },
           }}
