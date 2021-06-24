@@ -15,6 +15,8 @@ type DetailLinkProps = {
 
 const Base = styled(Link, {
   display: 'inline-flex',
+  flexWrap: 'wrap',
+  whiteSpace: 'nowrap',
   alignItems: 'center',
   color: '$gray900',
   textDecoration: 'none',
