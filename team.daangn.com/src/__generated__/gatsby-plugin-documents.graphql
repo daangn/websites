@@ -106,6 +106,15 @@ fragment GatsbyImageSharpFluid_withWebp_noBase64 on ImageSharpFluid {
   srcSetWebp
   sizes
 }
+fragment SocialServiceProfile_profile on PrismicSiteNavigationDataSnsProfiles {
+  service
+  link {
+    url
+  }
+}
+fragment Header_navigationData on PrismicSiteNavigationDataType {
+  ...NavigationMenu_data
+}
 fragment Footer_navigationData on PrismicSiteNavigationDataType {
   copyright {
     html
@@ -121,11 +130,42 @@ fragment Footer_navigationData on PrismicSiteNavigationDataType {
     ...SocialServiceProfile_profile
   }
 }
-fragment SocialServiceProfile_profile on PrismicSiteNavigationDataSnsProfiles {
-  service
-  link {
-    url
-  }
+fragment GatsbyImgixFluid on ImgixFluid {
+  aspectRatio
+  src
+  srcWebp
+  srcSet
+  srcSetWebp
+  sizes
+  base64
+}
+
+fragment GatsbyImgixFluid_noBase64 on ImgixFluid {
+  aspectRatio
+  src
+  srcWebp
+  srcSet
+  srcSetWebp
+  sizes
+}
+
+fragment GatsbyImgixFixed on ImgixFixed {
+  base64
+  width
+  height
+  src
+  srcSet
+  srcWebp
+  srcSetWebp
+}
+
+fragment GatsbyImgixFixed_noBase64 on ImgixFixed {
+  width
+  height
+  src
+  srcSet
+  srcWebp
+  srcSetWebp
 }
 fragment NavigationMenu_data on PrismicSiteNavigationDataType {
   header_entries {
@@ -175,44 +215,4 @@ fragment GatsbyPrismicImageFluid_withWebp on ImgixFluid {
 
 fragment GatsbyPrismicImageFluid_withWebp_noBase64 on ImgixFluid {
   ...GatsbyImgixFluid_noBase64
-}
-fragment Header_navigationData on PrismicSiteNavigationDataType {
-  ...NavigationMenu_data
-}
-fragment GatsbyImgixFluid on ImgixFluid {
-  aspectRatio
-  src
-  srcWebp
-  srcSet
-  srcSetWebp
-  sizes
-  base64
-}
-
-fragment GatsbyImgixFluid_noBase64 on ImgixFluid {
-  aspectRatio
-  src
-  srcWebp
-  srcSet
-  srcSetWebp
-  sizes
-}
-
-fragment GatsbyImgixFixed on ImgixFixed {
-  base64
-  width
-  height
-  src
-  srcSet
-  srcWebp
-  srcSetWebp
-}
-
-fragment GatsbyImgixFixed_noBase64 on ImgixFixed {
-  width
-  height
-  src
-  srcSet
-  srcWebp
-  srcSetWebp
 }

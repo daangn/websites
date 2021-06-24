@@ -1,9 +1,11 @@
 import * as React from 'react';
+import { useSwipeable } from 'react-swipeable';
 import { rem } from 'polished';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 
 import CarouselItem from './prismicTeamContentsDataMainBodyMemberQuoteCarousel/CarouselItem';
+import _ArrowButton from './prismicTeamContentsDataMainBodyMemberQuoteCarousel/ArrowButton';
 
 type PrismicTeamContentsDataMainBodyMemberQuoteCarouselProps = {
   data: GatsbyTypes.PrismicTeamContentsDataMainBodyMemberQuoteCarousel_dataFragment,
@@ -19,6 +21,7 @@ export const query = graphql`
 `;
 
 const Container = styled('section', {
+  position: 'relative',
   contentArea: true,
   width: '100%',
   boxSizing: 'border-box',
@@ -43,6 +46,67 @@ const Slide = styled('div', {
     width: '100%',
     maxWidth: rem(560),
   },
+});
+
+const ArrowButton = styled(_ArrowButton, {
+  variants: {
+    viewport: {
+      initial: {
+        display: 'none',
+      },
+      xxl: {
+        display: 'inline-flex',
+      },
+    },
+    hide: {
+      true: {
+        display: 'none',
+      },
+      false: {
+        display: 'inline-flex',
+      },
+    },
+  },
+
+  compoundVariants: [
+    {
+      viewport: 'xxl',
+      hide: true,
+      css: {
+        display: 'none',
+      },
+    },
+    {
+      viewport: 'initial',
+      hide: false,
+      css: {
+        display: 'none',
+      },
+    },
+    {
+      viewport: 'xxl',
+      hide: false,
+      css: {
+        display: 'inline-flex',
+      },
+    },
+  ],
+
+  defaultVariants: {
+    hide: false,
+  },
+});
+
+const LeftArrowButton = styled(ArrowButton, {
+  position: 'absolute',
+  right: `calc(100% + ${rem(16)})`,
+  top: rem(200),
+});
+
+const RightArrowButton = styled(ArrowButton, {
+  position: 'absolute',
+  left: `calc(100% + ${rem(16)})`,
+  top: rem(200),
 });
 
 const Dots = styled('div', {
@@ -92,9 +156,24 @@ const PrismicTeamContentsDataMainBodyMemberQuoteCarousel: React.FC<PrismicTeamCo
   const items = data.items || [];
   const [slide, setSlide] = React.useState(0);
 
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: _ => {
+      setSlide(slide => Math.min(slide + 1, items.length - 1));
+    },
+    onSwipedRight: _ => {
+      setSlide(slide => Math.max(slide - 1, 0));
+    },
+  });
+
   return (
     <Container className={className}>
-      <SlideCamera>
+      <LeftArrowButton
+        direction="left"
+        viewport={{ '@initial': 'initial', '@xxl': 'xxl' }}
+        hide={slide === 0}
+        onClick={() => setSlide(slide => Math.max(~~(slide / 2) * 2 - 2, 0))}
+      />
+      <SlideCamera {...swipeHandlers}>
         <Slide
           css={{
             transform: `translateX(calc(-100% * ${slide} - ${rem(40 * slide)}))`,
@@ -106,13 +185,19 @@ const PrismicTeamContentsDataMainBodyMemberQuoteCarousel: React.FC<PrismicTeamCo
           {items.map((item, i) => (
             <CarouselItem
               key={i}
-              item={item}
+              item={item!}
             />
           ))}
         </Slide>
       </SlideCamera>
+      <RightArrowButton
+        direction="right"
+        viewport={{ '@initial': 'initial', '@xxl': 'xxl' }}
+        hide={slide === items.length - 2}
+        onClick={() => setSlide(slide => Math.min(~~(slide / 2) * 2 + 2, items.length - 1))}
+      />
       <Dots>
-        {items.map((item, i) => (
+        {items.map((_item, i) => (
           <Dot
             key={i}
             active={slide === i}
