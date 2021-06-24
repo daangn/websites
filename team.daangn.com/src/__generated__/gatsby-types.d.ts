@@ -16164,16 +16164,16 @@ type SiteBuildMetadata_buildTimeArgs = {
   locale: Maybe<Scalars['String']>;
 };
 
-type JobPostContentParagraphSection_contentFragment = Pick<JobPostContentParagraphSection, 'title' | 'paragraph'>;
+type FaqAccordion_faqDataFragment = { readonly entries: Maybe<ReadonlyArray<Maybe<FaqAccordionItem_entryFragment>>> };
+
+type JobPostContentOrderedListSection_contentFragment = Pick<JobPostContentOrderedListSection, 'title' | 'items'>;
 
 type FaqAccordionItem_entryFragment = (
   Pick<PrismicFaqDataEntries, 'question'>
   & { readonly answer: Maybe<Pick<PrismicStructuredTextType, 'html'>> }
 );
 
-type JobPostContentOrderedListSection_contentFragment = Pick<JobPostContentOrderedListSection, 'title' | 'items'>;
-
-type JobPostSummary_jobPostFragment = Pick<JobPost, 'id' | 'title' | 'chapter' | 'corporate' | 'employmentType' | 'priorExperience'>;
+type JobPostContentUnorderedListSection_contentFragment = Pick<JobPostContentUnorderedListSection, 'title' | 'items'>;
 
 type JobPostList_jobPostsFragment = { readonly nodes: ReadonlyArray<(
     Pick<JobPost, 'id' | 'chapter' | 'employmentType'>
@@ -16181,7 +16181,17 @@ type JobPostList_jobPostsFragment = { readonly nodes: ReadonlyArray<(
     & JobPostSummary_jobPostFragment
   )> };
 
-type JobPostContentUnorderedListSection_contentFragment = Pick<JobPostContentUnorderedListSection, 'title' | 'items'>;
+type JobPostSummary_jobPostFragment = Pick<JobPost, 'id' | 'title' | 'chapter' | 'corporate' | 'employmentType' | 'priorExperience'>;
+
+type PrismicTeamContentsDataCultureBodyIllustrationAndDescription_dataFragment = { readonly primary: Maybe<(
+    Pick<PrismicTeamContentsDataCultureBodyIllustrationAndDescriptionPrimary, 'expanded' | 'inverted' | 'link_text'>
+    & { readonly illustration: Maybe<(
+      Pick<PrismicTeamContentsDataCultureBodyIllustrationAndDescriptionPrimaryIllustrationImageType, 'alt'>
+      & { readonly localFile: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }> }
+    )>, readonly description: Maybe<Pick<PrismicStructuredTextType, 'text'>>, readonly link: Maybe<Pick<PrismicLinkType, 'url'>> }
+  )> };
+
+type JobPostContentParagraphSection_contentFragment = Pick<JobPostContentParagraphSection, 'title' | 'paragraph'>;
 
 type PrismicTeamContentsDataCultureBodyKeyVisual_dataFragment = { readonly primary: Maybe<(
     Pick<PrismicTeamContentsDataCultureBodyKeyVisualPrimary, 'expanded'>
@@ -16193,36 +16203,6 @@ type PrismicTeamContentsDataCultureBodyKeyVisual_dataFragment = { readonly prima
         )> }> }
     )>, readonly description: Maybe<Pick<PrismicStructuredTextType, 'text'>> }
   )> };
-
-type FaqAccordion_faqDataFragment = { readonly entries: Maybe<ReadonlyArray<Maybe<FaqAccordionItem_entryFragment>>> };
-
-type PrismicTeamContentsDataCultureBodyHowWeWork_dataFragment = { readonly primary: Maybe<{ readonly title: Maybe<Pick<PrismicStructuredTextType, 'text'>> }>, readonly items: Maybe<ReadonlyArray<Maybe<(
-    Pick<PrismicTeamContentsDataCultureBodyHowWeWorkItem, 'group' | 'key_text'>
-    & { readonly description: Maybe<Pick<PrismicStructuredTextType, 'text'>> }
-  )>>> };
-
-type PrismicTeamContentsDataCultureBodyBenefit_dataFragment = { readonly primary: Maybe<{ readonly title: Maybe<Pick<PrismicStructuredTextType, 'text'>> }>, readonly items: Maybe<ReadonlyArray<Maybe<(
-    Pick<PrismicTeamContentsDataCultureBodyBenefitItem, 'subtitle' | 'subtext'>
-    & { readonly description: Maybe<Pick<PrismicStructuredTextType, 'html'>> }
-  )>>> };
-
-type PrismicTeamContentsDataCultureBodyIllustrationAndDescription_dataFragment = { readonly primary: Maybe<(
-    Pick<PrismicTeamContentsDataCultureBodyIllustrationAndDescriptionPrimary, 'expanded' | 'inverted' | 'link_text'>
-    & { readonly illustration: Maybe<(
-      Pick<PrismicTeamContentsDataCultureBodyIllustrationAndDescriptionPrimaryIllustrationImageType, 'alt'>
-      & { readonly localFile: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }> }
-    )>, readonly description: Maybe<Pick<PrismicStructuredTextType, 'text'>>, readonly link: Maybe<Pick<PrismicLinkType, 'url'>> }
-  )> };
-
-type CarouselItem_itemFragment = (
-  Pick<PrismicTeamContentsDataMainBodyMemberQuoteCarouselItem, 'quote' | 'who'>
-  & { readonly image: Maybe<(
-    Pick<PrismicTeamContentsDataMainBodyMemberQuoteCarouselItemsImageImageType, 'alt'>
-    & { readonly localFile: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }> }
-  )> }
-);
-
-type PrismicTeamContentsDataMainBodyMemberQuoteCarousel_dataFragment = { readonly items: Maybe<ReadonlyArray<Maybe<CarouselItem_itemFragment>>> };
 
 type PrismicTeamContentsDataMainBodyKeyVisual_dataFragment = { readonly primary: Maybe<(
     Pick<PrismicTeamContentsDataMainBodyKeyVisualPrimary, 'expanded'>
@@ -16240,6 +16220,29 @@ type PrismicTeamContentsDataLifeBodyLifeContent_dataFragment = { readonly primar
       & { readonly localFile: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }> }
     )> }>>> };
 
+type PrismicTeamContentsDataCultureBodyHowWeWork_dataFragment = { readonly primary: Maybe<{ readonly title: Maybe<Pick<PrismicStructuredTextType, 'text'>> }>, readonly items: Maybe<ReadonlyArray<Maybe<(
+    Pick<PrismicTeamContentsDataCultureBodyHowWeWorkItem, 'group' | 'key_text'>
+    & { readonly description: Maybe<Pick<PrismicStructuredTextType, 'text'>> }
+  )>>> };
+
+type PrismicTeamContentsDataCultureBodyBenefit_dataFragment = { readonly primary: Maybe<{ readonly title: Maybe<Pick<PrismicStructuredTextType, 'text'>> }>, readonly items: Maybe<ReadonlyArray<Maybe<(
+    Pick<PrismicTeamContentsDataCultureBodyBenefitItem, 'subtitle' | 'subtext'>
+    & { readonly description: Maybe<Pick<PrismicStructuredTextType, 'html'>> }
+  )>>> };
+
+type PrismicTeamContentsDataMainBodyTitleAndDescription_dataFragment = { readonly primary: Maybe<(
+    Pick<PrismicTeamContentsDataMainBodyTitleAndDescriptionPrimary, 'key_text' | 'inverted'>
+    & { readonly title: Maybe<Pick<PrismicStructuredTextType, 'text'>>, readonly description: Maybe<Pick<PrismicStructuredTextType, 'html'>>, readonly link: Maybe<Pick<PrismicLinkType, 'url'>> }
+  )> };
+
+type CarouselItem_itemFragment = (
+  Pick<PrismicTeamContentsDataMainBodyMemberQuoteCarouselItem, 'quote' | 'who'>
+  & { readonly image: Maybe<(
+    Pick<PrismicTeamContentsDataMainBodyMemberQuoteCarouselItemsImageImageType, 'alt'>
+    & { readonly localFile: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }> }
+  )> }
+);
+
 type PrismicTeamContentsDataMainBodyWideBanner_dataFragment = { readonly primary: Maybe<(
     Pick<PrismicTeamContentsDataMainBodyWideBannerPrimary, 'background_color' | 'link_text'>
     & { readonly title: Maybe<Pick<PrismicStructuredTextType, 'text'>>, readonly thumbnail: Maybe<(
@@ -16256,35 +16259,7 @@ type PrismicTeamContentsDataMainBodyTitleAndIllustration_dataFragment = { readon
     )>, readonly link: Maybe<Pick<PrismicLinkType, 'url'>> }
   )> };
 
-type PrismicTeamContentsDataMainBodyTitleAndDescription_dataFragment = { readonly primary: Maybe<(
-    Pick<PrismicTeamContentsDataMainBodyTitleAndDescriptionPrimary, 'key_text' | 'inverted'>
-    & { readonly title: Maybe<Pick<PrismicStructuredTextType, 'text'>>, readonly description: Maybe<Pick<PrismicStructuredTextType, 'html'>>, readonly link: Maybe<Pick<PrismicLinkType, 'url'>> }
-  )> };
-
-type CompletedPageQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type CompletedPageQuery = DefaultLayout_queryFragment;
-
-type JobPostLayout_queryFragment = { readonly prismicTeamContents: Maybe<{ readonly data: Maybe<(
-      Pick<PrismicTeamContentsDataType, 'jobs_page_meta_title' | 'jobs_page_meta_description'>
-      & { readonly jobs_page_meta_image: Maybe<{ readonly localFile: Maybe<{ readonly childImageSharp: Maybe<{ readonly fixed: Maybe<Pick<ImageSharpFixed, 'src' | 'width' | 'height'>> }> }> }>, readonly jobs_page_title: Maybe<Pick<PrismicStructuredTextType, 'text'>> }
-    )> }>, readonly jobPost: Maybe<(
-    Pick<JobPost, 'id' | 'title' | 'chapter' | 'corporate' | 'employmentType' | 'priorExperience'>
-    & { datePosted: JobPost['updatedAt'], viewPath: JobPost['gatsbyPath'], applyPath: JobPost['gatsbyPath'] }
-  )> };
-
-type DefaultLayout_queryFragment = { readonly prismicTeamContents: Maybe<(
-    Pick<PrismicTeamContents, '_previewable'>
-    & { readonly data: Maybe<Pick<PrismicTeamContentsDataType, 'fb_app_id' | 'twitter_site_handle'>> }
-  )>, readonly prismicSiteNavigation: Maybe<(
-    Pick<PrismicSiteNavigation, '_previewable'>
-    & { readonly data: (
-      { readonly sns_profiles: ReadonlyArray<{ readonly link: Maybe<Pick<PrismicLinkType, 'url'>> }> }
-      & Header_navigationDataFragment
-      & Footer_navigationDataFragment
-    ) }
-  )> };
+type PrismicTeamContentsDataMainBodyMemberQuoteCarousel_dataFragment = { readonly items: Maybe<ReadonlyArray<Maybe<CarouselItem_itemFragment>>> };
 
 type JobPostPageQueryVariables = Exact<{
   id: Scalars['String'];
@@ -16309,10 +16284,40 @@ type JobPostPageQuery = (
   & JobPostLayout_queryFragment
 );
 
+type CompletedPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type CompletedPageQuery = DefaultLayout_queryFragment;
+
+type JobApplicationPageQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+type JobApplicationPageQuery = (
+  { readonly jobPost: Maybe<Pick<JobPost, 'ghId' | 'title' | 'portfolioRequired'>>, readonly privacyPolicy: Maybe<(
+    Pick<PrismicTermsAndConditions, 'id'>
+    & { readonly data: Maybe<{ readonly content: Maybe<Pick<PrismicStructuredTextType, 'html'>> }> }
+  )>, readonly sensitiveInfoPolicy: Maybe<(
+    Pick<PrismicTermsAndConditions, 'id'>
+    & { readonly data: Maybe<{ readonly content: Maybe<Pick<PrismicStructuredTextType, 'html'>> }> }
+  )> }
+  & DefaultLayout_queryFragment
+  & JobPostLayout_queryFragment
+);
+
 type NotFoundPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type NotFoundPageQuery = DefaultLayout_queryFragment;
+
+type JobPostLayout_queryFragment = { readonly prismicTeamContents: Maybe<{ readonly data: Maybe<(
+      Pick<PrismicTeamContentsDataType, 'jobs_page_meta_title' | 'jobs_page_meta_description'>
+      & { readonly jobs_page_meta_image: Maybe<{ readonly localFile: Maybe<{ readonly childImageSharp: Maybe<{ readonly fixed: Maybe<Pick<ImageSharpFixed, 'src' | 'width' | 'height'>> }> }> }>, readonly jobs_page_title: Maybe<Pick<PrismicStructuredTextType, 'text'>> }
+    )> }>, readonly jobPost: Maybe<(
+    Pick<JobPost, 'id' | 'title' | 'chapter' | 'corporate' | 'employmentType' | 'priorExperience'>
+    & { datePosted: JobPost['updatedAt'], viewPath: JobPost['gatsbyPath'], applyPath: JobPost['gatsbyPath'] }
+  )> };
 
 type LifePageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -16326,6 +16331,26 @@ type LifePageQuery = (
         { readonly __typename: 'PrismicTeamContentsDataLifeBodyLifeContent' }
         & PrismicTeamContentsDataLifeBodyLifeContent_dataFragment
       )>>> }
+    )> }
+  )> }
+  & DefaultLayout_queryFragment
+);
+
+type FaqPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type FaqPageQuery = (
+  { readonly prismicTeamContents: Maybe<(
+    Pick<PrismicTeamContents, '_previewable'>
+    & { readonly data: Maybe<Pick<PrismicTeamContentsDataType, 'jobs_page_meta_title' | 'jobs_page_meta_description' | 'twitter_site_handle'>> }
+  )>, readonly prismicFaq: Maybe<(
+    Pick<PrismicFaq, '_previewable'>
+    & { readonly data: Maybe<(
+      { readonly entries: Maybe<ReadonlyArray<Maybe<(
+        Pick<PrismicFaqDataEntries, 'question'>
+        & { readonly answer: Maybe<Pick<PrismicStructuredTextType, 'text'>> }
+      )>>> }
+      & FaqAccordion_faqDataFragment
     )> }
   )> }
   & DefaultLayout_queryFragment
@@ -16357,22 +16382,103 @@ type CulturePageQuery = (
   & DefaultLayout_queryFragment
 );
 
-type JobApplicationPageQueryVariables = Exact<{
-  id: Scalars['String'];
+type PreviewResolverPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type PreviewResolverPageQuery = DefaultLayout_queryFragment;
+
+type JobsPageTemplateQueryVariables = Exact<{
+  pattern: Maybe<Scalars['String']>;
 }>;
 
 
-type JobApplicationPageQuery = (
-  { readonly jobPost: Maybe<Pick<JobPost, 'ghId' | 'title' | 'portfolioRequired'>>, readonly privacyPolicy: Maybe<(
-    Pick<PrismicTermsAndConditions, 'id'>
-    & { readonly data: Maybe<{ readonly content: Maybe<Pick<PrismicStructuredTextType, 'html'>> }> }
-  )>, readonly sensitiveInfoPolicy: Maybe<(
-    Pick<PrismicTermsAndConditions, 'id'>
-    & { readonly data: Maybe<{ readonly content: Maybe<Pick<PrismicStructuredTextType, 'html'>> }> }
-  )> }
+type JobsPageTemplateQuery = (
+  { readonly prismicTeamContents: Maybe<(
+    Pick<PrismicTeamContents, '_previewable'>
+    & { readonly data: Maybe<(
+      Pick<PrismicTeamContentsDataType, 'jobs_page_meta_title' | 'jobs_page_meta_description'>
+      & { readonly jobs_page_meta_image: Maybe<{ readonly localFile: Maybe<{ readonly childImageSharp: Maybe<{ readonly fixed: Maybe<Pick<ImageSharpFixed, 'src' | 'width' | 'height'>> }> }> }>, readonly jobs_page_title: Maybe<Pick<PrismicStructuredTextType, 'text'>> }
+    )> }
+  )>, readonly currentJobPosts: JobPostList_jobPostsFragment, readonly allJobPost: (
+    Pick<JobPostConnection, 'totalCount'>
+    & { readonly allChapter: ReadonlyArray<(
+      Pick<JobPostGroupConnection, 'fieldValue' | 'totalCount'>
+      & { readonly nodes: ReadonlyArray<Pick<JobPost, 'chapter' | 'slug'>> }
+    )>, readonly allEmploymentType: ReadonlyArray<Pick<JobPostGroupConnection, 'fieldValue'>> }
+  ) }
   & DefaultLayout_queryFragment
-  & JobPostLayout_queryFragment
 );
+
+type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
+
+type GatsbyImageSharpFixed_tracedSVGFragment = Pick<ImageSharpFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
+
+type GatsbyImageSharpFixed_withWebpFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+
+type GatsbyImageSharpFixed_withWebp_tracedSVGFragment = Pick<ImageSharpFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+
+type GatsbyImageSharpFixed_noBase64Fragment = Pick<ImageSharpFixed, 'width' | 'height' | 'src' | 'srcSet'>;
+
+type GatsbyImageSharpFixed_withWebp_noBase64Fragment = Pick<ImageSharpFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+
+type GatsbyImageSharpFluidFragment = Pick<ImageSharpFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyImageSharpFluidLimitPresentationSizeFragment = { maxHeight: ImageSharpFluid['presentationHeight'], maxWidth: ImageSharpFluid['presentationWidth'] };
+
+type GatsbyImageSharpFluid_tracedSVGFragment = Pick<ImageSharpFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyImageSharpFluid_withWebpFragment = Pick<ImageSharpFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = Pick<ImageSharpFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+type DefaultLayout_queryFragment = { readonly prismicTeamContents: Maybe<(
+    Pick<PrismicTeamContents, '_previewable'>
+    & { readonly data: Maybe<Pick<PrismicTeamContentsDataType, 'fb_app_id' | 'twitter_site_handle'>> }
+  )>, readonly prismicSiteNavigation: Maybe<(
+    Pick<PrismicSiteNavigation, '_previewable'>
+    & { readonly data: (
+      { readonly sns_profiles: ReadonlyArray<{ readonly link: Maybe<Pick<PrismicLinkType, 'url'>> }> }
+      & Header_navigationDataFragment
+      & Footer_navigationDataFragment
+    ) }
+  )> };
+
+type SocialServiceProfile_profileFragment = (
+  Pick<PrismicSiteNavigationDataSnsProfiles, 'service'>
+  & { readonly link: Maybe<Pick<PrismicLinkType, 'url'>> }
+);
+
+type Header_navigationDataFragment = NavigationMenu_dataFragment;
+
+type Footer_navigationDataFragment = (
+  Pick<PrismicSiteNavigationDataType, 'address'>
+  & { readonly copyright: Maybe<Pick<PrismicStructuredTextType, 'html'>>, readonly footer_entries: ReadonlyArray<(
+    Pick<PrismicSiteNavigationDataFooterEntries, 'display_text'>
+    & { readonly link: Maybe<Pick<PrismicLinkType, 'url'>> }
+  )>, readonly sns_profiles: ReadonlyArray<SocialServiceProfile_profileFragment> }
+);
+
+type GatsbyImgixFluidFragment = Pick<ImgixFluid, 'aspectRatio' | 'src' | 'srcWebp' | 'srcSet' | 'srcSetWebp' | 'sizes' | 'base64'>;
+
+type GatsbyImgixFluid_noBase64Fragment = Pick<ImgixFluid, 'aspectRatio' | 'src' | 'srcWebp' | 'srcSet' | 'srcSetWebp' | 'sizes'>;
+
+type GatsbyImgixFixedFragment = Pick<ImgixFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+
+type GatsbyImgixFixed_noBase64Fragment = Pick<ImgixFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+
+type NavigationMenu_dataFragment = { readonly header_entries: ReadonlyArray<(
+    Pick<PrismicSiteNavigationDataHeaderEntries, 'display_text'>
+    & { readonly link: Maybe<Pick<PrismicLinkType, 'url'>> }
+  )>, readonly sns_profiles: ReadonlyArray<SocialServiceProfile_profileFragment> };
+
+type UseSiteMetadataStaticQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type UseSiteMetadataStaticQuery = { readonly site: Maybe<{ readonly siteMetadata: Pick<SiteMetadata, 'siteUrl'> }> };
 
 type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -16403,102 +16509,6 @@ type IndexPageQuery = (
   & DefaultLayout_queryFragment
 );
 
-type FaqPageQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type FaqPageQuery = (
-  { readonly prismicTeamContents: Maybe<(
-    Pick<PrismicTeamContents, '_previewable'>
-    & { readonly data: Maybe<Pick<PrismicTeamContentsDataType, 'jobs_page_meta_title' | 'jobs_page_meta_description' | 'twitter_site_handle'>> }
-  )>, readonly prismicFaq: Maybe<(
-    Pick<PrismicFaq, '_previewable'>
-    & { readonly data: Maybe<(
-      { readonly entries: Maybe<ReadonlyArray<Maybe<(
-        Pick<PrismicFaqDataEntries, 'question'>
-        & { readonly answer: Maybe<Pick<PrismicStructuredTextType, 'text'>> }
-      )>>> }
-      & FaqAccordion_faqDataFragment
-    )> }
-  )> }
-  & DefaultLayout_queryFragment
-);
-
-type PreviewResolverPageQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type PreviewResolverPageQuery = DefaultLayout_queryFragment;
-
-type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyImageSharpFixed_tracedSVGFragment = Pick<ImageSharpFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyImageSharpFixed_withWebpFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyImageSharpFixed_withWebp_tracedSVGFragment = Pick<ImageSharpFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyImageSharpFixed_noBase64Fragment = Pick<ImageSharpFixed, 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyImageSharpFixed_withWebp_noBase64Fragment = Pick<ImageSharpFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyImageSharpFluidFragment = Pick<ImageSharpFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyImageSharpFluidLimitPresentationSizeFragment = { maxHeight: ImageSharpFluid['presentationHeight'], maxWidth: ImageSharpFluid['presentationWidth'] };
-
-type GatsbyImageSharpFluid_tracedSVGFragment = Pick<ImageSharpFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyImageSharpFluid_withWebpFragment = Pick<ImageSharpFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = Pick<ImageSharpFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type Footer_navigationDataFragment = (
-  Pick<PrismicSiteNavigationDataType, 'address'>
-  & { readonly copyright: Maybe<Pick<PrismicStructuredTextType, 'html'>>, readonly footer_entries: ReadonlyArray<(
-    Pick<PrismicSiteNavigationDataFooterEntries, 'display_text'>
-    & { readonly link: Maybe<Pick<PrismicLinkType, 'url'>> }
-  )>, readonly sns_profiles: ReadonlyArray<SocialServiceProfile_profileFragment> }
-);
-
-type SocialServiceProfile_profileFragment = (
-  Pick<PrismicSiteNavigationDataSnsProfiles, 'service'>
-  & { readonly link: Maybe<Pick<PrismicLinkType, 'url'>> }
-);
-
-type NavigationMenu_dataFragment = { readonly header_entries: ReadonlyArray<(
-    Pick<PrismicSiteNavigationDataHeaderEntries, 'display_text'>
-    & { readonly link: Maybe<Pick<PrismicLinkType, 'url'>> }
-  )>, readonly sns_profiles: ReadonlyArray<SocialServiceProfile_profileFragment> };
-
-type UseSiteMetadataStaticQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type UseSiteMetadataStaticQuery = { readonly site: Maybe<{ readonly siteMetadata: Pick<SiteMetadata, 'siteUrl'> }> };
-
-type JobsPageTemplateQueryVariables = Exact<{
-  pattern: Maybe<Scalars['String']>;
-}>;
-
-
-type JobsPageTemplateQuery = (
-  { readonly prismicTeamContents: Maybe<(
-    Pick<PrismicTeamContents, '_previewable'>
-    & { readonly data: Maybe<(
-      Pick<PrismicTeamContentsDataType, 'jobs_page_meta_title' | 'jobs_page_meta_description'>
-      & { readonly jobs_page_meta_image: Maybe<{ readonly localFile: Maybe<{ readonly childImageSharp: Maybe<{ readonly fixed: Maybe<Pick<ImageSharpFixed, 'src' | 'width' | 'height'>> }> }> }>, readonly jobs_page_title: Maybe<Pick<PrismicStructuredTextType, 'text'>> }
-    )> }
-  )>, readonly currentJobPosts: JobPostList_jobPostsFragment, readonly allJobPost: (
-    Pick<JobPostConnection, 'totalCount'>
-    & { readonly allChapter: ReadonlyArray<(
-      Pick<JobPostGroupConnection, 'fieldValue' | 'totalCount'>
-      & { readonly nodes: ReadonlyArray<Pick<JobPost, 'chapter' | 'slug'>> }
-    )>, readonly allEmploymentType: ReadonlyArray<Pick<JobPostGroupConnection, 'fieldValue'>> }
-  ) }
-  & DefaultLayout_queryFragment
-);
-
 type GatsbyPrismicImageFixedFragment = GatsbyImgixFixedFragment;
 
 type GatsbyPrismicImageFixed_noBase64Fragment = GatsbyImgixFixed_noBase64Fragment;
@@ -16514,15 +16524,5 @@ type GatsbyPrismicImageFluid_noBase64Fragment = GatsbyImgixFluid_noBase64Fragmen
 type GatsbyPrismicImageFluid_withWebpFragment = GatsbyImgixFluidFragment;
 
 type GatsbyPrismicImageFluid_withWebp_noBase64Fragment = GatsbyImgixFluid_noBase64Fragment;
-
-type Header_navigationDataFragment = NavigationMenu_dataFragment;
-
-type GatsbyImgixFluidFragment = Pick<ImgixFluid, 'aspectRatio' | 'src' | 'srcWebp' | 'srcSet' | 'srcSetWebp' | 'sizes' | 'base64'>;
-
-type GatsbyImgixFluid_noBase64Fragment = Pick<ImgixFluid, 'aspectRatio' | 'src' | 'srcWebp' | 'srcSet' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyImgixFixedFragment = Pick<ImgixFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyImgixFixed_noBase64Fragment = Pick<ImgixFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
 
 }
