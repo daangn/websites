@@ -6902,9 +6902,13 @@ input SitePluginPluginOptionsFilterInput {
   include_favicon: BooleanQueryOperatorInput
   cacheDigest: StringQueryOperatorInput
   exclude: StringQueryOperatorInput
-  host: StringQueryOperatorInput
   sitemap: StringQueryOperatorInput
   policy: SitePluginPluginOptionsPolicyFilterListInput
+  id: StringQueryOperatorInput
+  includeInDevelopment: BooleanQueryOperatorInput
+  defaultDataLayer: SitePluginPluginOptionsDefaultDataLayerFilterInput
+  routeChangeEventName: StringQueryOperatorInput
+  enableWebVitalsTracking: BooleanQueryOperatorInput
   classNameLight: StringQueryOperatorInput
   classNameDark: StringQueryOperatorInput
   minify: BooleanQueryOperatorInput
@@ -6947,6 +6951,15 @@ input SitePluginPluginOptionsPolicyFilterInput {
   userAgent: StringQueryOperatorInput
   allow: StringQueryOperatorInput
   disallow: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsDefaultDataLayerFilterInput {
+  type: StringQueryOperatorInput
+  value: SitePluginPluginOptionsDefaultDataLayerValueFilterInput
+}
+
+input SitePluginPluginOptionsDefaultDataLayerValueFilterInput {
+  platform: StringQueryOperatorInput
 }
 
 input SitePluginPluginOptionsDefaultsFilterInput {
@@ -10024,12 +10037,16 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___include_favicon
   pluginCreator___pluginOptions___cacheDigest
   pluginCreator___pluginOptions___exclude
-  pluginCreator___pluginOptions___host
   pluginCreator___pluginOptions___sitemap
   pluginCreator___pluginOptions___policy
   pluginCreator___pluginOptions___policy___userAgent
   pluginCreator___pluginOptions___policy___allow
   pluginCreator___pluginOptions___policy___disallow
+  pluginCreator___pluginOptions___id
+  pluginCreator___pluginOptions___includeInDevelopment
+  pluginCreator___pluginOptions___defaultDataLayer___type
+  pluginCreator___pluginOptions___routeChangeEventName
+  pluginCreator___pluginOptions___enableWebVitalsTracking
   pluginCreator___pluginOptions___classNameLight
   pluginCreator___pluginOptions___classNameDark
   pluginCreator___pluginOptions___minify
@@ -13736,12 +13753,17 @@ enum SitePluginFieldsEnum {
   pluginOptions___include_favicon
   pluginOptions___cacheDigest
   pluginOptions___exclude
-  pluginOptions___host
   pluginOptions___sitemap
   pluginOptions___policy
   pluginOptions___policy___userAgent
   pluginOptions___policy___allow
   pluginOptions___policy___disallow
+  pluginOptions___id
+  pluginOptions___includeInDevelopment
+  pluginOptions___defaultDataLayer___type
+  pluginOptions___defaultDataLayer___value___platform
+  pluginOptions___routeChangeEventName
+  pluginOptions___enableWebVitalsTracking
   pluginOptions___classNameLight
   pluginOptions___classNameDark
   pluginOptions___minify
@@ -13982,9 +14004,13 @@ type SitePluginPluginOptions {
   include_favicon: Boolean
   cacheDigest: String
   exclude: [String]
-  host: String
   sitemap: String
   policy: [SitePluginPluginOptionsPolicy]
+  id: String
+  includeInDevelopment: Boolean
+  defaultDataLayer: SitePluginPluginOptionsDefaultDataLayer
+  routeChangeEventName: String
+  enableWebVitalsTracking: Boolean
   classNameLight: String
   classNameDark: String
   minify: Boolean
@@ -14023,6 +14049,15 @@ type SitePluginPluginOptionsPolicy {
   userAgent: String
   allow: String
   disallow: String
+}
+
+type SitePluginPluginOptionsDefaultDataLayer {
+  type: String
+  value: SitePluginPluginOptionsDefaultDataLayerValue
+}
+
+type SitePluginPluginOptionsDefaultDataLayerValue {
+  platform: String
 }
 
 type SitePluginPluginOptionsDefaults {

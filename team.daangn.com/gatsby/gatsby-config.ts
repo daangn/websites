@@ -65,6 +65,16 @@ const config: GatsbyConfig = {
       },
     },
     {
+      resolve: 'gatsby-plugin-google-tagmanager',
+      options: {
+        id: 'GTM-KD32GF9',
+        includeInDevelopment: false,
+        defaultDataLayer: { platform: 'gatsby' },
+        routeChangeEventName: 'gatsby-route-change',
+        enableWebVitalsTracking: true,
+      },
+    },
+    {
       resolve: 'gatsby-plugin-use-dark-mode',
       options: {
         classNameLight: 'dark-light',
