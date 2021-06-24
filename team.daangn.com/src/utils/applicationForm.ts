@@ -115,8 +115,8 @@ export const makeClient: MakeApplicationFormClient = ({
         name: form.name != null,
         email: form.email != null,
         phoneNumber: form.phoneNumber != null,
-        resume: form.resume != null,
-        portfolio: !(portfolioRequired && form.portfolio == null),
+        resume: form.resume != null && form.resume.size > 0,
+        portfolio: !(portfolioRequired && (form.portfolio == null || form.portfolio.size <= 0)),
         disability: form.disability != null && disability.includes(form.disability as DisabilityAnswer),
         veterans: form.veterans != null && veterans.includes(form.veterans as VeteransAnswer),
         alternativeCivilian: form.alternativeCivilian != null && alternativeCivilian.includes(form.alternativeCivilian as AlternativeCivilianAnswer),
@@ -134,7 +134,9 @@ export const makeClient: MakeApplicationFormClient = ({
     },
     async submit(form) {
       const resume = await encodeFile(form.resume);
-      const portfolio = form.portfolio && await encodeFile(form.portfolio);
+      const portfolio = (form.portfolio && form.portfolio.size > 0)
+        ? await encodeFile(form.portfolio)
+        : undefined;
       const payload: ApplicationFormPayload = {
         ...form,
         resume,
