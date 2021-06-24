@@ -113,6 +113,7 @@ const RightArrowButton = styled(ArrowButton, {
 
 const Dots = styled('div', {
   display: 'flex',
+  flexWrap: 'wrap',
   justifyContent: 'center',
   gap: rem(32),
 
