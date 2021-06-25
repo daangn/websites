@@ -33,7 +33,7 @@ export const query = graphql`
               fixed(
                 width: 1200
                 height: 630
-                toFormat: JPG
+                toFormat: PNG
                 quality: 90
               ) {
                 src
@@ -168,6 +168,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
   required(prismicTeamContents?.data);
 
   const metaTitle = `${jobPost.title} | ${prismicTeamContents.data.jobs_page_meta_title}`;
+  const metaDescription = prismicTeamContents.data.jobs_page_meta_description;
   const metaImage = prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
 
   const corporate = jobPost.corporate || 'KARROT_MARKET';
@@ -195,10 +196,10 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
     <Container>
       <GatsbySeo
         title={metaTitle}
-        description={prismicTeamContents.data.jobs_page_meta_description}
+        description={metaDescription}
         openGraph={{
           title: metaTitle,
-          description: prismicTeamContents.data.jobs_page_meta_description,
+          description: metaDescription,
           ...metaImage && {
             images: [{
               url: siteOrigin + metaImage.src,
@@ -215,7 +216,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
       />
       <JobPostingJsonLd
         title={jobPost.title}
-        description={prismicTeamContents.data.jobs_page_meta_description}
+        description={metaDescription}
         datePosted={jobPost.datePosted}
         employmentType={jobPost.employmentType}
         experienceRequirements={{

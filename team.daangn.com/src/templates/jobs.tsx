@@ -2,6 +2,7 @@ import * as React from 'react';
 import type { PageProps } from 'gatsby';
 import { graphql, navigate } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
 import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import { rem } from 'polished';
 import { required } from '@cometjs/core';
@@ -26,7 +27,7 @@ export const query = graphql`
               fixed(
                 width: 1200
                 height: 630
-                toFormat: JPG
+                toFormat: PNG
                 quality: 90
               ) {
                 src
@@ -137,6 +138,8 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
   data,
   pageContext,
 }) => {
+  const siteOrigin = useSiteOrigin();
+
   const [filterChapter, setFilterChapter] = React.useState(pageContext.chapter || '');
   const [filterEmploymentType, setFilterEmploymentType] = React.useState('');
 
@@ -154,19 +157,21 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
 
   required(data.prismicTeamContents?.data);
 
+  const metaTitle = data.prismicTeamContents.data.jobs_page_meta_title;
+  const metaDescription = data.prismicTeamContents.data.jobs_page_meta_description;
   const metaImage = data.prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
 
   return (
     <Container>
       <GatsbySeo
-        title={data.prismicTeamContents.data.jobs_page_meta_title}
-        description={data.prismicTeamContents.data.jobs_page_meta_description}
+        title={metaTitle}
+        description={metaDescription}
         openGraph={{
-          title: data.prismicTeamContents.data.jobs_page_meta_title,
-          description: data.prismicTeamContents.data.jobs_page_meta_description,
+          title: metaTitle,
+          description: metaDescription,
           ...metaImage && {
             images: [{
-              url: location.origin + metaImage.src,
+              url: siteOrigin + metaImage.src,
               width: metaImage.width,
               height: metaImage.height,
             }],
