@@ -2,6 +2,7 @@ import * as React from 'react';
 import type { PageProps } from 'gatsby';
 import { graphql, navigate } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
 import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import { rem } from 'polished';
 import { required } from '@cometjs/core';
@@ -137,6 +138,8 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
   data,
   pageContext,
 }) => {
+  const siteOrigin = useSiteOrigin();
+
   const [filterChapter, setFilterChapter] = React.useState(pageContext.chapter || '');
   const [filterEmploymentType, setFilterEmploymentType] = React.useState('');
 
@@ -168,7 +171,7 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
           description: metaDescription,
           ...metaImage && {
             images: [{
-              url: location.origin + metaImage.src,
+              url: siteOrigin + metaImage.src,
               width: metaImage.width,
               height: metaImage.height,
             }],
