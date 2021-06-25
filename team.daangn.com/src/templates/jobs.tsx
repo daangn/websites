@@ -154,16 +154,18 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
 
   required(data.prismicTeamContents?.data);
 
+  const metaTitle = data.prismicTeamContents.data.jobs_page_meta_title;
+  const metaDescription = data.prismicTeamContents.data.jobs_page_meta_description;
   const metaImage = data.prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
 
   return (
     <Container>
       <GatsbySeo
-        title={data.prismicTeamContents.data.jobs_page_meta_title}
-        description={data.prismicTeamContents.data.jobs_page_meta_description}
+        title={metaTitle}
+        description={metaDescription}
         openGraph={{
-          title: data.prismicTeamContents.data.jobs_page_meta_title,
-          description: data.prismicTeamContents.data.jobs_page_meta_description,
+          title: metaTitle,
+          description: metaDescription,
           ...metaImage && {
             images: [{
               url: location.origin + metaImage.src,

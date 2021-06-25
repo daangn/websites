@@ -85,16 +85,18 @@ const CulturePage: React.FC<CulturePageProps> = ({
 
   required(data.prismicTeamContents?.data?.culture_body);
 
+  const metaTitle = data.prismicTeamContents.data.culture_page_meta_title;
+  const metaDescription = data.prismicTeamContents.data.culture_page_meta_description;
   const metaImage = data.prismicTeamContents.data.culture_page_meta_image?.localFile?.childImageSharp?.fixed;
 
   return (
     <>
       <GatsbySeo
-        title={data.prismicTeamContents.data.culture_page_meta_title}
-        description={data.prismicTeamContents.data.culture_page_meta_description}
+        title={metaTitle}
+        description={metaDescription}
         openGraph={{
-          title: data.prismicTeamContents.data.culture_page_meta_title,
-          description: data.prismicTeamContents.data.culture_page_meta_description,
+          title: metaTitle,
+          description: metaDescription,
           ...metaImage && {
             images: [{
               url: siteOrigin + metaImage.src,

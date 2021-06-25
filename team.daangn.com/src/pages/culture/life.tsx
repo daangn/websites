@@ -76,16 +76,18 @@ const LifePage: React.FC<LifePageProps> = ({
 
   required(data.prismicTeamContents?.data?.life_body);
 
+  const metaTitle = data.prismicTeamContents.data.life_page_meta_title;
+  const metaDescription = data.prismicTeamContents.data.life_page_meta_description;
   const metaImage = data.prismicTeamContents.data.life_page_meta_image?.localFile?.childImageSharp?.fixed;
 
   return (
     <Container>
       <GatsbySeo
-        title={data.prismicTeamContents.data.life_page_meta_title}
-        description={data.prismicTeamContents.data.life_page_meta_description}
+        title={metaTitle}
+        description={metaDescription}
         openGraph={{
-          title: data.prismicTeamContents.data.life_page_meta_title,
-          description: data.prismicTeamContents.data.life_page_meta_description,
+          title: metaTitle,
+          description: metaDescription,
           ...metaImage && {
             images: [{
               url: siteOrigin + metaImage.src,

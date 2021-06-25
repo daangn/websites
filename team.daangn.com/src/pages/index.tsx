@@ -16,8 +16,6 @@ import PrismicTeamContentsDataMainBodyTitleAndDescription from '~/components/Pri
 import PrismicTeamContentsDataMainBodyTitleAndIllustration from '~/components/PrismicTeamContentsDataMainBodyTitleAndIllustration';
 import PrismicTeamContentsDataMainBodyWideBanner from '~/components/PrismicTeamContentsDataMainBodyWideBanner';
 
-import { linkResolver } from '@karrotmarket/gatsby-theme-prismic/src/linkResolver';
-
 type IndexPageProps = PageProps<GatsbyTypes.IndexPageQuery, GatsbyTypes.SitePageContext>;
 
 export const query = graphql`
@@ -88,16 +86,18 @@ const IndexPage: React.FC<IndexPageProps> = ({
 
   required(data.prismicTeamContents?.data);
 
+  const metaTitle = data.prismicTeamContents.data.main_page_meta_title;
+  const metaDescription = data.prismicTeamContents.data.main_page_meta_description;
   const metaImage = data.prismicTeamContents.data.main_page_meta_image?.localFile?.childImageSharp?.fixed;
 
   return (
     <>
       <GatsbySeo
-        title={data.prismicTeamContents.data.main_page_meta_title}
-        description={data.prismicTeamContents.data.main_page_meta_description}
+        title={metaTitle}
+        description={metaDescription}
         openGraph={{
-          title: data.prismicTeamContents.data.main_page_meta_title,
-          description: data.prismicTeamContents.data.main_page_meta_description,
+          title: metaTitle,
+          description: metaDescription,
           ...metaImage && {
             images: [{
               url: siteOrigin + metaImage.src,
