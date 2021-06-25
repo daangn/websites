@@ -27,7 +27,7 @@ export const query = graphql`
               fixed(
                 width: 1200
                 height: 630
-                toFormat: JPG
+                toFormat: PNG
                 quality: 90
               ) {
                 src
