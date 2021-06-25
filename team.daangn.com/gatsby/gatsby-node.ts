@@ -1,4 +1,5 @@
 import type { GatsbyNode } from 'gatsby';
+import { siteMetadata } from './gatsby-config';
 
 const gql = String.raw;
 
@@ -131,6 +132,13 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           type: 'String!',
           resolve(source: { chapter: string }) {
             return slugify(source.chapter);
+          },
+        },
+        absoluteUrl: {
+          type: 'String!',
+          resolve(source: { ghId: string }) {
+            const { origin } = new URL(siteMetadata.siteUrl);
+            return origin + `/jobs/${source.ghId}/`;
           },
         },
       },

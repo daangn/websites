@@ -53,6 +53,11 @@ export const query = graphql`
       }
     ) {
       ...JobPostList_jobPosts
+
+      # Command E 인덱싱용 ㅎㅎ..
+      nodes {
+        absoluteUrl
+      }
     }
 
     allJobPost(
