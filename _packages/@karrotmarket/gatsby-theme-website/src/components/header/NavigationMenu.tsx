@@ -4,7 +4,6 @@ import { rem } from "polished";
 import { styled } from "gatsby-theme-stitches/src/stitches.config";
 import { useLocation } from "@reach/router";
 
-import { mapLink, useLinkParser } from "../../link";
 import SocialServiceProfile from "../footer/SocialServiceProfile";
 import NavigationListItem from "./NavigationListItem";
 
@@ -150,7 +149,6 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({
 }) => {
   const hamburgerRef = React.useRef<HTMLInputElement>();
   const location = useLocation();
-  const parseLink = useLinkParser();
 
   React.useEffect(() => {
     hamburgerRef.current.checked = false;
@@ -169,7 +167,7 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({
         {data.header_entries
           .filter((entry) => entry.link)
           .map((entry) => (
-            <NavigationListItem entry={entry}></NavigationListItem>
+            <NavigationListItem key={entry.link} entry={entry} />
           ))}
         {sns && (
           <SocialServiceProfileList fixed={{ initial: true, "@sm": false }}>
