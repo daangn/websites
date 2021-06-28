@@ -2026,19 +2026,14 @@
     "@babel/runtime" "^7.7.2"
     regenerator-runtime "^0.13.3"
 
-"@karrotmarket/design-token@0.1.8-0", "@karrotmarket/design-token@^0.1.8-0":
+"@karrotmarket/design-token@0.1.8-0":
   version "0.1.8-0"
   resolved "https://registry.yarnpkg.com/@karrotmarket/design-token/-/design-token-0.1.8-0.tgz#861db2f4ed298291e6712b6e3263c61067932638"
   integrity sha512-cK43lN8jlozeoCUm7gVEPZv/OKfWMZTXrfPk0bLC1OBvo5J4TijGELa7sca8DJ6CAV3kcrIblirD2omKrwy1OQ==
   dependencies:
     core-js "^3.9.1"
 
-"@karrotmarket/design-token@0.1.8-1":
-  version "0.1.8-1"
-  resolved "https://registry.yarnpkg.com/@karrotmarket/design-token/-/design-token-0.1.8-1.tgz#ed7eb68f9629bed62eda551c56b8deb5b4544f3f"
-  integrity sha512-YMxUgUOcmwWdM58sCRDXP5Qqdo4VaBkaZpHe7SFgici1wU70NDNLPIv32nAGRasQ77Bjcm71uJEkFbddGKjDbw==
-
-"@karrotmarket/design-token@^0.1.8-2":
+"@karrotmarket/design-token@0.1.8-3", "@karrotmarket/design-token@^0.1.8-3":
   version "0.1.8-3"
   resolved "https://registry.yarnpkg.com/@karrotmarket/design-token/-/design-token-0.1.8-3.tgz#a6a5c4b557d8936f376619c74a6aa6c2a13e51b3"
   integrity sha512-52Bgus22xEZQf+2NHG7FNnhKbB1BM4Xxsx1jcIEoj23tpGYlhSpJfLSxXNvz2tkvpeFf4zg9Pisq9D58++RwWw==
@@ -2051,14 +2046,12 @@
     "@karrotmarket/design-token" "0.1.8-0"
     use-dark-mode "^2.3.1"
 
-"@karrotmarket/react-stitches@^0.1.1-0":
-  version "0.1.1-0"
-  resolved "https://registry.yarnpkg.com/@karrotmarket/react-stitches/-/react-stitches-0.1.1-0.tgz#efdc020be98f893de38630d24b6413085045a2f2"
-  integrity sha512-79MVpjdxyIRC04D8MB3Ar2D1/dVkUUifdaS35OsrXaYls8qOx4kwvbmGhKpKZwzQVgMuOZ1o8A7RBQq64x4kjw==
+"@karrotmarket/react-stitches@^0.1.1-1":
+  version "0.1.1-1"
+  resolved "https://registry.yarnpkg.com/@karrotmarket/react-stitches/-/react-stitches-0.1.1-1.tgz#28595906498eb9a825df243a4a93186cbf9a5c3f"
+  integrity sha512-KaM99i6zdw8jaZ4QxreGDR9f7HciDm+ZpKE9qCqM8VxwUjzRDFnEngnEPw7E1GTb6bNaY2EEi39uoTZdjUK0ug==
   dependencies:
-    "@karrotmarket/design-token" "0.1.8-1"
-    "@stitches/react" "^0.1.9"
-    lodash.kebabcase "^4.1.1"
+    "@karrotmarket/design-token" "0.1.8-3"
     polished "^4.1.2"
     type-fest "^1.1.3"
 
@@ -2306,17 +2299,10 @@
     escape-string-regexp "^2.0.0"
     lodash.deburr "^4.1.0"
 
-"@stitches/core@^0.1.9":
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/@stitches/core/-/core-0.1.9.tgz#6cc42ae6052f6900f9add164232449ff8d62c4ba"
-  integrity sha512-70gVb0uhgV6BOJmloirWEGZmofk/Hzr5yWlub1rtm4CvimD3Xl5xr9fVkjcTu+REC6ILCJCnlEP4WmilTfXNOA==
-
-"@stitches/react@^0.1.7", "@stitches/react@^0.1.9":
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/@stitches/react/-/react-0.1.9.tgz#b16e05c9ee7e34369bb3b051b92a997ab379863f"
-  integrity sha512-yK4ZAdkuOiOum+bfPYlDNS9UI/Tm9JYsYNMUWLB3uAy+7tvSYfB4cVYkXwFuiKxis03woATTZTe6IlTb+LXm+A==
-  dependencies:
-    "@stitches/core" "^0.1.9"
+"@stitches/react@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@stitches/react/-/react-0.2.2.tgz#8a2f8256835510c265ab20820f54a5bb0376bac6"
+  integrity sha512-/qRSX+ANPJg/0eLNr5bEywjkdvIfLbsaG2d8p83wPlI0MA7Yi9FzaRLk2H6DMAdJHuyu6ThY4HfHQIL35buY9g==
 
 "@svgr/babel-plugin-add-jsx-attribute@^5.4.0":
   version "5.4.0"

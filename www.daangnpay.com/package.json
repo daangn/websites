@@ -26,7 +26,8 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
-    "@stitches/react": "^0.1.9",
+    "@karrotmarket/react-stitches": "^0.1.1-1",
+    "@stitches/react": "^0.2.2",
     "gatsby": "^3.7.1",
     "gatsby-plugin-concurrent-mode": "^0.2.1",
     "gatsby-plugin-image": "^1.6.0",
@@ -47,7 +48,6 @@
     "@babel/core": "^7.14.3",
     "@babel/plugin-transform-react-jsx": "^7.14.3",
     "@babel/plugin-transform-typescript": "^7.14.3",
-    "@karrotmarket/react-stitches": "^0.1.1-0",
     "babel-plugin-polished": "^1.1.0",
     "babel-preset-gatsby-package": "^1.6.0",
     "typescript": "^4.3.2"
