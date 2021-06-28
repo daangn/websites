@@ -162,7 +162,11 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
 
   required(data.prismicTeamContents?.data);
 
-  const metaTitle = data.prismicTeamContents.data.jobs_page_meta_title;
+  const metaTitleBase = data.prismicTeamContents.data.jobs_page_meta_title || '당근마켓 채용';
+  const metaTitle = filterChapter
+    ? `${filterChapter} 채용 | ${metaTitleBase}`
+    : metaTitleBase;
+
   const metaDescription = data.prismicTeamContents.data.jobs_page_meta_description;
   const metaImage = data.prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
 

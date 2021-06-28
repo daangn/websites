@@ -215,9 +215,11 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
         }}
       />
       <JobPostingJsonLd
+        url={siteOrigin + currentPath}
         title={jobPost.title}
         description={metaDescription}
         datePosted={jobPost.datePosted}
+        industry="IT, 컨텐츠"
         employmentType={jobPost.employmentType}
         experienceRequirements={{
           YES: '경력',
