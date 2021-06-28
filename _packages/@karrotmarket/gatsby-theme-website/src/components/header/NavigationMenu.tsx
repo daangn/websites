@@ -167,7 +167,7 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({
         {data.header_entries
           .filter((entry) => entry.link)
           .map((entry) => (
-            <NavigationListItem key={entry.link} entry={entry} />
+            <NavigationListItem key={entry.link.url} entry={entry} />
           ))}
         {sns && (
           <SocialServiceProfileList fixed={{ initial: true, "@sm": false }}>
