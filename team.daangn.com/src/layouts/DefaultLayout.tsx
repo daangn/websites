@@ -14,8 +14,6 @@ import { useLocation } from '@reach/router';
 import _Header from '@karrotmarket/gatsby-theme-website/src/components/Header';
 import _Footer from '@karrotmarket/gatsby-theme-website/src/components/Footer';
 
-import logoUrl from '~/assets/logo.png';
-
 type DefaultLayoutProps = OverrideProps<
   PageProps<GatsbyTypes.DefaultLayout_queryFragment>,
   {
@@ -98,10 +96,6 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
           cardType: 'summary',
           site: data.prismicTeamContents.data.twitter_site_handle,
         } : undefined}
-      />
-      <LogoJsonLd
-        url="https://www.daangn.com"
-        logo={siteOrigin + logoUrl}
       />
       <SocialProfileJsonLd
         type="Organization"
