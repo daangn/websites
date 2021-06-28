@@ -44,11 +44,17 @@ const Slide = styled('div', {
   display: 'flex',
   gap: '$$gap',
   transition: 'transform 0.3s ease-in-out',
+
+  transform: `translateX(calc(-100% * $$slide - $$gap * $$slide))`,
+  '@lg': {
+    transform: `translateX(max(calc(-1 * ($$width + $$gap)) * $$slide, calc(-50% * $$slide - $$gap / 2 * $$slide)))`,
+  },
+
   '& > *': {
     flexShrink: 0,
     width: '100%',
     '@lg': {
-      maxWidth: `min($$width, calc(50% - $$gap))`,
+      maxWidth: `min($$width, calc(50% - $$gap / 2))`,
     },
   },
 });
@@ -180,14 +186,7 @@ const PrismicTeamContentsDataMainBodyMemberQuoteCarousel: React.FC<PrismicTeamCo
         onClick={() => setSlide(slide => Math.max(~~(slide / 2) * 2 - 2, 0))}
       />
       <SlideCamera {...swipeHandlers}>
-        <Slide
-          css={{
-            transform: `translateX(calc(-100% * ${slide} - ${rem(40 * slide)}))`,
-            '@lg': {
-              transform: `translateX(max(-${rem((560 + 40) * slide)}, -${50 * slide}%))`,
-            },
-          }}
-        >
+        <Slide css={{ '$$slide': slide }}>
           {items.map((item, i) => (
             <CarouselItem
               key={i}
