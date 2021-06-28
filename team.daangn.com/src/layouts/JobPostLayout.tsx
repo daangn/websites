@@ -218,6 +218,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
         title={jobPost.title}
         description={metaDescription}
         datePosted={jobPost.datePosted}
+        industry="IT, 컨텐츠"
         employmentType={jobPost.employmentType}
         experienceRequirements={{
           YES: '경력',

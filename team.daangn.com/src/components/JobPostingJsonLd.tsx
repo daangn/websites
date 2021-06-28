@@ -18,6 +18,8 @@ interface JobPostingJsonLdProps extends DeferSeoProps, Overrides<JobPosting> {
   description?: string,
   datePosted?: string,
   validThrough?: string,
+  industry?: string,
+  occupationalCategory?: string,
   employmentType?: EmploymentType,
   experienceRequirements?: string | string[],
   locations?: {
@@ -44,6 +46,8 @@ const JobPostingJsonLd: React.FC<JobPostingJsonLdProps> = ({
   description,
   datePosted,
   validThrough,
+  industry,
+  occupationalCategory,
   employmentType,
   experienceRequirements,
   locations,
@@ -59,6 +63,8 @@ const JobPostingJsonLd: React.FC<JobPostingJsonLdProps> = ({
     description,
     datePosted,
     validThrough,
+    industry,
+    occupationalCategory,
     employmentType,
     experienceRequirements,
     ...locations && {

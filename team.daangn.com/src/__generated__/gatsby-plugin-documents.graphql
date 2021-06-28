@@ -106,6 +106,9 @@ fragment GatsbyImageSharpFluid_withWebp_noBase64 on ImageSharpFluid {
   srcSetWebp
   sizes
 }
+fragment Header_navigationData on PrismicSiteNavigationDataType {
+  ...NavigationMenu_data
+}
 fragment Footer_navigationData on PrismicSiteNavigationDataType {
   copyright {
     html
@@ -121,14 +124,17 @@ fragment Footer_navigationData on PrismicSiteNavigationDataType {
     ...SocialServiceProfile_profile
   }
 }
-fragment Header_navigationData on PrismicSiteNavigationDataType {
-  ...NavigationMenu_data
-}
 query UseSiteMetadataStatic {
   site {
     siteMetadata {
       siteUrl
     }
+  }
+}
+fragment SocialServiceProfile_profile on PrismicSiteNavigationDataSnsProfiles {
+  service
+  link {
+    url
   }
 }
 fragment GatsbyImgixFluid on ImgixFluid {
@@ -177,12 +183,6 @@ fragment NavigationMenu_data on PrismicSiteNavigationDataType {
   }
   sns_profiles {
     ...SocialServiceProfile_profile
-  }
-}
-fragment SocialServiceProfile_profile on PrismicSiteNavigationDataSnsProfiles {
-  service
-  link {
-    url
   }
 }
 fragment GatsbyPrismicImageFixed on ImgixFixed {
