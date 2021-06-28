@@ -4,6 +4,8 @@ import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { GatsbySeo } from 'gatsby-plugin-next-seo';
+import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
+import { defaultRepositoryConfig } from '@karrotmarket/gatsby-theme-prismic/src/defaultRepositoryConfig';
 import { required } from '@cometjs/core';
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
 import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
@@ -120,4 +122,6 @@ const LifePage: React.FC<LifePageProps> = ({
   );
 };
 
-export default LifePage;
+export default withPrismicPreview(LifePage, [
+  defaultRepositoryConfig,
+]);
