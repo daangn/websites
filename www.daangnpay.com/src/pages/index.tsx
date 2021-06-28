@@ -5,7 +5,10 @@ import {
   globalStyles,
 } from "gatsby-theme-stitches/src/stitches.config";
 import { graphql } from "gatsby";
+import { LogoJsonLd } from "gatsby-plugin-next-seo";
+import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
 
+import logoUrl from '../assets/logo.png';
 import HeroSection from "../components/HeroSection";
 import TitleAndIllustration from "../components/TitleAndIllustration";
 import WideBanner from "../components/WideBanner";
@@ -89,50 +92,59 @@ export const query = graphql`
 const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
   globalStyles();
 
+  const siteOrigin = useSiteOrigin();
+
   return (
-    <Section>
-      <Header
-        image_data={
-          data.prismicPayContents.data?.logo_icon?.localFile?.childImageSharp
-            ?.gatsbyImageData
-        }
-        alt={data.prismicPayContents.data?.logo_icon?.alt}
+    <>
+      <LogoJsonLd
+        key="metadata"
+        url="https://www.daangnpay.com"
+        logo={siteOrigin + logoUrl}
       />
-      <HeroSection
-        image_data={
-          data.prismicPayContentsBodyHero.primary?.image?.localFile
-            ?.childImageSharp?.gatsbyImageData
-        }
-        alt={data.prismicPayContentsBodyHero.primary?.image?.alt}
-        title_key_text={
-          data.prismicPayContentsBodyTitleAndDescription.primary?.key_text
-        }
-        title={
-          data.prismicPayContentsBodyTitleAndDescription.primary?.title?.text
-        }
-      />
-      <TitleAndIllustration
-        image_data={
-          data.prismicPayContentsBodyTitleAndIllustration.primary?.illustration
-            ?.localFile?.childImageSharp?.gatsbyImageData
-        }
-        title={
-          data.prismicPayContentsBodyTitleAndIllustration.primary?.title?.text
-        }
-        sub_title={
-          data.prismicPayContentsBodyTitleAndIllustration.primary?.sub_title
-            ?.text
-        }
-      />
-      <WideBanner
-        image_data={
-          data.prismicPayContentsBodyWideBanner.primary?.thumbnail?.localFile
-            ?.childImageSharp?.gatsbyImageData
-        }
-        title={data.prismicPayContentsBodyWideBanner.primary?.title?.text}
-      />
-      <Footer />
-    </Section>
+      <Section key="component">
+        <Header
+          image_data={
+            data.prismicPayContents.data?.logo_icon?.localFile?.childImageSharp
+              ?.gatsbyImageData
+          }
+          alt={data.prismicPayContents.data?.logo_icon?.alt}
+        />
+        <HeroSection
+          image_data={
+            data.prismicPayContentsBodyHero.primary?.image?.localFile
+              ?.childImageSharp?.gatsbyImageData
+          }
+          alt={data.prismicPayContentsBodyHero.primary?.image?.alt}
+          title_key_text={
+            data.prismicPayContentsBodyTitleAndDescription.primary?.key_text
+          }
+          title={
+            data.prismicPayContentsBodyTitleAndDescription.primary?.title?.text
+          }
+        />
+        <TitleAndIllustration
+          image_data={
+            data.prismicPayContentsBodyTitleAndIllustration.primary
+              ?.illustration?.localFile?.childImageSharp?.gatsbyImageData
+          }
+          title={
+            data.prismicPayContentsBodyTitleAndIllustration.primary?.title?.text
+          }
+          sub_title={
+            data.prismicPayContentsBodyTitleAndIllustration.primary?.sub_title
+              ?.text
+          }
+        />
+        <WideBanner
+          image_data={
+            data.prismicPayContentsBodyWideBanner.primary?.thumbnail?.localFile
+              ?.childImageSharp?.gatsbyImageData
+          }
+          title={data.prismicPayContentsBodyWideBanner.primary?.title?.text}
+        />
+        <Footer />
+      </Section>
+    </>
   );
 };
 
