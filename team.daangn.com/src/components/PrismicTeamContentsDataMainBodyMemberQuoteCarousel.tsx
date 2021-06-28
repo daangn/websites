@@ -38,14 +38,17 @@ const SlideCamera = styled('div', {
 });
 
 const Slide = styled('div', {
+  '$$width': rem(560),
+  '$$gap': rem(40),
+
   display: 'flex',
-  gap: rem(40),
+  gap: '$$gap',
   transition: 'transform 0.3s ease-in-out',
   '& > *': {
     flexShrink: 0,
     width: '100%',
     '@lg': {
-      maxWidth: rem(560),
+      maxWidth: `min($$width, calc(50% - $$gap))`,
     },
   },
 });
@@ -181,7 +184,7 @@ const PrismicTeamContentsDataMainBodyMemberQuoteCarousel: React.FC<PrismicTeamCo
           css={{
             transform: `translateX(calc(-100% * ${slide} - ${rem(40 * slide)}))`,
             '@lg': {
-              transform: `translateX(-${rem((560 + 40) * slide)})`,
+              transform: `translateX(max(-${rem((560 + 40) * slide)}, -${50 * slide}%))`,
             },
           }}
         >
