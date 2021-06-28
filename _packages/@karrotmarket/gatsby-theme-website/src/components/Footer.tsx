@@ -134,15 +134,18 @@ const Footer: React.FC<FooterProps> = ({ className, navigationData }) => {
           <FooterEntryList>
             {navigationData.footer_entries
               .filter((entry) => entry.link?.url)
-              .map((entry) => (
-                <FooterEntryItem entry={entry}></FooterEntryItem>
+              .map((entry, i) => (
+                <FooterEntryItem
+                  key={i}
+                  entry={entry}
+                />
               ))}
           </FooterEntryList>
           <SocialServiceProfileList>
             {navigationData.sns_profiles
               .filter((profile) => profile.link)
-              .map((profile) => (
-                <SocialServiceProfileItem key={profile.link!.url}>
+              .map((profile, i) => (
+                <SocialServiceProfileItem key={i}>
                   <SocialServiceProfile profile={profile} />
                 </SocialServiceProfileItem>
               ))}
@@ -156,7 +159,9 @@ const Footer: React.FC<FooterProps> = ({ className, navigationData }) => {
               }}
             />
           )}
-          {navigationData.address && <Info>{navigationData.address}</Info>}
+          {navigationData.address && (
+            <Info>{navigationData.address}</Info>
+          )}
         </InfoWrapper>
       </ContentWrapper>
     </Container>
