@@ -22,8 +22,8 @@
   ],
   "peerDependencies": {
     "gatsby": "^2.25.0 || ^3.0.0",
-    "gatsby-source-prismic": "beta",
     "gatsby-plugin-prismic-previews": "beta",
+    "gatsby-source-prismic": "beta",
     "react": "^16.8.0 || ^17.0.0 || experimental",
     "react-dom": "^16.8.0 || ^17.0.0 || experimental"
   },
@@ -39,8 +39,8 @@
     "babel-preset-gatsby-package": "^1.6.0",
     "concurrently": "^6.2.0",
     "gatsby": "^3.7.1",
-    "gatsby-source-prismic": "^4.0.0-beta.11",
-    "gatsby-plugin-prismic-previews": "^4.0.0-beta.13",
+    "gatsby-plugin-prismic-previews": "^4.0.0-beta.18",
+    "gatsby-source-prismic": "^4.0.0-beta.17",
     "react": "experimental",
     "react-dom": "experimental",
     "typescript": "^4.3.2"

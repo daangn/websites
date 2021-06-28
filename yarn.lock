@@ -7179,7 +7179,7 @@ gatsby-plugin-preload-fonts@^2.7.1:
     progress "^2.0.3"
     puppeteer "^3.3.0"
 
-gatsby-plugin-prismic-previews@^4.0.0-beta.13:
+gatsby-plugin-prismic-previews@^4.0.0-beta.18:
   version "4.0.0-beta.18"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-prismic-previews/-/gatsby-plugin-prismic-previews-4.0.0-beta.18.tgz#e68d24fed3c5cc4454b78e6d07667c67975a47ef"
   integrity sha512-e9LJSulG4qUDi2j8Jiap0PZRoCZiGm+NoYTVLNiZv4QkshcKxunD/TeeBC6Nw74dUOlN7QbS2FFgxHJxjsUh9g==
@@ -7404,7 +7404,7 @@ gatsby-source-prismic@^3.3.6:
     superstruct "^0.10.12"
     uuid "^8.2.0"
 
-gatsby-source-prismic@^4.0.0-beta.11:
+gatsby-source-prismic@^4.0.0-beta.17:
   version "4.0.0-beta.17"
   resolved "https://registry.yarnpkg.com/gatsby-source-prismic/-/gatsby-source-prismic-4.0.0-beta.17.tgz#a224d9901776809d6fb5e3d0eec07cf187de1807"
   integrity sha512-RcT1xn31H4aU617QFqGBIB/amI4W2Z7XEM3qz8MvUQR24KSan89W+AZkssCBboDXd+Ypai1Y8z+8T4nUoHKa+g==
