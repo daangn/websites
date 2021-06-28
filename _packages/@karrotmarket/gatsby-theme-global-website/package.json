@@ -9,8 +9,6 @@
     "prepack": "yarn build"
   },
   "peerDependencies": {
-    "@karrotmarket/design-token": "prerelease || ^1.0.0",
-    "@karrotmarket/react-stitches": "prerelease || ^1.0.0",
     "@stitches/react": "^0.1.0",
     "gatsby": "^2.25.0 || ^3.0.0",
     "gatsby-plugin-prismic-previews": "beta",
@@ -22,10 +20,12 @@
   },
   "dependencies": {
     "@cometjs/graphql-utils": "^1.1.0",
+    "@karrotmarket/design-token": "^0.1.8-3",
     "@karrotmarket/gatsby-theme-prismic": "*",
     "@karrotmarket/gatsby-theme-website": "*",
+    "@karrotmarket/react-stitches": "^0.1.1-1",
     "@reach/router": "^1.3.4",
-    "@stitches/react": "^0.1.9",
+    "@stitches/react": "^0.2.2",
     "@svgr/webpack": "^5.5.0",
     "framer-motion": "^4.1.17",
     "gatsby-plugin-image": "^1.6.0",
@@ -48,8 +48,6 @@
   "devDependencies": {
     "@babel/cli": "^7.14.3",
     "@babel/core": "^7.14.3",
-    "@karrotmarket/design-token": "^0.1.8-0",
-    "@karrotmarket/react-stitches": "^0.1.1-0",
     "babel-preset-gatsby-package": "^1.6.0",
     "concurrently": "^6.2.0",
     "gatsby": "^3.7.1",
