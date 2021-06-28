@@ -14,6 +14,7 @@ type EmploymentType = (
 );
 
 interface JobPostingJsonLdProps extends DeferSeoProps, Overrides<JobPosting> {
+  url?: string,
   title: string,
   description?: string,
   datePosted?: string,
@@ -42,6 +43,7 @@ interface JobPostingJsonLdProps extends DeferSeoProps, Overrides<JobPosting> {
 };
 
 const JobPostingJsonLd: React.FC<JobPostingJsonLdProps> = ({
+  url,
   title,
   description,
   datePosted,
@@ -59,6 +61,7 @@ const JobPostingJsonLd: React.FC<JobPostingJsonLdProps> = ({
   const json: WithContext<JobPosting> = {
     '@context': 'https://schema.org',
     '@type': 'JobPosting',
+    url,
     title,
     description,
     datePosted,
