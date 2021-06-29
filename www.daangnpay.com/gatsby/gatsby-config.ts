@@ -39,7 +39,7 @@ const config: GatsbyConfig = {
     },
     'gatsby-transformer-sharp',
     'gatsby-plugin-image',
-    {
+    process.env.NODE_ENV !== 'production' && {
       resolve: 'gatsby-plugin-typegen',
       options: {
         outputPath: 'src/__generated__/gatsby-types.d.ts',
@@ -64,7 +64,7 @@ const config: GatsbyConfig = {
     'gatsby-plugin-next-seo',
     '@karrotmarket/gatsby-theme-prismic',
     '@karrotmarket/gatsby-theme-website',
-  ],
+  ].filter(Boolean),
 };
 
 export default config;

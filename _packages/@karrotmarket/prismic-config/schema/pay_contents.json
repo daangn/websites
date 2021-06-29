@@ -36,7 +36,7 @@
                 "type" : "StructuredText",
                 "config" : {
                   "single" : "heading1",
-                 "label" : "섹션 제목"
+                  "label" : "섹션 제목"
                 }
               },
               "inverted" : {
