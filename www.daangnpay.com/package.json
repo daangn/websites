@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@karrotmarket/react-stitches": "^0.1.1-1",
+    "@karrotmarket/gatsby-theme-website": "*",
     "@stitches/react": "^0.2.2",
     "gatsby": "^3.7.1",
     "gatsby-plugin-concurrent-mode": "^0.2.1",

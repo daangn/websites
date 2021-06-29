@@ -1,0 +1,18 @@
+import * as React from "react";
+import { LogoJsonLd } from "gatsby-plugin-next-seo";
+import { useSiteOrigin } from "@karrotmarket/gatsby-theme-website/src/siteMetadata";
+
+import logoUrl from '../assets/logo.png';
+
+const JsonLd: React.FC = () => {
+  const siteOrigin = useSiteOrigin();
+  return (
+    <LogoJsonLd
+      key="metadata"
+      url="https://www.daangnpay.com"
+      logo={siteOrigin + logoUrl}
+    />
+  );
+};
+
+export default JsonLd;

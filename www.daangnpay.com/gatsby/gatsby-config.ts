@@ -1,6 +1,6 @@
 import type { GatsbyConfig } from 'gatsby';
 
-const siteMetadata = {
+export const siteMetadata = {
   siteUrl: 'https://daangnpay.com/',
   siteName: '당근페이',
 };
@@ -72,6 +72,8 @@ const config: GatsbyConfig = {
         },
       },
     },
+    'gatsby-plugin-next-seo',
+    '@karrotmarket/gatsby-theme-website',
   ],
 };
 

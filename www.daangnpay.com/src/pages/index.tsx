@@ -5,10 +5,8 @@ import {
   globalStyles,
 } from "gatsby-theme-stitches/src/stitches.config";
 import { graphql } from "gatsby";
-import { LogoJsonLd } from "gatsby-plugin-next-seo";
-import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
 
-import logoUrl from '../assets/logo.png';
+import JsonLd from "../components/JsonLd";
 import HeroSection from "../components/HeroSection";
 import TitleAndIllustration from "../components/TitleAndIllustration";
 import WideBanner from "../components/WideBanner";
@@ -92,16 +90,10 @@ export const query = graphql`
 const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
   globalStyles();
 
-  const siteOrigin = useSiteOrigin();
-
   return (
     <>
-      <LogoJsonLd
-        key="metadata"
-        url="https://www.daangnpay.com"
-        logo={siteOrigin + logoUrl}
-      />
-      <Section key="component">
+      <JsonLd />
+      <Section>
         <Header
           image_data={
             data.prismicPayContents.data?.logo_icon?.localFile?.childImageSharp
