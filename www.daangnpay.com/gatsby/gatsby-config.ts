@@ -61,17 +61,6 @@ const config: GatsbyConfig = {
         icon: 'src/assets/maskable_icon.svg',
       },
     },
-    {
-      resolve: 'gatsby-source-prismic',
-      options: {
-        repositoryName: 'karrot',
-        accessToken: process.env.PRISMIC_ACCESS_TOKEN,
-        shouldDownloadImage: () => true,
-        schemas: {
-          pay_contents: require('@karrotmarket/prismic-config/schema/pay_contents.json'),
-        },
-      },
-    },
     'gatsby-plugin-next-seo',
     '@karrotmarket/gatsby-theme-prismic',
     '@karrotmarket/gatsby-theme-website',
