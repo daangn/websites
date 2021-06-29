@@ -1,6 +1,7 @@
 {
   "name": "@karrotmarket/gatsby-source-greenhouse-job-board",
   "version": "0.0.1",
+  "license": "MIT",
   "description": "Gatsby source plugin for sourcing content from Greenhouse Job Board API",
   "main": "./index.js",
   "scripts": {
@@ -15,7 +16,8 @@
     "utils.js",
     "gatsby-node.js",
     "types.d.ts",
-    "utils.d.ts"
+    "utils.d.ts",
+    "LICENSE"
   ],
   "peerDependencies": {
     "gatsby": "^2.2.0 || ^3.0.0"
