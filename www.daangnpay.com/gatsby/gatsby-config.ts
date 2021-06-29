@@ -11,7 +11,7 @@ const config: GatsbyConfig = {
     QUERY_ON_DEMAND: true,
     LAZY_IMAGES: true,
     PARALLEL_SOURCING: true,
-    DEV_SSR: false,
+    // DEV_SSR: false,
   },
   siteMetadata,
   plugins: [
@@ -73,6 +73,7 @@ const config: GatsbyConfig = {
       },
     },
     'gatsby-plugin-next-seo',
+    '@karrotmarket/gatsby-theme-prismic',
     '@karrotmarket/gatsby-theme-website',
   ],
 };
