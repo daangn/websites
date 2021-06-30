@@ -10,8 +10,8 @@ Daangn on the WWW
 
 ## Maintainers
 
-- [@webmasters](https://github.com/orgs/daangn/teams/webmasters) at daangn
-- Tim Kim ([@cometkim](https://github.com/cometkim)) <tim@daangn.com>
+- [@webmasters](https://github.com/orgs/daangn/teams/webmasters) at [daangn](https://github.com/daangn)
+- Tim ([@cometkim](https://github.com/cometkim)) <tim@daangn.com>
 
 ## LICENSE
 
