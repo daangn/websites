@@ -140,8 +140,6 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
   );
 };
 
-// const IndexPage: React.FC = () => <div>hello world</div>;
-
 
 const Section = styled("section", {
   height: "582px",
