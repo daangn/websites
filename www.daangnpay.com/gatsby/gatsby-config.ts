@@ -11,7 +11,7 @@ const config: GatsbyConfig = {
     QUERY_ON_DEMAND: true,
     LAZY_IMAGES: true,
     PARALLEL_SOURCING: true,
-    // DEV_SSR: false,
+    DEV_SSR: false,
   },
   siteMetadata,
   plugins: [
@@ -39,7 +39,7 @@ const config: GatsbyConfig = {
     },
     'gatsby-transformer-sharp',
     'gatsby-plugin-image',
-    process.env.NODE_ENV !== 'production' && {
+    {
       resolve: 'gatsby-plugin-typegen',
       options: {
         outputPath: 'src/__generated__/gatsby-types.d.ts',
@@ -61,10 +61,18 @@ const config: GatsbyConfig = {
         icon: 'src/assets/maskable_icon.svg',
       },
     },
-    'gatsby-plugin-next-seo',
-    '@karrotmarket/gatsby-theme-prismic',
-    '@karrotmarket/gatsby-theme-website',
-  ].filter(Boolean),
+    {
+      resolve: 'gatsby-source-prismic',
+      options: {
+        repositoryName: 'karrot',
+        accessToken: process.env.PRISMIC_ACCESS_TOKEN,
+        shouldDownloadImage: () => true,
+        schemas: {
+          pay_contents: require('@karrotmarket/prismic-config/schema/pay_contents.json'),
+        },
+      },
+    },
+  ],
 };
 
 export default config;
