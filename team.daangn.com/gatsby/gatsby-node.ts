@@ -1,13 +1,8 @@
 import type { GatsbyNode } from 'gatsby';
 import { siteMetadata } from './gatsby-config';
+import slugify from 'cjk-slug';
 
 const gql = String.raw;
-
-function slugify(str: string) {
-  return str.trim()
-    .replace(/[\s|\(|\)|\/]/g, '-')
-    .replace(/-$/, '');
-};
 
 export const onCreateBabelConfig: GatsbyNode['onCreateBabelConfig'] = ({
   actions,
@@ -131,7 +126,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
         slug: {
           type: 'String!',
           resolve(source: { chapter: string }) {
-            return slugify(source.chapter);
+            return slugify(source.chapter, { lowercase: false });
           },
         },
         absoluteUrl: {

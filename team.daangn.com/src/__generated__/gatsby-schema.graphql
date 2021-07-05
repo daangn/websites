@@ -6927,10 +6927,10 @@ input SitePluginPluginOptionsFilterInput {
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocumentsFilterInput
   repositoryName: StringQueryOperatorInput
   schemas: SitePluginPluginOptionsSchemasFilterInput
+  imageImgixParams: SitePluginPluginOptionsImageImgixParamsFilterInput
   apiEndpoint: StringQueryOperatorInput
   customTypesApiEndpoint: StringQueryOperatorInput
   lang: StringQueryOperatorInput
-  imageImgixParams: SitePluginPluginOptionsImageImgixParamsFilterInput
   imagePlaceholderImgixParams: SitePluginPluginOptionsImagePlaceholderImgixParamsFilterInput
   toolbar: StringQueryOperatorInput
   promptForAccessToken: BooleanQueryOperatorInput
@@ -10069,12 +10069,12 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_introspection_json
   pluginCreator___pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
   pluginCreator___pluginOptions___repositoryName
-  pluginCreator___pluginOptions___apiEndpoint
-  pluginCreator___pluginOptions___customTypesApiEndpoint
-  pluginCreator___pluginOptions___lang
   pluginCreator___pluginOptions___imageImgixParams___auto
   pluginCreator___pluginOptions___imageImgixParams___fit
   pluginCreator___pluginOptions___imageImgixParams___q
+  pluginCreator___pluginOptions___apiEndpoint
+  pluginCreator___pluginOptions___customTypesApiEndpoint
+  pluginCreator___pluginOptions___lang
   pluginCreator___pluginOptions___imagePlaceholderImgixParams___w
   pluginCreator___pluginOptions___imagePlaceholderImgixParams___blur
   pluginCreator___pluginOptions___toolbar
@@ -13790,12 +13790,12 @@ enum SitePluginFieldsEnum {
   pluginOptions___emitSchema___src___generated___gatsby_introspection_json
   pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
   pluginOptions___repositoryName
-  pluginOptions___apiEndpoint
-  pluginOptions___customTypesApiEndpoint
-  pluginOptions___lang
   pluginOptions___imageImgixParams___auto
   pluginOptions___imageImgixParams___fit
   pluginOptions___imageImgixParams___q
+  pluginOptions___apiEndpoint
+  pluginOptions___customTypesApiEndpoint
+  pluginOptions___lang
   pluginOptions___imagePlaceholderImgixParams___w
   pluginOptions___imagePlaceholderImgixParams___blur
   pluginOptions___toolbar
@@ -14033,10 +14033,10 @@ type SitePluginPluginOptions {
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocuments
   repositoryName: String
   schemas: SitePluginPluginOptionsSchemas
+  imageImgixParams: SitePluginPluginOptionsImageImgixParams
   apiEndpoint: String
   customTypesApiEndpoint: String
   lang: String
-  imageImgixParams: SitePluginPluginOptionsImageImgixParams
   imagePlaceholderImgixParams: SitePluginPluginOptionsImagePlaceholderImgixParams
   toolbar: String
   promptForAccessToken: Boolean

@@ -47922,6 +47922,18 @@
             "deprecationReason": null
           },
           {
+            "name": "imageImgixParams",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "SitePluginPluginOptionsImageImgixParamsFilterInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "apiEndpoint",
             "description": null,
             "type": {
@@ -47951,18 +47963,6 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "StringQueryOperatorInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "imageImgixParams",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "SitePluginPluginOptionsImageImgixParamsFilterInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -71685,24 +71685,6 @@
             "deprecationReason": null
           },
           {
-            "name": "pluginCreator___pluginOptions___apiEndpoint",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pluginCreator___pluginOptions___customTypesApiEndpoint",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pluginCreator___pluginOptions___lang",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "pluginCreator___pluginOptions___imageImgixParams___auto",
             "description": null,
             "isDeprecated": false,
@@ -71716,6 +71698,24 @@
           },
           {
             "name": "pluginCreator___pluginOptions___imageImgixParams___q",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginCreator___pluginOptions___apiEndpoint",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginCreator___pluginOptions___customTypesApiEndpoint",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginCreator___pluginOptions___lang",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -101540,24 +101540,6 @@
             "deprecationReason": null
           },
           {
-            "name": "pluginOptions___apiEndpoint",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pluginOptions___customTypesApiEndpoint",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pluginOptions___lang",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "pluginOptions___imageImgixParams___auto",
             "description": null,
             "isDeprecated": false,
@@ -101571,6 +101553,24 @@
           },
           {
             "name": "pluginOptions___imageImgixParams___q",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginOptions___apiEndpoint",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginOptions___customTypesApiEndpoint",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginOptions___lang",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -103752,6 +103752,18 @@
             "deprecationReason": null
           },
           {
+            "name": "imageImgixParams",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "SitePluginPluginOptionsImageImgixParams",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "apiEndpoint",
             "description": null,
             "args": [],
@@ -103782,18 +103794,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "imageImgixParams",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "SitePluginPluginOptionsImageImgixParams",
               "ofType": null
             },
             "isDeprecated": false,
