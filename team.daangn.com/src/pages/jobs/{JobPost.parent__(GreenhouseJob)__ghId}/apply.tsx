@@ -2,6 +2,7 @@ import * as React from 'react';
 import type { PageProps } from 'gatsby';
 import { graphql, navigate } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import { rem } from 'polished';
 import { required } from '@cometjs/core';
 import type { PropOf, RefOf } from '@cometjs/react-utils';
@@ -200,135 +201,134 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
   }, [state]);
 
   return (
-    <>
-      <Form
-        ref={formRef}
-        method="post"
-        action={jobApplicationFormEndpoint}
-        onSubmit={handleSubmit}
+    <Form
+      ref={formRef}
+      method="post"
+      action={jobApplicationFormEndpoint}
+      onSubmit={handleSubmit}
+    >
+      <GatsbySeo noindex />
+      <FormField
+        variants={{ type: 'text' }}
+        name="name"
+        label="이름"
+        placeholder="지원자 이름을 입력해주세요."
+        required
+      />
+      <FormField
+        variants={{ type: 'tel' }}
+        name="phone_number"
+        label="전화번호"
+        placeholder="연락 가능한 전화번호를 입력해주세요."
+        required
+      />
+      <FormField
+        variants={{ type: 'email' }}
+        name="email"
+        label="이메일"
+        placeholder="이메일 주소를 입력해주세요."
+        required
+      />
+      <FormField
+        variants={{
+          type: 'file',
+          accepts: greenhouseAcceptedMimeTypes,
+        }}
+        name="resume"
+        label="이력서 및 경력기술서"
+        description="파일은 pdf, doc, docx, txt, rtf 형식만 사용할 수 있습니다."
+        placeholder="파일 첨부하기"
+        required
+      />
+      <FormField
+        variants={{
+          type: 'file',
+          accepts: greenhouseAcceptedMimeTypes,
+        }}
+        name="portfolio"
+        label="포트폴리오"
+        placeholder="파일 첨부하기"
+        required={data.jobPost.portfolioRequired}
+      />
+      <FormField
+        variants={{
+          type: 'radio',
+          options: [
+            { label: '해당', value: 'skilled_industrial_personnel' },
+            { label: '비해당', value: 'no' },
+          ],
+          defaultValue: 'no',
+        }}
+        name="alternative_civilian"
+        label="산업기능요원"
+        required
+      />
+      <FormField
+        variants={{
+          type: 'select',
+          options: [
+            { label: '해당 없음', value: 'no' },
+            { label: '일반', value: 'normal' },
+            { label: '산재', value: 'industry' },
+            { label: '보훈', value: 'military' },
+          ],
+          defaultValue: 'no',
+        }}
+        label="장애사항"
+        name="disability"
+        required
+      />
+      <FormField
+        variants={{
+          type: 'radio',
+          options: [
+            { label: '대상', value: 'yes' },
+            { label: '비대상', value: 'no' },
+          ],
+          defaultValue: 'no',
+        }}
+        name="veterans"
+        label="보훈대상 여부"
+        required
+      />
+      <FormHelpText>
+        * 보훈 및 장애 사항은 채용 과정에서 불이익이 없습니다.
+      </FormHelpText>
+      {data.privacyPolicy?.data?.content?.html && (
+        <FormField
+          variants={{
+            type: 'terms',
+            terms: data.privacyPolicy.data.content.html,
+          }}
+          name="privacy"
+          label="개인정보 수집 및 이용동의"
+          required
+        />
+      )}
+      {data.sensitiveInfoPolicy?.data?.content?.html && (
+        <FormField
+          variants={{
+            type: 'terms',
+            terms: data.sensitiveInfoPolicy.data.content.html,
+          }}
+          name="sensitive"
+          label="민감정보 수집 및 이용동의"
+          required
+        />
+      )}
+      <Button
+        as="button"
+        type="primary"
+        fullWidth
+        disabled={state === 'fetching'}
       >
-        <FormField
-          variants={{ type: 'text' }}
-          name="name"
-          label="이름"
-          placeholder="지원자 이름을 입력해주세요."
-          required
-        />
-        <FormField
-          variants={{ type: 'tel' }}
-          name="phone_number"
-          label="전화번호"
-          placeholder="연락 가능한 전화번호를 입력해주세요."
-          required
-        />
-        <FormField
-          variants={{ type: 'email' }}
-          name="email"
-          label="이메일"
-          placeholder="이메일 주소를 입력해주세요."
-          required
-        />
-        <FormField
-          variants={{
-            type: 'file',
-            accepts: greenhouseAcceptedMimeTypes,
-          }}
-          name="resume"
-          label="이력서 및 경력기술서"
-          description="파일은 pdf, doc, docx, txt, rtf 형식만 사용할 수 있습니다."
-          placeholder="파일 첨부하기"
-          required
-        />
-        <FormField
-          variants={{
-            type: 'file',
-            accepts: greenhouseAcceptedMimeTypes,
-          }}
-          name="portfolio"
-          label="포트폴리오"
-          placeholder="파일 첨부하기"
-          required={data.jobPost.portfolioRequired}
-        />
-        <FormField
-          variants={{
-            type: 'radio',
-            options: [
-              { label: '해당', value: 'skilled_industrial_personnel' },
-              { label: '비해당', value: 'no' },
-            ],
-            defaultValue: 'no',
-          }}
-          name="alternative_civilian"
-          label="산업기능요원"
-          required
-        />
-        <FormField
-          variants={{
-            type: 'select',
-            options: [
-              { label: '해당 없음', value: 'no' },
-              { label: '일반', value: 'normal' },
-              { label: '산재', value: 'industry' },
-              { label: '보훈', value: 'military' },
-            ],
-            defaultValue: 'no',
-          }}
-          label="장애사항"
-          name="disability"
-          required
-        />
-        <FormField
-          variants={{
-            type: 'radio',
-            options: [
-              { label: '대상', value: 'yes' },
-              { label: '비대상', value: 'no' },
-            ],
-            defaultValue: 'no',
-          }}
-          name="veterans"
-          label="보훈대상 여부"
-          required
-        />
-        <FormHelpText>
-          * 보훈 및 장애 사항은 채용 과정에서 불이익이 없습니다.
-        </FormHelpText>
-        {data.privacyPolicy?.data?.content?.html && (
-          <FormField
-            variants={{
-              type: 'terms',
-              terms: data.privacyPolicy.data.content.html,
-            }}
-            name="privacy"
-            label="개인정보 수집 및 이용동의"
-            required
-          />
+        {state === 'fetching' ? (
+          <Spinner />
+        ) : (
+          '동의 후 제출하기'
         )}
-        {data.sensitiveInfoPolicy?.data?.content?.html && (
-          <FormField
-            variants={{
-              type: 'terms',
-              terms: data.sensitiveInfoPolicy.data.content.html,
-            }}
-            name="sensitive"
-            label="민감정보 수집 및 이용동의"
-            required
-          />
-        )}
-        <Button
-          as="button"
-          type="primary"
-          fullWidth
-          disabled={state === 'fetching'}
-        >
-          {state === 'fetching' ? (
-            <Spinner />
-          ) : (
-            '동의 후 제출하기'
-          )}
-        </Button>
-      </Form>
-    </>
+      </Button>
+    </Form>
   );
 };
 
