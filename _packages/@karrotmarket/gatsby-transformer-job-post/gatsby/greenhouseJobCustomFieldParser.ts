@@ -166,7 +166,7 @@ export const portfolioRequirement: FieldParser<boolean> = (
   { reporter },
 ) => {
   const fieldId = 6248317003;
-  const field = findMetadataById(node, 6248317003);
+  const field = findMetadataById(node, fieldId);
   return field && (() => {
     switch (field.value) {
       case '필수': {
@@ -192,4 +192,12 @@ export const portfolioRequirement: FieldParser<boolean> = (
         break;
     }
   })();
+};
+
+export const order: FieldParser<number> = (
+  node,
+) => {
+  const fieldId = 6990001003;
+  const field = findMetadataById<number>(node, fieldId);
+  return field && (field.value | 0);
 };
