@@ -15,16 +15,19 @@ export const query = graphql`
     corporate
     employmentType
     priorExperience
+    tags
   }
 `;
 
 const Container = styled('div', {
   display: 'grid',
   gridTemplate: `
-    "title       title       title" auto
-    "corporate   employment  ."     auto /
-     max-content max-content 1fr
+    "title       title       title       tags" auto
+    ".           .           .           ."    ${rem(8)}
+    "corporate   employment  .           ."    auto /
+     max-content max-content max-content 1fr
   `,
+  alignItems: 'center',
   paddingY: rem(24),
   borderBottom: '1px solid $gray200',
 
@@ -32,8 +35,8 @@ const Container = styled('div', {
     layout: {
       table: {
         gridTemplate: `
-          "title  corporate   employment" auto /
-           auto   ${rem(120)} ${rem(120)}
+          "title       tags corporate   employment" auto /
+           max-content auto ${rem(120)} ${rem(120)}
         `,
       },
     },
@@ -43,10 +46,41 @@ const Container = styled('div', {
 const Title = styled('h3', {
   typography: '$body2',
   gridArea: 'title',
-  marginBottom: rem(8),
 
   '@sm': {
     typography: '$subtitle2',
+  },
+});
+
+const TagContainer = styled('div', {
+  gridArea: 'tags',
+  display: 'flex',
+  alignItems: 'center',
+  marginLeft: rem(8),
+
+  '@sm': {
+    marginLeft: rem(12),
+  },
+});
+
+const Tag = styled('span', {
+  typography: '$caption3',
+  fontWeight: 'bold',
+  color: '$white',
+  background: '$carrot500',
+  borderRadius: rem(6),
+  padding: `${rem(5)} ${rem(8)}`,
+
+  '@sm': {
+    typography: '$caption1',
+    paddingX: rem(10),
+  },
+
+  '& + &': {
+    marginLeft: rem(6),
+    '@sm': {
+      marginLeft: rem(8),
+    },
   },
 });
 
@@ -100,6 +134,11 @@ const JobPostSummary: React.FC<JobPostSummaryProps> = ({
       layout={{ '@lg': 'table' }}
     >
       <Title>{jobPost.title}</Title>
+      <TagContainer>
+        {jobPost.tags.map(tag => (
+          <Tag key={tag}>{tag}</Tag>
+        ))}
+      </TagContainer>
       <Corporate layout={{ '@lg': 'table' }}>
         {{
           KARROT_MARKET: '당근마켓',
