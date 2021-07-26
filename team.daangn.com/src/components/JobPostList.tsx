@@ -20,6 +20,7 @@ export const query = graphql`
       id
       pagePath: gatsbyPath(filePath: "/jobs/{JobPost.parent__(GreenhouseJob)__ghId}")
       chapter
+      order
       employmentType
       ...JobPostSummary_jobPost
     }
@@ -56,7 +57,11 @@ const JobPostList: React.FC<JobPostListProps> = ({
   filterChapter = '',
   filterEmploymentType = '',
 }) => {
-  const filteredJobPosts = jobPosts.nodes
+  const orderedJobPosts = React.useMemo(() => {
+    return Array.from(jobPosts.nodes).sort((a, b) => b.order - a.order);
+  }, [jobPosts]);
+
+  const filteredJobPosts = orderedJobPosts
     .filter(jobPost => {
       if (filterChapter === '') return true;
       return jobPost.chapter === filterChapter;
