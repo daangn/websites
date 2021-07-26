@@ -201,3 +201,15 @@ export const order: FieldParser<number> = (
   const field = findMetadataById<number>(node, fieldId);
   return field && (field.value | 0);
 };
+
+export const tags: FieldParser<string[]> = (
+  node,
+) => {
+  const fieldId = 6990204003;
+  const field = findMetadataById<string>(node, fieldId);
+  return field && (() => {
+    return field.value?.split(',')
+      .map(value => value.trim())
+      .filter(Boolean);
+  })();
+};

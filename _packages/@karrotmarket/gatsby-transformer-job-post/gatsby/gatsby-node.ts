@@ -57,6 +57,9 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
 
       # 정렬 선호 순위 값 (signed, 기본값: 0)
       order: Int!
+
+      # 목록에서 표시할 태그
+      tags: [String!]!
     }
   `);
 
@@ -182,6 +185,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ctx => {
       portfolioRequired: fieldParser.portfolioRequirement(node, ctx) ?? false,
       keywords: fieldParser.keywords(node, ctx) ?? [],
       order: fieldParser.order(node, ctx) ?? 0,
+      tags: fieldParser.tags(node, ctx) ?? [],
     };
 
     const jobPostNode: NodeInput = {
