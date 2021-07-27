@@ -59,7 +59,7 @@ const TagContainer = styled('div', {
   marginLeft: rem(8),
 
   transition: 'opacity .3s',
-  ':hover &': {
+  'a:hover &': {
     opacity: 0.6,
   },
 
