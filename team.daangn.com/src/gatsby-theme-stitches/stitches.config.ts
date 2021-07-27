@@ -34,6 +34,7 @@ export const { styled, css, global, getCssString, theme, keyframes } = createCss
       body3: rem(15),
       caption1: rem(14),
       caption2: rem(13),
+      caption3: rem(12),
     },
     lineHeights: {
       heading1: rem(90),
@@ -49,6 +50,7 @@ export const { styled, css, global, getCssString, theme, keyframes } = createCss
       body3: rem(26),
       caption1: rem(24),
       caption2: rem(22),
+      caption3: 'auto',
     },
     sizes: {
       maxContent: rem(1200),
