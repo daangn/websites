@@ -24,6 +24,9 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
 
       updatedAt: Date! @dateformat
 
+      # 공고 유효 기간
+      validThrough: Date @dateformat
+
       title: String!
 
       boardUrl: String!
@@ -177,6 +180,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ctx => {
       boardUrl: node.absolute_url,
       rawContent,
       content,
+      validThrough: fieldParser.validThrough(node, ctx) ?? null,
       corporate: fieldParser.corporate(node, ctx),
       employmentType: fieldParser.employmentType(node, ctx) ?? 'FULL_TIME',
       alternativeCivilianService: fieldParser.alternativeCivilianService(node, ctx) ?? false,

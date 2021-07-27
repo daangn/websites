@@ -57,6 +57,7 @@ export const query = graphql`
       employmentType
       priorExperience
       datePosted: updatedAt(formatString: "YYYY-MM-DD", locale: "ko")
+      validThrough(formatString: "YYYY-MM-DD", locale: "ko")
       viewPath: gatsbyPath(filePath: "/jobs/{JobPost.parent__(GreenhouseJob)__ghId}")
       applyPath: gatsbyPath(filePath: "/jobs/{JobPost.parent__(GreenhouseJob)__ghId}/apply")
     }
@@ -218,7 +219,8 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
         url={siteOrigin + currentPath}
         title={jobPost.title}
         description={metaDescription}
-        datePosted={jobPost.datePosted}
+        datePosted={jobPost.datePosted || undefined}
+        validThrough={jobPost.validThrough || undefined}
         industry="IT, 컨텐츠"
         employmentType={jobPost.employmentType}
         experienceRequirements={{

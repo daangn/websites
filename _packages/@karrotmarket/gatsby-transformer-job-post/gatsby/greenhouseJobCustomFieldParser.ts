@@ -14,7 +14,7 @@ function findMetadataById<T extends string | number | null = string | number | n
   id: number,
 ) {
   const metadata = node.metadata.find(v => v.id === id);
-  return metadata && ({ type: metadata.value_type, value: metadata.value as T });
+  return metadata && ({ type: metadata.value_type, value: metadata.value as T | null });
 }
 
 export const corporate: FieldParser<(
@@ -199,7 +199,7 @@ export const order: FieldParser<number> = (
 ) => {
   const fieldId = 6990001003;
   const field = findMetadataById<number>(node, fieldId);
-  return field && (field.value | 0);
+  return field && (field.value ?? 0 | 0);
 };
 
 export const tags: FieldParser<string[]> = (
@@ -211,5 +211,17 @@ export const tags: FieldParser<string[]> = (
     return field.value?.split(',')
       .map(value => value.trim())
       .filter(Boolean);
+  })();
+};
+
+export const validThrough: FieldParser<Date> = (
+  node,
+) => {
+  const fieldId = 6972127003;
+  const field = findMetadataById<string>(node, fieldId);
+  return field && (() => {
+    return field.value
+      ? new Date(field.value)
+      : undefined;
   })();
 };
