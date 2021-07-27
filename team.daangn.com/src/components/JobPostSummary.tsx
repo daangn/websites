@@ -58,6 +58,11 @@ const TagContainer = styled('div', {
   alignItems: 'center',
   marginLeft: rem(8),
 
+  transition: 'opacity .3s',
+  ':hover &': {
+    opacity: 0.6,
+  },
+
   '@sm': {
     marginLeft: rem(12),
   },
