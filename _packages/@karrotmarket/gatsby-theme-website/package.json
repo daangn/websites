@@ -11,12 +11,12 @@
   "peerDependencies": {
     "@stitches/react": "^0.1.0",
     "gatsby": "^2.25.0 || ^3.0.0",
-    "gatsby-plugin-prismic-previews": "beta",
-    "gatsby-source-prismic": "beta",
+    "gatsby-plugin-prismic-previews": "*",
+    "gatsby-source-prismic": "*",
     "gatsby-theme-prismic": "*",
     "polished": "^4.0.0",
-    "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || next || experimental",
-    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0 || next || experimental"
+    "react": "*",
+    "react-dom": "*"
   },
   "dependencies": {
     "@cometjs/core": "^1.2.0",

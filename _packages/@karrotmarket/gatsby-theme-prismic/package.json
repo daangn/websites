@@ -22,13 +22,13 @@
   ],
   "peerDependencies": {
     "gatsby": "^2.25.0 || ^3.0.0",
-    "gatsby-source-prismic": "beta",
-    "gatsby-plugin-prismic-previews": "beta",
-    "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || next || experimental",
-    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0 || next || experimental"
+    "gatsby-plugin-prismic-previews": "*",
+    "gatsby-source-prismic": "*",
+    "react": "*",
+    "react-dom": "*"
   },
   "dependencies": {
-    "@karrotmarket/prismic-config": "*"
+    "@karrotmarket/prismic-config": "workspace:*"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.3",
@@ -39,8 +39,8 @@
     "babel-preset-gatsby-package": "^1.6.0",
     "concurrently": "^6.2.0",
     "gatsby": "next",
-    "gatsby-source-prismic": "^4.0.0-beta.11",
     "gatsby-plugin-prismic-previews": "^4.0.0-beta.13",
+    "gatsby-source-prismic": "^4.0.0-beta.11",
     "react": "experimental",
     "react-dom": "experimental",
     "typescript": "^4.3.2"

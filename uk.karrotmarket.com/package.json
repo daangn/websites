@@ -16,7 +16,7 @@
     "serve": "gatsby serve"
   },
   "dependencies": {
-    "@karrotmarket/gatsby-theme-global-website": "*",
+    "@karrotmarket/gatsby-theme-global-website": "workspace:*",
     "gatsby": "next",
     "gatsby-plugin-google-gtag": "^3.7.1",
     "gatsby-plugin-google-tagmanager": "^3.7.1",

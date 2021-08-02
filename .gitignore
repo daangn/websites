@@ -8,13 +8,12 @@
 *.tsbuildinfo
 
 .yarn/*
-!.yarn/cache
 !.yarn/patches
-!.yarn/plugins
 !.yarn/releases
+!.yarn/plugins
 !.yarn/sdks
 !.yarn/versions
-!.yarn/patches
+.pnp.*
 
 coverage/
 node_modules/
