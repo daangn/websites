@@ -98,65 +98,12 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       H6
     }
 
-    type JobPostContentUnorderedListSection implements JobPostContentSection {
+    type JobPostContentSection {
       title: String!
       level: HeadingLevel!
-
-      # HTML content (unsafe)
-      rawContent: String!
-
-      items: [String!]!
-    }
-
-    type JobPostContentOrderedListSection implements JobPostContentSection {
-      title: String!
-      level: HeadingLevel!
-
-      # HTML content (unsafe)
-      rawContent: String!
-
-      items: [String!]!
-    }
-
-    type JobPostContentParagraphSection implements JobPostContentSection {
-      title: String!
-      level: HeadingLevel!
-
-      # HTML content (unsafe)
-      rawContent: String!
-
-      paragraph: String!
+      bodyHtml: String!
     }
   `);
-
-  actions.createTypes(
-    schema.buildInterfaceType({
-      name: 'JobPostContentSection',
-      resolveType: (source: { tagName: string }) => {
-        switch (source.tagName) {
-          case 'p':
-            return 'JobPostContentParagraphSection';
-          case 'ol':
-            return 'JobPostContentOrderedListSection';
-          case 'ul':
-            return 'JobPostContentUnorderedListSection';
-          default:
-            reporter.panic(`<${source.tagName}> is not supported`);
-        }
-      },
-      fields: {
-        title: {
-          type: 'String!',
-        },
-        level: {
-          type: 'HeadingLevel!',
-        },
-        rawContent: {
-          type: 'String!',
-        },
-      },
-    }),
-  );
 };
 
 export const onCreateNode: GatsbyNode['onCreateNode'] = ctx => {
@@ -169,7 +116,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ctx => {
 
   // Note: 나중에 다른 타입 추가로 transform 할 수 있으므로 early return 하지 않겠습니다.
   if (isGreenhouseJobNode(node)) {
-    const { content, raw: rawContent } = greenhouseJobBlockParser.parseHtml(node.content);
+    const { content, raw: rawContent } = greenhouseJobBlockParser.parseContent(node.content);
     const fieldParser = greenhouseJobCustomFieldParser;
 
     const nodeSource = {

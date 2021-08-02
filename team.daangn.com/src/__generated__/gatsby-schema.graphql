@@ -5751,31 +5751,10 @@ enum HeadingLevel {
   H6
 }
 
-type JobPostContentUnorderedListSection implements JobPostContentSection {
+type JobPostContentSection {
   title: String!
   level: HeadingLevel!
-  rawContent: String!
-  items: [String!]!
-}
-
-type JobPostContentOrderedListSection implements JobPostContentSection {
-  title: String!
-  level: HeadingLevel!
-  rawContent: String!
-  items: [String!]!
-}
-
-type JobPostContentParagraphSection implements JobPostContentSection {
-  title: String!
-  level: HeadingLevel!
-  rawContent: String!
-  paragraph: String!
-}
-
-interface JobPostContentSection {
-  title: String!
-  level: HeadingLevel!
-  rawContent: String!
+  bodyHtml: String!
 }
 
 enum GreenhouseJobCustomFieldType {
@@ -6944,7 +6923,6 @@ input SitePluginPluginOptionsFilterInput {
   schemas: SitePluginPluginOptionsSchemasFilterInput
   imageImgixParams: SitePluginPluginOptionsImageImgixParamsFilterInput
   apiEndpoint: StringQueryOperatorInput
-  customTypesApiEndpoint: StringQueryOperatorInput
   lang: StringQueryOperatorInput
   imagePlaceholderImgixParams: SitePluginPluginOptionsImagePlaceholderImgixParamsFilterInput
   toolbar: StringQueryOperatorInput
@@ -10088,7 +10066,6 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___imageImgixParams___fit
   pluginCreator___pluginOptions___imageImgixParams___q
   pluginCreator___pluginOptions___apiEndpoint
-  pluginCreator___pluginOptions___customTypesApiEndpoint
   pluginCreator___pluginOptions___lang
   pluginCreator___pluginOptions___imagePlaceholderImgixParams___w
   pluginCreator___pluginOptions___imagePlaceholderImgixParams___blur
@@ -13174,7 +13151,7 @@ input JobPostContentSectionFilterListInput {
 input JobPostContentSectionFilterInput {
   title: StringQueryOperatorInput
   level: HeadingLevelQueryOperatorInput
-  rawContent: StringQueryOperatorInput
+  bodyHtml: StringQueryOperatorInput
 }
 
 input HeadingLevelQueryOperatorInput {
@@ -13232,7 +13209,7 @@ enum JobPostFieldsEnum {
   content
   content___title
   content___level
-  content___rawContent
+  content___bodyHtml
   rawContent
   corporate
   employmentType
@@ -13434,7 +13411,7 @@ enum GreenhouseJobFieldsEnum {
   childrenJobPost___content
   childrenJobPost___content___title
   childrenJobPost___content___level
-  childrenJobPost___content___rawContent
+  childrenJobPost___content___bodyHtml
   childrenJobPost___rawContent
   childrenJobPost___corporate
   childrenJobPost___employmentType
@@ -13494,7 +13471,7 @@ enum GreenhouseJobFieldsEnum {
   childJobPost___content
   childJobPost___content___title
   childJobPost___content___level
-  childJobPost___content___rawContent
+  childJobPost___content___bodyHtml
   childJobPost___rawContent
   childJobPost___corporate
   childJobPost___employmentType
@@ -13821,7 +13798,6 @@ enum SitePluginFieldsEnum {
   pluginOptions___imageImgixParams___fit
   pluginOptions___imageImgixParams___q
   pluginOptions___apiEndpoint
-  pluginOptions___customTypesApiEndpoint
   pluginOptions___lang
   pluginOptions___imagePlaceholderImgixParams___w
   pluginOptions___imagePlaceholderImgixParams___blur
@@ -14062,7 +14038,6 @@ type SitePluginPluginOptions {
   schemas: SitePluginPluginOptionsSchemas
   imageImgixParams: SitePluginPluginOptionsImageImgixParams
   apiEndpoint: String
-  customTypesApiEndpoint: String
   lang: String
   imagePlaceholderImgixParams: SitePluginPluginOptionsImagePlaceholderImgixParams
   toolbar: String

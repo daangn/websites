@@ -1,69 +1,59 @@
-import * as cheerio from 'cheerio';
-import { decode as decodeEntities } from 'html-entities';
+import { decode } from 'html-entities';
 
-export function parseHtml(contentHtml: string) {
-  // @ts-ignore
-  const $ = cheerio.load(decodeEntities(contentHtml), null, false);
-  $('.content-intro').remove();
-  $('.content-conclusion').remove();
+type Content = {
+  level: `H${1 | 2 | 3 | 4 | 5 | 6}`,
+  title: string,
+  bodyHtml: string,
+};
 
-  const raw = $.root().html();
-  const content = [...extractBlocks($)];
+type Result = {
+  content: Content[],
+  raw: string,
+};
 
-  return { content, raw };
-}
+export function parseContent(contentHtml: string): Result {
+  const splitter = /<(h[1-6])>(.*)<\/\1>/;
+  const parts = decode(contentHtml)
+    .replace(/<div.*>[\s\S]*?<\/div>/g, '')
+    .split(splitter);
 
-function *extractBlocks($: cheerio.Root) {
-  const heading = 'h1,h2,h3,h4,h5,h6';
+  const result: Result = {
+    content: [],
+    raw: contentHtml,
+  };
 
-  let $cursor = $.root().children(heading).first();
-  while ($cursor.length) {
-    const $body = $cursor.next();
+  type State = 'initial' | 'wait_title' | 'wait_body';
+  let state: State = 'initial';
+  let current: Partial<Content> = {};
 
-    const headingElement = $cursor.get(0);
-    const bodyElement = $body.get(0);
-    if (!(headingElement && bodyElement)) {
-      return;
+  for (const part of parts) {
+    if (part === '') {
+      continue;
     }
 
-    const title = $cursor.text();
-    const level = headingElement.tagName.toUpperCase();
+    switch (state) {
+      case 'initial': {
+        current.level = part.toUpperCase() as Content['level'];
+        state = 'wait_title';
+        break;
+      }
 
-    switch (bodyElement.tagName.toLowerCase()) {
-      case 'p':
-        yield {
-          tagName: 'p',
-          title,
-          level,
-          rawContent: $body.html(),
-          paragraph: $body.text(),
-        } as const;
+      case 'wait_title': {
+        current.title = part.trim();
+        state = 'wait_body';
         break;
-      case 'ol':
-        yield {
-          tagName: 'ol',
-          title,
-          level,
-          rawContent: $body.html(),
-          items: $body.children('li').map(function (this: cheerio.Cheerio) {
-            return $(this).text();
-          }).get(),
-        } as const;
+      }
+
+      case 'wait_body': {
+        current.bodyHtml = part.trim();
+        result.content.push(current as Content);
+
+        current = {};
+        state = 'initial';
         break;
-      case 'ul':
-        yield {
-          tagName: 'ul',
-          title,
-          level,
-          rawContent: $body.html(),
-          items: $body.children('li').map(function (this: cheerio.Cheerio) {
-            return $(this).text();
-          }).get(),
-        } as const;
-        break;
-      // Add more sections...
+      }
     }
-
-    $cursor = $body.next(heading);
   }
+
+  return result;
 }

@@ -31761,7 +31761,7 @@
                   "kind": "NON_NULL",
                   "name": null,
                   "ofType": {
-                    "kind": "INTERFACE",
+                    "kind": "OBJECT",
                     "name": "JobPostContentSection",
                     "ofType": null
                   }
@@ -32214,268 +32214,6 @@
       },
       {
         "kind": "OBJECT",
-        "name": "JobPostContentUnorderedListSection",
-        "description": null,
-        "specifiedByUrl": null,
-        "fields": [
-          {
-            "name": "title",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "level",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "HeadingLevel",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "rawContent",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "items",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "JobPostContentSection",
-            "ofType": null
-          }
-        ],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "JobPostContentOrderedListSection",
-        "description": null,
-        "specifiedByUrl": null,
-        "fields": [
-          {
-            "name": "title",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "level",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "HeadingLevel",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "rawContent",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "items",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "JobPostContentSection",
-            "ofType": null
-          }
-        ],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "JobPostContentParagraphSection",
-        "description": null,
-        "specifiedByUrl": null,
-        "fields": [
-          {
-            "name": "title",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "level",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "HeadingLevel",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "rawContent",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "paragraph",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "JobPostContentSection",
-            "ofType": null
-          }
-        ],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INTERFACE",
         "name": "JobPostContentSection",
         "description": null,
         "specifiedByUrl": null,
@@ -32513,7 +32251,7 @@
             "deprecationReason": null
           },
           {
-            "name": "rawContent",
+            "name": "bodyHtml",
             "description": null,
             "args": [],
             "type": {
@@ -32532,23 +32270,7 @@
         "inputFields": null,
         "interfaces": [],
         "enumValues": null,
-        "possibleTypes": [
-          {
-            "kind": "OBJECT",
-            "name": "JobPostContentUnorderedListSection",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "JobPostContentOrderedListSection",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "JobPostContentParagraphSection",
-            "ofType": null
-          }
-        ]
+        "possibleTypes": null
       },
       {
         "kind": "ENUM",
@@ -48072,18 +47794,6 @@
           },
           {
             "name": "apiEndpoint",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringQueryOperatorInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "customTypesApiEndpoint",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -71841,12 +71551,6 @@
           },
           {
             "name": "pluginCreator___pluginOptions___apiEndpoint",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pluginCreator___pluginOptions___customTypesApiEndpoint",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -96726,7 +96430,7 @@
             "deprecationReason": null
           },
           {
-            "name": "rawContent",
+            "name": "bodyHtml",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -97409,7 +97113,7 @@
             "deprecationReason": null
           },
           {
-            "name": "content___rawContent",
+            "name": "content___bodyHtml",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -99100,7 +98804,7 @@
             "deprecationReason": null
           },
           {
-            "name": "childrenJobPost___content___rawContent",
+            "name": "childrenJobPost___content___bodyHtml",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -99460,7 +99164,7 @@
             "deprecationReason": null
           },
           {
-            "name": "childJobPost___content___rawContent",
+            "name": "childJobPost___content___bodyHtml",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -101791,12 +101495,6 @@
             "deprecationReason": null
           },
           {
-            "name": "pluginOptions___customTypesApiEndpoint",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "pluginOptions___lang",
             "description": null,
             "isDeprecated": false,
@@ -103992,18 +103690,6 @@
           },
           {
             "name": "apiEndpoint",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "customTypesApiEndpoint",
             "description": null,
             "args": [],
             "type": {

@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "test": "jest",
     "build": "concurrently \"yarn:build:*\"",
     "build:babel": "babel gatsby -d . -x .ts --presets gatsby-package",
     "build:dts": "tsc --emitDeclarationOnly --skipLibCheck",
@@ -12,19 +13,21 @@
     "gatsby": "^2.25.0 || ^3.0.0"
   },
   "dependencies": {
-    "cheerio": "^1.0.0-rc.9",
     "html-entities": "^2.3.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.13.16",
     "@babel/core": "^7.13.16",
     "@karrotmarket/gatsby-source-greenhouse-job-board": "*",
-    "@types/cheerio": "^0.22.29",
+    "@types/common-tags": "^1.8.0",
+    "@types/jest": "^26.0.23",
     "@types/node": "^14.14.41",
+    "babel-jest": "^27.0.2",
     "babel-preset-gatsby-package": "^1.5.0",
+    "common-tags": "^1.8.0",
     "concurrently": "^6.0.2",
-
     "gatsby": "^3.7.1",
+    "jest": "^27.0.4",
     "typescript": "^4.3.2"
   }
 }
