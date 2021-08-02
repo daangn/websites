@@ -44,7 +44,7 @@ const globalStyles = global({
   },
   // @See https://github.com/angeloashmore/gatsby-source-prismic/issues/397#issuecomment-867133145
   '#prismic-toolbar-v2': {
-    visibility: 'hidden',
+    visibility: process.env.NODE_ENV === 'production' ? 'hidden' : 'visible',
   },
 });
 
