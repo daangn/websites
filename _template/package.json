@@ -11,10 +11,9 @@
     "serve": "gatsby serve"
   },
   "dependencies": {
-    "gatsby": "^3.7.1",
-    "gatsby-plugin-concurrent-mode": "^0.2.1",
-    "react": "experimental",
-    "react-dom": "experimental"
+    "gatsby": "next",
+    "react": "next",
+    "react-dom": "next"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.3",

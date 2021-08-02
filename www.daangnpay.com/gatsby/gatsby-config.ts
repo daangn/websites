@@ -15,7 +15,6 @@ const config: GatsbyConfig = {
   },
   siteMetadata,
   plugins: [
-    'gatsby-plugin-concurrent-mode',
     'gatsby-theme-stitches',
     'gatsby-plugin-svgr',
     'gatsby-plugin-react-helmet-async',

@@ -50,7 +50,7 @@
     "@babel/core": "^7.14.3",
     "babel-preset-gatsby-package": "^1.6.0",
     "concurrently": "^6.2.0",
-    "gatsby": "^3.7.1",
+    "gatsby": "next",
     "polished": "^4.1.2",
     "react": "experimental",
     "react-dom": "experimental",

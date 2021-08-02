@@ -18,7 +18,6 @@ const config: GatsbyConfig = {
   },
   siteMetadata,
   plugins: [
-    'gatsby-plugin-concurrent-mode',
     'gatsby-plugin-gatsby-cloud',
     'gatsby-theme-stitches',
     'gatsby-plugin-svgr',
