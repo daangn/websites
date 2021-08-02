@@ -4,12 +4,9 @@ import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { rem } from 'polished';
 import { required } from '@cometjs/core';
-import { mapAbstractType } from '@cometjs/graphql-utils';
 
 import Button from '~/components/Button';
-import JobPostContentUnorderedListSection from '~/components/JobPostContentUnorderedListSection';
-import JobPostContentOrderedListSection from '~/components/JobPostContentOrderedListSection';
-import JobPostContentParagraphSection from '~/components/JobPostContentParagraphSection';
+import JobPostContentSection from '~/components/JobPostContentSection';
 
 type JobPostPageProps = PageProps<GatsbyTypes.JobPostPageQuery, GatsbyTypes.SitePageContext>;
 
@@ -20,10 +17,7 @@ export const query = graphql`
     jobPost(id: { eq: $id }) {
       applyPath: gatsbyPath(filePath: "/jobs/{JobPost.parent__(GreenhouseJob)__ghId}/apply")
       content {
-        __typename
-        ...JobPostContentUnorderedListSection_content
-        ...JobPostContentOrderedListSection_content
-        ...JobPostContentParagraphSection_content
+        ...JobPostContentSection_content
       }
     }
   }
@@ -53,17 +47,9 @@ const JobPostPage: React.FC<JobPostPageProps> = ({
   return (
     <Container>
       <ContentWrapper>
-        {data.jobPost.content.map((content, i) => mapAbstractType(content, {
-          JobPostContentParagraphSection: content => (
-            <JobPostContentParagraphSection key={i} content={content} />
-          ),
-          JobPostContentOrderedListSection: content => (
-            <JobPostContentOrderedListSection key={i} content={content} />
-          ),
-          JobPostContentUnorderedListSection: content => (
-            <JobPostContentUnorderedListSection key={i} content={content} />
-          ),
-        }))}
+        {data.jobPost.content.map((content, i) => (
+          <JobPostContentSection key={i} content={content} />
+        ))}
       </ContentWrapper>
       <ButtonContainer>
         <Button
