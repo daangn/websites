@@ -20,8 +20,8 @@
     "gatsby": "^3.7.1",
     "gatsby-plugin-concurrent-mode": "^0.2.1",
     "gatsby-plugin-google-gtag": "^3.7.1",
-    "react": "experimental",
-    "react-dom": "experimental"
+    "react": "next",
+    "react-dom": "next"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.3",

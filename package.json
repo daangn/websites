@@ -14,8 +14,8 @@
     "www.daangnpay.com"
   ],
   "resolutions": {
-    "react": "0.0.0-experimental-44cdfd6b7",
-    "react-dom": "0.0.0-experimental-44cdfd6b7",
+    "react": "18.0.0-alpha-6f3fcbd6f-20210730",
+    "react-dom": "18.0.0-alpha-6f3fcbd6f-20210730",
     "schema-dts": "0.8.3",
     "webpack": "5.36.2",
     "@emotion/react": "^11.1.5",

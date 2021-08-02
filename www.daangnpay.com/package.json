@@ -37,8 +37,8 @@
     "gatsby-source-prismic": "^3.3.6",
     "gatsby-theme-stitches": "^0.1.1",
     "polished": "^4.1.2",
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "next",
+    "react-dom": "next",
     "react-helmet-async": "^1.0.9",
     "sharp": "^0.28.3"
   },

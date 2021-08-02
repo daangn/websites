@@ -24,8 +24,8 @@
     "gatsby": "^2.25.0 || ^3.0.0",
     "gatsby-source-prismic": "beta",
     "gatsby-plugin-prismic-previews": "beta",
-    "react": "^16.8.0 || ^17.0.0 || experimental",
-    "react-dom": "^16.8.0 || ^17.0.0 || experimental"
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || next || experimental",
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0 || next || experimental"
   },
   "dependencies": {
     "@karrotmarket/prismic-config": "*"
