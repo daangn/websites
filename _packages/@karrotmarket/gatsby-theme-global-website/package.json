@@ -15,8 +15,8 @@
     "gatsby-source-prismic": "beta",
     "gatsby-theme-prismic": "*",
     "polished": "^4.0.0",
-    "react": "^16.8.0 || ^17.0.0 || experimental",
-    "react-dom": "^16.8.0 || ^17.0.0 || experimental"
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || next || experimental",
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0 || next || experimental"
   },
   "dependencies": {
     "@cometjs/graphql-utils": "^1.1.0",
