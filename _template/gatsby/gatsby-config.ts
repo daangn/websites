@@ -16,7 +16,6 @@ const config: GatsbyConfig = {
   },
   siteMetadata,
   plugins: [
-    'gatsby-plugin-concurrent-mode',
     {
       resolve: 'gatsby-plugin-typegen',
       options: {
