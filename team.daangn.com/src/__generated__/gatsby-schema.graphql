@@ -379,13 +379,11 @@ type SitePageContext {
   chapter: String
   slug: String
   id: String
-  uid: String
-  _xparams: SitePageContext_xparams
   parent__ghId: String
+  _xparams: SitePageContext_xparams
 }
 
 type SitePageContext_xparams {
-  uid: String
   parent__ghId: String
 }
 
@@ -7153,13 +7151,11 @@ input SitePageContextFilterInput {
   chapter: StringQueryOperatorInput
   slug: StringQueryOperatorInput
   id: StringQueryOperatorInput
-  uid: StringQueryOperatorInput
-  _xparams: SitePageContext_xparamsFilterInput
   parent__ghId: StringQueryOperatorInput
+  _xparams: SitePageContext_xparamsFilterInput
 }
 
 input SitePageContext_xparamsFilterInput {
-  uid: StringQueryOperatorInput
   parent__ghId: StringQueryOperatorInput
 }
 
@@ -10418,10 +10414,8 @@ enum SitePageFieldsEnum {
   context___chapter
   context___slug
   context___id
-  context___uid
-  context____xparams___uid
-  context____xparams___parent__ghId
   context___parent__ghId
+  context____xparams___parent__ghId
   pluginCreator___id
   pluginCreator___parent___id
   pluginCreator___parent___parent___id

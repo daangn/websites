@@ -1,27 +1,3 @@
-fragment SocialServiceProfile_profile on PrismicSiteNavigationDataSnsProfiles {
-  service
-  link {
-    url
-  }
-}
-fragment Header_navigationData on PrismicSiteNavigationDataType {
-  ...NavigationMenu_data
-}
-fragment Footer_navigationData on PrismicSiteNavigationDataType {
-  copyright {
-    html
-  }
-  address
-  footer_entries {
-    display_text
-    link {
-      url
-    }
-  }
-  sns_profiles {
-    ...SocialServiceProfile_profile
-  }
-}
 fragment GatsbyImageSharpFixed on ImageSharpFixed {
   base64
   width
@@ -130,12 +106,23 @@ fragment GatsbyImageSharpFluid_withWebp_noBase64 on ImageSharpFluid {
   srcSetWebp
   sizes
 }
-query UseSiteMetadataStatic {
-  site {
-    siteMetadata {
-      siteUrl
+fragment Footer_navigationData on PrismicSiteNavigationDataType {
+  copyright {
+    html
+  }
+  address
+  footer_entries {
+    display_text
+    link {
+      url
     }
   }
+  sns_profiles {
+    ...SocialServiceProfile_profile
+  }
+}
+fragment Header_navigationData on PrismicSiteNavigationDataType {
+  ...NavigationMenu_data
 }
 fragment NavigationMenu_data on PrismicSiteNavigationDataType {
   header_entries {
@@ -146,6 +133,19 @@ fragment NavigationMenu_data on PrismicSiteNavigationDataType {
   }
   sns_profiles {
     ...SocialServiceProfile_profile
+  }
+}
+query UseSiteMetadataStatic {
+  site {
+    siteMetadata {
+      siteUrl
+    }
+  }
+}
+fragment SocialServiceProfile_profile on PrismicSiteNavigationDataSnsProfiles {
+  service
+  link {
+    url
   }
 }
 fragment GatsbyPrismicImageFixed on ImgixFixed {
