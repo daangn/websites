@@ -1,0 +1,94 @@
+{
+  "Main": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "slug",
+        "placeholder": "URL에 사용됩니다."
+      }
+    },
+    "page_meta_title": {
+      "type": "Text",
+      "config": {
+        "label": "페이지 제목 (메타)",
+        "placeholder": "사이트 메타 정보로 활용합니다."
+      }
+    },
+    "page_meta_description": {
+      "type": "Text",
+      "config": {
+        "label": "페이지 설명 (메타)",
+        "placeholder": "사이트 메타 정보로 활용합니다"
+      }
+    },
+    "page_meta_image": {
+      "type": "Image",
+      "config": {
+        "constraint": {
+          "width": 1200,
+          "height": 630
+        },
+        "thumbnails": [],
+        "label": "OpenGraph 이미지"
+      }
+    },
+    "page_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1",
+        "label": "페이지 제목"
+      }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "labels": null,
+        "choices": {
+          "life_content": {
+            "type": "Slice",
+            "fieldset": "Article Section",
+            "description": "게시글 섹션",
+            "icon": "subtitles",
+            "display": "list",
+            "non-repeat": {
+              "title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "섹션 제목"
+                }
+              },
+              "body_text": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, strong, em, hyperlink",
+                  "label": "섹션 내용"
+                }
+              }
+            },
+            "repeat": {
+              "thumbnail_image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {
+                    "width": 1440
+                  },
+                  "thumbnails": [],
+                  "label": "섬네일 이미지"
+                }
+              },
+              "thumbnail_description": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "paragraph, strong, em, hyperlink",
+                  "label": "섬네일 설명"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
