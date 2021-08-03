@@ -1,6 +1,6 @@
-import type { LinkResolver } from 'gatsby-plugin-prismic-previews';
+import type { LinkResolverFunction } from '@prismicio/helpers';
 
-export const linkResolver: LinkResolver = doc => {
+export const linkResolver: LinkResolverFunction = doc => {
   switch (doc.type) {
     case 'site_navigation': {
       return '/';
