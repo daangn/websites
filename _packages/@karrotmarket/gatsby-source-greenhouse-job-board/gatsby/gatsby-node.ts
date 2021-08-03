@@ -119,6 +119,7 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async ({
   actions,
   createNodeId,
   createContentDigest,
+  getNode,
   getNodesByType,
 }, options) => {
   // must validated by `pluginOptionsSchema`
@@ -141,6 +142,9 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async ({
   if (forceGC) {
     const nodes = getNodesByType('GreenhouseJob');
     for (const node of nodes) {
+      for (const child of node.children) {
+        actions.deleteNode(getNode(child));
+      }
       actions.deleteNode(node);
     }
   }
