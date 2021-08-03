@@ -45,7 +45,7 @@
       "config": {
         "labels": null,
         "choices": {
-          "life_content": {
+          "article_section": {
             "type": "Slice",
             "fieldset": "Article Section",
             "description": "게시글 섹션",
