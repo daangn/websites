@@ -8,6 +8,12 @@ import { ReactComponent as DaangniEmbarrassed } from '~/assets/daangni_embarrass
 import DefaultLayout from '~/layouts/DefaultLayout';
 import ButtonLink from '~/components/Button';
 
+import { withPrismicUnpublishedPreview, componentResolverFromMap } from 'gatsby-plugin-prismic-previews';
+import { defaultRepositoryConfig } from '@karrotmarket/gatsby-theme-prismic/src/defaultRepositoryConfig';
+import { linkResolver } from '@karrotmarket/gatsby-theme-prismic/src/linkResolver';
+
+import TeamsArticlePageTemplate from './articles/{PrismicTeamsArticle.uid}';
+
 type NotFoundPageProps = PageProps<GatsbyTypes.NotFoundPageQuery, GatsbyTypes.SitePageContext>;
 
 export const query = graphql`
@@ -79,4 +85,11 @@ const NotFoundPage: React.FC<NotFoundPageProps> = ({
   );
 };
 
-export default NotFoundPage;
+export default withPrismicUnpublishedPreview(NotFoundPage, [
+  {
+    ...defaultRepositoryConfig,
+    componentResolver: componentResolverFromMap({
+      teams_article: TeamsArticlePageTemplate,
+    }),
+  },
+]);

@@ -379,11 +379,13 @@ type SitePageContext {
   chapter: String
   slug: String
   id: String
-  parent__ghId: String
+  uid: String
   _xparams: SitePageContext_xparams
+  parent__ghId: String
 }
 
 type SitePageContext_xparams {
+  uid: String
   parent__ghId: String
 }
 
@@ -5611,6 +5613,297 @@ type PrismicTeamContents implements Node {
   internal: Internal!
 }
 
+type PrismicTeamsArticleDataBodyArticleSectionItemsThumbnailImageImageType {
+  alt: String
+  copyright: String
+  dimensions: PrismicImageDimensionsType
+
+  # A plain imgix URL with the URL and params applied.
+  url(imgixParams: ImgixParamsInput = {}): String
+
+  # Should be used to generate fixed-width images (i.e. the size of the image doesn't change when the size of the browser changes, and are "fixed"). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFixed fragment should be used. See the project's README for more information.
+  fixed(
+    # The fixed image width to render, in px.
+    width: Int = 8192
+
+    # The fixed image height to render, in px.
+    height: Int
+
+    # The image quality to use for compression. Range: 0-100, with 100 being highest quality. This setting is not recommended as the quality is already optimized by decreasing quality as the dpr increases to reduce image size while retaining visual quality.
+    quality: Int
+
+    # The imgix parameters (transformations) to apply to the image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    imgixParams: ImgixParamsInput = {}
+
+    # Any imgix parameters to use only for the blur-up/placeholder image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    placeholderImgixParams: ImgixParamsInput = {}
+  ): ImgixFixed
+
+  # Should be used to generate fluid-width images (i.e. images that change when the size of the browser changes). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFluid fragment should be used. See the project's README for more information.
+  fluid(
+    # The imgix parameters (transformations) to apply to the image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    imgixParams: ImgixParamsInput = {}
+
+    # The maximum px width of the *image* to be *requested*. This does NOT affect the width of the image displayed. The width of the image displayed can be controlled by adding a sizes parameter to the GatsbyImage component. For more information, see this project's readme.
+    maxWidth: Int = 8192
+
+    # The maximum px height of the *image* to be *requested*. This does NOT affect the height of the image displayed.
+    maxHeight: Int
+
+    # A custom set of widths (in px) to use for the srcset widths. This feature is not recommended as the default widths are optimized for imgix's caching infrastructure.
+    srcSetBreakpoints: [Int]
+
+    # Any imgix parameters to use only for the blur-up/placeholder image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    placeholderImgixParams: ImgixParamsInput = {}
+  ): ImgixFluid
+  gatsbyImageData(
+    # The layout for the image.
+    # FIXED: A static image sized, that does not resize according to the screen width
+    # FULL_WIDTH: The image resizes to fit its container. Pass a "sizes" option if it isn't going to be the full width of the screen.
+    # CONSTRAINED: Resizes to fit its container, up to a maximum width, at which point it will remain fixed in size.
+    layout: GatsbyImageLayout
+
+    # The display width of the generated image for layout = FIXED, and the display width of the largest image for layout = CONSTRAINED.
+    # The actual largest image resolution will be this value multiplied by the largest value in outputPixelDensities
+    # Ignored if layout = FLUID.
+    width: Int
+
+    # If set, the height of the generated image. If omitted, it is calculated from the supplied width, matching the aspect ratio of the source image.
+    height: Int
+
+    # If set along with width or height, this will set the value of the other dimension to match the provided aspect ratio, cropping the image if needed. 
+    # If neither width or height is provided, height will be set based on the intrinsic width of the source image.
+    aspectRatio: Float
+
+    # A list of image pixel densities to generate for FIXED and CONSTRAINED images. You should rarely need to change this. It will never generate images larger than the source, and will always include a 1x image.
+    # Default is [ 1, 2 ] for fixed images, meaning 1x, 2x, 3x, and [0.25, 0.5, 1, 2] for fluid. In this case, an image with a fluid layout and width = 400 would generate images at 100, 200, 400 and 800px wide.
+    outputPixelDensities: [Float]
+
+    # Specifies the image widths to generate. You should rarely need to change this. For FIXED and CONSTRAINED images it is better to allow these to be determined automatically,
+    # based on the image size. For FULL_WIDTH images this can be used to override the default, which is [750, 1080, 1366, 1920].
+    # It will never generate any images larger than the source.
+    breakpoints: [Int]
+
+    # The "sizes" property, passed to the img tag. This describes the display size of the image.
+    # This does not affect the generated images, but is used by the browser to decide which images to download. You can leave this blank for fixed images, or if the responsive image
+    # container will be the full width of the screen. In these cases we will generate an appropriate value.
+    sizes: String
+
+    # Background color applied to the wrapper, or when "letterboxing" an image to another aspect ratio.
+    backgroundColor: String
+
+    # This argument is used to set parameters to instruct imgix to transform the image. 
+    #         
+    #         All of imgix's parameters can be found here: https://docs.imgix.com/apis/rendering
+    imgixParams: ImgixParamsInput
+
+    # This argument is used to set parameters to instruct imgix to transform the placeholder image. By default all parameters passed to 'imgixParams' are already set here, but this can be used to override or set extra parameters. 
+    #         
+    #         All of imgix's parameters can be found here: https://docs.imgix.com/apis/rendering
+    placeholderImgixParams: ImgixParamsInput
+
+    # Format of generated placeholder image, displayed while the main image loads.
+    # BLURRED: a blurred, low resolution image, encoded as a base64 data URI (default)
+    # DOMINANT_COLOR: a solid color, calculated from the dominant color of the image.
+    # NONE: no placeholder. Set "backgroundColor" to use a fixed background color.
+    placeholder: ImgixPlaceholder
+
+    # This argument affects the breakpoints used for the srcsets, dictates the maximum tolerated size difference between an image's downloaded size and its rendered size. For example: setting this value to 0.1 means that an image will not render more than 10% larger or smaller than its native size. In practice, the image URLs generated for a width-based srcset attribute will grow by twice this rate. A lower tolerance means images will render closer to their native size (thereby increasing perceived image quality), but a large srcset list will be generated and consequently users may experience lower rates of cache-hit for pre-rendered images on your site.
+    #
+    # By default this rate is set to 8 percent, which we consider to be the ideal rate for maximizing cache hits without sacrificing visual quality. Users can specify their own width tolerance by providing a positive scalar value as widthTolerance to the third options object:
+    widthTolerance: Float = 0.08
+
+    # This argument determines the minimum srcset width that is generated. The default is 100px.
+    srcSetMinWidth: Int = 100
+
+    # This argument determines the maximum srcset width that is generated, if the layout type is FULL_WIDTH. If the layout type is CONSTRAINED, the width argument will be used. Furthermore, in every case, the maximum srcset width is constrained by the width of the source image. The default is 8192px, which is the render limit of the imgix service.
+    srcSetMaxWidth: Int = 8192
+  ): JSON
+  localFile: File
+}
+
+type PrismicTeamsArticleDataBodyArticleSectionItem {
+  thumbnail_description: PrismicStructuredTextType
+  thumbnail_image: PrismicTeamsArticleDataBodyArticleSectionItemsThumbnailImageImageType
+}
+
+type PrismicTeamsArticleDataBodyArticleSectionPrimary {
+  body_text: PrismicStructuredTextType
+  title: PrismicStructuredTextType
+}
+
+type PrismicTeamsArticleDataBodyArticleSection implements PrismicSliceType {
+  items: [PrismicTeamsArticleDataBodyArticleSectionItem]
+  primary: PrismicTeamsArticleDataBodyArticleSectionPrimary
+  id: ID!
+  slice_type: String!
+  slice_label: String
+}
+
+union PrismicTeamsArticleDataBodySlicesType = PrismicTeamsArticleDataBodyArticleSection
+
+type PrismicTeamsArticleDataPageMetaImageImageType {
+  alt: String
+  copyright: String
+  dimensions: PrismicImageDimensionsType
+
+  # A plain imgix URL with the URL and params applied.
+  url(imgixParams: ImgixParamsInput = {}): String
+
+  # Should be used to generate fixed-width images (i.e. the size of the image doesn't change when the size of the browser changes, and are "fixed"). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFixed fragment should be used. See the project's README for more information.
+  fixed(
+    # The fixed image width to render, in px.
+    width: Int = 8192
+
+    # The fixed image height to render, in px.
+    height: Int
+
+    # The image quality to use for compression. Range: 0-100, with 100 being highest quality. This setting is not recommended as the quality is already optimized by decreasing quality as the dpr increases to reduce image size while retaining visual quality.
+    quality: Int
+
+    # The imgix parameters (transformations) to apply to the image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    imgixParams: ImgixParamsInput = {}
+
+    # Any imgix parameters to use only for the blur-up/placeholder image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    placeholderImgixParams: ImgixParamsInput = {}
+  ): ImgixFixed
+
+  # Should be used to generate fluid-width images (i.e. images that change when the size of the browser changes). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFluid fragment should be used. See the project's README for more information.
+  fluid(
+    # The imgix parameters (transformations) to apply to the image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    imgixParams: ImgixParamsInput = {}
+
+    # The maximum px width of the *image* to be *requested*. This does NOT affect the width of the image displayed. The width of the image displayed can be controlled by adding a sizes parameter to the GatsbyImage component. For more information, see this project's readme.
+    maxWidth: Int = 8192
+
+    # The maximum px height of the *image* to be *requested*. This does NOT affect the height of the image displayed.
+    maxHeight: Int
+
+    # A custom set of widths (in px) to use for the srcset widths. This feature is not recommended as the default widths are optimized for imgix's caching infrastructure.
+    srcSetBreakpoints: [Int]
+
+    # Any imgix parameters to use only for the blur-up/placeholder image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    placeholderImgixParams: ImgixParamsInput = {}
+  ): ImgixFluid
+  gatsbyImageData(
+    # The layout for the image.
+    # FIXED: A static image sized, that does not resize according to the screen width
+    # FULL_WIDTH: The image resizes to fit its container. Pass a "sizes" option if it isn't going to be the full width of the screen.
+    # CONSTRAINED: Resizes to fit its container, up to a maximum width, at which point it will remain fixed in size.
+    layout: GatsbyImageLayout
+
+    # The display width of the generated image for layout = FIXED, and the display width of the largest image for layout = CONSTRAINED.
+    # The actual largest image resolution will be this value multiplied by the largest value in outputPixelDensities
+    # Ignored if layout = FLUID.
+    width: Int
+
+    # If set, the height of the generated image. If omitted, it is calculated from the supplied width, matching the aspect ratio of the source image.
+    height: Int
+
+    # If set along with width or height, this will set the value of the other dimension to match the provided aspect ratio, cropping the image if needed. 
+    # If neither width or height is provided, height will be set based on the intrinsic width of the source image.
+    aspectRatio: Float
+
+    # A list of image pixel densities to generate for FIXED and CONSTRAINED images. You should rarely need to change this. It will never generate images larger than the source, and will always include a 1x image.
+    # Default is [ 1, 2 ] for fixed images, meaning 1x, 2x, 3x, and [0.25, 0.5, 1, 2] for fluid. In this case, an image with a fluid layout and width = 400 would generate images at 100, 200, 400 and 800px wide.
+    outputPixelDensities: [Float]
+
+    # Specifies the image widths to generate. You should rarely need to change this. For FIXED and CONSTRAINED images it is better to allow these to be determined automatically,
+    # based on the image size. For FULL_WIDTH images this can be used to override the default, which is [750, 1080, 1366, 1920].
+    # It will never generate any images larger than the source.
+    breakpoints: [Int]
+
+    # The "sizes" property, passed to the img tag. This describes the display size of the image.
+    # This does not affect the generated images, but is used by the browser to decide which images to download. You can leave this blank for fixed images, or if the responsive image
+    # container will be the full width of the screen. In these cases we will generate an appropriate value.
+    sizes: String
+
+    # Background color applied to the wrapper, or when "letterboxing" an image to another aspect ratio.
+    backgroundColor: String
+
+    # This argument is used to set parameters to instruct imgix to transform the image. 
+    #         
+    #         All of imgix's parameters can be found here: https://docs.imgix.com/apis/rendering
+    imgixParams: ImgixParamsInput
+
+    # This argument is used to set parameters to instruct imgix to transform the placeholder image. By default all parameters passed to 'imgixParams' are already set here, but this can be used to override or set extra parameters. 
+    #         
+    #         All of imgix's parameters can be found here: https://docs.imgix.com/apis/rendering
+    placeholderImgixParams: ImgixParamsInput
+
+    # Format of generated placeholder image, displayed while the main image loads.
+    # BLURRED: a blurred, low resolution image, encoded as a base64 data URI (default)
+    # DOMINANT_COLOR: a solid color, calculated from the dominant color of the image.
+    # NONE: no placeholder. Set "backgroundColor" to use a fixed background color.
+    placeholder: ImgixPlaceholder
+
+    # This argument affects the breakpoints used for the srcsets, dictates the maximum tolerated size difference between an image's downloaded size and its rendered size. For example: setting this value to 0.1 means that an image will not render more than 10% larger or smaller than its native size. In practice, the image URLs generated for a width-based srcset attribute will grow by twice this rate. A lower tolerance means images will render closer to their native size (thereby increasing perceived image quality), but a large srcset list will be generated and consequently users may experience lower rates of cache-hit for pre-rendered images on your site.
+    #
+    # By default this rate is set to 8 percent, which we consider to be the ideal rate for maximizing cache hits without sacrificing visual quality. Users can specify their own width tolerance by providing a positive scalar value as widthTolerance to the third options object:
+    widthTolerance: Float = 0.08
+
+    # This argument determines the minimum srcset width that is generated. The default is 100px.
+    srcSetMinWidth: Int = 100
+
+    # This argument determines the maximum srcset width that is generated, if the layout type is FULL_WIDTH. If the layout type is CONSTRAINED, the width argument will be used. Furthermore, in every case, the maximum srcset width is constrained by the width of the source image. The default is 8192px, which is the render limit of the imgix service.
+    srcSetMaxWidth: Int = 8192
+  ): JSON
+  localFile: File
+}
+
+type PrismicTeamsArticleDataType {
+  body: [PrismicTeamsArticleDataBodySlicesType]
+  page_meta_description: String
+  page_meta_image: PrismicTeamsArticleDataPageMetaImageImageType
+  page_meta_title: String
+  page_title: PrismicStructuredTextType
+}
+
+type PrismicTeamsArticle implements Node {
+  uid: String!
+  data: PrismicTeamsArticleDataType
+  dataRaw: JSON!
+  prismicId: ID!
+  alternate_languages: [PrismicAlternateLanguageType!]!
+  first_publication_date(
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date!
+  href: String!
+  lang: String!
+  last_publication_date(
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date!
+  tags: [String!]!
+  type: String!
+  url: String
+  _previewable: ID!
+  gatsbyPath(filePath: String): String
+  id: ID!
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
+}
+
 type PrismicTermsAndConditionsDataType {
   content: PrismicStructuredTextType
   description: String
@@ -5673,7 +5966,7 @@ type PrismicTermsAndConditions implements Node {
   internal: Internal!
 }
 
-union PrismicAllDocumentTypes = PrismicAdsIntro | PrismicFaq | PrismicGlobalContents | PrismicMbtiTestResult | PrismicMbtiIntro | PrismicMbtiTestQuestion | PrismicMemberProfile | PrismicPayContents | PrismicSiteNavigation | PrismicTeamContents | PrismicTermsAndConditions
+union PrismicAllDocumentTypes = PrismicAdsIntro | PrismicFaq | PrismicGlobalContents | PrismicMbtiTestResult | PrismicMbtiIntro | PrismicMbtiTestQuestion | PrismicMemberProfile | PrismicPayContents | PrismicSiteNavigation | PrismicTeamContents | PrismicTeamsArticle | PrismicTermsAndConditions
 
 type JobPost implements Node {
   ghId: String!
@@ -5868,6 +6161,8 @@ type Query {
   allPrismicSiteNavigation(filter: PrismicSiteNavigationFilterInput, sort: PrismicSiteNavigationSortInput, skip: Int, limit: Int): PrismicSiteNavigationConnection!
   prismicTeamContents(data: PrismicTeamContentsDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, prismicId: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput, _previewable: IDQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): PrismicTeamContents
   allPrismicTeamContents(filter: PrismicTeamContentsFilterInput, sort: PrismicTeamContentsSortInput, skip: Int, limit: Int): PrismicTeamContentsConnection!
+  prismicTeamsArticle(uid: StringQueryOperatorInput, data: PrismicTeamsArticleDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, prismicId: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput, _previewable: IDQueryOperatorInput, gatsbyPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): PrismicTeamsArticle
+  allPrismicTeamsArticle(filter: PrismicTeamsArticleFilterInput, sort: PrismicTeamsArticleSortInput, skip: Int, limit: Int): PrismicTeamsArticleConnection!
   prismicTermsAndConditions(uid: StringQueryOperatorInput, data: PrismicTermsAndConditionsDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, prismicId: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput, _previewable: IDQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): PrismicTermsAndConditions
   allPrismicTermsAndConditions(filter: PrismicTermsAndConditionsFilterInput, sort: PrismicTermsAndConditionsSortInput, skip: Int, limit: Int): PrismicTermsAndConditionsConnection!
   jobPost(ghId: StringQueryOperatorInput, updatedAt: DateQueryOperatorInput, validThrough: DateQueryOperatorInput, title: StringQueryOperatorInput, boardUrl: StringQueryOperatorInput, content: JobPostContentSectionFilterListInput, rawContent: StringQueryOperatorInput, corporate: JobCorporateQueryOperatorInput, employmentType: JobEmploymentTypeQueryOperatorInput, alternativeCivilianService: BooleanQueryOperatorInput, priorExperience: JobPriorExperienceQueryOperatorInput, chapter: StringQueryOperatorInput, portfolioRequired: BooleanQueryOperatorInput, keywords: StringQueryOperatorInput, order: IntQueryOperatorInput, tags: StringQueryOperatorInput, slug: StringQueryOperatorInput, absoluteUrl: StringQueryOperatorInput, gatsbyPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): JobPost
@@ -6858,11 +7153,13 @@ input SitePageContextFilterInput {
   chapter: StringQueryOperatorInput
   slug: StringQueryOperatorInput
   id: StringQueryOperatorInput
-  parent__ghId: StringQueryOperatorInput
+  uid: StringQueryOperatorInput
   _xparams: SitePageContext_xparamsFilterInput
+  parent__ghId: StringQueryOperatorInput
 }
 
 input SitePageContext_xparamsFilterInput {
+  uid: StringQueryOperatorInput
   parent__ghId: StringQueryOperatorInput
 }
 
@@ -6920,13 +7217,12 @@ input SitePluginPluginOptionsFilterInput {
   emitSchema: SitePluginPluginOptionsEmitSchemaFilterInput
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocumentsFilterInput
   repositoryName: StringQueryOperatorInput
-  schemas: SitePluginPluginOptionsSchemasFilterInput
-  imageImgixParams: SitePluginPluginOptionsImageImgixParamsFilterInput
-  apiEndpoint: StringQueryOperatorInput
-  lang: StringQueryOperatorInput
-  imagePlaceholderImgixParams: SitePluginPluginOptionsImagePlaceholderImgixParamsFilterInput
   toolbar: StringQueryOperatorInput
   promptForAccessToken: BooleanQueryOperatorInput
+  apiEndpoint: StringQueryOperatorInput
+  lang: StringQueryOperatorInput
+  imageImgixParams: SitePluginPluginOptionsImageImgixParamsFilterInput
+  imagePlaceholderImgixParams: SitePluginPluginOptionsImagePlaceholderImgixParamsFilterInput
   boardToken: StringQueryOperatorInput
   includeContent: BooleanQueryOperatorInput
   forceGC: BooleanQueryOperatorInput
@@ -6935,6 +7231,7 @@ input SitePluginPluginOptionsFilterInput {
   allExtensions: BooleanQueryOperatorInput
   isTSX: BooleanQueryOperatorInput
   jsxPragma: StringQueryOperatorInput
+  schemas: SitePluginPluginOptionsSchemasFilterInput
 }
 
 input SitePluginPluginOptionsPolicyFilterListInput {
@@ -6977,6 +7274,17 @@ input SitePluginPluginOptionsEmitPluginDocumentsFilterInput {
   src___generated___gatsby_plugin_documents_graphql: BooleanQueryOperatorInput
 }
 
+input SitePluginPluginOptionsImageImgixParamsFilterInput {
+  auto: StringQueryOperatorInput
+  fit: StringQueryOperatorInput
+  q: IntQueryOperatorInput
+}
+
+input SitePluginPluginOptionsImagePlaceholderImgixParamsFilterInput {
+  w: IntQueryOperatorInput
+  blur: IntQueryOperatorInput
+}
+
 input SitePluginPluginOptionsSchemasFilterInput {
   global_contents: SitePluginPluginOptionsSchemasGlobal_contentsFilterInput
   faq: SitePluginPluginOptionsSchemasFaqFilterInput
@@ -6984,6 +7292,7 @@ input SitePluginPluginOptionsSchemasFilterInput {
   pay_contents: SitePluginPluginOptionsSchemasPay_contentsFilterInput
   site_navigation: SitePluginPluginOptionsSchemasSite_navigationFilterInput
   team_contents: SitePluginPluginOptionsSchemasTeam_contentsFilterInput
+  teams_article: SitePluginPluginOptionsSchemasTeams_articleFilterInput
   terms_and_conditions: SitePluginPluginOptionsSchemasTerms_and_conditionsFilterInput
 }
 
@@ -9759,6 +10068,152 @@ input SitePluginPluginOptionsSchemasTeam_contentsMetaTwitter_site_handleConfigFi
   placeholder: StringQueryOperatorInput
 }
 
+input SitePluginPluginOptionsSchemasTeams_articleFilterInput {
+  Main: SitePluginPluginOptionsSchemasTeams_articleMainFilterInput
+}
+
+input SitePluginPluginOptionsSchemasTeams_articleMainFilterInput {
+  uid: SitePluginPluginOptionsSchemasTeams_articleMainUidFilterInput
+  page_meta_title: SitePluginPluginOptionsSchemasTeams_articleMainPage_meta_titleFilterInput
+  page_meta_description: SitePluginPluginOptionsSchemasTeams_articleMainPage_meta_descriptionFilterInput
+  page_meta_image: SitePluginPluginOptionsSchemasTeams_articleMainPage_meta_imageFilterInput
+  page_title: SitePluginPluginOptionsSchemasTeams_articleMainPage_titleFilterInput
+  body: SitePluginPluginOptionsSchemasTeams_articleMainBodyFilterInput
+}
+
+input SitePluginPluginOptionsSchemasTeams_articleMainUidFilterInput {
+  type: StringQueryOperatorInput
+  config: SitePluginPluginOptionsSchemasTeams_articleMainUidConfigFilterInput
+}
+
+input SitePluginPluginOptionsSchemasTeams_articleMainUidConfigFilterInput {
+  label: StringQueryOperatorInput
+  placeholder: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsSchemasTeams_articleMainPage_meta_titleFilterInput {
+  type: StringQueryOperatorInput
+  config: SitePluginPluginOptionsSchemasTeams_articleMainPage_meta_titleConfigFilterInput
+}
+
+input SitePluginPluginOptionsSchemasTeams_articleMainPage_meta_titleConfigFilterInput {
+  label: StringQueryOperatorInput
+  placeholder: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsSchemasTeams_articleMainPage_meta_descriptionFilterInput {
+  type: StringQueryOperatorInput
+  config: SitePluginPluginOptionsSchemasTeams_articleMainPage_meta_descriptionConfigFilterInput
+}
+
+input SitePluginPluginOptionsSchemasTeams_articleMainPage_meta_descriptionConfigFilterInput {
+  label: StringQueryOperatorInput
+  placeholder: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsSchemasTeams_articleMainPage_meta_imageFilterInput {
+  type: StringQueryOperatorInput
+  config: SitePluginPluginOptionsSchemasTeams_articleMainPage_meta_imageConfigFilterInput
+}
+
+input SitePluginPluginOptionsSchemasTeams_articleMainPage_meta_imageConfigFilterInput {
+  constraint: SitePluginPluginOptionsSchemasTeams_articleMainPage_meta_imageConfigConstraintFilterInput
+  label: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsSchemasTeams_articleMainPage_meta_imageConfigConstraintFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input SitePluginPluginOptionsSchemasTeams_articleMainPage_titleFilterInput {
+  type: StringQueryOperatorInput
+  config: SitePluginPluginOptionsSchemasTeams_articleMainPage_titleConfigFilterInput
+}
+
+input SitePluginPluginOptionsSchemasTeams_articleMainPage_titleConfigFilterInput {
+  single: StringQueryOperatorInput
+  label: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsSchemasTeams_articleMainBodyFilterInput {
+  type: StringQueryOperatorInput
+  fieldset: StringQueryOperatorInput
+  config: SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigFilterInput
+}
+
+input SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigFilterInput {
+  choices: SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesFilterInput
+}
+
+input SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesFilterInput {
+  article_section: SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionFilterInput
+}
+
+input SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionFilterInput {
+  type: StringQueryOperatorInput
+  fieldset: StringQueryOperatorInput
+  description: StringQueryOperatorInput
+  icon: StringQueryOperatorInput
+  display: StringQueryOperatorInput
+  non_repeat: SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionNon_repeatFilterInput
+  repeat: SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionRepeatFilterInput
+}
+
+input SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionNon_repeatFilterInput {
+  title: SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionNon_repeatTitleFilterInput
+  body_text: SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionNon_repeatBody_textFilterInput
+}
+
+input SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionNon_repeatTitleFilterInput {
+  type: StringQueryOperatorInput
+  config: SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionNon_repeatTitleConfigFilterInput
+}
+
+input SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionNon_repeatTitleConfigFilterInput {
+  single: StringQueryOperatorInput
+  label: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionNon_repeatBody_textFilterInput {
+  type: StringQueryOperatorInput
+  config: SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionNon_repeatBody_textConfigFilterInput
+}
+
+input SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionNon_repeatBody_textConfigFilterInput {
+  multi: StringQueryOperatorInput
+  label: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionRepeatFilterInput {
+  thumbnail_image: SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionRepeatThumbnail_imageFilterInput
+  thumbnail_description: SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionRepeatThumbnail_descriptionFilterInput
+}
+
+input SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionRepeatThumbnail_imageFilterInput {
+  type: StringQueryOperatorInput
+  config: SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionRepeatThumbnail_imageConfigFilterInput
+}
+
+input SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionRepeatThumbnail_imageConfigFilterInput {
+  constraint: SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionRepeatThumbnail_imageConfigConstraintFilterInput
+  label: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionRepeatThumbnail_imageConfigConstraintFilterInput {
+  width: IntQueryOperatorInput
+}
+
+input SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionRepeatThumbnail_descriptionFilterInput {
+  type: StringQueryOperatorInput
+  config: SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionRepeatThumbnail_descriptionConfigFilterInput
+}
+
+input SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionRepeatThumbnail_descriptionConfigFilterInput {
+  single: StringQueryOperatorInput
+  label: StringQueryOperatorInput
+}
+
 input SitePluginPluginOptionsSchemasTerms_and_conditionsFilterInput {
   Main: SitePluginPluginOptionsSchemasTerms_and_conditionsMainFilterInput
 }
@@ -9807,17 +10262,6 @@ input SitePluginPluginOptionsSchemasTerms_and_conditionsMainContentConfigFilterI
   multi: StringQueryOperatorInput
   label: StringQueryOperatorInput
   placeholder: StringQueryOperatorInput
-}
-
-input SitePluginPluginOptionsImageImgixParamsFilterInput {
-  auto: StringQueryOperatorInput
-  fit: StringQueryOperatorInput
-  q: IntQueryOperatorInput
-}
-
-input SitePluginPluginOptionsImagePlaceholderImgixParamsFilterInput {
-  w: IntQueryOperatorInput
-  blur: IntQueryOperatorInput
 }
 
 input SitePluginPackageJsonFilterInput {
@@ -9974,8 +10418,10 @@ enum SitePageFieldsEnum {
   context___chapter
   context___slug
   context___id
-  context___parent__ghId
+  context___uid
+  context____xparams___uid
   context____xparams___parent__ghId
+  context___parent__ghId
   pluginCreator___id
   pluginCreator___parent___id
   pluginCreator___parent___parent___id
@@ -10062,15 +10508,15 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_introspection_json
   pluginCreator___pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
   pluginCreator___pluginOptions___repositoryName
+  pluginCreator___pluginOptions___toolbar
+  pluginCreator___pluginOptions___promptForAccessToken
+  pluginCreator___pluginOptions___apiEndpoint
+  pluginCreator___pluginOptions___lang
   pluginCreator___pluginOptions___imageImgixParams___auto
   pluginCreator___pluginOptions___imageImgixParams___fit
   pluginCreator___pluginOptions___imageImgixParams___q
-  pluginCreator___pluginOptions___apiEndpoint
-  pluginCreator___pluginOptions___lang
   pluginCreator___pluginOptions___imagePlaceholderImgixParams___w
   pluginCreator___pluginOptions___imagePlaceholderImgixParams___blur
-  pluginCreator___pluginOptions___toolbar
-  pluginCreator___pluginOptions___promptForAccessToken
   pluginCreator___pluginOptions___boardToken
   pluginCreator___pluginOptions___includeContent
   pluginCreator___pluginOptions___forceGC
@@ -12975,6 +13421,244 @@ input PrismicTeamContentsSortInput {
   order: [SortOrderEnum] = [ASC]
 }
 
+input PrismicTeamsArticleDataTypeFilterInput {
+  page_meta_description: StringQueryOperatorInput
+  page_meta_image: PrismicTeamsArticleDataPageMetaImageImageTypeFilterInput
+  page_meta_title: StringQueryOperatorInput
+  page_title: PrismicStructuredTextTypeFilterInput
+}
+
+input PrismicTeamsArticleDataPageMetaImageImageTypeFilterInput {
+  alt: StringQueryOperatorInput
+  copyright: StringQueryOperatorInput
+  dimensions: PrismicImageDimensionsTypeFilterInput
+  url: StringQueryOperatorInput
+  fixed: ImgixFixedFilterInput
+  fluid: ImgixFluidFilterInput
+  gatsbyImageData: JSONQueryOperatorInput
+  localFile: FileFilterInput
+}
+
+type PrismicTeamsArticleConnection {
+  totalCount: Int!
+  edges: [PrismicTeamsArticleEdge!]!
+  nodes: [PrismicTeamsArticle!]!
+  pageInfo: PageInfo!
+  distinct(field: PrismicTeamsArticleFieldsEnum!): [String!]!
+  max(field: PrismicTeamsArticleFieldsEnum!): Float
+  min(field: PrismicTeamsArticleFieldsEnum!): Float
+  sum(field: PrismicTeamsArticleFieldsEnum!): Float
+  group(skip: Int, limit: Int, field: PrismicTeamsArticleFieldsEnum!): [PrismicTeamsArticleGroupConnection!]!
+}
+
+type PrismicTeamsArticleEdge {
+  next: PrismicTeamsArticle
+  node: PrismicTeamsArticle!
+  previous: PrismicTeamsArticle
+}
+
+enum PrismicTeamsArticleFieldsEnum {
+  uid
+  data___page_meta_description
+  data___page_meta_image___alt
+  data___page_meta_image___copyright
+  data___page_meta_image___dimensions___width
+  data___page_meta_image___dimensions___height
+  data___page_meta_image___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___fixed___base64 @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___fixed___src @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___fixed___srcSet @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___fixed___srcWebp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___fixed___srcSetWebp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___fixed___sizes @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___fixed___width @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___fixed___height @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___fluid___base64 @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___fluid___src @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___fluid___srcSet @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___fluid___srcWebp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___fluid___srcSetWebp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___fluid___sizes @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___fluid___aspectRatio @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___gatsbyImageData @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___sourceInstanceName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___absolutePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___relativePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___extension @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___size @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___prettySize @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___modifiedTime @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___accessTime @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___changeTime @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___birthTime @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___root @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___dir @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___base @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___ext @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___name @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___relativeDirectory @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___dev @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___mode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___nlink @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___uid @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___gid @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___rdev @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___ino @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___atimeMs @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___mtimeMs @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___ctimeMs @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___atime @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___mtime @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___ctime @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___birthtime @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___birthtimeMs @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___childrenImageSharp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_image___localFile___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___page_meta_title
+  data___page_title___text
+  data___page_title___html
+  data___page_title___raw
+  dataRaw
+  prismicId
+  alternate_languages
+  alternate_languages___id
+  alternate_languages___uid
+  alternate_languages___lang
+  alternate_languages___type
+  alternate_languages___raw
+  first_publication_date
+  href
+  lang
+  last_publication_date
+  tags
+  type
+  url
+  _previewable
+  gatsbyPath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+}
+
+type PrismicTeamsArticleGroupConnection {
+  totalCount: Int!
+  edges: [PrismicTeamsArticleEdge!]!
+  nodes: [PrismicTeamsArticle!]!
+  pageInfo: PageInfo!
+  field: String!
+  fieldValue: String
+}
+
+input PrismicTeamsArticleFilterInput {
+  uid: StringQueryOperatorInput
+  data: PrismicTeamsArticleDataTypeFilterInput
+  dataRaw: JSONQueryOperatorInput
+  prismicId: IDQueryOperatorInput
+  alternate_languages: PrismicAlternateLanguageTypeFilterListInput
+  first_publication_date: DateQueryOperatorInput
+  href: StringQueryOperatorInput
+  lang: StringQueryOperatorInput
+  last_publication_date: DateQueryOperatorInput
+  tags: StringQueryOperatorInput
+  type: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+  _previewable: IDQueryOperatorInput
+  gatsbyPath: StringQueryOperatorInput
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+}
+
+input PrismicTeamsArticleSortInput {
+  fields: [PrismicTeamsArticleFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
+}
+
 input PrismicTermsAndConditionsDataTypeFilterInput {
   content: PrismicStructuredTextTypeFilterInput
   description: StringQueryOperatorInput
@@ -13794,15 +14478,15 @@ enum SitePluginFieldsEnum {
   pluginOptions___emitSchema___src___generated___gatsby_introspection_json
   pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
   pluginOptions___repositoryName
+  pluginOptions___toolbar
+  pluginOptions___promptForAccessToken
+  pluginOptions___apiEndpoint
+  pluginOptions___lang
   pluginOptions___imageImgixParams___auto
   pluginOptions___imageImgixParams___fit
   pluginOptions___imageImgixParams___q
-  pluginOptions___apiEndpoint
-  pluginOptions___lang
   pluginOptions___imagePlaceholderImgixParams___w
   pluginOptions___imagePlaceholderImgixParams___blur
-  pluginOptions___toolbar
-  pluginOptions___promptForAccessToken
   pluginOptions___boardToken
   pluginOptions___includeContent
   pluginOptions___forceGC
@@ -14035,13 +14719,12 @@ type SitePluginPluginOptions {
   emitSchema: SitePluginPluginOptionsEmitSchema
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocuments
   repositoryName: String
-  schemas: SitePluginPluginOptionsSchemas
-  imageImgixParams: SitePluginPluginOptionsImageImgixParams
-  apiEndpoint: String
-  lang: String
-  imagePlaceholderImgixParams: SitePluginPluginOptionsImagePlaceholderImgixParams
   toolbar: String
   promptForAccessToken: Boolean
+  apiEndpoint: String
+  lang: String
+  imageImgixParams: SitePluginPluginOptionsImageImgixParams
+  imagePlaceholderImgixParams: SitePluginPluginOptionsImagePlaceholderImgixParams
   boardToken: String
   includeContent: Boolean
   forceGC: Boolean
@@ -14050,6 +14733,7 @@ type SitePluginPluginOptions {
   allExtensions: Boolean
   isTSX: Boolean
   jsxPragma: String
+  schemas: SitePluginPluginOptionsSchemas
 }
 
 type SitePluginPluginOptionsPolicy {
@@ -14088,6 +14772,17 @@ type SitePluginPluginOptionsEmitPluginDocuments {
   src___generated___gatsby_plugin_documents_graphql: Boolean
 }
 
+type SitePluginPluginOptionsImageImgixParams {
+  auto: String
+  fit: String
+  q: Int
+}
+
+type SitePluginPluginOptionsImagePlaceholderImgixParams {
+  w: Int
+  blur: Int
+}
+
 type SitePluginPluginOptionsSchemas {
   global_contents: SitePluginPluginOptionsSchemasGlobal_contents
   faq: SitePluginPluginOptionsSchemasFaq
@@ -14095,6 +14790,7 @@ type SitePluginPluginOptionsSchemas {
   pay_contents: SitePluginPluginOptionsSchemasPay_contents
   site_navigation: SitePluginPluginOptionsSchemasSite_navigation
   team_contents: SitePluginPluginOptionsSchemasTeam_contents
+  teams_article: SitePluginPluginOptionsSchemasTeams_article
   terms_and_conditions: SitePluginPluginOptionsSchemasTerms_and_conditions
 }
 
@@ -16826,6 +17522,152 @@ type SitePluginPluginOptionsSchemasTeam_contentsMetaTwitter_site_handleConfig {
   placeholder: String
 }
 
+type SitePluginPluginOptionsSchemasTeams_article {
+  Main: SitePluginPluginOptionsSchemasTeams_articleMain
+}
+
+type SitePluginPluginOptionsSchemasTeams_articleMain {
+  uid: SitePluginPluginOptionsSchemasTeams_articleMainUid
+  page_meta_title: SitePluginPluginOptionsSchemasTeams_articleMainPage_meta_title
+  page_meta_description: SitePluginPluginOptionsSchemasTeams_articleMainPage_meta_description
+  page_meta_image: SitePluginPluginOptionsSchemasTeams_articleMainPage_meta_image
+  page_title: SitePluginPluginOptionsSchemasTeams_articleMainPage_title
+  body: SitePluginPluginOptionsSchemasTeams_articleMainBody
+}
+
+type SitePluginPluginOptionsSchemasTeams_articleMainUid {
+  type: String
+  config: SitePluginPluginOptionsSchemasTeams_articleMainUidConfig
+}
+
+type SitePluginPluginOptionsSchemasTeams_articleMainUidConfig {
+  label: String
+  placeholder: String
+}
+
+type SitePluginPluginOptionsSchemasTeams_articleMainPage_meta_title {
+  type: String
+  config: SitePluginPluginOptionsSchemasTeams_articleMainPage_meta_titleConfig
+}
+
+type SitePluginPluginOptionsSchemasTeams_articleMainPage_meta_titleConfig {
+  label: String
+  placeholder: String
+}
+
+type SitePluginPluginOptionsSchemasTeams_articleMainPage_meta_description {
+  type: String
+  config: SitePluginPluginOptionsSchemasTeams_articleMainPage_meta_descriptionConfig
+}
+
+type SitePluginPluginOptionsSchemasTeams_articleMainPage_meta_descriptionConfig {
+  label: String
+  placeholder: String
+}
+
+type SitePluginPluginOptionsSchemasTeams_articleMainPage_meta_image {
+  type: String
+  config: SitePluginPluginOptionsSchemasTeams_articleMainPage_meta_imageConfig
+}
+
+type SitePluginPluginOptionsSchemasTeams_articleMainPage_meta_imageConfig {
+  constraint: SitePluginPluginOptionsSchemasTeams_articleMainPage_meta_imageConfigConstraint
+  label: String
+}
+
+type SitePluginPluginOptionsSchemasTeams_articleMainPage_meta_imageConfigConstraint {
+  width: Int
+  height: Int
+}
+
+type SitePluginPluginOptionsSchemasTeams_articleMainPage_title {
+  type: String
+  config: SitePluginPluginOptionsSchemasTeams_articleMainPage_titleConfig
+}
+
+type SitePluginPluginOptionsSchemasTeams_articleMainPage_titleConfig {
+  single: String
+  label: String
+}
+
+type SitePluginPluginOptionsSchemasTeams_articleMainBody {
+  type: String
+  fieldset: String
+  config: SitePluginPluginOptionsSchemasTeams_articleMainBodyConfig
+}
+
+type SitePluginPluginOptionsSchemasTeams_articleMainBodyConfig {
+  choices: SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoices
+}
+
+type SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoices {
+  article_section: SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_section
+}
+
+type SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_section {
+  type: String
+  fieldset: String
+  description: String
+  icon: String
+  display: String
+  non_repeat: SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionNon_repeat
+  repeat: SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionRepeat
+}
+
+type SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionNon_repeat {
+  title: SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionNon_repeatTitle
+  body_text: SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionNon_repeatBody_text
+}
+
+type SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionNon_repeatTitle {
+  type: String
+  config: SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionNon_repeatTitleConfig
+}
+
+type SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionNon_repeatTitleConfig {
+  single: String
+  label: String
+}
+
+type SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionNon_repeatBody_text {
+  type: String
+  config: SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionNon_repeatBody_textConfig
+}
+
+type SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionNon_repeatBody_textConfig {
+  multi: String
+  label: String
+}
+
+type SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionRepeat {
+  thumbnail_image: SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionRepeatThumbnail_image
+  thumbnail_description: SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionRepeatThumbnail_description
+}
+
+type SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionRepeatThumbnail_image {
+  type: String
+  config: SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionRepeatThumbnail_imageConfig
+}
+
+type SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionRepeatThumbnail_imageConfig {
+  constraint: SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionRepeatThumbnail_imageConfigConstraint
+  label: String
+}
+
+type SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionRepeatThumbnail_imageConfigConstraint {
+  width: Int
+}
+
+type SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionRepeatThumbnail_description {
+  type: String
+  config: SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionRepeatThumbnail_descriptionConfig
+}
+
+type SitePluginPluginOptionsSchemasTeams_articleMainBodyConfigChoicesArticle_sectionRepeatThumbnail_descriptionConfig {
+  single: String
+  label: String
+}
+
 type SitePluginPluginOptionsSchemasTerms_and_conditions {
   Main: SitePluginPluginOptionsSchemasTerms_and_conditionsMain
 }
@@ -16874,17 +17716,6 @@ type SitePluginPluginOptionsSchemasTerms_and_conditionsMainContentConfig {
   multi: String
   label: String
   placeholder: String
-}
-
-type SitePluginPluginOptionsImageImgixParams {
-  auto: String
-  fit: String
-  q: Int
-}
-
-type SitePluginPluginOptionsImagePlaceholderImgixParams {
-  w: Int
-  blur: Int
 }
 
 type SitePluginPackageJson {
