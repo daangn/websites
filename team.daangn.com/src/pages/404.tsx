@@ -12,7 +12,7 @@ import { withPrismicUnpublishedPreview, componentResolverFromMap } from 'gatsby-
 import { defaultRepositoryConfig } from '@karrotmarket/gatsby-theme-prismic/src/defaultRepositoryConfig';
 import { linkResolver } from '@karrotmarket/gatsby-theme-prismic/src/linkResolver';
 
-import TeamsArticlePageTemplate from './articles/{PrismicTeamsArticle.uid}';
+import TeamsArticlePageTemplate from './jobs/article/{PrismicTeamsArticle.uid}';
 
 type NotFoundPageProps = PageProps<GatsbyTypes.NotFoundPageQuery, GatsbyTypes.SitePageContext>;
 
