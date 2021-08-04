@@ -8078,7 +8078,7 @@ gatsby-worker@^0.3.0-next.0:
   dependencies:
     "@babel/core" "^7.14.6"
 
-gatsby@next:
+gatsby@3.12.0-next.0, gatsby@next:
   version "3.12.0-next.0"
   resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-3.12.0-next.0.tgz#e3fd2e3f8c3c61dd0c5cf514278add5243a85762"
   integrity sha512-Th7OqNI/yHapx2+SzHuJeP2Q6QzVSKa2IiTjgvZkHYLyXZezLkSP9JeojVqzuJK79r577uFYkEtbcRk07FngeA==
@@ -13405,7 +13405,7 @@ react-dev-utils@^11.0.3:
     strip-ansi "6.0.0"
     text-table "0.2.0"
 
-react-dom@experimental, react-dom@next:
+react-dom@18.0.0-alpha-6f3fcbd6f-20210730, react-dom@experimental, react-dom@next:
   version "18.0.0-alpha-6f3fcbd6f-20210730"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.0.0-alpha-6f3fcbd6f-20210730.tgz#3cee9fb3614cb69db678fce458e8d83a76456d9c"
   integrity sha512-l2eKBsMM5AAWos4nQrJrXiWduy1gGF4NnTW71B9HeNeGrd4lMZMzKk1+bivTFz8vsyHlaxEL/MLPPnrr+pTElg==
@@ -13512,7 +13512,7 @@ react-swipeable@^6.1.2:
   resolved "https://registry.yarnpkg.com/react-swipeable/-/react-swipeable-6.1.2.tgz#cdaec61e1ea449fe03ccb06f7f6bcddd6a252317"
   integrity sha512-vfZtOZNivwd/aI+ZZH1Grx0eQBdbV1UI3pB9p65jbW5guHHdSIPpKsND6XmaiZXP5REOOc9Ckfr36ChswPqwsA==
 
-react@experimental, react@next:
+react@18.0.0-alpha-6f3fcbd6f-20210730, react@experimental, react@next:
   version "18.0.0-alpha-6f3fcbd6f-20210730"
   resolved "https://registry.yarnpkg.com/react/-/react-18.0.0-alpha-6f3fcbd6f-20210730.tgz#29d9af74e971cfec00c5aafa9238097967db6133"
   integrity sha512-IpdPvJ102RI0bfLoaatkTVnWrlxbDhZkNVQdGIEibY2szTQlkrCnOlUGlICWnSvhczMJ8tB04z1ljF/xEwmflg==
@@ -14113,12 +14113,7 @@ scheduler@0.21.0-alpha-6f3fcbd6f-20210730:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
 
-schema-dts@0.6.0:
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/schema-dts/-/schema-dts-0.6.0.tgz#1700eadcc384d39341e0f90ad15d708504124166"
-  integrity sha512-mYfPlwuIssnlBkqcwalddhJp23grXIlpI9sDBQuTzM46pftdzXGhbMMzwoszuWZHsH5Zki+LVDeMKjTPRWiAlw==
-
-schema-dts@^0.8.3:
+schema-dts@0.6.0, schema-dts@0.8.3, schema-dts@^0.8.3:
   version "0.8.3"
   resolved "https://registry.yarnpkg.com/schema-dts/-/schema-dts-0.8.3.tgz#6c03ca47200e80e9a871d6de626a7cf04fe009b7"
   integrity sha512-GSLeVkUgEe8DzS8/FGWou1wlC8tQ1KXA5amCqCIH/psUzF74fWswtT0QFlSoJLT08CYyixnc3S/lkAm+RExoLQ==
@@ -16398,7 +16393,7 @@ webpack-virtual-modules@^0.3.2:
   dependencies:
     debug "^3.0.0"
 
-webpack@^5.35.0, webpack@^5.36.2:
+webpack@5.36.2, webpack@^5.35.0, webpack@^5.36.2:
   version "5.36.2"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.36.2.tgz#6ef1fb2453ad52faa61e78d486d353d07cca8a0f"
   integrity sha512-XJumVnnGoH2dV+Pk1VwgY4YT6AiMKpVoudUFCNOXMIVrEKPUgEwdIfWPjIuGLESAiS8EdIHX5+TiJz/5JccmRg==
