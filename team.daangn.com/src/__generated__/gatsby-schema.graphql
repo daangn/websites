@@ -5966,6 +5966,38 @@ type PrismicTermsAndConditions implements Node {
 
 union PrismicAllDocumentTypes = PrismicAdsIntro | PrismicFaq | PrismicGlobalContents | PrismicMbtiTestResult | PrismicMbtiIntro | PrismicMbtiTestQuestion | PrismicMemberProfile | PrismicPayContents | PrismicSiteNavigation | PrismicTeamContents | PrismicTeamsArticle | PrismicTermsAndConditions
 
+type GreenhouseJob implements Node {
+  # Returns the first child node of type JobPost or null if there are no children of given type on this node
+  childJobPost: JobPost
+  ghId: String!
+  title: String!
+
+  # URL to public Greenhouse job board UI
+  boardUrl: String!
+  content: String!
+  updatedAt(
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date!
+  metadata: [GreenhouseJobCustomFieldMetadata!]!
+
+  # Returns all children nodes filtered by type JobPost
+  childrenJobPost: [JobPost]
+  id: ID!
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
+}
+
 type JobPost implements Node {
   ghId: String!
   updatedAt(
@@ -6062,39 +6094,6 @@ enum GreenhouseJobCustomFieldType {
   NUMBER_RANGE
 }
 
-type GreenhouseJob implements Node {
-  ghId: String!
-  title: String!
-
-  # URL to public Greenhouse job board UI
-  boardUrl: String!
-  content: String!
-  updatedAt(
-    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
-    formatString: String
-
-    # Returns a string generated with Moment.js' `fromNow` function
-    fromNow: Boolean
-
-    # Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
-    difference: String
-
-    # Configures the locale Moment.js will use to format the date.
-    locale: String
-  ): Date!
-  metadata: [GreenhouseJobCustomFieldMetadata!]!
-
-  # Returns all children nodes filtered by type JobPost
-  childrenJobPost: [JobPost]
-
-  # Returns the first child node of type JobPost or null if there are no children of given type on this node
-  childJobPost: JobPost
-  id: ID!
-  parent: Node
-  children: [Node!]!
-  internal: Internal!
-}
-
 type GreenhouseJobCustomFieldMetadata {
   id: String!
   name: String!
@@ -6163,10 +6162,10 @@ type Query {
   allPrismicTeamsArticle(filter: PrismicTeamsArticleFilterInput, sort: PrismicTeamsArticleSortInput, skip: Int, limit: Int): PrismicTeamsArticleConnection!
   prismicTermsAndConditions(uid: StringQueryOperatorInput, data: PrismicTermsAndConditionsDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, prismicId: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput, _previewable: IDQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): PrismicTermsAndConditions
   allPrismicTermsAndConditions(filter: PrismicTermsAndConditionsFilterInput, sort: PrismicTermsAndConditionsSortInput, skip: Int, limit: Int): PrismicTermsAndConditionsConnection!
+  greenhouseJob(childJobPost: JobPostFilterInput, ghId: StringQueryOperatorInput, title: StringQueryOperatorInput, boardUrl: StringQueryOperatorInput, content: StringQueryOperatorInput, updatedAt: DateQueryOperatorInput, metadata: GreenhouseJobCustomFieldMetadataFilterListInput, childrenJobPost: JobPostFilterListInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): GreenhouseJob
+  allGreenhouseJob(filter: GreenhouseJobFilterInput, sort: GreenhouseJobSortInput, skip: Int, limit: Int): GreenhouseJobConnection!
   jobPost(ghId: StringQueryOperatorInput, updatedAt: DateQueryOperatorInput, validThrough: DateQueryOperatorInput, title: StringQueryOperatorInput, boardUrl: StringQueryOperatorInput, content: JobPostContentSectionFilterListInput, rawContent: StringQueryOperatorInput, corporate: JobCorporateQueryOperatorInput, employmentType: JobEmploymentTypeQueryOperatorInput, alternativeCivilianService: BooleanQueryOperatorInput, priorExperience: JobPriorExperienceQueryOperatorInput, chapter: StringQueryOperatorInput, portfolioRequired: BooleanQueryOperatorInput, keywords: StringQueryOperatorInput, order: IntQueryOperatorInput, tags: StringQueryOperatorInput, slug: StringQueryOperatorInput, absoluteUrl: StringQueryOperatorInput, gatsbyPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): JobPost
   allJobPost(filter: JobPostFilterInput, sort: JobPostSortInput, skip: Int, limit: Int): JobPostConnection!
-  greenhouseJob(ghId: StringQueryOperatorInput, title: StringQueryOperatorInput, boardUrl: StringQueryOperatorInput, content: StringQueryOperatorInput, updatedAt: DateQueryOperatorInput, metadata: GreenhouseJobCustomFieldMetadataFilterListInput, childrenJobPost: JobPostFilterListInput, childJobPost: JobPostFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): GreenhouseJob
-  allGreenhouseJob(filter: GreenhouseJobFilterInput, sort: GreenhouseJobSortInput, skip: Int, limit: Int): GreenhouseJobConnection!
   sitePlugin(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, resolve: StringQueryOperatorInput, name: StringQueryOperatorInput, version: StringQueryOperatorInput, pluginOptions: SitePluginPluginOptionsFilterInput, nodeAPIs: StringQueryOperatorInput, browserAPIs: StringQueryOperatorInput, ssrAPIs: StringQueryOperatorInput, pluginFilepath: StringQueryOperatorInput, packageJson: SitePluginPackageJsonFilterInput): SitePlugin
   allSitePlugin(filter: SitePluginFilterInput, sort: SitePluginSortInput, skip: Int, limit: Int): SitePluginConnection!
   siteBuildMetadata(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, buildTime: DateQueryOperatorInput): SiteBuildMetadata
@@ -13832,6 +13831,32 @@ input PrismicTermsAndConditionsSortInput {
   order: [SortOrderEnum] = [ASC]
 }
 
+input JobPostFilterInput {
+  ghId: StringQueryOperatorInput
+  updatedAt: DateQueryOperatorInput
+  validThrough: DateQueryOperatorInput
+  title: StringQueryOperatorInput
+  boardUrl: StringQueryOperatorInput
+  content: JobPostContentSectionFilterListInput
+  rawContent: StringQueryOperatorInput
+  corporate: JobCorporateQueryOperatorInput
+  employmentType: JobEmploymentTypeQueryOperatorInput
+  alternativeCivilianService: BooleanQueryOperatorInput
+  priorExperience: JobPriorExperienceQueryOperatorInput
+  chapter: StringQueryOperatorInput
+  portfolioRequired: BooleanQueryOperatorInput
+  keywords: StringQueryOperatorInput
+  order: IntQueryOperatorInput
+  tags: StringQueryOperatorInput
+  slug: StringQueryOperatorInput
+  absoluteUrl: StringQueryOperatorInput
+  gatsbyPath: StringQueryOperatorInput
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+}
+
 input JobPostContentSectionFilterListInput {
   elemMatch: JobPostContentSectionFilterInput
 }
@@ -13868,6 +13893,295 @@ input JobPriorExperienceQueryOperatorInput {
   ne: JobPriorExperience
   in: [JobPriorExperience]
   nin: [JobPriorExperience]
+}
+
+input GreenhouseJobCustomFieldMetadataFilterListInput {
+  elemMatch: GreenhouseJobCustomFieldMetadataFilterInput
+}
+
+input GreenhouseJobCustomFieldMetadataFilterInput {
+  id: StringQueryOperatorInput
+  name: StringQueryOperatorInput
+  type: GreenhouseJobCustomFieldTypeQueryOperatorInput
+  value: StringQueryOperatorInput
+}
+
+input GreenhouseJobCustomFieldTypeQueryOperatorInput {
+  eq: GreenhouseJobCustomFieldType
+  ne: GreenhouseJobCustomFieldType
+  in: [GreenhouseJobCustomFieldType]
+  nin: [GreenhouseJobCustomFieldType]
+}
+
+input JobPostFilterListInput {
+  elemMatch: JobPostFilterInput
+}
+
+type GreenhouseJobConnection {
+  totalCount: Int!
+  edges: [GreenhouseJobEdge!]!
+  nodes: [GreenhouseJob!]!
+  pageInfo: PageInfo!
+  distinct(field: GreenhouseJobFieldsEnum!): [String!]!
+  max(field: GreenhouseJobFieldsEnum!): Float
+  min(field: GreenhouseJobFieldsEnum!): Float
+  sum(field: GreenhouseJobFieldsEnum!): Float
+  group(skip: Int, limit: Int, field: GreenhouseJobFieldsEnum!): [GreenhouseJobGroupConnection!]!
+}
+
+type GreenhouseJobEdge {
+  next: GreenhouseJob
+  node: GreenhouseJob!
+  previous: GreenhouseJob
+}
+
+enum GreenhouseJobFieldsEnum {
+  childJobPost___ghId
+  childJobPost___updatedAt
+  childJobPost___validThrough
+  childJobPost___title
+  childJobPost___boardUrl
+  childJobPost___content
+  childJobPost___content___title
+  childJobPost___content___level
+  childJobPost___content___bodyHtml
+  childJobPost___rawContent
+  childJobPost___corporate
+  childJobPost___employmentType
+  childJobPost___alternativeCivilianService
+  childJobPost___priorExperience
+  childJobPost___chapter
+  childJobPost___portfolioRequired
+  childJobPost___keywords
+  childJobPost___order
+  childJobPost___tags
+  childJobPost___slug
+  childJobPost___absoluteUrl
+  childJobPost___gatsbyPath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___parent___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___parent___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___parent___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___parent___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___parent___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___parent___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___parent___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___parent___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___parent___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___parent___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___parent___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___children___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___children___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___children___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___children___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___children___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___children___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___children___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___children___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___children___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___children___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___children___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childJobPost___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  ghId
+  title
+  boardUrl
+  content
+  updatedAt
+  metadata
+  metadata___id
+  metadata___name
+  metadata___type
+  metadata___value
+  childrenJobPost
+  childrenJobPost___ghId
+  childrenJobPost___updatedAt
+  childrenJobPost___validThrough
+  childrenJobPost___title
+  childrenJobPost___boardUrl
+  childrenJobPost___content
+  childrenJobPost___content___title
+  childrenJobPost___content___level
+  childrenJobPost___content___bodyHtml
+  childrenJobPost___rawContent
+  childrenJobPost___corporate
+  childrenJobPost___employmentType
+  childrenJobPost___alternativeCivilianService
+  childrenJobPost___priorExperience
+  childrenJobPost___chapter
+  childrenJobPost___portfolioRequired
+  childrenJobPost___keywords
+  childrenJobPost___order
+  childrenJobPost___tags
+  childrenJobPost___slug
+  childrenJobPost___absoluteUrl
+  childrenJobPost___gatsbyPath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___parent___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___parent___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___parent___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___parent___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___parent___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___parent___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___parent___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___parent___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___parent___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___parent___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___parent___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___children___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___children___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___children___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___children___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___children___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___children___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___children___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___children___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___children___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___children___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___children___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenJobPost___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  id
+  parent___id
+  parent___parent___id
+  parent___parent___parent___id
+  parent___parent___parent___children
+  parent___parent___children
+  parent___parent___children___id
+  parent___parent___children___children
+  parent___parent___internal___content
+  parent___parent___internal___contentDigest
+  parent___parent___internal___description
+  parent___parent___internal___fieldOwners
+  parent___parent___internal___ignoreType
+  parent___parent___internal___mediaType
+  parent___parent___internal___owner
+  parent___parent___internal___type
+  parent___children
+  parent___children___id
+  parent___children___parent___id
+  parent___children___parent___children
+  parent___children___children
+  parent___children___children___id
+  parent___children___children___children
+  parent___children___internal___content
+  parent___children___internal___contentDigest
+  parent___children___internal___description
+  parent___children___internal___fieldOwners
+  parent___children___internal___ignoreType
+  parent___children___internal___mediaType
+  parent___children___internal___owner
+  parent___children___internal___type
+  parent___internal___content
+  parent___internal___contentDigest
+  parent___internal___description
+  parent___internal___fieldOwners
+  parent___internal___ignoreType
+  parent___internal___mediaType
+  parent___internal___owner
+  parent___internal___type
+  children
+  children___id
+  children___parent___id
+  children___parent___parent___id
+  children___parent___parent___children
+  children___parent___children
+  children___parent___children___id
+  children___parent___children___children
+  children___parent___internal___content
+  children___parent___internal___contentDigest
+  children___parent___internal___description
+  children___parent___internal___fieldOwners
+  children___parent___internal___ignoreType
+  children___parent___internal___mediaType
+  children___parent___internal___owner
+  children___parent___internal___type
+  children___children
+  children___children___id
+  children___children___parent___id
+  children___children___parent___children
+  children___children___children
+  children___children___children___id
+  children___children___children___children
+  children___children___internal___content
+  children___children___internal___contentDigest
+  children___children___internal___description
+  children___children___internal___fieldOwners
+  children___children___internal___ignoreType
+  children___children___internal___mediaType
+  children___children___internal___owner
+  children___children___internal___type
+  children___internal___content
+  children___internal___contentDigest
+  children___internal___description
+  children___internal___fieldOwners
+  children___internal___ignoreType
+  children___internal___mediaType
+  children___internal___owner
+  children___internal___type
+  internal___content
+  internal___contentDigest
+  internal___description
+  internal___fieldOwners
+  internal___ignoreType
+  internal___mediaType
+  internal___owner
+  internal___type
+}
+
+type GreenhouseJobGroupConnection {
+  totalCount: Int!
+  edges: [GreenhouseJobEdge!]!
+  nodes: [GreenhouseJob!]!
+  pageInfo: PageInfo!
+  field: String!
+  fieldValue: String
+}
+
+input GreenhouseJobFilterInput {
+  childJobPost: JobPostFilterInput
+  ghId: StringQueryOperatorInput
+  title: StringQueryOperatorInput
+  boardUrl: StringQueryOperatorInput
+  content: StringQueryOperatorInput
+  updatedAt: DateQueryOperatorInput
+  metadata: GreenhouseJobCustomFieldMetadataFilterListInput
+  childrenJobPost: JobPostFilterListInput
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+}
+
+input GreenhouseJobSortInput {
+  fields: [GreenhouseJobFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
 }
 
 type JobPostConnection {
@@ -14008,323 +14322,8 @@ type JobPostGroupConnection {
   fieldValue: String
 }
 
-input JobPostFilterInput {
-  ghId: StringQueryOperatorInput
-  updatedAt: DateQueryOperatorInput
-  validThrough: DateQueryOperatorInput
-  title: StringQueryOperatorInput
-  boardUrl: StringQueryOperatorInput
-  content: JobPostContentSectionFilterListInput
-  rawContent: StringQueryOperatorInput
-  corporate: JobCorporateQueryOperatorInput
-  employmentType: JobEmploymentTypeQueryOperatorInput
-  alternativeCivilianService: BooleanQueryOperatorInput
-  priorExperience: JobPriorExperienceQueryOperatorInput
-  chapter: StringQueryOperatorInput
-  portfolioRequired: BooleanQueryOperatorInput
-  keywords: StringQueryOperatorInput
-  order: IntQueryOperatorInput
-  tags: StringQueryOperatorInput
-  slug: StringQueryOperatorInput
-  absoluteUrl: StringQueryOperatorInput
-  gatsbyPath: StringQueryOperatorInput
-  id: StringQueryOperatorInput
-  parent: NodeFilterInput
-  children: NodeFilterListInput
-  internal: InternalFilterInput
-}
-
 input JobPostSortInput {
   fields: [JobPostFieldsEnum]
-  order: [SortOrderEnum] = [ASC]
-}
-
-input GreenhouseJobCustomFieldMetadataFilterListInput {
-  elemMatch: GreenhouseJobCustomFieldMetadataFilterInput
-}
-
-input GreenhouseJobCustomFieldMetadataFilterInput {
-  id: StringQueryOperatorInput
-  name: StringQueryOperatorInput
-  type: GreenhouseJobCustomFieldTypeQueryOperatorInput
-  value: StringQueryOperatorInput
-}
-
-input GreenhouseJobCustomFieldTypeQueryOperatorInput {
-  eq: GreenhouseJobCustomFieldType
-  ne: GreenhouseJobCustomFieldType
-  in: [GreenhouseJobCustomFieldType]
-  nin: [GreenhouseJobCustomFieldType]
-}
-
-input JobPostFilterListInput {
-  elemMatch: JobPostFilterInput
-}
-
-type GreenhouseJobConnection {
-  totalCount: Int!
-  edges: [GreenhouseJobEdge!]!
-  nodes: [GreenhouseJob!]!
-  pageInfo: PageInfo!
-  distinct(field: GreenhouseJobFieldsEnum!): [String!]!
-  max(field: GreenhouseJobFieldsEnum!): Float
-  min(field: GreenhouseJobFieldsEnum!): Float
-  sum(field: GreenhouseJobFieldsEnum!): Float
-  group(skip: Int, limit: Int, field: GreenhouseJobFieldsEnum!): [GreenhouseJobGroupConnection!]!
-}
-
-type GreenhouseJobEdge {
-  next: GreenhouseJob
-  node: GreenhouseJob!
-  previous: GreenhouseJob
-}
-
-enum GreenhouseJobFieldsEnum {
-  ghId
-  title
-  boardUrl
-  content
-  updatedAt
-  metadata
-  metadata___id
-  metadata___name
-  metadata___type
-  metadata___value
-  childrenJobPost
-  childrenJobPost___ghId
-  childrenJobPost___updatedAt
-  childrenJobPost___validThrough
-  childrenJobPost___title
-  childrenJobPost___boardUrl
-  childrenJobPost___content
-  childrenJobPost___content___title
-  childrenJobPost___content___level
-  childrenJobPost___content___bodyHtml
-  childrenJobPost___rawContent
-  childrenJobPost___corporate
-  childrenJobPost___employmentType
-  childrenJobPost___alternativeCivilianService
-  childrenJobPost___priorExperience
-  childrenJobPost___chapter
-  childrenJobPost___portfolioRequired
-  childrenJobPost___keywords
-  childrenJobPost___order
-  childrenJobPost___tags
-  childrenJobPost___slug
-  childrenJobPost___absoluteUrl
-  childrenJobPost___gatsbyPath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___parent___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___parent___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___parent___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___parent___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___parent___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___parent___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___parent___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___parent___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___parent___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___parent___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___parent___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___children___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___children___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___children___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___children___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___children___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___children___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___children___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___children___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___children___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___children___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___children___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childrenJobPost___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___ghId
-  childJobPost___updatedAt
-  childJobPost___validThrough
-  childJobPost___title
-  childJobPost___boardUrl
-  childJobPost___content
-  childJobPost___content___title
-  childJobPost___content___level
-  childJobPost___content___bodyHtml
-  childJobPost___rawContent
-  childJobPost___corporate
-  childJobPost___employmentType
-  childJobPost___alternativeCivilianService
-  childJobPost___priorExperience
-  childJobPost___chapter
-  childJobPost___portfolioRequired
-  childJobPost___keywords
-  childJobPost___order
-  childJobPost___tags
-  childJobPost___slug
-  childJobPost___absoluteUrl
-  childJobPost___gatsbyPath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___parent___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___parent___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___parent___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___parent___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___parent___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___parent___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___parent___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___parent___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___parent___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___parent___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___parent___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___children___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___children___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___children___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___children___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___children___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___children___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___children___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___children___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___children___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___children___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___children___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childJobPost___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  id
-  parent___id
-  parent___parent___id
-  parent___parent___parent___id
-  parent___parent___parent___children
-  parent___parent___children
-  parent___parent___children___id
-  parent___parent___children___children
-  parent___parent___internal___content
-  parent___parent___internal___contentDigest
-  parent___parent___internal___description
-  parent___parent___internal___fieldOwners
-  parent___parent___internal___ignoreType
-  parent___parent___internal___mediaType
-  parent___parent___internal___owner
-  parent___parent___internal___type
-  parent___children
-  parent___children___id
-  parent___children___parent___id
-  parent___children___parent___children
-  parent___children___children
-  parent___children___children___id
-  parent___children___children___children
-  parent___children___internal___content
-  parent___children___internal___contentDigest
-  parent___children___internal___description
-  parent___children___internal___fieldOwners
-  parent___children___internal___ignoreType
-  parent___children___internal___mediaType
-  parent___children___internal___owner
-  parent___children___internal___type
-  parent___internal___content
-  parent___internal___contentDigest
-  parent___internal___description
-  parent___internal___fieldOwners
-  parent___internal___ignoreType
-  parent___internal___mediaType
-  parent___internal___owner
-  parent___internal___type
-  children
-  children___id
-  children___parent___id
-  children___parent___parent___id
-  children___parent___parent___children
-  children___parent___children
-  children___parent___children___id
-  children___parent___children___children
-  children___parent___internal___content
-  children___parent___internal___contentDigest
-  children___parent___internal___description
-  children___parent___internal___fieldOwners
-  children___parent___internal___ignoreType
-  children___parent___internal___mediaType
-  children___parent___internal___owner
-  children___parent___internal___type
-  children___children
-  children___children___id
-  children___children___parent___id
-  children___children___parent___children
-  children___children___children
-  children___children___children___id
-  children___children___children___children
-  children___children___internal___content
-  children___children___internal___contentDigest
-  children___children___internal___description
-  children___children___internal___fieldOwners
-  children___children___internal___ignoreType
-  children___children___internal___mediaType
-  children___children___internal___owner
-  children___children___internal___type
-  children___internal___content
-  children___internal___contentDigest
-  children___internal___description
-  children___internal___fieldOwners
-  children___internal___ignoreType
-  children___internal___mediaType
-  children___internal___owner
-  children___internal___type
-  internal___content
-  internal___contentDigest
-  internal___description
-  internal___fieldOwners
-  internal___ignoreType
-  internal___mediaType
-  internal___owner
-  internal___type
-}
-
-type GreenhouseJobGroupConnection {
-  totalCount: Int!
-  edges: [GreenhouseJobEdge!]!
-  nodes: [GreenhouseJob!]!
-  pageInfo: PageInfo!
-  field: String!
-  fieldValue: String
-}
-
-input GreenhouseJobFilterInput {
-  ghId: StringQueryOperatorInput
-  title: StringQueryOperatorInput
-  boardUrl: StringQueryOperatorInput
-  content: StringQueryOperatorInput
-  updatedAt: DateQueryOperatorInput
-  metadata: GreenhouseJobCustomFieldMetadataFilterListInput
-  childrenJobPost: JobPostFilterListInput
-  childJobPost: JobPostFilterInput
-  id: StringQueryOperatorInput
-  parent: NodeFilterInput
-  children: NodeFilterListInput
-  internal: InternalFilterInput
-}
-
-input GreenhouseJobSortInput {
-  fields: [GreenhouseJobFieldsEnum]
   order: [SortOrderEnum] = [ASC]
 }
 
