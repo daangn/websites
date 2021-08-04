@@ -1,5 +1,6 @@
 import * as React from 'react';
 import type { PageProps } from 'gatsby';
+import { navigate } from 'gatsby';
 import { rem } from 'polished';
 import { motion, AnimateSharedLayout } from 'framer-motion';
 import { graphql, Link } from 'gatsby';
@@ -13,6 +14,7 @@ import { useLocation } from '@reach/router';
 import _PageTitle from '~/components/PageTitle';
 import JobPostingJsonLd from '~/components/JobPostingJsonLd';
 import logoPath from '~/assets/logo.png';
+import { ReactComponent as BackwardSvg } from '~/assets/backwardOutlineM.svg';
 
 type JobPostLayoutProps = OverrideProps<
   PageProps<GatsbyTypes.JobPostLayout_queryFragment>,
@@ -79,6 +81,24 @@ const PageTitle = styled(_PageTitle, {
     },
   },
 });
+
+const PreviousLink = styled(Link, {
+  display: 'inline-block',
+  color: '$gray900',
+  width: rem(36),
+  height: rem(36),
+  cursor: 'pointer',
+  marginBottom: rem(20),
+
+  transition: 'opacity 0.2s ease-in-out',
+  '&:hover': {
+    opacity: 0.64,
+  },
+
+  '@sm': {
+    marginBottom: rem(36)
+  },
+})
 
 const PropertyList = styled('ul', {
   display: 'flex',
@@ -250,6 +270,18 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
           }
         ]}
       />
+      <PreviousLink 
+        aria-label="목록으로 돌아가기"
+        to="/jobs/"
+        onClick={e => {
+          if (window.history.state['fromList']) {
+            e.preventDefault();
+            navigate(-1);
+          }
+        }} 
+      >
+        <BackwardSvg />
+      </PreviousLink>
       <PageTitle size={{ '@sm': 'sm' }}>
         {jobPost.title}
       </PageTitle>
