@@ -276,7 +276,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
         ]}
       />
       <PreviousLink 
-        aria-label="뒤로가기"
+        aria-label="목록으로 돌아가기"
         to="/jobs/"
         size={{ '@sm': 'sm' }} 
         onClick={(e) => {
