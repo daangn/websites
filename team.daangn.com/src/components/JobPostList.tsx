@@ -79,7 +79,7 @@ const JobPostList: React.FC<JobPostListProps> = ({
             {filteredJobPosts.map(jobPost => (
               <FadeInWhenVisible key={jobPost.id}>
                 <JobPostListItem>
-                  <JobPostLink to={jobPost.pagePath!}>
+                  <JobPostLink to={jobPost.pagePath!} state={{ fromList: true }}>
                     <JobPostSummary jobPost={jobPost} />
                   </JobPostLink>
                 </JobPostListItem>

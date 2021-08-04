@@ -1,11 +1,13 @@
 import * as React from 'react';
 import type { PageProps } from 'gatsby';
-import { graphql } from 'gatsby';
+import { graphql, navigate } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { rem } from 'polished';
 import { required } from '@cometjs/core';
+import { useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
 
 import Button from '~/components/Button';
+import ArrowLink from '~/components/ArrowLink';
 import JobPostContentSection from '~/components/JobPostContentSection';
 
 type JobPostPageProps = PageProps<GatsbyTypes.JobPostPageQuery, GatsbyTypes.SitePageContext>;
@@ -24,10 +26,11 @@ export const query = graphql`
 `;
 
 const Container = styled('div', {
+  display: 'grid',
+  gap: rem(56),
 });
 
 const ContentWrapper = styled('article', {
-  gridArea: 'content',
 });
 
 const ButtonContainer = styled('div', {
@@ -43,7 +46,10 @@ const ButtonContainer = styled('div', {
 const JobPostPage: React.FC<JobPostPageProps> = ({
   data,
 }) => {
+  const parseLink = useLinkParser();
+
   required(data.jobPost);
+
   return (
     <Container>
       <ContentWrapper>
@@ -66,6 +72,21 @@ const JobPostPage: React.FC<JobPostPageProps> = ({
           자주 묻는 질문
         </Button>
       </ButtonContainer>
+      <ArrowLink
+        link={parseLink('#')}
+        direction="backward"
+        onClick={e => {
+          e.preventDefault();
+
+          if (window.history.state['fromList']) {
+            navigate(-1);
+          } else {
+            navigate('/jobs/');
+          }
+        }}
+      >
+        목록으로 돌아가기
+      </ArrowLink>
     </Container>
   );
 };
