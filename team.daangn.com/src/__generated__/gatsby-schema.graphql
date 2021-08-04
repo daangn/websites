@@ -7190,6 +7190,11 @@ input SitePluginPluginOptionsFilterInput {
   include_favicon: BooleanQueryOperatorInput
   cacheDigest: StringQueryOperatorInput
   exclude: StringQueryOperatorInput
+  output: StringQueryOperatorInput
+  excludes: StringQueryOperatorInput
+  createLinkInHead: BooleanQueryOperatorInput
+  entryLimit: IntQueryOperatorInput
+  query: StringQueryOperatorInput
   sitemap: StringQueryOperatorInput
   policy: SitePluginPluginOptionsPolicyFilterListInput
   id: StringQueryOperatorInput
@@ -7213,12 +7218,13 @@ input SitePluginPluginOptionsFilterInput {
   emitSchema: SitePluginPluginOptionsEmitSchemaFilterInput
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocumentsFilterInput
   repositoryName: StringQueryOperatorInput
-  toolbar: StringQueryOperatorInput
-  promptForAccessToken: BooleanQueryOperatorInput
+  schemas: SitePluginPluginOptionsSchemasFilterInput
+  imageImgixParams: SitePluginPluginOptionsImageImgixParamsFilterInput
   apiEndpoint: StringQueryOperatorInput
   lang: StringQueryOperatorInput
-  imageImgixParams: SitePluginPluginOptionsImageImgixParamsFilterInput
   imagePlaceholderImgixParams: SitePluginPluginOptionsImagePlaceholderImgixParamsFilterInput
+  toolbar: StringQueryOperatorInput
+  promptForAccessToken: BooleanQueryOperatorInput
   boardToken: StringQueryOperatorInput
   includeContent: BooleanQueryOperatorInput
   forceGC: BooleanQueryOperatorInput
@@ -7227,7 +7233,6 @@ input SitePluginPluginOptionsFilterInput {
   allExtensions: BooleanQueryOperatorInput
   isTSX: BooleanQueryOperatorInput
   jsxPragma: StringQueryOperatorInput
-  schemas: SitePluginPluginOptionsSchemasFilterInput
 }
 
 input SitePluginPluginOptionsPolicyFilterListInput {
@@ -7268,17 +7273,6 @@ input SitePluginPluginOptionsEmitSchemaFilterInput {
 
 input SitePluginPluginOptionsEmitPluginDocumentsFilterInput {
   src___generated___gatsby_plugin_documents_graphql: BooleanQueryOperatorInput
-}
-
-input SitePluginPluginOptionsImageImgixParamsFilterInput {
-  auto: StringQueryOperatorInput
-  fit: StringQueryOperatorInput
-  q: IntQueryOperatorInput
-}
-
-input SitePluginPluginOptionsImagePlaceholderImgixParamsFilterInput {
-  w: IntQueryOperatorInput
-  blur: IntQueryOperatorInput
 }
 
 input SitePluginPluginOptionsSchemasFilterInput {
@@ -10260,6 +10254,17 @@ input SitePluginPluginOptionsSchemasTerms_and_conditionsMainContentConfigFilterI
   placeholder: StringQueryOperatorInput
 }
 
+input SitePluginPluginOptionsImageImgixParamsFilterInput {
+  auto: StringQueryOperatorInput
+  fit: StringQueryOperatorInput
+  q: IntQueryOperatorInput
+}
+
+input SitePluginPluginOptionsImagePlaceholderImgixParamsFilterInput {
+  w: IntQueryOperatorInput
+  blur: IntQueryOperatorInput
+}
+
 input SitePluginPackageJsonFilterInput {
   name: StringQueryOperatorInput
   description: StringQueryOperatorInput
@@ -10471,6 +10476,11 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___include_favicon
   pluginCreator___pluginOptions___cacheDigest
   pluginCreator___pluginOptions___exclude
+  pluginCreator___pluginOptions___output
+  pluginCreator___pluginOptions___excludes
+  pluginCreator___pluginOptions___createLinkInHead
+  pluginCreator___pluginOptions___entryLimit
+  pluginCreator___pluginOptions___query
   pluginCreator___pluginOptions___sitemap
   pluginCreator___pluginOptions___policy
   pluginCreator___pluginOptions___policy___userAgent
@@ -10502,15 +10512,15 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_introspection_json
   pluginCreator___pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
   pluginCreator___pluginOptions___repositoryName
-  pluginCreator___pluginOptions___toolbar
-  pluginCreator___pluginOptions___promptForAccessToken
-  pluginCreator___pluginOptions___apiEndpoint
-  pluginCreator___pluginOptions___lang
   pluginCreator___pluginOptions___imageImgixParams___auto
   pluginCreator___pluginOptions___imageImgixParams___fit
   pluginCreator___pluginOptions___imageImgixParams___q
+  pluginCreator___pluginOptions___apiEndpoint
+  pluginCreator___pluginOptions___lang
   pluginCreator___pluginOptions___imagePlaceholderImgixParams___w
   pluginCreator___pluginOptions___imagePlaceholderImgixParams___blur
+  pluginCreator___pluginOptions___toolbar
+  pluginCreator___pluginOptions___promptForAccessToken
   pluginCreator___pluginOptions___boardToken
   pluginCreator___pluginOptions___includeContent
   pluginCreator___pluginOptions___forceGC
@@ -14440,6 +14450,11 @@ enum SitePluginFieldsEnum {
   pluginOptions___include_favicon
   pluginOptions___cacheDigest
   pluginOptions___exclude
+  pluginOptions___output
+  pluginOptions___excludes
+  pluginOptions___createLinkInHead
+  pluginOptions___entryLimit
+  pluginOptions___query
   pluginOptions___sitemap
   pluginOptions___policy
   pluginOptions___policy___userAgent
@@ -14472,15 +14487,15 @@ enum SitePluginFieldsEnum {
   pluginOptions___emitSchema___src___generated___gatsby_introspection_json
   pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
   pluginOptions___repositoryName
-  pluginOptions___toolbar
-  pluginOptions___promptForAccessToken
-  pluginOptions___apiEndpoint
-  pluginOptions___lang
   pluginOptions___imageImgixParams___auto
   pluginOptions___imageImgixParams___fit
   pluginOptions___imageImgixParams___q
+  pluginOptions___apiEndpoint
+  pluginOptions___lang
   pluginOptions___imagePlaceholderImgixParams___w
   pluginOptions___imagePlaceholderImgixParams___blur
+  pluginOptions___toolbar
+  pluginOptions___promptForAccessToken
   pluginOptions___boardToken
   pluginOptions___includeContent
   pluginOptions___forceGC
@@ -14690,6 +14705,11 @@ type SitePluginPluginOptions {
   include_favicon: Boolean
   cacheDigest: String
   exclude: [String]
+  output: String
+  excludes: [String]
+  createLinkInHead: Boolean
+  entryLimit: Int
+  query: String
   sitemap: String
   policy: [SitePluginPluginOptionsPolicy]
   id: String
@@ -14713,12 +14733,13 @@ type SitePluginPluginOptions {
   emitSchema: SitePluginPluginOptionsEmitSchema
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocuments
   repositoryName: String
-  toolbar: String
-  promptForAccessToken: Boolean
+  schemas: SitePluginPluginOptionsSchemas
+  imageImgixParams: SitePluginPluginOptionsImageImgixParams
   apiEndpoint: String
   lang: String
-  imageImgixParams: SitePluginPluginOptionsImageImgixParams
   imagePlaceholderImgixParams: SitePluginPluginOptionsImagePlaceholderImgixParams
+  toolbar: String
+  promptForAccessToken: Boolean
   boardToken: String
   includeContent: Boolean
   forceGC: Boolean
@@ -14727,7 +14748,6 @@ type SitePluginPluginOptions {
   allExtensions: Boolean
   isTSX: Boolean
   jsxPragma: String
-  schemas: SitePluginPluginOptionsSchemas
 }
 
 type SitePluginPluginOptionsPolicy {
@@ -14764,17 +14784,6 @@ type SitePluginPluginOptionsEmitSchema {
 
 type SitePluginPluginOptionsEmitPluginDocuments {
   src___generated___gatsby_plugin_documents_graphql: Boolean
-}
-
-type SitePluginPluginOptionsImageImgixParams {
-  auto: String
-  fit: String
-  q: Int
-}
-
-type SitePluginPluginOptionsImagePlaceholderImgixParams {
-  w: Int
-  blur: Int
 }
 
 type SitePluginPluginOptionsSchemas {
@@ -17710,6 +17719,17 @@ type SitePluginPluginOptionsSchemasTerms_and_conditionsMainContentConfig {
   multi: String
   label: String
   placeholder: String
+}
+
+type SitePluginPluginOptionsImageImgixParams {
+  auto: String
+  fit: String
+  q: Int
+}
+
+type SitePluginPluginOptionsImagePlaceholderImgixParams {
+  w: Int
+  blur: Int
 }
 
 type SitePluginPackageJson {
