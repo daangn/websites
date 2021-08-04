@@ -15,7 +15,9 @@ export const query = graphql`
 `;
 
 const Container = styled('section', {
-  marginBottom: rem(56),
+  '&:not(:last-child)': {
+    marginBottom: rem(56),
+  }
 });
 
 const Title = styled('h3', {
