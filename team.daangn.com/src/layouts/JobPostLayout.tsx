@@ -1,5 +1,6 @@
 import * as React from 'react';
 import type { PageProps } from 'gatsby';
+import { navigate } from 'gatsby';
 import { rem } from 'polished';
 import { motion, AnimateSharedLayout } from 'framer-motion';
 import { graphql, Link } from 'gatsby';
@@ -13,6 +14,7 @@ import { useLocation } from '@reach/router';
 import _PageTitle from '~/components/PageTitle';
 import JobPostingJsonLd from '~/components/JobPostingJsonLd';
 import logoPath from '~/assets/logo.png';
+import backwardSvgUrl from '~/assets/backwardOutlineM.svg';
 
 type JobPostLayoutProps = OverrideProps<
   PageProps<GatsbyTypes.JobPostLayout_queryFragment>,
@@ -79,6 +81,29 @@ const PageTitle = styled(_PageTitle, {
     },
   },
 });
+
+const PreviousLink = styled(Link, {
+  marginBottom: rem(20),
+
+  display: 'inline-block',
+  width: rem(36),
+  height: rem(36),
+  background: `url(${backwardSvgUrl})`,
+  cursor: 'pointer',
+
+  transition: 'opacity 0.2s ease-in-out',
+  '&:hover': {
+    opacity: 0.64,
+  },
+
+  variants: {
+    size: {
+      sm: {
+        marginBottom: rem(36)
+      },
+    },
+  },
+})
 
 const PropertyList = styled('ul', {
   display: 'flex',
@@ -249,6 +274,17 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
             streetAddress: '강남대로 465, 교보타워 11층',
           }
         ]}
+      />
+      <PreviousLink 
+        aria-label="뒤로가기"
+        to="/jobs/"
+        size={{ '@sm': 'sm' }} 
+        onClick={(e) => {
+          if (window.history.state['fromList']) {
+            e.preventDefault();
+            navigate(-1);
+          }
+        }} 
       />
       <PageTitle size={{ '@sm': 'sm' }}>
         {jobPost.title}
