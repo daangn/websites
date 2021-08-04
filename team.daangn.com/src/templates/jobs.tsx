@@ -145,30 +145,29 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
 }) => {
   const siteOrigin = useSiteOrigin();
 
-  const [filterChapter, setFilterChapter] = React.useState(pageContext.chapter || '');
   const [filterEmploymentType, setFilterEmploymentType] = React.useState('');
-
-  React.useEffect(() => {
-    const selectedChapterGroup = data.allJobPost.allChapter
-      .find(chapterGroup => chapterGroup.nodes[0]?.chapter === filterChapter);
-
-    if (selectedChapterGroup) {
-      const { slug } = selectedChapterGroup.nodes[0];
-      navigate(`/jobs/${slug}/${window.location.search}`);
-    } else {
-      navigate(`/jobs/${window.location.search}`);
-    }
-  }, [filterChapter]);
 
   required(data.prismicTeamContents?.data);
 
   const metaTitleBase = data.prismicTeamContents.data.jobs_page_meta_title || '당근마켓 채용';
-  const metaTitle = filterChapter
-    ? `${filterChapter} 채용 | ${metaTitleBase}`
+  const metaTitle = pageContext.chapter
+    ? `${pageContext.chapter} 채용 | ${metaTitleBase}`
     : metaTitleBase;
 
   const metaDescription = data.prismicTeamContents.data.jobs_page_meta_description;
   const metaImage = data.prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
+
+  const onFilterChange: React.ChangeEventHandler<HTMLSelectElement> = (e) => {
+    const selectedChapterGroup = data.allJobPost.allChapter
+      .find(chapterGroup => chapterGroup.nodes[0]?.chapter === e.target.value);
+
+      if (selectedChapterGroup) {
+        const { slug } = selectedChapterGroup.nodes[0];
+        navigate(`/jobs/${slug}/${window.location.search}`);
+      } else {
+        navigate(`/jobs/${window.location.search}`);
+      }
+  }
 
   return (
     <Container>
@@ -203,7 +202,7 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
         <Filters>
           <Select
             defaultValue={pageContext.chapter || ''}
-            onChange={e => setFilterChapter(e.target.value)}
+            onChange={onFilterChange}
           >
             <option
               key=""
