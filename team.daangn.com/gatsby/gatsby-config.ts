@@ -50,6 +50,21 @@ const config: GatsbyConfig = {
       },
     },
     {
+      resolve: 'gatsby-plugin-sitemap',
+      options: {
+        output: '/plain-sitemap',
+        excludes: [
+          '/dev-404-page/',
+          '/404/',
+          '/404.html',
+          '/offline-plugin-app-shell-fallback/',
+          '/preview/',
+          '/completed/',
+          '/jobs/*/apply/',
+        ],
+      },
+    },
+    {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
         host: null,
