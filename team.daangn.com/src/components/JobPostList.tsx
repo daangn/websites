@@ -2,27 +2,30 @@ import * as React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { graphql, Link } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { Condition } from '@cometjs/core';
 
 import JobPostSummary from './JobPostSummary';
 import FadeInWhenVisible from './FadeInWhenVisible';
 import EmptyPlaceholder from './jobPostList/EmptyPlaceholder';
 
 type JobPostListProps = {
-  jobPosts: GatsbyTypes.JobPostList_jobPostsFragment,
+  jobs: GatsbyTypes.JobPostList_jobPostsFragment,
   className?: string,
   filterChapter?: string,
   filterEmploymentType?: string,
 };
 
 export const query = graphql`
-  fragment JobPostList_jobPosts on JobPostConnection {
+  fragment JobPostList_jobs on GreenhouseJobConnection {
     nodes {
-      id
-      pagePath: gatsbyPath(filePath: "/jobs/{JobPost.parent__(GreenhouseJob)__ghId}")
-      chapter
-      order
-      employmentType
-      ...JobPostSummary_jobPost
+      childJobPost {
+        id
+        pagePath: gatsbyPath(filePath: "/jobs/{JobPost.parent__(GreenhouseJob)__ghId}")
+        chapter
+        order
+        employmentType
+        ...JobPostSummary_jobPost
+      }
     }
   }
 `;
@@ -52,14 +55,17 @@ const JobPostListItem = styled('li', {
 });
 
 const JobPostList: React.FC<JobPostListProps> = ({
-  jobPosts,
+  jobs,
   className,
   filterChapter = '',
   filterEmploymentType = '',
 }) => {
-  const orderedJobPosts = React.useMemo(() => {
-    return Array.from(jobPosts.nodes).sort((a, b) => b.order - a.order);
-  }, [jobPosts]);
+  const jobPosts = jobs.nodes
+    .map(job => job.childJobPost)
+    .filter(Condition.isTruthy);
+
+  const orderedJobPosts = jobPosts 
+    .sort((a, b) => b.order - a.order);
 
   const filteredJobPosts = orderedJobPosts
     .filter(jobPost => {
@@ -94,4 +100,4 @@ const JobPostList: React.FC<JobPostListProps> = ({
   );
 };
 
-export default JobPostList;
+export default React.memo(JobPostList);

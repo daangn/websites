@@ -16,6 +16,11 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
   const gql = String.raw;
 
   actions.createTypes(gql`
+    # 이건 assertion이 안되네
+    type GreenhouseJob implements Node {
+      childJobPost: JobPost!
+    }
+
     type JobPost implements Node
       @dontInfer
       @childOf(types: ["GreenhouseJob"])

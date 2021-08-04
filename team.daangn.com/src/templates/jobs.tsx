@@ -43,41 +43,52 @@ export const query = graphql`
       }
     }
 
-    currentJobPosts: allJobPost(
+    currentGreenhouseJobs: allGreenhouseJob(
       filter: {
-        slug: { regex: $pattern }
+        childJobPost: {
+          slug: { regex: $pattern }
+        }
       }
       sort: {
-        fields: title
+        fields: childJobPost___title
         order: ASC
       }
     ) {
-      ...JobPostList_jobPosts
+      ...JobPostList_jobs
 
       # Command E 인덱싱용 ㅎㅎ..
       nodes {
-        absoluteUrl
+        childJobPost {
+          absoluteUrl
+        }
       }
     }
 
-    allJobPost(
+    allGreenhouseJob(
       sort: {
-        fields: title
+        fields: childJobPost___title
         order: ASC
       }
     ) {
       totalCount
 
-      allChapter: group(field: chapter, limit: 1) {
+      allChapter: group(
+        field: childJobPost___chapter,
+        limit: 1
+      ) {
         fieldValue
         totalCount
         nodes {
-          chapter
-          slug
+          childJobPost {
+            chapter
+            slug
+          }
         }
       }
 
-      allEmploymentType: group(field: employmentType) {
+      allEmploymentType: group(
+        field: childJobPost___employmentType
+      ) {
         fieldValue
       }
     }
@@ -159,11 +170,13 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
 
   const onFilterChange: React.ChangeEventHandler<HTMLSelectElement> = (e) => {
     const selectedChapterGroup = data.allJobPost.allChapter
-      .find(chapterGroup => chapterGroup.nodes[0]?.chapter === e.target.value);
+      .find(chapterGroup => chapterGroup.nodes[0]?.childJobPost?.chapter === e.target.value);
 
       if (selectedChapterGroup) {
-        const { slug } = selectedChapterGroup.nodes[0];
-        navigate(`/jobs/${slug}/${window.location.search}`);
+        const { slug } = selectedChapterGroup.nodes[0] ?? {};
+        if (slug) {
+          navigate(`/jobs/${slug}/${window.location.search}`);
+        }
       } else {
         navigate(`/jobs/${window.location.search}`);
       }
@@ -208,9 +221,9 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
               key=""
               value=""
             >
-              {`전체 직군 (${data.allJobPost.totalCount})`}
+              {`전체 직군 (${data.allGreenhouseJob.totalCount})`}
             </option>
-            {data.allJobPost.allChapter
+            {data.allGreenhouseJob.allChapter
             .map(chapterGroup => {
               return (
                 <option
@@ -233,7 +246,7 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
           </Select>
         </Filters>
         <JobPostList
-          jobPosts={data.currentJobPosts}
+          jobs={data.currentGreenhouseJobs}
           filterEmploymentType={filterEmploymentType}
         />
       </Content>
