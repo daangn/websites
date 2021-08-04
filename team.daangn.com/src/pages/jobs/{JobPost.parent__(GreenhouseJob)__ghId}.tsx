@@ -73,15 +73,12 @@ const JobPostPage: React.FC<JobPostPageProps> = ({
         </Button>
       </ButtonContainer>
       <ArrowLink
-        link={parseLink('#')}
+        link={parseLink('/jobs/')}
         direction="backward"
         onClick={e => {
-          e.preventDefault();
-
           if (window.history.state['fromList']) {
+            e.preventDefault();
             navigate(-1);
-          } else {
-            navigate('/jobs/');
           }
         }}
       >
