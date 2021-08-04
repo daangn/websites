@@ -169,11 +169,11 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
   const metaImage = data.prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
 
   const onFilterChange: React.ChangeEventHandler<HTMLSelectElement> = (e) => {
-    const selectedChapterGroup = data.allJobPost.allChapter
+    const selectedChapterGroup = data.allGreenhouseJob.allChapter
       .find(chapterGroup => chapterGroup.nodes[0]?.childJobPost?.chapter === e.target.value);
 
       if (selectedChapterGroup) {
-        const { slug } = selectedChapterGroup.nodes[0] ?? {};
+        const { slug } = selectedChapterGroup.nodes[0]?.childJobPost ?? {};
         if (slug) {
           navigate(`/jobs/${slug}/${window.location.search}`);
         }
