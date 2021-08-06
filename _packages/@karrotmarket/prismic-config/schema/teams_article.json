@@ -43,14 +43,13 @@
       "type": "Slices",
       "fieldset": "Slice zone",
       "config": {
-        "labels": null,
+        "labels": {},
         "choices": {
           "article_section": {
             "type": "Slice",
             "fieldset": "Article Section",
             "description": "게시글 섹션",
             "icon": "subtitles",
-            "display": "list",
             "non-repeat": {
               "title": {
                 "type": "StructuredText",
@@ -62,7 +61,7 @@
               "body_text": {
                 "type": "StructuredText",
                 "config": {
-                  "multi": "paragraph, strong, em, hyperlink",
+                  "multi": "paragraph, strong, em, hyperlink, list-item, o-list-item",
                   "label": "섹션 내용"
                 }
               }
@@ -81,7 +80,7 @@
               "thumbnail_description": {
                 "type": "StructuredText",
                 "config": {
-                  "single": "paragraph, strong, em, hyperlink",
+                  "single": "paragraph,strong,em,hyperlink",
                   "label": "섬네일 설명"
                 }
               }
