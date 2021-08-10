@@ -161,35 +161,44 @@ export const { styled, css, global, getCssString, theme, media, utils } =
        * Flex.tsx
        */
       row: (_config) => () => ({
+        display: "flex",
         flexDirection: "row",
       }),
       column: (_config) => () => ({
+        display: "flex",
         flexDirection: "column",
       }),
       jc: (_config) => (value) => ({
+        display: "flex",
         justifyContent: value,
       }),
       ai: (_config) => (value) => ({
+        display: "flex",
         alignItems: value,
       }),
       center: (_config) => () => ({
+        display: "flex",
         justifyContent: "center",
         alignItems: "center",
       }),
       rowCenterX: (_config) => () => ({
+        display: "flex",
         flexDirection: "row",
         justifyContent: "center",
       }),
       rowCenterY: (_config) => () => ({
+        display: "flex",
         flexDirection: "row",
         alignItems: "center",
       }),
 
       colCenterX: (_config) => () => ({
+        display: "flex",
         flexDirection: "column",
         alignItems: "center",
       }),
       colCenterY: (_config) => () => ({
+        display: "flex",
         flexDirection: "column",
         justifyContent: "center",
       }),

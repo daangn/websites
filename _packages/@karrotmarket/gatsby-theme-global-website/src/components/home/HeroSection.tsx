@@ -50,16 +50,15 @@ const HeroSection: React.FC<HeroSectionProps> = ({ content, links }) => {
 
   return (
     <Section css={{ background: background_color }}>
-      <HeroSectionBackground></HeroSectionBackground>
+      <HeroSectionBackground />
       <Container>
-        <Flex colCenterY>
+        <LeftContainer>
           <Title dangerouslySetInnerHTML={{ __html: title?.html }} />
-          <Space h={{ "@i": 0, "@md": 36 }}></Space>
           <AppLink theme="primary" type="desktop" links={links}></AppLink>
-        </Flex>
-        <Flex ai="flex-end" jc="center" flex={1}>
-          <PhoneMockupHome></PhoneMockupHome>
-        </Flex>
+        </LeftContainer>
+        <RightContainer>
+          <PhoneMockupHome />
+        </RightContainer>
       </Container>
     </Section>
   );
@@ -93,11 +92,29 @@ const Container = styled("div", {
   },
 });
 
+const LeftContainer = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+});
+
+const RightContainer = styled("div", {
+  display: "flex",
+  alignItems: "flex-end",
+  justifyContent: "center",
+  flex: 1,
+});
+
 const Title = styled("div", {
+  marginBottom: rem(0),
+  "@md": {
+    marginBottom: rem(36),
+  },
   "*": {
     fontSize: rem(32),
     lineHeight: "120%",
     marginTop: rem(82),
+
     "@md": {
       fontSize: "$heading1",
       lineHeight: "$heading1",

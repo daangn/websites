@@ -25,14 +25,14 @@ const Ratings: React.FC<RatingProps> = ({ ratings }) => {
     >
       <Title>Feedback</Title>
       {ratings.map((rating, i) => (
-        <Flex key={i}>
+        <Container>
           <Count>
             <GroupIcon width={em(21)} height={em(21)}></GroupIcon>
             <span>{rating.count}</span>
           </Count>
 
           <Comment>{rating.comment}</Comment>
-        </Flex>
+        </Container>
       ))}
     </Wrapper>
   );
@@ -56,6 +56,10 @@ const Title = styled("div", {
   fontWeight: "bold",
   marginRight: em(6),
   marginBottom: em(24),
+});
+
+const Container = styled("div", {
+  display: "flex",
 });
 
 const Comment = styled("div", {

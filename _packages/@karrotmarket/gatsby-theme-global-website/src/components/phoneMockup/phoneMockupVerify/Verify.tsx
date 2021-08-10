@@ -76,8 +76,7 @@ const Verify: React.FC<VerifyProps> = ({ mapImage, buttonText, location }) => {
           }}
         >
           <CheckIcon width={em(18)} height={em(14)}></CheckIcon>
-          <Space w={em(6)}></Space>
-          {buttonText}
+          <ButtonText>{buttonText}</ButtonText>
         </Button>
       </BottomSection>
     </Wrapper>
@@ -123,6 +122,9 @@ const Button = styled(motion.button, {
   border: "none",
   fontSize: em(16),
   fontWeight: "bold",
+});
+const ButtonText = styled(motion.div, {
+  marginLeft: em(6),
 });
 const BottomSection = styled(motion.div, {
   padding: em(20),

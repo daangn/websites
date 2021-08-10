@@ -11,14 +11,25 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ name, temperature, info }) => (
-  <Flex column>
-    <Flex rowCenterY>
+  <Wrapper>
+    <Container>
       <UserName>{name}</UserName>
       <UserTemperature>{temperature}</UserTemperature>
-    </Flex>
+    </Container>
     <Info>{info}</Info>
-  </Flex>
+  </Wrapper>
 );
+
+const Wrapper = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+});
+
+const Container = styled("div", {
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+});
 
 const UserName = styled("div", {
   color: "$gray900",

@@ -2,12 +2,9 @@ import * as React from "react";
 
 import { rem } from "polished";
 import { graphql } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 import { styled } from "../../gatsby-theme-stitches/stitches.config";
-
-import { Flex } from "../Flex";
-import { Space } from "../Space";
-import Image from "../Image";
 
 export const query = graphql`
   fragment CenterSection_content on PrismicGlobalContentsDataMainBodyCentreSection {
@@ -58,23 +55,37 @@ const CenterSection: React.FC<CentereSectionProps> = ({ content }) => {
       <Image
         alt={"center-image" || image?.alt}
         image={image?.localFile?.childImageSharp?.gatsbyImageData}
-        width={{
-          "@i": image?.thumbnails?.mobile?.dimensions?.width / 2,
-          "@md": image?.dimensions?.width / 2,
+        css={{
+          width: image?.thumbnails?.mobile?.dimensions?.width / 2,
+          height: image?.thumbnails?.mobile?.dimensions?.height / 2,
+          "@md": {
+            width: image?.dimensions?.width / 2,
+            height: image?.dimensions?.height / 2,
+          },
         }}
-        height={{
-          "@i": image?.thumbnails?.mobile?.dimensions?.height / 2,
-          "@md": image?.dimensions?.height / 2,
-        }}
-      ></Image>
-      <Flex colCenterX>
+      />
+      <BottomContainer>
         <Title>{title.text}</Title>
         <Text dangerouslySetInnerHTML={{ __html: text.html }} />
-        <Space h={12}></Space>
-      </Flex>
+      </BottomContainer>
     </Section>
   );
 };
+
+const Section = styled("section", {
+  width: "100%",
+  display: "flex",
+  flexDirection: "column-reverse",
+  alignItems: "center",
+  justifyContent: "center",
+  boxSizing: "border-box",
+  padding: `${rem(56)} ${rem(36)}`,
+  "@md": {
+    flexDirection: "column",
+    height: "700px",
+    padding: 0,
+  },
+});
 
 const Title = styled("h2", {
   fontSize: "$heading4",
@@ -92,30 +103,24 @@ const Text = styled("div", {
   "*": {
     fontSize: "$body1",
     lineHeight: "$body1",
-    marginBottom: rem(16),
+    marginBottom: rem(28),
 
     "@md": {
       textAlign: "center",
       fontSize: "$subtitle3",
       lineHeight: "$subtitle3",
-      marginBottom: 0,
+      marginBottom: rem(12),
     },
   },
 });
 
-const Section = styled("section", {
-  width: "100%",
+const Image = styled(GatsbyImage, {});
+
+const BottomContainer = styled("div", {
   display: "flex",
-  flexDirection: "column-reverse",
+  flexDirection: "column",
   alignItems: "center",
-  justifyContent: "center",
-  boxSizing: "border-box",
-  padding: `${rem(56)} ${rem(36)}`,
-  "@md": {
-    flexDirection: "column",
-    height: "700px",
-    padding: 0,
-  },
+  textAlign: "center",
 });
 
 export default CenterSection;

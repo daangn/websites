@@ -66,14 +66,15 @@ const Layout: React.FC<LayoutProps> = ({ children, data, id }) => {
       </Helmet>
       <GatsbySeo language="ja" />
       <Header key="header" navigationData={data} sns />
-      <main id={id}>
-        {children}
-        <Space h={120}></Space>
-      </main>
+      <Main id={id}>{children}</Main>
 
       <Footer key="footer" navigationData={data} />
     </>
   );
 };
+
+const Main = styled("main", {
+  paddingBottom: rem(120),
+});
 
 export default Layout;

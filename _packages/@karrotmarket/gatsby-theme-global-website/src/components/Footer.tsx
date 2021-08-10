@@ -1,5 +1,7 @@
 import * as React from "react";
+
 import { rem } from "polished";
+
 import { styled } from "gatsby-theme-stitches/src/stitches.config";
 import _Footer from "@karrotmarket/gatsby-theme-website/src/components/Footer";
 

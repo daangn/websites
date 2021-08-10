@@ -27,16 +27,16 @@ const Articles: React.FC<RatingProps> = ({ articles }) => {
       {articles.map((article, i) => {
         return (
           <Container key={i}>
-            <Image src={article.image} alt="article"></Image>
+            <Image src={article.image} alt="article" />
             <RightContainer>
               <Name>{article.name}</Name>
               <InfoContainer>
                 <Info>{article.region}</Info>
-                <Spacer></Spacer>
+                <Spacer />
                 <Info>{article.date}</Info>
               </InfoContainer>
               <Price>{article.price}</Price>
-              <Flex jc="flex-end" ai="flex-end" flex={1}>
+              <BottomContainer>
                 <CountInfoContainer>
                   {article.interestCount && (
                     <CountInfo>
@@ -57,7 +57,7 @@ const Articles: React.FC<RatingProps> = ({ articles }) => {
                     </CountInfo>
                   )}
                 </CountInfoContainer>
-              </Flex>
+              </BottomContainer>
             </RightContainer>
           </Container>
         );
@@ -80,33 +80,40 @@ const Container = styled("div", {
   padding: `${em(16)} 0`,
   borderBottom: "1px solid $gray200",
 });
+
 const RightContainer = styled("div", {
   display: "flex",
   flexDirection: "column",
 });
+
 const Image = styled("img", {
   width: em(90),
   height: em(90),
   borderRadius: em(8),
 });
+
 const Name = styled("div", {
   fontSize: em(14),
   marginBottom: em(3),
 });
+
 const Price = styled("div", {
   fontSize: em(14),
   fontWeight: "bold",
 });
+
 const InfoContainer = styled("div", {
   display: "grid",
   gridTemplateColumns: "repeat(3, max-content)",
   gridColumnGap: em(6),
   marginBottom: em(1),
 });
+
 const Info = styled("div", {
   fontSize: em(12),
   color: "$gray600",
 });
+
 const Spacer = styled("div", {
   width: em(2),
   height: em(2),
@@ -114,11 +121,21 @@ const Spacer = styled("div", {
   background: "$gray600",
   alignSelf: "center",
 });
+
+const BottomContainer = styled("div", {
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "flex-end",
+  alignItems: "flex-end",
+  flex: 1,
+});
+
 const CountInfoContainer = styled("div", {
   display: "grid",
   gridTemplateColumns: "repeat(2, max-content)",
   gridColumnGap: em(6),
 });
+
 const CountInfo = styled("div", {
   display: "grid",
   gridTemplateColumns: "repeat(2, max-content)",

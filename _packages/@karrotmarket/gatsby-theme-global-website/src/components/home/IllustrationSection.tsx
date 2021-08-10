@@ -3,13 +3,10 @@ import * as React from "react";
 import { graphql } from "gatsby";
 import { rem } from "polished";
 import { motion } from "framer-motion";
-import { getImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { useInView } from "react-intersection-observer";
 
 import { styled } from "../../gatsby-theme-stitches/stitches.config";
-
-import { Flex } from "../Flex";
-import Image from "../Image";
 
 type IllustrationSectionProps = {
   content: GatsbyTypes.IllustrationSection_contentFragment;
@@ -60,14 +57,14 @@ const IllustrationSection: React.FC<IllustrationSectionProps> = ({
           duration: 0.5,
         }}
       >
-        <Flex colCenterY flex={1}>
+        <TopContainer>
           <Title dangerouslySetInnerHTML={{ __html: title.html }}></Title>
           <Text dangerouslySetInnerHTML={{ __html: text.html }}></Text>
-        </Flex>
+        </TopContainer>
 
-        <Flex colCenterY flex={1}>
-          <Image image={sideImage}></Image>
-        </Flex>
+        <BottomContainer>
+          <GatsbyImage image={sideImage} />
+        </BottomContainer>
       </Container>
     </Section>
   );
@@ -96,8 +93,7 @@ const Container = styled(motion.div, {
   alignItems: "center",
   justifyContent: "flex-end",
   textAlign: "left",
-  // paddingLeft: rem(24),
-  // paddingRight: rem(24),
+
   boxSizing: "border-box",
   paddingLeft: rem(16),
   paddingRight: rem(16),
@@ -133,6 +129,20 @@ const Container = styled(motion.div, {
       },
     },
   },
+});
+
+const TopContainer = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  flex: 1,
+});
+
+const BottomContainer = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  flex: 1,
 });
 
 const Title = styled("h2", {

@@ -38,11 +38,9 @@ const DownloadSection: React.FC<DownloadSectionProps> = ({
   return (
     <Section>
       <Container>
-        <KarrotLogoIcon></KarrotLogoIcon>
-        <Space h={28}></Space>
+        <KarrotLogoIcon />
         <Title>{title.text}</Title>
-        <AppLink theme="light" type="desktop" links={links}></AppLink>
-        <Space h={24}></Space>
+        <AppLink theme="light" type="desktop" links={links} />
       </Container>
     </Section>
   );
@@ -63,12 +61,14 @@ const Container = styled("div", {
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
+  paddingBottom: rem(24),
 });
 
 const Title = styled("h2", {
   marginBottom: 0,
   fontSize: "$heading4",
   lineHeight: "$heading4",
+  marginTop: rem(28),
 
   "@md": {
     marginBottom: rem(42),
