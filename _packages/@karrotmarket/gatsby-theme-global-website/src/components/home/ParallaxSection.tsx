@@ -1,7 +1,8 @@
 import * as React from "react";
 
+import { rem } from "polished";
 import { graphql } from "gatsby";
-import { getImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import {
   Parallax,
   ParallaxBanner,
@@ -10,13 +11,7 @@ import {
 
 import { styled } from "../../gatsby-theme-stitches/stitches.config";
 
-import { Flex } from "../Flex";
-import { Space } from "../Space";
-import BackgroundImage from "../BackgroundImage";
-import Image from "../Image";
-
 import { ReactComponent as KarrotIcon } from "../../icons/karrot.svg";
-import { rem } from "polished";
 
 type ParallaxIconType = "Karrot";
 const ParallaxIcon: { [key in ParallaxIconType]: React.FC } = {
@@ -67,19 +62,7 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({ content }) => {
             {
               children: (
                 <Background>
-                  <BackgroundImage
-                    image={bgImage}
-                    objectPosition={{
-                      "@i": "bottom 50% left 50%",
-                      "@sm": "bottom 50% left 50%",
-                      "@md": "bottom 50% left 50%",
-                    }}
-                    height={{
-                      "@i": "70%!important",
-                      "@sm": "100%!important",
-                      "@md": "100%!important",
-                    }}
-                  ></BackgroundImage>
+                  <BackgroundImage image={bgImage} />
                 </Background>
               ),
               amount: 0.2,
@@ -88,12 +71,10 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({ content }) => {
           ]}
         >
           <Container>
-            <Flex rowCenterY>
-              <TopIcon></TopIcon>
-              <Space w={4}></Space>
+            <TopContainer>
+              <TopIcon />
               <TopText>{top_text?.text}</TopText>
-            </Flex>
-            <Space h={12}></Space>
+            </TopContainer>
             <Title dangerouslySetInnerHTML={{ __html: title.html }}></Title>
           </Container>
         </ParallaxBanner>
@@ -144,9 +125,17 @@ const Title = styled("div", {
   },
 });
 
+const TopContainer = styled("div", {
+  display: "flex",
+  alignItems: "center",
+  marginBottom: rem(12),
+});
+
 const TopText = styled("div", {
   fontSize: "$body1",
   lineHeight: "$body1",
+  marginLeft: rem(4),
+
   "@md": {
     fontSize: "$subtitle3",
     lineHeight: "$subtitle3",
@@ -165,6 +154,21 @@ const Background = styled("div", {
   "@md": {
     height: "800px",
     transform: "translateY(5%)",
+  },
+});
+
+const BackgroundImage = styled(GatsbyImage, {
+  height: "70%!important",
+  objectPosition: "bottom 50% left 50%",
+
+  "@sm": {
+    objectPosition: "bottom 50% left 50%",
+    height: "100%!important",
+  },
+
+  "@md": {
+    objectPosition: "bottom 50% left 50%",
+    height: "100%!important",
   },
 });
 

@@ -4,9 +4,6 @@ import { rem } from "polished";
 import { graphql } from "gatsby";
 import { styled } from "../../gatsby-theme-stitches/stitches.config";
 
-import { Grid } from "../Grid";
-import { Space } from "../Space";
-
 export const query = graphql`
   fragment SubtitleAndLinks_content on PrismicGlobalContentsDataAboutBodySubtitleAndLinks {
     primary {
@@ -35,10 +32,8 @@ const SubtitleAndLinks: React.FC<SubtitleAndLinksProps> = ({ content }) => {
 
   return (
     <Section>
-      <Space h={72}></Space>
       <Title>{subtitle.text}</Title>
-      <Space h={14}></Space>
-      <Grid rowGap={{ "@i": 20, "@md": 12 }}>
+      <Grid>
         {content.items.map((item) => (
           <LinkContainer>
             <Link href={item?.link?.url}>{item?.text}</Link>
@@ -50,11 +45,24 @@ const SubtitleAndLinks: React.FC<SubtitleAndLinksProps> = ({ content }) => {
   );
 };
 
+const Grid = styled("div", {
+  display: "grid",
+
+  gridRowGap: rem(20),
+
+  "@md": {
+    gridRowGap: rem(12),
+  },
+});
+
 const Section = styled("section", {});
 
 const Title = styled("h2", {
   fontSize: "$heading5",
   lineHeight: "$heading5",
+
+  marginTop: rem(72),
+  marginBottom: rem(14),
 });
 
 const LinkContainer = styled("div", {

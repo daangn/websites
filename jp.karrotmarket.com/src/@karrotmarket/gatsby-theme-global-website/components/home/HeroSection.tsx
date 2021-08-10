@@ -1,11 +1,9 @@
 import React from "react";
 import { rem } from "polished";
-import { getImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { styled } from "gatsby-theme-stitches/src/stitches.config";
 
-import { Flex } from "@karrotmarket/gatsby-theme-global-website/src/components/Flex";
 import AppLink from "@karrotmarket/gatsby-theme-global-website/src/components/AppLink";
-import Image from "@karrotmarket/gatsby-theme-global-website/src/components/Image";
 
 type HeroSectionProps = {
   content: GatsbyTypes.HeroSection_contentFragment;
@@ -34,9 +32,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({ content, links }) => {
           ></AppLink>
         </TextContainer>
 
-        <Flex ai="center" flex={1}>
-          <Image image={sideImage} alt={side_image?.alt}></Image>
-        </Flex>
+        <ImageContainer>
+          <Image image={sideImage} alt={side_image?.alt} />
+        </ImageContainer>
       </Container>
     </Section>
   );
@@ -130,5 +128,14 @@ const TextContainer = styled("div", {
     maxWidth: "50%",
   },
 });
+
+const ImageContainer = styled("div", {
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  flex: 1,
+});
+
+const Image = styled(GatsbyImage, {});
 
 export default HeroSection;

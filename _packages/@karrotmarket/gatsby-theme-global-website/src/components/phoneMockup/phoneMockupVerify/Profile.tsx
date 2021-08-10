@@ -22,14 +22,14 @@ const Profile: React.FC<ProfileProps> = ({ image, name, id, buttonText }) => {
         duration: 0.5,
       }}
     >
-      <Image src={image}></Image>
-      <Flex column jc="flex-end">
-        <Flex rowCenterY>
+      <Image src={image} />
+      <Container>
+        <UserContainer>
           <Name>{name}</Name>
           <IdText>{id}</IdText>
-        </Flex>
+        </UserContainer>
         <Button>{buttonText}</Button>
-      </Flex>
+      </Container>
     </Wrapper>
   );
 };
@@ -54,14 +54,29 @@ const Image = styled("img", {
   borderRadius: em(70),
   marginRight: em(20),
 });
+
+const Container = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "flex-end",
+});
+
+const UserContainer = styled("div", {
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+});
+
 const Name = styled("div", {
   fontSize: em(18),
   fontWeight: "bold",
   marginRight: em(6),
 });
+
 const IdText = styled("div", {
   fontSize: em(14),
 });
+
 const Button = styled("button", {
   border: `${em(1)} solid $gray300`,
   height: em(46),

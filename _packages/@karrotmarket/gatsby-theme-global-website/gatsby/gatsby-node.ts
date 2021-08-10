@@ -42,6 +42,21 @@ export const pluginOptionsSchema: GatsbyNode["pluginOptionsSchema"] = ({
   });
 };
 
+export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] =
+  ({ actions }) => {
+    const { createTypes } = actions;
+    const typeDefs = `
+    type HotArticle implements Node {
+      articleId: String
+      image: String
+      email: String
+      region: String
+      price: String
+    }
+  `;
+    createTypes(typeDefs);
+  };
+
 export const sourceNodes: GatsbyNode["sourceNodes"] = async (
   { actions, createNodeId, createContentDigest },
   options

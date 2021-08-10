@@ -9,7 +9,6 @@ import { withPrismicPreview } from "gatsby-plugin-prismic-previews";
 
 import { styled } from "../gatsby-theme-stitches/stitches.config";
 
-import { Space } from "../components/Space";
 import Layout from "../components/Layout";
 import DetailsList from "../components/about/DetailsList";
 import SubtitleAndText from "../components/about/SubtitleAndText";
@@ -29,15 +28,14 @@ export const query = graphql`
       data {
         about_page_title
         about_page_description
-        about_opengraph_image_link
         about_opengraph_image {
-          dimensions {
-            width
-            height
-          }
           localFile {
             childImageSharp {
-              gatsbyImageData(quality: 100, formats: PNG, placeholder: NONE)
+              fixed(width: 1200, height: 630, toFormat: PNG, quality: 90) {
+                src
+                width
+                height
+              }
             }
           }
         }
@@ -48,7 +46,11 @@ export const query = graphql`
         about_background_image {
           localFile {
             childImageSharp {
-              gatsbyImageData(quality: 100)
+              gatsbyImageData(
+                quality: 90
+                layout: FULL_WIDTH
+                backgroundColor: white
+              )
             }
           }
         }
@@ -71,7 +73,6 @@ const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
     about_page_title,
     about_page_description,
     about_opengraph_image,
-    about_opengraph_image_link,
     about_background_image,
     about_title,
     about_body,
@@ -81,9 +82,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
     about_background_image?.localFile?.childImageSharp?.gatsbyImageData as any
   );
 
-  const localAboutOgImage =
-    about_opengraph_image?.localFile?.childImageSharp?.gatsbyImageData?.images
-      ?.fallback?.src;
+  const metaImage = about_opengraph_image?.localFile?.childImageSharp?.fixed;
 
   return (
     <Layout id="about-page" data={data.prismicSiteNavigation.data}>
@@ -91,23 +90,21 @@ const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
         title={about_page_title}
         description={about_page_description}
         openGraph={{
-          images:
-            localAboutOgImage || about_opengraph_image_link
-              ? [
-                  {
-                    ...(about_opengraph_image?.dimensions
-                      ? about_opengraph_image?.dimensions
-                      : {}),
-                    url: localAboutOgImage || about_opengraph_image_link,
-                  },
-                ]
-              : [],
           title: about_page_title,
           description: about_page_description,
+          ...(metaImage && {
+            images: [
+              {
+                url: metaImage.src,
+                width: metaImage.width,
+                height: metaImage.height,
+              },
+            ],
+          }),
         }}
       />
       <ImageContianer>
-        <Image image={backgroundImage}></Image>
+        <Image image={backgroundImage} />
       </ImageContianer>
 
       <Container>
@@ -130,7 +127,6 @@ const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
           })
         )}
       </Container>
-      <Space h={100}></Space>
     </Layout>
   );
 };
@@ -169,6 +165,7 @@ const Container = styled("div", {
   display: "flex",
   flexDirection: "column",
   padding: `0 ${rem(24)}`,
+  marginBottom: rem(100),
 
   "@md": {
     width: rem(668),

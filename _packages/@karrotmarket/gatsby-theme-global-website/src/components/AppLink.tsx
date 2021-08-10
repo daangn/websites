@@ -13,7 +13,6 @@ interface TLinkButton {
   theme: "dark" | "light" | "primary" | "white";
   width: "full" | "fit";
 
-  icon?: any;
   href?: string;
 }
 
@@ -81,7 +80,6 @@ const SLinkButton = styled("a", {
 });
 
 const LinkButton: React.FC<TLinkButton> = ({
-  icon,
   href,
   children,
   theme,
@@ -89,18 +87,56 @@ const LinkButton: React.FC<TLinkButton> = ({
 }) => {
   return (
     <SLinkButton theme={theme} width={width} href={href}>
-      {icon && (
-        <>
-          {icon}
-          <Space w={12}></Space>
-        </>
-      )}
       {children}
     </SLinkButton>
   );
 };
 
-const SAppLink = styled("div", {
+export const query = graphql`
+  fragment AppLink_links on PrismicGlobalContentsDataType {
+    app_store_link
+    google_play_link
+    one_link
+    one_link_button_text
+  }
+`;
+
+interface TAppLink {
+  links: GatsbyTypes.AppLink_linkFragment;
+  type: "mobile" | "desktop";
+  theme: "dark" | "light" | "primary" | "white";
+  inverted?: boolean;
+}
+
+const AppLink: React.FC<TAppLink> = ({ type, theme, links, inverted }) => {
+  const { google_play_link, app_store_link, one_link, one_link_button_text } =
+    links;
+
+  return (
+    <>
+      <Wrapper type={type} inverted={inverted}>
+        {type === "desktop" ? (
+          <Container>
+            <LinkButton href={app_store_link} theme={theme} width="fit">
+              <AppStoreIcon />
+              <Text>App Store</Text>
+            </LinkButton>
+            <LinkButton href={google_play_link} theme={theme} width="fit">
+              <GooglePlayIcon />
+              <Text>Google Play</Text>
+            </LinkButton>
+          </Container>
+        ) : (
+          <LinkButton href={one_link} theme="primary" width="full">
+            {one_link_button_text || "App download"}
+          </LinkButton>
+        )}
+      </Wrapper>
+    </>
+  );
+};
+
+const Wrapper = styled("div", {
   variants: {
     type: {
       desktop: {
@@ -132,51 +168,14 @@ const SAppLink = styled("div", {
   },
 });
 
-export const query = graphql`
-  fragment AppLink_links on PrismicGlobalContentsDataType {
-    app_store_link
-    google_play_link
-    one_link
-    one_link_button_text
-  }
-`;
+const Container = styled("div", {
+  display: "grid",
+  gridTemplateColumns: "repeat(2, max-content)",
+  gridColumnGap: rem(12),
+});
 
-interface TAppLink {
-  links: GatsbyTypes.AppLink_linkFragment;
-  type: "mobile" | "desktop";
-  theme: "dark" | "light" | "primary" | "white";
-  inverted?: boolean;
-}
-
-const AppLink: React.FC<TAppLink> = ({ type, theme, links, inverted }) => {
-  const { google_play_link, app_store_link, one_link, one_link_button_text } =
-    links;
-
-  return (
-    <>
-      <SAppLink type={type} inverted={inverted}>
-        {type === "desktop" ? (
-          <Flex row>
-            <LinkButton href={app_store_link} theme={theme} width="fit">
-              <AppStoreIcon />
-              <Space w={12}></Space>
-              App Store
-            </LinkButton>
-            <Space w={12}></Space>
-            <LinkButton href={google_play_link} theme={theme} width="fit">
-              <GooglePlayIcon />
-              <Space w={12}></Space>
-              Google Play
-            </LinkButton>
-          </Flex>
-        ) : (
-          <LinkButton href={one_link} theme="primary" width="full">
-            {one_link_button_text || "App download"}
-          </LinkButton>
-        )}
-      </SAppLink>
-    </>
-  );
-};
+const Text = styled("div", {
+  marginLeft: rem(12),
+});
 
 export default AppLink;

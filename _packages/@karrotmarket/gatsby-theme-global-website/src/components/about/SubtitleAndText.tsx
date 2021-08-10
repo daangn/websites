@@ -26,11 +26,8 @@ const SubtitleAndText: React.FC<SubtitleAndTextProps> = ({ content }) => {
 
   return (
     <Section>
-      <Space h={72}></Space>
       <Title>{subtitle.text}</Title>
-      <Space h={14}></Space>
       <Text dangerouslySetInnerHTML={{ __html: text.html }}></Text>
-      {/* <Html html={text?.html} fontFamily="$system"></Html> */}
     </Section>
   );
 };
@@ -51,6 +48,9 @@ const Section = styled("section", {
 const Title = styled("h2", {
   fontSize: "$heading5",
   lineHeight: "$heading5",
+
+  marginTop: rem(72),
+  marginBottom: rem(14),
 });
 
 const Text = styled("div", {

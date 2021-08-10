@@ -6,17 +6,15 @@ import { useInView } from "react-intersection-observer";
 
 import { styled } from "../../gatsby-theme-stitches/stitches.config";
 
-import { Grid } from "../Grid";
 import { Flex } from "../Flex";
-import { Space } from "../Space";
 
 import PhoneMockupVerify from "../phoneMockup/PhoneMockupVerify";
 import PhoneMockupChat from "../phoneMockup/PhoneMockupChat";
 
+import { ReactComponent as WriteIcon } from "../../icons/write.svg";
 import { ReactComponent as KeywordIcon } from "../../icons/keyword.svg";
 import { ReactComponent as LocationIcon } from "../../icons/location_outline.svg";
 import { ReactComponent as ReservationIcon } from "../../icons/reservation.svg";
-import { ReactComponent as WriteIcon } from "../../icons/write.svg";
 
 export const query = graphql`
   fragment MockupSection_content on PrismicGlobalContentsDataMainBodyMockupSection {
@@ -73,47 +71,51 @@ const MockupSection: React.FC<MockupSectionProps> = ({ content }) => {
   return (
     <Section css={{ background: background_color }} ref={ref}>
       <Container inverted={inverted}>
-        <Flex colCenterY alignItems={{ "@i": "center", "@md": "flex-start" }}>
+        <LeftContainer>
           <Text
             dangerouslySetInnerHTML={{ __html: text.html }}
             css={{
               highlightColor: text_highlight_color,
             }}
           />
-          <Grid
-            gridTemplateColumns={{
-              "@i": "max-content",
-              "@md": "repeat(2, max-content)",
-            }}
-            columnGap={{ "@i": 0, "@md": 30 }}
-            rowGap={{ "@i": 10, "@md": 0 }}
-            marginTop={{ "@i": 16, "@md": 40 }}
-            marginBottom={{ "@i": 36, "@md": 0 }}
-          >
+          <Grid>
             {content.items.map((info, i) => {
               const Icon = MockupIcon[info?.icon as MockupIconType];
               return (
                 <InfoContainer key={i}>
                   <Icon />
-                  <Space w={5}></Space>
                   <span>{info?.text}</span>
                 </InfoContainer>
               );
             })}
           </Grid>
-        </Flex>
-        <Flex
-          rowCenterY
-          justifyContent={{ "@i": "center", "@md": "flex-start" }}
-        >
+        </LeftContainer>
+        <RightContainer>
           <div ref={ref}>
             <PhoneMockupComponent inView={inView}></PhoneMockupComponent>
           </div>
-        </Flex>
+        </RightContainer>
       </Container>
     </Section>
   );
 };
+
+const Grid = styled("div", {
+  display: "grid",
+  gridTemplateColumns: "max-content",
+  gridRowGap: rem(10),
+  gridColumnGap: rem(0),
+  marginTop: rem(16),
+  marginBottom: rem(36),
+
+  "@md": {
+    gridTemplateColumns: "repeat(2, max-content)",
+    gridRowGap: rem(0),
+    gridColumnGap: rem(30),
+    marginTop: rem(40),
+    marginBottom: rem(0),
+  },
+});
 
 const Section = styled("section", {
   width: "100%",
@@ -156,16 +158,34 @@ const Container = styled("div", {
   },
 });
 
-const InfoContainer = styled("div", {
+const LeftContainer = styled("div", {
   display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  "@md": {
+    alignItems: "flex-start",
+  },
+});
+
+const RightContainer = styled("div", {
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "center",
+  "@md": {
+    justifyContent: "flex-start",
+  },
+});
+
+const InfoContainer = styled("div", {
+  display: "grid",
+  gridTemplateColumns: "repeat(2, max-content)",
+  gridColumnGap: rem(5),
+
   span: {
     opacity: 0.6,
     alignItems: "center",
-  },
-  justifyContent: "center",
-
-  "@md": {
-    justifyContent: "flex-start",
   },
 });
 

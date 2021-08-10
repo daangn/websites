@@ -29,7 +29,8 @@ type ParallaxSectionProps = {
 const PopularSection: React.FC<ParallaxSectionProps> = (props) => {
   const { content, articles } = props;
 
-  if (!content.primary || !articles) return <></>;
+  if (!content.primary || !articles || articles?.length === 0) return <></>;
+
   const { more_button, title } = content.primary;
 
   return (
@@ -37,7 +38,7 @@ const PopularSection: React.FC<ParallaxSectionProps> = (props) => {
       <Container>
         <Title>{title.text}</Title>
         <ItemList>
-          {articles.map(({ articleId, price, region, image }) => (
+          {articles.slice(0, 6).map(({ articleId, price, region, image }) => (
             <Item
               key={articleId}
               id={articleId}

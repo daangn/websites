@@ -1,5 +1,6 @@
 import React from "react";
 
+import { rem } from "polished";
 import { graphql, PageProps } from "gatsby";
 import { GatsbySeo } from "gatsby-plugin-next-seo";
 import { useInView } from "react-intersection-observer";
@@ -18,7 +19,6 @@ import PopularSection from "../components/home/PopularSection";
 import DownloadSection from "../components/home/DownloadSection";
 import ParallaxSection from "../components/home/ParallaxSection";
 import IllustrationSection from "../components/home/IllustrationSection";
-import { rem } from "polished";
 
 type IndexPageProps = PageProps<GatsbyTypes.IndexPageQueryQuery>;
 
@@ -33,15 +33,14 @@ export const query = graphql`
       data {
         main_page_title
         main_page_description
-        main_opengraph_image_link
         main_opengraph_image {
-          dimensions {
-            width
-            height
-          }
           localFile {
             childImageSharp {
-              gatsbyImageData(quality: 100, formats: PNG, placeholder: NONE)
+              fixed(width: 1200, height: 630, toFormat: PNG, quality: 90) {
+                src
+                width
+                height
+              }
             }
           }
         }
@@ -77,13 +76,10 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
     main_page_title,
     main_page_description,
     main_opengraph_image,
-    main_opengraph_image_link,
     main_body,
   } = data.prismicGlobalContents?.data;
 
-  const localMainOgImage =
-    main_opengraph_image?.localFile?.childImageSharp?.gatsbyImageData?.images
-      ?.fallback?.src;
+  const metaImage = main_opengraph_image?.localFile?.childImageSharp?.fixed;
 
   return (
     <Layout
@@ -97,19 +93,17 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
         title={main_page_title}
         description={main_page_description}
         openGraph={{
-          images:
-            localMainOgImage || main_opengraph_image_link
-              ? [
-                  {
-                    ...(main_opengraph_image?.dimensions
-                      ? main_opengraph_image?.dimensions
-                      : {}),
-                    url: localMainOgImage || main_opengraph_image_link,
-                  },
-                ]
-              : [],
           title: main_page_title,
           description: main_page_description,
+          ...(metaImage && {
+            images: [
+              {
+                url: metaImage.src,
+                width: metaImage.width,
+                height: metaImage.height,
+              },
+            ],
+          }),
         }}
       />
       <Wrapper>
