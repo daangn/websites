@@ -49,7 +49,7 @@ export const query = graphql`
               gatsbyImageData(
                 quality: 90
                 layout: FULL_WIDTH
-                backgroundColor: white
+                backgroundColor: "white"
               )
             }
           }

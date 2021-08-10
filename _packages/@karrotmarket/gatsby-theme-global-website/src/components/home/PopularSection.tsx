@@ -29,7 +29,8 @@ type ParallaxSectionProps = {
 const PopularSection: React.FC<ParallaxSectionProps> = (props) => {
   const { content, articles } = props;
 
-  if (!content.primary || !articles || articles?.length === 0) return <></>;
+  if (!content.primary || !articles || articles?.length === 0)
+    return <React.Fragment></React.Fragment>;
 
   const { more_button, title } = content.primary;
 
