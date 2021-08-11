@@ -1,9 +1,0 @@
-.env
-/.cache/
-/public/
-/dist/
-/worker/
-/tmp/
-
-# gatsby-plugin-typegen v3 까지 존버하기
-/src/__generated__/
