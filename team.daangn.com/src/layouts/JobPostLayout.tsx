@@ -7,7 +7,6 @@ import { graphql, Link } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import type { OverrideProps } from '@cometjs/core';
-import { required } from '@cometjs/core';
 import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
 import { useLocation } from '@reach/router';
 
@@ -185,8 +184,15 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
   const siteOrigin = useSiteOrigin();
   const { pathname: currentPath } = useLocation();
 
-  required(jobPost);
-  required(prismicTeamContents?.data);
+  // Note: assertion 을 선호하긴 하는데...
+  // Gatsby Cloud 환경에서 캐시를 좀 어그레시브 하게 쓰는지 자꾸 페이지가 넘어오네 -_-
+  if (!jobPost) {
+    return <>{children}</>;
+  }
+
+  if (!prismicTeamContents?.data) {
+    return <>{children}</>;
+  }
 
   const metaTitle = `${jobPost.title} | ${prismicTeamContents.data.jobs_page_meta_title}`;
   const metaDescription = prismicTeamContents.data.jobs_page_meta_description;
