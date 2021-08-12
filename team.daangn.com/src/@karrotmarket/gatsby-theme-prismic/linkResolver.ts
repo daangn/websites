@@ -14,8 +14,9 @@ export const linkResolver: LinkResolverFunction = doc => {
     }
     case 'teams_article': {
       if (doc.uid) {
-        return `/jobs/article/${doc.uid}`;
+        return `/jobs/article/${doc.uid}/`;
       }
+      break;
     }
   }
   return originalLinkResolver(doc);
