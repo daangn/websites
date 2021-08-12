@@ -6,7 +6,6 @@
   "workspaces": [
     "_packages/**",
     "team.daangn.com",
-    "mbti.daangn.com",
     "uk.karrotmarket.com",
     "ca.karrotmarket.com",
     "us.karrotmarket.com",
