@@ -17,7 +17,6 @@ export const query = graphql`
     ...DefaultLayout_query
 
     prismicTeamContents {
-      _previewable
       data {
         jobs_page_meta_title
         jobs_page_meta_description
