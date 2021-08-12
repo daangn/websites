@@ -2,6 +2,7 @@ import type { LinkResolverFunction } from '@prismicio/helpers';
 import { linkResolver as originalLinkResolver } from '@karrotmarket/gatsby-theme-prismic/src/linkResolver';
 
 export const linkResolver: LinkResolverFunction = doc => {
+  console.log(doc)
   switch (doc.type) {
     case 'site_navigation': {
       return '/';
@@ -14,8 +15,9 @@ export const linkResolver: LinkResolverFunction = doc => {
     }
     case 'teams_article': {
       if (doc.uid) {
-        return `/jobs/article/${doc.uid}`;
+        return `/jobs/article/${doc.uid}/`;
       }
+      break;
     }
   }
   return originalLinkResolver(doc);
