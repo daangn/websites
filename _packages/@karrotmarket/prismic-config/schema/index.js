@@ -1,7 +1,4 @@
 module.exports = {
-  "mbti-test-result": {},
-  mbti_intro: {},
-  mbti_test_question: {},
   ads_intro: {},
   global_contents: require("./global_contents.json"),
   faq: require("./faq.json"),
