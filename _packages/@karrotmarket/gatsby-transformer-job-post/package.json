@@ -16,8 +16,8 @@
     "html-entities": "^2.3.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.13.16",
-    "@babel/core": "^7.13.16",
+    "@babel/cli": "7.14.8",
+    "@babel/core": "7.14.8",
     "@karrotmarket/gatsby-source-greenhouse-job-board": "*",
     "@types/common-tags": "^1.8.0",
     "@types/jest": "^26.0.23",

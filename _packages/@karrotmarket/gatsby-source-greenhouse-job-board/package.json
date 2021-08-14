@@ -27,9 +27,9 @@
     "got": "^11.8.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.13.14",
-    "@babel/core": "^7.13.15",
-    "@babel/plugin-transform-typescript": "^7.13.0",
+    "@babel/cli": "7.14.8",
+    "@babel/core": "7.14.8",
+    "@babel/plugin-transform-typescript": "7.14.6",
     "@types/node": "^14.14.37",
     "babel-preset-gatsby-package": "^1.5.0",
     "concurrently": "^6.0.2",
