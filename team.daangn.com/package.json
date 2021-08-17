@@ -52,7 +52,7 @@
     "gatsby-plugin-prismic-previews": "4.0.3",
     "gatsby-plugin-prismic-schema": "*",
     "gatsby-plugin-react-helmet-async": "1.2.0",
-    "gatsby-plugin-robots-txt": "1.6.8",
+    "gatsby-plugin-robots-txt": "1.6.9",
     "gatsby-plugin-sharp": "3.10.2",
     "gatsby-plugin-sitemap": "4.6.0",
     "gatsby-plugin-svgr": "3.0.0-beta.0",
