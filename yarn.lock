@@ -13260,14 +13260,14 @@ react-dev-utils@^11.0.3:
     strip-ansi "6.0.0"
     text-table "0.2.0"
 
-react-dom@18.0.0-alpha-6f3fcbd6f-20210730, react-dom@experimental, react-dom@next:
-  version "18.0.0-alpha-6f3fcbd6f-20210730"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.0.0-alpha-6f3fcbd6f-20210730.tgz#3cee9fb3614cb69db678fce458e8d83a76456d9c"
-  integrity sha512-l2eKBsMM5AAWos4nQrJrXiWduy1gGF4NnTW71B9HeNeGrd4lMZMzKk1+bivTFz8vsyHlaxEL/MLPPnrr+pTElg==
+react-dom@18.0.0-alpha-ed6c091fe-20210701, react-dom@experimental, react-dom@next:
+  version "18.0.0-alpha-ed6c091fe-20210701"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.0.0-alpha-ed6c091fe-20210701.tgz#f07510c6b0a5fa38ce2ab48d39caf39e8cc320d8"
+  integrity sha512-AdtHYY5PRP8KNe7ijIwTSG5ckip0+h6kksvy+8K/mV+VHYEYUIrfaerrZzFOuV/oeJxnM2zXh9/93cheAjJ2UQ==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
-    scheduler "0.21.0-alpha-6f3fcbd6f-20210730"
+    scheduler "0.21.0-alpha-ed6c091fe-20210701"
 
 react-error-overlay@^6.0.9:
   version "6.0.9"
@@ -13367,10 +13367,10 @@ react-swipeable@6.1.2:
   resolved "https://registry.yarnpkg.com/react-swipeable/-/react-swipeable-6.1.2.tgz#cdaec61e1ea449fe03ccb06f7f6bcddd6a252317"
   integrity sha512-vfZtOZNivwd/aI+ZZH1Grx0eQBdbV1UI3pB9p65jbW5guHHdSIPpKsND6XmaiZXP5REOOc9Ckfr36ChswPqwsA==
 
-react@18.0.0-alpha-6f3fcbd6f-20210730, react@experimental, react@next:
-  version "18.0.0-alpha-6f3fcbd6f-20210730"
-  resolved "https://registry.yarnpkg.com/react/-/react-18.0.0-alpha-6f3fcbd6f-20210730.tgz#29d9af74e971cfec00c5aafa9238097967db6133"
-  integrity sha512-IpdPvJ102RI0bfLoaatkTVnWrlxbDhZkNVQdGIEibY2szTQlkrCnOlUGlICWnSvhczMJ8tB04z1ljF/xEwmflg==
+react@18.0.0-alpha-ed6c091fe-20210701, react@experimental, react@next:
+  version "18.0.0-alpha-ed6c091fe-20210701"
+  resolved "https://registry.yarnpkg.com/react/-/react-18.0.0-alpha-ed6c091fe-20210701.tgz#238c16a3262b0d30f5c9483335b42a28656c1e81"
+  integrity sha512-zfb1gZyRC0AxtNLb48jM1zPhP60OS79Jekj28Qve/HaogOp9a/hjoC6THx4YXtEdP4bq6Z/OS+ecAeJ8I4JSug==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -13953,10 +13953,10 @@ saxes@^5.0.1:
   dependencies:
     xmlchars "^2.2.0"
 
-scheduler@0.21.0-alpha-6f3fcbd6f-20210730:
-  version "0.21.0-alpha-6f3fcbd6f-20210730"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.21.0-alpha-6f3fcbd6f-20210730.tgz#a8950f74253c78249f226fde53b7714534ed9c58"
-  integrity sha512-Ev7p9TOmsluGumvqaUiWnmRzKxp0/BiccjY87CUwAzGUhyIhxHlgAe0HlKTkHjDSeM0szndlGzxwlLeBzmoP4w==
+scheduler@0.21.0-alpha-ed6c091fe-20210701:
+  version "0.21.0-alpha-ed6c091fe-20210701"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.21.0-alpha-ed6c091fe-20210701.tgz#281f04c3d2b0276b528c1c04c3e51f68db4241f6"
+  integrity sha512-DBDJeyzJXEWV1AvQr8Jw/66q9RNyMjCeVVRrOtGZb6iqHeI5Up9aWK08K5KZlbemkr8dVlD9fIDDTzxTZZpd2Q==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
