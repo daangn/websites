@@ -3980,6 +3980,11 @@ babel-plugin-remove-graphql-queries@^3.10.0:
   resolved "https://registry.yarnpkg.com/babel-plugin-remove-graphql-queries/-/babel-plugin-remove-graphql-queries-3.10.0.tgz#879bd4aaa95a0516bf358d6b3653a1cec0e2e1d1"
   integrity sha512-boXe4V22Tz5DhlbsyNFWRMSYpAQhbBksxnHQZF3Rs1TVptIcm3RmJKL10ze6qTKJW2a97J3qpmAmNpi/CFTttg==
 
+babel-plugin-remove-graphql-queries@^3.11.0:
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-remove-graphql-queries/-/babel-plugin-remove-graphql-queries-3.11.0.tgz#b921e95f2d8fd49c57fe7fcac15546ab9b03f5b2"
+  integrity sha512-YVXU3hC4BWHtkKoAVi2lzGCfx9PBCXa2IMk2MnXcpoRoGPN4hKMIGqnSrdRrBTjow8FdFQ/y5SYYmhDcAiYkoQ==
+
 babel-plugin-remove-graphql-queries@^3.12.0-next.3:
   version "3.12.0-next.3"
   resolved "https://registry.yarnpkg.com/babel-plugin-remove-graphql-queries/-/babel-plugin-remove-graphql-queries-3.12.0-next.3.tgz#575f263e0071e1e84d415e7c85e292fd20985d27"
@@ -7463,6 +7468,20 @@ gatsby-core-utils@^2.10.0:
     tmp "^0.2.1"
     xdg-basedir "^4.0.0"
 
+gatsby-core-utils@^2.11.0:
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/gatsby-core-utils/-/gatsby-core-utils-2.11.0.tgz#155aafe7962ba6ad9b3e72c784bba8a87f99ea6b"
+  integrity sha512-t5PL1/MvTPSG6IeJn+Yd3Fxp0L3HfLI1vvVsmxXvxEiwDp5MJjjtZbrSnWpST1oylMSKI/UECUEKQUax9UJW+A==
+  dependencies:
+    ci-info "2.0.0"
+    configstore "^5.0.1"
+    file-type "^16.2.0"
+    fs-extra "^8.1.0"
+    node-object-hash "^2.0.0"
+    proper-lockfile "^4.1.1"
+    tmp "^0.2.1"
+    xdg-basedir "^4.0.0"
+
 gatsby-core-utils@^2.12.0-next.3:
   version "2.12.0-next.3"
   resolved "https://registry.yarnpkg.com/gatsby-core-utils/-/gatsby-core-utils-2.12.0-next.3.tgz#ac42bf01fbc6c60faa2c134be94b0d830c66ee12"
@@ -7584,6 +7603,24 @@ gatsby-plugin-image@1.10.1:
     common-tags "^1.8.0"
     fs-extra "^8.1.0"
     gatsby-core-utils "^2.10.0"
+    objectFitPolyfill "^2.3.0"
+    prop-types "^15.7.2"
+
+gatsby-plugin-image@^1.11.0:
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-image/-/gatsby-plugin-image-1.11.0.tgz#c7d2ffa79c6476e1fdf305a183bc02e99f31ec12"
+  integrity sha512-hlbGHpGTgHOp0QTWE9jF0IILRbzbbDPkjktCjXR43Pt24L7/Df4HqdFrJM7hB36O4d7j3vY1GSW1L5OUEPPkhw==
+  dependencies:
+    "@babel/code-frame" "^7.14.0"
+    "@babel/parser" "^7.14.7"
+    "@babel/traverse" "^7.14.7"
+    babel-jsx-utils "^1.1.0"
+    babel-plugin-remove-graphql-queries "^3.11.0"
+    camelcase "^5.3.1"
+    chokidar "^3.5.1"
+    common-tags "^1.8.0"
+    fs-extra "^8.1.0"
+    gatsby-core-utils "^2.11.0"
     objectFitPolyfill "^2.3.0"
     prop-types "^15.7.2"
 
@@ -7984,7 +8021,7 @@ gatsby-worker@^0.3.0-next.3:
   dependencies:
     "@babel/core" "^7.14.8"
 
-gatsby@3.12.0-next.3, gatsby@next:
+gatsby@next:
   version "3.12.0-next.3"
   resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-3.12.0-next.3.tgz#3434ec88763a52b6efbfb743084ac054868beb08"
   integrity sha512-ySLU0iWdI9BlBjY30lrYEZpM27A5qTWKa0jD/05RUfsRHB3+DC1VhbBEzhE0+tZGfOH42NLkLHRWevGENDecHA==
@@ -13209,7 +13246,7 @@ react-dev-utils@^11.0.3:
     strip-ansi "6.0.0"
     text-table "0.2.0"
 
-react-dom@18.0.0-alpha-6f3fcbd6f-20210730, react-dom@experimental, react-dom@next:
+react-dom@experimental, react-dom@next:
   version "18.0.0-alpha-6f3fcbd6f-20210730"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.0.0-alpha-6f3fcbd6f-20210730.tgz#3cee9fb3614cb69db678fce458e8d83a76456d9c"
   integrity sha512-l2eKBsMM5AAWos4nQrJrXiWduy1gGF4NnTW71B9HeNeGrd4lMZMzKk1+bivTFz8vsyHlaxEL/MLPPnrr+pTElg==
@@ -13316,7 +13353,7 @@ react-swipeable@6.1.2:
   resolved "https://registry.yarnpkg.com/react-swipeable/-/react-swipeable-6.1.2.tgz#cdaec61e1ea449fe03ccb06f7f6bcddd6a252317"
   integrity sha512-vfZtOZNivwd/aI+ZZH1Grx0eQBdbV1UI3pB9p65jbW5guHHdSIPpKsND6XmaiZXP5REOOc9Ckfr36ChswPqwsA==
 
-react@18.0.0-alpha-6f3fcbd6f-20210730, react@experimental, react@next:
+react@experimental, react@next:
   version "18.0.0-alpha-6f3fcbd6f-20210730"
   resolved "https://registry.yarnpkg.com/react/-/react-18.0.0-alpha-6f3fcbd6f-20210730.tgz#29d9af74e971cfec00c5aafa9238097967db6133"
   integrity sha512-IpdPvJ102RI0bfLoaatkTVnWrlxbDhZkNVQdGIEibY2szTQlkrCnOlUGlICWnSvhczMJ8tB04z1ljF/xEwmflg==
@@ -13910,7 +13947,12 @@ scheduler@0.21.0-alpha-6f3fcbd6f-20210730:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
 
-schema-dts@0.6.0, schema-dts@0.8.3:
+schema-dts@0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/schema-dts/-/schema-dts-0.6.0.tgz#1700eadcc384d39341e0f90ad15d708504124166"
+  integrity sha512-mYfPlwuIssnlBkqcwalddhJp23grXIlpI9sDBQuTzM46pftdzXGhbMMzwoszuWZHsH5Zki+LVDeMKjTPRWiAlw==
+
+schema-dts@0.8.3:
   version "0.8.3"
   resolved "https://registry.yarnpkg.com/schema-dts/-/schema-dts-0.8.3.tgz#6c03ca47200e80e9a871d6de626a7cf04fe009b7"
   integrity sha512-GSLeVkUgEe8DzS8/FGWou1wlC8tQ1KXA5amCqCIH/psUzF74fWswtT0QFlSoJLT08CYyixnc3S/lkAm+RExoLQ==
@@ -16160,7 +16202,7 @@ webpack-virtual-modules@^0.3.2:
   dependencies:
     debug "^3.0.0"
 
-webpack@5.36.2, webpack@^5.35.0:
+webpack@^5.35.0:
   version "5.36.2"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.36.2.tgz#6ef1fb2453ad52faa61e78d486d353d07cca8a0f"
   integrity sha512-XJumVnnGoH2dV+Pk1VwgY4YT6AiMKpVoudUFCNOXMIVrEKPUgEwdIfWPjIuGLESAiS8EdIHX5+TiJz/5JccmRg==
