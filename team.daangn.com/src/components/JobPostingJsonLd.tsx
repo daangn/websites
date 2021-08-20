@@ -59,7 +59,7 @@ const JobPostingJsonLd: React.FC<JobPostingJsonLdProps> = ({
   overrides,
   defer = false,
 }) => {
-  const employmentTypeMapping:Record<EmploymentType,string> = {
+  const employmentTypeMapping: Record<EmploymentType, string | undefined> = {
     FULL_TIME: 'FULL_TIME',
     CONTRACTOR: 'CONTRACTOR',
     INTERN: 'INTERN',
