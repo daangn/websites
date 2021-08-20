@@ -211,6 +211,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
       FULL_TIME: '정규직',
       CONTRACTOR: '계약직',
       INTERN: '인턴',
+      ASSISTANT: '어시스턴트',
     }[jobPost.employmentType],
     {
       YES: '경력',

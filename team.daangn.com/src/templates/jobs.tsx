@@ -242,6 +242,7 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
             <option value="FULL_TIME">정규직</option>
             <option value="CONTRACTOR">계약직</option>
             <option value="INTERN">인턴</option>
+            <option value="ASSISTANT">어시스턴트</option>
           </Select>
         </Filters>
         <JobPostList

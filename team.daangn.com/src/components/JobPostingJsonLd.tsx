@@ -10,6 +10,7 @@ type EmploymentType = (
   | 'PART_TIME'
   | 'FREE_LANCER'
   | 'INTERN'
+  | 'ASSISTANT'
   | 'OTHER'
 );
 
@@ -58,6 +59,15 @@ const JobPostingJsonLd: React.FC<JobPostingJsonLdProps> = ({
   overrides,
   defer = false,
 }) => {
+  const employmentTypeMapping:Record<EmploymentType,string> = {
+    FULL_TIME: 'FULL_TIME',
+    CONTRACTOR: 'CONTRACTOR',
+    INTERN: 'INTERN',
+    ASSISTANT: 'PART_TIME',
+    PART_TIME:'PART_TIME',
+    FREE_LANCER:'FREE_LANCER',
+    OTHER:'OTHER',
+  }
   const json: WithContext<JobPosting> = {
     '@context': 'https://schema.org',
     '@type': 'JobPosting',
@@ -68,7 +78,7 @@ const JobPostingJsonLd: React.FC<JobPostingJsonLdProps> = ({
     validThrough,
     industry,
     occupationalCategory,
-    employmentType,
+    employmentType: employmentType?employmentTypeMapping[employmentType]:undefined,
     experienceRequirements,
     ...locations && {
       jobLocation: locations.map(location => ({

@@ -53,6 +53,7 @@ export const employmentType: FieldParser<(
   | 'FULL_TIME'
   | 'CONTRACTOR'
   | 'INTERN'
+  | 'ASSISTANT'
 )> = (
   node,
   { reporter },
@@ -64,6 +65,7 @@ export const employmentType: FieldParser<(
       case '정규직': return 'FULL_TIME';
       case '계약직': return 'CONTRACTOR';
       case '인턴': return 'INTERN';
+      case '어시스턴트': return 'ASSISTANT';
       case null: {
         reporter.warn(reporter.stripIndent`
           Employment Type 필드 값이 비어있습니다. (https://app3.greenhouse.io/plans/${node.ghId})
