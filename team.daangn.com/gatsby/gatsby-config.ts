@@ -157,7 +157,15 @@ const config: GatsbyConfig = {
       options: {
         boardToken: 'daangn',
         includeContent: true,
-        forceGC: true,
+        // 이런 해킹으로는 안된다... 다른 방법을 강구해야함
+        // forceGC: true,
+      },
+    },
+    {
+      resolve: '@karrotmarket/gatsby-source-greenhouse-job-board',
+      options: {
+        boardToken: 'daangnmvp',
+        includeContent: true,
       },
     },
 //    'gatsby-plugin-prismic-schema',
