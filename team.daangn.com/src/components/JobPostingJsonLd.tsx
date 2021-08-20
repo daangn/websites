@@ -78,7 +78,7 @@ const JobPostingJsonLd: React.FC<JobPostingJsonLdProps> = ({
     validThrough,
     industry,
     occupationalCategory,
-    employmentType: employmentType?employmentTypeMapping[employmentType]:undefined,
+    employmentType: employmentTypeMapping[employmentType],
     experienceRequirements,
     ...locations && {
       jobLocation: locations.map(location => ({
