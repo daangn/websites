@@ -42,7 +42,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       # HTML content (unsafe)
       rawContent: String!
 
-      # 회사 (당근마켓, 망근페이)
+      # 회사 (당근마켓, 당근페이)
       corporate: JobCorporate
 
       # 고용 형태
@@ -65,6 +65,9 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
 
       # 정렬 선호 순위 값 (signed, 기본값: 0)
       order: Int!
+
+      # 외부 링크 (공고가 바깥에서 열리는 경우.. 좀 컨텐츠 많으면 노션 링크 선호되는 경우 있음)
+      externalUrl: String
 
       # 목록에서 표시할 태그
       tags: [String!]!
@@ -142,6 +145,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ctx => {
       portfolioRequired: fieldParser.portfolioRequirement(node, ctx) ?? false,
       keywords: fieldParser.keywords(node, ctx) ?? [],
       order: fieldParser.order(node, ctx) ?? 0,
+      externalUrl: fieldParser.externalUrl(node, ctx)?.toString() ?? null,
       tags: fieldParser.tags(node, ctx) ?? [],
     };
 

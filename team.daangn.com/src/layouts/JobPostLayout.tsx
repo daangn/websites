@@ -57,6 +57,7 @@ export const query = graphql`
       corporate
       employmentType
       priorExperience
+      externalUrl
       datePosted: updatedAt(formatString: "YYYY-MM-DD", locale: "ko")
       validThrough(formatString: "YYYY-MM-DD", locale: "ko")
       viewPath: gatsbyPath(filePath: "/jobs/{JobPost.parent__(GreenhouseJob)__ghId}")
@@ -107,13 +108,9 @@ const PropertyList = styled('ul', {
   fontSize: '$caption1',
   marginBottom: rem(40),
 
-  variants: {
-    size: {
-      sm: {
-        fontSize: '$body2',
-        marginBottom: rem(72),
-      },
-    },
+  '@sm': {
+    fontSize: '$body2',
+    marginBottom: rem(72),
   },
 });
 
@@ -132,12 +129,8 @@ const Tabs = styled('nav', {
   borderBottom: '1px solid $gray300',
   marginBottom: rem(40),
 
-  variants: {
-    size: {
-      sm: {
-        marginBottom: rem(48),
-      },
-    },
+  '@sm': {
+    marginBottom: rem(48),
   },
 });
 
@@ -225,6 +218,9 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
       <GatsbySeo
         title={metaTitle}
         description={metaDescription}
+        // Note: 이 페이지 그냥 삭제하는게 맞을지 외부 링크에 대한 안내를 따로 할지 모르겠다.
+        // 당장 UI 디자인이 없으니 전자가 맞는것 같은데... 범용성 생각하면 후자가 맞는것도 같고
+        noindex={Boolean(jobPost.externalUrl)}
         openGraph={{
           title: metaTitle,
           description: metaDescription,
@@ -242,6 +238,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
           },
         }}
       />
+
       <JobPostingJsonLd
         url={siteOrigin + currentPath}
         title={jobPost.title}
@@ -277,6 +274,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
           }
         ]}
       />
+
       <PreviousLink 
         aria-label="목록으로 돌아가기"
         to="/jobs/"
@@ -289,18 +287,19 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
       >
         <BackwardSvg />
       </PreviousLink>
-      <PageTitle size={{ '@sm': 'sm' }}>
-        {jobPost.title}
-      </PageTitle>
-      <PropertyList size={{ '@sm': 'sm' }}>
+
+      <PageTitle>{jobPost.title}</PageTitle>
+
+      <PropertyList>
         {properties.map(prop => (
           <Property key={prop}>
             {prop}
           </Property>
         ))}
       </PropertyList>
+
       <AnimateSharedLayout>
-        <Tabs size={{ '@sm': 'sm' }}>
+        <Tabs>
           <TabItemList role="tablist">
             <TabItem key="jobpost-view">
               <TabLink

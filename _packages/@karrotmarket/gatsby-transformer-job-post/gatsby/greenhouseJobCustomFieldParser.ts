@@ -227,3 +227,15 @@ export const validThrough: FieldParser<Date> = (
       : undefined;
   })();
 };
+
+export const externalUrl: FieldParser<URL> = (
+  node,
+) => {
+  const fieldId = 7142945003;
+  const field = findMetadataById<string>(node, fieldId);
+  return field && (() => {
+    return field.value
+      ? new URL(field.value)
+      : undefined;
+  })();
+};
