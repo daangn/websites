@@ -81,7 +81,7 @@
     "@svgr/webpack": "5.5.0",
     "@types/dotenv-safe": "8.1.2",
     "@types/node": "14.17.10",
-    "@types/react": "17.0.18",
+    "@types/react": "17.0.19",
     "@types/react-dom": "17.0.9",
     "babel-plugin-polished": "1.1.0",
     "babel-preset-gatsby": "1.12.0",
