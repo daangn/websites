@@ -18,7 +18,7 @@
     "react": "18.0.0-alpha-ed6c091fe-20210701",
     "react-dom": "18.0.0-alpha-ed6c091fe-20210701",
     "schema-dts": "0.8.3",
-    "webpack": "5.36.2",
+    "webpack": "5.51.1",
     "@emotion/react": "11.4.1",
     "@emotion/styled": "11.3.0"
   },
