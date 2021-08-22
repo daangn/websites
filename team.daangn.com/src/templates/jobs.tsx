@@ -6,6 +6,8 @@ import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetada
 import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import { rem } from 'polished';
 import { required } from '@cometjs/core';
+import {ReactComponent as SearchdSvg} from '~/assets/searchOutlineM.svg';
+
 
 import PageTitle from '~/components/PageTitle';
 import _JobPostList from '~/components/JobPostList';
@@ -109,8 +111,12 @@ const Filters = styled('div', {
   gap: rem(16),
 
   '@sm': {
-    gridTemplateColumns: `repeat(2, minmax(${rem(260)}, max-content))`,
+    display:'flex',
     gap: rem(20),
+    
+    '& > *':{
+      width:rem(260),
+    }
   },
 });
 
@@ -149,6 +155,38 @@ const Select = styled('select', {
     clipPath: 'polygon(100% 0%, 0 0%, 50% 100%)',
     background: '$gray500',
   },
+});
+const Search = styled('div', {
+  display: 'inline-flex',
+  position: 'relative',
+  marginLeft: 'auto',
+  alignItems: 'center',
+  
+  '& > input':{
+    flex:1,
+    alignItems: 'center',
+    height: rem(52),
+    border: '1px solid $gray400',
+    boxSizing: 'border-box',
+    borderRadius: rem(8),
+    typography: '$body2',
+    paddingLeft: rem(52),
+    paddingRight: rem(14),
+    '::placeholder': {
+      color: '$gray500',
+    },
+    '&:focus': {
+      border: '1px solid $carrot500',
+    },
+    '&:focus~svg': {
+      color: '$carrot500',
+    },
+  },
+  '& > svg':{
+    color:'$gray400',
+    position:'absolute',
+    left:rem(20),
+  }
 });
 
 const JobPostList = styled(_JobPostList, {
@@ -250,6 +288,10 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
             <option value="INTERN">인턴</option>
             <option value="ASSISTANT">어시스턴트</option>
           </Select>
+          <Search >
+            <input placeholder="검색" />
+            <SearchdSvg />
+          </Search>
         </Filters>
         <JobPostList
           jobs={data.currentGreenhouseJobs}
