@@ -37,7 +37,7 @@
     "@karrotmarket/react-stitches": "0.1.1-1",
     "@reach/router": "1.3.4",
     "@stitches/react": "0.2.5",
-    "cjk-slug": "0.1.4",
+    "cjk-slug": "0.2.1",
     "clsx": "1.1.1",
     "framer-motion": "4.1.17",
     "gatsby": "next",
