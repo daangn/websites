@@ -4814,12 +4814,12 @@ ci-info@^3.1.1:
   resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-3.2.0.tgz#2876cb948a498797b5236f0095bc057d0dca38b6"
   integrity sha512-dVqRX7fLUm8J6FgHJ418XuIgDLZDkYcDFTeL6TA2gt5WlIZUQrrH6EZrNClwT/H0FateUsZkGIOPRrLbP+PR9A==
 
-cjk-slug@0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/cjk-slug/-/cjk-slug-0.1.4.tgz#48aad5f52a47187d5737b2ba608da7f025f29ec8"
-  integrity sha512-SiJfMD6zGETvSf5fxtDGKE6keNXm0Fdbyh11ijSa138PPcN+cg4Crn4saG7p0uSIN3KygBcYf8ZBvzSr2ebJqQ==
+cjk-slug@0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/cjk-slug/-/cjk-slug-0.2.1.tgz#4d0ca304d0c08b1be96a87b79e30192862ea4605"
+  integrity sha512-LLcdUzfzq3PhGqcXC0EScm/oefd8lHeqTCfvGawMKDcqTnRXqYWv8HGLNnXCZWWsuP4Ji+InW5VCxbPVo6wpzg==
   dependencies:
-    normalize-cjk "^0.1.0"
+    normalize-cjk "^0.2.0"
 
 cjs-module-lexer@^1.0.0:
   version "1.2.2"
@@ -11595,10 +11595,10 @@ noms@0.0.0:
     inherits "^2.0.1"
     readable-stream "~1.0.31"
 
-normalize-cjk@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/normalize-cjk/-/normalize-cjk-0.1.0.tgz#dfe49677b7ec1279cd3eed4dea56d7f213eac447"
-  integrity sha512-KQaclrPkIaUljUxxL24pvTZ1nTqxBBjSqnJfJsB5ZbX8rqSAkNfVQIwdB1TAbvj5ICRkLwY0j+vd0vrH2fZ3lg==
+normalize-cjk@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/normalize-cjk/-/normalize-cjk-0.2.0.tgz#f53bed878870740cb2feaaef4f565798cac5de83"
+  integrity sha512-A0BwMuoQvkB/mFHOSYGt37QvczPqIrY/476aNMxl7Kt7MRvovOim8AhtFD2zZYpwHw/LNeVwJ6xHIzb+WwUmqg==
 
 normalize-package-data@^2.3.2, normalize-package-data@^2.3.4, normalize-package-data@^2.5.0:
   version "2.5.0"
