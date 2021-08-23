@@ -248,6 +248,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
         name="portfolio"
         label="포트폴리오"
         placeholder="파일 첨부하기"
+        description="*포트폴리오는 최대 50MB까지 업로드 가능해요."
         required={data.jobPost.portfolioRequired}
       />
       <FormField
