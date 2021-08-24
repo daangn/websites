@@ -299,7 +299,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
       </PropertyList>
 
       <AnimateSharedLayout>
-        <Tabs>
+      {!jobPost.externalUrl&&<Tabs>
           <TabItemList role="tablist">
             <TabItem key="jobpost-view">
               <TabLink
@@ -332,7 +332,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
               )}
             </TabItem>
           </TabItemList>
-        </Tabs>
+        </Tabs>}
       </AnimateSharedLayout>
       {children}
     </Container>
