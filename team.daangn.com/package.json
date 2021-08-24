@@ -66,7 +66,7 @@
     "react-dom": "next",
     "react-helmet-async": "1.0.9",
     "react-intersection-observer": "8.32.0",
-    "react-swipeable": "6.1.2",
+    "react-swipeable": "6.2.0",
     "schema-dts": "0.11.0",
     "use-dark-mode": "2.3.1"
   },
