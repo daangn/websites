@@ -9,7 +9,7 @@ import { required } from '@cometjs/core';
 
 import PageTitle from '~/components/PageTitle';
 import _JobPostList from '~/components/JobPostList';
-import expandMoreOutlineUrl from '~/assets/expand_more_outline_m.svg'
+import expandMoreOutlineUrl from '!!file-loader!~/assets/expand_more_outline_m.svg'
 
 type JobsPageTemplateProps = PageProps<GatsbyTypes.JobsPageTemplateQuery, GatsbyTypes.SitePageContext>;
 
