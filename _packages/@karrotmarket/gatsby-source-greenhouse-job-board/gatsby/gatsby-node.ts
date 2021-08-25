@@ -11,7 +11,6 @@ export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
   return Joi.object({
     boardToken: Joi.string().required(),
     includeContent: Joi.boolean().default(false),
-    jobBoardTags: Joi.array().items(Joi.string()),
     forceGC: Joi.boolean().default(false),
   });
 };
@@ -19,7 +18,6 @@ export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
 type PluginOptions = {
   boardToken: string,
   includeContent: boolean,
-  jobBoardTags?: string[]
   forceGC: boolean,
 };
 
@@ -29,10 +27,11 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
 }, options) => {
   // already validated by `pluginOptionsSchema`
   const { includeContent } = options as unknown as PluginOptions;
+
   type GreenhouseJobSource = (
     & NodeInput
     & Omit<GreenhouseJob, 'id'>
-    & { ghId: number; jobBoardTags?:string[] }
+    & { ghId: number }
   );
 
   type GreenhouseJobCustomFieldMetadataSource = GreenhouseJobSource['metadata'][number];
@@ -86,9 +85,6 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
         metadata: {
           type: '[GreenhouseJobCustomFieldMetadata!]!',
         },
-        jobBoardTags: {
-          type:'[String]',
-        }
       },
     }),
     schema.buildObjectType({
@@ -130,7 +126,6 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async ({
     boardToken,
     includeContent,
     forceGC,
-    jobBoardTags
   } = options as unknown as PluginOptions;
 
   type Response = {
@@ -159,7 +154,6 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async ({
         contentDigest: createContentDigest(job),
       },
       ghId,
-      jobBoardTags,
       ...content,
     });
   }

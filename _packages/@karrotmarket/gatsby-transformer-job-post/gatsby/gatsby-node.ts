@@ -146,7 +146,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ctx => {
       keywords: fieldParser.keywords(node, ctx) ?? [],
       order: fieldParser.order(node, ctx) ?? 0,
       externalUrl: fieldParser.externalUrl(node, ctx)?.toString() ?? null,
-      tags: [ ...node.jobBoardTags ?? [], ...fieldParser.tags(node, ctx) ?? [] ],
+      tags: fieldParser.tags(node, ctx) ?? [],
     };
 
     const jobPostNode: NodeInput = {
