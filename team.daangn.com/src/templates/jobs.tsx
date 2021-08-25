@@ -9,6 +9,7 @@ import { required } from '@cometjs/core';
 
 import PageTitle from '~/components/PageTitle';
 import _JobPostList from '~/components/JobPostList';
+import expandMoreOutlineUrl from '!!file-loader!~/assets/expand_more_outline_m.svg'
 
 type JobsPageTemplateProps = PageProps<GatsbyTypes.JobsPageTemplateQuery, GatsbyTypes.SitePageContext>;
 
@@ -100,7 +101,7 @@ const Container = styled('section', {
 
 const Content = styled('div', {
   display: 'grid',
-  gap: rem(8),
+  gap: rem(20),
 });
 
 const Filters = styled('div', {
@@ -125,6 +126,11 @@ const Select = styled('select', {
   gridTemplateAreas: '"select"',
   appearance: 'none',
   backgroundColor: '$white',
+  backgroundImage: `url(${expandMoreOutlineUrl})`,
+  backgroundPosition: `right ${rem(26)} top ${rem(23)}`,
+  backgroundRepeat: 'no-repeat',
+  color: '$gray700',
+  
   '&:focus': {
     border: '1px solid $carrot500',
   },
