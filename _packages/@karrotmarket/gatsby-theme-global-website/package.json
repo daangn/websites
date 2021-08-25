@@ -39,7 +39,7 @@
     "react-helmet-async": "1.1.0",
     "react-intersection-observer": "8.32.0",
     "react-scroll-parallax": "2.4.0",
-    "sharp": "0.28.3"
+    "sharp": "0.29.0"
   },
   "devDependencies": {
     "@babel/cli": "7.14.8",
