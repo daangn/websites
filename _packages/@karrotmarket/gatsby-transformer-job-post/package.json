@@ -20,7 +20,7 @@
     "@babel/core": "7.15.0",
     "@karrotmarket/gatsby-source-greenhouse-job-board": "*",
     "@types/common-tags": "1.8.1",
-    "@types/jest": "26.0.24",
+    "@types/jest": "27.0.1",
     "@types/node": "14.17.11",
     "babel-jest": "27.0.6",
     "babel-preset-gatsby-package": "1.12.0",
