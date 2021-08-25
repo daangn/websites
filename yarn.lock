@@ -13232,10 +13232,10 @@ react-focus-lock@^2.5.2:
     use-callback-ref "^1.2.5"
     use-sidecar "^1.0.5"
 
-react-helmet-async@1.0.9:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/react-helmet-async/-/react-helmet-async-1.0.9.tgz#5b9ed2059de6b4aab47f769532f9fbcbce16c5ca"
-  integrity sha512-N+iUlo9WR3/u9qGMmP4jiYfaD6pe9IvDTapZLFJz2D3xlTlCM1Bzy4Ab3g72Nbajo/0ZyW+W9hdz8Hbe4l97pQ==
+react-helmet-async@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-helmet-async/-/react-helmet-async-1.1.0.tgz#81d59ecfdf3540625639dc5e5a923f7219705bf9"
+  integrity sha512-550xWSW61j7Qzk26GBOdh096wKG6n1jY3ew7bH5NU0GvIZ5LyeuBLxHFBddMP7ZpsSltnUGzzh2p6Rj+aQAi4g==
   dependencies:
     "@babel/runtime" "^7.12.5"
     invariant "^2.2.4"
