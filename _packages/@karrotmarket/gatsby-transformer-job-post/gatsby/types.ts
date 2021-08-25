@@ -6,6 +6,7 @@ export type GreenhouseJobNode = (
   & Omit<GreenhouseJob, 'id'>
   & {
     ghId: number,
+    boardToken: string,
     internal: {
       type: 'GreenhouseJob',
     },
