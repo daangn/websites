@@ -166,6 +166,15 @@ const config: GatsbyConfig = {
       options: {
         boardToken: 'daangnmvp',
         includeContent: true,
+        jobBoardTags:["MVP"]
+      },
+    },
+    {
+      resolve: '@karrotmarket/gatsby-source-greenhouse-job-board',
+      options: {
+        boardToken: 'daangntest',
+        includeContent: true,
+        jobBoardTags:["사전지원"]
       },
     },
 //    'gatsby-plugin-prismic-schema',
