@@ -11,7 +11,7 @@ import {ReactComponent as SearchdSvg} from '~/assets/searchOutlineM.svg';
 import PageTitle from '~/components/PageTitle';
 import _JobPostList from '~/components/JobPostList';
 import expandMoreOutlineUrl from '!!file-loader!~/assets/expand_more_outline_m.svg'
-import { useFlexSearch } from './useFlexSearch';
+import { useFlexSearch } from '../utils/useFlexSearch';
 
 type JobsPageTemplateProps = PageProps<GatsbyTypes.JobsPageTemplateQuery, GatsbyTypes.SitePageContext>;
 
