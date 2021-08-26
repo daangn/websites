@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { PageProps } from 'gatsby';
+import { PageProps, useStaticQuery } from 'gatsby';
 import { graphql, navigate } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
@@ -93,11 +93,7 @@ export const query = graphql`
       ) {
         fieldValue
       }
-    }
-
-    localSearchJobPosts {
-      index
-    }
+    }    
   }
 `;
 
@@ -202,11 +198,17 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
   pageContext,
 }) => {
   const siteOrigin = useSiteOrigin();
-
   const [filterEmploymentType, setFilterEmploymentType] = React.useState('');
   const [searchQuery, setSearchQuery] = React.useState('');
+  const [isSearchPending, startSearchTransition] = React.useTransition();
 
-  const searchResults = useFlexSearch(searchQuery, data.localSearchJobPosts?.index)
+  const handleSearchInputChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    startSearchTransition(() => {
+      setSearchQuery(e.target.value);
+    });
+  }
+
+  const searchResults = useFlexSearch(searchQuery)
 
   required(data.prismicTeamContents?.data);
 
@@ -296,7 +298,7 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
             <option value="ASSISTANT">어시스턴트</option>
           </Select>
           <Search >
-            <input placeholder="검색" onChange={e=>setSearchQuery(e.target.value)}/>
+            <input placeholder="검색" onChange={handleSearchInputChange}/>
             <SearchdSvg />
           </Search>
         </Filters>

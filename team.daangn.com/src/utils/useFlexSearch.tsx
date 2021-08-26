@@ -1,25 +1,34 @@
-import { useState,useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo } from "react";
+import { useStaticQuery, graphql } from 'gatsby';
 
-type Store = {
-  id: string;
-  [property:string]:any
-}
-export const useFlexSearch = (query?:string, index?:string)=>{
-  const [searchResult,setSearchResult] = useState<string[]>()
-  const flexIndex = useMemo(()=>index && JSON.parse(index)[0] || {}, [index])
-  useEffect(()=>{
-    if(query && flexIndex){
-      let results:string[] = []
-      flexIndex.forEach((entities: { [key: string]: string[] }) => {
-        results.push(...entities[query]||[])
-      })
-
-      results = Array.from(new Set(results))
-      setSearchResult(results)
-    }else{
-      setSearchResult(undefined)
+export const useFlexSearch = (query?: string) => {
+  const staticData = useStaticQuery<GatsbyTypes.UseFlexSearchIndexStaticQuery>(graphql`
+    query UseFlexSearchIndexStatic {
+      localSearchJobPosts {
+        index
+      }
     }
-  },[query,index])
+  `)
+  const [searchResult, setSearchResult] = useState<string[]>();
+  const flexIndex = useMemo(() => {
+    if (!staticData.localSearchJobPosts.index) return {};
+    try {
+      const index = JSON.parse(staticData.localSearchJobPosts.index)[0] || {};
+      return index;
+    } catch (e) {
+      console.warn("flexsearch index documment parse error.",e);
+      return {};
+    }
+  }, [staticData.localSearchJobPosts.index]);
+  
+  useEffect(() => {
+    if (query) {
+      const results = flexIndex.flatMap((entities) => entities[query] || []);
+      setSearchResult(Array.from(new Set(results)));
+    } else {
+      setSearchResult(undefined);1
+    }
+  }, [query, flexIndex]);
 
-  return searchResult
-}
+  return searchResult;
+};

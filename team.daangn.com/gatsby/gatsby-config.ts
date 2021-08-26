@@ -1,5 +1,5 @@
 import type { GatsbyConfig } from 'gatsby';
-import {disassemble as hangulDisassemble, assemble as hangulAssemble} from 'hangul-js';
+import {disassemble as disassembleHangul, assemble as assembleHangul} from 'hangul-js';
 
 import dotenv from 'dotenv-safe';
 dotenv.config();
@@ -156,13 +156,14 @@ const config: GatsbyConfig = {
         engineOptions: {
           tokenize: (str)=>{
             const index = JSON.parse(str)
-            const splitTitle = index.title.replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g,"").split(/\s/)
+            const specialCharactersRegex = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g
+            const splitTitle = index.title.replace(specialCharactersRegex,"").trim().split(/\s/)
             const wordSet = new Set([...splitTitle,...index.keywords])
             const tokens:string[]=[]
             for (const word of wordSet) {
-              const syllables = hangulDisassemble(word); // disassembleHangul 이 낫지 않나?
+              const syllables = disassembleHangul(word);
               for (let i = 0; i < syllables.length; i++) {
-                const token = hangulAssemble(syllables.slice(0, i + 1));
+                const token = assembleHangul(syllables.slice(0, i + 1));
                 tokens.push(token);
               }
             }
