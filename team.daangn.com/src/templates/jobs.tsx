@@ -159,9 +159,12 @@ const Select = styled('select', {
 const Search = styled('div', {
   display: 'inline-flex',
   position: 'relative',
-  marginLeft: 'auto',
   alignItems: 'center',
   
+  '@sm': {
+    marginLeft: 'auto',
+  },
+
   '& > input':{
     flex:1,
     alignItems: 'center',
