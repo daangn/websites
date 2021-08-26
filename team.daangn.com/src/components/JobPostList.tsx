@@ -14,6 +14,7 @@ type JobPostListProps = {
   className?: string,
   filterChapter?: string,
   filterEmploymentType?: string,
+  searchResults?: string[],
 };
 
 export const query = graphql`
@@ -61,6 +62,7 @@ const JobPostList: React.FC<JobPostListProps> = ({
   className,
   filterChapter = '',
   filterEmploymentType = '',
+  searchResults
 }) => {
   const parseLink = useLinkParser();
 
@@ -70,8 +72,12 @@ const JobPostList: React.FC<JobPostListProps> = ({
 
   const orderedJobPosts = jobPosts 
     .sort((a, b) => b.order - a.order);
-
+  
   const filteredJobPosts = orderedJobPosts
+    .filter(jobPosts =>{
+      if(!searchResults) return true;
+      return searchResults.includes(jobPosts.id)
+    })
     .filter(jobPost => {
       if (filterChapter === '') return true;
       return jobPost.chapter === filterChapter;

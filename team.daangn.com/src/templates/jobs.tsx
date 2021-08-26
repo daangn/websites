@@ -8,10 +8,10 @@ import { rem } from 'polished';
 import { required } from '@cometjs/core';
 import {ReactComponent as SearchdSvg} from '~/assets/searchOutlineM.svg';
 
-
 import PageTitle from '~/components/PageTitle';
 import _JobPostList from '~/components/JobPostList';
 import expandMoreOutlineUrl from '!!file-loader!~/assets/expand_more_outline_m.svg'
+import { useFlexSearch } from './useFlexSearch';
 
 type JobsPageTemplateProps = PageProps<GatsbyTypes.JobsPageTemplateQuery, GatsbyTypes.SitePageContext>;
 
@@ -93,6 +93,10 @@ export const query = graphql`
       ) {
         fieldValue
       }
+    }
+
+    localSearchJobPosts {
+      index
     }
   }
 `;
@@ -200,6 +204,9 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
   const siteOrigin = useSiteOrigin();
 
   const [filterEmploymentType, setFilterEmploymentType] = React.useState('');
+  const [searchQuery, setSearchQuery] = React.useState('');
+
+  const searchResults = useFlexSearch(searchQuery, data.localSearchJobPosts?.index)
 
   required(data.prismicTeamContents?.data);
 
@@ -289,13 +296,14 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
             <option value="ASSISTANT">어시스턴트</option>
           </Select>
           <Search >
-            <input placeholder="검색" />
+            <input placeholder="검색" onChange={e=>setSearchQuery(e.target.value)}/>
             <SearchdSvg />
           </Search>
         </Filters>
         <JobPostList
           jobs={data.currentGreenhouseJobs}
           filterEmploymentType={filterEmploymentType}
+          searchResults={searchResults}
         />
       </Content>
     </Container>
