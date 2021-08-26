@@ -159,15 +159,13 @@ const config: GatsbyConfig = {
             const splitTitle = index.title.replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g,"").split(/\s/)
             const wordSet = new Set([...splitTitle,...index.keywords])
             const tokens:string[]=[]
-            wordSet.forEach((word)=>{
-              const disa = hangulDisassemble(word)
-              disa.reduce((arr, c) => {
-                const n = [...arr,c]
-                const a = hangulAssemble(n)
-                tokens.push(a)
-                return n
-              },[])
-            })
+            for (const word of wordSet) {
+              const syllables = hangulDisassemble(word); // disassembleHangul 이 낫지 않나?
+              for (let i = 0; i < syllables.length; i++) {
+                const token = hangulAssemble(syllables.slice(0, i + 1));
+                tokens.push(token);
+              }
+            }
             
             return tokens
           }
