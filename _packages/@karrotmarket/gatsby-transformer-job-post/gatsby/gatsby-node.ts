@@ -1,12 +1,23 @@
 import type {
   GatsbyNode,
   Node,
-  NodeInput,
+  NodeInput
 } from 'gatsby';
 import { isGreenhouseJobNode } from './types';
 
 import * as greenhouseJobBlockParser from './greenhouseJobBlockParser';
 import * as greenhouseJobCustomFieldParser from './greenhouseJobCustomFieldParser';
+export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
+  Joi,
+}) => {
+  return Joi.object({
+    defaultTags: Joi.object().pattern(Joi.string(), Joi.array().items(Joi.string()))
+  });
+};
+
+type PluginOptions = {
+  defaultTags:{ [boardToken:string]: string[] }
+};
 
 export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({
   actions,
@@ -115,13 +126,14 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
   `);
 };
 
-export const onCreateNode: GatsbyNode['onCreateNode'] = ctx => {
+export const onCreateNode: GatsbyNode['onCreateNode'] = (ctx,options) => {
   const {
     node,
     actions,
     createNodeId,
     createContentDigest,
   } = ctx;
+  const { defaultTags } = options as unknown as PluginOptions;
 
   // Note: 나중에 다른 타입 추가로 transform 할 수 있으므로 early return 하지 않겠습니다.
   if (isGreenhouseJobNode(node)) {
@@ -146,7 +158,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ctx => {
       keywords: fieldParser.keywords(node, ctx) ?? [],
       order: fieldParser.order(node, ctx) ?? 0,
       externalUrl: fieldParser.externalUrl(node, ctx)?.toString() ?? null,
-      tags: fieldParser.tags(node, ctx) ?? [],
+      tags: [ ...defaultTags[node.boardToken] ?? [], ...fieldParser.tags(node, ctx) ?? [] ],
     };
 
     const jobPostNode: NodeInput = {

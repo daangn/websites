@@ -151,7 +151,6 @@ const config: GatsbyConfig = {
     // 커스텀 플러그인
     '@karrotmarket/gatsby-theme-prismic',
     '@karrotmarket/gatsby-theme-website',
-    '@karrotmarket/gatsby-transformer-job-post',
     {
       resolve: '@karrotmarket/gatsby-source-greenhouse-job-board',
       options: {
@@ -167,6 +166,22 @@ const config: GatsbyConfig = {
         boardToken: 'daangnmvp',
         includeContent: true,
       },
+    },
+    {
+      resolve: '@karrotmarket/gatsby-source-greenhouse-job-board',
+      options: {
+        boardToken: 'daangntest',
+        includeContent: true,
+      },
+    },
+    {
+      resolve: '@karrotmarket/gatsby-transformer-job-post',
+      options: {
+        defaultTags:{
+          'daangnmvp': ["MVP"],
+          'daangntest': ["사전지원"]
+        }
+      }
     },
 //    'gatsby-plugin-prismic-schema',
   ],
