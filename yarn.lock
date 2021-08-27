@@ -7532,15 +7532,15 @@ gatsby-plugin-advanced-sitemap@2.0.0:
     moment "2.29.1"
     xml "^1.0.1"
 
-gatsby-plugin-gatsby-cloud@2.11.0:
-  version "2.11.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-gatsby-cloud/-/gatsby-plugin-gatsby-cloud-2.11.0.tgz#e90733827fe4950c0e1d4a4311cda0b9e420a9df"
-  integrity sha512-MsMlhBQdQi5hn3AezSTob3VksWA/cFcSjxafZIY8nd85pXDXOCdOhReuG/6c8KkUS/fcNLtlwwGpjXaz3iFAoQ==
+gatsby-plugin-gatsby-cloud@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-gatsby-cloud/-/gatsby-plugin-gatsby-cloud-3.0.0.tgz#5d8eeb450e80f290cff13f3d13dc8ffe4476e222"
+  integrity sha512-YP+VCdjiBhIoYR8VI/VZDAA/DzSD2J8sgqbfuI+Xh+BpvZjDQyzSO5e1V156bHGm5dCArfx+fxunBeQpBSS39Q==
   dependencies:
-    "@babel/runtime" "^7.14.6"
+    "@babel/runtime" "^7.14.8"
     date-fns "^2.22.1"
     fs-extra "^8.1.0"
-    gatsby-telemetry "^2.11.0"
+    gatsby-telemetry "^2.12.0"
     kebab-hash "^0.1.2"
     lodash "^4.17.21"
     webpack-assets-manifest "^5.0.6"
@@ -7922,7 +7922,7 @@ gatsby-source-prismic@4.0.2:
     gatsby-source-filesystem "^3.9.0"
     tiny-hashes "^1.0.1"
 
-gatsby-telemetry@^2.11.0, gatsby-telemetry@^2.12.0:
+gatsby-telemetry@^2.12.0:
   version "2.12.0"
   resolved "https://registry.yarnpkg.com/gatsby-telemetry/-/gatsby-telemetry-2.12.0.tgz#9c3838bb29aa6eab8a69853fd3e888ef6acce96e"
   integrity sha512-W27oKt7/ThrNz12lPiclb9J7v/Q6ZM5Eh+JQ5w/TRFs4vqLOsfJZxmYG2HzFvAZtoFUB1JsbvmHZDMxUtR84Uw==
