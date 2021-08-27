@@ -2496,7 +2496,7 @@
     schema-utils "^2.6.5"
     source-map "^0.7.3"
 
-"@prismicio/client@^6.0.0-alpha.8":
+"@prismicio/client@6.0.0-alpha.8", "@prismicio/client@^6.0.0-alpha.8":
   version "6.0.0-alpha.8"
   resolved "https://registry.yarnpkg.com/@prismicio/client/-/client-6.0.0-alpha.8.tgz#fdd086032e823b964ef63651b4a2aa9bedf29109"
   integrity sha512-zp3c8mZ/Sm2tQdZCASGEEx2UGJnYS1elFwTEca7M2y/Qi3hPM+Agp4xNMM5UoAg+2m1VFAt151vfaEscc5q4Gw==
@@ -7652,13 +7652,13 @@ gatsby-plugin-preload-fonts@2.12.0:
     progress "^2.0.3"
     puppeteer "^3.3.0"
 
-gatsby-plugin-prismic-previews@4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-prismic-previews/-/gatsby-plugin-prismic-previews-4.1.0.tgz#40075637810ee2217058fee23a16015c64dbcc98"
-  integrity sha512-cvAHDaiMhcFULIEe34pwkRX5YQwNS1iIBltUeLmdSGzs/2kpngAKKPIa7s+pm+r3D6DAL5GKUAEqwQXAyLm60Q==
+gatsby-plugin-prismic-previews@4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-prismic-previews/-/gatsby-plugin-prismic-previews-4.1.2.tgz#3aa1743367ce605e44e26ca3b0a6605bebf01e07"
+  integrity sha512-EY36b5jsWC2rsDMxMqkMtfOTJXZMIEVD2pt3giOD0TrEYHdIx5K3qwN9/dwBSFaJTYN5GmARzTIiIqhb9rttJg==
   dependencies:
     "@imgix/gatsby" "^1.6.11"
-    "@prismicio/client" "^6.0.0-alpha.8"
+    "@prismicio/client" "6.0.0-alpha.8"
     "@prismicio/helpers" "^2.0.0-alpha.4"
     "@prismicio/types" "^0.1.6"
     "@reach/dialog" "^0.16.0"
