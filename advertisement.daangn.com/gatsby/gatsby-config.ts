@@ -17,6 +17,7 @@ const config: GatsbyConfig = {
   siteMetadata,
   plugins: [
     "gatsby-theme-stitches",
+    "gatsby-plugin-svgr",
     {
       resolve: "gatsby-plugin-typegen",
       options: {
