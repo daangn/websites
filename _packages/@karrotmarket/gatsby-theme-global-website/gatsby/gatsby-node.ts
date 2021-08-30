@@ -28,6 +28,12 @@ interface Article {
   price: string;
 }
 
+type PluginOptions = {
+  locale: string,
+  hot_articles_api: string,
+  hot_articles_api_special_key?: string,
+};
+
 export const pluginOptionsSchema: GatsbyNode["pluginOptionsSchema"] = ({
   Joi,
 }) => {
@@ -39,6 +45,9 @@ export const pluginOptionsSchema: GatsbyNode["pluginOptionsSchema"] = ({
     hot_articles_api: Joi.string()
       .default("https://webapp.uk.karrotmarket.com/hot_articles.json?limit=6")
       .description(`인기매물 api`),
+    hot_articles_api_special_key: Joi.string()
+      .description('Bot 차단 우회용 Secret')
+      .optional(),
   });
 };
 
@@ -61,13 +70,25 @@ export const sourceNodes: GatsbyNode["sourceNodes"] = async (
   { actions, createNodeId, createContentDigest },
   options
 ) => {
+  // must be validated by pluginOptionsSchema
+  const pluginOptions = options as unknown as PluginOptions;
+  const {
+    hot_articles_api,
+    hot_articles_api_special_key = process.env.HOT_ARTICLE_API_SPECIAL_KEY,
+  } = pluginOptions;
+
   const { createNode } = actions;
 
   const response = await got<{ articles: Article[] }>(
-    options.hot_articles_api as string,
+    hot_articles_api,
     {
       responseType: "json",
-    }
+      headers: {
+        ...hot_articles_api_special_key && {
+          'x-special-key': hot_articles_api_special_key,
+        },
+      },
+    },
   );
 
   response.body.articles.map((article) => {
