@@ -15,6 +15,7 @@
     "@karrotmarket/react-stitches": "^0.1.1-1",
     "@stitches/react": "^0.2.5",
     "gatsby": "next",
+    "gatsby-plugin-module-resolver": "^1.0.3",
     "gatsby-theme-stitches": "^0.1.1",
     "react": "next",
     "react-dom": "next"
