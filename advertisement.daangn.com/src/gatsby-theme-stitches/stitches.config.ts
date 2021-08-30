@@ -89,3 +89,8 @@ export const { styled, css, global, getCssString, theme, keyframes } =
 export const darkTheme = theme("dark-theme", {
   colors: convertColorScheme(colors.dark.scheme),
 });
+
+export const globalStyles = global({
+  "*": { margin: 0, padding: 0 },
+  body: { fontFamily: "$system" },
+});
