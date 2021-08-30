@@ -1,7 +1,12 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./src/*"],
+      "gatsby-theme-stitches/src/*": ["./src/gatsby-theme-stitches/*"]
+    }
   },
   "include": [
     "src/**/*"

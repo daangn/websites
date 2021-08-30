@@ -1,8 +1,8 @@
-import type { GatsbyConfig } from 'gatsby';
+import type { GatsbyConfig } from "gatsby";
 
-const siteUrl = new URL('https://ads.daangn.com');
+const siteUrl = new URL("https://ads.daangn.com");
 
-const siteMetadata: GatsbyConfig['siteMetadata'] = {
+const siteMetadata: GatsbyConfig["siteMetadata"] = {
   siteUrl: siteUrl.origin,
 };
 
@@ -16,16 +16,17 @@ const config: GatsbyConfig = {
   },
   siteMetadata,
   plugins: [
+    "gatsby-theme-stitches",
     {
-      resolve: 'gatsby-plugin-typegen',
+      resolve: "gatsby-plugin-typegen",
       options: {
-        outputPath: 'src/__generated__/gatsby-types.d.ts',
+        outputPath: "src/__generated__/gatsby-types.d.ts",
         emitSchema: {
-          'src/__generated__/gatsby-schema.graphql': true,
-          'src/__generated__/gatsby-introspection.json': true,
+          "src/__generated__/gatsby-schema.graphql": true,
+          "src/__generated__/gatsby-introspection.json": true,
         },
         emitPluginDocuments: {
-          'src/__generated__/gatsby-plugin-documents.graphql': true,
+          "src/__generated__/gatsby-plugin-documents.graphql": true,
         },
       },
     },
