@@ -72,7 +72,7 @@ const JobPostList: React.FC<JobPostListProps> = ({
 
   const orderedJobPosts = jobPosts 
     .sort((a, b) => b.order - a.order);
-  
+
   const filteredJobPosts = orderedJobPosts
     .filter(jobPosts =>{
       if(!searchResults) return true;

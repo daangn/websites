@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { PageProps, useStaticQuery } from 'gatsby';
-import { graphql, navigate } from 'gatsby';
+import type { PageProps } from 'gatsby';
+import { graphql, navigate} from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
 import { GatsbySeo } from 'gatsby-plugin-next-seo';
@@ -93,7 +93,7 @@ export const query = graphql`
       ) {
         fieldValue
       }
-    }    
+    }
   }
 `;
 
