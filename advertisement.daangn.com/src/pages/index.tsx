@@ -4,6 +4,7 @@ import type { PageProps } from "gatsby";
 import { globalStyles } from "~/gatsby-theme-stitches/stitches.config";
 import { Banner } from "~/components/organisms/Banner";
 import { Main } from "~/components/organisms/Main";
+import { PromotionInfoDownload } from "~/components/organisms/PromotionInfoDownload";
 
 globalStyles();
 
@@ -14,6 +15,7 @@ const IndexPage: React.FC<IndexPageProps> = () => {
     <div>
       <Banner />
       <Main />
+      <PromotionInfoDownload />
     </div>
   );
 };

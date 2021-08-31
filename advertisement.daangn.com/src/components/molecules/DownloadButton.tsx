@@ -4,18 +4,24 @@ import { ReactComponent as IconApple } from "~/image/icon_apple.svg";
 import { ReactComponent as IconGooglePlay } from "~/image/icon_google_play.svg";
 
 type Props = {
+  buttonType?: "carrot" | "gray";
   iconType: "google" | "apple";
   link?: string;
 };
 
 export function DownloadButton({
+  buttonType = "carrot",
   iconType,
   children,
 }: React.PropsWithChildren<Props>) {
   return (
-    <Button>
-      {iconType === "google" && <GooglePlay />}
-      {iconType === "apple" && <Apple />}
+    <Button buttonType={buttonType}>
+      {iconType === "google" && (
+        <GooglePlay fill={buttonType === "gray" ? "#212124" : "white"} />
+      )}
+      {iconType === "apple" && (
+        <Apple fill={buttonType === "gray" ? "#212124" : "white"} />
+      )}
       {children}
     </Button>
   );
@@ -24,16 +30,28 @@ export function DownloadButton({
 const Button = styled("div", {
   display: "flex",
   alignItems: "center",
-  paddingX: 32,
+  justifyContent: "center",
+  width: 180,
   paddingY: 12,
   borderRadius: 10,
-  backgroundColor: "$carrot500",
   typography: "$body2",
   fontWeight: "bold",
-  color: "$white",
 
   "& + &": {
     marginLeft: 10,
+  },
+
+  variants: {
+    buttonType: {
+      carrot: {
+        backgroundColor: "$carrot500",
+        color: "$white",
+      },
+      gray: {
+        backgroundColor: "$gray200",
+        color: "$gray900",
+      },
+    },
   },
 });
 
@@ -44,3 +62,4 @@ const GooglePlay = styled(IconGooglePlay, {
 const Apple = styled(IconApple, {
   marginRight: 10,
 });
+ㄴ;
