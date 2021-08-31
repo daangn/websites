@@ -5,25 +5,25 @@ export const useFlexSearch = (query?: string) => {
   const staticData = useStaticQuery<GatsbyTypes.UseFlexSearchIndexStaticQuery>(graphql`
     query UseFlexSearchIndexStatic {
       localSearchJobPosts {
-        index
+        publicIndexURL
       }
     }
   `)
   const [searchResult, setSearchResult] = useState<string[]>();
-  const flexIndex = useMemo(() => {
-    if (!staticData.localSearchJobPosts.index) return {};
+  const [flexIndex,setFlexIndex] = useState()
+  useEffect(() => {
+    if (!staticData.localSearchJobPosts.publicIndexURL) return {};
     try {
-      const index = JSON.parse(staticData.localSearchJobPosts.index)[0] || {};
-      return index;
+      fetch(staticData.localSearchJobPosts.publicIndexURL).then(async res=>{
+        setFlexIndex(await res.json());
+      });
     } catch (e) {
       console.warn("flexsearch index documment parse error.",e);
-      return {};
     }
-  }, [staticData.localSearchJobPosts.index]);
-  
+  }, [staticData.localSearchJobPosts.publicIndexURL]);
   useEffect(() => {
     if (query) {
-      const results = flexIndex.flatMap((entities) => entities[query] || []);
+      const results = flexIndex?.[0].flatMap((entities) => entities[query] || []);
       setSearchResult(Array.from(new Set(results)));
     } else {
       setSearchResult(undefined);1
