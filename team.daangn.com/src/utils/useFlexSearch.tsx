@@ -18,7 +18,7 @@ export const useFlexSearch = (query?: string) => {
         setFlexIndex(await res.json());
       });
     } catch (e) {
-      console.warn("flexsearch index documment parse error.",e);
+      console.warn("flexsearch index documment parse error.", e);
     }
   }, [staticData.localSearchJobPosts.publicIndexURL]);
   useEffect(() => {
@@ -26,7 +26,7 @@ export const useFlexSearch = (query?: string) => {
       const results = flexIndex?.[0].flatMap((entities) => entities[query] || []);
       setSearchResult(Array.from(new Set(results)));
     } else {
-      setSearchResult(undefined);1
+      setSearchResult(undefined);
     }
   }, [query, flexIndex]);
 
