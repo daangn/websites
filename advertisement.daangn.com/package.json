@@ -15,8 +15,12 @@
     "@karrotmarket/react-stitches": "^0.1.1-1",
     "@stitches/react": "^0.2.5",
     "gatsby": "next",
+    "gatsby-plugin-image": "^1.13.0",
     "gatsby-plugin-module-resolver": "^1.0.3",
+    "gatsby-plugin-sharp": "^3.13.0",
+    "gatsby-source-filesystem": "^3.13.0",
     "gatsby-theme-stitches": "^0.1.1",
+    "gatsby-transformer-sharp": "^3.13.0",
     "react": "next",
     "react-dom": "next"
   },
