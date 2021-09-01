@@ -5,6 +5,7 @@ import { globalStyles } from "~/gatsby-theme-stitches/stitches.config";
 import { Banner } from "~/components/organisms/Banner";
 import { Main } from "~/components/organisms/Main";
 import { PromotionInfoDownload } from "~/components/organisms/PromotionInfoDownload";
+import {LearnMore} from "~/components/organisms/LearnMore";
 
 globalStyles();
 
@@ -16,6 +17,7 @@ const IndexPage: React.FC<IndexPageProps> = () => {
       <Banner />
       <Main />
       <PromotionInfoDownload />
+      <LearnMore />
     </div>
   );
 };

@@ -62,4 +62,3 @@ const GooglePlay = styled(IconGooglePlay, {
 const Apple = styled(IconApple, {
   marginRight: 10,
 });
-ㄴ;
