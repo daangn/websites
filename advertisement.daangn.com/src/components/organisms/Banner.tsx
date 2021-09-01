@@ -2,13 +2,11 @@ import * as React from "react";
 
 import advertisementPcBanner from "~/image/img_advertisement_pc_banner.png";
 import { styled } from "gatsby-theme-stitches/src/stitches.config";
-import { BannerTitle } from "~/components/molecules/BannerTitle";
 import { DownloadButton } from "~/components/molecules/DownloadButton";
 
 export function Banner() {
   return (
     <Background>
-      <BannerTitle />
       <Description>
         동네 이웃들이 모이는
         <br />
