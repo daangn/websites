@@ -1,19 +1,15 @@
 import React from "react";
 import { styled } from "~/gatsby-theme-stitches/stitches.config";
-import advertisementMain01 from "~/image/img_advertisement_main_01.png";
-import advertisementMain02 from "~/image/img_advertisement_main_02.png";
-import advertisementMain03 from "~/image/img_advertisement_main_03.png";
-import advertisementMain04 from "~/image/img_advertisement_main_04.png";
-import advertisementMain05 from "~/image/img_advertisement_main_05.png";
+import { StaticImage as Picture } from "gatsby-plugin-image"
 
 export function Main() {
   return (
     <div>
-      <Image src={advertisementMain01} alt="advertisement-main" />
-      <Image src={advertisementMain02} alt="advertisement-main" />
-      <Image src={advertisementMain03} alt="advertisement-main" />
-      <Image src={advertisementMain04} alt="advertisement-main" />
-      <Image src={advertisementMain05} alt="advertisement-main" />
+      <Picture src="../../image/img_advertisement_main_01.png" alt="main01" />
+      <Picture src="../../image/img_advertisement_main_02.png" alt="main02" />
+      <Picture src="../../image/img_advertisement_main_03.png" alt="main03" />
+      <Picture src="../../image/img_advertisement_main_04.png" alt="main04" />
+      <Picture src="../../image/img_advertisement_main_05.png" alt="main05" />
     </div>
   );
 }
