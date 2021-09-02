@@ -36,8 +36,8 @@
     "gatsby-theme-stitches": "0.1.1",
     "gatsby-transformer-sharp": "3.12.0",
     "got": "11.8.2",
-    "react-helmet-async": "1.1.0",
-    "react-intersection-observer": "8.32.0",
+    "react-helmet-async": "1.1.2",
+    "react-intersection-observer": "8.32.1",
     "react-scroll-parallax": "2.4.0",
     "sharp": "0.29.0"
   },
@@ -50,6 +50,6 @@
     "polished": "4.1.3",
     "react": "experimental",
     "react-dom": "experimental",
-    "typescript": "4.3.5"
+    "typescript": "4.4.2"
   }
 }
