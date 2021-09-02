@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { useStaticQuery, graphql } from 'gatsby';
 
 export const useFlexSearch = (query?: string) => {

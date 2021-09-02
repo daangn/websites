@@ -203,7 +203,7 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
   const siteOrigin = useSiteOrigin();
   const [filterEmploymentType, setFilterEmploymentType] = React.useState('');
   const [searchQuery, setSearchQuery] = React.useState('');
-  const [isSearchPending, startSearchTransition] = React.useTransition();
+  const [_isSearchPending, startSearchTransition] = React.useTransition();
 
   const handleSearchInputChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     startSearchTransition(() => {
