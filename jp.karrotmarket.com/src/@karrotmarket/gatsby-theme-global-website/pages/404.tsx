@@ -1,7 +1,7 @@
 import * as React from "react";
 import { graphql, PageProps } from "gatsby";
 import Layout from "@karrotmarket/gatsby-theme-global-website/src/components/Layout";
-import { styled } from "@karrotmarket/gatsby-theme-global-website/src/gatsby-theme-stitches/stitches.config";
+import { styled } from "@karrotmarket/gatsby-theme-global-website/src/gatsby-theme-stitches/config";
 
 export const query = graphql`
   query NotFoundPageQuery {

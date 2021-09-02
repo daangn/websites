@@ -1,7 +1,7 @@
-import { global } from "../gatsby-theme-stitches/stitches.config";
+import { globalCss } from "../gatsby-theme-stitches/config";
 import { rem } from "polished";
 
-const globalStyles = global({
+const globalStyles = globalCss({
   "*": {
     margin: 0,
     padding: 0,

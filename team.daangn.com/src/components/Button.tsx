@@ -1,5 +1,5 @@
 import { Link } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 
 const Button = styled(Link, {

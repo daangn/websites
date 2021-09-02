@@ -1,12 +1,12 @@
-import { global } from '@karrotmarket/react-stitches/config';
+import { globalCss } from '@karrotmarket/react-stitches/config';
 export {
   styled,
   css,
-  getCssString,
+  getCssText,
   keyframes,
 } from '@karrotmarket/react-stitches/config';
 
-export const globalStyles = global({
+export const globalStyles = globalCss({
   '*': { margin: 0, padding: 0 },
   body: { fontFamily: '$system' },
 });

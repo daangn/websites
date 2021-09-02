@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from "../../gatsby-theme-stitches/stitches.config";
+import { styled } from "../../gatsby-theme-stitches/config";
 
 import { ReactComponent as HeroCeilingLightCableSvg } from "../../images/hero_ceiling_light_cable.svg";
 import { ReactComponent as HeroCeilingLightSvg } from "../../images/hero_ceiling_light.svg";

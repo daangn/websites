@@ -9,7 +9,7 @@ import {
   ParallaxProvider,
 } from "react-scroll-parallax";
 
-import { styled } from "../../gatsby-theme-stitches/stitches.config";
+import { styled } from "../../gatsby-theme-stitches/config";
 
 import { ReactComponent as KarrotIcon } from "../../icons/karrot.svg";
 

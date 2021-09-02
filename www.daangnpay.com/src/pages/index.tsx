@@ -3,7 +3,7 @@ import type { PageProps } from "gatsby";
 import {
   styled,
   globalStyles,
-} from "gatsby-theme-stitches/src/stitches.config";
+} from "gatsby-theme-stitches/src/config";
 import { graphql } from "gatsby";
 
 import JsonLd from "../components/JsonLd";

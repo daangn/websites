@@ -2,7 +2,7 @@ import * as React from 'react';
 import { rem } from 'polished';
 import { motion, AnimateSharedLayout } from 'framer-motion';
 import { graphql } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { styled } from 'gatsby-theme-stitches/src/config';
 
 type PrismicTeamContentsDataCultureBodyHowWeWorkProps = {
   data: GatsbyTypes.PrismicTeamContentsDataCultureBodyHowWeWork_dataFragment,

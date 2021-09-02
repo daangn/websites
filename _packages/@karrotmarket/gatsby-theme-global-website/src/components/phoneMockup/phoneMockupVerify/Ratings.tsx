@@ -2,7 +2,7 @@ import * as React from "react";
 import { em } from "polished";
 import { motion } from "framer-motion";
 
-import { styled } from "../../../gatsby-theme-stitches/stitches.config";
+import { styled } from "../../../gatsby-theme-stitches/config";
 
 import { Flex } from "../../Flex";
 import { RatingType } from "./_type";

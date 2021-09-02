@@ -4,7 +4,7 @@ import { navigate } from 'gatsby';
 import { rem } from 'polished';
 import { motion, AnimateSharedLayout } from 'framer-motion';
 import { graphql, Link } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { styled } from 'gatsby-theme-stitches/src/config';
 import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import type { OverrideProps } from '@cometjs/core';
 import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';

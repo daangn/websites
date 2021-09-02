@@ -1,7 +1,7 @@
 import * as React from 'react';
 import type { PageProps } from 'gatsby';
 import { graphql, navigate} from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { styled } from 'gatsby-theme-stitches/src/config';
 import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
 import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import { rem } from 'polished';

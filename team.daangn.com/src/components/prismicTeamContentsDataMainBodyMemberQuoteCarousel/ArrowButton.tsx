@@ -1,5 +1,5 @@
 import { em } from 'polished';
-import { styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { styled } from 'gatsby-theme-stitches/src/config';
 
 import arrowSvgUrl from './arrow.svg';
 

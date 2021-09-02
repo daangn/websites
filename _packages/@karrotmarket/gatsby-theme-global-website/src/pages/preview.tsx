@@ -3,7 +3,7 @@ import type { PageProps } from "gatsby";
 
 import { withPrismicPreviewResolver } from "gatsby-plugin-prismic-previews";
 import { defaultRepositoryConfig } from "@karrotmarket/gatsby-theme-prismic/src/defaultRepositoryConfig";
-import { styled } from "gatsby-theme-stitches/src/stitches.config";
+import { styled } from "gatsby-theme-stitches/src/config";
 
 const Wrapper = styled("div", {
   display: "flex",
