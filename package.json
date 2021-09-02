@@ -14,7 +14,7 @@
     "advertisement.daangn.com"
   ],
   "resolutions": {
-    "gatsby": "3.12.1",
+    "gatsby": "3.13.0",
     "react": "18.0.0-alpha-edfe50510-20210823",
     "react-dom": "18.0.0-alpha-edfe50510-20210823",
     "schema-dts": "1.0.0",
