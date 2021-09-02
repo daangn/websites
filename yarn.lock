@@ -2655,10 +2655,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@stitches/react@0.2.5":
-  version "0.2.5"
-  resolved "https://registry.yarnpkg.com/@stitches/react/-/react-0.2.5.tgz#ad15b4e59ac2a0679542ba002d41253244be7dab"
-  integrity sha512-RDVn89kW0R/M4q4TdYvsJ7nckFndzRWGGFJnEHbIH9flOpahtNdPsrxVSsZSjFpxeVqCoOxKujlQjiyRrec1VA==
+"@stitches/react@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@stitches/react/-/react-1.0.0.tgz#311413630d96a627ca28f44ebcc9179455cdb73a"
+  integrity sha512-D0/YUbjuZ52Xd/ojT+TjyjZ7p/hBuPlOQ8VBahpMT6ElXriImhsb+RJwr31FP5HeN+y3wuGrRty6/VQjcHjlyA==
 
 "@svgr/babel-plugin-add-jsx-attribute@^5.4.0":
   version "5.4.0"
@@ -13851,10 +13851,10 @@ scheduler@0.21.0-alpha-edfe50510-20210823:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
 
-schema-dts@0.11.0, schema-dts@0.6.0:
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/schema-dts/-/schema-dts-0.11.0.tgz#9fc671cefa60b28506b0ac7ed905a41a6417cd8a"
-  integrity sha512-vQgm1BTUb+PYNayCFXb3R6xXovzdigRIDKZ4BWthmJwqrxJZHNGsDXE7k/iXVcPI8vxHVcAaeQ7QNP9RrlQDEw==
+schema-dts@0.6.0, schema-dts@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/schema-dts/-/schema-dts-1.0.0.tgz#60e8a0f2cef5e644c44c843b03d35b37a4423c01"
+  integrity sha512-9t8gnY3RW2CbpuvA0pIpcaHFXkJTeNnWR4uaWI+PiYSfpuEeMw+2Q0Gac6YTnQb1B8TR6/+G71gQWuSE7dq6Zw==
 
 schema-utils@^1.0.0:
   version "1.0.0"
