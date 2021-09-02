@@ -7,6 +7,7 @@ import { Main } from "~/components/organisms/Main";
 import { PromotionInfoDownload } from "~/components/organisms/PromotionInfoDownload";
 import {BannerTitle} from "~/components/molecules/BannerTitle";
 import {LearnMore} from "~/components/organisms/LearnMore";
+import {Visitors} from "~/components/organisms/Visitors";
 
 globalStyles();
 
@@ -17,6 +18,7 @@ const IndexPage: React.FC<IndexPageProps> = () => {
     <div>
       <BannerTitle />
       <Banner />
+      <Visitors />
       <Main />
       <PromotionInfoDownload />
       <LearnMore />
