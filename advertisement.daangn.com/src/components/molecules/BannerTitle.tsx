@@ -3,6 +3,7 @@ import { styled } from "gatsby-theme-stitches/src/stitches.config";
 
 import daangnAdLogo from "~/image/img_daangn_ad_logo.png";
 import { ReactComponent as IconCall } from "~/image/icon_call.svg";
+import {rem} from "polished";
 
 export const  BannerTitle = () => {
 
@@ -23,9 +24,11 @@ export const  BannerTitle = () => {
       {!!daangnAdLogo && <img src={daangnAdLogo} alt="Banner" />}
       <QuestionInfo>
         <IconCall />
-        <p>
+          <TelLink href="tel://1644-9736">
+          <p>
           광고문의 <mark>1644-9736</mark>
         </p>
+          </TelLink>
       </QuestionInfo>
     </Wrapper>
   );
@@ -36,7 +39,7 @@ const Wrapper = styled("div", {
   alignItems: "center",
   justifyContent: "space-between",
   height: 68,
-  paddingX: 24,
+  paddingX: rem(24),
   position: "fixed",
   top: 0,
   left: 0,
@@ -55,6 +58,9 @@ const Wrapper = styled("div", {
       }
     }
   },
+  "@md" : {
+    paddingX: rem(140)
+  }
 });
 
 const QuestionInfo = styled("div", {
@@ -73,3 +79,8 @@ const QuestionInfo = styled("div", {
     }
   },
 });
+
+const TelLink = styled("a", {
+  color: '$black',
+  textDecoration: "none"
+})
