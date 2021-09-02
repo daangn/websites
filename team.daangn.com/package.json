@@ -78,7 +78,7 @@
     "@babel/plugin-transform-react-jsx": "7.14.9",
     "@babel/plugin-transform-typescript": "7.15.0",
     "@cloudflare/workers-types": "2.2.2",
-    "@cloudflare/wrangler": "1.19.0",
+    "@cloudflare/wrangler": "1.19.1",
     "@prismicio/helpers": "1.0.5",
     "@svgr/webpack": "5.5.0",
     "@types/dotenv-safe": "8.1.2",
