@@ -1,7 +1,7 @@
 import * as React from 'react';
 import type { PageProps } from 'gatsby';
 import useDarkMode from 'use-dark-mode';
-import { global } from 'gatsby-theme-stitches/src/stitches.config';
+import { globalCss } from 'gatsby-theme-stitches/src/config';
 import { useLocation } from '@reach/router';
 import type { OverrideProps } from '@cometjs/core';
 
@@ -15,7 +15,7 @@ type LayoutSwitchProps = OverrideProps<
   }
 >;
 
-const globalStyles = global({
+const globalStyles = globalCss({
   '*': {
     margin: 0,
     fontFamily: 'inherit',

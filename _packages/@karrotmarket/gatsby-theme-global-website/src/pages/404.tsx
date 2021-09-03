@@ -1,7 +1,7 @@
 import * as React from "react";
 import type { PageProps } from "gatsby";
 
-import { styled } from "../gatsby-theme-stitches/stitches.config";
+import { styled } from "../gatsby-theme-stitches/config";
 
 const NotFoundPage: React.FC<PageProps> = ({}) => {
   return <Wrapper>not found</Wrapper>;

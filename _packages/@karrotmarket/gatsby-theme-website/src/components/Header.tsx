@@ -1,7 +1,7 @@
 import * as React from "react";
 import { graphql, Link } from "gatsby";
 import { rem } from "polished";
-import { styled } from "gatsby-theme-stitches/src/stitches.config";
+import { styled } from "gatsby-theme-stitches/src/config";
 
 import NavigationMenu from "./header/NavigationMenu";
 import { ReactComponent as LogoSvg } from "./header/logo.svg";

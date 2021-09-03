@@ -3,7 +3,7 @@ import { rem } from 'polished';
 import { navigate } from '@reach/router';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { styled } from 'gatsby-theme-stitches/src/config';
 import type { WithPrismicPreviewResolverProps } from 'gatsby-plugin-prismic-previews';
 import { withPrismicPreviewResolver } from 'gatsby-plugin-prismic-previews';
 import { defaultRepositoryConfig } from '@karrotmarket/gatsby-theme-prismic/src/defaultRepositoryConfig';

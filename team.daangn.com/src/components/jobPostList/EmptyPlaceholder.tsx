@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { rem } from 'polished';
-import { styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { styled } from 'gatsby-theme-stitches/src/config';
 
 import ButtonLink from '~/components/Button';
 

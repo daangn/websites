@@ -1,7 +1,7 @@
 import * as React from "react";
 import { graphql } from "gatsby";
 import { rem } from "polished";
-import { styled } from "gatsby-theme-stitches/src/stitches.config";
+import { styled } from "gatsby-theme-stitches/src/config";
 import { useLocation } from "@reach/router";
 
 import SocialServiceProfile from "../footer/SocialServiceProfile";

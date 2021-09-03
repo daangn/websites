@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { styled } from "gatsby-theme-stitches/src/stitches.config";
+import { styled } from "gatsby-theme-stitches/src/config";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { rem, em } from "polished";
 

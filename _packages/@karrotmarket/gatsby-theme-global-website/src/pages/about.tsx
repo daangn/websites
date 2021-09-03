@@ -7,7 +7,7 @@ import { mapAbstractType } from "@cometjs/graphql-utils";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { withPrismicPreview } from "gatsby-plugin-prismic-previews";
 
-import { styled } from "../gatsby-theme-stitches/stitches.config";
+import { styled } from "../gatsby-theme-stitches/config";
 
 import Layout from "../components/Layout";
 import DetailsList from "../components/about/DetailsList";

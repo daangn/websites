@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { graphql, Link } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { styled } from 'gatsby-theme-stitches/src/config';
 import { Condition } from '@cometjs/core';
 import { useLinkParser, mapLink } from '@karrotmarket/gatsby-theme-website/src/link';
 

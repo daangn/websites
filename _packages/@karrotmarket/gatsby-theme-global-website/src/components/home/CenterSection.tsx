@@ -4,7 +4,7 @@ import { rem } from "polished";
 import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 
-import { styled } from "../../gatsby-theme-stitches/stitches.config";
+import { styled } from "../../gatsby-theme-stitches/config";
 
 export const query = graphql`
   fragment CenterSection_content on PrismicGlobalContentsDataMainBodyCentreSection {

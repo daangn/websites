@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { rem } from "polished";
 import { graphql } from "gatsby";
-import { styled } from "../../gatsby-theme-stitches/stitches.config";
+import { styled } from "../../gatsby-theme-stitches/config";
 
 export const query = graphql`
   fragment SubtitleAndLinks_content on PrismicGlobalContentsDataAboutBodySubtitleAndLinks {

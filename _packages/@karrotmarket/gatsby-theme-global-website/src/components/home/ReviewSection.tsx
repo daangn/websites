@@ -3,7 +3,7 @@ import * as React from "react";
 import { rem } from "polished";
 import { graphql } from "gatsby";
 import { getImage } from "gatsby-plugin-image";
-import { styled } from "../../gatsby-theme-stitches/stitches.config";
+import { styled } from "../../gatsby-theme-stitches/config";
 
 import { ReactComponent as QuoteIcon } from "../../icons/quote.svg";
 import { ReactComponent as LocationIcon } from "../../icons/location_filled.svg";

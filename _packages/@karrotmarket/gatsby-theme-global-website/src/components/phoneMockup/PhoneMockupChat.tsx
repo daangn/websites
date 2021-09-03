@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { em, rem } from "polished";
 import { motion, AnimatePresence } from "framer-motion";
-import { styled } from "../../gatsby-theme-stitches/stitches.config";
+import { styled } from "../../gatsby-theme-stitches/config";
 
 import Phone from "./Phone";
 import Item from "./phoneMockupChat/Item";

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { rem } from 'polished';
 import { graphql } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { styled } from 'gatsby-theme-stitches/src/config';
 import { useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
 
 import DetailLink from './DetailLink';

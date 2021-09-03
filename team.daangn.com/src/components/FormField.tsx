@@ -1,7 +1,7 @@
 /// <reference types="react/experimental" />
 
 import * as React from 'react';
-import { styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import type { PropOf } from '@cometjs/react-utils';
 

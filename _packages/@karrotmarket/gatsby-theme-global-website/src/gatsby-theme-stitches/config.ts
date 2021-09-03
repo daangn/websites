@@ -1,6 +1,6 @@
 import { em, rem } from "polished";
 import { colors } from "@karrotmarket/design-token";
-import { createCss } from "@stitches/react";
+import { createStitches } from "@stitches/react";
 
 import { convertColorScheme } from "./colors";
 
@@ -15,9 +15,9 @@ export const MediaTypeList: MediaType[] = [
 ];
 export type MediaTypeMap<T> = Partial<{ [i in MediaType]: T }>;
 
-// should exports `styled`, `css` and `getCssString`
-export const { styled, css, global, getCssString, theme, media, utils } =
-  createCss({
+// should exports `styled`, `css` and `getCssText`
+export const { styled, css, globalCss, keyframes, getCssText, theme, createTheme, config } =
+  createStitches({
     // follows Bootstrap's breakpoints practice
     // See https://getbootstrap.com/docs/5.0/layout/breakpoints/#available-breakpoints
     media: {
@@ -27,6 +27,7 @@ export const { styled, css, global, getCssString, theme, media, utils } =
       lg: `(min-width: ${em(992)})`,
       xl: `(min-width: ${em(1200)})`,
       xxl: `(min-width: ${em(1400)})`,
+      mc: `(min-width: ${em(1230)})`,
     },
     theme: {
       // @ts-ignore
@@ -74,67 +75,67 @@ export const { styled, css, global, getCssString, theme, media, utils } =
       /**
        * override
        */
-      marginTop: (_config) => (value: number | string) => ({
+      marginTop: (value: number | string) => ({
         marginTop: typeof value === "string" ? value : rem(value),
       }),
-      marginBottom: (_config) => (value: number | string) => ({
+      marginBottom: (value: number | string) => ({
         marginBottom: typeof value === "string" ? value : rem(value),
       }),
 
-      rowGap: (_config) => (value: number | string) => ({
+      rowGap: (value: number | string) => ({
         rowGap: typeof value === "string" ? value : rem(value),
       }),
-      columnGap: (_config) => (value: number | string) => ({
+      columnGap: (value: number | string) => ({
         columnGap: typeof value === "string" ? value : rem(value),
       }),
 
       /**
        * padding
        */
-      p: (_config) => (value: number | string) => ({
+      p: (value: number | string) => ({
         padding: typeof value === "string" ? value : rem(value),
       }),
-      pr: (_config) => (value: number | string) => ({
+      pr: (value: number | string) => ({
         paddingRight: typeof value === "string" ? value : rem(value),
       }),
-      pl: (_config) => (value: number | string) => ({
+      pl: (value: number | string) => ({
         paddingLeft: typeof value === "string" ? value : rem(value),
       }),
-      pt: (_config) => (value: number | string) => ({
+      pt: (value: number | string) => ({
         paddingTop: typeof value === "string" ? value : rem(value),
       }),
-      pb: (_config) => (value: number | string) => ({
+      pb: (value: number | string) => ({
         paddingBottom: typeof value === "string" ? value : rem(value),
       }),
 
       /**
        * margin
        */
-      m: (_config) => (value: number | string) => ({
+      m: (value: number | string) => ({
         margin: typeof value === "string" ? value : rem(value),
       }),
-      mr: (_config) => (value: number | string) => ({
+      mr: (value: number | string) => ({
         marginRight: typeof value === "string" ? value : rem(value),
       }),
-      ml: (_config) => (value: number | string) => ({
+      ml: (value: number | string) => ({
         marginLeft: typeof value === "string" ? value : rem(value),
       }),
-      mt: (_config) => (value: number | string) => ({
+      mt: (value: number | string) => ({
         marginTop: typeof value === "string" ? value : rem(value),
       }),
-      mb: (_config) => (value: number | string) => ({
+      mb: (value: number | string) => ({
         marginBottom: typeof value === "string" ? value : rem(value),
       }),
 
       /**
        * Space.tsx
        */
-      h: (_config) => (value: number | string) => ({
+      h: (value: number | string) => ({
         width: rem(1),
         minHeight: typeof value === "string" ? value : rem(value),
         maxHeight: typeof value === "string" ? value : rem(value),
       }),
-      w: (_config) => (value: number | string) => ({
+      w: (value: number | string) => ({
         width: rem(1),
         minWidth: typeof value === "string" ? value : rem(value),
         maxWidth: typeof value === "string" ? value : rem(value),
@@ -143,15 +144,15 @@ export const { styled, css, global, getCssString, theme, media, utils } =
       /**
        * Html.tsx
        */
-      highlightColor: (_config) => (value) => ({
+      highlightColor: (value) => ({
         "& strong": { color: value },
       }),
 
-      paddingX: (_config) => (value) => ({
+      paddingX: (value) => ({
         paddingLeft: value,
         paddingRight: value,
       }),
-      paddingY: (_config) => (value) => ({
+      paddingY: (value) => ({
         paddingTop: value,
         paddingBottom: value,
       }),
@@ -159,41 +160,53 @@ export const { styled, css, global, getCssString, theme, media, utils } =
       /**
        * Flex.tsx
        */
-      row: (_config) => () => ({
+      row: () => ({
+        display: "flex",
         flexDirection: "row",
       }),
-      column: (_config) => () => ({
+      column: () => ({
+        display: "flex",
         flexDirection: "column",
       }),
-      jc: (_config) => (value) => ({
+      jc: (value) => ({
+        display: "flex",
         justifyContent: value,
       }),
-      ai: (_config) => (value) => ({
+      ai: (value) => ({
+        display: "flex",
         alignItems: value,
       }),
-      center: (_config) => () => ({
+      center: () => ({
+        display: "flex",
         justifyContent: "center",
         alignItems: "center",
       }),
-      rowCenterX: (_config) => () => ({
+      rowCenterX: () => ({
+        display: "flex",
         flexDirection: "row",
         justifyContent: "center",
       }),
-      rowCenterY: (_config) => () => ({
+      rowCenterY: () => ({
+        display: "flex",
         flexDirection: "row",
         alignItems: "center",
       }),
 
-      colCenterX: (_config) => () => ({
+      colCenterX: () => ({
+        display: "flex",
         flexDirection: "column",
         alignItems: "center",
       }),
-      colCenterY: (_config) => () => ({
+      colCenterY: () => ({
+        display: "flex",
         flexDirection: "column",
         justifyContent: "center",
       }),
+      scale: (value: number) => ({
+        transform: `scale(${value})`,
+      }),
 
-      contentArea: (_config) => (value: boolean) =>
+      contentArea: (value: boolean) =>
         value
           ? {
               boxSizing: "border-box",

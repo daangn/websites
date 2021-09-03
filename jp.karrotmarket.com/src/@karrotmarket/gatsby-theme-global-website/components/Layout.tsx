@@ -6,7 +6,7 @@ import _Header from "@karrotmarket/gatsby-theme-global-website/src/components/He
 import Footer from "@karrotmarket/gatsby-theme-global-website/src/components/Footer";
 import globalStyles from "@karrotmarket/gatsby-theme-global-website/src/styles/global";
 import { Space } from "@karrotmarket/gatsby-theme-global-website/src/components/Space";
-import { styled } from "@karrotmarket/gatsby-theme-global-website/src/gatsby-theme-stitches/stitches.config";
+import { styled } from "@karrotmarket/gatsby-theme-global-website/src/gatsby-theme-stitches/config";
 import { rem } from "polished";
 
 export const query = graphql`

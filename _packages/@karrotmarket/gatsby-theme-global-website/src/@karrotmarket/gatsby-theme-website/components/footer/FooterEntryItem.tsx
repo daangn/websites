@@ -2,7 +2,7 @@ import * as React from "react";
 import { Link } from "gatsby";
 import { useLocation } from "@reach/router";
 
-import { styled } from "gatsby-theme-stitches/src/stitches.config";
+import { styled } from "gatsby-theme-stitches/src/config";
 import {
   mapLink,
   useLinkParser,

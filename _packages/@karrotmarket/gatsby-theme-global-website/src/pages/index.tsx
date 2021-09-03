@@ -7,7 +7,7 @@ import { useInView } from "react-intersection-observer";
 import { mapAbstractType } from "@cometjs/graphql-utils";
 import { withPrismicPreview } from "gatsby-plugin-prismic-previews";
 
-import { styled } from "../gatsby-theme-stitches/stitches.config";
+import { styled } from "../gatsby-theme-stitches/config";
 
 import Layout from "../components/Layout";
 import AppLink from "../components/AppLink";
