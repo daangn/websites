@@ -10,23 +10,12 @@ type SectionProps = {
   data?: any
 }
 
-export const pageQuery = graphql`
-    query {
-      image: file(relativePath: {eq: "img_sub_pc_01.png"}) {
-        childImageSharp {
-          gatsbyImageData(width: 500)
-        }
-      }
-    }
-`
-
-
-export const Main01:React.FC<SectionProps> = ({titleBig, subtitle}) => {
+export const Main03:React.FC<SectionProps> = ({titleBig, subtitle,data}) => {
   // console.log(data)
   return(
     <Section>
       <Container>
-        <Picture src="../../image/img_sub_pc_01.png" alt="main01" imgStyle={{objectPosition: "top"}} height={680}/>
+        <Picture src="../../image/img_sub_pc_03.png" alt="main01" imgStyle={{objectPosition: "top"}} height={680}/>
         {/*<Picture src="../../image/img_sub_pc_02.png" alt="main02" imgStyle={{objectPosition: "top"}}/>*/}
         {/*<Picture src="../../image/img_sub_pc_03.png" alt="main03" imgStyle={{objectPosition: "top"}}/>*/}
         {/*<GatsbyImage alt="" image={getImage(data.)} />*/}

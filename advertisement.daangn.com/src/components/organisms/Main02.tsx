@@ -1,7 +1,7 @@
 import React from 'react'
 import {styled} from "~/gatsby-theme-stitches/stitches.config";
 import {rem} from "polished";
-import {StaticImage as Picture} from "gatsby-plugin-image"
+import {StaticImage as Picture, GatsbyImage, getImage} from "gatsby-plugin-image"
 import {graphql} from "gatsby";
 
 type SectionProps = {
@@ -10,27 +10,12 @@ type SectionProps = {
   data?: any
 }
 
-export const pageQuery = graphql`
-    query {
-      image: file(relativePath: {eq: "img_sub_pc_01.png"}) {
-        childImageSharp {
-          gatsbyImageData(width: 500)
-        }
-      }
-    }
-`
-
-
-export const Main01:React.FC<SectionProps> = ({titleBig, subtitle}) => {
+export const Main02:React.FC<SectionProps> = ({titleBig, subtitle}) => {
   // console.log(data)
   return(
     <Section>
       <Container>
-        <Picture src="../../image/img_sub_pc_01.png" alt="main01" imgStyle={{objectPosition: "top"}} height={680}/>
-        {/*<Picture src="../../image/img_sub_pc_02.png" alt="main02" imgStyle={{objectPosition: "top"}}/>*/}
-        {/*<Picture src="../../image/img_sub_pc_03.png" alt="main03" imgStyle={{objectPosition: "top"}}/>*/}
-        {/*<GatsbyImage alt="" image={getImage(data.)} />*/}
-        <Right>
+        <Text>
           <GridRow>
             <TitleBig>
               {titleBig[0]}
@@ -47,7 +32,8 @@ export const Main01:React.FC<SectionProps> = ({titleBig, subtitle}) => {
               {subtitle[1]}
             </p>
           </GridRow>
-        </Right>
+        </Text>
+        <Picture src="../../image/img_sub_pc_02.png" alt="main01" imgStyle={{objectPosition: "top"}} height={680}/>
       </Container>
     </Section>
   )
@@ -58,7 +44,7 @@ const Section = styled("div", {
   flexDirection: "column",
   justifyContent: 'center',
   alignItems: "center",
-  backgroundColor: "$white",
+  backgroundColor: "#FBF7F2",
   paddingTop: rem(30),
   overflow: "hidden",
 })
@@ -68,12 +54,12 @@ const Container = styled("div", {
   paddingX: rem(20),
   gridTemplateRows: "auto 300px",
 
-  '& > :nth-child(1)': {
-    order: 2,
-  },
-  '& > :nth-child(2)': {
-    order: 1,
-  },
+  // '& > :nth-child(1)': {
+  //   order: 2,
+  // },
+  // '& > :nth-child(2)': {
+  //   order: 1,
+  // },
 
   "@md": {
     gridTemplateColumns: "repeat(2, 1fr)",
@@ -89,7 +75,7 @@ const Container = styled("div", {
   }
 })
 
-const Right = styled('div', {
+const Text = styled('div', {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
