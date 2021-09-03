@@ -15,36 +15,36 @@ export const Main04 = () => {
       <ImgRow>
         <div>
           <Picture src={"../../image/img_good_01.png"} alt="" width={260} />
-          <GoodText>
+          <ImgSubText>
             <p>
               동네를 인증한
             </p>
             <p>
               진짜 이웃만 모였어요
             </p>
-          </GoodText>
+          </ImgSubText>
         </div>
         <div>
           <Picture src={"../../image/img_good_02.png"} alt="" width={260} />
-          <GoodText>
+          <ImgSubText>
             <p>
               동네를 인증한
             </p>
             <p>
               진짜 이웃만 모였어요
             </p>
-          </GoodText>
+          </ImgSubText>
         </div>
         <div>
           <Picture src={"../../image/img_good_03.png"} alt="" width={260} />
-          <GoodText>
+          <ImgSubText>
             <p>
               동네를 인증한
             </p>
             <p>
               진짜 이웃만 모였어요
             </p>
-          </GoodText>
+          </ImgSubText>
         </div>
       </ImgRow>
     </Container>
@@ -117,7 +117,7 @@ const TitleBig = styled("p", {
   }
 })
 
-const GoodText = styled("div",{
+const ImgSubText = styled("div",{
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
