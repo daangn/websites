@@ -141,6 +141,16 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
   ]);
 };
 
+export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = ({
+  actions,
+}) => {
+  actions.createRedirect({
+    fromPath: '/jobs/faq/',
+    toPath: '/faq/',
+    isPermanent: true,
+  });
+};
+
 export const createPages: GatsbyNode['createPages'] = async ({
   graphql,
   actions,
