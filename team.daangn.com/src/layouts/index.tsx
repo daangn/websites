@@ -91,7 +91,7 @@ const LayoutSwitch: React.FC<LayoutSwitchProps> = ({
     );
   }
 
-  if (/\/(jobs|preview|culture)\/?/.test(path)) {
+  if (/\/(jobs|preview|culture|faq)\/?/.test(path)) {
     return (
       <DefaultLayout {...props}>
         {children}
