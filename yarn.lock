@@ -7347,10 +7347,10 @@ gatsby-telemetry@^2.13.0:
     node-fetch "^2.6.1"
     uuid "3.4.0"
 
-gatsby-theme-stitches@0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/gatsby-theme-stitches/-/gatsby-theme-stitches-0.1.1.tgz#cea0aad6d7ed232ef61e6b2b71c2e594a9782c4f"
-  integrity sha512-RlIa/WaKZ4oRCfXLcPYsORaXZhYIxtMHneE8IlDVP7MiO/zU516U5akJGo3qi7Ddn08dcKzxM5nsfTFP/2elFg==
+gatsby-theme-stitches@0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/gatsby-theme-stitches/-/gatsby-theme-stitches-0.1.2.tgz#a2df32f7a59d62035b0232a47571a637577a87c6"
+  integrity sha512-/NhDlDVlPHLnP0J8nxFj/wUWRKr4nJX0Z6F8h1VmpWL+4xP8ndDHnQYO7FsS/K3S6PJg+/IyL4LN37ZV7o7nRw==
 
 gatsby-transformer-sharp@3.13.0:
   version "3.13.0"

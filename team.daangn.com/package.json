@@ -60,7 +60,7 @@
     "gatsby-plugin-typegen": "2.2.4",
     "gatsby-plugin-use-dark-mode": "1.3.0",
     "gatsby-source-filesystem": "3.13.0",
-    "gatsby-theme-stitches": "0.1.1",
+    "gatsby-theme-stitches": "0.1.2",
     "gatsby-transformer-sharp": "3.13.0",
     "hangul-js": "^0.2.6",
     "polished": "4.1.3",

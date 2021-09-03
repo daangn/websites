@@ -33,7 +33,7 @@
     "gatsby-plugin-sharp": "3.13.0",
     "gatsby-plugin-svgr": "3.0.0-beta.0",
     "gatsby-plugin-typegen": "2.2.4",
-    "gatsby-theme-stitches": "0.1.1",
+    "gatsby-theme-stitches": "0.1.2",
     "gatsby-transformer-sharp": "3.13.0",
     "got": "11.8.2",
     "react-helmet-async": "1.1.2",
