@@ -1,4 +1,5 @@
 import type { GatsbyConfig } from 'gatsby';
+import {disassemble as disassembleHangul, assemble as assembleHangul} from 'hangul-js';
 
 import dotenv from 'dotenv-safe';
 dotenv.config();
@@ -145,6 +146,56 @@ const config: GatsbyConfig = {
         emitPluginDocuments: {
           'src/__generated__/gatsby-plugin-documents.graphql': true,
         },
+      },
+    },
+    {
+      resolve: "gatsby-plugin-local-search",
+      options: {
+        name: "jobPosts",
+        engine: "flexsearch",
+        engineOptions: {
+          tokenize: (str)=>{
+            const index = JSON.parse(str)
+            const specialCharactersRegex = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g
+            const splitTitle = index.title.replace(specialCharactersRegex,"").trim().split(/\s/)
+            const wordSet = new Set([...splitTitle,...index.keywords])
+            const tokens:string[]=[]
+            for (const word of wordSet) {
+              const syllables = disassembleHangul(word);
+              for (let i = 0; i < syllables.length; i++) {
+                const token = assembleHangul(syllables.slice(0, i + 1));
+                tokens.push(token);
+              }
+            }
+            
+            return tokens
+          }
+        },
+        query: `
+        {
+          allGreenhouseJob {
+            edges {
+              node {
+                title
+                childrenJobPost {
+                  id
+                  keywords
+                }
+              }
+            }
+          }
+        }
+      `,
+        ref: "id",
+
+        index: ["title", "keywords"],
+        store: ["id", "title", "keywords"],
+        normalizer: ({ data }) =>
+          data.allGreenhouseJob.edges.map(({ node }) => ({
+            id: node.childrenJobPost[0].id,
+            title: node.title,
+            keywords: node.childrenJobPost[0].keywords,
+          })),
       },
     },
 

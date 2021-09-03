@@ -1,15 +1,17 @@
 import * as React from 'react';
 import type { PageProps } from 'gatsby';
-import { graphql, navigate } from 'gatsby';
+import { graphql, navigate} from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/stitches.config';
 import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
 import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import { rem } from 'polished';
 import { required } from '@cometjs/core';
+import {ReactComponent as SearchdSvg} from '~/assets/searchOutlineM.svg';
 
 import PageTitle from '~/components/PageTitle';
 import _JobPostList from '~/components/JobPostList';
 import expandMoreOutlineUrl from '!!file-loader!~/assets/expand_more_outline_m.svg'
+import { useFlexSearch } from '../utils/useFlexSearch';
 
 type JobsPageTemplateProps = PageProps<GatsbyTypes.JobsPageTemplateQuery, GatsbyTypes.SitePageContext>;
 
@@ -109,8 +111,12 @@ const Filters = styled('div', {
   gap: rem(16),
 
   '@sm': {
-    gridTemplateColumns: `repeat(2, minmax(${rem(260)}, max-content))`,
+    display:'flex',
     gap: rem(20),
+    
+    '& > *':{
+      width:rem(260),
+    }
   },
 });
 
@@ -150,6 +156,41 @@ const Select = styled('select', {
     background: '$gray500',
   },
 });
+const Search = styled('div', {
+  display: 'inline-flex',
+  position: 'relative',
+  alignItems: 'center',
+  
+  '@sm': {
+    marginLeft: 'auto',
+  },
+
+  '& > input':{
+    flex:1,
+    alignItems: 'center',
+    height: rem(52),
+    border: '1px solid $gray400',
+    boxSizing: 'border-box',
+    borderRadius: rem(8),
+    typography: '$body2',
+    paddingLeft: rem(52),
+    paddingRight: rem(14),
+    '::placeholder': {
+      color: '$gray500',
+    },
+    '&:focus': {
+      border: '1px solid $carrot500',
+    },
+    '&:focus~svg': {
+      color: '$carrot500',
+    },
+  },
+  '& > svg':{
+    color:'$gray400',
+    position:'absolute',
+    left:rem(20),
+  }
+});
 
 const JobPostList = styled(_JobPostList, {
   minHeight: '80vh',
@@ -160,8 +201,17 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
   pageContext,
 }) => {
   const siteOrigin = useSiteOrigin();
-
   const [filterEmploymentType, setFilterEmploymentType] = React.useState('');
+  const [searchQuery, setSearchQuery] = React.useState('');
+  const [_isSearchPending, startSearchTransition] = React.useTransition();
+
+  const handleSearchInputChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    startSearchTransition(() => {
+      setSearchQuery(e.target.value);
+    });
+  }
+
+  const searchResults = useFlexSearch(searchQuery)
 
   required(data.prismicTeamContents?.data);
 
@@ -250,10 +300,15 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
             <option value="INTERN">인턴</option>
             <option value="ASSISTANT">어시스턴트</option>
           </Select>
+          <Search >
+            <input placeholder="검색" onChange={handleSearchInputChange}/>
+            <SearchdSvg />
+          </Search>
         </Filters>
         <JobPostList
           jobs={data.currentGreenhouseJobs}
           filterEmploymentType={filterEmploymentType}
+          searchResults={searchResults}
         />
       </Content>
     </Container>

@@ -14,10 +14,10 @@
     "advertisement.daangn.com"
   ],
   "resolutions": {
-    "gatsby": "3.12.1",
+    "gatsby": "3.13.0",
     "react": "18.0.0-alpha-edfe50510-20210823",
     "react-dom": "18.0.0-alpha-edfe50510-20210823",
-    "schema-dts": "0.11.0",
+    "schema-dts": "1.0.0",
     "webpack": "5.51.1",
     "@emotion/react": "11.4.1",
     "@emotion/styled": "11.3.0"
@@ -32,7 +32,7 @@
     "@emotion/styled": "11.3.0"
   },
   "devDependencies": {
-    "@types/node": "14.17.12",
+    "@types/node": "14.17.14",
     "typescript": "4.4.2",
     "ultra-runner": "3.10.5"
   }
