@@ -1,13 +1,11 @@
 import React from "react";
-import { styled } from "~/gatsby-theme-stitches/stitches.config";
-import { StaticImage as Picture } from "gatsby-plugin-image"
+
 import {Main01} from "~/components/organisms/Main01";
 import {Main02} from "~/components/organisms/Main02";
 import {Main03} from "~/components/organisms/Main03";
 import {Main04} from "~/components/organisms/Main04";
 import {NowStart} from "~/components/organisms/NowStart";
 
-import {rem} from "polished";
 
 
 export function Main() {
