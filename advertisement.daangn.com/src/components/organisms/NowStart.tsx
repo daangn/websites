@@ -54,12 +54,13 @@ export const NowStart = () => {
 
 const Container = styled("div", {
   display: "grid",
-  width: "80%",
+
   gridTemplateRows: "repeat(4, auto)",
   justifyItems: "center",
 
   "@md": {
     paddingX: 0,
+    width: "60%",
     gridTemplateRows: "repeat(2, auto)"
   }
 })
@@ -98,7 +99,7 @@ const ImgRow = styled("div", {
   alignItems: "center",
   "@md": {
     flexDirection: "row",
-    justifyContent: "space-between"
+    justifyContent: "space-around"
   }
 })
 

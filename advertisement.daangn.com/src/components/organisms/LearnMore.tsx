@@ -27,7 +27,7 @@ export const LearnMore = () => {
             <p>
               지역광고 만들기 가이드
             </p>
-            <ArrowLink target="#" />
+            <ArrowLink target="https://www.notion.so/daangn/86a4348d469846728378036321255052" />
           </DocsLink>
         </Item>
         <Item right>
@@ -61,18 +61,28 @@ const Wrapper = styled("div", {
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
-  paddingY: 160,
+  paddingY: rem(80),
   backgroundColor: "$white",
+
+  "@lg":{
+    paddingY: rem(160)
+  }
 });
 
 const Container = styled("div", {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: 'top',
-  justifyContent: "space-between",
+  // display: "flex",
+  // flexDirection: "column",
+  // alignItems: 'top',
+  // justifyContent: "space-between",
+
+  display: "grid",
+  gridTemplateRows: "auto auto",
   width: "80%",
-  "@md": {
-    flexDirection: "row"
+  "@lg": {
+    gridTemplateRows: "auto",
+    gridTemplateColumns: "1fr 2fr",
+    width: "80%",
+    // flexDirection: "row"
   }
 
 
@@ -80,12 +90,16 @@ const Container = styled("div", {
   // columnGap: rem(96),
   // alignContent: "space-between",
   // // border: '1px solid',
-  // "@md" : {
+  // "@lg" : {
   //   gridTemplateColumns: 'repeat(2, minmax(400px, auto))',
   // },
 })
 const DocsWrapper = styled("div",{
-  marginTop: 20
+  marginBottom: rem(40),
+
+  "@lg":{
+    marginBottom: rem(32)
+  }
 })
 
 const DocsLink = styled("div", {
@@ -100,7 +114,7 @@ const DocsLink = styled("div", {
     marginRight: 8
   },
 
-  "@md" : {
+  "@lg" : {
     justifyContent : "left"
   }
 })
@@ -110,21 +124,27 @@ const LearnMoreTitle = styled("p", {
   fontWeight: "bold",
   textAlign: 'center',
 
-  "@md" : {
+  "@lg" : {
     textAlign: "left"
   },
 
 })
 
 const Item = styled("div", {
+  marginBottom: rem(78),
+
+  "@lg": {
+    marginBottom: 0
+  },
+
   variants : {
     left: {
       true: {
         display: "flex",
         flexDirection: "column",
-        "@md": {
+        "@lg": {
           paddingRight: rem(40),
-          paddingTop: 15
+          paddingTop: rem(30)
         }
       }
     },
@@ -140,15 +160,18 @@ const FaqItem = styled("div", {
   display: "flex",
   flexDirection: "row",
   justifyContent: 'space-between',
-  paddingY: 40,
+  paddingY: rem(27),
   borderBottom: "1px solid #EAEBEE",
   p: {
-    fontSize: "$subtitle3",
-    fontWeight: 400,
+    fontSize: "$body2",
   },
 
-  "@md" : {
+  "@lg" : {
     justifyContent: 'space-between',
+    paddingY: rem(40),
+    p: {
+      fontSize: "$subtitle2",
+    }
   }
 })
 
