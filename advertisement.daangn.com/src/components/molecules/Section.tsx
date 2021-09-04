@@ -24,7 +24,7 @@ const Base = styled("div", {
   overflow: "hidden",
 
   "@md": {
-    paddingY: rem(160)
+    paddingY: rem(160),
   }
 
 })

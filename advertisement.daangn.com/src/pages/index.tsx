@@ -8,6 +8,9 @@ import { PromotionInfoDownload } from "~/components/organisms/PromotionInfoDownl
 import {BannerTitle} from "~/components/molecules/BannerTitle";
 import {LearnMore} from "~/components/organisms/LearnMore";
 import {Visitors} from "~/components/organisms/Visitors";
+import {Download} from "~/components/organisms/Download";
+import {Footer} from "~/components/organisms/Footer";
+
 
 globalStyles();
 
@@ -20,8 +23,10 @@ const IndexPage: React.FC<IndexPageProps> = () => {
       <Banner />
       <Visitors />
       <Main />
-      <PromotionInfoDownload />
+      <Download />
+      {/*<PromotionInfoDownload />*/}
       <LearnMore />
+      <Footer />
     </div>
   );
 };
