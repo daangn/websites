@@ -28,10 +28,10 @@ export const Main04 = () => {
           <Picture src={"../../image/img_good_02.png"} alt="" width={260} />
           <ImgSubText>
             <p>
-              동네를 인증한
+              동네 이웃 3명 중 1명이
             </p>
             <p>
-              진짜 이웃만 모였어요
+              매일 14분씩 사용해요
             </p>
           </ImgSubText>
         </div>
@@ -39,10 +39,10 @@ export const Main04 = () => {
           <Picture src={"../../image/img_good_03.png"} alt="" width={260} />
           <ImgSubText>
             <p>
-              동네를 인증한
+              지역 상권 핵심소비층인
             </p>
             <p>
-              진짜 이웃만 모였어요
+              20~40대가 가장 많아요
             </p>
           </ImgSubText>
         </div>
