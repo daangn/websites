@@ -22,7 +22,8 @@
     "gatsby-theme-stitches": "^0.1.1",
     "gatsby-transformer-sharp": "^3.13.0",
     "react": "next",
-    "react-dom": "next"
+    "react-dom": "next",
+    "react-swipeable": "^6.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.3",
