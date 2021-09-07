@@ -16,9 +16,6 @@ export const Main03:React.FC<SectionProps> = ({titleBig, subtitle,data}) => {
     <Section>
       <Container>
         <Picture src="../../image/img_sub_pc_03.png" alt="main01" imgStyle={{objectPosition: "top"}} height={680}/>
-        {/*<Picture src="../../image/img_sub_pc_02.png" alt="main02" imgStyle={{objectPosition: "top"}}/>*/}
-        {/*<Picture src="../../image/img_sub_pc_03.png" alt="main03" imgStyle={{objectPosition: "top"}}/>*/}
-        {/*<GatsbyImage alt="" image={getImage(data.)} />*/}
         <Right>
           <GridRow>
             <TitleBig>

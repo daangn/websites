@@ -63,8 +63,10 @@ export const Footer = () => {
         <FooterContent agreement>
           이용약관
         </FooterContent>
-        <div style={{display:"flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
-          <FooterIconButton target="youtube" link="https://blog.naver.com/daangn_biz"/>
+        <div style={{display:"flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", margin: `${rem(32)} 0`}}>
+          <div style={{paddingRight: rem(24)}}>
+            <FooterIconButton target="youtube" link="https://blog.naver.com/daangn_biz"/>
+          </div>
           <FooterIconButton target="blog" link="https://www.youtube.com/channel/UCn9ThfjAEQkvzkHISAek3dg/featured"/>
         </div>
         <FooterContent copyright>
