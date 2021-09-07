@@ -14645,10 +14645,10 @@ worker-rpc@^0.1.0:
   dependencies:
     microevent.ts "~0.1.1"
 
-worktop@0.7.1:
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/worktop/-/worktop-0.7.1.tgz#1255e6e84e42ea1e7a17e69d596514237e05dacb"
-  integrity sha512-p6QuswBEGO/x7E8C6pAyCLd8bKJBY0Idtca1pBTOSvFz4oFBP3O9GVcmuHEXRtp2Z1PBFoATnVJDcI0Uj0nmJA==
+worktop@0.7.3:
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/worktop/-/worktop-0.7.3.tgz#7dbf85f0add229cf261759bf3855820814b99cba"
+  integrity sha512-WBHP1hk8pLP7ahAw13fugDWcO0SUAOiCD6DHT/bfLWoCIA/PL9u7GKdudT2nGZ8EGR1APbGCAI6ZzKG1+X+PnQ==
   dependencies:
     regexparam "^2.0.0"
 
