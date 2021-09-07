@@ -24,7 +24,7 @@
     "wrangler": "wrangler"
   },
   "dependencies": {
-    "@babel/runtime": "7.15.3",
+    "@babel/runtime": "7.15.4",
     "@cometjs/core": "1.2.0",
     "@cometjs/graphql-utils": "1.1.0",
     "@cometjs/react-utils": "1.1.0",
@@ -73,10 +73,10 @@
     "use-dark-mode": "2.3.1"
   },
   "devDependencies": {
-    "@babel/cli": "7.14.8",
-    "@babel/core": "7.15.0",
+    "@babel/cli": "7.15.4",
+    "@babel/core": "7.15.5",
     "@babel/plugin-transform-react-jsx": "7.14.9",
-    "@babel/plugin-transform-typescript": "7.15.0",
+    "@babel/plugin-transform-typescript": "7.15.4",
     "@cloudflare/workers-types": "2.2.2",
     "@cloudflare/wrangler": "1.19.2",
     "@prismicio/helpers": "1.0.5",
