@@ -4,6 +4,7 @@ import {rem} from "polished";
 import {useSwipeable} from "react-swipeable";
 import {StaticImage as Picture} from "gatsby-plugin-image";
 import {ArrowLink} from "~/components/molecules/ArrowLink";
+import {gtag as GA} from "~/components/molecules/gtag";
 
 
 type SlideItemProps = {
@@ -63,9 +64,11 @@ export const UserQuoteCarousel:React.FC = () => {
 
   const swipeHandlers = useSwipeable({
     onSwipedLeft: _ => {
+      GA("event", "swipe", {prevIdx: slide})
       setSlide(prev => Math.min(prev + 1, items.length -1))
     },
     onSwipedRight: _ => {
+      GA("event", "swipe", {prevIdx: slide})
       setSlide(prev => Math.max(prev - 1, 0))
     }
   })
@@ -95,7 +98,7 @@ export const UserQuoteCarousel:React.FC = () => {
                           {item.story}
                         </By>
                         <div style={{marginLeft: rem(8)}}>
-                          <ArrowLink target={item.link} color={"white"} />
+                          <ArrowLink target={item.link} color={"white"} gtag={["event", "play"]}/>
                         </div>
                       </ByRow>
                     </div>
@@ -122,7 +125,7 @@ export const UserQuoteCarousel:React.FC = () => {
                         {item.story}
                       </By>
                       <div style={{marginLeft: rem(8)}}>
-                        <ArrowLink target={item.link} color={"white"} />
+                        <ArrowLink target={item.link} color={"white"} gtag={["event", "play"]}/>
                       </div>
                     </ByRow>
                   </QuoteContainer>

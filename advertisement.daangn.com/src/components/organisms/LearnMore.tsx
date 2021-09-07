@@ -3,9 +3,16 @@ import { styled } from "gatsby-theme-stitches/src/stitches.config"
 import {ArrowLink} from "~/components/molecules/ArrowLink";
 import {rem} from "polished";
 import chevronIconUrl from '~/image/chevron.svg';
-import fbTrack from "~/components/molecules/fbTrack";
+import { OutboundLink } from 'gatsby-plugin-google-gtag'
+import {gtag as GA} from "~/components/molecules/gtag";
 
 export const LearnMore = () => {
+
+  const handleFaqClick = (gtag: string[], href: string) => {
+    GA(gtag[0], gtag[1])
+    window.open(href, "_blank")
+  }
+
   return (
     <Wrapper>
       <Container>
@@ -22,31 +29,31 @@ export const LearnMore = () => {
             <p>
               지역광고 소개서
             </p>
-            <ArrowLink target="#" />
+            <ArrowLink target="https://drive.google.com/drive/u/1/folders/13AkcMwom4aLQBsJ7mhHyaEglj6rSDW1j" gtag={["event", "click"]} />
           </DocsLink>
           <DocsLink>
             <p>
               지역광고 만들기 가이드
             </p>
-            <ArrowLink target="https://www.notion.so/daangn/86a4348d469846728378036321255052" fbPixel={["trackCustom", "Click_guide"]}/>
+            <ArrowLink target="https://www.notion.so/daangn/86a4348d469846728378036321255052" fbPixel={["trackCustom", "Click_guide"]} gtag={["event", "click"]}/>
           </DocsLink>
         </Item>
         <Item right>
           <FaqItem>
-            <p>
+            <p onClick={()=>handleFaqClick(["event", "click"], "https://www.daangn.com/wv/faqs/149")}>
               지역광고는 어떻게 만드나요?
             </p>
             <ChevronRight src={chevronIconUrl} alt="" rotate={true} />
 
           </FaqItem>
           <FaqItem>
-            <p>
+            <p onClick={()=>handleFaqClick(["event", "click"], "https://www.daangn.com/wv/faqs/159")}>
               지역광고는 비용은 얼마인가요?
             </p>
             <ChevronRight src={chevronIconUrl} alt="" rotate={true} />
           </FaqItem>
           <FaqItem>
-            <p>
+            <p onClick={()=>handleFaqClick(["event", "click"], "https://www.daangn.com/wv/faqs/156")}>
               지역광고는 어디에 노출되나요?
             </p>
             <ChevronRight src={chevronIconUrl} alt="" rotate={true} />
@@ -165,6 +172,7 @@ const FaqItem = styled("div", {
   borderBottom: "1px solid #EAEBEE",
   p: {
     fontSize: "$body2",
+    cursor: "pointer"
   },
 
   "@lg" : {
