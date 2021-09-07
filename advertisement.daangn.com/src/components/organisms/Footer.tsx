@@ -2,17 +2,89 @@ import React from "react"
 
 import {styled} from "~/gatsby-theme-stitches/stitches.config";
 import {rem} from "polished";
+import {FooterIconButton} from "~/components/molecules/FooterIconButton";
 
 
 export const Footer = () => {
+
+  const footerData = {
+    tel: "전화 : 1644-9736",
+    cs: "고객문의 : ad@daangn.com",
+    cooperate: "제휴문의 : contact@daangn.com",
+    head: "대표: 김재현, 김용현",
+    businessLicenseNo: "사업자 등록번호 : 375-87-00088",
+    digitalLicenseNo: "통신판매업 신고번호 : 2016-서울서초-0051",
+    serviceAddress: "서울특별시 구로구 디지털로 30길 28 609호 (당근서비스)"
+  }
+
+
   return (
     <Base>
       <FooterDesktop>
-        <p>이용약관</p>
-        <p>여기는 아이콘들</p>
-        <p>여기는 연락처들</p>
-        <p>여기는 빈칸</p>
+        <div>
+          <FooterContent agreement>이용약관</FooterContent>
+        </div>
+        <div style={{display:"flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-end"}}>
+          <FooterIconButton target="youtube" link="https://blog.naver.com/daangn_biz"/>
+          <FooterIconButton target="blog" link="https://www.youtube.com/channel/UCn9ThfjAEQkvzkHISAek3dg/featured"/>
+        </div>
+        <div>
+          <FooterContent copyright>© 당근마켓</FooterContent>
+          <ContactRow>
+            <p>
+              {footerData.tel}
+            </p>
+            <p>
+              {footerData.cs}
+            </p>
+            <p>
+              {footerData.cooperate}
+            </p>
+          </ContactRow>
+          <ContactRow>
+            <p>
+              {footerData.head}
+            </p>
+            <p>
+              {footerData.businessLicenseNo}
+            </p>
+            <p>
+              {footerData.digitalLicenseNo}
+            </p>
+          </ContactRow>
+          <ContactRow>
+            <p>
+              {footerData.serviceAddress}
+            </p>
+          </ContactRow>
+        </div>
       </FooterDesktop>
+      <FooterMobile>
+        <FooterContent agreement>
+          이용약관
+        </FooterContent>
+        <div style={{display:"flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
+          <FooterIconButton target="youtube" link="https://blog.naver.com/daangn_biz"/>
+          <FooterIconButton target="blog" link="https://www.youtube.com/channel/UCn9ThfjAEQkvzkHISAek3dg/featured"/>
+        </div>
+        <FooterContent copyright>
+          © 당근마켓
+        </FooterContent>
+        <ContactRow>
+          <p>{footerData.tel}</p>
+          <p>{footerData.cs}</p>
+        </ContactRow>
+        <ContactRow>
+          <p>{footerData.head}</p>
+          <p>{footerData.businessLicenseNo}</p>
+        </ContactRow>
+        <ContactRow>
+          <p>{footerData.digitalLicenseNo}</p>
+        </ContactRow>
+        <ContactRow>
+          <p>{footerData.serviceAddress}</p>
+        </ContactRow>
+      </FooterMobile>
     </Base>
   )
 }
@@ -23,18 +95,64 @@ const Base = styled("div", {
   paddingTop: rem(33),
   paddingBottom: rem(76),
   "@md" :{
-    paddingX: rem(141),
-    paddingY: rem(71)
+    display: "flex",
+    paddingY: rem(71),
+    alignItems: 'center',
+    justifyContent: "center"
   }
 })
 
 const FooterDesktop = styled("div", {
   display: "none",
-
   "@md" : {
     display: "grid",
+    width: "80%",
+    gap: rem(36),
     gridTemplateRows: "auto auto",
     gridTemplateColumns: "auto auto",
+  },
+  "& > :nth-child(3)":{
+    gridColumnStart: 1,
+    gridColumnEnd: "span 2"
   }
+})
 
+const FooterMobile = styled("div", {
+  display: "grid",
+
+  "@md": {
+    display: "none"
+  }
+})
+
+const FooterContent = styled("p", {
+  variants: {
+    agreement: {
+      true: {
+        fontSize: "$caption1",
+        color: "$gray900"
+      }
+    },
+    copyright: {
+      true:{
+        color: "$gray600",
+        fontSize: "$caption1",
+        fontWeight: "bold",
+        marginBottom: rem(10)
+      }
+    }
+  }
+})
+
+const ContactRow = styled("div", {
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  marginBottom: rem(2),
+
+  p: {
+    fontSize: "$caption2",
+    color: "$gray600",
+    marginRight: rem(10)
+  }
 })
