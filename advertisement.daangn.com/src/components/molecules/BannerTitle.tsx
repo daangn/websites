@@ -5,6 +5,8 @@ import daangnAdLogo from "~/image/img_daangn_ad_logo.png";
 import { ReactComponent as IconCall } from "~/image/icon_call.svg";
 import {rem} from "polished";
 
+import fbTrack from "~/components/molecules/fbTrack";
+
 export const  BannerTitle = () => {
 
   const [isWhite, setWhite] = React.useState<boolean>(false)
@@ -24,10 +26,10 @@ export const  BannerTitle = () => {
       {!!daangnAdLogo && <img src={daangnAdLogo} alt="Banner" />}
       <QuestionInfo>
         <IconCall />
-          <TelLink href="tel://1644-9736">
-          <p>
-          광고문의 <mark>1644-9736</mark>
-        </p>
+          <TelLink href="tel://1644-9736" onClick={()=>fbTrack('track', "Contact")}>
+            <p>
+            광고문의 <mark>1644-9736</mark>
+            </p>
           </TelLink>
       </QuestionInfo>
     </Wrapper>

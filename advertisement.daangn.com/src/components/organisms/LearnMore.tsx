@@ -3,6 +3,7 @@ import { styled } from "gatsby-theme-stitches/src/stitches.config"
 import {ArrowLink} from "~/components/molecules/ArrowLink";
 import {rem} from "polished";
 import chevronIconUrl from '~/image/chevron.svg';
+import fbTrack from "~/components/molecules/fbTrack";
 
 export const LearnMore = () => {
   return (
@@ -27,7 +28,7 @@ export const LearnMore = () => {
             <p>
               지역광고 만들기 가이드
             </p>
-            <ArrowLink target="https://www.notion.so/daangn/86a4348d469846728378036321255052" />
+            <ArrowLink target="https://www.notion.so/daangn/86a4348d469846728378036321255052" fbPixel={["trackCustom", "Click_guide"]}/>
           </DocsLink>
         </Item>
         <Item right>
