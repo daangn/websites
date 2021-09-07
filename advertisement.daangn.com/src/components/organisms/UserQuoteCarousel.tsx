@@ -86,9 +86,7 @@ export const UserQuoteCarousel:React.FC = () => {
                       <Quote>
                         {item.talk.map((str, idx)=>{
                           return(
-                            <p key={idx}>
-                              {str}
-                            </p>
+                              str
                           )
                         })}
                       </Quote>
