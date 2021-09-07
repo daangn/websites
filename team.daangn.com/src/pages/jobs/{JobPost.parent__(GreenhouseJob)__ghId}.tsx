@@ -79,7 +79,7 @@ const JobPostPage: React.FC<JobPostPageProps> = ({
           지원하기
         </Button>
         <Button
-          to="/jobs/faq/"
+          to="/faq/"
           fullWidth={{ '@initial': true, '@sm': false }}
         >
           자주 묻는 질문
