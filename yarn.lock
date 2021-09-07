@@ -7015,7 +7015,7 @@ gatsby-plugin-layout@2.13.0:
   dependencies:
     "@babel/runtime" "^7.14.8"
 
-gatsby-plugin-local-search@^2.0.1:
+gatsby-plugin-local-search@2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-local-search/-/gatsby-plugin-local-search-2.0.1.tgz#adf0aeff4b06feee57574420369ca0950a4bcdf7"
   integrity sha512-qrApdH2IYfHL+dSmcwSzhDPVxlkt13N0IfEkKxfWf0gITmBwObOJBYAMnYiYUmP0dpYmSV9anJE//SLZBSsisA==
@@ -7920,7 +7920,7 @@ gzip-size@5.1.1:
     duplexer "^0.1.1"
     pify "^4.0.1"
 
-hangul-js@^0.2.6:
+hangul-js@0.2.6:
   version "0.2.6"
   resolved "https://registry.yarnpkg.com/hangul-js/-/hangul-js-0.2.6.tgz#3e552e3a68c76498cf2c7993ca354af7bad4730d"
   integrity sha512-48axU8LgjCD30FEs66Xc04/8knxMwCMQw0f67l67rlttW7VXT3qRJgQeHmhiuGwWXGvSbk6YM0fhQlcjE1JFQA==
