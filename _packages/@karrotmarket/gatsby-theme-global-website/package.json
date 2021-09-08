@@ -28,6 +28,7 @@
     "framer-motion": "4.1.17",
     "gatsby-plugin-image": "1.13.0",
     "gatsby-plugin-preload-fonts": "2.13.0",
+    "gatsby-plugin-prismic-previews": "^4.1.3",
     "gatsby-plugin-prismic-schema": "*",
     "gatsby-plugin-react-helmet-async": "1.2.0",
     "gatsby-plugin-sharp": "3.13.0",
