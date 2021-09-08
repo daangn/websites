@@ -1,115 +1,132 @@
 {
-  "Main" : {
-    "uid" : {
-      "type" : "UID",
-      "config" : {
-        "label" : "uid"
+  "Main": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "uid"
       }
     },
-    "copyright" : {
-      "type" : "StructuredText",
-      "config" : {
-        "single" : "paragraph,strong",
-        "label" : "카피라이트 텍스트"
+    "copyright": {
+      "type": "StructuredText",
+      "config": {
+        "single": "paragraph,strong",
+        "label": "카피라이트 텍스트"
       }
     },
-    "address" : {
-      "type" : "Text",
-      "config" : {
-        "label" : "주소"
+    "address": {
+      "type": "StructuredText",
+      "config": {
+        "single": "paragraph, strong, em, hyperlink",
+        "label": "주소"
       }
     },
-    "tel" : {
-      "type" : "Text",
-      "config" : {
-        "label" : "전화번호"
+    "tel": {
+      "type": "StructuredText",
+      "config": {
+        "single": "paragraph, strong, em, hyperlink",
+        "label": "전화번호"
+      }
+    },
+    "email": {
+      "type": "StructuredText",
+      "config": {
+        "single": "paragraph, strong, em, hyperlink",
+        "label": "이메일"
       }
     }
   },
-  "Header" : {
-    "header_entries" : {
-      "type" : "Group",
-      "config" : {
-        "fields" : {
-          "display_text" : {
-            "type" : "Text",
-            "config" : {
-              "label" : "표시 텍스트"
+  "Header": {
+    "header_entries": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "display_text": {
+            "type": "Text",
+            "config": {
+              "label": "표시 텍스트"
             }
           },
-          "link" : {
-            "type" : "Link",
-            "config" : {
-              "label" : "타겟 링크",
-              "placeholder" : "웹 링크만 사용할 수 있어요",
-              "select" : null
+         "link": {
+            "type": "Link",
+            "config": {
+              "label": "타겟 링크",
+              "placeholder": "웹 링크만 사용할 수 있어요",
+              "select": null
             }
           },
-          "group" : {
-           "type" : "Text",
-            "config" : {
-              "label" : "그룹",
-              "placeholder" : "링크를 그룹으로 묶을 때 사용하는 키 텍스트 (Optional)"
+          "group": {
+            "type": "Text",
+            "config": {
+              "label": "그룹",
+              "placeholder": "링크를 그룹으로 묶을 때 사용하는 키 텍스트 (Optional)"
             }
           }
         },
-        "label" : "헤더 네비게이션 항목"
+        "label": "헤더 네비게이션 항목"
       }
     }
   },
-  "Footer" : {
-    "footer_entries" : {
-      "type" : "Group",
-      "config" : {
-        "fields" : {
-          "display_text" : {
-            "type" : "Text",
-            "config" : {
-              "label" : "표시 텍스트"
+  "Footer": {
+    "footer_entries": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "display_text": {
+            "type": "Text",
+            "config": {
+              "label": "표시 텍스트"
             }
           },
-          "link" : {
-            "type" : "Link",
-            "config" : {
-              "label" : "타겟 링크",
-              "placeholder" : "웹 링크만 사용할 수 있어요",
-              "select" : null
+          "link": {
+            "type": "Link",
+            "config": {
+              "label": "타겟 링크",
+              "placeholder": "웹 링크만 사용할 수 있어요",
+              "select": null
             }
           },
-          "group" : {
-            "type" : "Text",
-            "config" : {
-              "label" : "그룹",
-              "placeholder" : "링크를 그룹으로 묶을 때 사용하는 키 텍스트 (Optional)"
+          "group": {
+            "type": "Text",
+            "config": {
+              "label": "그룹",
+              "placeholder": "링크를 그룹으로 묶을 때 사용하는 키 텍스트 (Optional)"
             }
           }
         },
-        "label" : "푸터 네비게이션 항목"
+        "label": "푸터 네비게이션 항목"
       }
     }
   },
-  "SNS Profile" : {
-    "sns_profiles" : {
-      "type" : "Group",
-      "config" : {
-        "fields" : {
-          "service" : {
-            "type" : "Select",
-            "config" : {
-              "options" : [ "facebook", "twitter", "instagram", "medium", "github", "linkedin", "line" ],
-              "label" : "service"
+  "SNS Profile": {
+    "sns_profiles": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "service": {
+            "type": "Select",
+            "config": {
+              "options": [
+                "facebook",
+                "twitter",
+                "instagram",
+                "medium",
+                "github",
+                "linkedin",
+                "line"
+              ],
+              "label": "service"
             }
           },
-          "link" : {
-            "type" : "Link",
-            "config" : {
-              "label" : "타겟 링크",
-              "placeholder" : "웹 링크만 사용할 수 있어요",
-              "select" : null
+          "link": {
+            "type": "Link",
+            "config": {
+              "label": "타겟 링크",
+              "placeholder": "웹 링크만 사용할 수 있어요",
+              "select": null
             }
           }
         },
-        "label" : "SNS 프로필 항목"
+        "label": "SNS 프로필 항목"
       }
     }
   }
