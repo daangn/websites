@@ -19,23 +19,31 @@ const config: GatsbyConfig = {
     "gatsby-theme-stitches",
     "gatsby-plugin-svgr",
     "gatsby-plugin-image",
+    "gatsby-plugin-next-seo",
     {
-      resolve: 'gatsby-plugin-sharp',
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/image/`,
+      },
+    },
+    {
+      resolve: "gatsby-plugin-sharp",
       options: {
         defaults: {
-          formats: ['avif', 'webp', 'auto'],
-          placeholder: 'dominantColor',
+          formats: ["avif", "webp", "auto"],
+          placeholder: "dominantColor",
           quality: 80,
           breakpoints: [576, 768, 992, 1200, 1400, 1920],
-          backgroundColor: 'transparent',
+          backgroundColor: "transparent",
           tracedSVGOptions: {},
           blurredOptions: {},
           jpgOptions: {},
           pngOptions: {},
           webpOptions: {},
-          avifOptions: {}
-        }
-      }
+          avifOptions: {},
+        },
+      },
     },
     `gatsby-transformer-sharp`,
     {
