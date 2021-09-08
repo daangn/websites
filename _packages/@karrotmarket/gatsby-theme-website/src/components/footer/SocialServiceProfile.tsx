@@ -8,6 +8,7 @@ import facebookIconUrl from "!!file-loader?modules!./socialServiceProfile/facebo
 import twitterIconUrl from "!!file-loader?modules!./socialServiceProfile/twitter.svg";
 import mediumIconUrl from "!!file-loader?modules!./socialServiceProfile/medium.svg";
 import instagramIconUrl from "!!file-loader?modules!./socialServiceProfile/instagram.svg";
+import lineIconUrl from "!!file-loader?modules!./socialServiceProfile/line.svg";
 
 type SocialServiceProfileProps = {
   className?: string;
@@ -61,6 +62,10 @@ const socialServiceProfileConfigMap: Record<
   medium: {
     src: mediumIconUrl,
     alt: "Medium",
+  },
+  line: {
+    src: lineIconUrl,
+    alt: "LINE",
   },
 };
 

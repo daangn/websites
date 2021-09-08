@@ -9,20 +9,29 @@
     "copyright": {
       "type": "StructuredText",
       "config": {
-        "single": "paragraph, strong",
+        "single": "paragraph,strong",
         "label": "카피라이트 텍스트"
       }
     },
     "address": {
-      "type": "Text",
+      "type": "StructuredText",
       "config": {
+        "single": "paragraph, strong, em, hyperlink",
         "label": "주소"
       }
     },
     "tel": {
-      "type": "Text",
+      "type": "StructuredText",
       "config": {
+        "single": "paragraph, strong, em, hyperlink",
         "label": "전화번호"
+      }
+    },
+    "email": {
+      "type": "StructuredText",
+      "config": {
+        "single": "paragraph, strong, em, hyperlink",
+        "label": "이메일"
       }
     }
   },
@@ -37,17 +46,18 @@
               "label": "표시 텍스트"
             }
           },
-          "link": {
+         "link": {
             "type": "Link",
             "config": {
               "label": "타겟 링크",
-              "placeholder": "웹 링크만 사용할 수 있어요"
+              "placeholder": "웹 링크만 사용할 수 있어요",
+              "select": null
             }
           },
           "group": {
             "type": "Text",
             "config": {
-             "label": "그룹",
+              "label": "그룹",
               "placeholder": "링크를 그룹으로 묶을 때 사용하는 키 텍스트 (Optional)"
             }
           }
@@ -71,7 +81,8 @@
             "type": "Link",
             "config": {
               "label": "타겟 링크",
-              "placeholder": "웹 링크만 사용할 수 있어요"
+              "placeholder": "웹 링크만 사용할 수 있어요",
+              "select": null
             }
           },
           "group": {
@@ -100,7 +111,8 @@
                 "instagram",
                 "medium",
                 "github",
-                "linkedin"
+                "linkedin",
+                "line"
               ],
               "label": "service"
             }
@@ -109,7 +121,8 @@
             "type": "Link",
             "config": {
               "label": "타겟 링크",
-              "placeholder": "웹 링크만 사용할 수 있어요"
+              "placeholder": "웹 링크만 사용할 수 있어요",
+              "select": null
             }
           }
         },

@@ -16,7 +16,15 @@ export const query = graphql`
     copyright {
       html
     }
-    address
+    address {
+      html
+    }
+    tel {
+      html
+    }
+    email {
+      html
+    }
     footer_entries {
       display_text
       link {
@@ -51,7 +59,7 @@ const ContentWrapper = styled("div", {
   },
 });
 
-const TopContent = styled("section", {
+const TopContent = styled("nav", {
   width: "100%",
   display: "flex",
   flexDirection: "column",
@@ -73,19 +81,18 @@ const TopContent = styled("section", {
   },
 });
 
-const InfoWrapper = styled("section", {
+const InfoWrapper = styled("div", {
   display: "flex",
   gap: rem(16),
   flexDirection: "column",
   color: "$gray600",
   fontSize: "$caption1",
-
-  "@sm": {
-    flexDirection: "row",
-  },
 });
 
-const Info = styled("p", {});
+const Contact = styled("section", {
+  display: "grid",
+  gap: rem(4),
+});
 
 const Copyright = styled("div", {
   fontSize: "$caption2",
@@ -152,15 +159,35 @@ const Footer: React.FC<FooterProps> = ({ className, navigationData }) => {
           </SocialServiceProfileList>
         </TopContent>
         <InfoWrapper>
+          <Contact>
+            {navigationData.address && (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: navigationData.address.html,
+                }}
+              />
+            )}
+            {navigationData.tel && (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: navigationData.tel.html,
+                }}
+              />
+            )}
+            {navigationData.email && (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: navigationData.email.html,
+                }}
+              />
+            )}
+          </Contact>
           {navigationData.copyright?.html && (
             <Copyright
               dangerouslySetInnerHTML={{
                 __html: navigationData.copyright.html,
               }}
             />
-          )}
-          {navigationData.address && (
-            <Info>{navigationData.address}</Info>
           )}
         </InfoWrapper>
       </ContentWrapper>
