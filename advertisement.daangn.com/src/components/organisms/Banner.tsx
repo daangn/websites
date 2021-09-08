@@ -1,10 +1,10 @@
 import * as React from "react";
 
-import advertisementPcBanner from "~/image/img_advertisement_pc_banner.png";
-import advertisementMobileBanner from '~/image/img_m_cover.png';
+import advertisementMobileBanner from "~/image/img_m_cover.png";
+import advertisementPcBanner from "~/image/img_cover.png";
 import { styled } from "gatsby-theme-stitches/src/stitches.config";
 import { DownloadButton } from "~/components/molecules/DownloadButton";
-import {rem} from "polished";
+import { rem } from "polished";
 
 export function Banner() {
   return (
@@ -24,32 +24,31 @@ export function Banner() {
 
 const Background = styled("div", {
   display: "flex",
-  justifyContent: 'center',
+  justifyContent: "center",
   position: "relative",
   height: 780,
   backgroundImage: `url(${advertisementMobileBanner})`,
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
-  transition: '0.2s ease-in-out',
+  transition: "0.2s ease-in-out",
   "@md": {
     backgroundImage: `url(${advertisementPcBanner})`,
-    backgroundPosition: "center center"
-  }
+    backgroundPosition: "center center",
+  },
 });
 
 const Description = styled("div", {
-
   typography: "$subtitle2",
   fontWeight: "bold",
-  textAlign: 'center',
+  textAlign: "center",
   marginTop: rem(100),
 
   "@md": {
-    textAlign: 'left',
+    textAlign: "left",
     position: "absolute",
     top: 250,
     left: 140,
-    typography: "$heading3"
+    typography: "$heading3",
   },
 });
 
@@ -58,6 +57,6 @@ const DownloadButtons = styled("div", {
   visibility: "hidden",
 
   "@md": {
-    visibility: "visible"
-  }
+    visibility: "visible",
+  },
 });

@@ -1,77 +1,57 @@
-import React from 'react'
-import {styled} from "~/gatsby-theme-stitches/stitches.config";
-import {rem} from "polished";
-import {StaticImage as Picture} from "gatsby-plugin-image"
-import {graphql} from "gatsby";
+import React from "react";
+import { styled } from "~/gatsby-theme-stitches/stitches.config";
+import { rem } from "polished";
+import { StaticImage as Picture } from "gatsby-plugin-image";
 
 type SectionProps = {
-  titleBig: string[],
-  subtitle: string[],
-  data?: any
-}
+  titleBig: string[];
+  subtitle: string[];
+};
 
-export const pageQuery = graphql`
-    query {
-      image: file(relativePath: {eq: "img_sub_pc_01.png"}) {
-        childImageSharp {
-          gatsbyImageData(width: 500)
-        }
-      }
-    }
-`
-
-
-export const Main01:React.FC<SectionProps> = ({titleBig, subtitle}) => {
-  // console.log(data)
-  return(
+export const Main01: React.FC<SectionProps> = ({ titleBig, subtitle }) => {
+  return (
     <Section>
       <Container>
-        <Picture src="../../image/img_sub_pc_01.png" alt="main01" imgStyle={{objectPosition: "top"}} height={680}/>
-        {/*<Picture src="../../image/img_sub_pc_02.png" alt="main02" imgStyle={{objectPosition: "top"}}/>*/}
-        {/*<Picture src="../../image/img_sub_pc_03.png" alt="main03" imgStyle={{objectPosition: "top"}}/>*/}
-        {/*<GatsbyImage alt="" image={getImage(data.)} />*/}
+        <Picture
+          src="../../image/img_sub_pc_01.png"
+          alt="main01"
+          imgStyle={{ objectPosition: "top" }}
+          height={680}
+        />
         <Right>
           <GridRow>
-            <TitleBig>
-              {titleBig[0]}
-            </TitleBig>
-            <TitleBig>
-              {titleBig[1]}
-            </TitleBig>
+            <TitleBig>{titleBig[0]}</TitleBig>
+            <TitleBig>{titleBig[1]}</TitleBig>
           </GridRow>
           <GridRow>
-            <Subtitle>
-              {subtitle[0]}
-            </Subtitle>
-            <p>
-              {subtitle[1]}
-            </p>
+            <Subtitle>{subtitle[0]}</Subtitle>
+            <Subtitle>{subtitle[1]}</Subtitle>
           </GridRow>
         </Right>
       </Container>
     </Section>
-  )
-}
+  );
+};
 
 const Section = styled("div", {
   display: "flex",
   flexDirection: "column",
-  justifyContent: 'center',
+  justifyContent: "center",
   alignItems: "center",
   backgroundColor: "$white",
   paddingTop: rem(30),
   overflow: "hidden",
-})
+});
 
 const Container = styled("div", {
   display: "grid",
   paddingX: rem(20),
   gridTemplateRows: "auto 300px",
 
-  '& > :nth-child(1)': {
+  "& > :nth-child(1)": {
     order: 2,
   },
-  '& > :nth-child(2)': {
+  "& > :nth-child(2)": {
     order: 1,
   },
 
@@ -79,44 +59,43 @@ const Container = styled("div", {
     gridTemplateColumns: "repeat(2, 1fr)",
     gridTemplateRows: "auto",
 
-    '& > :nth-child(1)': {
+    "& > :nth-child(1)": {
       order: 1,
     },
-    '& > :nth-child(2)': {
+    "& > :nth-child(2)": {
       order: 2,
     },
     paddingX: rem(140),
-  }
-})
+  },
+});
 
-const Right = styled('div', {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
+const Right = styled("div", {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
   flexDirection: "column",
-  "@md" : {
-
+  "@md": {
     justifyContent: "center",
-    alignItems: "flex-start"
-  }
-})
+    alignItems: "flex-start",
+  },
+});
 
-const GridRow = styled("div",{
-  display: 'grid',
+const GridRow = styled("div", {
+  display: "grid",
   gridTemplateRows: "auto auto",
-  alignItems: 'center',
-  justifyItems: 'center',
+  alignItems: "center",
+  justifyItems: "center",
   marginBottom: rem(12),
   Subtitle: {
     fontSize: "$body2",
-    fontWeight: 400
+    fontWeight: 400,
   },
 
-  "@md" : {
-    justifyItems: 'start',
+  "@md": {
+    justifyItems: "start",
     marginBottom: rem(20),
-  }
-})
+  },
+});
 
 const TitleBig = styled("p", {
   fontSize: "$subtitle2",
@@ -124,9 +103,10 @@ const TitleBig = styled("p", {
 
   "@md": {
     fontSize: rem(42),
-  }
-})
+  },
+});
 
 const Subtitle = styled("p", {
-  display:"flex"
-})
+  display: "flex",
+  fontSize: "$subtitle3",
+});

@@ -3,38 +3,38 @@ import { styled } from "gatsby-theme-stitches/src/stitches.config";
 
 import daangnAdLogo from "~/image/img_daangn_ad_logo.png";
 import { ReactComponent as IconCall } from "~/image/icon_call.svg";
-import {rem} from "polished";
+import { rem } from "polished";
 
 import fbTrack from "~/components/molecules/fbTrack";
 
-export const  BannerTitle = () => {
+export const BannerTitle = () => {
+  const [isWhite, setWhite] = React.useState<boolean>(false);
+  const [mobile, setMobile] = React.useState<boolean>(false);
 
-  const [isWhite, setWhite] = React.useState<boolean>(false)
-  const [mobile, setMobile] = React.useState<boolean>(false)
-
-  React.useLayoutEffect(()=>{
-    window.addEventListener("scroll", handleScroll)
-
-  },[])
+  React.useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+  }, []);
 
   const handleScroll = () =>
-    window.pageYOffset > 0 ? setWhite(true) : setWhite(false)
-
+    window.pageYOffset > 0 ? setWhite(true) : setWhite(false);
 
   return (
     <Wrapper color={isWhite ? "white" : "default"}>
       {!!daangnAdLogo && <img src={daangnAdLogo} alt="Banner" />}
       <QuestionInfo>
         <IconCall />
-          <TelLink href="tel://1644-9736" onClick={()=>fbTrack('track', "Contact")}>
-            <p>
+        <TelLink
+          href="tel://1644-9736"
+          onClick={() => fbTrack("track", "Contact")}
+        >
+          <p>
             광고문의 <mark>1644-9736</mark>
-            </p>
-          </TelLink>
+          </p>
+        </TelLink>
       </QuestionInfo>
     </Wrapper>
   );
-}
+};
 
 const Wrapper = styled("div", {
   display: "flex",
@@ -47,22 +47,22 @@ const Wrapper = styled("div", {
   left: 0,
   right: 0,
   zIndex: 100,
-  transition:'0.5s',
-  variants : {
+  transition: "0.5s",
+  variants: {
     color: {
       white: {
-        backgroundColor: "$white"
+        backgroundColor: "$white",
       },
       default: {
         transparent: {
-          backgroundColor: "transparent"
-        }
-      }
-    }
+          backgroundColor: "transparent",
+        },
+      },
+    },
   },
-  "@md" : {
-    paddingX: rem(140)
-  }
+  "@md": {
+    paddingX: rem(140),
+  },
 });
 
 const QuestionInfo = styled("div", {
@@ -77,12 +77,12 @@ const QuestionInfo = styled("div", {
     color: "$carrot500",
     display: "none",
     "@md": {
-      display: "inline"
-    }
+      display: "inline",
+    },
   },
 });
 
 const TelLink = styled("a", {
-  color: '$black',
-  textDecoration: "none"
-})
+  color: "$black",
+  textDecoration: "none",
+});
