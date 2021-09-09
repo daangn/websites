@@ -41,6 +41,8 @@ const config: GatsbyConfig = {
       resolve: "@karrotmarket/gatsby-theme-global-website",
       options: {
         locale: "ja-jp",
+        hot_articles_api:
+          "https://webapp.jp.karrotmarket.com/hot_articles.json?limit=6",
       },
     },
     "@karrotmarket/gatsby-theme-prismic",
