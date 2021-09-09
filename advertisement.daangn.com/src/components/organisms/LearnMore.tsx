@@ -147,6 +147,10 @@ const DocsLink = styled("div", {
   cursor: "pointer",
   p: {
     marginRight: 8,
+    fontSize: rem(16),
+    "@md": {
+      fontSize: rem(18),
+    },
   },
   "&:hover": {
     opacity: "64%",
@@ -158,17 +162,18 @@ const DocsLink = styled("div", {
 });
 
 const LearnMoreTitle = styled("p", {
-  typography: "$subtitle1",
+  typography: "$subtitle2",
   fontWeight: "bold",
   textAlign: "center",
 
   "@lg": {
+    typography: "$subtitle1",
     textAlign: "left",
   },
 });
 
 const Item = styled("div", {
-  marginBottom: rem(78),
+  marginBottom: rem(60),
 
   "@lg": {
     marginBottom: 0,
@@ -197,6 +202,7 @@ const FaqItem = styled("div", {
   display: "flex",
   flexDirection: "row",
   justifyContent: "space-between",
+  alignItems: "center",
   paddingY: rem(27),
   borderBottom: "1px solid #EAEBEE",
   p: {

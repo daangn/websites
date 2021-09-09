@@ -20,8 +20,9 @@ export const Main01: React.FC<SectionProps> = ({ titleBig, subtitle }) => {
         />
         <Right>
           <GridRow>
-            <TitleBig>{titleBig[0]}</TitleBig>
-            <TitleBig>{titleBig[1]}</TitleBig>
+            <TitleD>{titleBig[0]}</TitleD>
+            <TitleD>{titleBig[1]}</TitleD>
+            <TitleM>{titleBig[0] + " " + titleBig[1]}</TitleM>
           </GridRow>
           <GridRow>
             <Subtitle>{subtitle[0]}</Subtitle>
@@ -39,8 +40,12 @@ const Section = styled("div", {
   justifyContent: "center",
   alignItems: "center",
   backgroundColor: "$white",
-  paddingTop: rem(30),
+  paddingTop: rem(80),
   overflow: "hidden",
+
+  "@md": {
+    paddingTop: rem(30),
+  },
 });
 
 const Container = styled("div", {
@@ -97,16 +102,31 @@ const GridRow = styled("div", {
   },
 });
 
-const TitleBig = styled("p", {
+const TitleD = styled("p", {
+  display: "none",
+  fontSize: rem(42),
+  fontWeight: "bold",
+
+  "@md": {
+    display: "block",
+  },
+});
+
+const TitleM = styled("p", {
+  display: "block",
   fontSize: "$subtitle2",
   fontWeight: "bold",
 
   "@md": {
-    fontSize: rem(42),
+    display: "none",
   },
 });
 
 const Subtitle = styled("p", {
   display: "flex",
-  fontSize: "$subtitle3",
+  fontSize: "$body2",
+
+  "@md": {
+    fontSize: "$subtitle3",
+  },
 });
