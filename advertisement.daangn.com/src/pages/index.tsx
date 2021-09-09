@@ -12,6 +12,7 @@ import { Visitors } from "~/components/organisms/Visitors";
 import { Download } from "~/components/organisms/Download";
 import { Footer } from "~/components/organisms/Footer";
 import { graphql, useStaticQuery } from "gatsby";
+import { DownloadBtnMobile } from "~/components/organisms/DownloadBtnMobile";
 
 globalStyles();
 
@@ -37,7 +38,9 @@ export const query = graphql`
 `;
 
 const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
+  //@ts-ignore
   const imgSrc = data.image.childImageSharp.fixed;
+  //@ts-ignore
   const site = data.site.siteMetadata.siteUrl;
 
   return (
@@ -56,6 +59,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
           ],
         }}
       />
+      <DownloadBtnMobile />
       <BannerTitle />
       <Banner />
       <Visitors />
