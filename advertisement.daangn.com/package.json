@@ -19,6 +19,7 @@
     "gatsby-plugin-module-resolver": "^1.0.3",
     "gatsby-plugin-next-seo": "^1.8.0",
     "gatsby-plugin-sharp": "^3.13.0",
+    "gatsby-plugin-typegen": "^2.2.4",
     "gatsby-source-filesystem": "^3.13.0",
     "gatsby-theme-stitches": "^0.1.1",
     "gatsby-transformer-sharp": "^3.13.0",

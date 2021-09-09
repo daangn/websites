@@ -18,30 +18,29 @@ globalStyles();
 
 type IndexPageProps = PageProps;
 
-export const query = graphql`
-  query IndexPageQuery {
-    image: file(relativePath: { eq: "img_og.png" }) {
-      childImageSharp {
-        fixed(width: 800, height: 400, toFormat: PNG, quality: 90) {
-          src
-          width
-          height
+const IndexPage: React.FC<IndexPageProps> = () => {
+  const query = useStaticQuery<GatsbyTypes.IndexPageQueryQuery>(graphql`
+    query IndexPageQuery {
+      image: file(relativePath: { eq: "img_og.png" }) {
+        childImageSharp {
+          fixed(width: 800, height: 400, toFormat: PNG, quality: 90) {
+            src
+            width
+            height
+          }
+        }
+      }
+      site {
+        siteMetadata {
+          siteUrl
         }
       }
     }
-    site {
-      siteMetadata {
-        siteUrl
-      }
-    }
-  }
-`;
+  `);
 
-const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
-  //@ts-ignore
-  const imgSrc = data.image.childImageSharp.fixed;
-  //@ts-ignore
-  const site = data.site.siteMetadata.siteUrl;
+  const imgSrc = query.image?.childImageSharp?.fixed;
+  const site = query.site?.siteMetadata?.siteUrl;
+  const url = site && imgSrc ? site + imgSrc : "";
 
   return (
     <div>
@@ -52,9 +51,9 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
           description: "동네 이웃들이 모이는 당근마켓에 광고해 보세요",
           images: [
             {
-              url: site + imgSrc.src,
-              width: imgSrc.width,
-              height: imgSrc.height,
+              url: url,
+              width: imgSrc?.width,
+              height: imgSrc?.height,
             },
           ],
         }}
@@ -65,7 +64,6 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
       <Visitors />
       <Main />
       <Download />
-      {/*<PromotionInfoDownload />*/}
       <LearnMore />
       <Footer />
     </div>
