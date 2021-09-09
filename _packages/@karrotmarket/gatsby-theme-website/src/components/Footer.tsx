@@ -94,6 +94,12 @@ const Contact = styled("section", {
   gap: rem(4),
 });
 
+const ContactLine = styled("div", {
+  '& a': {
+    color: 'inherit',
+  },
+});
+
 const Copyright = styled("div", {
   fontSize: "$caption2",
 });
@@ -161,21 +167,21 @@ const Footer: React.FC<FooterProps> = ({ className, navigationData }) => {
         <InfoWrapper>
           <Contact>
             {navigationData.address && (
-              <div
+              <ContactLine
                 dangerouslySetInnerHTML={{
                   __html: navigationData.address.html,
                 }}
               />
             )}
             {navigationData.tel && (
-              <div
+              <ContactLine
                 dangerouslySetInnerHTML={{
                   __html: navigationData.tel.html,
                 }}
               />
             )}
             {navigationData.email && (
-              <div
+              <ContactLine
                 dangerouslySetInnerHTML={{
                   __html: navigationData.email.html,
                 }}
