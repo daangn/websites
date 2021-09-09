@@ -3,12 +3,12 @@ import { styled } from "gatsby-theme-stitches/src/stitches.config";
 import { ArrowLink } from "~/components/molecules/ArrowLink";
 import { rem } from "polished";
 import chevronIconUrl from "~/image/chevron.svg";
-import { OutboundLink } from "gatsby-plugin-google-gtag";
 import { gtag as GA } from "~/components/molecules/gtag";
 
 export const LearnMore = () => {
-  const handleFaqClick = (gtag: string[], href: string) => {
-    GA(gtag[0], gtag[1]);
+  const handleClick = (gtag: string[], href: string) => {
+    // @ts-ignore
+    if (window.gtag !== undefined) GA(gtag[0], gtag[1]);
     window.open(href, "_blank");
   };
 
@@ -20,19 +20,29 @@ export const LearnMore = () => {
             <LearnMoreTitle>당근마켓 지역광고</LearnMoreTitle>
             <LearnMoreTitle>더 알아보기</LearnMoreTitle>
           </DocsWrapper>
-          <DocsLink>
+          <DocsLink
+            onClick={() =>
+              handleClick(
+                ["event", "click"],
+                "https://drive.google.com/drive/u/1/folders/13AkcMwom4aLQBsJ7mhHyaEglj6rSDW1j"
+              )
+            }
+          >
             <p>지역광고 소개서</p>
-            <ArrowLink
-              target="https://drive.google.com/drive/u/1/folders/13AkcMwom4aLQBsJ7mhHyaEglj6rSDW1j"
-              gtag={["event", "click"]}
-            />
+            <ArrowLink target="https://drive.google.com/drive/u/1/folders/13AkcMwom4aLQBsJ7mhHyaEglj6rSDW1j" />
           </DocsLink>
-          <DocsLink>
+          <DocsLink
+            onClick={() => {
+              handleClick(
+                ["event", "click"],
+                "https://www.notion.so/daangn/86a4348d469846728378036321255052"
+              );
+            }}
+          >
             <p>지역광고 만들기 가이드</p>
             <ArrowLink
               target="https://www.notion.so/daangn/86a4348d469846728378036321255052"
               fbPixel={["trackCustom", "Click_guide"]}
-              gtag={["event", "click"]}
             />
           </DocsLink>
         </Item>
@@ -40,7 +50,7 @@ export const LearnMore = () => {
           <FaqItem>
             <p
               onClick={() =>
-                handleFaqClick(
+                handleClick(
                   ["event", "click"],
                   "https://www.daangn.com/wv/faqs/149"
                 )
@@ -53,7 +63,7 @@ export const LearnMore = () => {
           <FaqItem>
             <p
               onClick={() =>
-                handleFaqClick(
+                handleClick(
                   ["event", "click"],
                   "https://www.daangn.com/wv/faqs/159"
                 )
@@ -66,7 +76,7 @@ export const LearnMore = () => {
           <FaqItem>
             <p
               onClick={() =>
-                handleFaqClick(
+                handleClick(
                   ["event", "click"],
                   "https://www.daangn.com/wv/faqs/156"
                 )
@@ -134,8 +144,12 @@ const DocsLink = styled("div", {
   typography: "$subtitle4",
   fontWeight: "bold",
   marginY: 10,
+  cursor: "pointer",
   p: {
     marginRight: 8,
+  },
+  "&:hover": {
+    opacity: "64%",
   },
 
   "@lg": {
@@ -188,6 +202,9 @@ const FaqItem = styled("div", {
   p: {
     fontSize: "$body2",
     cursor: "pointer",
+  },
+  "&:hover": {
+    opacity: "64%",
   },
 
   "@lg": {

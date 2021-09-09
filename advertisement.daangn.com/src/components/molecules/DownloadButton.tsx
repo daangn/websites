@@ -66,10 +66,18 @@ const Button = styled("div", {
       carrot: {
         backgroundColor: "$carrot500",
         color: "$white",
+
+        "&:hover": {
+          backgroundColor: "$carrot600",
+        },
       },
       gray: {
         backgroundColor: "$gray200",
         color: "$gray900",
+
+        "&:hover": {
+          backgroundColor: "$gray300",
+        },
       },
     },
   },

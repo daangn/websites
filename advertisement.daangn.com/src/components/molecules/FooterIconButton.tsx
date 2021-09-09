@@ -33,4 +33,7 @@ const Button = styled("div", {
   typography: "$body2",
   fontWeight: "bold",
   cursor: "pointer",
+  "&:hover": {
+    opacity: "64%",
+  },
 });
