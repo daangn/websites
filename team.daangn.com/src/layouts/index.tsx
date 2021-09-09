@@ -35,8 +35,12 @@ const globalStyles = globalCss({
   },
   'a': {
     color: '$carrot500',
+    transition: 'opacity 0.3s, color 0.3s',
   },
   '@media (prefers-reduced-motion: no-preference)': {
+    'a': {
+      transition: 'none',
+    },
     ':focus': {
       transition: 'outline-offset .25s ease',
       outlineOffset: '3px',
