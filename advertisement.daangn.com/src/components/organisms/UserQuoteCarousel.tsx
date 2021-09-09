@@ -87,6 +87,17 @@ export const UserQuoteCarousel: React.FC = () => {
     },
   });
 
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      if (slide < 2) {
+        setSlide(slide + 1);
+      } else {
+        setSlide(0);
+      }
+    }, 10000);
+    return () => clearInterval(interval);
+  }, [slide]);
+
   return (
     <Container>
       <SlideCamera {...swipeHandlers}>
