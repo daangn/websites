@@ -1,25 +1,32 @@
 import React from "react";
 import { styled } from "~/gatsby-theme-stitches/stitches.config";
 import { rem } from "polished";
-import {
-  StaticImage as Picture,
-  GatsbyImage,
-  getImage,
-} from "gatsby-plugin-image";
-import { graphql } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 type SectionProps = {
   titleBig: string[];
   subtitle: string[];
-  data?: any;
+  image: any;
+  right: boolean;
 };
 
-export const Main02: React.FC<SectionProps> = ({ titleBig, subtitle }) => {
+export const MainSection: React.FC<SectionProps> = ({
+  titleBig,
+  subtitle,
+  image,
+  right,
+}) => {
   // console.log(data)
+  const img = getImage(image);
   return (
-    <Section>
-      <Container>
-        <Text>
+    <Section right={right}>
+      <Container right={right}>
+        <GatsbyImage
+          alt={""}
+          image={img!}
+          imgStyle={{ objectPosition: "top" }}
+        />
+        <Right>
           <GridRow>
             <TitleD>{titleBig[0]}</TitleD>
             <TitleD>{titleBig[1]}</TitleD>
@@ -29,13 +36,7 @@ export const Main02: React.FC<SectionProps> = ({ titleBig, subtitle }) => {
             <Subtitle>{subtitle[0]}</Subtitle>
             <Subtitle>{subtitle[1]}</Subtitle>
           </GridRow>
-        </Text>
-        <Picture
-          src="../../image/img_sub_pc_02.png"
-          alt="main01"
-          imgStyle={{ objectPosition: "top" }}
-          height={680}
-        />
+        </Right>
       </Container>
     </Section>
   );
@@ -46,9 +47,17 @@ const Section = styled("div", {
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
-  backgroundColor: "#FBF7F2",
+  backgroundColor: "$white",
   paddingTop: rem(80),
   overflow: "hidden",
+
+  variants: {
+    right: {
+      false: {
+        backgroundColor: "#FBF7F2",
+      },
+    },
+  },
 
   "@md": {
     paddingTop: rem(30),
@@ -60,28 +69,47 @@ const Container = styled("div", {
   paddingX: rem(20),
   gridTemplateRows: "auto 300px",
 
-  // '& > :nth-child(1)': {
-  //   order: 2,
-  // },
-  // '& > :nth-child(2)': {
-  //   order: 1,
-  // },
+  "& > :nth-child(1)": {
+    order: 2,
+  },
+  "& > :nth-child(2)": {
+    order: 1,
+  },
+
+  variants: {
+    right: {
+      false: {
+        "@md": {
+          "& > :nth-child(1)": {
+            order: 2,
+          },
+          "& > :nth-child(2)": {
+            order: 1,
+          },
+        },
+      },
+      true: {
+        "@md": {
+          "& > :nth-child(1)": {
+            order: 1,
+          },
+          "& > :nth-child(2)": {
+            order: 2,
+          },
+        },
+      },
+    },
+  },
 
   "@md": {
     gridTemplateColumns: "repeat(2, 1fr)",
     gridTemplateRows: "auto",
 
-    "& > :nth-child(1)": {
-      order: 1,
-    },
-    "& > :nth-child(2)": {
-      order: 2,
-    },
     paddingX: rem(140),
   },
 });
 
-const Text = styled("div", {
+const Right = styled("div", {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
