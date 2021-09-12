@@ -2,12 +2,13 @@ import React from "react";
 import { styled } from "~/gatsby-theme-stitches/stitches.config";
 import { rem } from "polished";
 import { useSwipeable } from "react-swipeable";
-import { StaticImage as Picture } from "gatsby-plugin-image";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { ArrowLink } from "~/components/molecules/ArrowLink";
 import { gtag as GA } from "~/components/molecules/gtag";
+import { graphql, useStaticQuery } from "gatsby";
 
 type SlideItemProps = {
-  picture: JSX.Element;
+  picture: any;
   talk: string[];
   story: string;
   link: string;
@@ -16,9 +17,44 @@ type SlideItemProps = {
 export const UserQuoteCarousel: React.FC = () => {
   const [slide, setSlide] = React.useState<number>(0);
 
+  const carouselImage = useStaticQuery<GatsbyTypes.CarouselImageQuery>(graphql`
+    query CarouselImage {
+      tensoba: file(relativePath: { eq: "tensoba.png" }) {
+        childImageSharp {
+          gatsbyImageData(quality: 90, formats: [AUTO, AVIF, WEBP])
+        }
+      }
+      meltingDog: file(relativePath: { eq: "meltingDog.png" }) {
+        childImageSharp {
+          gatsbyImageData(quality: 90, formats: [AUTO, AVIF, WEBP])
+        }
+      }
+      jjinijjinni: file(relativePath: { eq: "jjinijjini.png" }) {
+        childImageSharp {
+          gatsbyImageData(quality: 90, formats: [AUTO, AVIF, WEBP])
+        }
+      }
+      tensoba_m: file(relativePath: { eq: "tensoba_m.png" }) {
+        childImageSharp {
+          gatsbyImageData(quality: 90, formats: [AUTO, AVIF, WEBP])
+        }
+      }
+      meltingDog_m: file(relativePath: { eq: "meltingDog_m.png" }) {
+        childImageSharp {
+          gatsbyImageData(quality: 90, formats: [AUTO, AVIF, WEBP])
+        }
+      }
+      jjinijjinni_m: file(relativePath: { eq: "jjinijjini_m.png" }) {
+        childImageSharp {
+          gatsbyImageData(quality: 90, formats: [AUTO, AVIF, WEBP])
+        }
+      }
+    }
+  `);
+
   const items: SlideItemProps[] = [
     {
-      picture: <Picture src="../../image/tensoba.png" alt="" />,
+      picture: carouselImage?.tensoba?.childImageSharp?.gatsbyImageData,
       talk: [
         "당근마켓 광고는 반응이 정말 빨라요.",
         "광고 시작한지 하루만에",
@@ -28,7 +64,7 @@ export const UserQuoteCarousel: React.FC = () => {
       link: "https://www.youtube.com/watch?v=agdA0fMZ7u4",
     },
     {
-      picture: <Picture src="../../image/meltingDog.png" alt="" />,
+      picture: carouselImage.meltingDog?.childImageSharp?.gatsbyImageData,
       talk: [
         "광고할 동네를 지정할 수 있어서 좋아요.",
         "가게에 직접 올 만한 가까운 동네에",
@@ -38,7 +74,7 @@ export const UserQuoteCarousel: React.FC = () => {
       link: "https://www.youtube.com/watch?v=NLO0GJ3Yft8",
     },
     {
-      picture: <Picture src="../../image/jjinijjini.png" alt="" />,
+      picture: carouselImage?.jjinijjinni?.childImageSharp?.gatsbyImageData,
       talk: [
         "당근마켓 광고는 정말 쉬운게 장점이에요.",
         "부모님이 재배한 사과를 중고거래하듯 올렸는데,",
@@ -51,7 +87,7 @@ export const UserQuoteCarousel: React.FC = () => {
 
   const itemsMobile: SlideItemProps[] = [
     {
-      picture: <Picture src="../../image/tensoba_m.png" alt="" />,
+      picture: carouselImage?.tensoba_m?.childImageSharp?.gatsbyImageData,
       talk: [
         "당근마켓 광고는 반응이 정말 빨라요. 광고 시작한지 하루만에 가게 근처 학원 학생들이 방문했어요.",
       ],
@@ -59,7 +95,7 @@ export const UserQuoteCarousel: React.FC = () => {
       link: "https://www.youtube.com/watch?v=agdA0fMZ7u4",
     },
     {
-      picture: <Picture src="../../image/meltingDog_m.png" alt="" />,
+      picture: carouselImage.meltingDog_m?.childImageSharp?.gatsbyImageData,
       talk: [
         "광고할 동네를 지정할 수 있어서 좋아요. 가게에 직접 올 만한 가까운 동네에 광고하니까 효과가 좋더라고요.",
       ],
@@ -67,7 +103,7 @@ export const UserQuoteCarousel: React.FC = () => {
       link: "https://www.youtube.com/watch?v=NLO0GJ3Yft8",
     },
     {
-      picture: <Picture src="../../image/jjinijjini_m.png" alt="" />,
+      picture: carouselImage?.jjinijjinni_m?.childImageSharp?.gatsbyImageData,
       talk: [
         "당근마켓 광고는 정말 쉬운게 장점이에요. 부모님이 재배한 사과를 중고거래하듯 올렸는데, 바로 주문이 들어와서 신기했어요.",
       ],
@@ -78,13 +114,14 @@ export const UserQuoteCarousel: React.FC = () => {
 
   const swipeHandlers = useSwipeable({
     onSwipedLeft: (_) => {
-      GA("event", "swipe", { prevIdx: slide });
       setSlide((prev) => Math.min(prev + 1, items.length - 1));
+      GA("event", "swipe", { prevIdx: slide });
     },
     onSwipedRight: (_) => {
-      GA("event", "swipe", { prevIdx: slide });
       setSlide((prev) => Math.max(prev - 1, 0));
+      GA("event", "swipe", { prevIdx: slide });
     },
+    trackMouse: true,
   });
 
   React.useEffect(() => {
@@ -99,8 +136,8 @@ export const UserQuoteCarousel: React.FC = () => {
   }, [slide]);
 
   return (
-    <Container>
-      <SlideCamera {...swipeHandlers}>
+    <Container {...swipeHandlers}>
+      <SlideCamera>
         <Slide
           css={{
             $$slide: slide,
@@ -109,10 +146,13 @@ export const UserQuoteCarousel: React.FC = () => {
           }}
         >
           {items.map((item, index) => {
+            const loadedImg = getImage(item.picture);
             return (
               <div key={index}>
                 <CarouselItemWrapperDesktop>
-                  <ImageContainer>{item.picture}</ImageContainer>
+                  <ImageContainer>
+                    <GatsbyImage alt="" image={loadedImg!} />
+                  </ImageContainer>
                   <QuoteContainer>
                     <div>
                       {item.talk.map((str, idx) => {
@@ -148,7 +188,9 @@ export const UserQuoteCarousel: React.FC = () => {
             return (
               <div key={index}>
                 <CarouselItemWrapperMobile>
-                  <ImageContainer>{item.picture}</ImageContainer>
+                  <ImageContainer>
+                    <GatsbyImage alt={""} image={item.picture} />
+                  </ImageContainer>
                   <QuoteContainer>
                     <Quote>{item.talk[0]}</Quote>
                     <ByRow>
@@ -192,7 +234,7 @@ const SlideCamera = styled("div", {
 const Slide = styled("div", {
   flexDirection: "row",
   alignItems: "center",
-  width: "100vw",
+  // width: "100vw",
   transition: "transform 0.3s ease-in-out",
   transform: `translateX(calc(-100% * $$slide))`,
 
