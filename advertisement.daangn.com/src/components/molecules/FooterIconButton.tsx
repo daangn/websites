@@ -2,7 +2,6 @@ import React from "react";
 import { styled } from "~/gatsby-theme-stitches/stitches.config";
 import { ReactComponent as IconYoutube } from "~/image/logo_youtube.svg";
 import { ReactComponent as IconBlog } from "~/image/logo_blog.svg";
-import { gtag as GA } from "~/components/molecules/gtag";
 
 type FooterIconButtonProps = {
   target: string;
@@ -15,7 +14,6 @@ export const FooterIconButton = ({
 }: React.PropsWithChildren<FooterIconButtonProps>) => {
   const onClickHandler = (target: string) => {
     window.open(target, "_blank");
-    GA("event", "click");
   };
 
   return (

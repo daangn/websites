@@ -80,28 +80,13 @@ const config: GatsbyConfig = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-gtag`,
+      resolve: 'gatsby-plugin-google-tagmanager',
       options: {
-        // You can add multiple tracking ids and a pageview event will be fired for all of them.
-        trackingIds: [
-          "G-XZQD55P49G", // Google Analytics / GA
-        ],
-        // This object gets passed directly to the gtag config command
-        // This config will be shared across all trackingIds
-        gtagConfig: {
-          // optimize_id: "OPT_CONTAINER_ID",
-          anonymize_ip: true,
-          cookie_expires: 0,
-        },
-        // This object is used for configuration specific to this plugin
-        pluginConfig: {
-          // Puts tracking script in the head instead of the body
-          head: true,
-          // Setting this parameter is also optional
-          respectDNT: true,
-          // Avoids sending pageview hits from custom paths
-          // exclude: ["/preview/**", "/do-not-track/me/too/"],
-        },
+        id: 'GTM-NC3HWHZ',
+        includeInDevelopment: false,
+        defaultDataLayer: { platform: 'gatsby' },
+        routeChangeEventName: 'gatsby-route-change',
+        enableWebVitalsTracking: true,
       },
     },
   ],

@@ -4,7 +4,6 @@ import { rem } from "polished";
 import { useSwipeable } from "react-swipeable";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { ArrowLink } from "~/components/molecules/ArrowLink";
-import { gtag as GA } from "~/components/molecules/gtag";
 import { graphql, useStaticQuery } from "gatsby";
 
 type SlideItemProps = {
@@ -115,11 +114,9 @@ export const UserQuoteCarousel: React.FC = () => {
   const swipeHandlers = useSwipeable({
     onSwipedLeft: (_) => {
       setSlide((prev) => Math.min(prev + 1, items.length - 1));
-      GA("event", "swipe", { prevIdx: slide });
     },
     onSwipedRight: (_) => {
       setSlide((prev) => Math.max(prev - 1, 0));
-      GA("event", "swipe", { prevIdx: slide });
     },
     trackMouse: true,
   });

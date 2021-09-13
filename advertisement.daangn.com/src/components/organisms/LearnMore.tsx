@@ -3,12 +3,9 @@ import { styled } from "gatsby-theme-stitches/src/stitches.config";
 import { ArrowLink } from "~/components/molecules/ArrowLink";
 import { rem } from "polished";
 import chevronIconUrl from "~/image/chevron.svg";
-import { gtag as GA } from "~/components/molecules/gtag";
 
 export const LearnMore = () => {
-  const handleClick = (gtag: string[], href: string) => {
-    // @ts-ignore
-    if (window.gtag !== undefined) GA(gtag[0], gtag[1]);
+  const handleClick = (href: string) => {
     window.open(href, "_blank");
   };
 
@@ -23,7 +20,6 @@ export const LearnMore = () => {
           <DocsLink
             onClick={() =>
               handleClick(
-                ["event", "click"],
                 "https://drive.google.com/file/d/1MvIP-QqJzVdRY7nkKn08wMryet6aMJg9/view"
               )
             }
@@ -34,7 +30,6 @@ export const LearnMore = () => {
           <DocsLink
             onClick={() => {
               handleClick(
-                ["event", "click"],
                 "https://www.notion.so/daangn/86a4348d469846728378036321255052"
               );
             }}
@@ -42,7 +37,6 @@ export const LearnMore = () => {
             <p>지역광고 만들기 가이드</p>
             <ArrowLink
               target="https://www.notion.so/daangn/86a4348d469846728378036321255052"
-              fbPixel={["trackCustom", "Click_guide"]}
             />
           </DocsLink>
         </Item>
@@ -51,7 +45,6 @@ export const LearnMore = () => {
             <p
               onClick={() =>
                 handleClick(
-                  ["event", "click"],
                   "https://www.daangn.com/wv/faqs/149"
                 )
               }
@@ -64,7 +57,6 @@ export const LearnMore = () => {
             <p
               onClick={() =>
                 handleClick(
-                  ["event", "click"],
                   "https://www.daangn.com/wv/faqs/159"
                 )
               }
@@ -77,7 +69,6 @@ export const LearnMore = () => {
             <p
               onClick={() =>
                 handleClick(
-                  ["event", "click"],
                   "https://www.daangn.com/wv/faqs/156"
                 )
               }

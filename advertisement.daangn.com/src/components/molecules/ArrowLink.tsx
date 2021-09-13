@@ -3,7 +3,6 @@ import { styled } from "gatsby-theme-stitches/src/stitches.config"
 import ArrowSvg from "~/image/arrow.svg";
 import ArrowSvgWhite from "~/image/arrow_white.svg";
 import fbTrack from "~/components/molecules/fbTrack";
-import {gtag as GA} from "~/components/molecules/gtag";
 
 type ArrowLinkProps = {
   target : string
@@ -15,18 +14,10 @@ type ArrowLinkProps = {
 export const ArrowLink:React.FC<ArrowLinkProps> = ({target,color="black", fbPixel, gtag}) => {
 
   const onClickHandler = (target:string) => {
-    if(gtag){
-      GA(gtag[0], gtag[1])
-    }
-
-    if(fbPixel){
-      fbTrack(fbPixel[0], fbPixel[1])
-    }
     window.open(target, '_blank')
   }
   return (
     <Base onClick={()=>onClickHandler(target)} color={color}/>
-
   )
 }
 
