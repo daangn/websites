@@ -2,7 +2,7 @@ import * as React from 'react';
 import { rem } from 'polished';
 import { graphql } from 'gatsby';
 import { getImage, GatsbyImage } from 'gatsby-plugin-image';
-import { styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { styled } from 'gatsby-theme-stitches/src/config';
 
 import { useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
 import DetailLink from '~/components/DetailLink';

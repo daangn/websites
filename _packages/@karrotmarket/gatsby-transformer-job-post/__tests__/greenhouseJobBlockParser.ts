@@ -256,4 +256,24 @@ describe('Greenhouse content block parser', () => {
       `,
     });
   });
+
+  it('should strips all tags on title', () => {
+    const input = stripIndent`
+      <h3><string>제목<br><br/></string></h3>
+      <p>내용</p>
+    `;
+    expect(parseContent(input)).toEqual({
+      content: [
+        {
+          level: 'H3',
+          title: '제목',
+          bodyHtml: '<p>내용</p>',
+        },
+      ],
+      raw: stripIndent`
+        <h3><string>제목<br><br/></string></h3>
+        <p>내용</p>
+      `,
+    });
+  });
 });

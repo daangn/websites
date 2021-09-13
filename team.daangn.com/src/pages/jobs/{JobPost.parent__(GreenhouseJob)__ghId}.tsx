@@ -1,7 +1,7 @@
 import * as React from 'react';
 import type { PageProps } from 'gatsby';
 import { graphql, navigate } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import { required } from '@cometjs/core';
 import { useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
@@ -47,9 +47,22 @@ const JobPostPage: React.FC<JobPostPageProps> = ({
   data,
 }) => {
   const parseLink = useLinkParser();
-
   required(data.jobPost);
-
+  data.jobPost.externalUrl
+  if(data.jobPost.externalUrl){
+    return <Container>
+      <ContentWrapper>
+        <strong>해당 공고는 외부에서 진행되는 공고에요.</strong>
+      </ContentWrapper>
+      <Button
+          type="primary"
+          to={data.jobPost.externalUrl!}
+          fullWidth={{ '@initial': true, '@sm': false }}
+        >
+          공고 확인하러 가기
+        </Button>
+    </Container>
+  }
   return (
     <Container>
       <ContentWrapper>

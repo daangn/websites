@@ -3,7 +3,7 @@ import { rem } from 'polished';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import { GatsbySeo } from 'gatsby-plugin-next-seo';
-import { styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { styled } from 'gatsby-theme-stitches/src/config';
 import { required, Condition } from '@cometjs/core';
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
 import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';

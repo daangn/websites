@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { useInView } from "react-intersection-observer";
 
-import { styled } from "../../gatsby-theme-stitches/stitches.config";
+import { styled } from "../../gatsby-theme-stitches/config";
 
 type IllustrationSectionProps = {
   content: GatsbyTypes.IllustrationSection_contentFragment;

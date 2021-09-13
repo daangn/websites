@@ -4,7 +4,7 @@ import { em, rem } from "polished";
 import {
   MediaTypeMap,
   styled,
-} from "../../gatsby-theme-stitches/stitches.config";
+} from "../../gatsby-theme-stitches/config";
 
 const BackIcon = () => (
   <svg

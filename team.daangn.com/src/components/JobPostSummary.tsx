@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 
 type JobPostSummaryProps = {
@@ -154,6 +154,7 @@ const JobPostSummary: React.FC<JobPostSummaryProps> = ({
         {{
           FULL_TIME: '정규직',
           INTERN: '인턴',
+          ASSISTANT: '어시스턴트',
           CONTRACTOR: '계약직',
         }[jobPost.employmentType]}
       </EmploymentType>

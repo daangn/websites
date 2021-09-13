@@ -2,7 +2,7 @@ import * as React from "react";
 import { em } from "polished";
 
 import { Flex } from "../../Flex";
-import { styled } from "../../../gatsby-theme-stitches/stitches.config";
+import { styled } from "../../../gatsby-theme-stitches/config";
 
 import { ReactComponent as SearchIcon } from "../../../icons/search.svg";
 import { ReactComponent as FilterIcon } from "../../../icons/filter.svg";

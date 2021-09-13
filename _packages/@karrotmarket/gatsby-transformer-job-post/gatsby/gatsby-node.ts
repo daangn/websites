@@ -1,12 +1,23 @@
 import type {
   GatsbyNode,
   Node,
-  NodeInput,
+  NodeInput
 } from 'gatsby';
 import { isGreenhouseJobNode } from './types';
 
 import * as greenhouseJobBlockParser from './greenhouseJobBlockParser';
 import * as greenhouseJobCustomFieldParser from './greenhouseJobCustomFieldParser';
+export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
+  Joi,
+}) => {
+  return Joi.object({
+    defaultTags: Joi.object().pattern(Joi.string(), Joi.array().items(Joi.string()))
+  });
+};
+
+type PluginOptions = {
+  defaultTags:{ [boardToken:string]: string[] }
+};
 
 export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({
   actions,
@@ -42,7 +53,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       # HTML content (unsafe)
       rawContent: String!
 
-      # 회사 (당근마켓, 망근페이)
+      # 회사 (당근마켓, 당근페이)
       corporate: JobCorporate
 
       # 고용 형태
@@ -66,6 +77,9 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       # 정렬 선호 순위 값 (signed, 기본값: 0)
       order: Int!
 
+      # 외부 링크 (공고가 바깥에서 열리는 경우.. 좀 컨텐츠 많으면 노션 링크 선호되는 경우 있음)
+      externalUrl: String
+
       # 목록에서 표시할 태그
       tags: [String!]!
     }
@@ -81,6 +95,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       FULL_TIME
       CONTRACTOR
       INTERN
+      ASSISTANT
     }
 
     enum JobPriorExperience {
@@ -111,13 +126,14 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
   `);
 };
 
-export const onCreateNode: GatsbyNode['onCreateNode'] = ctx => {
+export const onCreateNode: GatsbyNode['onCreateNode'] = (ctx,options) => {
   const {
     node,
     actions,
     createNodeId,
     createContentDigest,
   } = ctx;
+  const { defaultTags } = options as unknown as PluginOptions;
 
   // Note: 나중에 다른 타입 추가로 transform 할 수 있으므로 early return 하지 않겠습니다.
   if (isGreenhouseJobNode(node)) {
@@ -141,7 +157,8 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ctx => {
       portfolioRequired: fieldParser.portfolioRequirement(node, ctx) ?? false,
       keywords: fieldParser.keywords(node, ctx) ?? [],
       order: fieldParser.order(node, ctx) ?? 0,
-      tags: fieldParser.tags(node, ctx) ?? [],
+      externalUrl: fieldParser.externalUrl(node, ctx)?.toString() ?? null,
+      tags: [ ...defaultTags[node.boardToken] ?? [], ...fieldParser.tags(node, ctx) ?? [] ],
     };
 
     const jobPostNode: NodeInput = {

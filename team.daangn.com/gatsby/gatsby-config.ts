@@ -1,4 +1,5 @@
 import type { GatsbyConfig } from 'gatsby';
+import {disassemble as disassembleHangul, assemble as assembleHangul} from 'hangul-js';
 
 import dotenv from 'dotenv-safe';
 dotenv.config();
@@ -147,18 +148,91 @@ const config: GatsbyConfig = {
         },
       },
     },
+    {
+      resolve: "gatsby-plugin-local-search",
+      options: {
+        name: "jobPosts",
+        engine: "flexsearch",
+        engineOptions: {
+          tokenize: (str)=>{
+            const index = JSON.parse(str)
+            const specialCharactersRegex = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g
+            const splitTitle = index.title.replace(specialCharactersRegex,"").trim().split(/\s/)
+            const wordSet = new Set([...splitTitle,...index.keywords])
+            const tokens:string[]=[]
+            for (const word of wordSet) {
+              const syllables = disassembleHangul(word);
+              for (let i = 0; i < syllables.length; i++) {
+                const token = assembleHangul(syllables.slice(0, i + 1));
+                tokens.push(token);
+              }
+            }
+            
+            return tokens
+          }
+        },
+        query: `
+        {
+          allGreenhouseJob {
+            edges {
+              node {
+                title
+                childrenJobPost {
+                  id
+                  keywords
+                }
+              }
+            }
+          }
+        }
+      `,
+        ref: "id",
+
+        index: ["title", "keywords"],
+        store: ["id", "title", "keywords"],
+        normalizer: ({ data }) =>
+          data.allGreenhouseJob.edges.map(({ node }) => ({
+            id: node.childrenJobPost[0].id,
+            title: node.title,
+            keywords: node.childrenJobPost[0].keywords,
+          })),
+      },
+    },
 
     // 커스텀 플러그인
     '@karrotmarket/gatsby-theme-prismic',
     '@karrotmarket/gatsby-theme-website',
-    '@karrotmarket/gatsby-transformer-job-post',
     {
       resolve: '@karrotmarket/gatsby-source-greenhouse-job-board',
       options: {
         boardToken: 'daangn',
         includeContent: true,
-        forceGC: true,
+        // 이런 해킹으로는 안된다... 다른 방법을 강구해야함
+        // forceGC: true,
       },
+    },
+    {
+      resolve: '@karrotmarket/gatsby-source-greenhouse-job-board',
+      options: {
+        boardToken: 'daangnmvp',
+        includeContent: true,
+      },
+    },
+    {
+      resolve: '@karrotmarket/gatsby-source-greenhouse-job-board',
+      options: {
+        boardToken: 'daangntest',
+        includeContent: true,
+      },
+    },
+    {
+      resolve: '@karrotmarket/gatsby-transformer-job-post',
+      options: {
+        defaultTags:{
+          'daangnmvp': ["MVP"],
+          'daangntest': ["사전지원"]
+        }
+      }
     },
 //    'gatsby-plugin-prismic-schema',
   ],

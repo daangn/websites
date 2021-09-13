@@ -1,6 +1,6 @@
 import * as React from "react";
 import { graphql } from "gatsby";
-import { styled } from "gatsby-theme-stitches/src/stitches.config";
+import { styled } from "gatsby-theme-stitches/src/config";
 import { rem } from "polished";
 
 import githubIconUrl from "!!file-loader?modules!./socialServiceProfile/github.svg";
@@ -8,6 +8,7 @@ import facebookIconUrl from "!!file-loader?modules!./socialServiceProfile/facebo
 import twitterIconUrl from "!!file-loader?modules!./socialServiceProfile/twitter.svg";
 import mediumIconUrl from "!!file-loader?modules!./socialServiceProfile/medium.svg";
 import instagramIconUrl from "!!file-loader?modules!./socialServiceProfile/instagram.svg";
+import lineIconUrl from "!!file-loader?modules!./socialServiceProfile/line.svg";
 
 type SocialServiceProfileProps = {
   className?: string;
@@ -61,6 +62,10 @@ const socialServiceProfileConfigMap: Record<
   medium: {
     src: mediumIconUrl,
     alt: "Medium",
+  },
+  line: {
+    src: lineIconUrl,
+    alt: "LINE",
   },
 };
 

@@ -1,4 +1,4 @@
-import { styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { styled } from 'gatsby-theme-stitches/src/config';
 
 const Divider = styled('hr', {
   width: '100%',

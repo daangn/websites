@@ -1,9 +1,6 @@
 import * as React from "react";
 import type { PageProps } from "gatsby";
-import {
-  styled,
-  globalStyles,
-} from "gatsby-theme-stitches/src/stitches.config";
+import { styled, globalCss } from "gatsby-theme-stitches/src/config";
 import { graphql } from "gatsby";
 
 import JsonLd from "../components/JsonLd";
@@ -140,6 +137,10 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
   );
 };
 
+const globalStyles = globalCss({
+  '*': { margin: 0, padding: 0 },
+  body: { fontFamily: '$system' },
+});
 
 const Section = styled("section", {
   height: "582px",

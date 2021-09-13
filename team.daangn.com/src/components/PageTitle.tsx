@@ -1,4 +1,4 @@
-import { styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { styled } from 'gatsby-theme-stitches/src/config';
 
 const PageTitle = styled('h1', {
   typography: '$subtitle2',

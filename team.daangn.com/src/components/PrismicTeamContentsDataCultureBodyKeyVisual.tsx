@@ -2,7 +2,7 @@ import * as React from 'react';
 import { rem } from 'polished';
 import { graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
-import { styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { styled } from 'gatsby-theme-stitches/src/config';
 
 type PrismicTeamContentsDataCultureBodyKeyVisualProps = {
   data: GatsbyTypes.PrismicTeamContentsDataCultureBodyKeyVisual_dataFragment,

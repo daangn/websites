@@ -26,28 +26,28 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
-    "@stitches/react": "^0.1.9",
+    "@stitches/react": "1.0.0",
     "gatsby": "next",
-    "gatsby-plugin-image": "^1.6.0",
-    "gatsby-plugin-react-helmet-async": "^1.2.0",
-    "gatsby-plugin-sharp": "^3.6.0",
-    "gatsby-plugin-svgr": "^3.0.0-beta.0",
-    "gatsby-plugin-typegen": "^2.2.4",
-    "gatsby-source-prismic": "^3.3.6",
-    "gatsby-theme-stitches": "^0.1.1",
-    "polished": "^4.1.2",
+    "gatsby-plugin-image": "1.13.0",
+    "gatsby-plugin-react-helmet-async": "1.2.0",
+    "gatsby-plugin-sharp": "3.13.0",
+    "gatsby-plugin-svgr": "3.0.0-beta.0",
+    "gatsby-plugin-typegen": "2.2.4",
+    "gatsby-source-prismic": "3.3.6",
+    "gatsby-theme-stitches": "1.0.0",
+    "polished": "4.1.3",
     "react": "next",
     "react-dom": "next",
-    "react-helmet-async": "^1.0.9",
-    "sharp": "^0.28.3"
+    "react-helmet-async": "1.1.2",
+    "sharp": "0.29.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.14.3",
-    "@babel/core": "^7.14.3",
-    "@babel/plugin-transform-react-jsx": "^7.14.3",
-    "@babel/plugin-transform-typescript": "^7.14.3",
-    "babel-plugin-polished": "^1.1.0",
-    "babel-preset-gatsby-package": "^1.6.0",
-    "typescript": "^4.3.2"
+    "@babel/cli": "7.15.4",
+    "@babel/core": "7.15.5",
+    "@babel/plugin-transform-react-jsx": "7.14.9",
+    "@babel/plugin-transform-typescript": "7.15.4",
+    "babel-plugin-polished": "1.1.0",
+    "babel-preset-gatsby-package": "1.13.0",
+    "typescript": "4.4.2"
   }
 }

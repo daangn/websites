@@ -18,17 +18,17 @@
   "dependencies": {
     "@karrotmarket/gatsby-theme-global-website": "*",
     "gatsby": "next",
-    "gatsby-plugin-google-gtag": "^3.7.1",
+    "gatsby-plugin-google-gtag": "3.13.0",
     "react": "next",
     "react-dom": "next"
   },
   "devDependencies": {
-    "@babel/cli": "^7.14.3",
-    "@babel/core": "^7.14.3",
-    "@babel/plugin-transform-react-jsx": "^7.14.3",
-    "@babel/plugin-transform-typescript": "^7.14.3",
-    "babel-plugin-polished": "^1.1.0",
-    "babel-preset-gatsby-package": "^1.6.0",
-    "typescript": "^4.3.2"
+    "@babel/cli": "7.15.4",
+    "@babel/core": "7.15.5",
+    "@babel/plugin-transform-react-jsx": "7.14.9",
+    "@babel/plugin-transform-typescript": "7.15.4",
+    "babel-plugin-polished": "1.1.0",
+    "babel-preset-gatsby-package": "1.13.0",
+    "typescript": "4.4.2"
   }
 }

@@ -14,13 +14,13 @@
     "advertisement.daangn.com"
   ],
   "resolutions": {
-    "gatsby": "3.12.0-next.0",
-    "react": "18.0.0-alpha-6f3fcbd6f-20210730",
-    "react-dom": "18.0.0-alpha-6f3fcbd6f-20210730",
-    "schema-dts": "0.8.3",
-    "webpack": "5.36.2",
-    "@emotion/react": "^11.1.5",
-    "@emotion/styled": "^11.3.0"
+    "gatsby": "3.13.0",
+    "react": "18.0.0-alpha-edfe50510-20210823",
+    "react-dom": "18.0.0-alpha-edfe50510-20210823",
+    "schema-dts": "1.0.0",
+    "webpack": "5.52.0",
+    "@emotion/react": "11.4.1",
+    "@emotion/styled": "11.3.0"
   },
   "scripts": {
     "postinstall": "yarn init:plugins && yarn init:sites",
@@ -28,12 +28,12 @@
     "init:sites": "ultra --recursive prepare-gatsby"
   },
   "dependencies": {
-    "@emotion/react": "^11.1.5",
-    "@emotion/styled": "^11.3.0"
+    "@emotion/react": "11.4.1",
+    "@emotion/styled": "11.3.0"
   },
   "devDependencies": {
-    "@types/node": "^14.14.37",
-    "typescript": "^4.3.2",
-    "ultra-runner": "^3.10.5"
+    "@types/node": "14.17.15",
+    "typescript": "4.4.2",
+    "ultra-runner": "3.10.5"
   }
 }

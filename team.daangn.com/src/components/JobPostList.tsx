@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { graphql, Link } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/stitches.config';
+import { styled } from 'gatsby-theme-stitches/src/config';
 import { Condition } from '@cometjs/core';
+import { useLinkParser, mapLink } from '@karrotmarket/gatsby-theme-website/src/link';
 
 import JobPostSummary from './JobPostSummary';
 import FadeInWhenVisible from './FadeInWhenVisible';
@@ -13,6 +14,7 @@ type JobPostListProps = {
   className?: string,
   filterChapter?: string,
   filterEmploymentType?: string,
+  searchResults?: string[],
 };
 
 export const query = graphql`
@@ -21,6 +23,7 @@ export const query = graphql`
       childJobPost {
         id
         pagePath: gatsbyPath(filePath: "/jobs/{JobPost.parent__(GreenhouseJob)__ghId}")
+        externalUrl
         chapter
         order
         employmentType
@@ -59,7 +62,10 @@ const JobPostList: React.FC<JobPostListProps> = ({
   className,
   filterChapter = '',
   filterEmploymentType = '',
+  searchResults
 }) => {
+  const parseLink = useLinkParser();
+
   const jobPosts = jobs.nodes
     .map(job => job.childJobPost)
     .filter(Condition.isTruthy);
@@ -68,6 +74,10 @@ const JobPostList: React.FC<JobPostListProps> = ({
     .sort((a, b) => b.order - a.order);
 
   const filteredJobPosts = orderedJobPosts
+    .filter(jobPosts =>{
+      if(!searchResults) return true;
+      return searchResults.includes(jobPosts.id)
+    })
     .filter(jobPost => {
       if (filterChapter === '') return true;
       return jobPost.chapter === filterChapter;
@@ -82,15 +92,34 @@ const JobPostList: React.FC<JobPostListProps> = ({
       {filteredJobPosts.length > 0 ? (
         <List>
           <AnimatePresence initial={false}>
-            {filteredJobPosts.map(jobPost => (
-              <FadeInWhenVisible key={jobPost.id}>
-                <JobPostListItem>
-                  <JobPostLink to={jobPost.pagePath!} state={{ fromList: true }}>
-                    <JobPostSummary jobPost={jobPost} />
-                  </JobPostLink>
-                </JobPostListItem>
-              </FadeInWhenVisible>
-            ))}
+            {filteredJobPosts.map(jobPost => {
+              const link = jobPost.externalUrl
+                ? parseLink(jobPost.externalUrl)
+                : parseLink(jobPost.pagePath!);
+
+              return (
+                <FadeInWhenVisible key={jobPost.id}>
+                  <JobPostListItem>
+                    {mapLink(link, {
+                      Internal: link => (
+                        <JobPostLink to={link.pathname} state={{ fromList: true }}>
+                          <JobPostSummary jobPost={jobPost} />
+                        </JobPostLink>
+                      ),
+                      External: link => (
+                        <JobPostLink as="a"
+                          href={link.url.href}
+                          target="_blank"
+                          rel="external noopener"
+                        >
+                          <JobPostSummary jobPost={jobPost} />
+                        </JobPostLink>
+                      ),
+                    })}
+                  </JobPostListItem>
+                </FadeInWhenVisible>
+              )
+            })}
           </AnimatePresence>
         </List>
       ) : (

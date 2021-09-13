@@ -4,7 +4,7 @@ import { rem } from "polished";
 import { graphql } from "gatsby";
 import { useInView } from "react-intersection-observer";
 
-import { styled } from "../../gatsby-theme-stitches/stitches.config";
+import { styled } from "../../gatsby-theme-stitches/config";
 
 import { Flex } from "../Flex";
 

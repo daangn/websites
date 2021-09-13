@@ -31,7 +31,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
   type GreenhouseJobSource = (
     & NodeInput
     & Omit<GreenhouseJob, 'id'>
-    & { ghId: number }
+    & { ghId: number; boardToken: string }
   );
 
   type GreenhouseJobCustomFieldMetadataSource = GreenhouseJobSource['metadata'][number];
@@ -85,6 +85,9 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
         metadata: {
           type: '[GreenhouseJobCustomFieldMetadata!]!',
         },
+        boardToken:{
+          type: 'String!',
+        }
       },
     }),
     schema.buildObjectType({
@@ -154,6 +157,7 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async ({
         contentDigest: createContentDigest(job),
       },
       ghId,
+      boardToken,
       ...content,
     });
   }

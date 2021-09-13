@@ -1,11 +1,12 @@
 import { em, rem } from 'polished';
 import { colors } from '@karrotmarket/design-token';
-import { createCss } from '@stitches/react';
+import { createStitches } from '@stitches/react';
+import type * as Stitches from '@stitches/react';
 
 import { convertColorScheme } from './colors';
 
 // should exports `styled`, `css` and `getCssString`
-export const { styled, css, global, getCssString, theme, keyframes } = createCss({
+export const { styled, css, globalCss, keyframes, getCssText, theme, createTheme, config } = createStitches({
   // follows Bootstrap's breakpoints practice
   // See https://getbootstrap.com/docs/5.0/layout/breakpoints/#available-breakpoints
   media: {
@@ -59,35 +60,35 @@ export const { styled, css, global, getCssString, theme, keyframes } = createCss
     },
   },
   utils: {
-    typography: config => (value: `$${keyof typeof config['theme']['fontSizes'] | (string & {})}`) => ({
+    typography: (value:Stitches.PropertyValue<'fontSize'> | Stitches.PropertyValue<'lineHeight'>) => ({
       fontSize: value,
       lineHeight: value,
     }),
-    gridFullColumns: _config => (value: boolean) => value ? ({
+    gridFullColumns: (value: boolean) => value ? ({
       gridColumnStart: 1,
       gridColumnEnd: 'end',
     }) : undefined,
-    gridFullRows: _config => (value: boolean) => value ? ({
+    gridFullRows: (value: boolean) => value ? ({
       gridRowStart: 1,
       gridRowEnd: 'end',
     }) : undefined,
-    marginX: _config => value => ({
+    marginX: value => ({
       marginLeft: value,
       marginRight: value,
     }),
-    marginY: _config => value => ({
+    marginY: value => ({
       marginTop: value,
       marginBottom: value,
     }),
-    paddingX: _config => value => ({
+    paddingX: value => ({
       paddingLeft: value,
       paddingRight: value,
     }),
-    paddingY: _config => value => ({
+    paddingY: value => ({
       paddingTop: value,
       paddingBottom: value,
     }),
-    contentArea: _config => (value: boolean) => value ? ({
+    contentArea: (value: boolean) => value ? ({
       boxSizing: 'border-box',
       maxWidth: '$maxContent',
       margin: '0 auto',
@@ -96,6 +97,6 @@ export const { styled, css, global, getCssString, theme, keyframes } = createCss
   },
 });
 
-export const darkTheme = theme('dark-theme', {
+export const darkTheme = createTheme('dark-theme', {
   colors: convertColorScheme(colors.dark.scheme),
 });
