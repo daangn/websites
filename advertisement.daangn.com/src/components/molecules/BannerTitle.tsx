@@ -1,6 +1,7 @@
 import React from "react";
 import { styled } from "gatsby-theme-stitches/src/stitches.config";
 
+import { ReactComponent as DaangnLogo } from "~/image/daangn-ad_logo.svg"
 import { ReactComponent as IconCall } from "~/image/icon_call.svg";
 import { rem } from "polished";
 
@@ -12,18 +13,6 @@ export const BannerTitle = () => {
   const [isWhite, setWhite] = React.useState<boolean>(false);
   const [mobile, setMobile] = React.useState<boolean>(false);
 
-  const bannerImageQuery = useStaticQuery<GatsbyTypes.BannerTitleQuery>(graphql`
-    query BannerTitle {
-      daangnAdLogo: file(relativePath: { eq: "img_daangn_ad_logo.png" }) {
-        childImageSharp {
-          gatsbyImageData(quality: 90, formats: [AUTO, AVIF, WEBP])
-        }
-      }
-    }
-  `);
-
-  const bannerLogo =
-    bannerImageQuery.daangnAdLogo?.childImageSharp?.gatsbyImageData;
   React.useEffect(() => {
     window.addEventListener("scroll", handleScroll);
   }, []);
@@ -33,7 +22,7 @@ export const BannerTitle = () => {
 
   return (
     <Wrapper color={isWhite ? "white" : "default"}>
-      <GatsbyImage alt={""} image={bannerLogo!} />
+      <DaangnLogo />
       <QuestionInfo>
         <IconCall />
         <TelLink
