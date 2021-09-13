@@ -24,12 +24,12 @@ export const LearnMore = () => {
             onClick={() =>
               handleClick(
                 ["event", "click"],
-                "https://drive.google.com/drive/u/1/folders/13AkcMwom4aLQBsJ7mhHyaEglj6rSDW1j"
+                "https://drive.google.com/file/d/1MvIP-QqJzVdRY7nkKn08wMryet6aMJg9/view"
               )
             }
           >
             <p>지역광고 소개서</p>
-            <ArrowLink target="https://drive.google.com/drive/u/1/folders/13AkcMwom4aLQBsJ7mhHyaEglj6rSDW1j" />
+            <ArrowLink target="https://drive.google.com/file/d/1MvIP-QqJzVdRY7nkKn08wMryet6aMJg9/view" />
           </DocsLink>
           <DocsLink
             onClick={() => {
