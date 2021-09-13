@@ -162,7 +162,6 @@ export const UserQuoteCarousel: React.FC = () => {
                           <ArrowLink
                             target={item.link}
                             color={"white"}
-                            gtag={["event", "play"]}
                           />
                         </div>
                       </ByRow>
@@ -196,7 +195,6 @@ export const UserQuoteCarousel: React.FC = () => {
                         <ArrowLink
                           target={item.link}
                           color={"white"}
-                          gtag={["event", "play"]}
                         />
                       </div>
                     </ByRow>

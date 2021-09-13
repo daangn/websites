@@ -5,7 +5,6 @@ import { ReactComponent as DaangnLogo } from "~/image/daangn-ad_logo.svg"
 import { ReactComponent as IconCall } from "~/image/icon_call.svg";
 import { rem } from "polished";
 
-import fbTrack from "~/components/molecules/fbTrack";
 import { graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
@@ -27,7 +26,6 @@ export const BannerTitle = () => {
         <IconCall />
         <TelLink
           href="tel://1644-9736"
-          onClick={() => fbTrack("track", "Contact")}
         >
           <p>
             광고문의 <mark>1644-9736</mark>

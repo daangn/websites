@@ -2,16 +2,13 @@ import * as React from "react"
 import { styled } from "gatsby-theme-stitches/src/stitches.config"
 import ArrowSvg from "~/image/arrow.svg";
 import ArrowSvgWhite from "~/image/arrow_white.svg";
-import fbTrack from "~/components/molecules/fbTrack";
 
 type ArrowLinkProps = {
   target : string
-  color?: any,
-  fbPixel? : string[],
-  gtag?: string[]
+  color?: any
 }
 
-export const ArrowLink:React.FC<ArrowLinkProps> = ({target,color="black", fbPixel, gtag}) => {
+export const ArrowLink:React.FC<ArrowLinkProps> = ({target,color="black"}) => {
 
   const onClickHandler = (target:string) => {
     window.open(target, '_blank')

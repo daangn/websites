@@ -1,4 +1,5 @@
 import React from "react";
+import fbTrack from "~/components/molecules/fbTrack";
 
 import { styled } from "~/gatsby-theme-stitches/stitches.config";
 import { rem } from "polished";
@@ -28,6 +29,7 @@ export const DownloadBtnMobile: React.FC = () => {
 
   const onClickHandler = React.useCallback(() => {
     window.open("https://display-ads-web.onelink.me/E4bl/590e9ee1", "_blank")
+    fbTrack("trackCustom", "Download_mobile")
   }, []);
 
   return (

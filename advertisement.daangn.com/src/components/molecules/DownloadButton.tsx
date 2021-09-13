@@ -2,6 +2,7 @@ import * as React from "react";
 import { styled } from "~/gatsby-theme-stitches/stitches.config";
 import { ReactComponent as IconApple } from "~/image/icon_apple.svg";
 import { ReactComponent as IconGooglePlay } from "~/image/icon_google_play.svg";
+import fbTrack from "~/components/molecules/fbTrack";
 
 type Props = {
   buttonType?: "carrot" | "gray";
@@ -32,7 +33,7 @@ export function DownloadButton({
   };
 
   return (
-    <Button buttonType={buttonType} onClick={() => onClickHandler(iconType)}>
+    <Button id={iconType} buttonType={buttonType} onClick={() => onClickHandler(iconType)}>
       {iconType === "google" && (
         <GooglePlay fill={buttonType === "gray" ? "#212124" : "white"} />
       )}
