@@ -7286,7 +7286,7 @@ gatsby-plugin-preload-fonts@2.13.0:
     progress "^2.0.3"
     puppeteer "^3.3.0"
 
-gatsby-plugin-prismic-previews@4.1.3, gatsby-plugin-prismic-previews@^4.1.3:
+gatsby-plugin-prismic-previews@4.1.3:
   version "4.1.3"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-prismic-previews/-/gatsby-plugin-prismic-previews-4.1.3.tgz#06cf07db735847902ba1bfeb9fd274125f820857"
   integrity sha512-sFfUL9SV6IEaBvX/MOM1DQXbGlQ/BMoanO3BttYYUwS12dVA2dk4ZbkRJ9i5m/Wq0G7I8jxj2ojlOVmA4+vW2A==
