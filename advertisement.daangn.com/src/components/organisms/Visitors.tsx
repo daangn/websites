@@ -12,8 +12,8 @@ export const Visitors = () => {
             <TextLoop interval={3000}>
               <Region>서울 강남구 역삼동</Region>
               <Region>제주도 노형동</Region>
-              <Region>천안시 불당동</Region>
-              <Region>고양시 일산서구 대화동</Region>
+              {/*<Region>천안시 불당동</Region>*/}
+              {/*<Region>고양시 일산서구 대화동</Region>*/}
               <Region>부산시 해운대구 좌동</Region>
             </TextLoop>
             <p>&nbsp;근처&nbsp;</p>
@@ -22,8 +22,8 @@ export const Visitors = () => {
             <TextLoop interval={3000}>
               <ColoredText>38,358명</ColoredText>
               <ColoredText>20,717명</ColoredText>
-              <ColoredText>26,949명</ColoredText>
-              <ColoredText>17,019명</ColoredText>
+              {/*<ColoredText>26,949명</ColoredText>*/}
+              {/*<ColoredText>17,019명</ColoredText>*/}
               <ColoredText>13,427명</ColoredText>
             </TextLoop>
             <p>이 매주&nbsp;</p>
