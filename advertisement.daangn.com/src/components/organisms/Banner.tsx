@@ -14,8 +14,12 @@ export function Banner() {
         <br />
         당근마켓에 광고해 보세요
         <DownloadButtons css={{ marginTop: 35 }}>
-          <DownloadButton iconType="google">Google Play</DownloadButton>
-          <DownloadButton iconType="apple">App Store</DownloadButton>
+          <DownloadButton iconType="google">
+            <div style={{marginTop: rem(4)}}>Google Play</div>
+          </DownloadButton>
+          <DownloadButton iconType="apple">
+            <div style={{marginTop: rem(4)}}>App Store</div>
+            </DownloadButton>
         </DownloadButtons>
       </Description>
     </Background>
