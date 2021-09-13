@@ -1,41 +1,31 @@
 import React, { ChangeEvent } from "react";
 import { styled } from "gatsby-theme-stitches/src/stitches.config";
 import { rem } from "polished";
+import TextLoop from "react-text-loop";
 
 export const Visitors = () => {
-  const [selected, setSelected] = React.useState<number>(0);
-
-  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    console.log(e.target.value);
-    setSelected(parseInt(e.target.value));
-  };
-  const peopleNum = [100, 200, 300, 400, 500];
-  const region = [
-    "서울 강남구 역삼동",
-    "제주도 노형동",
-    "천안시 불당동",
-    "고양시 일산서구 대화동",
-    "부산시 해운대구 좌동",
-  ];
-
   return (
     <Wrapper>
       <Container>
         <TextContainer>
           <span>
-            <SelectBox onChange={handleChange} value={selected}>
-              {region.map((item, idx) => {
-                return (
-                  <option value={idx} key={idx}>
-                    {item}
-                  </option>
-                );
-              })}
-            </SelectBox>
-            <p>근처&nbsp;</p>
+            <TextLoop interval={3000}>
+              <Region>서울 강남구 역삼동</Region>
+              <Region>제주도 노형동</Region>
+              <Region>천안시 불당동</Region>
+              <Region>고양시 일산서구 대화동</Region>
+              <Region>부산시 해운대구 좌동</Region>
+            </TextLoop>
+            <p>&nbsp;근처&nbsp;</p>
           </span>
           <span>
-            <ColoredText>{peopleNum[selected]}명</ColoredText>
+            <TextLoop interval={3000}>
+              <ColoredText>38,358명</ColoredText>
+              <ColoredText>20,717명</ColoredText>
+              <ColoredText>26,949명</ColoredText>
+              <ColoredText>17,019명</ColoredText>
+              <ColoredText>13,427명</ColoredText>
+            </TextLoop>
             <p>이 매주&nbsp;</p>
           </span>
           <p>당근마켓을 방문하고 있어요.</p>
@@ -97,35 +87,9 @@ const TextContainer = styled("div", {
   },
 });
 
-const SelectBox = styled("select", {
-  display: "inline",
-  alignItems: "center",
-  height: rem(42),
-  border: "none",
-  borderBottom: "1px solid $gray400",
-  typography: "$subtitle3",
+const Region = styled("p", {
+  fontSize: "$subtitle3",
   fontWeight: "bold",
-  paddingX: rem(5),
-  boxSizing: "border-box",
-  appearance: "none",
-  backgroundColor: "$white",
-
-  "@md": {
-    fontSize: "$subtitle2",
-  },
-  "&:focus": {
-    border: "1px solid $carrot500",
-  },
-  "::placeholder": {
-    color: "$gray500",
-  },
-  "&::-ms-expand": {
-    display: "none",
-  },
-  "&::after": {
-    content: "▼",
-    justifySelf: "end",
-  },
 });
 
 const ColoredText = styled("p", {
