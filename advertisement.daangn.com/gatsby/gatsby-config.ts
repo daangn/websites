@@ -1,6 +1,6 @@
 import type { GatsbyConfig } from "gatsby";
 
-const siteUrl = new URL("https://ads.daangn.com");
+const siteUrl = new URL("https://advertisement.daangn.com");
 
 const siteMetadata: GatsbyConfig["siteMetadata"] = {
   siteUrl: siteUrl.origin,
