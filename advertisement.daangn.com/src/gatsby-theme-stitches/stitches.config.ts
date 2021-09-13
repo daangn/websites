@@ -92,5 +92,9 @@ export const darkTheme = theme("dark-theme", {
 
 export const globalStyles = global({
   "*": { margin: 0, padding: 0 },
-  body: { fontFamily: "$system" },
+  body: {
+    fontFamily: "$system",
+    "-webkit-font-smoothing": "antialiased",
+    "-moz-osx-font-smoothing": "grayscale"
+  },
 });
