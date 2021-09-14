@@ -11,4 +11,5 @@ module.exports = {
   team_contents: require("./team_contents.json"),
   teams_article: require("./teams_article.json"),
   terms_and_conditions: require("./terms_and_conditions.json"),
+  advertisement_contents: require("./advertisement_contents.json"),
 };

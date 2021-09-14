@@ -39,7 +39,10 @@ export function parseContent(contentHtml: string): Result {
       }
 
       case 'wait_title': {
-        current.title = part.trim();
+        current.title = part
+          // strips all XML tags
+          .replace(/<[^>]*>?/gm, '')
+          .trim();
         state = 'wait_body';
         break;
       }
