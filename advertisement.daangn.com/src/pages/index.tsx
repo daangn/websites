@@ -2,6 +2,7 @@ import * as React from "react";
 import type { PageProps } from "gatsby";
 
 import { GatsbySeo } from "gatsby-plugin-next-seo";
+import { mapAbstractTypeWithDefault } from "@cometjs/graphql-utils";
 import { globalStyles } from "~/gatsby-theme-stitches/stitches.config";
 import { Banner } from "~/components/organisms/Banner";
 import { Main } from "~/components/organisms/Main";
@@ -16,30 +17,40 @@ import { DownloadBtnMobile } from "~/components/organisms/DownloadBtnMobile";
 
 globalStyles();
 
-type IndexPageProps = PageProps;
+type IndexPageProps = PageProps<GatsbyTypes.IndexPageQuery>;
 
-const IndexPage: React.FC<IndexPageProps> = () => {
-  const query = useStaticQuery<GatsbyTypes.IndexPageQueryQuery>(graphql`
-    query IndexPageQuery {
-      image: file(relativePath: { eq: "img_og.png" }) {
-        childImageSharp {
-          fixed(width: 800, height: 400, toFormat: PNG, quality: 90) {
-            src
-            width
-            height
-          }
-        }
-      }
-      site {
-        siteMetadata {
-          siteUrl
+export const query = graphql`
+  query IndexPage {
+    image: file(relativePath: { eq: "img_og.png" }) {
+      childImageSharp {
+        fixed(width: 800, height: 400, toFormat: PNG, quality: 90) {
+          src
+          width
+          height
         }
       }
     }
-  `);
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
+    prismicAdvertisementContents {
+      data {
+        body {
+          __typename
+          ...PrismicAdvertisementContentsDataBodyVisitorCountSlide_data
+        }
+      }
+    }
+  }
+`;
 
-  const imgSrc = query.image?.childImageSharp?.fixed;
-  const site = query.site?.siteMetadata?.siteUrl;
+const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
+  globalStyles();
+
+  const imgSrc = data.image?.childImageSharp?.fixed;
+  const site = data.site?.siteMetadata?.siteUrl;
   const url = site && imgSrc ? site + imgSrc : "";
 
   return (
@@ -61,7 +72,14 @@ const IndexPage: React.FC<IndexPageProps> = () => {
       <DownloadBtnMobile />
       <BannerTitle />
       <Banner />
-      <Visitors />
+      {data.prismicAdvertisementContents?.data?.body && data.prismicAdvertisementContents.data.body
+        .filter(Boolean)
+        .map(data => mapAbstractTypeWithDefault(data!, {
+          PrismicAdvertisementContentsDataBodyVisitorCountSlide: data => (
+            <Visitors data={data} />
+          ),
+          _: null,
+      }))}
       <Main />
       <Download />
       <LearnMore />

@@ -1,0 +1,42 @@
+{
+  "Main": {
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "labels": null,
+        "choices": {
+          "visitor_count_slide": {
+            "type": "Slice",
+            "fieldset": "Visitor Count Slide",
+            "description": "대표 텍스트 여러개 전환 효과 있음 ㅇㅇ",
+            "icon": "text_fields",
+            "display": "list",
+            "non-repeat": {
+              "date": {
+                "type": "Date",
+                "config": {
+                  "label": "기준일자"
+                }
+              }
+            },
+            "repeat": {
+              "region": {
+                "type": "Text",
+                "config": {
+                  "label": "지역명"
+                }
+              },
+              "visitor_count": {
+                "type": "Number",
+                "config": {
+                  "label": "방문자 수"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

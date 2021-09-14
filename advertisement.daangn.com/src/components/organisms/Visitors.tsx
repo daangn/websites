@@ -1,38 +1,67 @@
 import React, { ChangeEvent } from "react";
+import { graphql } from "gatsby";
 import { styled } from "gatsby-theme-stitches/src/stitches.config";
+import { Condition } from "@cometjs/core";
 import { rem } from "polished";
 import TextLoop from "react-text-loop";
 
-export const Visitors = () => {
+type VisitorsProps = {
+  data: GatsbyTypes.PrismicAdvertisementContentsDataBodyVisitorCountSlide_dataFragment,
+}
+
+export const fragment = graphql`
+  fragment PrismicAdvertisementContentsDataBodyVisitorCountSlide_data on PrismicAdvertisementContentsDataBodyVisitorCountSlide {
+    primary {
+      date(formatString: "YYYY.MM 기준")
+    }
+    items {
+      region
+      visitor_count
+    }
+  }
+`;
+
+export const Visitors: React.FC<VisitorsProps> = ({
+  data,
+}) => {
+  const intl = new Intl.NumberFormat('ko');
+  const regions = data.items?.map((item)=>item!.region)
+  const visitors = data.items?.map((item)=>intl.format(item!.visitor_count!))
   return (
     <Wrapper>
       <Container>
         <TextContainer>
+
           <span>
-            <TextLoop interval={3000}>
-              <Region>서울 강남구 역삼동</Region>
-              <Region>제주도 노형동</Region>
-              {/*<Region>천안시 불당동</Region>*/}
-              {/*<Region>고양시 일산서구 대화동</Region>*/}
-              <Region>부산시 해운대구 좌동</Region>
+            {/*{data.items?.map(item => (*/}
+            {/*  <span key={item!.region!}>*/}
+            {/*    {item!.region!} 근처 <strong>{intl.format(item!.visitor_count!)}명</strong>*/}
+            {/*  </span>*/}
+            {/*))}*/}
+            <TextLoop interval={5000}>
+              <Region>{regions![0]}</Region>
+              <Region>{regions![1]}</Region>
+              <Region>{regions![2]}</Region>
             </TextLoop>
             <p>&nbsp;근처&nbsp;</p>
           </span>
           <span>
-            <TextLoop interval={3000}>
-              <ColoredText>38,358명</ColoredText>
-              <ColoredText>20,717명</ColoredText>
+            <TextLoop interval={5000}>
+              <ColoredText>{visitors![0]}명</ColoredText>
+              <ColoredText>{visitors![1]}명</ColoredText>
               {/*<ColoredText>26,949명</ColoredText>*/}
               {/*<ColoredText>17,019명</ColoredText>*/}
-              <ColoredText>13,427명</ColoredText>
+              <ColoredText>{visitors![2]}명</ColoredText>
             </TextLoop>
             <p>이 매주&nbsp;</p>
           </span>
           <p>당근마켓을 방문하고 있어요.</p>
         </TextContainer>
-        <TextContainer end>
-          <Caption>2021.07 기준</Caption>
-        </TextContainer>
+        {data.primary?.date && (
+          <TextContainer end>
+            <Caption>{data.primary.date}</Caption>
+          </TextContainer>
+        )}
       </Container>
     </Wrapper>
   );
@@ -86,6 +115,14 @@ const TextContainer = styled("div", {
     paddingBottom: rem(8),
   },
 });
+
+const TextLoopMobile = styled(TextLoop, {
+  display: "inline",
+  "@md": {
+    display: "none"
+  }
+})
+
 
 const Region = styled("p", {
   fontSize: "$subtitle3",

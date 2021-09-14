@@ -20,6 +20,8 @@ const config: GatsbyConfig = {
     "gatsby-plugin-svgr",
     "gatsby-plugin-image",
     "gatsby-plugin-next-seo",
+    "@karrotmarket/gatsby-theme-prismic",
+    "@karrotmarket/gatsby-theme-website",
     {
       resolve: "gatsby-plugin-typegen",
       options: {
@@ -89,6 +91,15 @@ const config: GatsbyConfig = {
         enableWebVitalsTracking: true,
       },
     },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        policy: [{
+          userAgent: '*',
+          allow: '/'
+        }]
+      }
+    }
   ],
 };
 

@@ -1567,7 +1567,7 @@
     rimraf "^3.0.2"
     tar "^6.1.10"
 
-"@cometjs/core@1.2.0":
+"@cometjs/core@1.2.0", "@cometjs/core@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@cometjs/core/-/core-1.2.0.tgz#e8d4d6c5d3bc1c54a7f26b963a61d3828bccf7fe"
   integrity sha512-ydD6gWXIug6BxlAhAYxN5hYmeduIc4P1U789ooxzsNwFLaYhenYWEm5TnRawel1oKfcCHJl8LRKIN4yo5guVdA==
@@ -1579,7 +1579,7 @@
   dependencies:
     core-js "^3.6.5"
 
-"@cometjs/graphql-utils@1.1.0":
+"@cometjs/graphql-utils@1.1.0", "@cometjs/graphql-utils@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@cometjs/graphql-utils/-/graphql-utils-1.1.0.tgz#4c63edeab344b68ff49f3ab65f1e8f6bb9df3f47"
   integrity sha512-lT9g2MW5sh5WYC5uwFswnY0tCYPQn1J/B/EBOfyB+Q0a8GGz3O0U1sGqG15f1XxwAxSUYcjqaeJMtmHEoutMvA==
@@ -7318,7 +7318,7 @@ gatsby-plugin-react-helmet-async@1.2.0:
   resolved "https://registry.yarnpkg.com/gatsby-plugin-react-helmet-async/-/gatsby-plugin-react-helmet-async-1.2.0.tgz#43e0457586138ecb7cf23202708a7e0e3ead8dcb"
   integrity sha512-Uh5AuSZQUdrmzvuaanHkBf4tWw4GQnC56QLTxqxkXCscan+kJqSn+rfFpho5Auq/8j9QQQjimiAiH0rqQnDMVA==
 
-gatsby-plugin-robots-txt@1.6.10:
+gatsby-plugin-robots-txt@1.6.10, gatsby-plugin-robots-txt@^1.6.10:
   version "1.6.10"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-robots-txt/-/gatsby-plugin-robots-txt-1.6.10.tgz#b178efe3da65718a39d1acd2e5768f687b205cf0"
   integrity sha512-soQT765LF0J8/dfrZGFuA/ZB/JUyvt2nVyHEFLUMd/qxgiem9x0EOZquJPId78xDHYePMkxNCPk9UsLcTZdFZw==
@@ -7614,7 +7614,7 @@ gatsby-worker@^0.4.0:
   dependencies:
     "@babel/core" "^7.14.8"
 
-gatsby@3.13.0, gatsby@next:
+gatsby@next:
   version "3.13.0"
   resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-3.13.0.tgz#3314b191fa9cb02470a59d54c0dda58e087e1a9a"
   integrity sha512-nZOQkV6CF8ixtkbr+VNeiD2ISwuSkRLafeK+x/1btPB/l+b/w8ar0XrJGIWNX4DHr2Pohf3wy166IPfEkNqNTA==
@@ -12260,7 +12260,7 @@ react-dev-utils@^11.0.3:
     strip-ansi "6.0.0"
     text-table "0.2.0"
 
-react-dom@18.0.0-alpha-edfe50510-20210823, react-dom@experimental, react-dom@next:
+react-dom@experimental, react-dom@next:
   version "18.0.0-alpha-edfe50510-20210823"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.0.0-alpha-edfe50510-20210823.tgz#5a56f55d90c9b4578c97f98559c5dc0b2d35271a"
   integrity sha512-AseRrDncRUdndWQIS26rWNaEd2OB0YcJznzUx8xJjNu/bbExEy4OQmZDVhMWsRJa7+0P+VtQNSFlvt8qtD3CGA==
@@ -12390,7 +12390,7 @@ react-text-loop@^2.3.0:
     react-fast-compare "2.0.4"
     react-motion "^0.5.2"
 
-react@18.0.0-alpha-edfe50510-20210823, react@experimental, react@next:
+react@experimental, react@next:
   version "18.0.0-alpha-edfe50510-20210823"
   resolved "https://registry.yarnpkg.com/react/-/react-18.0.0-alpha-edfe50510-20210823.tgz#11bfeb8f7f30994b9b0bd4f86e1bdda94a61f4d1"
   integrity sha512-8YwjfY+TJQcq81sbZxnImdo79kEjzLlJl1GQhi8O6DYlJVRa0ynYkc7fnRGOYcQNjFvwGDJFYAs95XouJvbN3w==
@@ -12925,7 +12925,12 @@ scheduler@0.21.0-alpha-edfe50510-20210823:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
 
-schema-dts@0.6.0, schema-dts@1.0.0:
+schema-dts@0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/schema-dts/-/schema-dts-0.6.0.tgz#1700eadcc384d39341e0f90ad15d708504124166"
+  integrity sha512-mYfPlwuIssnlBkqcwalddhJp23grXIlpI9sDBQuTzM46pftdzXGhbMMzwoszuWZHsH5Zki+LVDeMKjTPRWiAlw==
+
+schema-dts@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/schema-dts/-/schema-dts-1.0.0.tgz#60e8a0f2cef5e644c44c843b03d35b37a4423c01"
   integrity sha512-9t8gnY3RW2CbpuvA0pIpcaHFXkJTeNnWR4uaWI+PiYSfpuEeMw+2Q0Gac6YTnQb1B8TR6/+G71gQWuSE7dq6Zw==
@@ -14851,7 +14856,7 @@ webpack-virtual-modules@^0.3.2:
   dependencies:
     debug "^3.0.0"
 
-webpack@5.52.0, webpack@^5.35.0:
+webpack@^5.35.0:
   version "5.52.0"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.52.0.tgz#88d997c2c3ebb62abcaa453d2a26e0fd917c71a3"
   integrity sha512-yRZOat8jWGwBwHpco3uKQhVU7HYaNunZiJ4AkAVQkPCUGoZk/tiIXiwG+8HIy/F+qsiZvSOa+GLQOj3q5RKRYg==

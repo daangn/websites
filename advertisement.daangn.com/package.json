@@ -11,7 +11,11 @@
     "serve": "gatsby serve"
   },
   "dependencies": {
+    "@cometjs/core": "^1.2.0",
+    "@cometjs/graphql-utils": "^1.1.0",
     "@karrotmarket/design-token": "^0.1.8-3",
+    "@karrotmarket/gatsby-theme-prismic": "*",
+    "@karrotmarket/gatsby-theme-website": "*",
     "@karrotmarket/react-stitches": "^0.1.1-1",
     "@stitches/react": "^0.2.5",
     "gatsby": "next",
@@ -19,6 +23,7 @@
     "gatsby-plugin-image": "^1.13.0",
     "gatsby-plugin-module-resolver": "^1.0.3",
     "gatsby-plugin-next-seo": "^1.8.0",
+    "gatsby-plugin-robots-txt": "^1.6.10",
     "gatsby-plugin-sharp": "^3.13.0",
     "gatsby-plugin-typegen": "^2.2.4",
     "gatsby-source-filesystem": "^3.13.0",
