@@ -12,15 +12,13 @@
 
 [Vercel]이 외 다른 호스팅 옵션(e.g. S3)이 필요한 경우 [메인테이너]와 인프라 팀에 문의합니다.
 
-### Gatsby Cloud
+### Gatsby Cloud (Build)
 
 Gatsby.js 프로젝트 전용 빌드 & 호스팅을 제공하는 SaaS 입니다.
 
 최적화된 [Incremental Build] 구성을 제공하여 빌드가 매우 빠릅니다.
 
-[Gatsby Cloud] 이외 다른 호스팅 서비스와 통합할 수 있습니다.
-
-### Vercel
+### Vercel (Hosting)
 
 정적 웹 프로젝트 빌드와 호스팅 기능을 제공하는 SaaS 입니다.
 

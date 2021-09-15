@@ -36,7 +36,7 @@
     "@karrotmarket/prismic-config": "*",
     "@karrotmarket/react-stitches": "0.1.1-1",
     "@reach/router": "1.3.4",
-    "@stitches/react": "1.0.0",
+    "@stitches/react": "1.1.0",
     "cjk-slug": "0.2.1",
     "clsx": "1.1.1",
     "framer-motion": "4.1.17",
@@ -90,7 +90,7 @@
     "babel-preset-gatsby": "1.13.0",
     "babel-preset-gatsby-package": "1.13.0",
     "dotenv-safe": "8.2.0",
-    "typescript": "4.4.2",
+    "typescript": "4.4.3",
     "worktop": "0.7.3"
   }
 }
