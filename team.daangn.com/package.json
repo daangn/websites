@@ -90,7 +90,7 @@
     "babel-preset-gatsby": "1.13.0",
     "babel-preset-gatsby-package": "1.13.0",
     "dotenv-safe": "8.2.0",
-    "typescript": "4.4.2",
+    "typescript": "4.4.3",
     "worktop": "0.7.3"
   }
 }
