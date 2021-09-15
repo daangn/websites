@@ -71,9 +71,9 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
       <Banner />
       {data.prismicAdvertisementContents?.data?.body && data.prismicAdvertisementContents.data.body
         .filter(Boolean)
-        .map(data => mapAbstractTypeWithDefault(data!, {
+        .map((data, idx) => mapAbstractTypeWithDefault(data!, {
           PrismicAdvertisementContentsDataBodyVisitorCountSlide: data => (
-            <Visitors data={data} />
+            <Visitors data={data} key={idx}/>
           ),
           _: null,
       }))}
