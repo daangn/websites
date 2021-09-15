@@ -2842,10 +2842,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@stitches/react@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@stitches/react/-/react-1.0.0.tgz#311413630d96a627ca28f44ebcc9179455cdb73a"
-  integrity sha512-D0/YUbjuZ52Xd/ojT+TjyjZ7p/hBuPlOQ8VBahpMT6ElXriImhsb+RJwr31FP5HeN+y3wuGrRty6/VQjcHjlyA==
+"@stitches/react@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@stitches/react/-/react-1.1.0.tgz#49342e085528d689b983682e112b79c5a0b0efb4"
+  integrity sha512-g1XZsmB3tFL5i9aaBx0+P4C83j3vf/PEmLc5e9PlumE5c6q3zsdbbOVr4ZC52eGm4MCvM+2bbAJ++rtTUa6ahw==
 
 "@svgr/babel-plugin-add-jsx-attribute@^5.4.0":
   version "5.4.0"
