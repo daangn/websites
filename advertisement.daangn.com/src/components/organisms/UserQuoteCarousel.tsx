@@ -121,16 +121,16 @@ export const UserQuoteCarousel: React.FC = () => {
     trackMouse: true,
   });
 
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      if (slide < 2) {
-        setSlide(slide + 1);
-      } else {
-        setSlide(0);
-      }
-    }, 10000);
-    return () => clearInterval(interval);
-  }, [slide]);
+  // React.useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     if (slide < 2) {
+  //       setSlide(slide + 1);
+  //     } else {
+  //       setSlide(0);
+  //     }
+  //   }, 10000);
+  //   return () => clearInterval(interval);
+  // }, [slide]);
 
   return (
     <Container {...swipeHandlers}>
@@ -155,9 +155,10 @@ export const UserQuoteCarousel: React.FC = () => {
                       {item.talk.map((str, idx) => {
                         return <Quote key={idx}>{str}</Quote>;
                       })}
-
                       <ByRow>
-                        <By>{item.story}</By>
+                        <a href={item.link} style={{textDecoration: 'none'}} target="_blank">
+                          <By>{item.story}</By>
+                        </a>
                         <div style={{ marginLeft: rem(8) }}>
                           <ArrowLink
                             target={item.link}
@@ -220,6 +221,9 @@ const Container = styled("section", {
   width: "100%",
   boxSizing: "border-box",
   display: "grid",
+  "@md": {
+    maxHeight: rem(500),
+  }
 });
 
 const SlideCamera = styled("div", {
@@ -227,6 +231,7 @@ const SlideCamera = styled("div", {
 });
 
 const Slide = styled("div", {
+  display: "flex",
   flexDirection: "row",
   alignItems: "center",
   // width: "100vw",
@@ -272,18 +277,29 @@ const QuoteContainer = styled("div", {
     position: "absolute",
     width: "40%",
     marginBottom: 0,
+    // top: "50%"
   },
 });
 
 const Quote = styled("p", {
-  typography: "$subtitle",
+  typography: "$subtitle4",
+  lineHeight: rem(28),
   fontWeight: "bold",
   color: "$white",
   paddingX: rem(24),
   "@md": {
-    typography: "$subtitle2",
+    typography: "$subtitle3",
+    lineHeight: rem(34),
     paddingX: 0,
   },
+
+  
+  "@xl": {
+    typography: "$subtitle2",
+    lineHeight: rem(39),
+    paddingX: 0,
+  }
+
 });
 
 const ByRow = styled("div", {
@@ -297,10 +313,18 @@ const By = styled("p", {
   typography: "$body3",
   color: "$white",
   paddingLeft: rem(24),
+
+
   "@md": {
+    typography: "$body2",
+    paddingLeft: 0,
+    marginTop: rem(2),
+  },
+
+  "@xl": {
     typography: "$body1",
     paddingLeft: 0,
-    // marginTop: rem(24),
+    marginTop: rem(2),
     color: "$white",
   },
 });
@@ -309,8 +333,14 @@ const Dots = styled("div", {
   display: "flex",
   flexWrap: "wrap",
   justifyContent: "center",
-  gap: rem(32),
-  marginTop: rem(-32),
+  alignItems: "center",
+  gap: rem(24),
+  position: "absolute",
+  width: "100%",
+  bottom: rem(32),
+  
+
+  // marginTop: rem(-32),
   // '@lg': {
   //   '& > :nth-child(2n)': {
   //     display: 'none',
@@ -322,8 +352,8 @@ const Dot = styled("button", {
   position: "relative",
   borderRadius: "100%",
   border: "1px solid $white",
-  width: rem(12),
-  height: rem(12),
+  width: rem(10),
+  height: rem(10),
   padding: 0,
   background: "transparent",
   cursor: "pointer",

@@ -48,7 +48,8 @@ const Container = styled("div", {
 
   "@md": {
     paddingX: 0,
-    width: "60%",
+    width: "80%",
+    maxWidth: rem(1160),
     gridTemplateRows: "repeat(2, auto)",
   },
 });
@@ -102,15 +103,16 @@ const ImgSubText = styled("div", {
   justifyContent: "center",
   alignItems: "center",
   marginTop: rem(30),
+  lineHeight: rem(31),
   p: {
     fontSize: "$subtitle3",
-    fontWeight: 400,
   },
 });
 
 const StepNumber = styled("p", {
   fontSize: "$subtitle3",
-  fontWeight: 700,
+  lineHeight: rem(31),
+  fontWeight: "bold",
   color: "$carrot500",
   marginY: rem(4),
 });

@@ -67,8 +67,8 @@ const ImgSubTextMobile = styled("div",{
   alignItems: "center",
   marginTop: rem(12),
   p: {
-    fontSize: "$subtitle3",
-    lineHeight: rem(31)
+    fontSize: "$body2",
+    lineHeight: rem(24),
   },
   "@md": {
     display: "none"
@@ -82,8 +82,7 @@ const ImgSubTextPC = styled("div",{
   "@md": {
     display: 'block'
   },
-  marginTop: rem(40),
-  marginBottom: rem(20),
+  marginTop: rem(20),
   p: {
     fontSize: "$subtitle3",
     lineHeight: rem(31)

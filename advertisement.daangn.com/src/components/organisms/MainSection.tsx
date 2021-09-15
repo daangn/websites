@@ -60,7 +60,7 @@ const Section = styled("div", {
   },
 
   "@md": {
-    paddingTop: rem(30),
+    paddingTop: 0,
   },
 });
 
@@ -85,6 +85,7 @@ const Container = styled("div", {
           },
           "& > :nth-child(2)": {
             order: 1,
+            // paddingLeft: 50
           },
         },
       },
@@ -104,8 +105,8 @@ const Container = styled("div", {
   "@md": {
     gridTemplateColumns: "repeat(2, 1fr)",
     gridTemplateRows: "auto",
-
-    paddingX: rem(140),
+    maxWidth: 1160,
+    // paddingX: rem(140),
   },
 });
 
@@ -144,6 +145,7 @@ const TitleD = styled("p", {
 
   "@md": {
     display: "block",
+    lineHeight: rem(57)
   },
 });
 
@@ -160,8 +162,9 @@ const TitleM = styled("p", {
 const Subtitle = styled("p", {
   display: "flex",
   fontSize: "$body2",
-
+  lineHeight: rem(28),
   "@md": {
     fontSize: "$subtitle3",
+    lineHeight: rem(31)
   },
 });

@@ -25,7 +25,7 @@ export const LearnMore = () => {
             }
           >
             <p>지역광고 소개서</p>
-            <ArrowLink target="https://drive.google.com/file/d/1MvIP-QqJzVdRY7nkKn08wMryet6aMJg9/view" />
+            <ArrowLink target="https://drive.google.com/file/d/1RIlN6N0La2LelBK-i_aSioxFjP8bnv0t/view" />
           </DocsLink>
           <DocsLink
             onClick={() => {
@@ -51,7 +51,7 @@ export const LearnMore = () => {
             >
               지역광고는 어떻게 만드나요?
             </p>
-            <ChevronRight src={chevronIconUrl} alt="" rotate={true} />
+            <ChevronRight src={chevronIconUrl} alt="" />
           </FaqItem>
           <FaqItem>
             <p
@@ -63,7 +63,7 @@ export const LearnMore = () => {
             >
               지역광고는 비용은 얼마인가요?
             </p>
-            <ChevronRight src={chevronIconUrl} alt="" rotate={true} />
+            <ChevronRight src={chevronIconUrl} alt="" />
           </FaqItem>
           <FaqItem>
             <p
@@ -75,7 +75,7 @@ export const LearnMore = () => {
             >
               지역광고는 어디에 노출되나요?
             </p>
-            <ChevronRight src={chevronIconUrl} alt="" rotate={true} />
+            <ChevronRight src={chevronIconUrl} alt="" />
           </FaqItem>
         </Item>
       </Container>
@@ -104,10 +104,10 @@ const Container = styled("div", {
   display: "grid",
   gridTemplateRows: "auto auto",
   width: "80%",
+  maxWidth: 1160,
   "@lg": {
     gridTemplateRows: "auto",
     gridTemplateColumns: "1fr 2fr",
-    width: "80%",
     // flexDirection: "row"
   },
 
@@ -208,21 +208,21 @@ const FaqItem = styled("div", {
     justifyContent: "space-between",
     paddingY: rem(32),
     p: {
-      fontSize: "$subtitle2",
+      fontSize: "$subtitle3",
     },
   },
 });
 
 const ChevronRight = styled("img", {
   color: "$gray500",
-  width: rem(24),
-  height: rem(24),
+  // width: rem(24),
+  // height: rem(24),
 
-  variants: {
-    rotate: {
-      true: {
-        transform: "rotate(270deg)",
-      },
-    },
-  },
+  // variants: {
+  //   rotate: {
+  //     true: {
+  //       transform: "rotate(270deg)",
+  //     },
+  //   },
+  // },
 });

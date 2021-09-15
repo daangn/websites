@@ -7614,7 +7614,7 @@ gatsby-worker@^0.4.0:
   dependencies:
     "@babel/core" "^7.14.8"
 
-gatsby@next:
+gatsby@3.13.0, gatsby@next:
   version "3.13.0"
   resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-3.13.0.tgz#3314b191fa9cb02470a59d54c0dda58e087e1a9a"
   integrity sha512-nZOQkV6CF8ixtkbr+VNeiD2ISwuSkRLafeK+x/1btPB/l+b/w8ar0XrJGIWNX4DHr2Pohf3wy166IPfEkNqNTA==
@@ -10782,12 +10782,7 @@ node-abi@^2.21.0:
   dependencies:
     semver "^5.4.1"
 
-node-addon-api@^4.0.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-4.1.0.tgz#f1722f1f60793584632ffffb79e12ca042c48bd0"
-  integrity sha512-Zz1o1BDX2VtduiAt6kgiUl8jX1Vm3NMboljFYKQJ6ee8AGfiTvM2mlZFI3xPbqjs80rCQgiVJI/DjQ/1QJ0HwA==
-
-node-addon-api@^4.1.0:
+node-addon-api@^4.0.0, node-addon-api@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-4.1.0.tgz#f1722f1f60793584632ffffb79e12ca042c48bd0"
   integrity sha512-Zz1o1BDX2VtduiAt6kgiUl8jX1Vm3NMboljFYKQJ6ee8AGfiTvM2mlZFI3xPbqjs80rCQgiVJI/DjQ/1QJ0HwA==
@@ -12265,7 +12260,7 @@ react-dev-utils@^11.0.3:
     strip-ansi "6.0.0"
     text-table "0.2.0"
 
-react-dom@experimental, react-dom@next:
+react-dom@18.0.0-alpha-edfe50510-20210823, react-dom@experimental, react-dom@next:
   version "18.0.0-alpha-edfe50510-20210823"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.0.0-alpha-edfe50510-20210823.tgz#5a56f55d90c9b4578c97f98559c5dc0b2d35271a"
   integrity sha512-AseRrDncRUdndWQIS26rWNaEd2OB0YcJznzUx8xJjNu/bbExEy4OQmZDVhMWsRJa7+0P+VtQNSFlvt8qtD3CGA==
@@ -12395,7 +12390,7 @@ react-text-loop@^2.3.0:
     react-fast-compare "2.0.4"
     react-motion "^0.5.2"
 
-react@experimental, react@next:
+react@18.0.0-alpha-edfe50510-20210823, react@experimental, react@next:
   version "18.0.0-alpha-edfe50510-20210823"
   resolved "https://registry.yarnpkg.com/react/-/react-18.0.0-alpha-edfe50510-20210823.tgz#11bfeb8f7f30994b9b0bd4f86e1bdda94a61f4d1"
   integrity sha512-8YwjfY+TJQcq81sbZxnImdo79kEjzLlJl1GQhi8O6DYlJVRa0ynYkc7fnRGOYcQNjFvwGDJFYAs95XouJvbN3w==
@@ -12930,12 +12925,7 @@ scheduler@0.21.0-alpha-edfe50510-20210823:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
 
-schema-dts@0.6.0:
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/schema-dts/-/schema-dts-0.6.0.tgz#1700eadcc384d39341e0f90ad15d708504124166"
-  integrity sha512-mYfPlwuIssnlBkqcwalddhJp23grXIlpI9sDBQuTzM46pftdzXGhbMMzwoszuWZHsH5Zki+LVDeMKjTPRWiAlw==
-
-schema-dts@1.0.0:
+schema-dts@0.6.0, schema-dts@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/schema-dts/-/schema-dts-1.0.0.tgz#60e8a0f2cef5e644c44c843b03d35b37a4423c01"
   integrity sha512-9t8gnY3RW2CbpuvA0pIpcaHFXkJTeNnWR4uaWI+PiYSfpuEeMw+2Q0Gac6YTnQb1B8TR6/+G71gQWuSE7dq6Zw==
@@ -14875,7 +14865,7 @@ webpack-virtual-modules@^0.3.2:
   dependencies:
     debug "^3.0.0"
 
-webpack@^5.35.0:
+webpack@5.52.0, webpack@^5.35.0:
   version "5.52.0"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.52.0.tgz#88d997c2c3ebb62abcaa453d2a26e0fd917c71a3"
   integrity sha512-yRZOat8jWGwBwHpco3uKQhVU7HYaNunZiJ4AkAVQkPCUGoZk/tiIXiwG+8HIy/F+qsiZvSOa+GLQOj3q5RKRYg==

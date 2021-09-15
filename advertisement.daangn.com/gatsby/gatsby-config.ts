@@ -23,6 +23,15 @@ const config: GatsbyConfig = {
     "@karrotmarket/gatsby-theme-prismic",
     "@karrotmarket/gatsby-theme-website",
     {
+      resolve: 'gatsby-plugin-advanced-sitemap',
+      options: {
+        exclude: [
+          '/404/',
+          '/404.html',
+        ],
+      },
+    },
+    {
       resolve: "gatsby-plugin-typegen",
       options: {
         outputPath: "src/__generated__/gatsby-types.d.ts",

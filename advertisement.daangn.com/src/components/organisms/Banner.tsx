@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import advertisementMobileBanner from "~/image/img_m_cover.png";
-import advertisementPcBanner from "~/image/img_cover.png";
+import advertisementMobileBanner from "~/image/img_cover_mobile.png";
+import advertisementPcBanner from "~/image/img_cover_pc.png";
 import { styled } from "gatsby-theme-stitches/src/stitches.config";
 import { DownloadButton } from "~/components/molecules/DownloadButton";
 import { rem } from "polished";
@@ -9,19 +9,21 @@ import { rem } from "polished";
 export function Banner() {
   return (
     <Background>
-      <Description>
-        동네 이웃들이 모이는
-        <br />
-        당근마켓에 광고해 보세요
-        <DownloadButtons css={{ marginTop: 35 }}>
-          <DownloadButton iconType="google">
-            <div style={{marginTop: rem(4)}}>Google Play</div>
-          </DownloadButton>
-          <DownloadButton iconType="apple">
-            <div style={{marginTop: rem(4)}}>App Store</div>
+      <Wrapper>
+        <Description>
+          동네 이웃들이 모이는
+          <br />
+          당근마켓에 광고해 보세요
+          <DownloadButtons css={{ marginTop: 35 }}>
+            <DownloadButton iconType="google">
+              <div style={{marginTop: rem(4)}}>Google Play</div>
             </DownloadButton>
-        </DownloadButtons>
-      </Description>
+            <DownloadButton iconType="apple">
+              <div style={{marginTop: rem(4)}}>App Store</div>
+              </DownloadButton>
+          </DownloadButtons>
+        </Description>
+      </Wrapper>
     </Background>
   );
 }
@@ -30,16 +32,33 @@ const Background = styled("div", {
   display: "flex",
   justifyContent: "center",
   position: "relative",
-  height: 780,
+  height: rem(600),
   backgroundImage: `url(${advertisementMobileBanner})`,
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
   transition: "0.2s ease-in-out",
   "@md": {
+    height: 780,
     backgroundImage: `url(${advertisementPcBanner})`,
     backgroundPosition: "center center",
   },
 });
+
+const Wrapper = styled("div", {
+  "@md":{
+
+    display: "flex",
+    maxWidth: rem(1160),
+    paddingTop: rem(182),
+    flexDirection: "row",
+    flexGrow: 1,
+    paddingX: rem(40)
+  },
+
+  "@xl": {
+    paddingX: 0
+  }
+})
 
 const Description = styled("div", {
   typography: "$subtitle2",
@@ -49,9 +68,6 @@ const Description = styled("div", {
 
   "@md": {
     textAlign: "left",
-    position: "absolute",
-    top: 250,
-    left: 140,
     typography: "$heading3",
   },
 });

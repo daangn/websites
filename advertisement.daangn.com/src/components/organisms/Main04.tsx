@@ -13,7 +13,7 @@ export const Main04 = () => {
         </TitleBig>
       </GridRow>
       <ImgRow>
-        <div>
+        <ImgContent>
           <Picture src={"../../image/img_good_01.png"} alt="" width={260} />
           <ImgSubText>
             <p>
@@ -23,8 +23,8 @@ export const Main04 = () => {
               진짜 이웃만 모였어요
             </p>
           </ImgSubText>
-        </div>
-        <div>
+        </ImgContent>
+        <ImgContent>
           <Picture src={"../../image/img_good_02.png"} alt="" width={260} />
           <ImgSubText>
             <p>
@@ -34,8 +34,8 @@ export const Main04 = () => {
               매일 14분씩 사용해요
             </p>
           </ImgSubText>
-        </div>
-        <div>
+        </ImgContent>
+        <ImgContent>
           <Picture src={"../../image/img_good_03.png"} alt="" width={260} />
           <ImgSubText>
             <p>
@@ -45,7 +45,7 @@ export const Main04 = () => {
               20~40대가 가장 많아요
             </p>
           </ImgSubText>
-        </div>
+        </ImgContent>
       </ImgRow>
     </Container>
   </Section>)
@@ -72,7 +72,8 @@ const Container = styled("div", {
   justifyItems: "center",
 
   "@md": {
-    width: "60%",
+    width: "100%",
+    maxWidth: 1160,
     paddingX: 0,
     gridTemplateRows: "repeat(2, auto)"
   }
@@ -85,14 +86,9 @@ const GridRow = styled("div",{
   alignItems: 'center',
   justifyItems: 'center',
   marginBottom: rem(12),
-  Subtitle: {
-    fontSize: "$body2",
-    fontWeight: 400
-  },
-
   "@md" : {
     justifyItems: 'start',
-    marginBottom: rem(20),
+    marginBottom: rem(70),
   }
 })
 
@@ -117,6 +113,19 @@ const TitleBig = styled("p", {
   }
 })
 
+
+const ImgContent = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  marginTop: rem(50),
+
+  "@md": {
+    marginTop: 0
+  }
+})
+
 const ImgSubText = styled("div",{
   display: "flex",
   flexDirection: "column",
@@ -124,7 +133,10 @@ const ImgSubText = styled("div",{
   alignItems: "center",
 
   p: {
-    fontSize: "$subtitle3",
-    lineHeight: rem(31)
+    fontSize: "$body1",
+
+    "@md": {
+      fontSize: "$subtitle3"
+    }
   }
 })
