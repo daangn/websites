@@ -2,9 +2,15 @@ import React from "react";
 import { styled } from "~/gatsby-theme-stitches/stitches.config";
 import { rem } from "polished";
 import { useSwipeable } from "react-swipeable";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { ArrowLink } from "~/components/molecules/ArrowLink";
-import { graphql, useStaticQuery } from "gatsby";
+
+import tensoba from "~/image/tensoba.png"
+import meltingDog from "~/image/meltingDog.png"
+import jjinijjini from "~/image/jjinijjini.png"
+
+import tensoba_m from "~/image/tensoba_m.png"
+import meltingDog_m from "~/image/meltingDog_m.png"
+import jjinijjini_m from "~/image/jjinijjini_m.png"
 
 type SlideItemProps = {
   picture: any;
@@ -16,44 +22,9 @@ type SlideItemProps = {
 export const UserQuoteCarousel: React.FC = () => {
   const [slide, setSlide] = React.useState<number>(0);
 
-  const carouselImage = useStaticQuery<GatsbyTypes.CarouselImageQuery>(graphql`
-    query CarouselImage {
-      tensoba: file(relativePath: { eq: "tensoba.png" }) {
-        childImageSharp {
-          gatsbyImageData(quality: 90, formats: [AUTO, AVIF, WEBP])
-        }
-      }
-      meltingDog: file(relativePath: { eq: "meltingDog.png" }) {
-        childImageSharp {
-          gatsbyImageData(quality: 90, formats: [AUTO, AVIF, WEBP])
-        }
-      }
-      jjinijjinni: file(relativePath: { eq: "jjinijjini.png" }) {
-        childImageSharp {
-          gatsbyImageData(quality: 90, formats: [AUTO, AVIF, WEBP])
-        }
-      }
-      tensoba_m: file(relativePath: { eq: "tensoba_m.png" }) {
-        childImageSharp {
-          gatsbyImageData(quality: 90, formats: [AUTO, AVIF, WEBP])
-        }
-      }
-      meltingDog_m: file(relativePath: { eq: "meltingDog_m.png" }) {
-        childImageSharp {
-          gatsbyImageData(quality: 90, formats: [AUTO, AVIF, WEBP])
-        }
-      }
-      jjinijjinni_m: file(relativePath: { eq: "jjinijjini_m.png" }) {
-        childImageSharp {
-          gatsbyImageData(quality: 90, formats: [AUTO, AVIF, WEBP])
-        }
-      }
-    }
-  `);
-
   const items: SlideItemProps[] = [
     {
-      picture: carouselImage?.tensoba?.childImageSharp?.gatsbyImageData,
+      picture: tensoba,
       talk: [
         "당근마켓 광고는 반응이 정말 빨라요.",
         "광고 시작한지 하루만에",
@@ -63,7 +34,7 @@ export const UserQuoteCarousel: React.FC = () => {
       link: "https://www.youtube.com/watch?v=agdA0fMZ7u4",
     },
     {
-      picture: carouselImage.meltingDog?.childImageSharp?.gatsbyImageData,
+      picture: meltingDog,
       talk: [
         "광고할 동네를 지정할 수 있어서 좋아요.",
         "가게에 직접 올 만한 가까운 동네에",
@@ -73,7 +44,7 @@ export const UserQuoteCarousel: React.FC = () => {
       link: "https://www.youtube.com/watch?v=NLO0GJ3Yft8",
     },
     {
-      picture: carouselImage?.jjinijjinni?.childImageSharp?.gatsbyImageData,
+      picture: jjinijjini,
       talk: [
         "당근마켓 광고는 정말 쉬운게 장점이에요.",
         "부모님이 재배한 사과를 중고거래하듯 올렸는데,",
@@ -86,7 +57,7 @@ export const UserQuoteCarousel: React.FC = () => {
 
   const itemsMobile: SlideItemProps[] = [
     {
-      picture: carouselImage?.tensoba_m?.childImageSharp?.gatsbyImageData,
+      picture: tensoba_m,
       talk: [
         "당근마켓 광고는 반응이 정말 빨라요. 광고 시작한지 하루만에 가게 근처 학원 학생들이 방문했어요.",
       ],
@@ -94,7 +65,7 @@ export const UserQuoteCarousel: React.FC = () => {
       link: "https://www.youtube.com/watch?v=agdA0fMZ7u4",
     },
     {
-      picture: carouselImage.meltingDog_m?.childImageSharp?.gatsbyImageData,
+      picture: meltingDog_m,
       talk: [
         "광고할 동네를 지정할 수 있어서 좋아요. 가게에 직접 올 만한 가까운 동네에 광고하니까 효과가 좋더라고요.",
       ],
@@ -102,7 +73,7 @@ export const UserQuoteCarousel: React.FC = () => {
       link: "https://www.youtube.com/watch?v=NLO0GJ3Yft8",
     },
     {
-      picture: carouselImage?.jjinijjinni_m?.childImageSharp?.gatsbyImageData,
+      picture: jjinijjini_m,
       talk: [
         "당근마켓 광고는 정말 쉬운게 장점이에요. 부모님이 재배한 사과를 중고거래하듯 올렸는데, 바로 주문이 들어와서 신기했어요.",
       ],
@@ -121,16 +92,16 @@ export const UserQuoteCarousel: React.FC = () => {
     trackMouse: true,
   });
 
-  // React.useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     if (slide < 2) {
-  //       setSlide(slide + 1);
-  //     } else {
-  //       setSlide(0);
-  //     }
-  //   }, 10000);
-  //   return () => clearInterval(interval);
-  // }, [slide]);
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      if (slide < 2) {
+        setSlide(slide + 1);
+      } else {
+        setSlide(0);
+      }
+    }, 10000);
+    return () => clearInterval(interval);
+  }, [slide]);
 
   return (
     <Container {...swipeHandlers}>
@@ -143,13 +114,16 @@ export const UserQuoteCarousel: React.FC = () => {
           }}
         >
           {items.map((item, index) => {
-            const loadedImg = getImage(item.picture);
             return (
               <div key={index}>
-                <CarouselItemWrapperDesktop>
-                  <ImageContainer>
-                    <GatsbyImage alt="" image={loadedImg!} />
-                  </ImageContainer>
+                <CarouselItemWrapperDesktop css={{
+                    backgroundImage: `url(${item.picture})`,
+                    backgroundSize: "cover",
+                    
+                    "@md": {
+                      backgroundPosition: "center 50%",
+                    }
+                  }}>
                   <QuoteContainer>
                     <div>
                       {item.talk.map((str, idx) => {
@@ -184,10 +158,10 @@ export const UserQuoteCarousel: React.FC = () => {
           {itemsMobile.map((item, index) => {
             return (
               <div key={index}>
-                <CarouselItemWrapperMobile>
-                  <ImageContainer>
-                    <GatsbyImage alt={""} image={item.picture} />
-                  </ImageContainer>
+                <CarouselItemWrapperMobile css={{
+                  backgroundImage: `url(${item.picture})`,
+                  backgroundSize: "cover",
+                }}>
                   <QuoteContainer>
                     <Quote>{item.talk[0]}</Quote>
                     <ByRow>
@@ -221,9 +195,6 @@ const Container = styled("section", {
   width: "100%",
   boxSizing: "border-box",
   display: "grid",
-  "@md": {
-    maxHeight: rem(500),
-  }
 });
 
 const SlideCamera = styled("div", {
@@ -248,6 +219,7 @@ const CarouselItemWrapperMobile = styled("article", {
   display: "flex",
   justifyContent: "center",
   alignItems: "flex-end",
+  height: rem(500),
   "@md": {
     display: "none",
   },
@@ -260,6 +232,7 @@ const CarouselItemWrapperDesktop = styled("div", {
     display: "flex",
     justifyContent: "flex-end",
     alignItems: "center",
+    height: rem(500),
   },
 });
 
