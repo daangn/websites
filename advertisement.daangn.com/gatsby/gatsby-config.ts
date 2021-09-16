@@ -4,6 +4,7 @@ const siteUrl = new URL("https://advertisement.daangn.com");
 
 const siteMetadata: GatsbyConfig["siteMetadata"] = {
   siteUrl: siteUrl.origin,
+  siteName: "당근마켓 지역광고"
 };
 
 const config: GatsbyConfig = {
@@ -108,7 +109,19 @@ const config: GatsbyConfig = {
           allow: '/'
         }]
       }
-    }
+    },
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: siteMetadata.siteName,
+        short_name: siteMetadata.siteName,
+        start_url: '/',
+        theme_color: '#ff7e36',
+        background_color: '#ffffff',
+        display: 'minimal-ui',
+        icon: 'src/image/favicon.svg',
+      },
+    },
   ],
 };
 

@@ -21,6 +21,7 @@
     "gatsby": "next",
     "gatsby-plugin-google-tagmanager": "^3.13.0",
     "gatsby-plugin-image": "^1.13.0",
+    "gatsby-plugin-manifest": "^3.13.0",
     "gatsby-plugin-module-resolver": "^1.0.3",
     "gatsby-plugin-next-seo": "^1.8.0",
     "gatsby-plugin-robots-txt": "^1.6.10",
