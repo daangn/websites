@@ -91,7 +91,7 @@ const IndexDiv = styled("div", {
     minWidth: 1160
   },
   "@xl": {
-    minWidth: "none"
+    minWidth: "auto"
   }
 })
 
