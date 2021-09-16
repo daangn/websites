@@ -105,7 +105,7 @@ const Container = styled("div", {
   gridTemplateRows: "auto auto",
   width: "80%",
   maxWidth: 1160,
-  "@lg": {
+  "@md": {
     gridTemplateRows: "auto",
     gridTemplateColumns: "1fr 2fr",
     // flexDirection: "row"
@@ -122,7 +122,7 @@ const Container = styled("div", {
 const DocsWrapper = styled("div", {
   marginBottom: rem(40),
 
-  "@lg": {
+  "@md": {
     marginBottom: rem(32),
   },
 });
@@ -147,7 +147,7 @@ const DocsLink = styled("div", {
     opacity: "64%",
   },
 
-  "@lg": {
+  "@md": {
     justifyContent: "left",
   },
 });
@@ -157,7 +157,7 @@ const LearnMoreTitle = styled("p", {
   fontWeight: "bold",
   textAlign: "center",
 
-  "@lg": {
+  "@md": {
     typography: "$subtitle1",
     textAlign: "left",
   },
@@ -166,7 +166,7 @@ const LearnMoreTitle = styled("p", {
 const Item = styled("div", {
   marginBottom: rem(60),
 
-  "@lg": {
+  "@md": {
     marginBottom: 0,
   },
 
@@ -175,7 +175,7 @@ const Item = styled("div", {
       true: {
         display: "flex",
         flexDirection: "column",
-        "@lg": {
+        "@md": {
           paddingRight: rem(40),
           paddingTop: rem(30),
         },
@@ -204,7 +204,7 @@ const FaqItem = styled("div", {
     opacity: "64%",
   },
 
-  "@lg": {
+  "@md": {
     justifyContent: "space-between",
     paddingY: rem(32),
     p: {

@@ -119,6 +119,7 @@ const Base = styled("div", {
 
 const FooterDesktop = styled("div", {
   display: "none",
+  maxWidth: rem(1160),
   "@md": {
     display: "grid",
     width: "80%",

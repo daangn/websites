@@ -3,7 +3,7 @@ import type { PageProps } from "gatsby";
 
 import { GatsbySeo } from "gatsby-plugin-next-seo";
 import { mapAbstractTypeWithDefault } from "@cometjs/graphql-utils";
-import { globalStyles } from "~/gatsby-theme-stitches/stitches.config";
+import { globalStyles, styled } from "~/gatsby-theme-stitches/stitches.config";
 import { Banner } from "~/components/organisms/Banner";
 import { Main } from "~/components/organisms/Main";
 import { BannerTitle } from "~/components/molecules/BannerTitle";
@@ -51,7 +51,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
   const url = site && imgSrc ? site + imgSrc : "";
 
   return (
-    <div>
+    <IndexDiv>
       <GatsbySeo
         title="당근마켓 지역광고"
         openGraph={{
@@ -81,8 +81,18 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
       <Download />
       <LearnMore />
       <Footer />
-    </div>
+    </IndexDiv>
   );
 };
+
+
+const IndexDiv = styled("div", {
+  "@md" :{
+    minWidth: 1160
+  },
+  "@xl": {
+    minWidth: "none"
+  }
+})
 
 export default IndexPage;

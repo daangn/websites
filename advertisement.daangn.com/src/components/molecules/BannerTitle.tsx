@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "gatsby-theme-stitches/src/stitches.config";
 
-import { ReactComponent as DaangnLogo } from "~/image/daangn-ad_logo.svg"
+import daangn_logo, { ReactComponent as DaangnLogo } from "~/image/daangn-ad_logo.svg"
 import { ReactComponent as IconCall } from "~/image/icon_call.svg";
 import { rem } from "polished";
 
@@ -21,17 +21,24 @@ export const BannerTitle = () => {
 
   return (
     <Wrapper color={isWhite ? "white" : "default"}>
-      <DaangnLogo />
-      <QuestionInfo>
-        <IconCall />
-        <TelLink
-          href="tel://1644-9736"
-        >
-          <p>
-            광고문의 <mark>1644-9736</mark>
-          </p>
-        </TelLink>
-      </QuestionInfo>
+      <Container>
+        <Logo src={daangn_logo} alt="logo"/>
+        {/* <DaangnLogo style={{
+          width: rem(145),
+          height: rem(25),
+
+        }}/> */}
+        <QuestionInfo>
+          <IconCall />
+          <TelLink
+            href="tel://1644-9736"
+          >
+            <p>
+              광고문의 <mark>1644-9736</mark>
+            </p>
+          </TelLink>
+        </QuestionInfo>
+      </Container>
     </Wrapper>
   );
 };
@@ -39,7 +46,7 @@ export const BannerTitle = () => {
 const Wrapper = styled("div", {
   display: "flex",
   alignItems: "center",
-  justifyContent: "space-between",
+  justifyContent: "center",
   height: 68,
   paddingX: rem(24),
   position: "fixed",
@@ -60,10 +67,26 @@ const Wrapper = styled("div", {
       },
     },
   },
-  "@md": {
-    paddingX: rem(140),
-  },
+
+  "@md" :{
+    justifyContent: "center",
+  }
 });
+
+
+const Container = styled("div", {
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "space-between",
+  width: "80%",
+  "@md": {
+    width: "80%",
+    maxWidth: rem(1160),
+    // justifyContent: "space-between",
+  
+  }
+})
 
 const QuestionInfo = styled("div", {
   display: "flex",
@@ -81,6 +104,15 @@ const QuestionInfo = styled("div", {
     },
   },
 });
+
+const Logo = styled("img", {
+  width: rem(145),
+  height: rem(25),
+  "@md": {
+    width: 'auto',
+    height: 'auto',
+  },
+})
 
 const TelLink = styled("a", {
   color: "$black",

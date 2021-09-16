@@ -61,7 +61,7 @@ const Section = styled("div", {
   overflow: "hidden",
 
   "@md": {
-    paddingY: rem(160)
+    paddingY: rem(160),
   }
 
 })
@@ -132,11 +132,16 @@ const ImgSubText = styled("div",{
   justifyContent: "center",
   alignItems: "center",
 
+  "@md": {
+    marginTop: rem(30)
+  },
+
   p: {
     fontSize: "$body1",
 
     "@md": {
-      fontSize: "$subtitle3"
+      fontSize: "$subtitle3",
+      lineHeight: rem(31)
     }
   }
 })

@@ -45,6 +45,7 @@ const Background = styled("div", {
 });
 
 const Wrapper = styled("div", {
+  
   "@md":{
 
     display: "flex",

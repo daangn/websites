@@ -85,7 +85,7 @@ const Container = styled("div", {
           },
           "& > :nth-child(2)": {
             order: 1,
-            // paddingLeft: 50
+            paddingLeft: rem(100)
           },
         },
       },
