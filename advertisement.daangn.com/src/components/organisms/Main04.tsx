@@ -131,13 +131,15 @@ const ImgSubText = styled("div",{
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
-
+  marginTop: rem(10),
+  
   "@md": {
     marginTop: rem(30)
   },
 
   p: {
     fontSize: "$body1",
+    lineHeight: rem(30),
 
     "@md": {
       fontSize: "$subtitle3",

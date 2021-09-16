@@ -79,9 +79,9 @@ const Container = styled("div", {
   flexDirection: "row",
   alignItems: "center",
   justifyContent: "space-between",
-  width: "80%",
+  width: "100%",
   "@md": {
-    width: "80%",
+    width: "100%",
     maxWidth: rem(1160),
     // justifyContent: "space-between",
   
@@ -94,7 +94,7 @@ const QuestionInfo = styled("div", {
   typography: "$body2",
   fontWeight: "bold",
 
-  p: { marginX: 8 },
+  p: { marginLeft: 8 },
   mark: {
     backgroundColor: "transparent",
     color: "$carrot500",

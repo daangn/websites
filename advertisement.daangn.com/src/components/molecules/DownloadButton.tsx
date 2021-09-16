@@ -2,7 +2,6 @@ import * as React from "react";
 import { styled } from "~/gatsby-theme-stitches/stitches.config";
 import { ReactComponent as IconApple } from "~/image/icon_apple.svg";
 import { ReactComponent as IconGooglePlay } from "~/image/icon_google_play.svg";
-import fbTrack from "~/components/molecules/fbTrack";
 
 type Props = {
   buttonType?: "carrot" | "gray";

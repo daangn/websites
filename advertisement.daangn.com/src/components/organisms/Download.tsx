@@ -30,10 +30,10 @@ export const Download = () => {
         </ImgSubTextPC>
         <BtnRow>
           <DownloadButton iconType="google" buttonType="gray">
-            <div style={{paddingTop: rem(4)}}>Google Play</div>
+            <div>Google Play</div>
           </DownloadButton>
           <DownloadButton iconType="apple" buttonType="gray">
-            <div style={{paddingTop: rem(4)}}>App Store</div>
+            <div>App Store</div>
           </DownloadButton>
         </BtnRow>
       </Container>
