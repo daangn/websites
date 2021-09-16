@@ -4,9 +4,9 @@ import { rem } from "polished";
 import { useSwipeable } from "react-swipeable";
 import { ArrowLink } from "~/components/molecules/ArrowLink";
 
-import tensoba from "~/image/tensoba.png"
-import meltingDog from "~/image/meltingDog.png"
-import jjinijjini from "~/image/jjinijjini.png"
+import tensoba from "~/image/tensoba.jpg"
+import meltingDog from "~/image/meltingDog.jpg"
+import jjinijjini from "~/image/jjinijjini.jpg"
 
 import tensoba_m from "~/image/tensoba_m.png"
 import meltingDog_m from "~/image/meltingDog_m.png"

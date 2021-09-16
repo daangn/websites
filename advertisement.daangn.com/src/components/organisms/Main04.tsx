@@ -14,7 +14,7 @@ export const Main04 = () => {
       </GridRow>
       <ImgRow>
         <ImgContent>
-          <Picture src={"../../image/img_good_01.png"} alt="" width={260} />
+          <Picture src={"../../image/img_good_01.png"} alt="" width={260} placeholder="none" />
           <ImgSubText>
             <p>
               동네를 인증한
@@ -25,7 +25,7 @@ export const Main04 = () => {
           </ImgSubText>
         </ImgContent>
         <ImgContent>
-          <Picture src={"../../image/img_good_02.png"} alt="" width={260} />
+          <Picture src={"../../image/img_good_02.png"} alt="" width={260} placeholder="none" />
           <ImgSubText>
             <p>
               동네 이웃 3명 중 1명이
@@ -36,7 +36,7 @@ export const Main04 = () => {
           </ImgSubText>
         </ImgContent>
         <ImgContent>
-          <Picture src={"../../image/img_good_03.png"} alt="" width={260} />
+          <Picture src={"../../image/img_good_03.png"} alt="" width={260} placeholder="none"/>
           <ImgSubText>
             <p>
               지역 상권 핵심소비층인

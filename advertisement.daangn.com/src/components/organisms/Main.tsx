@@ -11,17 +11,17 @@ export const Main = () => {
     query Image {
       image0: file(relativePath: { eq: "img_sub_pc_01.png" }) {
         childImageSharp {
-          gatsbyImageData(height: 680, quality: 90, formats: [WEBP, AVIF, AUTO])
+          gatsbyImageData(height: 680, quality: 90, formats: [WEBP, AVIF, AUTO], placeholder: NONE)
         }
       }
       image1: file(relativePath: { eq: "img_sub_pc_02.png" }) {
         childImageSharp {
-          gatsbyImageData(height: 680, quality: 90, formats: [WEBP, AVIF, AUTO])
+          gatsbyImageData(height: 680, quality: 90, formats: [WEBP, AVIF, AUTO], placeholder: NONE)
         }
       }
       image2: file(relativePath: { eq: "img_sub_pc_03.png" }) {
         childImageSharp {
-          gatsbyImageData(height: 680, quality: 90, formats: [WEBP, AVIF, AUTO])
+          gatsbyImageData(height: 680, quality: 90, formats: [WEBP, AVIF, AUTO], placeholder: NONE)
         }
       }
     }

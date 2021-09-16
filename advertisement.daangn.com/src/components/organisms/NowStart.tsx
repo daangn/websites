@@ -14,21 +14,21 @@ export const NowStart = () => {
         </GridRow>
         <ImgRow>
           <ImgContainer>
-            <Picture src="../../image/img_step_01.png" alt="" width={240} />
+            <Picture src="../../image/img_step_01.png" alt="" width={240} placeholder="none"/>
             <ImgSubText>
               <StepNumber>01</StepNumber>
               <p>나의 당근 &gt; 지역광고 메뉴에서</p>
             </ImgSubText>
           </ImgContainer>
           <ImgContainer>
-            <Picture src="../../image/img_step_02.png" alt="" width={240} />
+            <Picture src="../../image/img_step_02.png" alt="" width={240} placeholder="none"/>
             <ImgSubText>
               <StepNumber>02</StepNumber>
               <p>광고할 계정을 선택하고</p>
             </ImgSubText>
           </ImgContainer>
           <ImgContainer>
-            <Picture src="../../image/img_step_03.png" alt="" width={240} />
+            <Picture src="../../image/img_step_03.png" alt="" width={240} placeholder="none"/>
             <ImgSubText>
               <StepNumber>03</StepNumber>
               <p>광고 만들기를 눌러주세요</p>
