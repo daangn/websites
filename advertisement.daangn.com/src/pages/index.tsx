@@ -14,6 +14,10 @@ import { Footer } from "~/components/organisms/Footer";
 import { graphql } from "gatsby";
 import { DownloadBtnMobile } from "~/components/organisms/DownloadBtnMobile";
 
+import { useDetectAdBlock } from "adblock-detect-react";
+import { AdblockModal } from "~/components/organisms/AdblockModal";
+
+
 type IndexPageProps = PageProps<GatsbyTypes.IndexPageQuery>;
 
 export const query = graphql`
@@ -46,6 +50,19 @@ export const query = graphql`
 const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
   globalStyles();
 
+
+  const [showModal, setShowModal] = React.useState(false)
+
+  const adBlockDetected = useDetectAdBlock();
+  
+
+
+  React.useEffect(()=>{
+    if(adBlockDetected) {
+      setShowModal(true)
+    }
+  },[adBlockDetected])
+  
   const imgSrc = data.image?.childImageSharp?.fixed;
   const site = data.site?.siteMetadata?.siteUrl;
   const url = site && imgSrc ? site + imgSrc : "";
@@ -81,6 +98,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
       <Download />
       <LearnMore />
       <Footer />
+      {showModal && <AdblockModal color="$carrot500" setShowModal={setShowModal}/>}
     </IndexDiv>
   );
 };
