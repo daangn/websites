@@ -51,7 +51,7 @@ export const LearnMore = () => {
             >
               지역광고는 어떻게 만드나요?
             </p>
-            <ChevronRight src={chevronIconUrl} alt="" />
+            <ChevronRight src={chevronIconUrl} alt="댱근마켓 지역광고 가이드" />
           </FaqItem>
           <FaqItem>
             <p
@@ -63,7 +63,7 @@ export const LearnMore = () => {
             >
               지역광고는 비용은 얼마인가요?
             </p>
-            <ChevronRight src={chevronIconUrl} alt="" />
+            <ChevronRight src={chevronIconUrl} alt="당근마켓 지역광고 가이드" />
           </FaqItem>
           <FaqItem>
             <p
@@ -75,7 +75,7 @@ export const LearnMore = () => {
             >
               지역광고는 어디에 노출되나요?
             </p>
-            <ChevronRight src={chevronIconUrl} alt="" />
+            <ChevronRight src={chevronIconUrl} alt="당근마켓 지역광고 가이드" />
           </FaqItem>
         </Item>
       </Container>

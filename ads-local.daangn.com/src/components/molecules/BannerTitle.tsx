@@ -10,7 +10,6 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 export const BannerTitle = () => {
   const [isWhite, setWhite] = React.useState<boolean>(false);
-  const [mobile, setMobile] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     window.addEventListener("scroll", handleScroll);
