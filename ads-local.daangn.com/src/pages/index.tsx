@@ -65,7 +65,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
   
   const imgSrc = data.image?.childImageSharp?.fixed;
   const site = data.site?.siteMetadata?.siteUrl;
-  const url = site && imgSrc ? site + imgSrc : "";
+  const url = site && imgSrc ? site + imgSrc.src : "";
 
   return (
     <IndexDiv>
@@ -74,6 +74,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
         openGraph={{
           title: "당근마켓 지역광고",
           description: "동네 이웃들이 모이는 당근마켓에 광고해 보세요",
+          site_name: "당근마켓",
           images: [
             {
               url: url,
