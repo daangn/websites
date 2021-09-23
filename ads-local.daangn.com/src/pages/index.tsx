@@ -83,6 +83,9 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
             },
           ],
         }}
+        twitter={{
+          cardType: "summary_large_image",
+        }}
       />
       <DownloadBtnMobile />
       <BannerTitle />

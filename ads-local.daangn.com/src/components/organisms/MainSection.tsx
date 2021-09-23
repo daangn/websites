@@ -22,7 +22,7 @@ export const MainSection: React.FC<SectionProps> = ({
     <Section right={right}>
       <Container right={right}>
         <GatsbyImage
-          alt={""}
+          alt="당근마켓 지역광고"
           image={img!}
           imgStyle={{ objectPosition: "top" }}
         />
