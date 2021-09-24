@@ -41,38 +41,32 @@ export const LearnMore = () => {
           </DocsLink>
         </Item>
         <Item right>
-          <FaqItem>
-            <p
-              onClick={() =>
+          <FaqItem onClick={() =>
                 handleClick(
                   "https://www.daangn.com/wv/faqs/149"
                 )
-              }
-            >
+              }>
+            <p>
               지역광고는 어떻게 만드나요?
             </p>
             <ChevronRight src={chevronIconUrl} alt="댱근마켓 지역광고 가이드" />
           </FaqItem>
-          <FaqItem>
-            <p
-              onClick={() =>
+          <FaqItem onClick={() =>
                 handleClick(
                   "https://www.daangn.com/wv/faqs/159"
                 )
-              }
-            >
+              }>
+            <p>
               지역광고는 비용은 얼마인가요?
             </p>
             <ChevronRight src={chevronIconUrl} alt="당근마켓 지역광고 가이드" />
           </FaqItem>
-          <FaqItem>
-            <p
-              onClick={() =>
+          <FaqItem onClick={() =>
                 handleClick(
                   "https://www.daangn.com/wv/faqs/156"
                 )
-              }
-            >
+              }>
+            <p>
               지역광고는 어디에 노출되나요?
             </p>
             <ChevronRight src={chevronIconUrl} alt="당근마켓 지역광고 가이드" />
@@ -198,10 +192,11 @@ const FaqItem = styled("div", {
   borderBottom: "1px solid #EAEBEE",
   p: {
     fontSize: "$body2",
-    cursor: "pointer",
+    
   },
   "&:hover": {
     opacity: "64%",
+    cursor: "pointer",
   },
 
   "@md": {
