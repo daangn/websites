@@ -107,7 +107,8 @@ const config: GatsbyConfig = {
         policy: [{
           userAgent: '*',
           allow: '/'
-        }]
+        }],
+        sitemap: `${siteMetadata.siteUrl}/sitemap.xml`,
       }
     },
     {

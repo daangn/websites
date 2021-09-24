@@ -8,9 +8,9 @@ import tensoba from "~/image/tensoba.jpg"
 import meltingDog from "~/image/meltingDog.jpg"
 import jjinijjini from "~/image/jjinijjini.jpg"
 
-import tensoba_m from "~/image/tensoba_m.png"
-import meltingDog_m from "~/image/meltingDog_m.png"
-import jjinijjini_m from "~/image/jjinijjini_m.png"
+import tensoba_m from "~/image/tensoba_m.jpg"
+import meltingDog_m from "~/image/meltingDog_m.jpg"
+import jjinijjini_m from "~/image/jjinijjini_m.jpg"
 
 type SlideItemProps = {
   picture: any;
@@ -189,7 +189,7 @@ export const UserQuoteCarousel: React.FC = () => {
   );
 };
 
-const Container = styled("section", {
+const Container = styled("div", {
   position: "relative",
   contentArea: true,
   width: "100%",
@@ -215,11 +215,12 @@ const Slide = styled("div", {
   },
 });
 
-const CarouselItemWrapperMobile = styled("article", {
+const CarouselItemWrapperMobile = styled("div", {
   display: "flex",
   justifyContent: "center",
   alignItems: "flex-end",
   height: rem(500),
+  paddingBottom: rem(76),
   "@md": {
     display: "none",
   },
@@ -236,20 +237,15 @@ const CarouselItemWrapperDesktop = styled("div", {
   },
 });
 
-const ImageContainer = styled("div", {
-  display: "grid",
-  position: "relative",
-});
-
 const QuoteContainer = styled("div", {
   position: "absolute",
   display: "grid",
-  marginBottom: rem(76),
+  // marginBottom: rem(76),
   width: "100%",
   "@md": {
     position: "absolute",
     width: "40%",
-    marginBottom: 0,
+    // marginBottom: 0,
     // top: "50%"
   },
 });
@@ -279,7 +275,11 @@ const ByRow = styled("div", {
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
-  marginTop: rem(24),
+  marginTop: rem(14),
+
+  "@md": {
+    marginTop: rem(24)
+  }
 });
 
 const By = styled("p", {

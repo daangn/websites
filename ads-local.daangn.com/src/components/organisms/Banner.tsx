@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import advertisementMobileBanner from "~/image/img_cover_mobile.png";
+import advertisementMobileBanner from "~/image/img_cover_mobile.jpg";
 import advertisementPcBanner from "~/image/img_cover_pc.png";
 import { styled } from "gatsby-theme-stitches/src/stitches.config";
 import { DownloadButton } from "~/components/molecules/DownloadButton";

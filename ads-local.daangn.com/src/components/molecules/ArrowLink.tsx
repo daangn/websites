@@ -1,7 +1,8 @@
 import * as React from "react"
 import { styled } from "gatsby-theme-stitches/src/stitches.config"
-import ArrowSvg from "~/image/arrow.svg";
-import ArrowSvgWhite from "~/image/arrow_white.svg";
+import ArrowSvg, {ReactComponent as Arrow } from "~/image/arrow.svg";
+import ArrowSvgWhite, { ReactComponent as ArrowWhite }from "~/image/arrow_white.svg";
+import {rem} from 'polished'
 
 type ArrowLinkProps = {
   target : string
@@ -14,7 +15,13 @@ export const ArrowLink:React.FC<ArrowLinkProps> = ({target,color="black"}) => {
     window.open(target, '_blank')
   }
   return (
-    <Base onClick={()=>onClickHandler(target)} color={color}/>
+    // <Base onClick={()=>onClickHandler(target)} color={color}/>
+    <>
+      {
+      color === "black" ? <Arrow onClick={()=>onClickHandler(target)} style={{width: rem(28), height: rem(28)}}/>
+       : <ArrowWhite onClick={()=>onClickHandler(target)} style={{width: rem(28), height: rem(28), marginTop: rem(5)}}/>
+      }
+    </>
   )
 }
 

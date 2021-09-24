@@ -83,6 +83,16 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
             },
           ],
         }}
+        twitter={{
+          cardType: "summary_large_image",
+        }}
+        metaTags={[{
+          property: "format-detection",
+          content: "telephone=no"
+        },{
+          property: "description",
+          content: "동네 이웃들이 모이는 당근마켓에 광고해 보세요"
+        }]}
       />
       <DownloadBtnMobile />
       <BannerTitle />
