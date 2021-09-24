@@ -8,9 +8,9 @@ import tensoba from "~/image/tensoba.jpg"
 import meltingDog from "~/image/meltingDog.jpg"
 import jjinijjini from "~/image/jjinijjini.jpg"
 
-import tensoba_m from "~/image/tensoba_m.png"
-import meltingDog_m from "~/image/meltingDog_m.png"
-import jjinijjini_m from "~/image/jjinijjini_m.png"
+import tensoba_m from "~/image/tensoba_m.jpg"
+import meltingDog_m from "~/image/meltingDog_m.jpg"
+import jjinijjini_m from "~/image/jjinijjini_m.jpg"
 
 type SlideItemProps = {
   picture: any;
