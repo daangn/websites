@@ -11,7 +11,7 @@ export default function HTML(props) {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
-        <meta name="naver-site-verification" content="da2894a9f1a3b009d2de6a6a5c8fd467a40687ac" />
+        <meta name="naver-site-verification" content="270bbdd42dd2751190d4755c4a1ca68b41538a62" />
         <meta name="description" content="동네 이웃들이 모이는 당근마켓에 광고해 보세요"/>
         <script
           dangerouslySetInnerHTML={{
