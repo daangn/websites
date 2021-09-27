@@ -17,7 +17,7 @@ export const query = graphql`
     ...DefaultLayout_query
     ...JobPostLayout_query
     jobPost(id: { eq: $id }) {
-      applyPath: gatsbyPath(filePath: "/jobs/{JobPost.parent__(GreenhouseJob)__ghId}/apply")
+      applyPath: gatsbyPath(filePath: "/jobs/{JobPost.ghId}/apply")
       content {
         ...JobPostContentSection_content
       }

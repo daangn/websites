@@ -60,8 +60,8 @@ export const query = graphql`
       externalUrl
       datePosted: updatedAt(formatString: "YYYY-MM-DD", locale: "ko")
       validThrough(formatString: "YYYY-MM-DD", locale: "ko")
-      viewPath: gatsbyPath(filePath: "/jobs/{JobPost.parent__(GreenhouseJob)__ghId}")
-      applyPath: gatsbyPath(filePath: "/jobs/{JobPost.parent__(GreenhouseJob)__ghId}/apply")
+      viewPath: gatsbyPath(filePath: "/jobs/{JobPost.ghId}")
+      applyPath: gatsbyPath(filePath: "/jobs/{JobPost.ghId}/apply")
     }
   }
 `;
