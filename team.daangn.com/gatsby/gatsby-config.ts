@@ -207,8 +207,7 @@ const config: GatsbyConfig = {
       options: {
         boardToken: 'daangn',
         includeContent: true,
-        // 이런 해킹으로는 안된다... 다른 방법을 강구해야함
-        // forceGC: true,
+        forceGC: true,
       },
     },
     {
@@ -216,6 +215,7 @@ const config: GatsbyConfig = {
       options: {
         boardToken: 'daangnmvp',
         includeContent: true,
+        forceGC: true,
       },
     },
     {
@@ -223,6 +223,7 @@ const config: GatsbyConfig = {
       options: {
         boardToken: 'daangntest',
         includeContent: true,
+        forceGC: true,
       },
     },
     {
