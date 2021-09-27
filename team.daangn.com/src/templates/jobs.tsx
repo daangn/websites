@@ -6,7 +6,7 @@ import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetada
 import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import { rem } from 'polished';
 import { required } from '@cometjs/core';
-import {ReactComponent as SearchdSvg} from '~/assets/searchOutlineM.svg';
+import { ReactComponent as SearchdSvg } from '~/assets/searchOutlineM.svg';
 
 import PageTitle from '~/components/PageTitle';
 import _JobPostList from '~/components/JobPostList';
@@ -45,14 +45,12 @@ export const query = graphql`
       }
     }
 
-    currentGreenhouseJobs: allGreenhouseJob(
+    currentJobPosts: allJobPost(
       filter: {
-        childJobPost: {
-          slug: { regex: $pattern }
-        }
+        slug: { regex: $pattern }
       }
       sort: {
-        fields: childJobPost___title
+        fields: title
         order: ASC
       }
     ) {
@@ -60,36 +58,32 @@ export const query = graphql`
 
       # Command E 인덱싱용 ㅎㅎ..
       nodes {
-        childJobPost {
-          absoluteUrl
-        }
+        absoluteUrl
       }
     }
 
-    allGreenhouseJob(
+    allJobPost(
       sort: {
-        fields: childJobPost___title
+        fields: title
         order: ASC
       }
     ) {
       totalCount
 
       allChapter: group(
-        field: childJobPost___chapter,
+        field: chapter
         limit: 1
       ) {
         fieldValue
         totalCount
         nodes {
-          childJobPost {
-            chapter
-            slug
-          }
+          chapter
+          slug
         }
       }
 
       allEmploymentType: group(
-        field: childJobPost___employmentType
+        field: employmentType
       ) {
         fieldValue
       }
@@ -224,11 +218,11 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
   const metaImage = data.prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
 
   const onFilterChange: React.ChangeEventHandler<HTMLSelectElement> = (e) => {
-    const selectedChapterGroup = data.allGreenhouseJob.allChapter
-      .find(chapterGroup => chapterGroup.nodes[0]?.childJobPost?.chapter === e.target.value);
+    const selectedChapterGroup = data.allJobPost.allChapter
+      .find(chapterGroup => chapterGroup.nodes[0]?.chapter === e.target.value);
 
       if (selectedChapterGroup) {
-        const { slug } = selectedChapterGroup.nodes[0]?.childJobPost ?? {};
+        const { slug } = selectedChapterGroup.nodes[0] ?? {};
         if (slug) {
           navigate(`/jobs/${slug}/${window.location.search}`);
         }
@@ -276,9 +270,9 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
               key=""
               value=""
             >
-              {`전체 직군 (${data.allGreenhouseJob.totalCount})`}
+              {`전체 직군 (${data.allJobPost.totalCount})`}
             </option>
-            {data.allGreenhouseJob.allChapter
+            {data.allJobPost.allChapter
             .map(chapterGroup => {
               return (
                 <option
@@ -306,7 +300,7 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
           </Search>
         </Filters>
         <JobPostList
-          jobs={data.currentGreenhouseJobs}
+          jobs={data.currentJobPosts}
           filterEmploymentType={filterEmploymentType}
           searchResults={searchResults}
         />
