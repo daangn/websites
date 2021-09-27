@@ -141,24 +141,31 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async ({
   const url = new URL(`https://boards-api.greenhouse.io/v1/boards/${boardToken}/jobs?content=${includeContent}`);
   const response = await got<Response>(url, { responseType: 'json' });
 
-  if (forceGC) {
-    const nodes = getNodesByType('GreenhouseJob');
-    for (const node of nodes) {
-      actions.deleteNode(node);
-    }
+  const jobNodes: NodeInput[] = response.body.jobs.map(job => ({
+    ...job,
+    boardToken,
+    ghId: job.id,
+    id: createNodeId(`GreenhouseJob:${job.id}`),
+    internal: {
+      type: 'GreenhouseJob',
+      contentDigest: createContentDigest(job),
+    },
+  }));
+
+  for (const node of jobNodes) {
+    actions.createNode(node);
   }
 
-  for (const job of response.body.jobs) {
-    const { id: ghId, ...content } = job;
-    actions.createNode({
-      id: createNodeId(`GreenhouseJob - ${ghId}`),
-      internal: {
-        type: 'GreenhouseJob',
-        contentDigest: createContentDigest(job),
-      },
-      ghId,
-      boardToken,
-      ...content,
-    });
+  if (forceGC) {
+    const shouldLeave = new Set<string>(jobNodes.map(node => node.id));
+    const cachedNodes = getNodesByType('GreenhouseJob');
+    for (const node of cachedNodes) {
+      if (node.boardToken !== boardToken) {
+        continue;
+      }
+      if (!shouldLeave.has(node.id)) {
+        actions.deleteNode(node);
+      }
+    }
   }
 };
