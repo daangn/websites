@@ -157,6 +157,10 @@ export const createPages: GatsbyNode['createPages'] = async ({
 }) => {
   type Data = {
     allJobPost: {
+      nodes: {
+        id: string,
+        ghId: string,
+      }[],
       group: {
         nodes: {
           chapter: string,
@@ -169,6 +173,10 @@ export const createPages: GatsbyNode['createPages'] = async ({
   const { data, errors } = await graphql<Data>(gql`
     {
       allJobPost {
+        nodes {
+          id
+          ghId
+        }
         group(field: chapter, limit: 1) {
           nodes {
             chapter
@@ -181,6 +189,25 @@ export const createPages: GatsbyNode['createPages'] = async ({
 
   if (errors) {
     throw errors;
+  }
+
+  for (const jobPost of data.allJobPost.nodes) {
+    actions.createPage({
+      path: `/jobs/${jobPost.ghId}/`,
+      component: require.resolve('./src/templates/JobPostPage.tsx'),
+      context: {
+        id: jobPost.id,
+        ghId: jobPost.ghId,
+      },
+    });
+    actions.createPage({
+      path: `/jobs/${jobPost.ghId}/apply/`,
+      component: require.resolve('./src/templates/JobApplicationPage.tsx'),
+      context: {
+        id: jobPost.id,
+        ghId: jobPost.ghId,
+      },
+    });
   }
 
   actions.createPage({

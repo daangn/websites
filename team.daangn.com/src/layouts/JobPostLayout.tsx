@@ -52,6 +52,7 @@ export const query = graphql`
 
     jobPost(id: { eq: $id }) {
       id
+      ghId
       title
       chapter
       corporate
@@ -60,8 +61,9 @@ export const query = graphql`
       externalUrl
       datePosted: updatedAt(formatString: "YYYY-MM-DD", locale: "ko")
       validThrough(formatString: "YYYY-MM-DD", locale: "ko")
-      viewPath: gatsbyPath(filePath: "/jobs/{JobPost.ghId}")
-      applyPath: gatsbyPath(filePath: "/jobs/{JobPost.ghId}/apply")
+      # Avoid File System Route API
+      # viewPath: gatsbyPath(filePath: "/jobs/{JobPost.ghId}")
+      # applyPath: gatsbyPath(filePath: "/jobs/{JobPost.ghId}/apply")
     }
   }
 `;
@@ -186,6 +188,8 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
   if (!prismicTeamContents?.data) {
     return <>{children}</>;
   }
+  const viewPath = `/jobs/${jobPost.ghId}/`;
+  const applyPath = `/jobs/${jobPost.ghId}/apply/`;
 
   const metaTitle = `${jobPost.title} | ${prismicTeamContents.data.jobs_page_meta_title}`;
   const metaDescription = prismicTeamContents.data.jobs_page_meta_description;
@@ -303,13 +307,13 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
           <TabItemList role="tablist">
             <TabItem key="jobpost-view">
               <TabLink
-                to={jobPost.viewPath!}
-                active={currentPath === jobPost.viewPath!}
+                to={viewPath}
+                active={currentPath === viewPath}
                 state={{ y: typeof window !== 'undefined' && window.scrollY }}
               >
                 영입정보
               </TabLink>
-              {currentPath === jobPost.viewPath && (
+              {currentPath === viewPath && (
                 <TabItemUnderline
                   layoutId="jobpost-tab-underline"
                   initial={false}
@@ -318,13 +322,13 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
             </TabItem>
             <TabItem key="jobpost-apply">
               <TabLink
-                to={jobPost.applyPath!}
-                active={currentPath === jobPost.applyPath}
+                to={applyPath}
+                active={currentPath === applyPath}
                 state={{ y: typeof window !== 'undefined' && window.scrollY }}
               >
                 지원하기
               </TabLink>
-              {currentPath === jobPost.applyPath && (
+              {currentPath === applyPath && (
                 <TabItemUnderline
                   layoutId="jobpost-tab-underline"
                   initial={false}
