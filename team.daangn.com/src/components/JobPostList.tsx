@@ -2,7 +2,6 @@ import * as React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { graphql, Link } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { Condition } from '@cometjs/core';
 import { useLinkParser, mapLink } from '@karrotmarket/gatsby-theme-website/src/link';
 
 import JobPostSummary from './JobPostSummary';
@@ -64,9 +63,7 @@ const JobPostList: React.FC<JobPostListProps> = ({
 }) => {
   const parseLink = useLinkParser();
 
-  const jobPosts = jobs.nodes
-    .map(job => job.childJobPost)
-    .filter(Condition.isTruthy);
+  const jobPosts = jobs.nodes;
 
   const orderedJobPosts = jobPosts 
     .sort((a, b) => b.order - a.order);
