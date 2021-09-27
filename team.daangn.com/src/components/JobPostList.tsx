@@ -21,7 +21,7 @@ export const query = graphql`
   fragment JobPostList_jobs on JobPostConnection {
     nodes {
       id
-      pagePath: gatsbyPath(filePath: "/jobs/{JobPost.parent__(GreenhouseJob)__ghId}")
+      pagePath: gatsbyPath(filePath: "/jobs/{JobPost.ghId}")
       externalUrl
       chapter
       order
