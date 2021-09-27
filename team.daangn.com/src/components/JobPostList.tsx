@@ -20,7 +20,9 @@ export const query = graphql`
   fragment JobPostList_jobs on JobPostConnection {
     nodes {
       id
-      pagePath: gatsbyPath(filePath: "/jobs/{JobPost.ghId}")
+      ghId
+      # Avoid File System Route API
+      # pagePath: gatsbyPath(filePath: "/jobs/{JobPost.ghId}")
       externalUrl
       chapter
       order
@@ -90,7 +92,7 @@ const JobPostList: React.FC<JobPostListProps> = ({
             {filteredJobPosts.map(jobPost => {
               const link = jobPost.externalUrl
                 ? parseLink(jobPost.externalUrl)
-                : parseLink(jobPost.pagePath!);
+                : parseLink(`/jobs/${jobPost.ghId}/`);
 
               return (
                 <FadeInWhenVisible key={jobPost.id}>
