@@ -2,7 +2,6 @@ import * as React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { graphql, Link } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { Condition } from '@cometjs/core';
 import { useLinkParser, mapLink } from '@karrotmarket/gatsby-theme-website/src/link';
 
 import JobPostSummary from './JobPostSummary';
@@ -18,17 +17,15 @@ type JobPostListProps = {
 };
 
 export const query = graphql`
-  fragment JobPostList_jobs on GreenhouseJobConnection {
+  fragment JobPostList_jobs on JobPostConnection {
     nodes {
-      childJobPost {
-        id
-        pagePath: gatsbyPath(filePath: "/jobs/{JobPost.parent__(GreenhouseJob)__ghId}")
-        externalUrl
-        chapter
-        order
-        employmentType
-        ...JobPostSummary_jobPost
-      }
+      id
+      pagePath: gatsbyPath(filePath: "/jobs/{JobPost.ghId}")
+      externalUrl
+      chapter
+      order
+      employmentType
+      ...JobPostSummary_jobPost
     }
   }
 `;
@@ -66,9 +63,7 @@ const JobPostList: React.FC<JobPostListProps> = ({
 }) => {
   const parseLink = useLinkParser();
 
-  const jobPosts = jobs.nodes
-    .map(job => job.childJobPost)
-    .filter(Condition.isTruthy);
+  const jobPosts = jobs.nodes;
 
   const orderedJobPosts = jobPosts 
     .sort((a, b) => b.order - a.order);
