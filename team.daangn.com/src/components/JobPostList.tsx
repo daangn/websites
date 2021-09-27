@@ -18,15 +18,17 @@ type JobPostListProps = {
 };
 
 export const query = graphql`
-  fragment JobPostList_jobs on JobPostConnection {
+  fragment JobPostList_jobs on GreenhouseJobConnection {
     nodes {
-      id
-      pagePath: gatsbyPath(filePath: "/jobs/{JobPost.ghId}")
-      externalUrl
-      chapter
-      order
-      employmentType
-      ...JobPostSummary_jobPost
+      childJobPost {
+        id
+        pagePath: gatsbyPath(filePath: "/jobs/{JobPost.parent__(GreenhouseJob)__ghId}")
+        externalUrl
+        chapter
+        order
+        employmentType
+        ...JobPostSummary_jobPost
+      }
     }
   }
 `;
