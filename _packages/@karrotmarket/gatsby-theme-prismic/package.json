@@ -38,7 +38,7 @@
     "@types/react": "17.0.24",
     "@types/react-dom": "17.0.9",
     "babel-preset-gatsby-package": "1.14.0",
-    "concurrently": "6.2.1",
+    "concurrently": "6.2.2",
     "gatsby": "next",
     "react": "experimental",
     "react-dom": "experimental",
