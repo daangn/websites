@@ -23,7 +23,7 @@
     "gatsby-theme-stitches": "1.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "7.15.4",
+    "@babel/cli": "7.15.7",
     "@babel/core": "7.15.5",
     "@stitches/react": "1.1.0",
     "@types/node": "15.14.5",
