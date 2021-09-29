@@ -15,8 +15,8 @@
   ],
   "resolutions": {
     "gatsby": "3.14.0",
-    "react": "18.0.0-alpha-edfe50510-20210823",
-    "react-dom": "18.0.0-alpha-edfe50510-20210823",
+    "react": "18.0.0-alpha-fd5e01c2e-20210913",
+    "react-dom": "18.0.0-alpha-fd5e01c2e-20210913",
     "schema-dts": "1.0.0",
     "webpack": "5.54.0",
     "@emotion/react": "11.4.1",

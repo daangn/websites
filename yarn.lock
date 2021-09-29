@@ -12251,14 +12251,14 @@ react-dev-utils@^11.0.3:
     strip-ansi "6.0.0"
     text-table "0.2.0"
 
-react-dom@18.0.0-alpha-edfe50510-20210823, react-dom@experimental, react-dom@next:
-  version "18.0.0-alpha-edfe50510-20210823"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.0.0-alpha-edfe50510-20210823.tgz#5a56f55d90c9b4578c97f98559c5dc0b2d35271a"
-  integrity sha512-AseRrDncRUdndWQIS26rWNaEd2OB0YcJznzUx8xJjNu/bbExEy4OQmZDVhMWsRJa7+0P+VtQNSFlvt8qtD3CGA==
+react-dom@18.0.0-alpha-fd5e01c2e-20210913, react-dom@experimental, react-dom@next:
+  version "18.0.0-alpha-fd5e01c2e-20210913"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.0.0-alpha-fd5e01c2e-20210913.tgz#4f09435d727a12fb2bc319daa43db313ac57e5a8"
+  integrity sha512-TC5tvZF9sspBjxETtTD7bKkc72drM9BIQvDI0GnSxIj4VKzq1i1aAJPZSdSKPOZ1kgqRrXWRFF5YTcgzOIC/Vw==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
-    scheduler "0.21.0-alpha-edfe50510-20210823"
+    scheduler "0.21.0-alpha-fd5e01c2e-20210913"
 
 react-error-overlay@^6.0.9:
   version "6.0.9"
@@ -12381,10 +12381,10 @@ react-text-loop@^2.3.0:
     react-fast-compare "2.0.4"
     react-motion "^0.5.2"
 
-react@18.0.0-alpha-edfe50510-20210823, react@experimental, react@next:
-  version "18.0.0-alpha-edfe50510-20210823"
-  resolved "https://registry.yarnpkg.com/react/-/react-18.0.0-alpha-edfe50510-20210823.tgz#11bfeb8f7f30994b9b0bd4f86e1bdda94a61f4d1"
-  integrity sha512-8YwjfY+TJQcq81sbZxnImdo79kEjzLlJl1GQhi8O6DYlJVRa0ynYkc7fnRGOYcQNjFvwGDJFYAs95XouJvbN3w==
+react@18.0.0-alpha-fd5e01c2e-20210913, react@experimental, react@next:
+  version "18.0.0-alpha-fd5e01c2e-20210913"
+  resolved "https://registry.yarnpkg.com/react/-/react-18.0.0-alpha-fd5e01c2e-20210913.tgz#3e67ccd4a41a187958788d416b6a19595b8669ab"
+  integrity sha512-SWeUmHARw0qSM8LcpGzpw3UbyCTVNcJTuCHmPIvgHMvZrs8R8wwk2nil5BQ+LZ8q0iNwwU0ilkLTWIqCQ5d44w==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -12908,10 +12908,10 @@ saxes@^5.0.1:
   dependencies:
     xmlchars "^2.2.0"
 
-scheduler@0.21.0-alpha-edfe50510-20210823:
-  version "0.21.0-alpha-edfe50510-20210823"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.21.0-alpha-edfe50510-20210823.tgz#c7cf608c356dd86b04cdc072b526cdfb44c12cb3"
-  integrity sha512-eATO6TfDNV4qYWWxPpXGcOUQ4B3AvOtd6K8DZuiTiiLOIbIRqgwyJSEccfeXKVmEap7+wYAY/MaI+mrdwYzCsg==
+scheduler@0.21.0-alpha-fd5e01c2e-20210913:
+  version "0.21.0-alpha-fd5e01c2e-20210913"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.21.0-alpha-fd5e01c2e-20210913.tgz#b44ab3a8bddc6ed85ab4ec656419544288be4616"
+  integrity sha512-ylcV55/U6e67/3tjL16ognZk14UX/J4/C1N0XLZjqKV+XYS0QSxdwin/kdqxueCCbDLh0xLroq/G2lVTbFHP0Q==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
