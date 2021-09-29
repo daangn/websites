@@ -1586,7 +1586,7 @@
     rimraf "^3.0.2"
     tar "^6.1.10"
 
-"@cometjs/core@1.2.0", "@cometjs/core@^1.2.0":
+"@cometjs/core@1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@cometjs/core/-/core-1.2.0.tgz#e8d4d6c5d3bc1c54a7f26b963a61d3828bccf7fe"
   integrity sha512-ydD6gWXIug6BxlAhAYxN5hYmeduIc4P1U789ooxzsNwFLaYhenYWEm5TnRawel1oKfcCHJl8LRKIN4yo5guVdA==
@@ -1598,7 +1598,7 @@
   dependencies:
     core-js "^3.6.5"
 
-"@cometjs/graphql-utils@1.1.0", "@cometjs/graphql-utils@^1.1.0":
+"@cometjs/graphql-utils@1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@cometjs/graphql-utils/-/graphql-utils-1.1.0.tgz#4c63edeab344b68ff49f3ab65f1e8f6bb9df3f47"
   integrity sha512-lT9g2MW5sh5WYC5uwFswnY0tCYPQn1J/B/EBOfyB+Q0a8GGz3O0U1sGqG15f1XxwAxSUYcjqaeJMtmHEoutMvA==
@@ -2634,12 +2634,12 @@
     "@babel/runtime" "^7.7.2"
     regenerator-runtime "^0.13.3"
 
-"@karrotmarket/design-token@0.1.8-3", "@karrotmarket/design-token@^0.1.8-3":
+"@karrotmarket/design-token@0.1.8-3":
   version "0.1.8-3"
   resolved "https://registry.yarnpkg.com/@karrotmarket/design-token/-/design-token-0.1.8-3.tgz#a6a5c4b557d8936f376619c74a6aa6c2a13e51b3"
   integrity sha512-52Bgus22xEZQf+2NHG7FNnhKbB1BM4Xxsx1jcIEoj23tpGYlhSpJfLSxXNvz2tkvpeFf4zg9Pisq9D58++RwWw==
 
-"@karrotmarket/react-stitches@0.1.1-1", "@karrotmarket/react-stitches@^0.1.1-1":
+"@karrotmarket/react-stitches@0.1.1-1":
   version "0.1.1-1"
   resolved "https://registry.yarnpkg.com/@karrotmarket/react-stitches/-/react-stitches-0.1.1-1.tgz#28595906498eb9a825df243a4a93186cbf9a5c3f"
   integrity sha512-KaM99i6zdw8jaZ4QxreGDR9f7HciDm+ZpKE9qCqM8VxwUjzRDFnEngnEPw7E1GTb6bNaY2EEi39uoTZdjUK0ug==
@@ -2851,15 +2851,15 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
+"@stitches/react@0.2.5":
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/@stitches/react/-/react-0.2.5.tgz#ad15b4e59ac2a0679542ba002d41253244be7dab"
+  integrity sha512-RDVn89kW0R/M4q4TdYvsJ7nckFndzRWGGFJnEHbIH9flOpahtNdPsrxVSsZSjFpxeVqCoOxKujlQjiyRrec1VA==
+
 "@stitches/react@1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@stitches/react/-/react-1.1.0.tgz#49342e085528d689b983682e112b79c5a0b0efb4"
   integrity sha512-g1XZsmB3tFL5i9aaBx0+P4C83j3vf/PEmLc5e9PlumE5c6q3zsdbbOVr4ZC52eGm4MCvM+2bbAJ++rtTUa6ahw==
-
-"@stitches/react@^0.2.5":
-  version "0.2.5"
-  resolved "https://registry.yarnpkg.com/@stitches/react/-/react-0.2.5.tgz#ad15b4e59ac2a0679542ba002d41253244be7dab"
-  integrity sha512-RDVn89kW0R/M4q4TdYvsJ7nckFndzRWGGFJnEHbIH9flOpahtNdPsrxVSsZSjFpxeVqCoOxKujlQjiyRrec1VA==
 
 "@svgr/babel-plugin-add-jsx-attribute@^5.4.0":
   version "5.4.0"
@@ -3670,7 +3670,7 @@ acorn@^8.0.0, acorn@^8.2.4, acorn@^8.4.1:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.4.1.tgz#56c36251fc7cabc7096adc18f05afe814321a28c"
   integrity sha512-asabaBSkEKosYKMITunzX177CXxQ4Q8BSSzMTKD+FefUhipQC70gfW5SiUDhYQ3vk8G+81HqQk7Fv9OXwwn9KA==
 
-adblock-detect-react@^1.0.4:
+adblock-detect-react@1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/adblock-detect-react/-/adblock-detect-react-1.0.4.tgz#55394ed906305202ce3edc42bacca573bb29ad65"
   integrity sha512-Xn/hG3gzn+6CUA6bIm1KDWRIOKXLMQk5p91XpWfHaJ5vzHj21XhaUEgdnqM5RXPPKXQbvL3aBwvnkWATnXLLFw==
@@ -7314,12 +7314,12 @@ gatsby-plugin-manifest@3.14.0:
     semver "^7.3.5"
     sharp "^0.29.0"
 
-gatsby-plugin-module-resolver@1.0.3, gatsby-plugin-module-resolver@^1.0.3:
+gatsby-plugin-module-resolver@1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-module-resolver/-/gatsby-plugin-module-resolver-1.0.3.tgz#d98d0b51b5b99aa40db3382f6b5c049ca3018f01"
   integrity sha512-MrE2JhDEiiZB6uLVJ0zpoZmHi36zkgGoNgBr9YQ4r6TUqayiNXU97NBhO87CRJQz8I4MaL6ZrOWjUdoHEXvndg==
 
-gatsby-plugin-next-seo@1.8.0, gatsby-plugin-next-seo@^1.8.0:
+gatsby-plugin-next-seo@1.8.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-next-seo/-/gatsby-plugin-next-seo-1.8.0.tgz#f19464e2382542630c622b37c6b1efe1feda26d0"
   integrity sha512-wu9lfYciWnlQVu2On7wWMYTTzCto4nDYLCW7Glu6XzOwyYnBCdYAumVG4C7ZRnwBYFs1spmvqAoGBPuosICCYw==
@@ -7382,7 +7382,7 @@ gatsby-plugin-react-helmet-async@1.2.0:
   resolved "https://registry.yarnpkg.com/gatsby-plugin-react-helmet-async/-/gatsby-plugin-react-helmet-async-1.2.0.tgz#43e0457586138ecb7cf23202708a7e0e3ead8dcb"
   integrity sha512-Uh5AuSZQUdrmzvuaanHkBf4tWw4GQnC56QLTxqxkXCscan+kJqSn+rfFpho5Auq/8j9QQQjimiAiH0rqQnDMVA==
 
-gatsby-plugin-robots-txt@1.6.10, gatsby-plugin-robots-txt@^1.6.10:
+gatsby-plugin-robots-txt@1.6.10:
   version "1.6.10"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-robots-txt/-/gatsby-plugin-robots-txt-1.6.10.tgz#b178efe3da65718a39d1acd2e5768f687b205cf0"
   integrity sha512-soQT765LF0J8/dfrZGFuA/ZB/JUyvt2nVyHEFLUMd/qxgiem9x0EOZquJPId78xDHYePMkxNCPk9UsLcTZdFZw==
@@ -7429,7 +7429,7 @@ gatsby-plugin-svgr@3.0.0-beta.0:
   resolved "https://registry.yarnpkg.com/gatsby-plugin-svgr/-/gatsby-plugin-svgr-3.0.0-beta.0.tgz#7e5315f51dae2663a447899322ea1487cef93dd6"
   integrity sha512-oALTh6VwO6l3khgC/vGr706aqt38EkXwdr6iXVei/auOKGxpCLEuDCQVal1a4SpYXdjHjRsEyab6bxaHL2lzsA==
 
-gatsby-plugin-typegen@2.2.4, gatsby-plugin-typegen@^2.2.4:
+gatsby-plugin-typegen@2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-typegen/-/gatsby-plugin-typegen-2.2.4.tgz#2d0724991dd3f8517cceb7facacf083f9294532d"
   integrity sha512-JWM4r5bv2wemCmBOzHKPaEwANvxl4fvtnyZw7XulhB1R3uMSDLsl1a0hPy27j23VdO5JROciZK0sqFgnweqJ4A==
@@ -7668,15 +7668,15 @@ gatsby-telemetry@^2.14.0:
     node-fetch "^2.6.1"
     uuid "3.4.0"
 
+gatsby-theme-stitches@0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/gatsby-theme-stitches/-/gatsby-theme-stitches-0.1.2.tgz#a2df32f7a59d62035b0232a47571a637577a87c6"
+  integrity sha512-/NhDlDVlPHLnP0J8nxFj/wUWRKr4nJX0Z6F8h1VmpWL+4xP8ndDHnQYO7FsS/K3S6PJg+/IyL4LN37ZV7o7nRw==
+
 gatsby-theme-stitches@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/gatsby-theme-stitches/-/gatsby-theme-stitches-1.0.0.tgz#a44e3d28eddafb0447c455106e0d8493bea3e285"
   integrity sha512-02Y0bvvxZGn8c5xdUpvg4wQ0Dvsn2DkC2K0WY2WtSej1oSBQtkAbGk6FJN6fJWUmyKuLHWddIeHxVboSqyW14g==
-
-gatsby-theme-stitches@^0.1.1:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/gatsby-theme-stitches/-/gatsby-theme-stitches-0.1.2.tgz#a2df32f7a59d62035b0232a47571a637577a87c6"
-  integrity sha512-/NhDlDVlPHLnP0J8nxFj/wUWRKr4nJX0Z6F8h1VmpWL+4xP8ndDHnQYO7FsS/K3S6PJg+/IyL4LN37ZV7o7nRw==
 
 gatsby-transformer-sharp@3.14.0:
   version "3.14.0"
@@ -12287,7 +12287,7 @@ react-focus-lock@^2.5.2:
     use-callback-ref "^1.2.5"
     use-sidecar "^1.0.5"
 
-react-helmet-async@1.1.2, react-helmet-async@^1.1.2:
+react-helmet-async@1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/react-helmet-async/-/react-helmet-async-1.1.2.tgz#653b7e6bbfdd239c5dcd6b8df2811c7a363b8334"
   integrity sha512-LTTzDDkyIleT/JJ6T/uqx7Y8qi1EuPPSiJawQY/nHHz0h7SPDT6HxP1YDDQx/fzcVxCqpWEEMS3QdrSrNkJYhg==
@@ -12367,12 +12367,12 @@ react-style-singleton@^2.1.0:
     invariant "^2.2.4"
     tslib "^1.0.0"
 
-react-swipeable@6.2.0, react-swipeable@^6.2.0:
+react-swipeable@6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/react-swipeable/-/react-swipeable-6.2.0.tgz#057271cb7a6fb4af9d2a3f6d80ccdf33e2f64d47"
   integrity sha512-nWQ8dEM8e/uswZLSIkXUsAnQmnX4MTcryOHBQIQYRMJFDpgDBSiVbKsz/BZVCIScF4NtJh16oyxwaNOepR6xSw==
 
-react-text-loop@^2.3.0:
+react-text-loop@2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/react-text-loop/-/react-text-loop-2.3.0.tgz#c4035b1f3fb8216b34ed93f3160025fc7b1af3b7"
   integrity sha512-tRLxdkhc1ojAICxERJNOWj3Ry7NIGmFQF4tR6cRVyL+5zVD+gj+8uGPvOgEBLuj2vmjTXLPvBMVVCnoAIy1+DA==
