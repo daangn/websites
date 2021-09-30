@@ -16,11 +16,11 @@
     "gatsby": "^2.25.0 || ^3.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "7.15.4",
+    "@babel/cli": "7.15.7",
     "@babel/core": "7.15.5",
-    "@types/node": "14.17.15",
-    "babel-preset-gatsby-package": "1.13.0",
-    "concurrently": "6.2.1",
+    "@types/node": "14.17.20",
+    "babel-preset-gatsby-package": "1.14.0",
+    "concurrently": "6.2.2",
     "gatsby": "next",
     "typescript": "4.4.3"
   }

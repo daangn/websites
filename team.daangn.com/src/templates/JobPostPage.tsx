@@ -17,7 +17,9 @@ export const query = graphql`
     ...DefaultLayout_query
     ...JobPostLayout_query
     jobPost(id: { eq: $id }) {
-      applyPath: gatsbyPath(filePath: "/jobs/{JobPost.parent__(GreenhouseJob)__ghId}/apply")
+      # Avoid File System Route API
+      ghId
+      # applyPath: gatsbyPath(filePath: "/jobs/{JobPost.ghId}/apply")
       content {
         ...JobPostContentSection_content
       }
@@ -73,7 +75,7 @@ const JobPostPage: React.FC<JobPostPageProps> = ({
       <ButtonContainer>
         <Button
           type="primary"
-          to={data.jobPost.applyPath!}
+          to={`/jobs/${data.jobPost.ghId}/apply/`}
           fullWidth={{ '@initial': true, '@sm': false }}
         >
           지원하기

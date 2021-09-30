@@ -16,18 +16,18 @@
     "html-entities": "2.3.2"
   },
   "devDependencies": {
-    "@babel/cli": "7.15.4",
+    "@babel/cli": "7.15.7",
     "@babel/core": "7.15.5",
     "@karrotmarket/gatsby-source-greenhouse-job-board": "*",
     "@types/common-tags": "1.8.1",
-    "@types/jest": "27.0.1",
-    "@types/node": "14.17.15",
-    "babel-jest": "27.2.0",
-    "babel-preset-gatsby-package": "1.13.0",
+    "@types/jest": "27.0.2",
+    "@types/node": "14.17.20",
+    "babel-jest": "27.2.3",
+    "babel-preset-gatsby-package": "1.14.0",
     "common-tags": "1.8.0",
-    "concurrently": "6.2.1",
+    "concurrently": "6.2.2",
     "gatsby": "next",
-    "jest": "27.2.0",
+    "jest": "27.2.3",
     "typescript": "4.4.3"
   }
 }
