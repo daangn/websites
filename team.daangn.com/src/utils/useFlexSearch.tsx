@@ -23,7 +23,7 @@ export const useFlexSearch = (query?: string) => {
   }, [staticData.localSearchJobPosts.publicIndexURL]);
   useEffect(() => {
     if (query) {
-      const results = flexIndex?.[0].flatMap((entities) => entities[query] || []);
+      const results = flexIndex?.[0].flatMap((entities) => entities[query.toLocaleLowerCase()] || []);
       setSearchResult(Array.from(new Set(results)));
     } else {
       setSearchResult(undefined);

@@ -163,7 +163,7 @@ const config: GatsbyConfig = {
             for (const word of wordSet) {
               const syllables = disassembleHangul(word);
               for (let i = 0; i < syllables.length; i++) {
-                const token = assembleHangul(syllables.slice(0, i + 1));
+                const token = assembleHangul(syllables.slice(0, i + 1)).toLocaleLowerCase();
                 tokens.push(token);
               }
             }
