@@ -6,7 +6,7 @@ import banner_pc_webp from '~/image/img_cover_pc.webp'
 
 import advertisementMobileBanner from "~/image/img_cover_mobile.png";
 import advertisementPcBanner from "~/image/img_cover_pc.png";
-import advertisementMobileBanner from "~/image/img_cover_mobile.png";
+
 import { styled } from "gatsby-theme-stitches/src/stitches.config";
 import { DownloadButton } from "~/components/molecules/DownloadButton";
 import { rem, em } from "polished";
