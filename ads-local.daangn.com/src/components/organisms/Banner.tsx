@@ -4,6 +4,7 @@ import banner_webp from '~/image/img_cover_mobile.webp'
 import banner_pc_avif from '~/image/img_cover_pc.avif'
 import banner_pc_webp from '~/image/img_cover_pc.webp'
 
+import advertisementMobileBanner from "~/image/img_cover_mobile.png";
 import advertisementPcBanner from "~/image/img_cover_pc.png";
 import advertisementMobileBanner from "~/image/img_cover_mobile.png";
 import { styled } from "gatsby-theme-stitches/src/stitches.config";
