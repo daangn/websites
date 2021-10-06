@@ -4,8 +4,8 @@ import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { GatsbySeo } from 'gatsby-plugin-next-seo';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
+import { ReactComponent as DaangniThanks } from '~/assets/daangni_thanks.svg';
 import DefaultLayout from '~/layouts/DefaultLayout';
 import ButtonLink from '~/components/Button';
 
@@ -15,14 +15,6 @@ export const query = graphql`
   query CompletedPage {
     prismicTeamContents {
       data {
-        completed_page_illustration {
-          alt
-          localFile {
-            childImageSharp {
-              gatsbyImageData(quality: 90, width: 150)
-            }
-          }
-        }
         completed_page_message {
           html
         }
@@ -57,7 +49,7 @@ const Container = styled('div', {
   justifyContent: 'center',
 });
 
-const Illustration = styled(GatsbyImage, {
+const Illustration = styled(DaangniThanks, {
   margin: '0 auto',
   width: rem(150),
 });
@@ -81,11 +73,6 @@ const Contact = styled('div', {
 });
 
 const CompletedPage: React.FC<CompletedPageProps> = ({ ...pageProps }) => {
-  const illustration =
-    pageProps.data.prismicTeamContents?.data?.completed_page_illustration;
-  const illustrationImage =
-    illustration?.localFile?.childImageSharp?.gatsbyImageData &&
-    getImage(illustration?.localFile?.childImageSharp?.gatsbyImageData);
   const messageContentsHtml =
     pageProps.data.prismicTeamContents?.data?.completed_page_message?.html;
   const contractHtml =
@@ -96,10 +83,7 @@ const CompletedPage: React.FC<CompletedPageProps> = ({ ...pageProps }) => {
     <DefaultLayout {...pageProps}>
       <GatsbySeo noindex nofollow />
       <Container>
-        {illustration && illustrationImage && illustration.alt && (
-          <Illustration image={illustrationImage} alt={illustration.alt} />
-        )}
-        {/* <Illustration /> */}
+        <Illustration />
         <MessageContainer>
           <Message dangerouslySetInnerHTML={{ __html: messageContentsHtml }} />
           <Contact>

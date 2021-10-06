@@ -827,17 +827,6 @@
     }
   },
   "Apply Completed" : {
-    "completed_page_illustration" : {
-      "type" : "Image",
-      "config" : {
-        "constraint" : {
-          "width" : 500,
-          "height" : 500
-        },
-        "thumbnails" : [ ],
-        "label" : "illustration"
-      }
-    },
     "completed_page_message" : {
       "type" : "StructuredText",
       "config" : {
