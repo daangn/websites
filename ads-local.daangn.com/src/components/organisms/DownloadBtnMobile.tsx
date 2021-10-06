@@ -6,14 +6,11 @@ import { rem } from "polished";
 export const DownloadBtnMobile: React.FC = () => {
   return (
     <Wrapper>
-      <a
+      <Button
         href="https://daangn.onelink.me/oWdR/4e25da2f?af_dp=karrot%3A%2F%2Fminikarrot%2Frouter%3Fapp%3Dhttps%3A%2F%2Fwebview.prod.kr.karrotmarket.com%2Fkotisaari%26path%3D%2Fadvertisements%3Freferral%3Dshare.product.detail%26navbar%3Dfalse%26scrollable%3Dfalse&af_ios_url=karrot%3A%2F%2Fminikarrot%2Frouter%3Fapp%3Dhttps%3A%2F%2Fwebview.prod.kr.karrotmarket.com%2Fkotisaari%26path%3D%2Fadvertisements%3Freferral%3Dshare.product.detail%26navbar%3Dfalse%26scrollable%3Dfalse&af_android_url=karrot://minikarrot/router?app=https://webview.prod.kr.karrotmarket.com/kotisaari&path=/advertisements?referral=share.product.detail&navbar=false&scrollable=false"
-        style={{textDecoration: 'none', color: 'inherit'}}
       >
-        <Button>
-          당근마켓 앱 다운로드
-        </Button>
-      </a>
+        당근마켓 앱 다운로드
+      </Button>
     </Wrapper>
   );
 };
@@ -30,7 +27,7 @@ const Wrapper = styled("div", {
   },
 });
 
-const Button = styled("div", {
+const Button = styled("a", {
   display: "flex",
 
   flexDirection: "row",
@@ -45,6 +42,7 @@ const Button = styled("div", {
   color: "$white",
   fontSize: 16,
   fontWeight: "bold",
+  textDecoration: 'none',
 
   "&:hover": {
     backgroundColor: "$carrot600",
