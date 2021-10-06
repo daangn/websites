@@ -2130,6 +2130,26 @@
     ramda "^0.27.1"
     read-pkg-up "^7.0.1"
 
+"@imgix/gatsby@^1.6.13":
+  version "1.6.13"
+  resolved "https://registry.yarnpkg.com/@imgix/gatsby/-/gatsby-1.6.13.tgz#5c6436c75e5cc567a410498c363e566dc35bfd2b"
+  integrity sha512-aPnnvL7UXcGnRaNAFHl45+P6kAuRUPNQjtIKvxNCUDKaOXZCttCg0ujteX5NVTmOnI30V9MXf9GOaKmKYMTzzQ==
+  dependencies:
+    "@imgix/js-core" "3.1.3"
+    camel-case "^4.1.2"
+    common-tags "^1.8.0"
+    debug "^4.3.1"
+    fp-ts "^2.9.3"
+    fp-ts-contrib "^0.1.18"
+    graphql-compose "^7.25.0"
+    imgix-url-params "^11.11.2"
+    io-ts "^2.2.13"
+    io-ts-reporters "^1.2.2"
+    jsuri "^1.3.1"
+    node-fetch "^2.6.0"
+    ramda "^0.27.1"
+    read-pkg-up "^7.0.1"
+
 "@imgix/js-core@3.1.3":
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/@imgix/js-core/-/js-core-3.1.3.tgz#9c26366f84f59e6c238c41455f45aacdf04862b7"
@@ -2721,6 +2741,15 @@
     "@prismicio/types" "^0.1.2"
     escape-html "^1.0.3"
 
+"@prismicio/helpers@^2.0.0-beta.0":
+  version "2.0.0-beta.0"
+  resolved "https://registry.yarnpkg.com/@prismicio/helpers/-/helpers-2.0.0-beta.0.tgz#493d07f81bde06d76928af94e99672ac9f429962"
+  integrity sha512-2WLXcS9Q/8JU7maNo/3cUSsUKnjUMpuZTxVxCSaDxDcBACrXR3T2nSJKvzcO5jS5zzpAkJG6zCdjP3dQVRwPmw==
+  dependencies:
+    "@prismicio/richtext" "^2.0.0-beta"
+    "@prismicio/types" "^0.1.13"
+    escape-html "^1.0.3"
+
 "@prismicio/richtext@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@prismicio/richtext/-/richtext-1.1.0.tgz#c8769c3d953ae42854a2aba951e3b2121682b8c7"
@@ -2732,6 +2761,18 @@
   integrity sha512-rbajLxwTEI1yH/P3xF0etZJh9Hdt6apuaecpPAmz5nFdqnZPmfMBxjVw+ywTbQBxcub4fgmvblcjYPw2sxUxKg==
   dependencies:
     "@prismicio/types" "^0.1.2"
+
+"@prismicio/richtext@^2.0.0-beta":
+  version "2.0.0-beta.0"
+  resolved "https://registry.yarnpkg.com/@prismicio/richtext/-/richtext-2.0.0-beta.0.tgz#f653c75b69d40619236b6b4f968662e5f5f32e57"
+  integrity sha512-C1VAyJyzKqxpqB4qL0PRNCiYZSifirvbK3PsvberupR59J3oswZegy9DlZprV1pGBoaUaDz+/OTPNBX94q3uqw==
+  dependencies:
+    "@prismicio/types" "^0.1.13"
+
+"@prismicio/types@^0.1.13":
+  version "0.1.14"
+  resolved "https://registry.yarnpkg.com/@prismicio/types/-/types-0.1.14.tgz#acfbf222617e57a20d58443c298a7bfa4c6e4cce"
+  integrity sha512-48SiWHj6TNRXQRNw1Cxd4IYb4JD6Tw6xAchvkWdzHM6O5jjvASpjRbsPI0hwhjXSaJy018UQzk1VXE6H/wYrYQ==
 
 "@prismicio/types@^0.1.2":
   version "0.1.4"
@@ -7333,15 +7374,15 @@ gatsby-plugin-preload-fonts@2.14.0:
     progress "^2.0.3"
     puppeteer "^3.3.0"
 
-gatsby-plugin-prismic-previews@4.1.3:
-  version "4.1.3"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-prismic-previews/-/gatsby-plugin-prismic-previews-4.1.3.tgz#06cf07db735847902ba1bfeb9fd274125f820857"
-  integrity sha512-sFfUL9SV6IEaBvX/MOM1DQXbGlQ/BMoanO3BttYYUwS12dVA2dk4ZbkRJ9i5m/Wq0G7I8jxj2ojlOVmA4+vW2A==
+gatsby-plugin-prismic-previews@4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-prismic-previews/-/gatsby-plugin-prismic-previews-4.2.0.tgz#d6fc2329320698510ac2102bcd400ee170f70f4d"
+  integrity sha512-ZLXrrRdslCzMWODl8KkTxoVMsxTvHqcqdgyxrvgNPhvTiHGR2+LD8b6QgSqHp5QY2nxwKWCL9l0bx7xl3EGTsQ==
   dependencies:
-    "@imgix/gatsby" "^1.6.11"
+    "@imgix/gatsby" "^1.6.13"
     "@prismicio/client" "6.0.0-alpha.8"
-    "@prismicio/helpers" "^2.0.0-alpha.4"
-    "@prismicio/types" "^0.1.6"
+    "@prismicio/helpers" "^2.0.0-beta.0"
+    "@prismicio/types" "^0.1.13"
     "@reach/dialog" "^0.16.0"
     camel-case "^4.1.2"
     clsx "^1.1.1"
