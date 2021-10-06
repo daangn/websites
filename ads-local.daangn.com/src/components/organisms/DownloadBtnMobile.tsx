@@ -7,7 +7,7 @@ export const DownloadBtnMobile: React.FC = () => {
 
   return (
     <Wrapper>
-      <Button onClick={()=>window.open("https://display-ads-web.onelink.me/E4bl/590e9ee1", "_blank")}>당근마켓 앱 다운로드</Button>
+      <Button onClick={()=>window.open("https://daangn.onelink.me/oWdR/4e25da2f", "_blank")}>당근마켓 앱 다운로드</Button>
     </Wrapper>
   );
 };
