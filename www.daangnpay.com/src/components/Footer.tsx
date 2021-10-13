@@ -8,9 +8,9 @@ const Footer: FC = () => {
       <List>
         <Item>사업자등록번호 : 809-87-02070 | 대표 : 김재현</Item>
         <Item>주소 : 서울특별시 서초구 강남대로 465, 교보강남타워 10층</Item>
+        <Item>통신판매업 신고번호 : 2021-서울서초-3607</Item>
         <Item>문의 : contact@daangnpay.com</Item>
         <Item>호스팅 서비스 : (주)당근페이</Item>
-        {/* <Item>통신판매업 신고번호 : 2021-서울강남-00000</Item> */}
       </List>
     </Wrapper>
   );
