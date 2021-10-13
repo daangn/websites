@@ -75,9 +75,9 @@
   },
   "devDependencies": {
     "@babel/cli": "7.15.7",
-    "@babel/core": "7.15.5",
+    "@babel/core": "7.15.8",
     "@babel/plugin-transform-react-jsx": "7.14.9",
-    "@babel/plugin-transform-typescript": "7.15.4",
+    "@babel/plugin-transform-typescript": "7.15.8",
     "@cloudflare/workers-types": "2.2.2",
     "@cloudflare/wrangler": "1.19.3",
     "@prismicio/helpers": "1.0.5",
