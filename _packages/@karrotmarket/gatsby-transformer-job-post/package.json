@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@babel/cli": "7.15.7",
-    "@babel/core": "7.15.5",
+    "@babel/core": "7.15.8",
     "@karrotmarket/gatsby-source-greenhouse-job-board": "*",
     "@types/common-tags": "1.8.1",
     "@types/jest": "27.0.2",
