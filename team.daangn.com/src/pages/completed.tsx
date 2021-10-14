@@ -71,6 +71,11 @@ const Contact = styled('div', {
     marginRight: rem(5),
   },
 });
+const ButtonLinkGroup = styled('div',{
+  display: 'flex',
+  flexDirection: 'column',
+  gap: rem(1),
+})
 
 const CompletedPage: React.FC<CompletedPageProps> = ({ ...pageProps }) => {
   const messageContentsHtml =
@@ -91,21 +96,23 @@ const CompletedPage: React.FC<CompletedPageProps> = ({ ...pageProps }) => {
             <div dangerouslySetInnerHTML={{ __html: contractHtml }} />
           </Contact>
         </MessageContainer>
-        {LinkItems?.map(
-          (link) =>
-            link?.primary?.link_button_src?.url &&
-            link?.primary?.completed_page_link_display_title && (
-              <ButtonLink
-                key={link?.id}
-                to={link?.primary?.link_button_src.url}
-                type={link?.primary.link_button_highlight ? 'primary' : 'default'}
-                fullWidth={{ '@sm': true }}
-                dangerouslySetInnerHTML={{
-                  __html: link?.primary?.completed_page_link_display_title.html,
-                }}
-              />
-            )
-        )}
+        <ButtonLinkGroup>
+          {LinkItems?.map(
+            (link) =>
+              link?.primary?.link_button_src?.url &&
+              link?.primary?.completed_page_link_display_title && (
+                <ButtonLink
+                  key={link?.id}
+                  to={link?.primary?.link_button_src.url}
+                  type={link?.primary.link_button_highlight ? 'primary' : 'default'}
+                  fullWidth={{ '@sm': true }}
+                  dangerouslySetInnerHTML={{
+                    __html: link?.primary?.completed_page_link_display_title.html,
+                  }}
+                />
+              )
+          )}
+        </ButtonLinkGroup>
       </Container>
     </DefaultLayout>
   );
