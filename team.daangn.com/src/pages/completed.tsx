@@ -74,7 +74,7 @@ const Contact = styled('div', {
 const ButtonLinkGroup = styled('div',{
   display: 'flex',
   flexDirection: 'column',
-  gap: rem(1),
+  gap: rem(16),
 })
 
 const CompletedPage: React.FC<CompletedPageProps> = ({ ...pageProps }) => {
