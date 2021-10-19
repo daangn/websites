@@ -1,16 +1,15 @@
 import type { NodePluginArgs } from 'gatsby';
-
-import type { GreenhouseJobNode } from './types';
+import type { GreenhouseJobBoardJobNode } from '@karrotmarket/gatsby-source-greenhouse-jobboard/types';
 
 interface FieldParser<FieldType> {
   (
-    node: GreenhouseJobNode,
+    node: GreenhouseJobBoardJobNode,
     context: NodePluginArgs,
   ): FieldType | undefined;
 }
 
 function findMetadataById<T extends string | number | null = string | number | null>(
-  node: GreenhouseJobNode,
+  node: GreenhouseJobBoardJobNode,
   id: number,
 ) {
   const metadata = node.metadata.find(v => v.id === id);
