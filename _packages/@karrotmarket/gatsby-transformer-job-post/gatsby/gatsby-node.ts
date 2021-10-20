@@ -28,15 +28,17 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
 
   actions.createTypes(gql`
     # 이건 assertion이 안되네
-    type GreenhouseJob implements Node {
+    type GreenhouseJobBoardJob implements Node {
       childJobPost: JobPost!
     }
 
     type JobPost implements Node
       @dontInfer
-      @childOf(types: ["GreenhouseJob"])
+      @childOf(types: ["GreenhouseJobBoardJob"])
     {
       ghId: String!
+
+      parentJob: GreenhouseJobBoardJob! @link(from: "parent")
 
       updatedAt: Date! @dateformat
 
@@ -141,7 +143,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = (ctx,options) => {
     const fieldParser = greenhouseJobCustomFieldParser;
 
     const nodeSource = {
-      id: createNodeId(`GreenhouseJob:${node.id} >>> JobPost`),
+      id: createNodeId(`GreenhouseJobBoardJob:${node.id} >>> JobPost`),
       updatedAt: node.updated_at,
       ghId: node.ghId.toString(),
       title: node.title,

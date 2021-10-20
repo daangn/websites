@@ -2729,6 +2729,14 @@
   resolved "https://registry.yarnpkg.com/@karrotmarket/design-token/-/design-token-0.1.8-3.tgz#a6a5c4b557d8936f376619c74a6aa6c2a13e51b3"
   integrity sha512-52Bgus22xEZQf+2NHG7FNnhKbB1BM4Xxsx1jcIEoj23tpGYlhSpJfLSxXNvz2tkvpeFf4zg9Pisq9D58++RwWw==
 
+"@karrotmarket/gatsby-source-greenhouse-jobboard@0.3.0", "@karrotmarket/gatsby-source-greenhouse-jobboard@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@karrotmarket/gatsby-source-greenhouse-jobboard/-/gatsby-source-greenhouse-jobboard-0.3.0.tgz#709d55f25f6afd9d26ba23d43f4c9c8dcf06c352"
+  integrity sha512-FMOxJ1AzFgastSKjVb63YWUrpgIRJzOqBhDymfF1rlrtyJGCYfqmCU0n6EVGQGAkFrKNmgs61oaRVMvn5GG51g==
+  dependencies:
+    got "^11.8.2"
+    greenhouse-jobboard-js "^0.2.0"
+
 "@karrotmarket/react-stitches@0.1.1-1":
   version "0.1.1-1"
   resolved "https://registry.yarnpkg.com/@karrotmarket/react-stitches/-/react-stitches-0.1.1-1.tgz#28595906498eb9a825df243a4a93186cbf9a5c3f"
@@ -8279,6 +8287,11 @@ graphql@^15.4.0:
   version "15.5.1"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-15.5.1.tgz#f2f84415d8985e7b84731e7f3536f8bb9d383aad"
   integrity sha512-FeTRX67T3LoE3LWAxxOlW2K3Bz+rMYAC18rRguK4wgXaTZMiJwSUwDmPFo3UadAKbzirKIg5Qy+sNJXbpPRnQw==
+
+greenhouse-jobboard-js@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/greenhouse-jobboard-js/-/greenhouse-jobboard-js-0.2.0.tgz#bc55831aa45e6e24ccad1fbef4822331484b2d98"
+  integrity sha512-xLWSTksMV1ooaUnpNA3Sw1FUW8GkCObWE6gdJduY07jL5hYr2WIsyTfcE3mrGgWENpZTHNh7/ZGoN8dD/bDJ1A==
 
 gud@^1.0.0:
   version "1.0.0"

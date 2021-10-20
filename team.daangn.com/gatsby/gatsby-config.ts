@@ -4,6 +4,8 @@ import {disassemble as disassembleHangul, assemble as assembleHangul} from 'hang
 import dotenv from 'dotenv-safe';
 dotenv.config();
 
+const gql = String.raw;
+
 export const siteMetadata = {
   siteUrl: 'https://team.daangn.com',
   siteName: '당근마켓 팀',
@@ -149,12 +151,12 @@ const config: GatsbyConfig = {
       },
     },
     {
-      resolve: "gatsby-plugin-local-search",
+      resolve: 'gatsby-plugin-local-search',
       options: {
-        name: "jobPosts",
-        engine: "flexsearch",
+        name: 'jobPosts',
+        engine: 'flexsearch',
         engineOptions: {
-          tokenize: (str)=>{
+          tokenize: str => {
             const index = JSON.parse(str)
             const specialCharactersRegex = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g
             const splitTitle = index.title.replace(specialCharactersRegex,"").trim().split(/\s/)
@@ -171,31 +173,19 @@ const config: GatsbyConfig = {
             return tokens
           }
         },
-        query: `
-        {
-          allGreenhouseJob {
-            edges {
-              node {
-                title
-                childrenJobPost {
-                  id
-                  keywords
-                }
-              }
+        query: gql`{
+          allJobPost {
+            nodes {
+              id
+              title
+              keywords
             }
           }
-        }
-      `,
-        ref: "id",
-
-        index: ["title", "keywords"],
-        store: ["id", "title", "keywords"],
-        normalizer: ({ data }) =>
-          data.allGreenhouseJob.edges.map(({ node }) => ({
-            id: node.childrenJobPost[0].id,
-            title: node.title,
-            keywords: node.childrenJobPost[0].keywords,
-          })),
+        }`,
+        ref: 'id',
+        index: ['title', 'keywords'],
+        store: ['id', 'title', 'keywords'],
+        normalizer: ({ data }) => data.allJobPost.nodes,
       },
     },
 
@@ -203,26 +193,23 @@ const config: GatsbyConfig = {
     '@karrotmarket/gatsby-theme-prismic',
     '@karrotmarket/gatsby-theme-website',
     {
-      resolve: '@karrotmarket/gatsby-source-greenhouse-job-board',
+      resolve: '@karrotmarket/gatsby-source-greenhouse-jobboard',
       options: {
         boardToken: 'daangn',
-        includeContent: true,
         forceGC: true,
       },
     },
     {
-      resolve: '@karrotmarket/gatsby-source-greenhouse-job-board',
+      resolve: '@karrotmarket/gatsby-source-greenhouse-jobboard',
       options: {
         boardToken: 'daangnmvp',
-        includeContent: true,
         forceGC: true,
       },
     },
     {
-      resolve: '@karrotmarket/gatsby-source-greenhouse-job-board',
+      resolve: '@karrotmarket/gatsby-source-greenhouse-jobboard',
       options: {
         boardToken: 'daangntest',
-        includeContent: true,
         forceGC: true,
       },
     },
@@ -231,9 +218,9 @@ const config: GatsbyConfig = {
       options: {
         defaultTags:{
           'daangnmvp': ["MVP"],
-          'daangntest': ["사전지원"]
-        }
-      }
+          'daangntest': ["사전지원"],
+        },
+      },
     },
 //    'gatsby-plugin-prismic-schema',
   ],

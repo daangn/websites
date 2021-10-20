@@ -1,18 +1,6 @@
 import type { Node } from 'gatsby';
-import type { GreenhouseJob } from '@karrotmarket/gatsby-source-greenhouse-job-board/types';
+import type { GreenhouseJobBoardJobNode } from '@karrotmarket/gatsby-source-greenhouse-jobboard/types';
 
-export type GreenhouseJobNode = (
-  & Node
-  & Omit<GreenhouseJob, 'id'>
-  & {
-    ghId: number,
-    boardToken: string,
-    internal: {
-      type: 'GreenhouseJob',
-    },
-  }
-);
-
-export function isGreenhouseJobNode(node: Node): node is GreenhouseJobNode {
-  return node.internal.type === 'GreenhouseJob';
+export function isGreenhouseJobNode(node: Node): node is GreenhouseJobBoardJobNode {
+  return node.internal.type === 'GreenhouseJobBoardJob';
 }
