@@ -1,16 +1,16 @@
 import React from "react";
-import { styled } from "~/gatsby-theme-stitches/stitches.config";
+import { styled } from "~/gatsby-theme-stitches/config";
 import { rem } from "polished";
 import { useSwipeable } from "react-swipeable";
 import { ArrowLink } from "~/components/molecules/ArrowLink";
 
-import tensoba from "~/image/tensoba.jpg"
-import meltingDog from "~/image/meltingDog.jpg"
-import jjinijjini from "~/image/jjinijjini.jpg"
+import tensoba from "~/image/tensoba.jpg";
+import meltingDog from "~/image/meltingDog.jpg";
+import jjinijjini from "~/image/jjinijjini.jpg";
 
-import tensoba_m from "~/image/tensoba_m.jpg"
-import meltingDog_m from "~/image/meltingDog_m.jpg"
-import jjinijjini_m from "~/image/jjinijjini_m.jpg"
+import tensoba_m from "~/image/tensoba_m.jpg";
+import meltingDog_m from "~/image/meltingDog_m.jpg";
+import jjinijjini_m from "~/image/jjinijjini_m.jpg";
 
 type SlideItemProps = {
   picture: any;
@@ -116,28 +116,31 @@ export const UserQuoteCarousel: React.FC = () => {
           {items.map((item, index) => {
             return (
               <div key={index}>
-                <CarouselItemWrapperDesktop css={{
+                <CarouselItemWrapperDesktop
+                  css={{
                     backgroundImage: `url(${item.picture})`,
                     backgroundSize: "cover",
-                    
+
                     "@md": {
                       backgroundPosition: "center 50%",
-                    }
-                  }}>
+                    },
+                  }}
+                >
                   <QuoteContainer>
                     <div>
                       {item.talk.map((str, idx) => {
                         return <Quote key={idx}>{str}</Quote>;
                       })}
                       <ByRow>
-                        <a href={item.link} style={{textDecoration: 'none'}} target="_blank">
+                        <a
+                          href={item.link}
+                          style={{ textDecoration: "none" }}
+                          target="_blank"
+                        >
                           <By>{item.story}</By>
                         </a>
                         <div style={{ marginLeft: rem(8) }}>
-                          <ArrowLink
-                            target={item.link}
-                            color={"white"}
-                          />
+                          <ArrowLink target={item.link} color={"white"} />
                         </div>
                       </ByRow>
                     </div>
@@ -158,19 +161,18 @@ export const UserQuoteCarousel: React.FC = () => {
           {itemsMobile.map((item, index) => {
             return (
               <div key={index}>
-                <CarouselItemWrapperMobile css={{
-                  backgroundImage: `url(${item.picture})`,
-                  backgroundSize: "cover",
-                }}>
+                <CarouselItemWrapperMobile
+                  css={{
+                    backgroundImage: `url(${item.picture})`,
+                    backgroundSize: "cover",
+                  }}
+                >
                   <QuoteContainer>
                     <Quote>{item.talk[0]}</Quote>
                     <ByRow>
                       <By>{item.story}</By>
                       <div style={{ marginLeft: rem(8) }}>
-                        <ArrowLink
-                          target={item.link}
-                          color={"white"}
-                        />
+                        <ArrowLink target={item.link} color={"white"} />
                       </div>
                     </ByRow>
                   </QuoteContainer>
@@ -262,13 +264,11 @@ const Quote = styled("p", {
     paddingX: 0,
   },
 
-  
   "@xl": {
     typography: "$subtitle2",
     lineHeight: rem(39),
     paddingX: 0,
-  }
-
+  },
 });
 
 const ByRow = styled("div", {
@@ -278,15 +278,14 @@ const ByRow = styled("div", {
   marginTop: rem(14),
 
   "@md": {
-    marginTop: rem(24)
-  }
+    marginTop: rem(24),
+  },
 });
 
 const By = styled("p", {
   typography: "$body3",
   color: "$white",
   paddingLeft: rem(24),
-
 
   "@md": {
     typography: "$body2",
@@ -311,7 +310,6 @@ const Dots = styled("div", {
   position: "absolute",
   width: "100%",
   bottom: rem(32),
-  
 
   // marginTop: rem(-32),
   // '@lg': {

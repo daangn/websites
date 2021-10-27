@@ -2963,15 +2963,15 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@stitches/react@0.2.5":
-  version "0.2.5"
-  resolved "https://registry.yarnpkg.com/@stitches/react/-/react-0.2.5.tgz#ad15b4e59ac2a0679542ba002d41253244be7dab"
-  integrity sha512-RDVn89kW0R/M4q4TdYvsJ7nckFndzRWGGFJnEHbIH9flOpahtNdPsrxVSsZSjFpxeVqCoOxKujlQjiyRrec1VA==
-
 "@stitches/react@1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@stitches/react/-/react-1.1.0.tgz#49342e085528d689b983682e112b79c5a0b0efb4"
   integrity sha512-g1XZsmB3tFL5i9aaBx0+P4C83j3vf/PEmLc5e9PlumE5c6q3zsdbbOVr4ZC52eGm4MCvM+2bbAJ++rtTUa6ahw==
+
+"@stitches/react@^1.2.5":
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/@stitches/react/-/react-1.2.5.tgz#2353343c220f0c59ba388a26fdd9ff7962cb6031"
+  integrity sha512-95Wwjp5cvoYQjg616OBiHZM1PnIF51pnFQIgSPxPzS/xXBrer9sNO1tfpVfLYfOifvuotse2IFNbypJ92BXzvg==
 
 "@svgr/babel-plugin-add-jsx-attribute@^5.4.0":
   version "5.4.0"
@@ -7766,12 +7766,7 @@ gatsby-telemetry@^2.14.0:
     node-fetch "^2.6.1"
     uuid "3.4.0"
 
-gatsby-theme-stitches@0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/gatsby-theme-stitches/-/gatsby-theme-stitches-0.1.2.tgz#a2df32f7a59d62035b0232a47571a637577a87c6"
-  integrity sha512-/NhDlDVlPHLnP0J8nxFj/wUWRKr4nJX0Z6F8h1VmpWL+4xP8ndDHnQYO7FsS/K3S6PJg+/IyL4LN37ZV7o7nRw==
-
-gatsby-theme-stitches@1.0.0:
+gatsby-theme-stitches@1.0.0, gatsby-theme-stitches@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/gatsby-theme-stitches/-/gatsby-theme-stitches-1.0.0.tgz#a44e3d28eddafb0447c455106e0d8493bea3e285"
   integrity sha512-02Y0bvvxZGn8c5xdUpvg4wQ0Dvsn2DkC2K0WY2WtSej1oSBQtkAbGk6FJN6fJWUmyKuLHWddIeHxVboSqyW14g==

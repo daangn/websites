@@ -1,13 +1,13 @@
 import React, { ChangeEvent } from "react";
 import { graphql } from "gatsby";
-import { styled } from "gatsby-theme-stitches/src/stitches.config";
+import { styled } from "~/gatsby-theme-stitches/config";
 import { Condition } from "@cometjs/core";
 import { rem } from "polished";
 import TextLoop from "react-text-loop";
 
 type VisitorsProps = {
-  data: GatsbyTypes.PrismicAdvertisementContentsDataBodyVisitorCountSlide_dataFragment,
-}
+  data: GatsbyTypes.PrismicAdvertisementContentsDataBodyVisitorCountSlide_dataFragment;
+};
 
 export const fragment = graphql`
   fragment PrismicAdvertisementContentsDataBodyVisitorCountSlide_data on PrismicAdvertisementContentsDataBodyVisitorCountSlide {
@@ -21,17 +21,14 @@ export const fragment = graphql`
   }
 `;
 
-export const Visitors: React.FC<VisitorsProps> = ({
-  data,
-}) => {
-  const intl = new Intl.NumberFormat('ko');
-  const regions = data.items?.map((item)=>item!.region)
-  const visitors = data.items?.map((item)=>intl.format(item!.visitor_count!))
+export const Visitors: React.FC<VisitorsProps> = ({ data }) => {
+  const intl = new Intl.NumberFormat("ko");
+  const regions = data.items?.map((item) => item!.region);
+  const visitors = data.items?.map((item) => intl.format(item!.visitor_count!));
   return (
     <Wrapper>
       <Container>
         <TextContainer>
-
           <span>
             {/*{data.items?.map(item => (*/}
             {/*  <span key={item!.region!}>*/}
@@ -119,10 +116,9 @@ const TextContainer = styled("div", {
 const TextLoopMobile = styled(TextLoop, {
   display: "inline",
   "@md": {
-    display: "none"
-  }
-})
-
+    display: "none",
+  },
+});
 
 const Region = styled("p", {
   fontSize: "$subtitle3",
