@@ -39,7 +39,7 @@
         "labels" : {
           "key_visual" : [ ],
           "member_quote_carousel" : [ ],
-         "title_and_description" : [ {
+          "title_and_description" : [ {
             "name" : "title_and_description",
             "display" : "Title and Description"
           } ],
@@ -823,6 +823,63 @@
       "config" : {
         "label" : "Twitter Username",
         "placeholder" : "(기본: daangnteam)"
+      }
+    }
+  },
+  "Apply Completed" : {
+    "completed_page_message" : {
+      "type" : "StructuredText",
+      "config" : {
+        "multi" : "paragraph,heading3,strong,em,hyperlink,image,embed,list-item,o-list-item",
+        "label" : "Message"
+      }
+    },
+    "completed_page_contact" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "strong,em,hyperlink",
+        "label" : "Contact"
+      }
+    },
+    "completed_body" : {
+      "type" : "Slices",
+      "fieldset" : "Slice zone",
+      "config" : {
+        "labels" : null,
+        "choices" : {
+          "buttonlink" : {
+            "type" : "Slice",
+            "fieldset" : "ButtonLink",
+            "description" : "링크 버튼",
+            "icon" : "attachment",
+            "display" : "list",
+            "non-repeat" : {
+              "completed_page_link_display_title" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "multi" : "strong,em",
+                  "allowTargetBlank" : true,
+                  "label" : "display title"
+                }
+              },
+              "link_button_src" : {
+                "type" : "Link",
+                "config" : {
+                  "label" : "src",
+                  "select" : null
+                }
+              },
+              "link_button_highlight" : {
+                "type" : "Boolean",
+                "config" : {
+                  "default_value" : false,
+                  "label" : "highlight"
+                }
+              }
+            },
+            "repeat" : { }
+          }
+        }
       }
     }
   }

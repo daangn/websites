@@ -27,21 +27,21 @@
   },
   "dependencies": {
     "@karrotmarket/prismic-config": "*",
-    "gatsby-plugin-image": "1.14.0",
+    "gatsby-plugin-image": "1.14.1",
     "gatsby-plugin-prismic-previews": "4.2.0",
     "gatsby-source-prismic": "4.1.2"
   },
   "devDependencies": {
     "@babel/cli": "7.15.7",
-    "@babel/core": "7.15.5",
+    "@babel/core": "7.15.8",
     "@types/node": "15.14.5",
-    "@types/react": "17.0.27",
+    "@types/react": "17.0.30",
     "@types/react-dom": "17.0.9",
     "babel-preset-gatsby-package": "1.14.0",
-    "concurrently": "6.2.2",
+    "concurrently": "6.3.0",
     "gatsby": "next",
     "react": "experimental",
     "react-dom": "experimental",
-    "typescript": "4.4.3"
+    "typescript": "4.4.4"
   }
 }
