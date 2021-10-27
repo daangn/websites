@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from "~/gatsby-theme-stitches/stitches.config";
+import { styled } from "~/gatsby-theme-stitches/config";
 import { rem } from "polished";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
@@ -85,7 +85,7 @@ const Container = styled("div", {
           },
           "& > :nth-child(2)": {
             order: 1,
-            paddingLeft: rem(100)
+            paddingLeft: rem(100),
           },
         },
       },
@@ -145,7 +145,7 @@ const TitleD = styled("p", {
 
   "@md": {
     display: "block",
-    lineHeight: rem(57)
+    lineHeight: rem(57),
   },
 });
 
@@ -165,6 +165,6 @@ const Subtitle = styled("p", {
   lineHeight: rem(28),
   "@md": {
     fontSize: "$subtitle3",
-    lineHeight: rem(31)
+    lineHeight: rem(31),
   },
 });

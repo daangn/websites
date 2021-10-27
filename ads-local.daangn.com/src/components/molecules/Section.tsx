@@ -1,30 +1,29 @@
-import React, {ReactElement} from "react"
-import { styled } from "~/gatsby-theme-stitches/stitches.config";
-import {rem} from "polished";
+import React, { ReactElement } from "react";
+import { styled } from "~/gatsby-theme-stitches/config";
+import { rem } from "polished";
 
 type SectionProps = {
-  backgroundColor: string
-}
+  backgroundColor: string;
+};
 
-export const Section:React.FC<SectionProps> = ({backgroundColor, children})=> {
+export const Section: React.FC<SectionProps> = ({
+  backgroundColor,
+  children,
+}) => {
   return (
-    <Base css={{backgroundColor: `${backgroundColor}`}}>
-      {children}
-    </Base>
-  )
-}
-
+    <Base css={{ backgroundColor: `${backgroundColor}` }}>{children}</Base>
+  );
+};
 
 const Base = styled("div", {
   display: "flex",
   flexDirection: "column",
-  justifyContent: 'center',
+  justifyContent: "center",
   alignItems: "center",
   paddingY: rem(80),
   overflow: "hidden",
 
   "@md": {
     paddingY: rem(160),
-  }
-
-})
+  },
+});

@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from "~/gatsby-theme-stitches/stitches.config";
+import { styled } from "~/gatsby-theme-stitches/config";
 import { ReactComponent as IconYoutube } from "~/image/logo_youtube.svg";
 import { ReactComponent as IconBlog } from "~/image/logo_blog.svg";
 

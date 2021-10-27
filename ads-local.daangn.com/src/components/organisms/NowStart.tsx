@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from "~/gatsby-theme-stitches/stitches.config";
+import { styled } from "~/gatsby-theme-stitches/config";
 import { Section } from "~/components/molecules/Section";
 import { StaticImage as Picture } from "gatsby-plugin-image";
 
@@ -14,21 +14,36 @@ export const NowStart = () => {
         </GridRow>
         <ImgRow>
           <ImgContainer>
-            <Picture src="../../image/img_step_01.png" alt="당근마켓 지역광고 STEP1" width={240} placeholder="none"/>
+            <Picture
+              src="../../image/img_step_01.png"
+              alt="당근마켓 지역광고 STEP1"
+              width={240}
+              placeholder="none"
+            />
             <ImgSubText>
               <StepNumber>01</StepNumber>
               <p>나의 당근 &gt; 지역광고 메뉴에서</p>
             </ImgSubText>
           </ImgContainer>
           <ImgContainer>
-            <Picture src="../../image/img_step_02.png" alt="당근마켓 지역광고 STEP2" width={240} placeholder="none"/>
+            <Picture
+              src="../../image/img_step_02.png"
+              alt="당근마켓 지역광고 STEP2"
+              width={240}
+              placeholder="none"
+            />
             <ImgSubText>
               <StepNumber>02</StepNumber>
               <p>광고할 계정을 선택하고</p>
             </ImgSubText>
           </ImgContainer>
           <ImgContainer>
-            <Picture src="../../image/img_step_03.png" alt="당근마켓 지역광고 STEP3" width={240} placeholder="none"/>
+            <Picture
+              src="../../image/img_step_03.png"
+              alt="당근마켓 지역광고 STEP3"
+              width={240}
+              placeholder="none"
+            />
             <ImgSubText>
               <StepNumber>03</StepNumber>
               <p>광고 만들기를 눌러주세요</p>

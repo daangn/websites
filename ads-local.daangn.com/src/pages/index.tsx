@@ -3,7 +3,7 @@ import type { PageProps } from "gatsby";
 
 import { GatsbySeo } from "gatsby-plugin-next-seo";
 import { mapAbstractTypeWithDefault } from "@cometjs/graphql-utils";
-import { globalStyles, styled } from "~/gatsby-theme-stitches/stitches.config";
+import { globalStyles, styled } from "~/gatsby-theme-stitches/config";
 import { Banner } from "~/components/organisms/Banner";
 import { Main } from "~/components/organisms/Main";
 import { BannerTitle } from "~/components/molecules/BannerTitle";
@@ -16,7 +16,6 @@ import { DownloadBtnMobile } from "~/components/organisms/DownloadBtnMobile";
 
 import { useDetectAdBlock } from "adblock-detect-react";
 import { AdblockModal } from "~/components/organisms/AdblockModal";
-
 
 type IndexPageProps = PageProps<GatsbyTypes.IndexPageQuery>;
 
@@ -50,19 +49,16 @@ export const query = graphql`
 const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
   globalStyles();
 
-
-  const [showModal, setShowModal] = React.useState(false)
+  const [showModal, setShowModal] = React.useState(false);
 
   const adBlockDetected = useDetectAdBlock();
-  
 
-
-  React.useEffect(()=>{
-    if(adBlockDetected) {
-      setShowModal(true)
+  React.useEffect(() => {
+    if (adBlockDetected) {
+      setShowModal(true);
     }
-  },[adBlockDetected])
-  
+  }, [adBlockDetected]);
+
   const imgSrc = data.image?.childImageSharp?.fixed;
   const site = data.site?.siteMetadata?.siteUrl;
   const url = site && imgSrc ? site + imgSrc.src : "";
@@ -90,31 +86,35 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
       <DownloadBtnMobile />
       <BannerTitle />
       <Banner />
-      {data.prismicAdvertisementContents?.data?.body && data.prismicAdvertisementContents.data.body
-        .filter(Boolean)
-        .map((data, idx) => mapAbstractTypeWithDefault(data!, {
-          PrismicAdvertisementContentsDataBodyVisitorCountSlide: data => (
-            <Visitors data={data} key={idx}/>
-          ),
-          _: null,
-      }))}
+      {data.prismicAdvertisementContents?.data?.body &&
+        data.prismicAdvertisementContents.data.body
+          .filter(Boolean)
+          .map((data, idx) =>
+            mapAbstractTypeWithDefault(data!, {
+              PrismicAdvertisementContentsDataBodyVisitorCountSlide: (data) => (
+                <Visitors data={data} key={idx} />
+              ),
+              _: null,
+            })
+          )}
       <Main />
       <Download />
       <LearnMore />
       <Footer />
-      {showModal && <AdblockModal color="$carrot500" setShowModal={setShowModal}/>}
+      {showModal && (
+        <AdblockModal color="$carrot500" setShowModal={setShowModal} />
+      )}
     </IndexDiv>
   );
 };
 
-
 const IndexDiv = styled("div", {
-  "@md" :{
-    minWidth: 1160
+  "@md": {
+    minWidth: 1160,
   },
   "@xl": {
-    minWidth: "auto"
-  }
-})
+    minWidth: "auto",
+  },
+});
 
 export default IndexPage;

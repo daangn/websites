@@ -1,12 +1,13 @@
 import { em, rem } from "polished";
 import { colors } from "@karrotmarket/design-token";
-import { createCss } from "@stitches/react";
+import { createStitches, createTheme } from "@stitches/react";
+import type * as Stitches from "@stitches/react";
 
 import { convertColorScheme } from "./colors";
 
 // should exports `styled`, `css` and `getCssString`
-export const { styled, css, global, getCssString, theme, keyframes } =
-  createCss({
+export const { styled, css, globalCss, getCssText, theme, keyframes } =
+  createStitches({
     // follows Bootstrap's breakpoints practice
     // See https://getbootstrap.com/docs/5.0/layout/breakpoints/#available-breakpoints
     media: {
@@ -59,42 +60,42 @@ export const { styled, css, global, getCssString, theme, keyframes } =
       zIndices: {},
     },
     utils: {
-      typography:
-        (config) =>
-        (
-          value: `$${keyof typeof config["theme"]["fontSizes"] | (string & {})}`
-        ) => ({
-          fontSize: value,
-          lineHeight: value,
-        }),
-      marginX: (_config) => (value) => ({
+      typography: (
+        value:
+          | Stitches.PropertyValue<"fontSize">
+          | Stitches.PropertyValue<"lineHeight">
+      ) => ({
+        fontSize: value,
+        lineHeight: value,
+      }),
+      marginX: (value: number | string) => ({
         marginLeft: value,
         marginRight: value,
       }),
-      marginY: (_config) => (value) => ({
+      marginY: (value: number | string) => ({
         marginTop: value,
         marginBottom: value,
       }),
-      paddingX: (_config) => (value) => ({
+      paddingX: (value: number | string) => ({
         paddingLeft: value,
         paddingRight: value,
       }),
-      paddingY: (_config) => (value) => ({
+      paddingY: (value: number | string) => ({
         paddingTop: value,
         paddingBottom: value,
       }),
     },
   });
 
-export const darkTheme = theme("dark-theme", {
+export const darkTheme = createTheme("dark-theme", {
   colors: convertColorScheme(colors.dark.scheme),
 });
 
-export const globalStyles = global({
+export const globalStyles = globalCss({
   "*": { margin: 0, padding: 0 },
   body: {
     fontFamily: "$body",
     "-webkit-font-smoothing": "antialiased",
-    "-moz-osx-font-smoothing": "grayscale"
+    "-moz-osx-font-smoothing": "grayscale",
   },
 });
