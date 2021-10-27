@@ -29,7 +29,7 @@
     "gatsby-plugin-sharp": "3.14.1",
     "gatsby-plugin-typegen": "2.2.4",
     "gatsby-source-filesystem": "3.14.0",
-    "gatsby-theme-stitches": "0.1.2",
+    "gatsby-theme-stitches": "1.0.0",
     "gatsby-transformer-sharp": "3.14.0",
     "react": "next",
     "react-dom": "next",

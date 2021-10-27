@@ -7766,11 +7766,6 @@ gatsby-telemetry@^2.14.0:
     node-fetch "^2.6.1"
     uuid "3.4.0"
 
-gatsby-theme-stitches@0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/gatsby-theme-stitches/-/gatsby-theme-stitches-0.1.2.tgz#a2df32f7a59d62035b0232a47571a637577a87c6"
-  integrity sha512-/NhDlDVlPHLnP0J8nxFj/wUWRKr4nJX0Z6F8h1VmpWL+4xP8ndDHnQYO7FsS/K3S6PJg+/IyL4LN37ZV7o7nRw==
-
 gatsby-theme-stitches@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/gatsby-theme-stitches/-/gatsby-theme-stitches-1.0.0.tgz#a44e3d28eddafb0447c455106e0d8493bea3e285"
