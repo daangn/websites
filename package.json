@@ -19,7 +19,7 @@
     "react-dom": "18.0.0-alpha-fd5e01c2e-20210913",
     "schema-dts": "1.0.0",
     "webpack": "5.58.2",
-    "@emotion/react": "11.4.1",
+    "@emotion/react": "11.5.0",
     "@emotion/styled": "11.3.0"
   },
   "scripts": {
@@ -28,7 +28,7 @@
     "init:sites": "ultra --recursive prepare-gatsby"
   },
   "dependencies": {
-    "@emotion/react": "11.4.1",
+    "@emotion/react": "11.5.0",
     "@emotion/styled": "11.3.0"
   },
   "devDependencies": {
