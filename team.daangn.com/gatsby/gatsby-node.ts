@@ -1,7 +1,4 @@
 import type { GatsbyNode } from 'gatsby';
-import slugify from 'cjk-slug';
-
-const gql = String.raw;
 
 export const onCreateBabelConfig: GatsbyNode['onCreateBabelConfig'] = ({
   actions,
