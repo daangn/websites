@@ -132,16 +132,23 @@ const config: GatsbyConfig = {
         forceGC: true,
       },
     },
+    process.env.NODE_ENV === 'development' && {
+      resolve: '@karrotmarket/gatsby-source-greenhouse-jobboard',
+      options: {
+        boardToken: 'daangntest1',
+      },
+    },
     {
       resolve: '@karrotmarket/gatsby-transformer-job-post',
       options: {
-        defaultTags:{
-          'daangnmvp': ["MVP"],
-          'daangntest': ["사전지원"],
+        defaultTags: {
+          'daangnmvp': ['MVP'],
+          'daangntest': ['사전지원'],
+          'daangntest1': ['개발 테스트'],
         },
       },
     },
-  ],
+  ].filter(Boolean),
 };
 
 export default config;
