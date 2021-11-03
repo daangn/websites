@@ -88,6 +88,10 @@ export const makeEndpoint = (host: string, jobId: string): string => (
   `${host.replace(/\/$/, '')}/jobs/${jobId}/application/submit`
 );
 
+export const makeNewEndpoint = (host: string, jobId: string): string => (
+  `${host.replace(/\/$/, '')}/jobs/${jobId}/application/proxy`
+);
+
 interface MakeApplicationFormClient {
   (props: {
     fetch: typeof window['fetch'],

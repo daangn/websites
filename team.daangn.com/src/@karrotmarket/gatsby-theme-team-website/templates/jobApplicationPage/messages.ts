@@ -23,4 +23,6 @@ export default {
   'terms_sensitive_info': '민감정보 수집 및 이용동의',
 
   'button_submit': '동의 후 제출하기',
+
+  'custom_field_file_placeholder': '파일을 첨부해주세요',
 };

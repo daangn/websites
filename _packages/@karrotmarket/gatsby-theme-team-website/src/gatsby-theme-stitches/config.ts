@@ -70,19 +70,19 @@ export const { styled, css, globalCss, keyframes, getCssText, theme, createTheme
       gridRowStart: 1,
       gridRowEnd: 'end',
     }) : undefined,
-    marginX: value => ({
+    marginX: (value: Stitches.PropertyValue<'margin'>) => ({
       marginLeft: value,
       marginRight: value,
     }),
-    marginY: value => ({
+    marginY: (value: Stitches.PropertyValue<'margin'>) => ({
       marginTop: value,
       marginBottom: value,
     }),
-    paddingX: value => ({
+    paddingX: (value: Stitches.PropertyValue<'padding'>) => ({
       paddingLeft: value,
       paddingRight: value,
     }),
-    paddingY: value => ({
+    paddingY: (value: Stitches.PropertyValue<'padding'>) => ({
       paddingTop: value,
       paddingBottom: value,
     }),

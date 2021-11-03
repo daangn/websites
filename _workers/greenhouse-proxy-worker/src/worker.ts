@@ -99,4 +99,31 @@ API.add('POST', '/boards/:boardToken/jobs/:jobId/application/submit', async (req
   }
 });
 
+API.add('POST', '/jobs/:jobId/application/proxy', async (req, res) => {
+  const { jobId } = req.params;
+  const greenhouseEndpoint = `https://boards-api.greenhouse.io/v1/boards/${GH_JOBBOARD_TOKEN}/jobs/${jobId}`;
+  const body = await req.body.arrayBuffer();
+  try {
+    const response = await fetch(greenhouseEndpoint, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `Basic ${Base64.encode(`${GH_JOBBOARD_API_KEY}:`)}`,
+      },
+      body,
+    });
+    return res.send(
+      response.status,
+      response.body,
+      Object.fromEntries(response.headers.entries()),
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      return res.send(500, error.message);
+    }
+    return res.send(500, 'Internal Server Error');
+  }
+});
+
 listen(API.run);
