@@ -1,7 +1,9 @@
 import React from "react";
-import { styled } from "gatsby-theme-stitches/src/stitches.config";
+import { styled } from "~/gatsby-theme-stitches/config";
 
-import daangn_logo, { ReactComponent as DaangnLogo } from "~/image/daangn-ad_logo.svg"
+import daangn_logo, {
+  ReactComponent as DaangnLogo,
+} from "~/image/daangn-ad_logo.svg";
 import { ReactComponent as IconCall } from "~/image/icon_call.svg";
 import { rem } from "polished";
 
@@ -21,7 +23,7 @@ export const BannerTitle = () => {
   return (
     <Wrapper color={isWhite ? "white" : "default"}>
       <Container>
-        <Logo src={daangn_logo} alt="logo"/>
+        <Logo src={daangn_logo} alt="logo" />
         {/* <DaangnLogo style={{
           width: rem(145),
           height: rem(25),
@@ -29,9 +31,7 @@ export const BannerTitle = () => {
         }}/> */}
         <QuestionInfo>
           <IconCall />
-          <TelLink
-            href="tel://1644-9736"
-          >
+          <TelLink href="tel://1644-9736">
             <p>
               광고문의 <mark>1644-9736</mark>
             </p>
@@ -67,11 +67,10 @@ const Wrapper = styled("div", {
     },
   },
 
-  "@md" :{
+  "@md": {
     justifyContent: "center",
-  }
+  },
 });
-
 
 const Container = styled("div", {
   display: "flex",
@@ -83,9 +82,8 @@ const Container = styled("div", {
     width: "100%",
     maxWidth: rem(1160),
     // justifyContent: "space-between",
-  
-  }
-})
+  },
+});
 
 const QuestionInfo = styled("div", {
   display: "flex",
@@ -108,10 +106,10 @@ const Logo = styled("img", {
   width: rem(145),
   height: rem(25),
   "@md": {
-    width: 'auto',
-    height: 'auto',
+    width: "auto",
+    height: "auto",
   },
-})
+});
 
 const TelLink = styled("a", {
   color: "$black",

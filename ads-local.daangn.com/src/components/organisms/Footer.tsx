@@ -1,6 +1,6 @@
 import React from "react";
 
-import { styled } from "~/gatsby-theme-stitches/stitches.config";
+import { styled } from "~/gatsby-theme-stitches/config";
 import { rem } from "polished";
 import { FooterIconButton } from "~/components/molecules/FooterIconButton";
 
@@ -15,16 +15,17 @@ export const Footer = () => {
     serviceAddress: "서울특별시 구로구 디지털로 30길 28 609호 (당근서비스)",
   };
 
-
   const footerClickHandler = () => {
-    window.open("https://ad.daangn.com/ad/terms", "_blank")
-  }
+    window.open("https://ad.daangn.com/ad/terms", "_blank");
+  };
 
   return (
     <Base>
       <FooterDesktop>
         <div>
-          <FooterContent agreement onClick={footerClickHandler}>이용약관</FooterContent>
+          <FooterContent agreement onClick={footerClickHandler}>
+            이용약관
+          </FooterContent>
         </div>
         <div
           style={{
@@ -147,7 +148,7 @@ const FooterContent = styled("p", {
       true: {
         fontSize: "$caption1",
         color: "$gray900",
-        cursor: "pointer"
+        cursor: "pointer",
       },
     },
     copyright: {

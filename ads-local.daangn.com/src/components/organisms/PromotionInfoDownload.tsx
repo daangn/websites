@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from "~/gatsby-theme-stitches/stitches.config";
+import { styled } from "~/gatsby-theme-stitches/config";
 import { ReactComponent as IconDaangnApp } from "~/image/icon_daangn_app.svg";
 import { DownloadButton } from "~/components/molecules/DownloadButton";
 

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { styled } from "gatsby-theme-stitches/src/stitches.config";
+import { styled } from "~/gatsby-theme-stitches/config";
 import { ArrowLink } from "~/components/molecules/ArrowLink";
 import { rem } from "polished";
 import chevronIconUrl from "~/image/chevron.svg";
@@ -35,40 +35,26 @@ export const LearnMore = () => {
             }}
           >
             <p>지역광고 만들기 가이드</p>
-            <ArrowLink
-              target="https://www.notion.so/daangn/86a4348d469846728378036321255052"
-            />
+            <ArrowLink target="https://www.notion.so/daangn/86a4348d469846728378036321255052" />
           </DocsLink>
         </Item>
         <Item right>
-          <FaqItem onClick={() =>
-                handleClick(
-                  "https://www.daangn.com/wv/faqs/149"
-                )
-              }>
-            <p>
-              지역광고는 어떻게 만드나요?
-            </p>
+          <FaqItem
+            onClick={() => handleClick("https://www.daangn.com/wv/faqs/149")}
+          >
+            <p>지역광고는 어떻게 만드나요?</p>
             <ChevronRight src={chevronIconUrl} alt="댱근마켓 지역광고 가이드" />
           </FaqItem>
-          <FaqItem onClick={() =>
-                handleClick(
-                  "https://www.daangn.com/wv/faqs/159"
-                )
-              }>
-            <p>
-              지역광고는 비용은 얼마인가요?
-            </p>
+          <FaqItem
+            onClick={() => handleClick("https://www.daangn.com/wv/faqs/159")}
+          >
+            <p>지역광고는 비용은 얼마인가요?</p>
             <ChevronRight src={chevronIconUrl} alt="당근마켓 지역광고 가이드" />
           </FaqItem>
-          <FaqItem onClick={() =>
-                handleClick(
-                  "https://www.daangn.com/wv/faqs/156"
-                )
-              }>
-            <p>
-              지역광고는 어디에 노출되나요?
-            </p>
+          <FaqItem
+            onClick={() => handleClick("https://www.daangn.com/wv/faqs/156")}
+          >
+            <p>지역광고는 어디에 노출되나요?</p>
             <ChevronRight src={chevronIconUrl} alt="당근마켓 지역광고 가이드" />
           </FaqItem>
         </Item>
@@ -192,7 +178,6 @@ const FaqItem = styled("div", {
   borderBottom: "1px solid #EAEBEE",
   p: {
     fontSize: "$body2",
-    
   },
   "&:hover": {
     opacity: "64%",
