@@ -31,7 +31,11 @@ export const query = graphql`
       background_image {
         localFile {
           childImageSharp {
-            gatsbyImageData(quality: 100)
+            gatsbyImageData(
+              quality: 100
+              layout: FULL_WIDTH
+              formats: [AUTO, AVIF, WEBP]
+            )
           }
         }
       }
