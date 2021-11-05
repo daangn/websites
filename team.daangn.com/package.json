@@ -29,7 +29,7 @@
     "@cometjs/graphql-utils": "1.1.0",
     "@cometjs/react-utils": "1.1.0",
     "@karrotmarket/design-token": "0.2.0",
-    "@karrotmarket/gatsby-source-greenhouse-jobboard": "0.3.0",
+    "@karrotmarket/gatsby-source-greenhouse-jobboard": "0.4.0",
     "@karrotmarket/gatsby-theme-prismic": "*",
     "@karrotmarket/gatsby-theme-website": "*",
     "@karrotmarket/gatsby-transformer-job-post": "*",
