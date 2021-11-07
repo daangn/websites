@@ -46,6 +46,7 @@ const Button = styled('button', {
   paddingY: rem(24),
   cursor: 'pointer',
   backgroundColor: 'transparent',
+  color: '$gray900',
   border: 'none',
   flex: 1,
   display: 'flex',
