@@ -13,6 +13,8 @@ import _JobPostList from '../components/JobPostList';
 import expandMoreOutlineUrl from '!!file-loader!../assets/expand_more_outline_m.svg';
 import { useFlexSearch } from '../utils/useFlexSearch';
 
+import messages from './jobsPage/messages';
+
 type JobsPageTemplateProps = PageProps<GatsbyTypes.TeamWebsite_JobsPageTemplateQuery, GatsbyTypes.SitePageContext>;
 
 export const query = graphql`
@@ -150,6 +152,7 @@ const Select = styled('select', {
     background: '$gray500',
   },
 });
+
 const Search = styled('div', {
   display: 'inline-flex',
   position: 'relative',
@@ -183,7 +186,7 @@ const Search = styled('div', {
     color:'$gray400',
     position:'absolute',
     left:rem(20),
-  }
+  },
 });
 
 const JobPostList = styled(_JobPostList, {
@@ -209,9 +212,9 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
 
   required(data.prismicTeamContents?.data);
 
-  const metaTitleBase = data.prismicTeamContents.data.jobs_page_meta_title || '당근마켓 채용';
+  const metaTitleBase = data.prismicTeamContents.data.jobs_page_meta_title || messages.meta_title_default;
   const metaTitle = pageContext.chapter
-    ? `${pageContext.chapter} 채용 | ${metaTitleBase}`
+    ? `${pageContext.chapter} | ${metaTitleBase}`
     : metaTitleBase;
 
   const metaDescription = data.prismicTeamContents.data.jobs_page_meta_description;
@@ -270,7 +273,7 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
               key=""
               value=""
             >
-              {`전체 직군 (${data.allJobPost.totalCount})`}
+              {`${messages.chapter_all} (${data.allJobPost.totalCount})`}
             </option>
             {data.allJobPost.allChapter
             .map(chapterGroup => {
@@ -288,14 +291,17 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
             value={filterEmploymentType}
             onChange={e => setFilterEmploymentType(e.target.value)}
           >
-            <option value="">전체 고용형태</option>
-            <option value="FULL_TIME">정규직</option>
-            <option value="CONTRACTOR">계약직</option>
-            <option value="INTERN">인턴</option>
-            <option value="ASSISTANT">어시스턴트</option>
+            <option value="">{messages.employment_type_all}</option>
+            <option value="FULL_TIME">{messages.employment_type_fulltime}</option>
+            <option value="CONTRACTOR">{messages.employment_type_contractor}</option>
+            <option value="INTERN">{messages.employment_type_intern}</option>
+            <option value="ASSISTANT">{messages.employment_type_assistant}</option>
           </Select>
           <Search >
-            <input placeholder="검색" onChange={handleSearchInputChange}/>
+            <input
+              placeholder={messages.search_placeholder}
+              onChange={handleSearchInputChange}
+            />
             <SearchdSvg />
           </Search>
         </Filters>

@@ -135,7 +135,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
 
   actions.createPage({
     path: `/jobs/`,
-    component: require.resolve('./src/templates/jobs.tsx'),
+    component: require.resolve('./src/templates/JobsPage.tsx'),
     context: {
       pattern: `/.*/`,
       chapter: null,
@@ -148,7 +148,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
 
     actions.createPage({
       path: `/jobs/${slug}/`,
-      component: require.resolve('./src/templates/jobs.tsx'),
+      component: require.resolve('./src/templates/JobsPage.tsx'),
       context: {
         pattern: `/${slug}/`,
         chapter,

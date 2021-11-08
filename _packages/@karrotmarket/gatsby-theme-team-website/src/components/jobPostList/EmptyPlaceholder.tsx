@@ -4,6 +4,8 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 
 import ButtonLink from '../Button';
 
+import messages from './emptyPlaceholder/messages';
+
 type EmptyPlaceholderProps = {
   className?: string,
 };
@@ -31,12 +33,12 @@ const EmptyPlaceholder: React.FC<EmptyPlaceholderProps> = ({
   return (
     <Container className={className}>
       <Content>
-        <Text>검색 결과가 없습니다.</Text>
+        <Text>{messages.no_results}</Text>
         <ButtonLink
           to="/jobs/"
           fullWidth={{ '@initial': true, '@sm': false }}
         >
-          전체 공고로 돌아가기
+          {messages.back_to_list}
         </ButtonLink>
       </Content>
     </Container>

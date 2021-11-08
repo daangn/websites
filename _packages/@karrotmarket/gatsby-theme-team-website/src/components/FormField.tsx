@@ -5,6 +5,8 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import type { PropOf } from '@cometjs/react-utils';
 
+import messages from './formField/messages';
+
 type FormFieldVariants = (
   | {
     type: 'text',
@@ -412,7 +414,7 @@ const FormField: React.FC<FormFieldProps> = ({
               {label}
             </Label>
             <FileInput as="div">
-              {filename || '파일 첨부하기'}
+              {filename || messages.attach_file}
             </FileInput>
           </label>
           {description && (
