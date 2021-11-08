@@ -9,6 +9,7 @@ module.exports = {
   pay_contents: require("./pay_contents.json"),
   site_navigation: require("./site_navigation.json"),
   team_contents: require("./team_contents.json"),
+  team_page: require("./team_page.json"),
   teams_article: require("./teams_article.json"),
   terms_and_conditions: require("./terms_and_conditions.json"),
   advertisement_contents: require("./advertisement_contents.json"),
