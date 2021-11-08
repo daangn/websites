@@ -1,0 +1,14 @@
+name = 'greenhouse-proxy-worker'
+compatibility_date = "2021-11-08"
+type = 'javascript'
+account_id = 'aad5c82543cd1f267b89737d0f56405e'
+usage_model = 'unbound'
+zone_id = ''
+route = ''
+workers_dev = true
+
+[build]
+command = 'yarn esbuild src/worker.ts --bundle --outfile=dist/worker.js --format=esm'
+
+[build.upload]
+format = 'service-worker'

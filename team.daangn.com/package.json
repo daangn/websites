@@ -2,7 +2,6 @@
   "name": "team.daangn.com",
   "version": "0.0.0",
   "private": true,
-  "main": "dist/worker.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/daangn/websites.git",
@@ -20,8 +19,7 @@
     "develop": "yarn prepare-gatsby && gatsby develop",
     "build": "yarn prepare-gatsby && gatsby build",
     "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "wrangler": "wrangler"
+    "clean": "gatsby clean"
   },
   "dependencies": {
     "@babel/runtime": "7.15.4",
@@ -78,8 +76,6 @@
     "@babel/core": "7.15.8",
     "@babel/plugin-transform-react-jsx": "7.14.9",
     "@babel/plugin-transform-typescript": "7.15.8",
-    "@cloudflare/workers-types": "3.0.0",
-    "@cloudflare/wrangler": "1.19.4",
     "@prismicio/helpers": "1.0.5",
     "@svgr/webpack": "5.5.0",
     "@types/dotenv-safe": "8.1.2",
@@ -90,7 +86,6 @@
     "babel-preset-gatsby": "1.14.0",
     "babel-preset-gatsby-package": "1.14.0",
     "dotenv-safe": "8.2.0",
-    "typescript": "4.4.4",
-    "worktop": "0.7.3"
+    "typescript": "4.4.4"
   }
 }

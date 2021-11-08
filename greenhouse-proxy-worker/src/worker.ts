@@ -5,8 +5,8 @@ import * as CORS from 'worktop/cors';
 import * as Base64 from 'worktop/base64';
 import { Result } from '@cometjs/core';
 
-import type { ApplicationFormPayload } from '../utils/applicationForm';
-import { parsePayload } from '../utils/applicationForm';
+import type { ApplicationFormPayload } from './utils';
+import { parsePayload } from './utils';
 
 /**
  * Greenhouse Jobboard API Key
@@ -17,11 +17,6 @@ import { parsePayload } from '../utils/applicationForm';
  * @See https://developers.cloudflare.com/workers/cli-wrangler/commands#secret
  */
 declare var GH_JOBBOARD_API_KEY: string;
-
-/**
- * wrangler.toml 파일에서 관리합니다.
- */
-declare var GH_JOBBOARD_TOKEN: string;
 
 const API = new Router();
 
@@ -63,9 +58,9 @@ const convertForm: ConvertForm = form => {
   };
 };
 
-API.add('POST', '/jobs/:jobId/application/submit', async (req, res) => {
-  const { jobId } = req.params;
-  const greenhouseEndpoint = `https://boards-api.greenhouse.io/v1/boards/${GH_JOBBOARD_TOKEN}/jobs/${jobId}`;
+API.add('POST', '/boards/:boardToken/jobs/:jobId/application/submit', async (req, res) => {
+  const { boardToken, jobId } = req.params;
+  const greenhouseEndpoint = `https://boards-api.greenhouse.io/v1/boards/${boardToken}/jobs/${jobId}`;
 
   const form = await req.body.json<ApplicationFormPayload>();
   const parseResult = parsePayload(form);
@@ -84,7 +79,7 @@ API.add('POST', '/jobs/:jobId/application/submit', async (req, res) => {
       });
       const data = await response.json();
       return res.send(
-        data.status,
+        response.status,
         data,
         Object.fromEntries(response.headers.entries()),
       );
