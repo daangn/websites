@@ -1,0 +1,11 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "paths": {
+      "gatsby-theme-stitches/src/*": ["./src/gatsby-theme-stitches/*"]
+    }
+  },
+  "include": ["src", "gatsby"],
+  "exclude": []
+}
