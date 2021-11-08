@@ -16,7 +16,10 @@ type PreviewResolverPageProps = (
 );
 
 export const query = graphql`
-  query TeamWebsite_PreviewResolverPage {
+  query TeamWebsite_PreviewResolverPage(
+    $locale: String!
+    $navigationId: String!
+  ) {
     ...TeamWebsite_DefaultLayout_query
   }
 `;

@@ -104,7 +104,13 @@ const config: GatsbyConfig = {
     },
 
     // 커스텀 플러그인
-    '@karrotmarket/gatsby-theme-team-website',
+    {
+      resolve: '@karrotmarket/gatsby-theme-team-website',
+      options: {
+        locale: 'ko-kr',
+        navigationId: 'team.daangn.com',
+      },
+    },
     {
       resolve: '@karrotmarket/gatsby-source-greenhouse-jobboard',
       options: {

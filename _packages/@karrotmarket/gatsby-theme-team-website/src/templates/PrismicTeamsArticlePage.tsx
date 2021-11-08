@@ -2,26 +2,33 @@ import * as React from 'react';
 import { rem } from 'polished';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/config';
 import { GatsbySeo } from 'gatsby-plugin-next-seo';
-import { required } from '@cometjs/core';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { required, Condition } from '@cometjs/core';
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
 import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
 
-import _PageTitle from '../../components/PageTitle';
-import PrismicTeamContentsDataLifeBodyLifeContent from '../../components/PrismicTeamContentsDataLifeBodyLifeContent';
+import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
+import { defaultRepositoryConfig } from '@karrotmarket/gatsby-theme-prismic/src/defaultRepositoryConfig';
 
-type LifePageProps = PageProps<GatsbyTypes.TeamWebsite_LifePageQuery, GatsbyTypes.SitePageContext>;
+import _PageTitle from '../components/PageTitle';
+import PrismicTeamsArticleDataBodyArticleSection from '../components/PrismicTeamsArticleDataBodyArticleSection';
+
+type TeamsArticlePageProps = PageProps<GatsbyTypes.TeamWebsite_TeamsArticlePageQuery, GatsbyTypes.SitePageContext>;
 
 export const query = graphql`
-  query TeamWebsite_LifePage {
+  query TeamWebsite_TeamsArticlePage(
+    $uid: String!
+    $locale: String!
+    $navigationId: String!
+  ) {
     ...TeamWebsite_DefaultLayout_query
-    prismicTeamContents {
+    prismicTeamsArticle(uid: { eq: $uid }) {
       _previewable
       data {
-        life_page_meta_title
-        life_page_meta_description
-        life_page_meta_image {
+        page_meta_title
+        page_meta_description
+        page_meta_image {
           localFile {
             childImageSharp {
               fixed(
@@ -37,12 +44,12 @@ export const query = graphql`
             }
           }
         }
-        life_page_title {
+        page_title {
           text
         }
-        life_body {
+        body {
           __typename
-          ...PrismicTeamContentsDataLifeBodyLifeContent_data
+          ...PrismicTeamsArticleDataBodyArticleSection_data
         }
       }
     }
@@ -69,16 +76,18 @@ const Content = styled('div', {
   gap: rem(64),
 });
 
-const LifePage: React.FC<LifePageProps> = ({
+
+
+const TeamsArticlePage: React.FC<TeamsArticlePageProps> = ({
   data,
 }) => {
   const siteOrigin = useSiteOrigin();
 
-  required(data.prismicTeamContents?.data?.life_body);
+  required(data.prismicTeamsArticle?.data?.body);
 
-  const metaTitle = data.prismicTeamContents.data.life_page_meta_title;
-  const metaDescription = data.prismicTeamContents.data.life_page_meta_description;
-  const metaImage = data.prismicTeamContents.data.life_page_meta_image?.localFile?.childImageSharp?.fixed;
+  const metaTitle = data.prismicTeamsArticle.data.page_meta_title;
+  const metaDescription = data.prismicTeamsArticle.data.page_meta_description;
+  const metaImage = data.prismicTeamsArticle.data.page_meta_image?.localFile?.childImageSharp?.fixed;
 
   return (
     <Container>
@@ -103,16 +112,18 @@ const LifePage: React.FC<LifePageProps> = ({
         }}
       />
       <PageTitle>
-        {data.prismicTeamContents.data.life_page_title?.text}
+        {data.prismicTeamsArticle.data.page_title?.text}
       </PageTitle>
       <Content>
-        {data.prismicTeamContents.data.life_body.map((data, i) => mapAbstractTypeWithDefault(data!, {
-          PrismicTeamContentsDataLifeBodyLifeContent: data => (
-            <PrismicTeamContentsDataLifeBodyLifeContent
-              key={i}
-              data={data}
-            />
-          ),
+        {data.prismicTeamsArticle.data.body
+          .filter(Condition.isTruthy)
+          .map((data, i) => mapAbstractTypeWithDefault(data, {
+            PrismicTeamsArticleDataBodyArticleSection: data => (
+              <PrismicTeamsArticleDataBodyArticleSection
+                key={i}
+                data={data}
+              />
+            ),
           _: null,
         }))}
       </Content>
@@ -120,4 +131,6 @@ const LifePage: React.FC<LifePageProps> = ({
   );
 };
 
-export default LifePage;
+export default withPrismicPreview(TeamsArticlePage, [
+  defaultRepositoryConfig,
+]);

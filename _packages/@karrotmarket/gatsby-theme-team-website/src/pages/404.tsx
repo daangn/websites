@@ -4,6 +4,8 @@ import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { GatsbySeo } from 'gatsby-plugin-next-seo';
+import { mapLink, useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
+import { required } from '@cometjs/core';
 import { ReactComponent as DaangniEmbarrassed } from '../assets/daangni_embarrassed.svg';
 import DefaultLayout from '../layouts/DefaultLayout';
 import ButtonLink from '../components/Button';
@@ -11,13 +13,31 @@ import ButtonLink from '../components/Button';
 import { withPrismicUnpublishedPreview, componentResolverFromMap } from 'gatsby-plugin-prismic-previews';
 import { defaultRepositoryConfig } from '@karrotmarket/gatsby-theme-prismic/src/defaultRepositoryConfig';
 
-import TeamsArticlePageTemplate from './jobs/article/{PrismicTeamsArticle.uid}';
+import TeamsArticlePageTemplate from '../templates/PrismicTeamsArticlePage';
 
 type NotFoundPageProps = PageProps<GatsbyTypes.TeamWebsite_NotFoundPageQuery, GatsbyTypes.SitePageContext>;
 
 export const query = graphql`
-  query TeamWebsite_NotFoundPage {
+  query TeamWebsite_NotFoundPage(
+    $locale: String!
+    $navigationId: String!
+  ) {
     ...TeamWebsite_DefaultLayout_query
+    prismicTeamContents(
+      lang: { eq: $locale }
+    ) {
+      data {
+        notfound_page_title {
+          text
+        }
+        notfound_page_link_group {
+          display_text
+          link {
+            url
+          }
+        }
+      }
+    }
   }
 `;
 
@@ -28,17 +48,15 @@ const Container = styled('div', {
   justifyContent: 'center',
   gap: rem(56),
   margin: '0 auto',
+  paddingX: rem(32),
 });
 
 const Title = styled('h1', {
+  textAlign: 'center',
   fontSize: '$subtitle1',
 
-  variants: {
-    size: {
-      sm: {
-        fontSize: '$heading3',
-      },
-    },
+  '@sm': {
+    fontSize: '$heading3',
   },
 });
 
@@ -52,32 +70,57 @@ const Control = styled('div', {
   width: '100%',
   flexDirection: 'column',
 
-  variants: {
-    wide: {
-      true: {
-        maxWidth: rem(500),
-        flexDirection: 'row',
-      },
-    },
+  '@sm': {
+    maxWidth: rem(500),
+    flexDirection: 'row',
   },
 });
 
-const NotFoundPage: React.FC<NotFoundPageProps> = ({
-  ...pageProps
-}) => {
+const NotFoundPage: React.FC<NotFoundPageProps> = pageProps => {
+  const { data } = pageProps;
+  const parseLink = useLinkParser();
+
+  required(data.prismicTeamContents?.data);
+
   return (
     <DefaultLayout {...pageProps}>
       <GatsbySeo noindex nofollow />
       <Container>
-        <Title size={{ '@sm': 'sm' }}>페이지를 찾을 수 없어요</Title>
+        <Title>
+          {data.prismicTeamContents.data.notfound_page_title.text}
+        </Title>
         <Illustration />
-        <Control wide={{ '@sm': true }}>
-          <ButtonLink to="/culture/" fullWidth={{ '@sm': true }}>
-            당근마켓 팀 문화 구경하기
-          </ButtonLink>
-          <ButtonLink to="/jobs/" type="primary" fullWidth={{ '@sm': true }}>
-            당근마켓 지원하러가기
-          </ButtonLink>
+        <Control>
+          {data.prismicTeamContents.data.notfound_page_link_group
+            .map((entry, i) => {
+              const link = parseLink(entry.link.url);
+              return mapLink(link, {
+                Internal: link => (
+                  <ButtonLink
+                    key={i}
+                    to={link.pathname}
+                    type={i === 0 ? 'primary' : 'default'}
+                    fullWidth={{ initial: true, '@sm': false }}
+                  >
+                    {entry.display_text}
+                  </ButtonLink>
+                ),
+                External: link => (
+                  <ButtonLink
+                    as="a"
+                    target="_blank"
+                    rel="external noopener"
+                    key={i}
+                    href={link.url.href}
+                    type={i === 0 ? 'primary' : 'default'}
+                    fullWidth={{ initial: true, '@sm': false }}
+                  >
+                    {entry.display_text}
+                  </ButtonLink>
+                ),
+              });
+            })
+          }
         </Control>
       </Container>
     </DefaultLayout>

@@ -24,7 +24,10 @@ type JobPostLayoutProps = OverrideProps<
 
 export const query = graphql`
   fragment TeamWebsite_JobPostLayout_query on Query {
-    prismicTeamContents {
+    prismicTeamContents(
+      lang: { eq: $locale }
+    ) {
+      _previewable
       data {
         jobs_page_meta_title
         jobs_page_meta_description

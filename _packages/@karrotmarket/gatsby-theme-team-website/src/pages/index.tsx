@@ -20,9 +20,14 @@ import PrismicTeamContentsDataMainBodyWideBanner from '../components/PrismicTeam
 type IndexPageProps = PageProps<GatsbyTypes.TeamWebsite_IndexPageQuery, GatsbyTypes.SitePageContext>;
 
 export const query = graphql`
-  query TeamWebsite_IndexPage {
+  query TeamWebsite_IndexPage(
+    $locale: String!
+    $navigationId: String!
+  ) {
     ...TeamWebsite_DefaultLayout_query
-    prismicTeamContents {
+    prismicTeamContents(
+      lang: { eq: $locale }
+    ) {
       _previewable
       data {
         main_page_meta_title

@@ -15,7 +15,11 @@ import messages from './jobPostPage/messages';
 type JobPostPageProps = PageProps<GatsbyTypes.TeamWebsite_JobPostPageQuery, GatsbyTypes.SitePageContext>;
 
 export const query = graphql`
-  query TeamWebsite_JobPostPage($id: String!) {
+  query TeamWebsite_JobPostPage(
+    $id: String!
+    $locale: String!
+    $navigationId: String!
+  ) {
     ...TeamWebsite_DefaultLayout_query
     ...TeamWebsite_JobPostLayout_query
     jobPost(id: { eq: $id }) {

@@ -12,23 +12,26 @@ import FaqAccordion from '../components/FaqAccordion';
 type FaqPageProps = PageProps<GatsbyTypes.TeamWebsite_FaqPageQuery, GatsbyTypes.SitePageContext>;
 
 export const query = graphql`
-  query TeamWebsite_FaqPage {
+  query TeamWebsite_FaqPage(
+    $locale: String!
+    $navigationId: String!
+  ) {
     ...TeamWebsite_DefaultLayout_query
-
-    prismicTeamContents {
+    prismicTeamContents(
+      lang: { eq: $locale }
+    ) {
       _previewable
       data {
-        jobs_page_meta_title
-        jobs_page_meta_description
         twitter_site_handle
-      }
-    }
 
-    prismicFaq(uid: { eq: "team.daangn.com" }) {
-      _previewable
-      data {
+        faq_page_meta_title
+        faq_page_meta_description
+        faq_page_title {
+          text
+        }
+
         ...TeamWebsite_FaqAccordion_faqData
-        entries {
+        faq_entries {
           question
           answer {
             text
@@ -56,27 +59,27 @@ const FaqPage: React.FC<FaqPageProps> = ({
   data,
 }) => {
   required(data.prismicTeamContents?.data);
-  required(data.prismicFaq?.data);
 
   return (
     <Container>
       <GatsbySeo
-        title={`자주 묻는 질문 | ${data.prismicTeamContents.data.jobs_page_meta_title}`}
+        title={data.prismicTeamContents.data.faq_page_meta_title}
+        description={data.prismicTeamContents.data.faq_page_meta_description}
         twitter={data.prismicTeamContents.data.twitter_site_handle != null ? {
           cardType: 'summary',
           site: data.prismicTeamContents.data.twitter_site_handle,
         } : undefined}
       />
       <FAQJsonLd
-        questions={data.prismicFaq.data.entries!.map(faq => ({
+        questions={data.prismicTeamContents.data.faq_entries!.map(faq => ({
           question: faq!.question || '',
           answer: faq!.answer!.text || '',
         }))}
       />
       <PageTitle>
-        자주 묻는 질문
+        {data.prismicTeamContents.data.faq_page_title.text}
       </PageTitle>
-      <FaqAccordion faqData={data.prismicFaq.data} />
+      <FaqAccordion data={data.prismicTeamContents.data} />
     </Container>
   );
 };

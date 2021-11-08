@@ -20,9 +20,14 @@ import PrismicTeamContentsDataCultureBodyIllustrationAndDescription from '../com
 type CulturePageProps = PageProps<GatsbyTypes.TeamWebsite_CulturePageQuery, GatsbyTypes.SitePageContext>;
 
 export const query = graphql`
-  query TeamWebsite_CulturePage {
+  query TeamWebsite_CulturePage(
+    $locale: String!
+    $navigationId: String!
+  ) {
     ...TeamWebsite_DefaultLayout_query
-    prismicTeamContents {
+    prismicTeamContents(
+      lang: { eq: $locale }
+    ) {
       _previewable
       data {
         culture_page_meta_title

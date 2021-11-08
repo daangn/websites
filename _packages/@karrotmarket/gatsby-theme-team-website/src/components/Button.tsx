@@ -9,6 +9,7 @@ const Button = styled(Link, {
   justifyContent: 'center',
   fontSize: '$subtitle4',
   fontWeight: 'bold',
+  textAlign: 'center',
   height: rem(60),
   border: 'none',
   borderRadius: rem(10),
