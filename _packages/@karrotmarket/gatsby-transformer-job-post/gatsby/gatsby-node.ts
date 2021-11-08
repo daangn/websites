@@ -47,6 +47,8 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
 
       title: String!
 
+      boardToken: String!
+
       boardUrl: String!
 
       # Parsed content
@@ -147,6 +149,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = (ctx,options) => {
       updatedAt: node.updated_at,
       ghId: node.ghId.toString(),
       title: node.title,
+      boardToken: node.boardToken,
       boardUrl: node.absolute_url,
       rawContent,
       content,

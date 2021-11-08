@@ -84,8 +84,8 @@ interface ApplicationFormClient {
   submit(form: ValidApplicationForm): Promise<Response>;
 }
 
-export const makeEndpoint = (host: string, jobId: string): string => (
-  `${host.replace(/\/$/, '')}/jobs/${jobId}/application/submit`
+export const makeEndpoint = (host: string, boardToken: string, jobId: string): string => (
+  `${host.replace(/\/$/, '')}/boards/${boardToken}/jobs/${jobId}/application/submit`
 );
 
 interface MakeApplicationFormClient {

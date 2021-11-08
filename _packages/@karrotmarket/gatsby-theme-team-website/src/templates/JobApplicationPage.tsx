@@ -25,6 +25,7 @@ export const query = graphql`
     jobPost(id: { eq: $id }) {
       ghId
       title
+      boardToken
       portfolioRequired
     }
     privacyPolicy: prismicTermsAndConditions(uid: { eq: "job-application-privacy" }) {
@@ -128,6 +129,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
 
   const jobApplicationFormEndpoint = makeEndpoint(
     process.env.GATSBY_JOB_APPLICATION_FORM_HOST || 'http://localhost:8787',
+    data.jobPost.boardToken,
     data.jobPost.ghId,
   );
 
