@@ -73,12 +73,9 @@ const PreviewResolverPage: React.FC<PreviewResolverPageProps> = ({
     <Container>
       <Illustration />
       <Description>
-        미리보기 로딩중이에요
+        Loading preview
         {Array(count).fill('.')}
       </Description>
-      <Note>
-        라이브러리 베타버전이라 버그가 있어서 프리뷰가 동작을 안해요 ㅠㅠ
-      </Note>
     </Container>
   );
 };

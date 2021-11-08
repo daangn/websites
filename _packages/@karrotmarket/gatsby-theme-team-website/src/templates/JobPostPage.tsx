@@ -10,6 +10,8 @@ import Button from '../components/Button';
 import ArrowLink from '../components/ArrowLink';
 import JobPostContentSection from '../components/JobPostContentSection';
 
+import messages from './jobPostPage/messages';
+
 type JobPostPageProps = PageProps<GatsbyTypes.TeamWebsite_JobPostPageQuery, GatsbyTypes.SitePageContext>;
 
 export const query = graphql`
@@ -49,22 +51,26 @@ const JobPostPage: React.FC<JobPostPageProps> = ({
   data,
 }) => {
   const parseLink = useLinkParser();
+
   required(data.jobPost);
-  data.jobPost.externalUrl
-  if(data.jobPost.externalUrl){
-    return <Container>
-      <ContentWrapper>
-        <strong>해당 공고는 외부에서 진행되는 공고에요.</strong>
-      </ContentWrapper>
-      <Button
-          type="primary"
-          to={data.jobPost.externalUrl!}
-          fullWidth={{ '@initial': true, '@sm': false }}
-        >
-          공고 확인하러 가기
-        </Button>
-    </Container>
+
+  if (data.jobPost.externalUrl) {
+    return (
+      <Container>
+        <ContentWrapper>
+          <strong>{messages.external_post_notice}</strong>
+        </ContentWrapper>
+        <Button
+            type="primary"
+            to={data.jobPost.externalUrl!}
+            fullWidth={{ '@initial': true, '@sm': false }}
+          >
+            {messages.external_post_link}
+          </Button>
+      </Container>
+    );
   }
+
   return (
     <Container>
       <ContentWrapper>
@@ -78,13 +84,13 @@ const JobPostPage: React.FC<JobPostPageProps> = ({
           to={`/jobs/${data.jobPost.ghId}/apply/`}
           fullWidth={{ '@initial': true, '@sm': false }}
         >
-          지원하기
+          {messages.apply}
         </Button>
         <Button
           to="/jobs/faq/"
           fullWidth={{ '@initial': true, '@sm': false }}
         >
-          자주 묻는 질문
+          {messages.faq}
         </Button>
       </ButtonContainer>
       <ArrowLink
@@ -97,7 +103,7 @@ const JobPostPage: React.FC<JobPostPageProps> = ({
           }
         }}
       >
-        목록으로 돌아가기
+        {messages.back_to_list}
       </ArrowLink>
     </Container>
   );

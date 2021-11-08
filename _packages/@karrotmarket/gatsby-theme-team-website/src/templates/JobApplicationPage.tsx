@@ -16,6 +16,8 @@ import type { ApplicationForm } from '../utils/applicationForm';
 import { makeClient, makeEndpoint } from '../utils/applicationForm';
 import * as Base64 from '../utils/base64';
 
+import messages from './jobApplicationPage/messages';
+
 type JobApplicationPageProps = PageProps<GatsbyTypes.TeamWebsite_JobApplicationPageQuery, GatsbyTypes.SitePageContext>;
 
 export const query = graphql`
@@ -178,7 +180,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
 
           if (response.ok) {
             dispatch('FETCH_COMPLETE');
-            window.alert('지원서가 제출되었습니다. 빠른 시일 내에 검토 후 연락드리겠습니다 :)');
+            window.alert(messages.alert_completed);
           } else {
             dispatch('INVALID');
             const message = await response.text();
@@ -186,7 +188,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
           }
         } catch (e) {
           console.error(e);
-          window.alert('지원서 제출에 실패했습니다. 문제가 지속되는 경우 recruit@daangn.com 으로 문의주시면 도움 드리겠습니다.');
+          window.alert(messages.alert_failed);
         }
       } else {
         dispatch('INVALID');
@@ -213,22 +215,22 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
       <FormField
         variants={{ type: 'text' }}
         name="name"
-        label="이름"
-        placeholder="지원자 이름을 입력해주세요."
+        label={messages.field_name_label}
+        placeholder={messages.field_name_placeholder}
         required
       />
       <FormField
         variants={{ type: 'tel' }}
         name="phone_number"
-        label="전화번호"
-        placeholder="연락 가능한 전화번호를 입력해주세요."
+        label={messages.field_phone_label}
+        placeholder={messages.field_phone_placeholder}
         required
       />
       <FormField
         variants={{ type: 'email' }}
         name="email"
-        label="이메일"
-        placeholder="이메일 주소를 입력해주세요."
+        label={messages.field_email_label}
+        placeholder={messages.field_email_placeholder}
         required
       />
       <FormField
@@ -237,9 +239,9 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
           accepts: greenhouseAcceptedMimeTypes,
         }}
         name="resume"
-        label="이력서 및 경력기술서"
-        description="파일은 pdf, doc, docx, txt, rtf 형식만 사용할 수 있습니다."
-        placeholder="파일 첨부하기"
+        label={messages.field_resume_label}
+        description={messages.field_resume_description}
+        placeholder={messages.field_resume_placeholder}
         required
       />
       <FormField
@@ -248,9 +250,9 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
           accepts: greenhouseAcceptedMimeTypes,
         }}
         name="portfolio"
-        label="포트폴리오"
-        placeholder="파일 첨부하기"
-        description="*포트폴리오는 최대 50MB까지 업로드 가능해요."
+        label={messages.field_portfolio_label}
+        placeholder={messages.field_portfolio_placeholder}
+        description={messages.field_portfolio_description}
         required={data.jobPost.portfolioRequired}
       />
       <FormField
@@ -304,7 +306,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
             terms: data.privacyPolicy.data.content.html,
           }}
           name="privacy"
-          label="개인정보 수집 및 이용동의"
+          label={messages.terms_privacy_info}
           required
         />
       )}
@@ -315,7 +317,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
             terms: data.sensitiveInfoPolicy.data.content.html,
           }}
           name="sensitive"
-          label="민감정보 수집 및 이용동의"
+          label={messages.terms_sensitive_info}
           required
         />
       )}
@@ -328,7 +330,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
         {state === 'fetching' ? (
           <Spinner />
         ) : (
-          '동의 후 제출하기'
+          messages.button_submit
         )}
       </Button>
     </Form>

@@ -22,7 +22,7 @@ interface JobPostingJsonLdProps extends DeferSeoProps, Overrides<JobPosting> {
   validThrough?: string,
   industry?: string,
   occupationalCategory?: string,
-  employmentType?: EmploymentType,
+  employmentType: EmploymentType,
   experienceRequirements?: string | string[],
   locations?: {
     postalCode: string,
@@ -67,7 +67,7 @@ const JobPostingJsonLd: React.FC<JobPostingJsonLdProps> = ({
     PART_TIME:'PART_TIME',
     FREE_LANCER:'FREE_LANCER',
     OTHER:'OTHER',
-  }
+  };
   const json: WithContext<JobPosting> = {
     '@context': 'https://schema.org',
     '@type': 'JobPosting',
