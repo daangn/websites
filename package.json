@@ -5,6 +5,7 @@
   "main": "index.js",
   "workspaces": [
     "_packages/**",
+    "_workers/**",
     "team.daangn.com",
     "careers.en.karrotmarket.com",
     "uk.karrotmarket.com",
