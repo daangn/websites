@@ -18,10 +18,16 @@ import messages from './jobsPage/messages';
 type JobsPageTemplateProps = PageProps<GatsbyTypes.TeamWebsite_JobsPageTemplateQuery, GatsbyTypes.SitePageContext>;
 
 export const query = graphql`
-  query TeamWebsite_JobsPageTemplate($pattern: String) {
+  query TeamWebsite_JobsPageTemplate(
+    $pattern: String
+    $locale: String!
+    $navigationId: String!
+  ) {
     ...TeamWebsite_DefaultLayout_query
 
-    prismicTeamContents {
+    prismicTeamContents(
+      lang: { eq: $locale }
+    ) {
       data {
         jobs_page_meta_title
         jobs_page_meta_description

@@ -23,14 +23,19 @@ type DefaultLayoutProps = OverrideProps<
 
 export const query = graphql`
   fragment TeamWebsite_DefaultLayout_query on Query {
-    prismicTeamContents {
+    prismicTeamContents(
+      lang: { eq: $locale }
+    ) {
       _previewable
       data {
         fb_app_id
         twitter_site_handle
       }
     }
-    prismicSiteNavigation(uid: { eq: "team.daangn.com" }) {
+    prismicSiteNavigation(
+      lang: { eq: $locale }
+      uid: { eq: $navigationId }
+    ) {
       _previewable
       data {
         ...Header_navigationData

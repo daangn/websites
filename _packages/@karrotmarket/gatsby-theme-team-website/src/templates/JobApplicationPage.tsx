@@ -21,7 +21,11 @@ import messages from './jobApplicationPage/messages';
 type JobApplicationPageProps = PageProps<GatsbyTypes.TeamWebsite_JobApplicationPageQuery, GatsbyTypes.SitePageContext>;
 
 export const query = graphql`
-  query TeamWebsite_JobApplicationPage($id: String!) {
+  query TeamWebsite_JobApplicationPage(
+    $id: String!
+    $locale: String!
+    $navigationId: String!
+  ) {
     ...TeamWebsite_DefaultLayout_query
     ...TeamWebsite_JobPostLayout_query
     jobPost(id: { eq: $id }) {
@@ -30,7 +34,10 @@ export const query = graphql`
       boardToken
       portfolioRequired
     }
-    privacyPolicy: prismicTermsAndConditions(uid: { eq: "job-application-privacy" }) {
+    privacyPolicy: prismicTermsAndConditions(
+      uid: { eq: "job-application-privacy" }
+      lang: { eq: $locale }
+    ) {
       id
       data {
         content {
@@ -38,7 +45,10 @@ export const query = graphql`
         }
       }
     }
-    sensitiveInfoPolicy: prismicTermsAndConditions(uid: { eq: "job-application-sensitive" }) {
+    sensitiveInfoPolicy: prismicTermsAndConditions(
+      uid: { eq: "job-application-sensitive" }
+      lang: { eq: $locale }
+    ) {
       id
       data {
         content {

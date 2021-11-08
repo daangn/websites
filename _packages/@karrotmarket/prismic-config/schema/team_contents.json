@@ -39,7 +39,7 @@
         "labels" : {
           "key_visual" : [ ],
           "member_quote_carousel" : [ ],
-          "title_and_description" : [ {
+         "title_and_description" : [ {
             "name" : "title_and_description",
             "display" : "Title and Description"
           } ],
@@ -810,22 +810,6 @@
       }
     }
   },
-  "Meta" : {
-    "fb_app_id" : {
-      "type" : "Text",
-      "config" : {
-        "label" : "Facebook App ID",
-        "placeholder" : "Facebook for Developers 에서 앱 만들 것"
-      }
-    },
-    "twitter_site_handle" : {
-      "type" : "Text",
-      "config" : {
-        "label" : "Twitter Username",
-        "placeholder" : "(기본: daangnteam)"
-      }
-    }
-  },
   "Apply Completed" : {
     "completed_page_message" : {
       "type" : "StructuredText",
@@ -839,6 +823,35 @@
       "config" : {
         "single" : "strong,em,hyperlink",
         "label" : "Contact"
+      }
+    },
+    "completed_page_content" : {
+      "type" : "StructuredText",
+      "config" : {
+        "multi" : "paragraph,strong,em,hyperlink",
+        "label" : "내용",
+        "placeholder" : "지원 완료 후 보이는 안내 문구를 적어주세요."
+      }
+    },
+    "completed_page_link_group" : {
+      "type" : "Group",
+      "config" : {
+        "fields" : {
+          "display_text" : {
+            "type" : "Text",
+            "config" : {
+              "label" : "바로가기"
+            }
+          },
+          "link" : {
+            "type" : "Link",
+            "config" : {
+              "label" : "바로가기 링크",
+              "select" : null
+            }
+          }
+        },
+        "label" : "completed_page_link_group"
       }
     },
     "completed_body" : {
@@ -880,6 +893,123 @@
             "repeat" : { }
           }
         }
+      }
+    }
+  },
+  "FAQ" : {
+    "faq_page_meta_title" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "페이지 제목 (메타)"
+      }
+    },
+    "faq_page_meta_description" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "페이지 설명 (메타)"
+      }
+    },
+    "faq_page_title" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1",
+        "label" : "페이지 제목"
+      }
+    },
+    "faq_entries" : {
+      "type" : "Group",
+      "config" : {
+        "fields" : {
+          "question" : {
+            "type" : "Text",
+            "config" : {
+              "label" : "질문",
+              "placeholder" : "질문 내용을 입력하세요"
+            }
+          },
+          "answer" : {
+            "type" : "StructuredText",
+            "config" : {
+              "multi" : "paragraph,strong,em,hyperlink,list-item,o-list-item",
+              "label" : "답변",
+              "placeholder" : "답변 내용을 입력하세요"
+            }
+          }
+        },
+        "label" : "FAQ 항목"
+      }
+    }
+  },
+  "Not Found" : {
+    "notfound_page_title" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1",
+        "label" : "페이지 제목"
+      }
+    },
+    "notfound_page_link_group" : {
+      "type" : "Group",
+      "config" : {
+        "fields" : {
+          "display_text" : {
+            "type" : "Text",
+            "config" : {
+              "label" : "바로가기"
+            }
+          },
+          "link" : {
+            "type" : "Link",
+            "config" : {
+              "label" : "바로가기 링크",
+              "select" : null
+            }
+          }
+        },
+        "label" : "notfound_page_link_group"
+      }
+    }
+  },
+  "Meta" : {
+    "enable_culture_page" : {
+      "type" : "Boolean",
+      "config" : {
+        "placeholder_false" : "사용안함",
+        "placeholder_true" : "사용",
+        "default_value" : false,
+        "label" : "Culture 페이지 사용"
+      }
+    },
+    "enable_life_page" : {
+      "type" : "Boolean",
+      "config" : {
+        "placeholder_false" : "사용안함",
+        "placeholder_true" : "사용",
+        "default_value" : false,
+        "label" : "Life 페이지 사용"
+      }
+    },
+    "enable_faq_page" : {
+      "type" : "Boolean",
+      "config" : {
+        "placeholder_false" : "사용안함",
+        "placeholder_true" : "사용",
+        "default_value" : false,
+        "label" : "FAQ 페이지 사용"
+      }
+    },
+    "fb_app_id" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Facebook App ID",
+        "placeholder" : "Facebook for Developers 에서 앱 만들 것"
+      }
+    },
+    "twitter_site_handle" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Twitter Username",
+        "placeholder" : "(기본: daangnteam)"
       }
     }
   }

@@ -7,12 +7,12 @@ import FaqAccordionItem from './FaqAccordionItem';
 
 type FaqAccordionProps = {
   className?: string,
-  faqData: GatsbyTypes.TeamWebsite_FaqAccordion_faqDataFragment,
+  data: GatsbyTypes.TeamWebsite_FaqAccordion_faqDataFragment,
 };
 
 export const query = graphql`
-  fragment TeamWebsite_FaqAccordion_faqData on PrismicFaqDataType {
-    entries {
+  fragment TeamWebsite_FaqAccordion_faqData on PrismicTeamContentsDataType {
+    faq_entries {
       ...TeamWebsite_FaqAccordionItem_entry
     }
   }
@@ -52,14 +52,14 @@ const reducer: React.Reducer<State, Action> = (state, action) => {
 
 const FaqAccordion: React.FC<FaqAccordionProps> = ({
   className,
-  faqData,
+  data,
 }) => {
   const [state, dispatch] = React.useReducer(reducer, initialState);
 
   return (
     <Container className={className}>
       <AnimatePresence initial={false}>
-        {faqData.entries
+        {data.faq_entries
         .filter(entry => entry.question && entry.answer)
         .map(entry => (
           <FaqAccordionItem

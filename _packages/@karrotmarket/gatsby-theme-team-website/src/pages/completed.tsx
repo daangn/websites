@@ -4,6 +4,8 @@ import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { GatsbySeo } from 'gatsby-plugin-next-seo';
+import { mapLink, useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
+import { required } from '@cometjs/core';
 
 import { ReactComponent as DaangniThanks } from '../assets/daangni_thanks.svg';
 import DefaultLayout from '../layouts/DefaultLayout';
@@ -12,28 +14,22 @@ import ButtonLink from '../components/Button';
 type CompletedPageProps = PageProps<GatsbyTypes.TeamWebsite_CompletedPageQuery, GatsbyTypes.SitePageContext>;
 
 export const query = graphql`
-  query TeamWebsite_CompletedPage {
+  query TeamWebsite_CompletedPage(
+    $locale: String!
+    $navigationId: String!
+  ) {
     ...TeamWebsite_DefaultLayout_query
-    prismicTeamContents {
+    prismicTeamContents(
+      lang: { eq: $locale }
+    ) {
       data {
-        completed_page_message {
+        completed_page_content {
           html
         }
-        completed_page_contact {
-          html
-        }
-        completed_body {
-          ... on PrismicTeamContentsDataCompletedBodyButtonlink {
-            id
-            primary {
-              link_button_highlight
-              completed_page_link_display_title {
-                html
-              }
-              link_button_src {
-                url
-              }
-            }
+        completed_page_link_group {
+          display_text
+          link {
+            url
           }
         }
       }
@@ -71,19 +67,22 @@ const Contact = styled('div', {
     marginRight: rem(5),
   },
 });
+
 const ButtonLinkGroup = styled('div',{
   display: 'flex',
   flexDirection: 'column',
   gap: rem(16),
 })
 
-const CompletedPage: React.FC<CompletedPageProps> = ({ ...pageProps }) => {
+const CompletedPage: React.FC<CompletedPageProps> = pageProps => {
+  const { data } = pageProps;
+  const parseLink = useLinkParser();
+
+  required(data.prismicTeamContents?.data);
+
   const messageContentsHtml =
-    pageProps.data.prismicTeamContents?.data?.completed_page_message?.html;
-  const contractHtml =
-    pageProps.data.prismicTeamContents?.data?.completed_page_contact?.html;
-  const LinkItems = pageProps.data.prismicTeamContents?.data?.completed_body;
-  
+    data.prismicTeamContents.data.completed_page_content?.html;
+
   return (
     <DefaultLayout {...pageProps}>
       <GatsbySeo noindex nofollow />
@@ -91,27 +90,38 @@ const CompletedPage: React.FC<CompletedPageProps> = ({ ...pageProps }) => {
         <Illustration />
         <MessageContainer>
           <Message dangerouslySetInnerHTML={{ __html: messageContentsHtml }} />
-          <Contact>
-            <span>채용문의:</span>
-            <div dangerouslySetInnerHTML={{ __html: contractHtml }} />
-          </Contact>
         </MessageContainer>
         <ButtonLinkGroup>
-          {LinkItems?.map(
-            (link) =>
-              link?.primary?.link_button_src?.url &&
-              link?.primary?.completed_page_link_display_title && (
-                <ButtonLink
-                  key={link?.id}
-                  to={link?.primary?.link_button_src.url}
-                  type={link?.primary.link_button_highlight ? 'primary' : 'default'}
-                  fullWidth={{ '@sm': true }}
-                  dangerouslySetInnerHTML={{
-                    __html: link?.primary?.completed_page_link_display_title.html,
-                  }}
-                />
-              )
-          )}
+          {data.prismicTeamContents.data.completed_page_link_group
+            .map((entry, i) => {
+              const link = parseLink(entry.link.url);
+              return mapLink(link, {
+                Internal: link => (
+                  <ButtonLink
+                    key={i}
+                    to={link.pathname}
+                    type={i === 0 ? 'primary' : 'default'}
+                    fullWidth={{ initial: true, '@sm': false }}
+                  >
+                    {entry.display_text}
+                  </ButtonLink>
+                ),
+                External: link => (
+                  <ButtonLink
+                    as="a"
+                    target="_blank"
+                    rel="external noopener"
+                    key={i}
+                    href={link.url.href}
+                    type={i === 0 ? 'primary' : 'default'}
+                    fullWidth={{ initial: true, '@sm': false }}
+                  >
+                    {entry.display_text}
+                  </ButtonLink>
+                ),
+              });
+            })
+          }
         </ButtonLinkGroup>
       </Container>
     </DefaultLayout>
