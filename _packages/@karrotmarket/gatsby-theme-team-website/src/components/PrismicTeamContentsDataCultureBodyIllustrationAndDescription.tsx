@@ -151,9 +151,10 @@ const PrismicTeamContentsDataCultureBodyIllustrationAndDescription: React.FC<
       <DescriptionContainer>
         <Description>{data.primary.description.text}</Description>
         {data.primary.link?.url && (
-          <DetailLink link={parseLink(data.primary.link.url)}>
-            {data.primary.link_text || '자세히 보기'}
-          </DetailLink>
+          <DetailLink
+            link={parseLink(data.primary.link.url)}
+            message={data.primary.link_text}
+          />
         )}
       </DescriptionContainer>
     </Container>

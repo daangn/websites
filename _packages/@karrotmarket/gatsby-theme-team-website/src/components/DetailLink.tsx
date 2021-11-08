@@ -3,16 +3,18 @@ import type { LinkType } from '@karrotmarket/gatsby-theme-website/src/link';
 
 import ArrowLink from './ArrowLink';
 
+import messages from './detailLink/messages';
+
 type DetailLinkProps = {
   link: LinkType,
   className?: string,
-  children: string,
+  message?: string,
 };
 
 const DetailLink: React.FC<DetailLinkProps> = ({
   link,
   className,
-  children,
+  message = messages.detail,
 }) => {
   return (
     <ArrowLink
@@ -20,7 +22,7 @@ const DetailLink: React.FC<DetailLinkProps> = ({
       className={className}
       direction="forward"
     >
-      {children}
+      {message}
     </ArrowLink>
   );
 };

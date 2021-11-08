@@ -124,7 +124,9 @@ const PrismicTeamContentsDataMainBodyTitleAndIllustration: React.FC<PrismicTeamC
       <TitleContainer>
         <KeyText>{data.primary.key_text}</KeyText>
         <Title>{data.primary.title?.text}</Title>
-        {link && <DetailLink link={link}>자세히 보기</DetailLink>}
+        {link && (
+          <DetailLink link={link} />
+        )}
       </TitleContainer>
       {image && (
         <Illustration

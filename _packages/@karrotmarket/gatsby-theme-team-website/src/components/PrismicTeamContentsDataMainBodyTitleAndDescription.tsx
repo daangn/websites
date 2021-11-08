@@ -127,7 +127,9 @@ const PrismicTeamContentsDataMainBodyTitleAndDescription: React.FC<PrismicTeamCo
       <TitleContainer>
         <KeyText>{data.primary.key_text}</KeyText>
         <Title>{data.primary.title?.text}</Title>
-        {link && <DetailLink link={link}>자세히 보기</DetailLink>}
+        {link && (
+          <DetailLink link={link} />
+        )}
       </TitleContainer>
       <Description dangerouslySetInnerHTML={{ __html: data.primary.description?.html || '' }}/>
     </Container>

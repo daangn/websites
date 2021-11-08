@@ -102,9 +102,10 @@ const PrismicTeamContentsDataMainBodyWideBanner: React.FC<PrismicTeamContentsDat
       >
         <Title>{data.primary.title?.text}</Title>
         {data.primary.link?.url && (
-          <DetailLink link={parseLink(data.primary.link.url)}>
-            {data.primary.link_text || '자세히 보기'}
-          </DetailLink>
+          <DetailLink
+            link={parseLink(data.primary.link.url)}
+            message={data.primary.link_text}
+          />
         )}
       </BannerContainer>
     </Container>
