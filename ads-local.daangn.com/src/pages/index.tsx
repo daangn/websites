@@ -84,7 +84,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
         }}
         metaTags={[
           {
-            property: "thumbnail",
+            name: "thumbnail",
             content: url,
           },
         ]}
