@@ -11,12 +11,14 @@ export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
   Joi,
 }) => {
   return Joi.object({
-    defaultTags: Joi.object().pattern(Joi.string(), Joi.array().items(Joi.string()))
+    defaultTags: Joi.object().pattern(Joi.string(), Joi.array().items(Joi.string())),
   });
 };
 
 type PluginOptions = {
-  defaultTags:{ [boardToken:string]: string[] }
+  defaultTags?: {
+    [boardToken: string]: string[],
+  },
 };
 
 export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({
@@ -137,7 +139,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = (ctx,options) => {
     createNodeId,
     createContentDigest,
   } = ctx;
-  const { defaultTags } = options as unknown as PluginOptions;
+  const { defaultTags = {} } = options as unknown as PluginOptions;
 
   // Note: 나중에 다른 타입 추가로 transform 할 수 있으므로 early return 하지 않겠습니다.
   if (isGreenhouseJobNode(node)) {
