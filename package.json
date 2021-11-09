@@ -16,7 +16,7 @@
     "ads-local.daangn.com"
   ],
   "resolutions": {
-    "gatsby": "3.14.3",
+    "gatsby": "3.14.5",
     "react": "18.0.0-alpha-fd5e01c2e-20210913",
     "react-dom": "18.0.0-alpha-fd5e01c2e-20210913",
     "schema-dts": "1.0.0",
