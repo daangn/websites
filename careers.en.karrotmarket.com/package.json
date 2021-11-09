@@ -27,7 +27,7 @@
     "@karrotmarket/gatsby-transformer-job-post": "*",
     "gatsby": "next",
     "gatsby-plugin-advanced-sitemap": "2.0.0",
-    "gatsby-plugin-gatsby-cloud": "3.2.0",
+    "gatsby-plugin-gatsby-cloud": "3.2.1",
     "gatsby-plugin-google-tagmanager": "3.14.0",
     "gatsby-plugin-manifest": "3.14.0",
     "gatsby-plugin-robots-txt": "1.6.14",
