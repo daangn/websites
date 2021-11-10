@@ -15,7 +15,10 @@ import PrismicTeamContentsDataMainBodyKeyVisual from '../components/PrismicTeamC
 import PrismicTeamContentsDataMainBodyMemberQuoteCarousel from '../components/PrismicTeamContentsDataMainBodyMemberQuoteCarousel';
 import PrismicTeamContentsDataMainBodyTitleAndDescription from '../components/PrismicTeamContentsDataMainBodyTitleAndDescription';
 import PrismicTeamContentsDataMainBodyTitleAndIllustration from '../components/PrismicTeamContentsDataMainBodyTitleAndIllustration';
+import PrismicTeamContentsDataMainBodyIllustrationAndDescription from '../components/PrismicTeamContentsDataMainBodyIllustrationAndDescription';
 import PrismicTeamContentsDataMainBodyWideBanner from '../components/PrismicTeamContentsDataMainBodyWideBanner';
+import PrismicTeamContentsDataMainBodyHowWeWork from '../components/PrismicTeamContentsDataMainBodyHowWeWork';
+import PrismicTeamContentsDataMainBodyBenefit from '../components/PrismicTeamContentsDataMainBodyBenefit';
 
 type IndexPageProps = PageProps<GatsbyTypes.TeamWebsite_IndexPageQuery, GatsbyTypes.SitePageContext>;
 
@@ -57,7 +60,10 @@ export const query = graphql`
           ...PrismicTeamContentsDataMainBodyMemberQuoteCarousel_data
           ...PrismicTeamContentsDataMainBodyTitleAndDescription_data
           ...PrismicTeamContentsDataMainBodyTitleAndIllustration_data
+          ...PrismicTeamContentsDataMainBodyIllustrationAndDescription_data
           ...PrismicTeamContentsDataMainBodyWideBanner_data
+          ...PrismicTeamContentsDataMainBodyHowWeWork_data
+          ...PrismicTeamContentsDataMainBodyBenefit_data
         }
       }
     }
@@ -151,8 +157,26 @@ const IndexPage: React.FC<IndexPageProps> = ({
                 data={data}
               />
             ),
+            PrismicTeamContentsDataMainBodyIllustrationAndDescription: data => (
+              <PrismicTeamContentsDataMainBodyIllustrationAndDescription
+                key={i}
+                data={data}
+              />
+            ),
             PrismicTeamContentsDataMainBodyWideBanner: data => (
               <PrismicTeamContentsDataMainBodyWideBanner
+                key={i}
+                data={data}
+              />
+            ),
+            PrismicTeamContentsDataMainBodyHowWeWork: data => (
+              <PrismicTeamContentsDataMainBodyHowWeWork
+                key={i}
+                data={data}
+              />
+            ),
+             PrismicTeamContentsDataMainBodyBenefit: data => (
+              <PrismicTeamContentsDataMainBodyBenefit
                 key={i}
                 data={data}
               />
