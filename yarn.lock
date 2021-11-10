@@ -1642,12 +1642,12 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cloudflare/workers-types@^3.1.1":
+"@cloudflare/workers-types@3.1.1":
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/@cloudflare/workers-types/-/workers-types-3.1.1.tgz#d5bae190fb83af48a3b2c7f09e7b0037725fbcdf"
   integrity sha512-7NnSrdUJ1EdmJyMImKemlcOyjRCc9GYc939Ih5Lab9Mg4T5KvTMdHQDSUXFZJObPnS0YuYMcyfLJTmxWJj+1Sw==
 
-"@cloudflare/wrangler@^1.19.4":
+"@cloudflare/wrangler@1.19.4":
   version "1.19.4"
   resolved "https://registry.yarnpkg.com/@cloudflare/wrangler/-/wrangler-1.19.4.tgz#53cfa5198c5588a703a73bfd927f8196dd9518da"
   integrity sha512-bH+MinjQdgAQucns4kHEx+OaUTA7Sk8Cf3IwhN7RmtMvhgE3/QNeyLpBaBPiSvvog+CrzogyyicbzTOXdEJDSw==
@@ -1656,7 +1656,7 @@
     rimraf "^3.0.2"
     tar "^6.1.10"
 
-"@cometjs/core@1.2.0", "@cometjs/core@^1.2.0":
+"@cometjs/core@1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@cometjs/core/-/core-1.2.0.tgz#e8d4d6c5d3bc1c54a7f26b963a61d3828bccf7fe"
   integrity sha512-ydD6gWXIug6BxlAhAYxN5hYmeduIc4P1U789ooxzsNwFLaYhenYWEm5TnRawel1oKfcCHJl8LRKIN4yo5guVdA==
@@ -2963,7 +2963,7 @@
   resolved "https://registry.yarnpkg.com/@stitches/react/-/react-1.1.0.tgz#49342e085528d689b983682e112b79c5a0b0efb4"
   integrity sha512-g1XZsmB3tFL5i9aaBx0+P4C83j3vf/PEmLc5e9PlumE5c6q3zsdbbOVr4ZC52eGm4MCvM+2bbAJ++rtTUa6ahw==
 
-"@stitches/react@^1.2.5":
+"@stitches/react@1.2.5":
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/@stitches/react/-/react-1.2.5.tgz#2353343c220f0c59ba388a26fdd9ff7962cb6031"
   integrity sha512-95Wwjp5cvoYQjg616OBiHZM1PnIF51pnFQIgSPxPzS/xXBrer9sNO1tfpVfLYfOifvuotse2IFNbypJ92BXzvg==
@@ -6340,7 +6340,7 @@ esbuild-windows-arm64@0.13.12:
   resolved "https://registry.yarnpkg.com/esbuild-windows-arm64/-/esbuild-windows-arm64-0.13.12.tgz#782c5a8bd6d717ea55aaafe648f9926ca36a4a88"
   integrity sha512-2tTv/BpYRIvuwHpp2M960nG7uvL+d78LFW/ikPItO+2GfK51CswIKSetSpDii+cjz8e9iSPgs+BU4o8nWICBwQ==
 
-esbuild@^0.13.12:
+esbuild@0.13.12:
   version "0.13.12"
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.13.12.tgz#9cac641594bf03cf34145258c093d743ebbde7ca"
   integrity sha512-vTKKUt+yoz61U/BbrnmlG9XIjwpdIxmHB8DlPR0AAW6OdS+nBQBci6LUHU2q9WbBobMEIQxxDpKbkmOGYvxsow==
@@ -7869,7 +7869,7 @@ gatsby-telemetry@^2.14.0:
     node-fetch "^2.6.1"
     uuid "3.4.0"
 
-gatsby-theme-stitches@1.0.0, gatsby-theme-stitches@^1.0.0:
+gatsby-theme-stitches@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/gatsby-theme-stitches/-/gatsby-theme-stitches-1.0.0.tgz#a44e3d28eddafb0447c455106e0d8493bea3e285"
   integrity sha512-02Y0bvvxZGn8c5xdUpvg4wQ0Dvsn2DkC2K0WY2WtSej1oSBQtkAbGk6FJN6fJWUmyKuLHWddIeHxVboSqyW14g==
@@ -14460,7 +14460,7 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@4.4.4, typescript@^4.4.4:
+typescript@4.4.4:
   version "4.4.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.4.4.tgz#2cd01a1a1f160704d3101fd5a58ff0f9fcb8030c"
   integrity sha512-DqGhF5IKoBl8WNf8C1gu8q0xZSInh9j1kJJMqT3a94w1JzVaBU4EXOSMrz9yDqMT0xt3selp83fuFMQ0uzv6qA==
@@ -15123,7 +15123,7 @@ worker-rpc@^0.1.0:
   dependencies:
     microevent.ts "~0.1.1"
 
-worktop@^0.7.3:
+worktop@0.7.3:
   version "0.7.3"
   resolved "https://registry.yarnpkg.com/worktop/-/worktop-0.7.3.tgz#7dbf85f0add229cf261759bf3855820814b99cba"
   integrity sha512-WBHP1hk8pLP7ahAw13fugDWcO0SUAOiCD6DHT/bfLWoCIA/PL9u7GKdudT2nGZ8EGR1APbGCAI6ZzKG1+X+PnQ==
