@@ -15,7 +15,10 @@ import Divider from '../components/Divider';
 import PrismicTeamContentsDataCultureBodyKeyVisual from '../components/PrismicTeamContentsDataCultureBodyKeyVisual';
 import PrismicTeamContentsDataCultureBodyHowWeWork from '../components/PrismicTeamContentsDataCultureBodyHowWeWork';
 import PrismicTeamContentsDataCultureBodyBenefit from '../components/PrismicTeamContentsDataCultureBodyBenefit';
+import PrismicTeamContentsDataCultureBodyTitleAndDescription from '../components/PrismicTeamContentsDataCultureBodyTitleAndDescription';
+import PrismicTeamContentsDataCultureBodyTitleAndIllustration from '../components/PrismicTeamContentsDataCultureBodyTitleAndIllustration';
 import PrismicTeamContentsDataCultureBodyIllustrationAndDescription from '../components/PrismicTeamContentsDataCultureBodyIllustrationAndDescription';
+import PrismicTeamContentsDataCultureBodyWideBanner from '../components/PrismicTeamContentsDataCultureBodyWideBanner';
 
 type CulturePageProps = PageProps<GatsbyTypes.TeamWebsite_CulturePageQuery, GatsbyTypes.SitePageContext>;
 
@@ -54,9 +57,12 @@ export const query = graphql`
         culture_body {
           __typename
           ...PrismicTeamContentsDataCultureBodyKeyVisual_data
+          ...PrismicTeamContentsDataCultureBodyWideBanner_data
           ...PrismicTeamContentsDataCultureBodyHowWeWork_data
           ...PrismicTeamContentsDataCultureBodyBenefit_data
           ...PrismicTeamContentsDataCultureBodyIllustrationAndDescription_data
+          ...PrismicTeamContentsDataCultureBodyTitleAndDescription_data
+          ...PrismicTeamContentsDataCultureBodyTitleAndIllustration_data
         }
       }
     }
@@ -145,6 +151,24 @@ const CulturePage: React.FC<CulturePageProps> = ({
             ),
             PrismicTeamContentsDataCultureBodyIllustrationAndDescription: data => (
               <PrismicTeamContentsDataCultureBodyIllustrationAndDescription
+                key={i}
+                data={data}
+              />
+            ),
+            PrismicTeamContentsDataCultureBodyTitleAndDescription: data => (
+              <PrismicTeamContentsDataCultureBodyTitleAndDescription
+                key={i}
+                data={data}
+              />
+            ),
+            PrismicTeamContentsDataCultureBodyTitleAndIllustration: data => (
+              <PrismicTeamContentsDataCultureBodyTitleAndIllustration
+                key={i}
+                data={data}
+              />
+            ),
+            PrismicTeamContentsDataCultureBodyWideBanner: data => (
+              <PrismicTeamContentsDataCultureBodyWideBanner
                 key={i}
                 data={data}
               />
