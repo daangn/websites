@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@cometjs/graphql-utils": "1.1.0",
-    "@karrotmarket/design-token": "0.2.0",
+    "@karrotmarket/design-token": "1.0.1",
     "@karrotmarket/gatsby-theme-prismic": "*",
     "@karrotmarket/gatsby-theme-website": "*",
     "@karrotmarket/react-stitches": "0.1.1-1",
