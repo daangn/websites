@@ -12,21 +12,17 @@ export default {
   'field_email_placeholder': 'Enter actual email address',
 
   'field_resume_label': 'Resume',
-  'field_resume_placeholder': 'Attach file',
+  'field_resume_placeholder': 'Attach a file',
   'field_resume_description': 'Only pdf, doc, docx, txt, rtf formats are allowed',
 
   'field_portfolio_label': 'Cover letter',
-  'field_portfolio_placeholder': 'Attach file',
+  'field_portfolio_placeholder': 'Attach a file',
   'field_portfolio_description': '* Up to 50MB',
 
   'terms_privacy_info': 'Privacy policy',
   'terms_sensitive_info': 'Sensitive information policy',
 
-<<<<<<< Updated upstream
-  'button_submit': 'Agree and apply',
-=======
   'button_submit': 'Agree and Submit application',
 
   'custom_field_file_placeholder': 'Attach a file',
->>>>>>> Stashed changes
 };
