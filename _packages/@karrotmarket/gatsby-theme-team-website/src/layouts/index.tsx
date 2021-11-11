@@ -16,11 +16,13 @@ type LayoutSwitchProps = OverrideProps<
 >;
 
 const globalStyles = globalCss({
+  '*': {
+    margin: 0,
+  },
   ':root': {
     colorSchema: 'light dark',
   },
   'body': {
-    margin: 0,
     color: '$gray900',
     fontFamily: '$system',
     textRendering: 'optimizeLegibility',
