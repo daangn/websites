@@ -2729,6 +2729,11 @@
   resolved "https://registry.yarnpkg.com/@karrotmarket/design-token/-/design-token-0.2.0.tgz#076622328eb91757da2db5a73de4bf84d04b7fce"
   integrity sha512-f9yvNR1W2S8+yjiNgtJUN4bJEzcgsusw0sFBmMKxYB2Wvaw3toSL7Zsw8BhQlgqk3c5jAl2d74youAAiddB+iA==
 
+"@karrotmarket/design-token@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@karrotmarket/design-token/-/design-token-1.0.1.tgz#574f6a802bd7d73e4fe3f975639e7529a1ac2058"
+  integrity sha512-1mXupLpOWuB7JiM7V6UN7x1zC1TXR8bPYe4dho3PuOqL5iv7LdXLkb7L8cv4SncnxS5zBo20pns1FLOkymKr/g==
+
 "@karrotmarket/gatsby-source-greenhouse-jobboard@0.4.0":
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/@karrotmarket/gatsby-source-greenhouse-jobboard/-/gatsby-source-greenhouse-jobboard-0.4.0.tgz#26926c6985d290bfc1aaf322f6e34db491576693"
