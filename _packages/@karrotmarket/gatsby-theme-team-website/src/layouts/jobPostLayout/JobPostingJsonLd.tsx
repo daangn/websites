@@ -43,9 +43,9 @@ const JobPostingJsonLd: React.FC<JobPostingJsonLdProps> = ({
       industry="IT"
       employmentType={jobPost.employmentType}
       experienceRequirements={{
-        YES: [messages.experience_yes],
-        NO: [messages.experience_no],
-        WHATEVER: [messages.experience_yes, messages.experience_no],
+        YES: undefined,
+        NO: 'no requirements',
+        WHATEVER: 'no requirements',
       }[jobPost.priorExperience]}
       organization={{
         KARROT_MARKET: {
