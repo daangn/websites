@@ -1,14 +1,14 @@
 export default {
-  'alert_completed': '지원서가 제출되었습니다. 빠른 시일 내에 검토 후 연락드리겠습니다.',
-  'alert_failed': '지원서를 제출하지 못했습니다. 문제가 지속되는 경우 recruit@daangn.com 으로 문의주시면 도움드리겠습니다',
+  'alert_completed': 'FIXME: alert_completed',
+  'alert_failed': 'FIXME: alert_failed',
 
   'field_name_label': 'Full name',
   'field_name_placeholder': 'Enter full name',
 
-  'field_phone_label': 'Phone number',
+  'field_phone_label': 'Phone',
   'field_phone_placeholder': 'Enter actual phone number',
 
-  'field_email_label': 'Email address',
+  'field_email_label': 'Email',
   'field_email_placeholder': 'Enter actual email address',
 
   'field_resume_label': 'Resume',
@@ -17,10 +17,16 @@ export default {
 
   'field_portfolio_label': 'Cover letter',
   'field_portfolio_placeholder': 'Attach file',
-  'field_portfolio_description': '* Up to 50MiB',
+  'field_portfolio_description': '* Up to 50MB',
 
   'terms_privacy_info': 'Privacy policy',
   'terms_sensitive_info': 'Sensitive information policy',
 
+<<<<<<< Updated upstream
   'button_submit': 'Agree and apply',
+=======
+  'button_submit': 'Agree and Submit application',
+
+  'custom_field_file_placeholder': 'Attach a file',
+>>>>>>> Stashed changes
 };
