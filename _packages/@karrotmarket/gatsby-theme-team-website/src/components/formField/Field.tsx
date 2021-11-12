@@ -2,6 +2,7 @@ import { rem } from 'polished';
 import { styled } from 'gatsby-theme-stitches/src/config';
 
 export const Container = styled('div', {
+  position: 'relative',
   display: 'flex',
   flexDirection: 'column',
 });
@@ -43,4 +44,9 @@ export const Input = styled('input', {
   '::placeholder': {
     color: '$gray500',
   },
+});
+
+export const Description = styled('p', {
+  color: '$gray600',
+  marginTop: rem(16),
 });

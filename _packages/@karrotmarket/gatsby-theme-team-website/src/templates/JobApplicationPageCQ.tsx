@@ -10,12 +10,17 @@ import { mapAbstractType } from '@cometjs/graphql-utils';
 
 import _PageTitle from '../components/PageTitle';
 import _FormField from '../components/FormField';
+import FileAttachmentField from '../components/formField/FileAttachmentField';
+import ShortTextField from '../components/formField/ShortTextField';
+import LongTextField from '../components/formField/LongTextField';
+import SingleSelectField from '../components/formField/SingleSelectField';
+import MultiSelectField from '../components/formField/MultiSelectField';
+import YesNoField from '../components/formField/YesNoField';
+import TermsField from '../components/formField/TermsField';
 import Button from '../components/Button';
 import _Spinner from '../components/Spinner';
 
-import type { ApplicationForm } from '../utils/applicationForm';
-import { makeClient, makeNewEndpoint } from '../utils/applicationForm';
-import * as Base64 from '../utils/base64';
+import { makeNewEndpoint } from '../utils/applicationForm';
 
 import messages from './jobApplicationPage/messages';
 
@@ -142,12 +147,6 @@ const FormField = styled(_FormField, {
   marginBottom: rem(32),
 });
 
-const FormHelpText = styled('p', {
-  color: '$gray600',
-  fontSize: '$caption1',
-  marginBottom: rem(48),
-});
-
 const Spinner = styled(_Spinner, {
   height: '50%',
 });
@@ -186,49 +185,31 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
 
     const formData = new FormData(formRef.current);
 
-    const applicationForm: ApplicationForm = {
-      phoneNumber: formData.get('phone_number') as string,
-      email: formData.get('email') as string,
-      name: formData.get('name') as string,
-      resume: formData.get('resume') as File,
-      portfolio: formData.get('portfolio') as File,
-      veterans: formData.get('veterans') as string,
-      disability: formData.get('disability') as string,
-      alternativeCivilian: formData.get('alternative_civilian') as string,
-    };
-
     (async () => {
       required(data.jobPost);
 
-      const client = makeClient({
-        fetch,
-        endpoint: jobApplicationFormEndpoint,
-        encodeFile: async file => {
-          const content = await Base64.fromBlob(file);
-          return { content, filename: file.name };
-        },
-        portfolioRequired: data.jobPost.portfolioRequired,
-      });
+      dispatch('FETCH_START');
 
-      if (client.validate(applicationForm)) {
-        dispatch('FETCH_START');
-
-        try {
-          const response = await client.submit(applicationForm);
-
-          if (response.ok) {
-            dispatch('FETCH_COMPLETE');
-            window.alert(messages.alert_completed);
-          } else {
-            dispatch('INVALID');
-            const message = await response.text();
-            window.alert(message);
-          }
-        } catch (e) {
-          console.error(e);
-          window.alert(messages.alert_failed);
+      try {
+        const response = await fetch(jobApplicationFormEndpoint, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        if (response.ok) {
+          dispatch('FETCH_COMPLETE');
+          window.alert(messages.alert_completed);
+        } else {
+          dispatch('INVALID');
+          const message = await response.text();
+          window.alert(message);
         }
-      } else {
+      } catch (e) {
+        console.error(e);
+        window.alert(messages.alert_failed);
         dispatch('INVALID');
       }
     })();
@@ -248,12 +229,13 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
     <Form
       ref={formRef}
       method="post"
+      enctype="multipart/form-data"
       action={jobApplicationFormEndpoint}
       onSubmit={handleSubmit}
     >
       <GatsbySeo noindex />
       <FormField
-        variants={{ type: 'text' }}
+        as={ShortTextField}
         name="first_name"
         label={messages.field_name_label}
         placeholder={messages.field_name_placeholder}
@@ -262,25 +244,25 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
       {/* Treat the first_name as fullname */}
       <input type="hidden" name="last_name" value={"\u200b"} />
       <FormField
-        variants={{ type: 'tel' }}
+        as={ShortTextField}
+        type="tel"
         name="phone"
         label={messages.field_phone_label}
         placeholder={messages.field_phone_placeholder}
         required
       />
       <FormField
-        variants={{ type: 'email' }}
+        as={ShortTextField}
+        type="email"
         name="email"
         label={messages.field_email_label}
         placeholder={messages.field_email_placeholder}
         required
       />
       <FormField
-        variants={{
-          type: 'file',
-          accepts: greenhouseAcceptedMimeTypes,
-        }}
+        as={FileAttachmentField}
         name="resume"
+        accepts={greenhouseAcceptedMimeTypes}
         label={messages.field_resume_label}
         description={messages.field_resume_description}
         placeholder={messages.field_resume_placeholder}
@@ -288,10 +270,8 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
       />
       {portfolioField && (
         <FormField
-          variants={{
-            type: 'file',
-            accepts: greenhouseAcceptedMimeTypes,
-          }}
+          as={FileAttachmentField}
+          accepts={greenhouseAcceptedMimeTypes}
           name={portfolioField.name}
           label={messages.field_portfolio_label}
           description={messages.field_portfolio_description}
@@ -305,7 +285,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
         .map(question => mapAbstractType(question, {
         GreenhouseJobBoardJobQuestionForShortText: question => (
           <FormField
-            variants={{ type: 'text' }}
+            as={ShortTextField}
             key={question.name}
             name={question.name}
             label={question.label}
@@ -314,7 +294,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
         ),
         GreenhouseJobBoardJobQuestionForLongText: question => (
           <FormField
-            variants={{ type: 'longtext' }}
+            as={LongTextField}
             key={question.name}
             name={question.name}
             label={question.label}
@@ -323,12 +303,10 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
         ),
         GreenhouseJobBoardJobQuestionForAttachment: question => (
           <FormField
-            variants={{
-              type: 'file',
-              accepts: greenhouseAcceptedMimeTypes,
-            }}
-            placeholder={messages.custom_field_file_placeholder}
+            as={FileAttachmentField}
             key={question.name}
+            accepts={greenhouseAcceptedMimeTypes}
+            placeholder={messages.custom_field_file_placeholder}
             name={question.name}
             label={question.label}
             required={question.required}
@@ -336,10 +314,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
         ),
         GreenhouseJobBoardJobQuestionForYesNo: question => (
           <FormField
-            variants={{
-              type: 'select',
-              options: [...question.options],
-            }}
+            as={YesNoField}
             key={question.name}
             name={question.name}
             label={question.label}
@@ -348,49 +323,37 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
         ),
         GreenhouseJobBoardJobQuestionForSingleSelect: question => (
           <FormField
-            variants={{
-              type: 'select',
-              options: [...question.options],
-            }}
+            as={SingleSelectField}
             key={question.name}
             name={question.name}
             label={question.label}
             required={question.required}
+            options={[...question.options]}
           />
         ),
         GreenhouseJobBoardJobQuestionForMultiSelect: question => (
           <FormField
-            variants={{
-              type: 'select',
-              options: [...question.options],
-            }}
+            as={MultiSelectField}
             key={question.name}
             name={question.name}
             label={question.label}
             required={question.required}
+            options={[...question.options]}
           />
         ),
       }))}
       {data.privacyPolicy?.data?.content?.html && (
         <FormField
-          variants={{
-            type: 'terms',
-            terms: data.privacyPolicy.data.content.html,
-          }}
-          name="privacy"
+          as={TermsField}
+          terms={data.privacyPolicy.data.content.html}
           label={messages.terms_privacy_info}
-          required
         />
       )}
       {data.sensitiveInfoPolicy?.data?.content?.html && (
         <FormField
-          variants={{
-            type: 'terms',
-            terms: data.sensitiveInfoPolicy.data.content.html,
-          }}
-          name="sensitive"
+          as={TermsField}
+          terms={data.sensitiveInfoPolicy.data.content.html}
           label={messages.terms_sensitive_info}
-          required
         />
       )}
       <Button

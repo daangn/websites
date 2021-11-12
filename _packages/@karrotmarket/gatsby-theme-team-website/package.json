@@ -29,6 +29,7 @@
     "@svgr/webpack": "5.5.0",
     "cjk-slug": "0.2.1",
     "clsx": "1.1.1",
+    "focus-trap-react": "^8.8.2",
     "framer-motion": "4.1.17",
     "gatsby": "next",
     "gatsby-plugin-advanced-sitemap": "2.0.0",
