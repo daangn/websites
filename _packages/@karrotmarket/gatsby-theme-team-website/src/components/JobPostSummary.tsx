@@ -3,6 +3,8 @@ import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 
+import generateProperties from './jobPostSummary/generateProperties';
+
 type JobPostSummaryProps = {
   jobPost: GatsbyTypes.TeamWebsite_JobPostSummary_jobPostFragment,
 };
@@ -22,24 +24,20 @@ export const query = graphql`
 const Container = styled('div', {
   display: 'grid',
   gridTemplate: `
-    "title       title       title       tags" auto
-    ".           .           .           ."    ${rem(8)}
-    "corporate   employment  .           ."    auto /
-     max-content max-content max-content 1fr
+    "title       tags" auto
+    ".           ."    ${rem(8)}
+    "properties  ."    auto /
+     max-content 1fr
   `,
   alignItems: 'center',
   paddingY: rem(24),
   borderBottom: '1px solid $gray200',
 
-  variants: {
-    layout: {
-      table: {
-        gridTemplate: `
-          "title       tags corporate   employment" auto /
-           max-content auto ${rem(120)} ${rem(120)}
-        `,
-      },
-    },
+  '@lg': {
+    gridTemplate: `
+      "title       tags properties " auto /
+       max-content auto max-content
+    `,
   },
 });
 
@@ -89,10 +87,16 @@ const Tag = styled('span', {
   },
 });
 
-const JobProperty = styled('div', {
+const Properties = styled('div', {
   display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
+  gridArea: 'properties',
+
+  '@lg': {
+    justifyContent: 'flex-end',
+  },
+});
+
+const Property = styled('div', {
   color: '$gray600',
   typography: '$caption1',
 
@@ -104,29 +108,11 @@ const JobProperty = styled('div', {
     borderLeft: '1px solid $gray300',
   },
 
-  variants: {
-    layout: {
-      table: {
-        '& + &:before': {
-          display: 'none',
-        },
-      },
-    },
-  },
-});
-
-const Corporate = styled(JobProperty, {
-  gridArea: 'corporate',
-});
-
-const EmploymentType = styled(JobProperty, {
-  gridArea: 'employment',
-
-  variants: {
-    layout: {
-      table: {
-        justifySelf: 'flex-end',
-      },
+  '@lg': {
+    width: rem(120),
+    textAlign: 'right',
+    '& + &:before': {
+      display: 'none',
     },
   },
 });
@@ -135,29 +121,20 @@ const JobPostSummary: React.FC<JobPostSummaryProps> = ({
   jobPost,
 }) => {
   return (
-    <Container
-      layout={{ '@lg': 'table' }}
-    >
+    <Container>
       <Title>{jobPost.title}</Title>
       <TagContainer>
         {jobPost.tags.map(tag => (
           <Tag key={tag}>{tag}</Tag>
         ))}
       </TagContainer>
-      <Corporate layout={{ '@lg': 'table' }}>
-        {{
-          KARROT_MARKET: '당근마켓',
-          KARROT_PAY: '당근페이',
-        }[jobPost.corporate || 'KARROT_MARKET']}
-      </Corporate>
-      <EmploymentType layout={{ '@lg': 'table' }}>
-        {{
-          FULL_TIME: '정규직',
-          INTERN: '인턴',
-          ASSISTANT: '어시스턴트',
-          CONTRACTOR: '계약직',
-        }[jobPost.employmentType]}
-      </EmploymentType>
+      <Properties>
+        {[...generateProperties(jobPost)].map(property => (
+          <Property key={property}>
+            {property}
+          </Property>
+        ))}
+      </Properties>
     </Container>
   );
 };

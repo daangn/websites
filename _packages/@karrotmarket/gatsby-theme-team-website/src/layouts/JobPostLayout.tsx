@@ -15,6 +15,7 @@ import logoPath from '../assets/logo.png';
 import { ReactComponent as BackwardSvg } from '../assets/backwardOutlineM.svg';
 
 import JobPostingJsonLd from './jobPostLayout/JobPostingJsonLd';
+import generateProperties from './jobPostLayout/generateProperties';
 import messages from './jobPostLayout/messages';
 
 type JobPostLayoutProps = OverrideProps<
@@ -200,27 +201,6 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
   const metaDescription = prismicTeamContents.data.jobs_page_meta_description;
   const metaImage = prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
 
-  const corporate = jobPost.corporate || 'KARROT_MARKET';
-
-  const properties = [
-    {
-      KARROT_MARKET: messages.corporate_karrot_market,
-      KARROT_PAY: messages.corporate_karrot_pay,
-    }[corporate],
-    jobPost.chapter,
-    {
-      FULL_TIME: messages.employment_type_full_time,
-      CONTRACTOR: messages.employment_type_contractor,
-      INTERN: messages.employment_type_intern,
-      ASSISTANT: messages.employment_type_intern,
-    }[jobPost.employmentType],
-    {
-      YES: '경력',
-      NO: '신입',
-      WHATEVER: '경력/신입',
-    }[jobPost.priorExperience],
-  ].filter(Boolean) as string[];
-
   return (
     <Container>
       <GatsbySeo
@@ -270,7 +250,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
       <PageTitle>{jobPost.title}</PageTitle>
 
       <PropertyList>
-        {properties.map(prop => (
+        {[...generateProperties(jobPost)].map(prop => (
           <Property key={prop}>
             {prop}
           </Property>
