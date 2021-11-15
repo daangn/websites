@@ -6,7 +6,6 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import { mapLink, useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
 import { required } from '@cometjs/core';
-import { ReactComponent as DaangniEmbarrassed } from '../assets/daangni_embarrassed.svg';
 import DefaultLayout from '../layouts/DefaultLayout';
 import ButtonLink from '../components/Button';
 
@@ -14,6 +13,7 @@ import { withPrismicUnpublishedPreview, componentResolverFromMap } from 'gatsby-
 import { defaultRepositoryConfig } from '@karrotmarket/gatsby-theme-prismic/src/defaultRepositoryConfig';
 
 import TeamsArticlePageTemplate from '../templates/PrismicTeamsArticlePage';
+import Illustration from '../templates/notFoundPage/Illustration';
 
 type NotFoundPageProps = PageProps<GatsbyTypes.TeamWebsite_NotFoundPageQuery, GatsbyTypes.SitePageContext>;
 
@@ -58,10 +58,6 @@ const Title = styled('h1', {
   '@sm': {
     fontSize: '$heading3',
   },
-});
-
-const Illustration = styled(DaangniEmbarrassed, {
-  maxWidth: rem(500),
 });
 
 const Control = styled('div', {
