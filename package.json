@@ -21,8 +21,8 @@
     "react-dom": "18.0.0-alpha-fd5e01c2e-20210913",
     "schema-dts": "1.0.0",
     "webpack": "5.61.0",
-    "@emotion/react": "11.5.0",
-    "@emotion/styled": "11.3.0"
+    "@emotion/react": "11.6.0",
+    "@emotion/styled": "11.6.0"
   },
   "scripts": {
     "postinstall": "yarn init:plugins && yarn init:sites",
@@ -30,8 +30,8 @@
     "init:sites": "ultra --recursive prepare-gatsby"
   },
   "dependencies": {
-    "@emotion/react": "11.5.0",
-    "@emotion/styled": "11.3.0"
+    "@emotion/react": "11.6.0",
+    "@emotion/styled": "11.6.0"
   },
   "devDependencies": {
     "@types/node": "14.17.33",
