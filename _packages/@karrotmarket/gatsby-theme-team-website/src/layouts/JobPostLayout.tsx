@@ -11,9 +11,11 @@ import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetada
 import { useLocation } from '@reach/router';
 
 import _PageTitle from '../components/PageTitle';
-import JobPostingJsonLd from '../components/JobPostingJsonLd';
 import logoPath from '../assets/logo.png';
 import { ReactComponent as BackwardSvg } from '../assets/backwardOutlineM.svg';
+
+import JobPostingJsonLd from './jobPostLayout/JobPostingJsonLd';
+import messages from './jobPostLayout/messages';
 
 type JobPostLayoutProps = OverrideProps<
   PageProps<GatsbyTypes.TeamWebSite_JobPostLayout_queryFragment>,
@@ -54,6 +56,7 @@ export const query = graphql`
     }
 
     jobPost(id: { eq: $id }) {
+      ...TeamWebsite_JobPostingJsonLd_jobPost
       id
       ghId
       title
@@ -62,8 +65,6 @@ export const query = graphql`
       employmentType
       priorExperience
       externalUrl
-      datePosted: updatedAt(formatString: "YYYY-MM-DD", locale: "ko")
-      validThrough(formatString: "YYYY-MM-DD", locale: "ko")
       # Avoid File System Route API
       # viewPath: gatsbyPath(filePath: "/jobs/{JobPost.ghId}")
       # applyPath: gatsbyPath(filePath: "/jobs/{JobPost.ghId}/apply")
@@ -191,6 +192,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
   if (!prismicTeamContents?.data) {
     return <>{children}</>;
   }
+
   const viewPath = `/jobs/${jobPost.ghId}/`;
   const applyPath = `/jobs/${jobPost.ghId}/apply/`;
 
@@ -199,19 +201,18 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
   const metaImage = prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
 
   const corporate = jobPost.corporate || 'KARROT_MARKET';
-  const logoUrl = siteOrigin + logoPath;
 
   const properties = [
     {
-      KARROT_MARKET: '당근마켓',
-      KARROT_PAY: '당근페이',
+      KARROT_MARKET: messages.corporate_karrot_market,
+      KARROT_PAY: messages.corporate_karrot_pay,
     }[corporate],
     jobPost.chapter,
     {
-      FULL_TIME: '정규직',
-      CONTRACTOR: '계약직',
-      INTERN: '인턴',
-      ASSISTANT: '어시스턴트',
+      FULL_TIME: messages.employment_type_full_time,
+      CONTRACTOR: messages.employment_type_contractor,
+      INTERN: messages.employment_type_intern,
+      ASSISTANT: messages.employment_type_intern,
     }[jobPost.employmentType],
     {
       YES: '경력',
@@ -248,42 +249,13 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
 
       <JobPostingJsonLd
         url={siteOrigin + currentPath}
-        title={jobPost.title}
-        description={metaDescription}
-        datePosted={jobPost.datePosted || undefined}
-        validThrough={jobPost.validThrough || undefined}
-        industry="IT, 컨텐츠"
-        employmentType={jobPost.employmentType}
-        experienceRequirements={{
-          YES: '경력',
-          NO: '신입',
-          WHATEVER: ['경력', '신입'],
-        }[jobPost.priorExperience]}
-        organization={{
-          KARROT_MARKET: {
-            name: '당근마켓',
-            url: 'https://www.daangn.com',
-            logoUrl,
-          },
-          KARROT_PAY: {
-            name: '당근페이',
-            url: 'https://www.daangnpay.com',
-            logoUrl,
-          },
-        }[corporate]}
-        locations={[
-          {
-            postalCode: '06611',
-            addressLocality: '서초구',
-            addressRegion: '서울특별시',
-            addressCountry: '대한민국',
-            streetAddress: '강남대로 465, 교보타워 11층',
-          }
-        ]}
+        logoUrl={siteOrigin + logoPath}
+        metaDescription={metaDescription}
+        jobPost={jobPost}
       />
 
       <PreviousLink 
-        aria-label="목록으로 돌아가기"
+        aria-label={messages.back_to_list}
         to="/jobs/"
         onClick={e => {
           if (window.history.state['fromList']) {
@@ -314,7 +286,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
                 active={currentPath === viewPath}
                 state={{ y: typeof window !== 'undefined' && window.scrollY }}
               >
-                영입정보
+                {messages.tab_view}
               </TabLink>
               {currentPath === viewPath && (
                 <TabItemUnderline
@@ -329,7 +301,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
                 active={currentPath === applyPath}
                 state={{ y: typeof window !== 'undefined' && window.scrollY }}
               >
-                지원하기
+                {messages.tab_apply}
               </TabLink>
               {currentPath === applyPath && (
                 <TabItemUnderline

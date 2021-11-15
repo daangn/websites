@@ -14,6 +14,8 @@ import { useLocation } from '@reach/router';
 import _Header from '@karrotmarket/gatsby-theme-website/src/components/Header';
 import _Footer from '@karrotmarket/gatsby-theme-website/src/components/Footer';
 
+import messages from './defaultLayout/messages';
+
 type DefaultLayoutProps = OverrideProps<
   PageProps<GatsbyTypes.TeamWebsite_DefaultLayout_queryFragment>,
   {
@@ -104,7 +106,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
       />
       <SocialProfileJsonLd
         type="Organization"
-        name="당근마켓 팀"
+        name={messages.organization_name}
         url={siteOrigin}
         sameAs={data.prismicSiteNavigation.data.sns_profiles
           .map(profile => profile.link?.url)
