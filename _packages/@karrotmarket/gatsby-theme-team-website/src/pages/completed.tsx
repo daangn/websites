@@ -7,8 +7,8 @@ import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import { mapLink, useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
 import { required } from '@cometjs/core';
 
-import { ReactComponent as DaangniThanks } from '../assets/daangni_thanks.svg';
 import DefaultLayout from '../layouts/DefaultLayout';
+import Illustration from '../templates/completedPage/Illustration';
 import ButtonLink from '../components/Button';
 
 type CompletedPageProps = PageProps<GatsbyTypes.TeamWebsite_CompletedPageQuery, GatsbyTypes.SitePageContext>;
@@ -43,11 +43,6 @@ const Container = styled('div', {
   gap: rem(24),
   alignItems: 'center',
   justifyContent: 'center',
-});
-
-const Illustration = styled(DaangniThanks, {
-  margin: '0 auto',
-  width: rem(150),
 });
 
 const MessageContainer = styled('div', {
