@@ -105,7 +105,8 @@ API.add('POST', '/boards/:boardToken/jobs/:jobId/application/submit', async (req
 API.add('POST', '/boards/:boardToken/jobs/:jobId/application/proxy', async (req, res) => {
   const { boardToken, jobId } = req.params;
   const greenhouseEndpoint = `https://boards-api.greenhouse.io/v1/boards/${boardToken}/jobs/${jobId}`;
-  const body = await req.body.arrayBuffer();
+  const body = await req.body.formData();
+
   try {
     const response = await fetch(greenhouseEndpoint, {
       method: 'POST',

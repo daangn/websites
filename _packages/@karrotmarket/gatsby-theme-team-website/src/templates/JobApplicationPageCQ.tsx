@@ -184,19 +184,17 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
     }
 
     const formData = new FormData(formRef.current);
-
+    
     (async () => {
       required(data.jobPost);
 
       dispatch('FETCH_START');
-
       try {
         const response = await fetch(jobApplicationFormEndpoint, {
           method: 'POST',
           body: formData,
           headers: {
             'Accept': 'application/json',
-            'Content-Type': 'multipart/form-data',
           },
         });
         if (response.ok) {
@@ -229,7 +227,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
     <Form
       ref={formRef}
       method="post"
-      enctype="multipart/form-data"
+      encType="multipart/form-data"
       action={jobApplicationFormEndpoint}
       onSubmit={handleSubmit}
     >

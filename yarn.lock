@@ -7915,7 +7915,7 @@ gatsby-worker@^0.5.0:
     "@babel/core" "^7.15.5"
     "@babel/runtime" "^7.15.4"
 
-gatsby@next:
+gatsby@3.14.5, gatsby@next:
   version "3.14.5"
   resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-3.14.5.tgz#917dfa512f83ec3feddca2f68b236ab70eeb8df7"
   integrity sha512-j1Dvm6iIlUcfYXXNKZWULanOF7UI/01uRMbIBP10iqjJClv+ZbqnFnkwQKvFwLaC88h6jPcEIbR7kZFTqbfbZQ==
@@ -12460,7 +12460,7 @@ react-dev-utils@^11.0.3:
     strip-ansi "6.0.0"
     text-table "0.2.0"
 
-react-dom@experimental, react-dom@next:
+react-dom@18.0.0-alpha-fd5e01c2e-20210913, react-dom@experimental, react-dom@next:
   version "18.0.0-alpha-fd5e01c2e-20210913"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.0.0-alpha-fd5e01c2e-20210913.tgz#4f09435d727a12fb2bc319daa43db313ac57e5a8"
   integrity sha512-TC5tvZF9sspBjxETtTD7bKkc72drM9BIQvDI0GnSxIj4VKzq1i1aAJPZSdSKPOZ1kgqRrXWRFF5YTcgzOIC/Vw==
@@ -12590,7 +12590,7 @@ react-text-loop@2.3.0:
     react-fast-compare "2.0.4"
     react-motion "^0.5.2"
 
-react@experimental, react@next:
+react@18.0.0-alpha-fd5e01c2e-20210913, react@experimental, react@next:
   version "18.0.0-alpha-fd5e01c2e-20210913"
   resolved "https://registry.yarnpkg.com/react/-/react-18.0.0-alpha-fd5e01c2e-20210913.tgz#3e67ccd4a41a187958788d416b6a19595b8669ab"
   integrity sha512-SWeUmHARw0qSM8LcpGzpw3UbyCTVNcJTuCHmPIvgHMvZrs8R8wwk2nil5BQ+LZ8q0iNwwU0ilkLTWIqCQ5d44w==
@@ -13121,12 +13121,7 @@ scheduler@0.21.0-alpha-fd5e01c2e-20210913:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
 
-schema-dts@0.6.0:
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/schema-dts/-/schema-dts-0.6.0.tgz#1700eadcc384d39341e0f90ad15d708504124166"
-  integrity sha512-mYfPlwuIssnlBkqcwalddhJp23grXIlpI9sDBQuTzM46pftdzXGhbMMzwoszuWZHsH5Zki+LVDeMKjTPRWiAlw==
-
-schema-dts@1.0.0:
+schema-dts@0.6.0, schema-dts@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/schema-dts/-/schema-dts-1.0.0.tgz#60e8a0f2cef5e644c44c843b03d35b37a4423c01"
   integrity sha512-9t8gnY3RW2CbpuvA0pIpcaHFXkJTeNnWR4uaWI+PiYSfpuEeMw+2Q0Gac6YTnQb1B8TR6/+G71gQWuSE7dq6Zw==
@@ -15035,7 +15030,7 @@ webpack-virtual-modules@^0.3.2:
   dependencies:
     debug "^3.0.0"
 
-webpack@^5.35.0:
+webpack@5.61.0, webpack@^5.35.0:
   version "5.61.0"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.61.0.tgz#fa827f0ee9bdfd141dd73c3e891e955ebd52fe7f"
   integrity sha512-fPdTuaYZ/GMGFm4WrPi2KRCqS1vDp773kj9S0iI5Uc//5cszsFEDgHNaX4Rj1vobUiU1dFIV3mA9k1eHeluFpw==
