@@ -9,11 +9,6 @@ export const onCreateBabelConfig: GatsbyNode['onCreateBabelConfig'] = ({
       runtime: 'automatic',
     },
   });
-
-  actions.setBabelPlugin({
-    name: require.resolve('babel-plugin-polished'),
-    options: {},
-  });
 };
 
 export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = ({

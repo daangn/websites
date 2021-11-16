@@ -28,12 +28,14 @@ export const query = graphql`
   ) {
     ...TeamWebsite_DefaultLayout_query
     ...TeamWebsite_JobPostLayout_query
+
     jobPost(id: { eq: $id }) {
       ghId
       title
       boardToken
       portfolioRequired
     }
+
     privacyPolicy: prismicTermsAndConditions(
       uid: { eq: "job-application-privacy" }
       lang: { eq: $locale }
@@ -45,6 +47,7 @@ export const query = graphql`
         }
       }
     }
+
     sensitiveInfoPolicy: prismicTermsAndConditions(
       uid: { eq: "job-application-sensitive" }
       lang: { eq: $locale }

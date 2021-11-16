@@ -19,6 +19,7 @@ export const query = graphql`
     $navigationId: String!
   ) {
     ...TeamWebsite_DefaultLayout_query
+
     prismicTeamContents(
       lang: { eq: $locale }
     ) {

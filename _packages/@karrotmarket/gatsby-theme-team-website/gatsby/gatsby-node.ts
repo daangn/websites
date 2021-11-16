@@ -17,6 +17,15 @@ export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
   });
 };
 
+export const onCreateBabelConfig: GatsbyNode['onCreateBabelConfig'] = ({
+  actions,
+}) => {
+  actions.setBabelPlugin({
+    name: require.resolve('babel-plugin-polished'),
+    options: {},
+  });
+};
+
 export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({
   actions,
   schema,

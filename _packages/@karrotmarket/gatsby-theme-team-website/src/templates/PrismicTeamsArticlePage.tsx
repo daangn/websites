@@ -9,7 +9,6 @@ import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
 import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
 
 import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
-import { defaultRepositoryConfig } from '@karrotmarket/gatsby-theme-prismic/src/defaultRepositoryConfig';
 
 import _PageTitle from '../components/PageTitle';
 import PrismicTeamsArticleDataBodyArticleSection from '../components/PrismicTeamsArticleDataBodyArticleSection';
@@ -23,6 +22,7 @@ export const query = graphql`
     $navigationId: String!
   ) {
     ...TeamWebsite_DefaultLayout_query
+
     prismicTeamsArticle(uid: { eq: $uid }) {
       _previewable
       data {
@@ -131,6 +131,4 @@ const TeamsArticlePage: React.FC<TeamsArticlePageProps> = ({
   );
 };
 
-export default withPrismicPreview(TeamsArticlePage, [
-  defaultRepositoryConfig,
-]);
+export default withPrismicPreview(TeamsArticlePage);

@@ -22,6 +22,7 @@ export const query = graphql`
   ) {
     ...TeamWebsite_DefaultLayout_query
     ...TeamWebsite_JobPostLayout_query
+
     jobPost(id: { eq: $id }) {
       # Avoid File System Route API
       ghId

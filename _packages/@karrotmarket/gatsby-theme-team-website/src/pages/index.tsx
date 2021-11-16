@@ -4,8 +4,6 @@ import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { GatsbySeo } from 'gatsby-plugin-next-seo';
-import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
-import { defaultRepositoryConfig } from '@karrotmarket/gatsby-theme-prismic/src/defaultRepositoryConfig';
 import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
 import { required } from '@cometjs/core';
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
@@ -28,10 +26,10 @@ export const query = graphql`
     $navigationId: String!
   ) {
     ...TeamWebsite_DefaultLayout_query
+
     prismicTeamContents(
       lang: { eq: $locale }
     ) {
-      _previewable
       data {
         main_page_meta_title
         main_page_meta_description
@@ -189,6 +187,4 @@ const IndexPage: React.FC<IndexPageProps> = ({
   );
 };
 
-export default withPrismicPreview(IndexPage, [
-  defaultRepositoryConfig,
-]);
+export default IndexPage;

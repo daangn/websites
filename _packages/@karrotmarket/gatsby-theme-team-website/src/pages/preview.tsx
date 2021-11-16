@@ -6,7 +6,6 @@ import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import type { WithPrismicPreviewResolverProps } from 'gatsby-plugin-prismic-previews';
 import { withPrismicPreviewResolver } from 'gatsby-plugin-prismic-previews';
-import { defaultRepositoryConfig } from '@karrotmarket/gatsby-theme-prismic/src/defaultRepositoryConfig';
 
 import { ReactComponent as DaangniLoading } from '../assets/daangni_loading.svg';
 
@@ -83,6 +82,4 @@ const PreviewResolverPage: React.FC<PreviewResolverPageProps> = ({
   );
 };
 
-export default withPrismicPreviewResolver(PreviewResolverPage, [
-  defaultRepositoryConfig,
-]);
+export default withPrismicPreviewResolver(PreviewResolverPage);

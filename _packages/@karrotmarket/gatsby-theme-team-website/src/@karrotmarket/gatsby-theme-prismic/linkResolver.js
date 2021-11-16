@@ -1,7 +1,5 @@
-import type { LinkResolverFunction } from '@prismicio/helpers';
-import { linkResolver as originalLinkResolver } from '@karrotmarket/gatsby-theme-prismic/src/linkResolver';
-
-export const linkResolver: LinkResolverFunction = doc => {
+// Note: gatsby-config 에서 함께 사용하기 위해 CommonJS 스타일로 전환
+exports.linkResolver = doc => {
   switch (doc.type) {
     case 'site_navigation': {
       return '/';
@@ -19,5 +17,5 @@ export const linkResolver: LinkResolverFunction = doc => {
       break;
     }
   }
-  return originalLinkResolver(doc);
+  return '/';
 };
