@@ -33,7 +33,7 @@
     "gatsby-plugin-sharp": "3.14.3",
     "gatsby-plugin-svgr": "3.0.0-beta.0",
     "gatsby-plugin-typegen": "2.2.4",
-    "gatsby-source-prismic": "3.3.6",
+    "gatsby-source-prismic": "5.2.2",
     "gatsby-theme-stitches": "1.0.0",
     "polished": "4.1.3",
     "react": "next",
