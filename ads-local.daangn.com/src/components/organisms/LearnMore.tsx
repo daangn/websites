@@ -30,12 +30,12 @@ export const LearnMore = () => {
           <DocsLink
             onClick={() => {
               handleClick(
-                "https://www.notion.so/daangn/86a4348d469846728378036321255052"
+                "https://daangnbiz.oopy.io/86a4348d-4698-4672-8378-036321255052"
               );
             }}
           >
             <p>지역광고 만들기 가이드</p>
-            <ArrowLink target="https://www.notion.so/daangn/86a4348d469846728378036321255052" />
+            <ArrowLink target="https://daangnbiz.oopy.io/86a4348d-4698-4672-8378-036321255052" />
           </DocsLink>
         </Item>
         <Item right>
