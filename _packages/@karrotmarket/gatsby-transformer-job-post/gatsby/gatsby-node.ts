@@ -150,6 +150,16 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = (ctx,options) => {
     const { content, raw: rawContent } = greenhouseJobBlockParser.parseContent(node.content);
     const fieldParser = greenhouseJobCustomFieldParser;
 
+    const customQuestionMigrated = fieldParser._customQuestionMigrated(node, ctx) ?? false;
+    if (!customQuestionMigrated) {
+      ctx.reporter.warn(ctx.reporter.stripIndent`
+        아직 Custom Questions 마이그레이션이 완료되지 않은 공고입니다.
+          See https://app3.greenhouse.io/jobapps/4780813003/edit
+
+        Job Post에서 Custom Questions을 설정하고 Job Info에서 _customQuestionMigrated 필드를 true로 변경해주세요.
+      `);
+    }
+
     const nodeSource = {
       id: createNodeId(`GreenhouseJobBoardJob:${node.id} >>> JobPost`),
       updatedAt: node.updated_at,
@@ -170,7 +180,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = (ctx,options) => {
       order: fieldParser.order(node, ctx) ?? 0,
       externalUrl: fieldParser.externalUrl(node, ctx)?.toString() ?? null,
       tags: [ ...defaultTags[node.boardToken] ?? [], ...fieldParser.tags(node, ctx) ?? [] ],
-      _customQuestionMigrated: fieldParser._customQuestionMigrated(node, ctx) ?? false,
+      _customQuestionMigrated: customQuestionMigrated,
     };
 
     const jobPostNode: NodeInput = {
