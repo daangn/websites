@@ -29,7 +29,7 @@
     "@karrotmarket/prismic-config": "*",
     "gatsby-plugin-image": "1.14.2",
     "gatsby-plugin-prismic-previews": "4.2.0",
-    "gatsby-source-prismic": "4.1.2"
+    "gatsby-source-prismic": "4.2.0"
   },
   "devDependencies": {
     "@babel/cli": "7.15.7",
