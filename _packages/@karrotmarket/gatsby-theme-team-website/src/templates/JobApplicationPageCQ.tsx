@@ -175,6 +175,8 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
   type FormRef = RefOf<typeof Form>;
   const formRef = React.useRef<FormRef>(null);
 
+  // Note: Progressive Enhancement
+  // 사실 이거 없어도 기본 폼으로 100% 동작함
   type SubmitHandler = NonNullable<PropOf<typeof Form, 'onSubmit'>>;
   const handleSubmit: SubmitHandler = e => {
     e.preventDefault();
@@ -193,9 +195,6 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
         const response = await fetch(jobApplicationFormEndpoint, {
           method: 'POST',
           body: formData,
-          headers: {
-            'Accept': 'application/json',
-          },
         });
         if (response.ok) {
           dispatch('FETCH_COMPLETE');

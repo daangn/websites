@@ -117,12 +117,18 @@ API.add('POST', '/boards/:boardToken/jobs/:jobId/application/proxy', async (req,
       },
       body,
     });
-    // TODO: 적절한 HTTP 응답으로 /completed 페이지로 리디렉션 해주기
-    return res.send(
-      response.status,
-      response.body,
-      Object.fromEntries(response.headers.entries()),
-    );
+    if (response.ok) {
+      const origin = req.headers.get('origin');
+      res.setHeader('Location', origin + '/completed/');
+
+      return res.send(303, response.body);
+    } else {
+      return res.send(
+        response.status,
+        response.body,
+        Object.fromEntries(response.headers.entries()),
+      );
+    }
   } catch (error) {
     if (error instanceof Error) {
       return res.send(500, error.message);
