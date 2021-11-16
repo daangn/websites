@@ -260,7 +260,8 @@ const MultiSelectField: React.FC<Props> = ({
           name={name}
           multiple
           css={{
-            minHeight: rem(100),
+            width: '100%',
+            minHeight: rem(120),
             '> option': {
               padding: rem(8),
             },
