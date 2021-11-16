@@ -6,13 +6,6 @@ export const siteMetadata = {
 };
 
 const config: GatsbyConfig = {
-  flags: {
-    FAST_DEV: true,
-    QUERY_ON_DEMAND: true,
-    LAZY_IMAGES: true,
-    PARALLEL_SOURCING: true,
-    DEV_SSR: false,
-  },
   siteMetadata,
   plugins: [
     'gatsby-theme-stitches',
