@@ -20,7 +20,7 @@
     "@babel/core": "7.15.8",
     "@babel/plugin-transform-react-jsx": "7.14.9",
     "@babel/plugin-transform-typescript": "7.15.8",
-    "babel-preset-gatsby-package": "1.14.0",
+    "babel-preset-gatsby-package": "2.1.0",
     "typescript": "4.4.4"
   }
 }

@@ -1,12 +1,11 @@
 import { em, rem } from 'polished';
 import { colors, fonts } from '@karrotmarket/design-token';
+import type { PropertyValue } from '@stitches/react';
 import { createStitches } from '@stitches/react';
-import type * as Stitches from '@stitches/react';
 
 import { convertColorScheme } from './colors';
 
-// should exports `styled`, `css` and `getCssString`
-export const { styled, css, globalCss, keyframes, getCssText, theme, createTheme, config } = createStitches({
+const stitches = createStitches({
   // follows Bootstrap's breakpoints practice
   // See https://getbootstrap.com/docs/5.0/layout/breakpoints/#available-breakpoints
   media: {
@@ -58,7 +57,7 @@ export const { styled, css, globalCss, keyframes, getCssText, theme, createTheme
     },
   },
   utils: {
-    typography: (value: Stitches.PropertyValue<'fontSize' | 'lineHeight'>) => ({
+    typography: (value: PropertyValue<'fontSize' | 'lineHeight'>) => ({
       fontSize: value,
       lineHeight: value,
     }),
@@ -95,6 +94,11 @@ export const { styled, css, globalCss, keyframes, getCssText, theme, createTheme
   },
 });
 
-export const darkTheme = createTheme('dark-theme', {
-  colors: convertColorScheme(colors.dark.scheme),
-});
+export const styled = stitches.styled;
+export const css = stitches.css;
+export const globalCss = stitches.globalCss;
+export const keyframes = stitches.keyframes;
+export const getCssText = stitches.getCssText;
+export const theme = stitches.theme;
+export const createTheme = stitches.createTheme;
+export const config = stitches.config;

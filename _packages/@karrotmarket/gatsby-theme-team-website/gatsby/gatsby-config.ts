@@ -4,6 +4,9 @@ import {
   assemble as assembleHangul,
 } from 'hangul-js';
 
+// @ts-ignore
+import { linkResolver } from './src/@karrotmarket/gatsby-theme-prismic/linkResolver';
+
 const gql = String.raw;
 
 const config: GatsbyConfig = {
@@ -82,8 +85,15 @@ const config: GatsbyConfig = {
     },
 
     // 커스텀 플러그인
-    '@karrotmarket/gatsby-theme-prismic',
     '@karrotmarket/gatsby-theme-website',
+    {
+      resolve: '@karrotmarket/gatsby-theme-prismic',
+      options: {
+        accessToken: process.env.PRISMIC_ACCESS_TOKEN,
+        customTypesApiToken: process.env.PRISMIC_CUSTOM_TYPES_API_TOKEN,
+        linkResolver,
+      },
+    },
   ],
 };
 

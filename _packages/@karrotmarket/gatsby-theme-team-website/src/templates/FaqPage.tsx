@@ -17,10 +17,10 @@ export const query = graphql`
     $navigationId: String!
   ) {
     ...TeamWebsite_DefaultLayout_query
+
     prismicTeamContents(
       lang: { eq: $locale }
     ) {
-      _previewable
       data {
         twitter_site_handle
 

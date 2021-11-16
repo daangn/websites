@@ -4,8 +4,6 @@ import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { GatsbySeo } from 'gatsby-plugin-next-seo';
-import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
-import { defaultRepositoryConfig } from '@karrotmarket/gatsby-theme-prismic/src/defaultRepositoryConfig';
 import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
 import { required } from '@cometjs/core';
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
@@ -183,6 +181,4 @@ const CulturePage: React.FC<CulturePageProps> = ({
   );
 };
 
-export default withPrismicPreview(CulturePage, [
-  defaultRepositoryConfig,
-]);
+export default CulturePage;

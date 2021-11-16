@@ -15,8 +15,7 @@ export const MediaTypeList: MediaType[] = [
 ];
 export type MediaTypeMap<T> = Partial<{ [i in MediaType]: T }>;
 
-// should exports `styled`, `css` and `getCssText`
-export const { styled, css, globalCss, keyframes, getCssText, theme, createTheme, config } =
+const stitches =
   createStitches({
     // follows Bootstrap's breakpoints practice
     // See https://getbootstrap.com/docs/5.0/layout/breakpoints/#available-breakpoints
@@ -217,3 +216,12 @@ export const { styled, css, globalCss, keyframes, getCssText, theme, createTheme
           : undefined,
     },
   });
+
+export const styled = stitches.styled;
+export const css = stitches.css;
+export const globalCss = stitches.globalCss;
+export const keyframes = stitches.keyframes;
+export const getCssText = stitches.getCssText;
+export const theme = stitches.theme;
+export const createTheme = stitches.createTheme;
+export const config = stitches.config;

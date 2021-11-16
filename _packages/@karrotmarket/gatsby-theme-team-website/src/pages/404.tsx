@@ -9,10 +9,8 @@ import { required } from '@cometjs/core';
 import DefaultLayout from '../layouts/DefaultLayout';
 import ButtonLink from '../components/Button';
 
-import { withPrismicUnpublishedPreview, componentResolverFromMap } from 'gatsby-plugin-prismic-previews';
-import { defaultRepositoryConfig } from '@karrotmarket/gatsby-theme-prismic/src/defaultRepositoryConfig';
+import { withPrismicUnpublishedPreview } from 'gatsby-plugin-prismic-previews';
 
-import TeamsArticlePageTemplate from '../templates/PrismicTeamsArticlePage';
 import Illustration from '../templates/notFoundPage/Illustration';
 
 type NotFoundPageProps = PageProps<GatsbyTypes.TeamWebsite_NotFoundPageQuery, GatsbyTypes.SitePageContext>;
@@ -123,11 +121,4 @@ const NotFoundPage: React.FC<NotFoundPageProps> = pageProps => {
   );
 };
 
-export default withPrismicUnpublishedPreview(NotFoundPage, [
-  {
-    ...defaultRepositoryConfig,
-    componentResolver: componentResolverFromMap({
-      teams_article: TeamsArticlePageTemplate,
-    }),
-  },
-]);
+export default withPrismicUnpublishedPreview(NotFoundPage);

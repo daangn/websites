@@ -4,9 +4,8 @@ import { rem } from 'polished';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { GatsbySeo, LogoJsonLd, SocialProfileJsonLd } from 'gatsby-plugin-next-seo';
+import { GatsbySeo, SocialProfileJsonLd } from 'gatsby-plugin-next-seo';
 import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
-import { defaultRepositoryConfig } from '@karrotmarket/gatsby-theme-prismic/src/defaultRepositoryConfig';
 import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
 import type { OverrideProps } from '@cometjs/core';
 import { required } from '@cometjs/core';
@@ -124,6 +123,4 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
   );
 }
 
-export default withPrismicPreview(DefaultLayout, [
-  defaultRepositoryConfig,
-]);
+export default withPrismicPreview(DefaultLayout);

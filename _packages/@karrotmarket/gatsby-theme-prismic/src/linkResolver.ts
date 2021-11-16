@@ -1,5 +1,5 @@
-import type { LinkResolver } from 'gatsby-plugin-prismic-previews';
+import type { LinkResolverFunction } from '@prismicio/helpers';
 
-export const linkResolver: LinkResolver = _doc => {
+export const linkResolver: LinkResolverFunction = _doc => {
   return '/';
 };

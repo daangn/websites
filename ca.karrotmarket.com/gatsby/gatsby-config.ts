@@ -12,12 +12,6 @@ const config: GatsbyConfig = {
   ...(process.env.ASSET_PREFIX && {
     assetPrefix: process.env.ASSET_PREFIX,
   }),
-  flags: {
-    FAST_DEV: true,
-    QUERY_ON_DEMAND: true,
-    LAZY_IMAGES: true,
-    PARALLEL_SOURCING: true,
-  },
   siteMetadata,
   plugins: [
     {

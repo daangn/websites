@@ -1,12 +1,12 @@
 import { em, rem } from "polished";
-import { colors } from "@karrotmarket/design-token";
-import { createStitches, createTheme } from "@stitches/react";
-import type * as Stitches from "@stitches/react";
+import { colors, fonts } from "@karrotmarket/design-token";
+import { createStitches } from "@stitches/react";
+import type { PropertyValue } from "@stitches/react";
 
 import { convertColorScheme } from "./colors";
 
 // should exports `styled`, `css` and `getCssString`
-export const { styled, css, globalCss, getCssText, theme, keyframes } =
+const stitches =
   createStitches({
     // follows Bootstrap's breakpoints practice
     // See https://getbootstrap.com/docs/5.0/layout/breakpoints/#available-breakpoints
@@ -19,9 +19,7 @@ export const { styled, css, globalCss, getCssText, theme, keyframes } =
     },
     theme: {
       colors: convertColorScheme(colors.light.scheme),
-      fonts: {
-        body: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
-      },
+      fonts: fonts.default.semanticScheme,
       fontSizes: {
         heading1: rem(72),
         heading2: rem(60),
@@ -62,8 +60,8 @@ export const { styled, css, globalCss, getCssText, theme, keyframes } =
     utils: {
       typography: (
         value:
-          | Stitches.PropertyValue<"fontSize">
-          | Stitches.PropertyValue<"lineHeight">
+          | PropertyValue<"fontSize">
+          | PropertyValue<"lineHeight">
       ) => ({
         fontSize: value,
         lineHeight: value,
@@ -87,6 +85,15 @@ export const { styled, css, globalCss, getCssText, theme, keyframes } =
     },
   });
 
+export const styled = stitches.styled;
+export const css = stitches.css;
+export const globalCss = stitches.globalCss;
+export const keyframes = stitches.keyframes;
+export const getCssText = stitches.getCssText;
+export const theme = stitches.theme;
+export const createTheme = stitches.createTheme;
+export const config = stitches.config;
+
 export const darkTheme = createTheme("dark-theme", {
   colors: convertColorScheme(colors.dark.scheme),
 });
@@ -94,7 +101,7 @@ export const darkTheme = createTheme("dark-theme", {
 export const globalStyles = globalCss({
   "*": { margin: 0, padding: 0 },
   body: {
-    fontFamily: "$body",
+    fontFamily: "$system",
     "-webkit-font-smoothing": "antialiased",
     "-moz-osx-font-smoothing": "grayscale",
   },
