@@ -265,6 +265,11 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
         description={messages.field_portfolio_description}
         required={data.jobPost.portfolioRequired}
       />
+      {/* 
+      * 글로벌 체용사이트에서 해당 내용으로 인해 문제, 
+      * Custom Question이 구현되기 전까지는 국내에서도 삭제.
+      **/}
+      {/*
       <FormField
         variants={{
           type: 'radio',
@@ -308,7 +313,8 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
       />
       <FormHelpText>
         * 보훈 및 장애 사항은 채용 과정에서 불이익이 없습니다.
-      </FormHelpText>
+      </FormHelpText> 
+      */}
       {data.privacyPolicy?.data?.content?.html && (
         <FormField
           variants={{
