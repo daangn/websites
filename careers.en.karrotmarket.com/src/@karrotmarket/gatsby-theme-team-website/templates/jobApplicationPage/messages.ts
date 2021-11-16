@@ -3,13 +3,13 @@ export default {
   'alert_failed': 'FIXME: alert_failed',
 
   'field_name_label': 'Full name',
-  'field_name_placeholder': 'Enter full name',
+  'field_name_placeholder': '',
 
   'field_phone_label': 'Phone',
-  'field_phone_placeholder': 'Enter actual phone number',
+  'field_phone_placeholder': '',
 
   'field_email_label': 'Email',
-  'field_email_placeholder': 'Enter actual email address',
+  'field_email_placeholder': '',
 
   'field_resume_label': 'Resume',
   'field_resume_placeholder': 'Attach a file',
@@ -22,7 +22,7 @@ export default {
   'terms_privacy_info': 'Privacy policy',
   'terms_sensitive_info': 'Sensitive information policy',
 
-  'button_submit': 'Agree and Submit application',
+  'button_submit': 'Agree and Submit Application',
 
   'custom_field_file_placeholder': 'Attach a file',
 };

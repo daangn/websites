@@ -96,6 +96,7 @@ const Description = styled('p', {
 
   typography: '$body2',
   fontWeight: 'bold',
+  whiteSpace: 'pre-line',
   paddingX: rem(24),
 
   '@md': {

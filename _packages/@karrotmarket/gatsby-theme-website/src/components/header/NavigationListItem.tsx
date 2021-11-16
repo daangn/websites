@@ -1,9 +1,12 @@
 import * as React from "react";
 import { Link } from "gatsby";
+import { rem } from 'polished';
 import { useLocation } from "@reach/router";
 
 import { styled } from "gatsby-theme-stitches/src/config";
 import { mapLink, useLinkParser } from "../../link";
+
+import externalSvgUrl from '!!file-loader!./navigationListItem/external.svg';
 
 const NavigationListItemContainer = styled("li", {
   fontSize: "$subtitle2",
@@ -26,21 +29,35 @@ const NavigationListItemContainer = styled("li", {
 });
 
 const NavigationLink = styled(Link, {
+  display: 'inline-flex',
+  alignItems: 'center',
+
   textDecoration: "none",
   color: "$gray900",
-  "&:hover, &:active, &:focus": {
+  "&:hover, &:focus": {
     color: "$gray600",
   },
 
   variants: {
     active: {
       true: {
-        color: "$carrot500",
-        "&:hover, &:active, &:focus": {
-          color: "$carrot600",
+        color: '$carrot500',
+        '&:hover, &:focus': {
+          color: '$carrot600',
         },
       },
     },
+  },
+});
+
+const ExternalLink = styled(NavigationLink, {
+  '&::after': {
+    content: '',
+    display: 'inline-block',
+    width: rem(18),
+    height: rem(18),
+    backgroundColor: 'currentColor',
+    maskImage: `url(${externalSvgUrl})`,
   },
 });
 
@@ -73,14 +90,13 @@ const NavigationListItem: React.FC<FooterEntryItemProps> = ({ entry }) => {
           </NavigationLink>
         ),
         External: (link) => (
-          <NavigationLink
+          <ExternalLink
             as="a"
-            target="_blank"
             rel="external noopener"
             href={link.url.href}
           >
             {entry.display_text}
-          </NavigationLink>
+          </ExternalLink>
         ),
       })}
     </NavigationListItemContainer>
