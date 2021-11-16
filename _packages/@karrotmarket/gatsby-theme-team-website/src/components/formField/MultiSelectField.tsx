@@ -199,6 +199,7 @@ const MultiSelectField: React.FC<Props> = ({
       </Field.Label>
       <Select
         as="button"
+        type="button"
         onClick={e => {
           e.preventDefault();
           dispatch({ type: 'OPEN' });
