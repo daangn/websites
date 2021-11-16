@@ -118,11 +118,21 @@ const config: GatsbyConfig = {
         forceGC: true,
       },
     },
+    process.env.NODE_ENV === 'development' && {
+      resolve: '@karrotmarket/gatsby-source-greenhouse-jobboard',
+      options: {
+        boardToken: 'daangntest1',
+      },
+    },
     {
       resolve: '@karrotmarket/gatsby-transformer-job-post',
-      options: {},
+      options: {
+        defaultTags: {
+          'daangntest1': ['개발 테스트'],
+        },
+      },
     },
-  ],
+  ].filter(Boolean),
 };
 
 export default config;

@@ -16,11 +16,13 @@ export default {
   'field_resume_placeholder': '파일 첨부하기',
 
   'field_portfolio_label': '포트폴리오',
-  'field_portfolio_description': '파일 첨부하기',
-  'field_portfolio_placeholder': '* 포트폴리오는 최대 50MB까지 업로드 가능해요.',
+  'field_portfolio_description': '* 포트폴리오는 최대 50MB까지 업로드 가능해요.',
+  'field_portfolio_placeholder': '파일 첨부하기',
 
   'terms_privacy_info': '개인정보 수집 및 이용동의',
   'terms_sensitive_info': '민감정보 수집 및 이용동의',
 
   'button_submit': '동의 후 제출하기',
+
+  'custom_field_file_placeholder': '파일을 첨부해주세요',
 };

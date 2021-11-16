@@ -12,6 +12,9 @@ type FormFieldVariants = (
     type: 'text',
   }
   | {
+    type: 'longtext',
+  }
+  | {
     type: 'tel',
   }
   | {
@@ -102,6 +105,10 @@ const Input = styled('input', {
 });
 
 const TextInput = styled(Input, {
+});
+
+const LongTextInput = styled(Input, {
+  minHeight: rem(104),
 });
 
 const FileInput = styled(Input, {
@@ -320,6 +327,25 @@ const FormField: React.FC<FormFieldProps> = ({
             name={name}
             type={variants.type}
             placeholder={placeholder}
+          />
+          {description && (
+            <Description>{description}</Description>
+          )}
+        </Container>
+      );
+    }
+    case 'longtext': {
+      return (
+        <Container className={className}>
+          <Label htmlFor={id} required={required}>
+            {label}
+          </Label>
+          <LongTextInput
+            as="textarea"
+            id={id}
+            name={name}
+            placeholder={placeholder}
+            rows={5}
           />
           {description && (
             <Description>{description}</Description>

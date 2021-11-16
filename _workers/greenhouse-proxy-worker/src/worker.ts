@@ -58,6 +58,9 @@ const convertForm: ConvertForm = form => {
   };
 };
 
+/**
+ * @deprecated
+ */
 API.add('POST', '/boards/:boardToken/jobs/:jobId/application/submit', async (req, res) => {
   const { boardToken, jobId } = req.params;
   const greenhouseEndpoint = `https://boards-api.greenhouse.io/v1/boards/${boardToken}/jobs/${jobId}`;
@@ -96,6 +99,41 @@ API.add('POST', '/boards/:boardToken/jobs/:jobId/application/submit', async (req
     if (!fields.resume) reason.push('이력서');
 
     return res.send(400, `${reason.join(', ')}을(를) 입력해주세요`);
+  }
+});
+
+API.add('POST', '/boards/:boardToken/jobs/:jobId/application/proxy', async (req, res) => {
+  const { boardToken, jobId } = req.params;
+  const greenhouseEndpoint = `https://boards-api.greenhouse.io/v1/boards/${boardToken}/jobs/${jobId}`;
+  const body = await req.body.formData();
+
+  try {
+    const response = await fetch(greenhouseEndpoint, {
+      method: 'POST',
+      headers: {
+        ...req.headers,
+        'Accept': 'application/json',
+        'Authorization': `Basic ${Base64.encode(`${GH_JOBBOARD_API_KEY}:`)}`,
+      },
+      body,
+    });
+    if (response.ok) {
+      const origin = req.headers.get('origin');
+      res.setHeader('Location', origin + '/completed/');
+
+      return res.send(303, response.body);
+    } else {
+      return res.send(
+        response.status,
+        response.body,
+        Object.fromEntries(response.headers.entries()),
+      );
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      return res.send(500, error.message);
+    }
+    return res.send(500, 'Internal Server Error');
   }
 });
 
