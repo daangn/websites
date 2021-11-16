@@ -7451,10 +7451,10 @@ gatsby-plugin-module-resolver@1.0.3:
   resolved "https://registry.yarnpkg.com/gatsby-plugin-module-resolver/-/gatsby-plugin-module-resolver-1.0.3.tgz#d98d0b51b5b99aa40db3382f6b5c049ca3018f01"
   integrity sha512-MrE2JhDEiiZB6uLVJ0zpoZmHi36zkgGoNgBr9YQ4r6TUqayiNXU97NBhO87CRJQz8I4MaL6ZrOWjUdoHEXvndg==
 
-gatsby-plugin-next-seo@1.8.0:
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-next-seo/-/gatsby-plugin-next-seo-1.8.0.tgz#f19464e2382542630c622b37c6b1efe1feda26d0"
-  integrity sha512-wu9lfYciWnlQVu2On7wWMYTTzCto4nDYLCW7Glu6XzOwyYnBCdYAumVG4C7ZRnwBYFs1spmvqAoGBPuosICCYw==
+gatsby-plugin-next-seo@1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-next-seo/-/gatsby-plugin-next-seo-1.9.0.tgz#3450b72893dd26546a60c065936db434b5ea3a2d"
+  integrity sha512-syhOfUifWMMDro4ryH9oLHYoBNsliucpmj9ptzmRw8uBmnjVkTi3RIN1HPDwCASHYZkJVV4K+q6MMKPxx+ghOg==
   dependencies:
     "@babel/runtime" "^7.10.3"
     "@types/react-helmet" "^6.0.0"
