@@ -2868,10 +2868,19 @@
   resolved "https://registry.yarnpkg.com/@prismicio/custom-types-client/-/custom-types-client-0.0.6.tgz#774e1498b88a07b817292a5894208851c5dd4635"
   integrity sha512-/QeHmNzEtOMtEAZF7ZfRSSosSXGhA4dzQm7vczhxdBGIT23Bbj+h0I4hNlpJZ4n0UzmIYWtd45jYCguVo3hfqQ==
 
-"@prismicio/helpers@^1.0.5":
+"@prismicio/helpers@1.0.5":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@prismicio/helpers/-/helpers-1.0.5.tgz#2be60a1b44e6c33d7918fa74fe67648dc8af0c15"
   integrity sha512-TPpuAFHNxlCTrEihHnRKcq6zc0oZV0sfz5/iHoSpl5vorwPbwZWiF88JGeflNdefW4A69b5A3x3mfptKPdpoxg==
+
+"@prismicio/helpers@2.0.0-beta.3":
+  version "2.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/@prismicio/helpers/-/helpers-2.0.0-beta.3.tgz#510d483d1cebab1d963eba08ef1bfae9820fd4eb"
+  integrity sha512-YaMRZ6JBb9f/+BXWq9V+xSQGOnWK3+8ebKi9GSeOjit+JOEZDSBn0hE87j6X7wp8cG5KTqXyBXsmd2vOh8IhdA==
+  dependencies:
+    "@prismicio/richtext" "^2.0.0-beta.1"
+    "@prismicio/types" "^0.1.17"
+    escape-html "^1.0.3"
 
 "@prismicio/helpers@^2.0.0-beta.0":
   version "2.0.0-beta.0"
@@ -2880,15 +2889,6 @@
   dependencies:
     "@prismicio/richtext" "^2.0.0-beta"
     "@prismicio/types" "^0.1.13"
-    escape-html "^1.0.3"
-
-"@prismicio/helpers@^2.0.0-beta.3":
-  version "2.0.0-beta.3"
-  resolved "https://registry.yarnpkg.com/@prismicio/helpers/-/helpers-2.0.0-beta.3.tgz#510d483d1cebab1d963eba08ef1bfae9820fd4eb"
-  integrity sha512-YaMRZ6JBb9f/+BXWq9V+xSQGOnWK3+8ebKi9GSeOjit+JOEZDSBn0hE87j6X7wp8cG5KTqXyBXsmd2vOh8IhdA==
-  dependencies:
-    "@prismicio/richtext" "^2.0.0-beta.1"
-    "@prismicio/types" "^0.1.17"
     escape-html "^1.0.3"
 
 "@prismicio/richtext@^2.0.0-beta":
@@ -7254,7 +7254,7 @@ focus-lock@^0.9.1:
   dependencies:
     tslib "^2.0.3"
 
-focus-trap-react@^8.8.2:
+focus-trap-react@8.8.2:
   version "8.8.2"
   resolved "https://registry.yarnpkg.com/focus-trap-react/-/focus-trap-react-8.8.2.tgz#ac374819cddd8937b8687eaf7f351b3c10ed3c34"
   integrity sha512-YgacIMxeAOytHOEbzBWL7+itBkn4ARMwQhtt6hYVHqHzPUPhmfEyKJ/nqsyMerzOK1DzlDv8Q8phRAY8vpa0rA==
