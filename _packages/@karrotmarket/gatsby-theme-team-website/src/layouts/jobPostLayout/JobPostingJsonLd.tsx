@@ -55,7 +55,7 @@ const JobPostingJsonLd: React.FC<JobPostingJsonLdProps> = ({
         },
         KARROT_PAY: {
           name: messages.corporate_karrot_pay,
-          url: messages.corporate_karrot_market_url,
+          url: messages.corporate_karrot_pay_url,
           logoUrl,
         },
       }[jobPost.corporate]}
