@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { styled, keyframes } from "gatsby-theme-stitches/src/config";
+import { styled, keyframes } from "@karrotmarket/gatsby-theme-global-website/src/gatsby-theme-stitches/config";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { rem, em } from "polished";
 

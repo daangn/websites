@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { styled } from "gatsby-theme-stitches/src/config";
+import { styled } from "@karrotmarket/gatsby-theme-global-website/src/gatsby-theme-stitches/config";
 import { rem, em } from "polished";
 
 const termsBaseUrl =
