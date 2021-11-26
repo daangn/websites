@@ -25,7 +25,7 @@
     "@types/node": "16.11.8",
     "babel-jest": "27.3.1",
     "babel-preset-gatsby-package": "2.1.0",
-    "common-tags": "1.8.0",
+    "common-tags": "1.8.2",
     "concurrently": "6.4.0",
     "gatsby": "next",
     "jest": "27.3.1",
