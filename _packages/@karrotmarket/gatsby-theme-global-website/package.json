@@ -37,7 +37,7 @@
     "gatsby-plugin-typegen": "2.2.4",
     "gatsby-theme-stitches": "1.0.0",
     "gatsby-transformer-sharp": "4.1.0",
-    "got": "11.8.2",
+    "got": "11.8.3",
     "react-helmet-async": "1.1.2",
     "react-intersection-observer": "8.32.2",
     "react-scroll-parallax": "2.4.0",
