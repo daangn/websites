@@ -1036,13 +1036,6 @@
         "label": "OpenGraph 이미지"
       }
     },
-    "jobs_page_title": {
-      "type": "StructuredText",
-      "config": {
-        "single": "heading1",
-        "label": "페이지 제목"
-      }
-    },
     "jobs_page_top_banner_left": {
       "type": "Image",
       "config": {
@@ -1064,6 +1057,13 @@
         "constraint": {},
         "thumbnails": [],
         "label": "상단배너 우"
+      }
+    },
+    "jobs_page_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1",
+        "label": "페이지 제목"
       }
     }
   },
