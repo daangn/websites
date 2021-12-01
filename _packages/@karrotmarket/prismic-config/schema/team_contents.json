@@ -39,7 +39,7 @@
         "labels": {
           "key_visual": [],
           "member_quote_carousel": [],
-          "title_and_description":[
+          "title_and_description": [
             {
               "name": "title_and_description",
               "display": "Title and Description"
@@ -855,7 +855,8 @@
                 "type": "Link",
                 "config": {
                   "label": "웹 링크",
-                  "placeholder": "웹 바로가기 링크 (없으면 안나옴)"
+                  "placeholder": "웹 바로가기 링크 (없으면 안나옴)",
+                  "select": null
                 }
               },
               "link_text": {
@@ -1040,6 +1041,29 @@
       "config": {
         "single": "heading1",
         "label": "페이지 제목"
+      }
+    },
+    "jobs_page_top_banner_left": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "상단배너 좌"
+      }
+    },
+    "jobs_page_gap_between_top_banners": {
+      "type": "Number",
+      "config": {
+        "label": "상단배너 사이 간격 (px)",
+        "placeholder": "16"
+      }
+    },
+    "jobs_page_top_banner_right": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "상단배너 우"
       }
     }
   },
