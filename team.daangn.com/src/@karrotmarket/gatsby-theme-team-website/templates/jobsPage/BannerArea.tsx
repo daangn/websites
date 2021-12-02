@@ -63,10 +63,10 @@ const BannerArea: React.FC = () => {
   return (
     <Container>
       <Banner>
-        <BannerImg image={banner.left.gatsbyImageData as any} alt={banner.left.alt as string} />
+        <BannerImg image={banner.left.gatsbyImageData as any} alt={banner.left.alt ?? 'banner 1'} />
       </Banner>
       <Banner>
-        <BannerImg image={banner.right.gatsbyImageData as any} alt={banner.right.alt as string} />
+        <BannerImg image={banner.right.gatsbyImageData as any} alt={banner.right.alt ?? 'banner 2'} />
       </Banner>
     </Container>
   );
