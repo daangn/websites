@@ -56,17 +56,22 @@ const BannerArea: React.FC = () => {
   if (!banner) {
     return null;
   }
-  if (!banner.left?.gatsbyImageData || !banner.right?.gatsbyImageData) {
+  if (
+    !banner.left?.gatsbyImageData ||
+    !banner.right?.gatsbyImageData ||
+    !banner.left?.alt ||
+    !banner.right?.alt
+  ) {
     return null;
   }
 
   return (
     <Container>
       <Banner>
-        <BannerImg image={banner.left.gatsbyImageData as any} alt={banner.left.alt ?? 'banner 1'} />
+        <BannerImg image={banner.left.gatsbyImageData as any} alt={banner.left.alt} />
       </Banner>
       <Banner>
-        <BannerImg image={banner.right.gatsbyImageData as any} alt={banner.right.alt ?? 'banner 2'} />
+        <BannerImg image={banner.right.gatsbyImageData as any} alt={banner.right.alt} />
       </Banner>
     </Container>
   );
