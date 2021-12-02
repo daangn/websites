@@ -53,7 +53,9 @@ export const query = graphql`
       }
     }
 
-    prismicTeamBanner {
+    prismicTeamBanner(
+      lang: { eq: $locale }
+    ) {
       data {
         left {
           url
