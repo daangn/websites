@@ -15,6 +15,7 @@ const Container = styled('aside', {
     marginTop: '-5rem',
   },
 
+  // 배너가 보일 경우 아래 타이틀 안보이게 숨기기
   "& + h1": {
     display: 'none',
   }
