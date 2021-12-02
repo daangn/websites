@@ -56,7 +56,7 @@ const BannerArea: React.FC = () => {
   if (!banner) {
     return null;
   }
-  if (!banner.left || !banner.right) {
+  if (!banner.left?.gatsbyImageData || !banner.right?.gatsbyImageData) {
     return null;
   }
 
