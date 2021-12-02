@@ -263,18 +263,17 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
           },
         }}
       />
-      {!data.prismicTeamBanner?.data?.left?.url && (
-        <PageTitle
-          css={{
-            marginBottom: rem(56),
-          }}
-        >
-          {data.prismicTeamContents.data?.jobs_page_title?.text}
-        </PageTitle>
-      )}
 
       {/* 임시 배너 영역 */}
       <BannerArea />
+
+      <PageTitle
+        css={{
+          marginBottom: rem(56),
+        }}
+      >
+        {data.prismicTeamContents.data?.jobs_page_title?.text}
+      </PageTitle>
 
       <Content>
         <Filters>
