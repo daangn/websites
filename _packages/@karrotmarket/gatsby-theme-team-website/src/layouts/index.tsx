@@ -7,7 +7,6 @@ import type { OverrideProps } from '@cometjs/core';
 
 import DefaultLayout from './DefaultLayout';
 import JobPostLayout from './JobPostLayout';
-import JobsLayout from './JobsLayout';
 
 type LayoutSwitchProps = OverrideProps<
   PageProps<any>,
@@ -94,9 +93,7 @@ const LayoutSwitch: React.FC<LayoutSwitchProps> = ({
   if (/\/jobs\/?/.test(path)) {
     return (
       <DefaultLayout {...props}>
-        <JobsLayout {...props}>
-          {children}
-        </JobsLayout>
+        {children}
       </DefaultLayout>
     )
   }

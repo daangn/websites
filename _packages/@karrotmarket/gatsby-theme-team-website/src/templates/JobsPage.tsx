@@ -24,7 +24,6 @@ export const query = graphql`
     $navigationId: String!
   ) {
     ...TeamWebsite_DefaultLayout_query
-    ...TeamWebsite_JobsLayout_query
 
     prismicTeamContents(
       lang: { eq: $locale }
@@ -50,6 +49,17 @@ export const query = graphql`
         }
         jobs_page_title {
           text
+        }
+      }
+    }
+
+    prismicTeamBanner {
+      data {
+        left {
+          url
+        }
+        right {
+          url
         }
       }
     }
@@ -103,6 +113,27 @@ export const query = graphql`
 const Container = styled('section', {
   contentArea: true,
 });
+
+const BannerArea = styled('div', {
+  display: 'flex',
+  alignItems: 'flex-start',
+  width: '100%',
+  marginBottom: '3rem',
+  flexDirection: 'column',
+
+  '@sm': {
+    flexDirection: 'row',
+    marginTop: '-5rem',
+  },
+})
+
+const Banner = styled('div', {
+  flex: 1,
+})
+
+const BannerImg = styled('img', {
+  width: '100%',
+})
 
 const Content = styled('div', {
   display: 'grid',
@@ -263,13 +294,25 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
           },
         }}
       />
-      <PageTitle
-        css={{
-          marginBottom: rem(56),
-        }}
-      >
-        {data.prismicTeamContents.data?.jobs_page_title?.text}
-      </PageTitle>
+      {!data.prismicTeamBanner.data?.left?.url && (
+        <PageTitle
+          css={{
+            marginBottom: rem(56),
+          }}
+        >
+          {data.prismicTeamContents.data?.jobs_page_title?.text}
+        </PageTitle>
+      )}
+      {data.prismicTeamBanner.data?.left?.url && data.prismicTeamBanner.data?.right?.url && (
+        <BannerArea>
+          <Banner>
+            <BannerImg src={data.prismicTeamBanner.data.left.url} />
+          </Banner>
+          <Banner>
+            <BannerImg src={data.prismicTeamBanner.data.right.url} />
+          </Banner>
+        </BannerArea>
+      )}
       <Content>
         <Filters>
           <Select
