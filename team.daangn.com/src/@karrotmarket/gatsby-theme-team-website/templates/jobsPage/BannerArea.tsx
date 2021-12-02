@@ -17,14 +17,6 @@ const Container = styled('aside', {
   },
 });
 
-const Banner = styled('div', {
-  flex: 1,
-})
-
-const BannerImg = styled(GatsbyImage, {
-  width: '100%',
-})
-
 const BannerArea: React.FC = () => {
   const staticData = useStaticQuery<GatsbyTypes.BannerAreaStaticQuery>(graphql`
     query BannerAreaStatic {
@@ -82,12 +74,8 @@ const BannerArea: React.FC = () => {
 
   return (
     <Container>
-      <Banner>
-        <BannerImg image={leftImage} alt={banner.left.alt} />
-      </Banner>
-      <Banner>
-        <BannerImg image={rightImage} alt={banner.right.alt} />
-      </Banner>
+      <GatsbyImage image={leftImage} alt={banner.left.alt} />
+      <GatsbyImage image={rightImage} alt={banner.right.alt} />
     </Container>
   );
 };
