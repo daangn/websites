@@ -296,7 +296,7 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
           },
         }}
       />
-      {!data.prismicTeamBanner.data?.left?.url && (
+      {!data.prismicTeamBanner?.data?.left?.url && (
         <PageTitle
           css={{
             marginBottom: rem(56),
@@ -305,7 +305,7 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
           {data.prismicTeamContents.data?.jobs_page_title?.text}
         </PageTitle>
       )}
-      {data.prismicTeamBanner.data?.left?.url && data.prismicTeamBanner.data?.right?.url && (
+      {data.prismicTeamBanner?.data?.left?.url && data.prismicTeamBanner.data?.right?.url && (
         <BannerArea>
           <Banner>
             <BannerImg src={data.prismicTeamBanner.data.left.url} />
