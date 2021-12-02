@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type { PageProps } from 'gatsby';
-import { graphql, navigate} from 'gatsby';
+import { graphql, navigate } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
 import { GatsbySeo } from 'gatsby-plugin-next-seo';
@@ -13,6 +13,7 @@ import _JobPostList from '../components/JobPostList';
 import expandMoreOutlineUrl from '!!file-loader!../assets/expand_more_outline_m.svg';
 import { useFlexSearch } from '../utils/useFlexSearch';
 
+import BannerArea from './jobsPage/BannerArea';
 import messages from './jobsPage/messages';
 
 type JobsPageTemplateProps = PageProps<GatsbyTypes.TeamWebsite_JobsPageTemplateQuery, GatsbyTypes.SitePageContext>;
@@ -49,19 +50,6 @@ export const query = graphql`
         }
         jobs_page_title {
           text
-        }
-      }
-    }
-
-    prismicTeamBanner(
-      lang: { eq: $locale }
-    ) {
-      data {
-        left {
-          url
-        }
-        right {
-          url
         }
       }
     }
@@ -115,27 +103,6 @@ export const query = graphql`
 const Container = styled('section', {
   contentArea: true,
 });
-
-const BannerArea = styled('div', {
-  display: 'flex',
-  alignItems: 'flex-start',
-  width: '100%',
-  marginBottom: '3rem',
-  flexDirection: 'column',
-
-  '@sm': {
-    flexDirection: 'row',
-    marginTop: '-5rem',
-  },
-})
-
-const Banner = styled('div', {
-  flex: 1,
-})
-
-const BannerImg = styled('img', {
-  width: '100%',
-})
 
 const Content = styled('div', {
   display: 'grid',
@@ -305,16 +272,10 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
           {data.prismicTeamContents.data?.jobs_page_title?.text}
         </PageTitle>
       )}
-      {data.prismicTeamBanner?.data?.left?.url && data.prismicTeamBanner.data?.right?.url && (
-        <BannerArea>
-          <Banner>
-            <BannerImg src={data.prismicTeamBanner.data.left.url} />
-          </Banner>
-          <Banner>
-            <BannerImg src={data.prismicTeamBanner.data.right.url} />
-          </Banner>
-        </BannerArea>
-      )}
+
+      {/* 임시 배너 영역 */}
+      <BannerArea />
+
       <Content>
         <Filters>
           <Select
