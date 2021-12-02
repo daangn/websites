@@ -1,24 +1,20 @@
 import * as React from 'react';
+import { rem } from 'polished';
 import { graphql, useStaticQuery } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 const Container = styled('aside', {
-  display: 'flex',
-  alignItems: 'flex-start',
+  display: 'grid',
+  gridTemplateColumns: '1fr',
+  gridTemplateRows: '1fr 1fr',
   width: '100%',
-  marginBottom: '3rem',
-  flexDirection: 'column',
+  marginBottom: rem(48),
 
-  '@sm': {
-    flexDirection: 'row',
-    marginTop: '-5rem',
+  '@lg': {
+    gridTemplateColumns: '1fr 1fr',
+    gridTemplateRows: '1fr',
   },
-
-  // 배너가 보일 경우 아래 타이틀 안보이게 숨기기
-  "& + h1": {
-    display: 'none',
-  }
 });
 
 const Banner = styled('div', {
@@ -40,11 +36,25 @@ const BannerArea: React.FC = () => {
         data {
           left {
             alt
-            gatsbyImageData
+            localFile {
+              childImageSharp {
+                gatsbyImageData(
+                  layout: FULL_WIDTH
+                  formats: [AVIF, WEBP, AUTO]
+                )
+              }
+            }
           }
           right {
             alt
-            gatsbyImageData
+            localFile {
+              childImageSharp {
+                gatsbyImageData(
+                  layout: FULL_WIDTH
+                  formats: [AVIF, WEBP, AUTO]
+                )
+              }
+            }
           }
         }
       }
@@ -52,26 +62,31 @@ const BannerArea: React.FC = () => {
   `);
 
   const banner = staticData?.prismicTeamBanner?.data;
-
-  if (!banner) {
+  if (!(banner && banner.left?.alt && banner.right?.alt)) {
     return null;
   }
-  if (
-    !banner.left?.gatsbyImageData ||
-    !banner.right?.gatsbyImageData ||
-    !banner.left?.alt ||
-    !banner.right?.alt
-  ) {
+
+  const leftImage = banner.left.localFile?.childImageSharp?.gatsbyImageData && getImage(
+    banner.left?.localFile?.childImageSharp?.gatsbyImageData,
+  );
+  if (!leftImage) {
+    return null;
+  }
+
+  const rightImage = banner.right.localFile?.childImageSharp?.gatsbyImageData && getImage(
+    banner.right?.localFile?.childImageSharp?.gatsbyImageData,
+  );
+  if (!rightImage) {
     return null;
   }
 
   return (
     <Container>
       <Banner>
-        <BannerImg image={banner.left.gatsbyImageData as any} alt={banner.left.alt} />
+        <BannerImg image={leftImage} alt={banner.left.alt} />
       </Banner>
       <Banner>
-        <BannerImg image={banner.right.gatsbyImageData as any} alt={banner.right.alt} />
+        <BannerImg image={rightImage} alt={banner.right.alt} />
       </Banner>
     </Container>
   );

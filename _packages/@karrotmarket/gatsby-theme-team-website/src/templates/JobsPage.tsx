@@ -264,9 +264,6 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
         }}
       />
 
-      {/* 임시 배너 영역 */}
-      <BannerArea />
-
       <PageTitle
         css={{
           marginBottom: rem(56),
@@ -274,6 +271,9 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
       >
         {data.prismicTeamContents.data?.jobs_page_title?.text}
       </PageTitle>
+
+      {/* 임시 배너 영역 */}
+      <BannerArea />
 
       <Content>
         <Filters>
