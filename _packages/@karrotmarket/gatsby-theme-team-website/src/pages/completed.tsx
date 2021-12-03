@@ -38,7 +38,7 @@ export const query = graphql`
   }
 `;
 
-const Container = styled('div', {
+const Container = styled('main', {
   contentArea: true,
   display: 'grid',
   gap: rem(24),
@@ -53,15 +53,6 @@ const MessageContainer = styled('div', {
 const Message = styled('div', {
   whiteSpace: 'pre-line',
   typography: '$body2',
-});
-
-const Contact = styled('div', {
-  display: 'flex',
-  justifyContent: 'center',
-
-  '& > span:first-child': {
-    marginRight: rem(5),
-  },
 });
 
 const ButtonLinkGroup = styled('div',{
