@@ -33,6 +33,7 @@ const BannerArea: React.FC = () => {
               childImageSharp {
                 gatsbyImageData(
                   layout: FULL_WIDTH
+                  placeholder: TRACED_SVG
                   formats: [AVIF, WEBP, AUTO]
                 )
               }
@@ -44,6 +45,7 @@ const BannerArea: React.FC = () => {
               childImageSharp {
                 gatsbyImageData(
                   layout: FULL_WIDTH
+                  placeholder: TRACED_SVG
                   formats: [AVIF, WEBP, AUTO]
                 )
               }
