@@ -56,7 +56,7 @@ export const query = graphql`
   }
 `;
 
-const Container = styled('div', {
+const Container = styled('main', {
   contentArea: true,
 
   maxWidth: rem(760),
@@ -75,8 +75,6 @@ const Content = styled('div', {
   display: 'grid',
   gap: rem(64),
 });
-
-
 
 const TeamsArticlePage: React.FC<TeamsArticlePageProps> = ({
   data,

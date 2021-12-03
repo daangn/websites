@@ -100,7 +100,7 @@ const CulturePage: React.FC<CulturePageProps> = ({
   const metaImage = data.prismicTeamContents.data.culture_page_meta_image?.localFile?.childImageSharp?.fixed;
 
   return (
-    <>
+    <main>
       <GatsbySeo
         title={metaTitle}
         description={metaDescription}
@@ -177,7 +177,7 @@ const CulturePage: React.FC<CulturePageProps> = ({
             _: null,
           }))}
       </Content>
-    </>
+    </main>
   );
 };
 

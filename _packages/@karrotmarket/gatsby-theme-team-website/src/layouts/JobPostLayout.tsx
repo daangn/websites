@@ -247,53 +247,57 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
         <BackwardSvg />
       </PreviousLink>
 
-      <PageTitle>{jobPost.title}</PageTitle>
+      <main>
+        <PageTitle>{jobPost.title}</PageTitle>
 
-      <PropertyList>
-        {[...generateProperties(jobPost)].map(prop => (
-          <Property key={prop}>
-            {prop}
-          </Property>
-        ))}
-      </PropertyList>
+        <PropertyList>
+          {[...generateProperties(jobPost)].map(prop => (
+            <Property key={prop}>
+              {prop}
+            </Property>
+          ))}
+        </PropertyList>
 
-      <AnimateSharedLayout>
-      {!jobPost.externalUrl&&<Tabs>
-          <TabItemList role="tablist">
-            <TabItem key="jobpost-view">
-              <TabLink
-                to={viewPath}
-                active={currentPath === viewPath}
-                state={{ y: typeof window !== 'undefined' && window.scrollY }}
-              >
-                {messages.tab_view}
-              </TabLink>
-              {currentPath === viewPath && (
-                <TabItemUnderline
-                  layoutId="jobpost-tab-underline"
-                  initial={false}
-                />
-              )}
-            </TabItem>
-            <TabItem key="jobpost-apply">
-              <TabLink
-                to={applyPath}
-                active={currentPath === applyPath}
-                state={{ y: typeof window !== 'undefined' && window.scrollY }}
-              >
-                {messages.tab_apply}
-              </TabLink>
-              {currentPath === applyPath && (
-                <TabItemUnderline
-                  layoutId="jobpost-tab-underline"
-                  initial={false}
-                />
-              )}
-            </TabItem>
-          </TabItemList>
-        </Tabs>}
-      </AnimateSharedLayout>
-      {children}
+        <AnimateSharedLayout>
+          {!jobPost.externalUrl&& (
+            <Tabs>
+              <TabItemList role="tablist">
+                <TabItem key="jobpost-view">
+                  <TabLink
+                    to={viewPath}
+                    active={currentPath === viewPath}
+                    state={{ y: typeof window !== 'undefined' && window.scrollY }}
+                  >
+                    {messages.tab_view}
+                  </TabLink>
+                  {currentPath === viewPath && (
+                    <TabItemUnderline
+                      layoutId="jobpost-tab-underline"
+                      initial={false}
+                    />
+                  )}
+                </TabItem>
+                <TabItem key="jobpost-apply">
+                  <TabLink
+                    to={applyPath}
+                    active={currentPath === applyPath}
+                    state={{ y: typeof window !== 'undefined' && window.scrollY }}
+                  >
+                    {messages.tab_apply}
+                  </TabLink>
+                  {currentPath === applyPath && (
+                    <TabItemUnderline
+                      layoutId="jobpost-tab-underline"
+                      initial={false}
+                    />
+                  )}
+                </TabItem>
+              </TabItemList>
+            </Tabs>
+          )}
+        </AnimateSharedLayout>
+        {children}
+      </main>
     </Container>
   );
 };

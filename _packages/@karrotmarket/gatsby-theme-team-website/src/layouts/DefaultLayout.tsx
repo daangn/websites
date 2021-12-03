@@ -68,9 +68,6 @@ const Footer = styled(_Footer, {
   },
 });
 
-const Main = styled('main', {
-});
-
 const DefaultLayout: React.FC<DefaultLayoutProps> = ({
   data,
   children,
@@ -115,7 +112,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
       <Header
         navigationData={data.prismicSiteNavigation.data}
       />
-      <Main>{children}</Main>
+      <div id="layout">{children}</div>
       <Footer
         navigationData={data.prismicSiteNavigation.data}
       />

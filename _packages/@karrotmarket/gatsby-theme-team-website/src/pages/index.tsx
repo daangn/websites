@@ -101,7 +101,7 @@ const IndexPage: React.FC<IndexPageProps> = ({
   const metaImage = data.prismicTeamContents.data.main_page_meta_image?.localFile?.childImageSharp?.fixed;
 
   return (
-    <>
+    <main>
       <GatsbySeo
         title={metaTitle}
         description={metaDescription}
@@ -183,7 +183,7 @@ const IndexPage: React.FC<IndexPageProps> = ({
           }))
         }
       </Content>
-    </>
+    </main>
   );
 };
 

@@ -42,7 +42,7 @@ export const query = graphql`
   }
 `;
 
-const Container = styled('section', {
+const Container = styled('main', {
   contentArea: true,
   maxWidth: rem(760),
 });

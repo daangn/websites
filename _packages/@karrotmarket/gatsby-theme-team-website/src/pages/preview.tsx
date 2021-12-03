@@ -23,7 +23,7 @@ export const query = graphql`
   }
 `;
 
-const Container = styled('div', {
+const Container = styled('main', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
