@@ -1,0 +1,20 @@
+{
+  "Main" : {
+    "left" : {
+      "type" : "Image",
+      "config" : {
+        "constraint" : { },
+        "thumbnails" : [ ],
+        "label" : "left"
+      }
+    },
+    "right" : {
+      "type" : "Image",
+      "config" : {
+        "constraint" : { },
+        "thumbnails" : [ ],
+        "label" : "right"
+      }
+    }
+  }
+}

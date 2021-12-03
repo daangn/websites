@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type { PageProps } from 'gatsby';
-import { graphql, navigate} from 'gatsby';
+import { graphql, navigate } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
 import { GatsbySeo } from 'gatsby-plugin-next-seo';
@@ -13,6 +13,7 @@ import _JobPostList from '../components/JobPostList';
 import expandMoreOutlineUrl from '!!file-loader!../assets/expand_more_outline_m.svg';
 import { useFlexSearch } from '../utils/useFlexSearch';
 
+import BannerArea from './jobsPage/BannerArea';
 import messages from './jobsPage/messages';
 
 type JobsPageTemplateProps = PageProps<GatsbyTypes.TeamWebsite_JobsPageTemplateQuery, GatsbyTypes.SitePageContext>;
@@ -262,6 +263,7 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
           },
         }}
       />
+
       <PageTitle
         css={{
           marginBottom: rem(56),
@@ -269,6 +271,10 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
       >
         {data.prismicTeamContents.data?.jobs_page_title?.text}
       </PageTitle>
+
+      {/* 임시 배너 영역 */}
+      <BannerArea />
+
       <Content>
         <Filters>
           <Select
