@@ -100,13 +100,20 @@ export const query = graphql`
   }
 `;
 
-const Container = styled('section', {
+const Container = styled('div', {
   contentArea: true,
 });
 
-const Content = styled('div', {
+const Content = styled('main', {
   display: 'grid',
+  position: 'relative',
   gap: rem(20),
+});
+
+const FilterAnchor = styled('div', {
+  position: 'absolute',
+  bottom: '100%',
+  height: rem(58),
 });
 
 const Filters = styled('div', {
@@ -227,6 +234,7 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
   const metaDescription = data.prismicTeamContents.data.jobs_page_meta_description;
   const metaImage = data.prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
 
+  const filterAnchorId = '_filter';
   const onFilterChange: React.ChangeEventHandler<HTMLSelectElement> = (e) => {
     const selectedChapterGroup = data.allJobPost.allChapter
       .find(chapterGroup => chapterGroup.nodes[0]?.chapter === e.target.value);
@@ -234,10 +242,10 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
       if (selectedChapterGroup) {
         const { slug } = selectedChapterGroup.nodes[0] ?? {};
         if (slug) {
-          navigate(`/jobs/${slug}/${window.location.search}`);
+          navigate(`/jobs/${slug}/${window.location.search}#${filterAnchorId}`);
         }
       } else {
-        navigate(`/jobs/${window.location.search}`);
+        navigate(`/jobs/${window.location.search}#${filterAnchorId}`);
       }
   }
 
@@ -276,6 +284,7 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
       <BannerArea />
 
       <Content>
+        <FilterAnchor id={filterAnchorId} />
         <Filters>
           <Select
             defaultValue={pageContext.chapter || ''}
