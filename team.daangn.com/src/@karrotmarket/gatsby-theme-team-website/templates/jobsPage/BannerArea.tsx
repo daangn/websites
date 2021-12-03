@@ -7,15 +7,16 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 const Container = styled('aside', {
   display: 'grid',
   gridTemplateColumns: '1fr',
-  gridTemplateRows: '1fr 1fr',
   width: '100%',
   marginBottom: rem(48),
 
-  '@lg': {
+  '@md': {
     gridTemplateColumns: '1fr 1fr',
     gridTemplateRows: '1fr',
   },
 });
+
+const Banner = styled('div', {})
 
 const BannerArea: React.FC = () => {
   const staticData = useStaticQuery<GatsbyTypes.BannerAreaStaticQuery>(graphql`
@@ -74,8 +75,12 @@ const BannerArea: React.FC = () => {
 
   return (
     <Container>
-      <GatsbyImage image={leftImage} alt={banner.left.alt} />
-      <GatsbyImage image={rightImage} alt={banner.right.alt} />
+      <Banner>
+        <GatsbyImage image={leftImage} alt={banner.left.alt} />
+      </Banner>
+      <Banner>
+        <GatsbyImage image={rightImage} alt={banner.right.alt} />
+      </Banner>
     </Container>
   );
 };
