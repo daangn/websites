@@ -29,6 +29,6 @@
     "concurrently": "6.4.0",
     "gatsby": "next",
     "jest": "27.4.2",
-    "typescript": "4.4.4"
+    "typescript": "4.5.2"
   }
 }
