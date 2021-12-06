@@ -90,6 +90,7 @@ const SingleSelectField: React.FC<Props> = ({
           as="select"
           id={id}
           name={name}
+          required={required}
           defaultValue={defaultValue}
         >
           <option value="">{messages.select_empty}</option>

@@ -64,6 +64,7 @@ const FileAttachmentField: React.FC<Props> = ({
         name={name}
         type="file"
         accept={accepts.join(', ')}
+        required={required}
         onChange={handleFileChange}
         style={{ opacity: 0, height: 0 }}
       />
