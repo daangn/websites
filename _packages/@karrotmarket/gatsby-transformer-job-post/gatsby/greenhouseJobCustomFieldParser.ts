@@ -162,39 +162,6 @@ export const chapter: FieldParser<string> = (
   return metadata?.value ?? '';
 }
 
-export const portfolioRequirement: FieldParser<boolean> = (
-  node,
-  { reporter },
-) => {
-  const fieldId = 6248317003;
-  const field = findMetadataById(node, fieldId);
-  return field && (() => {
-    switch (field.value) {
-      case '필수': {
-        return true;
-      }
-      case '필수아님': {
-        return false;
-      }
-      case null: {
-        reporter.warn(reporter.stripIndent`
-           Portfolio Requirement 필드 값이 비어있습니다. (See https://app3.greenhouse.io/plans/${node.ghId})
-        `);
-        break;
-      }
-      default:
-        reporter.error(reporter.stripIndent`
-          알 수 없는 Portfolio Requirement 필드 값입니다. 값: ${field.value}
-
-          Greenhouse 에서 커스텀 필드 형식을 확인하고 코드를 올바르게 변경해주세요.
-
-          See https://app3.greenhouse.io/custom_fields/jobs/${fieldId}
-        `);
-        break;
-    }
-  })();
-};
-
 export const order: FieldParser<number> = (
   node,
 ) => {

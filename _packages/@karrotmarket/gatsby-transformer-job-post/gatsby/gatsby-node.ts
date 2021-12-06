@@ -74,9 +74,6 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       # 소속 챕터 (=직무)
       chapter: String!
 
-      # 포트폴리오 필수 여부
-      portfolioRequired: Boolean!
-
       # 검색 키워드
       keywords: [String!]!
 
@@ -161,7 +158,6 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = (ctx,options) => {
       alternativeCivilianService: fieldParser.alternativeCivilianService(node, ctx) ?? false,
       priorExperience: fieldParser.priorExperience(node, ctx) ?? 'YES',
       chapter: fieldParser.chapter(node, ctx) ?? '',
-      portfolioRequired: fieldParser.portfolioRequirement(node, ctx) ?? false,
       keywords: fieldParser.keywords(node, ctx) ?? [],
       order: fieldParser.order(node, ctx) ?? 0,
       externalUrl: fieldParser.externalUrl(node, ctx)?.toString() ?? null,
