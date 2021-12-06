@@ -20,8 +20,6 @@ import TermsField from '../components/formField/TermsField';
 import Button from '../components/Button';
 import _Spinner from '../components/Spinner';
 
-import { makeNewEndpoint } from '../utils/applicationForm';
-
 import messages from './jobApplicationPage/messages';
 
 type JobApplicationPageProps = PageProps<GatsbyTypes.TeamWebsite_JobApplicationPageQuery, GatsbyTypes.SitePageContext>;
