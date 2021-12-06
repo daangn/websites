@@ -238,28 +238,3 @@ export const externalUrl: FieldParser<URL> = (
       : undefined;
   })();
 };
-
-export const _customQuestionMigrated: FieldParser<boolean> = (
-  node,
-  { reporter },
-) => {
-  const fieldId = 7506430003;
-  const field = findMetadataById(node, fieldId);
-  return field && (() => {
-    if (field.type === 'yes_no') {
-      if (field.value == null) {
-        return false;
-      }
-      if (typeof field.value === 'boolean') {
-        return field.value;
-      }
-    }
-    reporter.panic(reporter.stripIndent`
-      _custom_question_migration 필드 값이 올바르지 않습니다. 값: ${field.value}
-
-      Greenhouse 에서 커스텀 필드 형식을 확인하고 코드를 올바르게 변경해주세요.
-
-      See https://app3.greenhouse.io/custom_fields/jobs/${fieldId}
-    `);
-  })();
-};

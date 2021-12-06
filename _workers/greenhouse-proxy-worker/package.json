@@ -8,7 +8,6 @@
     "wrangler": "wrangler"
   },
   "dependencies": {
-    "@cometjs/core": "1.2.0",
     "worktop": "0.7.3"
   },
   "devDependencies": {
