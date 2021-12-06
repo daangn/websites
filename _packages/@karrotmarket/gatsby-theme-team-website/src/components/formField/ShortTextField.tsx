@@ -36,6 +36,7 @@ const ShortTextField: React.FC<Props> = ({
         type={type}
         id={id}
         name={name}
+        required={required}
         placeholder={placeholder}
       />
       {description && (

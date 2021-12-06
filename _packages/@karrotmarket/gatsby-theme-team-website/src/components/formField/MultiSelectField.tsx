@@ -192,6 +192,8 @@ const MultiSelectField: React.FC<Props> = ({
     selection: Object.fromEntries(options.map(option => [option.value, false] as const)),
   }));
 
+  // TODO: 이거 required 밸리데이션 어떻게 하지...? :thinking_face:
+
   return (
     <Field.Container className={className}>
       <Field.Label htmlFor={id} required={required}>
@@ -259,6 +261,7 @@ const MultiSelectField: React.FC<Props> = ({
           as="select"
           id={id}
           name={name}
+          required={required}
           multiple
           css={{
             width: '100%',

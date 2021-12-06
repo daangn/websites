@@ -41,6 +41,7 @@ const LongTextField: React.FC<Props> = ({
         as="textarea"
         id={id}
         name={name}
+        required={required}
         placeholder={placeholder}
         rows={5}
       />
