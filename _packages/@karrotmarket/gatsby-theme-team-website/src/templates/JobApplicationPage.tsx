@@ -38,7 +38,6 @@ export const query = graphql`
       ghId
       title
       boardToken
-      portfolioRequired
       parentJob {
         questions {
           __typename
