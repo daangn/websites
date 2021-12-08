@@ -114,6 +114,10 @@ const FilterAnchor = styled('div', {
   position: 'absolute',
   bottom: '100%',
   height: rem(58),
+  
+  '@sm': {
+    height: rem(68),
+  },
 });
 
 const Filters = styled('div', {
