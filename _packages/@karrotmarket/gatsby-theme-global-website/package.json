@@ -39,7 +39,7 @@
     "gatsby-transformer-sharp": "4.1.0",
     "got": "11.8.3",
     "react-helmet-async": "1.2.2",
-    "react-intersection-observer": "8.32.2",
+    "react-intersection-observer": "8.32.5",
     "react-scroll-parallax": "2.4.0",
     "sharp": "0.29.3"
   },
