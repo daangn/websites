@@ -52,7 +52,7 @@
     "gatsby-plugin-typegen": "2.2.4",
     "gatsby-plugin-use-dark-mode": "1.4.0",
     "gatsby-source-filesystem": "4.1.3",
-    "gatsby-source-prismic": "5.2.2",
+    "gatsby-source-prismic": "5.2.3",
     "gatsby-theme-stitches": "1.0.0",
     "gatsby-transformer-sharp": "4.1.0",
     "hangul-js": "0.2.6",
