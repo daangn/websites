@@ -2873,10 +2873,10 @@
   resolved "https://registry.yarnpkg.com/@prismicio/helpers/-/helpers-1.0.5.tgz#2be60a1b44e6c33d7918fa74fe67648dc8af0c15"
   integrity sha512-TPpuAFHNxlCTrEihHnRKcq6zc0oZV0sfz5/iHoSpl5vorwPbwZWiF88JGeflNdefW4A69b5A3x3mfptKPdpoxg==
 
-"@prismicio/helpers@2.0.0-beta.6":
-  version "2.0.0-beta.6"
-  resolved "https://registry.yarnpkg.com/@prismicio/helpers/-/helpers-2.0.0-beta.6.tgz#902c8d7e513f67d9b7e50d7b8b9ffef79429d0b1"
-  integrity sha512-ZY/NuzTm4PmdZSIKJszQ6n/mg/9kmUYmbfNjxvHioAkMqf60epTTfKI66wZLg8O6GvxTKjnARpih0R28kc0JMg==
+"@prismicio/helpers@2.0.0-beta.7":
+  version "2.0.0-beta.7"
+  resolved "https://registry.yarnpkg.com/@prismicio/helpers/-/helpers-2.0.0-beta.7.tgz#2be896ca56559ddab92ece1cf7366940e498319d"
+  integrity sha512-IyHjBxm4KLpytK7ROXD2AMeEuA7lh8pjR6dRgG1YyVHgjD/yqLBkx0HbRJrz31ifb41Fot/uxMahfzr/+NW7Eg==
   dependencies:
     "@prismicio/richtext" "^2.0.0-beta.3"
     "@prismicio/types" "^0.1.19"
