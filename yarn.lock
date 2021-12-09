@@ -4304,10 +4304,10 @@ acorn@^8.2.4, acorn@^8.4.1:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.4.1.tgz#56c36251fc7cabc7096adc18f05afe814321a28c"
   integrity sha512-asabaBSkEKosYKMITunzX177CXxQ4Q8BSSzMTKD+FefUhipQC70gfW5SiUDhYQ3vk8G+81HqQk7Fv9OXwwn9KA==
 
-adblock-detect-react@1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/adblock-detect-react/-/adblock-detect-react-1.0.4.tgz#55394ed906305202ce3edc42bacca573bb29ad65"
-  integrity sha512-Xn/hG3gzn+6CUA6bIm1KDWRIOKXLMQk5p91XpWfHaJ5vzHj21XhaUEgdnqM5RXPPKXQbvL3aBwvnkWATnXLLFw==
+adblock-detect-react@1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/adblock-detect-react/-/adblock-detect-react-1.0.5.tgz#b7fc828f687bf57f99ff8b3f8ecf326ca06dd702"
+  integrity sha512-XGSyRnQZjoP9LxLiMvnKbPqlIzFJEtJgT6j7T9sK2Aw9XOvwNSJKfd2xwbk+DmdpkuUysXnGlobn1SIRBQi12A==
 
 address@1.1.2, address@^1.0.1:
   version "1.1.2"

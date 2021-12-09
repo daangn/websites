@@ -18,7 +18,7 @@
     "@karrotmarket/gatsby-theme-website": "*",
     "@karrotmarket/react-stitches": "0.1.1-1",
     "@stitches/react": "1.2.5",
-    "adblock-detect-react": "1.0.4",
+    "adblock-detect-react": "1.0.5",
     "gatsby": "next",
     "gatsby-plugin-google-tagmanager": "4.3.0",
     "gatsby-plugin-image": "2.3.0",
