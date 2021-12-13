@@ -34,6 +34,6 @@
     "@babel/plugin-transform-typescript": "7.16.1",
     "babel-plugin-polished": "1.1.0",
     "babel-preset-gatsby-package": "2.3.0",
-    "typescript": "4.5.2"
+    "typescript": "4.5.3"
   }
 }
