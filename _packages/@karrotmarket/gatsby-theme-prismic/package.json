@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@karrotmarket/prismic-config": "*",
-    "@prismicio/helpers": "2.0.0-beta.7",
+    "@prismicio/helpers": "2.0.0-beta.8",
     "gatsby-plugin-image": "2.3.0",
     "gatsby-plugin-prismic-previews": "5.2.1",
     "gatsby-source-prismic": "5.2.3",
