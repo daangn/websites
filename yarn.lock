@@ -3405,13 +3405,13 @@
   resolved "https://registry.yarnpkg.com/@prismicio/helpers/-/helpers-1.0.5.tgz#2be60a1b44e6c33d7918fa74fe67648dc8af0c15"
   integrity sha512-TPpuAFHNxlCTrEihHnRKcq6zc0oZV0sfz5/iHoSpl5vorwPbwZWiF88JGeflNdefW4A69b5A3x3mfptKPdpoxg==
 
-"@prismicio/helpers@2.0.0-beta.7":
-  version "2.0.0-beta.7"
-  resolved "https://registry.yarnpkg.com/@prismicio/helpers/-/helpers-2.0.0-beta.7.tgz#2be896ca56559ddab92ece1cf7366940e498319d"
-  integrity sha512-IyHjBxm4KLpytK7ROXD2AMeEuA7lh8pjR6dRgG1YyVHgjD/yqLBkx0HbRJrz31ifb41Fot/uxMahfzr/+NW7Eg==
+"@prismicio/helpers@2.0.0-beta.8":
+  version "2.0.0-beta.8"
+  resolved "https://registry.yarnpkg.com/@prismicio/helpers/-/helpers-2.0.0-beta.8.tgz#0139c80bbf0661d1398c35dbdaf3d7806a951b97"
+  integrity sha512-9dOO7CTB4cWHG/+fZmgACdH7Ht8agHNn4iXSLIysXiGH51tPRy+0D/ldgSCDPdVn5+JO3IJGTO4AeuB5IIIqlg==
   dependencies:
     "@prismicio/richtext" "^2.0.0-beta.3"
-    "@prismicio/types" "^0.1.19"
+    "@prismicio/types" "^0.1.20"
     escape-html "^1.0.3"
 
 "@prismicio/helpers@^2.0.0-beta.0":
@@ -3451,6 +3451,11 @@
   version "0.1.19"
   resolved "https://registry.yarnpkg.com/@prismicio/types/-/types-0.1.19.tgz#4836667129684a42cb5f543bca89885c56b052c1"
   integrity sha512-nMJ71C86LghZmKLZm40wIeGk5bkZvLsIK9YWy4EUE+1pO/rmVQYvOJcl83zpL8UcvbZXhR3+ZgDG2MO/+b5/sg==
+
+"@prismicio/types@^0.1.20":
+  version "0.1.20"
+  resolved "https://registry.yarnpkg.com/@prismicio/types/-/types-0.1.20.tgz#da608295d4e40224c4ca44185c2291ee41a1603f"
+  integrity sha512-7+TPkpY5ZAT2prhcnQUxOM9HkS04myfUaQkCOG0kqHQzMx73fMtFYai+5EF3vjCxmE7e2gLvPpoRybZyyky8wQ==
 
 "@reach/dialog@^0.16.0":
   version "0.16.0"
