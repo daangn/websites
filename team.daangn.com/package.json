@@ -40,10 +40,10 @@
     "react-dom": "experimental"
   },
   "devDependencies": {
-    "@babel/cli": "7.16.0",
-    "@babel/core": "7.16.5",
-    "@babel/plugin-transform-react-jsx": "7.16.5",
-    "@babel/plugin-transform-typescript": "7.16.1",
+    "@babel/cli": "7.16.7",
+    "@babel/core": "7.16.7",
+    "@babel/plugin-transform-react-jsx": "7.16.7",
+    "@babel/plugin-transform-typescript": "7.16.7",
     "@types/dotenv-safe": "8.1.2",
     "@types/node": "16.11.17",
     "@types/react": "17.0.38",
