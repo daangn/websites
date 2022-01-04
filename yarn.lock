@@ -5727,12 +5727,12 @@ ci-info@^3.2.0:
   resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-3.2.0.tgz#2876cb948a498797b5236f0095bc057d0dca38b6"
   integrity sha512-dVqRX7fLUm8J6FgHJ418XuIgDLZDkYcDFTeL6TA2gt5WlIZUQrrH6EZrNClwT/H0FateUsZkGIOPRrLbP+PR9A==
 
-cjk-slug@0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/cjk-slug/-/cjk-slug-0.2.1.tgz#4d0ca304d0c08b1be96a87b79e30192862ea4605"
-  integrity sha512-LLcdUzfzq3PhGqcXC0EScm/oefd8lHeqTCfvGawMKDcqTnRXqYWv8HGLNnXCZWWsuP4Ji+InW5VCxbPVo6wpzg==
+cjk-slug@0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/cjk-slug/-/cjk-slug-0.3.0.tgz#c746883a5e76c3efa3484bd093b525e9a1beb471"
+  integrity sha512-q4lggMfG4iKDpKW5nquxqMXm6LOq6isc22m4IH9xYJe73R9TmnQl4r8inhEJBs7BsppIONgI/6GclzyX9Nu6+w==
   dependencies:
-    normalize-cjk "^0.2.0"
+    normalize-cjk "^0.4.0"
 
 cjs-module-lexer@^1.0.0:
   version "1.2.2"
@@ -11882,10 +11882,10 @@ node-releases@^2.0.1:
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.1.tgz#3d1d395f204f1f2f29a54358b9fb678765ad2fc5"
   integrity sha512-CqyzN6z7Q6aMeF/ktcMVTzhAHCEpf8SOarwpzpf8pNBY2k5/oM34UHldUwp8VKI7uxct2HxSRdJjBaZeESzcxA==
 
-normalize-cjk@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/normalize-cjk/-/normalize-cjk-0.2.0.tgz#f53bed878870740cb2feaaef4f565798cac5de83"
-  integrity sha512-A0BwMuoQvkB/mFHOSYGt37QvczPqIrY/476aNMxl7Kt7MRvovOim8AhtFD2zZYpwHw/LNeVwJ6xHIzb+WwUmqg==
+normalize-cjk@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/normalize-cjk/-/normalize-cjk-0.4.0.tgz#5016164a03f9e90a850e50c2720a5ff51eaf1802"
+  integrity sha512-3BgD5wO0/0vrEYEoPdlkxhjnrK+nNo3arosd5PBH1Ywq/TcuO+QSg2wf2LP7Zc2cvKuGIrywmq64tuKwyR3znQ==
 
 normalize-package-data@^2.5.0:
   version "2.5.0"
