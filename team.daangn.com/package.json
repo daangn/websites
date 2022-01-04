@@ -25,7 +25,7 @@
     "@karrotmarket/gatsby-source-greenhouse-jobboard": "0.4.0",
     "@karrotmarket/gatsby-theme-team-website": "*",
     "@karrotmarket/gatsby-transformer-job-post": "*",
-    "cjk-slug": "0.2.1",
+    "cjk-slug": "0.3.0",
     "gatsby": "next",
     "gatsby-plugin-image": "2.4.0",
     "gatsby-plugin-advanced-sitemap": "2.0.0",

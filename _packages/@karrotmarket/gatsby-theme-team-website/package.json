@@ -28,7 +28,7 @@
     "@stitches/react": "1.2.6",
     "@svgr/webpack": "6.1.2",
     "babel-plugin-polished": "1.1.0",
-    "cjk-slug": "0.2.1",
+    "cjk-slug": "0.3.0",
     "clsx": "1.1.1",
     "focus-trap-react": "8.9.0",
     "framer-motion": "4.1.17",
