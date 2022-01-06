@@ -3549,15 +3549,10 @@
   resolved "https://registry.yarnpkg.com/@prismicio/custom-types-client/-/custom-types-client-0.0.6.tgz#774e1498b88a07b817292a5894208851c5dd4635"
   integrity sha512-/QeHmNzEtOMtEAZF7ZfRSSosSXGhA4dzQm7vczhxdBGIT23Bbj+h0I4hNlpJZ4n0UzmIYWtd45jYCguVo3hfqQ==
 
-"@prismicio/helpers@1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@prismicio/helpers/-/helpers-1.1.1.tgz#aa95773a7c9ee2aea7cc81ebd591d5aef83ad6f7"
-  integrity sha512-ZwOUAZeV7P7bxfkyfZN6inzXOBbgojJUzOpqrF5/4bv8TgZ43x4p5NCqyOS7wieQf5BM9h2r4AFW0QTpeR581w==
-
-"@prismicio/helpers@2.0.0-beta.8":
-  version "2.0.0-beta.8"
-  resolved "https://registry.yarnpkg.com/@prismicio/helpers/-/helpers-2.0.0-beta.8.tgz#0139c80bbf0661d1398c35dbdaf3d7806a951b97"
-  integrity sha512-9dOO7CTB4cWHG/+fZmgACdH7Ht8agHNn4iXSLIysXiGH51tPRy+0D/ldgSCDPdVn5+JO3IJGTO4AeuB5IIIqlg==
+"@prismicio/helpers@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@prismicio/helpers/-/helpers-2.0.0.tgz#ac975a7930d798835addd44cccb4598e26f53a50"
+  integrity sha512-8xnK2pj+us935wAvJvPdk4o6Zhn/z99aUWwaGYJBbNqQy8x0pahgXY1L3l6s6+9xcEdJy6kKL8IfvFS6U0tpXg==
   dependencies:
     "@prismicio/richtext" "^2.0.0-beta.3"
     "@prismicio/types" "^0.1.20"
