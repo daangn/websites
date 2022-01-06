@@ -3549,10 +3549,10 @@
   resolved "https://registry.yarnpkg.com/@prismicio/custom-types-client/-/custom-types-client-0.0.6.tgz#774e1498b88a07b817292a5894208851c5dd4635"
   integrity sha512-/QeHmNzEtOMtEAZF7ZfRSSosSXGhA4dzQm7vczhxdBGIT23Bbj+h0I4hNlpJZ4n0UzmIYWtd45jYCguVo3hfqQ==
 
-"@prismicio/helpers@1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@prismicio/helpers/-/helpers-1.0.5.tgz#2be60a1b44e6c33d7918fa74fe67648dc8af0c15"
-  integrity sha512-TPpuAFHNxlCTrEihHnRKcq6zc0oZV0sfz5/iHoSpl5vorwPbwZWiF88JGeflNdefW4A69b5A3x3mfptKPdpoxg==
+"@prismicio/helpers@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@prismicio/helpers/-/helpers-1.1.1.tgz#aa95773a7c9ee2aea7cc81ebd591d5aef83ad6f7"
+  integrity sha512-ZwOUAZeV7P7bxfkyfZN6inzXOBbgojJUzOpqrF5/4bv8TgZ43x4p5NCqyOS7wieQf5BM9h2r4AFW0QTpeR581w==
 
 "@prismicio/helpers@2.0.0-beta.8":
   version "2.0.0-beta.8"
