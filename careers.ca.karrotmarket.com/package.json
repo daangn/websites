@@ -25,7 +25,7 @@
     "@karrotmarket/gatsby-source-greenhouse-jobboard": "0.4.0",
     "@karrotmarket/gatsby-theme-team-website": "*",
     "@karrotmarket/gatsby-transformer-job-post": "*",
-    "gatsby": "next",
+    "gatsby": "4.4.0",
     "gatsby-plugin-advanced-sitemap": "2.0.0",
     "gatsby-plugin-gatsby-cloud": "4.4.0",
     "gatsby-plugin-google-tagmanager": "4.4.0",

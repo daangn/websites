@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@karrotmarket/gatsby-theme-global-website": "*",
-    "gatsby": "next",
+    "gatsby": "4.4.0",
     "gatsby-plugin-google-gtag": "4.4.0",
     "gatsby-plugin-google-tagmanager": "4.4.0",
     "react": "experimental",
