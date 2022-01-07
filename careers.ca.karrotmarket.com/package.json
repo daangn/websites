@@ -1,0 +1,53 @@
+{
+  "name": "careers.ca.karrotmarket.com",
+  "version": "0.0.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daangn/websites.git",
+    "directory": "careers.ca.karrotmarket.com"
+  },
+  "maintainers": [
+    {
+      "name": "Tim Kim",
+      "email": "tim@daangn.com"
+    }
+  ],
+  "scripts": {
+    "prepare-gatsby": "babel gatsby -d . -x .ts,.tsx --presets gatsby-package",
+    "postinstall": "yarn prepare-gatsby",
+    "develop": "yarn prepare-gatsby && gatsby develop",
+    "build": "yarn prepare-gatsby && gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "@karrotmarket/gatsby-source-greenhouse-jobboard": "0.4.0",
+    "@karrotmarket/gatsby-theme-team-website": "*",
+    "@karrotmarket/gatsby-transformer-job-post": "*",
+    "gatsby": "next",
+    "gatsby-plugin-advanced-sitemap": "2.0.0",
+    "gatsby-plugin-gatsby-cloud": "4.4.0",
+    "gatsby-plugin-google-tagmanager": "4.4.0",
+    "gatsby-plugin-manifest": "4.4.0",
+    "gatsby-plugin-robots-txt": "1.6.14",
+    "gatsby-plugin-sitemap": "5.4.0",
+    "gatsby-plugin-typegen": "2.2.4",
+    "polished": "4.1.3",
+    "react": "experimental",
+    "react-dom": "experimental"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.16.7",
+    "@babel/core": "7.16.7",
+    "@babel/plugin-transform-react-jsx": "7.16.7",
+    "@babel/plugin-transform-typescript": "7.16.7",
+    "@types/dotenv-safe": "8.1.2",
+    "@types/node": "16.11.19",
+    "@types/react": "17.0.38",
+    "@types/react-dom": "17.0.11",
+    "babel-preset-gatsby-package": "2.4.0",
+    "dotenv-safe": "8.2.0",
+    "typescript": "4.5.4"
+  }
+}
