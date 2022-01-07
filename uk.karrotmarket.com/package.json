@@ -7,6 +7,10 @@
     "url": "git+https://github.com/daangn/websites.git",
     "directory": "uk.karrotmarket.com"
   },
+  "browserslist": [
+    "defaults",
+    "not ie 11"
+  ],
   "scripts": {
     "prepare-gatsby": "babel gatsby -d . -x .ts,.tsx --presets gatsby-package",
     "postinstall": "yarn prepare-gatsby",

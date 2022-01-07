@@ -17,6 +17,10 @@
       "email": "tim@daangn.com"
     }
   ],
+  "browserslist": [
+    "defaults",
+    "not ie 11"
+  ],
   "scripts": {
     "prepare-gatsby": "babel gatsby -d . -x .ts,.tsx --presets gatsby-package",
     "postinstall": "yarn prepare-gatsby",

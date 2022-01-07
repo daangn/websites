@@ -10,6 +10,10 @@
     "clean": "gatsby clean",
     "serve": "gatsby serve"
   },
+  "browserslist": [
+    "defaults",
+    "not ie 11"
+  ],
   "dependencies": {
     "@cometjs/core": "1.2.0",
     "@cometjs/graphql-utils": "1.1.0",
