@@ -13375,10 +13375,10 @@ react-remove-scroll@^2.4.3:
     use-callback-ref "^1.2.3"
     use-sidecar "^1.0.1"
 
-react-scroll-parallax@2.4.2:
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/react-scroll-parallax/-/react-scroll-parallax-2.4.2.tgz#7612c59b365178b54ab2880d657e203af18e8077"
-  integrity sha512-TVo8eTzzGBOhoMwoxk5Xo4g3bVY0BhSUEQExmzlirqMsBkchUzQY1K2oYJwJAn5d/dZSxBh8DimUdkFXJYWw9g==
+react-scroll-parallax@2.4.3:
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/react-scroll-parallax/-/react-scroll-parallax-2.4.3.tgz#db0ae1da5700a4588237b7e8048e25c6aa5b6f18"
+  integrity sha512-Q9GfpA4j0djy993Hg14t/Rzr8mxtn0xtlctCqxVGJ0dQkfuQqKW950NozQJvYaW8yVITEsuUohNSVlchmCq5wg==
   dependencies:
     prop-types "^15.5.10"
 
