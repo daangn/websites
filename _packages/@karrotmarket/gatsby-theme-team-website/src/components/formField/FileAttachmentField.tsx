@@ -1,4 +1,4 @@
-/// <reference types="react/experimental" />
+/// <reference types="react/next" />
 import * as React from 'react';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import type { PropOf } from '@cometjs/react-utils';
@@ -43,7 +43,7 @@ const FileAttachmentField: React.FC<Props> = ({
   accepts,
   required = false,
 }) => {
-  const reactId = React.unstable_useOpaqueIdentifier();
+  const reactId = React.useId();
   const id = paramId || reactId;
 
   const [filename, setFilename] = React.useState(placeholder || '');
