@@ -38,8 +38,8 @@
     "gatsby-plugin-sitemap": "5.4.0",
     "gatsby-plugin-typegen": "2.2.4",
     "polished": "4.1.3",
-    "react": "experimental",
-    "react-dom": "experimental"
+    "react": "next",
+    "react-dom": "next"
   },
   "devDependencies": {
     "@babel/cli": "7.16.7",

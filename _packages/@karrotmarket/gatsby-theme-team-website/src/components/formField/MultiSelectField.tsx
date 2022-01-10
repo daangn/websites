@@ -1,4 +1,4 @@
-/// <reference types="react/experimental" />
+/// <reference types="react/next" />
 import * as React from 'react';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
@@ -182,7 +182,7 @@ const MultiSelectField: React.FC<Props> = ({
   description,
   required,
 }) => {
-  const reactId = React.unstable_useOpaqueIdentifier();
+  const reactId = React.useId();
   const id = propId || reactId;
 
   const [state, dispatch] = React.useReducer(reducer, null, () => ({

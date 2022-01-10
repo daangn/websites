@@ -24,8 +24,8 @@
     "gatsby": "4.4.0",
     "gatsby-plugin-google-gtag": "4.4.0",
     "gatsby-plugin-google-tagmanager": "4.4.0",
-    "react": "experimental",
-    "react-dom": "experimental"
+    "react": "next",
+    "react-dom": "next"
   },
   "devDependencies": {
     "@babel/cli": "7.16.7",

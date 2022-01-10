@@ -1,4 +1,4 @@
-/// <reference types="react/experimental" />
+/// <reference types="react/next" />
 import * as React from 'react';
 
 import * as Field from './Field';
@@ -24,7 +24,7 @@ const ShortTextField: React.FC<Props> = ({
   description,
   required = false,
 }) => {
-  const reactId = React.unstable_useOpaqueIdentifier();
+  const reactId = React.useId();
   const id = propId || reactId;
 
   return (

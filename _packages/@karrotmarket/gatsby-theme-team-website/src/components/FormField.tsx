@@ -1,4 +1,4 @@
-/// <reference types="react/experimental" />
+/// <reference types="react/next" />
 
 import * as React from 'react';
 import { styled } from 'gatsby-theme-stitches/src/config';
@@ -301,7 +301,7 @@ const FormField: React.FC<FormFieldProps> = ({
   children,
   required = false,
 }) => {
-  const id = React.unstable_useOpaqueIdentifier();
+  const id = React.useId();
 
   const [filename, setFilename] = React.useState(placeholder);
   const fileRef = React.useRef<HTMLInputElement>(null);

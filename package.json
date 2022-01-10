@@ -19,8 +19,8 @@
   "resolutions": {
     "gatsby": "4.4.0",
     "graphql": "15.8.0",
-    "react": "18.0.0-alpha-fd5e01c2e-20210913",
-    "react-dom": "18.0.0-alpha-fd5e01c2e-20210913"
+    "react": "18.0.0-rc.0-next-fe905f152-20220107",
+    "react-dom": "18.0.0-rc.0-next-fe905f152-20220107"
   },
   "scripts": {
     "postinstall": "yarn init:plugins && yarn init:sites",
