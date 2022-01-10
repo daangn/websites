@@ -100,7 +100,7 @@ const config: GatsbyConfig = {
     {
       resolve: '@karrotmarket/gatsby-theme-team-website',
       options: {
-        locale: 'ca',
+        locale: 'en-ca',
         navigationId: 'careers.ca.karrotmarket.com',
       },
     },
