@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://careers.ca.karrotmarket.com/$1",
+      "status": 301
+    }
+  ]
+}
