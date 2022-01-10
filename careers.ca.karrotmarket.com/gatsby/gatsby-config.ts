@@ -107,7 +107,7 @@ const config: GatsbyConfig = {
     {
       resolve: '@karrotmarket/gatsby-source-greenhouse-jobboard',
       options: {
-        boardToken: 'karrot',
+        boardToken: 'karrotca',
         forceGC: true,
       },
     },
