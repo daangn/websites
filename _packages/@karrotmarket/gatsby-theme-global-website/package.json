@@ -44,7 +44,7 @@
     "sharp": "0.29.3"
   },
   "devDependencies": {
-    "@babel/cli": "7.16.7",
+    "@babel/cli": "7.16.8",
     "@babel/core": "7.16.7",
     "babel-preset-gatsby-package": "2.4.0",
     "concurrently": "7.0.0",
