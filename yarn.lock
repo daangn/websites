@@ -8665,10 +8665,10 @@ gatsby-source-filesystem@^4.0.0:
     valid-url "^1.0.9"
     xstate "^4.14.0"
 
-gatsby-source-prismic@5.2.3:
-  version "5.2.3"
-  resolved "https://registry.yarnpkg.com/gatsby-source-prismic/-/gatsby-source-prismic-5.2.3.tgz#072a8a9da5f7e6fc924c94daa16bd7a5434e2303"
-  integrity sha512-1Odk5wEUBZbkQVGuNIz4DYZu04lGcS2y1YdAncku1amlFBnp19dmHpHVAJ717qwdGzrXyqGlkl2G4Kx7p4Xq0Q==
+gatsby-source-prismic@5.2.4:
+  version "5.2.4"
+  resolved "https://registry.yarnpkg.com/gatsby-source-prismic/-/gatsby-source-prismic-5.2.4.tgz#3f095376076d4b521093c840d76c4fc1cd54755d"
+  integrity sha512-5Y0j1iACQAoTVqRKGvvgU1LUeE+SfRc6iytWYvuYnoCU56RDAtq74/clvCCYemIKBKCrdROT4UYkihBdDLpnng==
   dependencies:
     "@imgix/gatsby" "^1.6.13"
     "@prismicio/client" "^6.0.0-beta.2"
