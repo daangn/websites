@@ -29,7 +29,7 @@
     "gatsby-plugin-image": "2.4.0",
     "gatsby-plugin-preload-fonts": "3.4.0",
     "gatsby-plugin-prismic-previews": "5.2.5",
-    "gatsby-source-prismic": "5.2.4",
+    "gatsby-source-prismic": "5.2.5",
     "gatsby-plugin-prismic-schema": "*",
     "gatsby-plugin-react-helmet-async": "1.2.1",
     "gatsby-plugin-sharp": "4.4.0",
