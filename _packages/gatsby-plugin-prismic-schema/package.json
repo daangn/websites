@@ -16,7 +16,7 @@
     "gatsby": "^2.25.0 || ^3.0.0 || ^4.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "7.16.7",
+    "@babel/cli": "7.16.8",
     "@babel/core": "7.16.7",
     "@types/node": "16.11.19",
     "babel-preset-gatsby-package": "2.4.0",
