@@ -24,7 +24,7 @@
     "@karrotmarket/react-stitches": "0.1.1-1",
     "@reach/router": "1.3.4",
     "@stitches/react": "1.2.6",
-    "@svgr/webpack": "6.1.2",
+    "@svgr/webpack": "6.2.0",
     "framer-motion": "4.1.17",
     "gatsby-plugin-image": "2.5.1",
     "gatsby-plugin-preload-fonts": "3.5.1",
