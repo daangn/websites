@@ -34,7 +34,7 @@
     "gatsby-plugin-gatsby-cloud": "4.5.1",
     "gatsby-plugin-google-tagmanager": "4.5.0",
     "gatsby-plugin-manifest": "4.5.1",
-    "gatsby-plugin-robots-txt": "1.6.14",
+    "gatsby-plugin-robots-txt": "1.7.0",
     "gatsby-plugin-sitemap": "5.5.0",
     "gatsby-plugin-typegen": "2.2.4",
     "polished": "4.1.3",

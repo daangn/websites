@@ -2286,6 +2286,13 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime@^7.16.7":
+  version "7.16.7"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.16.7.tgz#03ff99f64106588c9c403c6ecb8c3bafbbdff1fa"
+  integrity sha512-9E9FJowqAsytyOY6LG+1KuueckRL+aQW+mKvXRXnuFGyRAyepJPmEo9vgMfXUA6O9u3IeEdv9MAkppFcaQwogQ==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
 "@babel/template@^7.14.5", "@babel/template@^7.3.3":
   version "7.14.5"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.14.5.tgz#a9bc9d8b33354ff6e55a9c60d1109200a68974f4"
@@ -8232,12 +8239,12 @@ gatsby-plugin-react-helmet-async@1.2.1:
   resolved "https://registry.yarnpkg.com/gatsby-plugin-react-helmet-async/-/gatsby-plugin-react-helmet-async-1.2.1.tgz#dbbedbbf88fff070ed81015f9cbb74c5610bffb9"
   integrity sha512-CSqV0tMFbnN5tDEwqydR1Jvlzv+1yrTHfMePq0s4dcfcdybI1Yl4HTo52qzT2bYag6/io1HRuejTS5//8YJrNg==
 
-gatsby-plugin-robots-txt@1.6.14:
-  version "1.6.14"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-robots-txt/-/gatsby-plugin-robots-txt-1.6.14.tgz#e7ce50b137fecc81c1ac384ddc544a4bafd8da89"
-  integrity sha512-5NLdgKPw7xHjvowNDU5aWzl/g3M3WU0Equn73aXGGdEue9Nuq7zh/Lh3oX+OM+MZolRCiM9GNHxdIvYPDWNXgA==
+gatsby-plugin-robots-txt@1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-robots-txt/-/gatsby-plugin-robots-txt-1.7.0.tgz#58ac310c9fb7e58162d6e21802884b342837b451"
+  integrity sha512-Y1D8FBeXNtECoCd0g0jIkhKpSvzFzeh2xpt1xTvGluRP6xmqJq7iB3DPEv7xqGlZAcfzaSxw/j5++Y+3WLva8A==
   dependencies:
-    "@babel/runtime" "^7.15.4"
+    "@babel/runtime" "^7.16.7"
     generate-robotstxt "^8.0.3"
 
 gatsby-plugin-sharp@4.5.1:

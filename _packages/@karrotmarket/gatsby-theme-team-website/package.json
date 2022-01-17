@@ -45,7 +45,7 @@
     "gatsby-plugin-prismic-previews": "5.2.5",
     "gatsby-plugin-prismic-schema": "*",
     "gatsby-plugin-react-helmet-async": "1.2.1",
-    "gatsby-plugin-robots-txt": "1.6.14",
+    "gatsby-plugin-robots-txt": "1.7.0",
     "gatsby-plugin-sharp": "4.5.1",
     "gatsby-plugin-sitemap": "5.5.0",
     "gatsby-plugin-svgr": "3.0.0-beta.0",
