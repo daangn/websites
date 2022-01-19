@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@karrotmarket/gatsby-theme-global-website": "*",
-    "framer-motion": "4.1.17",
+    "framer-motion": "5.6.0",
     "gatsby": "4.5.3",
     "gatsby-plugin-google-gtag": "4.5.0",
     "gatsby-plugin-web-font-loader": "1.0.4",
