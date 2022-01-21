@@ -28,7 +28,7 @@
     "init:sites": "ultra --recursive prepare-gatsby"
   },
   "devDependencies": {
-    "@types/node": "16.11.20",
+    "@types/node": "16.11.21",
     "typescript": "4.5.4",
     "ultra-runner": "3.10.5"
   }
