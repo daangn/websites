@@ -65,7 +65,7 @@
   },
   "devDependencies": {
     "@babel/cli": "7.16.8",
-    "@babel/core": "7.16.7",
+    "@babel/core": "7.16.10",
     "@babel/plugin-transform-react-jsx": "7.16.7",
     "@babel/plugin-transform-typescript": "7.16.8",
     "@prismicio/helpers": "2.0.0",
