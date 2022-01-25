@@ -30,7 +30,7 @@
     "@karrotmarket/gatsby-theme-team-website": "*",
     "@karrotmarket/gatsby-transformer-job-post": "*",
     "cjk-slug": "0.3.0",
-    "gatsby": "4.5.3",
+    "gatsby": "4.5.5",
     "gatsby-plugin-image": "2.5.2",
     "gatsby-plugin-advanced-sitemap": "2.0.0",
     "gatsby-plugin-gatsby-cloud": "4.5.2",
