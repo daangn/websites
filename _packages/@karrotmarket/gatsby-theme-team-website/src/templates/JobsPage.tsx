@@ -14,7 +14,7 @@ import expandMoreOutlineUrl from '!!file-loader!../assets/expand_more_outline_m.
 import { useFlexSearch } from '../utils/useFlexSearch';
 
 import BannerArea from './jobsPage/BannerArea';
-import messages from './jobsPage/messages';
+import messages from '../translations.json';
 
 type JobsPageTemplateProps = PageProps<GatsbyTypes.TeamWebsite_JobsPageTemplateQuery, GatsbyTypes.SitePageContext>;
 
@@ -230,7 +230,7 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
 
   required(data.prismicTeamContents?.data);
 
-  const metaTitleBase = data.prismicTeamContents.data.jobs_page_meta_title || messages.meta_title_default;
+  const metaTitleBase = data.prismicTeamContents.data.jobs_page_meta_title || messages.jobs_page__default_meta_title;
   const metaTitle = pageContext.chapter
     ? `${pageContext.chapter} | ${metaTitleBase}`
     : metaTitleBase;
@@ -298,7 +298,7 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
               key=""
               value=""
             >
-              {`${messages.chapter_all} (${data.allJobPost.totalCount})`}
+              {`${messages.jobs_page__chapter_all} (${data.allJobPost.totalCount})`}
             </option>
             {data.allJobPost.allChapter
             .map(chapterGroup => {
@@ -316,15 +316,15 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
             value={filterEmploymentType}
             onChange={e => setFilterEmploymentType(e.target.value)}
           >
-            <option value="">{messages.employment_type_all}</option>
-            <option value="FULL_TIME">{messages.employment_type_fulltime}</option>
-            <option value="CONTRACTOR">{messages.employment_type_contractor}</option>
-            <option value="INTERN">{messages.employment_type_intern}</option>
-            <option value="ASSISTANT">{messages.employment_type_assistant}</option>
+            <option value="">{messages.jobs_page__employment_type_all}</option>
+            <option value="FULL_TIME">{messages.jobs_page__employment_type_fulltime}</option>
+            <option value="CONTRACTOR">{messages.jobs_page__employment_type_contractor}</option>
+            <option value="INTERN">{messages.jobs_page__employment_type_intern}</option>
+            <option value="ASSISTANT">{messages.jobs_page__employment_type_assistant}</option>
           </Select>
           <Search >
             <input
-              placeholder={messages.search_placeholder}
+              placeholder={messages.jobs_page__search}
               onChange={handleSearchInputChange}
             />
             <SearchdSvg />

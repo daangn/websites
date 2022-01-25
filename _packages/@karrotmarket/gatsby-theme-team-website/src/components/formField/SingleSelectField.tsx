@@ -4,7 +4,7 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 
 import * as Field from './Field';
-import messages from './messages';
+import messages from '../../translations.json';
 
 type Props = {
   id?: string,
@@ -93,7 +93,7 @@ const SingleSelectField: React.FC<Props> = ({
           required={required}
           defaultValue={defaultValue}
         >
-          <option value="">{messages.select_empty}</option>
+          <option value="">{messages.form_field__empty_placeholder}</option>
           {options.map(option => (
             <option key={option.value} value={option.value}>
               {option.label}

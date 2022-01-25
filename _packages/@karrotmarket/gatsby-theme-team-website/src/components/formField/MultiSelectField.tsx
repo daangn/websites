@@ -6,7 +6,7 @@ import FocusTrap from 'focus-trap-react';
 
 import * as Field from './Field';
 import checkmarkUrl from '!!file-loader!./checkmark.svg';
-import messages from './messages';
+import messages from '../../translations.json';
 
 type Props = {
   id?: string,
@@ -208,7 +208,7 @@ const MultiSelectField: React.FC<Props> = ({
         }}
       >
         {state.selectedOptions.length === 0 && (
-          messages.select_empty
+          messages.form_field__empty_placeholder
         )}
         <Selection>
           {state.selectedOptions.map(option => (

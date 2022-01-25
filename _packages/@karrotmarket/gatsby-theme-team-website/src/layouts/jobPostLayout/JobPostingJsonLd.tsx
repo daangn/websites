@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 
 import LinkedData from '../../components/JobPostingJsonLd';
 
-import messages from './messages';
+import messages from '../../translations.json';
 import locations from './locations';
 
 type JobPostingJsonLdProps = {
@@ -49,13 +49,13 @@ const JobPostingJsonLd: React.FC<JobPostingJsonLdProps> = ({
       }[jobPost.priorExperience]}
       organization={{
         KARROT_MARKET: {
-          name: messages.corporate_karrot_market,
-          url: messages.corporate_karrot_market_url,
+          name: messages.job_post_layout__property_karrot_market,
+          url: "https://www.daangn.com",
           logoUrl,
         },
         KARROT_PAY: {
-          name: messages.corporate_karrot_pay,
-          url: messages.corporate_karrot_pay_url,
+          name: messages.job_post_layout__property_karrot_pay,
+          url: "https://www.daangnpay.com",
           logoUrl,
         },
       }[jobPost.corporate]}

@@ -3,7 +3,7 @@ import type { LinkType } from '@karrotmarket/gatsby-theme-website/src/link';
 
 import ArrowLink from './ArrowLink';
 
-import messages from './detailLink/messages';
+import messages from '../translations.json';
 
 type DetailLinkProps = {
   link: LinkType,
@@ -14,7 +14,7 @@ type DetailLinkProps = {
 const DetailLink: React.FC<DetailLinkProps> = ({
   link,
   className,
-  message = messages.detail,
+  message = messages.detail_link__default_label,
 }) => {
   return (
     <ArrowLink
