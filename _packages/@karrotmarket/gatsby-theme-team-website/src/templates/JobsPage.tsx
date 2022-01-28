@@ -5,6 +5,7 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
 import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import { rem } from 'polished';
+import $ from 'text2vdom';
 import { required } from '@cometjs/core';
 import { ReactComponent as SearchdSvg } from '../assets/searchOutlineM.svg';
 
@@ -298,7 +299,9 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
               key=""
               value=""
             >
-              {`${messages.jobs_page__chapter_all} (${data.allJobPost.totalCount})`}
+              {$(messages.jobs_page__chapter_all, {
+                n: () => <span>{data.allJobPost.totalCount}</span>
+              })}
             </option>
             {data.allJobPost.allChapter
             .map(chapterGroup => {
