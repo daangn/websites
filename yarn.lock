@@ -12705,6 +12705,11 @@ text-table@0.2.0, text-table@^0.2.0:
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
 
+text2vdom@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/text2vdom/-/text2vdom-1.0.0.tgz#3d5ff2f9893094660c9cf35176e6d631acabf37b"
+  integrity sha512-ZhPkNk/n45qgFP67fNu5eanC7PBrRteJ7WQIoSZo8MohfMv2iQt2QKRlVXhXR9iG8Y/2p6AE1U411PmSD53lRg==
+
 throat@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/throat/-/throat-6.0.1.tgz#d514fedad95740c12c2d7fc70ea863eb51ade375"
