@@ -10,7 +10,7 @@ import Button from '../components/Button';
 import ArrowLink from '../components/ArrowLink';
 import JobPostContentSection from '../components/JobPostContentSection';
 
-import messages from './jobPostPage/messages';
+import messages from '../translations.json';
 
 type JobPostPageProps = PageProps<GatsbyTypes.TeamWebsite_JobPostPageQuery, GatsbyTypes.SitePageContext>;
 
@@ -63,14 +63,14 @@ const JobPostPage: React.FC<JobPostPageProps> = ({
     return (
       <Container>
         <ContentWrapper>
-          <strong>{messages.external_post_notice}</strong>
+          <strong>{messages.job_post_page__external_post_notice}</strong>
         </ContentWrapper>
         <Button
             type="primary"
             to={data.jobPost.externalUrl!}
             fullWidth={{ '@initial': true, '@sm': false }}
           >
-            {messages.external_post_link}
+            {messages.job_post_page__external_post_link}
           </Button>
       </Container>
     );
@@ -89,13 +89,13 @@ const JobPostPage: React.FC<JobPostPageProps> = ({
           to={`/jobs/${data.jobPost.ghId}/apply/`}
           fullWidth={{ '@initial': true, '@sm': false }}
         >
-          {messages.apply}
+          {messages.job_post_layout__tab_apply}
         </Button>
         <Button
           to="/jobs/faq/"
           fullWidth={{ '@initial': true, '@sm': false }}
         >
-          {messages.faq}
+          {messages.job_post_page__faq}
         </Button>
       </ButtonContainer>
       <ArrowLink
@@ -108,7 +108,7 @@ const JobPostPage: React.FC<JobPostPageProps> = ({
           }
         }}
       >
-        {messages.back_to_list}
+        {messages.job_post_page__back_to_list}
       </ArrowLink>
     </Container>
   );

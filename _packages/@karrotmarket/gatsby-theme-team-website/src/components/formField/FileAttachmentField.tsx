@@ -4,7 +4,7 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import type { PropOf } from '@cometjs/react-utils';
 
 import * as Field from './Field';
-import messages from './messages';
+import messages from '../../translations.json';
 
 type Props = {
   id?: string,
@@ -73,7 +73,7 @@ const FileAttachmentField: React.FC<Props> = ({
           {label}
         </Field.Label>
         <FileInput as="div">
-          {filename || messages.attach_file}
+          {filename || messages.form_field__placeholder}
         </FileInput>
       </label>
       {description && (

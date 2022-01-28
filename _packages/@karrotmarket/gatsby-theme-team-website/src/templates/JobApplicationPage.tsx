@@ -20,7 +20,7 @@ import TermsField from '../components/formField/TermsField';
 import Button from '../components/Button';
 import _Spinner from '../components/Spinner';
 
-import messages from './jobApplicationPage/messages';
+import messages from '../translations.json';
 
 type JobApplicationPageProps = PageProps<GatsbyTypes.TeamWebsite_JobApplicationPageQuery, GatsbyTypes.SitePageContext>;
 
@@ -196,7 +196,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
         });
         if (response.ok) {
           dispatch('FETCH_COMPLETE');
-          window.alert(messages.alert_completed);
+          window.alert(messages.job_application_page__alert_completed);
         } else {
           dispatch('INVALID');
           const message = await response.text();
@@ -204,7 +204,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
         }
       } catch (e) {
         console.error(e);
-        window.alert(messages.alert_failed);
+        window.alert(messages.job_application_page__alert_failed);
         dispatch('INVALID');
       }
     })();
@@ -232,8 +232,8 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
       <FormField
         as={ShortTextField}
         name="first_name"
-        label={messages.field_name_label}
-        placeholder={messages.field_name_placeholder}
+        label={messages.job_application_page__field_name_label}
+        placeholder={messages.job_application_page__field_name_placeholder}
         required
       />
       {/* Treat the first_name as fullname */}
@@ -242,25 +242,25 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
         as={ShortTextField}
         type="tel"
         name="phone"
-        label={messages.field_phone_label}
-        placeholder={messages.field_phone_placeholder}
+        label={messages.job_application_page__field_phone_label}
+        placeholder={messages.job_application_page__field_phone_placeholder}
         required
       />
       <FormField
         as={ShortTextField}
         type="email"
         name="email"
-        label={messages.field_email_label}
-        placeholder={messages.field_email_placeholder}
+        label={messages.job_application_page__field_email_label}
+        placeholder={messages.job_application_page__field_email_placeholder}
         required
       />
       <FormField
         as={FileAttachmentField}
         name="resume"
         accepts={greenhouseAcceptedMimeTypes}
-        label={messages.field_resume_label}
-        description={messages.field_resume_description}
-        placeholder={messages.field_resume_placeholder}
+        label={messages.job_application_page__field_resume_label}
+        description={messages.job_application_page__field_resume_description}
+        placeholder={messages.job_application_page__field_resume_placeholder}
         required
       />
       {portfolioField && (
@@ -268,9 +268,9 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
           as={FileAttachmentField}
           accepts={greenhouseAcceptedMimeTypes}
           name={portfolioField.name}
-          label={messages.field_portfolio_label}
-          description={messages.field_portfolio_description}
-          placeholder={messages.field_portfolio_placeholder}
+          label={messages.job_application_page__field_portpolio_label}
+          description={messages.job_application_page__field_portpolio_description}
+          placeholder={messages.job_application_page__field_portpolio_placeholder}
           required={portfolioField.required}
         />
       )}
@@ -301,7 +301,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
             as={FileAttachmentField}
             key={question.name}
             accepts={greenhouseAcceptedMimeTypes}
-            placeholder={messages.custom_field_file_placeholder}
+            placeholder={messages.job_application_page__field_file_placeholder}
             name={question.name}
             label={question.label}
             required={question.required}
@@ -341,14 +341,14 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
         <FormField
           as={TermsField}
           terms={data.privacyPolicy.data.content.html}
-          label={messages.terms_privacy_info}
+          label={messages.job_application_page__terms_privacy_info}
         />
       )}
       {data.sensitiveInfoPolicy?.data?.content?.html && (
         <FormField
           as={TermsField}
           terms={data.sensitiveInfoPolicy.data.content.html}
-          label={messages.terms_sensitive_info}
+          label={messages.job_application_page__terms_sensitive_info}
         />
       )}
       <Button
@@ -360,7 +360,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
         {state === 'fetching' ? (
           <Spinner />
         ) : (
-          messages.button_submit
+          messages.job_application_page__button_submit
         )}
       </Button>
     </Form>

@@ -16,7 +16,7 @@ import { ReactComponent as BackwardSvg } from '../assets/backwardOutlineM.svg';
 
 import JobPostingJsonLd from './jobPostLayout/JobPostingJsonLd';
 import generateProperties from './jobPostLayout/generateProperties';
-import messages from './jobPostLayout/messages';
+import messages from '../translations.json';
 
 type JobPostLayoutProps = OverrideProps<
   PageProps<GatsbyTypes.TeamWebSite_JobPostLayout_queryFragment>,
@@ -235,7 +235,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
       />
 
       <PreviousLink 
-        aria-label={messages.back_to_list}
+        aria-label={messages.job_post_page__back_to_list}
         to="/jobs/"
         onClick={e => {
           if (window.history.state['fromList']) {
@@ -268,7 +268,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
                     active={currentPath === viewPath}
                     state={{ y: typeof window !== 'undefined' && window.scrollY }}
                   >
-                    {messages.tab_view}
+                    {messages.job_post_layout__tab_view}
                   </TabLink>
                   {currentPath === viewPath && (
                     <TabItemUnderline
@@ -283,7 +283,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
                     active={currentPath === applyPath}
                     state={{ y: typeof window !== 'undefined' && window.scrollY }}
                   >
-                    {messages.tab_apply}
+                    {messages.job_post_layout__tab_apply}
                   </TabLink>
                   {currentPath === applyPath && (
                     <TabItemUnderline

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import SingleSelectField from './SingleSelectField';
-import messages from './messages';
+import messages from '../../translations.json';
 
 type Props = Omit<
   React.ComponentProps<typeof SingleSelectField>,
@@ -9,8 +9,8 @@ type Props = Omit<
 >;
 
 const YES_NO_OPTIONS = [
-  { label: messages.select_no, value: '0' },
-  { label: messages.select_yes, value: '1' },
+  { label: messages.form_field__no_placeholder, value: '0' },
+  { label: messages.form_field__yes_placeholder, value: '1' },
 ];
 
 const YesNoField: React.FC<Props> = ({
