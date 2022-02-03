@@ -41,7 +41,7 @@
     "gatsby-plugin-local-search": "2.0.1",
     "gatsby-plugin-manifest": "4.5.2",
     "gatsby-plugin-module-resolver": "1.0.3",
-    "gatsby-plugin-next-seo": "1.9.0",
+    "gatsby-plugin-next-seo": "1.10.0",
     "gatsby-plugin-prismic-previews": "5.2.5",
     "gatsby-plugin-prismic-schema": "*",
     "gatsby-plugin-react-helmet-async": "1.2.1",

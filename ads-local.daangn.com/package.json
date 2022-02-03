@@ -28,7 +28,7 @@
     "gatsby-plugin-image": "2.5.2",
     "gatsby-plugin-manifest": "4.5.2",
     "gatsby-plugin-module-resolver": "1.0.3",
-    "gatsby-plugin-next-seo": "1.9.0",
+    "gatsby-plugin-next-seo": "1.10.0",
     "gatsby-plugin-robots-txt": "1.7.0",
     "gatsby-plugin-sharp": "4.5.2",
     "gatsby-plugin-typegen": "2.2.4",
