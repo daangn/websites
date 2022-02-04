@@ -8,16 +8,16 @@ type Props = Omit<
   'options'
 >;
 
-const messages = useTranslation();
-
-const YES_NO_OPTIONS = [
-  { label: messages.form_field__no_placeholder, value: '0' },
-  { label: messages.form_field__yes_placeholder, value: '1' },
-];
-
 const YesNoField: React.FC<Props> = ({
   ...props
 }) => {
+  const messages = useTranslation();
+
+  const YES_NO_OPTIONS = [
+    { label: messages.form_field__no_placeholder, value: '0' },
+    { label: messages.form_field__yes_placeholder, value: '1' },
+  ];
+
   return (
     <SingleSelectField
       {...props}
