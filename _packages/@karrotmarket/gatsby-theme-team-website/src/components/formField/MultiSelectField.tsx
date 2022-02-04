@@ -6,7 +6,7 @@ import FocusTrap from 'focus-trap-react';
 
 import * as Field from './Field';
 import checkmarkUrl from '!!file-loader!./checkmark.svg';
-import messages from '../../translations.json';
+import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 
 type Props = {
   id?: string,
@@ -182,6 +182,8 @@ const MultiSelectField: React.FC<Props> = ({
   description,
   required,
 }) => {
+  const messages = useTranslation();
+
   const reactId = React.useId();
   const id = propId || reactId;
 

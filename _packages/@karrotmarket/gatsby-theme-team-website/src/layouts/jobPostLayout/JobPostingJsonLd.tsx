@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 
 import LinkedData from '../../components/JobPostingJsonLd';
 
-import messages from '../../translations.json';
+import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 import locations from './locations';
 
 type JobPostingJsonLdProps = {
@@ -33,6 +33,8 @@ const JobPostingJsonLd: React.FC<JobPostingJsonLdProps> = ({
   metaDescription,
   jobPost,
 }) => {
+  const messages = useTranslation();
+
   return (
     <LinkedData
       url={url}

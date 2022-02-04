@@ -10,7 +10,7 @@ import Button from '../components/Button';
 import ArrowLink from '../components/ArrowLink';
 import JobPostContentSection from '../components/JobPostContentSection';
 
-import messages from '../translations.json';
+import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 
 type JobPostPageProps = PageProps<GatsbyTypes.TeamWebsite_JobPostPageQuery, GatsbyTypes.SitePageContext>;
 
@@ -56,6 +56,7 @@ const JobPostPage: React.FC<JobPostPageProps> = ({
   data,
 }) => {
   const parseLink = useLinkParser();
+  const messages = useTranslation();
 
   required(data.jobPost);
 

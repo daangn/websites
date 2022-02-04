@@ -20,7 +20,7 @@ import TermsField from '../components/formField/TermsField';
 import Button from '../components/Button';
 import _Spinner from '../components/Spinner';
 
-import messages from '../translations.json';
+import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 
 type JobApplicationPageProps = PageProps<GatsbyTypes.TeamWebsite_JobApplicationPageQuery, GatsbyTypes.SitePageContext>;
 
@@ -164,9 +164,10 @@ const makeEndpoint = (boardToken: string, jobId: string): string => {
 const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
   data,
 }) => {
-  required(data.jobPost);
-
+  const messages = useTranslation();
   const [state, dispatch] = React.useReducer(reducer, initialState);
+
+  required(data.jobPost);
 
   const jobApplicationFormEndpoint = makeEndpoint(data.jobPost.boardToken, data.jobPost.ghId);
 
@@ -184,7 +185,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
     }
 
     const formData = new FormData(formRef.current);
-    
+
     (async () => {
       required(data.jobPost);
 

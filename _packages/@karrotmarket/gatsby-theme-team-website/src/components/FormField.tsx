@@ -4,8 +4,8 @@ import * as React from 'react';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import type { PropOf } from '@cometjs/react-utils';
+import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 
-import messages from '../translations.json';
 
 type FormFieldVariants = (
   | {
@@ -301,6 +301,8 @@ const FormField: React.FC<FormFieldProps> = ({
   children,
   required = false,
 }) => {
+  const messages = useTranslation();
+
   const id = React.useId();
 
   const [filename, setFilename] = React.useState(placeholder);

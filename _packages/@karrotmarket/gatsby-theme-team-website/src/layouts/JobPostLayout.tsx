@@ -16,7 +16,7 @@ import { ReactComponent as BackwardSvg } from '../assets/backwardOutlineM.svg';
 
 import JobPostingJsonLd from './jobPostLayout/JobPostingJsonLd';
 import generateProperties from './jobPostLayout/generateProperties';
-import messages from '../translations.json';
+import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 
 type JobPostLayoutProps = OverrideProps<
   PageProps<GatsbyTypes.TeamWebSite_JobPostLayout_queryFragment>,
@@ -181,6 +181,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
   children,
   data: { jobPost, prismicTeamContents },
 }) => {
+  const messages = useTranslation();
   const siteOrigin = useSiteOrigin();
   const { pathname: currentPath } = useLocation();
 
@@ -234,7 +235,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
         jobPost={jobPost}
       />
 
-      <PreviousLink 
+      <PreviousLink
         aria-label={messages.job_post_page__back_to_list}
         to="/jobs/"
         onClick={e => {
@@ -242,7 +243,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
             e.preventDefault();
             navigate(-1);
           }
-        }} 
+        }}
       >
         <BackwardSvg />
       </PreviousLink>

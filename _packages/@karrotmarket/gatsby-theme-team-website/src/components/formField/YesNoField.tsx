@@ -1,12 +1,14 @@
 import * as React from 'react';
+import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 
 import SingleSelectField from './SingleSelectField';
-import messages from '../../translations.json';
 
 type Props = Omit<
   React.ComponentProps<typeof SingleSelectField>,
   'options'
 >;
+
+const messages = useTranslation();
 
 const YES_NO_OPTIONS = [
   { label: messages.form_field__no_placeholder, value: '0' },
