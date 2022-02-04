@@ -15,8 +15,8 @@ export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
   Joi,
 }) => {
   return Joi.object({
-    lokaliseApiToken: Joi.string().required().default(process.env.LOKALISE_API_TOKEN),
-    lokaliseProjectId: Joi.string().required().default(process.env.LOKALISE_PROJECT_ID),
+    lokaliseApiToken: Joi.string().required(),
+    lokaliseProjectId: Joi.string().required(),
   });
 };
 
