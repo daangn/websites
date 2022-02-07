@@ -27,7 +27,7 @@
     "@prismicio/helpers": "2.0.0",
     "@reach/router": "1.3.4",
     "@stitches/react": "1.2.6",
-    "@svgr/webpack": "6.2.0",
+    "@svgr/webpack": "6.2.1",
     "babel-plugin-polished": "1.1.0",
     "cjk-slug": "0.3.0",
     "clsx": "1.1.1",
