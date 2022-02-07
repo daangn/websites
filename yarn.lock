@@ -4642,10 +4642,10 @@ cosmiconfig@^7.0.0, cosmiconfig@^7.0.1:
     path-type "^4.0.0"
     yaml "^1.10.0"
 
-create-gatsby@^2.6.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/create-gatsby/-/create-gatsby-2.6.0.tgz#409c2563f234ca1e25709c0aeebba377201358b9"
-  integrity sha512-ijyTd1mo7LAasyfNAE9ulmR/eSimUyvDJFmwZOExGG2jep+A43J5X8t0Ukso5BSeilMLZJGTniac33jaNoF5sw==
+create-gatsby@^2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/create-gatsby/-/create-gatsby-2.6.1.tgz#dfcaf45aa947384c6aa26504003be53032c75b0c"
+  integrity sha512-/m4M5JtmAnwEEhSylJc+3r/dcowcE5E7ErcP3rEb2w4apN/lI2ussa15K8NNbCMEMpaJVsoFoaZVdR7Lo8CGNg==
   dependencies:
     "@babel/runtime" "^7.15.4"
 
@@ -6509,10 +6509,10 @@ functional-red-black-tree@^1.0.1:
   resolved "https://registry.yarnpkg.com/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
   integrity sha1-GwqzvVU7Kg1jmdKcDj6gslIHgyc=
 
-gatsby-cli@^4.6.0:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/gatsby-cli/-/gatsby-cli-4.6.0.tgz#828cf119475ed5030b7306f1b99b925bd861a485"
-  integrity sha512-3YRilKW+aG1iSPUHj4pB7xSwVv1GX2Zjzae/2FOWaOaNRA0vKtQmwax4eks/kpfM+a2n05HH5K8ov6oLxo3YQw==
+gatsby-cli@^4.6.1:
+  version "4.6.1"
+  resolved "https://registry.yarnpkg.com/gatsby-cli/-/gatsby-cli-4.6.1.tgz#7addcc8ba36418324b992bb1c0f30c154ae99d70"
+  integrity sha512-+yrFjkoJFNbxBhQdhWZaQ6X8p/9Z9pdVptrAoJH9FVSvckLFRVj2Rws5fkqcBZGMUYkKDqqgo0sLQUbXBWjQjg==
   dependencies:
     "@babel/code-frame" "^7.14.0"
     "@babel/core" "^7.15.5"
@@ -6529,7 +6529,7 @@ gatsby-cli@^4.6.0:
     common-tags "^1.8.2"
     configstore "^5.0.1"
     convert-hrtime "^3.0.0"
-    create-gatsby "^2.6.0"
+    create-gatsby "^2.6.1"
     envinfo "^7.8.1"
     execa "^5.1.1"
     fs-exists-cached "^1.0.0"
@@ -7017,10 +7017,10 @@ gatsby-worker@^1.6.0:
     "@babel/core" "^7.15.5"
     "@babel/runtime" "^7.15.4"
 
-gatsby@4.6.1, gatsby@next:
-  version "4.6.1"
-  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-4.6.1.tgz#79b17dc1ce915ecf9aa24bfadcc2b06ea3dc2371"
-  integrity sha512-UDHgnBUovGSp6DJ8KGY3sKLv7ZnzWfFpsUEJgxagJ+9jM4bhElVJYJwlz2HCudb6W/jRXG1HNXKHAmfWgvnnug==
+gatsby@4.6.2, gatsby@next:
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-4.6.2.tgz#4a2a8994fa847aa541c9a88dbdd2116b0e5889dc"
+  integrity sha512-537vH22PdA0xJ05WgKL9N5pzh8QjkEByvsu2MjsySNblcXKtEp17Zc8cRmgpNs3LAv+Jty4D+l+qN0cTgkFtCw==
   dependencies:
     "@babel/code-frame" "^7.14.0"
     "@babel/core" "^7.15.5"
@@ -7089,7 +7089,7 @@ gatsby@4.6.1, gatsby@next:
     find-cache-dir "^3.3.2"
     fs-exists-cached "1.0.0"
     fs-extra "^10.0.0"
-    gatsby-cli "^4.6.0"
+    gatsby-cli "^4.6.1"
     gatsby-core-utils "^3.6.0"
     gatsby-graphiql-explorer "^2.6.0"
     gatsby-legacy-polyfills "^2.6.0"

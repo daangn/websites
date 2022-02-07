@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@stitches/react": "1.2.6",
-    "gatsby": "4.6.1",
+    "gatsby": "4.6.2",
     "gatsby-plugin-image": "2.6.0",
     "gatsby-plugin-react-helmet-async": "1.2.1",
     "gatsby-plugin-sharp": "4.6.0",
