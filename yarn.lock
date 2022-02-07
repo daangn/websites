@@ -2230,7 +2230,17 @@
   resolved "https://registry.yarnpkg.com/@prismicio/custom-types-client/-/custom-types-client-0.0.6.tgz#774e1498b88a07b817292a5894208851c5dd4635"
   integrity sha512-/QeHmNzEtOMtEAZF7ZfRSSosSXGhA4dzQm7vczhxdBGIT23Bbj+h0I4hNlpJZ4n0UzmIYWtd45jYCguVo3hfqQ==
 
-"@prismicio/helpers@2.0.0", "@prismicio/helpers@^2.0.0", "@prismicio/helpers@^2.0.0-beta.0":
+"@prismicio/helpers@2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@prismicio/helpers/-/helpers-2.1.1.tgz#9df742a3a9ab2cdadfc189370636499eafc734d0"
+  integrity sha512-jP17J0ot3zOEMqL3yJteAQW6zwR2ttWwowpVJ02Q6sBk1K9DFfQbQ9ySA4tkBQS0ki3ttWFnrERDzCZ/xCCvGQ==
+  dependencies:
+    "@prismicio/richtext" "^2.0.1"
+    "@prismicio/types" "^0.1.23"
+    escape-html "^1.0.3"
+    imgix-url-builder "^0.0.2"
+
+"@prismicio/helpers@^2.0.0", "@prismicio/helpers@^2.0.0-beta.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@prismicio/helpers/-/helpers-2.0.0.tgz#ac975a7930d798835addd44cccb4598e26f53a50"
   integrity sha512-8xnK2pj+us935wAvJvPdk4o6Zhn/z99aUWwaGYJBbNqQy8x0pahgXY1L3l6s6+9xcEdJy6kKL8IfvFS6U0tpXg==
@@ -2246,10 +2256,22 @@
   dependencies:
     "@prismicio/types" "^0.1.19"
 
+"@prismicio/richtext@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@prismicio/richtext/-/richtext-2.0.1.tgz#6342f071601d88e99ca03faab382202087fd55a5"
+  integrity sha512-sM+eusvE4PsKnwefDRd0ai3Ny59XJ54dn6xfwq0Fyqj0LAcuyB2gRjSufbIqYOZ1r4JKMQArDKrypNEcrbBFkA==
+  dependencies:
+    "@prismicio/types" "^0.1.22"
+
 "@prismicio/types@^0.1.13", "@prismicio/types@^0.1.19", "@prismicio/types@^0.1.20", "@prismicio/types@^0.1.21":
   version "0.1.21"
   resolved "https://registry.yarnpkg.com/@prismicio/types/-/types-0.1.21.tgz#2d5f8a3f85435859ff290be96235b450b164a4e7"
   integrity sha512-TMO4zpHlBFdvULDU5KQxeHOkI72lCkEKT3YwKhqiaiQWRVp7s3w27mXHjOWVBOlH/2qrzck219O84zBE6HzaMg==
+
+"@prismicio/types@^0.1.22", "@prismicio/types@^0.1.23":
+  version "0.1.23"
+  resolved "https://registry.yarnpkg.com/@prismicio/types/-/types-0.1.23.tgz#1ba99107fc6ba7dc94f50f237ef72432e08a7081"
+  integrity sha512-GzkvUTuXZvAmHhxr6g+puW2SfwUxGjNvgCIeU2rTq8VHlrSaoPZs+iD/xRkpLue++EfCmtM295fqu8R4c/TNRA==
 
 "@reach/dialog@^0.16.0":
   version "0.16.2"
@@ -7811,6 +7833,11 @@ image-q@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/image-q/-/image-q-1.1.1.tgz#fc84099664460b90ca862d9300b6bfbbbfbf8056"
   integrity sha1-/IQJlmRGC5DKhi2TALa/u7+/gFY=
+
+imgix-url-builder@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/imgix-url-builder/-/imgix-url-builder-0.0.2.tgz#49a583cacdb3ac38a0a5c098271bec3b3cdee55b"
+  integrity sha512-PHT9aXvD+I6x5UAdvsAKNALvxHI1AWGGpxLUQDQAXzUt54ScFHxxODJ/4/XWDM55cqvRCvT3MMxbOWjgWhLe9Q==
 
 imgix-url-params@^11.11.2:
   version "11.12.0"
