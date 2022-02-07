@@ -1,0 +1,27 @@
+{
+  "name": "@karrotmarket/gatsby-plugin-lokalise-translation",
+  "version": "0.0.1",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "build": "concurrently \"yarn:build:*\"",
+    "build:babel": "babel gatsby -d . -x .ts --presets gatsby-package",
+    "build:dts": "tsc --emitDeclarationOnly --skipLibCheck",
+    "prepack": "yarn build"
+  },
+  "peerDependencies": {
+    "gatsby": "^2.25.0 || ^3.0.0 || ^4.0.0"
+  },
+  "dependencies": {
+    "@lokalise/node-api": "^7.1.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.17.0",
+    "@babel/core": "7.17.0",
+    "@types/node": "16.11.22",
+    "babel-preset-gatsby-package": "2.6.0",
+    "concurrently": "7.0.0",
+    "gatsby": "next",
+    "typescript": "4.5.5"
+  }
+}

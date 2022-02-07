@@ -9,7 +9,7 @@ import { linkResolver } from './src/@karrotmarket/gatsby-theme-prismic/linkResol
 
 const gql = String.raw;
 
-const config: GatsbyConfig = {
+const config = (): GatsbyConfig => ({
   plugins: [
     'gatsby-theme-stitches',
     'gatsby-plugin-svgr',
@@ -64,7 +64,7 @@ const config: GatsbyConfig = {
                 tokens.push(token);
               }
             }
-            
+
             return tokens;
           }
         },
@@ -94,7 +94,14 @@ const config: GatsbyConfig = {
         linkResolver,
       },
     },
+    {
+      resolve: '@karrotmarket/gatsby-plugin-lokalise-translation',
+      options: {
+        lokaliseApiToken: process.env.LOKALISE_API_TOKEN,
+        lokaliseProjectId: process.env.LOKALISE_PROJECT_ID,
+      },
+    },
   ],
-};
+});
 
 export default config;

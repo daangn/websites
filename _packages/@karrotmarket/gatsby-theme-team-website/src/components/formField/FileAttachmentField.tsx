@@ -4,7 +4,7 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import type { PropOf } from '@cometjs/react-utils';
 
 import * as Field from './Field';
-import messages from '../../translations.json';
+import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 
 type Props = {
   id?: string,
@@ -43,6 +43,8 @@ const FileAttachmentField: React.FC<Props> = ({
   accepts,
   required = false,
 }) => {
+  const messages = useTranslation();
+
   const reactId = React.useId();
   const id = paramId || reactId;
 

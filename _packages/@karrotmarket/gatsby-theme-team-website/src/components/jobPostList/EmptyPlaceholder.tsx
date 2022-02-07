@@ -3,8 +3,7 @@ import { rem } from 'polished';
 import { styled } from 'gatsby-theme-stitches/src/config';
 
 import ButtonLink from '../Button';
-
-import messages from '../../translations.json';
+import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 
 type EmptyPlaceholderProps = {
   className?: string,
@@ -30,6 +29,8 @@ const Text = styled('p', {
 const EmptyPlaceholder: React.FC<EmptyPlaceholderProps> = ({
   className,
 }) => {
+  const messages = useTranslation();
+
   return (
     <Container className={className}>
       <Content>

@@ -4,7 +4,7 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 
 import * as Field from './Field';
-import messages from '../../translations.json';
+import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 
 type Props = {
   id?: string,
@@ -77,6 +77,8 @@ const SingleSelectField: React.FC<Props> = ({
   options,
   defaultValue = '',
 }) => {
+  const messages = useTranslation();
+
   const reactId = React.useId();
   const id = propId || reactId;
 

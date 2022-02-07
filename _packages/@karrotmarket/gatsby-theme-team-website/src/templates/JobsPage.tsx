@@ -15,7 +15,7 @@ import expandMoreOutlineUrl from '!!file-loader!../assets/expand_more_outline_m.
 import { useFlexSearch } from '../utils/useFlexSearch';
 
 import BannerArea from './jobsPage/BannerArea';
-import messages from '../translations.json';
+import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 
 type JobsPageTemplateProps = PageProps<GatsbyTypes.TeamWebsite_JobsPageTemplateQuery, GatsbyTypes.SitePageContext>;
 
@@ -115,7 +115,7 @@ const FilterAnchor = styled('div', {
   position: 'absolute',
   bottom: '100%',
   height: rem(58),
-  
+
   '@sm': {
     height: rem(68),
   },
@@ -128,7 +128,7 @@ const Filters = styled('div', {
   '@sm': {
     display:'flex',
     gap: rem(20),
-    
+
     '& > *':{
       width:rem(260),
     }
@@ -151,7 +151,7 @@ const Select = styled('select', {
   backgroundPosition: `right ${rem(26)} top ${rem(23)}`,
   backgroundRepeat: 'no-repeat',
   color: '$gray700',
-  
+
   '&:focus': {
     border: '1px solid $carrot500',
   },
@@ -176,7 +176,7 @@ const Search = styled('div', {
   display: 'inline-flex',
   position: 'relative',
   alignItems: 'center',
-  
+
   '@sm': {
     marginLeft: 'auto',
   },
@@ -217,6 +217,8 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
   pageContext,
 }) => {
   const siteOrigin = useSiteOrigin();
+  const messages = useTranslation();
+
   const [filterEmploymentType, setFilterEmploymentType] = React.useState('');
   const [searchQuery, setSearchQuery] = React.useState('');
   const [_isSearchPending, startSearchTransition] = React.useTransition();

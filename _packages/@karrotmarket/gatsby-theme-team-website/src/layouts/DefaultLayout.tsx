@@ -12,8 +12,7 @@ import { required } from '@cometjs/core';
 import { useLocation } from '@reach/router';
 import _Header from '@karrotmarket/gatsby-theme-website/src/components/Header';
 import _Footer from '@karrotmarket/gatsby-theme-website/src/components/Footer';
-
-import messages from '../translations.json';
+import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 
 type DefaultLayoutProps = OverrideProps<
   PageProps<GatsbyTypes.TeamWebsite_DefaultLayout_queryFragment>,
@@ -72,6 +71,8 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
   data,
   children,
 }) => {
+  const messages = useTranslation();
+
   const siteOrigin = useSiteOrigin();
   const { pathname: currentPath } = useLocation();
 
