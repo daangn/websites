@@ -13,7 +13,16 @@ export const siteMetadata = {
 const config: GatsbyConfig = {
   siteMetadata,
   plugins: [
-    'gatsby-plugin-gatsby-cloud',
+    {
+      resolve: 'gatsby-plugin-gatsby-cloud',
+      options: {
+        headers: {
+          '/completed/': [
+            'Access-Control-Allow-Origin: *',
+          ],
+        },
+      },
+    },
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
