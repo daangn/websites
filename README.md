@@ -12,7 +12,6 @@ Daangn on the WWW
 
 - [@webmasters](https://github.com/orgs/daangn/teams/webmasters) at [daangn](https://github.com/daangn)
 - Tim ([@cometkim](https://github.com/cometkim)) <tim@daangn.com>
-- Woody ([@stump26](https://github.com/stump26)) <woody@daangn.com>
 
 ## LICENSE
 
