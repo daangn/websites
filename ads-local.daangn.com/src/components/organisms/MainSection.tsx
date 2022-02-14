@@ -8,6 +8,7 @@ type SectionProps = {
   subtitle: string[];
   image: any;
   right: boolean;
+  oneLine?: boolean;
 };
 
 export const MainSection: React.FC<SectionProps> = ({
@@ -15,6 +16,7 @@ export const MainSection: React.FC<SectionProps> = ({
   subtitle,
   image,
   right,
+  oneLine,
 }) => {
   // console.log(data)
   const img = getImage(image);
@@ -30,7 +32,7 @@ export const MainSection: React.FC<SectionProps> = ({
           <GridRow>
             <TitleD>{titleBig[0]}</TitleD>
             <TitleD>{titleBig[1]}</TitleD>
-            <TitleM>{titleBig[0] + " " + titleBig[1]}</TitleM>
+            {oneLine ? <TitleM>{titleBig[0]}</TitleM>:<TitleM>{titleBig[0] + " " + titleBig[1]}</TitleM>}
           </GridRow>
           <GridRow>
             <Subtitle>{subtitle[0]}</Subtitle>

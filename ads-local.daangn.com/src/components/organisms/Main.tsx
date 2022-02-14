@@ -34,7 +34,7 @@ export const Main = () => {
         right
       />
       <MainSection
-        titleBig={["동네 이웃을", "고객으로"]}
+        titleBig={["동네 이웃을", "고객으로 만드세요"]}
         subtitle={[
           "이웃들이 많이 보는 당근마켓 글 사이에서",
           "자연스럽게 홍보할 수 있어요.",
