@@ -43,9 +43,9 @@ export function Banner() {
       </picture>
       <Wrapper>
         <Description>
-          동네 이웃들이 모이는
+          우리동네 광고 필수품
           <br />
-          당근마켓에 광고해 보세요
+          당근마켓 지역광고
           <DownloadButtons css={{ marginTop: 35 }}>
             <DownloadButton iconType="google">
               <div>Google Play</div>
