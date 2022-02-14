@@ -67,6 +67,43 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       siteUrl: String!
     }
   `);
+
+  // Strip HTML description
+  const resolveDescriptionText = (source: { description?: string }) => {
+    const tags = /<[^>]*>?/gm;
+    return source.description
+      ? source.description.replace(tags, '')
+      : null;
+  };
+
+  actions.createTypes([
+    schema.buildInterfaceType({
+      name: 'GreenhouseJobBoardJobQuestion',
+      fields: {
+        descriptionText: {
+          type: 'String',
+          resolve: resolveDescriptionText,
+        },
+      },
+    }),
+    ...[
+      'GreenhouseJobBoardJobQuestionForAttachment',
+      'GreenhouseJobBoardJobQuestionForShortText',
+      'GreenhouseJobBoardJobQuestionForLongText',
+      'GreenhouseJobBoardJobQuestionForYesNo',
+      'GreenhouseJobBoardJobQuestionForSingleSelect',
+      'GreenhouseJobBoardJobQuestionForMultiSelect',
+    ].map(name => schema.buildObjectType({
+      name,
+      interfaces: ['GreenhouseJobBoardJobQuestion'],
+      fields: {
+        descriptionText: {
+          type: 'String',
+          resolve: resolveDescriptionText,
+        },
+      },
+    })),
+  ]);
  
   // metadata
   actions.createTypes([
