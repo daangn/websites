@@ -17,9 +17,19 @@ export const Main04 = () => {
           gatsbyImageData(height: 420, quality: 90, formats: [WEBP, AVIF, AUTO], placeholder: NONE)
         }
       }
+      feedImgMobile: file(relativePath: { eq: "img_sub_pc_03_1.png"}){
+        childImageSharp {
+          gatsbyImageData(height: 320, quality: 90, formats: [WEBP, AVIF, AUTO], placeholder: NONE)
+        }
+      }
       searchImg: file(relativePath: { eq: "img_sub_pc_03_2.png"}){
         childImageSharp {
           gatsbyImageData(height: 420, quality: 90, formats: [WEBP, AVIF, AUTO], placeholder: NONE)
+        }
+      }
+      searchImgMobile: file(relativePath: { eq: "img_sub_pc_03_2.png"}){
+        childImageSharp {
+          gatsbyImageData(height: 320, quality: 90, formats: [WEBP, AVIF, AUTO], placeholder: NONE)
         }
       }
     }
@@ -29,6 +39,9 @@ export const Main04 = () => {
 
   const searchImg = getImage(ImageQuery.searchImg!.childImageSharp!.gatsbyImageData);
   const feedImg = getImage(ImageQuery.feedImg!.childImageSharp!.gatsbyImageData);
+  const searchImgMobile = getImage(ImageQuery.searchImgMobile!.childImageSharp!.gatsbyImageData);
+  const feedImgMobile = getImage(ImageQuery.feedImgMobile!.childImageSharp!.gatsbyImageData);
+
 
   return (
     <Section>
@@ -47,7 +60,7 @@ export const Main04 = () => {
             <ContentArea>
               <Picture 
                 alt='feed'
-                image={feedImg!}
+                image={window.innerWidth < 768? feedImgMobile!: feedImg!}
                 imgStyle={{ objectPosition: 'top' }}
               />
               <DescriptionContainer>
@@ -61,14 +74,14 @@ export const Main04 = () => {
                 <AccentTextGroup>
                   <AccentText>
                     <StyledIconCheck width={rem(18)} height={rem(18)}/>
-                    <strong>동네 이웃에게 골고루</strong>&nbsp;가게를 알려보세요
+                    <strong>동네 이웃에게 골고루</strong>&nbsp;가게를 알려보세요.
                   </AccentText>
                   <AccentText>
                     <StyledIconCheck width={rem(18)} height={rem(18)}/>
                     <strong>가게 소식이나 가게 정보</strong>를 광고할 수 있어요.
                   </AccentText>
                 </AccentTextGroup>
-                <OutlinedButton onClick={()=>{}}>
+                <OutlinedButton onClick={()=>window.open('https://daangnbiz.oopy.io/810785f3-a385-45c9-86d6-d703d7e8dc5e', '_blank')}>
                   피드 광고 가이드 바로가기
                 </OutlinedButton>
               </DescriptionContainer>
@@ -78,8 +91,9 @@ export const Main04 = () => {
             <ContentArea>
               <Picture 
                 alt='search'
-                image={searchImg!}
+                image={window.innerWidth < 768 ? searchImgMobile! : searchImg!}
                 imgStyle={{ objectPosition: 'top' }}
+
               />
               <DescriptionContainer>
                 <Title>
@@ -91,14 +105,14 @@ export const Main04 = () => {
                 <AccentTextGroup>
                   <AccentText>
                     <StyledIconCheck width={rem(18)} height={rem(18)}/>
-                    <strong>특정 키워드를 검색한 이웃에게</strong>&nbsp;가게를 알려보세요
+                    <strong>특정 키워드를 검색한 이웃에게</strong>&nbsp;가게를 알려보세요.
                   </AccentText>
                   <AccentText>
                     <StyledIconCheck width={rem(18)} height={rem(18)}/>
                     <strong>가게 정보</strong>를 광고할 수 있어요.
                   </AccentText>
                 </AccentTextGroup>
-                <OutlinedButton onClick={()=>{}}>
+                <OutlinedButton onClick={()=>window.open('https://daangnbiz.oopy.io/d282243d-8c12-4c6d-9363-9c9b306e55cd','_blank')}>
                   검색 광고 가이드 바로가기
                 </OutlinedButton>
               </DescriptionContainer>
@@ -211,8 +225,12 @@ const ContentArea = styled('div', {
 })
 
 const Title = styled('p', {
-  typography: '$subtitle2',
+  typography: '$subtitle3',
   fontWeight: 'bold',
+
+  "@md":{
+    typography: '$subtitle2',
+  }
 })
 
 const DescriptionContainer = styled('div',{
@@ -234,7 +252,7 @@ const DescriptionContainer = styled('div',{
 const Description = styled('p', {
   typography: '$body3',
   wordBreak: 'keep-all',
-
+  marginTop: rem(12),
 })
 
 const AccentText = styled('div', {
