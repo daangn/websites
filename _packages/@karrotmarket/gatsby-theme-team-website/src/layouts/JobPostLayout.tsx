@@ -61,7 +61,6 @@ export const query = graphql`
       id
       ghId
       title
-      chapter
       corporate
       employmentType
       priorExperience

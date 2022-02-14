@@ -1,5 +1,4 @@
 import type { GatsbyNode, Page } from 'gatsby';
-import slugify from 'cjk-slug';
 
 const gql = String.raw;
 
@@ -69,17 +68,13 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
     }
   `);
  
+  // metadata
   actions.createTypes([
     schema.buildObjectType({
       name: 'JobPost',
       interfaces: ['Node'],
       fields: {
-        slug: {
-          type: 'String!',
-          resolve(source: { chapter: string }) {
-            return slugify(source.chapter, { lowercase: false });
-          },
-        },
+        // Note: Command E 인덱싱 용으로 추가함
         absoluteUrl: {
           type: 'String!',
           resolve(source: { ghId: string }, _args, ctx) {
@@ -120,11 +115,11 @@ export const createPages: GatsbyNode['createPages'] = async ({
         id: string,
         ghId: string,
       }>,
-      group: Array<{
-        nodes: Array<{
-          chapter: string,
-          slug: string,
-        }>,
+    },
+    allJobDepartment: {
+      nodes: Array<{
+        id: string,
+        slug: string,
       }>,
     },
   };
@@ -152,11 +147,11 @@ export const createPages: GatsbyNode['createPages'] = async ({
           id
           ghId
         }
-        group(field: chapter, limit: 1) {
-          nodes {
-            chapter
-            slug
-          }
+      }
+      allJobDepartment {
+        nodes {
+          id
+          slug
         }
       }
     }
@@ -236,24 +231,19 @@ export const createPages: GatsbyNode['createPages'] = async ({
     context: {
       locale,
       navigationId,
-      pattern: `/.*/`,
-      chapter: null,
-      slug: null,
+      // Note: 전체 post 필터링 시 glob 으로 사용
+      departmentId: '*',
     },
   });
 
-  for (const group of data.allJobPost.group) {
-    const { chapter, slug } = group.nodes[0];
-
+  for (const department of data.allJobDepartment.nodes) {
     actions.createPage({
-      path: `/jobs/${slug}/`,
+      path: `/jobs/${department.slug}/`,
       component: require.resolve('./src/templates/JobsPage.tsx'),
       context: {
         locale,
         navigationId,
-        pattern: `/${slug}/`,
-        chapter,
-        slug,
+        departmentId: department.id,
       },
     });
   }
