@@ -5,11 +5,11 @@ import { useSwipeable } from "react-swipeable";
 import { ArrowLink } from "~/components/molecules/ArrowLink";
 
 import tensoba from "~/image/tensoba.jpg";
-import meltingDog from "~/image/meltingDog.jpg";
+import promiseBycicle from "~/image/promise_bycicle.png";
 import jjinijjini from "~/image/jjinijjini.jpg";
 
 import tensoba_m from "~/image/tensoba_m.jpg";
-import meltingDog_m from "~/image/meltingDog_m.jpg";
+import promiseBycicle_m from "~/image/promise_bycicle_m.png";
 import jjinijjini_m from "~/image/jjinijjini_m.jpg";
 
 type SlideItemProps = {
@@ -34,14 +34,14 @@ export const UserQuoteCarousel: React.FC = () => {
       link: "https://www.youtube.com/watch?v=agdA0fMZ7u4",
     },
     {
-      picture: meltingDog,
+      picture: promiseBycicle,
       talk: [
-        "광고할 동네를 지정할 수 있어서 좋아요.",
-        "가게에 직접 올 만한 가까운 동네에",
-        "광고하니까 효과가 좋더라고요.",
+        "가게 위치가 숨어있는 편인데",
+        "당근마켓 광고 이후에",
+        "연매출 50%, 정기 회원수는 6배나 늘었어요.",
       ],
-      story: "애견유치원  '멜팅독' 사장님 이야기",
-      link: "https://www.youtube.com/watch?v=NLO0GJ3Yft8",
+      story: "자전거 대여점 ‘약속의 자전거' 사장님 이야기 ",
+      link: "https://www.youtube.com/watch?v=iqDcidk3MbY",
     },
     {
       picture: jjinijjini,
@@ -65,12 +65,12 @@ export const UserQuoteCarousel: React.FC = () => {
       link: "https://www.youtube.com/watch?v=agdA0fMZ7u4",
     },
     {
-      picture: meltingDog_m,
+      picture: promiseBycicle_m,
       talk: [
-        "광고할 동네를 지정할 수 있어서 좋아요. 가게에 직접 올 만한 가까운 동네에 광고하니까 효과가 좋더라고요.",
+        "동네 이웃들이 많이 사용하는 앱 답게,광고 효과가 확실해요. 1년 사이, 정기 회원수가 6배나 늘었어요.",
       ],
-      story: "애견유치원  '멜팅독' 사장님 이야기",
-      link: "https://www.youtube.com/watch?v=NLO0GJ3Yft8",
+      story: "자전거 대여점 ‘약속의 자전거' 사장님 이야기 ",
+      link: "https://www.youtube.com/watch?v=iqDcidk3MbY",
     },
     {
       picture: jjinijjini_m,
