@@ -21,7 +21,7 @@ type JobsPageTemplateProps = PageProps<GatsbyTypes.TeamWebsite_JobsPageTemplateQ
 
 export const query = graphql`
   query TeamWebsite_JobsPageTemplate(
-    $pattern: String
+    $departmentId: String!
     $locale: String!
     $navigationId: String!
   ) {
@@ -55,20 +55,47 @@ export const query = graphql`
       }
     }
 
-    currentJobPosts: allJobPost(
+    currentJobDepartment: jobDepartment(
+      id: { eq: $departmentId }
+    ) {
+      name
+    }
+
+    allSelectedJobPost: allJobPost(
       filter: {
-        slug: { regex: $pattern }
+        departments: {
+          elemMatch: {
+            id: { glob: $departmentId }
+          }
+        }
       }
       sort: {
         fields: title
         order: ASC
       }
     ) {
-      ...TeamWebsite_JobPostList_jobs
-
-      # Command E 인덱싱용 ㅎㅎ..
       nodes {
+        ...TeamWebsite_JobPostList_jobPosts
+
+        # Note: Command E 인덱싱용으로 노출
         absoluteUrl
+      }
+    }
+
+    allJobDepartment(filter: {
+      jobPosts: {
+        elemMatch: {
+          id: { glob: "*" }
+        }
+      }
+    }) {
+      nodes {
+        id
+        name
+        slug
+        jobPosts {
+          id
+        }
       }
     }
 
@@ -79,18 +106,6 @@ export const query = graphql`
       }
     ) {
       totalCount
-
-      allChapter: group(
-        field: chapter
-        limit: 1
-      ) {
-        fieldValue
-        totalCount
-        nodes {
-          chapter
-          slug
-        }
-      }
 
       allEmploymentType: group(
         field: employmentType
@@ -123,15 +138,29 @@ const FilterAnchor = styled('div', {
 
 const Filters = styled('div', {
   display: 'grid',
+  gridTemplateAreas: [
+    '"department"',
+    '"etype"',
+    '"search"',
+  ].join('\n'),
   gap: rem(16),
 
-  '@sm': {
-    display:'flex',
+  '@md': {
+    gridTemplateAreas: [
+      '"department etype"',
+      '"search search"',
+    ].join('\n'),
     gap: rem(20),
 
-    '& > *':{
-      width:rem(260),
-    }
+
+  },
+
+  '@lg': {
+    display: 'flex',
+  },
+
+  '& > *': {
+    minWidth: rem(260),
   },
 });
 
@@ -142,13 +171,14 @@ const Select = styled('select', {
   border: '1px solid $gray400',
   borderRadius: rem(8),
   typography: '$body2',
-  paddingX: rem(20),
+  paddingLeft: rem(20),
+  paddingRight: rem(50),
   boxSizing: 'border-box',
   gridTemplateAreas: '"select"',
   appearance: 'none',
   backgroundColor: '$white',
   backgroundImage: `url(${expandMoreOutlineUrl})`,
-  backgroundPosition: `right ${rem(26)} top ${rem(23)}`,
+  backgroundPosition: `right ${rem(20)} top ${rem(23)}`,
   backgroundRepeat: 'no-repeat',
   color: '$gray700',
 
@@ -173,11 +203,14 @@ const Select = styled('select', {
 });
 
 const Search = styled('div', {
+  gridArea: 'search',
   display: 'inline-flex',
   position: 'relative',
   alignItems: 'center',
+  width: '100%',
 
-  '@sm': {
+  '@lg': {
+    width: 'auto',
     marginLeft: 'auto',
   },
 
@@ -229,25 +262,25 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
     });
   }
 
-  const searchResults = useFlexSearch(searchQuery)
+  const searchResults = useFlexSearch(searchQuery);
 
   required(data.prismicTeamContents?.data);
 
   const metaTitleBase = data.prismicTeamContents.data.jobs_page_meta_title || messages.jobs_page__default_meta_title;
-  const metaTitle = pageContext.chapter
-    ? `${pageContext.chapter} | ${metaTitleBase}`
+  const metaTitle = data.currentJobDepartment
+    ? `${data.currentJobDepartment.name} | ${metaTitleBase}`
     : metaTitleBase;
 
   const metaDescription = data.prismicTeamContents.data.jobs_page_meta_description;
   const metaImage = data.prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
 
   const filterAnchorId = '_filter';
-  const onFilterChange: React.ChangeEventHandler<HTMLSelectElement> = (e) => {
-    const selectedChapterGroup = data.allJobPost.allChapter
-      .find(chapterGroup => chapterGroup.nodes[0]?.chapter === e.target.value);
+  const onFilterChange: React.ChangeEventHandler<HTMLSelectElement> = e => {
+    const selectedDepartment = data.allJobDepartment.nodes
+      .find(department => department.id === e.target.value);
 
-      if (selectedChapterGroup) {
-        const { slug } = selectedChapterGroup.nodes[0] ?? {};
+      if (selectedDepartment) {
+        const { slug } = selectedDepartment;
         if (slug) {
           navigate(`/jobs/${slug}/${window.location.search}#${filterAnchorId}`);
         }
@@ -294,32 +327,33 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
         <FilterAnchor id={filterAnchorId} />
         <Filters>
           <Select
-            defaultValue={pageContext.chapter || ''}
+            defaultValue={pageContext.departmentId}
             onChange={onFilterChange}
+            css={{ gridArea: 'department' }}
           >
             <option
-              key=""
-              value=""
+              key="*"
+              value="*"
             >
               {$(messages.jobs_page__chapter_all, {
-                n: () => <span>{data.allJobPost.totalCount}</span>
+                n: () => <>{data.allJobPost.totalCount}</>
               })}
             </option>
-            {data.allJobPost.allChapter
-            .map(chapterGroup => {
-              return (
+            {data.allJobDepartment.nodes
+              .map(department => (
                 <option
-                  key={chapterGroup.fieldValue}
-                  value={chapterGroup.fieldValue}
+                  key={department.id}
+                  value={department.id}
                 >
-                  {`${chapterGroup.fieldValue} (${chapterGroup.totalCount})`}
+                  {`${department.name} (${department.jobPosts.length})`}
                 </option>
-              )
-            })}
+              ))
+            }
           </Select>
           <Select
             value={filterEmploymentType}
             onChange={e => setFilterEmploymentType(e.target.value)}
+            css={{ gridArea: 'etype' }}
           >
             <option value="">{messages.jobs_page__employment_type_all}</option>
             <option value="FULL_TIME">{messages.jobs_page__employment_type_fulltime}</option>
@@ -336,7 +370,7 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
           </Search>
         </Filters>
         <JobPostList
-          jobs={data.currentJobPosts}
+          jobPosts={data.allSelectedJobPost.nodes}
           filterEmploymentType={filterEmploymentType}
           searchResults={searchResults}
         />

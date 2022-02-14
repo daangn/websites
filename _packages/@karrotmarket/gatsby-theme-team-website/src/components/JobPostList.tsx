@@ -9,26 +9,25 @@ import FadeInWhenVisible from './FadeInWhenVisible';
 import EmptyPlaceholder from './jobPostList/EmptyPlaceholder';
 
 type JobPostListProps = {
-  jobs: GatsbyTypes.TeamWebsite_JobPostList_jobPostsFragment,
+  jobPosts: GatsbyTypes.TeamWebsite_JobPostList_jobPostsFragment,
   className?: string,
-  filterChapter?: string,
   filterEmploymentType?: string,
   searchResults?: string[],
 };
 
 export const query = graphql`
-  fragment TeamWebsite_JobPostList_jobs on JobPostConnection {
-    nodes {
+  fragment TeamWebsite_JobPostList_jobPosts on JobPost {
+    id
+    ghId
+    # Avoid File System Route API
+    # pagePath: gatsbyPath(filePath: "/jobs/{JobPost.ghId}")
+    externalUrl
+    order
+    departments {
       id
-      ghId
-      # Avoid File System Route API
-      # pagePath: gatsbyPath(filePath: "/jobs/{JobPost.ghId}")
-      externalUrl
-      chapter
-      order
-      employmentType
-      ...TeamWebsite_JobPostSummary_jobPost
     }
+    employmentType
+    ...TeamWebsite_JobPostSummary_jobPost
   }
 `;
 
@@ -57,15 +56,12 @@ const JobPostListItem = styled('li', {
 });
 
 const JobPostList: React.FC<JobPostListProps> = ({
-  jobs,
+  jobPosts,
   className,
-  filterChapter = '',
   filterEmploymentType = '',
   searchResults
 }) => {
   const parseLink = useLinkParser();
-
-  const jobPosts = jobs.nodes;
 
   const orderedJobPosts = jobPosts 
     .sort((a, b) => b.order - a.order);
@@ -74,10 +70,6 @@ const JobPostList: React.FC<JobPostListProps> = ({
     .filter(jobPosts =>{
       if(!searchResults) return true;
       return searchResults.includes(jobPosts.id)
-    })
-    .filter(jobPost => {
-      if (filterChapter === '') return true;
-      return jobPost.chapter === filterChapter;
     })
     .filter(jobPost => {
       if (filterEmploymentType === '') return true;
