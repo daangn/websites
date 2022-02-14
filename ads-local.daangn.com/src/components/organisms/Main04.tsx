@@ -60,7 +60,7 @@ export const Main04 = () => {
             <ContentArea>
               <Picture 
                 alt='feed'
-                image={window.innerWidth < 768? feedImgMobile!: feedImg!}
+                image={(typeof window !== "undefined") && window.innerWidth < 768? feedImgMobile!: feedImg!}
                 imgStyle={{ objectPosition: 'top' }}
               />
               <DescriptionContainer>
@@ -91,7 +91,7 @@ export const Main04 = () => {
             <ContentArea>
               <Picture 
                 alt='search'
-                image={window.innerWidth < 768 ? searchImgMobile! : searchImg!}
+                image={(typeof window !== "undefined") && window.innerWidth < 768 ? searchImgMobile! : searchImg!}
                 imgStyle={{ objectPosition: 'top' }}
 
               />
