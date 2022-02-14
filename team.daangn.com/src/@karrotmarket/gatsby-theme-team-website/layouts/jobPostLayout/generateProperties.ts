@@ -1,6 +1,5 @@
 type JobPostLike = {
   corporate?: string,
-  chapter?: string,
   employmentType?: string,
   priorExperience?: string,
 }
@@ -16,10 +15,6 @@ export default function *generateProperties(jobPost: JobPostLike): Generator<str
     }
   }
   
-  if (jobPost.chapter) {
-    yield jobPost.chapter;
-  }
-
   if (jobPost.employmentType) {
     const employmentType = {
       FULL_TIME: '정규직',
