@@ -42,7 +42,7 @@ export const query = graphql`
           name
           label
           required
-          description
+          description: descriptionText
           ...on GreenhouseJobBoardJobQuestionForYesNo {
             options {
               label
@@ -285,6 +285,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
             key={question.name}
             name={question.name}
             label={question.label}
+            description={question.description}
             required={question.required}
           />
         ),
@@ -294,6 +295,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
             key={question.name}
             name={question.name}
             label={question.label}
+            description={question.description}
             required={question.required}
           />
         ),
@@ -305,6 +307,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
             placeholder={messages.job_application_page__field_file_placeholder}
             name={question.name}
             label={question.label}
+            description={question.description}
             required={question.required}
           />
         ),
@@ -314,6 +317,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
             key={question.name}
             name={question.name}
             label={question.label}
+            description={question.description}
             required={question.required}
           />
         ),
@@ -323,6 +327,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
             key={question.name}
             name={question.name}
             label={question.label}
+            description={question.description}
             required={question.required}
             options={[...question.options]}
           />
@@ -333,6 +338,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
             key={question.name}
             name={question.name}
             label={question.label}
+            description={question.description}
             required={question.required}
             options={[...question.options]}
           />
