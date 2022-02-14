@@ -19,11 +19,6 @@ export const Main = () => {
           gatsbyImageData(height: 680, quality: 90, formats: [WEBP, AVIF, AUTO], placeholder: NONE)
         }
       }
-      image2: file(relativePath: { eq: "img_sub_pc_03.png" }) {
-        childImageSharp {
-          gatsbyImageData(height: 680, quality: 90, formats: [WEBP, AVIF, AUTO], placeholder: NONE)
-        }
-      }
     }
   `);
 
@@ -47,15 +42,9 @@ export const Main = () => {
         image={ImageQuery.image1?.childImageSharp?.gatsbyImageData}
         right={false}
       />
-      <MainSection
-        titleBig={["소통은", "쉽고 편리하게"]}
-        subtitle={["광고를 본 이웃과", "채팅이나 전화로 소통할 수 있어요."]}
-        image={ImageQuery.image2?.childImageSharp?.gatsbyImageData}
-        right
-      />
       <Main04 />
-      <UserQuoteCarousel />
       <NowStart />
+      <UserQuoteCarousel />
     </div>
   );
 };
