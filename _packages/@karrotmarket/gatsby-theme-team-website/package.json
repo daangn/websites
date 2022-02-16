@@ -30,7 +30,7 @@
     "@svgr/webpack": "6.2.1",
     "babel-plugin-polished": "1.1.0",
     "clsx": "1.1.1",
-    "focus-trap-react": "8.9.1",
+    "focus-trap-react": "8.9.2",
     "framer-motion": "4.1.17",
     "gatsby": "next",
     "gatsby-plugin-advanced-sitemap": "2.0.0",
