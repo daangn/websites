@@ -57,7 +57,7 @@
     "gatsby-transformer-sharp": "4.7.0",
     "hangul-js": "0.2.6",
     "polished": "4.1.4",
-    "react-helmet-async": "1.2.2",
+    "react-helmet-async": "1.2.3",
     "react-intersection-observer": "8.33.1",
     "react-swipeable": "6.2.0",
     "schema-dts": "1.0.0",
