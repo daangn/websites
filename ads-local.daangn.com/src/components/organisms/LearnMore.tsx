@@ -27,7 +27,7 @@ export const LearnMore = () => {
             <p>지역광고 소개서</p>
             <ArrowLink target="https://drive.google.com/file/d/1RIlN6N0La2LelBK-i_aSioxFjP8bnv0t/view" />
           </DocsLink>
-          <DocsLink
+          {/* <DocsLink
             onClick={() => {
               handleClick(
                 "https://daangnbiz.oopy.io/86a4348d-4698-4672-8378-036321255052"
@@ -36,7 +36,7 @@ export const LearnMore = () => {
           >
             <p>지역광고 만들기 가이드</p>
             <ArrowLink target="https://daangnbiz.oopy.io/86a4348d-4698-4672-8378-036321255052" />
-          </DocsLink>
+          </DocsLink> */}
         </Item>
         <Item right>
           <FaqItem
