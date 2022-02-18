@@ -115,9 +115,7 @@ const Container = styled('a', {
 const Banner = styled('div', {
   margin: "0 auto",
   width: '100%',
-  '@i': {
-    maxWidth: rem(360),
-  },
+  maxWidth: rem(360),
   '@sm': {
     maxWidth: rem(576),
   },
@@ -127,18 +125,14 @@ const Banner = styled('div', {
 })
 
 const BannerImage360 = styled(GatsbyImage, {
-  '@i': {
-    display: 'block',
-  },
+  display: 'block',
   '@sm': {
     display: 'none',
   }
 })
 
 const BannerImage576 = styled(GatsbyImage, {
-  '@i': {
-    display: 'none',
-  },
+  display: 'none',
   '@sm': {
     display: 'block',
   },
@@ -148,9 +142,7 @@ const BannerImage576 = styled(GatsbyImage, {
 })
 
 const BannerImage768 = styled(GatsbyImage, {
-  '@i': {
-    display: 'none',
-  },
+  display: 'none',
   '@md': {
     display: 'block',
   }
