@@ -1,19 +1,42 @@
 {
-  "Main" : {
-    "left" : {
-      "type" : "Image",
-      "config" : {
-        "constraint" : { },
-        "thumbnails" : [ ],
-        "label" : "left"
+  "Main": {
+    "background_color": {
+      "type": "Color",
+      "config": {
+        "label": "background color"
       }
     },
-    "right" : {
-      "type" : "Image",
-      "config" : {
-        "constraint" : { },
-        "thumbnails" : [ ],
-        "label" : "right"
+    "image_360": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "image 360"
+      }
+    },
+    "image_576": {
+      "type": "Image",
+      "config": {
+        "constraint": {
+          "width": null
+        },
+        "thumbnails": [],
+        "label": "image 576"
+      }
+    },
+    "image_768": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "image 768"
+      }
+    },
+    "href": {
+      "type": "Link",
+      "config": {
+        "label": "href",
+        "select": null
       }
     }
   }

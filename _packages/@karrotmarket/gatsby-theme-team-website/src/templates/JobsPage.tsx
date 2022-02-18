@@ -290,92 +290,94 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
   }
 
   return (
-    <Container>
-      <GatsbySeo
-        title={metaTitle}
-        description={metaDescription}
-        openGraph={{
-          title: metaTitle,
-          description: metaDescription,
-          ...metaImage && {
-            images: [{
-              url: siteOrigin + metaImage.src,
-              width: metaImage.width,
-              height: metaImage.height,
-            }],
-          },
-        }}
-        twitter={{
-          ...metaImage && {
-            cardType: 'summary_large_image',
-          },
-        }}
-      />
-
-      <PageTitle
-        css={{
-          marginBottom: rem(56),
-        }}
-      >
-        {data.prismicTeamContents.data?.jobs_page_title?.text}
-      </PageTitle>
-
+    <>
       {/* 임시 배너 영역 */}
       <BannerArea />
 
-      <Content>
-        <FilterAnchor id={filterAnchorId} />
-        <Filters>
-          <Select
-            defaultValue={pageContext.departmentId}
-            onChange={onFilterChange}
-            css={{ gridArea: 'department' }}
-          >
-            <option
-              key="*"
-              value="*"
-            >
-              {$(messages.jobs_page__chapter_all, {
-                n: () => <>{data.allJobPost.totalCount}</>
-              })}
-            </option>
-            {data.allJobDepartment.nodes
-              .map(department => (
-                <option
-                  key={department.id}
-                  value={department.id}
-                >
-                  {`${department.name} (${department.jobPosts.length})`}
-                </option>
-              ))
-            }
-          </Select>
-          <Select
-            value={filterEmploymentType}
-            onChange={e => setFilterEmploymentType(e.target.value)}
-            css={{ gridArea: 'etype' }}
-          >
-            <option value="">{messages.jobs_page__employment_type_all}</option>
-            <option value="FULL_TIME">{messages.jobs_page__employment_type_fulltime}</option>
-            <option value="CONTRACTOR">{messages.jobs_page__employment_type_contractor}</option>
-            <option value="INTERN">{messages.jobs_page__employment_type_intern}</option>
-            <option value="ASSISTANT">{messages.jobs_page__employment_type_assistant}</option>
-          </Select>
-          <Search >
-            <input
-              placeholder={messages.jobs_page__search}
-              onChange={handleSearchInputChange}
-            />
-            <SearchdSvg />
-          </Search>
-        </Filters>
-        <JobPostList
-          jobPosts={data.allSelectedJobPost.nodes}
-          filterEmploymentType={filterEmploymentType}
-          searchResults={searchResults}
+      <Container>
+        <GatsbySeo
+          title={metaTitle}
+          description={metaDescription}
+          openGraph={{
+            title: metaTitle,
+            description: metaDescription,
+            ...metaImage && {
+              images: [{
+                url: siteOrigin + metaImage.src,
+                width: metaImage.width,
+                height: metaImage.height,
+              }],
+            },
+          }}
+          twitter={{
+            ...metaImage && {
+              cardType: 'summary_large_image',
+            },
+          }}
         />
-      </Content>
-    </Container>
+
+        <PageTitle
+          css={{
+            marginBottom: rem(56),
+          }}
+        >
+          {data.prismicTeamContents.data?.jobs_page_title?.text}
+        </PageTitle>
+
+        <Content>
+          <FilterAnchor id={filterAnchorId} />
+          <Filters>
+            <Select
+              defaultValue={pageContext.departmentId}
+              onChange={onFilterChange}
+              css={{ gridArea: 'department' }}
+            >
+              <option
+                key="*"
+                value="*"
+              >
+                {$(messages.jobs_page__chapter_all, {
+                  n: () => <>{data.allJobPost.totalCount}</>
+                })}
+              </option>
+              {data.allJobDepartment.nodes
+                .map(department => (
+                  <option
+                    key={department.id}
+                    value={department.id}
+                  >
+                    {`${department.name} (${department.jobPosts.length})`}
+                  </option>
+                ))
+              }
+            </Select>
+            <Select
+              value={filterEmploymentType}
+              onChange={e => setFilterEmploymentType(e.target.value)}
+              css={{ gridArea: 'etype' }}
+            >
+              <option value="">{messages.jobs_page__employment_type_all}</option>
+              <option value="FULL_TIME">{messages.jobs_page__employment_type_fulltime}</option>
+              <option value="CONTRACTOR">{messages.jobs_page__employment_type_contractor}</option>
+              <option value="INTERN">{messages.jobs_page__employment_type_intern}</option>
+              <option value="ASSISTANT">{messages.jobs_page__employment_type_assistant}</option>
+            </Select>
+            <Search >
+              <input
+                placeholder={messages.jobs_page__search}
+                onChange={handleSearchInputChange}
+              />
+              <SearchdSvg />
+            </Search>
+          </Filters>
+          <JobPostList
+            jobPosts={data.allSelectedJobPost.nodes}
+            filterEmploymentType={filterEmploymentType}
+            searchResults={searchResults}
+          />
+        </Content>
+      </Container>
+    </>
   );
 };
 
