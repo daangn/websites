@@ -1,16 +1,17 @@
 import * as React from "react";
+import { useInView } from "react-intersection-observer";
 import { graphql, Link } from "gatsby";
 import { rem } from "polished";
 import { styled } from "gatsby-theme-stitches/src/config";
 
 import NavigationMenu from "./header/NavigationMenu";
+import Something from "./header/Something";
 import { ReactComponent as LogoSvg } from "./header/logo.svg";
 
 type HeaderProps = {
   className?: string;
   navigationData: GatsbyTypes.Header_navigationDataFragment;
-  transparent?: boolean;
-  placer?: boolean;
+  isStatic?: boolean;
   sns?: boolean;
 };
 
@@ -78,18 +79,26 @@ const Logo = styled(LogoSvg, {
 const Header: React.FC<HeaderProps> = ({
   className,
   navigationData,
-  transparent,
-  placer = true,
+  isStatic = false,
   sns,
 }) => {
+  const [placerRef, placerInView] = useInView({ threshold: 1, initialInView: true });
+  console.log(placerInView)
+
   return (
     <div className={className}>
-      {placer && <Placer />}
-      <Container transparent={transparent}>
+      <Placer
+        ref={placerRef}
+        css={{
+          position: isStatic ? 'absolute' : 'relative',
+        }}
+      />
+      <Container transparent={isStatic && placerInView}>
         <Content>
           <HomeLink to="/">
             <Logo />
           </HomeLink>
+          <Something />
           <NavigationMenu
             controlId="navigation-menu"
             data={navigationData}

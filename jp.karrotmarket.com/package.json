@@ -28,8 +28,7 @@
     "gatsby-plugin-image": "2.7.0",
     "polished": "4.1.4",
     "react": "next",
-    "react-dom": "next",
-    "react-intersection-observer": "8.33.1"
+    "react-dom": "next"
   },
   "devDependencies": {
     "@babel/cli": "7.17.3",

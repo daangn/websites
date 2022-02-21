@@ -82,6 +82,12 @@ const stitches =
         paddingTop: value,
         paddingBottom: value,
       }),
+      contentArea: (value: boolean) => value ? ({
+        boxSizing: 'border-box',
+        maxWidth: '$maxContent',
+        margin: '0 auto',
+        paddingX: rem(24),
+      }) : undefined,
     },
   });
 

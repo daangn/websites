@@ -9,6 +9,8 @@ import twitterIconUrl from "!!file-loader?modules!./socialServiceProfile/twitter
 import mediumIconUrl from "!!file-loader?modules!./socialServiceProfile/medium.svg";
 import instagramIconUrl from "!!file-loader?modules!./socialServiceProfile/instagram.svg";
 import lineIconUrl from "!!file-loader?modules!./socialServiceProfile/line.svg";
+import youtubeIconUrl from "!!file-loader?modules!./socialServiceProfile/youtube.svg";
+import naverBlogIconUrl from "!!file-loader?modules!./socialServiceProfile/naver_blog.svg";
 
 type SocialServiceProfileProps = {
   className?: string;
@@ -66,6 +68,14 @@ const socialServiceProfileConfigMap: Record<
   line: {
     src: lineIconUrl,
     alt: "LINE",
+  },
+  youtube: {
+    src: youtubeIconUrl,
+    alt: 'Youtube',
+  },
+  naver_blog: {
+    src: naverBlogIconUrl,
+    alt: 'Naver Blog',
   },
 };
 

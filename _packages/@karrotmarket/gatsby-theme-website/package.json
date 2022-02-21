@@ -20,7 +20,8 @@
     "@cometjs/core": "1.2.0",
     "@svgr/webpack": "6.2.1",
     "gatsby-plugin-svgr": "3.0.0-beta.0",
-    "gatsby-theme-stitches": "1.0.0"
+    "gatsby-theme-stitches": "1.0.0",
+    "react-intersection-observer": "8.33.1"
   },
   "devDependencies": {
     "@babel/cli": "7.17.3",

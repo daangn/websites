@@ -3,7 +3,6 @@ import React from "react";
 import { rem } from "polished";
 import { graphql, PageProps } from "gatsby";
 import { GatsbySeo } from "gatsby-plugin-next-seo";
-import { useInView } from "react-intersection-observer";
 import { mapAbstractType } from "@cometjs/graphql-utils";
 import { withPrismicPreview } from "gatsby-plugin-prismic-previews";
 
@@ -68,10 +67,10 @@ export const query = graphql`
 `;
 
 const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
-  const [ref, inView] = useInView({ threshold: 1, initialInView: true });
-
-  if (!data.prismicGlobalContents?.data?.main_body || !data.hotArticles.nodes)
+  if (!data.prismicGlobalContents?.data?.main_body || !data.hotArticles.nodes) {
     return <></>;
+  }
+
   const {
     main_page_title,
     main_page_description,
@@ -85,10 +84,8 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
     <Layout
       id="index-page"
       data={data.prismicSiteNavigation.data}
-      transparent={inView}
-      placer={false}
+      isStatic
     >
-      <Placer ref={ref}></Placer>
       <GatsbySeo
         title={main_page_title}
         description={main_page_description}
@@ -159,10 +156,5 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
 };
 
 const Wrapper = styled("div", {});
-
-const Placer = styled("div", {
-  position: "absolute",
-  height: 1,
-});
 
 export default withPrismicPreview(IndexPage, []);

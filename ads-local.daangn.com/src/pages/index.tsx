@@ -1,8 +1,9 @@
 import * as React from "react";
 import type { PageProps } from "gatsby";
-
 import { GatsbySeo } from "gatsby-plugin-next-seo";
 import { mapAbstractTypeWithDefault } from "@cometjs/graphql-utils";
+import Header from "@karrotmarket/gatsby-theme-website/src/components/Header";
+import Footer from "@karrotmarket/gatsby-theme-website/src/components/Footer";
 import { globalStyles, styled } from "~/gatsby-theme-stitches/config";
 import { Banner } from "~/components/organisms/Banner";
 import { Main } from "~/components/organisms/Main";
@@ -10,7 +11,6 @@ import { BannerTitle } from "~/components/molecules/BannerTitle";
 import { LearnMore } from "~/components/organisms/LearnMore";
 import { Visitors } from "~/components/organisms/Visitors";
 import { Download } from "~/components/organisms/Download";
-import { Footer } from "~/components/organisms/Footer";
 import { graphql } from "gatsby";
 import { DownloadBtnMobile } from "~/components/organisms/DownloadBtnMobile";
 
@@ -30,11 +30,22 @@ export const query = graphql`
         }
       }
     }
+
     site {
       siteMetadata {
         siteUrl
       }
     }
+
+    prismicSiteNavigation(
+      uid: { eq: "ads-local.daangn.com" }
+    ) {
+      data {
+        ...Header_navigationData
+        ...Footer_navigationData
+      }
+    }
+
     prismicAdvertisementContents {
       data {
         body {
@@ -58,6 +69,10 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
       setShowModal(true);
     }
   }, [adBlockDetected]);
+
+  if (!data.prismicSiteNavigation) {
+    throw new Error("No navigation data injected");
+  }
 
   const imgSrc = data.image?.childImageSharp?.fixed;
   const site = data.site?.siteMetadata?.siteUrl;
@@ -90,7 +105,10 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
         ]}
       />
       <DownloadBtnMobile />
-      <BannerTitle />
+      <Header
+        navigationData={data.prismicSiteNavigation.data}
+        isStatic
+      />
       <Banner />
       {data.prismicAdvertisementContents?.data?.body &&
         data.prismicAdvertisementContents.data.body
@@ -106,7 +124,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
       <Main />
       <Download />
       <LearnMore />
-      <Footer />
+      <Footer navigationData={data.prismicSiteNavigation.data} />
       {showModal && (
         <AdblockModal color="$carrot500" setShowModal={setShowModal} />
       )}
