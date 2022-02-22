@@ -17,44 +17,44 @@ export const LearnMore = () => {
             <LearnMoreTitle>당근마켓 지역광고</LearnMoreTitle>
             <LearnMoreTitle>더 알아보기</LearnMoreTitle>
           </DocsWrapper>
-          <DocsLink
+          {/* <DocsLink
             onClick={() =>
               handleClick(
                 "https://drive.google.com/file/d/1MvIP-QqJzVdRY7nkKn08wMryet6aMJg9/view"
               )
             }
           >
-            <p>지역광고 소개서</p>
+            <p>지역광고 기초 가이드</p>
             <ArrowLink target="https://drive.google.com/file/d/1RIlN6N0La2LelBK-i_aSioxFjP8bnv0t/view" />
-          </DocsLink>
-          {/* <DocsLink
+          </DocsLink> */}
+          <DocsLink
             onClick={() => {
               handleClick(
-                "https://daangnbiz.oopy.io/86a4348d-4698-4672-8378-036321255052"
+                "https://daangnbiz.oopy.io/"
               );
             }}
           >
-            <p>지역광고 만들기 가이드</p>
-            <ArrowLink target="https://daangnbiz.oopy.io/86a4348d-4698-4672-8378-036321255052" />
-          </DocsLink> */}
+            <p>지역광고 심화 가이드</p>
+            <ArrowLink target="https://daangnbiz.oopy.io/" />
+          </DocsLink>
         </Item>
         <Item right>
+          <FaqItem
+            onClick={() => handleClick("https://www.daangn.com/wv/faqs/155")}
+          >
+            <p>지역광고 상품 종류와 비용을 소개해 주세요</p>
+            <ChevronRight src={chevronIconUrl} alt="댱근마켓 지역광고 가이드" />
+          </FaqItem>
+          <FaqItem
+            onClick={() => handleClick("https://www.daangn.com/wv/faqs/468")}
+          >
+            <p>지역광고는 누구나 만들 수 있나요?</p>
+            <ChevronRight src={chevronIconUrl} alt="당근마켓 지역광고 가이드" />
+          </FaqItem>
           <FaqItem
             onClick={() => handleClick("https://www.daangn.com/wv/faqs/149")}
           >
             <p>지역광고는 어떻게 만드나요?</p>
-            <ChevronRight src={chevronIconUrl} alt="댱근마켓 지역광고 가이드" />
-          </FaqItem>
-          <FaqItem
-            onClick={() => handleClick("https://www.daangn.com/wv/faqs/159")}
-          >
-            <p>지역광고는 비용은 얼마인가요?</p>
-            <ChevronRight src={chevronIconUrl} alt="당근마켓 지역광고 가이드" />
-          </FaqItem>
-          <FaqItem
-            onClick={() => handleClick("https://www.daangn.com/wv/faqs/156")}
-          >
-            <p>지역광고는 어디에 노출되나요?</p>
             <ChevronRight src={chevronIconUrl} alt="당근마켓 지역광고 가이드" />
           </FaqItem>
         </Item>
