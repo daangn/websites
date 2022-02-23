@@ -16,14 +16,10 @@ export const query = graphql`
     copyright {
       html
     }
-    address {
-      html
-    }
-    tel {
-      html
-    }
-    email {
-      html
+    contact_group {
+      contact_info {
+        html
+      }
     }
     footer_entries {
       display_text
@@ -90,8 +86,14 @@ const InfoWrapper = styled("div", {
 });
 
 const Contact = styled("section", {
-  display: "grid",
-  gap: rem(4),
+  display: "flex",
+  maxWidth: rem(600),
+  flexWrap: "wrap",
+  gap: `${rem(4)} ${rem(8)}`,
+
+  '& a': {
+    color: '$gray600',
+  },
 });
 
 const Copyright = styled("div", {
@@ -160,27 +162,14 @@ const Footer: React.FC<FooterProps> = ({ className, navigationData }) => {
         </TopContent>
         <InfoWrapper>
           <Contact>
-            {navigationData.address && (
+            {navigationData.contact_group.map((contact, i) => (
               <div
+                key={i}
                 dangerouslySetInnerHTML={{
-                  __html: navigationData.address.html,
+                  __html: contact.contact_info.html,
                 }}
               />
-            )}
-            {navigationData.tel && (
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: navigationData.tel.html,
-                }}
-              />
-            )}
-            {navigationData.email && (
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: navigationData.email.html,
-                }}
-              />
-            )}
+            ))}
           </Contact>
           {navigationData.copyright?.html && (
             <Copyright

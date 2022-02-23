@@ -6,32 +6,28 @@
         "label": "uid"
       }
     },
-    "copyright": {
-      "type": "StructuredText",
-      "config": {
-        "single": "paragraph,strong",
-        "label": "카피라이트 텍스트"
-      }
-    },
     "address": {
       "type": "StructuredText",
       "config": {
         "single": "paragraph, strong, em, hyperlink",
-        "label": "주소"
+        "label": "주소 (deprecated)",
+        "placeholder": "사이트에 표시되지 않습니다."
       }
     },
     "tel": {
       "type": "StructuredText",
       "config": {
         "single": "paragraph, strong, em, hyperlink",
-        "label": "전화번호"
+        "label": "전화번호 (deprecated)",
+        "placeholder": "사이트에 표시되지 않습니다."
       }
     },
     "email": {
       "type": "StructuredText",
       "config": {
         "single": "paragraph, strong, em, hyperlink",
-        "label": "이메일"
+        "label": "이메일 (deprecated)",
+        "placeholder": "사이트에 표시되지 않습니다."
       }
     }
   },
@@ -43,15 +39,24 @@
           "display_text": {
             "type": "Text",
             "config": {
-              "label": "표시 텍스트"
+             "label": "표시 텍스트"
             }
           },
-         "link": {
+          "link": {
             "type": "Link",
             "config": {
               "label": "타겟 링크",
               "placeholder": "웹 링크만 사용할 수 있어요",
               "select": null
+            }
+          },
+          "new_tab": {
+            "type": "Boolean",
+            "config": {
+              "placeholder_false": "현재 탭에서 열기",
+              "placeholder_true": "새 탭에서 열기",
+              "default_value": true,
+              "label": "새 탭에서 열기?"
             }
           },
           "group": {
@@ -67,6 +72,13 @@
     }
   },
   "Footer": {
+    "copyright": {
+      "type": "StructuredText",
+      "config": {
+        "single": "paragraph,strong",
+        "label": "카피라이트 텍스트"
+      }
+    },
     "footer_entries": {
       "type": "Group",
       "config": {
@@ -85,6 +97,15 @@
               "select": null
             }
           },
+          "new_tab": {
+            "type": "Boolean",
+            "config": {
+              "placeholder_false": "현재 탭에서 열기",
+              "placeholder_true": "새 탭에서 열기",
+              "default_value": true,
+              "label": "새 탭에서 열기?"
+            }
+          },
           "group": {
             "type": "Text",
             "config": {
@@ -94,6 +115,21 @@
           }
         },
         "label": "푸터 네비게이션 항목"
+      }
+    },
+    "contact_group": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "contact_info": {
+            "type": "StructuredText",
+            "config": {
+              "multi": "strong, hyperlink",
+              "label": "컨텍트 항목"
+            }
+          }
+        },
+        "label": "컨텍트 정보"
       }
     }
   },
@@ -112,7 +148,9 @@
                 "medium",
                 "github",
                 "linkedin",
-                "line"
+                "line",
+                "youtube",
+                "naver_blog"
               ],
               "label": "service"
             }

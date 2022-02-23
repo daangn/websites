@@ -16,16 +16,12 @@ export const query = graphql`
 
 interface LayoutProps {
   data: GatsbyTypes.DefaultLayout_queryFragment;
-  transparent?: boolean;
-  placer?: boolean;
   id?: string;
 }
 
 const Layout: React.FC<LayoutProps> = ({
   children,
   data,
-  transparent,
-  placer,
   id,
 }) => {
   if (!data) return <></>;
@@ -44,8 +40,7 @@ const Layout: React.FC<LayoutProps> = ({
       <Header
         key="header"
         navigationData={data}
-        transparent={transparent}
-        placer={placer}
+        isStatic
         sns
       />
       <main {...(id ? { id } : {})}>{children}</main>

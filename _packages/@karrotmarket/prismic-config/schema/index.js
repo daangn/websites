@@ -1,4 +1,5 @@
 module.exports = {
+  test: {}, // 스키마 테스트 용
   "mbti-test-result": {},
   mbti_intro: {},
   mbti_test_question: {},
