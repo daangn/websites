@@ -2195,10 +2195,10 @@
   resolved "https://registry.yarnpkg.com/@karrotmarket/design-token/-/design-token-1.0.1.tgz#574f6a802bd7d73e4fe3f975639e7529a1ac2058"
   integrity sha512-1mXupLpOWuB7JiM7V6UN7x1zC1TXR8bPYe4dho3PuOqL5iv7LdXLkb7L8cv4SncnxS5zBo20pns1FLOkymKr/g==
 
-"@karrotmarket/gatsby-source-greenhouse-jobboard@0.5.0":
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@karrotmarket/gatsby-source-greenhouse-jobboard/-/gatsby-source-greenhouse-jobboard-0.5.0.tgz#5b74115cfd9dfac0edf87d1f37525e65245e0440"
-  integrity sha512-572FZtUf1m1+rxCbkXa8j4kNb5mpwqWN1dPIewCnUMEim4BDvfZa83+xQIgX1uJJyMRB1QSdFWk0EfhmQphNnA==
+"@karrotmarket/gatsby-source-greenhouse-jobboard@0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@karrotmarket/gatsby-source-greenhouse-jobboard/-/gatsby-source-greenhouse-jobboard-0.6.0.tgz#3364edfcb02445e5258212ddfd3b147277e6a788"
+  integrity sha512-gEnO+IMHpIMt4gACC14B1V2wxJqn7KdvzL1JDp/+5u9lL9kmgwS/yJSWdJOLppq1FW1+2FSgwsyFZHfCrnRMKA==
   dependencies:
     got "^11.8.2"
     greenhouse-jobboard-js "^0.3.0"
