@@ -42,8 +42,8 @@
     "react-text-loop": "2.3.0"
   },
   "devDependencies": {
-    "@babel/cli": "7.17.3",
-    "@babel/core": "7.17.4",
+    "@babel/cli": "7.17.6",
+    "@babel/core": "7.17.5",
     "@babel/plugin-transform-react-jsx": "7.17.3",
     "@babel/plugin-transform-typescript": "7.16.8",
     "babel-preset-gatsby-package": "2.7.0",

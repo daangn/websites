@@ -24,8 +24,8 @@
     "react-intersection-observer": "8.33.1"
   },
   "devDependencies": {
-    "@babel/cli": "7.17.3",
-    "@babel/core": "7.17.4",
+    "@babel/cli": "7.17.6",
+    "@babel/core": "7.17.5",
     "@stitches/react": "1.2.6",
     "@types/node": "16.11.25",
     "@types/react": "17.0.39",
