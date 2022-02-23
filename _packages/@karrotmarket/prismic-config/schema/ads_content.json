@@ -1,0 +1,349 @@
+{
+  "Main": {
+    "meta_title": {
+      "type": "Text",
+      "config": {
+        "label": "사이트 제목 (메타)"
+      }
+    },
+    "meta_description": {
+      "type": "Text",
+      "config": {
+        "label": "사이트 설명 (meta)"
+      }
+    },
+    "meta_image": {
+      "type": "Image",
+      "config": {
+        "constraint": {
+          "width": 1200,
+          "height": 630
+        },
+        "thumbnails": [],
+        "label": "사이트 미리보기 이미지 (OpenGraph)"
+      }
+    },
+    "hero_image": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "\bHero 섹션 이미지"
+      }
+    },
+    "here_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1",
+        "label": "Hero 섹션 제목"
+      }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "labels": null,
+        "choices": {
+          "usage_slider": {
+            "type": "Slice",
+            "fieldset": "Usage Slider",
+            "description": "Usage Slider",
+            "icon": "subscriptions",
+            "display": "list",
+            "non-repeat": {
+              "date": {
+                "type": "Date",
+                "config": {
+                  "label": "기준일자"
+                }
+              }
+            },
+            "repeat": {
+              "region": {
+                "type": "Text",
+                "config": {
+                  "label": "지역명"
+                }
+              },
+              "visitor_count": {
+                "type": "Number",
+                "config": {
+                  "label": "방문자 수"
+                }
+              }
+            }
+          },
+          "preview_section": {
+            "type": "Slice",
+            "fieldset": "Preview Section",
+            "description": "Preview Section",
+            "icon": "art_track",
+            "display": "list",
+            "non-repeat": {
+              "section_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "섹션 타이틀"
+                }
+              },
+              "section_description": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph",
+                  "label": "섹션 설명"
+                }
+              },
+              "image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {
+                    "width": 1200
+                  },
+                  "thumbnails": [],
+                  "label": "이미지"
+                }
+              },
+              "reversed": {
+                "type": "Boolean",
+                "config": {
+                  "placeholder_false": "왼쪽",
+                  "placeholder_true": "오른쪽",
+                  "default_value": false,
+                  "label": "이미지 위치"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "features_section": {
+            "type": "Slice",
+            "fieldset": "Features Section",
+            "description": "Features Section",
+            "icon": "apps",
+            "display": "list",
+            "non-repeat": {
+              "section_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "섹션 타이틀"
+                }
+              }
+            },
+            "repeat": {
+              "preview_image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {
+                    "width": 1200,
+                    "height": 900
+                  },
+                  "thumbnails": [],
+                  "label": "기능 미리보기 이미지"
+                }
+              },
+              "feature_name": {
+                "type": "Text",
+                "config": {
+                  "label": "기능 이름"
+                }
+              },
+              "feature_description": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph,list-item",
+                  "label": "기능 설명"
+                }
+              },
+              "feature_link": {
+                "type": "Link",
+                "config": {
+                  "label": "기능 자세히보기 링크",
+                  "select": null
+                }
+              }
+            }
+          },
+          "steps_section": {
+            "type": "Slice",
+            "fieldset": "Steps Section",
+            "description": "Steps Section",
+            "icon": "view_column",
+            "display": "list",
+            "non-repeat": {
+              "section_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "섹션 타이틀"
+                }
+              }
+            },
+            "repeat": {
+              "step_image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {
+                    "width": 480,
+                    "height": 560
+                  },
+                  "thumbnails": [],
+                  "label": "스텝 이미지"
+                }
+              },
+              "step_text": {
+                "type": "Text",
+                "config": {
+                  "label": "짧은 설명"
+                }
+              }
+            }
+          },
+          "user_story_section": {
+            "type": "Slice",
+            "fieldset": "User Story Section",
+            "description": "User Story Section",
+            "icon": "accessibility",
+            "display": "list",
+            "non-repeat": {
+              "section_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "섹션 타이틀"
+                }
+              }
+            },
+            "repeat": {
+              "background_image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {
+                    "width": 2880,
+                    "height": 1000
+                  },
+                  "thumbnails": [],
+                  "label": "배경 이미지"
+                }
+              },
+              "user_story": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "paragraph",
+                  "label": "사용자 스토리"
+                }
+              },
+              "goto_text": {
+                "type": "Text",
+                "config": {
+                  "label": "바로가기 링크 텍스트"
+                }
+              },
+              "goto_link": {
+                "type": "Link",
+                "config": {
+                  "label": "바로가기 링크",
+                  "select": null
+                }
+              }
+            }
+          },
+          "download_section": {
+            "type": "Slice",
+            "fieldset": "Download Section",
+            "description": "Download Section",
+            "icon": "cloud_download",
+            "display": "list",
+            "non-repeat": {
+              "section_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "섹션 타이틀"
+                }
+              },
+              "section_subtitle": {
+                "type": "Text",
+                "config": {
+                  "label": "섹션 서브타이틀"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "guide_section": {
+            "type": "Slice",
+            "fieldset": "Guide Section",
+            "description": "Guide Section",
+            "icon": "book",
+            "display": "list",
+            "non-repeat": {
+              "section_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "섹션 타이틀"
+                }
+              },
+              "brochure_link": {
+                "type": "Link",
+                "config": {
+                  "label": "\"지역광고 소개서\" 링크",
+                  "select": null
+                }
+              },
+              "manual_link": {
+                "type": "Link",
+                "config": {
+                  "label": "\"지역광고 만들기 가이드\" 링크",
+                  "select": null
+                }
+              },
+              "faq_1_text": {
+                "type": "Text",
+                "config": {
+                  "label": "자주 묻는 질문 1"
+                }
+              },
+              "faq_1_link": {
+                "type": "Link",
+                "config": {
+                  "label": "자주 묻는 질문 1 링크",
+                  "select": null
+                }
+              },
+              "faq_2_text": {
+                "type": "Text",
+                "config": {
+                  "label": "자주 묻는 질문 2"
+                }
+              },
+              "faq_2_link": {
+                "type": "Link",
+                "config": {
+                  "label": "자주 묻는 질문 2 링크",
+                  "select": null
+                }
+              },
+              "faq_3_text": {
+                "type": "Text",
+                "config": {
+                  "label": "자주 묻는 질문 3"
+                }
+              },
+              "faq_3_link": {
+                "type": "Link",
+                "config": {
+                  "label": "자주 묻는 질문 3 링크",
+                  "select": null
+                }
+              }
+            },
+            "repeat": {}
+          }
+        }
+      }
+    }
+  }
+}
