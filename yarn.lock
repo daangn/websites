@@ -2207,10 +2207,10 @@
     polished "^4.1.2"
     type-fest "^1.1.3"
 
-"@lokalise/node-api@7.1.0":
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/@lokalise/node-api/-/node-api-7.1.0.tgz#4adb30af868ca6b278571aced74167ec0a260f71"
-  integrity sha512-RA5KHvGOrhcspQsMwWe4YNIBNdGu4EvvAmPeh2671dJYmeETfnyVswc45+ApanXKwWfqXk1BAPT4peHjKBEHVg==
+"@lokalise/node-api@7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@lokalise/node-api/-/node-api-7.1.1.tgz#9d14dbaf01695edbe572192da8db6657089be68b"
+  integrity sha512-DapVzA6cXvm1FrEUpeuOPw3Mju96n0banrPAXUNGu8P/sgiFhuUuGnhXHD92CEtPupra45fYRu5vU9wy+wsMPQ==
   dependencies:
     got "^11.8.3"
 
