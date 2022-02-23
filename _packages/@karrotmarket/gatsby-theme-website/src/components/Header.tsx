@@ -83,7 +83,6 @@ const Header: React.FC<HeaderProps> = ({
   sns,
 }) => {
   const [placerRef, placerInView] = useInView({ threshold: 1, initialInView: true });
-  console.log(placerInView)
 
   return (
     <div className={className}>
