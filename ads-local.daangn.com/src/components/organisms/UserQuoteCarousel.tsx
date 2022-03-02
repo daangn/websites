@@ -194,9 +194,10 @@ export const UserQuoteCarousel: React.FC = () => {
 const Container = styled("div", {
   position: "relative",
   contentArea: true,
-  width: "100%",
   boxSizing: "border-box",
   display: "grid",
+  maxWidth: "100vw",
+  paddingX: 0
 });
 
 const SlideCamera = styled("div", {

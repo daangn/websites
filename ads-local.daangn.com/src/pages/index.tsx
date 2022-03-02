@@ -7,7 +7,6 @@ import Footer from "@karrotmarket/gatsby-theme-website/src/components/Footer";
 import { globalStyles, styled } from "~/gatsby-theme-stitches/config";
 import { Banner } from "~/components/organisms/Banner";
 import { Main } from "~/components/organisms/Main";
-import { BannerTitle } from "~/components/molecules/BannerTitle";
 import { LearnMore } from "~/components/organisms/LearnMore";
 import { Visitors } from "~/components/organisms/Visitors";
 import { Download } from "~/components/organisms/Download";
