@@ -17,7 +17,7 @@
     "@cometjs/core": "1.2.0",
     "@cometjs/graphql-utils": "1.1.0",
     "@cometjs/react-utils": "1.1.0",
-    "@karrotmarket/design-token": "1.0.2",
+    "@karrotmarket/design-token": "1.1.1",
     "@karrotmarket/gatsby-plugin-lokalise-translation": "*",
     "@karrotmarket/gatsby-source-greenhouse-jobboard": "0.6.0",
     "@karrotmarket/gatsby-theme-prismic": "*",
