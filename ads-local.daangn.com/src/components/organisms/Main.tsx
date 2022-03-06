@@ -5,6 +5,7 @@ import { Main04 } from "~/components/organisms/Main04";
 import { NowStart } from "~/components/organisms/NowStart";
 import { UserQuoteCarousel } from "~/components/organisms/UserQuoteCarousel";
 import { graphql, useStaticQuery } from "gatsby";
+import { ImageDataLike } from "gatsby-plugin-image";
 
 export const Main = () => {
   const ImageQuery = useStaticQuery<GatsbyTypes.ImageQuery>(graphql`
@@ -30,7 +31,7 @@ export const Main = () => {
           "우리 동네부터 다른 동네까지",
           "광고할 지역을 선택할 수 있어요.",
         ]}
-        image={ImageQuery.image0?.childImageSharp?.gatsbyImageData}
+        image={ImageQuery.image0?.childImageSharp?.gatsbyImageData as unknown as  ImageDataLike}
         right
       />
       <MainSection
@@ -39,7 +40,7 @@ export const Main = () => {
           "이웃들이 많이 보는 당근마켓 글 사이에서",
           "자연스럽게 홍보할 수 있어요.",
         ]}
-        image={ImageQuery.image1?.childImageSharp?.gatsbyImageData}
+        image={ImageQuery.image1?.childImageSharp?.gatsbyImageData as unknown as  ImageDataLike}
         right={false}
       />
       <Main04 />

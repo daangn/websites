@@ -1,12 +1,12 @@
 import React from "react";
 import { styled } from "~/gatsby-theme-stitches/config";
 import { rem } from "polished";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage, ImageDataLike } from "gatsby-plugin-image";
 
 type SectionProps = {
   titleBig: string[];
   subtitle: string[];
-  image: any;
+  image: ImageDataLike;
   right: boolean;
   oneLine?: boolean;
 };
