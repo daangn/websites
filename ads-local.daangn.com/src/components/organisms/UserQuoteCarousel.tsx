@@ -5,11 +5,11 @@ import { useSwipeable } from "react-swipeable";
 import { ArrowLink } from "~/components/molecules/ArrowLink";
 
 import tensoba from "~/image/tensoba.jpg";
-import promiseBycicle from "~/image/promise_bycicle.png";
+import promiseBycicle from "~/image/promise_bycicle.jpg";
 import jjinijjini from "~/image/jjinijjini.jpg";
 
 import tensoba_m from "~/image/tensoba_m.jpg";
-import promiseBycicle_m from "~/image/promise_bycicle_m.png";
+import promiseBycicle_m from "~/image/promise_bycicle_m.jpg";
 import jjinijjini_m from "~/image/jjinijjini_m.jpg";
 
 type SlideItemProps = {
