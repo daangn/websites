@@ -17,6 +17,7 @@ type SlideItemProps = {
   talk: string[];
   story: string;
   link: string;
+  id: string;
 };
 
 export const UserQuoteCarousel: React.FC = () => {
@@ -32,6 +33,7 @@ export const UserQuoteCarousel: React.FC = () => {
       ],
       story: "음식점 '텐소바' 사장님 이야기",
       link: "https://www.youtube.com/watch?v=agdA0fMZ7u4",
+      id: 'Success Story_A'
     },
     {
       picture: promiseBycicle,
@@ -42,6 +44,7 @@ export const UserQuoteCarousel: React.FC = () => {
       ],
       story: "자전거 대여점 ‘약속의 자전거' 사장님 이야기 ",
       link: "https://www.youtube.com/watch?v=iqDcidk3MbY",
+      id: 'Success Story_B'
     },
     {
       picture: jjinijjini,
@@ -52,6 +55,7 @@ export const UserQuoteCarousel: React.FC = () => {
       ],
       story: "농수산물 '찌니찌니' 사장님 이야기",
       link: "https://www.youtube.com/watch?v=si4DM8_PxSk",
+      id: 'Success Story_C'
     },
   ];
 
@@ -63,6 +67,7 @@ export const UserQuoteCarousel: React.FC = () => {
       ],
       story: "음식점 '텐소바' 사장님 이야기",
       link: "https://www.youtube.com/watch?v=agdA0fMZ7u4",
+      id: 'Success Story_A'
     },
     {
       picture: promiseBycicle_m,
@@ -71,6 +76,7 @@ export const UserQuoteCarousel: React.FC = () => {
       ],
       story: "자전거 대여점 ‘약속의 자전거' 사장님 이야기 ",
       link: "https://www.youtube.com/watch?v=iqDcidk3MbY",
+      id: 'Success Story_B'
     },
     {
       picture: jjinijjini_m,
@@ -79,6 +85,7 @@ export const UserQuoteCarousel: React.FC = () => {
       ],
       story: "농수산물 '찌니찌니' 사장님 이야기",
       link: "https://www.youtube.com/watch?v=si4DM8_PxSk",
+      id: 'Success Story_C'
     },
   ];
 
@@ -140,7 +147,7 @@ export const UserQuoteCarousel: React.FC = () => {
                           <By>{item.story}</By>
                         </a>
                         <div style={{ marginLeft: rem(8) }}>
-                          <ArrowLink target={item.link} color={"white"} />
+                          <ArrowLink target={item.link} color={"white"} id={item.id} />
                         </div>
                       </ByRow>
                     </div>

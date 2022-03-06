@@ -40,18 +40,21 @@ export const LearnMore = () => {
         </Item>
         <Item right>
           <FaqItem
+            id="FAQ_A"
             onClick={() => handleClick("https://www.daangn.com/wv/faqs/155")}
           >
             <p>지역광고 상품 종류와 비용을 소개해 주세요</p>
             <ChevronRight src={chevronIconUrl} alt="댱근마켓 지역광고 가이드" />
           </FaqItem>
           <FaqItem
+            id="FAQ_B"
             onClick={() => handleClick("https://www.daangn.com/wv/faqs/468")}
           >
             <p>지역광고는 누구나 만들 수 있나요?</p>
             <ChevronRight src={chevronIconUrl} alt="당근마켓 지역광고 가이드" />
           </FaqItem>
           <FaqItem
+            id="FAQ_C"
             onClick={() => handleClick("https://www.daangn.com/wv/faqs/149")}
           >
             <p>지역광고는 어떻게 만드나요?</p>

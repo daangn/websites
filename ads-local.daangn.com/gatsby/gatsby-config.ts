@@ -89,7 +89,6 @@ const config: GatsbyConfig = {
       options: {
         id: 'GTM-NC3HWHZ',
         includeInDevelopment: false,
-        defaultDataLayer: { platform: 'gatsby' },
         routeChangeEventName: 'gatsby-route-change',
         enableWebVitalsTracking: true,
       },

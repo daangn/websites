@@ -9,11 +9,13 @@ import { rem } from "polished";
 type ArrowLinkProps = {
   target: string;
   color?: any;
+  id?: string;
 };
 
 export const ArrowLink: React.FC<ArrowLinkProps> = ({
   target,
   color = "black",
+  id
 }) => {
   const onClickHandler = (target: string) => {
     window.open(target, "_blank");
@@ -25,11 +27,13 @@ export const ArrowLink: React.FC<ArrowLinkProps> = ({
         <Arrow
           onClick={() => onClickHandler(target)}
           style={{ width: rem(28), height: rem(28) }}
+          id={id}
         />
       ) : (
         <ArrowWhite
           onClick={() => onClickHandler(target)}
           style={{ width: rem(28), height: rem(28), marginTop: rem(5) }}
+          id={id}
         />
       )}
     </>
