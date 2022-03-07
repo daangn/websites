@@ -81,7 +81,7 @@ export const Main04 = () => {
                     <strong>가게 소식이나 가게 정보</strong>를 광고할 수 있어요.
                   </AccentText>
                 </AccentTextGroup>
-                <OutlinedButton id='guide-feed' onClick={()=>window.open('https://daangnbiz.oopy.io/810785f3-a385-45c9-86d6-d703d7e8dc5e', '_blank')}>
+                <OutlinedButton id='guide-feed' onClick={()=>window.open('https://daangnbiz.oopy.io/8c64a37b-b0e3-4ac0-ad3c-482b345ca37b', '_blank')}>
                   피드 광고 가이드 바로가기
                 </OutlinedButton>
               </DescriptionContainer>
@@ -112,7 +112,7 @@ export const Main04 = () => {
                     <strong>가게 정보</strong>를 광고할 수 있어요.
                   </AccentText>
                 </AccentTextGroup>
-                <OutlinedButton id='guide-search' onClick={()=>window.open('https://daangnbiz.oopy.io/d282243d-8c12-4c6d-9363-9c9b306e55cd','_blank')}>
+                <OutlinedButton id='guide-search' onClick={()=>window.open('https://daangnbiz.oopy.io/8a6e149e-f077-4970-a533-ce835978ee9c','_blank')}>
                   검색 광고 가이드 바로가기
                 </OutlinedButton>
               </DescriptionContainer>
