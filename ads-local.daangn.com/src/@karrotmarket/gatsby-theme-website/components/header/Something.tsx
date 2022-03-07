@@ -20,14 +20,11 @@ const QuestionInfo = styled("div", {
   },
 });
 
-const Logo = styled("img", {
-  width: rem(145),
-  height: rem(25),
-  "@md": {
-    width: "auto",
-    height: "auto",
-  },
-});
+const DisplayAdsGuide = styled('div', {
+  display: 'flex',
+  marginRight: rem(56),
+  cursor: "pointer",
+})
 
 const TelLink = styled("a", {
   color: "$black",
@@ -37,6 +34,13 @@ const TelLink = styled("a", {
 const Something: React.FC = () => {
   return (
     <QuestionInfo>
+      <DisplayAdsGuide>
+        <p onClick={()=>document.getElementById("learn-more-section")!.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        })}>지역광고 가이드</p>
+      </DisplayAdsGuide>
+      
       <IconCall />
       <TelLink href="tel://1644-9736">
         <p>
