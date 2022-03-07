@@ -60,7 +60,7 @@
     "react-helmet-async": "1.2.3",
     "react-intersection-observer": "8.33.1",
     "react-swipeable": "6.2.0",
-    "schema-dts": "1.0.0",
+    "schema-dts": "1.1.0",
     "text2vdom": "1.0.0",
     "use-dark-mode": "2.3.1"
   },
