@@ -2,6 +2,7 @@ import * as React from "react";
 import { rem } from "polished";
 import { styled } from "gatsby-theme-stitches/src/config";
 import { ReactComponent as IconCall } from "~/image/icon_call.svg";
+import { ReactComponent as Divider } from "~/image/divider.svg";
 
 const QuestionInfo = styled("div", {
   display: "flex",
@@ -20,14 +21,30 @@ const QuestionInfo = styled("div", {
   },
 });
 
-const Logo = styled("img", {
-  width: rem(145),
-  height: rem(25),
+const DisplayAdsGuide = styled('div', {
+  display: 'flex',
+
+  cursor: "pointer",
+
   "@md": {
-    width: "auto",
-    height: "auto",
+    marginRight: rem(56),
   },
-});
+  span: {
+    display: 'none',
+    "@md": {
+      display: 'inline-block'
+    }
+  }
+
+})
+
+const StyledDivider  = styled(Divider, {
+  marginX: rem(10),
+
+  "@md": {
+    display: 'none'
+  }
+})
 
 const TelLink = styled("a", {
   color: "$black",
@@ -37,6 +54,13 @@ const TelLink = styled("a", {
 const Something: React.FC = () => {
   return (
     <QuestionInfo>
+      <DisplayAdsGuide>
+        <p onClick={()=>document.getElementById("learn-more-section")!.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        })}><span>지역광고</span>가이드</p>
+      </DisplayAdsGuide>
+      <StyledDivider />
       <IconCall />
       <TelLink href="tel://1644-9736">
         <p>

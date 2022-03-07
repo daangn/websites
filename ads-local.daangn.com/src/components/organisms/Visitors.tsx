@@ -30,11 +30,7 @@ export const Visitors: React.FC<VisitorsProps> = ({ data }) => {
       <Container>
         <TextContainer>
           <span>
-            {/*{data.items?.map(item => (*/}
-            {/*  <span key={item!.region!}>*/}
-            {/*    {item!.region!} 근처 <strong>{intl.format(item!.visitor_count!)}명</strong>*/}
-            {/*  </span>*/}
-            {/*))}*/}
+          
             <TextLoop interval={5000}>
               <Region>{regions![0]}</Region>
               <Region>{regions![1]}</Region>
@@ -46,8 +42,6 @@ export const Visitors: React.FC<VisitorsProps> = ({ data }) => {
             <TextLoop interval={5000}>
               <ColoredText>{visitors![0]}명</ColoredText>
               <ColoredText>{visitors![1]}명</ColoredText>
-              {/*<ColoredText>26,949명</ColoredText>*/}
-              {/*<ColoredText>17,019명</ColoredText>*/}
               <ColoredText>{visitors![2]}명</ColoredText>
             </TextLoop>
             <p>이 매주&nbsp;</p>

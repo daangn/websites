@@ -7,12 +7,14 @@ type Props = {
   buttonType?: "carrot" | "gray";
   iconType: "google" | "apple";
   link?: string;
+  id?: string;
 };
 
 export function DownloadButton({
   buttonType = "carrot",
   iconType,
   children,
+  id
 }: React.PropsWithChildren<Props>) {
   const onClickHandler = (iconType: "google" | "apple") => {
     switch (iconType) {
@@ -33,7 +35,7 @@ export function DownloadButton({
 
   return (
     <Button
-      id={iconType}
+      id={id}
       buttonType={buttonType}
       onClick={() => onClickHandler(iconType)}
     >

@@ -10,24 +10,26 @@ export const LearnMore = () => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper id="learn-more-section">
       <Container>
         <Item left>
           <DocsWrapper>
             <LearnMoreTitle>당근마켓 지역광고</LearnMoreTitle>
             <LearnMoreTitle>더 알아보기</LearnMoreTitle>
           </DocsWrapper>
-          {/* <DocsLink
+          <DocsLink
+          id="content-pdf"
             onClick={() =>
               handleClick(
-                "https://drive.google.com/file/d/1MvIP-QqJzVdRY7nkKn08wMryet6aMJg9/view"
+                "https://drive.google.com/file/d/1rXFkxvzxJHszsFnCKiqWafzb6bi-6uBU/view"
               )
             }
           >
             <p>지역광고 기초 가이드</p>
-            <ArrowLink target="https://drive.google.com/file/d/1RIlN6N0La2LelBK-i_aSioxFjP8bnv0t/view" />
-          </DocsLink> */}
+            <ArrowLink target="https://drive.google.com/file/d/1rXFkxvzxJHszsFnCKiqWafzb6bi-6uBU/view" id="content-pdf"/>
+          </DocsLink>
           <DocsLink
+          id="content-howto"
             onClick={() => {
               handleClick(
                 "https://daangnbiz.oopy.io/"
@@ -35,23 +37,26 @@ export const LearnMore = () => {
             }}
           >
             <p>지역광고 심화 가이드</p>
-            <ArrowLink target="https://daangnbiz.oopy.io/" />
+            <ArrowLink target="https://daangnbiz.oopy.io/" id="content-howto"/>
           </DocsLink>
         </Item>
         <Item right>
           <FaqItem
+            id="FAQ_A"
             onClick={() => handleClick("https://www.daangn.com/wv/faqs/155")}
           >
             <p>지역광고 상품 종류와 비용을 소개해 주세요</p>
             <ChevronRight src={chevronIconUrl} alt="댱근마켓 지역광고 가이드" />
           </FaqItem>
           <FaqItem
+            id="FAQ_B"
             onClick={() => handleClick("https://www.daangn.com/wv/faqs/468")}
           >
             <p>지역광고는 누구나 만들 수 있나요?</p>
             <ChevronRight src={chevronIconUrl} alt="당근마켓 지역광고 가이드" />
           </FaqItem>
           <FaqItem
+            id="FAQ_C"
             onClick={() => handleClick("https://www.daangn.com/wv/faqs/149")}
           >
             <p>지역광고는 어떻게 만드나요?</p>

@@ -11,11 +11,11 @@ export function PromotionInfoDownload() {
       <Description>
         당근마켓 지역광고가 처음이라면 광고캐시 5,000원을 드려요.
       </Description>
-      <DownloadButtons css={{ marginTop: 40 }}>
-        <DownloadButton buttonType="gray" iconType="google">
+      <DownloadButtons css={{ marginTop: 40 }} id='123'>
+        <DownloadButton buttonType="gray" iconType="google" id="google_bottom">
           Google Play
         </DownloadButton>
-        <DownloadButton buttonType="gray" iconType="apple">
+        <DownloadButton buttonType="gray" iconType="apple" id="apple_bottom1">
           App Store
         </DownloadButton>
       </DownloadButtons>

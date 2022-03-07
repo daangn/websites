@@ -7,47 +7,47 @@ import { rem } from "polished";
 
 export const NowStart = () => {
   return (
-    <Section backgroundColor="$white">
+    <Section backgroundColor="#F8F9FA">
       <Container>
         <GridRow>
-          <TitleBig>1분이면 만들 수 있어요</TitleBig>
+          <TitleBig>누구나 쉽게 광고할 수 있어요</TitleBig>
         </GridRow>
         <ImgRow>
           <ImgContainer>
+            <ImgSubText>
+              <StepNumber>01</StepNumber>
+              <p>비즈프로필을 만들고</p>
+            </ImgSubText>
             <Picture
               src="../../image/img_step_01.png"
               alt="당근마켓 지역광고 STEP1"
               width={240}
               placeholder="none"
             />
-            <ImgSubText>
-              <StepNumber>01</StepNumber>
-              <p>나의 당근 &gt; 지역광고 메뉴에서</p>
-            </ImgSubText>
           </ImgContainer>
           <ImgContainer>
+          <ImgSubText>
+              <StepNumber>02</StepNumber>
+              <p>가게 정보와 소식을 채워주세요.</p>
+            </ImgSubText>
             <Picture
               src="../../image/img_step_02.png"
               alt="당근마켓 지역광고 STEP2"
               width={240}
               placeholder="none"
             />
-            <ImgSubText>
-              <StepNumber>02</StepNumber>
-              <p>광고할 계정을 선택하고</p>
-            </ImgSubText>
           </ImgContainer>
           <ImgContainer>
+          <ImgSubText>
+              <StepNumber>03</StepNumber>
+              <p>광고 만들기를 시작해 보세요.</p>
+            </ImgSubText>
             <Picture
               src="../../image/img_step_03.png"
               alt="당근마켓 지역광고 STEP3"
               width={240}
               placeholder="none"
             />
-            <ImgSubText>
-              <StepNumber>03</StepNumber>
-              <p>광고 만들기를 눌러주세요</p>
-            </ImgSubText>
           </ImgContainer>
         </ImgRow>
       </Container>
@@ -63,8 +63,8 @@ const Container = styled("div", {
 
   "@md": {
     paddingX: 0,
-    width: "80%",
-    maxWidth: rem(1160),
+  
+    
     gridTemplateRows: "repeat(2, auto)",
   },
 });
@@ -108,8 +108,17 @@ const ImgRow = styled("div", {
 });
 
 const ImgContainer = styled("div", {
-  // style={{margin: ` ${rem(43)} 0`}}
   marginY: rem(43),
+  backgroundColor: "$white",
+  paddingX: rem(64),
+  border: `1px solid rgba(33, 33, 36, 0.07)`,
+
+  "@md": {
+    '& + &':{
+      marginLeft: rem(37)
+    }
+  }
+  
 });
 
 const ImgSubText = styled("div", {
@@ -121,6 +130,9 @@ const ImgSubText = styled("div", {
   lineHeight: rem(31),
   p: {
     fontSize: "$subtitle3",
+    fontWeight: "bold",
+    marginTop: rem(4),
+    marginBottom: rem(12)
   },
 });
 

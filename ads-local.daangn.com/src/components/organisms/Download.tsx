@@ -21,10 +21,10 @@ export const Download = () => {
           <p>당근마켓 지역광고가 처음이라면 광고캐시 5,000원을 드려요.</p>
         </ImgSubTextPC>
         <BtnRow>
-          <DownloadButton iconType="google" buttonType="gray">
+          <DownloadButton iconType="google" buttonType="gray" id="google_bottom">
             <div>Google Play</div>
           </DownloadButton>
-          <DownloadButton iconType="apple" buttonType="gray">
+          <DownloadButton iconType="apple" buttonType="gray" id="apple_bottom">
             <div>App Store</div>
           </DownloadButton>
         </BtnRow>
