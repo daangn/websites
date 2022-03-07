@@ -2,6 +2,7 @@ import * as React from "react";
 import { rem } from "polished";
 import { styled } from "gatsby-theme-stitches/src/config";
 import { ReactComponent as IconCall } from "~/image/icon_call.svg";
+import { ReactComponent as Divider } from "~/image/divider.svg";
 
 const QuestionInfo = styled("div", {
   display: "flex",
@@ -22,8 +23,27 @@ const QuestionInfo = styled("div", {
 
 const DisplayAdsGuide = styled('div', {
   display: 'flex',
-  marginRight: rem(56),
+
   cursor: "pointer",
+
+  "@md": {
+    marginRight: rem(56),
+  },
+  span: {
+    display: 'none',
+    "@md": {
+      display: 'inline-block'
+    }
+  }
+
+})
+
+const StyledDivider  = styled(Divider, {
+  marginX: rem(10),
+
+  "@md": {
+    display: 'none'
+  }
 })
 
 const TelLink = styled("a", {
@@ -38,9 +58,9 @@ const Something: React.FC = () => {
         <p onClick={()=>document.getElementById("learn-more-section")!.scrollIntoView({
           behavior: "smooth",
           block: "center",
-        })}>지역광고 가이드</p>
+        })}><span>지역광고</span>가이드</p>
       </DisplayAdsGuide>
-      
+      <StyledDivider />
       <IconCall />
       <TelLink href="tel://1644-9736">
         <p>
