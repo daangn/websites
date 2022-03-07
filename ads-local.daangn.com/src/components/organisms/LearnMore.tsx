@@ -10,24 +10,26 @@ export const LearnMore = () => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper id="learn-more-section">
       <Container>
         <Item left>
           <DocsWrapper>
             <LearnMoreTitle>당근마켓 지역광고</LearnMoreTitle>
             <LearnMoreTitle>더 알아보기</LearnMoreTitle>
           </DocsWrapper>
-          {/* <DocsLink
+          <DocsLink
+          id="content-pdf"
             onClick={() =>
               handleClick(
-                "https://drive.google.com/file/d/1MvIP-QqJzVdRY7nkKn08wMryet6aMJg9/view"
+                "https://drive.google.com/file/d/1rXFkxvzxJHszsFnCKiqWafzb6bi-6uBU/view"
               )
             }
           >
             <p>지역광고 기초 가이드</p>
-            <ArrowLink target="https://drive.google.com/file/d/1RIlN6N0La2LelBK-i_aSioxFjP8bnv0t/view" />
-          </DocsLink> */}
+            <ArrowLink target="https://drive.google.com/file/d/1rXFkxvzxJHszsFnCKiqWafzb6bi-6uBU/view" id="content-pdf"/>
+          </DocsLink>
           <DocsLink
+          id="content-howto"
             onClick={() => {
               handleClick(
                 "https://daangnbiz.oopy.io/"
@@ -35,7 +37,7 @@ export const LearnMore = () => {
             }}
           >
             <p>지역광고 심화 가이드</p>
-            <ArrowLink target="https://daangnbiz.oopy.io/" />
+            <ArrowLink target="https://daangnbiz.oopy.io/" id="content-howto"/>
           </DocsLink>
         </Item>
         <Item right>
