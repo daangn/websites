@@ -1,9 +1,7 @@
 /.vscode/*.json           linguist-language=JSON5
 
 /.yarn/**                 linguist-vendored
-/.yarn/plugins/**/*.cjs   binary linguist-vendored
-/.yarn/releases/*.cjs     binary linguist-vendored
-/.yarn/sdks/**/*.js       linguist-vendored
+/.yarn/releases/*         binary linguist-vendored
 
 /.pnp.*                   binary linguist-vendored
 

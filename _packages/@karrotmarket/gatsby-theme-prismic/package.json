@@ -22,11 +22,11 @@
   ],
   "peerDependencies": {
     "gatsby": "^2.25.0 || ^3.0.0 || ^4.0.0",
-    "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || next || experimental",
-    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0 || next || experimental"
+    "react": "*",
+    "react-dom": "*"
   },
   "dependencies": {
-    "@karrotmarket/prismic-config": "*",
+    "@karrotmarket/prismic-config": "workspace:^",
     "@prismicio/helpers": "2.2.0",
     "gatsby-plugin-image": "2.7.0",
     "gatsby-plugin-prismic-previews": "5.2.5",
