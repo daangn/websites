@@ -24,8 +24,8 @@
     "framer-motion": "4.1.17",
     "gatsby": "4.7.2",
     "gatsby-plugin-google-gtag": "4.7.0",
-    "gatsby-plugin-web-font-loader": "1.0.4",
     "gatsby-plugin-image": "2.7.0",
+    "gatsby-plugin-web-font-loader": "1.0.4",
     "polished": "4.1.4",
     "react": "next",
     "react-dom": "next"

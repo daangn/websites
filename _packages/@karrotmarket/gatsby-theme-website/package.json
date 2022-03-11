@@ -9,12 +9,12 @@
     "prepack": "yarn build"
   },
   "peerDependencies": {
+    "@karrotmarket/gatsby-theme-prismic": "*",
     "@stitches/react": "^0.1.0 || ^0.2.0 || ^1.0.0",
     "gatsby": "^2.25.0 || ^3.0.0 || ^4.0.0",
-    "gatsby-theme-prismic": "*",
     "polished": "^4.0.0",
-    "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || next || experimental",
-    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0 || next || experimental"
+    "react": "*",
+    "react-dom": "*"
   },
   "dependencies": {
     "@cometjs/core": "1.2.0",

@@ -10,19 +10,19 @@
   },
   "peerDependencies": {
     "gatsby": "^2.25.0 || ^3.0.0 || ^4.0.0",
-    "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || next || experimental",
-    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0 || next || experimental"
+    "react": "*",
+    "react-dom": "*"
   },
   "dependencies": {
     "@cometjs/core": "1.2.0",
     "@cometjs/graphql-utils": "1.1.0",
     "@cometjs/react-utils": "1.1.0",
     "@karrotmarket/design-token": "1.1.1",
-    "@karrotmarket/gatsby-plugin-lokalise-translation": "*",
+    "@karrotmarket/gatsby-plugin-lokalise-translation": "workspace:^",
     "@karrotmarket/gatsby-source-greenhouse-jobboard": "0.6.0",
-    "@karrotmarket/gatsby-theme-prismic": "*",
-    "@karrotmarket/gatsby-theme-website": "*",
-    "@karrotmarket/gatsby-transformer-job-post": "*",
+    "@karrotmarket/gatsby-theme-prismic": "workspace:^",
+    "@karrotmarket/gatsby-theme-website": "workspace:^",
+    "@karrotmarket/gatsby-transformer-job-post": "workspace:^",
     "@karrotmarket/react-stitches": "0.1.1-1",
     "@prismicio/helpers": "2.2.0",
     "@reach/router": "1.3.4",
