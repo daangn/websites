@@ -50,7 +50,7 @@
     "@babel/plugin-transform-typescript": "7.16.8",
     "@types/dotenv-safe": "8.1.2",
     "@types/node": "16.11.26",
-    "@types/react": "17.0.39",
+    "@types/react": "17.0.40",
     "@types/react-dom": "17.0.13",
     "babel-preset-gatsby-package": "2.7.0",
     "dotenv-safe": "8.2.0",
