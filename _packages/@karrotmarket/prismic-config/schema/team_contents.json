@@ -855,7 +855,8 @@
                 "type": "Link",
                 "config": {
                   "label": "웹 링크",
-                  "placeholder": "웹 바로가기 링크 (없으면 안나옴)"
+                  "placeholder": "웹 바로가기 링크 (없으면 안나옴)",
+                  "select": null
                 }
               },
               "link_text": {
@@ -1115,6 +1116,27 @@
           }
         },
         "label": "FAQ 항목"
+      }
+    },
+    "faq_page_entries": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "faq_page": {
+            "type": "Link",
+            "config": {
+              "select": "document",
+              "customtypes": [
+                "faq"
+              ],
+              "tags": [
+                "team.daangn.com"
+              ],
+              "label": "FAQ 컨텐츠"
+            }
+          }
+        },
+        "label": "\bFAQ 페이지"
       }
     }
   },
