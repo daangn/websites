@@ -15,6 +15,13 @@ const config: GatsbyConfig = {
   plugins: [
     'gatsby-plugin-gatsby-cloud',
     {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'translations',
+        path: 'src/translations',
+      },
+    },
+    {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name: siteMetadata.siteName,
@@ -97,6 +104,7 @@ const config: GatsbyConfig = {
     },
 
     // 커스텀 플러그인
+    '@karrotmarket/gatsby-plugin-lokalise-translation',
     {
       resolve: '@karrotmarket/gatsby-theme-team-website',
       options: {
