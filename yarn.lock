@@ -9279,6 +9279,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"gatsby-core-utils@npm:^3.10.0":
+  version: 3.10.0
+  resolution: "gatsby-core-utils@npm:3.10.0"
+  dependencies:
+    "@babel/runtime": ^7.15.4
+    ci-info: 2.0.0
+    configstore: ^5.0.1
+    fastq: ^1.13.0
+    file-type: ^16.5.3
+    fs-extra: ^10.0.0
+    got: ^11.8.3
+    import-from: ^4.0.0
+    lmdb: ^2.2.4
+    lock: ^1.1.0
+    node-object-hash: ^2.3.10
+    proper-lockfile: ^4.1.2
+    resolve-from: ^5.0.0
+    tmp: ^0.2.1
+    xdg-basedir: ^4.0.0
+  checksum: 0328b730df1ad2d2f1d60fc17692e9afdd4378b66dcba46f31f32d0afe198ebd3698c83c9503a12a7cb17190575a52c3532647a2816a7fb436705d8937d105a0
+  languageName: node
+  linkType: hard
+
 "gatsby-core-utils@npm:^3.7.0":
   version: 3.7.0
   resolution: "gatsby-core-utils@npm:3.7.0"
@@ -9798,6 +9821,28 @@ __metadata:
   peerDependencies:
     gatsby: ^4.0.0-next
   checksum: bc6c72ec501fd945bccdce0200ae1677c502dfca18a96fe2fa27ec70f8b1876755ab7dca09ff4e0d1a5959068785070bfcebcff9f6460c447d6ebc7204bfef89
+  languageName: node
+  linkType: hard
+
+"gatsby-source-filesystem@npm:^4.10.0":
+  version: 4.10.0
+  resolution: "gatsby-source-filesystem@npm:4.10.0"
+  dependencies:
+    "@babel/runtime": ^7.15.4
+    chokidar: ^3.5.2
+    file-type: ^16.5.3
+    fs-extra: ^10.0.0
+    gatsby-core-utils: ^3.10.0
+    got: ^9.6.0
+    md5-file: ^5.0.0
+    mime: ^2.5.2
+    pretty-bytes: ^5.4.1
+    progress: ^2.0.3
+    valid-url: ^1.0.9
+    xstate: ^4.26.1
+  peerDependencies:
+    gatsby: ^4.0.0-next
+  checksum: 1cfcc9ce99d794b7ba5e2e1359a3755652eacd4e89b53460c6c79d6d2945dca88cfc1f4f944cd9c25b25f7e890eb685a339b0f4ee7e7b96f4ee14326d8f093da
   languageName: node
   linkType: hard
 
@@ -10975,7 +11020,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"import-from@npm:4.0.0":
+"import-from@npm:4.0.0, import-from@npm:^4.0.0":
   version: 4.0.0
   resolution: "import-from@npm:4.0.0"
   checksum: 1fa29c05b048da18914e91d9a529e5d9b91774bebbfab10e53f59bcc1667917672b971cf102fee857f142e5e433ce69fa1f0a596e1c7d82f9947a5ec352694b9
@@ -12700,6 +12745,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lmdb@npm:^2.2.4":
+  version: 2.2.6
+  resolution: "lmdb@npm:2.2.6"
+  dependencies:
+    msgpackr: ^1.5.4
+    nan: ^2.14.2
+    node-gyp: latest
+    node-gyp-build: ^4.2.3
+    ordered-binary: ^1.2.4
+    weak-lru-cache: ^1.2.2
+  checksum: 8df512625293e82472e93b9c092b05a736b128c5fdb1798a5ef15f1a271c53be410bb113f3dd07a991d9605f9e452fb04fa1efe5d6e8dce3ffca178dbb88a980
+  languageName: node
+  linkType: hard
+
 "load-bmfont@npm:^1.3.1, load-bmfont@npm:^1.4.0":
   version: 1.4.1
   resolution: "load-bmfont@npm:1.4.1"
@@ -13599,6 +13658,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"msgpackr@npm:^1.5.4":
+  version: 1.5.5
+  resolution: "msgpackr@npm:1.5.5"
+  dependencies:
+    msgpackr-extract: ^1.0.14
+  dependenciesMeta:
+    msgpackr-extract:
+      optional: true
+  checksum: 80e0b37b9991f6d35b2b4b0419745e28026225d42263128dc797443d3762fa7fde979106a1914efabe8a2a5e0b704f9c2058f236833f873a577d2e81e025c3ab
+  languageName: node
+  linkType: hard
+
 "multer@npm:^1.4.3":
   version: 1.4.4
   resolution: "multer@npm:1.4.4"
@@ -14244,6 +14315,13 @@ __metadata:
   version: 1.2.3
   resolution: "ordered-binary@npm:1.2.3"
   checksum: b67895fc9e8f4626d1854a902f70bb7c45c711719a1e551cc3f565c8706b552571373070e919d7ad91b8a4220933619048ca7b151de5b8330ba9b10082c8eff6
+  languageName: node
+  linkType: hard
+
+"ordered-binary@npm:^1.2.4":
+  version: 1.2.4
+  resolution: "ordered-binary@npm:1.2.4"
+  checksum: 69090e7d6e3428ea2f232b612e5d77e6a793d6c19e1639911d6b1d9815eb83830747cd5d138fda79a5be61aa015a75c4fcf44b521423b896ca24d14bdbc0d517
   languageName: node
   linkType: hard
 
@@ -17863,6 +17941,7 @@ __metadata:
     gatsby-plugin-robots-txt: 1.7.0
     gatsby-plugin-sitemap: 5.7.0
     gatsby-plugin-typegen: 2.2.4
+    gatsby-source-filesystem: ^4.10.0
     polished: 4.1.4
     react: next
     react-dom: next
@@ -18970,6 +19049,13 @@ __metadata:
   version: 1.2.1
   resolution: "weak-lru-cache@npm:1.2.1"
   checksum: 2e26bd78bc97a4d3fec63e3185c3cee92bbfd4ae2fc41c7eb129f83b990339ecb47baa09423eecba26626af878ba872d5916421a4343efdfa4e514145dc45438
+  languageName: node
+  linkType: hard
+
+"weak-lru-cache@npm:^1.2.2":
+  version: 1.2.2
+  resolution: "weak-lru-cache@npm:1.2.2"
+  checksum: 0fbe16839d193ed82ddb4fe331ca8cfaee2ecbd42596aa02366c708956cf41f7258f2d5411c3bc9aa099c26058dc47afbd2593d449718a18e4ef4d870c5ace18
   languageName: node
   linkType: hard
 

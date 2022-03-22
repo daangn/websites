@@ -94,13 +94,6 @@ const config = (): GatsbyConfig => ({
         linkResolver,
       },
     },
-    {
-      resolve: '@karrotmarket/gatsby-plugin-lokalise-translation',
-      options: {
-        lokaliseApiToken: process.env.LOKALISE_API_TOKEN,
-        lokaliseProjectId: process.env.LOKALISE_PROJECT_ID,
-      },
-    },
   ],
 });
 
