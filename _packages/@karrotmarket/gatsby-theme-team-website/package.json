@@ -14,7 +14,7 @@
     "react-dom": "*"
   },
   "dependencies": {
-    "@cometjs/core": "1.2.0",
+    "@cometjs/core": "2.0.2",
     "@cometjs/graphql-utils": "1.1.0",
     "@cometjs/react-utils": "1.1.0",
     "@karrotmarket/design-token": "1.1.1",
