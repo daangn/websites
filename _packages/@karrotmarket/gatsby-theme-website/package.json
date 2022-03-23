@@ -30,7 +30,7 @@
     "@types/node": "16.11.26",
     "@types/react": "17.0.40",
     "@types/react-dom": "17.0.13",
-    "babel-preset-gatsby-package": "2.7.0",
+    "babel-preset-gatsby-package": "2.10.0",
     "gatsby": "next",
     "polished": "4.1.4",
     "react": "next",

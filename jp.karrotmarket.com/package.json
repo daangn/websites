@@ -22,9 +22,9 @@
   "dependencies": {
     "@karrotmarket/gatsby-theme-global-website": "*",
     "framer-motion": "4.1.17",
-    "gatsby": "4.7.2",
-    "gatsby-plugin-google-gtag": "4.7.0",
-    "gatsby-plugin-image": "2.7.0",
+    "gatsby": "4.10.2",
+    "gatsby-plugin-google-gtag": "4.10.0",
+    "gatsby-plugin-image": "2.10.0",
     "gatsby-plugin-web-font-loader": "1.0.4",
     "polished": "4.1.4",
     "react": "next",
@@ -36,7 +36,7 @@
     "@babel/plugin-transform-react-jsx": "7.17.3",
     "@babel/plugin-transform-typescript": "7.16.8",
     "babel-plugin-polished": "1.1.0",
-    "babel-preset-gatsby-package": "2.7.0",
+    "babel-preset-gatsby-package": "2.10.0",
     "typescript": "4.6.2"
   }
 }
