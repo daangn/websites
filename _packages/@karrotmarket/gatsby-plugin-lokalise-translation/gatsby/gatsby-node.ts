@@ -76,7 +76,10 @@ async function renderMessagesFragment(
   keys: string[],
   stripIndent = String.raw,
 ) {
+  
   const outputPath = path.join(outputDir, 'lokalise-translation.js');
+  await fs.mkdir(outputDir, { recursive: true });
+
   const content = stripIndent`
     /* eslint-disable */
 
