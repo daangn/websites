@@ -3005,10 +3005,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@karrotmarket/design-token@npm:1.1.1":
-  version: 1.1.1
-  resolution: "@karrotmarket/design-token@npm:1.1.1"
-  checksum: b6c8204444fffe6183fd8a07a3452bc5a1dfeadf1c92927b581e489c385bee3a2e5be3f51238e3c8a14cf0c033308ff8647ed2bdd9161f6a798fb6f90a90c96c
+"@karrotmarket/design-token@npm:1.1.2":
+  version: 1.1.2
+  resolution: "@karrotmarket/design-token@npm:1.1.2"
+  checksum: 9ec1524e9a573a07931d40cd4806692f5670721a6ec5247bd0449e0389088822a9a91496bfe422929a35aa12a2d663b1f2537fdba8e1dcebbf6ba6ff139e640c
   languageName: node
   linkType: hard
 
@@ -3048,7 +3048,7 @@ __metadata:
     "@babel/cli": 7.17.6
     "@babel/core": 7.17.8
     "@cometjs/graphql-utils": 2.0.2
-    "@karrotmarket/design-token": 1.1.1
+    "@karrotmarket/design-token": 1.1.2
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website": "workspace:^"
     "@karrotmarket/react-stitches": 0.1.1-1
@@ -3128,7 +3128,7 @@ __metadata:
     "@cometjs/core": 2.0.2
     "@cometjs/graphql-utils": 2.0.2
     "@cometjs/react-utils": 1.1.0
-    "@karrotmarket/design-token": 1.1.1
+    "@karrotmarket/design-token": 1.1.2
     "@karrotmarket/gatsby-plugin-lokalise-translation": "workspace:^"
     "@karrotmarket/gatsby-source-greenhouse-jobboard": 0.6.0
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
@@ -5277,7 +5277,7 @@ __metadata:
     "@babel/plugin-transform-typescript": 7.16.8
     "@cometjs/core": 2.0.2
     "@cometjs/graphql-utils": 2.0.2
-    "@karrotmarket/design-token": 1.1.1
+    "@karrotmarket/design-token": 1.1.2
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website": "workspace:^"
     "@karrotmarket/react-stitches": 0.1.1-1
