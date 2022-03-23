@@ -10578,6 +10578,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"gatsby-plugin-vercel-deploy@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "gatsby-plugin-vercel-deploy@npm:1.0.1"
+  peerDependencies:
+    gatsby: ^4.0.0
+  checksum: 19d03c7b3ec4b12867d8c38f236cb9aecb3168fce48e8696513a1529885f6d5fa9ff402c158d7f41f3541cc70a73f88f849706e23a5feec5f113e86933639280
+  languageName: node
+  linkType: hard
+
 "gatsby-plugin-web-font-loader@npm:1.0.4":
   version: 1.0.4
   resolution: "gatsby-plugin-web-font-loader@npm:1.0.4"
@@ -18757,6 +18766,7 @@ __metadata:
     gatsby-plugin-sitemap: 5.10.1
     gatsby-plugin-typegen: 2.2.4
     gatsby-source-filesystem: 4.10.0
+    gatsby-plugin-vercel-deploy: ^1.0.1
     polished: 4.1.4
     react: next
     react-dom: next
