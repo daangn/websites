@@ -3,10 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "prepare-gatsby": "babel gatsby -d . -x .ts,.tsx --presets gatsby-package",
-    "postinstall": "yarn prepare-gatsby",
-    "develop": "yarn prepare-gatsby && gatsby develop",
-    "build": "yarn prepare-gatsby && gatsby build  --prefix-paths",
+    "develop": "gatsby develop",
+    "build": "gatsby build  --prefix-paths",
     "clean": "gatsby clean",
     "serve": "gatsby serve"
   },
@@ -42,11 +40,9 @@
     "react-text-loop": "2.3.0"
   },
   "devDependencies": {
-    "@babel/cli": "7.17.6",
     "@babel/core": "7.17.5",
     "@babel/plugin-transform-react-jsx": "7.17.3",
     "@babel/plugin-transform-typescript": "7.16.8",
-    "babel-preset-gatsby-package": "2.10.0",
     "typescript": "4.6.2"
   }
 }

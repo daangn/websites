@@ -22,9 +22,8 @@
     "react-dom": "18.0.0-rc.1-next-f468816ef-20220225"
   },
   "scripts": {
-    "postinstall": "yarn init:plugins && yarn init:sites",
-    "init:plugins": "ultra --recursive --filter \"_packages/*\" build",
-    "init:sites": "ultra --recursive prepare-gatsby"
+    "postinstall": "yarn init:plugins",
+    "init:plugins": "ultra --recursive --filter \"_packages/*\" build"
   },
   "devDependencies": {
     "@types/node": "16.11.26",

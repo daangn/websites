@@ -42,7 +42,7 @@ const config: GatsbyConfig = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/image/`,
+        path: `src/image/`,
       },
     },
     {
