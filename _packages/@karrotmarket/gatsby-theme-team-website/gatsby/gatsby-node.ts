@@ -159,6 +159,12 @@ export const createPages: GatsbyNode['createPages'] = async ({
         slug: string,
       }>,
     },
+    allPrismicFaq: {
+      nodes: Array<{
+        id: string,
+        uid: string,
+      }>
+    }
   };
 
   const { data, errors } = await graphql<Data>(gql`
@@ -189,6 +195,12 @@ export const createPages: GatsbyNode['createPages'] = async ({
         nodes {
           id
           slug
+        }
+      }
+      allPrismicFaq {
+        nodes {
+          id
+          uid
         }
       }
     }
@@ -237,6 +249,18 @@ export const createPages: GatsbyNode['createPages'] = async ({
         navigationId,
       },
     });
+  }
+
+  for (const faqGroup of data.allPrismicFaq.nodes) {
+    actions.createPage({
+      path: `/faq/${faqGroup.uid}/`,
+      component: require.resolve('./src/templates/FaqGroupPage.tsx'),
+      context: {
+        locale,
+        navigationId,
+        id: faqGroup.id
+      }
+    })
   }
 
   for (const jobPost of data.allJobPost.nodes) {
