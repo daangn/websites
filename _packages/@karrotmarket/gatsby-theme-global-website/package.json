@@ -17,7 +17,7 @@
     "react-dom": "*"
   },
   "dependencies": {
-    "@cometjs/graphql-utils": "1.1.0",
+    "@cometjs/graphql-utils": "2.0.2",
     "@karrotmarket/design-token": "1.1.1",
     "@karrotmarket/gatsby-theme-prismic": "workspace:^",
     "@karrotmarket/gatsby-theme-website": "workspace:^",
