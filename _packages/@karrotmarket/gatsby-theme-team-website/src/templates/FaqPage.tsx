@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { rem } from 'polished';
-import type { PageProps } from 'gatsby';
+import { navigate, PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { GatsbySeo, FAQJsonLd } from 'gatsby-plugin-next-seo';
@@ -8,11 +8,14 @@ import { required } from '@cometjs/core';
 
 import _PageTitle from '../components/PageTitle';
 import FaqAccordion from '../components/FaqAccordion';
+import _Search from '../components/Search';
+import { ReactComponent as SearchdSvg } from '../assets/searchOutlineM.svg';
 
 type FaqPageProps = PageProps<GatsbyTypes.TeamWebsite_FaqPageQuery, GatsbyTypes.SitePageContext>;
 
 export const query = graphql`
   query TeamWebsite_FaqPage(
+    $id: String!
     $locale: String!
     $navigationId: String!
   ) {
@@ -30,13 +33,21 @@ export const query = graphql`
           text
         }
 
-        ...TeamWebsite_FaqAccordion_faqData
-        faq_entries {
-          question
-          answer {
-            text
+        faq_page_entries {
+          faq_page {
+            id
+            uid
           }
         }
+      }
+    }
+
+    prismicFaq(
+      id: { eq: $id }
+    ) {
+      uid
+      data {
+        ...TeamWebsite_FaqAccordion_faqData
       }
     }
   }
@@ -44,21 +55,65 @@ export const query = graphql`
 
 const Container = styled('main', {
   contentArea: true,
-  maxWidth: rem(760),
+  maxWidth: rem(1200),
 });
 
 const PageTitle = styled(_PageTitle, {
-  marginBottom: rem(80),
+  marginBottom: rem(56),
 
   '@sm': {
     marginBottom: rem(100),
   },
 });
 
+const Filters = styled('div', {
+  display: 'flex',
+  justifyContent: 'space-between',
+  marginBottom: rem(56)
+});
+
+const FaqGroupWrapper = styled('ul', {
+  display: 'flex',
+  alignItems: 'center',
+  padding: '0',
+  gap: rem(50)
+});
+
+const FaqGroup = styled('li', {
+  fontSize: '$subtitle3',
+  fontWeight: 'bold',
+  listStyle: 'none',
+  float: 'left',
+  cursor: 'pointer',
+
+  variants: {
+    selected: {
+      true: {
+        color: '$carrot600',
+      },
+      false: {
+        '&:hover': {
+          color: '$gray600'
+        },
+      }
+    }
+  }
+});
+
+const Search = styled(_Search, {
+  '@lg': {
+    minWidth: rem(300)
+  }
+})
+
 const FaqPage: React.FC<FaqPageProps> = ({
   data,
 }) => {
-  required(data.prismicTeamContents?.data);
+  required(data.prismicTeamContents?.data)
+
+  const onGroupChange = (uid: string) => {
+    navigate(`/faq/${uid}/`)
+  }
 
   return (
     <Container>
@@ -71,7 +126,7 @@ const FaqPage: React.FC<FaqPageProps> = ({
         } : undefined}
       />
       <FAQJsonLd
-        questions={data.prismicTeamContents.data.faq_entries!.map(faq => ({
+        questions={data.prismicFaq.data.entries!.map(faq => ({
           question: faq!.question || '',
           answer: faq!.answer!.text || '',
         }))}
@@ -79,7 +134,24 @@ const FaqPage: React.FC<FaqPageProps> = ({
       <PageTitle>
         {data.prismicTeamContents.data.faq_page_title.text}
       </PageTitle>
-      <FaqAccordion data={data.prismicTeamContents.data} />
+      <Filters>
+        <FaqGroupWrapper>
+          {data.prismicTeamContents?.data.faq_page_entries.map((faq) => (
+            <FaqGroup 
+              key={faq.faq_page.id} 
+              selected={faq.faq_page.uid === data.prismicFaq.uid} 
+              onClick={() => onGroupChange(faq.faq_page.uid)}
+            >
+              {faq.faq_page.uid.replace(/\-/, ' ')}
+            </FaqGroup>
+          ))}
+        </FaqGroupWrapper>
+        <Search>
+          <input />
+          <SearchdSvg />
+        </Search>
+      </Filters>
+      <FaqAccordion data={data.prismicFaq.data} />
     </Container>
   );
 };

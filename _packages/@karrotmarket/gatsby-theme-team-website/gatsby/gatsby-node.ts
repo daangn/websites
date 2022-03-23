@@ -140,6 +140,12 @@ export const createPages: GatsbyNode['createPages'] = async ({
         enable_faq_page?: boolean,
         enable_life_page?: boolean,
         enable_culture_page?: boolean,
+        faq_page_entries: Array<{
+          faq_page: {
+            id: string,
+            uid: string,
+          }
+        }>,
       },
     },
     allPrismicTeamsArticle: {
@@ -174,6 +180,12 @@ export const createPages: GatsbyNode['createPages'] = async ({
           enable_faq_page
           enable_life_page
           enable_culture_page
+          faq_page_entries {
+            faq_page {
+              id
+              uid
+            }
+          }
         }
       }
       allPrismicTeamsArticle(
@@ -218,16 +230,15 @@ export const createPages: GatsbyNode['createPages'] = async ({
     throw new Error(`Prismic ${locale} 에 채용사이트 컨텐츠 데이터가 없습니다.`);
   }
 
-  if (data.prismicTeamContents.data.enable_faq_page) {
-    actions.createPage({
-      path: '/faq/',
-      component: require.resolve('./src/templates/FaqPage.tsx'),
-      context: {
-        locale,
-        navigationId,
-      },
-    });
+  if (!data.prismicTeamContents.data.enable_faq_page || !data.prismicTeamContents.data.faq_page_entries.length) {
+    throw new Error('FAQ 컨텐츠 데이터가 없습니다.')
   }
+
+  actions.createRedirect({
+    fromPath: '/faq/',
+    toPath: `/faq/${data.prismicTeamContents.data.faq_page_entries[0].faq_page.uid}/`,
+    isPermanent: true,
+  });
 
   if (data.prismicTeamContents.data.enable_life_page) {
     actions.createPage({
@@ -251,14 +262,14 @@ export const createPages: GatsbyNode['createPages'] = async ({
     });
   }
 
-  for (const faqGroup of data.allPrismicFaq.nodes) {
+  for (const faq of data.allPrismicFaq.nodes) {
     actions.createPage({
-      path: `/faq/${faqGroup.uid}/`,
-      component: require.resolve('./src/templates/FaqGroupPage.tsx'),
+      path: `/faq/${faq.uid}/`,
+      component: require.resolve('./src/templates/FaqPage.tsx'),
       context: {
         locale,
         navigationId,
-        id: faqGroup.id
+        id: faq.id,
       }
     })
   }

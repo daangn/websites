@@ -11,8 +11,8 @@ type FaqAccordionProps = {
 };
 
 export const query = graphql`
-  fragment TeamWebsite_FaqAccordion_faqData on PrismicTeamContentsDataType {
-    faq_entries {
+  fragment TeamWebsite_FaqAccordion_faqData on PrismicFaqDataType {
+    entries {
       ...TeamWebsite_FaqAccordionItem_entry
     }
   }
@@ -59,7 +59,7 @@ const FaqAccordion: React.FC<FaqAccordionProps> = ({
   return (
     <Container className={className}>
       <AnimatePresence initial={false}>
-        {data.faq_entries
+        {data.entries
         .filter(entry => entry.question && entry.answer)
         .map(entry => (
           <FaqAccordionItem
