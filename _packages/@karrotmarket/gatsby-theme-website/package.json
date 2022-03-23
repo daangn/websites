@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@babel/cli": "7.17.6",
-    "@babel/core": "7.17.5",
+    "@babel/core": "7.17.8",
     "@stitches/react": "1.2.7",
     "@types/node": "16.11.26",
     "@types/react": "17.0.40",
