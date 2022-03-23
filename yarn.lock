@@ -5160,7 +5160,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "ads-local.daangn.com@workspace:ads-local.daangn.com"
   dependencies:
-    "@babel/cli": 7.17.6
     "@babel/core": 7.17.5
     "@babel/plugin-transform-react-jsx": 7.17.3
     "@babel/plugin-transform-typescript": 7.16.8
@@ -5172,7 +5171,6 @@ __metadata:
     "@karrotmarket/react-stitches": 0.1.1-1
     "@stitches/react": 1.2.7
     adblock-detect-react: 1.0.5
-    babel-preset-gatsby-package: 2.10.0
     gatsby: 4.10.2
     gatsby-plugin-google-tagmanager: 4.10.1
     gatsby-plugin-image: 2.10.0
@@ -6331,13 +6329,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "ca.karrotmarket.com@workspace:ca.karrotmarket.com"
   dependencies:
-    "@babel/cli": 7.17.6
     "@babel/core": 7.17.5
     "@babel/plugin-transform-react-jsx": 7.17.3
     "@babel/plugin-transform-typescript": 7.16.8
     "@karrotmarket/gatsby-theme-global-website": "workspace:^"
     babel-plugin-polished: 1.1.0
-    babel-preset-gatsby-package: 2.10.0
     gatsby: 4.10.2
     gatsby-plugin-google-gtag: 4.10.0
     react: next
@@ -6530,7 +6526,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "careers.ca.karrotmarket.com@workspace:careers.ca.karrotmarket.com"
   dependencies:
-    "@babel/cli": 7.17.6
     "@babel/core": 7.17.5
     "@babel/plugin-transform-react-jsx": 7.17.3
     "@babel/plugin-transform-typescript": 7.16.8
@@ -6541,7 +6536,6 @@ __metadata:
     "@types/node": 16.11.26
     "@types/react": 17.0.40
     "@types/react-dom": 17.0.13
-    babel-preset-gatsby-package: 2.10.0
     dotenv-safe: 8.2.0
     gatsby: 4.10.2
     gatsby-plugin-advanced-sitemap: 2.0.0
@@ -6562,7 +6556,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "careers.jp.karrotmarket.com@workspace:careers.jp.karrotmarket.com"
   dependencies:
-    "@babel/cli": 7.17.6
     "@babel/core": 7.17.5
     "@babel/plugin-transform-react-jsx": 7.17.3
     "@babel/plugin-transform-typescript": 7.16.8
@@ -6573,7 +6566,6 @@ __metadata:
     "@types/node": 16.11.26
     "@types/react": 17.0.40
     "@types/react-dom": 17.0.13
-    babel-preset-gatsby-package: 2.10.0
     dotenv-safe: 8.2.0
     gatsby: 4.10.2
     gatsby-plugin-advanced-sitemap: 2.0.0
@@ -13038,13 +13030,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "jp.karrotmarket.com@workspace:jp.karrotmarket.com"
   dependencies:
-    "@babel/cli": 7.17.6
     "@babel/core": 7.17.5
     "@babel/plugin-transform-react-jsx": 7.17.3
     "@babel/plugin-transform-typescript": 7.16.8
     "@karrotmarket/gatsby-theme-global-website": "*"
     babel-plugin-polished: 1.1.0
-    babel-preset-gatsby-package: 2.10.0
     framer-motion: 4.1.17
     gatsby: 4.10.2
     gatsby-plugin-google-gtag: 4.10.0
@@ -18609,7 +18599,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "team.daangn.com@workspace:team.daangn.com"
   dependencies:
-    "@babel/cli": 7.17.6
     "@babel/core": 7.17.5
     "@babel/plugin-transform-react-jsx": 7.17.3
     "@babel/plugin-transform-typescript": 7.16.8
@@ -18620,7 +18609,6 @@ __metadata:
     "@types/node": 16.11.26
     "@types/react": 17.0.40
     "@types/react-dom": 17.0.13
-    babel-preset-gatsby-package: 2.10.0
     cjk-slug: 0.3.0
     dotenv-safe: 8.2.0
     gatsby: 4.10.2
@@ -19242,13 +19230,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "uk.karrotmarket.com@workspace:uk.karrotmarket.com"
   dependencies:
-    "@babel/cli": 7.17.6
     "@babel/core": 7.17.5
     "@babel/plugin-transform-react-jsx": 7.17.3
     "@babel/plugin-transform-typescript": 7.16.8
     "@karrotmarket/gatsby-theme-global-website": "workspace:^"
     babel-plugin-polished: 1.1.0
-    babel-preset-gatsby-package: 2.10.0
     gatsby: 4.10.2
     gatsby-plugin-google-gtag: 4.10.0
     gatsby-plugin-google-tagmanager: 4.10.1
@@ -19518,13 +19504,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "us.karrotmarket.com@workspace:us.karrotmarket.com"
   dependencies:
-    "@babel/cli": 7.17.6
     "@babel/core": 7.17.5
     "@babel/plugin-transform-react-jsx": 7.17.3
     "@babel/plugin-transform-typescript": 7.16.8
     "@karrotmarket/gatsby-theme-global-website": "workspace:^"
     babel-plugin-polished: 1.1.0
-    babel-preset-gatsby-package: 2.10.0
     gatsby: 4.10.2
     gatsby-plugin-google-gtag: 4.10.0
     react: next
