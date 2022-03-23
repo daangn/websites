@@ -1,126 +1,85 @@
 import * as path from 'path';
 import * as fs from 'fs/promises';
-import type { GatsbyNode } from 'gatsby';
-import type { Key, Translation } from '@lokalise/node-api';
-import { LokaliseApi } from '@lokalise/node-api';
-
-type PluginOptions = {
-  lokaliseApiToken: string,
-  lokaliseProjectId: string,
-};
-
-const gql = String.raw;
-
-export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
-  Joi,
-}) => {
-  return Joi.object({
-    lokaliseApiToken: Joi.string().required(),
-    lokaliseProjectId: Joi.string().required(),
-  });
-};
+import type { GatsbyNode, NodeInput } from 'gatsby';
 
 export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({
   actions,
 }) => {
+  const gql = String.raw;
 
   actions.createTypes(gql`
     type LokaliseTranslation implements Node {
-      locale: String!
       messages: LokaliseMessages!
     }
 
-    type LokaliseMessages
+    type LokaliseMessages {
+      _placeholder: String!
+    }
   `);
 }
 
-export const sourceNodes: GatsbyNode['sourceNodes'] = async ({
+let emitted = false;
+
+export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
+  store,
+  node,
   actions,
+  loadNodeContent,
   createNodeId,
   createContentDigest,
   reporter,
-}, pluginOptions) => {
-  const { lokaliseApiToken, lokaliseProjectId } = pluginOptions as unknown as PluginOptions;
-  const lokaliseApi = new LokaliseApi({ apiKey: lokaliseApiToken });
-
-  const { items } = await lokaliseApi.keys().list({
-    project_id: lokaliseProjectId,
-    page: 1,
-    // FIXME: 어... 500개면 되겠지
-    // FIXME: Rate-limit 대응 어떻게 하지
-    limit: 500,
-    include_translations: 1,
-  });
-
-  const keys = items as Key[];
-
-  if (!keys || keys.length === 0) {
-    reporter.panic(`no keys found at project_id=${lokaliseProjectId}`);
+}) => {
+  if (!(
+    node.internal.type === 'File' &&
+    node.internal.mediaType === 'application/json' &&
+    node.sourceInstanceName === 'translations'
+  )) {
+    return;
   }
+
+  const { program } = store.getState();
+  const baseDir = program.directory;
 
   type TranslationKey = string;
   type TranslationMessage = string;
-  type LokaliseTranslation = Record<TranslationKey, TranslationMessage>;
+  type LokaliseMessages = Record<TranslationKey, TranslationMessage>;
 
-  type Locale = string;
-  type LocalizedLokaliseTranslation = Record<Locale, LokaliseTranslation>;
+  const messages: LokaliseMessages = JSON.parse(await loadNodeContent(node));
+  const translationNode: NodeInput = {
+    id: createNodeId(`${node.id} >>> LokaliseTranslation`),
+    parent: node.id,
+    internal: {
+      type: 'LokaliseTranslation',
+      contentDigest: createContentDigest(messages),
+    },
+    messages,
+  };
 
-  const aggregatedTranslation: LocalizedLokaliseTranslation = {};
+  actions.createNode(translationNode);
+  actions.createParentChildLink({
+    parent: node,
+    child: translationNode,
+  });
 
-  for (const key of keys) {
-    if (!Array.isArray(key.translations)) {
-      continue;
-    }
-    const keyName = (key.key_name as Record<string, string>)['web'];
-    for (const t of key.translations as Translation[]) {
-      if (!aggregatedTranslation[t.language_iso]) {
-        aggregatedTranslation[t.language_iso] = {};
-      }
-      aggregatedTranslation[t.language_iso][keyName] = t.translation;
-    }
-  }
-
-  let emitted = false;
-
-  for (const [locale, messages] of Object.entries(aggregatedTranslation)) {
-    const keys = Object.keys(messages);
-
-    if (!emitted) {
-      await renderMessagesFragment(
-        keys,
-        reporter.stripIndent,
-      );
-      await renderMessagesType(
-        keys,
-        reporter.stripIndent,
-      );
-      emitted = true;
-    }
-
-    const content = {
-      locale,
-      messages,
-    };
-
-    actions.createNode({
-      id: createNodeId(`LokaliseTranslation:${locale}`),
-      ...content,
-      internal: {
-        type: 'LokaliseTranslation',
-        contentDigest: createContentDigest(content),
-      },
-    });
+  if (!emitted) {
+    await renderMessagesFragment(
+      path.join(baseDir, 'src/__generated__'),
+      Object.keys(messages),
+      reporter.stripIndent,
+    );
+    emitted = true;
   }
 };
 
 async function renderMessagesFragment(
+  outputDir: string,
   keys: string[],
   stripIndent = String.raw,
 ) {
-  const outputDir = path.join(__dirname, 'src');
-  fs.mkdir(outputDir, { recursive: true });
+  
+  const outputPath = path.join(outputDir, 'lokalise-translation.js');
+  await fs.mkdir(outputDir, { recursive: true });
 
-  const outputPath = path.join(outputDir, 'fragments.js');
   const content = stripIndent`
     /* eslint-disable */
 
@@ -136,6 +95,7 @@ async function renderMessagesFragment(
   await fs.writeFile(outputPath, content, 'utf-8');
 };
 
+// 어... 일단 안씀
 async function renderMessagesType(
   keys: string[],
   stripIndent = String.raw,
