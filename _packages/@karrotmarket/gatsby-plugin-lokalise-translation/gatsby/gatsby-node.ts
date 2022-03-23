@@ -62,8 +62,11 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
   });
 
   if (!emitted) {
+    const outputDir = path.join(baseDir, 'src/__generated__');
+    await fs.mkdir(outputDir, { recursive: true });
+
     await renderMessagesFragment(
-      path.join(baseDir, 'src/__generated__'),
+      outputDir,
       Object.keys(messages),
       reporter.stripIndent,
     );
@@ -76,10 +79,7 @@ async function renderMessagesFragment(
   keys: string[],
   stripIndent = String.raw,
 ) {
-  
   const outputPath = path.join(outputDir, 'lokalise-translation.js');
-  await fs.mkdir(outputDir, { recursive: true });
-
   const content = stripIndent`
     /* eslint-disable */
 
@@ -91,18 +91,15 @@ async function renderMessagesFragment(
       }
     \`;
   `;
-
   await fs.writeFile(outputPath, content, 'utf-8');
 };
 
 // 어... 일단 안씀
 async function renderMessagesType(
+  outputDir: string,
   keys: string[],
   stripIndent = String.raw,
 ) {
-  const outputDir = path.join(__dirname, 'src');
-  fs.mkdir(outputDir, { recursive: true });
-
   const outputPath = path.join(outputDir, 'types.ts');
   const content = stripIndent`
     /* eslint-disable */
@@ -113,6 +110,5 @@ async function renderMessagesType(
       | ${keys.map(key => `'${key}'`).join('\n      | ')}
     );
   `;
-
   await fs.writeFile(outputPath, content, 'utf-8');
 };
