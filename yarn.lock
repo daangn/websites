@@ -10596,7 +10596,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-source-filesystem@npm:4.10.0, gatsby-source-filesystem@npm:^4.10.0":
+"gatsby-source-filesystem@npm:4.10.0":
   version: 4.10.0
   resolution: "gatsby-source-filesystem@npm:4.10.0"
   dependencies:
@@ -18732,7 +18732,7 @@ __metadata:
     gatsby-plugin-robots-txt: 1.7.0
     gatsby-plugin-sitemap: 5.10.1
     gatsby-plugin-typegen: 2.2.4
-    gatsby-source-filesystem: ^4.10.0
+    gatsby-source-filesystem: 4.10.0
     polished: 4.1.4
     react: next
     react-dom: next
