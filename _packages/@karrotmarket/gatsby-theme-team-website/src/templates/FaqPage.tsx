@@ -9,7 +9,9 @@ import { required } from '@cometjs/core';
 import _PageTitle from '../components/PageTitle';
 import FaqAccordion from '../components/FaqAccordion';
 import _Search from '../components/Search';
+import { useFaqSearch } from '../utils/useFaqSearch'
 import { ReactComponent as SearchdSvg } from '../assets/searchOutlineM.svg';
+import FaqList from '../components/FaqList';
 
 type FaqPageProps = PageProps<GatsbyTypes.TeamWebsite_FaqPageQuery, GatsbyTypes.SitePageContext>;
 
@@ -37,6 +39,20 @@ export const query = graphql`
           faq_page {
             id
             uid
+          }
+        }
+      }
+    }
+
+    allPrismicFaq {
+      nodes {
+        id
+        data {
+          entries {
+            question
+            answer {
+              text
+            }
           }
         }
       }
@@ -109,6 +125,17 @@ const Search = styled(_Search, {
 const FaqPage: React.FC<FaqPageProps> = ({
   data,
 }) => {
+  const [searchQuery, setSearchQuery] = React.useState('');
+  const [_isSearchPending, startSearchTransition] = React.useTransition();
+
+  const handleSearchInputChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    startSearchTransition(() => {
+      setSearchQuery(e.target.value);
+    });
+  }
+
+  const searchResults = useFaqSearch(searchQuery);
+
   required(data.prismicTeamContents?.data)
 
   const onGroupChange = (uid: string) => {
@@ -147,11 +174,14 @@ const FaqPage: React.FC<FaqPageProps> = ({
           ))}
         </FaqGroupWrapper>
         <Search>
-          <input />
+          <input 
+            placeholder='검색'
+            onChange={handleSearchInputChange}
+          />
           <SearchdSvg />
         </Search>
       </Filters>
-      <FaqAccordion data={data.prismicFaq.data} />
+      {searchQuery ? <FaqList searchResults={searchResults} data={data} /> : <FaqAccordion data={data.prismicFaq.data} />}
     </Container>
   );
 };
