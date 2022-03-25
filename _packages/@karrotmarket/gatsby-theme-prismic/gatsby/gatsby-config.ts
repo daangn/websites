@@ -1,17 +1,19 @@
 import type { GatsbyConfig } from 'gatsby';
 import type { LinkResolverFunction } from '@prismicio/helpers';
 
+// https://karrot.prismic.io
 const repositoryName = 'karrot';
+
+// Note: 스키마 어차피 공개임
+const customTypesApiToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoibWFjaGluZTJtYWNoaW5lIiwiZGJpZCI6ImthcnJvdC00NzU3OWU1Yy1jZjg5LTQ3YTMtODVjMS01MDkzMWM3MzU0ZTlfNSIsImRhdGUiOjE2MzcwODI3NzMsImRvbWFpbiI6ImthcnJvdCIsImlhdCI6MTYzNzA4Mjc3M30.QQfmjFJK_vPZT9765NP1UI9h6Prvr46AnIOrAiUm0fU';
 
 type ThemeOptions = {
   accessToken?: string,
-  customTypesApiToken?: string,
   linkResolver?: LinkResolverFunction,
 };
 
 const config = ({
   accessToken,
-  customTypesApiToken,
   linkResolver,
 }: ThemeOptions): GatsbyConfig => ({
   plugins: [
@@ -22,7 +24,6 @@ const config = ({
         accessToken,
         customTypesApiToken,
         linkResolver,
-        schemas: require('@karrotmarket/prismic-config/schema'),
         shouldDownloadFiles: true,
         imageImgixParams: {
           auto: 'compress,format',

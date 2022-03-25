@@ -90,7 +90,6 @@ const config = (): GatsbyConfig => ({
       resolve: '@karrotmarket/gatsby-theme-prismic',
       options: {
         accessToken: process.env.PRISMIC_ACCESS_TOKEN,
-        customTypesApiToken: process.env.PRISMIC_CUSTOM_TYPES_API_TOKEN,
         linkResolver,
       },
     },

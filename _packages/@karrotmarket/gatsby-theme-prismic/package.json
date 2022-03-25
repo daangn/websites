@@ -26,7 +26,6 @@
     "react-dom": "*"
   },
   "dependencies": {
-    "@karrotmarket/prismic-config": "workspace:^",
     "@prismicio/helpers": "2.2.1",
     "gatsby-plugin-image": "2.10.0",
     "gatsby-plugin-prismic-previews": "5.2.5",
