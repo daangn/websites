@@ -3098,7 +3098,7 @@ __metadata:
     "@karrotmarket/prismic-config": "workspace:^"
     "@prismicio/helpers": 2.2.1
     "@types/node": 16.11.26
-    "@types/react": 17.0.40
+    "@types/react": 17.0.43
     "@types/react-dom": 17.0.13
     babel-preset-gatsby-package: 2.10.0
     concurrently: 7.0.0
@@ -3140,7 +3140,7 @@ __metadata:
     "@stitches/react": 1.2.7
     "@svgr/webpack": 6.2.1
     "@types/node": 16.11.26
-    "@types/react": 17.0.40
+    "@types/react": 17.0.43
     "@types/react-dom": 17.0.13
     babel-plugin-polished: 1.1.0
     babel-preset-gatsby-package: 2.10.0
@@ -3198,7 +3198,7 @@ __metadata:
     "@stitches/react": 1.2.7
     "@svgr/webpack": 6.2.1
     "@types/node": 16.11.26
-    "@types/react": 17.0.40
+    "@types/react": 17.0.43
     "@types/react-dom": 17.0.13
     babel-preset-gatsby-package: 2.10.0
     gatsby: next
@@ -4779,14 +4779,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:17.0.40":
-  version: 17.0.40
-  resolution: "@types/react@npm:17.0.40"
+"@types/react@npm:17.0.43":
+  version: 17.0.43
+  resolution: "@types/react@npm:17.0.43"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: 24d1b210b5bf3c7d49f9a7fe5490db02e005a1d989045a2d67528347557dd0bcb0d7bcf96088152697e97521ac4c9506d1357ee48a2b7d4e701c70d838dc7284
+  checksum: 981b0993f5b3ea9d3488b8cc883201e8ae47ba7732929f788f450a79fd72829e658080d5084e67caa008e58d989b0abc1d5f36ff0a1cda09315ea3a3c0c9dc11
   languageName: node
   linkType: hard
 
@@ -6665,7 +6665,7 @@ __metadata:
     "@karrotmarket/gatsby-transformer-job-post": "*"
     "@types/dotenv-safe": 8.1.2
     "@types/node": 16.11.26
-    "@types/react": 17.0.40
+    "@types/react": 17.0.43
     "@types/react-dom": 17.0.13
     dotenv-safe: 8.2.0
     gatsby: 4.10.2
@@ -6695,7 +6695,7 @@ __metadata:
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^"
     "@types/dotenv-safe": 8.1.2
     "@types/node": 16.11.26
-    "@types/react": 17.0.40
+    "@types/react": 17.0.43
     "@types/react-dom": 17.0.13
     dotenv-safe: 8.2.0
     gatsby: 4.10.2
@@ -18745,7 +18745,7 @@ __metadata:
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^"
     "@types/dotenv-safe": 8.1.2
     "@types/node": 16.11.26
-    "@types/react": 17.0.40
+    "@types/react": 17.0.43
     "@types/react-dom": 17.0.13
     cjk-slug: 0.3.0
     dotenv-safe: 8.2.0
