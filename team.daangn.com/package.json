@@ -18,6 +18,8 @@
     "not ie 11"
   ],
   "scripts": {
+    "postinstall": "yarn workspace @daangn/websites init:plugins",
+    "ultra": "yarn workspace @daangn/websites ultra --recursive --filter +team.daangn.com",
     "develop": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
@@ -51,6 +53,7 @@
     "@types/react": "17.0.43",
     "@types/react-dom": "17.0.13",
     "dotenv-safe": "8.2.0",
-    "typescript": "4.6.2"
+    "typescript": "4.6.2",
+    "ultra-runner": "^3.10.5"
   }
 }

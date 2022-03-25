@@ -5313,6 +5313,7 @@ __metadata:
     react-swipeable: 6.2.0
     react-text-loop: 2.3.0
     typescript: 4.6.2
+    ultra-runner: ^3.10.5
   languageName: unknown
   linkType: soft
 
@@ -6463,6 +6464,7 @@ __metadata:
     react: next
     react-dom: next
     typescript: 4.6.2
+    ultra-runner: ^3.10.5
   languageName: unknown
   linkType: soft
 
@@ -6673,6 +6675,7 @@ __metadata:
     react: next
     react-dom: next
     typescript: 4.6.2
+    ultra-runner: ^3.10.5
   languageName: unknown
   linkType: soft
 
@@ -6703,6 +6706,7 @@ __metadata:
     react: next
     react-dom: next
     typescript: 4.6.2
+    ultra-runner: ^3.10.5
   languageName: unknown
   linkType: soft
 
@@ -13175,6 +13179,7 @@ __metadata:
     react: next
     react-dom: next
     typescript: 4.6.2
+    ultra-runner: ^3.10.5
   languageName: unknown
   linkType: soft
 
@@ -18756,6 +18761,7 @@ __metadata:
     react: next
     react-dom: next
     typescript: 4.6.2
+    ultra-runner: ^3.10.5
   languageName: unknown
   linkType: soft
 
@@ -19372,10 +19378,11 @@ __metadata:
     react: next
     react-dom: next
     typescript: 4.6.2
+    ultra-runner: ^3.10.5
   languageName: unknown
   linkType: soft
 
-"ultra-runner@npm:3.10.5":
+"ultra-runner@npm:3.10.5, ultra-runner@npm:^3.10.5":
   version: 3.10.5
   resolution: "ultra-runner@npm:3.10.5"
   dependencies:
@@ -19645,6 +19652,7 @@ __metadata:
     react: next
     react-dom: next
     typescript: 4.6.2
+    ultra-runner: ^3.10.5
   languageName: unknown
   linkType: soft
 
