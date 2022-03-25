@@ -19,7 +19,7 @@
   ],
   "scripts": {
     "postinstall": "yarn workspace @daangn/websites init:plugins",
-    "ultra": "yarn workspace @daangn/websites ultra --recursive --filter +team.daangn.com",
+    "ultra": "yarn workspace @daangn/websites ultra --recursive --filter +careers.jp.karrotmarket.com",
     "develop": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
