@@ -18,7 +18,6 @@
     "not ie 11"
   ],
   "scripts": {
-    "postinstall": "yarn workspace @daangn/websites init:plugins",
     "ultra": "yarn workspace @daangn/websites ultra --recursive --filter +careers.ca.karrotmarket.com",
     "develop": "gatsby develop",
     "build": "gatsby build",
