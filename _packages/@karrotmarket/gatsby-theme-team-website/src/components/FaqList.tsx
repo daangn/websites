@@ -17,10 +17,7 @@ export const query = graphql`
       id
       data {
         entries {
-          question
-          answer {
-            html
-          }
+          ...TeamWebsite_FaqAccordionItem_entry
         }
       }
     }
