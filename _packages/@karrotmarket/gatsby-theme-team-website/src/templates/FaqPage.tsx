@@ -11,7 +11,7 @@ import FaqAccordion from '../components/FaqAccordion';
 import _Search from '../components/Search';
 import { useFaqSearch } from '../utils/useFaqSearch'
 import { ReactComponent as SearchdSvg } from '../assets/searchOutlineM.svg';
-import FaqList from '../components/FaqList';
+import _FaqList from '../components/FaqList';
 
 type FaqPageProps = PageProps<GatsbyTypes.TeamWebsite_FaqPageQuery, GatsbyTypes.SitePageContext>;
 
@@ -51,7 +51,7 @@ export const query = graphql`
           entries {
             question
             answer {
-              text
+              html
             }
           }
         }
@@ -116,11 +116,15 @@ const FaqGroup = styled('li', {
   }
 });
 
+const FaqList = styled(_FaqList, {
+  minHeight: '80vh'
+});
+
 const Search = styled(_Search, {
   '@lg': {
     minWidth: rem(300)
   }
-})
+});
 
 const FaqPage: React.FC<FaqPageProps> = ({
   data,
@@ -181,7 +185,7 @@ const FaqPage: React.FC<FaqPageProps> = ({
           <SearchdSvg />
         </Search>
       </Filters>
-      {searchQuery ? <FaqList searchResults={searchResults} data={data} /> : <FaqAccordion data={data.prismicFaq.data} />}
+      {searchQuery ? <FaqList searchResults={searchResults} data={data.allPrismicFaq} /> : <FaqAccordion data={data.prismicFaq.data} />}
     </Container>
   );
 };

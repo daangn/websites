@@ -7,20 +7,18 @@ import FaqAccordion from './FaqAccordion';
 
 type FaqListProps = {
   searchResults?: string[]
-  data: GatsbyTypes.TeamWebsite_FaqListQuery,
+  data: GatsbyTypes.TeamWebsite_FaqList_faqListFragment,
 }
 
 export const query = graphql`
-  query TeamWebsite_FaqList {
-    allPrismicFaq {
-      nodes {
-        id
-        data {
-          entries {
-            question
-            answer {
-              text
-            }
+  fragment TeamWebsite_FaqList_faqList on allPrismicFaq {
+    nodes {
+      id
+      data {
+        entries {
+          question
+          answer {
+            html
           }
         }
       }
@@ -28,8 +26,12 @@ export const query = graphql`
   }
 `
 
+const Container = styled('div', {
+  display: 'grid',
+});
+
 const FaqList: React.FC<FaqListProps> = ({ data, searchResults }) => {
-  const entries = data.allPrismicFaq.nodes.map((node) => node.data.entries).reduce((acc, val) => acc.concat(val), []);
+  const entries = data.nodes.map((node) => node.data.entries).reduce((acc, val) => acc.concat(val), []);
 
   const filteredFaqList = {
     entries: [...entries.filter((entry) => {
@@ -40,7 +42,11 @@ const FaqList: React.FC<FaqListProps> = ({ data, searchResults }) => {
     ]
   }
 
-  return filteredFaqList.entries.length > 0 ? <FaqAccordion data={filteredFaqList} /> : <EmptyPlaceholder />
+  return (
+    <Container>
+      {filteredFaqList.entries.length > 0 ? <FaqAccordion data={filteredFaqList} /> : <EmptyPlaceholder />}
+    </Container>
+  )
 }
 
 export default FaqList
