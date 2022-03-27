@@ -93,7 +93,7 @@ const JobPostPage: React.FC<JobPostPageProps> = ({
           {messages.job_post_layout__tab_apply}
         </Button>
         <Button
-          to="/jobs/faq/"
+          to="/faq/지원-관련/"
           fullWidth={{ '@initial': true, '@sm': false }}
         >
           {messages.job_post_page__faq}

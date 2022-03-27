@@ -7,6 +7,7 @@ import FaqAccordion from './FaqAccordion';
 
 type FaqListProps = {
   searchResults?: string[]
+  className?: string,
   data: GatsbyTypes.TeamWebsite_FaqList_faqListFragment,
 }
 
@@ -30,7 +31,7 @@ const Container = styled('div', {
   display: 'grid',
 });
 
-const FaqList: React.FC<FaqListProps> = ({ data, searchResults }) => {
+const FaqList: React.FC<FaqListProps> = ({ data, className, searchResults }) => {
   const entries = data.nodes.map((node) => node.data.entries).reduce((acc, val) => acc.concat(val), []);
 
   const filteredFaqList = {
@@ -43,10 +44,10 @@ const FaqList: React.FC<FaqListProps> = ({ data, searchResults }) => {
   }
 
   return (
-    <Container>
-      {filteredFaqList.entries.length > 0 ? <FaqAccordion data={filteredFaqList} /> : <EmptyPlaceholder />}
+    <Container className={className}>
+      {filteredFaqList.entries.length > 0 ? <FaqAccordion data={filteredFaqList} /> : <EmptyPlaceholder link="/faq/지원-관련/" />}
     </Container>
   )
 }
 
-export default FaqList
+export default React.memo(FaqList);

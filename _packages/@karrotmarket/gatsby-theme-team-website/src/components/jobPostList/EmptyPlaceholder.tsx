@@ -6,6 +6,7 @@ import ButtonLink from '../Button';
 import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 
 type EmptyPlaceholderProps = {
+  link: string,
   className?: string,
 };
 
@@ -27,6 +28,7 @@ const Text = styled('p', {
 });
 
 const EmptyPlaceholder: React.FC<EmptyPlaceholderProps> = ({
+  link,
   className,
 }) => {
   const messages = useTranslation();
@@ -36,7 +38,7 @@ const EmptyPlaceholder: React.FC<EmptyPlaceholderProps> = ({
       <Content>
         <Text>{messages.job_post_list__empty_placeholder__no_results}</Text>
         <ButtonLink
-          to="/jobs/"
+          to={link}
           fullWidth={{ '@initial': true, '@sm': false }}
         >
           {messages.job_post_list__empty_placeholder__back_to_list}
