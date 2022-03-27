@@ -78,21 +78,32 @@ const PageTitle = styled(_PageTitle, {
   marginBottom: rem(56),
 
   '@sm': {
-    marginBottom: rem(100),
+    marginBottom: rem(80),
   },
 });
 
 const Filters = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
-  marginBottom: rem(56)
+  marginBottom: rem(56),
+  flexDirection: 'column-reverse',
+
+  '@lg': {
+    flexDirection: 'row'
+  }
 });
 
 const FaqGroupWrapper = styled('ul', {
   display: 'flex',
   alignItems: 'center',
   padding: '0',
-  gap: rem(50)
+  overflow: 'auto',
+  gap: rem(50),
+  marginTop: rem(56),
+
+  '@lg': {
+    marginTop: '0'
+  }
 });
 
 const FaqGroup = styled('li', {
@@ -101,6 +112,7 @@ const FaqGroup = styled('li', {
   listStyle: 'none',
   float: 'left',
   cursor: 'pointer',
+  whiteSpace: 'nowrap',
 
   variants: {
     selected: {
@@ -117,7 +129,7 @@ const FaqGroup = styled('li', {
 });
 
 const FaqList = styled(_FaqList, {
-  minHeight: '80vh'
+  minHeight: '80vh',
 });
 
 const Search = styled(_Search, {
