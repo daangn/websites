@@ -12,13 +12,11 @@ type FaqListProps = {
 }
 
 export const query = graphql`
-  fragment TeamWebsite_FaqList_faqList on allPrismicFaq {
+  fragment TeamWebsite_FaqList_faqList on PrismicFaqConnection {
     nodes {
       id
       data {
-        entries {
-          ...TeamWebsite_FaqAccordionItem_entry
-        }
+        ...TeamWebsite_FaqAccordion_faqData
       }
     }
   }
@@ -42,7 +40,7 @@ const FaqList: React.FC<FaqListProps> = ({ data, className, searchResults }) => 
 
   return (
     <Container className={className}>
-      {filteredFaqList.entries.length > 0 ? <FaqAccordion data={filteredFaqList} /> : <EmptyPlaceholder link="/faq/지원-관련/" />}
+      {filteredFaqList.entries?.length > 0 ? <FaqAccordion data={filteredFaqList} /> : <EmptyPlaceholder link="/faq/지원-관련/" />}
     </Container>
   )
 }

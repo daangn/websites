@@ -45,17 +45,7 @@ export const query = graphql`
     }
 
     allPrismicFaq {
-      nodes {
-        id
-        data {
-          entries {
-            question
-            answer {
-              html
-            }
-          }
-        }
-      }
+      ...TeamWebsite_FaqList_faqList
     }
 
     prismicFaq(
