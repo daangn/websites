@@ -38,8 +38,8 @@
     "gatsby-plugin-robots-txt": "1.7.0",
     "gatsby-plugin-sitemap": "5.10.1",
     "gatsby-plugin-typegen": "2.2.4",
-    "gatsby-source-filesystem": "4.10.0",
     "gatsby-plugin-vercel-deploy": "^1.0.1",
+    "gatsby-source-filesystem": "4.10.0",
     "polished": "4.1.4",
     "react": "next",
     "react-dom": "next"
