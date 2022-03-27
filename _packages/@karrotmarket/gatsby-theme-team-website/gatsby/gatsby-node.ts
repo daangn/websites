@@ -230,15 +230,26 @@ export const createPages: GatsbyNode['createPages'] = async ({
     throw new Error(`Prismic ${locale} 에 채용사이트 컨텐츠 데이터가 없습니다.`);
   }
 
-  if (!data.prismicTeamContents.data.enable_faq_page || !data.prismicTeamContents.data.faq_page_entries.length) {
-    throw new Error('FAQ 컨텐츠 데이터가 없습니다.')
+  if (data.prismicTeamContents.data.enable_faq_page && data.prismicTeamContents.data.faq_page_entries.length) {
+    actions.createRedirect({
+      fromPath: '/faq/',
+      toPath: `/faq/${data.prismicTeamContents.data.faq_page_entries[0].faq_page.uid}/`,
+      isPermanent: true,
+    });
+
+    for (const faq of data.allPrismicFaq.nodes) {
+      actions.createPage({
+        path: `/faq/${faq.uid}/`,
+        component: require.resolve('./src/templates/FaqPage.tsx'),
+        context: {
+          locale,
+          navigationId,
+          id: faq.id,
+        }
+      })
+    }
   }
 
-  actions.createRedirect({
-    fromPath: '/faq/',
-    toPath: `/faq/${data.prismicTeamContents.data.faq_page_entries[0].faq_page.uid}/`,
-    isPermanent: true,
-  });
 
   if (data.prismicTeamContents.data.enable_life_page) {
     actions.createPage({
@@ -260,18 +271,6 @@ export const createPages: GatsbyNode['createPages'] = async ({
         navigationId,
       },
     });
-  }
-
-  for (const faq of data.allPrismicFaq.nodes) {
-    actions.createPage({
-      path: `/faq/${faq.uid}/`,
-      component: require.resolve('./src/templates/FaqPage.tsx'),
-      context: {
-        locale,
-        navigationId,
-        id: faq.id,
-      }
-    })
   }
 
   for (const jobPost of data.allJobPost.nodes) {
