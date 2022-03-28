@@ -39,6 +39,13 @@ export const query = graphql`
           faq_page {
             id
             uid
+            document {
+              ... on PrismicFaq {
+                data {
+                  display_name
+                }
+              }
+            }
           }
         }
       }
@@ -169,7 +176,7 @@ const FaqPage: React.FC<FaqPageProps> = ({
               selected={faq.faq_page.uid === data.prismicFaq.uid} 
               onClick={() => navigate(`/faq/${faq.faq_page.uid}/`)}
             >
-              {faq.faq_page.uid.replace(/\-/, ' ')}
+              {faq.faq_page.document.data.display_name}
             </FaqGroup>
           ))}
         </FaqGroupWrapper>

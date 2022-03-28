@@ -84,70 +84,7 @@ const config = (): GatsbyConfig => ({
         normalizer: ({ data }: any) => data.allJobPost.nodes,
       },
     },
-    {
-      resolve: 'gatsby-plugin-local-search',
-      options: {
-        name: 'faqContent',
-        engine: 'flexsearch',
-        engineOptions: {
-          tokenize: (str: string) => {
-            const index = JSON.parse(str);
-            const specialCharactersRegex = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g;
-            const splitQuestion = index.question
-              .replace(specialCharactersRegex, '')
-              .trim()
-              .split(/\s/);
-
-            const wordSet = new Set([...splitQuestion,...index.answer]);
-            const tokens: string[] = [];
-            for (const word of wordSet) {
-              const syllables = disassembleHangul(word);
-              for (let i = 0; i < syllables.length; i++) {
-                const token = assembleHangul(syllables.slice(0, i + 1)).toLocaleLowerCase();
-                tokens.push(token);
-              }
-            }
-
-            return tokens;
-          }
-        },
-        query: gql`{
-          allPrismicFaq {
-            nodes {
-              id
-              data {
-                entries {
-                  question
-                  answer {
-                    text
-                  }
-                }
-              }
-            }
-          }
-        }`,
-        ref: 'question',
-        index: ['question', 'answer'],
-        store: ['id', 'question', 'answer'],
-        normalizer: ({ data }: any) => {
-          const normalize: any[] = []
-          data.allPrismicFaq.nodes.forEach((node: any) => 
-            {
-              const nodes = node.data.entries.map((entry: any) => ({
-                id: entry.question,
-                question: entry.question,
-                answer: entry.answer.text
-              }))
-
-              normalize.push(...nodes)
-            }
-          )
-
-          return normalize
-        }
-      },
-    },
-
+    
     // 커스텀 플러그인
     '@karrotmarket/gatsby-theme-website',
     {
