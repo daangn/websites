@@ -14,6 +14,7 @@ const config = (): GatsbyConfig => ({
     'gatsby-theme-stitches',
     'gatsby-plugin-svgr',
     'gatsby-plugin-react-helmet-async',
+    'gatsby-plugin-vercel-deploy',
     'gatsby-plugin-next-seo',
     {
       resolve: 'gatsby-plugin-sharp',

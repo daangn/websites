@@ -5,11 +5,11 @@ import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { GatsbySeo, FAQJsonLd } from 'gatsby-plugin-next-seo';
 import { required } from '@cometjs/core';
+import { matchSorter } from 'match-sorter'
 
 import _PageTitle from '../components/PageTitle';
 import FaqAccordion from '../components/FaqAccordion';
 import _Search from '../components/Search';
-import { useFaqSearch } from '../utils/useFaqSearch'
 import { ReactComponent as SearchdSvg } from '../assets/searchOutlineM.svg';
 import _FaqList from '../components/FaqList';
 
@@ -42,10 +42,6 @@ export const query = graphql`
           }
         }
       }
-    }
-
-    allPrismicFaq {
-      ...TeamWebsite_FaqList_faqList
     }
 
     prismicFaq(
@@ -140,13 +136,11 @@ const FaqPage: React.FC<FaqPageProps> = ({
     });
   }
 
-  const searchResults = useFaqSearch(searchQuery);
+  const searchResults = {
+    entries: [...matchSorter(data.prismicFaq.data.entries, searchQuery, { keys: ['question'] })]
+  }
 
   required(data.prismicTeamContents?.data)
-
-  const onGroupChange = (uid: string) => {
-    navigate(`/faq/${uid}/`)
-  }
 
   return (
     <Container>
@@ -173,7 +167,7 @@ const FaqPage: React.FC<FaqPageProps> = ({
             <FaqGroup 
               key={faq.faq_page.id} 
               selected={faq.faq_page.uid === data.prismicFaq.uid} 
-              onClick={() => onGroupChange(faq.faq_page.uid)}
+              onClick={() => navigate(`/faq/${faq.faq_page.uid}/`)}
             >
               {faq.faq_page.uid.replace(/\-/, ' ')}
             </FaqGroup>
@@ -187,7 +181,14 @@ const FaqPage: React.FC<FaqPageProps> = ({
           <SearchdSvg />
         </Search>
       </Filters>
-      {searchQuery ? <FaqList searchResults={searchResults} data={data.allPrismicFaq} /> : <FaqAccordion data={data.prismicFaq.data} />}
+      {searchQuery ? (
+        <FaqList 
+          data={searchResults} 
+          emptyPlaceHolderLink={`/faq/${data.prismicTeamContents.data.faq_page_entries[0].faq_page.uid}/`} 
+        />
+       ) : (
+        <FaqAccordion data={data.prismicFaq.data} />
+       )}
     </Container>
   );
 };

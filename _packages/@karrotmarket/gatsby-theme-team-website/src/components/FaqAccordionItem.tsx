@@ -19,6 +19,7 @@ export const query = graphql`
   fragment TeamWebsite_FaqAccordionItem_entry on PrismicFaqDataEntries {
     question
     answer {
+      text
       html
     }
   }

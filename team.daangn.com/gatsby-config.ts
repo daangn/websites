@@ -14,7 +14,6 @@ const config: GatsbyConfig = {
   siteMetadata,
   plugins: [
     'gatsby-plugin-gatsby-cloud',
-    'gatsby-plugin-vercel-deploy',
     {
       resolve: 'gatsby-source-filesystem',
       options: {

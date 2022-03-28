@@ -142,8 +142,10 @@ export const createPages: GatsbyNode['createPages'] = async ({
         enable_culture_page?: boolean,
         faq_page_entries: Array<{
           faq_page: {
-            id: string,
-            uid: string,
+            document: {
+              id: string,
+              uid: string,
+            }
           }
         }>,
       },
@@ -165,12 +167,6 @@ export const createPages: GatsbyNode['createPages'] = async ({
         slug: string,
       }>,
     },
-    allPrismicFaq: {
-      nodes: Array<{
-        id: string,
-        uid: string,
-      }>
-    }
   };
 
   const { data, errors } = await graphql<Data>(gql`
@@ -182,8 +178,12 @@ export const createPages: GatsbyNode['createPages'] = async ({
           enable_culture_page
           faq_page_entries {
             faq_page {
-              id
-              uid
+              document {
+                ... on PrismicFaq {
+                  id
+                  uid
+                }
+              }
             }
           }
         }
@@ -209,12 +209,6 @@ export const createPages: GatsbyNode['createPages'] = async ({
           slug
         }
       }
-      allPrismicFaq {
-        nodes {
-          id
-          uid
-        }
-      }
     }
   `, { locale });
 
@@ -233,18 +227,18 @@ export const createPages: GatsbyNode['createPages'] = async ({
   if (data.prismicTeamContents.data.enable_faq_page && data.prismicTeamContents.data.faq_page_entries.length) {
     actions.createRedirect({
       fromPath: '/faq/',
-      toPath: `/faq/${data.prismicTeamContents.data.faq_page_entries[0].faq_page.uid}/`,
-      isPermanent: true,
+      toPath: `/faq/${data.prismicTeamContents.data.faq_page_entries[0].faq_page.document.uid}/`,
+      redirectInBrowser: true,
     });
 
-    for (const faq of data.allPrismicFaq.nodes) {
+    for (const faq of data.prismicTeamContents.data.faq_page_entries) {
       actions.createPage({
-        path: `/faq/${faq.uid}/`,
+        path: `/faq/${faq.faq_page.document.uid}/`,
         component: require.resolve('./src/templates/FaqPage.tsx'),
         context: {
           locale,
           navigationId,
-          id: faq.id,
+          id: faq.faq_page.document.id,
         }
       })
     }

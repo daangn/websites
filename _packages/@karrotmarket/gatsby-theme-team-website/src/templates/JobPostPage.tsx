@@ -31,6 +31,18 @@ export const query = graphql`
         ...TeamWebsite_JobPostContentSection_content
       }
     }
+
+    prismicTeamContents(
+      lang: { eq: $locale }
+    ) {
+      data {
+        faq_page_entries {
+          faq_page {
+            uid
+          }
+        }
+      }
+    }
   }
 `;
 
@@ -93,7 +105,7 @@ const JobPostPage: React.FC<JobPostPageProps> = ({
           {messages.job_post_layout__tab_apply}
         </Button>
         <Button
-          to="/faq/지원-관련/"
+          to={`/faq/${data.prismicTeamContents.data.faq_page_entries[0].faq_page.uid}`}
           fullWidth={{ '@initial': true, '@sm': false }}
         >
           {messages.job_post_page__faq}
