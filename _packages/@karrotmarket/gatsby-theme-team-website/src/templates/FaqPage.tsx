@@ -37,6 +37,7 @@ export const query = graphql`
         }
 
         faq_page_entries {
+          faq_category_title
           faq_page {
             id
             uid
@@ -181,7 +182,7 @@ const FaqPage: React.FC<FaqPageProps> = ({
               selected={faq.faq_page.uid === data.prismicFaq.uid} 
               onClick={() => navigate(`/faq/${faq.faq_page.uid}/${searchQuery ? `?q=${encodeURIComponent(searchQuery)}` : ''}`)}
             >
-              {faq.faq_page.document.data.display_name}
+              {faq.faq_category_title}
             </FaqGroup>
           ))}
         </FaqGroupWrapper>
