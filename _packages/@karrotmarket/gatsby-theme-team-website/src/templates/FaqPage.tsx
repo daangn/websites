@@ -6,6 +6,7 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { GatsbySeo, FAQJsonLd } from 'gatsby-plugin-next-seo';
 import { required } from '@cometjs/core';
 import { matchSorter } from 'match-sorter'
+import queryString from 'query-string'
 
 import _PageTitle from '../components/PageTitle';
 import FaqAccordion from '../components/FaqAccordion';
@@ -133,14 +134,18 @@ const Search = styled(_Search, {
 
 const FaqPage: React.FC<FaqPageProps> = ({
   data,
+  location
 }) => {
-  const [searchQuery, setSearchQuery] = React.useState('');
-  const [_isSearchPending, startSearchTransition] = React.useTransition();
+  const searchQuery = decodeURIComponent(queryString.parse(location.search).q as string ?? '');
+  const [searchInput, setSearchInput] = React.useState(searchQuery || '');
 
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    navigate(`?q=${encodeURIComponent(searchInput)}`)
+  }
+  
   const handleSearchInputChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    startSearchTransition(() => {
-      setSearchQuery(e.target.value);
-    });
+    setSearchInput(e.target.value);
   }
 
   const searchResults = {
@@ -174,24 +179,27 @@ const FaqPage: React.FC<FaqPageProps> = ({
             <FaqGroup 
               key={faq.faq_page.id} 
               selected={faq.faq_page.uid === data.prismicFaq.uid} 
-              onClick={() => navigate(`/faq/${faq.faq_page.uid}/`)}
+              onClick={() => navigate(`/faq/${faq.faq_page.uid}/${searchQuery ? `?q=${encodeURIComponent(searchQuery)}` : ''}`)}
             >
               {faq.faq_page.document.data.display_name}
             </FaqGroup>
           ))}
         </FaqGroupWrapper>
-        <Search>
-          <input 
-            placeholder='검색'
-            onChange={handleSearchInputChange}
-          />
-          <SearchdSvg />
-        </Search>
+        <form onSubmit={handleSubmit}>
+          <Search>
+            <input 
+              placeholder='검색'
+              value={searchInput}
+              onChange={handleSearchInputChange}
+            />
+            <SearchdSvg />
+          </Search>
+        </form>
       </Filters>
       {searchQuery ? (
         <FaqList 
-          data={searchResults} 
-          emptyPlaceHolderLink={`/faq/${data.prismicTeamContents.data.faq_page_entries[0].faq_page.uid}/`} 
+          data={searchResults}
+          emptyPlaceHolderLink={`/faq/${data.prismicFaq.uid}/`} 
         />
        ) : (
         <FaqAccordion data={data.prismicFaq.data} />
