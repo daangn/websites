@@ -32,6 +32,6 @@
     "@babel/plugin-transform-typescript": "7.16.8",
     "babel-plugin-polished": "1.1.0",
     "typescript": "4.6.2",
-    "ultra-runner": "^3.10.5"
+    "ultra-runner": "3.10.5"
   }
 }
