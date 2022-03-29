@@ -80,8 +80,8 @@ const PageTitle = styled(_PageTitle, {
 const Filters = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
-  marginBottom: rem(56),
-  flexDirection: 'column-reverse',
+  marginBottom: rem(52),
+  flexDirection: 'column',
 
   '@lg': {
     flexDirection: 'row'
@@ -94,10 +94,10 @@ const FaqGroupWrapper = styled('ul', {
   padding: '0',
   overflow: 'auto',
   gap: rem(50),
-  marginTop: rem(56),
+  marginBottom: rem(52),
 
   '@lg': {
-    marginTop: '0'
+    marginBottom: '0'
   }
 });
 
