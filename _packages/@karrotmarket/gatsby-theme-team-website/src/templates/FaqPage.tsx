@@ -59,6 +59,9 @@ export const query = graphql`
       uid
       data {
         ...TeamWebsite_FaqAccordion_faqData
+        entries {
+          keywords
+        }
       }
     }
   }
@@ -150,7 +153,7 @@ const FaqPage: React.FC<FaqPageProps> = ({
   }
 
   const searchResults = {
-    entries: [...matchSorter(data.prismicFaq.data.entries, searchQuery, { keys: ['question'] })]
+    entries: [...matchSorter(data.prismicFaq.data.entries, searchQuery, { keys: ['question', 'keywords'] })]
   }
 
   required(data.prismicTeamContents?.data)
