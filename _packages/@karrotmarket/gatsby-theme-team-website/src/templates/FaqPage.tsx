@@ -6,7 +6,6 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { GatsbySeo, FAQJsonLd } from 'gatsby-plugin-next-seo';
 import { required } from '@cometjs/core';
 import { matchSorter } from 'match-sorter'
-import queryString from 'query-string'
 
 import _PageTitle from '../components/PageTitle';
 import FaqAccordion from '../components/FaqAccordion';
@@ -140,7 +139,8 @@ const FaqPage: React.FC<FaqPageProps> = ({
   data,
   location
 }) => {
-  const searchQuery = decodeURIComponent(queryString.parse(location.search).q as string ?? '');
+  const searchParams = new URLSearchParams(location.search);
+  const searchQuery = searchParams.get('q') ?? ''
   const [searchInput, setSearchInput] = React.useState(searchQuery || '');
   const [_isSearchPending, startSearchTransition] = React.useTransition();
 
@@ -152,7 +152,8 @@ const FaqPage: React.FC<FaqPageProps> = ({
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    navigate(`?q=${encodeURIComponent(searchInput)}`)
+    searchParams.set('q', searchInput)
+    navigate(`?${searchParams.toString()}`)
   }
 
   const searchResults = {
@@ -186,7 +187,7 @@ const FaqPage: React.FC<FaqPageProps> = ({
             <FaqGroup 
               key={faq.faq_page.id} 
               selected={faq.faq_page.uid === data.prismicFaq.uid} 
-              onClick={() => navigate(`/faq/${faq.faq_page.uid}/${searchQuery ? `?q=${encodeURIComponent(searchQuery)}` : ''}`)}
+              onClick={() => navigate(`/faq/${faq.faq_page.uid}/${searchQuery ? `?${searchParams.toString()}` : ''}`)}
             >
               {faq.faq_category_title}
             </FaqGroup>
