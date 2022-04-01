@@ -142,14 +142,17 @@ const FaqPage: React.FC<FaqPageProps> = ({
 }) => {
   const searchQuery = decodeURIComponent(queryString.parse(location.search).q as string ?? '');
   const [searchInput, setSearchInput] = React.useState(searchQuery || '');
+  const [_isSearchPending, startSearchTransition] = React.useTransition();
+
+  const handleSearchInputChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    startSearchTransition(() => {
+      setSearchInput(e.target.value);
+    });
+  }
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     navigate(`?q=${encodeURIComponent(searchInput)}`)
-  }
-  
-  const handleSearchInputChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    setSearchInput(e.target.value);
   }
 
   const searchResults = {
