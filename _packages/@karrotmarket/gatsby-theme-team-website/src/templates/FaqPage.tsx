@@ -5,6 +5,7 @@ import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { GatsbySeo, FAQJsonLd } from 'gatsby-plugin-next-seo';
 import { required } from '@cometjs/core';
+import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 import { matchSorter } from 'match-sorter'
 
 import _PageTitle from '../components/PageTitle';
@@ -139,6 +140,8 @@ const FaqPage: React.FC<FaqPageProps> = ({
   data,
   location
 }) => {
+  const messages = useTranslation();
+
   const searchParams = new URLSearchParams(location.search);
   const searchQuery = searchParams.get('q') ?? ''
   const [searchInput, setSearchInput] = React.useState(searchQuery || '');
@@ -196,7 +199,7 @@ const FaqPage: React.FC<FaqPageProps> = ({
         <form onSubmit={handleSubmit}>
           <Search>
             <input 
-              placeholder='검색'
+              placeholder={messages.faq_page__search}
               value={searchInput}
               onChange={handleSearchInputChange}
             />
