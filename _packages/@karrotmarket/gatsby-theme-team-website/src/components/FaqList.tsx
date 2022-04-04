@@ -26,7 +26,7 @@ const Container = styled('div', {
 const FaqList: React.FC<FaqListProps> = ({ data, emptyPlaceHolderLink, className }) => {
   return (
     <Container className={className}>
-      {data.entries?.length > 0 ? <FaqAccordion data={data} /> : <EmptyPlaceholder link={emptyPlaceHolderLink} />}
+      {data.entries?.length > 0 ? <FaqAccordion data={data} /> : <EmptyPlaceholder link={emptyPlaceHolderLink} buttonVisible={false} />}
     </Container>
   )
 }
