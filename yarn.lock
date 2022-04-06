@@ -3098,7 +3098,7 @@ __metadata:
     "@prismicio/helpers": 2.2.1
     "@types/node": 16.11.26
     "@types/react": 17.0.43
-    "@types/react-dom": 17.0.13
+    "@types/react-dom": 17.0.14
     babel-preset-gatsby-package: 2.10.0
     concurrently: 7.0.0
     gatsby: next
@@ -3140,7 +3140,7 @@ __metadata:
     "@svgr/webpack": 6.2.1
     "@types/node": 16.11.26
     "@types/react": 17.0.43
-    "@types/react-dom": 17.0.13
+    "@types/react-dom": 17.0.14
     babel-plugin-polished: 1.1.0
     babel-preset-gatsby-package: 2.10.0
     clsx: 1.1.1
@@ -3198,7 +3198,7 @@ __metadata:
     "@svgr/webpack": 6.2.1
     "@types/node": 16.11.26
     "@types/react": 17.0.43
-    "@types/react-dom": 17.0.13
+    "@types/react-dom": 17.0.14
     babel-preset-gatsby-package: 2.10.0
     gatsby: next
     gatsby-plugin-svgr: 3.0.0-beta.0
@@ -4743,12 +4743,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:17.0.13":
-  version: 17.0.13
-  resolution: "@types/react-dom@npm:17.0.13"
+"@types/react-dom@npm:17.0.14":
+  version: 17.0.14
+  resolution: "@types/react-dom@npm:17.0.14"
   dependencies:
     "@types/react": "*"
-  checksum: 62c42a54ac8961c23a0e74b9cdd8b0a78563757e462b1ab665b2aa365bfd8b86a73d3f6eafc09a4a80fb08659321db168f012aa597c41c0df36f645a94e9266b
+  checksum: b54cd0ef573236b3d87fe7493e6d1c36d8b4ca37a3b46364272a5c91ac178e3296b68ea1aeb299ce68f12ad663c5720ee890d0539b14881c6754bdcbdb0befa0
   languageName: node
   linkType: hard
 
@@ -6661,7 +6661,7 @@ __metadata:
     "@types/dotenv-safe": 8.1.2
     "@types/node": 16.11.26
     "@types/react": 17.0.43
-    "@types/react-dom": 17.0.13
+    "@types/react-dom": 17.0.14
     dotenv-safe: 8.2.0
     gatsby: 4.10.2
     gatsby-plugin-advanced-sitemap: 2.0.0
@@ -6692,7 +6692,7 @@ __metadata:
     "@types/dotenv-safe": 8.1.2
     "@types/node": 16.11.26
     "@types/react": 17.0.43
-    "@types/react-dom": 17.0.13
+    "@types/react-dom": 17.0.14
     dotenv-safe: 8.2.0
     gatsby: 4.10.2
     gatsby-plugin-advanced-sitemap: 2.0.0
@@ -18744,7 +18744,7 @@ __metadata:
     "@types/dotenv-safe": 8.1.2
     "@types/node": 16.11.26
     "@types/react": 17.0.43
-    "@types/react-dom": 17.0.13
+    "@types/react-dom": 17.0.14
     cjk-slug: 0.3.0
     dotenv-safe: 8.2.0
     gatsby: 4.10.2
