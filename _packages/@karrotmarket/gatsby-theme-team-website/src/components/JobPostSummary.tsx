@@ -27,7 +27,7 @@ const Container = styled('div', {
     "title       tags" auto
     ".           ."    ${rem(8)}
     "properties  ."    auto /
-     max-content 1fr
+     auto 1fr
   `,
   alignItems: 'center',
   paddingY: rem(24),
