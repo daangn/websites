@@ -23,6 +23,11 @@ type DefaultLayoutProps = OverrideProps<
 
 export const query = graphql`
   fragment TeamWebsite_DefaultLayout_query on Query {
+    site {
+      siteMetadata {
+        locale
+      }
+    }
     prismicTeamContents(
       lang: { eq: $locale }
     ) {
@@ -83,7 +88,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
     <>
       <Helmet>
         <html
-          lang="ko"
+          lang={data.site.siteMetadata.locale}
           prefix="og: https://ogp.me/ns/website#"
         />
       </Helmet>

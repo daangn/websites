@@ -1,11 +1,7 @@
 import type { GatsbyNode, Page } from 'gatsby';
+import type { PluginOptions } from './types';
 
 const gql = String.raw;
-
-type PluginOptions = {
-  locale: string,
-  navigationId: string,
-};
 
 export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
   Joi,
@@ -65,6 +61,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
 
     type SiteMetadata {
       siteUrl: String!
+      locale: String!
     }
   `);
 

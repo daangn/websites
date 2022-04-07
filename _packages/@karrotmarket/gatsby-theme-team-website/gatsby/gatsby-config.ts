@@ -6,10 +6,16 @@ import {
 
 // @ts-ignore
 import { linkResolver } from './src/@karrotmarket/gatsby-theme-prismic/linkResolver';
+import type { PluginOptions } from './types';
 
 const gql = String.raw;
 
-const config = (): GatsbyConfig => ({
+const config = ({
+  locale,
+}: PluginOptions): GatsbyConfig => ({
+  siteMetadata: {
+    locale,
+  },
   plugins: [
     'gatsby-theme-stitches',
     'gatsby-plugin-svgr',
