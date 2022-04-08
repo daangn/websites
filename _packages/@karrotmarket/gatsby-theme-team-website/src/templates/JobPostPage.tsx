@@ -105,7 +105,7 @@ const JobPostPage: React.FC<JobPostPageProps> = ({
           {messages.job_post_layout__tab_apply}
         </Button>
         <Button
-          to={`/faq/${data.prismicTeamContents.data.faq_page_entries[0].faq_page.uid}`}
+          to={`/faq/`}
           fullWidth={{ '@initial': true, '@sm': false }}
         >
           {messages.job_post_page__faq}

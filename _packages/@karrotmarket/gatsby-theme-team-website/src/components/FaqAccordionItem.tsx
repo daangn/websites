@@ -31,7 +31,7 @@ const Container = styled('div', {
 
 const Header = styled('h2', {
   display: 'flex',
-  typography: '$body2',
+  typography: '$subtitle3',
 
   '@sm': {
     fontSize: '$subtitle3',
@@ -75,6 +75,7 @@ const Panel = styled('div', {
 });
 
 const Content = styled('div', {
+  fontSize: '$body2',
   paddingX: rem(12),
   paddingY: rem(32),
   '> p:not(:last-child)': {

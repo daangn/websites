@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { rem } from 'polished';
-import { navigate, PageProps } from 'gatsby';
+import { Link, navigate, PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { GatsbySeo, FAQJsonLd } from 'gatsby-plugin-next-seo';
@@ -111,7 +111,11 @@ const FaqGroup = styled('li', {
   float: 'left',
   cursor: 'pointer',
   whiteSpace: 'nowrap',
+});
 
+const FaqGroupLink = styled(Link, {
+  color: '$gray900',
+  textDecoration: 'none',
   variants: {
     selected: {
       true: {
@@ -124,7 +128,7 @@ const FaqGroup = styled('li', {
       }
     }
   }
-});
+})
 
 const FaqList = styled(_FaqList, {
   minHeight: '80vh',
@@ -132,7 +136,7 @@ const FaqList = styled(_FaqList, {
 
 const Search = styled(_Search, {
   '@lg': {
-    minWidth: rem(300)
+    minWidth: rem(300),
   }
 });
 
@@ -144,19 +148,13 @@ const FaqPage: React.FC<FaqPageProps> = ({
 
   const searchParams = new URLSearchParams(location.search);
   const searchQuery = searchParams.get('q') ?? ''
-  const [searchInput, setSearchInput] = React.useState(searchQuery || '');
   const [_isSearchPending, startSearchTransition] = React.useTransition();
 
   const handleSearchInputChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     startSearchTransition(() => {
-      setSearchInput(e.target.value);
-    });
-  }
-
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault();
-    searchParams.set('q', searchInput)
-    navigate(`?${searchParams.toString()}`)
+      searchParams.set('q', e.target.value);
+      navigate(`?${searchParams.toString()}`)
+    })
   }
 
   const searchResults = {
@@ -189,23 +187,26 @@ const FaqPage: React.FC<FaqPageProps> = ({
           {data.prismicTeamContents?.data.faq_page_entries.map((faq) => (
             <FaqGroup 
               key={faq.faq_page.id} 
-              selected={faq.faq_page.uid === data.prismicFaq.uid} 
-              onClick={() => navigate(`/faq/${faq.faq_page.uid}/${searchQuery ? `?${searchParams.toString()}` : ''}`)}
             >
-              {faq.faq_category_title}
+              <FaqGroupLink 
+                to={`/faq/${faq.faq_page.uid}/${searchQuery 
+                ? `?${searchParams.toString()}` 
+                : ''}`}
+                selected={faq.faq_page.uid === data.prismicFaq.uid} 
+              >
+                {faq.faq_category_title}
+              </FaqGroupLink>
             </FaqGroup>
           ))}
         </FaqGroupWrapper>
-        <form onSubmit={handleSubmit}>
-          <Search>
-            <input 
-              placeholder={messages.faq_page__search}
-              value={searchInput}
-              onChange={handleSearchInputChange}
-            />
-            <SearchdSvg />
-          </Search>
-        </form>
+        <Search>
+          <input 
+            placeholder={messages.faq_page__search}
+            defaultValue={searchQuery ?? ''}
+            onChange={handleSearchInputChange}
+          />
+          <SearchdSvg />
+        </Search>
       </Filters>
       {searchQuery ? (
         <FaqList 

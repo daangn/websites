@@ -145,6 +145,14 @@ export const createPages: GatsbyNode['createPages'] = async ({
             document: {
               id: string,
               uid: string,
+              data: {
+                entries: Array<{
+                  question: string,
+                  answer: {
+                    text: string,
+                  }
+                }>
+              }
             }
           }
         }>,
@@ -182,6 +190,14 @@ export const createPages: GatsbyNode['createPages'] = async ({
                 ... on PrismicFaq {
                   id
                   uid
+                  data {
+                    entries {
+                      question
+                      answer {
+                        text
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -232,15 +248,17 @@ export const createPages: GatsbyNode['createPages'] = async ({
     });
 
     for (const faq of data.prismicTeamContents.data.faq_page_entries) {
-      actions.createPage({
-        path: `/faq/${faq.faq_page.document.uid}/`,
-        component: require.resolve('./src/templates/FaqPage.tsx'),
-        context: {
-          locale,
-          navigationId,
-          id: faq.faq_page.document.id,
-        }
-      })
+      if (faq.faq_page.document.data.entries.length) {
+        actions.createPage({
+          path: `/faq/${faq.faq_page.document.uid}/`,
+          component: require.resolve('./src/templates/FaqPage.tsx'),
+          context: {
+            locale,
+            navigationId,
+            id: faq.faq_page.document.id,
+          }
+        })
+      }
     }
   }
 
