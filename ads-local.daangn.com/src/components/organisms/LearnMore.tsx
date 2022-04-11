@@ -15,7 +15,7 @@ export const LearnMore = () => {
         <Item left>
           <DocsWrapper>
             <LearnMoreTitle>당근마켓 지역광고</LearnMoreTitle>
-            <LearnMoreTitle>더 알아보기</LearnMoreTitle>
+            <LearnMoreTitle>자료실</LearnMoreTitle>
           </DocsWrapper>
           <DocsLink
           id="content-pdf"
@@ -25,7 +25,7 @@ export const LearnMore = () => {
               )
             }
           >
-            <p>지역광고 기초 가이드</p>
+            <p>지역광고 상품 소개서</p>
             <ArrowLink target="https://drive.google.com/file/d/1rXFkxvzxJHszsFnCKiqWafzb6bi-6uBU/view" id="content-pdf"/>
           </DocsLink>
           <DocsLink
@@ -43,23 +43,23 @@ export const LearnMore = () => {
         <Item right>
           <FaqItem
             id="FAQ_A"
-            onClick={() => handleClick("https://www.daangn.com/wv/faqs/155")}
+            onClick={() => handleClick("https://daangnbiz.oopy.io/9dddfb4f-62c5-4267-9572-589c92862cef")}
           >
-            <p>지역광고 상품 종류와 비용을 소개해 주세요</p>
+            <p>지역광고는 어떻게 만드나요?</p>
             <ChevronRight src={chevronIconUrl} alt="댱근마켓 지역광고 가이드" />
           </FaqItem>
           <FaqItem
             id="FAQ_B"
-            onClick={() => handleClick("https://www.daangn.com/wv/faqs/468")}
+            onClick={() => handleClick("https://daangnbiz.oopy.io/98316839-382d-4dff-bd40-3571cd06e762")}
           >
-            <p>지역광고는 누구나 만들 수 있나요?</p>
+            <p>지역광고는 어디에 어떻게 노출되나요?</p>
             <ChevronRight src={chevronIconUrl} alt="당근마켓 지역광고 가이드" />
           </FaqItem>
           <FaqItem
             id="FAQ_C"
-            onClick={() => handleClick("https://www.daangn.com/wv/faqs/149")}
+            onClick={() => handleClick("https://daangnbiz.oopy.io/17e7522f-1c4c-46b3-bfdc-6343022442aa")}
           >
-            <p>지역광고는 어떻게 만드나요?</p>
+            <p>광고비는 어떻게 결정되나요?</p>
             <ChevronRight src={chevronIconUrl} alt="당근마켓 지역광고 가이드" />
           </FaqItem>
         </Item>
