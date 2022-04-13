@@ -46,7 +46,7 @@
     "react-dom": "next"
   },
   "devDependencies": {
-    "@babel/core": "7.17.8",
+    "@babel/core": "7.17.9",
     "@babel/plugin-transform-react-jsx": "7.17.3",
     "@babel/plugin-transform-typescript": "7.16.8",
     "@types/dotenv-safe": "8.1.2",
