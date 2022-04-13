@@ -37,7 +37,7 @@
     "react": "next",
     "react-dom": "next",
     "react-helmet-async": "1.2.3",
-    "react-swipeable": "6.2.0",
+    "react-swipeable": "6.2.1",
     "react-text-loop": "2.3.0"
   },
   "devDependencies": {
