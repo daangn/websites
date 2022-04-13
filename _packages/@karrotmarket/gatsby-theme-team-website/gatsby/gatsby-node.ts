@@ -137,6 +137,22 @@ export const createPages: GatsbyNode['createPages'] = async ({
         enable_faq_page?: boolean,
         enable_life_page?: boolean,
         enable_culture_page?: boolean,
+        faq_page_entries: Array<{
+          faq_page: {
+            document: {
+              id: string,
+              uid: string,
+              data: {
+                entries: Array<{
+                  question: string,
+                  answer: {
+                    text: string,
+                  }
+                }>
+              }
+            }
+          }
+        }>,
       },
     },
     allPrismicTeamsArticle: {
@@ -165,6 +181,24 @@ export const createPages: GatsbyNode['createPages'] = async ({
           enable_faq_page
           enable_life_page
           enable_culture_page
+          faq_page_entries {
+            faq_page {
+              document {
+                ... on PrismicFaq {
+                  id
+                  uid
+                  data {
+                    entries {
+                      question
+                      answer {
+                        text
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
       allPrismicTeamsArticle(
@@ -203,16 +237,28 @@ export const createPages: GatsbyNode['createPages'] = async ({
     throw new Error(`Prismic ${locale} 에 채용사이트 컨텐츠 데이터가 없습니다.`);
   }
 
-  if (data.prismicTeamContents.data.enable_faq_page) {
-    actions.createPage({
-      path: '/faq/',
-      component: require.resolve('./src/templates/FaqPage.tsx'),
-      context: {
-        locale,
-        navigationId,
-      },
+  if (data.prismicTeamContents.data.enable_faq_page && data.prismicTeamContents.data.faq_page_entries.length) {
+    actions.createRedirect({
+      fromPath: '/faq/',
+      toPath: `/faq/${data.prismicTeamContents.data.faq_page_entries[0].faq_page.document.uid}/`,
+      redirectInBrowser: true,
     });
+
+    for (const faq of data.prismicTeamContents.data.faq_page_entries) {
+      if (faq.faq_page.document.data.entries.length) {
+        actions.createPage({
+          path: `/faq/${faq.faq_page.document.uid}/`,
+          component: require.resolve('./src/templates/FaqPage.tsx'),
+          context: {
+            locale,
+            navigationId,
+            id: faq.faq_page.document.id,
+          }
+        })
+      }
+    }
   }
+
 
   if (data.prismicTeamContents.data.enable_life_page) {
     actions.createPage({

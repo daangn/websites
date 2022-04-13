@@ -5,7 +5,10 @@ exports.linkResolver = doc => {
       return '/';
     }
     case 'faq': {
-      return '/faq/';
+      if (doc.uid) {
+        return `/faq/${doc.uid}/`;
+      }
+      break;
     }
     case 'team_contents': {
       return '/';

@@ -20,6 +20,7 @@ const config = ({
     'gatsby-theme-stitches',
     'gatsby-plugin-svgr',
     'gatsby-plugin-react-helmet-async',
+    'gatsby-plugin-vercel-deploy',
     'gatsby-plugin-next-seo',
     {
       resolve: 'gatsby-plugin-sharp',
@@ -89,7 +90,7 @@ const config = ({
         normalizer: ({ data }: any) => data.allJobPost.nodes,
       },
     },
-
+    
     // 커스텀 플러그인
     '@karrotmarket/gatsby-theme-website',
     {

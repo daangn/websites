@@ -112,7 +112,7 @@ const JobPostList: React.FC<JobPostListProps> = ({
           </AnimatePresence>
         </List>
       ) : (
-        <EmptyPlaceholder />
+        <EmptyPlaceholder link="/jobs/" />
       )}
     </Container>
   );
