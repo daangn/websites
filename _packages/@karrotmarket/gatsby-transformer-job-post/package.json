@@ -14,7 +14,7 @@
     "gatsby": "^2.25.0 || ^3.0.0 || ^4.0.0"
   },
   "dependencies": {
-    "html-entities": "2.3.2"
+    "html-entities": "2.3.3"
   },
   "devDependencies": {
     "@babel/cli": "7.17.6",
