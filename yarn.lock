@@ -3126,7 +3126,7 @@ __metadata:
     "@prismicio/helpers": 2.2.1
     "@types/node": 16.11.26
     "@types/react": 17.0.44
-    "@types/react-dom": 17.0.14
+    "@types/react-dom": 17.0.15
     babel-preset-gatsby-package: 2.10.0
     concurrently: 7.0.0
     gatsby: next
@@ -3168,7 +3168,7 @@ __metadata:
     "@svgr/webpack": 6.2.1
     "@types/node": 16.11.26
     "@types/react": 17.0.44
-    "@types/react-dom": 17.0.14
+    "@types/react-dom": 17.0.15
     babel-plugin-polished: 1.1.0
     babel-preset-gatsby-package: 2.10.0
     clsx: 1.1.1
@@ -3226,7 +3226,7 @@ __metadata:
     "@svgr/webpack": 6.2.1
     "@types/node": 16.11.26
     "@types/react": 17.0.44
-    "@types/react-dom": 17.0.14
+    "@types/react-dom": 17.0.15
     babel-preset-gatsby-package: 2.10.0
     gatsby: next
     gatsby-plugin-svgr: 3.0.0-beta.0
@@ -4771,12 +4771,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:17.0.14":
-  version: 17.0.14
-  resolution: "@types/react-dom@npm:17.0.14"
+"@types/react-dom@npm:17.0.15":
+  version: 17.0.15
+  resolution: "@types/react-dom@npm:17.0.15"
   dependencies:
-    "@types/react": "*"
-  checksum: b54cd0ef573236b3d87fe7493e6d1c36d8b4ca37a3b46364272a5c91ac178e3296b68ea1aeb299ce68f12ad663c5720ee890d0539b14881c6754bdcbdb0befa0
+    "@types/react": ^17
+  checksum: 7b90372bd7207d3860e1043ebfe10fd21fbd9ec3417a29593ca14359774830c888ba4ebb25cf0510628607496f8d35b09d23d329ea709b9311f5866185c5fd67
   languageName: node
   linkType: hard
 
@@ -4800,7 +4800,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:17.0.44":
+"@types/react@npm:17.0.44, @types/react@npm:^17":
   version: 17.0.44
   resolution: "@types/react@npm:17.0.44"
   dependencies:
@@ -6689,7 +6689,7 @@ __metadata:
     "@types/dotenv-safe": 8.1.2
     "@types/node": 16.11.26
     "@types/react": 17.0.44
-    "@types/react-dom": 17.0.14
+    "@types/react-dom": 17.0.15
     dotenv-safe: 8.2.0
     gatsby: 4.10.2
     gatsby-plugin-advanced-sitemap: 2.0.0
@@ -6720,7 +6720,7 @@ __metadata:
     "@types/dotenv-safe": 8.1.2
     "@types/node": 16.11.26
     "@types/react": 17.0.44
-    "@types/react-dom": 17.0.14
+    "@types/react-dom": 17.0.15
     dotenv-safe: 8.2.0
     gatsby: 4.10.2
     gatsby-plugin-advanced-sitemap: 2.0.0
@@ -18797,7 +18797,7 @@ __metadata:
     "@types/dotenv-safe": 8.1.2
     "@types/node": 16.11.26
     "@types/react": 17.0.44
-    "@types/react-dom": 17.0.14
+    "@types/react-dom": 17.0.15
     cjk-slug: 0.3.0
     dotenv-safe: 8.2.0
     gatsby: 4.10.2
