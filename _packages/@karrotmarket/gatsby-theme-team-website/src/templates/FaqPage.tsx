@@ -11,7 +11,7 @@ import { matchSorter } from 'match-sorter'
 import _PageTitle from '../components/PageTitle';
 import FaqAccordion from '../components/FaqAccordion';
 import _Search from '../components/Search';
-import { ReactComponent as SearchdSvg } from '../assets/searchOutlineM.svg';
+import searchOutlineUrl from '!!file-loader!../assets/searchOutlineM.svg';
 import _FaqList from '../components/FaqList';
 
 type FaqPageProps = PageProps<GatsbyTypes.TeamWebsite_FaqPageQuery, GatsbyTypes.SitePageContext>;
@@ -140,6 +140,8 @@ const Search = styled(_Search, {
   }
 });
 
+const SearchIcon = styled('img')
+
 const FaqPage: React.FC<FaqPageProps> = ({
   data,
   location
@@ -205,7 +207,7 @@ const FaqPage: React.FC<FaqPageProps> = ({
             defaultValue={searchQuery ?? ''}
             onChange={handleSearchInputChange}
           />
-          <SearchdSvg />
+          <SearchIcon src={searchOutlineUrl} alt="" aria-hidden />
         </Search>
       </Filters>
       {searchQuery ? (
