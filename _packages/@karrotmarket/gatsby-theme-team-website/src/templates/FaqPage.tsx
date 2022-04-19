@@ -212,7 +212,7 @@ const FaqPage: React.FC<FaqPageProps> = ({
       </Filters>
       {searchQuery ? (
         <FaqList 
-          data={searchResults}
+          faqLists={searchResults}
           emptyPlaceHolderLink={`/faq/${data.prismicFaq.uid}/`} 
         />
        ) : (
