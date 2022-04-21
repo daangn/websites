@@ -1,9 +1,6 @@
 import { em, rem } from 'polished';
-import { colors, fonts } from '@karrotmarket/design-token';
-import type { PropertyValue } from '@stitches/react';
+import { vars } from '@seed-design/design-token';
 import { createStitches } from '@stitches/react';
-
-import { convertColorScheme } from './colors';
 
 const stitches = createStitches({
   // follows Bootstrap's breakpoints practice
@@ -16,8 +13,9 @@ const stitches = createStitches({
     xxl: `(min-width: ${em(1400)})`,
   },
   theme: {
-    colors: convertColorScheme(colors.light.scheme),
-    fonts: fonts.default.semanticScheme,
+    fonts: {
+      system: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"'
+    },
     fontSizes: {
       heading1: rem(72),
       heading2: rem(60),
