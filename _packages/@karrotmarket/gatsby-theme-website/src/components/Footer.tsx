@@ -1,7 +1,7 @@
 import * as React from "react";
 import { rem } from "polished";
 import { graphql } from "gatsby";
-import { styled } from "gatsby-theme-stitches/src/config";
+import { styled, vars } from "gatsby-theme-stitches/src/config";
 
 import SocialServiceProfile from "./footer/SocialServiceProfile";
 import FooterEntryItem from "./footer/FooterEntryItem";
@@ -37,7 +37,7 @@ const Container = styled("footer", {
   display: "grid",
   paddingTop: rem(32),
   paddingBottom: rem(96),
-  borderTop: "1px solid $gray400",
+  borderTop: `1px solid ${vars.$scale.color.gray400}`,
 
   "@sm": {
     paddingTop: rem(70),
@@ -81,7 +81,7 @@ const InfoWrapper = styled("div", {
   display: "flex",
   gap: rem(16),
   flexDirection: "column",
-  color: "$gray600",
+  color: vars.$scale.color.gray600,
   fontSize: "$caption1",
 });
 
@@ -92,7 +92,7 @@ const Contact = styled("section", {
   gap: `${rem(4)} ${rem(8)}`,
 
   '& a': {
-    color: '$gray600',
+    color: vars.$scale.color.gray600,
   },
 });
 

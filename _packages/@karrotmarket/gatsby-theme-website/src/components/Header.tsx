@@ -2,7 +2,7 @@ import * as React from "react";
 import { useInView } from "react-intersection-observer";
 import { graphql, Link } from "gatsby";
 import { rem } from "polished";
-import { styled } from "gatsby-theme-stitches/src/config";
+import { styled, vars } from "gatsby-theme-stitches/src/config";
 
 import NavigationMenu from "./header/NavigationMenu";
 import Something from "./header/Something";
@@ -24,7 +24,7 @@ export const query = graphql`
 const Container = styled("header", {
   position: "fixed",
   top: 0,
-  background: "#fff",
+  background: vars.$semantic.color.paperDefault,
   width: "100%",
   height: rem(58),
   zIndex: 2,

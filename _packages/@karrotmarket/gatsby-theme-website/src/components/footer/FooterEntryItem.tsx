@@ -3,7 +3,7 @@ import { Link } from "gatsby";
 import { rem } from 'polished';
 import { useLocation } from "@reach/router";
 
-import { styled } from "gatsby-theme-stitches/src/config";
+import { styled, vars } from "gatsby-theme-stitches/src/config";
 import { mapLink, useLinkParser } from "../../link";
 
 import externalSvgUrl from '!!file-loader!./footerEntryItem/external.svg';
@@ -17,7 +17,7 @@ const FooterEntryLink = styled(Link, {
   display: 'inline-flex',
   alignItems: 'center',
 
-  color: "$gray900",
+  color: vars.$scale.color.gray900,
   textDecoration: "none",
   opacity: 1,
 
@@ -28,9 +28,9 @@ const FooterEntryLink = styled(Link, {
   variants: {
     active: {
       true: {
-        color: '$carrot500',
+        color: vars.$scale.color.carrot500,
         '&:hover, &:focus': {
-          color: '$carrot600',
+          color: vars.$scale.color.carrot600,
         },
       },
     },
