@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import { motion } from 'framer-motion';
+import { vars } from '@seed-design/design-token';
 
 import chevronIconUrl from '!!file-loader?modules!./faqAccordionItem/chevron.svg';
 
@@ -26,7 +27,7 @@ export const query = graphql`
 `;
 
 const Container = styled('div', {
-  borderBottom: '1px solid $gray200',
+  borderBottom: `1px solid ${vars.$scale.color.gray200}`,
 });
 
 const Header = styled('h2', {
@@ -47,7 +48,7 @@ const Button = styled('button', {
   paddingY: rem(24),
   cursor: 'pointer',
   backgroundColor: 'transparent',
-  color: '$gray900',
+  color: vars.$scale.color.gray900,
   border: 'none',
   flex: 1,
   display: 'flex',

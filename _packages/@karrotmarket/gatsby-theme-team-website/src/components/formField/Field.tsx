@@ -1,5 +1,6 @@
 import { rem } from 'polished';
 import { styled } from 'gatsby-theme-stitches/src/config';
+import { vars } from '@seed-design/design-token'
 
 export const Container = styled('div', {
   position: 'relative',
@@ -10,7 +11,7 @@ export const Container = styled('div', {
 export const Label = styled('label', {
   display: 'inline-flex',
   alignItems: 'center',
-  color: '$gray700',
+  color: vars.$scale.color.gray700,
   typography: '$body2',
   marginBottom: rem(8),
   variants: {
@@ -22,7 +23,7 @@ export const Label = styled('label', {
           marginLeft: rem(4),
           width: rem(6),
           height: rem(6),
-          background: '$carrot500',
+          background: vars.$scale.color.carrot500,
           borderRadius: '50%',
         },
       },
@@ -34,19 +35,19 @@ export const Input = styled('input', {
   display: 'inline-flex',
   alignItems: 'center',
   height: rem(52),
-  border: '1px solid $gray400',
+  border: `1px solid ${vars.$scale.color.gray400}`,
   borderRadius: rem(8),
   typography: '$body2',
   paddingX: rem(20),
   '&:focus': {
-    border: '1px solid $carrot500',
+    border: `1px solid ${vars.$scale.color.carrot500}`,
   },
   '::placeholder': {
-    color: '$gray500',
+    color: vars.$scale.color.gray500,
   },
 });
 
 export const Description = styled('p', {
-  color: '$gray600',
+  color: vars.$scale.color.gray600,
   marginTop: rem(16),
 });

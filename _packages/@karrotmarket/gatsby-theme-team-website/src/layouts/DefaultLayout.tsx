@@ -93,7 +93,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
         <html
           lang={data.site.siteMetadata.locale}
           prefix="og: https://ogp.me/ns/website#"
-          data-seed="light" 
+          data-seed="light dark"
           data-seed-scale-color={preferColorScheme}
         />
         <meta name="color-scheme" content="light dark" />

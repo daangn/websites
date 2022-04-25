@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
+import { vars } from '@seed-design/design-token';
 
 import * as Field from './Field';
 import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
@@ -37,7 +38,6 @@ const Select = styled(Field.Input, {
   gridArea: 'select',
   alignItems: 'center',
   appearance: 'none',
-  backgroundColor: '$white',
   padding: 0,
   '&::after': {
     content: '""',
@@ -49,7 +49,7 @@ const Select = styled(Field.Input, {
     height: '0.5em',
     marginRight: rem(20),
     clipPath: 'polygon(100% 0%, 0 0%, 50% 100%)',
-    background: '$gray500',
+    background: vars.$scale.color.gray500,
   },
 });
 

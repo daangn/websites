@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { graphql, Link } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { useLinkParser, mapLink } from '@karrotmarket/gatsby-theme-website/src/link';
+import { vars } from '@seed-design/design-token';
 
 import JobPostSummary from './JobPostSummary';
 import FadeInWhenVisible from './FadeInWhenVisible';
@@ -46,7 +47,7 @@ const JobPostLink = styled(Link, {
   transition: 'color .3s',
   textDecoration: 'none',
   '&:hover': {
-    color: '$gray600',
+    color: vars.$scale.color.gray600,
   },
 });
 

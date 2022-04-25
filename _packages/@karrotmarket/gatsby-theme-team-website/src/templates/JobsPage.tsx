@@ -7,8 +7,9 @@ import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import { rem } from 'polished';
 import $ from 'text2vdom';
 import { required } from '@cometjs/core';
-import { ReactComponent as SearchdSvg } from '../assets/searchOutlineM.svg';
+import { vars } from '@seed-design/design-token';
 
+import { ReactComponent as SearchdSvg } from '../assets/searchOutlineM.svg';
 import PageTitle from '../components/PageTitle';
 import _JobPostList from '../components/JobPostList';
 import Search from '../components/Search'
@@ -169,7 +170,7 @@ const Select = styled('select', {
   display: 'grid',
   alignItems: 'center',
   height: rem(52),
-  border: '1px solid $gray400',
+  border: `1px solid ${vars.$scale.color.gray400}`,
   borderRadius: rem(8),
   typography: '$body2',
   paddingLeft: rem(20),
@@ -177,17 +178,16 @@ const Select = styled('select', {
   boxSizing: 'border-box',
   gridTemplateAreas: '"select"',
   appearance: 'none',
-  backgroundColor: '$white',
   backgroundImage: `url(${expandMoreOutlineUrl})`,
   backgroundPosition: `right ${rem(20)} top ${rem(23)}`,
   backgroundRepeat: 'no-repeat',
-  color: '$gray700',
+  color: vars.$scale.color.gray700,
 
   '&:focus': {
-    border: '1px solid $carrot500',
+    border: `1px solid ${vars.$scale.color.carrot500}`,
   },
   '::placeholder': {
-    color: '$gray500',
+    color: vars.$scale.color.gray500,
   },
   '&::-ms-expand': {
     display: 'none',
@@ -199,7 +199,7 @@ const Select = styled('select', {
     width: '0.8em',
     height: '0.5em',
     clipPath: 'polygon(100% 0%, 0 0%, 50% 100%)',
-    background: '$gray500',
+    background: vars.$scale.color.gray500,
   },
 });
 

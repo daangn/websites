@@ -7,6 +7,7 @@ import { GatsbySeo, FAQJsonLd } from 'gatsby-plugin-next-seo';
 import { required } from '@cometjs/core';
 import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 import { matchSorter } from 'match-sorter'
+import { vars } from '@seed-design/design-token';
 
 import _PageTitle from '../components/PageTitle';
 import FaqAccordion from '../components/FaqAccordion';
@@ -114,16 +115,16 @@ const FaqGroup = styled('li', {
 });
 
 const FaqGroupLink = styled(Link, {
-  color: '$gray900',
+  color: vars.$scale.color.gray900,
   textDecoration: 'none',
   variants: {
     selected: {
       true: {
-        color: '$carrot600',
+        color: vars.$scale.color.carrot600,
       },
       false: {
         '&:hover': {
-          color: '$gray600'
+          color: vars.$scale.color.gray600,
         },
       }
     }

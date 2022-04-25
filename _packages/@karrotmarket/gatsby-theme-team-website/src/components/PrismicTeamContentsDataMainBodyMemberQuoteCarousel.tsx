@@ -3,6 +3,7 @@ import { useSwipeable } from 'react-swipeable';
 import { rem } from 'polished';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
+import { vars } from '@seed-design/design-token'
 
 import CarouselItem from './prismicTeamContentsDataMainBodyMemberQuoteCarousel/CarouselItem';
 import _ArrowButton from './prismicTeamContentsDataMainBodyMemberQuoteCarousel/ArrowButton';
@@ -136,11 +137,11 @@ const Dots = styled('div', {
 const Dot = styled('button', {
   position: 'relative',
   borderRadius: '100%',
-  border: '1px solid $gray900',
+  border: `1px solid ${vars.$scale.color.gray900}`,
   width: rem(12),
   height: rem(12),
   padding: 0,
-  background: '$white',
+  background: vars.$semantic.color.paperDefault,
   cursor: 'pointer',
 
   '&::after': {
@@ -155,7 +156,7 @@ const Dot = styled('button', {
   variants: {
     active: {
       true: {
-        background: '$gray900',
+        background: vars.$scale.color.gray900,
       },
     },
   },

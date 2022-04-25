@@ -4,6 +4,7 @@ import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { getImage, GatsbyImage } from 'gatsby-plugin-image';
 import { Condition } from '@cometjs/core';
+import { vars } from '@seed-design/design-token'
 
 type PrismicTeamsArticleDataBodyArticleSectionProps = {
   data: GatsbyTypes.PrismicTeamsArticleDataBodyArticleSection_dataFragment,
@@ -55,7 +56,7 @@ const Title = styled('h2', {
 
 const BodyText = styled('div', {
   typography: '$body2',
-  color: '$gray700',
+  color: vars.$scale.color.gray700,
 });
 
 const ThumbnailContainer = styled('div', {
@@ -78,7 +79,7 @@ const ThumbnailImage = styled(GatsbyImage, {
 
 const ThumbnailCaption = styled('figcaption', {
   typography: '$caption1',
-  color: '$gray500',
+  color: vars.$scale.color.gray500,
 });
 
 const PrismicTeamsArticleDataBodyArticleSection: React.FC<PrismicTeamsArticleDataBodyArticleSectionProps> = ({

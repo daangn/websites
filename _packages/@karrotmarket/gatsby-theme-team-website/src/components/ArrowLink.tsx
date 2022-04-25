@@ -4,6 +4,7 @@ import { Link } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import type { LinkType } from '@karrotmarket/gatsby-theme-website/src/link';
 import { mapLink } from '@karrotmarket/gatsby-theme-website/src/link';
+import { vars } from '@seed-design/design-token';
 
 import arrowSvgUrl from './arrowLink/arrow.svg';
 
@@ -20,7 +21,7 @@ const Base = styled(Link, {
   flexWrap: 'wrap',
   whiteSpace: 'nowrap',
   alignItems: 'center',
-  color: '$gray900',
+  color: vars.$scale.color.gray900,
   textDecoration: 'none',
   typography: '$body2',
   fontWeight: 'bold',

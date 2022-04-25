@@ -3,6 +3,7 @@ import * as React from 'react';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import FocusTrap from 'focus-trap-react';
+import { vars } from '@seed-design/design-token'
 
 import * as Field from './Field';
 import checkmarkUrl from '!!file-loader!./checkmark.svg';
@@ -91,7 +92,6 @@ const Select = styled(Field.Input, {
   gridArea: 'select',
   alignItems: 'center',
   appearance: 'none',
-  backgroundColor: '$white',
   textAlign: 'left',
   '&::-ms-expand': {
     display: 'none',
@@ -105,7 +105,7 @@ const Select = styled(Field.Input, {
     width: '0.8em',
     height: '0.5em',
     clipPath: 'polygon(100% 0%, 0 0%, 50% 100%)',
-    background: '$gray500',
+    background: vars.$scale.color.gray500,
   },
 });
 
@@ -115,7 +115,7 @@ const Selection = styled('div', {
 });
 
 const SelectionItem = styled('span', {
-  background: '$gray200',
+  background: vars.$scale.color.gray200,
   paddingX: rem(20),
   borderRadius: rem(8),
   '& + &:before': {
@@ -129,8 +129,8 @@ const Menu = styled('div', {
   top: '100%',
   marginTop: rem(8),
   width: '100%',
-  background: '$white',
-  border: '1px solid $gray400',
+  background: vars.$static.color.white,
+  border: `1px solid ${vars.$scale.color.gray400}`,
   borderRadius: rem(8),
   overflow: 'hidden',
   zIndex: 1,
@@ -140,7 +140,7 @@ const MenuItem = styled('button', {
   display: 'inline-flex',
   boxSizing: 'border-box',
   width: '100%',
-  background: '$white',
+  background: vars.$static.color.white,
   border: 'none',
   outline: 'none',
   padding: rem(16),
@@ -149,7 +149,7 @@ const MenuItem = styled('button', {
   transition: 'transform 0.15s ease-in',
 
   '&:hover, &:focus': {
-    background: '$gray200',
+    background: vars.$scale.color.gray200,
   },
 
   variants: {

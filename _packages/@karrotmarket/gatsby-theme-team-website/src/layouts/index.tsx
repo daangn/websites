@@ -25,6 +25,7 @@ const globalStyles = globalCss({
     colorSchema: 'light dark',
   },
   'body': {
+    background: vars.$semantic.color.paperDefault,
     color: vars.$scale.color.gray900,
     fontFamily: '$system',
     textRendering: 'optimizeLegibility',

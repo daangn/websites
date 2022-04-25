@@ -6,13 +6,15 @@ export function usePrefersColorScheme(): 'light' | 'dark' {
     getServerSnapshot,
     subscribe,
   ] = React.useMemo(() => {
+    const matchMedia = () => window.matchMedia('(prefers-color-scheme: dark)')
+
     return [
-      () => window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
+      () => matchMedia().matches ? 'dark' : 'light',
       () => 'light',
       (notify: () => void) => {
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', notify);
+        matchMedia().addEventListener('change', notify);
         return () => {
-          window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', notify);
+          matchMedia().removeEventListener('change', notify);
         };
       },
     ];
