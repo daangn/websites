@@ -43,7 +43,6 @@ const Layout: React.FC<LayoutProps> = ({
       <Header
         key="header"
         navigationData={data}
-        isStatic
         sns
       />
       <main id={id}>{children}</main>
