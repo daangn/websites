@@ -84,7 +84,6 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
     <Layout
       id="index-page"
       data={data.prismicSiteNavigation.data}
-      isStatic
     >
       <GatsbySeo
         title={main_page_title}
