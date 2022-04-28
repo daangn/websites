@@ -2,8 +2,9 @@ import * as React from "react";
 import { Link } from "gatsby";
 import { rem } from 'polished';
 import { useLocation } from "@reach/router";
+import { vars } from "@seed-design/design-token";
 
-import { styled, vars } from "gatsby-theme-stitches/src/config";
+import { styled } from "gatsby-theme-stitches/src/config";
 import { mapLink, useLinkParser } from "../../link";
 
 import externalSvgUrl from '!!file-loader!./navigationListItem/external.svg';

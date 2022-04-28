@@ -1,8 +1,9 @@
 import * as React from "react";
 import { graphql } from "gatsby";
 import { rem } from "polished";
-import { styled, vars } from "gatsby-theme-stitches/src/config";
+import { styled } from "gatsby-theme-stitches/src/config";
 import { useLocation } from "@reach/router";
+import { vars } from '@seed-design/design-token'
 
 import SocialServiceProfile from "../footer/SocialServiceProfile";
 import NavigationListItem from "./NavigationListItem";

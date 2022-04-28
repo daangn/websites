@@ -18,6 +18,7 @@ const Search = styled('div', {
     flex:1,
     alignItems: 'center',
     height: rem(52),
+    background: vars.$semantic.color.paperDefault,
     border: `1px solid ${vars.$scale.color.gray400}`,
     boxSizing: 'border-box',
     borderRadius: rem(8),
@@ -25,7 +26,7 @@ const Search = styled('div', {
     paddingLeft: rem(52),
     paddingRight: rem(14),
     '::placeholder': {
-      color: vars.$scale.color.gray500,
+      color: vars.$scale.color.gray400,
     },
     '&:focus': {
       border: `1px solid ${vars.$scale.color.carrot500}`,

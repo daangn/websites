@@ -155,7 +155,7 @@ const Select = styled(Input, {
     width: '0.8em',
     height: '0.5em',
     clipPath: 'polygon(100% 0%, 0 0%, 50% 100%)',
-    background:  vars.$scale.color.gray500,
+    background: vars.$scale.color.gray500,
   },
 });
 

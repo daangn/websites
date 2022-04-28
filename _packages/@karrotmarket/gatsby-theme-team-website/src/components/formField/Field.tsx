@@ -36,6 +36,7 @@ export const Input = styled('input', {
   alignItems: 'center',
   height: rem(52),
   border: `1px solid ${vars.$scale.color.gray400}`,
+  backgroundColor: vars.$semantic.color.paperDefault,
   borderRadius: rem(8),
   typography: '$body2',
   paddingX: rem(20),

@@ -14,6 +14,7 @@ import PageTitle from '../components/PageTitle';
 import _JobPostList from '../components/JobPostList';
 import Search from '../components/Search'
 import expandMoreOutlineUrl from '!!file-loader!../assets/expand_more_outline_m.svg';
+import {ReactComponent as ExpandMoreOutlineIcon} from '../assets/expand_more_outline_m.svg';
 import { useFlexSearch } from '../utils/useFlexSearch';
 
 import BannerArea from './jobsPage/BannerArea';
@@ -166,11 +167,18 @@ const Filters = styled('div', {
   },
 });
 
+const SelectWrapper = styled('div', {
+  position: 'relative',
+  display: 'grid',
+})
+
 const Select = styled('select', {
   display: 'grid',
   alignItems: 'center',
+  width: '100%',
   height: rem(52),
   border: `1px solid ${vars.$scale.color.gray400}`,
+  backgroundColor: vars.$semantic.color.paperDefault,
   borderRadius: rem(8),
   typography: '$body2',
   paddingLeft: rem(20),
@@ -178,10 +186,10 @@ const Select = styled('select', {
   boxSizing: 'border-box',
   gridTemplateAreas: '"select"',
   appearance: 'none',
-  backgroundImage: `url(${expandMoreOutlineUrl})`,
-  backgroundPosition: `right ${rem(20)} top ${rem(23)}`,
-  backgroundRepeat: 'no-repeat',
   color: vars.$scale.color.gray700,
+  // backgroundImage: `url(${expandMoreOutlineUrl}), ${vars.$scale.color.gray700}`,
+  // backgroundPosition: `right ${rem(20)} top ${rem(23)}`,
+  // backgroundRepeat: 'no-repeat',
 
   '&:focus': {
     border: `1px solid ${vars.$scale.color.carrot500}`,
@@ -199,9 +207,18 @@ const Select = styled('select', {
     width: '0.8em',
     height: '0.5em',
     clipPath: 'polygon(100% 0%, 0 0%, 50% 100%)',
-    background: vars.$scale.color.gray500,
+    backgroundColor: vars.$scale.color.gray500,
   },
 });
+
+const ExpandIcon = styled(ExpandMoreOutlineIcon, {
+  position: 'absolute',
+  width: '0.8em',
+  height: '0.5em',
+  right: rem(20),
+  top: rem(23),
+  color: vars.$scale.color.gray700,
+})
 
 const JobPostList = styled(_JobPostList, {
   minHeight: '80vh',
@@ -289,41 +306,45 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
         <Content>
           <FilterAnchor id={filterAnchorId} />
           <Filters>
-            <Select
-              defaultValue={pageContext.departmentId}
-              onChange={onFilterChange}
-              css={{ gridArea: 'department' }}
-            >
-              <option
-                key="*"
-                value="*"
+            <SelectWrapper css={{ gridArea: 'department' }}>
+              <Select
+                defaultValue={pageContext.departmentId}
+                onChange={onFilterChange}
               >
-                {$(messages.jobs_page__chapter_all, {
-                  n: () => <>{data.allJobPost.totalCount}</>
-                })}
-              </option>
-              {data.allJobDepartment.nodes
-                .map(department => (
-                  <option
-                    key={department.id}
-                    value={department.id}
-                  >
-                    {`${department.name} (${department.jobPosts.length})`}
-                  </option>
-                ))
-              }
-            </Select>
-            <Select
-              value={filterEmploymentType}
-              onChange={e => setFilterEmploymentType(e.target.value)}
-              css={{ gridArea: 'etype' }}
-            >
-              <option value="">{messages.jobs_page__employment_type_all}</option>
-              <option value="FULL_TIME">{messages.jobs_page__employment_type_fulltime}</option>
-              <option value="CONTRACTOR">{messages.jobs_page__employment_type_contractor}</option>
-              <option value="INTERN">{messages.jobs_page__employment_type_intern}</option>
-              <option value="ASSISTANT">{messages.jobs_page__employment_type_assistant}</option>
-            </Select>
+                <option
+                  key="*"
+                  value="*"
+                >
+                  {$(messages.jobs_page__chapter_all, {
+                    n: () => <>{data.allJobPost.totalCount}</>
+                  })}
+                </option>
+                {data.allJobDepartment.nodes
+                  .map(department => (
+                    <option
+                      key={department.id}
+                      value={department.id}
+                    >
+                      {`${department.name} (${department.jobPosts.length})`}
+                    </option>
+                  ))
+                }
+              </Select>
+              <ExpandIcon />
+            </SelectWrapper>
+            <SelectWrapper css={{ gridArea: 'etype' }}>
+              <Select
+                value={filterEmploymentType}
+                onChange={e => setFilterEmploymentType(e.target.value)}
+              >
+                <option value="">{messages.jobs_page__employment_type_all}</option>
+                <option value="FULL_TIME">{messages.jobs_page__employment_type_fulltime}</option>
+                <option value="CONTRACTOR">{messages.jobs_page__employment_type_contractor}</option>
+                <option value="INTERN">{messages.jobs_page__employment_type_intern}</option>
+                <option value="ASSISTANT">{messages.jobs_page__employment_type_assistant}</option>
+              </Select>
+              <ExpandIcon />
+            </SelectWrapper>
             <Search >
               <input
                 placeholder={messages.jobs_page__search}

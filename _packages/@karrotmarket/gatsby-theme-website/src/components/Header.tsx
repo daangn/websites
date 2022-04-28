@@ -2,7 +2,8 @@ import * as React from "react";
 import { useInView } from "react-intersection-observer";
 import { graphql, Link } from "gatsby";
 import { rem } from "polished";
-import { styled, vars } from "gatsby-theme-stitches/src/config";
+import { styled } from "gatsby-theme-stitches/src/config";
+import { vars } from '@seed-design/design-token'
 
 import NavigationMenu from "./header/NavigationMenu";
 import Something from "./header/Something";

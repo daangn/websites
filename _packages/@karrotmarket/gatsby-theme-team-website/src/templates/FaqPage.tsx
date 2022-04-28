@@ -120,7 +120,7 @@ const FaqGroupLink = styled(Link, {
   variants: {
     selected: {
       true: {
-        color: vars.$scale.color.carrot600,
+        color: vars.$scale.color.carrot500,
       },
       false: {
         '&:hover': {
