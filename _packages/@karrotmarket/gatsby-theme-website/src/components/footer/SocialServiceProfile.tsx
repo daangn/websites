@@ -5,15 +5,6 @@ import { vars } from "@seed-design/design-token";
 
 import { styled } from "gatsby-theme-stitches/src/config";
 
-import githubIconUrl from "!!file-loader?modules!./socialServiceProfile/github.svg";
-import facebookIconUrl from "!!file-loader?modules!./socialServiceProfile/facebook.svg";
-import twitterIconUrl from "!!file-loader?modules!./socialServiceProfile/twitter.svg";
-import mediumIconUrl from "!!file-loader?modules!./socialServiceProfile/medium.svg";
-import instagramIconUrl from "!!file-loader?modules!./socialServiceProfile/instagram.svg";
-import lineIconUrl from "!!file-loader?modules!./socialServiceProfile/line.svg";
-import youtubeIconUrl from "!!file-loader?modules!./socialServiceProfile/youtube.svg";
-import naverBlogIconUrl from "!!file-loader?modules!./socialServiceProfile/naver_blog.svg";
-
 import { ReactComponent as GithubIcon } from './socialServiceProfile/github.svg';
 import { ReactComponent as FacebookIcon } from './socialServiceProfile/facebook.svg';
 import { ReactComponent as TwitterIcon } from './socialServiceProfile/twitter.svg';

@@ -7,6 +7,7 @@ import { vars } from '@seed-design/design-token'
 
 import CarouselItem from './prismicTeamContentsDataMainBodyMemberQuoteCarousel/CarouselItem';
 import _ArrowButton from './prismicTeamContentsDataMainBodyMemberQuoteCarousel/ArrowButton';
+import { ReactComponent as ArrowButtonIcon } from './prismicTeamContentsDataMainBodyMemberQuoteCarousel/arrow.svg';
 
 type PrismicTeamContentsDataMainBodyMemberQuoteCarouselProps = {
   data: GatsbyTypes.PrismicTeamContentsDataMainBodyMemberQuoteCarousel_dataFragment,
@@ -185,7 +186,9 @@ const PrismicTeamContentsDataMainBodyMemberQuoteCarousel: React.FC<PrismicTeamCo
         viewport={{ '@initial': 'initial', '@xxl': 'xxl' }}
         hide={slide === 0}
         onClick={() => setSlide(slide => Math.max(~~(slide / 2) * 2 - 2, 0))}
-      />
+      >
+        <ArrowButtonIcon />
+      </LeftArrowButton>
       <SlideCamera {...swipeHandlers}>
         <Slide css={{ '$$slide': slide }}>
           {items.map((item, i) => (
@@ -201,7 +204,9 @@ const PrismicTeamContentsDataMainBodyMemberQuoteCarousel: React.FC<PrismicTeamCo
         viewport={{ '@initial': 'initial', '@xxl': 'xxl' }}
         hide={slide === items.length - 2}
         onClick={() => setSlide(slide => Math.min(~~(slide / 2) * 2 + 2, items.length - 1))}
-      />
+      >
+        <ArrowButtonIcon />
+      </RightArrowButton>
       <Dots>
         {items.map((_item, i) => (
           <Dot

@@ -13,7 +13,6 @@ import { ReactComponent as SearchdSvg } from '../assets/searchOutlineM.svg';
 import PageTitle from '../components/PageTitle';
 import _JobPostList from '../components/JobPostList';
 import Search from '../components/Search'
-import expandMoreOutlineUrl from '!!file-loader!../assets/expand_more_outline_m.svg';
 import {ReactComponent as ExpandMoreOutlineIcon} from '../assets/expand_more_outline_m.svg';
 import { useFlexSearch } from '../utils/useFlexSearch';
 
