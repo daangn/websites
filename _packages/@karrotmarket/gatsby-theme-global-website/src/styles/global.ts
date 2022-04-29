@@ -1,4 +1,7 @@
+import '@seed-design/stylesheet/global.css';
+
 import { globalCss } from "../gatsby-theme-stitches/config";
+import { vars } from '@seed-design/design-token'
 import { rem } from "polished";
 
 const globalStyles = globalCss({
@@ -9,7 +12,8 @@ const globalStyles = globalCss({
     lineHeight: "140%",
   },
   body: {
-    color: "$gray900",
+    background: vars.$semantic.color.paperDefault,
+    color: vars.$scale.color.gray900,
     fontFamily: "Gilroy",
     textRendering: "optimizeLegibility",
     wordBreak: "break-word",
@@ -17,7 +21,7 @@ const globalStyles = globalCss({
     margin: 0,
   },
   a: {
-    color: "$gray900",
+    color: vars.$scale.color.gray900,
   },
   "#index-page": {
     "@md": {

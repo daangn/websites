@@ -19,5 +19,5 @@ const PreferColorSchemeScript = () => {
 };
 
 export const onRenderBody: GatsbySSR["onRenderBody"] = ({ setPreBodyComponents }) => {
-  setPreBodyComponents([<PreferColorSchemeScript />]);
+  setPreBodyComponents([<PreferColorSchemeScript key="prefer-color-scheme" />]);
 };

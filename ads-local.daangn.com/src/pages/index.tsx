@@ -1,5 +1,8 @@
+import "@seed-design/stylesheet/global.css";
+
 import * as React from "react";
 import type { PageProps } from "gatsby";
+import { Helmet } from "react-helmet-async";
 import {rem} from 'polished';
 import { GatsbySeo } from "gatsby-plugin-next-seo";
 import { mapAbstractTypeWithDefault } from "@cometjs/graphql-utils";
@@ -80,6 +83,10 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
 
   return (
     <IndexDiv>
+      <Helmet>
+        <html lang="en" data-seed="light-only" data-seed-scale-color="light" />
+        <meta name="color-scheme" content="light dark" />
+      </Helmet>
       <GatsbySeo
         title="당근마켓 지역광고"
         openGraph={{

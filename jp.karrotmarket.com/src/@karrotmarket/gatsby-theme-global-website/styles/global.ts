@@ -9,6 +9,7 @@ const globalStyles = globalCss({
     lineHeight: "140%",
   },
   body: {
+    backgroundColor: "$white",
     color: "$gray900",
     fontFamily: "Gilroy",
     textRendering: "optimizeLegibility",
