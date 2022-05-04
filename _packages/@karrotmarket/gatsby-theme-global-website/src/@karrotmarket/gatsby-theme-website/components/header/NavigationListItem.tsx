@@ -65,15 +65,12 @@ const NavigationListItem: React.FC<FooterEntryItemProps> = ({ entry }) => {
       {mapLink(parseLink(entry.link!.url), {
         Internal: (link) => (
           <NavigationLink
-            {...(link.pathname === "/" || link.pathname === "/about"
-              ? {
-                  to: link.pathname,
-                  active: link.pathname === location.pathname,
-                }
-              : {
-                  as: "a",
-                  href: link.pathname,
-                })}
+            to={link.pathname}
+            active={
+              link.pathname === "/"
+                ? location.pathname === "/"
+                : location.pathname.startsWith(link.pathname)
+            }
           >
             {entry.display_text}
           </NavigationLink>
