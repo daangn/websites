@@ -33,7 +33,7 @@ const Search = styled('div', {
       color: '$carrot500',
     },
   },
-  '& > svg':{
+  '& > img':{
     color:'$gray400',
     position:'absolute',
     left: rem(20),

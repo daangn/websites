@@ -7,7 +7,7 @@ import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import { rem } from 'polished';
 import $ from 'text2vdom';
 import { required } from '@cometjs/core';
-import { ReactComponent as SearchdSvg } from '../assets/searchOutlineM.svg';
+import searchOutlineUrl from '!!file-loader!../assets/searchOutlineM.svg';
 
 import PageTitle from '../components/PageTitle';
 import _JobPostList from '../components/JobPostList';
@@ -207,6 +207,8 @@ const JobPostList = styled(_JobPostList, {
   minHeight: '80vh',
 });
 
+const SearchIcon = styled('img')
+
 const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
   data,
   pageContext,
@@ -329,7 +331,7 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
                 placeholder={messages.jobs_page__search}
                 onChange={handleSearchInputChange}
               />
-              <SearchdSvg />
+              <SearchIcon src={searchOutlineUrl} alt="" aria-hidden />
             </Search>
           </Filters>
           <JobPostList
