@@ -14,6 +14,7 @@ import FaqAccordion from '../components/FaqAccordion';
 import _Search from '../components/Search';
 import { ReactComponent as SearchdSvg } from '../assets/searchOutlineM.svg';
 import _FaqList from '../components/FaqList';
+import { useURLSearchParams } from '../utils/useURLSearchParams'
 
 type FaqPageProps = PageProps<GatsbyTypes.TeamWebsite_FaqPageQuery, GatsbyTypes.SitePageContext>;
 
@@ -148,15 +149,29 @@ const FaqPage: React.FC<FaqPageProps> = ({
   const messages = useTranslation();
 
   const searchParams = new URLSearchParams(location.search);
-  const searchQuery = searchParams.get('q') ?? ''
+  const searchQuery = searchParams.get('q') || ''
+  const [query, setQuery] = React.useState<string>(searchQuery || '');
   const [_isSearchPending, startSearchTransition] = React.useTransition();
 
   const handleSearchInputChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    const value = e.target.value
+    setQuery(value);
     startSearchTransition(() => {
-      searchParams.set('q', e.target.value);
-      navigate(`?${searchParams.toString()}`)
-    })
+      searchParams.set('q', value);
+      navigate(`?${searchParams.toString()}`);
+    });
   }
+
+  const search = useURLSearchParams();
+
+  React.useEffect(() => {
+    const searchQuery = search.get('q') || '';
+    const currentQuery = query;
+  
+    if (searchQuery !== currentQuery) {
+      navigate(`?q=${currentQuery}`, { replace: true });
+    }
+  }, [search])
 
   const searchResults = {
     entries: [...matchSorter(data.prismicFaq.data.entries, searchQuery, { keys: ['question', 'keywords'] })]
@@ -203,7 +218,7 @@ const FaqPage: React.FC<FaqPageProps> = ({
         <Search>
           <input 
             placeholder={messages.faq_page__search}
-            defaultValue={searchQuery ?? ''}
+            value={query || ''}
             onChange={handleSearchInputChange}
           />
           <SearchdSvg />
@@ -211,7 +226,7 @@ const FaqPage: React.FC<FaqPageProps> = ({
       </Filters>
       {searchQuery ? (
         <FaqList 
-          data={searchResults}
+          faqLists={searchResults}
           emptyPlaceHolderLink={`/faq/${data.prismicFaq.uid}/`} 
         />
        ) : (

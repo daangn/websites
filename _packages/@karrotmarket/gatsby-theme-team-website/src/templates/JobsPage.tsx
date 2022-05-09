@@ -186,9 +186,6 @@ const Select = styled('select', {
   gridTemplateAreas: '"select"',
   appearance: 'none',
   color: vars.$scale.color.gray700,
-  // backgroundImage: `url(${expandMoreOutlineUrl}), ${vars.$scale.color.gray700}`,
-  // backgroundPosition: `right ${rem(20)} top ${rem(23)}`,
-  // backgroundRepeat: 'no-repeat',
 
   '&:focus': {
     border: `1px solid ${vars.$scale.color.carrot500}`,

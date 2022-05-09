@@ -8,11 +8,11 @@ import FaqAccordion from './FaqAccordion';
 type FaqListProps = {
   className?: string,
   emptyPlaceHolderLink: string,
-  data: GatsbyTypes.TeamWebsite_FaqList_faqListFragment,
+  faqLists: GatsbyTypes.TeamWebsite_FaqList_faqListsFragment,
 }
 
 export const query = graphql`
-  fragment TeamWebsite_FaqList_faqList on PrismicFaqDataType {
+  fragment TeamWebsite_FaqList_faqLists on PrismicFaqDataType {
     entries {
       ...TeamWebsite_FaqAccordionItem_entry
     }
@@ -23,10 +23,10 @@ const Container = styled('div', {
   display: 'grid',
 });
 
-const FaqList: React.FC<FaqListProps> = ({ data, emptyPlaceHolderLink, className }) => {
+const FaqList: React.FC<FaqListProps> = ({ faqLists, emptyPlaceHolderLink, className }) => {
   return (
     <Container className={className}>
-      {data.entries?.length > 0 ? <FaqAccordion data={data} /> : <EmptyPlaceholder link={emptyPlaceHolderLink} buttonVisible={false} />}
+      {faqLists.entries?.length > 0 ? <FaqAccordion data={faqLists} /> : <EmptyPlaceholder link={emptyPlaceHolderLink} buttonVisible={false} />}
     </Container>
   )
 }
