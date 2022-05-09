@@ -5,7 +5,7 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import type { PropOf } from '@cometjs/react-utils';
 import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
-
+import { vars } from '@seed-design/design-token'
 
 type FormFieldVariants = (
   | {
@@ -68,7 +68,7 @@ const Container = styled('div', {
 const Label = styled('label', {
   display: 'inline-flex',
   alignItems: 'center',
-  color: '$gray700',
+  color: vars.$scale.color.gray700,
   typography: '$body2',
   marginBottom: rem(8),
   variants: {
@@ -80,7 +80,7 @@ const Label = styled('label', {
           marginLeft: rem(4),
           width: rem(6),
           height: rem(6),
-          background: '$carrot500',
+          background: vars.$scale.color.carrot500,
           borderRadius: '50%',
         },
       },
@@ -92,15 +92,15 @@ const Input = styled('input', {
   display: 'inline-flex',
   alignItems: 'center',
   height: rem(52),
-  border: '1px solid $gray400',
+  border: `1px solid ${vars.$scale.color.gray400}`,
   borderRadius: rem(8),
   typography: '$body2',
   paddingX: rem(20),
   '&:focus': {
-    border: '1px solid $carrot500',
+    border: `1px solid ${vars.$scale.color.carrot500}`,
   },
   '::placeholder': {
-    color: '$gray500',
+    color: vars.$scale.color.gray500,
   },
 });
 
@@ -113,11 +113,11 @@ const LongTextInput = styled(Input, {
 
 const FileInput = styled(Input, {
   display: 'flex',
-  color: '$gray500',
+  color: vars.$scale.color.gray500,
   cursor: 'pointer',
   transition: 'box-shadow .25s ease',
   'input:focus + label > &': {
-    border: '1px solid $carrot500',
+    border: `1px solid ${vars.$scale.color.carrot500}`,
     // Note: $carrot500 을 써야하는데 브라우저 버그 때문에 css variable 적용이 안됨
     boxShadow: '0 0 0 0.05em #fff, 0 0 0.15em 0.1em #ff7e36',
   },
@@ -128,7 +128,7 @@ const TermsInput = styled(Input, {
   height: rem(200),
   paddingY: rem(16),
   overflowY: 'auto',
-  color: '$gray700',
+  color: vars.$scale.color.gray700,
   whiteSpace: 'pre-line',
   '> p, ul': {
     marginBottom: rem(16),
@@ -145,7 +145,6 @@ const Select = styled(Input, {
   gridArea: 'select',
   alignItems: 'center',
   appearance: 'none',
-  backgroundColor: '$white',
   '&::-ms-expand': {
     display: 'none',
   },
@@ -156,7 +155,7 @@ const Select = styled(Input, {
     width: '0.8em',
     height: '0.5em',
     clipPath: 'polygon(100% 0%, 0 0%, 50% 100%)',
-    background: '$gray500',
+    background: vars.$scale.color.gray500,
   },
 });
 
@@ -186,9 +185,9 @@ const CheckboxLabel = styled('span', {
 const Checkmark = styled('span', {
   width: '1.2em',
   height: '1.2em',
-  border: '1px solid $gray500',
+  border: `1px solid ${vars.$scale.color.gray500}`,
   borderRadius: '0.3em',
-  color: '$carrot500',
+  color: vars.$scale.color.carrot500,
   transition: 'box-shadow .25s ease',
   'input:focus + &': {
     boxShadow: '0 0 0 0.05em #fff, 0 0 0.15em 0.1em currentColor',
@@ -217,7 +216,7 @@ const RadioGroupContainer = styled('div', {
 const RadioGroupLabel = styled('div', {
   display: 'inline-flex',
   alignItems: 'center',
-  color: '$gray700',
+  color: vars.$scale.color.gray700,
   typography: '$body2',
   marginBottom: rem(8),
   variants: {
@@ -229,7 +228,7 @@ const RadioGroupLabel = styled('div', {
           marginLeft: rem(4),
           width: rem(6),
           height: rem(6),
-          background: '$carrot500',
+          background: vars.$scale.color.carrot500,
           borderRadius: '50%',
         },
       },
@@ -245,7 +244,7 @@ const RadioButton = styled('label', {
   display: 'flex',
   alignItems: 'center',
   typography: '$body2',
-  color: '$gray700',
+  color: vars.$scale.color.gray700,
   cursor: 'pointer',
 });
 
@@ -260,9 +259,9 @@ const Radiomark = styled('span', {
   width: rem(16),
   height: rem(16),
   borderRadius: '50%',
-  border: '1px solid $gray500',
+  border: `1px solid ${vars.$scale.color.gray500}`,
   marginRight: rem(14),
-  color: '$carrot500',
+  color: vars.$scale.color.carrot500,
   transition: 'box-shadow .25s ease',
 
   'input:focus + &': {
@@ -270,11 +269,11 @@ const Radiomark = styled('span', {
   },
 
   'input:checked + &': {
-    borderColor: '$carrot500',
+    borderColor: vars.$scale.color.carrot500,
   },
 
   'input:checked + &::after': {
-    background: '$carrot500',
+    background: vars.$scale.color.carrot500,
   },
 
   '&::after': {
@@ -287,7 +286,7 @@ const Radiomark = styled('span', {
 });
 
 const Description = styled('p', {
-  color: '$gray600',
+  color: vars.$scale.color.gray600,
   marginTop: rem(16),
 });
 

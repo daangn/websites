@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { rem } from 'polished';
 import { styled } from 'gatsby-theme-stitches/src/config';
+import { vars } from '@seed-design/design-token'
 
 import ButtonLink from '../Button';
 import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
@@ -23,7 +24,7 @@ const Content = styled('div', {
 });
 
 const Text = styled('p', {
-  color: '$gray500',
+  color: vars.$scale.color.gray500,
   typography: '$subtitle3',
   textAlign: 'center',
 });

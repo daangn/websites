@@ -1,6 +1,7 @@
 import { Link } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
+import { vars } from '@seed-design/design-token'
 
 const Button = styled(Link, {
   textDecoration: 'none',
@@ -18,17 +19,17 @@ const Button = styled(Link, {
   variants: {
     type: {
       default: {
-        color: '$gray900',
-        backgroundColor: '$gray100',
+        color: vars.$scale.color.gray900,
+        backgroundColor: vars.$scale.color.gray100,
         '&:hover': {
-          backgroundColor: '$gray300',
+          backgroundColor: vars.$scale.color.gray300,
         },
       },
       primary: {
-        color: 'white',
-        backgroundColor: '$carrot500',
+        color: vars.$static.color.white,
+        backgroundColor: vars.$scale.color.carrot500,
         '&:hover': {
-          backgroundColor: '$carrot600',
+          backgroundColor: vars.$scale.color.carrot600,
         },
       },
     },

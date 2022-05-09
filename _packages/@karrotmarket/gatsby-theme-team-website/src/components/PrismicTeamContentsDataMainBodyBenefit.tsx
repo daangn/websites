@@ -2,6 +2,7 @@ import * as React from 'react';
 import { rem } from 'polished';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
+import { vars } from '@seed-design/design-token'
 
 type PrismicTeamContentsDataMainBodyBenefitProps = {
   data: GatsbyTypes.PrismicTeamContentsDataMainBodyBenefit_dataFragment,
@@ -79,7 +80,7 @@ const BenefitGroupTitle = styled('h3', {
 
   '&::before': {
     content: 'attr(data-num)',
-    color: '$carrot500',
+    color: vars.$scale.color.carrot500,
     fontSize: '0.8em',
     lineHeight: 1,
     marginRight: rem(16),
@@ -102,12 +103,12 @@ const Benefit = styled('div', {
 
 const BenefitSummary = styled('p', {
   typography: '$body2',
-  color: '$gray700',
+  color: vars.$scale.color.gray700,
 });
 
 const BenefitDetail = styled('div', {
   typography: '$body2',
-  color: '$gray700',
+  color: vars.$scale.color.gray700,
   '& > ul': {
     paddingLeft: rem(24),
     display: 'grid',

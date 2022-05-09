@@ -3,8 +3,9 @@ import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import { motion } from 'framer-motion';
+import { vars } from '@seed-design/design-token';
 
-import chevronIconUrl from '!!file-loader?modules!./faqAccordionItem/chevron.svg';
+import { ReactComponent as ChevronSvg } from './faqAccordionItem/chevron.svg'
 
 type FaqAccordionItemProps = {
   id: string,
@@ -26,7 +27,7 @@ export const query = graphql`
 `;
 
 const Container = styled('div', {
-  borderBottom: '1px solid $gray200',
+  borderBottom: `1px solid ${vars.$scale.color.gray200}`,
 });
 
 const Header = styled('h2', {
@@ -47,7 +48,7 @@ const Button = styled('button', {
   paddingY: rem(24),
   cursor: 'pointer',
   backgroundColor: 'transparent',
-  color: '$gray900',
+  color: vars.$scale.color.gray900,
   border: 'none',
   flex: 1,
   display: 'flex',
@@ -55,11 +56,12 @@ const Button = styled('button', {
   justifyContent: 'space-between',
 });
 
-const ChevronIcon = styled('img', {
+const ChevronIcon = styled(ChevronSvg, {
   width: rem(24),
   height: rem(24),
   transition: 'transform .3s',
   marginLeft: rem(12),
+  color: vars.$scale.color.gray900,
 
   variants: {
     rotate: {
@@ -106,7 +108,7 @@ const FaqAccordionItem: React.FC<FaqAccordionItemProps> = ({
       <Header as="h2">
         <Button id={id} onClick={() => onClick?.(id)} onFocus={() => onFocus?.(id)}>
           {entry.question}
-          <ChevronIcon rotate={open} src={chevronIconUrl} alt="" aria-hidden />
+          <ChevronIcon rotate={open} aria-hidden />
         </Button>
       </Header>
       <Panel>

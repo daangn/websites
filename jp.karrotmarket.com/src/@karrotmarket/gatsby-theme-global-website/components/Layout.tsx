@@ -32,7 +32,7 @@ const Header = styled(_Header, {
 
   "header > div": {
     "@sm": {
-      widht: "100%",
+      width: "100%",
       // width: rem(540),
       paddingLeft: rem(16),
       paddingRight: rem(16),
@@ -59,10 +59,12 @@ const Layout: React.FC<LayoutProps> = ({ children, data, id }) => {
   return (
     <>
       <Helmet key="helmet">
+        <html lang="ja" data-seed="light-only" data-seed-scale-color="light" />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1"
         />
+        <meta name="color-scheme" content="light dark" />
       </Helmet>
       <GatsbySeo language="ja" />
       <Header key="header" navigationData={data} sns />

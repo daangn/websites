@@ -9,6 +9,7 @@ import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import type { OverrideProps } from '@cometjs/core';
 import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
 import { useLocation } from '@reach/router';
+import { vars } from '@seed-design/design-token';
 
 import _PageTitle from '../components/PageTitle';
 import logoPath from '../assets/logo.png';
@@ -90,7 +91,7 @@ const PageTitle = styled(_PageTitle, {
 
 const PreviousLink = styled(Link, {
   display: 'inline-block',
-  color: '$gray900',
+  color: vars.$scale.color.gray900,
   width: rem(36),
   height: rem(36),
   cursor: 'pointer',
@@ -121,7 +122,7 @@ const PropertyList = styled('ul', {
 });
 
 const Property = styled('li', {
-  color: '$gray600',
+  color: vars.$scale.color.gray600,
   '& + &::before': {
     content: '"·"',
     display: 'inline-block',
@@ -132,7 +133,7 @@ const Property = styled('li', {
 const Tabs = styled('nav', {
   position: 'relative',
   display: 'flex',
-  borderBottom: '1px solid $gray300',
+  borderBottom: `1px solid ${vars.$scale.color.gray300}`,
   marginBottom: rem(40),
 
   '@sm': {
@@ -157,7 +158,7 @@ const TabItem = styled('li', {
 const TabItemUnderline = styled(motion.div, {
   position: 'absolute',
   width: '100%',
-  background: '$carrot500',
+  background: vars.$scale.color.carrot500,
   height: rem(4),
   bottom: '-1px',
 });
@@ -167,10 +168,10 @@ const TabLink = styled(motion(Link), {
   variants: {
     active: {
       true: {
-        color: '$gray900',
+        color: vars.$scale.color.gray900,
       },
       false: {
-        color: '$gray600',
+        color: vars.$scale.color.gray600,
       },
     },
   },

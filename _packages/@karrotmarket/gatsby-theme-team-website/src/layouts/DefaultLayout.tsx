@@ -14,6 +14,8 @@ import _Header from '@karrotmarket/gatsby-theme-website/src/components/Header';
 import _Footer from '@karrotmarket/gatsby-theme-website/src/components/Footer';
 import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 
+import { usePrefersColorScheme } from '../utils/usePreferColorScheme';
+
 type DefaultLayoutProps = OverrideProps<
   PageProps<GatsbyTypes.TeamWebsite_DefaultLayout_queryFragment>,
   {
@@ -90,7 +92,10 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
         <html
           lang={data.site.siteMetadata.locale}
           prefix="og: https://ogp.me/ns/website#"
+          data-seed
         />
+        <meta name="color-scheme" content="light dark" />
+        <body />
       </Helmet>
       <GatsbySeo
         canonical={siteOrigin + currentPath}

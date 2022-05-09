@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
+import { vars } from '@seed-design/design-token'
 
 import * as Field from './Field';
 
@@ -16,7 +17,7 @@ const Terms = styled(Field.Input, {
   height: rem(200),
   paddingY: rem(16),
   overflowY: 'auto',
-  color: '$gray700',
+  color: vars.$scale.color.gray700,
   whiteSpace: 'pre-line',
   '> p, ul': {
     marginBottom: rem(16),

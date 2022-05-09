@@ -1,6 +1,8 @@
+import '@seed-design/stylesheet/global.css'
+
 import * as React from 'react';
 import type { PageProps } from 'gatsby';
-import useDarkMode from 'use-dark-mode';
+import { vars } from '@seed-design/design-token';
 import { globalCss } from 'gatsby-theme-stitches/src/config';
 import { useLocation } from '@reach/router';
 import type { OverrideProps } from '@cometjs/core';
@@ -23,7 +25,8 @@ const globalStyles = globalCss({
     colorSchema: 'light dark',
   },
   'body': {
-    color: '$gray900',
+    background: vars.$semantic.color.paperDefault,
+    color: vars.$scale.color.gray900,
     fontFamily: '$system',
     textRendering: 'optimizeLegibility',
     wordBreak: 'break-word',
@@ -33,7 +36,7 @@ const globalStyles = globalCss({
     wordBreak: 'keep-all',
   },
   'a': {
-    color: '$carrot500',
+    color: vars.$scale.color.carrot500,
   },
   '@media (prefers-reduced-motion: no-preference)': {
     ':focus': {
@@ -47,11 +50,6 @@ const LayoutSwitch: React.FC<LayoutSwitchProps> = ({
   children,
   ...props
 }) => {
-  useDarkMode(false, {
-    classNameLight: 'light-theme',
-    classNameDark: 'dark-theme',
-  });
-
   globalStyles();
 
   const { pathname: path } = useLocation();

@@ -1,16 +1,18 @@
 import * as React from "react";
 import { graphql } from "gatsby";
-import { styled } from "gatsby-theme-stitches/src/config";
 import { rem } from "polished";
+import { vars } from "@seed-design/design-token";
 
-import githubIconUrl from "!!file-loader?modules!./socialServiceProfile/github.svg";
-import facebookIconUrl from "!!file-loader?modules!./socialServiceProfile/facebook.svg";
-import twitterIconUrl from "!!file-loader?modules!./socialServiceProfile/twitter.svg";
-import mediumIconUrl from "!!file-loader?modules!./socialServiceProfile/medium.svg";
-import instagramIconUrl from "!!file-loader?modules!./socialServiceProfile/instagram.svg";
-import lineIconUrl from "!!file-loader?modules!./socialServiceProfile/line.svg";
-import youtubeIconUrl from "!!file-loader?modules!./socialServiceProfile/youtube.svg";
-import naverBlogIconUrl from "!!file-loader?modules!./socialServiceProfile/naver_blog.svg";
+import { styled } from "gatsby-theme-stitches/src/config";
+
+import { ReactComponent as GithubIcon } from './socialServiceProfile/github.svg';
+import { ReactComponent as FacebookIcon } from './socialServiceProfile/facebook.svg';
+import { ReactComponent as TwitterIcon } from './socialServiceProfile/twitter.svg';
+import { ReactComponent as MediumIcon } from './socialServiceProfile/medium.svg';
+import { ReactComponent as InstagramIcon } from './socialServiceProfile/instagram.svg';
+import { ReactComponent as LineIcon} from './socialServiceProfile/line.svg';
+import { ReactComponent as YoutubeIcon } from './socialServiceProfile/youtube.svg';
+import { ReactComponent as NaverBlogIcon } from './socialServiceProfile/naver_blog.svg';
 
 type SocialServiceProfileProps = {
   className?: string;
@@ -34,6 +36,11 @@ const Container = styled("a", {
   "&:hover, &:focus": {
     opacity: 0.64,
   },
+  "& svg": {
+    width: "1em",
+    height: "1em",
+    color: vars.$scale.color.gray900,
+  }
 });
 
 const Icon = styled("img", {
@@ -43,39 +50,31 @@ const Icon = styled("img", {
 
 const socialServiceProfileConfigMap: Record<
   string,
-  { src: string; alt: string }
+  { comp: React.SVGProps<SVGSVGElement> }
 > = {
   github: {
-    src: githubIconUrl,
-    alt: "GitHub",
+    comp: <GithubIcon />,
   },
   twitter: {
-    src: twitterIconUrl,
-    alt: "Twitter",
+    comp: <TwitterIcon />,
   },
   facebook: {
-    src: facebookIconUrl,
-    alt: "Facebook",
+    comp: <FacebookIcon />,
   },
   instagram: {
-    src: instagramIconUrl,
-    alt: "Instagram",
+    comp: <InstagramIcon />,
   },
   medium: {
-    src: mediumIconUrl,
-    alt: "Medium",
+    comp: <MediumIcon />,
   },
   line: {
-    src: lineIconUrl,
-    alt: "LINE",
+    comp: <LineIcon />,
   },
   youtube: {
-    src: youtubeIconUrl,
-    alt: 'Youtube',
+    comp: <YoutubeIcon />,
   },
   naver_blog: {
-    src: naverBlogIconUrl,
-    alt: 'Naver Blog',
+    comp: <NaverBlogIcon />,
   },
 };
 
@@ -101,7 +100,7 @@ export default function SocialServiceProfile({
       target="_blank"
       rel="external noopener"
     >
-      <Icon src={config.src} alt={config.alt} />
+      {config.comp}
     </Container>
   );
 }

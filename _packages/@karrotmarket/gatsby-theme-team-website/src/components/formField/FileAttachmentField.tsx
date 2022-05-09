@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import type { PropOf } from '@cometjs/react-utils';
+import { vars } from '@seed-design/design-token';
 
 import * as Field from './Field';
 import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
@@ -23,11 +24,11 @@ type Props = {
 
 const FileInput = styled(Field.Input, {
   display: 'flex',
-  color: '$gray500',
+  color: vars.$scale.color.gray500,
   cursor: 'pointer',
   transition: 'box-shadow .25s ease',
   'input:focus + label > &': {
-    border: '1px solid $carrot500',
+    border: `1px solid ${vars.$semantic.color.primary}`,
     // Note: $carrot500 을 써야하는데 브라우저 버그 때문에 css variable 적용이 안됨
     boxShadow: '0 0 0 0.05em #fff, 0 0 0.15em 0.1em #ff7e36',
   },

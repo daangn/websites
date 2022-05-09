@@ -3,6 +3,7 @@ import { rem } from 'polished';
 import { motion, AnimateSharedLayout } from 'framer-motion';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
+import { vars } from '@seed-design/design-token'
 
 type PrismicTeamContentsDataMainBodyHowWeWorkProps = {
   data: GatsbyTypes.PrismicTeamContentsDataMainBodyHowWeWork_dataFragment,
@@ -107,7 +108,7 @@ const EntryGroupNavUnderline = styled(motion.div, {
   right: 0,
   bottom: 0,
   height: '3px',
-  background: '$carrot500',
+  background: vars.$scale.color.carrot500,
 });
 
 const EntryGroup = styled('section', {
@@ -117,7 +118,7 @@ const EntryGroup = styled('section', {
 
 const EntryGroupTitle = styled('h2', {
   typography: '$body2',
-  color: '$carrot500',
+  color: vars.$scale.color.carrot500,
 
   '@md': {
     display: 'none',
@@ -159,7 +160,7 @@ const EntryTitle = styled('h3', {
 
 const EntryDescription = styled('p', {
   typography: '$body2',
-  color: '$gray700',
+  color: vars.$scale.color.gray700,
 });
 
 const PrismicTeamContentsDataMainBodyHowWeWork: React.FC<PrismicTeamContentsDataMainBodyHowWeWorkProps> = ({

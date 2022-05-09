@@ -7,11 +7,12 @@ import { GatsbySeo, FAQJsonLd } from 'gatsby-plugin-next-seo';
 import { required } from '@cometjs/core';
 import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 import { matchSorter } from 'match-sorter'
+import { vars } from '@seed-design/design-token';
 
 import _PageTitle from '../components/PageTitle';
 import FaqAccordion from '../components/FaqAccordion';
 import _Search from '../components/Search';
-import searchOutlineUrl from '!!file-loader!../assets/searchOutlineM.svg';
+import { ReactComponent as SearchdSvg } from '../assets/searchOutlineM.svg';
 import _FaqList from '../components/FaqList';
 import { useURLSearchParams } from '../utils/useURLSearchParams'
 
@@ -115,16 +116,16 @@ const FaqGroup = styled('li', {
 });
 
 const FaqGroupLink = styled(Link, {
-  color: '$gray900',
+  color: vars.$scale.color.gray900,
   textDecoration: 'none',
   variants: {
     selected: {
       true: {
-        color: '$carrot600',
+        color: vars.$scale.color.carrot500,
       },
       false: {
         '&:hover': {
-          color: '$gray600'
+          color: vars.$scale.color.gray600,
         },
       }
     }
@@ -140,8 +141,6 @@ const Search = styled(_Search, {
     minWidth: rem(300),
   }
 });
-
-const SearchIcon = styled('img');
 
 const FaqPage: React.FC<FaqPageProps> = ({
   data,
@@ -222,7 +221,7 @@ const FaqPage: React.FC<FaqPageProps> = ({
             value={query || ''}
             onChange={handleSearchInputChange}
           />
-          <SearchIcon src={searchOutlineUrl} alt="" aria-hidden />
+          <SearchdSvg />
         </Search>
       </Filters>
       {searchQuery ? (

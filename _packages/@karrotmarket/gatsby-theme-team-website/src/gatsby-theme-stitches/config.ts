@@ -1,5 +1,5 @@
 import { em, rem } from 'polished';
-import { colors, fonts } from '@karrotmarket/design-token';
+import { colors } from '@karrotmarket/design-token';
 import type { PropertyValue } from '@stitches/react';
 import { createStitches } from '@stitches/react';
 
@@ -17,7 +17,9 @@ const stitches = createStitches({
   },
   theme: {
     colors: convertColorScheme(colors.light.scheme),
-    fonts: fonts.default.semanticScheme,
+    fonts: {
+      system: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"'
+    },
     fontSizes: {
       heading1: rem(72),
       heading2: rem(60),

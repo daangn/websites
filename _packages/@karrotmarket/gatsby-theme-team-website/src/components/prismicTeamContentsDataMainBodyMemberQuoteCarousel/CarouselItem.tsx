@@ -3,6 +3,7 @@ import { rem } from 'polished';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { getImage, GatsbyImage } from 'gatsby-plugin-image';
+import { vars } from '@seed-design/design-token'
 
 type CarouselItemProps = {
   item: GatsbyTypes.TeamWebsite_CarouselItem_itemFragment,
@@ -59,7 +60,7 @@ const Quote = styled('blockquote', {
 
 const By = styled('figcaption', {
   typography: '$body2',
-  color: '$gray700',
+  color: vars.$scale.color.gray700,
 
   '@md': {
     typography: '$subtitle3',

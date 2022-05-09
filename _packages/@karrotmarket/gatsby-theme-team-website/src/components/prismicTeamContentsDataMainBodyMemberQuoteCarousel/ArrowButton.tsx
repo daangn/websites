@@ -1,10 +1,9 @@
 import { em } from 'polished';
 import { styled } from 'gatsby-theme-stitches/src/config';
-
-import arrowSvgUrl from './arrow.svg';
+import { vars } from '@seed-design/design-token';
 
 const ArrowButton = styled('button', {
-  color: '$gray900',
+  color: vars.$scale.color.gray900,
   border: 'none',
   background: 'none',
   padding: 0,
@@ -13,12 +12,10 @@ const ArrowButton = styled('button', {
   '&:hover': {
     opacity: 0.64,
   },
-  '&::after': {
-    content: '""',
+  '& svg': {
     display: 'inline-block',
     width: em(56),
     height: em(56),
-    background: `url(${arrowSvgUrl})`,
   },
 
   variants: {

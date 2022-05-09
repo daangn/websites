@@ -1,5 +1,6 @@
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
+import { vars } from '@seed-design/design-token';
 
 const Search = styled('div', {
   gridArea: 'search',
@@ -17,25 +18,26 @@ const Search = styled('div', {
     flex:1,
     alignItems: 'center',
     height: rem(52),
-    border: '1px solid $gray400',
+    background: vars.$semantic.color.paperDefault,
+    border: `1px solid ${vars.$scale.color.gray400}`,
     boxSizing: 'border-box',
     borderRadius: rem(8),
     typography: '$body2',
     paddingLeft: rem(52),
     paddingRight: rem(14),
     '::placeholder': {
-      color: '$gray500',
+      color: vars.$scale.color.gray400,
     },
     '&:focus': {
-      border: '1px solid $carrot500',
+      border: `1px solid ${vars.$scale.color.carrot500}`,
     },
     '&:focus~svg': {
-      color: '$carrot500',
+      color: vars.$scale.color.carrot500,
     },
   },
-  '& > img':{
-    color:'$gray400',
-    position:'absolute',
+  '& > svg':{
+    color: vars.$scale.color.gray400,
+    position: 'absolute',
     left: rem(20),
   },
 });

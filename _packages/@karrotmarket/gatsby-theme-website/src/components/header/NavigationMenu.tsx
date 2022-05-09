@@ -3,6 +3,7 @@ import { graphql } from "gatsby";
 import { rem } from "polished";
 import { styled } from "gatsby-theme-stitches/src/config";
 import { useLocation } from "@reach/router";
+import { vars } from '@seed-design/design-token'
 
 import SocialServiceProfile from "../footer/SocialServiceProfile";
 import NavigationListItem from "./NavigationListItem";
@@ -61,7 +62,7 @@ const HamburgerSvg = styled("svg", {
 
 const Line = styled("path", {
   fill: "none",
-  stroke: "$gray900",
+  stroke: vars.$scale.color.gray900,
   strokeWidth: "6",
   strokeLinecap: "round",
   strokeDasharray: "60 207",
@@ -96,7 +97,7 @@ const NavigationList = styled("ul", {
 
   ":checked ~ &": {
     transform: "translateX(0)",
-    background: "#fff",
+    background: vars.$semantic.color.paperDefault,
   },
 
   variants: {

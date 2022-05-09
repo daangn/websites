@@ -3,6 +3,7 @@ import { rem } from 'polished';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { getImage, GatsbyImage } from 'gatsby-plugin-image';
+import { vars } from '@seed-design/design-token'
 
 type PrismicTeamContentsDataLifeBodyLifeContentProps = {
   data: GatsbyTypes.PrismicTeamContentsDataLifeBodyLifeContent_dataFragment,
@@ -54,7 +55,7 @@ const Title = styled('h2', {
 
 const BodyText = styled('div', {
   typography: '$body2',
-  color: '$gray700',
+  color: vars.$scale.color.gray700,
 });
 
 const ThumbnailContainer = styled('div', {
@@ -77,7 +78,7 @@ const ThumbnailImage = styled(GatsbyImage, {
 
 const ThumbnailCaption = styled('figcaption', {
   typography: '$caption1',
-  color: '$gray500',
+  color: vars.$scale.color.gray500,
 });
 
 const PrismicTeamContentsDataLifeBodyLifeContent: React.FC<PrismicTeamContentsDataLifeBodyLifeContentProps> = ({

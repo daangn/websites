@@ -4,8 +4,9 @@ import { Link } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import type { LinkType } from '@karrotmarket/gatsby-theme-website/src/link';
 import { mapLink } from '@karrotmarket/gatsby-theme-website/src/link';
+import { vars } from '@seed-design/design-token';
 
-import arrowSvgUrl from './arrowLink/arrow.svg';
+import { ReactComponent as ArrowSvg } from './arrowLink/arrow.svg'
 
 type ArrowLinkProps = {
   link: LinkType,
@@ -20,7 +21,7 @@ const Base = styled(Link, {
   flexWrap: 'wrap',
   whiteSpace: 'nowrap',
   alignItems: 'center',
-  color: '$gray900',
+  color: vars.$scale.color.gray900,
   textDecoration: 'none',
   typography: '$body2',
   fontWeight: 'bold',
@@ -37,25 +38,23 @@ const Base = styled(Link, {
   variants: {
     direction: {
       forward: {
-        '&::after': {
-          content: '""',
+        '& svg': {
           display: 'inline-block',
           marginLeft: em(8),
           width: em(32, 20),
           height: em(32, 20),
-          background: `url(${arrowSvgUrl})`,
-        },
+        }
       },
       backward: {
-        '&::before': {
-          content: '""',
+        justifyContent: 'flex-end',
+        flexDirection: 'row-reverse',
+        '& svg': {
           display: 'inline-block',
           marginRight: em(8),
           width: em(32, 20),
           height: em(32, 20),
           transform: 'scaleX(-1)',
-          background: `url(${arrowSvgUrl})`,
-        },
+        }
       },
     },
   },
@@ -77,6 +76,7 @@ const ArrowLink: React.FC<ArrowLinkProps> = ({
         className={className}
       >
         {children}
+        <ArrowSvg />
       </Base>
     ),
     External: link => (
@@ -89,6 +89,7 @@ const ArrowLink: React.FC<ArrowLinkProps> = ({
         className={className}
       >
         {children}
+        <ArrowSvg />
       </Base>
     ),
   });

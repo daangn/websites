@@ -2,6 +2,7 @@ import * as React from "react";
 import { Link } from "gatsby";
 import { rem } from 'polished';
 import { useLocation } from "@reach/router";
+import { vars } from "@seed-design/design-token";
 
 import { styled } from "gatsby-theme-stitches/src/config";
 import { mapLink, useLinkParser } from "../../link";
@@ -33,17 +34,17 @@ const NavigationLink = styled(Link, {
   alignItems: 'center',
 
   textDecoration: "none",
-  color: "$gray900",
+  color: vars.$scale.color.gray900,
   "&:hover, &:focus": {
-    color: "$gray600",
+    color: vars.$scale.color.gray600,
   },
 
   variants: {
     active: {
       true: {
-        color: '$carrot500',
+        color: vars.$scale.color.carrot500,
         '&:hover, &:focus': {
-          color: '$carrot600',
+          color: vars.$scale.color.carrot600,
         },
       },
     },

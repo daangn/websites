@@ -2,6 +2,7 @@ import * as React from 'react';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
+import { vars } from '@seed-design/design-token';
 
 import generateProperties from './jobPostSummary/generateProperties';
 
@@ -31,7 +32,7 @@ const Container = styled('div', {
   `,
   alignItems: 'center',
   paddingY: rem(24),
-  borderBottom: '1px solid $gray200',
+  borderBottom: `1px solid ${vars.$scale.color.gray200}`,
 
   '@lg': {
     gridTemplate: `
@@ -69,8 +70,8 @@ const TagContainer = styled('div', {
 const Tag = styled('span', {
   typography: '$caption3',
   fontWeight: 'bold',
-  color: '$white',
-  background: '$carrot500',
+  color: vars.$static.color.white,
+  background: vars.$scale.color.carrot500,
   borderRadius: rem(6),
   padding: `${rem(5)} ${rem(8)}`,
 
@@ -97,7 +98,7 @@ const Properties = styled('div', {
 });
 
 const Property = styled('div', {
-  color: '$gray600',
+  color: vars.$scale.color.gray600,
   typography: '$caption1',
 
   '& + &:before': {
@@ -105,7 +106,7 @@ const Property = styled('div', {
     display: 'inline-block',
     marginX: rem(16),
     height: '0.8em',
-    borderLeft: '1px solid $gray300',
+    borderLeft: `1px solid ${vars.$scale.color.gray300}`,
   },
 
   '@lg': {
