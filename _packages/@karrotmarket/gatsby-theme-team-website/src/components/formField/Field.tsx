@@ -43,7 +43,7 @@ export const Input = styled('input', {
   '&:focus': {
     border: `1px solid ${vars.$scale.color.carrot500}`,
   },
-  '::placeholder': {
+  '&::placeholder': {
     color: vars.$scale.color.gray500,
   },
 });

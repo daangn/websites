@@ -3,7 +3,7 @@ import * as React from 'react';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import FocusTrap from 'focus-trap-react';
-import { vars } from '@seed-design/design-token'
+import { vars } from '@seed-design/design-token';
 
 import * as Field from './Field';
 import checkmarkUrl from '!!file-loader!./checkmark.svg';

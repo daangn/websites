@@ -3,15 +3,15 @@ import type { GatsbySSR } from "gatsby"
 
 const PreferColorSchemeScript = () => {
   const colorSchemeScript = `
-    (function() {
-      document.documentElement.dataset.seed = '';
-      var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    (function(w, d) {
+      d.documentElement.dataset.seed = '';
+      var mq = w.matchMedia('(prefers-color-scheme: dark)');
       function apply() {
-        document.documentElement.dataset.seedScaleColor = mq.matches ? 'dark' : 'light';
+        d.documentElement.dataset.seedScaleColor = mq.matches ? 'dark' : 'light';
       }
       apply();
       mq.addEventListener ? mq.addEventListener('change', apply) : mq.addListener(apply);
-    })();
+    })(window, document);
   `;
 
   // eslint-disable-next-line react/no-danger
