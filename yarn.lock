@@ -3058,7 +3058,7 @@ __metadata:
     gatsby-plugin-sitemap: 5.10.1
     gatsby-plugin-svgr: 3.0.0-beta.0
     gatsby-plugin-typegen: 2.2.4
-    gatsby-plugin-use-dark-mode: 1.4.0
+    gatsby-plugin-use-dark-mode: 1.5.0
     gatsby-source-filesystem: 4.10.0
     gatsby-source-prismic: 5.2.5
     gatsby-theme-stitches: 1.0.0
@@ -10384,17 +10384,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-use-dark-mode@npm:1.4.0":
-  version: 1.4.0
-  resolution: "gatsby-plugin-use-dark-mode@npm:1.4.0"
+"gatsby-plugin-use-dark-mode@npm:1.5.0":
+  version: 1.5.0
+  resolution: "gatsby-plugin-use-dark-mode@npm:1.5.0"
   dependencies:
-    prop-types: ^15.7.2
+    prop-types: ^15.8.1
     terser: ^4.0.0
   peerDependencies:
     gatsby: ^2.0.0 || ^3.0.0 || ^4.0.0
-    react: ^16.8.0 || ^17.0.0
-    use-dark-mode: ^2.3.1
-  checksum: 08bacb3b2c00f5f446da2fd83ac5c21884feb8e7e678c3788d5726bfbfce454591a32e666bc540085d0dd989654ebc01a84320c3842d94a388ca6e52a1e1e8e8
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: 110c60e89db5ea9f0d99ba84178193aee1936527705b97447eb531b655302c612239b8907ee1ebf9435380889c1b94da18394802368510a47a0d892b0a912478
   languageName: node
   linkType: hard
 
