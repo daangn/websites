@@ -1,4 +1,4 @@
-import '@seed-design/stylesheet/global.css'
+import '@seed-design/stylesheet/global.css';
 
 import * as React from 'react';
 import type { PageProps } from 'gatsby';
@@ -25,6 +25,7 @@ const globalStyles = globalCss({
     colorSchema: 'light dark',
   },
   'body': {
+    accentColor: vars.$semantic.color.primary,
     background: vars.$semantic.color.paperDefault,
     color: vars.$scale.color.gray900,
     fontFamily: '$system',

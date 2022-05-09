@@ -68,8 +68,9 @@ const Container = styled('div', {
 const Label = styled('label', {
   display: 'inline-flex',
   alignItems: 'center',
-  color: vars.$scale.color.gray700,
   typography: '$body2',
+  fontWeight: 'bold',
+  color: vars.$scale.color.gray900,
   marginBottom: rem(8),
   variants: {
     required: {
@@ -80,7 +81,7 @@ const Label = styled('label', {
           marginLeft: rem(4),
           width: rem(6),
           height: rem(6),
-          background: vars.$scale.color.carrot500,
+          background: vars.$semantic.color.primary,
           borderRadius: '50%',
         },
       },
@@ -96,9 +97,6 @@ const Input = styled('input', {
   borderRadius: rem(8),
   typography: '$body2',
   paddingX: rem(20),
-  '&:focus': {
-    border: `1px solid ${vars.$scale.color.carrot500}`,
-  },
   '::placeholder': {
     color: vars.$scale.color.gray500,
   },
@@ -117,9 +115,12 @@ const FileInput = styled(Input, {
   cursor: 'pointer',
   transition: 'box-shadow .25s ease',
   'input:focus + label > &': {
-    border: `1px solid ${vars.$scale.color.carrot500}`,
-    // Note: $carrot500 을 써야하는데 브라우저 버그 때문에 css variable 적용이 안됨
-    boxShadow: '0 0 0 0.05em #fff, 0 0 0.15em 0.1em #ff7e36',
+    outlineStyle: 'solid',
+    outlineColor: '-webkit-focus-ring-color',
+    '@media (prefers-reduced-motion: no-preference)': {
+      transition: 'outline-offset .25s ease',
+      outlineOffset: '3px',
+    },
   },
 });
 
@@ -216,8 +217,9 @@ const RadioGroupContainer = styled('div', {
 const RadioGroupLabel = styled('div', {
   display: 'inline-flex',
   alignItems: 'center',
-  color: vars.$scale.color.gray700,
   typography: '$body2',
+  color: vars.$scale.color.gray900,
+  fontWeight: 'bold',
   marginBottom: rem(8),
   variants: {
     required: {
@@ -297,7 +299,6 @@ const FormField: React.FC<FormFieldProps> = ({
   className,
   placeholder,
   description,
-  children,
   required = false,
 }) => {
   const messages = useTranslation();
