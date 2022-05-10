@@ -23,6 +23,7 @@
     "gatsby": "4.10.2",
     "gatsby-plugin-google-gtag": "4.10.0",
     "gatsby-plugin-google-tagmanager": "4.10.1",
+    "gatsby-plugin-typegen": "rc",
     "react": "next",
     "react-dom": "next"
   },

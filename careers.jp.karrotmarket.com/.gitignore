@@ -4,5 +4,7 @@
 
 /*.js
 
-# gatsby-plugin-typegen v3 까지 존버하기
-/src/__generated__/
+/src/__generated__/*
+!/src/__generated__/gatsby-plugin-documents.graphql
+!/src/__generated__/gatsby-schema.graphql
+!/src/__generated__/gatsby-types.d.ts

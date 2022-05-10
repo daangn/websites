@@ -15,7 +15,7 @@ export const query = graphql`
 `;
 
 interface LayoutProps {
-  data: GatsbyTypes.DefaultLayout_queryFragment;
+  data: GatsbyTypes.DefaultLayout_dataFragment;
   id?: string;
 }
 

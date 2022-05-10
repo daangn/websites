@@ -4,10 +4,10 @@ import { graphql } from "gatsby";
 import globalStyles from "../styles/global";
 
 interface LayoutProps {
-  data: GatsbyTypes.DefaultLayout_queryFragment;
+  data: GatsbyTypes.DefaultLayout_dataFragment;
 }
 export const query = graphql`
-  fragment DefaultLayout_query on Query {
+  fragment DefaultLayout_data on Query {
     prismicSiteNavigation(uid: { eq: "global" }, lang: { eq: "en-gb" }) {
       _previewable
       data {

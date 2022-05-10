@@ -4,7 +4,6 @@ import { Helmet } from "react-helmet-async";
 import Header from "@karrotmarket/gatsby-theme-global-website/src/components/Header";
 import Footer from "@karrotmarket/gatsby-theme-global-website/src/components/Footer";
 import globalStyles from "@karrotmarket/gatsby-theme-global-website/src/styles/global";
-import { Space } from "@karrotmarket/gatsby-theme-global-website/src/components/Space";
 
 export const query = graphql`
   fragment DefaultLayout_data on PrismicSiteNavigation {
@@ -16,7 +15,7 @@ export const query = graphql`
 `;
 
 interface LayoutProps {
-  data: GatsbyTypes.DefaultLayout_queryFragment;
+  data: GatsbyTypes.DefaultLayout_dataFragment;
   transparent?: boolean;
   placer?: boolean;
   id?: string;

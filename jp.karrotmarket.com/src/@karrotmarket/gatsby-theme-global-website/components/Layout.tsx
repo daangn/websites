@@ -1,13 +1,12 @@
 import * as React from "react";
-import { graphql } from "gatsby";
 import { Helmet } from "react-helmet-async";
+import { rem } from "polished";
+import { graphql } from "gatsby";
+import { styled } from "gatsby-theme-stitches/src/config";
 import { GatsbySeo } from "gatsby-plugin-next-seo";
 import _Header from "@karrotmarket/gatsby-theme-global-website/src/components/Header";
 import Footer from "@karrotmarket/gatsby-theme-global-website/src/components/Footer";
 import globalStyles from "@karrotmarket/gatsby-theme-global-website/src/styles/global";
-import { Space } from "@karrotmarket/gatsby-theme-global-website/src/components/Space";
-import { styled } from "@karrotmarket/gatsby-theme-global-website/src/gatsby-theme-stitches/config";
-import { rem } from "polished";
 
 export const query = graphql`
   fragment DefaultLayout_data on PrismicSiteNavigation {
@@ -19,7 +18,7 @@ export const query = graphql`
 `;
 
 interface LayoutProps {
-  data: GatsbyTypes.DefaultLayout_queryFragment;
+  data: GatsbyTypes.DefaultLayout_dataFragment;
   id?: string;
 }
 
