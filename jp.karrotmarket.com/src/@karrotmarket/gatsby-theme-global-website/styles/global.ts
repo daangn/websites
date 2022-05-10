@@ -1,4 +1,4 @@
-import { globalCss } from "../gatsby-theme-stitches/config";
+import { globalCss } from "gatsby-theme-stitches/src/config";
 import { rem } from "polished";
 
 const globalStyles = globalCss({

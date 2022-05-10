@@ -5,4 +5,4 @@
 
 /.pnp.*                   binary linguist-vendored
 
-/**/__generated__/**/*    linguist-generated
+/**/__generated__/**      linguist-generated

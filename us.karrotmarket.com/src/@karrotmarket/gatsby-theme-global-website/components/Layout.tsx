@@ -4,7 +4,13 @@ import { Helmet } from "react-helmet-async";
 import Header from "@karrotmarket/gatsby-theme-global-website/src/components/Header";
 import Footer from "@karrotmarket/gatsby-theme-global-website/src/components/Footer";
 import globalStyles from "@karrotmarket/gatsby-theme-global-website/src/styles/global";
-import { Space } from "@karrotmarket/gatsby-theme-global-website/src/components/Space";
+
+interface LayoutProps {
+  data: GatsbyTypes.DefaultLayout_dataFragment;
+  transparent?: boolean;
+  placer?: boolean;
+  id?: string;
+}
 
 export const query = graphql`
   fragment DefaultLayout_data on PrismicSiteNavigation {
@@ -14,13 +20,6 @@ export const query = graphql`
     }
   }
 `;
-
-interface LayoutProps {
-  data: GatsbyTypes.DefaultLayout_queryFragment;
-  transparent?: boolean;
-  placer?: boolean;
-  id?: string;
-}
 
 const Layout: React.FC<LayoutProps> = ({
   children,

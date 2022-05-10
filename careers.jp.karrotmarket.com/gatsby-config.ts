@@ -3,8 +3,6 @@ import type { GatsbyConfig } from 'gatsby';
 import dotenv from 'dotenv-safe';
 dotenv.config();
 
-const gql = String.raw;
-
 export const siteMetadata = {
   siteUrl: 'https://careers.jp.karrotmarket.com',
   siteName: 'Karrot Careers',
@@ -128,12 +126,6 @@ const config: GatsbyConfig = {
         forceGC: true,
       },
     },
-    process.env.NODE_ENV === 'development' && {
-      resolve: '@karrotmarket/gatsby-source-greenhouse-jobboard',
-      options: {
-        boardToken: 'daangntest1',
-      },
-    },
     {
       resolve: '@karrotmarket/gatsby-transformer-job-post',
       options: {
@@ -142,7 +134,16 @@ const config: GatsbyConfig = {
         },
       },
     },
-  ].filter(Boolean),
+  ],
 };
+
+if (process.env.NODE_ENV === 'development') {
+  config.plugins?.push({
+    resolve: '@karrotmarket/gatsby-source-greenhouse-jobboard',
+    options: {
+      boardToken: 'daangntest1',
+    },
+  });
+}
 
 export default config;

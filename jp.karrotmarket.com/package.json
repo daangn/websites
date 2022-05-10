@@ -24,6 +24,7 @@
     "gatsby": "4.10.2",
     "gatsby-plugin-google-gtag": "4.10.0",
     "gatsby-plugin-image": "2.10.0",
+    "gatsby-plugin-typegen": "rc",
     "gatsby-plugin-web-font-loader": "1.0.4",
     "polished": "4.1.4",
     "react": "next",

@@ -6,6 +6,11 @@ import Footer from "@karrotmarket/gatsby-theme-global-website/src/components/Foo
 import globalStyles from "@karrotmarket/gatsby-theme-global-website/src/styles/global";
 import { Space } from "@karrotmarket/gatsby-theme-global-website/src/components/Space";
 
+interface LayoutProps {
+  data: GatsbyTypes.DefaultLayout_queryFragment;
+  id?: string;
+}
+
 export const query = graphql`
   fragment DefaultLayout_data on PrismicSiteNavigation {
     data {
@@ -14,11 +19,6 @@ export const query = graphql`
     }
   }
 `;
-
-interface LayoutProps {
-  data: GatsbyTypes.DefaultLayout_queryFragment;
-  id?: string;
-}
 
 const Layout: React.FC<LayoutProps> = ({
   children,

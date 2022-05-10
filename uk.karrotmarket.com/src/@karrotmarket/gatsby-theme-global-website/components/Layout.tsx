@@ -5,6 +5,11 @@ import Header from "@karrotmarket/gatsby-theme-global-website/src/components/Hea
 import Footer from "@karrotmarket/gatsby-theme-global-website/src/components/Footer";
 import globalStyles from "@karrotmarket/gatsby-theme-global-website/src/styles/global";
 
+interface LayoutProps {
+  data: GatsbyTypes.DefaultLayout_dataFragment;
+  id?: string;
+}
+
 export const query = graphql`
   fragment DefaultLayout_data on PrismicSiteNavigation {
     data {
@@ -13,11 +18,6 @@ export const query = graphql`
     }
   }
 `;
-
-interface LayoutProps {
-  data: GatsbyTypes.DefaultLayout_queryFragment;
-  id?: string;
-}
 
 const Layout: React.FC<LayoutProps> = ({
   children,
