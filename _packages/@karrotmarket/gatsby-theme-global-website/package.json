@@ -30,7 +30,7 @@
     "framer-motion": "4.1.17",
     "gatsby-plugin-image": "2.10.0",
     "gatsby-plugin-preload-fonts": "3.10.0",
-    "gatsby-plugin-prismic-previews": "5.2.5",
+    "gatsby-plugin-prismic-previews": "5.2.6",
     "gatsby-plugin-prismic-schema": "workspace:^",
     "gatsby-plugin-react-helmet-async": "1.2.1",
     "gatsby-plugin-sharp": "4.10.1",
