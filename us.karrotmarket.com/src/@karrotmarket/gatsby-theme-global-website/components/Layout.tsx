@@ -1,18 +1,8 @@
 import * as React from "react";
-import { graphql } from "gatsby";
 import { Helmet } from "react-helmet-async";
 import Header from "@karrotmarket/gatsby-theme-global-website/src/components/Header";
 import Footer from "@karrotmarket/gatsby-theme-global-website/src/components/Footer";
 import globalStyles from "@karrotmarket/gatsby-theme-global-website/src/styles/global";
-
-export const query = graphql`
-  fragment DefaultLayout_data on PrismicSiteNavigation {
-    data {
-      ...Header_navigationData
-      ...Footer_navigationData
-    }
-  }
-`;
 
 interface LayoutProps {
   data: GatsbyTypes.DefaultLayout_dataFragment;
