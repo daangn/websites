@@ -1,4 +1,5 @@
 import * as React from "react";
+import { graphql } from "gatsby";
 import { Helmet } from "react-helmet-async";
 import { rem } from "polished";
 import { styled } from "gatsby-theme-stitches/src/config";
@@ -11,6 +12,15 @@ interface LayoutProps {
   data: GatsbyTypes.DefaultLayout_dataFragment;
   id?: string;
 }
+
+export const query = graphql`
+  fragment DefaultLayout_data on PrismicSiteNavigation {
+    data {
+      ...Header_navigationData
+      ...Footer_navigationData
+    }
+  }
+`;
 
 const Header = styled(_Header, {
   "@sm": {
