@@ -5,7 +5,7 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import type { PropOf } from '@cometjs/react-utils';
 import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
-import { vars } from '@seed-design/design-token'
+import { vars } from '@seed-design/design-token';
 
 type FormFieldVariants = (
   | {
@@ -191,7 +191,12 @@ const Checkmark = styled('span', {
   color: vars.$scale.color.carrot500,
   transition: 'box-shadow .25s ease',
   'input:focus + &': {
-    boxShadow: '0 0 0 0.05em #fff, 0 0 0.15em 0.1em currentColor',
+    outlineStyle: 'solid',
+    outlineColor: '-webkit-focus-ring-color',
+    '@media (prefers-reduced-motion: no-preference)': {
+      transition: 'outline-offset .25s ease',
+      outlineOffset: '3px',
+    },
   },
 });
 
@@ -267,7 +272,12 @@ const Radiomark = styled('span', {
   transition: 'box-shadow .25s ease',
 
   'input:focus + &': {
-    boxShadow: '0 0 0 0.05em #fff, 0 0 0.15em 0.1em currentColor',
+    outlineStyle: 'solid',
+    outlineColor: '-webkit-focus-ring-color',
+    '@media (prefers-reduced-motion: no-preference)': {
+      transition: 'outline-offset .25s ease',
+      outlineOffset: '3px',
+    },
   },
 
   'input:checked + &': {
