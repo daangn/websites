@@ -2987,7 +2987,7 @@ __metadata:
   dependencies:
     "@babel/cli": 7.17.6
     "@babel/core": 7.17.9
-    "@prismicio/helpers": 2.2.1
+    "@prismicio/helpers": 2.3.0
     "@types/node": 16.11.33
     "@types/react": 17.0.44
     "@types/react-dom": 17.0.15
@@ -3026,7 +3026,7 @@ __metadata:
     "@karrotmarket/gatsby-theme-website": "workspace:^"
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^"
     "@karrotmarket/react-stitches": 0.1.1-1
-    "@prismicio/helpers": 2.2.1
+    "@prismicio/helpers": 2.3.0
     "@reach/router": 1.3.4
     "@seed-design/design-token": alpha
     "@seed-design/stylesheet": alpha
@@ -3859,7 +3859,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prismicio/helpers@npm:2.2.1, @prismicio/helpers@npm:^2.0.0, @prismicio/helpers@npm:^2.0.0-beta.0":
+"@prismicio/helpers@npm:2.3.0":
+  version: 2.3.0
+  resolution: "@prismicio/helpers@npm:2.3.0"
+  dependencies:
+    "@prismicio/richtext": ^2.0.1
+    "@prismicio/types": ^0.1.27
+    escape-html: ^1.0.3
+    imgix-url-builder: ^0.0.3
+  checksum: 60bf3685db4c8ed20725924ea9f8004361223794114f57ade0109f8ec41d26dff868379478ea11f647222cff2a2a27d2ee62ee2bea7e668a05ebf084a6f3b7cc
+  languageName: node
+  linkType: hard
+
+"@prismicio/helpers@npm:^2.0.0, @prismicio/helpers@npm:^2.0.0-beta.0":
   version: 2.2.1
   resolution: "@prismicio/helpers@npm:2.2.1"
   dependencies:
