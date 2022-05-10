@@ -28,9 +28,12 @@ const FileInput = styled(Field.Input, {
   cursor: 'pointer',
   transition: 'box-shadow .25s ease',
   'input:focus + label > &': {
-    border: `1px solid ${vars.$semantic.color.primary}`,
-    // Note: $carrot500 을 써야하는데 브라우저 버그 때문에 css variable 적용이 안됨
-    boxShadow: '0 0 0 0.05em #fff, 0 0 0.15em 0.1em #ff7e36',
+    outlineStyle: 'solid',
+    outlineColor: '-webkit-focus-ring-color',
+    '@media (prefers-reduced-motion: no-preference)': {
+      transition: 'outline-offset .25s ease',
+      outlineOffset: '3px',
+    },
   },
 });
 

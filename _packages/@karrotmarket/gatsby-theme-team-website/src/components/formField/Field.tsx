@@ -41,7 +41,12 @@ export const Input = styled('input', {
   typography: '$body2',
   paddingX: rem(20),
   '&:focus': {
-    border: `1px solid ${vars.$scale.color.carrot500}`,
+    outlineStyle: 'solid',
+    outlineColor: '-webkit-focus-ring-color',
+    '@media (prefers-reduced-motion: no-preference)': {
+      transition: 'outline-offset .25s ease',
+      outlineOffset: '3px',
+    },
   },
   '&::placeholder': {
     color: vars.$scale.color.gray500,

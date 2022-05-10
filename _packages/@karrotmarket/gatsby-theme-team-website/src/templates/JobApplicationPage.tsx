@@ -9,7 +9,6 @@ import type { PropOf, RefOf } from '@cometjs/react-utils';
 import { mapAbstractType } from '@cometjs/graphql-utils';
 
 import _PageTitle from '../components/PageTitle';
-import _FormField from '../components/FormField';
 import FileAttachmentField from '../components/formField/FileAttachmentField';
 import ShortTextField from '../components/formField/ShortTextField';
 import LongTextField from '../components/formField/LongTextField';
@@ -138,10 +137,9 @@ const reducer: React.Reducer<State, Action> = (state, action) => {
 };
 
 const Form = styled('form', {
-});
-
-const FormField = styled(_FormField, {
-  marginBottom: rem(32),
+  '& > *': {
+    marginBottom: rem(32),
+  },
 });
 
 const Spinner = styled(_Spinner, {
@@ -230,8 +228,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
       onSubmit={handleSubmit}
     >
       <GatsbySeo noindex />
-      <FormField
-        as={ShortTextField}
+      <ShortTextField
         name="first_name"
         label={messages.job_application_page__field_name_label}
         placeholder={messages.job_application_page__field_name_placeholder}
@@ -239,24 +236,21 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
       />
       {/* Treat the first_name as fullname */}
       <input type="hidden" name="last_name" value={"\u200b"} />
-      <FormField
-        as={ShortTextField}
+      <ShortTextField
         type="tel"
         name="phone"
         label={messages.job_application_page__field_phone_label}
         placeholder={messages.job_application_page__field_phone_placeholder}
         required
       />
-      <FormField
-        as={ShortTextField}
+      <ShortTextField
         type="email"
         name="email"
         label={messages.job_application_page__field_email_label}
         placeholder={messages.job_application_page__field_email_placeholder}
         required
       />
-      <FormField
-        as={FileAttachmentField}
+      <FileAttachmentField
         name="resume"
         accepts={greenhouseAcceptedMimeTypes}
         label={messages.job_application_page__field_resume_label}
@@ -265,8 +259,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
         required
       />
       {portfolioField && (
-        <FormField
-          as={FileAttachmentField}
+        <FileAttachmentField
           accepts={greenhouseAcceptedMimeTypes}
           name={portfolioField.name}
           label={messages.job_application_page__field_portpolio_label}
@@ -280,8 +273,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
         .filter(question => question.name.startsWith('question'))
         .map(question => mapAbstractType(question, {
         GreenhouseJobBoardJobQuestionForShortText: question => (
-          <FormField
-            as={ShortTextField}
+          <ShortTextField
             key={question.name}
             name={question.name}
             label={question.label}
@@ -290,8 +282,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
           />
         ),
         GreenhouseJobBoardJobQuestionForLongText: question => (
-          <FormField
-            as={LongTextField}
+          <LongTextField
             key={question.name}
             name={question.name}
             label={question.label}
@@ -300,8 +291,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
           />
         ),
         GreenhouseJobBoardJobQuestionForAttachment: question => (
-          <FormField
-            as={FileAttachmentField}
+          <FileAttachmentField
             key={question.name}
             accepts={greenhouseAcceptedMimeTypes}
             placeholder={messages.job_application_page__field_file_placeholder}
@@ -312,8 +302,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
           />
         ),
         GreenhouseJobBoardJobQuestionForYesNo: question => (
-          <FormField
-            as={YesNoField}
+          <YesNoField
             key={question.name}
             name={question.name}
             label={question.label}
@@ -322,8 +311,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
           />
         ),
         GreenhouseJobBoardJobQuestionForSingleSelect: question => (
-          <FormField
-            as={SingleSelectField}
+          <SingleSelectField
             key={question.name}
             name={question.name}
             label={question.label}
@@ -333,8 +321,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
           />
         ),
         GreenhouseJobBoardJobQuestionForMultiSelect: question => (
-          <FormField
-            as={MultiSelectField}
+          <MultiSelectField
             key={question.name}
             name={question.name}
             label={question.label}
@@ -345,15 +332,13 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
         ),
       }))}
       {data.privacyPolicy?.data?.content?.html && (
-        <FormField
-          as={TermsField}
+        <TermsField
           terms={data.privacyPolicy.data.content.html}
           label={messages.job_application_page__terms_privacy_info}
         />
       )}
       {data.sensitiveInfoPolicy?.data?.content?.html && (
-        <FormField
-          as={TermsField}
+        <TermsField
           terms={data.sensitiveInfoPolicy.data.content.html}
           label={messages.job_application_page__terms_sensitive_info}
         />
