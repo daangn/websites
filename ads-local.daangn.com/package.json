@@ -29,7 +29,7 @@
     "gatsby-plugin-manifest": "4.10.1",
     "gatsby-plugin-module-resolver": "1.0.3",
     "gatsby-plugin-next-seo": "1.10.0",
-    "gatsby-plugin-robots-txt": "1.7.0",
+    "gatsby-plugin-robots-txt": "1.7.1",
     "gatsby-plugin-sharp": "4.10.1",
     "gatsby-plugin-typegen": "2.2.4",
     "gatsby-source-filesystem": "4.10.0",
