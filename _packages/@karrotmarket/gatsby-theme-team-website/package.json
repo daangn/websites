@@ -44,7 +44,7 @@
     "gatsby-plugin-manifest": "4.10.1",
     "gatsby-plugin-module-resolver": "1.0.3",
     "gatsby-plugin-next-seo": "1.10.0",
-    "gatsby-plugin-prismic-previews": "5.2.5",
+    "gatsby-plugin-prismic-previews": "5.2.6",
     "gatsby-plugin-prismic-schema": "*",
     "gatsby-plugin-react-helmet-async": "1.2.1",
     "gatsby-plugin-robots-txt": "1.7.1",
