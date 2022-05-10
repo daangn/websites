@@ -20,7 +20,7 @@
     "@babel/core": "7.17.9",
     "@types/node": "16.11.33",
     "babel-preset-gatsby-package": "2.10.0",
-    "concurrently": "7.0.0",
+    "concurrently": "7.1.0",
     "gatsby": "next",
     "typescript": "4.6.3"
   }
