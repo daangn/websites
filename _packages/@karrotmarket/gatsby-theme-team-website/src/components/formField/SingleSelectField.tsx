@@ -27,10 +27,6 @@ const Container = styled(Field.Container, {
 
 });
 
-const Label = styled(Field.Label, {
-  gridArea: 'label',
-});
-
 const Select = styled(Field.Input, {
   boxSizing: 'border-box',
   display: 'grid',
