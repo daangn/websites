@@ -34,8 +34,8 @@
     "babel-preset-gatsby-package": "2.10.0",
     "gatsby": "4.14.0",
     "polished": "4.1.4",
-    "react": "next",
-    "react-dom": "next",
+    "react": "experimental",
+    "react-dom": "experimental",
     "typescript": "4.6.3"
   }
 }

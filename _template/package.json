@@ -16,8 +16,8 @@
   },
   "dependencies": {
     "gatsby": "next",
-    "react": "next",
-    "react-dom": "next"
+    "react": "experimental",
+    "react-dom": "experimental"
   },
   "devDependencies": {
     "@babel/cli": "7.17.6",

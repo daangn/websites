@@ -42,8 +42,8 @@
     "gatsby-source-filesystem": "4.14.0",
     "match-sorter": "^6.3.1",
     "polished": "4.1.4",
-    "react": "next",
-    "react-dom": "next"
+    "react": "experimental",
+    "react-dom": "experimental"
   },
   "devDependencies": {
     "@babel/core": "7.17.9",

@@ -3163,8 +3163,8 @@ __metadata:
     gatsby-plugin-svgr: 3.0.0-beta.0
     gatsby-theme-stitches: 1.0.0
     polished: 4.1.4
-    react: next
-    react-dom: next
+    react: experimental
+    react-dom: experimental
     react-intersection-observer: 8.33.1
     typescript: 4.6.3
   peerDependencies:
@@ -5267,8 +5267,8 @@ __metadata:
     gatsby-source-filesystem: 4.14.0
     gatsby-theme-stitches: 1.0.0
     gatsby-transformer-sharp: 4.14.0
-    react: next
-    react-dom: next
+    react: experimental
+    react-dom: experimental
     react-helmet-async: 1.2.3
     react-swipeable: 6.2.1
     react-text-loop: 2.3.0
@@ -6431,8 +6431,8 @@ __metadata:
     babel-plugin-polished: 1.1.0
     gatsby: 4.14.0
     gatsby-plugin-google-gtag: 4.14.0
-    react: next
-    react-dom: next
+    react: experimental
+    react-dom: experimental
     typescript: 4.6.3
     ultra-runner: 3.10.5
   languageName: unknown
@@ -6635,8 +6635,8 @@ __metadata:
     gatsby-plugin-sitemap: 5.14.0
     gatsby-plugin-typegen: 2.2.4
     polished: 4.1.4
-    react: next
-    react-dom: next
+    react: experimental
+    react-dom: experimental
     typescript: 4.6.3
     ultra-runner: 3.10.5
   languageName: unknown
@@ -6666,8 +6666,8 @@ __metadata:
     gatsby-plugin-sitemap: 5.14.0
     gatsby-plugin-typegen: 2.2.4
     polished: 4.1.4
-    react: next
-    react-dom: next
+    react: experimental
+    react-dom: experimental
     typescript: 4.6.3
     ultra-runner: 3.10.5
   languageName: unknown
@@ -13320,8 +13320,8 @@ __metadata:
     gatsby-plugin-typegen: 2.2.4
     gatsby-plugin-web-font-loader: 1.0.4
     polished: 4.1.4
-    react: next
-    react-dom: next
+    react: experimental
+    react-dom: experimental
     typescript: 4.6.3
     ultra-runner: 3.10.5
   languageName: unknown
@@ -16793,15 +16793,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:18.0.0-rc.1-next-f468816ef-20220225":
-  version: 18.0.0-rc.1-next-f468816ef-20220225
-  resolution: "react-dom@npm:18.0.0-rc.1-next-f468816ef-20220225"
+"react-dom@npm:0.0.0-experimental-d20c3af9d-20220506":
+  version: 0.0.0-experimental-d20c3af9d-20220506
+  resolution: "react-dom@npm:0.0.0-experimental-d20c3af9d-20220506"
   dependencies:
     loose-envify: ^1.1.0
-    scheduler: 0.21.0-rc.1-next-f468816ef-20220225
+    scheduler: 0.0.0-experimental-d20c3af9d-20220506
   peerDependencies:
-    react: 18.0.0-rc.1-next-f468816ef-20220225
-  checksum: dd72307d51c9cd168cd8076387539b850730a743d1fdc88e43a37f7f0644ab644b2dfd5dae768990d6ca5b4a3b9fe0fea29ff600015c9a83fedee60bf5f4627f
+    react: 0.0.0-experimental-d20c3af9d-20220506
+  checksum: b7a18f2dc0179e920d4c5a61cca567bf870cdd66da23b9b2432e33a9fdd4fcfcff2f0cc336abdcdd2e9cd0fcef0487ded7a74ac9a6dd7fd417737b0a42d1f8f7
   languageName: node
   linkType: hard
 
@@ -17044,12 +17044,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:18.0.0-rc.1-next-f468816ef-20220225":
-  version: 18.0.0-rc.1-next-f468816ef-20220225
-  resolution: "react@npm:18.0.0-rc.1-next-f468816ef-20220225"
+"react@npm:0.0.0-experimental-d20c3af9d-20220506":
+  version: 0.0.0-experimental-d20c3af9d-20220506
+  resolution: "react@npm:0.0.0-experimental-d20c3af9d-20220506"
   dependencies:
     loose-envify: ^1.1.0
-  checksum: 4e0f7fa6e74a329722594c2b9f6d2c8249040ee4f4daccc08fae8325d41cd2a03ab8577165fb4363e2e589f93d5ac0000864154409560820b39c0dcedf83f68b
+  checksum: cb1406d5fbf5db99f979635c06b13470a247a6f04516463e7168ad4ba02494a8d51ca5fe401f8b7556cb1789e8d02905df1ffe79364318f069f83ac71795b0b7
   languageName: node
   linkType: hard
 
@@ -17676,12 +17676,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scheduler@npm:0.21.0-rc.1-next-f468816ef-20220225":
-  version: 0.21.0-rc.1-next-f468816ef-20220225
-  resolution: "scheduler@npm:0.21.0-rc.1-next-f468816ef-20220225"
+"scheduler@npm:0.0.0-experimental-d20c3af9d-20220506":
+  version: 0.0.0-experimental-d20c3af9d-20220506
+  resolution: "scheduler@npm:0.0.0-experimental-d20c3af9d-20220506"
   dependencies:
     loose-envify: ^1.1.0
-  checksum: 7e492fcb51852e0920852071db9e17d76389ad28a9374099ae96f5b6ffdcea5a293c8a29d2af26a76ee3baa40009b5af18d8b25344e505568fb67b030b222ca5
+  checksum: 3771665c488c0cc5c9a6e5105f1e2e95261b99e8d37c572a373ac7130234c7489f53c84cccdf7b8e58d1b89ef7ee1f0e07f2ba23766514bd1d73fc5df95861c6
   languageName: node
   linkType: hard
 
@@ -19041,8 +19041,8 @@ __metadata:
     gatsby-source-filesystem: 4.14.0
     match-sorter: ^6.3.1
     polished: 4.1.4
-    react: next
-    react-dom: next
+    react: experimental
+    react-dom: experimental
     typescript: 4.6.3
     ultra-runner: 3.10.5
   languageName: unknown
@@ -19635,8 +19635,8 @@ __metadata:
     gatsby-plugin-google-gtag: 4.14.0
     gatsby-plugin-google-tagmanager: 4.14.0
     gatsby-plugin-typegen: 2.2.4
-    react: next
-    react-dom: next
+    react: experimental
+    react-dom: experimental
     typescript: 4.6.3
     ultra-runner: 3.10.5
   languageName: unknown
@@ -19922,8 +19922,8 @@ __metadata:
     gatsby: 4.14.0
     gatsby-plugin-google-gtag: 4.14.0
     gatsby-plugin-typegen: 2.2.4
-    react: next
-    react-dom: next
+    react: experimental
+    react-dom: experimental
     typescript: 4.6.3
     ultra-runner: 3.10.5
   languageName: unknown

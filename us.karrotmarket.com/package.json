@@ -23,8 +23,8 @@
     "gatsby": "4.14.0",
     "gatsby-plugin-google-gtag": "4.14.0",
     "gatsby-plugin-typegen": "2.2.4",
-    "react": "next",
-    "react-dom": "next"
+    "react": "experimental",
+    "react-dom": "experimental"
   },
   "devDependencies": {
     "@babel/core": "7.17.9",

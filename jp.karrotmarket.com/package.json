@@ -27,8 +27,8 @@
     "gatsby-plugin-typegen": "2.2.4",
     "gatsby-plugin-web-font-loader": "1.0.4",
     "polished": "4.1.4",
-    "react": "next",
-    "react-dom": "next"
+    "react": "experimental",
+    "react-dom": "experimental"
   },
   "devDependencies": {
     "@babel/core": "7.17.9",
