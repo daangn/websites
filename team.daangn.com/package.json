@@ -51,8 +51,8 @@
     "@babel/plugin-transform-typescript": "7.16.8",
     "@types/dotenv-safe": "8.1.2",
     "@types/node": "16.11.33",
-    "@types/react": "17.0.44",
-    "@types/react-dom": "17.0.15",
+    "@types/react": "18.0.9",
+    "@types/react-dom": "18.0.3",
     "dotenv-safe": "8.2.0",
     "typescript": "4.6.3",
     "ultra-runner": "3.10.5"

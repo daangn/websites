@@ -3055,8 +3055,8 @@ __metadata:
     "@babel/core": 7.17.9
     "@prismicio/helpers": 2.3.0
     "@types/node": 16.11.33
-    "@types/react": 17.0.44
-    "@types/react-dom": 17.0.15
+    "@types/react": 18.0.9
+    "@types/react-dom": 18.0.3
     babel-preset-gatsby-package: 2.10.0
     concurrently: 7.1.0
     gatsby: 4.14.0
@@ -3099,8 +3099,8 @@ __metadata:
     "@stitches/react": 1.2.7
     "@svgr/webpack": 6.2.1
     "@types/node": 16.11.33
-    "@types/react": 17.0.44
-    "@types/react-dom": 17.0.15
+    "@types/react": 18.0.9
+    "@types/react-dom": 18.0.3
     babel-plugin-polished: 1.1.0
     babel-preset-gatsby-package: 2.10.0
     clsx: 1.1.1
@@ -3156,8 +3156,8 @@ __metadata:
     "@stitches/react": 1.2.7
     "@svgr/webpack": 6.2.1
     "@types/node": 16.11.33
-    "@types/react": 17.0.44
-    "@types/react-dom": 17.0.15
+    "@types/react": 18.0.9
+    "@types/react-dom": 18.0.3
     babel-preset-gatsby-package: 2.10.0
     gatsby: 4.14.0
     gatsby-plugin-svgr: 3.0.0-beta.0
@@ -4704,12 +4704,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:17.0.15":
-  version: 17.0.15
-  resolution: "@types/react-dom@npm:17.0.15"
+"@types/react-dom@npm:18.0.3":
+  version: 18.0.3
+  resolution: "@types/react-dom@npm:18.0.3"
   dependencies:
-    "@types/react": ^17
-  checksum: 7b90372bd7207d3860e1043ebfe10fd21fbd9ec3417a29593ca14359774830c888ba4ebb25cf0510628607496f8d35b09d23d329ea709b9311f5866185c5fd67
+    "@types/react": "*"
+  checksum: 5c87fb610e212f0942ebbf522dfca4c9dc2ac8afa4c601454415e7c42f993518868207faff7658d11974142937ba7af2f80e274c3a3f5e0e697bdd5547dbe1b0
   languageName: node
   linkType: hard
 
@@ -4722,7 +4722,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:17.0.44, @types/react@npm:^17":
+"@types/react@npm:*":
   version: 17.0.44
   resolution: "@types/react@npm:17.0.44"
   dependencies:
@@ -4730,6 +4730,17 @@ __metadata:
     "@types/scheduler": "*"
     csstype: ^3.0.2
   checksum: ebee02778ca08f954c316dc907802264e0121c87b8fa2e7e0156ab0ef2a1b0a09d968c016a3600ec4c9a17dc09b4274f292d9b15a1a5369bb7e4072def82808f
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:18.0.9":
+  version: 18.0.9
+  resolution: "@types/react@npm:18.0.9"
+  dependencies:
+    "@types/prop-types": "*"
+    "@types/scheduler": "*"
+    csstype: ^3.0.2
+  checksum: 162364dad716d9017ee34aabf2ea37499709ebbdef70392ae1b39225985971e1a46f121efb9c5c7da92144ee1d96d4525df806a7c1c03a5db7fd31dd034ddc7a
   languageName: node
   linkType: hard
 
@@ -6623,8 +6634,8 @@ __metadata:
     "@karrotmarket/gatsby-transformer-job-post": "*"
     "@types/dotenv-safe": 8.1.2
     "@types/node": 16.11.33
-    "@types/react": 17.0.44
-    "@types/react-dom": 17.0.15
+    "@types/react": 18.0.9
+    "@types/react-dom": 18.0.3
     dotenv-safe: 8.2.0
     gatsby: 4.14.0
     gatsby-plugin-advanced-sitemap: 2.1.0
@@ -6654,8 +6665,8 @@ __metadata:
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^"
     "@types/dotenv-safe": 8.1.2
     "@types/node": 16.11.33
-    "@types/react": 17.0.44
-    "@types/react-dom": 17.0.15
+    "@types/react": 18.0.9
+    "@types/react-dom": 18.0.3
     dotenv-safe: 8.2.0
     gatsby: 4.14.0
     gatsby-plugin-advanced-sitemap: 2.1.0
@@ -19024,8 +19035,8 @@ __metadata:
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^"
     "@types/dotenv-safe": 8.1.2
     "@types/node": 16.11.33
-    "@types/react": 17.0.44
-    "@types/react-dom": 17.0.15
+    "@types/react": 18.0.9
+    "@types/react-dom": 18.0.3
     cjk-slug: 0.3.0
     dotenv-safe: 8.2.0
     gatsby: 4.14.0

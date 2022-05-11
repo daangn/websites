@@ -1,4 +1,3 @@
-/// <reference types="react/next" />
 import * as React from 'react';
 
 import * as Field from './Field';
