@@ -21,7 +21,7 @@
     "@types/node": "16.11.33",
     "babel-preset-gatsby-package": "2.10.0",
     "concurrently": "7.1.0",
-    "gatsby": "next",
+    "gatsby": "4.14.0",
     "typescript": "4.6.3"
   }
 }
