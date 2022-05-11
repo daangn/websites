@@ -1,5 +1,6 @@
 declare module '*.svg' {
   import type * as React from 'react';
+
   interface SvgrComponent extends React.StatelessComponent<React.SVGAttributes<SVGElement>> {}
 
   const url: string;
