@@ -10,6 +10,7 @@ import {
   Link,
 } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
+import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import { required } from '@cometjs/core';
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
 import { vars } from '@seed-design/design-token';
@@ -160,6 +161,12 @@ const IrPage: React.FC<IrPageProps> = ({
 
   return (
     <Container>
+      <GatsbySeo
+        title={[
+          data.prismicIr.data.title?.text,
+          '당근마켓 IR',
+        ].join(' | ')}
+      />
       <PreviousLink
         aria-label="목록으로 돌아가기"
         to="/ir/"

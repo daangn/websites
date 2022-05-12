@@ -2,8 +2,9 @@ import * as React from 'react';
 import { rem } from 'polished';
 import type { PageProps } from 'gatsby';
 import { graphql, Link } from 'gatsby';
-import { vars } from '@seed-design/design-token';
+import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import { styled } from 'gatsby-theme-stitches/src/config';
+import { vars } from '@seed-design/design-token';
 import PageTitle from '@karrotmarket/gatsby-theme-team-website/src/components/PageTitle';
 import FadeInWhenVisible from '@karrotmarket/gatsby-theme-team-website/src/components/FadeInWhenVisible';
 
@@ -87,6 +88,10 @@ const IrListPage: React.FC<IrListPageProps> = ({
 }) => {
   return (
     <Container>
+      <GatsbySeo
+        title="당근마켓 IR"
+        description="당근마켓에서 제공하는 다양한 투자자 정보입니다."
+      />
       <PageTitle
         css={{
           marginBottom: rem(56),
