@@ -31,7 +31,7 @@
     "gatsby-plugin-next-seo": "1.10.0",
     "gatsby-plugin-robots-txt": "1.7.1",
     "gatsby-plugin-sharp": "4.14.0",
-    "gatsby-plugin-typegen": "2.2.4",
+    "gatsby-plugin-typegen": "rc",
     "gatsby-source-filesystem": "4.14.0",
     "gatsby-theme-stitches": "1.0.0",
     "gatsby-transformer-sharp": "4.14.0",
