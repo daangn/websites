@@ -1,9 +1,9 @@
 import * as React from 'react';
 import type { PageProps } from 'gatsby';
-import { navigate } from 'gatsby';
+import { } from 'gatsby';
 import { rem } from 'polished';
 import { motion, AnimateSharedLayout } from 'framer-motion';
-import { graphql, Link } from 'gatsby';
+import { graphql, navigate, Link } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import type { OverrideProps } from '@cometjs/core';

@@ -18808,6 +18808,7 @@ __metadata:
     "@karrotmarket/gatsby-source-greenhouse-jobboard": 0.6.0
     "@karrotmarket/gatsby-theme-team-website": "workspace:^"
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^"
+    "@seed-design/design-token": alpha
     "@types/dotenv-safe": 8.1.2
     "@types/node": 16.11.33
     "@types/react": 17.0.44

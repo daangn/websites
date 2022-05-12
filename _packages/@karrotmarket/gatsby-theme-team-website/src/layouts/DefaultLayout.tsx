@@ -14,8 +14,6 @@ import _Header from '@karrotmarket/gatsby-theme-website/src/components/Header';
 import _Footer from '@karrotmarket/gatsby-theme-website/src/components/Footer';
 import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 
-import { usePrefersColorScheme } from '../utils/usePreferColorScheme';
-
 type DefaultLayoutProps = OverrideProps<
   PageProps<GatsbyTypes.TeamWebsite_DefaultLayout_queryFragment>,
   {
@@ -78,13 +76,21 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
   data,
   children,
 }) => {
+  try {
+    required(data.prismicSiteNavigation);
+    required(data.prismicTeamContents?.data);
+  } catch {
+    return (
+      <div id="layout">
+        {children}
+      </div>
+    );
+  }
+
   const messages = useTranslation();
 
   const siteOrigin = useSiteOrigin();
   const { pathname: currentPath } = useLocation();
-
-  required(data.prismicSiteNavigation);
-  required(data.prismicTeamContents?.data);
 
   return (
     <>

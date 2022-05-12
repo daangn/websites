@@ -6,7 +6,6 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import { mapLink, useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
 import { required } from '@cometjs/core';
-import DefaultLayout from '../layouts/DefaultLayout';
 import ButtonLink from '../components/Button';
 
 import { withPrismicUnpublishedPreview } from 'gatsby-plugin-prismic-previews';
@@ -70,54 +69,53 @@ const Control = styled('div', {
   },
 });
 
-const NotFoundPage: React.FC<NotFoundPageProps> = pageProps => {
-  const { data } = pageProps;
-  const parseLink = useLinkParser();
-
+const NotFoundPage: React.FC<NotFoundPageProps> = ({
+  data,
+}) => {
   required(data.prismicTeamContents?.data);
 
+  const parseLink = useLinkParser();
+
   return (
-    <DefaultLayout {...pageProps}>
+    <Container>
       <GatsbySeo noindex nofollow />
-      <Container>
-        <Title>
-          {data.prismicTeamContents.data.notfound_page_title.text}
-        </Title>
-        <Illustration />
-        <Control>
-          {data.prismicTeamContents.data.notfound_page_link_group
-            .map((entry, i) => {
-              const link = parseLink(entry.link.url);
-              return mapLink(link, {
-                Internal: link => (
-                  <ButtonLink
-                    key={i}
-                    to={link.pathname}
-                    type={i === 0 ? 'primary' : 'default'}
-                    fullWidth={{ initial: true, '@sm': false }}
-                  >
-                    {entry.display_text}
-                  </ButtonLink>
-                ),
-                External: link => (
-                  <ButtonLink
-                    as="a"
-                    target="_blank"
-                    rel="external noopener"
-                    key={i}
-                    href={link.url.href}
-                    type={i === 0 ? 'primary' : 'default'}
-                    fullWidth={{ initial: true, '@sm': false }}
-                  >
-                    {entry.display_text}
-                  </ButtonLink>
-                ),
-              });
-            })
-          }
-        </Control>
-      </Container>
-    </DefaultLayout>
+      <Title>
+        {data.prismicTeamContents.data.notfound_page_title.text}
+      </Title>
+      <Illustration />
+      <Control>
+        {data.prismicTeamContents.data.notfound_page_link_group
+          .map((entry, i) => {
+            const link = parseLink(entry.link.url);
+            return mapLink(link, {
+              Internal: link => (
+                <ButtonLink
+                  key={i}
+                  to={link.pathname}
+                  type={i === 0 ? 'primary' : 'default'}
+                  fullWidth={{ initial: true, '@sm': false }}
+                >
+                  {entry.display_text}
+                </ButtonLink>
+              ),
+              External: link => (
+                <ButtonLink
+                  as="a"
+                  target="_blank"
+                  rel="external noopener"
+                  key={i}
+                  href={link.url.href}
+                  type={i === 0 ? 'primary' : 'default'}
+                  fullWidth={{ initial: true, '@sm': false }}
+                >
+                  {entry.display_text}
+                </ButtonLink>
+              ),
+            });
+          })
+        }
+      </Control>
+    </Container>
   );
 };
 

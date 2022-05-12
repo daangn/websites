@@ -10332,6 +10332,7 @@ type PrismicIr implements Node {
   prismicId: ID!
   tags: [String!]!
   type: String!
+  uid: String!
   url: String
 }
 
@@ -10519,6 +10520,7 @@ enum PrismicIrFieldsEnum {
   prismicId
   tags
   type
+  uid
   url
 }
 
@@ -10538,6 +10540,7 @@ input PrismicIrFilterInput {
   prismicId: IDQueryOperatorInput
   tags: StringQueryOperatorInput
   type: StringQueryOperatorInput
+  uid: StringQueryOperatorInput
   url: StringQueryOperatorInput
 }
 
@@ -10567,6 +10570,9 @@ type PrismicLinkType {
   lang: String
   link_type: PrismicLinkTypeEnum
   localFile: File
+
+  # See https://github.com/gatsbyjs/gatsby/issues/35636
+  localFileFixed: File
   raw: JSON
   size: Int
   slug: String
@@ -16727,7 +16733,7 @@ type Query {
   prismicEmbedType(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput): PrismicEmbedType
   prismicFaq(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicFaqDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, uid: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicFaq
   prismicGlobalContents(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicGlobalContentsDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicGlobalContents
-  prismicIr(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicIrDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicIr
+  prismicIr(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicIrDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, uid: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicIr
   prismicMemberProfile(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicMemberProfileDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicMemberProfile
   prismicPayContents(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicPayContentsDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicPayContents
   prismicSiteNavigation(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicSiteNavigationDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, uid: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicSiteNavigation

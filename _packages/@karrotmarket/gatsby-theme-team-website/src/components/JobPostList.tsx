@@ -44,8 +44,10 @@ const List = styled(motion.ul, {
 const JobPostLink = styled(Link, {
   display: 'block',
   color: 'inherit',
-  transition: 'color .3s',
   textDecoration: 'none',
+  '@media not (prefers-reduced-motion: reduce)': {
+    transition: 'color .3s',
+  },
   '&:hover': {
     color: vars.$scale.color.gray600,
   },
