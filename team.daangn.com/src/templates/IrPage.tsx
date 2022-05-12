@@ -13,7 +13,7 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { required } from '@cometjs/core';
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
 import { vars } from '@seed-design/design-token';
-import _PageTitle from '@karrotmarket/gatsby-theme-team-website/src/components/PageTitle';
+import PageTitle from '@karrotmarket/gatsby-theme-team-website/src/components/PageTitle';
 import { ReactComponent as BackwardSvg } from '@karrotmarket/gatsby-theme-team-website/src/assets/backwardOutlineM.svg';
 
 type IrPageProps = PageProps<GatsbyTypes.IrPageQuery>;
@@ -35,7 +35,12 @@ export const query = graphql`
         }
         attachment_group {
           file {
-            localFile {
+            #localFile {
+            #  base
+            #  publicURL
+            #}
+            # See https://github.com/gatsbyjs/gatsby/issues/35636
+            localFileFixed {
               base
               publicURL
             }
@@ -88,13 +93,29 @@ const PreviousLink = styled(Link, {
   },
 })
 
-const Content = styled('main', {
+const Content = styled('article', {
+  display: 'grid',
+  gap: '4.5rem',
 });
 
-const PageTitle = styled(_PageTitle, {
+const ContentHeader = styled('header', {
+  display: 'grid',
+  gap: '1rem',
 });
 
-const Body = styled('div', {
+const Properties = styled('div', {
+  typography: '$body2',
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: '1rem',
+});
+
+const Property = styled('span', {
+  display: 'inline-flex',
+  gap: '0.5rem',
+});
+
+const Body = styled('main', {
   display: 'grid',
   gap: '1.5rem',
   '& h2': {
@@ -111,7 +132,12 @@ const SupplementaryText = styled('div', {
   textAlign: 'center',
 });
 
-const Attachment = styled('div', {
+const AttachmentSection = styled('section', {
+  display: 'grid',
+  gap: '1rem',
+});
+
+const AttachmentSectionTitle = styled('h2', {
 });
 
 const FileList = styled('ul', {
@@ -129,7 +155,7 @@ const IrPage: React.FC<IrPageProps> = ({
   required(data.prismicIr);
 
   const attachments = data.prismicIr.data.attachment_group
-    ?.filter(attachment => attachment?.file?.localFile?.publicURL)
+    ?.filter(attachment => attachment?.file?.localFileFixed?.publicURL)
     ?? [];
 
   return (
@@ -147,15 +173,17 @@ const IrPage: React.FC<IrPageProps> = ({
         <BackwardSvg />
       </PreviousLink>
       <Content>
-        <PageTitle>
-          {data.prismicIr.data.title?.text}
-        </PageTitle>
-        <div>
-          <span>
-            <span>게시일</span>
-            <span>{data.prismicIr.first_publication_date}</span>
-          </span>
-        </div>
+        <ContentHeader>
+          <PageTitle>
+            {data.prismicIr.data.title?.text}
+          </PageTitle>
+          <Properties>
+            <Property>
+              <span>게시일</span>
+              <span>{data.prismicIr.first_publication_date}</span>
+            </Property>
+          </Properties>
+        </ContentHeader>
         <Body>
           {data.prismicIr.data.body.map(block => mapAbstractTypeWithDefault(block, {
             PrismicIrDataBodyMainText: block => (
@@ -174,12 +202,15 @@ const IrPage: React.FC<IrPageProps> = ({
           }))}
         </Body>
         {attachments.length > 0 && (
-          <Attachment>
-            <h2>첨부파일 다운로드</h2>
+          <AttachmentSection>
+            <AttachmentSectionTitle>
+              첨부파일 다운로드
+            </AttachmentSectionTitle>
             <FileList>
               {attachments.map((attachment, i) => {
-                const href = withPrefix(attachment!.file!.localFile!.publicURL!);
-                const base = decodeURIComponent(stripUUID(attachment!.file!.localFile!.base));
+                const file = attachment!.file!.localFileFixed!;
+                const href = withPrefix(file.publicURL!);
+                const base = decodeURIComponent(stripUUID(file.base));
                 return (
                   <FileListItem key={i}>
                     <File href={href} download={base}>
@@ -189,7 +220,7 @@ const IrPage: React.FC<IrPageProps> = ({
                 )
               })}
             </FileList>
-          </Attachment>
+          </AttachmentSection>
         )}
       </Content>
     </Container>

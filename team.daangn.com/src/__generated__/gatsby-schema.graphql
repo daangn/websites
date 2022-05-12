@@ -10570,6 +10570,9 @@ type PrismicLinkType {
   lang: String
   link_type: PrismicLinkTypeEnum
   localFile: File
+
+  # See https://github.com/gatsbyjs/gatsby/issues/35636
+  localFileFixed: File
   raw: JSON
   size: Int
   slug: String
