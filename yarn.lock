@@ -13268,6 +13268,7 @@ __metadata:
   dependencies:
     "@babel/core": 7.18.9
     "@karrotmarket/gatsby-theme-global-website": "*"
+    "@seed-design/stylesheet": alpha
     babel-plugin-polished: 1.1.0
     framer-motion: 4.1.17
     gatsby: 4.18.0

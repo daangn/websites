@@ -1,3 +1,5 @@
+import "@seed-design/stylesheet/global.css";
+
 import { globalCss } from "gatsby-theme-stitches/src/config";
 import { rem } from "polished";
 
