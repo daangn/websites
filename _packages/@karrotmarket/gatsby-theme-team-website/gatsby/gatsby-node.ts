@@ -1,5 +1,5 @@
 import type { GatsbyNode, Page } from 'gatsby';
-import type { PluginOptions } from './types';
+import type { PluginOptions, Corporate } from './types';
 
 const gql = String.raw;
 
@@ -164,7 +164,12 @@ export const createPages: GatsbyNode['createPages'] = async ({
       nodes: Array<{
         id: string,
         ghId: string,
-        corporate: string,
+        corporate: {
+          slug: string,
+          title: string,
+          enTitle: string,
+          type: string
+        },
       }>,
     },
     allJobDepartment: {
@@ -172,7 +177,12 @@ export const createPages: GatsbyNode['createPages'] = async ({
         id: string,
         slug: string,
         jobPosts: Array<{
-          corporate: string,
+          corporate: {
+            slug: string,
+            title: string,
+            enTitle: string,
+            type: string
+          },
         }>
       }>,
     },
@@ -218,7 +228,12 @@ export const createPages: GatsbyNode['createPages'] = async ({
         nodes {
           id
           ghId
-          corporate
+          corporate {
+            slug
+            title
+            enTitle
+            type
+          }
         }
       }
       allJobDepartment {
@@ -226,7 +241,12 @@ export const createPages: GatsbyNode['createPages'] = async ({
           id
           slug
           jobPosts {
-            corporate
+            corporate {
+              slug
+              title
+              enTitle
+              type
+            }
           }
         }
       }
@@ -313,28 +333,46 @@ export const createPages: GatsbyNode['createPages'] = async ({
     });
   }
 
-  const corporates = data.allJobPost.nodes.reduce((acc: string[], jobPost) => {
-    const corporate = jobPost.corporate
+  const corporates = data.allJobPost.nodes.reduce((acc: Corporate[], jobPost) => {
+    const corporateType = jobPost.corporate.type
 
-    if (!acc.includes(corporate)) {
-      acc.push(corporate)
+    for (const corporate of acc) {
+      if (corporate.type === corporateType) {
+        return acc
+      }
     }
+    
+    acc.push(jobPost.corporate)
 
     return acc
   }, [])
 
   for (const corporate of corporates) {
-    actions.createPage({
-      path: `/jobs/${corporate}/`,
-      component: require.resolve('./src/templates/JobsPage.tsx'),
-      context: {
-        locale,
-        navigationId,
-        // Note: 전체 post 필터링 시 glob 으로 사용
-        departmentId: '*',
-        corporate,
-      },
-    })
+    if (locale === 'ko-kr') {
+      actions.createPage({
+        path: `/jobs/${corporate.title}/`,
+        component: require.resolve('./src/templates/JobsPage.tsx'),
+        context: {
+          locale,
+          navigationId,
+          // Note: 전체 post 필터링 시 glob 으로 사용
+          departmentId: '*',
+          corporate: corporate.type,
+        },
+      })
+    } else {
+      actions.createPage({
+        path: `/jobs/${corporate.slug}/`,
+        component: require.resolve('./src/templates/JobsPage.tsx'),
+        context: {
+          locale,
+          navigationId,
+          // Note: 전체 post 필터링 시 glob 으로 사용
+          departmentId: '*',
+          corporate: corporate.type,
+        },
+      })
+    }
   }
 
   actions.createPage({
@@ -363,16 +401,29 @@ export const createPages: GatsbyNode['createPages'] = async ({
     });
 
     for (const jobPost of department.jobPosts) {
-      actions.createPage({
-        path: `/jobs/${jobPost.corporate}/${department.slug}/`,
-        component: require.resolve('./src/templates/JobsPage.tsx'),
-        context: {
-          locale,
-          navigationId,
-          departmentId: department.id,
-          corporate: jobPost.corporate,
-        }
-      })
+      if (locale === 'ko-kr') {
+        actions.createPage({
+          path: `/jobs/${jobPost.corporate.title}/${department.slug}/`,
+          component: require.resolve('./src/templates/JobsPage.tsx'),
+          context: {
+            locale,
+            navigationId,
+            departmentId: department.id,
+            corporate: jobPost.corporate.type,
+          }
+        })
+      } else {
+        actions.createPage({
+          path: `/jobs/${jobPost.corporate.slug}/${department.slug}/`,
+          component: require.resolve('./src/templates/JobsPage.tsx'),
+          context: {
+            locale,
+            navigationId,
+            departmentId: department.id,
+            corporate: jobPost.corporate.type,
+          }
+        })
+      }
     }
   }
 

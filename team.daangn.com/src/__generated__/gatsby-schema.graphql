@@ -1212,7 +1212,6 @@ enum GreenhouseJobBoardDepartmentFieldsEnum {
   childDepartments___jobs___childJobPost___chapter
   childDepartments___jobs___childJobPost___children
   childDepartments___jobs___childJobPost___content
-  childDepartments___jobs___childJobPost___corporate
   childDepartments___jobs___childJobPost___departments
   childDepartments___jobs___childJobPost___employmentType
   childDepartments___jobs___childJobPost___externalUrl
@@ -1242,7 +1241,6 @@ enum GreenhouseJobBoardDepartmentFieldsEnum {
   childDepartments___jobs___childrenJobPost___chapter
   childDepartments___jobs___childrenJobPost___children
   childDepartments___jobs___childrenJobPost___content
-  childDepartments___jobs___childrenJobPost___corporate
   childDepartments___jobs___childrenJobPost___departments
   childDepartments___jobs___childrenJobPost___employmentType
   childDepartments___jobs___childrenJobPost___externalUrl
@@ -1429,7 +1427,6 @@ enum GreenhouseJobBoardDepartmentFieldsEnum {
   jobs___childJobDepartment___jobPosts___chapter
   jobs___childJobDepartment___jobPosts___children
   jobs___childJobDepartment___jobPosts___content
-  jobs___childJobDepartment___jobPosts___corporate
   jobs___childJobDepartment___jobPosts___departments
   jobs___childJobDepartment___jobPosts___employmentType
   jobs___childJobDepartment___jobPosts___externalUrl
@@ -1459,7 +1456,10 @@ enum GreenhouseJobBoardDepartmentFieldsEnum {
   jobs___childJobPost___content___bodyHtml
   jobs___childJobPost___content___level
   jobs___childJobPost___content___title
-  jobs___childJobPost___corporate
+  jobs___childJobPost___corporate___enTitle
+  jobs___childJobPost___corporate___slug
+  jobs___childJobPost___corporate___title
+  jobs___childJobPost___corporate___type
   jobs___childJobPost___departments
   jobs___childJobPost___departments___children
   jobs___childJobPost___departments___ghId
@@ -1526,7 +1526,6 @@ enum GreenhouseJobBoardDepartmentFieldsEnum {
   jobs___childrenJobDepartment___jobPosts___chapter
   jobs___childrenJobDepartment___jobPosts___children
   jobs___childrenJobDepartment___jobPosts___content
-  jobs___childrenJobDepartment___jobPosts___corporate
   jobs___childrenJobDepartment___jobPosts___departments
   jobs___childrenJobDepartment___jobPosts___employmentType
   jobs___childrenJobDepartment___jobPosts___externalUrl
@@ -1557,7 +1556,10 @@ enum GreenhouseJobBoardDepartmentFieldsEnum {
   jobs___childrenJobPost___content___bodyHtml
   jobs___childrenJobPost___content___level
   jobs___childrenJobPost___content___title
-  jobs___childrenJobPost___corporate
+  jobs___childrenJobPost___corporate___enTitle
+  jobs___childrenJobPost___corporate___slug
+  jobs___childrenJobPost___corporate___title
+  jobs___childrenJobPost___corporate___type
   jobs___childrenJobPost___departments
   jobs___childrenJobPost___departments___children
   jobs___childrenJobPost___departments___ghId
@@ -1791,7 +1793,6 @@ enum GreenhouseJobBoardDepartmentFieldsEnum {
   parentDepartment___jobs___childJobPost___chapter
   parentDepartment___jobs___childJobPost___children
   parentDepartment___jobs___childJobPost___content
-  parentDepartment___jobs___childJobPost___corporate
   parentDepartment___jobs___childJobPost___departments
   parentDepartment___jobs___childJobPost___employmentType
   parentDepartment___jobs___childJobPost___externalUrl
@@ -1821,7 +1822,6 @@ enum GreenhouseJobBoardDepartmentFieldsEnum {
   parentDepartment___jobs___childrenJobPost___chapter
   parentDepartment___jobs___childrenJobPost___children
   parentDepartment___jobs___childrenJobPost___content
-  parentDepartment___jobs___childrenJobPost___corporate
   parentDepartment___jobs___childrenJobPost___departments
   parentDepartment___jobs___childrenJobPost___employmentType
   parentDepartment___jobs___childrenJobPost___externalUrl
@@ -2151,7 +2151,10 @@ enum GreenhouseJobBoardJobFieldsEnum {
   childJobDepartment___jobPosts___content___bodyHtml
   childJobDepartment___jobPosts___content___level
   childJobDepartment___jobPosts___content___title
-  childJobDepartment___jobPosts___corporate
+  childJobDepartment___jobPosts___corporate___enTitle
+  childJobDepartment___jobPosts___corporate___slug
+  childJobDepartment___jobPosts___corporate___title
+  childJobDepartment___jobPosts___corporate___type
   childJobDepartment___jobPosts___departments
   childJobDepartment___jobPosts___departments___children
   childJobDepartment___jobPosts___departments___ghId
@@ -2235,7 +2238,10 @@ enum GreenhouseJobBoardJobFieldsEnum {
   childJobPost___content___bodyHtml
   childJobPost___content___level
   childJobPost___content___title
-  childJobPost___corporate
+  childJobPost___corporate___enTitle
+  childJobPost___corporate___slug
+  childJobPost___corporate___title
+  childJobPost___corporate___type
   childJobPost___departments
   childJobPost___departments___children
   childJobPost___departments___children___children
@@ -2258,7 +2264,6 @@ enum GreenhouseJobBoardJobFieldsEnum {
   childJobPost___departments___jobPosts___chapter
   childJobPost___departments___jobPosts___children
   childJobPost___departments___jobPosts___content
-  childJobPost___departments___jobPosts___corporate
   childJobPost___departments___jobPosts___departments
   childJobPost___departments___jobPosts___employmentType
   childJobPost___departments___jobPosts___externalUrl
@@ -2305,7 +2310,6 @@ enum GreenhouseJobBoardJobFieldsEnum {
   childJobPost___parentJob___childJobPost___chapter
   childJobPost___parentJob___childJobPost___children
   childJobPost___parentJob___childJobPost___content
-  childJobPost___parentJob___childJobPost___corporate
   childJobPost___parentJob___childJobPost___departments
   childJobPost___parentJob___childJobPost___employmentType
   childJobPost___parentJob___childJobPost___externalUrl
@@ -2335,7 +2339,6 @@ enum GreenhouseJobBoardJobFieldsEnum {
   childJobPost___parentJob___childrenJobPost___chapter
   childJobPost___parentJob___childrenJobPost___children
   childJobPost___parentJob___childrenJobPost___content
-  childJobPost___parentJob___childrenJobPost___corporate
   childJobPost___parentJob___childrenJobPost___departments
   childJobPost___parentJob___childrenJobPost___employmentType
   childJobPost___parentJob___childrenJobPost___externalUrl
@@ -2450,7 +2453,10 @@ enum GreenhouseJobBoardJobFieldsEnum {
   childrenJobDepartment___jobPosts___content___bodyHtml
   childrenJobDepartment___jobPosts___content___level
   childrenJobDepartment___jobPosts___content___title
-  childrenJobDepartment___jobPosts___corporate
+  childrenJobDepartment___jobPosts___corporate___enTitle
+  childrenJobDepartment___jobPosts___corporate___slug
+  childrenJobDepartment___jobPosts___corporate___title
+  childrenJobDepartment___jobPosts___corporate___type
   childrenJobDepartment___jobPosts___departments
   childrenJobDepartment___jobPosts___departments___children
   childrenJobDepartment___jobPosts___departments___ghId
@@ -2535,7 +2541,10 @@ enum GreenhouseJobBoardJobFieldsEnum {
   childrenJobPost___content___bodyHtml
   childrenJobPost___content___level
   childrenJobPost___content___title
-  childrenJobPost___corporate
+  childrenJobPost___corporate___enTitle
+  childrenJobPost___corporate___slug
+  childrenJobPost___corporate___title
+  childrenJobPost___corporate___type
   childrenJobPost___departments
   childrenJobPost___departments___children
   childrenJobPost___departments___children___children
@@ -2558,7 +2567,6 @@ enum GreenhouseJobBoardJobFieldsEnum {
   childrenJobPost___departments___jobPosts___chapter
   childrenJobPost___departments___jobPosts___children
   childrenJobPost___departments___jobPosts___content
-  childrenJobPost___departments___jobPosts___corporate
   childrenJobPost___departments___jobPosts___departments
   childrenJobPost___departments___jobPosts___employmentType
   childrenJobPost___departments___jobPosts___externalUrl
@@ -2605,7 +2613,6 @@ enum GreenhouseJobBoardJobFieldsEnum {
   childrenJobPost___parentJob___childJobPost___chapter
   childrenJobPost___parentJob___childJobPost___children
   childrenJobPost___parentJob___childJobPost___content
-  childrenJobPost___parentJob___childJobPost___corporate
   childrenJobPost___parentJob___childJobPost___departments
   childrenJobPost___parentJob___childJobPost___employmentType
   childrenJobPost___parentJob___childJobPost___externalUrl
@@ -2635,7 +2642,6 @@ enum GreenhouseJobBoardJobFieldsEnum {
   childrenJobPost___parentJob___childrenJobPost___chapter
   childrenJobPost___parentJob___childrenJobPost___children
   childrenJobPost___parentJob___childrenJobPost___content
-  childrenJobPost___parentJob___childrenJobPost___corporate
   childrenJobPost___parentJob___childrenJobPost___departments
   childrenJobPost___parentJob___childrenJobPost___employmentType
   childrenJobPost___parentJob___childrenJobPost___externalUrl
@@ -2836,7 +2842,6 @@ enum GreenhouseJobBoardJobFieldsEnum {
   departments___jobs___childJobPost___chapter
   departments___jobs___childJobPost___children
   departments___jobs___childJobPost___content
-  departments___jobs___childJobPost___corporate
   departments___jobs___childJobPost___departments
   departments___jobs___childJobPost___employmentType
   departments___jobs___childJobPost___externalUrl
@@ -2866,7 +2871,6 @@ enum GreenhouseJobBoardJobFieldsEnum {
   departments___jobs___childrenJobPost___chapter
   departments___jobs___childrenJobPost___children
   departments___jobs___childrenJobPost___content
-  departments___jobs___childrenJobPost___corporate
   departments___jobs___childrenJobPost___departments
   departments___jobs___childrenJobPost___employmentType
   departments___jobs___childrenJobPost___externalUrl
@@ -4379,6 +4383,20 @@ input JSONQueryOperatorInput {
   regex: JSON
 }
 
+type JobCorporate {
+  enTitle: String!
+  slug: String!
+  title: String!
+  type: String!
+}
+
+input JobCorporateFilterInput {
+  enTitle: StringQueryOperatorInput
+  slug: StringQueryOperatorInput
+  title: StringQueryOperatorInput
+  type: StringQueryOperatorInput
+}
+
 type JobDepartment implements Node {
   children: [Node!]!
   ghId: String!
@@ -4483,7 +4501,10 @@ enum JobDepartmentFieldsEnum {
   jobPosts___content___bodyHtml
   jobPosts___content___level
   jobPosts___content___title
-  jobPosts___corporate
+  jobPosts___corporate___enTitle
+  jobPosts___corporate___slug
+  jobPosts___corporate___title
+  jobPosts___corporate___type
   jobPosts___departments
   jobPosts___departments___children
   jobPosts___departments___children___children
@@ -4506,7 +4527,6 @@ enum JobDepartmentFieldsEnum {
   jobPosts___departments___jobPosts___chapter
   jobPosts___departments___jobPosts___children
   jobPosts___departments___jobPosts___content
-  jobPosts___departments___jobPosts___corporate
   jobPosts___departments___jobPosts___departments
   jobPosts___departments___jobPosts___employmentType
   jobPosts___departments___jobPosts___externalUrl
@@ -4553,7 +4573,6 @@ enum JobDepartmentFieldsEnum {
   jobPosts___parentJob___childJobPost___chapter
   jobPosts___parentJob___childJobPost___children
   jobPosts___parentJob___childJobPost___content
-  jobPosts___parentJob___childJobPost___corporate
   jobPosts___parentJob___childJobPost___departments
   jobPosts___parentJob___childJobPost___employmentType
   jobPosts___parentJob___childJobPost___externalUrl
@@ -4583,7 +4602,6 @@ enum JobDepartmentFieldsEnum {
   jobPosts___parentJob___childrenJobPost___chapter
   jobPosts___parentJob___childrenJobPost___children
   jobPosts___parentJob___childrenJobPost___content
-  jobPosts___parentJob___childrenJobPost___corporate
   jobPosts___parentJob___childrenJobPost___departments
   jobPosts___parentJob___childrenJobPost___employmentType
   jobPosts___parentJob___childrenJobPost___externalUrl
@@ -4764,7 +4782,7 @@ type JobPost implements Node {
   content: [JobPostContentSection!]!
 
   # 회사 (당근마켓, 당근페이)
-  corporate: String!
+  corporate: JobCorporate!
 
   # 소속
   departments: [JobDepartment!]!
@@ -4908,7 +4926,10 @@ enum JobPostFieldsEnum {
   content___bodyHtml
   content___level
   content___title
-  corporate
+  corporate___enTitle
+  corporate___slug
+  corporate___title
+  corporate___type
   departments
   departments___children
   departments___children___children
@@ -4948,7 +4969,10 @@ enum JobPostFieldsEnum {
   departments___jobPosts___content___bodyHtml
   departments___jobPosts___content___level
   departments___jobPosts___content___title
-  departments___jobPosts___corporate
+  departments___jobPosts___corporate___enTitle
+  departments___jobPosts___corporate___slug
+  departments___jobPosts___corporate___title
+  departments___jobPosts___corporate___type
   departments___jobPosts___departments
   departments___jobPosts___departments___children
   departments___jobPosts___departments___ghId
@@ -5045,7 +5069,6 @@ enum JobPostFieldsEnum {
   parentJob___childJobDepartment___jobPosts___chapter
   parentJob___childJobDepartment___jobPosts___children
   parentJob___childJobDepartment___jobPosts___content
-  parentJob___childJobDepartment___jobPosts___corporate
   parentJob___childJobDepartment___jobPosts___departments
   parentJob___childJobDepartment___jobPosts___employmentType
   parentJob___childJobDepartment___jobPosts___externalUrl
@@ -5075,7 +5098,10 @@ enum JobPostFieldsEnum {
   parentJob___childJobPost___content___bodyHtml
   parentJob___childJobPost___content___level
   parentJob___childJobPost___content___title
-  parentJob___childJobPost___corporate
+  parentJob___childJobPost___corporate___enTitle
+  parentJob___childJobPost___corporate___slug
+  parentJob___childJobPost___corporate___title
+  parentJob___childJobPost___corporate___type
   parentJob___childJobPost___departments
   parentJob___childJobPost___departments___children
   parentJob___childJobPost___departments___ghId
@@ -5142,7 +5168,6 @@ enum JobPostFieldsEnum {
   parentJob___childrenJobDepartment___jobPosts___chapter
   parentJob___childrenJobDepartment___jobPosts___children
   parentJob___childrenJobDepartment___jobPosts___content
-  parentJob___childrenJobDepartment___jobPosts___corporate
   parentJob___childrenJobDepartment___jobPosts___departments
   parentJob___childrenJobDepartment___jobPosts___employmentType
   parentJob___childrenJobDepartment___jobPosts___externalUrl
@@ -5173,7 +5198,10 @@ enum JobPostFieldsEnum {
   parentJob___childrenJobPost___content___bodyHtml
   parentJob___childrenJobPost___content___level
   parentJob___childrenJobPost___content___title
-  parentJob___childrenJobPost___corporate
+  parentJob___childrenJobPost___corporate___enTitle
+  parentJob___childrenJobPost___corporate___slug
+  parentJob___childrenJobPost___corporate___title
+  parentJob___childrenJobPost___corporate___type
   parentJob___childrenJobPost___departments
   parentJob___childrenJobPost___departments___children
   parentJob___childrenJobPost___departments___ghId
@@ -5374,7 +5402,7 @@ input JobPostFilterInput {
   chapter: StringQueryOperatorInput
   children: NodeFilterListInput
   content: JobPostContentSectionFilterListInput
-  corporate: StringQueryOperatorInput
+  corporate: JobCorporateFilterInput
   departments: JobDepartmentFilterListInput
   employmentType: JobEmploymentTypeQueryOperatorInput
   externalUrl: StringQueryOperatorInput
@@ -16728,7 +16756,7 @@ type Query {
   greenhouseJobBoardJob(boardToken: StringQueryOperatorInput, boardUrl: StringQueryOperatorInput, childJobDepartment: JobDepartmentFilterInput, childJobPost: JobPostFilterInput, children: NodeFilterListInput, childrenJobDepartment: JobDepartmentFilterListInput, childrenJobPost: JobPostFilterListInput, content: StringQueryOperatorInput, departments: GreenhouseJobBoardDepartmentFilterListInput, ghId: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, locationQuestions: GreenhouseJobBoardJobQuestionFilterListInput, metadata: GreenhouseJobBoardJobCustomFieldMetadataFilterListInput, parent: NodeFilterInput, questions: GreenhouseJobBoardJobQuestionFilterListInput, title: StringQueryOperatorInput, updatedAt: DateQueryOperatorInput): GreenhouseJobBoardJob
   imageSharp(children: NodeFilterListInput, fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, gatsbyImageData: JSONQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, original: ImageSharpOriginalFilterInput, parent: NodeFilterInput, resize: ImageSharpResizeFilterInput): ImageSharp
   jobDepartment(children: NodeFilterListInput, ghId: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, jobPosts: JobPostFilterListInput, name: StringQueryOperatorInput, parent: NodeFilterInput, slug: StringQueryOperatorInput): JobDepartment
-  jobPost(absoluteUrl: StringQueryOperatorInput, alternativeCivilianService: BooleanQueryOperatorInput, boardToken: StringQueryOperatorInput, boardUrl: StringQueryOperatorInput, chapter: StringQueryOperatorInput, children: NodeFilterListInput, content: JobPostContentSectionFilterListInput, corporate: StringQueryOperatorInput, departments: JobDepartmentFilterListInput, employmentType: JobEmploymentTypeQueryOperatorInput, externalUrl: StringQueryOperatorInput, ghId: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, keywords: StringQueryOperatorInput, order: IntQueryOperatorInput, parent: NodeFilterInput, parentJob: GreenhouseJobBoardJobFilterInput, priorExperience: JobPriorExperienceQueryOperatorInput, rawContent: StringQueryOperatorInput, tags: StringQueryOperatorInput, title: StringQueryOperatorInput, updatedAt: DateQueryOperatorInput, validThrough: DateQueryOperatorInput): JobPost
+  jobPost(absoluteUrl: StringQueryOperatorInput, alternativeCivilianService: BooleanQueryOperatorInput, boardToken: StringQueryOperatorInput, boardUrl: StringQueryOperatorInput, chapter: StringQueryOperatorInput, children: NodeFilterListInput, content: JobPostContentSectionFilterListInput, corporate: JobCorporateFilterInput, departments: JobDepartmentFilterListInput, employmentType: JobEmploymentTypeQueryOperatorInput, externalUrl: StringQueryOperatorInput, ghId: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, keywords: StringQueryOperatorInput, order: IntQueryOperatorInput, parent: NodeFilterInput, parentJob: GreenhouseJobBoardJobFilterInput, priorExperience: JobPriorExperienceQueryOperatorInput, rawContent: StringQueryOperatorInput, tags: StringQueryOperatorInput, title: StringQueryOperatorInput, updatedAt: DateQueryOperatorInput, validThrough: DateQueryOperatorInput): JobPost
   localSearchJobPosts(children: NodeFilterListInput, engine: StringQueryOperatorInput, id: StringQueryOperatorInput, index: StringQueryOperatorInput, internal: InternalFilterInput, name: StringQueryOperatorInput, parent: NodeFilterInput, publicIndexURL: StringQueryOperatorInput, publicStoreURL: StringQueryOperatorInput, store: JSONQueryOperatorInput): LocalSearchJobPosts
   lokaliseTranslation(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, messages: LokaliseMessagesFilterInput, parent: NodeFilterInput): LokaliseTranslation
   prismicAdsContent(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicAdsContentDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicAdsContent
