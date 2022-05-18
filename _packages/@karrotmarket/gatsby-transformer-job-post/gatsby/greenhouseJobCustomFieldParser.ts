@@ -12,7 +12,6 @@ type JobCorporate = {
   slug: string
   type: 'KARROT_MARKET' | 'KARROT_PAY'
   title: string
-  enTitle: string
 }
 
 function findMetadataById<T extends string | number | null = string | number | null>(
@@ -36,14 +35,12 @@ export const corporate: FieldParser<JobCorporate | null> = (
           slug: 'karrot',
           type: 'KARROT_MARKET',
           title: '당근마켓',
-          enTitle: 'Karrot'
         }
       };
       case '당근페이': return {
         slug: 'karrot-pay',
         type: 'KARROT_PAY',
         title: '당근페이',
-        enTitle: 'Karrot Pay'
       };
       case null: {
         reporter.warn(reporter.stripIndent`

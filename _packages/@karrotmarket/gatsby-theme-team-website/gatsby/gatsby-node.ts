@@ -167,7 +167,6 @@ export const createPages: GatsbyNode['createPages'] = async ({
         corporate: {
           slug: string,
           title: string,
-          enTitle: string,
           type: string
         },
       }>,
@@ -180,7 +179,6 @@ export const createPages: GatsbyNode['createPages'] = async ({
           corporate: {
             slug: string,
             title: string,
-            enTitle: string,
             type: string
           },
         }>
@@ -231,7 +229,6 @@ export const createPages: GatsbyNode['createPages'] = async ({
           corporate {
             slug
             title
-            enTitle
             type
           }
         }
@@ -244,7 +241,6 @@ export const createPages: GatsbyNode['createPages'] = async ({
             corporate {
               slug
               title
-              enTitle
               type
             }
           }

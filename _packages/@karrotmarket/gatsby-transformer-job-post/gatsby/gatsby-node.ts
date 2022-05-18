@@ -259,7 +259,6 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       slug: String!
       type: String!
       title: String!
-      enTitle: String!
     }
 
     enum JobEmploymentType {

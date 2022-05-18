@@ -114,7 +114,6 @@ export const query = graphql`
             slug
             title
             type
-            enTitle
           }
         }
       }

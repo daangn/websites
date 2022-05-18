@@ -1456,7 +1456,6 @@ enum GreenhouseJobBoardDepartmentFieldsEnum {
   jobs___childJobPost___content___bodyHtml
   jobs___childJobPost___content___level
   jobs___childJobPost___content___title
-  jobs___childJobPost___corporate___enTitle
   jobs___childJobPost___corporate___slug
   jobs___childJobPost___corporate___title
   jobs___childJobPost___corporate___type
@@ -1556,7 +1555,6 @@ enum GreenhouseJobBoardDepartmentFieldsEnum {
   jobs___childrenJobPost___content___bodyHtml
   jobs___childrenJobPost___content___level
   jobs___childrenJobPost___content___title
-  jobs___childrenJobPost___corporate___enTitle
   jobs___childrenJobPost___corporate___slug
   jobs___childrenJobPost___corporate___title
   jobs___childrenJobPost___corporate___type
@@ -2151,7 +2149,6 @@ enum GreenhouseJobBoardJobFieldsEnum {
   childJobDepartment___jobPosts___content___bodyHtml
   childJobDepartment___jobPosts___content___level
   childJobDepartment___jobPosts___content___title
-  childJobDepartment___jobPosts___corporate___enTitle
   childJobDepartment___jobPosts___corporate___slug
   childJobDepartment___jobPosts___corporate___title
   childJobDepartment___jobPosts___corporate___type
@@ -2238,7 +2235,6 @@ enum GreenhouseJobBoardJobFieldsEnum {
   childJobPost___content___bodyHtml
   childJobPost___content___level
   childJobPost___content___title
-  childJobPost___corporate___enTitle
   childJobPost___corporate___slug
   childJobPost___corporate___title
   childJobPost___corporate___type
@@ -2453,7 +2449,6 @@ enum GreenhouseJobBoardJobFieldsEnum {
   childrenJobDepartment___jobPosts___content___bodyHtml
   childrenJobDepartment___jobPosts___content___level
   childrenJobDepartment___jobPosts___content___title
-  childrenJobDepartment___jobPosts___corporate___enTitle
   childrenJobDepartment___jobPosts___corporate___slug
   childrenJobDepartment___jobPosts___corporate___title
   childrenJobDepartment___jobPosts___corporate___type
@@ -2541,7 +2536,6 @@ enum GreenhouseJobBoardJobFieldsEnum {
   childrenJobPost___content___bodyHtml
   childrenJobPost___content___level
   childrenJobPost___content___title
-  childrenJobPost___corporate___enTitle
   childrenJobPost___corporate___slug
   childrenJobPost___corporate___title
   childrenJobPost___corporate___type
@@ -4384,14 +4378,12 @@ input JSONQueryOperatorInput {
 }
 
 type JobCorporate {
-  enTitle: String!
   slug: String!
   title: String!
   type: String!
 }
 
 input JobCorporateFilterInput {
-  enTitle: StringQueryOperatorInput
   slug: StringQueryOperatorInput
   title: StringQueryOperatorInput
   type: StringQueryOperatorInput
@@ -4501,7 +4493,6 @@ enum JobDepartmentFieldsEnum {
   jobPosts___content___bodyHtml
   jobPosts___content___level
   jobPosts___content___title
-  jobPosts___corporate___enTitle
   jobPosts___corporate___slug
   jobPosts___corporate___title
   jobPosts___corporate___type
@@ -4926,7 +4917,6 @@ enum JobPostFieldsEnum {
   content___bodyHtml
   content___level
   content___title
-  corporate___enTitle
   corporate___slug
   corporate___title
   corporate___type
@@ -4969,7 +4959,6 @@ enum JobPostFieldsEnum {
   departments___jobPosts___content___bodyHtml
   departments___jobPosts___content___level
   departments___jobPosts___content___title
-  departments___jobPosts___corporate___enTitle
   departments___jobPosts___corporate___slug
   departments___jobPosts___corporate___title
   departments___jobPosts___corporate___type
@@ -5098,7 +5087,6 @@ enum JobPostFieldsEnum {
   parentJob___childJobPost___content___bodyHtml
   parentJob___childJobPost___content___level
   parentJob___childJobPost___content___title
-  parentJob___childJobPost___corporate___enTitle
   parentJob___childJobPost___corporate___slug
   parentJob___childJobPost___corporate___title
   parentJob___childJobPost___corporate___type
@@ -5198,7 +5186,6 @@ enum JobPostFieldsEnum {
   parentJob___childrenJobPost___content___bodyHtml
   parentJob___childrenJobPost___content___level
   parentJob___childrenJobPost___content___title
-  parentJob___childrenJobPost___corporate___enTitle
   parentJob___childrenJobPost___corporate___slug
   parentJob___childrenJobPost___corporate___title
   parentJob___childrenJobPost___corporate___type
