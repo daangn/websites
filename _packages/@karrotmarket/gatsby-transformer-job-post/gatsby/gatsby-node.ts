@@ -98,7 +98,8 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           },
         },
         corporate: {
-          type: 'JobCorporate', // 이거 왜 nullable 이더라...?
+          // type: 'JobCorporate', 이거 왜 nullable 이더라...?
+          type: 'String!',
           description: '회사 (당근마켓, 당근페이)',
           resolve(source: GreenhouseJobBoardJobNode) {
             return fieldParser.corporate(source, ctx);
@@ -248,10 +249,11 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       childJobPost: JobPost!
     }
 
-    enum JobCorporate {
-      KARROT_MARKET
-      KARROT_PAY
-    }
+    # Note: allJobDepartment에서 corporate glob 필터 사용하기 위해 String으로 변경
+    # enum JobCorporate {
+    #   KARROT_MARKET 
+    #   KARROT_PAY
+    # }
 
     enum JobEmploymentType {
       FULL_TIME

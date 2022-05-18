@@ -698,7 +698,10 @@ enum FileFieldsEnum {
   childLokaliseTranslation___messages___job_post_page__external_post_link
   childLokaliseTranslation___messages___job_post_page__external_post_notice
   childLokaliseTranslation___messages___job_post_page__faq
+  childLokaliseTranslation___messages___jobs_page__KARROT_MARKET
+  childLokaliseTranslation___messages___jobs_page__KARROT_PAY
   childLokaliseTranslation___messages___jobs_page__chapter_all
+  childLokaliseTranslation___messages___jobs_page__corporate_all
   childLokaliseTranslation___messages___jobs_page__default_meta_title
   childLokaliseTranslation___messages___jobs_page__employment_type_all
   childLokaliseTranslation___messages___jobs_page__employment_type_assistant
@@ -857,7 +860,10 @@ enum FileFieldsEnum {
   childrenLokaliseTranslation___messages___job_post_page__external_post_link
   childrenLokaliseTranslation___messages___job_post_page__external_post_notice
   childrenLokaliseTranslation___messages___job_post_page__faq
+  childrenLokaliseTranslation___messages___jobs_page__KARROT_MARKET
+  childrenLokaliseTranslation___messages___jobs_page__KARROT_PAY
   childrenLokaliseTranslation___messages___jobs_page__chapter_all
+  childrenLokaliseTranslation___messages___jobs_page__corporate_all
   childrenLokaliseTranslation___messages___jobs_page__default_meta_title
   childrenLokaliseTranslation___messages___jobs_page__employment_type_all
   childrenLokaliseTranslation___messages___jobs_page__employment_type_assistant
@@ -4373,18 +4379,6 @@ input JSONQueryOperatorInput {
   regex: JSON
 }
 
-enum JobCorporate {
-  KARROT_MARKET
-  KARROT_PAY
-}
-
-input JobCorporateQueryOperatorInput {
-  eq: JobCorporate
-  in: [JobCorporate]
-  ne: JobCorporate
-  nin: [JobCorporate]
-}
-
 type JobDepartment implements Node {
   children: [Node!]!
   ghId: String!
@@ -4770,7 +4764,7 @@ type JobPost implements Node {
   content: [JobPostContentSection!]!
 
   # 회사 (당근마켓, 당근페이)
-  corporate: JobCorporate
+  corporate: String!
 
   # 소속
   departments: [JobDepartment!]!
@@ -5380,7 +5374,7 @@ input JobPostFilterInput {
   chapter: StringQueryOperatorInput
   children: NodeFilterListInput
   content: JobPostContentSectionFilterListInput
-  corporate: JobCorporateQueryOperatorInput
+  corporate: StringQueryOperatorInput
   departments: JobDepartmentFilterListInput
   employmentType: JobEmploymentTypeQueryOperatorInput
   externalUrl: StringQueryOperatorInput
@@ -5646,7 +5640,10 @@ type LokaliseMessages {
   job_post_page__external_post_link: String
   job_post_page__external_post_notice: String
   job_post_page__faq: String
+  jobs_page__KARROT_MARKET: String
+  jobs_page__KARROT_PAY: String
   jobs_page__chapter_all: String
+  jobs_page__corporate_all: String
   jobs_page__default_meta_title: String
   jobs_page__employment_type_all: String
   jobs_page__employment_type_assistant: String
@@ -5697,7 +5694,10 @@ input LokaliseMessagesFilterInput {
   job_post_page__external_post_link: StringQueryOperatorInput
   job_post_page__external_post_notice: StringQueryOperatorInput
   job_post_page__faq: StringQueryOperatorInput
+  jobs_page__KARROT_MARKET: StringQueryOperatorInput
+  jobs_page__KARROT_PAY: StringQueryOperatorInput
   jobs_page__chapter_all: StringQueryOperatorInput
+  jobs_page__corporate_all: StringQueryOperatorInput
   jobs_page__default_meta_title: StringQueryOperatorInput
   jobs_page__employment_type_all: StringQueryOperatorInput
   jobs_page__employment_type_assistant: StringQueryOperatorInput
@@ -5822,7 +5822,10 @@ enum LokaliseTranslationFieldsEnum {
   messages___job_post_page__external_post_link
   messages___job_post_page__external_post_notice
   messages___job_post_page__faq
+  messages___jobs_page__KARROT_MARKET
+  messages___jobs_page__KARROT_PAY
   messages___jobs_page__chapter_all
+  messages___jobs_page__corporate_all
   messages___jobs_page__default_meta_title
   messages___jobs_page__employment_type_all
   messages___jobs_page__employment_type_assistant
@@ -16725,7 +16728,7 @@ type Query {
   greenhouseJobBoardJob(boardToken: StringQueryOperatorInput, boardUrl: StringQueryOperatorInput, childJobDepartment: JobDepartmentFilterInput, childJobPost: JobPostFilterInput, children: NodeFilterListInput, childrenJobDepartment: JobDepartmentFilterListInput, childrenJobPost: JobPostFilterListInput, content: StringQueryOperatorInput, departments: GreenhouseJobBoardDepartmentFilterListInput, ghId: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, locationQuestions: GreenhouseJobBoardJobQuestionFilterListInput, metadata: GreenhouseJobBoardJobCustomFieldMetadataFilterListInput, parent: NodeFilterInput, questions: GreenhouseJobBoardJobQuestionFilterListInput, title: StringQueryOperatorInput, updatedAt: DateQueryOperatorInput): GreenhouseJobBoardJob
   imageSharp(children: NodeFilterListInput, fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, gatsbyImageData: JSONQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, original: ImageSharpOriginalFilterInput, parent: NodeFilterInput, resize: ImageSharpResizeFilterInput): ImageSharp
   jobDepartment(children: NodeFilterListInput, ghId: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, jobPosts: JobPostFilterListInput, name: StringQueryOperatorInput, parent: NodeFilterInput, slug: StringQueryOperatorInput): JobDepartment
-  jobPost(absoluteUrl: StringQueryOperatorInput, alternativeCivilianService: BooleanQueryOperatorInput, boardToken: StringQueryOperatorInput, boardUrl: StringQueryOperatorInput, chapter: StringQueryOperatorInput, children: NodeFilterListInput, content: JobPostContentSectionFilterListInput, corporate: JobCorporateQueryOperatorInput, departments: JobDepartmentFilterListInput, employmentType: JobEmploymentTypeQueryOperatorInput, externalUrl: StringQueryOperatorInput, ghId: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, keywords: StringQueryOperatorInput, order: IntQueryOperatorInput, parent: NodeFilterInput, parentJob: GreenhouseJobBoardJobFilterInput, priorExperience: JobPriorExperienceQueryOperatorInput, rawContent: StringQueryOperatorInput, tags: StringQueryOperatorInput, title: StringQueryOperatorInput, updatedAt: DateQueryOperatorInput, validThrough: DateQueryOperatorInput): JobPost
+  jobPost(absoluteUrl: StringQueryOperatorInput, alternativeCivilianService: BooleanQueryOperatorInput, boardToken: StringQueryOperatorInput, boardUrl: StringQueryOperatorInput, chapter: StringQueryOperatorInput, children: NodeFilterListInput, content: JobPostContentSectionFilterListInput, corporate: StringQueryOperatorInput, departments: JobDepartmentFilterListInput, employmentType: JobEmploymentTypeQueryOperatorInput, externalUrl: StringQueryOperatorInput, ghId: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, keywords: StringQueryOperatorInput, order: IntQueryOperatorInput, parent: NodeFilterInput, parentJob: GreenhouseJobBoardJobFilterInput, priorExperience: JobPriorExperienceQueryOperatorInput, rawContent: StringQueryOperatorInput, tags: StringQueryOperatorInput, title: StringQueryOperatorInput, updatedAt: DateQueryOperatorInput, validThrough: DateQueryOperatorInput): JobPost
   localSearchJobPosts(children: NodeFilterListInput, engine: StringQueryOperatorInput, id: StringQueryOperatorInput, index: StringQueryOperatorInput, internal: InternalFilterInput, name: StringQueryOperatorInput, parent: NodeFilterInput, publicIndexURL: StringQueryOperatorInput, publicStoreURL: StringQueryOperatorInput, store: JSONQueryOperatorInput): LocalSearchJobPosts
   lokaliseTranslation(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, messages: LokaliseMessagesFilterInput, parent: NodeFilterInput): LokaliseTranslation
   prismicAdsContent(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicAdsContentDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicAdsContent

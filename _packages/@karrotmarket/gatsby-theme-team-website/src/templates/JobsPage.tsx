@@ -26,6 +26,7 @@ export const query = graphql`
     $departmentId: String!
     $locale: String!
     $navigationId: String!
+    $corporate: String!
   ) {
     ...TeamWebsite_DefaultLayout_query
 
@@ -57,6 +58,8 @@ export const query = graphql`
       }
     }
 
+    # currentCorporate
+
     currentJobDepartment: jobDepartment(
       id: { eq: $departmentId }
     ) {
@@ -69,6 +72,9 @@ export const query = graphql`
           elemMatch: {
             id: { glob: $departmentId }
           }
+        },
+        corporate: {
+          glob: $corporate
         }
       }
       sort: {
@@ -87,7 +93,12 @@ export const query = graphql`
     allJobDepartment(filter: {
       jobPosts: {
         elemMatch: {
-          id: { glob: "*" }
+          id: { 
+            glob: "*" 
+          },
+          corporate: { 
+            glob: $corporate
+          }
         }
       }
     }) {
@@ -97,22 +108,39 @@ export const query = graphql`
         slug
         jobPosts {
           id
+          corporate
         }
       }
     }
 
-    allJobPost(
+    # Note: Corporate 필터된 jobPost
+    allCorporateFilteredJobPost: allJobPost(
+      filter: {
+        corporate: {
+          glob: $corporate
+        }
+      },
       sort: {
         fields: title
         order: ASC
       }
     ) {
       totalCount
+      nodes {
+        corporate
+      }
 
       allEmploymentType: group(
         field: employmentType
       ) {
         fieldValue
+      }
+    }
+
+    # Note: Corporate reduce용 전체 jobPost
+    allJobPost {
+      nodes {
+        corporate
       }
     }
   }
@@ -141,16 +169,16 @@ const FilterAnchor = styled('div', {
 const Filters = styled('div', {
   display: 'grid',
   gridTemplateAreas: [
+    '"corporate"',
     '"department"',
-    '"etype"',
     '"search"',
   ].join('\n'),
   gap: rem(16),
 
   '@md': {
     gridTemplateAreas: [
-      '"department etype"',
-      '"search search"',
+      '"corporate department etype"',
+      '"search search search"',
     ].join('\n'),
     gap: rem(20),
 
@@ -207,6 +235,16 @@ const Select = styled('select', {
   },
 });
 
+const EtypeSelectWrapper = styled(SelectWrapper, {
+  display: 'none',
+  '@md': {
+    display: 'grid'
+  },
+  '@lg': {
+    display: 'grid'
+  }
+})
+
 const ExpandIcon = styled(ExpandMoreOutlineIcon, {
   position: 'absolute',
   width: '0.8em',
@@ -227,6 +265,17 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
   const siteOrigin = useSiteOrigin();
   const messages = useTranslation();
 
+  const currentCorporate = pageContext.corporate.startsWith('KARROT') ? pageContext.corporate : ''
+  const corporates = data.allJobPost.nodes.reduce((acc: string[], jobPost) => {
+    const corporate = jobPost.corporate
+
+    if (!acc.includes(corporate)) {
+      acc.push(corporate)
+    }
+
+    return acc
+  }, [])
+
   const [filterEmploymentType, setFilterEmploymentType] = React.useState('');
   const [searchQuery, setSearchQuery] = React.useState('');
   const [_isSearchPending, startSearchTransition] = React.useTransition();
@@ -236,6 +285,13 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
       setSearchQuery(e.target.value);
     });
   }
+
+  const corpFilteredDepartments = data.allJobDepartment.nodes.map((node) => {
+    return {
+      ...node,
+      jobPosts: node.jobPosts.filter((jobPost) => jobPost.corporate === pageContext.corporate)
+    }
+  })
 
   const searchResults = useFlexSearch(searchQuery);
 
@@ -251,17 +307,28 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
 
   const filterAnchorId = '_filter';
   const onFilterChange: React.ChangeEventHandler<HTMLSelectElement> = e => {
+    const corp = currentCorporate ? currentCorporate + '/' : ''
     const selectedDepartment = data.allJobDepartment.nodes
       .find(department => department.id === e.target.value);
 
       if (selectedDepartment) {
         const { slug } = selectedDepartment;
         if (slug) {
-          navigate(`/jobs/${slug}/${window.location.search}#${filterAnchorId}`);
+          navigate(`/jobs/${corp + slug}/${window.location.search}#${filterAnchorId}`);
         }
       } else {
-        navigate(`/jobs/${window.location.search}#${filterAnchorId}`);
+        navigate(`/jobs/${corp}${window.location.search}#${filterAnchorId}`);
       }
+  }
+
+  const onCorpFilterChange: React.ChangeEventHandler<HTMLSelectElement> = e => {
+    const corp = e.target.value
+
+    if (corp) {
+      navigate(`/jobs/${corp}/`)
+    } else {
+      navigate(`/jobs/`)
+    }
   }
 
   return (
@@ -302,6 +369,20 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
         <Content>
           <FilterAnchor id={filterAnchorId} />
           <Filters>
+            <SelectWrapper css={{ gridArea: 'corporate' }}>
+              <Select defaultValue={pageContext.corporate} onChange={onCorpFilterChange}>
+                <option key="*" value="">
+                  {$(messages.jobs_page__corporate_all, {
+                    n: () => <>{corporates.length}</>
+                  })}
+                </option>
+                {corporates.map((corp) => {
+                  const transitionKey = `jobs_page__${corp}`
+                  return <option key={corp} value={corp}>{messages[transitionKey]}</option>
+                })}
+              </Select>
+              <ExpandIcon />
+            </SelectWrapper>
             <SelectWrapper css={{ gridArea: 'department' }}>
               <Select
                 defaultValue={pageContext.departmentId}
@@ -312,10 +393,10 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
                   value="*"
                 >
                   {$(messages.jobs_page__chapter_all, {
-                    n: () => <>{data.allJobPost.totalCount}</>
+                    n: () => <>{data.allCorporateFilteredJobPost.totalCount}</>
                   })}
                 </option>
-                {data.allJobDepartment.nodes
+                {corpFilteredDepartments
                   .map(department => (
                     <option
                       key={department.id}
@@ -328,7 +409,7 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
               </Select>
               <ExpandIcon />
             </SelectWrapper>
-            <SelectWrapper css={{ gridArea: 'etype' }}>
+            <EtypeSelectWrapper css={{ gridArea: 'etype' }}>
               <Select
                 value={filterEmploymentType}
                 onChange={e => setFilterEmploymentType(e.target.value)}
@@ -340,8 +421,8 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
                 <option value="ASSISTANT">{messages.jobs_page__employment_type_assistant}</option>
               </Select>
               <ExpandIcon />
-            </SelectWrapper>
-            <Search >
+            </EtypeSelectWrapper>
+            <Search>
               <input
                 placeholder={messages.jobs_page__search}
                 onChange={handleSearchInputChange}
