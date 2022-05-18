@@ -164,12 +164,16 @@ export const createPages: GatsbyNode['createPages'] = async ({
       nodes: Array<{
         id: string,
         ghId: string,
+        corporate: string,
       }>,
     },
     allJobDepartment: {
       nodes: Array<{
         id: string,
         slug: string,
+        jobPosts: Array<{
+          corporate: string,
+        }>
       }>,
     },
   };
@@ -214,12 +218,16 @@ export const createPages: GatsbyNode['createPages'] = async ({
         nodes {
           id
           ghId
+          corporate
         }
       }
       allJobDepartment {
         nodes {
           id
           slug
+          jobPosts {
+            corporate
+          }
         }
       }
     }
@@ -305,6 +313,30 @@ export const createPages: GatsbyNode['createPages'] = async ({
     });
   }
 
+  const corporates = data.allJobPost.nodes.reduce((acc: string[], jobPost) => {
+    const corporate = jobPost.corporate
+
+    if (!acc.includes(corporate)) {
+      acc.push(corporate)
+    }
+
+    return acc
+  }, [])
+
+  for (const corporate of corporates) {
+    actions.createPage({
+      path: `/jobs/${corporate}/`,
+      component: require.resolve('./src/templates/JobsPage.tsx'),
+      context: {
+        locale,
+        navigationId,
+        // Note: 전체 post 필터링 시 glob 으로 사용
+        departmentId: '*',
+        corporate,
+      },
+    })
+  }
+
   actions.createPage({
     path: `/jobs/`,
     component: require.resolve('./src/templates/JobsPage.tsx'),
@@ -313,9 +345,11 @@ export const createPages: GatsbyNode['createPages'] = async ({
       navigationId,
       // Note: 전체 post 필터링 시 glob 으로 사용
       departmentId: '*',
+      corporate: '*'
     },
   });
 
+  // 직군 필터
   for (const department of data.allJobDepartment.nodes) {
     actions.createPage({
       path: `/jobs/${department.slug}/`,
@@ -324,8 +358,22 @@ export const createPages: GatsbyNode['createPages'] = async ({
         locale,
         navigationId,
         departmentId: department.id,
+        corporate: '*',
       },
     });
+
+    for (const jobPost of department.jobPosts) {
+      actions.createPage({
+        path: `/jobs/${jobPost.corporate}/${department.slug}/`,
+        component: require.resolve('./src/templates/JobsPage.tsx'),
+        context: {
+          locale,
+          navigationId,
+          departmentId: department.id,
+          corporate: jobPost.corporate,
+        }
+      })
+    }
   }
 
   for (const article of data.allPrismicTeamsArticle.nodes) {
