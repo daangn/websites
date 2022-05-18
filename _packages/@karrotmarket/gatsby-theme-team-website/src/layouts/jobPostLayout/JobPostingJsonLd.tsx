@@ -23,7 +23,9 @@ export const query = graphql`
     datePosted: updatedAt(formatString: "YYYY-MM-DD")
     validThrough(formatString: "YYYY-MM-DD")
     priorExperience
-    corporate
+    corporate {
+      type
+    }
   }
 `;
 
@@ -60,7 +62,7 @@ const JobPostingJsonLd: React.FC<JobPostingJsonLdProps> = ({
           url: "https://www.daangnpay.com",
           logoUrl,
         },
-      }[jobPost.corporate]}
+      }[jobPost.corporate.type]}
       locations={locations}
     />
   );
