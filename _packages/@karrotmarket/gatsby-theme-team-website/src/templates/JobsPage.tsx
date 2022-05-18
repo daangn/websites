@@ -341,7 +341,7 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
 
   const onCorpFilterChange: React.ChangeEventHandler<HTMLSelectElement> = e => {
     if (e.target.value) {
-      navigate(`/jobs/${messages[`jobs_page__${e.target.value}`]}/`)  
+      navigate(`/jobs/${messages[`jobs_page__${e.target.value}`].toLowerCase()}/`)  
     } else {
       navigate(`/jobs/`)
     }
