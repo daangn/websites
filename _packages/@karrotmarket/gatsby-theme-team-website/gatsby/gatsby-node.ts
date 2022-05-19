@@ -1,5 +1,5 @@
 import type { GatsbyNode, Page } from 'gatsby';
-import type { PluginOptions, Corporate } from './types';
+import type { PluginOptions } from './types';
 
 const gql = String.raw;
 
@@ -164,24 +164,12 @@ export const createPages: GatsbyNode['createPages'] = async ({
       nodes: Array<{
         id: string,
         ghId: string,
-        corporate: {
-          slug: string,
-          title: string,
-          type: string
-        },
       }>,
     },
     allJobDepartment: {
       nodes: Array<{
         id: string,
         slug: string,
-        jobPosts: Array<{
-          corporate: {
-            slug: string,
-            title: string,
-            type: string
-          },
-        }>
       }>,
     },
   };
@@ -226,24 +214,12 @@ export const createPages: GatsbyNode['createPages'] = async ({
         nodes {
           id
           ghId
-          corporate {
-            slug
-            title
-            type
-          }
         }
       }
       allJobDepartment {
         nodes {
           id
           slug
-          jobPosts {
-            corporate {
-              slug
-              title
-              type
-            }
-          }
         }
       }
     }
@@ -282,7 +258,6 @@ export const createPages: GatsbyNode['createPages'] = async ({
       }
     }
   }
-
 
   if (data.prismicTeamContents.data.enable_life_page) {
     actions.createPage({
@@ -329,48 +304,6 @@ export const createPages: GatsbyNode['createPages'] = async ({
     });
   }
 
-  const corporates = data.allJobPost.nodes.reduce((acc: Corporate[], jobPost) => {
-    const corporateType = jobPost.corporate.type
-
-    for (const corporate of acc) {
-      if (corporate.type === corporateType) {
-        return acc
-      }
-    }
-    
-    acc.push(jobPost.corporate)
-
-    return acc
-  }, [])
-
-  for (const corporate of corporates) {
-    if (locale === 'ko-kr') {
-      actions.createPage({
-        path: `/jobs/${corporate.title}/`,
-        component: require.resolve('./src/templates/JobsPage.tsx'),
-        context: {
-          locale,
-          navigationId,
-          // Note: 전체 post 필터링 시 glob 으로 사용
-          departmentId: '*',
-          corporate: corporate.type,
-        },
-      })
-    } else {
-      actions.createPage({
-        path: `/jobs/${corporate.slug}/`,
-        component: require.resolve('./src/templates/JobsPage.tsx'),
-        context: {
-          locale,
-          navigationId,
-          // Note: 전체 post 필터링 시 glob 으로 사용
-          departmentId: '*',
-          corporate: corporate.type,
-        },
-      })
-    }
-  }
-
   actions.createPage({
     path: `/jobs/`,
     component: require.resolve('./src/templates/JobsPage.tsx'),
@@ -379,7 +312,6 @@ export const createPages: GatsbyNode['createPages'] = async ({
       navigationId,
       // Note: 전체 post 필터링 시 glob 으로 사용
       departmentId: '*',
-      corporate: '*'
     },
   });
 
@@ -392,35 +324,8 @@ export const createPages: GatsbyNode['createPages'] = async ({
         locale,
         navigationId,
         departmentId: department.id,
-        corporate: '*',
       },
     });
-
-    for (const jobPost of department.jobPosts) {
-      if (locale === 'ko-kr') {
-        actions.createPage({
-          path: `/jobs/${jobPost.corporate.title}/${department.slug}/`,
-          component: require.resolve('./src/templates/JobsPage.tsx'),
-          context: {
-            locale,
-            navigationId,
-            departmentId: department.id,
-            corporate: jobPost.corporate.type,
-          }
-        })
-      } else {
-        actions.createPage({
-          path: `/jobs/${jobPost.corporate.slug}/${department.slug}/`,
-          component: require.resolve('./src/templates/JobsPage.tsx'),
-          context: {
-            locale,
-            navigationId,
-            departmentId: department.id,
-            corporate: jobPost.corporate.type,
-          }
-        })
-      }
-    }
   }
 
   for (const article of data.allPrismicTeamsArticle.nodes) {
