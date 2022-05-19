@@ -8,3 +8,4 @@
 !/src/__generated__/gatsby-plugin-documents.graphql
 !/src/__generated__/gatsby-schema.graphql
 !/src/__generated__/gatsby-types.d.ts
+!/src/__generated__/lokalise-translation.js
