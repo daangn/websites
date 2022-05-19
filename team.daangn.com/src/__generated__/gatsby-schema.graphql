@@ -57,6 +57,18 @@ input BooleanQueryOperatorInput {
   nin: [Boolean]
 }
 
+enum Corporate {
+  KARROT_MARKET
+  KARROT_PAY
+}
+
+input CorporateQueryOperatorInput {
+  eq: Corporate
+  in: [Corporate]
+  ne: Corporate
+  nin: [Corporate]
+}
+
 # A date string, such as 2007-12-03, compliant with the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
 scalar Date
 
@@ -1456,8 +1468,8 @@ enum GreenhouseJobBoardDepartmentFieldsEnum {
   jobs___childJobPost___content___bodyHtml
   jobs___childJobPost___content___level
   jobs___childJobPost___content___title
+  jobs___childJobPost___corporate___enSlug
   jobs___childJobPost___corporate___slug
-  jobs___childJobPost___corporate___title
   jobs___childJobPost___corporate___type
   jobs___childJobPost___departments
   jobs___childJobPost___departments___children
@@ -1555,8 +1567,8 @@ enum GreenhouseJobBoardDepartmentFieldsEnum {
   jobs___childrenJobPost___content___bodyHtml
   jobs___childrenJobPost___content___level
   jobs___childrenJobPost___content___title
+  jobs___childrenJobPost___corporate___enSlug
   jobs___childrenJobPost___corporate___slug
-  jobs___childrenJobPost___corporate___title
   jobs___childrenJobPost___corporate___type
   jobs___childrenJobPost___departments
   jobs___childrenJobPost___departments___children
@@ -2149,8 +2161,8 @@ enum GreenhouseJobBoardJobFieldsEnum {
   childJobDepartment___jobPosts___content___bodyHtml
   childJobDepartment___jobPosts___content___level
   childJobDepartment___jobPosts___content___title
+  childJobDepartment___jobPosts___corporate___enSlug
   childJobDepartment___jobPosts___corporate___slug
-  childJobDepartment___jobPosts___corporate___title
   childJobDepartment___jobPosts___corporate___type
   childJobDepartment___jobPosts___departments
   childJobDepartment___jobPosts___departments___children
@@ -2235,8 +2247,8 @@ enum GreenhouseJobBoardJobFieldsEnum {
   childJobPost___content___bodyHtml
   childJobPost___content___level
   childJobPost___content___title
+  childJobPost___corporate___enSlug
   childJobPost___corporate___slug
-  childJobPost___corporate___title
   childJobPost___corporate___type
   childJobPost___departments
   childJobPost___departments___children
@@ -2449,8 +2461,8 @@ enum GreenhouseJobBoardJobFieldsEnum {
   childrenJobDepartment___jobPosts___content___bodyHtml
   childrenJobDepartment___jobPosts___content___level
   childrenJobDepartment___jobPosts___content___title
+  childrenJobDepartment___jobPosts___corporate___enSlug
   childrenJobDepartment___jobPosts___corporate___slug
-  childrenJobDepartment___jobPosts___corporate___title
   childrenJobDepartment___jobPosts___corporate___type
   childrenJobDepartment___jobPosts___departments
   childrenJobDepartment___jobPosts___departments___children
@@ -2536,8 +2548,8 @@ enum GreenhouseJobBoardJobFieldsEnum {
   childrenJobPost___content___bodyHtml
   childrenJobPost___content___level
   childrenJobPost___content___title
+  childrenJobPost___corporate___enSlug
   childrenJobPost___corporate___slug
-  childrenJobPost___corporate___title
   childrenJobPost___corporate___type
   childrenJobPost___departments
   childrenJobPost___departments___children
@@ -4378,15 +4390,15 @@ input JSONQueryOperatorInput {
 }
 
 type JobCorporate {
+  enSlug: String!
   slug: String!
-  title: String!
-  type: String!
+  type: Corporate!
 }
 
 input JobCorporateFilterInput {
+  enSlug: StringQueryOperatorInput
   slug: StringQueryOperatorInput
-  title: StringQueryOperatorInput
-  type: StringQueryOperatorInput
+  type: CorporateQueryOperatorInput
 }
 
 type JobDepartment implements Node {
@@ -4493,8 +4505,8 @@ enum JobDepartmentFieldsEnum {
   jobPosts___content___bodyHtml
   jobPosts___content___level
   jobPosts___content___title
+  jobPosts___corporate___enSlug
   jobPosts___corporate___slug
-  jobPosts___corporate___title
   jobPosts___corporate___type
   jobPosts___departments
   jobPosts___departments___children
@@ -4917,8 +4929,8 @@ enum JobPostFieldsEnum {
   content___bodyHtml
   content___level
   content___title
+  corporate___enSlug
   corporate___slug
-  corporate___title
   corporate___type
   departments
   departments___children
@@ -4959,8 +4971,8 @@ enum JobPostFieldsEnum {
   departments___jobPosts___content___bodyHtml
   departments___jobPosts___content___level
   departments___jobPosts___content___title
+  departments___jobPosts___corporate___enSlug
   departments___jobPosts___corporate___slug
-  departments___jobPosts___corporate___title
   departments___jobPosts___corporate___type
   departments___jobPosts___departments
   departments___jobPosts___departments___children
@@ -5087,8 +5099,8 @@ enum JobPostFieldsEnum {
   parentJob___childJobPost___content___bodyHtml
   parentJob___childJobPost___content___level
   parentJob___childJobPost___content___title
+  parentJob___childJobPost___corporate___enSlug
   parentJob___childJobPost___corporate___slug
-  parentJob___childJobPost___corporate___title
   parentJob___childJobPost___corporate___type
   parentJob___childJobPost___departments
   parentJob___childJobPost___departments___children
@@ -5186,8 +5198,8 @@ enum JobPostFieldsEnum {
   parentJob___childrenJobPost___content___bodyHtml
   parentJob___childrenJobPost___content___level
   parentJob___childrenJobPost___content___title
+  parentJob___childrenJobPost___corporate___enSlug
   parentJob___childrenJobPost___corporate___slug
-  parentJob___childrenJobPost___corporate___title
   parentJob___childrenJobPost___corporate___type
   parentJob___childrenJobPost___departments
   parentJob___childrenJobPost___departments___children

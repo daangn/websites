@@ -26,7 +26,6 @@ export const query = graphql`
     $departmentId: String!
     $locale: String!
     $navigationId: String!
-    $corporate: String!
   ) {
     ...TeamWebsite_DefaultLayout_query
 
@@ -64,16 +63,11 @@ export const query = graphql`
       name
     }
 
-    allSelectedJobPost: allJobPost(
+    allDepartmentFilteredJobPost: allJobPost(
       filter: {
         departments: {
           elemMatch: {
             id: { glob: $departmentId }
-          }
-        },
-        corporate: {
-          type: {
-            glob: $corporate
           }
         }
       }
@@ -95,11 +89,6 @@ export const query = graphql`
         elemMatch: {
           id: { 
             glob: "*" 
-          },
-          corporate: { 
-            type: {
-              glob: $corporate
-            }
           }
         }
       }
@@ -111,34 +100,11 @@ export const query = graphql`
         jobPosts {
           id
           corporate {
+            enSlug
             slug
-            title
             type
           }
         }
-      }
-    }
-
-    # Note: Corporate 필터된 jobPost
-    allCorporateFilteredJobPost: allJobPost(
-      filter: {
-        corporate: {
-          type: {
-            glob: $corporate
-          }
-        }
-      },
-      sort: {
-        fields: title
-        order: ASC
-      }
-    ) {
-      totalCount
-
-      allEmploymentType: group(
-        field: employmentType
-      ) {
-        fieldValue
       }
     }
 
@@ -146,8 +112,8 @@ export const query = graphql`
     allJobPost {
       nodes {
         corporate {
+          enSlug
           slug
-          title
           type
         }
       }
@@ -270,11 +236,13 @@ const JobPostList = styled(_JobPostList, {
 const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
   data,
   pageContext,
+  location
 }) => {
   const siteOrigin = useSiteOrigin();
   const messages = useTranslation();
 
-  const corporates = data.allJobPost.nodes.reduce((acc, jobPost) => {
+  const searchParams = new URLSearchParams(location.search)
+  const allCorporates = data.allJobPost.nodes.reduce((acc, jobPost) => {
     const corporateType = jobPost.corporate.type
     for (const corporate of acc) {
       if (corporate.type === corporateType) {
@@ -286,8 +254,32 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
     return acc
   }, [])
 
-  const currentCorporate = corporates.find((corp) => corp.type === pageContext.corporate)
-  const corporateSlug = pageContext.locale === 'ko-kr' ? currentCorporate?.title : currentCorporate?.slug
+  const currentCorp = allCorporates.find((corp) => pageContext.locale === 'ko-kr' 
+    ? corp.slug === searchParams.get('corp')
+    : corp.enSlug === searchParams.get('corp'))
+
+  const departmentElemMatch = data.allJobDepartment.nodes.filter((node) => {
+    if (!currentCorp?.type) return true
+
+    return Boolean(node.jobPosts.find((jobPost) => jobPost.corporate.type === currentCorp?.type))
+  })
+
+  const corpFilteredJobDepartments = departmentElemMatch.map((node) => {
+    if (!currentCorp?.type) return node
+
+    return {
+      ...node,
+      jobPosts: node.jobPosts.filter((jobPost) => jobPost.corporate.type === currentCorp.type)
+    }
+  })
+
+  const jobPostsTotalCount = corpFilteredJobDepartments.reduce((acc, curr) => acc + curr.jobPosts.length, 0)
+  const allSelectedJobPosts = data.allDepartmentFilteredJobPost.nodes.filter((node) => {
+    if (!currentCorp?.type) return true
+
+    return node.corporate.type === currentCorp.type
+  })
+
 
   const [filterEmploymentType, setFilterEmploymentType] = React.useState('');
   const [searchQuery, setSearchQuery] = React.useState('');
@@ -298,18 +290,6 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
       setSearchQuery(e.target.value);
     });
   }
-
-  // Note: jobPost를 elemMatch로 필터링하다보니 한번 더 걸러줘야함
-  const corpFilteredJobDepartments = data.allJobDepartment.nodes.map((node) => {
-    if (pageContext.corporate === '*') {
-      return node
-    }
-
-    return {
-      ...node,
-      jobPosts: node.jobPosts.filter((jobPost) => jobPost.corporate.type === pageContext.corporate)
-    }
-  })
 
   const searchResults = useFlexSearch(searchQuery);
 
@@ -325,25 +305,26 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
 
   const filterAnchorId = '_filter';
   const onFilterChange: React.ChangeEventHandler<HTMLSelectElement> = e => {
-    const corp = corporateSlug ? `${corporateSlug}/` : ''
     const selectedDepartment = data.allJobDepartment.nodes
       .find(department => department.id === e.target.value);
 
       if (selectedDepartment) {
         const { slug } = selectedDepartment;
         if (slug) {
-          navigate(`/jobs/${corp + slug}/${window.location.search}#${filterAnchorId}`);
+          navigate(`/jobs/${slug}/${window.location.search}#${filterAnchorId}`);
         }
       } else {
-        navigate(`/jobs/${corp + window.location.search}#${filterAnchorId}`);
+        navigate(`/jobs/${window.location.search}#${filterAnchorId}`);
       }
   }
 
   const onCorpFilterChange: React.ChangeEventHandler<HTMLSelectElement> = e => {
-    if (e.target.value) {
-      navigate(`/jobs/${messages[`jobs_page__${e.target.value}`].toLowerCase()}/`)  
+    const selectedCorp = e.target.value
+    if (selectedCorp) {
+      searchParams.set('corp', selectedCorp)
+      navigate(`/jobs/?${searchParams.toString()}#${filterAnchorId}`)  
     } else {
-      navigate(`/jobs/`)
+      navigate(`/jobs/#${filterAnchorId}`)
     }
   }
 
@@ -387,19 +368,19 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
           <Filters>
             <SelectWrapper css={{ gridArea: 'corporate' }}>
               <Select 
-                defaultValue={pageContext.corporate} 
+                defaultValue={messages[`jobs_page__${currentCorp?.type}`]} 
                 onChange={onCorpFilterChange}
               >
                 <option key="*" value="">
                   {$(messages.jobs_page__corporate_all, {
-                    n: () => <>{corporates.length}</>
+                    n: () => <>{allCorporates.length}</>
                   })}
                 </option>
-                {corporates.map((corp) => {
+                {allCorporates.map((corp) => {
                   return (
                     <option 
                       key={corp.type}
-                      value={corp.type}
+                      value={messages[`jobs_page__${corp.type}`]}
                     >
                       {messages[`jobs_page__${corp.type}`]}
                     </option>
@@ -418,7 +399,7 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
                   value="*"
                 >
                   {$(messages.jobs_page__chapter_all, {
-                    n: () => <>{data.allCorporateFilteredJobPost.totalCount}</>
+                    n: () => <>{jobPostsTotalCount}</>
                   })}
                 </option>
                 {corpFilteredJobDepartments
@@ -456,7 +437,7 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
             </Search>
           </Filters>
           <JobPostList
-            jobPosts={data.allSelectedJobPost.nodes}
+            jobPosts={allSelectedJobPosts}
             filterEmploymentType={filterEmploymentType}
             searchResults={searchResults}
           />
