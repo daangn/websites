@@ -249,16 +249,15 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       childJobPost: JobPost!
     }
 
-    # Note: allJobDepartment에서 corporate glob 필터 사용하기 위해 type: String으로 변경
-    # enum JobCorporate {
-    #   KARROT_MARKET 
-    #   KARROT_PAY
-    # }
+    enum Corporate {
+      KARROT_MARKET 
+      KARROT_PAY
+    }
 
     type JobCorporate {
+      type: Corporate!
       slug: String!
-      type: String!
-      title: String!
+      enSlug: String!
     }
 
     enum JobEmploymentType {

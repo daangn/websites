@@ -9,9 +9,9 @@ interface FieldParser<FieldType> {
 }
 
 type JobCorporate = {
-  slug: string
   type: 'KARROT_MARKET' | 'KARROT_PAY'
-  title: string
+  slug: string
+  enSlug: string
 }
 
 function findMetadataById<T extends string | number | null = string | number | null>(
@@ -32,15 +32,15 @@ export const corporate: FieldParser<JobCorporate | null> = (
     switch (field.value) {
       case '당근마켓': {
         return {
-          slug: 'karrot',
           type: 'KARROT_MARKET',
-          title: '당근마켓',
+          slug: '당근마켓',
+          enSlug: 'karrot'
         }
       };
       case '당근페이': return {
-        slug: 'karrot-pay',
         type: 'KARROT_PAY',
-        title: '당근페이',
+        slug: '당근페이',
+        enSlug: 'karrot-pay'
       };
       case null: {
         reporter.warn(reporter.stripIndent`
