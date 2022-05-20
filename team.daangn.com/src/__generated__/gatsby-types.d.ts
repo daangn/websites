@@ -48,17 +48,6 @@ type BooleanQueryOperatorInput = {
   readonly nin: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Boolean']>>>;
 };
 
-type Corporate =
-  | 'KARROT_MARKET'
-  | 'KARROT_PAY';
-
-type CorporateQueryOperatorInput = {
-  readonly eq: InputMaybe<Corporate>;
-  readonly in: InputMaybe<ReadonlyArray<InputMaybe<Corporate>>>;
-  readonly ne: InputMaybe<Corporate>;
-  readonly nin: InputMaybe<ReadonlyArray<InputMaybe<Corporate>>>;
-};
-
 type DateQueryOperatorInput = {
   readonly eq: InputMaybe<Scalars['Date']>;
   readonly gt: InputMaybe<Scalars['Date']>;
@@ -1284,6 +1273,7 @@ type GreenhouseJobBoardDepartmentFieldsEnum =
   | 'childDepartments.jobs.childJobPost.chapter'
   | 'childDepartments.jobs.childJobPost.children'
   | 'childDepartments.jobs.childJobPost.content'
+  | 'childDepartments.jobs.childJobPost.corporate'
   | 'childDepartments.jobs.childJobPost.departments'
   | 'childDepartments.jobs.childJobPost.employmentType'
   | 'childDepartments.jobs.childJobPost.externalUrl'
@@ -1313,6 +1303,7 @@ type GreenhouseJobBoardDepartmentFieldsEnum =
   | 'childDepartments.jobs.childrenJobPost.chapter'
   | 'childDepartments.jobs.childrenJobPost.children'
   | 'childDepartments.jobs.childrenJobPost.content'
+  | 'childDepartments.jobs.childrenJobPost.corporate'
   | 'childDepartments.jobs.childrenJobPost.departments'
   | 'childDepartments.jobs.childrenJobPost.employmentType'
   | 'childDepartments.jobs.childrenJobPost.externalUrl'
@@ -1499,6 +1490,7 @@ type GreenhouseJobBoardDepartmentFieldsEnum =
   | 'jobs.childJobDepartment.jobPosts.chapter'
   | 'jobs.childJobDepartment.jobPosts.children'
   | 'jobs.childJobDepartment.jobPosts.content'
+  | 'jobs.childJobDepartment.jobPosts.corporate'
   | 'jobs.childJobDepartment.jobPosts.departments'
   | 'jobs.childJobDepartment.jobPosts.employmentType'
   | 'jobs.childJobDepartment.jobPosts.externalUrl'
@@ -1528,9 +1520,7 @@ type GreenhouseJobBoardDepartmentFieldsEnum =
   | 'jobs.childJobPost.content.bodyHtml'
   | 'jobs.childJobPost.content.level'
   | 'jobs.childJobPost.content.title'
-  | 'jobs.childJobPost.corporate.enSlug'
-  | 'jobs.childJobPost.corporate.slug'
-  | 'jobs.childJobPost.corporate.type'
+  | 'jobs.childJobPost.corporate'
   | 'jobs.childJobPost.departments'
   | 'jobs.childJobPost.departments.children'
   | 'jobs.childJobPost.departments.ghId'
@@ -1597,6 +1587,7 @@ type GreenhouseJobBoardDepartmentFieldsEnum =
   | 'jobs.childrenJobDepartment.jobPosts.chapter'
   | 'jobs.childrenJobDepartment.jobPosts.children'
   | 'jobs.childrenJobDepartment.jobPosts.content'
+  | 'jobs.childrenJobDepartment.jobPosts.corporate'
   | 'jobs.childrenJobDepartment.jobPosts.departments'
   | 'jobs.childrenJobDepartment.jobPosts.employmentType'
   | 'jobs.childrenJobDepartment.jobPosts.externalUrl'
@@ -1627,9 +1618,7 @@ type GreenhouseJobBoardDepartmentFieldsEnum =
   | 'jobs.childrenJobPost.content.bodyHtml'
   | 'jobs.childrenJobPost.content.level'
   | 'jobs.childrenJobPost.content.title'
-  | 'jobs.childrenJobPost.corporate.enSlug'
-  | 'jobs.childrenJobPost.corporate.slug'
-  | 'jobs.childrenJobPost.corporate.type'
+  | 'jobs.childrenJobPost.corporate'
   | 'jobs.childrenJobPost.departments'
   | 'jobs.childrenJobPost.departments.children'
   | 'jobs.childrenJobPost.departments.ghId'
@@ -1863,6 +1852,7 @@ type GreenhouseJobBoardDepartmentFieldsEnum =
   | 'parentDepartment.jobs.childJobPost.chapter'
   | 'parentDepartment.jobs.childJobPost.children'
   | 'parentDepartment.jobs.childJobPost.content'
+  | 'parentDepartment.jobs.childJobPost.corporate'
   | 'parentDepartment.jobs.childJobPost.departments'
   | 'parentDepartment.jobs.childJobPost.employmentType'
   | 'parentDepartment.jobs.childJobPost.externalUrl'
@@ -1892,6 +1882,7 @@ type GreenhouseJobBoardDepartmentFieldsEnum =
   | 'parentDepartment.jobs.childrenJobPost.chapter'
   | 'parentDepartment.jobs.childrenJobPost.children'
   | 'parentDepartment.jobs.childrenJobPost.content'
+  | 'parentDepartment.jobs.childrenJobPost.corporate'
   | 'parentDepartment.jobs.childrenJobPost.departments'
   | 'parentDepartment.jobs.childrenJobPost.employmentType'
   | 'parentDepartment.jobs.childrenJobPost.externalUrl'
@@ -2264,9 +2255,7 @@ type GreenhouseJobBoardJobFieldsEnum =
   | 'childJobDepartment.jobPosts.content.bodyHtml'
   | 'childJobDepartment.jobPosts.content.level'
   | 'childJobDepartment.jobPosts.content.title'
-  | 'childJobDepartment.jobPosts.corporate.enSlug'
-  | 'childJobDepartment.jobPosts.corporate.slug'
-  | 'childJobDepartment.jobPosts.corporate.type'
+  | 'childJobDepartment.jobPosts.corporate'
   | 'childJobDepartment.jobPosts.departments'
   | 'childJobDepartment.jobPosts.departments.children'
   | 'childJobDepartment.jobPosts.departments.ghId'
@@ -2350,9 +2339,7 @@ type GreenhouseJobBoardJobFieldsEnum =
   | 'childJobPost.content.bodyHtml'
   | 'childJobPost.content.level'
   | 'childJobPost.content.title'
-  | 'childJobPost.corporate.enSlug'
-  | 'childJobPost.corporate.slug'
-  | 'childJobPost.corporate.type'
+  | 'childJobPost.corporate'
   | 'childJobPost.departments'
   | 'childJobPost.departments.children'
   | 'childJobPost.departments.children.children'
@@ -2375,6 +2362,7 @@ type GreenhouseJobBoardJobFieldsEnum =
   | 'childJobPost.departments.jobPosts.chapter'
   | 'childJobPost.departments.jobPosts.children'
   | 'childJobPost.departments.jobPosts.content'
+  | 'childJobPost.departments.jobPosts.corporate'
   | 'childJobPost.departments.jobPosts.departments'
   | 'childJobPost.departments.jobPosts.employmentType'
   | 'childJobPost.departments.jobPosts.externalUrl'
@@ -2421,6 +2409,7 @@ type GreenhouseJobBoardJobFieldsEnum =
   | 'childJobPost.parentJob.childJobPost.chapter'
   | 'childJobPost.parentJob.childJobPost.children'
   | 'childJobPost.parentJob.childJobPost.content'
+  | 'childJobPost.parentJob.childJobPost.corporate'
   | 'childJobPost.parentJob.childJobPost.departments'
   | 'childJobPost.parentJob.childJobPost.employmentType'
   | 'childJobPost.parentJob.childJobPost.externalUrl'
@@ -2450,6 +2439,7 @@ type GreenhouseJobBoardJobFieldsEnum =
   | 'childJobPost.parentJob.childrenJobPost.chapter'
   | 'childJobPost.parentJob.childrenJobPost.children'
   | 'childJobPost.parentJob.childrenJobPost.content'
+  | 'childJobPost.parentJob.childrenJobPost.corporate'
   | 'childJobPost.parentJob.childrenJobPost.departments'
   | 'childJobPost.parentJob.childrenJobPost.employmentType'
   | 'childJobPost.parentJob.childrenJobPost.externalUrl'
@@ -2564,9 +2554,7 @@ type GreenhouseJobBoardJobFieldsEnum =
   | 'childrenJobDepartment.jobPosts.content.bodyHtml'
   | 'childrenJobDepartment.jobPosts.content.level'
   | 'childrenJobDepartment.jobPosts.content.title'
-  | 'childrenJobDepartment.jobPosts.corporate.enSlug'
-  | 'childrenJobDepartment.jobPosts.corporate.slug'
-  | 'childrenJobDepartment.jobPosts.corporate.type'
+  | 'childrenJobDepartment.jobPosts.corporate'
   | 'childrenJobDepartment.jobPosts.departments'
   | 'childrenJobDepartment.jobPosts.departments.children'
   | 'childrenJobDepartment.jobPosts.departments.ghId'
@@ -2651,9 +2639,7 @@ type GreenhouseJobBoardJobFieldsEnum =
   | 'childrenJobPost.content.bodyHtml'
   | 'childrenJobPost.content.level'
   | 'childrenJobPost.content.title'
-  | 'childrenJobPost.corporate.enSlug'
-  | 'childrenJobPost.corporate.slug'
-  | 'childrenJobPost.corporate.type'
+  | 'childrenJobPost.corporate'
   | 'childrenJobPost.departments'
   | 'childrenJobPost.departments.children'
   | 'childrenJobPost.departments.children.children'
@@ -2676,6 +2662,7 @@ type GreenhouseJobBoardJobFieldsEnum =
   | 'childrenJobPost.departments.jobPosts.chapter'
   | 'childrenJobPost.departments.jobPosts.children'
   | 'childrenJobPost.departments.jobPosts.content'
+  | 'childrenJobPost.departments.jobPosts.corporate'
   | 'childrenJobPost.departments.jobPosts.departments'
   | 'childrenJobPost.departments.jobPosts.employmentType'
   | 'childrenJobPost.departments.jobPosts.externalUrl'
@@ -2722,6 +2709,7 @@ type GreenhouseJobBoardJobFieldsEnum =
   | 'childrenJobPost.parentJob.childJobPost.chapter'
   | 'childrenJobPost.parentJob.childJobPost.children'
   | 'childrenJobPost.parentJob.childJobPost.content'
+  | 'childrenJobPost.parentJob.childJobPost.corporate'
   | 'childrenJobPost.parentJob.childJobPost.departments'
   | 'childrenJobPost.parentJob.childJobPost.employmentType'
   | 'childrenJobPost.parentJob.childJobPost.externalUrl'
@@ -2751,6 +2739,7 @@ type GreenhouseJobBoardJobFieldsEnum =
   | 'childrenJobPost.parentJob.childrenJobPost.chapter'
   | 'childrenJobPost.parentJob.childrenJobPost.children'
   | 'childrenJobPost.parentJob.childrenJobPost.content'
+  | 'childrenJobPost.parentJob.childrenJobPost.corporate'
   | 'childrenJobPost.parentJob.childrenJobPost.departments'
   | 'childrenJobPost.parentJob.childrenJobPost.employmentType'
   | 'childrenJobPost.parentJob.childrenJobPost.externalUrl'
@@ -2951,6 +2940,7 @@ type GreenhouseJobBoardJobFieldsEnum =
   | 'departments.jobs.childJobPost.chapter'
   | 'departments.jobs.childJobPost.children'
   | 'departments.jobs.childJobPost.content'
+  | 'departments.jobs.childJobPost.corporate'
   | 'departments.jobs.childJobPost.departments'
   | 'departments.jobs.childJobPost.employmentType'
   | 'departments.jobs.childJobPost.externalUrl'
@@ -2980,6 +2970,7 @@ type GreenhouseJobBoardJobFieldsEnum =
   | 'departments.jobs.childrenJobPost.chapter'
   | 'departments.jobs.childrenJobPost.children'
   | 'departments.jobs.childrenJobPost.content'
+  | 'departments.jobs.childrenJobPost.corporate'
   | 'departments.jobs.childrenJobPost.departments'
   | 'departments.jobs.childrenJobPost.employmentType'
   | 'departments.jobs.childrenJobPost.externalUrl'
@@ -4332,16 +4323,15 @@ type JSONQueryOperatorInput = {
   readonly regex: InputMaybe<Scalars['JSON']>;
 };
 
-type JobCorporate = {
-  readonly enSlug: Scalars['String'];
-  readonly slug: Scalars['String'];
-  readonly type: Corporate;
-};
+type JobCorporate =
+  | 'KARROT_MARKET'
+  | 'KARROT_PAY';
 
-type JobCorporateFilterInput = {
-  readonly enSlug: InputMaybe<StringQueryOperatorInput>;
-  readonly slug: InputMaybe<StringQueryOperatorInput>;
-  readonly type: InputMaybe<CorporateQueryOperatorInput>;
+type JobCorporateQueryOperatorInput = {
+  readonly eq: InputMaybe<JobCorporate>;
+  readonly in: InputMaybe<ReadonlyArray<InputMaybe<JobCorporate>>>;
+  readonly ne: InputMaybe<JobCorporate>;
+  readonly nin: InputMaybe<ReadonlyArray<InputMaybe<JobCorporate>>>;
 };
 
 type JobDepartment = Node & {
@@ -4475,9 +4465,7 @@ type JobDepartmentFieldsEnum =
   | 'jobPosts.content.bodyHtml'
   | 'jobPosts.content.level'
   | 'jobPosts.content.title'
-  | 'jobPosts.corporate.enSlug'
-  | 'jobPosts.corporate.slug'
-  | 'jobPosts.corporate.type'
+  | 'jobPosts.corporate'
   | 'jobPosts.departments'
   | 'jobPosts.departments.children'
   | 'jobPosts.departments.children.children'
@@ -4500,6 +4488,7 @@ type JobDepartmentFieldsEnum =
   | 'jobPosts.departments.jobPosts.chapter'
   | 'jobPosts.departments.jobPosts.children'
   | 'jobPosts.departments.jobPosts.content'
+  | 'jobPosts.departments.jobPosts.corporate'
   | 'jobPosts.departments.jobPosts.departments'
   | 'jobPosts.departments.jobPosts.employmentType'
   | 'jobPosts.departments.jobPosts.externalUrl'
@@ -4546,6 +4535,7 @@ type JobDepartmentFieldsEnum =
   | 'jobPosts.parentJob.childJobPost.chapter'
   | 'jobPosts.parentJob.childJobPost.children'
   | 'jobPosts.parentJob.childJobPost.content'
+  | 'jobPosts.parentJob.childJobPost.corporate'
   | 'jobPosts.parentJob.childJobPost.departments'
   | 'jobPosts.parentJob.childJobPost.employmentType'
   | 'jobPosts.parentJob.childJobPost.externalUrl'
@@ -4575,6 +4565,7 @@ type JobDepartmentFieldsEnum =
   | 'jobPosts.parentJob.childrenJobPost.chapter'
   | 'jobPosts.parentJob.childrenJobPost.children'
   | 'jobPosts.parentJob.childrenJobPost.content'
+  | 'jobPosts.parentJob.childrenJobPost.corporate'
   | 'jobPosts.parentJob.childrenJobPost.departments'
   | 'jobPosts.parentJob.childrenJobPost.employmentType'
   | 'jobPosts.parentJob.childrenJobPost.externalUrl'
@@ -4779,7 +4770,7 @@ type JobPost = Node & {
   /** Parsed content */
   readonly content: ReadonlyArray<JobPostContentSection>;
   /** 회사 (당근마켓, 당근페이) */
-  readonly corporate: JobCorporate;
+  readonly corporate: Maybe<JobCorporate>;
   /** 소속 */
   readonly departments: ReadonlyArray<JobDepartment>;
   /** 고용 형태 */
@@ -4933,9 +4924,7 @@ type JobPostFieldsEnum =
   | 'content.bodyHtml'
   | 'content.level'
   | 'content.title'
-  | 'corporate.enSlug'
-  | 'corporate.slug'
-  | 'corporate.type'
+  | 'corporate'
   | 'departments'
   | 'departments.children'
   | 'departments.children.children'
@@ -4975,9 +4964,7 @@ type JobPostFieldsEnum =
   | 'departments.jobPosts.content.bodyHtml'
   | 'departments.jobPosts.content.level'
   | 'departments.jobPosts.content.title'
-  | 'departments.jobPosts.corporate.enSlug'
-  | 'departments.jobPosts.corporate.slug'
-  | 'departments.jobPosts.corporate.type'
+  | 'departments.jobPosts.corporate'
   | 'departments.jobPosts.departments'
   | 'departments.jobPosts.departments.children'
   | 'departments.jobPosts.departments.ghId'
@@ -5074,6 +5061,7 @@ type JobPostFieldsEnum =
   | 'parentJob.childJobDepartment.jobPosts.chapter'
   | 'parentJob.childJobDepartment.jobPosts.children'
   | 'parentJob.childJobDepartment.jobPosts.content'
+  | 'parentJob.childJobDepartment.jobPosts.corporate'
   | 'parentJob.childJobDepartment.jobPosts.departments'
   | 'parentJob.childJobDepartment.jobPosts.employmentType'
   | 'parentJob.childJobDepartment.jobPosts.externalUrl'
@@ -5103,9 +5091,7 @@ type JobPostFieldsEnum =
   | 'parentJob.childJobPost.content.bodyHtml'
   | 'parentJob.childJobPost.content.level'
   | 'parentJob.childJobPost.content.title'
-  | 'parentJob.childJobPost.corporate.enSlug'
-  | 'parentJob.childJobPost.corporate.slug'
-  | 'parentJob.childJobPost.corporate.type'
+  | 'parentJob.childJobPost.corporate'
   | 'parentJob.childJobPost.departments'
   | 'parentJob.childJobPost.departments.children'
   | 'parentJob.childJobPost.departments.ghId'
@@ -5172,6 +5158,7 @@ type JobPostFieldsEnum =
   | 'parentJob.childrenJobDepartment.jobPosts.chapter'
   | 'parentJob.childrenJobDepartment.jobPosts.children'
   | 'parentJob.childrenJobDepartment.jobPosts.content'
+  | 'parentJob.childrenJobDepartment.jobPosts.corporate'
   | 'parentJob.childrenJobDepartment.jobPosts.departments'
   | 'parentJob.childrenJobDepartment.jobPosts.employmentType'
   | 'parentJob.childrenJobDepartment.jobPosts.externalUrl'
@@ -5202,9 +5189,7 @@ type JobPostFieldsEnum =
   | 'parentJob.childrenJobPost.content.bodyHtml'
   | 'parentJob.childrenJobPost.content.level'
   | 'parentJob.childrenJobPost.content.title'
-  | 'parentJob.childrenJobPost.corporate.enSlug'
-  | 'parentJob.childrenJobPost.corporate.slug'
-  | 'parentJob.childrenJobPost.corporate.type'
+  | 'parentJob.childrenJobPost.corporate'
   | 'parentJob.childrenJobPost.departments'
   | 'parentJob.childrenJobPost.departments.children'
   | 'parentJob.childrenJobPost.departments.ghId'
@@ -5404,7 +5389,7 @@ type JobPostFilterInput = {
   readonly chapter: InputMaybe<StringQueryOperatorInput>;
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly content: InputMaybe<JobPostContentSectionFilterListInput>;
-  readonly corporate: InputMaybe<JobCorporateFilterInput>;
+  readonly corporate: InputMaybe<JobCorporateQueryOperatorInput>;
   readonly departments: InputMaybe<JobDepartmentFilterListInput>;
   readonly employmentType: InputMaybe<JobEmploymentTypeQueryOperatorInput>;
   readonly externalUrl: InputMaybe<StringQueryOperatorInput>;
@@ -15425,7 +15410,7 @@ type Query_jobPostArgs = {
   chapter: InputMaybe<StringQueryOperatorInput>;
   children: InputMaybe<NodeFilterListInput>;
   content: InputMaybe<JobPostContentSectionFilterListInput>;
-  corporate: InputMaybe<JobCorporateFilterInput>;
+  corporate: InputMaybe<JobCorporateQueryOperatorInput>;
   departments: InputMaybe<JobDepartmentFilterListInput>;
   employmentType: InputMaybe<JobEmploymentTypeQueryOperatorInput>;
   externalUrl: InputMaybe<StringQueryOperatorInput>;
@@ -16994,6 +16979,31 @@ type UseSiteMetadataStaticQueryVariables = Exact<{ [key: string]: never; }>;
 
 type UseSiteMetadataStaticQuery = { readonly site: { readonly siteMetadata: { readonly siteUrl: string } } | undefined };
 
+type TeamWebsite_NotFoundPageQueryVariables = Exact<{
+  locale: Scalars['String'];
+  navigationId: Scalars['String'];
+}>;
+
+
+type TeamWebsite_NotFoundPageQuery = { readonly site: { readonly siteMetadata: { readonly locale: string } } | undefined, readonly prismicTeamContents: { readonly _previewable: string, readonly data: { readonly fb_app_id: string | undefined, readonly twitter_site_handle: string | undefined, readonly notfound_page_title: { readonly text: string | undefined } | undefined, readonly notfound_page_link_group: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined } } | undefined, readonly prismicSiteNavigation: { readonly _previewable: string, readonly data: { readonly header_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly sns_profiles: ReadonlyArray<{ readonly service: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly copyright: { readonly html: string | undefined } | undefined, readonly contact_group: ReadonlyArray<{ readonly contact_info: { readonly html: string | undefined } | undefined } | undefined> | undefined, readonly footer_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined } } | undefined };
+
+type TeamWebsite_PreviewResolverPageQueryVariables = Exact<{
+  locale: Scalars['String'];
+  navigationId: Scalars['String'];
+}>;
+
+
+type TeamWebsite_PreviewResolverPageQuery = { readonly site: { readonly siteMetadata: { readonly locale: string } } | undefined, readonly prismicTeamContents: { readonly _previewable: string, readonly data: { readonly fb_app_id: string | undefined, readonly twitter_site_handle: string | undefined } } | undefined, readonly prismicSiteNavigation: { readonly _previewable: string, readonly data: { readonly header_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly sns_profiles: ReadonlyArray<{ readonly service: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly copyright: { readonly html: string | undefined } | undefined, readonly contact_group: ReadonlyArray<{ readonly contact_info: { readonly html: string | undefined } | undefined } | undefined> | undefined, readonly footer_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined } } | undefined };
+
+type TeamWebsite_JobApplicationPageQueryVariables = Exact<{
+  id: Scalars['String'];
+  locale: Scalars['String'];
+  navigationId: Scalars['String'];
+}>;
+
+
+type TeamWebsite_JobApplicationPageQuery = { readonly site: { readonly siteMetadata: { readonly locale: string } } | undefined, readonly prismicTeamContents: { readonly _previewable: string, readonly data: { readonly fb_app_id: string | undefined, readonly twitter_site_handle: string | undefined, readonly jobs_page_meta_title: string | undefined, readonly jobs_page_meta_description: string | undefined, readonly jobs_page_meta_image: { readonly localFile: { readonly childImageSharp: { readonly fixed: { readonly src: string, readonly width: number, readonly height: number } | undefined } | undefined } | undefined } | undefined, readonly jobs_page_title: { readonly text: string | undefined } | undefined } } | undefined, readonly prismicSiteNavigation: { readonly _previewable: string, readonly data: { readonly header_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly sns_profiles: ReadonlyArray<{ readonly service: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly copyright: { readonly html: string | undefined } | undefined, readonly contact_group: ReadonlyArray<{ readonly contact_info: { readonly html: string | undefined } | undefined } | undefined> | undefined, readonly footer_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined } } | undefined, readonly jobPost: { readonly title: string, readonly validThrough: string | undefined, readonly priorExperience: JobPriorExperience, readonly corporate: JobCorporate | undefined, readonly id: string, readonly ghId: string, readonly employmentType: JobEmploymentType, readonly externalUrl: string | undefined, readonly boardToken: string, readonly datePosted: string, readonly parentJob: { readonly questions: ReadonlyArray<{ readonly __typename: 'GreenhouseJobBoardJobQuestionForAttachment', readonly name: string, readonly label: string, readonly required: boolean, readonly description: string | undefined } | { readonly __typename: 'GreenhouseJobBoardJobQuestionForLongText', readonly name: string, readonly label: string, readonly required: boolean, readonly description: string | undefined } | { readonly __typename: 'GreenhouseJobBoardJobQuestionForMultiSelect', readonly name: string, readonly label: string, readonly required: boolean, readonly description: string | undefined, readonly options: ReadonlyArray<{ readonly label: string, readonly value: string }> } | { readonly __typename: 'GreenhouseJobBoardJobQuestionForShortText', readonly name: string, readonly label: string, readonly required: boolean, readonly description: string | undefined } | { readonly __typename: 'GreenhouseJobBoardJobQuestionForSingleSelect', readonly name: string, readonly label: string, readonly required: boolean, readonly description: string | undefined, readonly options: ReadonlyArray<{ readonly label: string, readonly value: string }> } | { readonly __typename: 'GreenhouseJobBoardJobQuestionForYesNo', readonly name: string, readonly label: string, readonly required: boolean, readonly description: string | undefined, readonly options: ReadonlyArray<{ readonly label: string, readonly value: string }> }> } } | undefined, readonly privacyPolicy: { readonly id: string, readonly data: { readonly content: { readonly html: string | undefined } | undefined } } | undefined, readonly sensitiveInfoPolicy: { readonly id: string, readonly data: { readonly content: { readonly html: string | undefined } | undefined } } | undefined };
+
 type TeamWebsite_CompletedPageQueryVariables = Exact<{
   locale: Scalars['String'];
   navigationId: Scalars['String'];
@@ -17002,13 +17012,13 @@ type TeamWebsite_CompletedPageQueryVariables = Exact<{
 
 type TeamWebsite_CompletedPageQuery = { readonly site: { readonly siteMetadata: { readonly locale: string } } | undefined, readonly prismicTeamContents: { readonly _previewable: string, readonly data: { readonly fb_app_id: string | undefined, readonly twitter_site_handle: string | undefined, readonly completed_page_content: { readonly html: string | undefined } | undefined, readonly completed_page_link_group: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined } } | undefined, readonly prismicSiteNavigation: { readonly _previewable: string, readonly data: { readonly header_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly sns_profiles: ReadonlyArray<{ readonly service: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly copyright: { readonly html: string | undefined } | undefined, readonly contact_group: ReadonlyArray<{ readonly contact_info: { readonly html: string | undefined } | undefined } | undefined> | undefined, readonly footer_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined } } | undefined };
 
-type TeamWebsite_NotFoundPageQueryVariables = Exact<{
+type TeamWebsite_CulturePageQueryVariables = Exact<{
   locale: Scalars['String'];
   navigationId: Scalars['String'];
 }>;
 
 
-type TeamWebsite_NotFoundPageQuery = { readonly site: { readonly siteMetadata: { readonly locale: string } } | undefined, readonly prismicTeamContents: { readonly _previewable: string, readonly data: { readonly fb_app_id: string | undefined, readonly twitter_site_handle: string | undefined, readonly notfound_page_title: { readonly text: string | undefined } | undefined, readonly notfound_page_link_group: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined } } | undefined, readonly prismicSiteNavigation: { readonly _previewable: string, readonly data: { readonly header_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly sns_profiles: ReadonlyArray<{ readonly service: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly copyright: { readonly html: string | undefined } | undefined, readonly contact_group: ReadonlyArray<{ readonly contact_info: { readonly html: string | undefined } | undefined } | undefined> | undefined, readonly footer_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined } } | undefined };
+type TeamWebsite_CulturePageQuery = { readonly site: { readonly siteMetadata: { readonly locale: string } } | undefined, readonly prismicTeamContents: { readonly _previewable: string, readonly data: { readonly fb_app_id: string | undefined, readonly twitter_site_handle: string | undefined, readonly culture_page_meta_title: string | undefined, readonly culture_page_meta_description: string | undefined, readonly culture_page_meta_image: { readonly localFile: { readonly childImageSharp: { readonly fixed: { readonly src: string, readonly width: number, readonly height: number } | undefined } | undefined } | undefined } | undefined, readonly culture_page_title: { readonly text: string | undefined } | undefined, readonly culture_body: ReadonlyArray<{ readonly __typename: 'PrismicTeamContentsDataCultureBodyBenefit', readonly primary: { readonly title: { readonly text: string | undefined } | undefined }, readonly items: ReadonlyArray<{ readonly subtitle: string | undefined, readonly subtext: string | undefined, readonly description: { readonly html: string | undefined } | undefined }> } | { readonly __typename: 'PrismicTeamContentsDataCultureBodyDivider' } | { readonly __typename: 'PrismicTeamContentsDataCultureBodyHowWeWork', readonly primary: { readonly title: { readonly text: string | undefined } | undefined }, readonly items: ReadonlyArray<{ readonly group: string | undefined, readonly key_text: string | undefined, readonly description: { readonly text: string | undefined } | undefined }> } | { readonly __typename: 'PrismicTeamContentsDataCultureBodyIllustrationAndDescription', readonly primary: { readonly expanded: boolean | undefined, readonly inverted: boolean | undefined, readonly link_text: string | undefined, readonly illustration: { readonly alt: string | undefined, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined } | undefined, readonly description: { readonly text: string | undefined } | undefined, readonly link: { readonly url: string | undefined } | undefined } } | { readonly __typename: 'PrismicTeamContentsDataCultureBodyKeyVisual', readonly primary: { readonly expanded: boolean | undefined, readonly key_visual_image: { readonly alt: string | undefined, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined, readonly thumbnails: { readonly portrait: { readonly alt: string | undefined, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined } | undefined } | undefined } | undefined, readonly description: { readonly text: string | undefined } | undefined } } | { readonly __typename: 'PrismicTeamContentsDataCultureBodyMemberQuoteCarousel' } | { readonly __typename: 'PrismicTeamContentsDataCultureBodyTitleAndDescription', readonly primary: { readonly key_text: string | undefined, readonly inverted: boolean | undefined, readonly title: { readonly text: string | undefined } | undefined, readonly description: { readonly html: string | undefined } | undefined, readonly link: { readonly url: string | undefined } | undefined } } | { readonly __typename: 'PrismicTeamContentsDataCultureBodyTitleAndIllustration', readonly primary: { readonly key_text: string | undefined, readonly inverted: boolean | undefined, readonly title: { readonly text: string | undefined } | undefined, readonly illustration: { readonly alt: string | undefined, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined } | undefined, readonly link: { readonly url: string | undefined } | undefined } } | { readonly __typename: 'PrismicTeamContentsDataCultureBodyWideBanner', readonly primary: { readonly background_color: string | undefined, readonly link_text: string | undefined, readonly title: { readonly text: string | undefined } | undefined, readonly thumbnail: { readonly alt: string | undefined, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined } | undefined, readonly link: { readonly url: string | undefined } | undefined } }> } } | undefined, readonly prismicSiteNavigation: { readonly _previewable: string, readonly data: { readonly header_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly sns_profiles: ReadonlyArray<{ readonly service: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly copyright: { readonly html: string | undefined } | undefined, readonly contact_group: ReadonlyArray<{ readonly contact_info: { readonly html: string | undefined } | undefined } | undefined> | undefined, readonly footer_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined } } | undefined };
 
 type TeamWebsite_FaqPageQueryVariables = Exact<{
   id: Scalars['String'];
@@ -17019,38 +17029,31 @@ type TeamWebsite_FaqPageQueryVariables = Exact<{
 
 type TeamWebsite_FaqPageQuery = { readonly site: { readonly siteMetadata: { readonly locale: string } } | undefined, readonly prismicTeamContents: { readonly _previewable: string, readonly data: { readonly fb_app_id: string | undefined, readonly twitter_site_handle: string | undefined, readonly faq_page_meta_title: string | undefined, readonly faq_page_meta_description: string | undefined, readonly faq_page_title: { readonly text: string | undefined } | undefined, readonly faq_page_entries: ReadonlyArray<{ readonly faq_category_title: string | undefined, readonly faq_page: { readonly id: string | undefined, readonly uid: string | undefined, readonly document: { readonly data: { readonly display_name: string | undefined } } | {} | undefined } | undefined } | undefined> | undefined } } | undefined, readonly prismicSiteNavigation: { readonly _previewable: string, readonly data: { readonly header_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly sns_profiles: ReadonlyArray<{ readonly service: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly copyright: { readonly html: string | undefined } | undefined, readonly contact_group: ReadonlyArray<{ readonly contact_info: { readonly html: string | undefined } | undefined } | undefined> | undefined, readonly footer_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined } } | undefined, readonly prismicFaq: { readonly uid: string, readonly data: { readonly entries: ReadonlyArray<{ readonly question: string | undefined, readonly keywords: string | undefined, readonly answer: { readonly text: string | undefined, readonly html: string | undefined } | undefined } | undefined> | undefined } } | undefined };
 
-type TeamWebsite_CulturePageQueryVariables = Exact<{
-  locale: Scalars['String'];
-  navigationId: Scalars['String'];
-}>;
-
-
-type TeamWebsite_CulturePageQuery = { readonly site: { readonly siteMetadata: { readonly locale: string } } | undefined, readonly prismicTeamContents: { readonly _previewable: string, readonly data: { readonly fb_app_id: string | undefined, readonly twitter_site_handle: string | undefined, readonly culture_page_meta_title: string | undefined, readonly culture_page_meta_description: string | undefined, readonly culture_page_meta_image: { readonly localFile: { readonly childImageSharp: { readonly fixed: { readonly src: string, readonly width: number, readonly height: number } | undefined } | undefined } | undefined } | undefined, readonly culture_page_title: { readonly text: string | undefined } | undefined, readonly culture_body: ReadonlyArray<{ readonly __typename: 'PrismicTeamContentsDataCultureBodyBenefit', readonly primary: { readonly title: { readonly text: string | undefined } | undefined }, readonly items: ReadonlyArray<{ readonly subtitle: string | undefined, readonly subtext: string | undefined, readonly description: { readonly html: string | undefined } | undefined }> } | { readonly __typename: 'PrismicTeamContentsDataCultureBodyDivider' } | { readonly __typename: 'PrismicTeamContentsDataCultureBodyHowWeWork', readonly primary: { readonly title: { readonly text: string | undefined } | undefined }, readonly items: ReadonlyArray<{ readonly group: string | undefined, readonly key_text: string | undefined, readonly description: { readonly text: string | undefined } | undefined }> } | { readonly __typename: 'PrismicTeamContentsDataCultureBodyIllustrationAndDescription', readonly primary: { readonly expanded: boolean | undefined, readonly inverted: boolean | undefined, readonly link_text: string | undefined, readonly illustration: { readonly alt: string | undefined, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined } | undefined, readonly description: { readonly text: string | undefined } | undefined, readonly link: { readonly url: string | undefined } | undefined } } | { readonly __typename: 'PrismicTeamContentsDataCultureBodyKeyVisual', readonly primary: { readonly expanded: boolean | undefined, readonly key_visual_image: { readonly alt: string | undefined, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined, readonly thumbnails: { readonly portrait: { readonly alt: string | undefined, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined } | undefined } | undefined } | undefined, readonly description: { readonly text: string | undefined } | undefined } } | { readonly __typename: 'PrismicTeamContentsDataCultureBodyMemberQuoteCarousel' } | { readonly __typename: 'PrismicTeamContentsDataCultureBodyTitleAndDescription', readonly primary: { readonly key_text: string | undefined, readonly inverted: boolean | undefined, readonly title: { readonly text: string | undefined } | undefined, readonly description: { readonly html: string | undefined } | undefined, readonly link: { readonly url: string | undefined } | undefined } } | { readonly __typename: 'PrismicTeamContentsDataCultureBodyTitleAndIllustration', readonly primary: { readonly key_text: string | undefined, readonly inverted: boolean | undefined, readonly title: { readonly text: string | undefined } | undefined, readonly illustration: { readonly alt: string | undefined, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined } | undefined, readonly link: { readonly url: string | undefined } | undefined } } | { readonly __typename: 'PrismicTeamContentsDataCultureBodyWideBanner', readonly primary: { readonly background_color: string | undefined, readonly link_text: string | undefined, readonly title: { readonly text: string | undefined } | undefined, readonly thumbnail: { readonly alt: string | undefined, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined } | undefined, readonly link: { readonly url: string | undefined } | undefined } }> } } | undefined, readonly prismicSiteNavigation: { readonly _previewable: string, readonly data: { readonly header_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly sns_profiles: ReadonlyArray<{ readonly service: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly copyright: { readonly html: string | undefined } | undefined, readonly contact_group: ReadonlyArray<{ readonly contact_info: { readonly html: string | undefined } | undefined } | undefined> | undefined, readonly footer_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined } } | undefined };
-
-type TeamWebsite_JobApplicationPageQueryVariables = Exact<{
+type TeamWebsite_JobPostPageQueryVariables = Exact<{
   id: Scalars['String'];
   locale: Scalars['String'];
   navigationId: Scalars['String'];
 }>;
 
 
-type TeamWebsite_JobApplicationPageQuery = { readonly site: { readonly siteMetadata: { readonly locale: string } } | undefined, readonly prismicTeamContents: { readonly _previewable: string, readonly data: { readonly fb_app_id: string | undefined, readonly twitter_site_handle: string | undefined, readonly jobs_page_meta_title: string | undefined, readonly jobs_page_meta_description: string | undefined, readonly jobs_page_meta_image: { readonly localFile: { readonly childImageSharp: { readonly fixed: { readonly src: string, readonly width: number, readonly height: number } | undefined } | undefined } | undefined } | undefined, readonly jobs_page_title: { readonly text: string | undefined } | undefined } } | undefined, readonly prismicSiteNavigation: { readonly _previewable: string, readonly data: { readonly header_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly sns_profiles: ReadonlyArray<{ readonly service: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly copyright: { readonly html: string | undefined } | undefined, readonly contact_group: ReadonlyArray<{ readonly contact_info: { readonly html: string | undefined } | undefined } | undefined> | undefined, readonly footer_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined } } | undefined, readonly jobPost: { readonly title: string, readonly validThrough: string | undefined, readonly priorExperience: JobPriorExperience, readonly id: string, readonly ghId: string, readonly employmentType: JobEmploymentType, readonly externalUrl: string | undefined, readonly boardToken: string, readonly datePosted: string, readonly corporate: { readonly type: Corporate }, readonly parentJob: { readonly questions: ReadonlyArray<{ readonly __typename: 'GreenhouseJobBoardJobQuestionForAttachment', readonly name: string, readonly label: string, readonly required: boolean, readonly description: string | undefined } | { readonly __typename: 'GreenhouseJobBoardJobQuestionForLongText', readonly name: string, readonly label: string, readonly required: boolean, readonly description: string | undefined } | { readonly __typename: 'GreenhouseJobBoardJobQuestionForMultiSelect', readonly name: string, readonly label: string, readonly required: boolean, readonly description: string | undefined, readonly options: ReadonlyArray<{ readonly label: string, readonly value: string }> } | { readonly __typename: 'GreenhouseJobBoardJobQuestionForShortText', readonly name: string, readonly label: string, readonly required: boolean, readonly description: string | undefined } | { readonly __typename: 'GreenhouseJobBoardJobQuestionForSingleSelect', readonly name: string, readonly label: string, readonly required: boolean, readonly description: string | undefined, readonly options: ReadonlyArray<{ readonly label: string, readonly value: string }> } | { readonly __typename: 'GreenhouseJobBoardJobQuestionForYesNo', readonly name: string, readonly label: string, readonly required: boolean, readonly description: string | undefined, readonly options: ReadonlyArray<{ readonly label: string, readonly value: string }> }> } } | undefined, readonly privacyPolicy: { readonly id: string, readonly data: { readonly content: { readonly html: string | undefined } | undefined } } | undefined, readonly sensitiveInfoPolicy: { readonly id: string, readonly data: { readonly content: { readonly html: string | undefined } | undefined } } | undefined };
+type TeamWebsite_JobPostPageQuery = { readonly site: { readonly siteMetadata: { readonly locale: string } } | undefined, readonly prismicTeamContents: { readonly _previewable: string, readonly data: { readonly fb_app_id: string | undefined, readonly twitter_site_handle: string | undefined, readonly jobs_page_meta_title: string | undefined, readonly jobs_page_meta_description: string | undefined, readonly jobs_page_meta_image: { readonly localFile: { readonly childImageSharp: { readonly fixed: { readonly src: string, readonly width: number, readonly height: number } | undefined } | undefined } | undefined } | undefined, readonly jobs_page_title: { readonly text: string | undefined } | undefined, readonly faq_page_entries: ReadonlyArray<{ readonly faq_page: { readonly uid: string | undefined } | undefined } | undefined> | undefined } } | undefined, readonly prismicSiteNavigation: { readonly _previewable: string, readonly data: { readonly header_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly sns_profiles: ReadonlyArray<{ readonly service: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly copyright: { readonly html: string | undefined } | undefined, readonly contact_group: ReadonlyArray<{ readonly contact_info: { readonly html: string | undefined } | undefined } | undefined> | undefined, readonly footer_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined } } | undefined, readonly jobPost: { readonly title: string, readonly validThrough: string | undefined, readonly priorExperience: JobPriorExperience, readonly corporate: JobCorporate | undefined, readonly id: string, readonly ghId: string, readonly employmentType: JobEmploymentType, readonly externalUrl: string | undefined, readonly datePosted: string, readonly content: ReadonlyArray<{ readonly title: string, readonly bodyHtml: string }> } | undefined };
 
-type TeamWebsite_IndexPageQueryVariables = Exact<{
+type TeamWebsite_LifePageQueryVariables = Exact<{
   locale: Scalars['String'];
   navigationId: Scalars['String'];
 }>;
 
 
-type TeamWebsite_IndexPageQuery = { readonly site: { readonly siteMetadata: { readonly locale: string } } | undefined, readonly prismicTeamContents: { readonly _previewable: string, readonly data: { readonly fb_app_id: string | undefined, readonly twitter_site_handle: string | undefined, readonly main_page_meta_title: string | undefined, readonly main_page_meta_description: string | undefined, readonly main_page_meta_image: { readonly localFile: { readonly childImageSharp: { readonly fixed: { readonly src: string, readonly width: number, readonly height: number } | undefined } | undefined } | undefined } | undefined, readonly main_page_title: { readonly text: string | undefined } | undefined, readonly main_body: ReadonlyArray<{ readonly __typename: 'PrismicTeamContentsDataMainBodyBenefit', readonly primary: { readonly title: { readonly text: string | undefined } | undefined }, readonly items: ReadonlyArray<{ readonly subtitle: string | undefined, readonly subtext: string | undefined, readonly description: { readonly html: string | undefined } | undefined }> } | { readonly __typename: 'PrismicTeamContentsDataMainBodyDivider' } | { readonly __typename: 'PrismicTeamContentsDataMainBodyHowWeWork', readonly primary: { readonly title: { readonly text: string | undefined } | undefined }, readonly items: ReadonlyArray<{ readonly group: string | undefined, readonly key_text: string | undefined, readonly description: { readonly text: string | undefined } | undefined }> } | { readonly __typename: 'PrismicTeamContentsDataMainBodyIllustrationAndDescription', readonly primary: { readonly expanded: boolean | undefined, readonly inverted: boolean | undefined, readonly link_text: string | undefined, readonly illustration: { readonly alt: string | undefined, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined } | undefined, readonly description: { readonly text: string | undefined } | undefined, readonly link: { readonly url: string | undefined } | undefined } } | { readonly __typename: 'PrismicTeamContentsDataMainBodyKeyVisual', readonly primary: { readonly expanded: boolean | undefined, readonly key_visual_image: { readonly alt: string | undefined, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined, readonly thumbnails: { readonly portrait: { readonly alt: string | undefined, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined } | undefined } | undefined } | undefined, readonly description: { readonly text: string | undefined } | undefined } } | { readonly __typename: 'PrismicTeamContentsDataMainBodyMemberQuoteCarousel', readonly items: ReadonlyArray<{ readonly quote: string | undefined, readonly who: string | undefined, readonly image: { readonly alt: string | undefined, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined } | undefined }> } | { readonly __typename: 'PrismicTeamContentsDataMainBodyTitleAndDescription', readonly primary: { readonly key_text: string | undefined, readonly inverted: boolean | undefined, readonly title: { readonly text: string | undefined } | undefined, readonly description: { readonly html: string | undefined } | undefined, readonly link: { readonly url: string | undefined } | undefined } } | { readonly __typename: 'PrismicTeamContentsDataMainBodyTitleAndIllustration', readonly primary: { readonly key_text: string | undefined, readonly inverted: boolean | undefined, readonly title: { readonly text: string | undefined } | undefined, readonly illustration: { readonly alt: string | undefined, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined } | undefined, readonly link: { readonly url: string | undefined } | undefined } } | { readonly __typename: 'PrismicTeamContentsDataMainBodyWideBanner', readonly primary: { readonly background_color: string | undefined, readonly link_text: string | undefined, readonly title: { readonly text: string | undefined } | undefined, readonly thumbnail: { readonly alt: string | undefined, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined } | undefined, readonly link: { readonly url: string | undefined } | undefined } }> } } | undefined, readonly prismicSiteNavigation: { readonly _previewable: string, readonly data: { readonly header_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly sns_profiles: ReadonlyArray<{ readonly service: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly copyright: { readonly html: string | undefined } | undefined, readonly contact_group: ReadonlyArray<{ readonly contact_info: { readonly html: string | undefined } | undefined } | undefined> | undefined, readonly footer_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined } } | undefined };
+type TeamWebsite_LifePageQuery = { readonly site: { readonly siteMetadata: { readonly locale: string } } | undefined, readonly prismicTeamContents: { readonly _previewable: string, readonly data: { readonly fb_app_id: string | undefined, readonly twitter_site_handle: string | undefined, readonly life_page_meta_title: string | undefined, readonly life_page_meta_description: string | undefined, readonly life_page_meta_image: { readonly localFile: { readonly childImageSharp: { readonly fixed: { readonly src: string, readonly width: number, readonly height: number } | undefined } | undefined } | undefined } | undefined, readonly life_page_title: { readonly text: string | undefined } | undefined, readonly life_body: ReadonlyArray<{ readonly __typename: 'PrismicTeamContentsDataLifeBodyKeyVisual' } | { readonly __typename: 'PrismicTeamContentsDataLifeBodyLifeContent', readonly primary: { readonly title: { readonly text: string | undefined } | undefined, readonly body_text: { readonly html: string | undefined } | undefined }, readonly items: ReadonlyArray<{ readonly thumbnail_description: { readonly text: string | undefined } | undefined, readonly thumbnail_image: { readonly alt: string | undefined, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined } | undefined }> }> } } | undefined, readonly prismicSiteNavigation: { readonly _previewable: string, readonly data: { readonly header_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly sns_profiles: ReadonlyArray<{ readonly service: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly copyright: { readonly html: string | undefined } | undefined, readonly contact_group: ReadonlyArray<{ readonly contact_info: { readonly html: string | undefined } | undefined } | undefined> | undefined, readonly footer_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined } } | undefined };
 
-type TeamWebsite_PreviewResolverPageQueryVariables = Exact<{
+type TeamWebsite_JobsPageTemplateQueryVariables = Exact<{
+  departmentId: Scalars['String'];
   locale: Scalars['String'];
   navigationId: Scalars['String'];
 }>;
 
 
-type TeamWebsite_PreviewResolverPageQuery = { readonly site: { readonly siteMetadata: { readonly locale: string } } | undefined, readonly prismicTeamContents: { readonly _previewable: string, readonly data: { readonly fb_app_id: string | undefined, readonly twitter_site_handle: string | undefined } } | undefined, readonly prismicSiteNavigation: { readonly _previewable: string, readonly data: { readonly header_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly sns_profiles: ReadonlyArray<{ readonly service: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly copyright: { readonly html: string | undefined } | undefined, readonly contact_group: ReadonlyArray<{ readonly contact_info: { readonly html: string | undefined } | undefined } | undefined> | undefined, readonly footer_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined } } | undefined };
+type TeamWebsite_JobsPageTemplateQuery = { readonly site: { readonly siteMetadata: { readonly locale: string } } | undefined, readonly prismicTeamContents: { readonly _previewable: string, readonly data: { readonly fb_app_id: string | undefined, readonly twitter_site_handle: string | undefined, readonly jobs_page_meta_title: string | undefined, readonly jobs_page_meta_description: string | undefined, readonly jobs_page_meta_image: { readonly localFile: { readonly childImageSharp: { readonly fixed: { readonly src: string, readonly width: number, readonly height: number } | undefined } | undefined } | undefined } | undefined, readonly jobs_page_title: { readonly text: string | undefined } | undefined } } | undefined, readonly prismicSiteNavigation: { readonly _previewable: string, readonly data: { readonly header_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly sns_profiles: ReadonlyArray<{ readonly service: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly copyright: { readonly html: string | undefined } | undefined, readonly contact_group: ReadonlyArray<{ readonly contact_info: { readonly html: string | undefined } | undefined } | undefined> | undefined, readonly footer_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined } } | undefined, readonly currentJobDepartment: { readonly name: string } | undefined, readonly allDepartmentFilteredJobPost: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly ghId: string, readonly externalUrl: string | undefined, readonly order: number, readonly employmentType: JobEmploymentType, readonly title: string, readonly chapter: string, readonly corporate: JobCorporate | undefined, readonly priorExperience: JobPriorExperience, readonly tags: ReadonlyArray<string>, readonly absoluteUrl: string, readonly departments: ReadonlyArray<{ readonly id: string }> }> }, readonly allJobDepartment: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string, readonly slug: string | undefined, readonly jobPosts: ReadonlyArray<{ readonly id: string, readonly corporate: JobCorporate | undefined }> }> }, readonly allJobPost: { readonly nodes: ReadonlyArray<{ readonly corporate: JobCorporate | undefined }> } };
 
 type TeamWebsite_TeamsArticlePageQueryVariables = Exact<{
   uid: Scalars['String'];
@@ -17061,31 +17064,13 @@ type TeamWebsite_TeamsArticlePageQueryVariables = Exact<{
 
 type TeamWebsite_TeamsArticlePageQuery = { readonly site: { readonly siteMetadata: { readonly locale: string } } | undefined, readonly prismicTeamContents: { readonly _previewable: string, readonly data: { readonly fb_app_id: string | undefined, readonly twitter_site_handle: string | undefined } } | undefined, readonly prismicSiteNavigation: { readonly _previewable: string, readonly data: { readonly header_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly sns_profiles: ReadonlyArray<{ readonly service: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly copyright: { readonly html: string | undefined } | undefined, readonly contact_group: ReadonlyArray<{ readonly contact_info: { readonly html: string | undefined } | undefined } | undefined> | undefined, readonly footer_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined } } | undefined, readonly prismicTeamsArticle: { readonly _previewable: string, readonly data: { readonly page_meta_title: string | undefined, readonly page_meta_description: string | undefined, readonly page_meta_image: { readonly localFile: { readonly childImageSharp: { readonly fixed: { readonly src: string, readonly width: number, readonly height: number } | undefined } | undefined } | undefined } | undefined, readonly page_title: { readonly text: string | undefined } | undefined, readonly body: ReadonlyArray<{ readonly __typename: 'PrismicTeamsArticleDataBodyArticleSection', readonly primary: { readonly title: { readonly text: string | undefined } | undefined, readonly body_text: { readonly html: string | undefined } | undefined }, readonly items: ReadonlyArray<{ readonly thumbnail_description: { readonly text: string | undefined } | undefined, readonly thumbnail_image: { readonly alt: string | undefined, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined } | undefined }> }> } } | undefined };
 
-type TeamWebsite_JobsPageTemplateQueryVariables = Exact<{
-  departmentId: Scalars['String'];
+type TeamWebsite_IndexPageQueryVariables = Exact<{
   locale: Scalars['String'];
   navigationId: Scalars['String'];
 }>;
 
 
-type TeamWebsite_JobsPageTemplateQuery = { readonly site: { readonly siteMetadata: { readonly locale: string } } | undefined, readonly prismicTeamContents: { readonly _previewable: string, readonly data: { readonly fb_app_id: string | undefined, readonly twitter_site_handle: string | undefined, readonly jobs_page_meta_title: string | undefined, readonly jobs_page_meta_description: string | undefined, readonly jobs_page_meta_image: { readonly localFile: { readonly childImageSharp: { readonly fixed: { readonly src: string, readonly width: number, readonly height: number } | undefined } | undefined } | undefined } | undefined, readonly jobs_page_title: { readonly text: string | undefined } | undefined } } | undefined, readonly prismicSiteNavigation: { readonly _previewable: string, readonly data: { readonly header_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly sns_profiles: ReadonlyArray<{ readonly service: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly copyright: { readonly html: string | undefined } | undefined, readonly contact_group: ReadonlyArray<{ readonly contact_info: { readonly html: string | undefined } | undefined } | undefined> | undefined, readonly footer_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined } } | undefined, readonly currentJobDepartment: { readonly name: string } | undefined, readonly allDepartmentFilteredJobPost: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly ghId: string, readonly externalUrl: string | undefined, readonly order: number, readonly employmentType: JobEmploymentType, readonly title: string, readonly chapter: string, readonly priorExperience: JobPriorExperience, readonly tags: ReadonlyArray<string>, readonly absoluteUrl: string, readonly departments: ReadonlyArray<{ readonly id: string }>, readonly corporate: { readonly type: Corporate } }> }, readonly allJobDepartment: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string, readonly slug: string | undefined, readonly jobPosts: ReadonlyArray<{ readonly id: string, readonly corporate: { readonly enSlug: string, readonly slug: string, readonly type: Corporate } }> }> }, readonly allJobPost: { readonly nodes: ReadonlyArray<{ readonly corporate: { readonly enSlug: string, readonly slug: string, readonly type: Corporate } }> } };
-
-type TeamWebsite_JobPostPageQueryVariables = Exact<{
-  id: Scalars['String'];
-  locale: Scalars['String'];
-  navigationId: Scalars['String'];
-}>;
-
-
-type TeamWebsite_JobPostPageQuery = { readonly site: { readonly siteMetadata: { readonly locale: string } } | undefined, readonly prismicTeamContents: { readonly _previewable: string, readonly data: { readonly fb_app_id: string | undefined, readonly twitter_site_handle: string | undefined, readonly jobs_page_meta_title: string | undefined, readonly jobs_page_meta_description: string | undefined, readonly jobs_page_meta_image: { readonly localFile: { readonly childImageSharp: { readonly fixed: { readonly src: string, readonly width: number, readonly height: number } | undefined } | undefined } | undefined } | undefined, readonly jobs_page_title: { readonly text: string | undefined } | undefined, readonly faq_page_entries: ReadonlyArray<{ readonly faq_page: { readonly uid: string | undefined } | undefined } | undefined> | undefined } } | undefined, readonly prismicSiteNavigation: { readonly _previewable: string, readonly data: { readonly header_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly sns_profiles: ReadonlyArray<{ readonly service: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly copyright: { readonly html: string | undefined } | undefined, readonly contact_group: ReadonlyArray<{ readonly contact_info: { readonly html: string | undefined } | undefined } | undefined> | undefined, readonly footer_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined } } | undefined, readonly jobPost: { readonly title: string, readonly validThrough: string | undefined, readonly priorExperience: JobPriorExperience, readonly id: string, readonly ghId: string, readonly employmentType: JobEmploymentType, readonly externalUrl: string | undefined, readonly datePosted: string, readonly corporate: { readonly type: Corporate }, readonly content: ReadonlyArray<{ readonly title: string, readonly bodyHtml: string }> } | undefined };
-
-type TeamWebsite_LifePageQueryVariables = Exact<{
-  locale: Scalars['String'];
-  navigationId: Scalars['String'];
-}>;
-
-
-type TeamWebsite_LifePageQuery = { readonly site: { readonly siteMetadata: { readonly locale: string } } | undefined, readonly prismicTeamContents: { readonly _previewable: string, readonly data: { readonly fb_app_id: string | undefined, readonly twitter_site_handle: string | undefined, readonly life_page_meta_title: string | undefined, readonly life_page_meta_description: string | undefined, readonly life_page_meta_image: { readonly localFile: { readonly childImageSharp: { readonly fixed: { readonly src: string, readonly width: number, readonly height: number } | undefined } | undefined } | undefined } | undefined, readonly life_page_title: { readonly text: string | undefined } | undefined, readonly life_body: ReadonlyArray<{ readonly __typename: 'PrismicTeamContentsDataLifeBodyKeyVisual' } | { readonly __typename: 'PrismicTeamContentsDataLifeBodyLifeContent', readonly primary: { readonly title: { readonly text: string | undefined } | undefined, readonly body_text: { readonly html: string | undefined } | undefined }, readonly items: ReadonlyArray<{ readonly thumbnail_description: { readonly text: string | undefined } | undefined, readonly thumbnail_image: { readonly alt: string | undefined, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined } | undefined }> }> } } | undefined, readonly prismicSiteNavigation: { readonly _previewable: string, readonly data: { readonly header_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly sns_profiles: ReadonlyArray<{ readonly service: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly copyright: { readonly html: string | undefined } | undefined, readonly contact_group: ReadonlyArray<{ readonly contact_info: { readonly html: string | undefined } | undefined } | undefined> | undefined, readonly footer_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined } } | undefined };
+type TeamWebsite_IndexPageQuery = { readonly site: { readonly siteMetadata: { readonly locale: string } } | undefined, readonly prismicTeamContents: { readonly _previewable: string, readonly data: { readonly fb_app_id: string | undefined, readonly twitter_site_handle: string | undefined, readonly main_page_meta_title: string | undefined, readonly main_page_meta_description: string | undefined, readonly main_page_meta_image: { readonly localFile: { readonly childImageSharp: { readonly fixed: { readonly src: string, readonly width: number, readonly height: number } | undefined } | undefined } | undefined } | undefined, readonly main_page_title: { readonly text: string | undefined } | undefined, readonly main_body: ReadonlyArray<{ readonly __typename: 'PrismicTeamContentsDataMainBodyBenefit', readonly primary: { readonly title: { readonly text: string | undefined } | undefined }, readonly items: ReadonlyArray<{ readonly subtitle: string | undefined, readonly subtext: string | undefined, readonly description: { readonly html: string | undefined } | undefined }> } | { readonly __typename: 'PrismicTeamContentsDataMainBodyDivider' } | { readonly __typename: 'PrismicTeamContentsDataMainBodyHowWeWork', readonly primary: { readonly title: { readonly text: string | undefined } | undefined }, readonly items: ReadonlyArray<{ readonly group: string | undefined, readonly key_text: string | undefined, readonly description: { readonly text: string | undefined } | undefined }> } | { readonly __typename: 'PrismicTeamContentsDataMainBodyIllustrationAndDescription', readonly primary: { readonly expanded: boolean | undefined, readonly inverted: boolean | undefined, readonly link_text: string | undefined, readonly illustration: { readonly alt: string | undefined, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined } | undefined, readonly description: { readonly text: string | undefined } | undefined, readonly link: { readonly url: string | undefined } | undefined } } | { readonly __typename: 'PrismicTeamContentsDataMainBodyKeyVisual', readonly primary: { readonly expanded: boolean | undefined, readonly key_visual_image: { readonly alt: string | undefined, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined, readonly thumbnails: { readonly portrait: { readonly alt: string | undefined, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined } | undefined } | undefined } | undefined, readonly description: { readonly text: string | undefined } | undefined } } | { readonly __typename: 'PrismicTeamContentsDataMainBodyMemberQuoteCarousel', readonly items: ReadonlyArray<{ readonly quote: string | undefined, readonly who: string | undefined, readonly image: { readonly alt: string | undefined, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined } | undefined }> } | { readonly __typename: 'PrismicTeamContentsDataMainBodyTitleAndDescription', readonly primary: { readonly key_text: string | undefined, readonly inverted: boolean | undefined, readonly title: { readonly text: string | undefined } | undefined, readonly description: { readonly html: string | undefined } | undefined, readonly link: { readonly url: string | undefined } | undefined } } | { readonly __typename: 'PrismicTeamContentsDataMainBodyTitleAndIllustration', readonly primary: { readonly key_text: string | undefined, readonly inverted: boolean | undefined, readonly title: { readonly text: string | undefined } | undefined, readonly illustration: { readonly alt: string | undefined, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined } | undefined, readonly link: { readonly url: string | undefined } | undefined } } | { readonly __typename: 'PrismicTeamContentsDataMainBodyWideBanner', readonly primary: { readonly background_color: string | undefined, readonly link_text: string | undefined, readonly title: { readonly text: string | undefined } | undefined, readonly thumbnail: { readonly alt: string | undefined, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined } | undefined, readonly link: { readonly url: string | undefined } | undefined } }> } } | undefined, readonly prismicSiteNavigation: { readonly _previewable: string, readonly data: { readonly header_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly sns_profiles: ReadonlyArray<{ readonly service: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined, readonly copyright: { readonly html: string | undefined } | undefined, readonly contact_group: ReadonlyArray<{ readonly contact_info: { readonly html: string | undefined } | undefined } | undefined> | undefined, readonly footer_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined } | undefined> | undefined } } | undefined };
 
 type UseFlexSearchIndexStaticQueryVariables = Exact<{ [key: string]: never; }>;
 

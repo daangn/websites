@@ -315,7 +315,6 @@ export const createPages: GatsbyNode['createPages'] = async ({
     },
   });
 
-  // 직군 필터
   for (const department of data.allJobDepartment.nodes) {
     actions.createPage({
       path: `/jobs/${department.slug}/`,

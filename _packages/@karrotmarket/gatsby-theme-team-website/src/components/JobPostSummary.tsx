@@ -15,9 +15,7 @@ export const query = graphql`
     id
     title
     chapter
-    corporate {
-      type
-    }
+    corporate 
     employmentType
     priorExperience
     tags

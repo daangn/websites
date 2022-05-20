@@ -99,11 +99,7 @@ export const query = graphql`
         slug
         jobPosts {
           id
-          corporate {
-            enSlug
-            slug
-            type
-          }
+          corporate
         }
       }
     }
@@ -111,11 +107,7 @@ export const query = graphql`
     # Note: Corporate reduce용 전체 jobPost
     allJobPost {
       nodes {
-        corporate {
-          enSlug
-          slug
-          type
-        }
+        corporate
       }
     }
   }
@@ -243,9 +235,9 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
 
   const searchParams = new URLSearchParams(location.search)
   const allCorporates = data.allJobPost.nodes.reduce((acc, jobPost) => {
-    const corporateType = jobPost.corporate.type
+    const corporateType = jobPost.corporate
     for (const corporate of acc) {
-      if (corporate.type === corporateType) {
+      if (corporate === corporateType) {
         return acc
       }
     }
@@ -254,30 +246,28 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
     return acc
   }, [])
 
-  const currentCorp = allCorporates.find((corp) => pageContext.locale === 'ko-kr' 
-    ? corp.slug === searchParams.get('corp')
-    : corp.enSlug === searchParams.get('corp'))
+  const currentCorp = allCorporates.find((corp) => corp === searchParams.get('corp'))
 
   const departmentElemMatch = data.allJobDepartment.nodes.filter((node) => {
-    if (!currentCorp?.type) return true
+    if (!currentCorp) return true
 
-    return Boolean(node.jobPosts.find((jobPost) => jobPost.corporate.type === currentCorp?.type))
+    return Boolean(node.jobPosts.find((jobPost) => jobPost.corporate === currentCorp))
   })
 
   const corpFilteredJobDepartments = departmentElemMatch.map((node) => {
-    if (!currentCorp?.type) return node
+    if (!currentCorp) return node
 
     return {
       ...node,
-      jobPosts: node.jobPosts.filter((jobPost) => jobPost.corporate.type === currentCorp.type)
+      jobPosts: node.jobPosts.filter((jobPost) => jobPost.corporate === currentCorp)
     }
   })
 
   const jobPostsTotalCount = corpFilteredJobDepartments.reduce((acc, curr) => acc + curr.jobPosts.length, 0)
   const allSelectedJobPosts = data.allDepartmentFilteredJobPost.nodes.filter((node) => {
-    if (!currentCorp?.type) return true
+    if (!currentCorp) return true
 
-    return node.corporate.type === currentCorp.type
+    return node.corporate === currentCorp
   })
 
 
@@ -368,7 +358,7 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
           <Filters>
             <SelectWrapper css={{ gridArea: 'corporate' }}>
               <Select 
-                defaultValue={messages[`jobs_page__${currentCorp?.type}`]} 
+                defaultValue={currentCorp} 
                 onChange={onCorpFilterChange}
               >
                 <option key="*" value="">
@@ -379,10 +369,10 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
                 {allCorporates.map((corp) => {
                   return (
                     <option 
-                      key={corp.type}
-                      value={messages[`jobs_page__${corp.type}`]}
+                      key={corp}
+                      value={corp}
                     >
-                      {messages[`jobs_page__${corp.type}`]}
+                      {messages[`jobs_page__${corp}`]}
                     </option>
                   )
                 })}

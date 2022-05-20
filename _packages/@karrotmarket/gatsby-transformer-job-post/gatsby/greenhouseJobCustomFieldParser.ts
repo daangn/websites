@@ -8,12 +8,6 @@ interface FieldParser<FieldType> {
   ): FieldType | undefined;
 }
 
-type JobCorporate = {
-  type: 'KARROT_MARKET' | 'KARROT_PAY'
-  slug: string
-  enSlug: string
-}
-
 function findMetadataById<T extends string | number | null = string | number | null>(
   node: GreenhouseJobBoardJobNode,
   id: number,
@@ -22,7 +16,11 @@ function findMetadataById<T extends string | number | null = string | number | n
   return metadata && ({ type: metadata.value_type, value: metadata.value as T | null });
 }
 
-export const corporate: FieldParser<JobCorporate | null> = (
+export const corporate: FieldParser<(
+  | 'KARROT_MARKET'
+  | 'KARROT_PAY'
+  | null
+)> = (
   node,
   { reporter },
 ) => {
@@ -30,18 +28,8 @@ export const corporate: FieldParser<JobCorporate | null> = (
   const field = findMetadataById(node, fieldId);
   return field && (() => {
     switch (field.value) {
-      case '당근마켓': {
-        return {
-          type: 'KARROT_MARKET',
-          slug: '당근마켓',
-          enSlug: 'karrot'
-        }
-      };
-      case '당근페이': return {
-        type: 'KARROT_PAY',
-        slug: '당근페이',
-        enSlug: 'karrot-pay'
-      };
+      case '당근마켓': return 'KARROT_MARKET';
+      case '당근페이': return 'KARROT_PAY';
       case null: {
         reporter.warn(reporter.stripIndent`
           Corporate 필드 값이 비어있습니다. (See https://app3.greenhouse.io/plans/${node.ghId})
