@@ -697,7 +697,9 @@ enum FileFieldsEnum {
   childLokaliseTranslation___messages___job_post_page__external_post_link
   childLokaliseTranslation___messages___job_post_page__external_post_notice
   childLokaliseTranslation___messages___job_post_page__faq
+  childLokaliseTranslation___messages___jobs_page__KARROT_MARKET
   childLokaliseTranslation___messages___jobs_page__chapter_all
+  childLokaliseTranslation___messages___jobs_page__corporate_all
   childLokaliseTranslation___messages___jobs_page__default_meta_title
   childLokaliseTranslation___messages___jobs_page__employment_type_all
   childLokaliseTranslation___messages___jobs_page__employment_type_assistant
@@ -855,7 +857,9 @@ enum FileFieldsEnum {
   childrenLokaliseTranslation___messages___job_post_page__external_post_link
   childrenLokaliseTranslation___messages___job_post_page__external_post_notice
   childrenLokaliseTranslation___messages___job_post_page__faq
+  childrenLokaliseTranslation___messages___jobs_page__KARROT_MARKET
   childrenLokaliseTranslation___messages___jobs_page__chapter_all
+  childrenLokaliseTranslation___messages___jobs_page__corporate_all
   childrenLokaliseTranslation___messages___jobs_page__default_meta_title
   childrenLokaliseTranslation___messages___jobs_page__employment_type_all
   childrenLokaliseTranslation___messages___jobs_page__employment_type_assistant
@@ -5643,7 +5647,9 @@ type LokaliseMessages {
   job_post_page__external_post_link: String
   job_post_page__external_post_notice: String
   job_post_page__faq: String
+  jobs_page__KARROT_MARKET: String
   jobs_page__chapter_all: String
+  jobs_page__corporate_all: String
   jobs_page__default_meta_title: String
   jobs_page__employment_type_all: String
   jobs_page__employment_type_assistant: String
@@ -5693,7 +5699,9 @@ input LokaliseMessagesFilterInput {
   job_post_page__external_post_link: StringQueryOperatorInput
   job_post_page__external_post_notice: StringQueryOperatorInput
   job_post_page__faq: StringQueryOperatorInput
+  jobs_page__KARROT_MARKET: StringQueryOperatorInput
   jobs_page__chapter_all: StringQueryOperatorInput
+  jobs_page__corporate_all: StringQueryOperatorInput
   jobs_page__default_meta_title: StringQueryOperatorInput
   jobs_page__employment_type_all: StringQueryOperatorInput
   jobs_page__employment_type_assistant: StringQueryOperatorInput
@@ -5817,7 +5825,9 @@ enum LokaliseTranslationFieldsEnum {
   messages___job_post_page__external_post_link
   messages___job_post_page__external_post_notice
   messages___job_post_page__faq
+  messages___jobs_page__KARROT_MARKET
   messages___jobs_page__chapter_all
+  messages___jobs_page__corporate_all
   messages___jobs_page__default_meta_title
   messages___jobs_page__employment_type_all
   messages___jobs_page__employment_type_assistant
@@ -10327,6 +10337,7 @@ type PrismicIr implements Node {
   prismicId: ID!
   tags: [String!]!
   type: String!
+  uid: String!
   url: String
 }
 
@@ -10514,6 +10525,7 @@ enum PrismicIrFieldsEnum {
   prismicId
   tags
   type
+  uid
   url
 }
 
@@ -10533,6 +10545,7 @@ input PrismicIrFilterInput {
   prismicId: IDQueryOperatorInput
   tags: StringQueryOperatorInput
   type: StringQueryOperatorInput
+  uid: StringQueryOperatorInput
   url: StringQueryOperatorInput
 }
 
@@ -16722,7 +16735,7 @@ type Query {
   prismicEmbedType(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput): PrismicEmbedType
   prismicFaq(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicFaqDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, uid: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicFaq
   prismicGlobalContents(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicGlobalContentsDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicGlobalContents
-  prismicIr(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicIrDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicIr
+  prismicIr(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicIrDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, uid: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicIr
   prismicMemberProfile(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicMemberProfileDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicMemberProfile
   prismicPayContents(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicPayContentsDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicPayContents
   prismicSiteNavigation(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicSiteNavigationDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, uid: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicSiteNavigation

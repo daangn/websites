@@ -42,6 +42,8 @@ export const fragments = graphql`
     job_post_page__external_post_link
     job_post_page__external_post_notice
     job_post_page__faq
+    jobs_page__corporate_all
+    jobs_page__KARROT_MARKET
     jobs_page__chapter_all
     jobs_page__default_meta_title
     jobs_page__employment_type_all
