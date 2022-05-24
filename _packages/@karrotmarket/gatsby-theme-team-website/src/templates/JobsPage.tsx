@@ -136,15 +136,15 @@ const FilterAnchor = styled('div', {
 const Filters = styled('div', {
   display: 'grid',
   gridTemplateAreas: [
-    '"corporate"',
     '"department"',
+    '"corporate"',
     '"search"',
   ].join('\n'),
   gap: rem(16),
 
   '@md': {
     gridTemplateAreas: [
-      '"corporate department etype"',
+      '"department corporate etype"',
       '"search search search"',
     ].join('\n'),
     gap: rem(20),
@@ -356,29 +356,6 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
         <Content>
           <FilterAnchor id={filterAnchorId} />
           <Filters>
-            <SelectWrapper css={{ gridArea: 'corporate' }}>
-              <Select 
-                defaultValue={currentCorp} 
-                onChange={onCorpFilterChange}
-              >
-                <option key="*" value="">
-                  {$(messages.jobs_page__corporate_all, {
-                    n: () => <>{allCorporates.length}</>
-                  })}
-                </option>
-                {allCorporates.map((corp) => {
-                  return (
-                    <option 
-                      key={corp}
-                      value={corp}
-                    >
-                      {messages[`jobs_page__${corp}`]}
-                    </option>
-                  )
-                })}
-              </Select>
-              <ExpandIcon />
-            </SelectWrapper>
             <SelectWrapper css={{ gridArea: 'department' }}>
               <Select
                 defaultValue={pageContext.departmentId}
@@ -402,6 +379,29 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
                     </option>
                   ))
                 }
+              </Select>
+              <ExpandIcon />
+            </SelectWrapper>
+            <SelectWrapper css={{ gridArea: 'corporate' }}>
+              <Select 
+                defaultValue={currentCorp} 
+                onChange={onCorpFilterChange}
+              >
+                <option key="*" value="">
+                  {$(messages.jobs_page__corporate_all, {
+                    n: () => <>{allCorporates.length}</>
+                  })}
+                </option>
+                {allCorporates.map((corp) => {
+                  return (
+                    <option 
+                      key={corp}
+                      value={corp}
+                    >
+                      {messages[`jobs_page__${corp}`]}
+                    </option>
+                  )
+                })}
               </Select>
               <ExpandIcon />
             </SelectWrapper>
