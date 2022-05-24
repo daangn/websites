@@ -93,6 +93,7 @@ const EntryGroupNavButton = styled('button', {
   border: 'none',
   cursor: 'pointer',
   typography: '$subtitle3',
+  color: vars.$scale.color.gray900,
   variants: {
     active: {
       true: {
