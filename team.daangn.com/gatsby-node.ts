@@ -112,9 +112,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
   if (errors) {
     reporter.panicOnBuild(errors);
   }
-
-  console.log(data);
-
+  
   for (const ir of data.allPrismicIr.nodes) {
     actions.createPage({
       path: `/ir/${ir.uid}/`,
