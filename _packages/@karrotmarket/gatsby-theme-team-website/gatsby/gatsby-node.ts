@@ -259,7 +259,6 @@ export const createPages: GatsbyNode['createPages'] = async ({
     }
   }
 
-
   if (data.prismicTeamContents.data.enable_life_page) {
     actions.createPage({
       path: '/culture/life/',

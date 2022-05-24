@@ -62,7 +62,7 @@ export const query = graphql`
       id
       ghId
       title
-      corporate
+      corporate 
       employmentType
       priorExperience
       externalUrl

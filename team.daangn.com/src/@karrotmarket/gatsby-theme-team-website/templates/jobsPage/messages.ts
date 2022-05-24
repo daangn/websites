@@ -1,6 +1,10 @@
 export default {
   'meta_title_default': '당근마켓 채용',
 
+  'corporate_all': '전체 법인',
+  'KARROT_MARKET': '당근마켓',
+  'KARROT_PAY': '당근페이',
+
   'chapter_all': '전체 직군',
 
   'employment_type_all': '전체 고용형태',

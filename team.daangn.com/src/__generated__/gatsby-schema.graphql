@@ -698,7 +698,10 @@ enum FileFieldsEnum {
   childLokaliseTranslation___messages___job_post_page__external_post_link
   childLokaliseTranslation___messages___job_post_page__external_post_notice
   childLokaliseTranslation___messages___job_post_page__faq
+  childLokaliseTranslation___messages___jobs_page__KARROT_MARKET
+  childLokaliseTranslation___messages___jobs_page__KARROT_PAY
   childLokaliseTranslation___messages___jobs_page__chapter_all
+  childLokaliseTranslation___messages___jobs_page__corporate_all
   childLokaliseTranslation___messages___jobs_page__default_meta_title
   childLokaliseTranslation___messages___jobs_page__employment_type_all
   childLokaliseTranslation___messages___jobs_page__employment_type_assistant
@@ -857,7 +860,10 @@ enum FileFieldsEnum {
   childrenLokaliseTranslation___messages___job_post_page__external_post_link
   childrenLokaliseTranslation___messages___job_post_page__external_post_notice
   childrenLokaliseTranslation___messages___job_post_page__faq
+  childrenLokaliseTranslation___messages___jobs_page__KARROT_MARKET
+  childrenLokaliseTranslation___messages___jobs_page__KARROT_PAY
   childrenLokaliseTranslation___messages___jobs_page__chapter_all
+  childrenLokaliseTranslation___messages___jobs_page__corporate_all
   childrenLokaliseTranslation___messages___jobs_page__default_meta_title
   childrenLokaliseTranslation___messages___jobs_page__employment_type_all
   childrenLokaliseTranslation___messages___jobs_page__employment_type_assistant
@@ -5646,7 +5652,10 @@ type LokaliseMessages {
   job_post_page__external_post_link: String
   job_post_page__external_post_notice: String
   job_post_page__faq: String
+  jobs_page__KARROT_MARKET: String
+  jobs_page__KARROT_PAY: String
   jobs_page__chapter_all: String
+  jobs_page__corporate_all: String
   jobs_page__default_meta_title: String
   jobs_page__employment_type_all: String
   jobs_page__employment_type_assistant: String
@@ -5697,7 +5706,10 @@ input LokaliseMessagesFilterInput {
   job_post_page__external_post_link: StringQueryOperatorInput
   job_post_page__external_post_notice: StringQueryOperatorInput
   job_post_page__faq: StringQueryOperatorInput
+  jobs_page__KARROT_MARKET: StringQueryOperatorInput
+  jobs_page__KARROT_PAY: StringQueryOperatorInput
   jobs_page__chapter_all: StringQueryOperatorInput
+  jobs_page__corporate_all: StringQueryOperatorInput
   jobs_page__default_meta_title: StringQueryOperatorInput
   jobs_page__employment_type_all: StringQueryOperatorInput
   jobs_page__employment_type_assistant: StringQueryOperatorInput
@@ -5822,7 +5834,10 @@ enum LokaliseTranslationFieldsEnum {
   messages___job_post_page__external_post_link
   messages___job_post_page__external_post_notice
   messages___job_post_page__faq
+  messages___jobs_page__KARROT_MARKET
+  messages___jobs_page__KARROT_PAY
   messages___jobs_page__chapter_all
+  messages___jobs_page__corporate_all
   messages___jobs_page__default_meta_title
   messages___jobs_page__employment_type_all
   messages___jobs_page__employment_type_assistant
