@@ -106,6 +106,7 @@ export const query = graphql`
 
     # Note: Corporate reduce용 전체 jobPost
     allJobPost {
+      totalCount
       nodes {
         corporate
       }
@@ -248,28 +249,11 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
 
   const currentCorp = allCorporates.find((corp) => corp === searchParams.get('corp'))
 
-  const departmentElemMatch = data.allJobDepartment.nodes.filter((node) => {
-    if (!currentCorp) return true
-
-    return Boolean(node.jobPosts.find((jobPost) => jobPost.corporate === currentCorp))
-  })
-
-  const corpFilteredJobDepartments = departmentElemMatch.map((node) => {
-    if (!currentCorp) return node
-
-    return {
-      ...node,
-      jobPosts: node.jobPosts.filter((jobPost) => jobPost.corporate === currentCorp)
-    }
-  })
-
-  const jobPostsTotalCount = corpFilteredJobDepartments.reduce((acc, curr) => acc + curr.jobPosts.length, 0)
   const allSelectedJobPosts = data.allDepartmentFilteredJobPost.nodes.filter((node) => {
     if (!currentCorp) return true
 
     return node.corporate === currentCorp
   })
-
 
   const [filterEmploymentType, setFilterEmploymentType] = React.useState('');
   const [searchQuery, setSearchQuery] = React.useState('');
@@ -312,9 +296,9 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
     const selectedCorp = e.target.value
     if (selectedCorp) {
       searchParams.set('corp', selectedCorp)
-      navigate(`/jobs/?${searchParams.toString()}#${filterAnchorId}`)  
+      navigate(`?${searchParams.toString()}#${filterAnchorId}`)  
     } else {
-      navigate(`/jobs/#${filterAnchorId}`)
+      navigate(`#${filterAnchorId}`)
     }
   }
 
@@ -366,10 +350,10 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
                   value="*"
                 >
                   {$(messages.jobs_page__chapter_all, {
-                    n: () => <>{jobPostsTotalCount}</>
+                    n: () => <>{data.allJobPost.totalCount}</>
                   })}
                 </option>
-                {corpFilteredJobDepartments
+                {data.allJobDepartment.nodes
                   .map(department => (
                     <option
                       key={department.id}
