@@ -5663,6 +5663,7 @@ type PrismicIr = Node & {
   readonly prismicId: Scalars['ID'];
   readonly tags: ReadonlyArray<Scalars['String']>;
   readonly type: Scalars['String'];
+  readonly uid: Scalars['String'];
   readonly url: Maybe<Scalars['String']>;
 };
 
@@ -5893,6 +5894,7 @@ type PrismicIrFieldsEnum =
   | 'prismicId'
   | 'tags'
   | 'type'
+  | 'uid'
   | 'url';
 
 type PrismicIrFilterInput = {
@@ -5911,6 +5913,7 @@ type PrismicIrFilterInput = {
   readonly prismicId: InputMaybe<IDQueryOperatorInput>;
   readonly tags: InputMaybe<StringQueryOperatorInput>;
   readonly type: InputMaybe<StringQueryOperatorInput>;
+  readonly uid: InputMaybe<StringQueryOperatorInput>;
   readonly url: InputMaybe<StringQueryOperatorInput>;
 };
 
@@ -11467,6 +11470,7 @@ type Query_prismicIrArgs = {
   prismicId: InputMaybe<IDQueryOperatorInput>;
   tags: InputMaybe<StringQueryOperatorInput>;
   type: InputMaybe<StringQueryOperatorInput>;
+  uid: InputMaybe<StringQueryOperatorInput>;
   url: InputMaybe<StringQueryOperatorInput>;
 };
 
