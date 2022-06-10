@@ -51,7 +51,7 @@
     "@babel/plugin-transform-react-jsx": "7.17.3",
     "@babel/plugin-transform-typescript": "7.16.8",
     "@types/dotenv-safe": "8.1.2",
-    "@types/node": "16.11.33",
+    "@types/node": "16.11.39",
     "@types/react": "17.0.44",
     "@types/react-dom": "17.0.15",
     "dotenv-safe": "8.2.0",
