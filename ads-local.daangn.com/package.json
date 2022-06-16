@@ -45,7 +45,7 @@
     "@babel/core": "7.18.5",
     "@babel/plugin-transform-react-jsx": "7.17.12",
     "@babel/plugin-transform-typescript": "7.18.4",
-    "typescript": "4.6.3",
+    "typescript": "4.7.3",
     "ultra-runner": "3.10.5"
   }
 }
