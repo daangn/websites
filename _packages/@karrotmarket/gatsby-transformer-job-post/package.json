@@ -22,7 +22,7 @@
     "@karrotmarket/gatsby-source-greenhouse-jobboard": "0.6.0",
     "@types/common-tags": "1.8.1",
     "@types/jest": "27.4.1",
-    "@types/node": "16.11.39",
+    "@types/node": "16.11.41",
     "babel-jest": "27.5.1",
     "babel-preset-gatsby-package": "2.10.0",
     "cjk-slug": "0.3.0",
