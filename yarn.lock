@@ -1693,9 +1693,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cloudflare/wrangler@npm:1.19.11":
-  version: 1.19.11
-  resolution: "@cloudflare/wrangler@npm:1.19.11"
+"@cloudflare/wrangler@npm:1.19.12":
+  version: 1.19.12
+  resolution: "@cloudflare/wrangler@npm:1.19.12"
   dependencies:
     axios: ^0.21.1
     rimraf: ^3.0.2
@@ -1703,7 +1703,7 @@ __metadata:
   bin:
     wrangler: run-wrangler.js
     wrangler1: run-wrangler.js
-  checksum: b6b598daf22072fd811f6e9c0c3124cb467748930ecff51ede9b7800ea69d37b14a26cc5ea0d1062f737278ae900c70dbf1d7826dc94f3de1447e43ca4203df0
+  checksum: 40cbc1141046a4d7183a79ef61240065ee22d6f643b2a45e31c1e966b6da41e3b81e8a1e3745730a0f50123a0a2b863122e41f1c659e81fa3e67814410689af2
   languageName: node
   linkType: hard
 
@@ -11432,7 +11432,7 @@ __metadata:
   resolution: "greenhouse-proxy-worker@workspace:_workers/greenhouse-proxy-worker"
   dependencies:
     "@cloudflare/workers-types": 3.9.0
-    "@cloudflare/wrangler": 1.19.11
+    "@cloudflare/wrangler": 1.19.12
     esbuild: 0.14.36
     typescript: 4.7.3
     worktop: 0.7.3
