@@ -30,7 +30,7 @@
     "@stitches/react": "1.2.7",
     "@types/node": "16.11.39",
     "@types/react": "17.0.44",
-    "@types/react-dom": "17.0.15",
+    "@types/react-dom": "17.0.17",
     "babel-preset-gatsby-package": "2.10.0",
     "gatsby": "4.14.0",
     "polished": "4.1.4",
