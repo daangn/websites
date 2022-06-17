@@ -12,6 +12,7 @@ const config: GatsbyConfig = {
   ...(process.env.ASSET_PREFIX && {
     assetPrefix: process.env.ASSET_PREFIX,
   }),
+  jsxRuntime: 'automatic',
   siteMetadata,
   plugins: [
     {

@@ -1,4 +1,3 @@
-/// <reference types="react/next" />
 import * as React from 'react';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';

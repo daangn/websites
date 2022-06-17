@@ -28,9 +28,7 @@ export const createResolvers: GatsbyNode['createResolvers'] = ({
   actions: {
     createNode,
   },
-  store,
   cache,
-  reporter,
   createNodeId,
 }) => {
   createResolvers({
@@ -61,8 +59,6 @@ export const createResolvers: GatsbyNode['createResolvers'] = ({
             cache,
             createNode,
             createNodeId,
-            store,
-            reporter,
             name,
             ext,
           });

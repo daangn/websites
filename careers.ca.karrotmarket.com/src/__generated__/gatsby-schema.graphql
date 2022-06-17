@@ -1068,6 +1068,15 @@ input FloatQueryOperatorInput {
   nin: [Float]
 }
 
+scalar GatsbyImageData
+
+input GatsbyImageDataQueryOperatorInput {
+  eq: GatsbyImageData
+  in: [GatsbyImageData]
+  ne: GatsbyImageData
+  nin: [GatsbyImageData]
+}
+
 enum GatsbyImageFormat {
   AUTO
   AVIF
@@ -3338,7 +3347,7 @@ type ImageSharp implements Node {
     # The display width of the generated image for layout = FIXED, and the maximum display width of the largest image for layout = CONSTRAINED.
     # Ignored if layout = FLUID.
     width: Int
-  ): JSON!
+  ): GatsbyImageData!
   id: ID!
   internal: Internal!
   original: ImageSharpOriginal
@@ -3489,7 +3498,7 @@ input ImageSharpFilterInput {
   children: NodeFilterListInput
   fixed: ImageSharpFixedFilterInput
   fluid: ImageSharpFluidFilterInput
-  gatsbyImageData: JSONQueryOperatorInput
+  gatsbyImageData: GatsbyImageDataQueryOperatorInput
   id: StringQueryOperatorInput
   internal: InternalFilterInput
   original: ImageSharpOriginalFilterInput
@@ -16725,7 +16734,7 @@ type Query {
   file(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, childImageSharp: ImageSharpFilterInput, childLokaliseTranslation: LokaliseTranslationFilterInput, children: NodeFilterListInput, childrenImageSharp: ImageSharpFilterListInput, childrenLokaliseTranslation: LokaliseTranslationFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, publicURL: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput, url: StringQueryOperatorInput): File
   greenhouseJobBoardDepartment(childDepartments: GreenhouseJobBoardDepartmentFilterListInput, children: NodeFilterListInput, ghId: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, jobs: GreenhouseJobBoardJobFilterListInput, name: StringQueryOperatorInput, parent: NodeFilterInput, parentDepartment: GreenhouseJobBoardDepartmentFilterInput): GreenhouseJobBoardDepartment
   greenhouseJobBoardJob(boardToken: StringQueryOperatorInput, boardUrl: StringQueryOperatorInput, childJobDepartment: JobDepartmentFilterInput, childJobPost: JobPostFilterInput, children: NodeFilterListInput, childrenJobDepartment: JobDepartmentFilterListInput, childrenJobPost: JobPostFilterListInput, content: StringQueryOperatorInput, departments: GreenhouseJobBoardDepartmentFilterListInput, ghId: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, locationQuestions: GreenhouseJobBoardJobQuestionFilterListInput, metadata: GreenhouseJobBoardJobCustomFieldMetadataFilterListInput, parent: NodeFilterInput, questions: GreenhouseJobBoardJobQuestionFilterListInput, title: StringQueryOperatorInput, updatedAt: DateQueryOperatorInput): GreenhouseJobBoardJob
-  imageSharp(children: NodeFilterListInput, fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, gatsbyImageData: JSONQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, original: ImageSharpOriginalFilterInput, parent: NodeFilterInput, resize: ImageSharpResizeFilterInput): ImageSharp
+  imageSharp(children: NodeFilterListInput, fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, gatsbyImageData: GatsbyImageDataQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, original: ImageSharpOriginalFilterInput, parent: NodeFilterInput, resize: ImageSharpResizeFilterInput): ImageSharp
   jobDepartment(children: NodeFilterListInput, ghId: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, jobPosts: JobPostFilterListInput, name: StringQueryOperatorInput, parent: NodeFilterInput, slug: StringQueryOperatorInput): JobDepartment
   jobPost(absoluteUrl: StringQueryOperatorInput, alternativeCivilianService: BooleanQueryOperatorInput, boardToken: StringQueryOperatorInput, boardUrl: StringQueryOperatorInput, chapter: StringQueryOperatorInput, children: NodeFilterListInput, content: JobPostContentSectionFilterListInput, corporate: JobCorporateQueryOperatorInput, departments: JobDepartmentFilterListInput, employmentType: JobEmploymentTypeQueryOperatorInput, externalUrl: StringQueryOperatorInput, ghId: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, keywords: StringQueryOperatorInput, order: IntQueryOperatorInput, parent: NodeFilterInput, parentJob: GreenhouseJobBoardJobFilterInput, priorExperience: JobPriorExperienceQueryOperatorInput, rawContent: StringQueryOperatorInput, tags: StringQueryOperatorInput, title: StringQueryOperatorInput, updatedAt: DateQueryOperatorInput, validThrough: DateQueryOperatorInput): JobPost
   localSearchJobPosts(children: NodeFilterListInput, engine: StringQueryOperatorInput, id: StringQueryOperatorInput, index: StringQueryOperatorInput, internal: InternalFilterInput, name: StringQueryOperatorInput, parent: NodeFilterInput, publicIndexURL: StringQueryOperatorInput, publicStoreURL: StringQueryOperatorInput, store: JSONQueryOperatorInput): LocalSearchJobPosts
@@ -16744,7 +16753,7 @@ type Query {
   prismicTeamsArticle(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicTeamsArticleDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, uid: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicTeamsArticle
   prismicTermsAndConditions(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicTermsAndConditionsDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, uid: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicTermsAndConditions
   prismicTypePathType(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, kind: StringQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, type: StringQueryOperatorInput): PrismicTypePathType
-  site(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, jsxRuntime: StringQueryOperatorInput, parent: NodeFilterInput, pathPrefix: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, siteMetadata: SiteMetadataFilterInput, trailingSlash: StringQueryOperatorInput): Site
+  site(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, graphqlTypegen: BooleanQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, jsxRuntime: StringQueryOperatorInput, parent: NodeFilterInput, pathPrefix: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, siteMetadata: SiteMetadataFilterInput, trailingSlash: StringQueryOperatorInput): Site
   siteBuildMetadata(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput): SiteBuildMetadata
   siteFunction(absoluteCompiledFilePath: StringQueryOperatorInput, children: NodeFilterListInput, functionRoute: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, matchPath: StringQueryOperatorInput, originalAbsoluteFilePath: StringQueryOperatorInput, originalRelativeFilePath: StringQueryOperatorInput, parent: NodeFilterInput, pluginName: StringQueryOperatorInput, relativeCompiledFilePath: StringQueryOperatorInput): SiteFunction
   sitePage(children: NodeFilterListInput, component: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, internalComponentName: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, pageContext: JSONQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput): SitePage
@@ -16765,6 +16774,7 @@ type Site implements Node {
     locale: String
   ): Date
   children: [Node!]!
+  graphqlTypegen: Boolean
   id: ID!
   internal: Internal!
   jsxRuntime: String
@@ -16989,6 +16999,7 @@ enum SiteFieldsEnum {
   children___parent___internal___type
   children___parent___parent___children
   children___parent___parent___id
+  graphqlTypegen
   id
   internal___content
   internal___contentDigest
@@ -17048,6 +17059,7 @@ enum SiteFieldsEnum {
 input SiteFilterInput {
   buildTime: DateQueryOperatorInput
   children: NodeFilterListInput
+  graphqlTypegen: BooleanQueryOperatorInput
   id: StringQueryOperatorInput
   internal: InternalFilterInput
   jsxRuntime: StringQueryOperatorInput

@@ -9,6 +9,7 @@ export const siteMetadata = {
 };
 
 const config: GatsbyConfig = {
+  jsxRuntime: 'automatic',
   siteMetadata,
   plugins: [
     {

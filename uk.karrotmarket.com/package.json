@@ -20,17 +20,15 @@
   },
   "dependencies": {
     "@karrotmarket/gatsby-theme-global-website": "workspace:^",
-    "gatsby": "4.14.0",
+    "gatsby": "4.16.0",
     "gatsby-plugin-google-gtag": "4.14.0",
     "gatsby-plugin-google-tagmanager": "4.14.0",
-    "gatsby-plugin-typegen": "rc",
-    "react": "next",
-    "react-dom": "next"
+    "gatsby-plugin-typegen": "3.0.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@babel/core": "7.18.5",
-    "@babel/plugin-transform-react-jsx": "7.17.12",
-    "@babel/plugin-transform-typescript": "7.18.4",
     "babel-plugin-polished": "1.1.0",
     "typescript": "4.7.3",
     "ultra-runner": "3.10.5"
