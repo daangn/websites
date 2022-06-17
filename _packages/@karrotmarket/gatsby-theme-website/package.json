@@ -29,7 +29,7 @@
     "@babel/core": "7.18.5",
     "@stitches/react": "1.2.7",
     "@types/node": "16.11.39",
-    "@types/react": "17.0.44",
+    "@types/react": "17.0.47",
     "@types/react-dom": "17.0.15",
     "babel-preset-gatsby-package": "2.10.0",
     "gatsby": "4.14.0",

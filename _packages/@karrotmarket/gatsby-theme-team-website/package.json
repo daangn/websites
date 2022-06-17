@@ -71,7 +71,7 @@
     "@babel/plugin-transform-typescript": "7.18.4",
     "@prismicio/helpers": "2.3.0",
     "@types/node": "16.11.39",
-    "@types/react": "17.0.44",
+    "@types/react": "17.0.47",
     "@types/react-dom": "17.0.15",
     "babel-preset-gatsby-package": "2.10.0",
     "react": "experimental",
