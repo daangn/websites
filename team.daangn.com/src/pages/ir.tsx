@@ -26,6 +26,10 @@ export const query = graphql`
           in: ["team.daangn.com"]
         }
       }
+      sort: {
+        fields: first_publication_date
+        order: DESC
+      }
     ) {
       nodes {
         uid
