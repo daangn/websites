@@ -17,14 +17,16 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
 }) => {
   const gql = String.raw;
   actions.createTypes(gql`
-    type FinancialStatementsYaml implements Node {
-      items: [FinancialStatementsYamlItems!]!
+    type PrismicFinancialStatements implements Node {
+      data: PrismicFinancialStatementsDataType!
     }
 
-    type FinancialStatementsYamlItems {
-      key: String!
-      value: String!
-      summary: Boolean
+    type PrismicFinancialStatementsDataType {
+      items: [PrismicFinancialStatementsDataItems!]!
+    }
+
+    type PrismicFinancialStatementsDataItems {
+      summary: Boolean!
     }
   `);
 };
@@ -91,10 +93,9 @@ export const createPages: GatsbyNode['createPages'] = async ({
         uid: string,
       }>,
     },
-    allFinancialStatementsYaml: {
+    allPrismicFinancialStatements: {
       nodes: Array<{
-        id: string,
-        year: number,
+        uid: string,
       }>,
     },
   };
@@ -115,15 +116,15 @@ export const createPages: GatsbyNode['createPages'] = async ({
         }
       }
 
-      allFinancialStatementsYaml(
-        sort: {
-          fields: year,
-          order: DESC
+      allPrismicFinancialStatements(
+        filter: {
+          tags: {
+            in: ["team.daangn.com"]
+          }
         }
       ) {
         nodes {
-          id
-          year
+          uid
         }
       }
     }
@@ -137,6 +138,10 @@ export const createPages: GatsbyNode['createPages'] = async ({
   }
   
   for (const ir of data.allPrismicIr.nodes) {
+    if (!ir.uid) {
+      reporter.warn('Some ir in Prismic CMS have empty uid');
+      continue;
+    }
     actions.createPage({
       path: `/ir/${ir.uid}/`,
       component: path.resolve(basePath, 'src/templates/IrPage.tsx'),
@@ -146,18 +151,22 @@ export const createPages: GatsbyNode['createPages'] = async ({
     });
   }
 
-  for (const finance of data.allFinancialStatementsYaml.nodes) {
+  for (const finance of data.allPrismicFinancialStatements.nodes) {
+    if (!finance.uid) {
+      reporter.warn('Some financial_statements in Prismic CMS have empty uid');
+      continue;
+    }
     actions.createPage({
-      path: `/ir/finances/${finance.year}/`,
+      path: `/ir/finances/${finance.uid}/`,
       component: path.resolve(basePath, 'src/templates/FinancialStatementsPage.tsx'),
       context: {
-        id: finance.id,
+        uid: finance.uid,
       },
     });
   }
   actions.createRedirect({
     fromPath: '/ir/finances/',
-    toPath: `/ir/finances/${data.allFinancialStatementsYaml.nodes[0].year}/`,
+    toPath: `/ir/finances/${data.allPrismicFinancialStatements.nodes.filter(node => node.uid)[0].uid}/`,
     isPermanent: false,
     redirectInBrowser: true,
   });

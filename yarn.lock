@@ -7563,13 +7563,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"css-selector-parser@npm:^1.1.0":
-  version: 1.4.1
-  resolution: "css-selector-parser@npm:1.4.1"
-  checksum: 31948754e579eedb918c2fb2d5a4c643ec769ff4a0d03a7bd10b43b25d44973f8cbe86d7ec00c4494269f7ff38b3d2ab0f6ea801cece0ef0974e74469dff770c
-  languageName: node
-  linkType: hard
-
 "css-tree@npm:1.0.0-alpha.37":
   version: 1.0.0-alpha.37
   resolution: "css-tree@npm:1.0.0-alpha.37"
@@ -7776,7 +7769,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:2, debug@npm:2.6.9, debug@npm:^2.2.0, debug@npm:^2.6.0, debug@npm:^2.6.9":
+"debug@npm:2, debug@npm:2.6.9, debug@npm:^2.6.0, debug@npm:^2.6.9":
   version: 2.6.9
   resolution: "debug@npm:2.6.9"
   dependencies:
@@ -10830,20 +10823,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-transformer-yaml@npm:4.16.0":
-  version: 4.16.0
-  resolution: "gatsby-transformer-yaml@npm:4.16.0"
-  dependencies:
-    "@babel/runtime": ^7.15.4
-    js-yaml: ^3.14.1
-    lodash: ^4.17.21
-    unist-util-select: ^1.5.0
-  peerDependencies:
-    gatsby: ^4.0.0-next
-  checksum: a7a7538bad2a71ed0bcab7c5b32fbdde4d9dbdde69358c3a0aab9def2ebaf557d95ec573bf4ea30ccbff1fbbb42cc9a84cce6f0bca530a7b32f51abbcacf4d1a
-  languageName: node
-  linkType: hard
-
 "gatsby-worker@npm:^1.16.0":
   version: 1.16.0
   resolution: "gatsby-worker@npm:1.16.0"
@@ -13260,7 +13239,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"js-yaml@npm:^3.13.1, js-yaml@npm:^3.14.1":
+"js-yaml@npm:^3.13.1":
   version: 3.14.1
   resolution: "js-yaml@npm:3.14.1"
   dependencies:
@@ -14942,7 +14921,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nth-check@npm:^1.0.1, nth-check@npm:^1.0.2":
+"nth-check@npm:^1.0.2":
   version: 1.0.2
   resolution: "nth-check@npm:1.0.2"
   dependencies:
@@ -18742,7 +18721,6 @@ __metadata:
     gatsby-plugin-typegen: 3.0.0
     gatsby-plugin-vercel-deploy: 1.0.1
     gatsby-source-filesystem: 4.16.0
-    gatsby-transformer-yaml: 4.16.0
     match-sorter: ^6.3.1
     polished: 4.1.4
     react: 18.2.0
@@ -19437,17 +19415,6 @@ __metadata:
   dependencies:
     crypto-random-string: ^2.0.0
   checksum: ef68f639136bcfe040cf7e3cd7a8dff076a665288122855148a6f7134092e6ed33bf83a7f3a9185e46c98dddc445a0da6ac25612afa1a7c38b8b654d6c02498e
-  languageName: node
-  linkType: hard
-
-"unist-util-select@npm:^1.5.0":
-  version: 1.5.0
-  resolution: "unist-util-select@npm:1.5.0"
-  dependencies:
-    css-selector-parser: ^1.1.0
-    debug: ^2.2.0
-    nth-check: ^1.0.1
-  checksum: 19681874146213fc151d3faecfbb2999bbc63722b0e3cda06e769dd153f128d9bfc9350aa574878a64e322fb5de8179a87fb32ff71f0262838ef8361ac8c540c
   languageName: node
   linkType: hard
 

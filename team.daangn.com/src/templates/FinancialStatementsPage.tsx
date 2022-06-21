@@ -12,33 +12,48 @@ type FinancialStatementsPageProps = PageProps<GatsbyTypes.FinancialStatementsPag
 
 export const query = graphql`
   query FinancialStatementsPage(
-    $id: String!
+    $uid: String!
     $locale: String!
     $navigationId: String!
   ) {
     ...TeamWebsite_DefaultLayout_query
 
-    allFinancialStatementsYaml(
+    allPrismicFinancialStatements(
+      filter: {
+        tags: {
+          in: ["team.daangn.com"]
+        }
+      }
       sort: {
-        fields: year,
+        fields: data___year
         order: DESC
       }
     ) {
       nodes {
-        year
+        uid
+        data {
+          title {
+            text
+          }
+        }
       }
     }
 
-    financialStatementsYaml(
-      id: {
-        eq: $id
-      }
+    prismicFinancialStatements(
+      uid: { eq: $uid }
     ) {
-      year
-      items {
-        key
-        value
-        summary
+      uid
+      data {
+        title {
+          text
+        }
+        key_label
+        value_label
+        items {
+          key
+          value
+          summary
+        }
       }
     }
   }
@@ -199,7 +214,10 @@ const TableColValue = styled('td', {
 const FinancialStatementsPage: React.FC<FinancialStatementsPageProps> = ({
   data,
 }) => {
-  required(data.financialStatementsYaml);
+  required(data.prismicFinancialStatements?.data?.items);
+
+  const finances = data.allPrismicFinancialStatements.nodes
+    .filter(node => node.data.title?.text)
 
   return (
     <Container>
@@ -228,13 +246,14 @@ const FinancialStatementsPage: React.FC<FinancialStatementsPageProps> = ({
         <ContentScrollTarget id="content" />
         <SideNav>
           <SideNavList>
-            {data.allFinancialStatementsYaml.nodes.map(finance => (
-              <SideNavItem key={finance.year}>
+            {finances.map(finance => (
+              <SideNavItem key={finance.uid}>
+
                 <SideNavLink
-                  to={`/ir/finances/${finance.year}/#content`}
-                  selected={finance.year === data.financialStatementsYaml.year}
+                  to={`/ir/finances/${finance.uid}/#content`}
+                  selected={finance.uid === data.prismicFinancialStatements!.uid}
                 >
-                  {finance.year}년 재무제표
+                  {finance.data.title!.text!}
                 </SideNavLink>
               </SideNavItem>
             ))}
@@ -242,32 +261,35 @@ const FinancialStatementsPage: React.FC<FinancialStatementsPageProps> = ({
         </SideNav>
         <Table>
           <TableCaption style={{ display: 'none' }}>
-            {data.financialStatementsYaml.year}년 재무제표
+            {data.prismicFinancialStatements.data?.title?.text}
           </TableCaption>
           <thead>
             <tr>
               <TableRowHeader scope="row" position="start">
-                항목
+                {data.prismicFinancialStatements.data.key_label || '항목'}
               </TableRowHeader>
               <TableRowHeader scope="row" position="end">
-                {data.financialStatementsYaml.year} 년
+                {data.prismicFinancialStatements.data.value_label || '값'}
               </TableRowHeader>
             </tr>
           </thead>
           <tbody>
-            {data.financialStatementsYaml.items.map(item => (
-              <TableRow key={item.key}>
-                <TableColHeader
-                  scope="col"
-                  summary={item.summary ?? false}
-                >
-                  {item.key}
-                </TableColHeader>
-                <TableColValue>
-                  {item.value}
-                </TableColValue>
-              </TableRow>
-            ))}
+            {data.prismicFinancialStatements.data.items
+              .filter(item => item!.key && item!.value)
+              .map(item => (
+                <TableRow key={item!.key}>
+                  <TableColHeader
+                    scope="col"
+                    summary={item!.summary ?? false}
+                  >
+                    {item!.key}
+                  </TableColHeader>
+                  <TableColValue>
+                    {item!.value}
+                  </TableColValue>
+                </TableRow>
+              ))
+            }
           </tbody>
         </Table>
       </Content>
