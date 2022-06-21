@@ -2,17 +2,6 @@ import * as path from 'path';
 import type { GatsbyNode } from 'gatsby';
 import { createRemoteFileNode } from 'gatsby-source-filesystem';
 
-export const onCreateBabelConfig: GatsbyNode['onCreateBabelConfig'] = ({
-  actions,
-}) => {
-  actions.setBabelPlugin({
-    name: '@babel/plugin-transform-react-jsx',
-    options: {
-      runtime: 'automatic',
-    },
-  });
-};
-
 export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = ({
   actions,
 }) => {
@@ -21,6 +10,23 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = ({
     toPath: '/faq/',
     isPermanent: true,
   });
+};
+
+export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({
+  actions,
+}) => {
+  const gql = String.raw;
+  actions.createTypes(gql`
+    type FinancialStatementsYaml implements Node {
+      items: [FinancialStatementsYamlItems!]!
+    }
+
+    type FinancialStatementsYamlItems {
+      key: String!
+      value: String!
+      summary: Boolean
+    }
+  `);
 };
 
 export const createResolvers: GatsbyNode['createResolvers'] = ({
@@ -85,6 +91,12 @@ export const createPages: GatsbyNode['createPages'] = async ({
         uid: string,
       }>,
     },
+    allFinancialStatementsYaml: {
+      nodes: Array<{
+        id: string,
+        year: number,
+      }>,
+    },
   };
   const { data, errors } = await graphql<Data>(gql`
     {
@@ -102,11 +114,26 @@ export const createPages: GatsbyNode['createPages'] = async ({
           uid
         }
       }
+
+      allFinancialStatementsYaml(
+        sort: {
+          fields: year,
+          order: DESC
+        }
+      ) {
+        nodes {
+          id
+          year
+        }
+      }
     }
   `);
 
   if (errors) {
     reporter.panicOnBuild(errors);
+  }
+  if (!data) {
+    throw new Error('Failed to fetch data for team.daangn.com');
   }
   
   for (const ir of data.allPrismicIr.nodes) {
@@ -118,4 +145,20 @@ export const createPages: GatsbyNode['createPages'] = async ({
       },
     });
   }
+
+  for (const finance of data.allFinancialStatementsYaml.nodes) {
+    actions.createPage({
+      path: `/ir/finances/${finance.year}/`,
+      component: path.resolve(basePath, 'src/templates/FinancialStatementsPage.tsx'),
+      context: {
+        id: finance.id,
+      },
+    });
+  }
+  actions.createRedirect({
+    fromPath: '/ir/finances/',
+    toPath: `/ir/finances/${data.allFinancialStatementsYaml.nodes[0].year}/`,
+    isPermanent: false,
+    redirectInBrowser: true,
+  });
 };

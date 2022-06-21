@@ -13,6 +13,14 @@ const config: GatsbyConfig = {
   siteMetadata,
   plugins: [
     'gatsby-plugin-gatsby-cloud',
+    'gatsby-transformer-yaml',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'financial-statements',
+        path: 'src/financial-statements',
+      },
+    },
     {
       resolve: 'gatsby-source-filesystem',
       options: {

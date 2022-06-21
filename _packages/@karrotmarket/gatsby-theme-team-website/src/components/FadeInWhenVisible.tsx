@@ -2,6 +2,10 @@ import * as React from 'react';
 import { useInView } from 'react-intersection-observer';
 import { motion, useAnimation, useReducedMotion } from 'framer-motion';
 
+type Props = {
+  children: React.ReactNode,
+};
+
 const transition = {
   duration: 1,
   delay: 0.1,
@@ -44,7 +48,7 @@ const reducer: React.Reducer<State, Action> = (state, action) => {
   return state;
 };
 
-const FadeInWhenVisible: React.FC = ({
+const FadeInWhenVisible: React.FC<Props> = ({
   children,
 }) => {
   const [state, dispatch] = React.useReducer(reducer, 'INITIAL_VISIBLE');

@@ -1,0 +1,39 @@
+# source: https://docs.google.com/spreadsheets/d/1-c_XQCOczjuS-CUuXA0a8Dcnoh0sETK4/edit#gid=751114872
+year: 2020
+items:
+  - key: 유동자산
+    value: "29,003,205,216"
+
+  - key: 비유동자산
+    value: "921,128,177"
+
+  - key: 자산총계
+    value: "29,924,333,393"
+    summary: true
+
+  - key: 유동부채
+    value: "3,636,847,347"
+
+  - key: 비유동부채
+    value: "558,607,043"
+
+  - key: 부채총계
+    value: "4,195,454,390"
+    summary: true
+
+  - key: 자본금
+    value: "855,262,000"
+
+  - key: 자본잉여금
+    value: "47,821,577,167"
+
+  - key: 결손금
+    value: "(22,947,960,164)"
+
+  - key: 자본총계
+    value: "25,728,879,003"
+    summary: true
+
+  - key: 부채와자본총계
+    value: "29,924,333,393"
+    summary: true
