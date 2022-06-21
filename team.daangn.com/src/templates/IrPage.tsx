@@ -42,6 +42,11 @@ export const query = graphql`
             #}
             # See https://github.com/gatsbyjs/gatsby/issues/35636
             localFileFixed {
+
+              # FIXME
+              # See https://karrot.atlassian.net/browse/WMAS-46?focusedCommentId=36565
+              url
+
               base
               publicURL
             }
@@ -216,11 +221,12 @@ const IrPage: React.FC<IrPageProps> = ({
             <FileList>
               {attachments.map((attachment, i) => {
                 const file = attachment!.file!.localFileFixed!;
-                const href = withPrefix(file.publicURL!);
+                // const href = withPrefix(file.publicURL!);
                 const base = decodeURIComponent(stripUUID(file.base));
                 return (
                   <FileListItem key={i}>
-                    <File href={href} download={base}>
+                    {/* FIXME: https://karrot.atlassian.net/browse/WMAS-46?focusedCommentId=36565 */}
+                    <File href={file!.url} download={base}>
                       {base}
                     </File>
                   </FileListItem>
