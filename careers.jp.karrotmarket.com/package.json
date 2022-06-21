@@ -47,7 +47,7 @@
     "@types/react": "18.0.14",
     "@types/react-dom": "18.0.5",
     "dotenv-safe": "8.2.0",
-    "typescript": "4.7.3",
+    "typescript": "4.7.4",
     "ultra-runner": "3.10.5"
   }
 }
