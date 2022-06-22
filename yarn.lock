@@ -1714,7 +1714,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cometjs/core@npm:2.0.2, @cometjs/core@npm:^2.0.2":
+"@cometjs/core@npm:2.0.2":
   version: 2.0.2
   resolution: "@cometjs/core@npm:2.0.2"
   peerDependencies:
@@ -1726,12 +1726,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cometjs/graphql-utils@npm:2.0.2":
-  version: 2.0.2
-  resolution: "@cometjs/graphql-utils@npm:2.0.2"
+"@cometjs/core@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "@cometjs/core@npm:2.1.0"
+  peerDependencies:
+    typescript: ^4.5.0
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 89740f9f52b2d7838554dd066f62ff9d54b76f6dcaeaf560390eaa003ebbf6d08b639dca14bcf5a192720c6180a706453df99fa5d20e7344b822715102581e17
+  languageName: node
+  linkType: hard
+
+"@cometjs/graphql-utils@npm:2.0.3":
+  version: 2.0.3
+  resolution: "@cometjs/graphql-utils@npm:2.0.3"
   dependencies:
-    "@cometjs/core": ^2.0.2
-  checksum: 16e556428eff4db88df4a7fe5c97312a2b6e5cbb784dc6ff1d06014dd5b3440bf5f8652f595c857aba06c0e166d699d684ebd8cf8b24ed4c8c725dfb2ef8c585
+    "@cometjs/core": ^2.1.0
+  checksum: 861a129f2764c5eb00b7cb7de7509538f5bf88403b7538cef279e3668f9eb5d411ecb093d532303adfc4156b027f8ec2093941235599ddaae7230eab44dde96b
   languageName: node
   linkType: hard
 
@@ -3221,7 +3233,7 @@ __metadata:
   dependencies:
     "@babel/cli": 7.17.10
     "@babel/core": 7.18.5
-    "@cometjs/graphql-utils": 2.0.2
+    "@cometjs/graphql-utils": 2.0.3
     "@karrotmarket/design-token": 1.1.2
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website": "workspace:^"
@@ -3298,7 +3310,7 @@ __metadata:
     "@babel/cli": 7.17.10
     "@babel/core": 7.18.5
     "@cometjs/core": 2.0.2
-    "@cometjs/graphql-utils": 2.0.2
+    "@cometjs/graphql-utils": 2.0.3
     "@cometjs/react-utils": 1.1.0
     "@karrotmarket/design-token": 1.1.2
     "@karrotmarket/gatsby-plugin-lokalise-translation": "workspace:^"
@@ -5355,7 +5367,7 @@ __metadata:
   dependencies:
     "@babel/core": 7.18.5
     "@cometjs/core": 2.0.2
-    "@cometjs/graphql-utils": 2.0.2
+    "@cometjs/graphql-utils": 2.0.3
     "@karrotmarket/design-token": 1.1.2
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website": "workspace:^"
