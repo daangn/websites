@@ -6,7 +6,7 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { GatsbySeo, FAQJsonLd } from 'gatsby-plugin-next-seo';
 import { required } from '@cometjs/core';
 import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
-import { matchSorter } from 'match-sorter'
+import { matchSorter } from 'match-sorter';
 import { vars } from '@seed-design/design-token';
 
 import _PageTitle from '../components/PageTitle';
@@ -16,7 +16,7 @@ import { ReactComponent as SearchdSvg } from '../assets/searchOutlineM.svg';
 import _FaqList from '../components/FaqList';
 import { useURLSearchParams } from '../utils/useURLSearchParams'
 
-type FaqPageProps = PageProps<GatsbyTypes.TeamWebsite_FaqPageQuery, GatsbyTypes.SitePageContext>;
+type FaqPageProps = PageProps<GatsbyTypes.TeamWebsite_FaqPageQuery>;
 
 export const query = graphql`
   query TeamWebsite_FaqPage(
@@ -89,29 +89,28 @@ const Filters = styled('div', {
   flexDirection: 'column',
 
   '@lg': {
-    flexDirection: 'row'
-  }
+    flexDirection: 'row',
+  },
 });
 
-const FaqGroupWrapper = styled('ul', {
+const FaqGroupList = styled('ul', {
+  listStyle: 'none',
+  padding: 0,
   display: 'flex',
   alignItems: 'center',
-  padding: '0',
   overflow: 'auto',
   gap: rem(50),
   marginBottom: rem(52),
 
   '@lg': {
-    marginBottom: '0'
-  }
+    marginBottom: '0',
+  },
 });
 
 const FaqGroup = styled('li', {
   fontSize: '$subtitle3',
   fontWeight: 'bold',
-  listStyle: 'none',
   float: 'left',
-  cursor: 'pointer',
   whiteSpace: 'nowrap',
 });
 
@@ -127,10 +126,10 @@ const FaqGroupLink = styled(Link, {
         '&:hover': {
           color: vars.$scale.color.gray600,
         },
-      }
-    }
-  }
-})
+      },
+    },
+  },
+});
 
 const FaqList = styled(_FaqList, {
   minHeight: '80vh',
@@ -139,45 +138,43 @@ const FaqList = styled(_FaqList, {
 const Search = styled(_Search, {
   '@lg': {
     minWidth: rem(300),
-  }
+  },
 });
 
 const FaqPage: React.FC<FaqPageProps> = ({
   data,
-  location
+  location,
 }) => {
+  required(data.prismicTeamContents?.data);
+
   const messages = useTranslation();
 
-  const searchParams = new URLSearchParams(location.search);
-  const searchQuery = searchParams.get('q') || ''
-  const [query, setQuery] = React.useState<string>(searchQuery || '');
-  const [_isSearchPending, startSearchTransition] = React.useTransition();
+  const searchParams = useURLSearchParams();
+  const searchQuery = searchParams.get('q') || '';
+  const [query, setQuery] = React.useState(searchQuery || '');
 
   const handleSearchInputChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    const value = e.target.value
+    const value = e.target.value;
     setQuery(value);
-    startSearchTransition(() => {
-      searchParams.set('q', value);
-      navigate(`?${searchParams.toString()}`);
-    });
-  }
-
-  const search = useURLSearchParams();
+    searchParams.set('q', value);
+    navigate(`?${searchParams.toString()}`);
+  };
 
   React.useEffect(() => {
-    const searchQuery = search.get('q') || '';
-    const currentQuery = query;
-  
-    if (searchQuery !== currentQuery) {
-      navigate(`?q=${currentQuery}`, { replace: true });
+    if (query !== searchQuery) {
+      navigate(`?q=${query}`, { replace: true });
     }
-  }, [search])
+  }, [query, searchQuery]);
 
   const searchResults = {
-    entries: [...matchSorter(data.prismicFaq.data.entries, searchQuery, { keys: ['question', 'keywords'] })]
-  }
-
-  required(data.prismicTeamContents?.data)
+    entries: [
+      ...matchSorter(
+        data.prismicFaq.data.entries,
+        searchQuery,
+        { keys: ['question', 'keywords'] },
+      ),
+    ],
+  };
 
   return (
     <Container>
@@ -191,34 +188,32 @@ const FaqPage: React.FC<FaqPageProps> = ({
       />
       <FAQJsonLd
         questions={data.prismicFaq.data.entries!.map(faq => ({
-          question: faq!.question || '',
-          answer: faq!.answer!.text || '',
+          question: faq.question || '',
+          answer: faq.answer.text || '',
         }))}
       />
       <PageTitle>
         {data.prismicTeamContents.data.faq_page_title.text}
       </PageTitle>
       <Filters>
-        <FaqGroupWrapper>
-          {data.prismicTeamContents?.data.faq_page_entries.map((faq) => (
-            <FaqGroup 
+        <FaqGroupList>
+          {data.prismicTeamContents.data.faq_page_entries.map(faq => (
+            <FaqGroup
               key={faq.faq_page.id} 
             >
               <FaqGroupLink 
-                to={`/faq/${faq.faq_page.uid}/${searchQuery 
-                ? `?${searchParams.toString()}` 
-                : ''}`}
+                to={`/faq/${faq.faq_page.uid}/?${searchParams.toString()}`} 
                 selected={faq.faq_page.uid === data.prismicFaq.uid} 
               >
                 {faq.faq_category_title}
               </FaqGroupLink>
             </FaqGroup>
           ))}
-        </FaqGroupWrapper>
+        </FaqGroupList>
         <Search>
           <input 
             placeholder={messages.faq_page__search}
-            value={query || ''}
+            value={query}
             onChange={handleSearchInputChange}
           />
           <SearchdSvg />
@@ -229,9 +224,9 @@ const FaqPage: React.FC<FaqPageProps> = ({
           faqLists={searchResults}
           emptyPlaceHolderLink={`/faq/${data.prismicFaq.uid}/`} 
         />
-       ) : (
+      ) : (
         <FaqAccordion data={data.prismicFaq.data} />
-       )}
+      )}
     </Container>
   );
 };

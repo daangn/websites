@@ -95,7 +95,7 @@ const PreviousLink = styled(Link, {
   },
 
   '@sm': {
-    marginBottom: rem(36)
+    marginBottom: rem(36),
   },
 })
 

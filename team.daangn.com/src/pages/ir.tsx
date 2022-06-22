@@ -5,7 +5,7 @@ import { graphql, Link } from 'gatsby';
 import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
-import PageTitle from '@karrotmarket/gatsby-theme-team-website/src/components/PageTitle';
+import _PageTitle from '@karrotmarket/gatsby-theme-team-website/src/components/PageTitle';
 import FadeInWhenVisible from '@karrotmarket/gatsby-theme-team-website/src/components/FadeInWhenVisible';
 
 type IrListPageProps = PageProps<GatsbyTypes.IrListPageQuery>;
@@ -53,6 +53,51 @@ const Content = styled('div', {
   position: 'relative',
 });
 
+const PageTitle = styled(_PageTitle, {
+  marginBottom: rem(56),
+
+  '@sm': {
+    marginBottom: rem(80),
+  },
+});
+
+const SubpageNav = styled('nav', {
+  marginBottom: rem(52),
+});
+
+const SubpageNavList = styled('ul', {
+  listStyle: 'none',
+  padding: 0,
+  display: 'flex',
+  alignItems: 'center',
+  overflow: 'auto',
+  gap: rem(50),
+});
+
+const SubpageNavListItem = styled('li', {
+  fontSize: '$subtitle3',
+  fontWeight: 'bold',
+  float: 'left',
+  whiteSpace: 'nowrap',
+});
+
+const SubpageLink = styled(Link, {
+  color: vars.$scale.color.gray900,
+  textDecoration: 'none',
+  variants: {
+    selected: {
+      true: {
+        color: vars.$scale.color.carrot500,
+      },
+      false: {
+        '&:hover': {
+          color: vars.$scale.color.gray600,
+        },
+      },
+    },
+  },
+});
+
 const IrList = styled('ul', {
   listStyle: 'none',
   padding: 0,
@@ -64,12 +109,15 @@ const IrListItem = styled('li', {
 });
 
 const IrLink = styled(Link, {
-  display: 'flex',
+  display: 'grid',
+  gap: '0.5rem',
   paddingY: '1.5rem',
   alignItems: 'center',
-  justifyContent: 'space-between',
   textDecoration: 'none',
   color: 'inherit',
+  '@sm': {
+    gridTemplateColumns: 'auto max-content',
+  },
 });
 
 const IrTitle = styled('span', {
@@ -94,15 +142,25 @@ const IrListPage: React.FC<IrListPageProps> = ({
     <Container>
       <GatsbySeo
         title="당근마켓 IR"
-        description="당근마켓에서 제공하는 다양한 투자자 정보입니다."
+        description="당근마켓에서 제공하는 공식 투자자 정보입니다."
       />
-      <PageTitle
-        css={{
-          marginBottom: rem(56),
-        }}
-      >
+      <PageTitle>
         Investor Relations
       </PageTitle>
+      <SubpageNav>
+        <SubpageNavList>
+          <SubpageNavListItem>
+            <SubpageLink to="/ir/" selected>
+              공시
+            </SubpageLink>
+          </SubpageNavListItem>
+          <SubpageNavListItem>
+            <SubpageLink to="/ir/finances/" selected={false}>
+              재무제표
+            </SubpageLink>
+          </SubpageNavListItem>
+        </SubpageNavList>
+      </SubpageNav>
       <Content>
         <IrList>
           {data.allPrismicIr.nodes.map(ir => (
