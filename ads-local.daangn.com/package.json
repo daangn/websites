@@ -15,7 +15,7 @@
   ],
   "dependencies": {
     "@cometjs/core": "2.0.2",
-    "@cometjs/graphql-utils": "2.0.2",
+    "@cometjs/graphql-utils": "2.0.3",
     "@karrotmarket/design-token": "1.1.2",
     "@karrotmarket/gatsby-theme-prismic": "workspace:^",
     "@karrotmarket/gatsby-theme-website": "workspace:^",
