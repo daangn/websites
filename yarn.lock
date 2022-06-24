@@ -4122,10 +4122,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@seed-design/stylesheet@npm:^1.0.0-alpha.0":
-  version: 1.0.0-alpha.3
-  resolution: "@seed-design/stylesheet@npm:1.0.0-alpha.3"
-  checksum: 09c783e4cb7f3f371de44e0439c3739616fab60c7d80ec39f11c1b354ddba0a9df3286b8b8769e0d0a45b88422c464307a50da2f8aa5568d9860fd121df0a6fc
+"@seed-design/stylesheet@npm:1.0.0-alpha.4":
+  version: 1.0.0-alpha.4
+  resolution: "@seed-design/stylesheet@npm:1.0.0-alpha.4"
+  checksum: e7d33935127b8b521d81e6f87436e5cf049cfd0f2b8cb84276e8472927c406e8c4a80e217681b4361f85116de9b3fbe48efdefa8d6d5849bda083634e03ef323
   languageName: node
   linkType: hard
 
@@ -5372,7 +5372,7 @@ __metadata:
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website": "workspace:^"
     "@karrotmarket/react-stitches": 0.1.1-1
-    "@seed-design/stylesheet": ^1.0.0-alpha.0
+    "@seed-design/stylesheet": 1.0.0-alpha.4
     "@stitches/react": 1.2.8
     adblock-detect-react: 1.0.5
     gatsby: 4.16.0
