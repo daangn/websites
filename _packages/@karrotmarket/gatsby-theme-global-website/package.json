@@ -36,7 +36,7 @@
     "gatsby-plugin-react-helmet-async": "1.2.2",
     "gatsby-plugin-sharp": "4.16.1",
     "gatsby-plugin-svgr": "3.0.0-beta.0",
-    "gatsby-source-prismic": "5.2.6",
+    "gatsby-source-prismic": "5.2.9",
     "gatsby-theme-stitches": "1.0.0",
     "gatsby-transformer-sharp": "4.16.0",
     "got": "11.8.5",
