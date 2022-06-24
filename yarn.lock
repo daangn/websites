@@ -3254,7 +3254,7 @@ __metadata:
     gatsby-plugin-react-helmet-async: 1.2.2
     gatsby-plugin-sharp: 4.16.1
     gatsby-plugin-svgr: 3.0.0-beta.0
-    gatsby-source-prismic: 5.2.6
+    gatsby-source-prismic: 5.2.9
     gatsby-theme-stitches: 1.0.0
     gatsby-transformer-sharp: 4.16.0
     got: 11.8.5
@@ -3291,7 +3291,7 @@ __metadata:
     gatsby: 4.16.0
     gatsby-plugin-image: 2.16.1
     gatsby-plugin-prismic-previews: 5.2.6
-    gatsby-source-prismic: 5.2.6
+    gatsby-source-prismic: 5.2.9
     prismic-reactjs: 1.3.4
     react: 18.2.0
     react-dom: 18.2.0
@@ -3351,7 +3351,7 @@ __metadata:
     gatsby-plugin-sitemap: 5.14.0
     gatsby-plugin-svgr: 3.0.0-beta.0
     gatsby-source-filesystem: 4.16.0
-    gatsby-source-prismic: 5.2.6
+    gatsby-source-prismic: 5.2.9
     gatsby-theme-stitches: 1.0.0
     gatsby-transformer-sharp: 4.16.0
     hangul-js: 0.2.6
@@ -10728,9 +10728,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-source-prismic@npm:5.2.6":
-  version: 5.2.6
-  resolution: "gatsby-source-prismic@npm:5.2.6"
+"gatsby-source-prismic@npm:5.2.9":
+  version: 5.2.9
+  resolution: "gatsby-source-prismic@npm:5.2.9"
   dependencies:
     "@imgix/gatsby": ^1.7.5
     "@prismicio/client": ^6.4.2
@@ -10742,11 +10742,10 @@ __metadata:
     gatsby-node-helpers: ^1.2.1
     gatsby-source-filesystem: ^4.0.0
     node-fetch: ^2.6.5
-    tiny-hashes: ^1.0.1
   peerDependencies:
     gatsby: ^3.0.0-next.0 || ^4.0.0-next.0
     gatsby-plugin-image: ^1.3.0-next.1 || ^2.0.0-next.0
-  checksum: 96b83b1c4f967ba0caadf0fae0ce91d464ae710adafc5baf4b27575f0e1340c8557aa84dceed8518f166584931604f9d8795cc58f61470405c556a333a6e7154
+  checksum: eee507026efb4a59718bb0dc8893f7292ea61bfabea9b0a027b807a87ebcdc8863b0f96e6d248c45ebdf5c3b6a126099e017bf2c5a8a6a809a294fb33f8e5877
   languageName: node
   linkType: hard
 
