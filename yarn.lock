@@ -3251,7 +3251,7 @@ __metadata:
     gatsby-plugin-preload-fonts: 3.14.0
     gatsby-plugin-prismic-previews: 5.2.6
     gatsby-plugin-prismic-schema: "workspace:*"
-    gatsby-plugin-react-helmet-async: 1.2.1
+    gatsby-plugin-react-helmet-async: 1.2.2
     gatsby-plugin-sharp: 4.16.1
     gatsby-plugin-svgr: 3.0.0-beta.0
     gatsby-source-prismic: 5.2.6
@@ -3345,7 +3345,7 @@ __metadata:
     gatsby-plugin-next-seo: 1.10.0
     gatsby-plugin-prismic-previews: 5.2.6
     gatsby-plugin-prismic-schema: "workspace:^"
-    gatsby-plugin-react-helmet-async: 1.2.1
+    gatsby-plugin-react-helmet-async: 1.2.2
     gatsby-plugin-robots-txt: 1.7.1
     gatsby-plugin-sharp: 4.16.1
     gatsby-plugin-sitemap: 5.14.0
@@ -10459,15 +10459,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"gatsby-plugin-react-helmet-async@npm:1.2.1":
-  version: 1.2.1
-  resolution: "gatsby-plugin-react-helmet-async@npm:1.2.1"
+"gatsby-plugin-react-helmet-async@npm:1.2.2":
+  version: 1.2.2
+  resolution: "gatsby-plugin-react-helmet-async@npm:1.2.2"
   peerDependencies:
     gatsby: ">=2"
-    react: ^16.6.0 || 17.x
-    react-dom: ^16.6.0 || 17.x
+    react: ^16.6.0 || ^17 || ^18
+    react-dom: ^16.6.0 || ^17 || ^18
     react-helmet-async: 1.x
-  checksum: a7d293d0d1f24ff1a3421c9ad71ea8ffa8452d11b74d9b7b5cffe67a976beee485e8e7d58379ef1411f71e402fec12d844607e5cee31171bc1d09ae927ea07d8
+  checksum: 2457bd26a5797a76e029c89641678d09ff573480513ecff9fa5228f96c76611a6a921a983184c5249ef299e526f1dce6cce819d599f8ceb9103cda9737ea7f98
   languageName: node
   linkType: hard
 
