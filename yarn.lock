@@ -3512,7 +3512,7 @@ __metadata:
     "@babel/core": 7.18.6
     "@karrotmarket/gatsby-source-greenhouse-jobboard": 0.6.0
     "@types/common-tags": 1.8.1
-    "@types/jest": 27.4.1
+    "@types/jest": 27.5.2
     "@types/node": 18.0.0
     babel-jest: 27.5.1
     babel-preset-gatsby-package: 2.16.0
@@ -4765,13 +4765,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:27.4.1":
-  version: 27.4.1
-  resolution: "@types/jest@npm:27.4.1"
+"@types/jest@npm:27.5.2":
+  version: 27.5.2
+  resolution: "@types/jest@npm:27.5.2"
   dependencies:
     jest-matcher-utils: ^27.0.0
     pretty-format: ^27.0.0
-  checksum: 5184f3eef4832d01ee8f59bed15eec45ccc8e29c724a5e6ce37bf74396b37bdf04f557000f45ba4fc38ae6075cf9cfcce3d7a75abc981023c61ceb27230a93e4
+  checksum: 7e11c6826aa429ad990dc262e4e4b54aa36573287fddf15773e4137f07d11d3105f0dd9f1baff73252160a057df23f5529bb83b1bf83cd3f45f9460a5ca5c22e
   languageName: node
   linkType: hard
 
