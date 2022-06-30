@@ -1686,10 +1686,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cloudflare/workers-types@npm:3.9.0":
-  version: 3.9.0
-  resolution: "@cloudflare/workers-types@npm:3.9.0"
-  checksum: 61f808325c8d22029a646e1e2a2375c3af803a9070ca974fbc899b9e445d6487b135d2a52d5b70fec204d69ada9a1dd4d09a09fb96dbc5fe60df639fe2845921
+"@cloudflare/workers-types@npm:3.14.0":
+  version: 3.14.0
+  resolution: "@cloudflare/workers-types@npm:3.14.0"
+  checksum: f49483681bfcba6ee111e0d1800d4c0a70daec5b3d07fdfb1797a0330ca5cc867eb6789160802810d98c93ac238a71e67702710667a2bfad20b25db8a2d10d79
   languageName: node
   linkType: hard
 
@@ -11473,7 +11473,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "greenhouse-proxy-worker@workspace:_workers/greenhouse-proxy-worker"
   dependencies:
-    "@cloudflare/workers-types": 3.9.0
+    "@cloudflare/workers-types": 3.14.0
     "@cloudflare/wrangler": 1.19.12
     esbuild: 0.14.47
     typescript: 4.7.4
