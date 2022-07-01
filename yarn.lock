@@ -14134,7 +14134,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"match-sorter@npm:^6.3.1":
+"match-sorter@npm:6.3.1":
   version: 6.3.1
   resolution: "match-sorter@npm:6.3.1"
   dependencies:
@@ -18820,7 +18820,7 @@ __metadata:
     gatsby-plugin-typegen: 3.0.0
     gatsby-plugin-vercel-deploy: 1.0.1
     gatsby-source-filesystem: 4.16.0
-    match-sorter: ^6.3.1
+    match-sorter: 6.3.1
     polished: 4.1.4
     react: 18.2.0
     react-dom: 18.2.0
