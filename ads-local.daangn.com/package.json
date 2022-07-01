@@ -38,7 +38,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-helmet-async": "1.2.3",
-    "react-swipeable": "6.2.1",
+    "react-swipeable": "6.2.2",
     "react-text-loop": "2.3.0"
   },
   "devDependencies": {

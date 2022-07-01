@@ -3460,7 +3460,7 @@ __metadata:
     react-dom: 18.2.0
     react-helmet-async: 1.2.3
     react-intersection-observer: 8.33.1
-    react-swipeable: 6.2.1
+    react-swipeable: 6.2.2
     schema-dts: 1.1.0
     text2vdom: 1.0.0
     typescript: 4.7.4
@@ -5490,7 +5490,7 @@ __metadata:
     react: 18.2.0
     react-dom: 18.2.0
     react-helmet-async: 1.2.3
-    react-swipeable: 6.2.1
+    react-swipeable: 6.2.2
     react-text-loop: 2.3.0
     typescript: 4.7.4
     ultra-runner: 3.10.5
@@ -16905,12 +16905,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-swipeable@npm:6.2.1":
-  version: 6.2.1
-  resolution: "react-swipeable@npm:6.2.1"
+"react-swipeable@npm:6.2.2":
+  version: 6.2.2
+  resolution: "react-swipeable@npm:6.2.2"
   peerDependencies:
-    react: ^16.8.3 || ^17
-  checksum: dec0984c365fed60ff9133a8601c4f0656362bcd1edb9a1e2d839866289ddd4386fee1720bc9ad292586273132fe87af1e254f12f3d3a8efe8927ff86e80536e
+    react: ^16.8.3 || ^17 || ^18
+  checksum: a707aa9438cedcafbe1e0b9e133d518c423199fc6465e6ae862951c1cfdac2945088b3c12313e8fcc05906d0be0ecfe7ddd8221f9262a0e28c12d2eb98150434
   languageName: node
   linkType: hard
 
