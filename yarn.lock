@@ -1814,19 +1814,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cometjs/core@npm:2.0.2":
-  version: 2.0.2
-  resolution: "@cometjs/core@npm:2.0.2"
-  peerDependencies:
-    typescript: ^4.5.0
-  peerDependenciesMeta:
-    typescript:
-      optional: true
-  checksum: 6d4fa87c26f29365283e5eb4a918610631b851363a3ea53f5c14ab3e81cb9d293c160866418816cd1aa7d3086b7ace627662e7081d9d0c97a55e10cc3e75b40a
-  languageName: node
-  linkType: hard
-
-"@cometjs/core@npm:^2.1.0":
+"@cometjs/core@npm:2.1.0, @cometjs/core@npm:^2.1.0":
   version: 2.1.0
   resolution: "@cometjs/core@npm:2.1.0"
   peerDependencies:
@@ -3409,7 +3397,7 @@ __metadata:
   dependencies:
     "@babel/cli": 7.18.6
     "@babel/core": 7.18.6
-    "@cometjs/core": 2.0.2
+    "@cometjs/core": 2.1.0
     "@cometjs/graphql-utils": 2.0.3
     "@cometjs/react-utils": 1.1.0
     "@karrotmarket/design-token": 1.1.2
@@ -3478,7 +3466,7 @@ __metadata:
   dependencies:
     "@babel/cli": 7.18.6
     "@babel/core": 7.18.6
-    "@cometjs/core": 2.0.2
+    "@cometjs/core": 2.1.0
     "@seed-design/design-token": alpha
     "@stitches/react": 1.2.8
     "@svgr/webpack": 6.2.1
@@ -5508,7 +5496,7 @@ __metadata:
   resolution: "ads-local.daangn.com@workspace:ads-local.daangn.com"
   dependencies:
     "@babel/core": 7.18.6
-    "@cometjs/core": 2.0.2
+    "@cometjs/core": 2.1.0
     "@cometjs/graphql-utils": 2.0.3
     "@karrotmarket/design-token": 1.1.2
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
