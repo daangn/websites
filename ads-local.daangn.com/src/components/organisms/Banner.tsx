@@ -45,7 +45,7 @@ export function Banner() {
         <Description>
           우리동네 광고 필수품
           <br />
-          당근마켓 지역광고
+          당근마켓 광고
           <DownloadButtons css={{ marginTop: 35 }}>
             <DownloadButton iconType="google" id="google_top">
               <div>Google Play</div>

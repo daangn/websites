@@ -20,7 +20,7 @@ export const NowStart = () => {
             </ImgSubText>
             <Picture
               src="../../image/img_step_01.png"
-              alt="당근마켓 지역광고 STEP1"
+              alt="당근마켓 광고 STEP1"
               width={240}
               placeholder="none"
             />
@@ -32,7 +32,7 @@ export const NowStart = () => {
             </ImgSubText>
             <Picture
               src="../../image/img_step_02.png"
-              alt="당근마켓 지역광고 STEP2"
+              alt="당근마켓 광고 STEP2"
               width={240}
               placeholder="none"
             />
@@ -44,7 +44,7 @@ export const NowStart = () => {
             </ImgSubText>
             <Picture
               src="../../image/img_step_03.png"
-              alt="당근마켓 지역광고 STEP3"
+              alt="당근마켓 광고 STEP3"
               width={240}
               placeholder="none"
             />

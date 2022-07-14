@@ -4,7 +4,7 @@ const siteUrl = new URL("https://ads-local.daangn.com");
 
 const siteMetadata: GatsbyConfig["siteMetadata"] = {
   siteUrl: siteUrl.origin,
-  siteName: "당근마켓 지역광고"
+  siteName: "당근마켓 광고"
 };
 
 const config: GatsbyConfig = {

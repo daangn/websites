@@ -14,7 +14,7 @@ export const LearnMore = () => {
       <Container>
         <Item left>
           <DocsWrapper>
-            <LearnMoreTitle>당근마켓 지역광고</LearnMoreTitle>
+            <LearnMoreTitle>당근마켓 광고</LearnMoreTitle>
             <LearnMoreTitle>자료실</LearnMoreTitle>
           </DocsWrapper>
           {/* <DocsLink
@@ -25,7 +25,7 @@ export const LearnMore = () => {
               )
             }
           >
-            <p>지역광고 상품 소개서</p>
+            <p>광고 상품 소개서</p>
             <ArrowLink target="https://drive.google.com/file/d/1rXFkxvzxJHszsFnCKiqWafzb6bi-6uBU/view" id="content-pdf"/>
           </DocsLink> */}
           <DocsLink
@@ -36,7 +36,7 @@ export const LearnMore = () => {
               );
             }}
           >
-            <p>지역광고 심화 가이드</p>
+            <p>광고 심화 가이드</p>
             <ArrowLink target="https://drive.google.com/file/d/1AmZz245syU0OLXH6gICmanVuhP3ySgYI/view" id="content-howto"/>
           </DocsLink>
         </Item>
@@ -45,22 +45,22 @@ export const LearnMore = () => {
             id="FAQ_A"
             onClick={() => handleClick("https://www.daangn.com/wv/faqs/149")}
           >
-            <p>지역광고는 어떻게 만드나요?</p>
-            <ChevronRight src={chevronIconUrl} alt="댱근마켓 지역광고 가이드" />
+            <p>광고는 어떻게 만드나요?</p>
+            <ChevronRight src={chevronIconUrl} alt="댱근마켓 광고 가이드" />
           </FaqItem>
           <FaqItem
             id="FAQ_B"
             onClick={() => handleClick("https://www.daangn.com/wv/faqs/155")}
           >
-            <p>지역광고는 어디에 어떻게 노출되나요?</p>
-            <ChevronRight src={chevronIconUrl} alt="당근마켓 지역광고 가이드" />
+            <p>광고는 어디에 어떻게 노출되나요?</p>
+            <ChevronRight src={chevronIconUrl} alt="당근마켓 광고 가이드" />
           </FaqItem>
           <FaqItem
             id="FAQ_C"
             onClick={() => handleClick("https://www.daangn.com/wv/faqs/159")}
           >
             <p>광고비는 어떻게 결정되나요?</p>
-            <ChevronRight src={chevronIconUrl} alt="당근마켓 지역광고 가이드" />
+            <ChevronRight src={chevronIconUrl} alt="당근마켓 광고 가이드" />
           </FaqItem>
         </Item>
       </Container>
