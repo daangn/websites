@@ -88,9 +88,9 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
         <meta name="color-scheme" content="light dark" />
       </Helmet>
       <GatsbySeo
-        title="당근마켓 지역광고"
+        title="당근마켓 광고"
         openGraph={{
-          title: "당근마켓 지역광고",
+          title: "당근마켓 광고",
           description: "동네 이웃들이 모이는 당근마켓에 광고해 보세요",
           site_name: "당근마켓",
           images: [
@@ -135,7 +135,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
       <Disclaimer>
         <DisclaimerContent>
           <p>
-            당근마켓은 지역광고 관련 교육 및 안내에 있어서 어떤 협력사(대행사, 교육기관 등)와도 공식 파트너십을 맺고 있지 않습니다.<br />
+            당근마켓은 광고 관련 교육 및 안내에 있어서 어떤 협력사(대행사, 교육기관 등)와도 공식 파트너십을 맺고 있지 않습니다.<br />
             이에 관해 문의가 있으시면 당근마켓 광고주센터 <a href="mailto:contact@daangn.com">contact@daangn.com</a>로 문의해주시기 바랍니다.
           </p>
         </DisclaimerContent>

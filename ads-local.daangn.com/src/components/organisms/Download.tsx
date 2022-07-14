@@ -14,11 +14,11 @@ export const Download = () => {
         <IconDaangnApp />
         <TitleBig>지금 시작해 보세요</TitleBig>
         <ImgSubTextMobile>
-          <p>당근마켓 지역광고가 처음이라면</p>
-          <p>광고캐시 5,000원을 드려요.</p>
+          <p>지금 결제하고 광고 시작하면</p>
+          <p>최대 10,000원의 광고캐시를 드려요.</p>
         </ImgSubTextMobile>
         <ImgSubTextPC>
-          <p>당근마켓 지역광고가 처음이라면 광고캐시 5,000원을 드려요.</p>
+          <p>지금 결제하고 광고 시작하면 최대 10,000원의 광고캐시를 드려요.</p>
         </ImgSubTextPC>
         <BtnRow>
           <DownloadButton iconType="google" buttonType="gray" id="google_bottom">

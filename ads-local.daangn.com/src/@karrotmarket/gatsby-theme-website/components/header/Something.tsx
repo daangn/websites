@@ -58,7 +58,7 @@ const Something: React.FC = () => {
         <p onClick={()=>document.getElementById("learn-more-section")!.scrollIntoView({
           behavior: "smooth",
           block: "center",
-        })}><span>지역광고</span>가이드</p>
+        })}><span>광고</span>가이드</p>
       </DisplayAdsGuide>
       <StyledDivider />
       <IconCall />
