@@ -51,7 +51,7 @@
     "@babel/core": "7.18.6",
     "@types/dotenv-safe": "8.1.2",
     "@types/node": "18.0.0",
-    "@types/react": "18.0.14",
+    "@types/react": "18.0.15",
     "@types/react-dom": "18.0.5",
     "babel-preset-gatsby-package": "2.18.0",
     "dotenv-safe": "8.2.0",
