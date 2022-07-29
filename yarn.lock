@@ -3389,7 +3389,7 @@ __metadata:
   dependencies:
     "@babel/cli": 7.18.9
     "@babel/core": 7.18.9
-    "@prismicio/helpers": 2.3.1
+    "@prismicio/helpers": 2.3.2
     "@types/node": 18.0.0
     "@types/react": 18.0.15
     "@types/react-dom": 18.0.6
@@ -3426,7 +3426,7 @@ __metadata:
     "@karrotmarket/gatsby-theme-website": "workspace:^"
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^"
     "@karrotmarket/react-stitches": 0.1.1-1
-    "@prismicio/helpers": 2.3.1
+    "@prismicio/helpers": 2.3.2
     "@reach/router": 1.3.4
     "@seed-design/design-token": alpha
     "@seed-design/stylesheet": alpha
@@ -4165,15 +4165,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prismicio/helpers@npm:2.3.1":
-  version: 2.3.1
-  resolution: "@prismicio/helpers@npm:2.3.1"
+"@prismicio/helpers@npm:2.3.2":
+  version: 2.3.2
+  resolution: "@prismicio/helpers@npm:2.3.2"
   dependencies:
-    "@prismicio/richtext": ^2.0.1
-    "@prismicio/types": ^0.1.27
+    "@prismicio/richtext": ^2.1.0
+    "@prismicio/types": ^0.2.0
     escape-html: ^1.0.3
     imgix-url-builder: ^0.0.3
-  checksum: 9574337c79a62695667fa7237f5850fc8c368bf9c451a5d7d2860c9106c7d514714f6ab4a2f62a1c407e2d988259716c5b674133c5bccd25efe1ba1aa3595165
+  checksum: cebe7bc4bed77e442d5e94d7b2a2fa53850d007e8b1ee7bac75416ff51994d062abb82770e4d89272ec6ce40986687051013962611157af4224d6b87e77c3412
   languageName: node
   linkType: hard
 
@@ -4198,10 +4198,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@prismicio/richtext@npm:^2.1.0":
+  version: 2.1.1
+  resolution: "@prismicio/richtext@npm:2.1.1"
+  dependencies:
+    "@prismicio/types": ^0.2.0
+  checksum: e7745a6d0b182a015d03e8110805cf6ce23115fc16911e5a52adc2c8fabbd9e77974120e040129c1226c6245558e6654e0a821b35e08573b08cc317208ddae85
+  languageName: node
+  linkType: hard
+
 "@prismicio/types@npm:^0.1.22, @prismicio/types@npm:^0.1.27":
   version: 0.1.27
   resolution: "@prismicio/types@npm:0.1.27"
   checksum: cf6e4abf43425f02557396fdc46ef41068129fcdbff4f4a07b96e0f8844e7e183af468ceff4eedb15a98fa0b1c05fcdc7a195e53d6b464817192a1b658cffa55
+  languageName: node
+  linkType: hard
+
+"@prismicio/types@npm:^0.2.0":
+  version: 0.2.0
+  resolution: "@prismicio/types@npm:0.2.0"
+  checksum: 3512fa0cad85bc3cca084f1df2edae2eab0cc4579df678e05820ff60e49da3b10059180c00409c1dc9aefbb0dcf173475eaf9d4b5dbf5862f12fb0cebe022936
   languageName: node
   linkType: hard
 
