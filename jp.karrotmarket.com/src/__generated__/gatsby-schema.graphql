@@ -880,6 +880,15 @@ input FloatQueryOperatorInput {
   nin: [Float]
 }
 
+scalar GatsbyImageData
+
+input GatsbyImageDataQueryOperatorInput {
+  eq: GatsbyImageData
+  in: [GatsbyImageData]
+  ne: GatsbyImageData
+  nin: [GatsbyImageData]
+}
+
 enum GatsbyImageFormat {
   AUTO
   AVIF
@@ -1211,7 +1220,7 @@ type ImageSharp implements Node {
     # The display width of the generated image for layout = FIXED, and the maximum display width of the largest image for layout = CONSTRAINED.
     # Ignored if layout = FLUID.
     width: Int
-  ): JSON!
+  ): GatsbyImageData!
   id: ID!
   internal: Internal!
   original: ImageSharpOriginal
@@ -1362,7 +1371,7 @@ input ImageSharpFilterInput {
   children: NodeFilterListInput
   fixed: ImageSharpFixedFilterInput
   fluid: ImageSharpFluidFilterInput
-  gatsbyImageData: JSONQueryOperatorInput
+  gatsbyImageData: GatsbyImageDataQueryOperatorInput
   id: StringQueryOperatorInput
   internal: InternalFilterInput
   original: ImageSharpOriginalFilterInput
@@ -3733,7 +3742,7 @@ input PrismicAdvertisementContentsSortInput {
   order: [SortOrderEnum] = [ASC]
 }
 
-union PrismicAllDocumentTypes = PrismicAdsContent | PrismicAdvertisementContents | PrismicFaq | PrismicGlobalContents | PrismicIr | PrismicMemberProfile | PrismicPayContents | PrismicSiteNavigation | PrismicTeamBanner | PrismicTeamContents | PrismicTeamsArticle | PrismicTermsAndConditions
+union PrismicAllDocumentTypes = PrismicAdsContent | PrismicAdvertisementContents | PrismicFaq | PrismicFinancialStatements | PrismicGlobalContents | PrismicIr | PrismicJpNoviceGuideArticle | PrismicJpNoviceGuideBanner | PrismicJpNoviceGuideMenu | PrismicMemberProfile | PrismicPayContents | PrismicSiteNavigation | PrismicTeamBanner | PrismicTeamContents | PrismicTeamsArticle | PrismicTermsAndConditions
 
 type PrismicAlternateLanguageType {
   document: PrismicAllDocumentTypes
@@ -4134,6 +4143,256 @@ type PrismicFaqGroupConnection {
 
 input PrismicFaqSortInput {
   fields: [PrismicFaqFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
+}
+
+type PrismicFinancialStatements implements Node {
+  _previewable: ID!
+  alternate_languages: [PrismicAlternateLanguageType!]!
+  children: [Node!]!
+  data: PrismicFinancialStatementsDataType!
+  dataRaw: JSON!
+  first_publication_date(
+    # Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date!
+  href: String!
+  id: ID!
+  internal: Internal!
+  lang: String!
+  last_publication_date(
+    # Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date!
+  parent: Node
+  prismicId: ID!
+  tags: [String!]!
+  type: String!
+  uid: String!
+  url: String
+}
+
+type PrismicFinancialStatementsConnection {
+  distinct(field: PrismicFinancialStatementsFieldsEnum!): [String!]!
+  edges: [PrismicFinancialStatementsEdge!]!
+  group(field: PrismicFinancialStatementsFieldsEnum!, limit: Int, skip: Int): [PrismicFinancialStatementsGroupConnection!]!
+  max(field: PrismicFinancialStatementsFieldsEnum!): Float
+  min(field: PrismicFinancialStatementsFieldsEnum!): Float
+  nodes: [PrismicFinancialStatements!]!
+  pageInfo: PageInfo!
+  sum(field: PrismicFinancialStatementsFieldsEnum!): Float
+  totalCount: Int!
+}
+
+type PrismicFinancialStatementsDataItems {
+  key: String
+  summary: Boolean
+  value: String
+}
+
+input PrismicFinancialStatementsDataItemsFilterInput {
+  key: StringQueryOperatorInput
+  summary: BooleanQueryOperatorInput
+  value: StringQueryOperatorInput
+}
+
+input PrismicFinancialStatementsDataItemsFilterListInput {
+  elemMatch: PrismicFinancialStatementsDataItemsFilterInput
+}
+
+type PrismicFinancialStatementsDataType {
+  items: [PrismicFinancialStatementsDataItems]
+  key_label: String
+  title: PrismicStructuredTextType
+  value_label: String
+  year: Float
+}
+
+input PrismicFinancialStatementsDataTypeFilterInput {
+  items: PrismicFinancialStatementsDataItemsFilterListInput
+  key_label: StringQueryOperatorInput
+  title: PrismicStructuredTextTypeFilterInput
+  value_label: StringQueryOperatorInput
+  year: FloatQueryOperatorInput
+}
+
+type PrismicFinancialStatementsEdge {
+  next: PrismicFinancialStatements
+  node: PrismicFinancialStatements!
+  previous: PrismicFinancialStatements
+}
+
+enum PrismicFinancialStatementsFieldsEnum {
+  _previewable
+  alternate_languages
+  alternate_languages___id
+  alternate_languages___lang
+  alternate_languages___raw
+  alternate_languages___type
+  alternate_languages___uid
+  children
+  children___children
+  children___children___children
+  children___children___children___children
+  children___children___children___id
+  children___children___id
+  children___children___internal___content
+  children___children___internal___contentDigest
+  children___children___internal___description
+  children___children___internal___fieldOwners
+  children___children___internal___ignoreType
+  children___children___internal___mediaType
+  children___children___internal___owner
+  children___children___internal___type
+  children___children___parent___children
+  children___children___parent___id
+  children___id
+  children___internal___content
+  children___internal___contentDigest
+  children___internal___description
+  children___internal___fieldOwners
+  children___internal___ignoreType
+  children___internal___mediaType
+  children___internal___owner
+  children___internal___type
+  children___parent___children
+  children___parent___children___children
+  children___parent___children___id
+  children___parent___id
+  children___parent___internal___content
+  children___parent___internal___contentDigest
+  children___parent___internal___description
+  children___parent___internal___fieldOwners
+  children___parent___internal___ignoreType
+  children___parent___internal___mediaType
+  children___parent___internal___owner
+  children___parent___internal___type
+  children___parent___parent___children
+  children___parent___parent___id
+  dataRaw
+  data___items
+  data___items___key
+  data___items___summary
+  data___items___value
+  data___key_label
+  data___title___html
+  data___title___raw
+  data___title___richText
+  data___title___text
+  data___value_label
+  data___year
+  first_publication_date
+  href
+  id
+  internal___content
+  internal___contentDigest
+  internal___description
+  internal___fieldOwners
+  internal___ignoreType
+  internal___mediaType
+  internal___owner
+  internal___type
+  lang
+  last_publication_date
+  parent___children
+  parent___children___children
+  parent___children___children___children
+  parent___children___children___id
+  parent___children___id
+  parent___children___internal___content
+  parent___children___internal___contentDigest
+  parent___children___internal___description
+  parent___children___internal___fieldOwners
+  parent___children___internal___ignoreType
+  parent___children___internal___mediaType
+  parent___children___internal___owner
+  parent___children___internal___type
+  parent___children___parent___children
+  parent___children___parent___id
+  parent___id
+  parent___internal___content
+  parent___internal___contentDigest
+  parent___internal___description
+  parent___internal___fieldOwners
+  parent___internal___ignoreType
+  parent___internal___mediaType
+  parent___internal___owner
+  parent___internal___type
+  parent___parent___children
+  parent___parent___children___children
+  parent___parent___children___id
+  parent___parent___id
+  parent___parent___internal___content
+  parent___parent___internal___contentDigest
+  parent___parent___internal___description
+  parent___parent___internal___fieldOwners
+  parent___parent___internal___ignoreType
+  parent___parent___internal___mediaType
+  parent___parent___internal___owner
+  parent___parent___internal___type
+  parent___parent___parent___children
+  parent___parent___parent___id
+  prismicId
+  tags
+  type
+  uid
+  url
+}
+
+input PrismicFinancialStatementsFilterInput {
+  _previewable: IDQueryOperatorInput
+  alternate_languages: PrismicAlternateLanguageTypeFilterListInput
+  children: NodeFilterListInput
+  data: PrismicFinancialStatementsDataTypeFilterInput
+  dataRaw: JSONQueryOperatorInput
+  first_publication_date: DateQueryOperatorInput
+  href: StringQueryOperatorInput
+  id: StringQueryOperatorInput
+  internal: InternalFilterInput
+  lang: StringQueryOperatorInput
+  last_publication_date: DateQueryOperatorInput
+  parent: NodeFilterInput
+  prismicId: IDQueryOperatorInput
+  tags: StringQueryOperatorInput
+  type: StringQueryOperatorInput
+  uid: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+}
+
+type PrismicFinancialStatementsGroupConnection {
+  distinct(field: PrismicFinancialStatementsFieldsEnum!): [String!]!
+  edges: [PrismicFinancialStatementsEdge!]!
+  field: String!
+  fieldValue: String
+  group(field: PrismicFinancialStatementsFieldsEnum!, limit: Int, skip: Int): [PrismicFinancialStatementsGroupConnection!]!
+  max(field: PrismicFinancialStatementsFieldsEnum!): Float
+  min(field: PrismicFinancialStatementsFieldsEnum!): Float
+  nodes: [PrismicFinancialStatements!]!
+  pageInfo: PageInfo!
+  sum(field: PrismicFinancialStatementsFieldsEnum!): Float
+  totalCount: Int!
+}
+
+input PrismicFinancialStatementsSortInput {
+  fields: [PrismicFinancialStatementsFieldsEnum]
   order: [SortOrderEnum] = [ASC]
 }
 
@@ -6873,6 +7132,1497 @@ type PrismicIrGroupConnection {
 
 input PrismicIrSortInput {
   fields: [PrismicIrFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
+}
+
+type PrismicJpNoviceGuideArticle implements Node {
+  _previewable: ID!
+  alternate_languages: [PrismicAlternateLanguageType!]!
+  children: [Node!]!
+  data: PrismicJpNoviceGuideArticleDataType!
+  dataRaw: JSON!
+  first_publication_date(
+    # Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date!
+  href: String!
+  id: ID!
+  internal: Internal!
+  lang: String!
+  last_publication_date(
+    # Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date!
+  parent: Node
+  prismicId: ID!
+  tags: [String!]!
+  type: String!
+  uid: String!
+  url: String
+}
+
+type PrismicJpNoviceGuideArticleConnection {
+  distinct(field: PrismicJpNoviceGuideArticleFieldsEnum!): [String!]!
+  edges: [PrismicJpNoviceGuideArticleEdge!]!
+  group(field: PrismicJpNoviceGuideArticleFieldsEnum!, limit: Int, skip: Int): [PrismicJpNoviceGuideArticleGroupConnection!]!
+  max(field: PrismicJpNoviceGuideArticleFieldsEnum!): Float
+  min(field: PrismicJpNoviceGuideArticleFieldsEnum!): Float
+  nodes: [PrismicJpNoviceGuideArticle!]!
+  pageInfo: PageInfo!
+  sum(field: PrismicJpNoviceGuideArticleFieldsEnum!): Float
+  totalCount: Int!
+}
+
+type PrismicJpNoviceGuideArticleDataBodyFooterLinkButton implements PrismicSliceType {
+  id: ID!
+  items: [PrismicJpNoviceGuideArticleDataBodyFooterLinkButtonItem!]!
+  slice_label: String
+  slice_type: String!
+}
+
+type PrismicJpNoviceGuideArticleDataBodyFooterLinkButtonItem {
+  href: PrismicStructuredTextType
+  link_button_color: String
+  link_text: PrismicStructuredTextType
+}
+
+union PrismicJpNoviceGuideArticleDataBodySlicesType = PrismicJpNoviceGuideArticleDataBodyFooterLinkButton | PrismicJpNoviceGuideArticleDataBodyTitleAndIllustration
+
+type PrismicJpNoviceGuideArticleDataBodyTitleAndIllustration implements PrismicSliceType {
+  id: ID!
+  items: [PrismicJpNoviceGuideArticleDataBodyTitleAndIllustrationItem!]!
+  primary: PrismicJpNoviceGuideArticleDataBodyTitleAndIllustrationPrimary!
+  slice_label: String
+  slice_type: String!
+}
+
+type PrismicJpNoviceGuideArticleDataBodyTitleAndIllustrationItem {
+  image: PrismicJpNoviceGuideArticleDataBodyTitleAndIllustrationItemsImageImageType
+  image_caption: PrismicStructuredTextType
+  overflow: Boolean
+}
+
+type PrismicJpNoviceGuideArticleDataBodyTitleAndIllustrationItemsImageImageType {
+  alt: String
+  copyright: String
+  dimensions: PrismicImageDimensionsType
+
+  # Should be used to generate fixed-width images (i.e. the size of the image doesn't change when the size of the browser changes, and are "fixed"). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFixed fragment should be used. See the project's README for more information.
+  fixed(
+    # The fixed image height to render, in px.
+    height: Int
+
+    # The imgix parameters (transformations) to apply to the image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    imgixParams: ImgixParamsInput = {}
+
+    # Any imgix parameters to use only for the blur-up/placeholder image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    placeholderImgixParams: ImgixParamsInput = {}
+
+    # The image quality to use for compression. Range: 0-100, with 100 being highest quality. This setting is not recommended as the quality is already optimized by decreasing quality as the dpr increases to reduce image size while retaining visual quality.
+    quality: Int
+
+    # The fixed image width to render, in px.
+    width: Int = 8192
+  ): ImgixFixed
+
+  # Should be used to generate fluid-width images (i.e. images that change when the size of the browser changes). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFluid fragment should be used. See the project's README for more information.
+  fluid(
+    # The imgix parameters (transformations) to apply to the image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    imgixParams: ImgixParamsInput = {}
+
+    # The maximum px height of the *image* to be *requested*. This does NOT affect the height of the image displayed.
+    maxHeight: Int
+
+    # The maximum px width of the *image* to be *requested*. This does NOT affect the width of the image displayed. The width of the image displayed can be controlled by adding a sizes parameter to the GatsbyImage component. For more information, see this project's readme.
+    maxWidth: Int = 8192
+
+    # Any imgix parameters to use only for the blur-up/placeholder image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    placeholderImgixParams: ImgixParamsInput = {}
+
+    # A custom set of widths (in px) to use for the srcset widths. This feature is not recommended as the default widths are optimized for imgix's caching infrastructure.
+    srcSetBreakpoints: [Int]
+  ): ImgixFluid
+  gatsbyImageData(
+    # If set along with width or height, this will set the value of the other dimension to match the provided aspect ratio, cropping the image if needed.
+    # If neither width or height is provided, height will be set based on the intrinsic width of the source image.
+    aspectRatio: Float
+
+    # Background color applied to the wrapper, or when "letterboxing" an image to another aspect ratio.
+    backgroundColor: String
+
+    # Specifies the image widths to generate. You should rarely need to change this. For FIXED and CONSTRAINED images it is better to allow these to be determined automatically,
+    # based on the image size. For FULL_WIDTH images this can be used to override the default, which is [750, 1080, 1366, 1920].
+    # It will never generate any images larger than the source.
+    breakpoints: [Int]
+
+    # If set, the height of the generated image. If omitted, it is calculated from the supplied width, matching the aspect ratio of the source image.
+    height: Int
+
+    # This argument is used to set parameters to instruct imgix to transform the image. 
+    #         
+    #         All of imgix's parameters can be found here: https://docs.imgix.com/apis/rendering
+    imgixParams: ImgixParamsInput
+
+    # The layout for the image.
+    # FIXED: A static image sized, that does not resize according to the screen width
+    # FULL_WIDTH: The image resizes to fit its container. Pass a "sizes" option if it isn't going to be the full width of the screen.
+    # CONSTRAINED: Resizes to fit its container, up to a maximum width, at which point it will remain fixed in size.
+    layout: GatsbyImageLayout
+
+    # A list of image pixel densities to generate for FIXED and CONSTRAINED images. You should rarely need to change this. It will never generate images larger than the source, and will always include a 1x image.
+    # Default is [ 1, 2 ] for fixed images, meaning 1x, 2x, 3x, and [0.25, 0.5, 1, 2] for fluid. In this case, an image with a fluid layout and width = 400 would generate images at 100, 200, 400 and 800px wide.
+    outputPixelDensities: [Float]
+
+    # Format of generated placeholder image, displayed while the main image loads.
+    # BLURRED: a blurred, low resolution image, encoded as a base64 data URI (default)
+    # DOMINANT_COLOR: a solid color, calculated from the dominant color of the image.
+    # NONE: no placeholder. Set "backgroundColor" to use a fixed background color.
+    placeholder: ImgixPlaceholder
+
+    # This argument is used to set parameters to instruct imgix to transform the placeholder image. By default all parameters passed to 'imgixParams' are already set here, but this can be used to override or set extra parameters. 
+    #         
+    #         All of imgix's parameters can be found here: https://docs.imgix.com/apis/rendering
+    placeholderImgixParams: ImgixParamsInput
+
+    # The "sizes" property, passed to the img tag. This describes the display size of the image.
+    # This does not affect the generated images, but is used by the browser to decide which images to download. You can leave this blank for fixed images, or if the responsive image
+    # container will be the full width of the screen. In these cases we will generate an appropriate value.
+    sizes: String
+
+    # This argument determines the maximum srcset width that is generated, if the layout type is FULL_WIDTH. If the layout type is CONSTRAINED, the width argument will be used. Furthermore, in every case, the maximum srcset width is constrained by the width of the source image. The default is 8192px, which is the render limit of the imgix service.
+    srcSetMaxWidth: Int = 8192
+
+    # This argument determines the minimum srcset width that is generated. The default is 100px.
+    srcSetMinWidth: Int = 100
+
+    # The display width of the generated image for layout = FIXED, and the display width of the largest image for layout = CONSTRAINED.
+    # The actual largest image resolution will be this value multiplied by the largest value in outputPixelDensities
+    # Ignored if layout = FLUID.
+    width: Int
+
+    # This argument affects the breakpoints used for the srcsets, dictates the maximum tolerated size difference between an image's downloaded size and its rendered size. For example: setting this value to 0.1 means that an image will not render more than 10% larger or smaller than its native size. In practice, the image URLs generated for a width-based srcset attribute will grow by twice this rate. A lower tolerance means images will render closer to their native size (thereby increasing perceived image quality), but a large srcset list will be generated and consequently users may experience lower rates of cache-hit for pre-rendered images on your site.
+    #
+    # By default this rate is set to 8 percent, which we consider to be the ideal rate for maximizing cache hits without sacrificing visual quality. Users can specify their own width tolerance by providing a positive scalar value as widthTolerance to the third options object:
+    widthTolerance: Float = 0.08
+  ): JSON
+  localFile: File
+
+  # A plain imgix URL with the URL and params applied.
+  url(imgixParams: ImgixParamsInput = {}): String
+}
+
+type PrismicJpNoviceGuideArticleDataBodyTitleAndIllustrationPrimary {
+  content: PrismicStructuredTextType
+  href: PrismicStructuredTextType
+  inverted: Boolean
+  key_text: String
+  link_text: String
+  main_title: PrismicStructuredTextType
+  section_illustration: PrismicJpNoviceGuideArticleDataBodyTitleAndIllustrationPrimarySectionIllustrationImageType
+  sub_title: PrismicStructuredTextType
+  sub_title_bold: Boolean
+}
+
+type PrismicJpNoviceGuideArticleDataBodyTitleAndIllustrationPrimarySectionIllustrationImageType {
+  alt: String
+  copyright: String
+  dimensions: PrismicImageDimensionsType
+
+  # Should be used to generate fixed-width images (i.e. the size of the image doesn't change when the size of the browser changes, and are "fixed"). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFixed fragment should be used. See the project's README for more information.
+  fixed(
+    # The fixed image height to render, in px.
+    height: Int
+
+    # The imgix parameters (transformations) to apply to the image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    imgixParams: ImgixParamsInput = {}
+
+    # Any imgix parameters to use only for the blur-up/placeholder image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    placeholderImgixParams: ImgixParamsInput = {}
+
+    # The image quality to use for compression. Range: 0-100, with 100 being highest quality. This setting is not recommended as the quality is already optimized by decreasing quality as the dpr increases to reduce image size while retaining visual quality.
+    quality: Int
+
+    # The fixed image width to render, in px.
+    width: Int = 8192
+  ): ImgixFixed
+
+  # Should be used to generate fluid-width images (i.e. images that change when the size of the browser changes). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFluid fragment should be used. See the project's README for more information.
+  fluid(
+    # The imgix parameters (transformations) to apply to the image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    imgixParams: ImgixParamsInput = {}
+
+    # The maximum px height of the *image* to be *requested*. This does NOT affect the height of the image displayed.
+    maxHeight: Int
+
+    # The maximum px width of the *image* to be *requested*. This does NOT affect the width of the image displayed. The width of the image displayed can be controlled by adding a sizes parameter to the GatsbyImage component. For more information, see this project's readme.
+    maxWidth: Int = 8192
+
+    # Any imgix parameters to use only for the blur-up/placeholder image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    placeholderImgixParams: ImgixParamsInput = {}
+
+    # A custom set of widths (in px) to use for the srcset widths. This feature is not recommended as the default widths are optimized for imgix's caching infrastructure.
+    srcSetBreakpoints: [Int]
+  ): ImgixFluid
+  gatsbyImageData(
+    # If set along with width or height, this will set the value of the other dimension to match the provided aspect ratio, cropping the image if needed.
+    # If neither width or height is provided, height will be set based on the intrinsic width of the source image.
+    aspectRatio: Float
+
+    # Background color applied to the wrapper, or when "letterboxing" an image to another aspect ratio.
+    backgroundColor: String
+
+    # Specifies the image widths to generate. You should rarely need to change this. For FIXED and CONSTRAINED images it is better to allow these to be determined automatically,
+    # based on the image size. For FULL_WIDTH images this can be used to override the default, which is [750, 1080, 1366, 1920].
+    # It will never generate any images larger than the source.
+    breakpoints: [Int]
+
+    # If set, the height of the generated image. If omitted, it is calculated from the supplied width, matching the aspect ratio of the source image.
+    height: Int
+
+    # This argument is used to set parameters to instruct imgix to transform the image. 
+    #         
+    #         All of imgix's parameters can be found here: https://docs.imgix.com/apis/rendering
+    imgixParams: ImgixParamsInput
+
+    # The layout for the image.
+    # FIXED: A static image sized, that does not resize according to the screen width
+    # FULL_WIDTH: The image resizes to fit its container. Pass a "sizes" option if it isn't going to be the full width of the screen.
+    # CONSTRAINED: Resizes to fit its container, up to a maximum width, at which point it will remain fixed in size.
+    layout: GatsbyImageLayout
+
+    # A list of image pixel densities to generate for FIXED and CONSTRAINED images. You should rarely need to change this. It will never generate images larger than the source, and will always include a 1x image.
+    # Default is [ 1, 2 ] for fixed images, meaning 1x, 2x, 3x, and [0.25, 0.5, 1, 2] for fluid. In this case, an image with a fluid layout and width = 400 would generate images at 100, 200, 400 and 800px wide.
+    outputPixelDensities: [Float]
+
+    # Format of generated placeholder image, displayed while the main image loads.
+    # BLURRED: a blurred, low resolution image, encoded as a base64 data URI (default)
+    # DOMINANT_COLOR: a solid color, calculated from the dominant color of the image.
+    # NONE: no placeholder. Set "backgroundColor" to use a fixed background color.
+    placeholder: ImgixPlaceholder
+
+    # This argument is used to set parameters to instruct imgix to transform the placeholder image. By default all parameters passed to 'imgixParams' are already set here, but this can be used to override or set extra parameters. 
+    #         
+    #         All of imgix's parameters can be found here: https://docs.imgix.com/apis/rendering
+    placeholderImgixParams: ImgixParamsInput
+
+    # The "sizes" property, passed to the img tag. This describes the display size of the image.
+    # This does not affect the generated images, but is used by the browser to decide which images to download. You can leave this blank for fixed images, or if the responsive image
+    # container will be the full width of the screen. In these cases we will generate an appropriate value.
+    sizes: String
+
+    # This argument determines the maximum srcset width that is generated, if the layout type is FULL_WIDTH. If the layout type is CONSTRAINED, the width argument will be used. Furthermore, in every case, the maximum srcset width is constrained by the width of the source image. The default is 8192px, which is the render limit of the imgix service.
+    srcSetMaxWidth: Int = 8192
+
+    # This argument determines the minimum srcset width that is generated. The default is 100px.
+    srcSetMinWidth: Int = 100
+
+    # The display width of the generated image for layout = FIXED, and the display width of the largest image for layout = CONSTRAINED.
+    # The actual largest image resolution will be this value multiplied by the largest value in outputPixelDensities
+    # Ignored if layout = FLUID.
+    width: Int
+
+    # This argument affects the breakpoints used for the srcsets, dictates the maximum tolerated size difference between an image's downloaded size and its rendered size. For example: setting this value to 0.1 means that an image will not render more than 10% larger or smaller than its native size. In practice, the image URLs generated for a width-based srcset attribute will grow by twice this rate. A lower tolerance means images will render closer to their native size (thereby increasing perceived image quality), but a large srcset list will be generated and consequently users may experience lower rates of cache-hit for pre-rendered images on your site.
+    #
+    # By default this rate is set to 8 percent, which we consider to be the ideal rate for maximizing cache hits without sacrificing visual quality. Users can specify their own width tolerance by providing a positive scalar value as widthTolerance to the third options object:
+    widthTolerance: Float = 0.08
+  ): JSON
+  localFile: File
+
+  # A plain imgix URL with the URL and params applied.
+  url(imgixParams: ImgixParamsInput = {}): String
+}
+
+type PrismicJpNoviceGuideArticleDataHeaderTitleImageImageType {
+  alt: String
+  copyright: String
+  dimensions: PrismicImageDimensionsType
+
+  # Should be used to generate fixed-width images (i.e. the size of the image doesn't change when the size of the browser changes, and are "fixed"). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFixed fragment should be used. See the project's README for more information.
+  fixed(
+    # The fixed image height to render, in px.
+    height: Int
+
+    # The imgix parameters (transformations) to apply to the image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    imgixParams: ImgixParamsInput = {}
+
+    # Any imgix parameters to use only for the blur-up/placeholder image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    placeholderImgixParams: ImgixParamsInput = {}
+
+    # The image quality to use for compression. Range: 0-100, with 100 being highest quality. This setting is not recommended as the quality is already optimized by decreasing quality as the dpr increases to reduce image size while retaining visual quality.
+    quality: Int
+
+    # The fixed image width to render, in px.
+    width: Int = 8192
+  ): ImgixFixed
+
+  # Should be used to generate fluid-width images (i.e. images that change when the size of the browser changes). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFluid fragment should be used. See the project's README for more information.
+  fluid(
+    # The imgix parameters (transformations) to apply to the image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    imgixParams: ImgixParamsInput = {}
+
+    # The maximum px height of the *image* to be *requested*. This does NOT affect the height of the image displayed.
+    maxHeight: Int
+
+    # The maximum px width of the *image* to be *requested*. This does NOT affect the width of the image displayed. The width of the image displayed can be controlled by adding a sizes parameter to the GatsbyImage component. For more information, see this project's readme.
+    maxWidth: Int = 8192
+
+    # Any imgix parameters to use only for the blur-up/placeholder image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    placeholderImgixParams: ImgixParamsInput = {}
+
+    # A custom set of widths (in px) to use for the srcset widths. This feature is not recommended as the default widths are optimized for imgix's caching infrastructure.
+    srcSetBreakpoints: [Int]
+  ): ImgixFluid
+  gatsbyImageData(
+    # If set along with width or height, this will set the value of the other dimension to match the provided aspect ratio, cropping the image if needed.
+    # If neither width or height is provided, height will be set based on the intrinsic width of the source image.
+    aspectRatio: Float
+
+    # Background color applied to the wrapper, or when "letterboxing" an image to another aspect ratio.
+    backgroundColor: String
+
+    # Specifies the image widths to generate. You should rarely need to change this. For FIXED and CONSTRAINED images it is better to allow these to be determined automatically,
+    # based on the image size. For FULL_WIDTH images this can be used to override the default, which is [750, 1080, 1366, 1920].
+    # It will never generate any images larger than the source.
+    breakpoints: [Int]
+
+    # If set, the height of the generated image. If omitted, it is calculated from the supplied width, matching the aspect ratio of the source image.
+    height: Int
+
+    # This argument is used to set parameters to instruct imgix to transform the image. 
+    #         
+    #         All of imgix's parameters can be found here: https://docs.imgix.com/apis/rendering
+    imgixParams: ImgixParamsInput
+
+    # The layout for the image.
+    # FIXED: A static image sized, that does not resize according to the screen width
+    # FULL_WIDTH: The image resizes to fit its container. Pass a "sizes" option if it isn't going to be the full width of the screen.
+    # CONSTRAINED: Resizes to fit its container, up to a maximum width, at which point it will remain fixed in size.
+    layout: GatsbyImageLayout
+
+    # A list of image pixel densities to generate for FIXED and CONSTRAINED images. You should rarely need to change this. It will never generate images larger than the source, and will always include a 1x image.
+    # Default is [ 1, 2 ] for fixed images, meaning 1x, 2x, 3x, and [0.25, 0.5, 1, 2] for fluid. In this case, an image with a fluid layout and width = 400 would generate images at 100, 200, 400 and 800px wide.
+    outputPixelDensities: [Float]
+
+    # Format of generated placeholder image, displayed while the main image loads.
+    # BLURRED: a blurred, low resolution image, encoded as a base64 data URI (default)
+    # DOMINANT_COLOR: a solid color, calculated from the dominant color of the image.
+    # NONE: no placeholder. Set "backgroundColor" to use a fixed background color.
+    placeholder: ImgixPlaceholder
+
+    # This argument is used to set parameters to instruct imgix to transform the placeholder image. By default all parameters passed to 'imgixParams' are already set here, but this can be used to override or set extra parameters. 
+    #         
+    #         All of imgix's parameters can be found here: https://docs.imgix.com/apis/rendering
+    placeholderImgixParams: ImgixParamsInput
+
+    # The "sizes" property, passed to the img tag. This describes the display size of the image.
+    # This does not affect the generated images, but is used by the browser to decide which images to download. You can leave this blank for fixed images, or if the responsive image
+    # container will be the full width of the screen. In these cases we will generate an appropriate value.
+    sizes: String
+
+    # This argument determines the maximum srcset width that is generated, if the layout type is FULL_WIDTH. If the layout type is CONSTRAINED, the width argument will be used. Furthermore, in every case, the maximum srcset width is constrained by the width of the source image. The default is 8192px, which is the render limit of the imgix service.
+    srcSetMaxWidth: Int = 8192
+
+    # This argument determines the minimum srcset width that is generated. The default is 100px.
+    srcSetMinWidth: Int = 100
+
+    # The display width of the generated image for layout = FIXED, and the display width of the largest image for layout = CONSTRAINED.
+    # The actual largest image resolution will be this value multiplied by the largest value in outputPixelDensities
+    # Ignored if layout = FLUID.
+    width: Int
+
+    # This argument affects the breakpoints used for the srcsets, dictates the maximum tolerated size difference between an image's downloaded size and its rendered size. For example: setting this value to 0.1 means that an image will not render more than 10% larger or smaller than its native size. In practice, the image URLs generated for a width-based srcset attribute will grow by twice this rate. A lower tolerance means images will render closer to their native size (thereby increasing perceived image quality), but a large srcset list will be generated and consequently users may experience lower rates of cache-hit for pre-rendered images on your site.
+    #
+    # By default this rate is set to 8 percent, which we consider to be the ideal rate for maximizing cache hits without sacrificing visual quality. Users can specify their own width tolerance by providing a positive scalar value as widthTolerance to the third options object:
+    widthTolerance: Float = 0.08
+  ): JSON
+  localFile: File
+
+  # A plain imgix URL with the URL and params applied.
+  url(imgixParams: ImgixParamsInput = {}): String
+}
+
+input PrismicJpNoviceGuideArticleDataHeaderTitleImageImageTypeFilterInput {
+  alt: StringQueryOperatorInput
+  copyright: StringQueryOperatorInput
+  dimensions: PrismicImageDimensionsTypeFilterInput
+  fixed: ImgixFixedFilterInput
+  fluid: ImgixFluidFilterInput
+  gatsbyImageData: JSONQueryOperatorInput
+  localFile: FileFilterInput
+  url: StringQueryOperatorInput
+}
+
+type PrismicJpNoviceGuideArticleDataType {
+  article_title: PrismicStructuredTextType
+  body: [PrismicJpNoviceGuideArticleDataBodySlicesType!]!
+  header_title_image: PrismicJpNoviceGuideArticleDataHeaderTitleImageImageType
+}
+
+input PrismicJpNoviceGuideArticleDataTypeFilterInput {
+  article_title: PrismicStructuredTextTypeFilterInput
+  header_title_image: PrismicJpNoviceGuideArticleDataHeaderTitleImageImageTypeFilterInput
+}
+
+type PrismicJpNoviceGuideArticleEdge {
+  next: PrismicJpNoviceGuideArticle
+  node: PrismicJpNoviceGuideArticle!
+  previous: PrismicJpNoviceGuideArticle
+}
+
+enum PrismicJpNoviceGuideArticleFieldsEnum {
+  _previewable
+  alternate_languages
+  alternate_languages___id
+  alternate_languages___lang
+  alternate_languages___raw
+  alternate_languages___type
+  alternate_languages___uid
+  children
+  children___children
+  children___children___children
+  children___children___children___children
+  children___children___children___id
+  children___children___id
+  children___children___internal___content
+  children___children___internal___contentDigest
+  children___children___internal___description
+  children___children___internal___fieldOwners
+  children___children___internal___ignoreType
+  children___children___internal___mediaType
+  children___children___internal___owner
+  children___children___internal___type
+  children___children___parent___children
+  children___children___parent___id
+  children___id
+  children___internal___content
+  children___internal___contentDigest
+  children___internal___description
+  children___internal___fieldOwners
+  children___internal___ignoreType
+  children___internal___mediaType
+  children___internal___owner
+  children___internal___type
+  children___parent___children
+  children___parent___children___children
+  children___parent___children___id
+  children___parent___id
+  children___parent___internal___content
+  children___parent___internal___contentDigest
+  children___parent___internal___description
+  children___parent___internal___fieldOwners
+  children___parent___internal___ignoreType
+  children___parent___internal___mediaType
+  children___parent___internal___owner
+  children___parent___internal___type
+  children___parent___parent___children
+  children___parent___parent___id
+  dataRaw
+  data___article_title___html
+  data___article_title___raw
+  data___article_title___richText
+  data___article_title___text
+  data___header_title_image___alt
+  data___header_title_image___copyright
+  data___header_title_image___dimensions___height
+  data___header_title_image___dimensions___width
+  data___header_title_image___fixed___base64 @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___header_title_image___fixed___height @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___header_title_image___fixed___sizes @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___header_title_image___fixed___src @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___header_title_image___fixed___srcSet @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___header_title_image___fixed___srcSetWebp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___header_title_image___fixed___srcWebp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___header_title_image___fixed___width @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___header_title_image___fluid___aspectRatio @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___header_title_image___fluid___base64 @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___header_title_image___fluid___sizes @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___header_title_image___fluid___src @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___header_title_image___fluid___srcSet @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___header_title_image___fluid___srcSetWebp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___header_title_image___fluid___srcWebp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___header_title_image___gatsbyImageData @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___header_title_image___localFile___absolutePath
+  data___header_title_image___localFile___accessTime
+  data___header_title_image___localFile___atime
+  data___header_title_image___localFile___atimeMs
+  data___header_title_image___localFile___base
+  data___header_title_image___localFile___birthTime
+  data___header_title_image___localFile___birthtime
+  data___header_title_image___localFile___birthtimeMs
+  data___header_title_image___localFile___blksize
+  data___header_title_image___localFile___blocks
+  data___header_title_image___localFile___changeTime
+  data___header_title_image___localFile___children
+  data___header_title_image___localFile___childrenImageSharp
+  data___header_title_image___localFile___ctime
+  data___header_title_image___localFile___ctimeMs
+  data___header_title_image___localFile___dev
+  data___header_title_image___localFile___dir
+  data___header_title_image___localFile___ext
+  data___header_title_image___localFile___extension
+  data___header_title_image___localFile___gid
+  data___header_title_image___localFile___id
+  data___header_title_image___localFile___ino
+  data___header_title_image___localFile___mode
+  data___header_title_image___localFile___modifiedTime
+  data___header_title_image___localFile___mtime
+  data___header_title_image___localFile___mtimeMs
+  data___header_title_image___localFile___name
+  data___header_title_image___localFile___nlink
+  data___header_title_image___localFile___prettySize
+  data___header_title_image___localFile___rdev
+  data___header_title_image___localFile___relativeDirectory
+  data___header_title_image___localFile___relativePath
+  data___header_title_image___localFile___root
+  data___header_title_image___localFile___size
+  data___header_title_image___localFile___sourceInstanceName
+  data___header_title_image___localFile___uid
+  data___header_title_image___localFile___url
+  data___header_title_image___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  first_publication_date
+  href
+  id
+  internal___content
+  internal___contentDigest
+  internal___description
+  internal___fieldOwners
+  internal___ignoreType
+  internal___mediaType
+  internal___owner
+  internal___type
+  lang
+  last_publication_date
+  parent___children
+  parent___children___children
+  parent___children___children___children
+  parent___children___children___id
+  parent___children___id
+  parent___children___internal___content
+  parent___children___internal___contentDigest
+  parent___children___internal___description
+  parent___children___internal___fieldOwners
+  parent___children___internal___ignoreType
+  parent___children___internal___mediaType
+  parent___children___internal___owner
+  parent___children___internal___type
+  parent___children___parent___children
+  parent___children___parent___id
+  parent___id
+  parent___internal___content
+  parent___internal___contentDigest
+  parent___internal___description
+  parent___internal___fieldOwners
+  parent___internal___ignoreType
+  parent___internal___mediaType
+  parent___internal___owner
+  parent___internal___type
+  parent___parent___children
+  parent___parent___children___children
+  parent___parent___children___id
+  parent___parent___id
+  parent___parent___internal___content
+  parent___parent___internal___contentDigest
+  parent___parent___internal___description
+  parent___parent___internal___fieldOwners
+  parent___parent___internal___ignoreType
+  parent___parent___internal___mediaType
+  parent___parent___internal___owner
+  parent___parent___internal___type
+  parent___parent___parent___children
+  parent___parent___parent___id
+  prismicId
+  tags
+  type
+  uid
+  url
+}
+
+input PrismicJpNoviceGuideArticleFilterInput {
+  _previewable: IDQueryOperatorInput
+  alternate_languages: PrismicAlternateLanguageTypeFilterListInput
+  children: NodeFilterListInput
+  data: PrismicJpNoviceGuideArticleDataTypeFilterInput
+  dataRaw: JSONQueryOperatorInput
+  first_publication_date: DateQueryOperatorInput
+  href: StringQueryOperatorInput
+  id: StringQueryOperatorInput
+  internal: InternalFilterInput
+  lang: StringQueryOperatorInput
+  last_publication_date: DateQueryOperatorInput
+  parent: NodeFilterInput
+  prismicId: IDQueryOperatorInput
+  tags: StringQueryOperatorInput
+  type: StringQueryOperatorInput
+  uid: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+}
+
+type PrismicJpNoviceGuideArticleGroupConnection {
+  distinct(field: PrismicJpNoviceGuideArticleFieldsEnum!): [String!]!
+  edges: [PrismicJpNoviceGuideArticleEdge!]!
+  field: String!
+  fieldValue: String
+  group(field: PrismicJpNoviceGuideArticleFieldsEnum!, limit: Int, skip: Int): [PrismicJpNoviceGuideArticleGroupConnection!]!
+  max(field: PrismicJpNoviceGuideArticleFieldsEnum!): Float
+  min(field: PrismicJpNoviceGuideArticleFieldsEnum!): Float
+  nodes: [PrismicJpNoviceGuideArticle!]!
+  pageInfo: PageInfo!
+  sum(field: PrismicJpNoviceGuideArticleFieldsEnum!): Float
+  totalCount: Int!
+}
+
+input PrismicJpNoviceGuideArticleSortInput {
+  fields: [PrismicJpNoviceGuideArticleFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
+}
+
+type PrismicJpNoviceGuideBanner implements Node {
+  _previewable: ID!
+  alternate_languages: [PrismicAlternateLanguageType!]!
+  children: [Node!]!
+  data: PrismicJpNoviceGuideBannerDataType!
+  dataRaw: JSON!
+  first_publication_date(
+    # Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date!
+  href: String!
+  id: ID!
+  internal: Internal!
+  lang: String!
+  last_publication_date(
+    # Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date!
+  parent: Node
+  prismicId: ID!
+  tags: [String!]!
+  type: String!
+  url: String
+}
+
+type PrismicJpNoviceGuideBannerConnection {
+  distinct(field: PrismicJpNoviceGuideBannerFieldsEnum!): [String!]!
+  edges: [PrismicJpNoviceGuideBannerEdge!]!
+  group(field: PrismicJpNoviceGuideBannerFieldsEnum!, limit: Int, skip: Int): [PrismicJpNoviceGuideBannerGroupConnection!]!
+  max(field: PrismicJpNoviceGuideBannerFieldsEnum!): Float
+  min(field: PrismicJpNoviceGuideBannerFieldsEnum!): Float
+  nodes: [PrismicJpNoviceGuideBanner!]!
+  pageInfo: PageInfo!
+  sum(field: PrismicJpNoviceGuideBannerFieldsEnum!): Float
+  totalCount: Int!
+}
+
+type PrismicJpNoviceGuideBannerDataImageImageType {
+  alt: String
+  copyright: String
+  dimensions: PrismicImageDimensionsType
+
+  # Should be used to generate fixed-width images (i.e. the size of the image doesn't change when the size of the browser changes, and are "fixed"). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFixed fragment should be used. See the project's README for more information.
+  fixed(
+    # The fixed image height to render, in px.
+    height: Int
+
+    # The imgix parameters (transformations) to apply to the image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    imgixParams: ImgixParamsInput = {}
+
+    # Any imgix parameters to use only for the blur-up/placeholder image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    placeholderImgixParams: ImgixParamsInput = {}
+
+    # The image quality to use for compression. Range: 0-100, with 100 being highest quality. This setting is not recommended as the quality is already optimized by decreasing quality as the dpr increases to reduce image size while retaining visual quality.
+    quality: Int
+
+    # The fixed image width to render, in px.
+    width: Int = 8192
+  ): ImgixFixed
+
+  # Should be used to generate fluid-width images (i.e. images that change when the size of the browser changes). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFluid fragment should be used. See the project's README for more information.
+  fluid(
+    # The imgix parameters (transformations) to apply to the image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    imgixParams: ImgixParamsInput = {}
+
+    # The maximum px height of the *image* to be *requested*. This does NOT affect the height of the image displayed.
+    maxHeight: Int
+
+    # The maximum px width of the *image* to be *requested*. This does NOT affect the width of the image displayed. The width of the image displayed can be controlled by adding a sizes parameter to the GatsbyImage component. For more information, see this project's readme.
+    maxWidth: Int = 8192
+
+    # Any imgix parameters to use only for the blur-up/placeholder image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    placeholderImgixParams: ImgixParamsInput = {}
+
+    # A custom set of widths (in px) to use for the srcset widths. This feature is not recommended as the default widths are optimized for imgix's caching infrastructure.
+    srcSetBreakpoints: [Int]
+  ): ImgixFluid
+  gatsbyImageData(
+    # If set along with width or height, this will set the value of the other dimension to match the provided aspect ratio, cropping the image if needed.
+    # If neither width or height is provided, height will be set based on the intrinsic width of the source image.
+    aspectRatio: Float
+
+    # Background color applied to the wrapper, or when "letterboxing" an image to another aspect ratio.
+    backgroundColor: String
+
+    # Specifies the image widths to generate. You should rarely need to change this. For FIXED and CONSTRAINED images it is better to allow these to be determined automatically,
+    # based on the image size. For FULL_WIDTH images this can be used to override the default, which is [750, 1080, 1366, 1920].
+    # It will never generate any images larger than the source.
+    breakpoints: [Int]
+
+    # If set, the height of the generated image. If omitted, it is calculated from the supplied width, matching the aspect ratio of the source image.
+    height: Int
+
+    # This argument is used to set parameters to instruct imgix to transform the image. 
+    #         
+    #         All of imgix's parameters can be found here: https://docs.imgix.com/apis/rendering
+    imgixParams: ImgixParamsInput
+
+    # The layout for the image.
+    # FIXED: A static image sized, that does not resize according to the screen width
+    # FULL_WIDTH: The image resizes to fit its container. Pass a "sizes" option if it isn't going to be the full width of the screen.
+    # CONSTRAINED: Resizes to fit its container, up to a maximum width, at which point it will remain fixed in size.
+    layout: GatsbyImageLayout
+
+    # A list of image pixel densities to generate for FIXED and CONSTRAINED images. You should rarely need to change this. It will never generate images larger than the source, and will always include a 1x image.
+    # Default is [ 1, 2 ] for fixed images, meaning 1x, 2x, 3x, and [0.25, 0.5, 1, 2] for fluid. In this case, an image with a fluid layout and width = 400 would generate images at 100, 200, 400 and 800px wide.
+    outputPixelDensities: [Float]
+
+    # Format of generated placeholder image, displayed while the main image loads.
+    # BLURRED: a blurred, low resolution image, encoded as a base64 data URI (default)
+    # DOMINANT_COLOR: a solid color, calculated from the dominant color of the image.
+    # NONE: no placeholder. Set "backgroundColor" to use a fixed background color.
+    placeholder: ImgixPlaceholder
+
+    # This argument is used to set parameters to instruct imgix to transform the placeholder image. By default all parameters passed to 'imgixParams' are already set here, but this can be used to override or set extra parameters. 
+    #         
+    #         All of imgix's parameters can be found here: https://docs.imgix.com/apis/rendering
+    placeholderImgixParams: ImgixParamsInput
+
+    # The "sizes" property, passed to the img tag. This describes the display size of the image.
+    # This does not affect the generated images, but is used by the browser to decide which images to download. You can leave this blank for fixed images, or if the responsive image
+    # container will be the full width of the screen. In these cases we will generate an appropriate value.
+    sizes: String
+
+    # This argument determines the maximum srcset width that is generated, if the layout type is FULL_WIDTH. If the layout type is CONSTRAINED, the width argument will be used. Furthermore, in every case, the maximum srcset width is constrained by the width of the source image. The default is 8192px, which is the render limit of the imgix service.
+    srcSetMaxWidth: Int = 8192
+
+    # This argument determines the minimum srcset width that is generated. The default is 100px.
+    srcSetMinWidth: Int = 100
+
+    # The display width of the generated image for layout = FIXED, and the display width of the largest image for layout = CONSTRAINED.
+    # The actual largest image resolution will be this value multiplied by the largest value in outputPixelDensities
+    # Ignored if layout = FLUID.
+    width: Int
+
+    # This argument affects the breakpoints used for the srcsets, dictates the maximum tolerated size difference between an image's downloaded size and its rendered size. For example: setting this value to 0.1 means that an image will not render more than 10% larger or smaller than its native size. In practice, the image URLs generated for a width-based srcset attribute will grow by twice this rate. A lower tolerance means images will render closer to their native size (thereby increasing perceived image quality), but a large srcset list will be generated and consequently users may experience lower rates of cache-hit for pre-rendered images on your site.
+    #
+    # By default this rate is set to 8 percent, which we consider to be the ideal rate for maximizing cache hits without sacrificing visual quality. Users can specify their own width tolerance by providing a positive scalar value as widthTolerance to the third options object:
+    widthTolerance: Float = 0.08
+  ): JSON
+  localFile: File
+
+  # A plain imgix URL with the URL and params applied.
+  url(imgixParams: ImgixParamsInput = {}): String
+}
+
+input PrismicJpNoviceGuideBannerDataImageImageTypeFilterInput {
+  alt: StringQueryOperatorInput
+  copyright: StringQueryOperatorInput
+  dimensions: PrismicImageDimensionsTypeFilterInput
+  fixed: ImgixFixedFilterInput
+  fluid: ImgixFluidFilterInput
+  gatsbyImageData: JSONQueryOperatorInput
+  localFile: FileFilterInput
+  url: StringQueryOperatorInput
+}
+
+type PrismicJpNoviceGuideBannerDataType {
+  description: PrismicStructuredTextType
+  href: PrismicLinkType
+  image: PrismicJpNoviceGuideBannerDataImageImageType
+  link_text: PrismicStructuredTextType
+  title: PrismicStructuredTextType
+}
+
+input PrismicJpNoviceGuideBannerDataTypeFilterInput {
+  description: PrismicStructuredTextTypeFilterInput
+  href: PrismicLinkTypeFilterInput
+  image: PrismicJpNoviceGuideBannerDataImageImageTypeFilterInput
+  link_text: PrismicStructuredTextTypeFilterInput
+  title: PrismicStructuredTextTypeFilterInput
+}
+
+type PrismicJpNoviceGuideBannerEdge {
+  next: PrismicJpNoviceGuideBanner
+  node: PrismicJpNoviceGuideBanner!
+  previous: PrismicJpNoviceGuideBanner
+}
+
+enum PrismicJpNoviceGuideBannerFieldsEnum {
+  _previewable
+  alternate_languages
+  alternate_languages___id
+  alternate_languages___lang
+  alternate_languages___raw
+  alternate_languages___type
+  alternate_languages___uid
+  children
+  children___children
+  children___children___children
+  children___children___children___children
+  children___children___children___id
+  children___children___id
+  children___children___internal___content
+  children___children___internal___contentDigest
+  children___children___internal___description
+  children___children___internal___fieldOwners
+  children___children___internal___ignoreType
+  children___children___internal___mediaType
+  children___children___internal___owner
+  children___children___internal___type
+  children___children___parent___children
+  children___children___parent___id
+  children___id
+  children___internal___content
+  children___internal___contentDigest
+  children___internal___description
+  children___internal___fieldOwners
+  children___internal___ignoreType
+  children___internal___mediaType
+  children___internal___owner
+  children___internal___type
+  children___parent___children
+  children___parent___children___children
+  children___parent___children___id
+  children___parent___id
+  children___parent___internal___content
+  children___parent___internal___contentDigest
+  children___parent___internal___description
+  children___parent___internal___fieldOwners
+  children___parent___internal___ignoreType
+  children___parent___internal___mediaType
+  children___parent___internal___owner
+  children___parent___internal___type
+  children___parent___parent___children
+  children___parent___parent___id
+  dataRaw
+  data___description___html
+  data___description___raw
+  data___description___richText
+  data___description___text
+  data___href___id
+  data___href___isBroken
+  data___href___lang
+  data___href___link_type
+  data___href___localFile___absolutePath
+  data___href___localFile___accessTime
+  data___href___localFile___atime
+  data___href___localFile___atimeMs
+  data___href___localFile___base
+  data___href___localFile___birthTime
+  data___href___localFile___birthtime
+  data___href___localFile___birthtimeMs
+  data___href___localFile___blksize
+  data___href___localFile___blocks
+  data___href___localFile___changeTime
+  data___href___localFile___children
+  data___href___localFile___childrenImageSharp
+  data___href___localFile___ctime
+  data___href___localFile___ctimeMs
+  data___href___localFile___dev
+  data___href___localFile___dir
+  data___href___localFile___ext
+  data___href___localFile___extension
+  data___href___localFile___gid
+  data___href___localFile___id
+  data___href___localFile___ino
+  data___href___localFile___mode
+  data___href___localFile___modifiedTime
+  data___href___localFile___mtime
+  data___href___localFile___mtimeMs
+  data___href___localFile___name
+  data___href___localFile___nlink
+  data___href___localFile___prettySize
+  data___href___localFile___rdev
+  data___href___localFile___relativeDirectory
+  data___href___localFile___relativePath
+  data___href___localFile___root
+  data___href___localFile___size
+  data___href___localFile___sourceInstanceName
+  data___href___localFile___uid
+  data___href___localFile___url
+  data___href___raw
+  data___href___size
+  data___href___slug
+  data___href___tags
+  data___href___target
+  data___href___type
+  data___href___uid
+  data___href___url
+  data___image___alt
+  data___image___copyright
+  data___image___dimensions___height
+  data___image___dimensions___width
+  data___image___fixed___base64 @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___fixed___height @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___fixed___sizes @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___fixed___src @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___fixed___srcSet @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___fixed___srcSetWebp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___fixed___srcWebp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___fixed___width @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___fluid___aspectRatio @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___fluid___base64 @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___fluid___sizes @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___fluid___src @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___fluid___srcSet @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___fluid___srcSetWebp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___fluid___srcWebp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___gatsbyImageData @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___image___localFile___absolutePath
+  data___image___localFile___accessTime
+  data___image___localFile___atime
+  data___image___localFile___atimeMs
+  data___image___localFile___base
+  data___image___localFile___birthTime
+  data___image___localFile___birthtime
+  data___image___localFile___birthtimeMs
+  data___image___localFile___blksize
+  data___image___localFile___blocks
+  data___image___localFile___changeTime
+  data___image___localFile___children
+  data___image___localFile___childrenImageSharp
+  data___image___localFile___ctime
+  data___image___localFile___ctimeMs
+  data___image___localFile___dev
+  data___image___localFile___dir
+  data___image___localFile___ext
+  data___image___localFile___extension
+  data___image___localFile___gid
+  data___image___localFile___id
+  data___image___localFile___ino
+  data___image___localFile___mode
+  data___image___localFile___modifiedTime
+  data___image___localFile___mtime
+  data___image___localFile___mtimeMs
+  data___image___localFile___name
+  data___image___localFile___nlink
+  data___image___localFile___prettySize
+  data___image___localFile___rdev
+  data___image___localFile___relativeDirectory
+  data___image___localFile___relativePath
+  data___image___localFile___root
+  data___image___localFile___size
+  data___image___localFile___sourceInstanceName
+  data___image___localFile___uid
+  data___image___localFile___url
+  data___image___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___link_text___html
+  data___link_text___raw
+  data___link_text___richText
+  data___link_text___text
+  data___title___html
+  data___title___raw
+  data___title___richText
+  data___title___text
+  first_publication_date
+  href
+  id
+  internal___content
+  internal___contentDigest
+  internal___description
+  internal___fieldOwners
+  internal___ignoreType
+  internal___mediaType
+  internal___owner
+  internal___type
+  lang
+  last_publication_date
+  parent___children
+  parent___children___children
+  parent___children___children___children
+  parent___children___children___id
+  parent___children___id
+  parent___children___internal___content
+  parent___children___internal___contentDigest
+  parent___children___internal___description
+  parent___children___internal___fieldOwners
+  parent___children___internal___ignoreType
+  parent___children___internal___mediaType
+  parent___children___internal___owner
+  parent___children___internal___type
+  parent___children___parent___children
+  parent___children___parent___id
+  parent___id
+  parent___internal___content
+  parent___internal___contentDigest
+  parent___internal___description
+  parent___internal___fieldOwners
+  parent___internal___ignoreType
+  parent___internal___mediaType
+  parent___internal___owner
+  parent___internal___type
+  parent___parent___children
+  parent___parent___children___children
+  parent___parent___children___id
+  parent___parent___id
+  parent___parent___internal___content
+  parent___parent___internal___contentDigest
+  parent___parent___internal___description
+  parent___parent___internal___fieldOwners
+  parent___parent___internal___ignoreType
+  parent___parent___internal___mediaType
+  parent___parent___internal___owner
+  parent___parent___internal___type
+  parent___parent___parent___children
+  parent___parent___parent___id
+  prismicId
+  tags
+  type
+  url
+}
+
+input PrismicJpNoviceGuideBannerFilterInput {
+  _previewable: IDQueryOperatorInput
+  alternate_languages: PrismicAlternateLanguageTypeFilterListInput
+  children: NodeFilterListInput
+  data: PrismicJpNoviceGuideBannerDataTypeFilterInput
+  dataRaw: JSONQueryOperatorInput
+  first_publication_date: DateQueryOperatorInput
+  href: StringQueryOperatorInput
+  id: StringQueryOperatorInput
+  internal: InternalFilterInput
+  lang: StringQueryOperatorInput
+  last_publication_date: DateQueryOperatorInput
+  parent: NodeFilterInput
+  prismicId: IDQueryOperatorInput
+  tags: StringQueryOperatorInput
+  type: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+}
+
+type PrismicJpNoviceGuideBannerGroupConnection {
+  distinct(field: PrismicJpNoviceGuideBannerFieldsEnum!): [String!]!
+  edges: [PrismicJpNoviceGuideBannerEdge!]!
+  field: String!
+  fieldValue: String
+  group(field: PrismicJpNoviceGuideBannerFieldsEnum!, limit: Int, skip: Int): [PrismicJpNoviceGuideBannerGroupConnection!]!
+  max(field: PrismicJpNoviceGuideBannerFieldsEnum!): Float
+  min(field: PrismicJpNoviceGuideBannerFieldsEnum!): Float
+  nodes: [PrismicJpNoviceGuideBanner!]!
+  pageInfo: PageInfo!
+  sum(field: PrismicJpNoviceGuideBannerFieldsEnum!): Float
+  totalCount: Int!
+}
+
+input PrismicJpNoviceGuideBannerSortInput {
+  fields: [PrismicJpNoviceGuideBannerFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
+}
+
+type PrismicJpNoviceGuideMenu implements Node {
+  _previewable: ID!
+  alternate_languages: [PrismicAlternateLanguageType!]!
+  children: [Node!]!
+  data: PrismicJpNoviceGuideMenuDataType!
+  dataRaw: JSON!
+  first_publication_date(
+    # Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date!
+  href: String!
+  id: ID!
+  internal: Internal!
+  lang: String!
+  last_publication_date(
+    # Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date!
+  parent: Node
+  prismicId: ID!
+  tags: [String!]!
+  type: String!
+  url: String
+}
+
+type PrismicJpNoviceGuideMenuConnection {
+  distinct(field: PrismicJpNoviceGuideMenuFieldsEnum!): [String!]!
+  edges: [PrismicJpNoviceGuideMenuEdge!]!
+  group(field: PrismicJpNoviceGuideMenuFieldsEnum!, limit: Int, skip: Int): [PrismicJpNoviceGuideMenuGroupConnection!]!
+  max(field: PrismicJpNoviceGuideMenuFieldsEnum!): Float
+  min(field: PrismicJpNoviceGuideMenuFieldsEnum!): Float
+  nodes: [PrismicJpNoviceGuideMenu!]!
+  pageInfo: PageInfo!
+  sum(field: PrismicJpNoviceGuideMenuFieldsEnum!): Float
+  totalCount: Int!
+}
+
+type PrismicJpNoviceGuideMenuDataMenus {
+  check_text: PrismicStructuredTextType
+  image: PrismicJpNoviceGuideMenuDataMenusImageImageType
+  slug: PrismicStructuredTextType
+  title: PrismicStructuredTextType
+}
+
+input PrismicJpNoviceGuideMenuDataMenusFilterInput {
+  check_text: PrismicStructuredTextTypeFilterInput
+  image: PrismicJpNoviceGuideMenuDataMenusImageImageTypeFilterInput
+  slug: PrismicStructuredTextTypeFilterInput
+  title: PrismicStructuredTextTypeFilterInput
+}
+
+input PrismicJpNoviceGuideMenuDataMenusFilterListInput {
+  elemMatch: PrismicJpNoviceGuideMenuDataMenusFilterInput
+}
+
+type PrismicJpNoviceGuideMenuDataMenusImageImageType {
+  alt: String
+  copyright: String
+  dimensions: PrismicImageDimensionsType
+
+  # Should be used to generate fixed-width images (i.e. the size of the image doesn't change when the size of the browser changes, and are "fixed"). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFixed fragment should be used. See the project's README for more information.
+  fixed(
+    # The fixed image height to render, in px.
+    height: Int
+
+    # The imgix parameters (transformations) to apply to the image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    imgixParams: ImgixParamsInput = {}
+
+    # Any imgix parameters to use only for the blur-up/placeholder image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    placeholderImgixParams: ImgixParamsInput = {}
+
+    # The image quality to use for compression. Range: 0-100, with 100 being highest quality. This setting is not recommended as the quality is already optimized by decreasing quality as the dpr increases to reduce image size while retaining visual quality.
+    quality: Int
+
+    # The fixed image width to render, in px.
+    width: Int = 8192
+  ): ImgixFixed
+
+  # Should be used to generate fluid-width images (i.e. images that change when the size of the browser changes). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFluid fragment should be used. See the project's README for more information.
+  fluid(
+    # The imgix parameters (transformations) to apply to the image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    imgixParams: ImgixParamsInput = {}
+
+    # The maximum px height of the *image* to be *requested*. This does NOT affect the height of the image displayed.
+    maxHeight: Int
+
+    # The maximum px width of the *image* to be *requested*. This does NOT affect the width of the image displayed. The width of the image displayed can be controlled by adding a sizes parameter to the GatsbyImage component. For more information, see this project's readme.
+    maxWidth: Int = 8192
+
+    # Any imgix parameters to use only for the blur-up/placeholder image. The full set of imgix params can be explored here: https://docs.imgix.com/apis/url
+    placeholderImgixParams: ImgixParamsInput = {}
+
+    # A custom set of widths (in px) to use for the srcset widths. This feature is not recommended as the default widths are optimized for imgix's caching infrastructure.
+    srcSetBreakpoints: [Int]
+  ): ImgixFluid
+  gatsbyImageData(
+    # If set along with width or height, this will set the value of the other dimension to match the provided aspect ratio, cropping the image if needed.
+    # If neither width or height is provided, height will be set based on the intrinsic width of the source image.
+    aspectRatio: Float
+
+    # Background color applied to the wrapper, or when "letterboxing" an image to another aspect ratio.
+    backgroundColor: String
+
+    # Specifies the image widths to generate. You should rarely need to change this. For FIXED and CONSTRAINED images it is better to allow these to be determined automatically,
+    # based on the image size. For FULL_WIDTH images this can be used to override the default, which is [750, 1080, 1366, 1920].
+    # It will never generate any images larger than the source.
+    breakpoints: [Int]
+
+    # If set, the height of the generated image. If omitted, it is calculated from the supplied width, matching the aspect ratio of the source image.
+    height: Int
+
+    # This argument is used to set parameters to instruct imgix to transform the image. 
+    #         
+    #         All of imgix's parameters can be found here: https://docs.imgix.com/apis/rendering
+    imgixParams: ImgixParamsInput
+
+    # The layout for the image.
+    # FIXED: A static image sized, that does not resize according to the screen width
+    # FULL_WIDTH: The image resizes to fit its container. Pass a "sizes" option if it isn't going to be the full width of the screen.
+    # CONSTRAINED: Resizes to fit its container, up to a maximum width, at which point it will remain fixed in size.
+    layout: GatsbyImageLayout
+
+    # A list of image pixel densities to generate for FIXED and CONSTRAINED images. You should rarely need to change this. It will never generate images larger than the source, and will always include a 1x image.
+    # Default is [ 1, 2 ] for fixed images, meaning 1x, 2x, 3x, and [0.25, 0.5, 1, 2] for fluid. In this case, an image with a fluid layout and width = 400 would generate images at 100, 200, 400 and 800px wide.
+    outputPixelDensities: [Float]
+
+    # Format of generated placeholder image, displayed while the main image loads.
+    # BLURRED: a blurred, low resolution image, encoded as a base64 data URI (default)
+    # DOMINANT_COLOR: a solid color, calculated from the dominant color of the image.
+    # NONE: no placeholder. Set "backgroundColor" to use a fixed background color.
+    placeholder: ImgixPlaceholder
+
+    # This argument is used to set parameters to instruct imgix to transform the placeholder image. By default all parameters passed to 'imgixParams' are already set here, but this can be used to override or set extra parameters. 
+    #         
+    #         All of imgix's parameters can be found here: https://docs.imgix.com/apis/rendering
+    placeholderImgixParams: ImgixParamsInput
+
+    # The "sizes" property, passed to the img tag. This describes the display size of the image.
+    # This does not affect the generated images, but is used by the browser to decide which images to download. You can leave this blank for fixed images, or if the responsive image
+    # container will be the full width of the screen. In these cases we will generate an appropriate value.
+    sizes: String
+
+    # This argument determines the maximum srcset width that is generated, if the layout type is FULL_WIDTH. If the layout type is CONSTRAINED, the width argument will be used. Furthermore, in every case, the maximum srcset width is constrained by the width of the source image. The default is 8192px, which is the render limit of the imgix service.
+    srcSetMaxWidth: Int = 8192
+
+    # This argument determines the minimum srcset width that is generated. The default is 100px.
+    srcSetMinWidth: Int = 100
+
+    # The display width of the generated image for layout = FIXED, and the display width of the largest image for layout = CONSTRAINED.
+    # The actual largest image resolution will be this value multiplied by the largest value in outputPixelDensities
+    # Ignored if layout = FLUID.
+    width: Int
+
+    # This argument affects the breakpoints used for the srcsets, dictates the maximum tolerated size difference between an image's downloaded size and its rendered size. For example: setting this value to 0.1 means that an image will not render more than 10% larger or smaller than its native size. In practice, the image URLs generated for a width-based srcset attribute will grow by twice this rate. A lower tolerance means images will render closer to their native size (thereby increasing perceived image quality), but a large srcset list will be generated and consequently users may experience lower rates of cache-hit for pre-rendered images on your site.
+    #
+    # By default this rate is set to 8 percent, which we consider to be the ideal rate for maximizing cache hits without sacrificing visual quality. Users can specify their own width tolerance by providing a positive scalar value as widthTolerance to the third options object:
+    widthTolerance: Float = 0.08
+  ): JSON
+  localFile: File
+
+  # A plain imgix URL with the URL and params applied.
+  url(imgixParams: ImgixParamsInput = {}): String
+}
+
+input PrismicJpNoviceGuideMenuDataMenusImageImageTypeFilterInput {
+  alt: StringQueryOperatorInput
+  copyright: StringQueryOperatorInput
+  dimensions: PrismicImageDimensionsTypeFilterInput
+  fixed: ImgixFixedFilterInput
+  fluid: ImgixFluidFilterInput
+  gatsbyImageData: JSONQueryOperatorInput
+  localFile: FileFilterInput
+  url: StringQueryOperatorInput
+}
+
+type PrismicJpNoviceGuideMenuDataType {
+  menus: [PrismicJpNoviceGuideMenuDataMenus]
+  novice_title: PrismicStructuredTextType
+}
+
+input PrismicJpNoviceGuideMenuDataTypeFilterInput {
+  menus: PrismicJpNoviceGuideMenuDataMenusFilterListInput
+  novice_title: PrismicStructuredTextTypeFilterInput
+}
+
+type PrismicJpNoviceGuideMenuEdge {
+  next: PrismicJpNoviceGuideMenu
+  node: PrismicJpNoviceGuideMenu!
+  previous: PrismicJpNoviceGuideMenu
+}
+
+enum PrismicJpNoviceGuideMenuFieldsEnum {
+  _previewable
+  alternate_languages
+  alternate_languages___id
+  alternate_languages___lang
+  alternate_languages___raw
+  alternate_languages___type
+  alternate_languages___uid
+  children
+  children___children
+  children___children___children
+  children___children___children___children
+  children___children___children___id
+  children___children___id
+  children___children___internal___content
+  children___children___internal___contentDigest
+  children___children___internal___description
+  children___children___internal___fieldOwners
+  children___children___internal___ignoreType
+  children___children___internal___mediaType
+  children___children___internal___owner
+  children___children___internal___type
+  children___children___parent___children
+  children___children___parent___id
+  children___id
+  children___internal___content
+  children___internal___contentDigest
+  children___internal___description
+  children___internal___fieldOwners
+  children___internal___ignoreType
+  children___internal___mediaType
+  children___internal___owner
+  children___internal___type
+  children___parent___children
+  children___parent___children___children
+  children___parent___children___id
+  children___parent___id
+  children___parent___internal___content
+  children___parent___internal___contentDigest
+  children___parent___internal___description
+  children___parent___internal___fieldOwners
+  children___parent___internal___ignoreType
+  children___parent___internal___mediaType
+  children___parent___internal___owner
+  children___parent___internal___type
+  children___parent___parent___children
+  children___parent___parent___id
+  dataRaw
+  data___menus
+  data___menus___check_text___html
+  data___menus___check_text___raw
+  data___menus___check_text___richText
+  data___menus___check_text___text
+  data___menus___image___alt
+  data___menus___image___copyright
+  data___menus___image___gatsbyImageData @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___menus___image___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  data___menus___slug___html
+  data___menus___slug___raw
+  data___menus___slug___richText
+  data___menus___slug___text
+  data___menus___title___html
+  data___menus___title___raw
+  data___menus___title___richText
+  data___menus___title___text
+  data___novice_title___html
+  data___novice_title___raw
+  data___novice_title___richText
+  data___novice_title___text
+  first_publication_date
+  href
+  id
+  internal___content
+  internal___contentDigest
+  internal___description
+  internal___fieldOwners
+  internal___ignoreType
+  internal___mediaType
+  internal___owner
+  internal___type
+  lang
+  last_publication_date
+  parent___children
+  parent___children___children
+  parent___children___children___children
+  parent___children___children___id
+  parent___children___id
+  parent___children___internal___content
+  parent___children___internal___contentDigest
+  parent___children___internal___description
+  parent___children___internal___fieldOwners
+  parent___children___internal___ignoreType
+  parent___children___internal___mediaType
+  parent___children___internal___owner
+  parent___children___internal___type
+  parent___children___parent___children
+  parent___children___parent___id
+  parent___id
+  parent___internal___content
+  parent___internal___contentDigest
+  parent___internal___description
+  parent___internal___fieldOwners
+  parent___internal___ignoreType
+  parent___internal___mediaType
+  parent___internal___owner
+  parent___internal___type
+  parent___parent___children
+  parent___parent___children___children
+  parent___parent___children___id
+  parent___parent___id
+  parent___parent___internal___content
+  parent___parent___internal___contentDigest
+  parent___parent___internal___description
+  parent___parent___internal___fieldOwners
+  parent___parent___internal___ignoreType
+  parent___parent___internal___mediaType
+  parent___parent___internal___owner
+  parent___parent___internal___type
+  parent___parent___parent___children
+  parent___parent___parent___id
+  prismicId
+  tags
+  type
+  url
+}
+
+input PrismicJpNoviceGuideMenuFilterInput {
+  _previewable: IDQueryOperatorInput
+  alternate_languages: PrismicAlternateLanguageTypeFilterListInput
+  children: NodeFilterListInput
+  data: PrismicJpNoviceGuideMenuDataTypeFilterInput
+  dataRaw: JSONQueryOperatorInput
+  first_publication_date: DateQueryOperatorInput
+  href: StringQueryOperatorInput
+  id: StringQueryOperatorInput
+  internal: InternalFilterInput
+  lang: StringQueryOperatorInput
+  last_publication_date: DateQueryOperatorInput
+  parent: NodeFilterInput
+  prismicId: IDQueryOperatorInput
+  tags: StringQueryOperatorInput
+  type: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+}
+
+type PrismicJpNoviceGuideMenuGroupConnection {
+  distinct(field: PrismicJpNoviceGuideMenuFieldsEnum!): [String!]!
+  edges: [PrismicJpNoviceGuideMenuEdge!]!
+  field: String!
+  fieldValue: String
+  group(field: PrismicJpNoviceGuideMenuFieldsEnum!, limit: Int, skip: Int): [PrismicJpNoviceGuideMenuGroupConnection!]!
+  max(field: PrismicJpNoviceGuideMenuFieldsEnum!): Float
+  min(field: PrismicJpNoviceGuideMenuFieldsEnum!): Float
+  nodes: [PrismicJpNoviceGuideMenu!]!
+  pageInfo: PageInfo!
+  sum(field: PrismicJpNoviceGuideMenuFieldsEnum!): Float
+  totalCount: Int!
+}
+
+input PrismicJpNoviceGuideMenuSortInput {
+  fields: [PrismicJpNoviceGuideMenuFieldsEnum]
   order: [SortOrderEnum] = [ASC]
 }
 
@@ -12988,8 +14738,12 @@ type Query {
   allPrismicAdvertisementContents(filter: PrismicAdvertisementContentsFilterInput, limit: Int, skip: Int, sort: PrismicAdvertisementContentsSortInput): PrismicAdvertisementContentsConnection!
   allPrismicEmbedType(filter: PrismicEmbedTypeFilterInput, limit: Int, skip: Int, sort: PrismicEmbedTypeSortInput): PrismicEmbedTypeConnection!
   allPrismicFaq(filter: PrismicFaqFilterInput, limit: Int, skip: Int, sort: PrismicFaqSortInput): PrismicFaqConnection!
+  allPrismicFinancialStatements(filter: PrismicFinancialStatementsFilterInput, limit: Int, skip: Int, sort: PrismicFinancialStatementsSortInput): PrismicFinancialStatementsConnection!
   allPrismicGlobalContents(filter: PrismicGlobalContentsFilterInput, limit: Int, skip: Int, sort: PrismicGlobalContentsSortInput): PrismicGlobalContentsConnection!
   allPrismicIr(filter: PrismicIrFilterInput, limit: Int, skip: Int, sort: PrismicIrSortInput): PrismicIrConnection!
+  allPrismicJpNoviceGuideArticle(filter: PrismicJpNoviceGuideArticleFilterInput, limit: Int, skip: Int, sort: PrismicJpNoviceGuideArticleSortInput): PrismicJpNoviceGuideArticleConnection!
+  allPrismicJpNoviceGuideBanner(filter: PrismicJpNoviceGuideBannerFilterInput, limit: Int, skip: Int, sort: PrismicJpNoviceGuideBannerSortInput): PrismicJpNoviceGuideBannerConnection!
+  allPrismicJpNoviceGuideMenu(filter: PrismicJpNoviceGuideMenuFilterInput, limit: Int, skip: Int, sort: PrismicJpNoviceGuideMenuSortInput): PrismicJpNoviceGuideMenuConnection!
   allPrismicMemberProfile(filter: PrismicMemberProfileFilterInput, limit: Int, skip: Int, sort: PrismicMemberProfileSortInput): PrismicMemberProfileConnection!
   allPrismicPayContents(filter: PrismicPayContentsFilterInput, limit: Int, skip: Int, sort: PrismicPayContentsSortInput): PrismicPayContentsConnection!
   allPrismicSiteNavigation(filter: PrismicSiteNavigationFilterInput, limit: Int, skip: Int, sort: PrismicSiteNavigationSortInput): PrismicSiteNavigationConnection!
@@ -13005,13 +14759,17 @@ type Query {
   directory(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, changeTime: DateQueryOperatorInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): Directory
   file(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, childImageSharp: ImageSharpFilterInput, children: NodeFilterListInput, childrenImageSharp: ImageSharpFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput, url: StringQueryOperatorInput): File
   hotArticle(articleId: StringQueryOperatorInput, children: NodeFilterListInput, email: StringQueryOperatorInput, id: StringQueryOperatorInput, image: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, price: StringQueryOperatorInput, region: StringQueryOperatorInput): HotArticle
-  imageSharp(children: NodeFilterListInput, fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, gatsbyImageData: JSONQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, original: ImageSharpOriginalFilterInput, parent: NodeFilterInput, resize: ImageSharpResizeFilterInput): ImageSharp
+  imageSharp(children: NodeFilterListInput, fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, gatsbyImageData: GatsbyImageDataQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, original: ImageSharpOriginalFilterInput, parent: NodeFilterInput, resize: ImageSharpResizeFilterInput): ImageSharp
   prismicAdsContent(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicAdsContentDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicAdsContent
   prismicAdvertisementContents(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicAdvertisementContents
   prismicEmbedType(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput): PrismicEmbedType
   prismicFaq(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicFaqDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, uid: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicFaq
+  prismicFinancialStatements(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicFinancialStatementsDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, uid: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicFinancialStatements
   prismicGlobalContents(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicGlobalContentsDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicGlobalContents
   prismicIr(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicIrDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, uid: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicIr
+  prismicJpNoviceGuideArticle(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicJpNoviceGuideArticleDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, uid: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicJpNoviceGuideArticle
+  prismicJpNoviceGuideBanner(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicJpNoviceGuideBannerDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicJpNoviceGuideBanner
+  prismicJpNoviceGuideMenu(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicJpNoviceGuideMenuDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicJpNoviceGuideMenu
   prismicMemberProfile(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicMemberProfileDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicMemberProfile
   prismicPayContents(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicPayContentsDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicPayContents
   prismicSiteNavigation(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicSiteNavigationDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, uid: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicSiteNavigation
@@ -13020,7 +14778,7 @@ type Query {
   prismicTeamsArticle(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicTeamsArticleDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, uid: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicTeamsArticle
   prismicTermsAndConditions(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageTypeFilterListInput, children: NodeFilterListInput, data: PrismicTermsAndConditionsDataTypeFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, uid: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicTermsAndConditions
   prismicTypePathType(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, kind: StringQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, type: StringQueryOperatorInput): PrismicTypePathType
-  site(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, jsxRuntime: StringQueryOperatorInput, parent: NodeFilterInput, pathPrefix: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput, trailingSlash: StringQueryOperatorInput): Site
+  site(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, graphqlTypegen: BooleanQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, jsxRuntime: StringQueryOperatorInput, parent: NodeFilterInput, pathPrefix: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput, trailingSlash: StringQueryOperatorInput): Site
   siteBuildMetadata(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput): SiteBuildMetadata
   siteFunction(absoluteCompiledFilePath: StringQueryOperatorInput, children: NodeFilterListInput, functionRoute: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, matchPath: StringQueryOperatorInput, originalAbsoluteFilePath: StringQueryOperatorInput, originalRelativeFilePath: StringQueryOperatorInput, parent: NodeFilterInput, pluginName: StringQueryOperatorInput, relativeCompiledFilePath: StringQueryOperatorInput): SiteFunction
   sitePage(children: NodeFilterListInput, component: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, internalComponentName: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, pageContext: JSONQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput): SitePage
@@ -13041,6 +14799,7 @@ type Site implements Node {
     locale: String
   ): Date
   children: [Node!]!
+  graphqlTypegen: Boolean
   id: ID!
   internal: Internal!
   jsxRuntime: String
@@ -13265,6 +15024,7 @@ enum SiteFieldsEnum {
   children___parent___internal___type
   children___parent___parent___children
   children___parent___parent___id
+  graphqlTypegen
   id
   internal___content
   internal___contentDigest
@@ -13325,6 +15085,7 @@ enum SiteFieldsEnum {
 input SiteFilterInput {
   buildTime: DateQueryOperatorInput
   children: NodeFilterListInput
+  graphqlTypegen: BooleanQueryOperatorInput
   id: StringQueryOperatorInput
   internal: InternalFilterInput
   jsxRuntime: StringQueryOperatorInput

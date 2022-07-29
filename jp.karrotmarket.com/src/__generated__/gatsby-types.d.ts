@@ -3,8 +3,8 @@
 
 declare namespace GatsbyTypes {
 
-type Maybe<T> = T | undefined;
-type InputMaybe<T> = T | undefined;
+type Maybe<T> = T | null;
+type InputMaybe<T> = T | null;
 type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
@@ -22,6 +22,7 @@ type Scalars = {
   Float: number;
   /** A date string, such as 2007-12-03, compliant with the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   Date: string;
+  GatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData;
   /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
   JSON: any;
   /** Text content with rich formatting capabilities using a Prismic format called Structured Text. */
@@ -920,6 +921,13 @@ type FloatQueryOperatorInput = {
   readonly nin: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Float']>>>;
 };
 
+type GatsbyImageDataQueryOperatorInput = {
+  readonly eq: InputMaybe<Scalars['GatsbyImageData']>;
+  readonly in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['GatsbyImageData']>>>;
+  readonly ne: InputMaybe<Scalars['GatsbyImageData']>;
+  readonly nin: InputMaybe<ReadonlyArray<InputMaybe<Scalars['GatsbyImageData']>>>;
+};
+
 type GatsbyImageFormat =
   | 'auto'
   | 'avif'
@@ -1197,7 +1205,7 @@ type ImageSharp = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly fixed: Maybe<ImageSharpFixed>;
   readonly fluid: Maybe<ImageSharpFluid>;
-  readonly gatsbyImageData: Scalars['JSON'];
+  readonly gatsbyImageData: Scalars['GatsbyImageData'];
   readonly id: Scalars['ID'];
   readonly internal: Internal;
   readonly original: Maybe<ImageSharpOriginal>;
@@ -1467,7 +1475,7 @@ type ImageSharpFilterInput = {
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly fixed: InputMaybe<ImageSharpFixedFilterInput>;
   readonly fluid: InputMaybe<ImageSharpFluidFilterInput>;
-  readonly gatsbyImageData: InputMaybe<JSONQueryOperatorInput>;
+  readonly gatsbyImageData: InputMaybe<GatsbyImageDataQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
   readonly original: InputMaybe<ImageSharpOriginalFilterInput>;
@@ -3396,7 +3404,7 @@ type PrismicAdvertisementContentsSortInput = {
   readonly order: InputMaybe<ReadonlyArray<InputMaybe<SortOrderEnum>>>;
 };
 
-type PrismicAllDocumentTypes = PrismicAdsContent | PrismicAdvertisementContents | PrismicFaq | PrismicGlobalContents | PrismicIr | PrismicMemberProfile | PrismicPayContents | PrismicSiteNavigation | PrismicTeamBanner | PrismicTeamContents | PrismicTeamsArticle | PrismicTermsAndConditions;
+type PrismicAllDocumentTypes = PrismicAdsContent | PrismicAdvertisementContents | PrismicFaq | PrismicFinancialStatements | PrismicGlobalContents | PrismicIr | PrismicJpNoviceGuideArticle | PrismicJpNoviceGuideBanner | PrismicJpNoviceGuideMenu | PrismicMemberProfile | PrismicPayContents | PrismicSiteNavigation | PrismicTeamBanner | PrismicTeamContents | PrismicTeamsArticle | PrismicTermsAndConditions;
 
 type PrismicAlternateLanguageType = {
   readonly document: Maybe<PrismicAllDocumentTypes>;
@@ -3895,6 +3903,301 @@ type PrismicFaqGroupConnection_sumArgs = {
 
 type PrismicFaqSortInput = {
   readonly fields: InputMaybe<ReadonlyArray<InputMaybe<PrismicFaqFieldsEnum>>>;
+  readonly order: InputMaybe<ReadonlyArray<InputMaybe<SortOrderEnum>>>;
+};
+
+type PrismicFinancialStatements = Node & {
+  readonly _previewable: Scalars['ID'];
+  readonly alternate_languages: ReadonlyArray<PrismicAlternateLanguageType>;
+  readonly children: ReadonlyArray<Node>;
+  readonly data: PrismicFinancialStatementsDataType;
+  readonly dataRaw: Scalars['JSON'];
+  readonly first_publication_date: Scalars['Date'];
+  readonly href: Scalars['String'];
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly lang: Scalars['String'];
+  readonly last_publication_date: Scalars['Date'];
+  readonly parent: Maybe<Node>;
+  readonly prismicId: Scalars['ID'];
+  readonly tags: ReadonlyArray<Scalars['String']>;
+  readonly type: Scalars['String'];
+  readonly uid: Scalars['String'];
+  readonly url: Maybe<Scalars['String']>;
+};
+
+
+type PrismicFinancialStatements_first_publication_dateArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type PrismicFinancialStatements_last_publication_dateArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+type PrismicFinancialStatementsConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<PrismicFinancialStatementsEdge>;
+  readonly group: ReadonlyArray<PrismicFinancialStatementsGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<PrismicFinancialStatements>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type PrismicFinancialStatementsConnection_distinctArgs = {
+  field: PrismicFinancialStatementsFieldsEnum;
+};
+
+
+type PrismicFinancialStatementsConnection_groupArgs = {
+  field: PrismicFinancialStatementsFieldsEnum;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type PrismicFinancialStatementsConnection_maxArgs = {
+  field: PrismicFinancialStatementsFieldsEnum;
+};
+
+
+type PrismicFinancialStatementsConnection_minArgs = {
+  field: PrismicFinancialStatementsFieldsEnum;
+};
+
+
+type PrismicFinancialStatementsConnection_sumArgs = {
+  field: PrismicFinancialStatementsFieldsEnum;
+};
+
+type PrismicFinancialStatementsDataItems = {
+  readonly key: Maybe<Scalars['String']>;
+  readonly summary: Maybe<Scalars['Boolean']>;
+  readonly value: Maybe<Scalars['String']>;
+};
+
+type PrismicFinancialStatementsDataItemsFilterInput = {
+  readonly key: InputMaybe<StringQueryOperatorInput>;
+  readonly summary: InputMaybe<BooleanQueryOperatorInput>;
+  readonly value: InputMaybe<StringQueryOperatorInput>;
+};
+
+type PrismicFinancialStatementsDataItemsFilterListInput = {
+  readonly elemMatch: InputMaybe<PrismicFinancialStatementsDataItemsFilterInput>;
+};
+
+type PrismicFinancialStatementsDataType = {
+  readonly items: Maybe<ReadonlyArray<Maybe<PrismicFinancialStatementsDataItems>>>;
+  readonly key_label: Maybe<Scalars['String']>;
+  readonly title: Maybe<PrismicStructuredTextType>;
+  readonly value_label: Maybe<Scalars['String']>;
+  readonly year: Maybe<Scalars['Float']>;
+};
+
+type PrismicFinancialStatementsDataTypeFilterInput = {
+  readonly items: InputMaybe<PrismicFinancialStatementsDataItemsFilterListInput>;
+  readonly key_label: InputMaybe<StringQueryOperatorInput>;
+  readonly title: InputMaybe<PrismicStructuredTextTypeFilterInput>;
+  readonly value_label: InputMaybe<StringQueryOperatorInput>;
+  readonly year: InputMaybe<FloatQueryOperatorInput>;
+};
+
+type PrismicFinancialStatementsEdge = {
+  readonly next: Maybe<PrismicFinancialStatements>;
+  readonly node: PrismicFinancialStatements;
+  readonly previous: Maybe<PrismicFinancialStatements>;
+};
+
+type PrismicFinancialStatementsFieldsEnum =
+  | '_previewable'
+  | 'alternate_languages'
+  | 'alternate_languages.id'
+  | 'alternate_languages.lang'
+  | 'alternate_languages.raw'
+  | 'alternate_languages.type'
+  | 'alternate_languages.uid'
+  | 'children'
+  | 'children.children'
+  | 'children.children.children'
+  | 'children.children.children.children'
+  | 'children.children.children.id'
+  | 'children.children.id'
+  | 'children.children.internal.content'
+  | 'children.children.internal.contentDigest'
+  | 'children.children.internal.description'
+  | 'children.children.internal.fieldOwners'
+  | 'children.children.internal.ignoreType'
+  | 'children.children.internal.mediaType'
+  | 'children.children.internal.owner'
+  | 'children.children.internal.type'
+  | 'children.children.parent.children'
+  | 'children.children.parent.id'
+  | 'children.id'
+  | 'children.internal.content'
+  | 'children.internal.contentDigest'
+  | 'children.internal.description'
+  | 'children.internal.fieldOwners'
+  | 'children.internal.ignoreType'
+  | 'children.internal.mediaType'
+  | 'children.internal.owner'
+  | 'children.internal.type'
+  | 'children.parent.children'
+  | 'children.parent.children.children'
+  | 'children.parent.children.id'
+  | 'children.parent.id'
+  | 'children.parent.internal.content'
+  | 'children.parent.internal.contentDigest'
+  | 'children.parent.internal.description'
+  | 'children.parent.internal.fieldOwners'
+  | 'children.parent.internal.ignoreType'
+  | 'children.parent.internal.mediaType'
+  | 'children.parent.internal.owner'
+  | 'children.parent.internal.type'
+  | 'children.parent.parent.children'
+  | 'children.parent.parent.id'
+  | 'dataRaw'
+  | 'data.items'
+  | 'data.items.key'
+  | 'data.items.summary'
+  | 'data.items.value'
+  | 'data.key_label'
+  | 'data.title.html'
+  | 'data.title.raw'
+  | 'data.title.richText'
+  | 'data.title.text'
+  | 'data.value_label'
+  | 'data.year'
+  | 'first_publication_date'
+  | 'href'
+  | 'id'
+  | 'internal.content'
+  | 'internal.contentDigest'
+  | 'internal.description'
+  | 'internal.fieldOwners'
+  | 'internal.ignoreType'
+  | 'internal.mediaType'
+  | 'internal.owner'
+  | 'internal.type'
+  | 'lang'
+  | 'last_publication_date'
+  | 'parent.children'
+  | 'parent.children.children'
+  | 'parent.children.children.children'
+  | 'parent.children.children.id'
+  | 'parent.children.id'
+  | 'parent.children.internal.content'
+  | 'parent.children.internal.contentDigest'
+  | 'parent.children.internal.description'
+  | 'parent.children.internal.fieldOwners'
+  | 'parent.children.internal.ignoreType'
+  | 'parent.children.internal.mediaType'
+  | 'parent.children.internal.owner'
+  | 'parent.children.internal.type'
+  | 'parent.children.parent.children'
+  | 'parent.children.parent.id'
+  | 'parent.id'
+  | 'parent.internal.content'
+  | 'parent.internal.contentDigest'
+  | 'parent.internal.description'
+  | 'parent.internal.fieldOwners'
+  | 'parent.internal.ignoreType'
+  | 'parent.internal.mediaType'
+  | 'parent.internal.owner'
+  | 'parent.internal.type'
+  | 'parent.parent.children'
+  | 'parent.parent.children.children'
+  | 'parent.parent.children.id'
+  | 'parent.parent.id'
+  | 'parent.parent.internal.content'
+  | 'parent.parent.internal.contentDigest'
+  | 'parent.parent.internal.description'
+  | 'parent.parent.internal.fieldOwners'
+  | 'parent.parent.internal.ignoreType'
+  | 'parent.parent.internal.mediaType'
+  | 'parent.parent.internal.owner'
+  | 'parent.parent.internal.type'
+  | 'parent.parent.parent.children'
+  | 'parent.parent.parent.id'
+  | 'prismicId'
+  | 'tags'
+  | 'type'
+  | 'uid'
+  | 'url';
+
+type PrismicFinancialStatementsFilterInput = {
+  readonly _previewable: InputMaybe<IDQueryOperatorInput>;
+  readonly alternate_languages: InputMaybe<PrismicAlternateLanguageTypeFilterListInput>;
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly data: InputMaybe<PrismicFinancialStatementsDataTypeFilterInput>;
+  readonly dataRaw: InputMaybe<JSONQueryOperatorInput>;
+  readonly first_publication_date: InputMaybe<DateQueryOperatorInput>;
+  readonly href: InputMaybe<StringQueryOperatorInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly lang: InputMaybe<StringQueryOperatorInput>;
+  readonly last_publication_date: InputMaybe<DateQueryOperatorInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+  readonly prismicId: InputMaybe<IDQueryOperatorInput>;
+  readonly tags: InputMaybe<StringQueryOperatorInput>;
+  readonly type: InputMaybe<StringQueryOperatorInput>;
+  readonly uid: InputMaybe<StringQueryOperatorInput>;
+  readonly url: InputMaybe<StringQueryOperatorInput>;
+};
+
+type PrismicFinancialStatementsGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<PrismicFinancialStatementsEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<PrismicFinancialStatementsGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<PrismicFinancialStatements>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type PrismicFinancialStatementsGroupConnection_distinctArgs = {
+  field: PrismicFinancialStatementsFieldsEnum;
+};
+
+
+type PrismicFinancialStatementsGroupConnection_groupArgs = {
+  field: PrismicFinancialStatementsFieldsEnum;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type PrismicFinancialStatementsGroupConnection_maxArgs = {
+  field: PrismicFinancialStatementsFieldsEnum;
+};
+
+
+type PrismicFinancialStatementsGroupConnection_minArgs = {
+  field: PrismicFinancialStatementsFieldsEnum;
+};
+
+
+type PrismicFinancialStatementsGroupConnection_sumArgs = {
+  field: PrismicFinancialStatementsFieldsEnum;
+};
+
+type PrismicFinancialStatementsSortInput = {
+  readonly fields: InputMaybe<ReadonlyArray<InputMaybe<PrismicFinancialStatementsFieldsEnum>>>;
   readonly order: InputMaybe<ReadonlyArray<InputMaybe<SortOrderEnum>>>;
 };
 
@@ -5960,6 +6263,1362 @@ type PrismicIrGroupConnection_sumArgs = {
 
 type PrismicIrSortInput = {
   readonly fields: InputMaybe<ReadonlyArray<InputMaybe<PrismicIrFieldsEnum>>>;
+  readonly order: InputMaybe<ReadonlyArray<InputMaybe<SortOrderEnum>>>;
+};
+
+type PrismicJpNoviceGuideArticle = Node & {
+  readonly _previewable: Scalars['ID'];
+  readonly alternate_languages: ReadonlyArray<PrismicAlternateLanguageType>;
+  readonly children: ReadonlyArray<Node>;
+  readonly data: PrismicJpNoviceGuideArticleDataType;
+  readonly dataRaw: Scalars['JSON'];
+  readonly first_publication_date: Scalars['Date'];
+  readonly href: Scalars['String'];
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly lang: Scalars['String'];
+  readonly last_publication_date: Scalars['Date'];
+  readonly parent: Maybe<Node>;
+  readonly prismicId: Scalars['ID'];
+  readonly tags: ReadonlyArray<Scalars['String']>;
+  readonly type: Scalars['String'];
+  readonly uid: Scalars['String'];
+  readonly url: Maybe<Scalars['String']>;
+};
+
+
+type PrismicJpNoviceGuideArticle_first_publication_dateArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type PrismicJpNoviceGuideArticle_last_publication_dateArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+type PrismicJpNoviceGuideArticleConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<PrismicJpNoviceGuideArticleEdge>;
+  readonly group: ReadonlyArray<PrismicJpNoviceGuideArticleGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<PrismicJpNoviceGuideArticle>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type PrismicJpNoviceGuideArticleConnection_distinctArgs = {
+  field: PrismicJpNoviceGuideArticleFieldsEnum;
+};
+
+
+type PrismicJpNoviceGuideArticleConnection_groupArgs = {
+  field: PrismicJpNoviceGuideArticleFieldsEnum;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type PrismicJpNoviceGuideArticleConnection_maxArgs = {
+  field: PrismicJpNoviceGuideArticleFieldsEnum;
+};
+
+
+type PrismicJpNoviceGuideArticleConnection_minArgs = {
+  field: PrismicJpNoviceGuideArticleFieldsEnum;
+};
+
+
+type PrismicJpNoviceGuideArticleConnection_sumArgs = {
+  field: PrismicJpNoviceGuideArticleFieldsEnum;
+};
+
+type PrismicJpNoviceGuideArticleDataBodyFooterLinkButton = PrismicSliceType & {
+  readonly id: Scalars['ID'];
+  readonly items: ReadonlyArray<PrismicJpNoviceGuideArticleDataBodyFooterLinkButtonItem>;
+  readonly slice_label: Maybe<Scalars['String']>;
+  readonly slice_type: Scalars['String'];
+};
+
+type PrismicJpNoviceGuideArticleDataBodyFooterLinkButtonItem = {
+  readonly href: Maybe<PrismicStructuredTextType>;
+  readonly link_button_color: Maybe<Scalars['String']>;
+  readonly link_text: Maybe<PrismicStructuredTextType>;
+};
+
+type PrismicJpNoviceGuideArticleDataBodySlicesType = PrismicJpNoviceGuideArticleDataBodyFooterLinkButton | PrismicJpNoviceGuideArticleDataBodyTitleAndIllustration;
+
+type PrismicJpNoviceGuideArticleDataBodyTitleAndIllustration = PrismicSliceType & {
+  readonly id: Scalars['ID'];
+  readonly items: ReadonlyArray<PrismicJpNoviceGuideArticleDataBodyTitleAndIllustrationItem>;
+  readonly primary: PrismicJpNoviceGuideArticleDataBodyTitleAndIllustrationPrimary;
+  readonly slice_label: Maybe<Scalars['String']>;
+  readonly slice_type: Scalars['String'];
+};
+
+type PrismicJpNoviceGuideArticleDataBodyTitleAndIllustrationItem = {
+  readonly image: Maybe<PrismicJpNoviceGuideArticleDataBodyTitleAndIllustrationItemsImageImageType>;
+  readonly image_caption: Maybe<PrismicStructuredTextType>;
+  readonly overflow: Maybe<Scalars['Boolean']>;
+};
+
+type PrismicJpNoviceGuideArticleDataBodyTitleAndIllustrationItemsImageImageType = {
+  readonly alt: Maybe<Scalars['String']>;
+  readonly copyright: Maybe<Scalars['String']>;
+  readonly dimensions: Maybe<PrismicImageDimensionsType>;
+  /** Should be used to generate fixed-width images (i.e. the size of the image doesn't change when the size of the browser changes, and are "fixed"). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFixed fragment should be used. See the project's README for more information. */
+  readonly fixed: Maybe<ImgixFixed>;
+  /** Should be used to generate fluid-width images (i.e. images that change when the size of the browser changes). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFluid fragment should be used. See the project's README for more information. */
+  readonly fluid: Maybe<ImgixFluid>;
+  readonly gatsbyImageData: Maybe<Scalars['JSON']>;
+  readonly localFile: Maybe<File>;
+  /** A plain imgix URL with the URL and params applied. */
+  readonly url: Maybe<Scalars['String']>;
+};
+
+
+type PrismicJpNoviceGuideArticleDataBodyTitleAndIllustrationItemsImageImageType_fixedArgs = {
+  height: InputMaybe<Scalars['Int']>;
+  imgixParams?: InputMaybe<ImgixParamsInput>;
+  placeholderImgixParams?: InputMaybe<ImgixParamsInput>;
+  quality: InputMaybe<Scalars['Int']>;
+  width?: InputMaybe<Scalars['Int']>;
+};
+
+
+type PrismicJpNoviceGuideArticleDataBodyTitleAndIllustrationItemsImageImageType_fluidArgs = {
+  imgixParams?: InputMaybe<ImgixParamsInput>;
+  maxHeight: InputMaybe<Scalars['Int']>;
+  maxWidth?: InputMaybe<Scalars['Int']>;
+  placeholderImgixParams?: InputMaybe<ImgixParamsInput>;
+  srcSetBreakpoints: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']>>>;
+};
+
+
+type PrismicJpNoviceGuideArticleDataBodyTitleAndIllustrationItemsImageImageType_gatsbyImageDataArgs = {
+  aspectRatio: InputMaybe<Scalars['Float']>;
+  backgroundColor: InputMaybe<Scalars['String']>;
+  breakpoints: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']>>>;
+  height: InputMaybe<Scalars['Int']>;
+  imgixParams: InputMaybe<ImgixParamsInput>;
+  layout: InputMaybe<GatsbyImageLayout>;
+  outputPixelDensities: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Float']>>>;
+  placeholder: InputMaybe<ImgixPlaceholder>;
+  placeholderImgixParams: InputMaybe<ImgixParamsInput>;
+  sizes: InputMaybe<Scalars['String']>;
+  srcSetMaxWidth?: InputMaybe<Scalars['Int']>;
+  srcSetMinWidth?: InputMaybe<Scalars['Int']>;
+  width: InputMaybe<Scalars['Int']>;
+  widthTolerance?: InputMaybe<Scalars['Float']>;
+};
+
+
+type PrismicJpNoviceGuideArticleDataBodyTitleAndIllustrationItemsImageImageType_urlArgs = {
+  imgixParams?: InputMaybe<ImgixParamsInput>;
+};
+
+type PrismicJpNoviceGuideArticleDataBodyTitleAndIllustrationPrimary = {
+  readonly content: Maybe<PrismicStructuredTextType>;
+  readonly href: Maybe<PrismicStructuredTextType>;
+  readonly inverted: Maybe<Scalars['Boolean']>;
+  readonly key_text: Maybe<Scalars['String']>;
+  readonly link_text: Maybe<Scalars['String']>;
+  readonly main_title: Maybe<PrismicStructuredTextType>;
+  readonly section_illustration: Maybe<PrismicJpNoviceGuideArticleDataBodyTitleAndIllustrationPrimarySectionIllustrationImageType>;
+  readonly sub_title: Maybe<PrismicStructuredTextType>;
+  readonly sub_title_bold: Maybe<Scalars['Boolean']>;
+};
+
+type PrismicJpNoviceGuideArticleDataBodyTitleAndIllustrationPrimarySectionIllustrationImageType = {
+  readonly alt: Maybe<Scalars['String']>;
+  readonly copyright: Maybe<Scalars['String']>;
+  readonly dimensions: Maybe<PrismicImageDimensionsType>;
+  /** Should be used to generate fixed-width images (i.e. the size of the image doesn't change when the size of the browser changes, and are "fixed"). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFixed fragment should be used. See the project's README for more information. */
+  readonly fixed: Maybe<ImgixFixed>;
+  /** Should be used to generate fluid-width images (i.e. images that change when the size of the browser changes). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFluid fragment should be used. See the project's README for more information. */
+  readonly fluid: Maybe<ImgixFluid>;
+  readonly gatsbyImageData: Maybe<Scalars['JSON']>;
+  readonly localFile: Maybe<File>;
+  /** A plain imgix URL with the URL and params applied. */
+  readonly url: Maybe<Scalars['String']>;
+};
+
+
+type PrismicJpNoviceGuideArticleDataBodyTitleAndIllustrationPrimarySectionIllustrationImageType_fixedArgs = {
+  height: InputMaybe<Scalars['Int']>;
+  imgixParams?: InputMaybe<ImgixParamsInput>;
+  placeholderImgixParams?: InputMaybe<ImgixParamsInput>;
+  quality: InputMaybe<Scalars['Int']>;
+  width?: InputMaybe<Scalars['Int']>;
+};
+
+
+type PrismicJpNoviceGuideArticleDataBodyTitleAndIllustrationPrimarySectionIllustrationImageType_fluidArgs = {
+  imgixParams?: InputMaybe<ImgixParamsInput>;
+  maxHeight: InputMaybe<Scalars['Int']>;
+  maxWidth?: InputMaybe<Scalars['Int']>;
+  placeholderImgixParams?: InputMaybe<ImgixParamsInput>;
+  srcSetBreakpoints: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']>>>;
+};
+
+
+type PrismicJpNoviceGuideArticleDataBodyTitleAndIllustrationPrimarySectionIllustrationImageType_gatsbyImageDataArgs = {
+  aspectRatio: InputMaybe<Scalars['Float']>;
+  backgroundColor: InputMaybe<Scalars['String']>;
+  breakpoints: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']>>>;
+  height: InputMaybe<Scalars['Int']>;
+  imgixParams: InputMaybe<ImgixParamsInput>;
+  layout: InputMaybe<GatsbyImageLayout>;
+  outputPixelDensities: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Float']>>>;
+  placeholder: InputMaybe<ImgixPlaceholder>;
+  placeholderImgixParams: InputMaybe<ImgixParamsInput>;
+  sizes: InputMaybe<Scalars['String']>;
+  srcSetMaxWidth?: InputMaybe<Scalars['Int']>;
+  srcSetMinWidth?: InputMaybe<Scalars['Int']>;
+  width: InputMaybe<Scalars['Int']>;
+  widthTolerance?: InputMaybe<Scalars['Float']>;
+};
+
+
+type PrismicJpNoviceGuideArticleDataBodyTitleAndIllustrationPrimarySectionIllustrationImageType_urlArgs = {
+  imgixParams?: InputMaybe<ImgixParamsInput>;
+};
+
+type PrismicJpNoviceGuideArticleDataHeaderTitleImageImageType = {
+  readonly alt: Maybe<Scalars['String']>;
+  readonly copyright: Maybe<Scalars['String']>;
+  readonly dimensions: Maybe<PrismicImageDimensionsType>;
+  /** Should be used to generate fixed-width images (i.e. the size of the image doesn't change when the size of the browser changes, and are "fixed"). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFixed fragment should be used. See the project's README for more information. */
+  readonly fixed: Maybe<ImgixFixed>;
+  /** Should be used to generate fluid-width images (i.e. images that change when the size of the browser changes). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFluid fragment should be used. See the project's README for more information. */
+  readonly fluid: Maybe<ImgixFluid>;
+  readonly gatsbyImageData: Maybe<Scalars['JSON']>;
+  readonly localFile: Maybe<File>;
+  /** A plain imgix URL with the URL and params applied. */
+  readonly url: Maybe<Scalars['String']>;
+};
+
+
+type PrismicJpNoviceGuideArticleDataHeaderTitleImageImageType_fixedArgs = {
+  height: InputMaybe<Scalars['Int']>;
+  imgixParams?: InputMaybe<ImgixParamsInput>;
+  placeholderImgixParams?: InputMaybe<ImgixParamsInput>;
+  quality: InputMaybe<Scalars['Int']>;
+  width?: InputMaybe<Scalars['Int']>;
+};
+
+
+type PrismicJpNoviceGuideArticleDataHeaderTitleImageImageType_fluidArgs = {
+  imgixParams?: InputMaybe<ImgixParamsInput>;
+  maxHeight: InputMaybe<Scalars['Int']>;
+  maxWidth?: InputMaybe<Scalars['Int']>;
+  placeholderImgixParams?: InputMaybe<ImgixParamsInput>;
+  srcSetBreakpoints: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']>>>;
+};
+
+
+type PrismicJpNoviceGuideArticleDataHeaderTitleImageImageType_gatsbyImageDataArgs = {
+  aspectRatio: InputMaybe<Scalars['Float']>;
+  backgroundColor: InputMaybe<Scalars['String']>;
+  breakpoints: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']>>>;
+  height: InputMaybe<Scalars['Int']>;
+  imgixParams: InputMaybe<ImgixParamsInput>;
+  layout: InputMaybe<GatsbyImageLayout>;
+  outputPixelDensities: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Float']>>>;
+  placeholder: InputMaybe<ImgixPlaceholder>;
+  placeholderImgixParams: InputMaybe<ImgixParamsInput>;
+  sizes: InputMaybe<Scalars['String']>;
+  srcSetMaxWidth?: InputMaybe<Scalars['Int']>;
+  srcSetMinWidth?: InputMaybe<Scalars['Int']>;
+  width: InputMaybe<Scalars['Int']>;
+  widthTolerance?: InputMaybe<Scalars['Float']>;
+};
+
+
+type PrismicJpNoviceGuideArticleDataHeaderTitleImageImageType_urlArgs = {
+  imgixParams?: InputMaybe<ImgixParamsInput>;
+};
+
+type PrismicJpNoviceGuideArticleDataHeaderTitleImageImageTypeFilterInput = {
+  readonly alt: InputMaybe<StringQueryOperatorInput>;
+  readonly copyright: InputMaybe<StringQueryOperatorInput>;
+  readonly dimensions: InputMaybe<PrismicImageDimensionsTypeFilterInput>;
+  readonly fixed: InputMaybe<ImgixFixedFilterInput>;
+  readonly fluid: InputMaybe<ImgixFluidFilterInput>;
+  readonly gatsbyImageData: InputMaybe<JSONQueryOperatorInput>;
+  readonly localFile: InputMaybe<FileFilterInput>;
+  readonly url: InputMaybe<StringQueryOperatorInput>;
+};
+
+type PrismicJpNoviceGuideArticleDataType = {
+  readonly article_title: Maybe<PrismicStructuredTextType>;
+  readonly body: ReadonlyArray<PrismicJpNoviceGuideArticleDataBodySlicesType>;
+  readonly header_title_image: Maybe<PrismicJpNoviceGuideArticleDataHeaderTitleImageImageType>;
+};
+
+type PrismicJpNoviceGuideArticleDataTypeFilterInput = {
+  readonly article_title: InputMaybe<PrismicStructuredTextTypeFilterInput>;
+  readonly header_title_image: InputMaybe<PrismicJpNoviceGuideArticleDataHeaderTitleImageImageTypeFilterInput>;
+};
+
+type PrismicJpNoviceGuideArticleEdge = {
+  readonly next: Maybe<PrismicJpNoviceGuideArticle>;
+  readonly node: PrismicJpNoviceGuideArticle;
+  readonly previous: Maybe<PrismicJpNoviceGuideArticle>;
+};
+
+type PrismicJpNoviceGuideArticleFieldsEnum =
+  | '_previewable'
+  | 'alternate_languages'
+  | 'alternate_languages.id'
+  | 'alternate_languages.lang'
+  | 'alternate_languages.raw'
+  | 'alternate_languages.type'
+  | 'alternate_languages.uid'
+  | 'children'
+  | 'children.children'
+  | 'children.children.children'
+  | 'children.children.children.children'
+  | 'children.children.children.id'
+  | 'children.children.id'
+  | 'children.children.internal.content'
+  | 'children.children.internal.contentDigest'
+  | 'children.children.internal.description'
+  | 'children.children.internal.fieldOwners'
+  | 'children.children.internal.ignoreType'
+  | 'children.children.internal.mediaType'
+  | 'children.children.internal.owner'
+  | 'children.children.internal.type'
+  | 'children.children.parent.children'
+  | 'children.children.parent.id'
+  | 'children.id'
+  | 'children.internal.content'
+  | 'children.internal.contentDigest'
+  | 'children.internal.description'
+  | 'children.internal.fieldOwners'
+  | 'children.internal.ignoreType'
+  | 'children.internal.mediaType'
+  | 'children.internal.owner'
+  | 'children.internal.type'
+  | 'children.parent.children'
+  | 'children.parent.children.children'
+  | 'children.parent.children.id'
+  | 'children.parent.id'
+  | 'children.parent.internal.content'
+  | 'children.parent.internal.contentDigest'
+  | 'children.parent.internal.description'
+  | 'children.parent.internal.fieldOwners'
+  | 'children.parent.internal.ignoreType'
+  | 'children.parent.internal.mediaType'
+  | 'children.parent.internal.owner'
+  | 'children.parent.internal.type'
+  | 'children.parent.parent.children'
+  | 'children.parent.parent.id'
+  | 'dataRaw'
+  | 'data.article_title.html'
+  | 'data.article_title.raw'
+  | 'data.article_title.richText'
+  | 'data.article_title.text'
+  | 'data.header_title_image.alt'
+  | 'data.header_title_image.copyright'
+  | 'data.header_title_image.dimensions.height'
+  | 'data.header_title_image.dimensions.width'
+  | 'data.header_title_image.fixed.base64'
+  | 'data.header_title_image.fixed.height'
+  | 'data.header_title_image.fixed.sizes'
+  | 'data.header_title_image.fixed.src'
+  | 'data.header_title_image.fixed.srcSet'
+  | 'data.header_title_image.fixed.srcSetWebp'
+  | 'data.header_title_image.fixed.srcWebp'
+  | 'data.header_title_image.fixed.width'
+  | 'data.header_title_image.fluid.aspectRatio'
+  | 'data.header_title_image.fluid.base64'
+  | 'data.header_title_image.fluid.sizes'
+  | 'data.header_title_image.fluid.src'
+  | 'data.header_title_image.fluid.srcSet'
+  | 'data.header_title_image.fluid.srcSetWebp'
+  | 'data.header_title_image.fluid.srcWebp'
+  | 'data.header_title_image.gatsbyImageData'
+  | 'data.header_title_image.localFile.absolutePath'
+  | 'data.header_title_image.localFile.accessTime'
+  | 'data.header_title_image.localFile.atime'
+  | 'data.header_title_image.localFile.atimeMs'
+  | 'data.header_title_image.localFile.base'
+  | 'data.header_title_image.localFile.birthTime'
+  | 'data.header_title_image.localFile.birthtime'
+  | 'data.header_title_image.localFile.birthtimeMs'
+  | 'data.header_title_image.localFile.blksize'
+  | 'data.header_title_image.localFile.blocks'
+  | 'data.header_title_image.localFile.changeTime'
+  | 'data.header_title_image.localFile.children'
+  | 'data.header_title_image.localFile.childrenImageSharp'
+  | 'data.header_title_image.localFile.ctime'
+  | 'data.header_title_image.localFile.ctimeMs'
+  | 'data.header_title_image.localFile.dev'
+  | 'data.header_title_image.localFile.dir'
+  | 'data.header_title_image.localFile.ext'
+  | 'data.header_title_image.localFile.extension'
+  | 'data.header_title_image.localFile.gid'
+  | 'data.header_title_image.localFile.id'
+  | 'data.header_title_image.localFile.ino'
+  | 'data.header_title_image.localFile.mode'
+  | 'data.header_title_image.localFile.modifiedTime'
+  | 'data.header_title_image.localFile.mtime'
+  | 'data.header_title_image.localFile.mtimeMs'
+  | 'data.header_title_image.localFile.name'
+  | 'data.header_title_image.localFile.nlink'
+  | 'data.header_title_image.localFile.prettySize'
+  | 'data.header_title_image.localFile.rdev'
+  | 'data.header_title_image.localFile.relativeDirectory'
+  | 'data.header_title_image.localFile.relativePath'
+  | 'data.header_title_image.localFile.root'
+  | 'data.header_title_image.localFile.size'
+  | 'data.header_title_image.localFile.sourceInstanceName'
+  | 'data.header_title_image.localFile.uid'
+  | 'data.header_title_image.localFile.url'
+  | 'data.header_title_image.url'
+  | 'first_publication_date'
+  | 'href'
+  | 'id'
+  | 'internal.content'
+  | 'internal.contentDigest'
+  | 'internal.description'
+  | 'internal.fieldOwners'
+  | 'internal.ignoreType'
+  | 'internal.mediaType'
+  | 'internal.owner'
+  | 'internal.type'
+  | 'lang'
+  | 'last_publication_date'
+  | 'parent.children'
+  | 'parent.children.children'
+  | 'parent.children.children.children'
+  | 'parent.children.children.id'
+  | 'parent.children.id'
+  | 'parent.children.internal.content'
+  | 'parent.children.internal.contentDigest'
+  | 'parent.children.internal.description'
+  | 'parent.children.internal.fieldOwners'
+  | 'parent.children.internal.ignoreType'
+  | 'parent.children.internal.mediaType'
+  | 'parent.children.internal.owner'
+  | 'parent.children.internal.type'
+  | 'parent.children.parent.children'
+  | 'parent.children.parent.id'
+  | 'parent.id'
+  | 'parent.internal.content'
+  | 'parent.internal.contentDigest'
+  | 'parent.internal.description'
+  | 'parent.internal.fieldOwners'
+  | 'parent.internal.ignoreType'
+  | 'parent.internal.mediaType'
+  | 'parent.internal.owner'
+  | 'parent.internal.type'
+  | 'parent.parent.children'
+  | 'parent.parent.children.children'
+  | 'parent.parent.children.id'
+  | 'parent.parent.id'
+  | 'parent.parent.internal.content'
+  | 'parent.parent.internal.contentDigest'
+  | 'parent.parent.internal.description'
+  | 'parent.parent.internal.fieldOwners'
+  | 'parent.parent.internal.ignoreType'
+  | 'parent.parent.internal.mediaType'
+  | 'parent.parent.internal.owner'
+  | 'parent.parent.internal.type'
+  | 'parent.parent.parent.children'
+  | 'parent.parent.parent.id'
+  | 'prismicId'
+  | 'tags'
+  | 'type'
+  | 'uid'
+  | 'url';
+
+type PrismicJpNoviceGuideArticleFilterInput = {
+  readonly _previewable: InputMaybe<IDQueryOperatorInput>;
+  readonly alternate_languages: InputMaybe<PrismicAlternateLanguageTypeFilterListInput>;
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly data: InputMaybe<PrismicJpNoviceGuideArticleDataTypeFilterInput>;
+  readonly dataRaw: InputMaybe<JSONQueryOperatorInput>;
+  readonly first_publication_date: InputMaybe<DateQueryOperatorInput>;
+  readonly href: InputMaybe<StringQueryOperatorInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly lang: InputMaybe<StringQueryOperatorInput>;
+  readonly last_publication_date: InputMaybe<DateQueryOperatorInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+  readonly prismicId: InputMaybe<IDQueryOperatorInput>;
+  readonly tags: InputMaybe<StringQueryOperatorInput>;
+  readonly type: InputMaybe<StringQueryOperatorInput>;
+  readonly uid: InputMaybe<StringQueryOperatorInput>;
+  readonly url: InputMaybe<StringQueryOperatorInput>;
+};
+
+type PrismicJpNoviceGuideArticleGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<PrismicJpNoviceGuideArticleEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<PrismicJpNoviceGuideArticleGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<PrismicJpNoviceGuideArticle>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type PrismicJpNoviceGuideArticleGroupConnection_distinctArgs = {
+  field: PrismicJpNoviceGuideArticleFieldsEnum;
+};
+
+
+type PrismicJpNoviceGuideArticleGroupConnection_groupArgs = {
+  field: PrismicJpNoviceGuideArticleFieldsEnum;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type PrismicJpNoviceGuideArticleGroupConnection_maxArgs = {
+  field: PrismicJpNoviceGuideArticleFieldsEnum;
+};
+
+
+type PrismicJpNoviceGuideArticleGroupConnection_minArgs = {
+  field: PrismicJpNoviceGuideArticleFieldsEnum;
+};
+
+
+type PrismicJpNoviceGuideArticleGroupConnection_sumArgs = {
+  field: PrismicJpNoviceGuideArticleFieldsEnum;
+};
+
+type PrismicJpNoviceGuideArticleSortInput = {
+  readonly fields: InputMaybe<ReadonlyArray<InputMaybe<PrismicJpNoviceGuideArticleFieldsEnum>>>;
+  readonly order: InputMaybe<ReadonlyArray<InputMaybe<SortOrderEnum>>>;
+};
+
+type PrismicJpNoviceGuideBanner = Node & {
+  readonly _previewable: Scalars['ID'];
+  readonly alternate_languages: ReadonlyArray<PrismicAlternateLanguageType>;
+  readonly children: ReadonlyArray<Node>;
+  readonly data: PrismicJpNoviceGuideBannerDataType;
+  readonly dataRaw: Scalars['JSON'];
+  readonly first_publication_date: Scalars['Date'];
+  readonly href: Scalars['String'];
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly lang: Scalars['String'];
+  readonly last_publication_date: Scalars['Date'];
+  readonly parent: Maybe<Node>;
+  readonly prismicId: Scalars['ID'];
+  readonly tags: ReadonlyArray<Scalars['String']>;
+  readonly type: Scalars['String'];
+  readonly url: Maybe<Scalars['String']>;
+};
+
+
+type PrismicJpNoviceGuideBanner_first_publication_dateArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type PrismicJpNoviceGuideBanner_last_publication_dateArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+type PrismicJpNoviceGuideBannerConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<PrismicJpNoviceGuideBannerEdge>;
+  readonly group: ReadonlyArray<PrismicJpNoviceGuideBannerGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<PrismicJpNoviceGuideBanner>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type PrismicJpNoviceGuideBannerConnection_distinctArgs = {
+  field: PrismicJpNoviceGuideBannerFieldsEnum;
+};
+
+
+type PrismicJpNoviceGuideBannerConnection_groupArgs = {
+  field: PrismicJpNoviceGuideBannerFieldsEnum;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type PrismicJpNoviceGuideBannerConnection_maxArgs = {
+  field: PrismicJpNoviceGuideBannerFieldsEnum;
+};
+
+
+type PrismicJpNoviceGuideBannerConnection_minArgs = {
+  field: PrismicJpNoviceGuideBannerFieldsEnum;
+};
+
+
+type PrismicJpNoviceGuideBannerConnection_sumArgs = {
+  field: PrismicJpNoviceGuideBannerFieldsEnum;
+};
+
+type PrismicJpNoviceGuideBannerDataImageImageType = {
+  readonly alt: Maybe<Scalars['String']>;
+  readonly copyright: Maybe<Scalars['String']>;
+  readonly dimensions: Maybe<PrismicImageDimensionsType>;
+  /** Should be used to generate fixed-width images (i.e. the size of the image doesn't change when the size of the browser changes, and are "fixed"). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFixed fragment should be used. See the project's README for more information. */
+  readonly fixed: Maybe<ImgixFixed>;
+  /** Should be used to generate fluid-width images (i.e. images that change when the size of the browser changes). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFluid fragment should be used. See the project's README for more information. */
+  readonly fluid: Maybe<ImgixFluid>;
+  readonly gatsbyImageData: Maybe<Scalars['JSON']>;
+  readonly localFile: Maybe<File>;
+  /** A plain imgix URL with the URL and params applied. */
+  readonly url: Maybe<Scalars['String']>;
+};
+
+
+type PrismicJpNoviceGuideBannerDataImageImageType_fixedArgs = {
+  height: InputMaybe<Scalars['Int']>;
+  imgixParams?: InputMaybe<ImgixParamsInput>;
+  placeholderImgixParams?: InputMaybe<ImgixParamsInput>;
+  quality: InputMaybe<Scalars['Int']>;
+  width?: InputMaybe<Scalars['Int']>;
+};
+
+
+type PrismicJpNoviceGuideBannerDataImageImageType_fluidArgs = {
+  imgixParams?: InputMaybe<ImgixParamsInput>;
+  maxHeight: InputMaybe<Scalars['Int']>;
+  maxWidth?: InputMaybe<Scalars['Int']>;
+  placeholderImgixParams?: InputMaybe<ImgixParamsInput>;
+  srcSetBreakpoints: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']>>>;
+};
+
+
+type PrismicJpNoviceGuideBannerDataImageImageType_gatsbyImageDataArgs = {
+  aspectRatio: InputMaybe<Scalars['Float']>;
+  backgroundColor: InputMaybe<Scalars['String']>;
+  breakpoints: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']>>>;
+  height: InputMaybe<Scalars['Int']>;
+  imgixParams: InputMaybe<ImgixParamsInput>;
+  layout: InputMaybe<GatsbyImageLayout>;
+  outputPixelDensities: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Float']>>>;
+  placeholder: InputMaybe<ImgixPlaceholder>;
+  placeholderImgixParams: InputMaybe<ImgixParamsInput>;
+  sizes: InputMaybe<Scalars['String']>;
+  srcSetMaxWidth?: InputMaybe<Scalars['Int']>;
+  srcSetMinWidth?: InputMaybe<Scalars['Int']>;
+  width: InputMaybe<Scalars['Int']>;
+  widthTolerance?: InputMaybe<Scalars['Float']>;
+};
+
+
+type PrismicJpNoviceGuideBannerDataImageImageType_urlArgs = {
+  imgixParams?: InputMaybe<ImgixParamsInput>;
+};
+
+type PrismicJpNoviceGuideBannerDataImageImageTypeFilterInput = {
+  readonly alt: InputMaybe<StringQueryOperatorInput>;
+  readonly copyright: InputMaybe<StringQueryOperatorInput>;
+  readonly dimensions: InputMaybe<PrismicImageDimensionsTypeFilterInput>;
+  readonly fixed: InputMaybe<ImgixFixedFilterInput>;
+  readonly fluid: InputMaybe<ImgixFluidFilterInput>;
+  readonly gatsbyImageData: InputMaybe<JSONQueryOperatorInput>;
+  readonly localFile: InputMaybe<FileFilterInput>;
+  readonly url: InputMaybe<StringQueryOperatorInput>;
+};
+
+type PrismicJpNoviceGuideBannerDataType = {
+  readonly description: Maybe<PrismicStructuredTextType>;
+  readonly href: Maybe<PrismicLinkType>;
+  readonly image: Maybe<PrismicJpNoviceGuideBannerDataImageImageType>;
+  readonly link_text: Maybe<PrismicStructuredTextType>;
+  readonly title: Maybe<PrismicStructuredTextType>;
+};
+
+type PrismicJpNoviceGuideBannerDataTypeFilterInput = {
+  readonly description: InputMaybe<PrismicStructuredTextTypeFilterInput>;
+  readonly href: InputMaybe<PrismicLinkTypeFilterInput>;
+  readonly image: InputMaybe<PrismicJpNoviceGuideBannerDataImageImageTypeFilterInput>;
+  readonly link_text: InputMaybe<PrismicStructuredTextTypeFilterInput>;
+  readonly title: InputMaybe<PrismicStructuredTextTypeFilterInput>;
+};
+
+type PrismicJpNoviceGuideBannerEdge = {
+  readonly next: Maybe<PrismicJpNoviceGuideBanner>;
+  readonly node: PrismicJpNoviceGuideBanner;
+  readonly previous: Maybe<PrismicJpNoviceGuideBanner>;
+};
+
+type PrismicJpNoviceGuideBannerFieldsEnum =
+  | '_previewable'
+  | 'alternate_languages'
+  | 'alternate_languages.id'
+  | 'alternate_languages.lang'
+  | 'alternate_languages.raw'
+  | 'alternate_languages.type'
+  | 'alternate_languages.uid'
+  | 'children'
+  | 'children.children'
+  | 'children.children.children'
+  | 'children.children.children.children'
+  | 'children.children.children.id'
+  | 'children.children.id'
+  | 'children.children.internal.content'
+  | 'children.children.internal.contentDigest'
+  | 'children.children.internal.description'
+  | 'children.children.internal.fieldOwners'
+  | 'children.children.internal.ignoreType'
+  | 'children.children.internal.mediaType'
+  | 'children.children.internal.owner'
+  | 'children.children.internal.type'
+  | 'children.children.parent.children'
+  | 'children.children.parent.id'
+  | 'children.id'
+  | 'children.internal.content'
+  | 'children.internal.contentDigest'
+  | 'children.internal.description'
+  | 'children.internal.fieldOwners'
+  | 'children.internal.ignoreType'
+  | 'children.internal.mediaType'
+  | 'children.internal.owner'
+  | 'children.internal.type'
+  | 'children.parent.children'
+  | 'children.parent.children.children'
+  | 'children.parent.children.id'
+  | 'children.parent.id'
+  | 'children.parent.internal.content'
+  | 'children.parent.internal.contentDigest'
+  | 'children.parent.internal.description'
+  | 'children.parent.internal.fieldOwners'
+  | 'children.parent.internal.ignoreType'
+  | 'children.parent.internal.mediaType'
+  | 'children.parent.internal.owner'
+  | 'children.parent.internal.type'
+  | 'children.parent.parent.children'
+  | 'children.parent.parent.id'
+  | 'dataRaw'
+  | 'data.description.html'
+  | 'data.description.raw'
+  | 'data.description.richText'
+  | 'data.description.text'
+  | 'data.href.id'
+  | 'data.href.isBroken'
+  | 'data.href.lang'
+  | 'data.href.link_type'
+  | 'data.href.localFile.absolutePath'
+  | 'data.href.localFile.accessTime'
+  | 'data.href.localFile.atime'
+  | 'data.href.localFile.atimeMs'
+  | 'data.href.localFile.base'
+  | 'data.href.localFile.birthTime'
+  | 'data.href.localFile.birthtime'
+  | 'data.href.localFile.birthtimeMs'
+  | 'data.href.localFile.blksize'
+  | 'data.href.localFile.blocks'
+  | 'data.href.localFile.changeTime'
+  | 'data.href.localFile.children'
+  | 'data.href.localFile.childrenImageSharp'
+  | 'data.href.localFile.ctime'
+  | 'data.href.localFile.ctimeMs'
+  | 'data.href.localFile.dev'
+  | 'data.href.localFile.dir'
+  | 'data.href.localFile.ext'
+  | 'data.href.localFile.extension'
+  | 'data.href.localFile.gid'
+  | 'data.href.localFile.id'
+  | 'data.href.localFile.ino'
+  | 'data.href.localFile.mode'
+  | 'data.href.localFile.modifiedTime'
+  | 'data.href.localFile.mtime'
+  | 'data.href.localFile.mtimeMs'
+  | 'data.href.localFile.name'
+  | 'data.href.localFile.nlink'
+  | 'data.href.localFile.prettySize'
+  | 'data.href.localFile.rdev'
+  | 'data.href.localFile.relativeDirectory'
+  | 'data.href.localFile.relativePath'
+  | 'data.href.localFile.root'
+  | 'data.href.localFile.size'
+  | 'data.href.localFile.sourceInstanceName'
+  | 'data.href.localFile.uid'
+  | 'data.href.localFile.url'
+  | 'data.href.raw'
+  | 'data.href.size'
+  | 'data.href.slug'
+  | 'data.href.tags'
+  | 'data.href.target'
+  | 'data.href.type'
+  | 'data.href.uid'
+  | 'data.href.url'
+  | 'data.image.alt'
+  | 'data.image.copyright'
+  | 'data.image.dimensions.height'
+  | 'data.image.dimensions.width'
+  | 'data.image.fixed.base64'
+  | 'data.image.fixed.height'
+  | 'data.image.fixed.sizes'
+  | 'data.image.fixed.src'
+  | 'data.image.fixed.srcSet'
+  | 'data.image.fixed.srcSetWebp'
+  | 'data.image.fixed.srcWebp'
+  | 'data.image.fixed.width'
+  | 'data.image.fluid.aspectRatio'
+  | 'data.image.fluid.base64'
+  | 'data.image.fluid.sizes'
+  | 'data.image.fluid.src'
+  | 'data.image.fluid.srcSet'
+  | 'data.image.fluid.srcSetWebp'
+  | 'data.image.fluid.srcWebp'
+  | 'data.image.gatsbyImageData'
+  | 'data.image.localFile.absolutePath'
+  | 'data.image.localFile.accessTime'
+  | 'data.image.localFile.atime'
+  | 'data.image.localFile.atimeMs'
+  | 'data.image.localFile.base'
+  | 'data.image.localFile.birthTime'
+  | 'data.image.localFile.birthtime'
+  | 'data.image.localFile.birthtimeMs'
+  | 'data.image.localFile.blksize'
+  | 'data.image.localFile.blocks'
+  | 'data.image.localFile.changeTime'
+  | 'data.image.localFile.children'
+  | 'data.image.localFile.childrenImageSharp'
+  | 'data.image.localFile.ctime'
+  | 'data.image.localFile.ctimeMs'
+  | 'data.image.localFile.dev'
+  | 'data.image.localFile.dir'
+  | 'data.image.localFile.ext'
+  | 'data.image.localFile.extension'
+  | 'data.image.localFile.gid'
+  | 'data.image.localFile.id'
+  | 'data.image.localFile.ino'
+  | 'data.image.localFile.mode'
+  | 'data.image.localFile.modifiedTime'
+  | 'data.image.localFile.mtime'
+  | 'data.image.localFile.mtimeMs'
+  | 'data.image.localFile.name'
+  | 'data.image.localFile.nlink'
+  | 'data.image.localFile.prettySize'
+  | 'data.image.localFile.rdev'
+  | 'data.image.localFile.relativeDirectory'
+  | 'data.image.localFile.relativePath'
+  | 'data.image.localFile.root'
+  | 'data.image.localFile.size'
+  | 'data.image.localFile.sourceInstanceName'
+  | 'data.image.localFile.uid'
+  | 'data.image.localFile.url'
+  | 'data.image.url'
+  | 'data.link_text.html'
+  | 'data.link_text.raw'
+  | 'data.link_text.richText'
+  | 'data.link_text.text'
+  | 'data.title.html'
+  | 'data.title.raw'
+  | 'data.title.richText'
+  | 'data.title.text'
+  | 'first_publication_date'
+  | 'href'
+  | 'id'
+  | 'internal.content'
+  | 'internal.contentDigest'
+  | 'internal.description'
+  | 'internal.fieldOwners'
+  | 'internal.ignoreType'
+  | 'internal.mediaType'
+  | 'internal.owner'
+  | 'internal.type'
+  | 'lang'
+  | 'last_publication_date'
+  | 'parent.children'
+  | 'parent.children.children'
+  | 'parent.children.children.children'
+  | 'parent.children.children.id'
+  | 'parent.children.id'
+  | 'parent.children.internal.content'
+  | 'parent.children.internal.contentDigest'
+  | 'parent.children.internal.description'
+  | 'parent.children.internal.fieldOwners'
+  | 'parent.children.internal.ignoreType'
+  | 'parent.children.internal.mediaType'
+  | 'parent.children.internal.owner'
+  | 'parent.children.internal.type'
+  | 'parent.children.parent.children'
+  | 'parent.children.parent.id'
+  | 'parent.id'
+  | 'parent.internal.content'
+  | 'parent.internal.contentDigest'
+  | 'parent.internal.description'
+  | 'parent.internal.fieldOwners'
+  | 'parent.internal.ignoreType'
+  | 'parent.internal.mediaType'
+  | 'parent.internal.owner'
+  | 'parent.internal.type'
+  | 'parent.parent.children'
+  | 'parent.parent.children.children'
+  | 'parent.parent.children.id'
+  | 'parent.parent.id'
+  | 'parent.parent.internal.content'
+  | 'parent.parent.internal.contentDigest'
+  | 'parent.parent.internal.description'
+  | 'parent.parent.internal.fieldOwners'
+  | 'parent.parent.internal.ignoreType'
+  | 'parent.parent.internal.mediaType'
+  | 'parent.parent.internal.owner'
+  | 'parent.parent.internal.type'
+  | 'parent.parent.parent.children'
+  | 'parent.parent.parent.id'
+  | 'prismicId'
+  | 'tags'
+  | 'type'
+  | 'url';
+
+type PrismicJpNoviceGuideBannerFilterInput = {
+  readonly _previewable: InputMaybe<IDQueryOperatorInput>;
+  readonly alternate_languages: InputMaybe<PrismicAlternateLanguageTypeFilterListInput>;
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly data: InputMaybe<PrismicJpNoviceGuideBannerDataTypeFilterInput>;
+  readonly dataRaw: InputMaybe<JSONQueryOperatorInput>;
+  readonly first_publication_date: InputMaybe<DateQueryOperatorInput>;
+  readonly href: InputMaybe<StringQueryOperatorInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly lang: InputMaybe<StringQueryOperatorInput>;
+  readonly last_publication_date: InputMaybe<DateQueryOperatorInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+  readonly prismicId: InputMaybe<IDQueryOperatorInput>;
+  readonly tags: InputMaybe<StringQueryOperatorInput>;
+  readonly type: InputMaybe<StringQueryOperatorInput>;
+  readonly url: InputMaybe<StringQueryOperatorInput>;
+};
+
+type PrismicJpNoviceGuideBannerGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<PrismicJpNoviceGuideBannerEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<PrismicJpNoviceGuideBannerGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<PrismicJpNoviceGuideBanner>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type PrismicJpNoviceGuideBannerGroupConnection_distinctArgs = {
+  field: PrismicJpNoviceGuideBannerFieldsEnum;
+};
+
+
+type PrismicJpNoviceGuideBannerGroupConnection_groupArgs = {
+  field: PrismicJpNoviceGuideBannerFieldsEnum;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type PrismicJpNoviceGuideBannerGroupConnection_maxArgs = {
+  field: PrismicJpNoviceGuideBannerFieldsEnum;
+};
+
+
+type PrismicJpNoviceGuideBannerGroupConnection_minArgs = {
+  field: PrismicJpNoviceGuideBannerFieldsEnum;
+};
+
+
+type PrismicJpNoviceGuideBannerGroupConnection_sumArgs = {
+  field: PrismicJpNoviceGuideBannerFieldsEnum;
+};
+
+type PrismicJpNoviceGuideBannerSortInput = {
+  readonly fields: InputMaybe<ReadonlyArray<InputMaybe<PrismicJpNoviceGuideBannerFieldsEnum>>>;
+  readonly order: InputMaybe<ReadonlyArray<InputMaybe<SortOrderEnum>>>;
+};
+
+type PrismicJpNoviceGuideMenu = Node & {
+  readonly _previewable: Scalars['ID'];
+  readonly alternate_languages: ReadonlyArray<PrismicAlternateLanguageType>;
+  readonly children: ReadonlyArray<Node>;
+  readonly data: PrismicJpNoviceGuideMenuDataType;
+  readonly dataRaw: Scalars['JSON'];
+  readonly first_publication_date: Scalars['Date'];
+  readonly href: Scalars['String'];
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly lang: Scalars['String'];
+  readonly last_publication_date: Scalars['Date'];
+  readonly parent: Maybe<Node>;
+  readonly prismicId: Scalars['ID'];
+  readonly tags: ReadonlyArray<Scalars['String']>;
+  readonly type: Scalars['String'];
+  readonly url: Maybe<Scalars['String']>;
+};
+
+
+type PrismicJpNoviceGuideMenu_first_publication_dateArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type PrismicJpNoviceGuideMenu_last_publication_dateArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+type PrismicJpNoviceGuideMenuConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<PrismicJpNoviceGuideMenuEdge>;
+  readonly group: ReadonlyArray<PrismicJpNoviceGuideMenuGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<PrismicJpNoviceGuideMenu>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type PrismicJpNoviceGuideMenuConnection_distinctArgs = {
+  field: PrismicJpNoviceGuideMenuFieldsEnum;
+};
+
+
+type PrismicJpNoviceGuideMenuConnection_groupArgs = {
+  field: PrismicJpNoviceGuideMenuFieldsEnum;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type PrismicJpNoviceGuideMenuConnection_maxArgs = {
+  field: PrismicJpNoviceGuideMenuFieldsEnum;
+};
+
+
+type PrismicJpNoviceGuideMenuConnection_minArgs = {
+  field: PrismicJpNoviceGuideMenuFieldsEnum;
+};
+
+
+type PrismicJpNoviceGuideMenuConnection_sumArgs = {
+  field: PrismicJpNoviceGuideMenuFieldsEnum;
+};
+
+type PrismicJpNoviceGuideMenuDataMenus = {
+  readonly check_text: Maybe<PrismicStructuredTextType>;
+  readonly image: Maybe<PrismicJpNoviceGuideMenuDataMenusImageImageType>;
+  readonly slug: Maybe<PrismicStructuredTextType>;
+  readonly title: Maybe<PrismicStructuredTextType>;
+};
+
+type PrismicJpNoviceGuideMenuDataMenusFilterInput = {
+  readonly check_text: InputMaybe<PrismicStructuredTextTypeFilterInput>;
+  readonly image: InputMaybe<PrismicJpNoviceGuideMenuDataMenusImageImageTypeFilterInput>;
+  readonly slug: InputMaybe<PrismicStructuredTextTypeFilterInput>;
+  readonly title: InputMaybe<PrismicStructuredTextTypeFilterInput>;
+};
+
+type PrismicJpNoviceGuideMenuDataMenusFilterListInput = {
+  readonly elemMatch: InputMaybe<PrismicJpNoviceGuideMenuDataMenusFilterInput>;
+};
+
+type PrismicJpNoviceGuideMenuDataMenusImageImageType = {
+  readonly alt: Maybe<Scalars['String']>;
+  readonly copyright: Maybe<Scalars['String']>;
+  readonly dimensions: Maybe<PrismicImageDimensionsType>;
+  /** Should be used to generate fixed-width images (i.e. the size of the image doesn't change when the size of the browser changes, and are "fixed"). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFixed fragment should be used. See the project's README for more information. */
+  readonly fixed: Maybe<ImgixFixed>;
+  /** Should be used to generate fluid-width images (i.e. images that change when the size of the browser changes). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFluid fragment should be used. See the project's README for more information. */
+  readonly fluid: Maybe<ImgixFluid>;
+  readonly gatsbyImageData: Maybe<Scalars['JSON']>;
+  readonly localFile: Maybe<File>;
+  /** A plain imgix URL with the URL and params applied. */
+  readonly url: Maybe<Scalars['String']>;
+};
+
+
+type PrismicJpNoviceGuideMenuDataMenusImageImageType_fixedArgs = {
+  height: InputMaybe<Scalars['Int']>;
+  imgixParams?: InputMaybe<ImgixParamsInput>;
+  placeholderImgixParams?: InputMaybe<ImgixParamsInput>;
+  quality: InputMaybe<Scalars['Int']>;
+  width?: InputMaybe<Scalars['Int']>;
+};
+
+
+type PrismicJpNoviceGuideMenuDataMenusImageImageType_fluidArgs = {
+  imgixParams?: InputMaybe<ImgixParamsInput>;
+  maxHeight: InputMaybe<Scalars['Int']>;
+  maxWidth?: InputMaybe<Scalars['Int']>;
+  placeholderImgixParams?: InputMaybe<ImgixParamsInput>;
+  srcSetBreakpoints: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']>>>;
+};
+
+
+type PrismicJpNoviceGuideMenuDataMenusImageImageType_gatsbyImageDataArgs = {
+  aspectRatio: InputMaybe<Scalars['Float']>;
+  backgroundColor: InputMaybe<Scalars['String']>;
+  breakpoints: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']>>>;
+  height: InputMaybe<Scalars['Int']>;
+  imgixParams: InputMaybe<ImgixParamsInput>;
+  layout: InputMaybe<GatsbyImageLayout>;
+  outputPixelDensities: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Float']>>>;
+  placeholder: InputMaybe<ImgixPlaceholder>;
+  placeholderImgixParams: InputMaybe<ImgixParamsInput>;
+  sizes: InputMaybe<Scalars['String']>;
+  srcSetMaxWidth?: InputMaybe<Scalars['Int']>;
+  srcSetMinWidth?: InputMaybe<Scalars['Int']>;
+  width: InputMaybe<Scalars['Int']>;
+  widthTolerance?: InputMaybe<Scalars['Float']>;
+};
+
+
+type PrismicJpNoviceGuideMenuDataMenusImageImageType_urlArgs = {
+  imgixParams?: InputMaybe<ImgixParamsInput>;
+};
+
+type PrismicJpNoviceGuideMenuDataMenusImageImageTypeFilterInput = {
+  readonly alt: InputMaybe<StringQueryOperatorInput>;
+  readonly copyright: InputMaybe<StringQueryOperatorInput>;
+  readonly dimensions: InputMaybe<PrismicImageDimensionsTypeFilterInput>;
+  readonly fixed: InputMaybe<ImgixFixedFilterInput>;
+  readonly fluid: InputMaybe<ImgixFluidFilterInput>;
+  readonly gatsbyImageData: InputMaybe<JSONQueryOperatorInput>;
+  readonly localFile: InputMaybe<FileFilterInput>;
+  readonly url: InputMaybe<StringQueryOperatorInput>;
+};
+
+type PrismicJpNoviceGuideMenuDataType = {
+  readonly menus: Maybe<ReadonlyArray<Maybe<PrismicJpNoviceGuideMenuDataMenus>>>;
+  readonly novice_title: Maybe<PrismicStructuredTextType>;
+};
+
+type PrismicJpNoviceGuideMenuDataTypeFilterInput = {
+  readonly menus: InputMaybe<PrismicJpNoviceGuideMenuDataMenusFilterListInput>;
+  readonly novice_title: InputMaybe<PrismicStructuredTextTypeFilterInput>;
+};
+
+type PrismicJpNoviceGuideMenuEdge = {
+  readonly next: Maybe<PrismicJpNoviceGuideMenu>;
+  readonly node: PrismicJpNoviceGuideMenu;
+  readonly previous: Maybe<PrismicJpNoviceGuideMenu>;
+};
+
+type PrismicJpNoviceGuideMenuFieldsEnum =
+  | '_previewable'
+  | 'alternate_languages'
+  | 'alternate_languages.id'
+  | 'alternate_languages.lang'
+  | 'alternate_languages.raw'
+  | 'alternate_languages.type'
+  | 'alternate_languages.uid'
+  | 'children'
+  | 'children.children'
+  | 'children.children.children'
+  | 'children.children.children.children'
+  | 'children.children.children.id'
+  | 'children.children.id'
+  | 'children.children.internal.content'
+  | 'children.children.internal.contentDigest'
+  | 'children.children.internal.description'
+  | 'children.children.internal.fieldOwners'
+  | 'children.children.internal.ignoreType'
+  | 'children.children.internal.mediaType'
+  | 'children.children.internal.owner'
+  | 'children.children.internal.type'
+  | 'children.children.parent.children'
+  | 'children.children.parent.id'
+  | 'children.id'
+  | 'children.internal.content'
+  | 'children.internal.contentDigest'
+  | 'children.internal.description'
+  | 'children.internal.fieldOwners'
+  | 'children.internal.ignoreType'
+  | 'children.internal.mediaType'
+  | 'children.internal.owner'
+  | 'children.internal.type'
+  | 'children.parent.children'
+  | 'children.parent.children.children'
+  | 'children.parent.children.id'
+  | 'children.parent.id'
+  | 'children.parent.internal.content'
+  | 'children.parent.internal.contentDigest'
+  | 'children.parent.internal.description'
+  | 'children.parent.internal.fieldOwners'
+  | 'children.parent.internal.ignoreType'
+  | 'children.parent.internal.mediaType'
+  | 'children.parent.internal.owner'
+  | 'children.parent.internal.type'
+  | 'children.parent.parent.children'
+  | 'children.parent.parent.id'
+  | 'dataRaw'
+  | 'data.menus'
+  | 'data.menus.check_text.html'
+  | 'data.menus.check_text.raw'
+  | 'data.menus.check_text.richText'
+  | 'data.menus.check_text.text'
+  | 'data.menus.image.alt'
+  | 'data.menus.image.copyright'
+  | 'data.menus.image.gatsbyImageData'
+  | 'data.menus.image.url'
+  | 'data.menus.slug.html'
+  | 'data.menus.slug.raw'
+  | 'data.menus.slug.richText'
+  | 'data.menus.slug.text'
+  | 'data.menus.title.html'
+  | 'data.menus.title.raw'
+  | 'data.menus.title.richText'
+  | 'data.menus.title.text'
+  | 'data.novice_title.html'
+  | 'data.novice_title.raw'
+  | 'data.novice_title.richText'
+  | 'data.novice_title.text'
+  | 'first_publication_date'
+  | 'href'
+  | 'id'
+  | 'internal.content'
+  | 'internal.contentDigest'
+  | 'internal.description'
+  | 'internal.fieldOwners'
+  | 'internal.ignoreType'
+  | 'internal.mediaType'
+  | 'internal.owner'
+  | 'internal.type'
+  | 'lang'
+  | 'last_publication_date'
+  | 'parent.children'
+  | 'parent.children.children'
+  | 'parent.children.children.children'
+  | 'parent.children.children.id'
+  | 'parent.children.id'
+  | 'parent.children.internal.content'
+  | 'parent.children.internal.contentDigest'
+  | 'parent.children.internal.description'
+  | 'parent.children.internal.fieldOwners'
+  | 'parent.children.internal.ignoreType'
+  | 'parent.children.internal.mediaType'
+  | 'parent.children.internal.owner'
+  | 'parent.children.internal.type'
+  | 'parent.children.parent.children'
+  | 'parent.children.parent.id'
+  | 'parent.id'
+  | 'parent.internal.content'
+  | 'parent.internal.contentDigest'
+  | 'parent.internal.description'
+  | 'parent.internal.fieldOwners'
+  | 'parent.internal.ignoreType'
+  | 'parent.internal.mediaType'
+  | 'parent.internal.owner'
+  | 'parent.internal.type'
+  | 'parent.parent.children'
+  | 'parent.parent.children.children'
+  | 'parent.parent.children.id'
+  | 'parent.parent.id'
+  | 'parent.parent.internal.content'
+  | 'parent.parent.internal.contentDigest'
+  | 'parent.parent.internal.description'
+  | 'parent.parent.internal.fieldOwners'
+  | 'parent.parent.internal.ignoreType'
+  | 'parent.parent.internal.mediaType'
+  | 'parent.parent.internal.owner'
+  | 'parent.parent.internal.type'
+  | 'parent.parent.parent.children'
+  | 'parent.parent.parent.id'
+  | 'prismicId'
+  | 'tags'
+  | 'type'
+  | 'url';
+
+type PrismicJpNoviceGuideMenuFilterInput = {
+  readonly _previewable: InputMaybe<IDQueryOperatorInput>;
+  readonly alternate_languages: InputMaybe<PrismicAlternateLanguageTypeFilterListInput>;
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly data: InputMaybe<PrismicJpNoviceGuideMenuDataTypeFilterInput>;
+  readonly dataRaw: InputMaybe<JSONQueryOperatorInput>;
+  readonly first_publication_date: InputMaybe<DateQueryOperatorInput>;
+  readonly href: InputMaybe<StringQueryOperatorInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly lang: InputMaybe<StringQueryOperatorInput>;
+  readonly last_publication_date: InputMaybe<DateQueryOperatorInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+  readonly prismicId: InputMaybe<IDQueryOperatorInput>;
+  readonly tags: InputMaybe<StringQueryOperatorInput>;
+  readonly type: InputMaybe<StringQueryOperatorInput>;
+  readonly url: InputMaybe<StringQueryOperatorInput>;
+};
+
+type PrismicJpNoviceGuideMenuGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<PrismicJpNoviceGuideMenuEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<PrismicJpNoviceGuideMenuGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<PrismicJpNoviceGuideMenu>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type PrismicJpNoviceGuideMenuGroupConnection_distinctArgs = {
+  field: PrismicJpNoviceGuideMenuFieldsEnum;
+};
+
+
+type PrismicJpNoviceGuideMenuGroupConnection_groupArgs = {
+  field: PrismicJpNoviceGuideMenuFieldsEnum;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type PrismicJpNoviceGuideMenuGroupConnection_maxArgs = {
+  field: PrismicJpNoviceGuideMenuFieldsEnum;
+};
+
+
+type PrismicJpNoviceGuideMenuGroupConnection_minArgs = {
+  field: PrismicJpNoviceGuideMenuFieldsEnum;
+};
+
+
+type PrismicJpNoviceGuideMenuGroupConnection_sumArgs = {
+  field: PrismicJpNoviceGuideMenuFieldsEnum;
+};
+
+type PrismicJpNoviceGuideMenuSortInput = {
+  readonly fields: InputMaybe<ReadonlyArray<InputMaybe<PrismicJpNoviceGuideMenuFieldsEnum>>>;
   readonly order: InputMaybe<ReadonlyArray<InputMaybe<SortOrderEnum>>>;
 };
 
@@ -11032,8 +12691,12 @@ type Query = {
   readonly allPrismicAdvertisementContents: PrismicAdvertisementContentsConnection;
   readonly allPrismicEmbedType: PrismicEmbedTypeConnection;
   readonly allPrismicFaq: PrismicFaqConnection;
+  readonly allPrismicFinancialStatements: PrismicFinancialStatementsConnection;
   readonly allPrismicGlobalContents: PrismicGlobalContentsConnection;
   readonly allPrismicIr: PrismicIrConnection;
+  readonly allPrismicJpNoviceGuideArticle: PrismicJpNoviceGuideArticleConnection;
+  readonly allPrismicJpNoviceGuideBanner: PrismicJpNoviceGuideBannerConnection;
+  readonly allPrismicJpNoviceGuideMenu: PrismicJpNoviceGuideMenuConnection;
   readonly allPrismicMemberProfile: PrismicMemberProfileConnection;
   readonly allPrismicPayContents: PrismicPayContentsConnection;
   readonly allPrismicSiteNavigation: PrismicSiteNavigationConnection;
@@ -11055,8 +12718,12 @@ type Query = {
   readonly prismicAdvertisementContents: Maybe<PrismicAdvertisementContents>;
   readonly prismicEmbedType: Maybe<PrismicEmbedType>;
   readonly prismicFaq: Maybe<PrismicFaq>;
+  readonly prismicFinancialStatements: Maybe<PrismicFinancialStatements>;
   readonly prismicGlobalContents: Maybe<PrismicGlobalContents>;
   readonly prismicIr: Maybe<PrismicIr>;
+  readonly prismicJpNoviceGuideArticle: Maybe<PrismicJpNoviceGuideArticle>;
+  readonly prismicJpNoviceGuideBanner: Maybe<PrismicJpNoviceGuideBanner>;
+  readonly prismicJpNoviceGuideMenu: Maybe<PrismicJpNoviceGuideMenu>;
   readonly prismicMemberProfile: Maybe<PrismicMemberProfile>;
   readonly prismicPayContents: Maybe<PrismicPayContents>;
   readonly prismicSiteNavigation: Maybe<PrismicSiteNavigation>;
@@ -11137,6 +12804,14 @@ type Query_allPrismicFaqArgs = {
 };
 
 
+type Query_allPrismicFinancialStatementsArgs = {
+  filter: InputMaybe<PrismicFinancialStatementsFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<PrismicFinancialStatementsSortInput>;
+};
+
+
 type Query_allPrismicGlobalContentsArgs = {
   filter: InputMaybe<PrismicGlobalContentsFilterInput>;
   limit: InputMaybe<Scalars['Int']>;
@@ -11150,6 +12825,30 @@ type Query_allPrismicIrArgs = {
   limit: InputMaybe<Scalars['Int']>;
   skip: InputMaybe<Scalars['Int']>;
   sort: InputMaybe<PrismicIrSortInput>;
+};
+
+
+type Query_allPrismicJpNoviceGuideArticleArgs = {
+  filter: InputMaybe<PrismicJpNoviceGuideArticleFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<PrismicJpNoviceGuideArticleSortInput>;
+};
+
+
+type Query_allPrismicJpNoviceGuideBannerArgs = {
+  filter: InputMaybe<PrismicJpNoviceGuideBannerFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<PrismicJpNoviceGuideBannerSortInput>;
+};
+
+
+type Query_allPrismicJpNoviceGuideMenuArgs = {
+  filter: InputMaybe<PrismicJpNoviceGuideMenuFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<PrismicJpNoviceGuideMenuSortInput>;
 };
 
 
@@ -11357,7 +13056,7 @@ type Query_imageSharpArgs = {
   children: InputMaybe<NodeFilterListInput>;
   fixed: InputMaybe<ImageSharpFixedFilterInput>;
   fluid: InputMaybe<ImageSharpFluidFilterInput>;
-  gatsbyImageData: InputMaybe<JSONQueryOperatorInput>;
+  gatsbyImageData: InputMaybe<GatsbyImageDataQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
   original: InputMaybe<ImageSharpOriginalFilterInput>;
@@ -11434,6 +13133,27 @@ type Query_prismicFaqArgs = {
 };
 
 
+type Query_prismicFinancialStatementsArgs = {
+  _previewable: InputMaybe<IDQueryOperatorInput>;
+  alternate_languages: InputMaybe<PrismicAlternateLanguageTypeFilterListInput>;
+  children: InputMaybe<NodeFilterListInput>;
+  data: InputMaybe<PrismicFinancialStatementsDataTypeFilterInput>;
+  dataRaw: InputMaybe<JSONQueryOperatorInput>;
+  first_publication_date: InputMaybe<DateQueryOperatorInput>;
+  href: InputMaybe<StringQueryOperatorInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  lang: InputMaybe<StringQueryOperatorInput>;
+  last_publication_date: InputMaybe<DateQueryOperatorInput>;
+  parent: InputMaybe<NodeFilterInput>;
+  prismicId: InputMaybe<IDQueryOperatorInput>;
+  tags: InputMaybe<StringQueryOperatorInput>;
+  type: InputMaybe<StringQueryOperatorInput>;
+  uid: InputMaybe<StringQueryOperatorInput>;
+  url: InputMaybe<StringQueryOperatorInput>;
+};
+
+
 type Query_prismicGlobalContentsArgs = {
   _previewable: InputMaybe<IDQueryOperatorInput>;
   alternate_languages: InputMaybe<PrismicAlternateLanguageTypeFilterListInput>;
@@ -11471,6 +13191,67 @@ type Query_prismicIrArgs = {
   tags: InputMaybe<StringQueryOperatorInput>;
   type: InputMaybe<StringQueryOperatorInput>;
   uid: InputMaybe<StringQueryOperatorInput>;
+  url: InputMaybe<StringQueryOperatorInput>;
+};
+
+
+type Query_prismicJpNoviceGuideArticleArgs = {
+  _previewable: InputMaybe<IDQueryOperatorInput>;
+  alternate_languages: InputMaybe<PrismicAlternateLanguageTypeFilterListInput>;
+  children: InputMaybe<NodeFilterListInput>;
+  data: InputMaybe<PrismicJpNoviceGuideArticleDataTypeFilterInput>;
+  dataRaw: InputMaybe<JSONQueryOperatorInput>;
+  first_publication_date: InputMaybe<DateQueryOperatorInput>;
+  href: InputMaybe<StringQueryOperatorInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  lang: InputMaybe<StringQueryOperatorInput>;
+  last_publication_date: InputMaybe<DateQueryOperatorInput>;
+  parent: InputMaybe<NodeFilterInput>;
+  prismicId: InputMaybe<IDQueryOperatorInput>;
+  tags: InputMaybe<StringQueryOperatorInput>;
+  type: InputMaybe<StringQueryOperatorInput>;
+  uid: InputMaybe<StringQueryOperatorInput>;
+  url: InputMaybe<StringQueryOperatorInput>;
+};
+
+
+type Query_prismicJpNoviceGuideBannerArgs = {
+  _previewable: InputMaybe<IDQueryOperatorInput>;
+  alternate_languages: InputMaybe<PrismicAlternateLanguageTypeFilterListInput>;
+  children: InputMaybe<NodeFilterListInput>;
+  data: InputMaybe<PrismicJpNoviceGuideBannerDataTypeFilterInput>;
+  dataRaw: InputMaybe<JSONQueryOperatorInput>;
+  first_publication_date: InputMaybe<DateQueryOperatorInput>;
+  href: InputMaybe<StringQueryOperatorInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  lang: InputMaybe<StringQueryOperatorInput>;
+  last_publication_date: InputMaybe<DateQueryOperatorInput>;
+  parent: InputMaybe<NodeFilterInput>;
+  prismicId: InputMaybe<IDQueryOperatorInput>;
+  tags: InputMaybe<StringQueryOperatorInput>;
+  type: InputMaybe<StringQueryOperatorInput>;
+  url: InputMaybe<StringQueryOperatorInput>;
+};
+
+
+type Query_prismicJpNoviceGuideMenuArgs = {
+  _previewable: InputMaybe<IDQueryOperatorInput>;
+  alternate_languages: InputMaybe<PrismicAlternateLanguageTypeFilterListInput>;
+  children: InputMaybe<NodeFilterListInput>;
+  data: InputMaybe<PrismicJpNoviceGuideMenuDataTypeFilterInput>;
+  dataRaw: InputMaybe<JSONQueryOperatorInput>;
+  first_publication_date: InputMaybe<DateQueryOperatorInput>;
+  href: InputMaybe<StringQueryOperatorInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  lang: InputMaybe<StringQueryOperatorInput>;
+  last_publication_date: InputMaybe<DateQueryOperatorInput>;
+  parent: InputMaybe<NodeFilterInput>;
+  prismicId: InputMaybe<IDQueryOperatorInput>;
+  tags: InputMaybe<StringQueryOperatorInput>;
+  type: InputMaybe<StringQueryOperatorInput>;
   url: InputMaybe<StringQueryOperatorInput>;
 };
 
@@ -11632,6 +13413,7 @@ type Query_prismicTypePathTypeArgs = {
 type Query_siteArgs = {
   buildTime: InputMaybe<DateQueryOperatorInput>;
   children: InputMaybe<NodeFilterListInput>;
+  graphqlTypegen: InputMaybe<BooleanQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
   jsxRuntime: InputMaybe<StringQueryOperatorInput>;
@@ -11701,6 +13483,7 @@ type Query_sitePluginArgs = {
 type Site = Node & {
   readonly buildTime: Maybe<Scalars['Date']>;
   readonly children: ReadonlyArray<Node>;
+  readonly graphqlTypegen: Maybe<Scalars['Boolean']>;
   readonly id: Scalars['ID'];
   readonly internal: Internal;
   readonly jsxRuntime: Maybe<Scalars['String']>;
@@ -12009,6 +13792,7 @@ type SiteFieldsEnum =
   | 'children.parent.internal.type'
   | 'children.parent.parent.children'
   | 'children.parent.parent.id'
+  | 'graphqlTypegen'
   | 'id'
   | 'internal.content'
   | 'internal.contentDigest'
@@ -12068,6 +13852,7 @@ type SiteFieldsEnum =
 type SiteFilterInput = {
   readonly buildTime: InputMaybe<DateQueryOperatorInput>;
   readonly children: InputMaybe<NodeFilterListInput>;
+  readonly graphqlTypegen: InputMaybe<BooleanQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
   readonly jsxRuntime: InputMaybe<StringQueryOperatorInput>;
@@ -12858,15 +14643,43 @@ type WebPOptions = {
   readonly quality: InputMaybe<Scalars['Int']>;
 };
 
-type NotFoundPageQueryQueryVariables = Exact<{ [key: string]: never; }>;
+type DefaultLayout_dataFragment = { readonly data: { readonly copyright: { readonly html: string | null } | null, readonly contact_group: ReadonlyArray<{ readonly contact_info: { readonly html: string | null } | null } | null> | null, readonly footer_entries: ReadonlyArray<{ readonly display_text: string | null, readonly link: { readonly url: string | null } | null }>, readonly sns_profiles: ReadonlyArray<{ readonly service: string | null, readonly link: { readonly url: string | null } | null }>, readonly header_entries: ReadonlyArray<{ readonly display_text: string | null, readonly link: { readonly url: string | null } | null }> } };
 
+type Header_navigationDataFragment = { readonly header_entries: ReadonlyArray<{ readonly display_text: string | null, readonly link: { readonly url: string | null } | null }>, readonly sns_profiles: ReadonlyArray<{ readonly service: string | null, readonly link: { readonly url: string | null } | null }> };
 
-type NotFoundPageQueryQuery = { readonly prismicSiteNavigation: { readonly _previewable: string, readonly data: { readonly header_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined }>, readonly sns_profiles: ReadonlyArray<{ readonly service: string | undefined, readonly link: { readonly url: string | undefined } | undefined }>, readonly copyright: { readonly html: string | undefined } | undefined, readonly contact_group: ReadonlyArray<{ readonly contact_info: { readonly html: string | undefined } | undefined } | undefined> | undefined, readonly footer_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined }> } } | undefined };
+type NavigationMenu_dataFragment = { readonly header_entries: ReadonlyArray<{ readonly display_text: string | null, readonly link: { readonly url: string | null } | null }>, readonly sns_profiles: ReadonlyArray<{ readonly service: string | null, readonly link: { readonly url: string | null } | null }> };
 
-type UseSiteMetadataStaticQueryVariables = Exact<{ [key: string]: never; }>;
+type SocialServiceProfile_profileFragment = { readonly service: string | null, readonly link: { readonly url: string | null } | null };
 
+type Footer_navigationDataFragment = { readonly copyright: { readonly html: string | null } | null, readonly contact_group: ReadonlyArray<{ readonly contact_info: { readonly html: string | null } | null } | null> | null, readonly footer_entries: ReadonlyArray<{ readonly display_text: string | null, readonly link: { readonly url: string | null } | null }>, readonly sns_profiles: ReadonlyArray<{ readonly service: string | null, readonly link: { readonly url: string | null } | null }> };
 
-type UseSiteMetadataStaticQuery = { readonly site: { readonly siteMetadata: { readonly siteUrl: string | undefined } | undefined } | undefined };
+type SubtitleAndImages_contentFragment = { readonly primary: { readonly subtitle: { readonly text: string | null } | null }, readonly items: ReadonlyArray<{ readonly image: { readonly url: string | null, readonly alt: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null, readonly dimensions: { readonly width: number, readonly height: number } | null, readonly thumbnails: { readonly mobile: { readonly url: string | null, readonly dimensions: { readonly width: number, readonly height: number } | null } | null } | null } | null }> };
+
+type SubtitleAndLinks_contentFragment = { readonly primary: { readonly subtitle: { readonly text: string | null } | null }, readonly items: ReadonlyArray<{ readonly text: string | null, readonly date: string | null, readonly link: { readonly url: string | null } | null }> };
+
+type SubtitleAndText_contentFragment = { readonly primary: { readonly subtitle: { readonly text: string | null } | null, readonly text: { readonly html: string | null } | null } };
+
+type DetailsList_contentFragment = { readonly items: ReadonlyArray<{ readonly label: string | null, readonly text: string | null }> };
+
+type AppLink_linksFragment = { readonly app_store_link: string | null, readonly google_play_link: string | null, readonly one_link: string | null, readonly one_link_button_text: string | null };
+
+type HeroSection_contentFragment = { readonly primary: { readonly background_color: string | null, readonly title: { readonly html: string | null } | null, readonly text: { readonly html: string | null } | null, readonly side_image: { readonly url: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null, readonly dimensions: { readonly width: number, readonly height: number } | null } | null } };
+
+type PopularSection_contentFragment = { readonly primary: { readonly more_button: string | null, readonly title: { readonly text: string | null } | null } };
+
+type ParallaxSection_contentFragment = { readonly primary: { readonly top_icon: string | null, readonly title: { readonly html: string | null } | null, readonly top_text: { readonly text: string | null } | null, readonly background_image: { readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } };
+
+type MockupSection_contentFragment = { readonly primary: { readonly background_color: string | null, readonly text_highlight_color: string | null, readonly phone_mockup_component: string | null, readonly inverted: boolean | null, readonly text: { readonly html: string | null } | null }, readonly items: ReadonlyArray<{ readonly icon: string | null, readonly text: string | null }> };
+
+type ReviewSection_contentFragment = { readonly primary: { readonly background_color: string | null, readonly title: { readonly html: string | null } | null }, readonly items: ReadonlyArray<{ readonly user_name: string | null, readonly user_region: string | null, readonly text_highlight_color: string | null, readonly content: { readonly html: string | null } | null }> };
+
+type CenterSection_contentFragment = { readonly primary: { readonly title: { readonly text: string | null } | null, readonly text: { readonly html: string | null } | null, readonly image: { readonly url: string | null, readonly alt: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null, readonly dimensions: { readonly width: number, readonly height: number } | null, readonly thumbnails: { readonly mobile: { readonly url: string | null, readonly dimensions: { readonly width: number, readonly height: number } | null } | null } | null } | null } };
+
+type DownloadSection_contentFragment = { readonly primary: { readonly title: { readonly text: string | null } | null } };
+
+type IllustrationSection_contentFragment = { readonly primary: { readonly inverted: boolean | null, readonly title: { readonly html: string | null } | null, readonly text: { readonly html: string | null } | null, readonly image: { readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } };
+
+type PopularSection_articlesFragment = { readonly price: string | null, readonly region: string | null, readonly image: string | null, readonly articleId: string | null };
 
 type AboutPageQueryQueryVariables = Exact<{
   lang: InputMaybe<Scalars['String']>;
@@ -12874,14 +14687,24 @@ type AboutPageQueryQueryVariables = Exact<{
 }>;
 
 
-type AboutPageQueryQuery = { readonly prismicSiteNavigation: { readonly _previewable: string, readonly data: { readonly header_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined }>, readonly sns_profiles: ReadonlyArray<{ readonly service: string | undefined, readonly link: { readonly url: string | undefined } | undefined }>, readonly copyright: { readonly html: string | undefined } | undefined, readonly contact_group: ReadonlyArray<{ readonly contact_info: { readonly html: string | undefined } | undefined } | undefined> | undefined, readonly footer_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined }> } } | undefined, readonly prismicGlobalContents: { readonly _previewable: string, readonly data: { readonly about_page_title: string | undefined, readonly about_page_description: string | undefined, readonly about_opengraph_image: { readonly localFile: { readonly childImageSharp: { readonly fixed: { readonly src: string, readonly width: number, readonly height: number } | undefined } | undefined } | undefined } | undefined, readonly about_title: { readonly html: string | undefined } | undefined, readonly about_background_image: { readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined } | undefined, readonly about_body: ReadonlyArray<{ readonly __typename: 'PrismicGlobalContentsDataAboutBodyDetailsList', readonly items: ReadonlyArray<{ readonly label: string | undefined, readonly text: string | undefined }> } | { readonly __typename: 'PrismicGlobalContentsDataAboutBodySubtitleAndImages', readonly primary: { readonly subtitle: { readonly text: string | undefined } | undefined }, readonly items: ReadonlyArray<{ readonly image: { readonly url: string | undefined, readonly alt: string | undefined, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined, readonly dimensions: { readonly width: number, readonly height: number } | undefined, readonly thumbnails: { readonly mobile: { readonly url: string | undefined, readonly dimensions: { readonly width: number, readonly height: number } | undefined } | undefined } | undefined } | undefined }> } | { readonly __typename: 'PrismicGlobalContentsDataAboutBodySubtitleAndLinks', readonly primary: { readonly subtitle: { readonly text: string | undefined } | undefined }, readonly items: ReadonlyArray<{ readonly text: string | undefined, readonly date: string | undefined, readonly link: { readonly url: string | undefined } | undefined }> } | { readonly __typename: 'PrismicGlobalContentsDataAboutBodySubtitleAndText', readonly primary: { readonly subtitle: { readonly text: string | undefined } | undefined, readonly text: { readonly html: string | undefined } | undefined } }> } } | undefined };
+type AboutPageQueryQuery = { readonly prismicSiteNavigation: { readonly _previewable: string, readonly data: { readonly header_entries: ReadonlyArray<{ readonly display_text: string | null, readonly link: { readonly url: string | null } | null }>, readonly sns_profiles: ReadonlyArray<{ readonly service: string | null, readonly link: { readonly url: string | null } | null }>, readonly copyright: { readonly html: string | null } | null, readonly contact_group: ReadonlyArray<{ readonly contact_info: { readonly html: string | null } | null } | null> | null, readonly footer_entries: ReadonlyArray<{ readonly display_text: string | null, readonly link: { readonly url: string | null } | null }> } } | null, readonly prismicGlobalContents: { readonly _previewable: string, readonly data: { readonly about_page_title: string | null, readonly about_page_description: string | null, readonly about_opengraph_image: { readonly localFile: { readonly childImageSharp: { readonly fixed: { readonly src: string, readonly width: number, readonly height: number } | null } | null } | null } | null, readonly about_title: { readonly html: string | null } | null, readonly about_background_image: { readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly about_body: ReadonlyArray<{ readonly __typename: 'PrismicGlobalContentsDataAboutBodyDetailsList', readonly items: ReadonlyArray<{ readonly label: string | null, readonly text: string | null }> } | { readonly __typename: 'PrismicGlobalContentsDataAboutBodySubtitleAndImages', readonly primary: { readonly subtitle: { readonly text: string | null } | null }, readonly items: ReadonlyArray<{ readonly image: { readonly url: string | null, readonly alt: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null, readonly dimensions: { readonly width: number, readonly height: number } | null, readonly thumbnails: { readonly mobile: { readonly url: string | null, readonly dimensions: { readonly width: number, readonly height: number } | null } | null } | null } | null }> } | { readonly __typename: 'PrismicGlobalContentsDataAboutBodySubtitleAndLinks', readonly primary: { readonly subtitle: { readonly text: string | null } | null }, readonly items: ReadonlyArray<{ readonly text: string | null, readonly date: string | null, readonly link: { readonly url: string | null } | null }> } | { readonly __typename: 'PrismicGlobalContentsDataAboutBodySubtitleAndText', readonly primary: { readonly subtitle: { readonly text: string | null } | null, readonly text: { readonly html: string | null } | null } }> } } | null };
 
 type IndexPageQueryQueryVariables = Exact<{
   lang: InputMaybe<Scalars['String']>;
 }>;
 
 
-type IndexPageQueryQuery = { readonly prismicSiteNavigation: { readonly _previewable: string, readonly data: { readonly header_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined }>, readonly sns_profiles: ReadonlyArray<{ readonly service: string | undefined, readonly link: { readonly url: string | undefined } | undefined }>, readonly copyright: { readonly html: string | undefined } | undefined, readonly contact_group: ReadonlyArray<{ readonly contact_info: { readonly html: string | undefined } | undefined } | undefined> | undefined, readonly footer_entries: ReadonlyArray<{ readonly display_text: string | undefined, readonly link: { readonly url: string | undefined } | undefined }> } } | undefined, readonly prismicGlobalContents: { readonly _previewable: string, readonly data: { readonly main_page_title: string | undefined, readonly main_page_description: string | undefined, readonly app_store_link: string | undefined, readonly google_play_link: string | undefined, readonly one_link: string | undefined, readonly one_link_button_text: string | undefined, readonly main_opengraph_image: { readonly localFile: { readonly childImageSharp: { readonly fixed: { readonly src: string, readonly width: number, readonly height: number } | undefined } | undefined } | undefined } | undefined, readonly main_body: ReadonlyArray<{ readonly __typename: 'PrismicGlobalContentsDataMainBodyCentreSection', readonly primary: { readonly title: { readonly text: string | undefined } | undefined, readonly text: { readonly html: string | undefined } | undefined, readonly image: { readonly url: string | undefined, readonly alt: string | undefined, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined, readonly dimensions: { readonly width: number, readonly height: number } | undefined, readonly thumbnails: { readonly mobile: { readonly url: string | undefined, readonly dimensions: { readonly width: number, readonly height: number } | undefined } | undefined } | undefined } | undefined } } | { readonly __typename: 'PrismicGlobalContentsDataMainBodyDownloadSection', readonly primary: { readonly title: { readonly text: string | undefined } | undefined } } | { readonly __typename: 'PrismicGlobalContentsDataMainBodyHeroSection', readonly primary: { readonly background_color: string | undefined, readonly title: { readonly html: string | undefined } | undefined, readonly text: { readonly html: string | undefined } | undefined, readonly side_image: { readonly url: string | undefined, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined, readonly dimensions: { readonly width: number, readonly height: number } | undefined } | undefined } } | { readonly __typename: 'PrismicGlobalContentsDataMainBodyIllustrationSection', readonly primary: { readonly inverted: boolean | undefined, readonly title: { readonly html: string | undefined } | undefined, readonly text: { readonly html: string | undefined } | undefined, readonly image: { readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined } | undefined } } | { readonly __typename: 'PrismicGlobalContentsDataMainBodyMockupSection', readonly primary: { readonly background_color: string | undefined, readonly text_highlight_color: string | undefined, readonly phone_mockup_component: string | undefined, readonly inverted: boolean | undefined, readonly text: { readonly html: string | undefined } | undefined }, readonly items: ReadonlyArray<{ readonly icon: string | undefined, readonly text: string | undefined }> } | { readonly __typename: 'PrismicGlobalContentsDataMainBodyParallaxSection', readonly primary: { readonly top_icon: string | undefined, readonly title: { readonly html: string | undefined } | undefined, readonly top_text: { readonly text: string | undefined } | undefined, readonly background_image: { readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: any } | undefined } | undefined } | undefined } } | { readonly __typename: 'PrismicGlobalContentsDataMainBodyPopularSection', readonly primary: { readonly more_button: string | undefined, readonly title: { readonly text: string | undefined } | undefined } } | { readonly __typename: 'PrismicGlobalContentsDataMainBodyReviewSection', readonly primary: { readonly background_color: string | undefined, readonly title: { readonly html: string | undefined } | undefined }, readonly items: ReadonlyArray<{ readonly user_name: string | undefined, readonly user_region: string | undefined, readonly text_highlight_color: string | undefined, readonly content: { readonly html: string | undefined } | undefined }> }> } } | undefined, readonly hotArticles: { readonly nodes: ReadonlyArray<{ readonly price: string | undefined, readonly region: string | undefined, readonly image: string | undefined, readonly articleId: string | undefined }> } };
+type IndexPageQueryQuery = { readonly prismicSiteNavigation: { readonly _previewable: string, readonly data: { readonly header_entries: ReadonlyArray<{ readonly display_text: string | null, readonly link: { readonly url: string | null } | null }>, readonly sns_profiles: ReadonlyArray<{ readonly service: string | null, readonly link: { readonly url: string | null } | null }>, readonly copyright: { readonly html: string | null } | null, readonly contact_group: ReadonlyArray<{ readonly contact_info: { readonly html: string | null } | null } | null> | null, readonly footer_entries: ReadonlyArray<{ readonly display_text: string | null, readonly link: { readonly url: string | null } | null }> } } | null, readonly prismicGlobalContents: { readonly _previewable: string, readonly data: { readonly main_page_title: string | null, readonly main_page_description: string | null, readonly app_store_link: string | null, readonly google_play_link: string | null, readonly one_link: string | null, readonly one_link_button_text: string | null, readonly main_opengraph_image: { readonly localFile: { readonly childImageSharp: { readonly fixed: { readonly src: string, readonly width: number, readonly height: number } | null } | null } | null } | null, readonly main_body: ReadonlyArray<{ readonly __typename: 'PrismicGlobalContentsDataMainBodyCentreSection', readonly primary: { readonly title: { readonly text: string | null } | null, readonly text: { readonly html: string | null } | null, readonly image: { readonly url: string | null, readonly alt: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null, readonly dimensions: { readonly width: number, readonly height: number } | null, readonly thumbnails: { readonly mobile: { readonly url: string | null, readonly dimensions: { readonly width: number, readonly height: number } | null } | null } | null } | null } } | { readonly __typename: 'PrismicGlobalContentsDataMainBodyDownloadSection', readonly primary: { readonly title: { readonly text: string | null } | null } } | { readonly __typename: 'PrismicGlobalContentsDataMainBodyHeroSection', readonly primary: { readonly background_color: string | null, readonly title: { readonly html: string | null } | null, readonly text: { readonly html: string | null } | null, readonly side_image: { readonly url: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null, readonly dimensions: { readonly width: number, readonly height: number } | null } | null } } | { readonly __typename: 'PrismicGlobalContentsDataMainBodyIllustrationSection', readonly primary: { readonly inverted: boolean | null, readonly title: { readonly html: string | null } | null, readonly text: { readonly html: string | null } | null, readonly image: { readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } } | { readonly __typename: 'PrismicGlobalContentsDataMainBodyMockupSection', readonly primary: { readonly background_color: string | null, readonly text_highlight_color: string | null, readonly phone_mockup_component: string | null, readonly inverted: boolean | null, readonly text: { readonly html: string | null } | null }, readonly items: ReadonlyArray<{ readonly icon: string | null, readonly text: string | null }> } | { readonly __typename: 'PrismicGlobalContentsDataMainBodyParallaxSection', readonly primary: { readonly top_icon: string | null, readonly title: { readonly html: string | null } | null, readonly top_text: { readonly text: string | null } | null, readonly background_image: { readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } } | { readonly __typename: 'PrismicGlobalContentsDataMainBodyPopularSection', readonly primary: { readonly more_button: string | null, readonly title: { readonly text: string | null } | null } } | { readonly __typename: 'PrismicGlobalContentsDataMainBodyReviewSection', readonly primary: { readonly background_color: string | null, readonly title: { readonly html: string | null } | null }, readonly items: ReadonlyArray<{ readonly user_name: string | null, readonly user_region: string | null, readonly text_highlight_color: string | null, readonly content: { readonly html: string | null } | null }> }> } } | null, readonly hotArticles: { readonly nodes: ReadonlyArray<{ readonly price: string | null, readonly region: string | null, readonly image: string | null, readonly articleId: string | null }> } };
+
+type NotFoundPageQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type NotFoundPageQueryQuery = { readonly prismicSiteNavigation: { readonly _previewable: string, readonly data: { readonly header_entries: ReadonlyArray<{ readonly display_text: string | null, readonly link: { readonly url: string | null } | null }>, readonly sns_profiles: ReadonlyArray<{ readonly service: string | null, readonly link: { readonly url: string | null } | null }>, readonly copyright: { readonly html: string | null } | null, readonly contact_group: ReadonlyArray<{ readonly contact_info: { readonly html: string | null } | null } | null> | null, readonly footer_entries: ReadonlyArray<{ readonly display_text: string | null, readonly link: { readonly url: string | null } | null }> } } | null };
+
+type UseSiteMetadataStaticQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type UseSiteMetadataStaticQuery = { readonly site: { readonly siteMetadata: { readonly siteUrl: string | null } | null } | null };
 
 
 }
