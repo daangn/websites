@@ -11,7 +11,7 @@
     "worktop": "0.7.3"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "3.14.0",
+    "@cloudflare/workers-types": "3.14.1",
     "@cloudflare/wrangler": "1.19.12",
     "esbuild": "0.14.48",
     "typescript": "4.7.4"
