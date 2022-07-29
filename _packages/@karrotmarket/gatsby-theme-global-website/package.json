@@ -28,7 +28,7 @@
     "@seed-design/stylesheet": "alpha",
     "@stitches/react": "1.2.8",
     "@svgr/webpack": "6.2.1",
-    "framer-motion": "4.1.17",
+    "framer-motion": "6.5.1",
     "gatsby-plugin-image": "2.18.0",
     "gatsby-plugin-preload-fonts": "3.18.0",
     "gatsby-plugin-prismic-previews": "5.2.8",
