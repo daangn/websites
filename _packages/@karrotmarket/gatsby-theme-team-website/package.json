@@ -30,7 +30,7 @@
     "@seed-design/design-token": "alpha",
     "@seed-design/stylesheet": "alpha",
     "@stitches/react": "1.2.8",
-    "@svgr/webpack": "6.2.1",
+    "@svgr/webpack": "6.3.1",
     "babel-plugin-polished": "1.1.0",
     "clsx": "1.2.1",
     "focus-trap-react": "8.11.3",
