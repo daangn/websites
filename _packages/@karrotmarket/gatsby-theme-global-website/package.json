@@ -33,7 +33,7 @@
     "gatsby-plugin-preload-fonts": "3.20.0",
     "gatsby-plugin-prismic-previews": "5.2.8",
     "gatsby-plugin-prismic-schema": "workspace:*",
-    "gatsby-plugin-react-helmet-async": "1.2.2",
+    "gatsby-plugin-react-helmet-async": "1.2.3",
     "gatsby-plugin-sharp": "4.20.0",
     "gatsby-plugin-svgr": "3.0.0-beta.0",
     "gatsby-source-prismic": "5.2.9",
