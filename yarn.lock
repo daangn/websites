@@ -2667,6 +2667,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.17.8":
+  version: 7.18.9
+  resolution: "@babel/runtime@npm:7.18.9"
+  dependencies:
+    regenerator-runtime: ^0.13.4
+  checksum: 36dd736baba7164e82b3cc9d43e081f0cb2d05ff867ad39cac515d99546cee75b7f782018b02a3dcf5f2ef3d27f319faa68965fdfec49d4912c60c6002353a2e
+  languageName: node
+  linkType: hard
+
 "@babel/runtime@npm:^7.18.0":
   version: 7.18.3
   resolution: "@babel/runtime@npm:7.18.3"
@@ -4386,7 +4395,7 @@ __metadata:
     gatsby-theme-stitches: 1.0.0
     gatsby-transformer-sharp: 4.20.0
     got: 11.8.5
-    polished: 4.1.4
+    polished: 4.2.2
     react: 18.2.0
     react-dom: 18.2.0
     react-helmet-async: 1.2.3
@@ -4483,7 +4492,7 @@ __metadata:
     gatsby-theme-stitches: 1.0.0
     gatsby-transformer-sharp: 4.20.0
     hangul-js: 0.2.6
-    polished: 4.1.4
+    polished: 4.2.2
     react: 18.2.0
     react-dom: 18.2.0
     react-helmet-async: 1.2.3
@@ -4517,7 +4526,7 @@ __metadata:
     gatsby: 4.20.0
     gatsby-plugin-svgr: 3.0.0-beta.0
     gatsby-theme-stitches: 1.0.0
-    polished: 4.1.4
+    polished: 4.2.2
     react: 18.2.0
     react-dom: 18.2.0
     react-intersection-observer: 8.33.1
@@ -7948,7 +7957,7 @@ __metadata:
     gatsby-plugin-robots-txt: 1.7.1
     gatsby-plugin-sitemap: 5.20.0
     gatsby-plugin-typegen: 3.0.0
-    polished: 4.1.4
+    polished: 4.2.2
     react: 18.2.0
     react-dom: 18.2.0
     typescript: 4.7.4
@@ -7977,7 +7986,7 @@ __metadata:
     gatsby-plugin-robots-txt: 1.7.1
     gatsby-plugin-sitemap: 5.20.0
     gatsby-plugin-typegen: 3.0.0
-    polished: 4.1.4
+    polished: 4.2.2
     react: 18.2.0
     react-dom: 18.2.0
     typescript: 4.7.4
@@ -14455,7 +14464,7 @@ __metadata:
     gatsby-plugin-image: 2.20.0
     gatsby-plugin-typegen: 3.0.0
     gatsby-plugin-web-font-loader: 1.0.4
-    polished: 4.1.4
+    polished: 4.2.2
     react: 18.2.0
     react-dom: 18.2.0
     typescript: 4.7.4
@@ -16937,12 +16946,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"polished@npm:4.1.4, polished@npm:^4.1.2":
-  version: 4.1.4
-  resolution: "polished@npm:4.1.4"
+"polished@npm:4.2.2":
+  version: 4.2.2
+  resolution: "polished@npm:4.2.2"
   dependencies:
-    "@babel/runtime": ^7.16.7
-  checksum: 8faa41958df921e1441afc78c31dbe05b09b5b234b2a64ebfae56350c4580105f06e1ef4b3dcb69e86c28b354059e876ced36ba4deb3fb16e67485e1f59753f4
+    "@babel/runtime": ^7.17.8
+  checksum: 97fb927dc55cd34aeb11b31ae2a3332463f114351c86e8aa6580d7755864a0120164fdc3770e6160c8b1775052f0eda14db9a6e34402cd4b08ab2d658a593725
   languageName: node
   linkType: hard
 
@@ -16950,6 +16959,15 @@ __metadata:
   version: 1.9.3
   resolution: "polished@npm:1.9.3"
   checksum: 56657433d5add52edd4c81ab598386f642a506af59f4d4726aba1ae295f5bd45f773c63cedab785ea918b1bfa60c0957b2eadca5639539628c893fcbad5e3262
+  languageName: node
+  linkType: hard
+
+"polished@npm:^4.1.2":
+  version: 4.1.4
+  resolution: "polished@npm:4.1.4"
+  dependencies:
+    "@babel/runtime": ^7.16.7
+  checksum: 8faa41958df921e1441afc78c31dbe05b09b5b234b2a64ebfae56350c4580105f06e1ef4b3dcb69e86c28b354059e876ced36ba4deb3fb16e67485e1f59753f4
   languageName: node
   linkType: hard
 
@@ -20033,7 +20051,7 @@ __metadata:
     gatsby-plugin-vercel-deploy: 1.0.1
     gatsby-source-filesystem: 4.20.0
     match-sorter: 6.3.1
-    polished: 4.1.4
+    polished: 4.2.2
     react: 18.2.0
     react-dom: 18.2.0
     typescript: 4.7.4

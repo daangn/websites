@@ -27,7 +27,7 @@
     "gatsby-plugin-image": "2.20.0",
     "gatsby-plugin-typegen": "3.0.0",
     "gatsby-plugin-web-font-loader": "1.0.4",
-    "polished": "4.1.4",
+    "polished": "4.2.2",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },

@@ -36,7 +36,7 @@
     "gatsby-plugin-robots-txt": "1.7.1",
     "gatsby-plugin-sitemap": "5.20.0",
     "gatsby-plugin-typegen": "3.0.0",
-    "polished": "4.1.4",
+    "polished": "4.2.2",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
