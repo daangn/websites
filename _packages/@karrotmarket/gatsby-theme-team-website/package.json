@@ -47,7 +47,7 @@
     "gatsby-plugin-next-seo": "1.10.0",
     "gatsby-plugin-prismic-previews": "5.2.8",
     "gatsby-plugin-prismic-schema": "workspace:^",
-    "gatsby-plugin-react-helmet-async": "1.2.2",
+    "gatsby-plugin-react-helmet-async": "1.2.3",
     "gatsby-plugin-robots-txt": "1.7.1",
     "gatsby-plugin-sharp": "4.20.0",
     "gatsby-plugin-sitemap": "5.20.0",
