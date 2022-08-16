@@ -66,8 +66,8 @@
     "use-dark-mode": "2.3.1"
   },
   "devDependencies": {
-    "@babel/cli": "7.18.9",
-    "@babel/core": "7.18.9",
+    "@babel/cli": "7.18.10",
+    "@babel/core": "7.18.10",
     "@prismicio/helpers": "2.3.2",
     "@types/node": "18.0.0",
     "@types/react": "18.0.15",
