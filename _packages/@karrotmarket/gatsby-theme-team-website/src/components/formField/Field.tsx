@@ -57,4 +57,7 @@ export const Description = styled('p', {
   color: vars.$scale.color.gray600,
   marginTop: rem(16),
   wordBreak: 'break-all',
+  '@md': {
+    wordBreak: 'keep-all',
+  },
 });
