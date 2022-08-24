@@ -146,6 +146,7 @@ const Spinner = styled(_Spinner, {
   height: '50%',
 });
 
+// Note: Greenhouse Jobboard API 에서 지원하는 포맷 전체, pdf를 선호하지만 pdf 제출이 어려운 경우가 있을 것을 고려해서 포맷을 강제하진 않음
 const greenhouseAcceptedMimeTypes = [
   'text/plain',
   'application/rtf',
