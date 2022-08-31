@@ -90,6 +90,7 @@ const PhoneMockupChat: React.FC<PhoneMockupChatProps> = ({ inView }) => {
                       image={message.image}
                     />
                   );
+                  -ui;
                 default:
                 case "user":
                   return (
