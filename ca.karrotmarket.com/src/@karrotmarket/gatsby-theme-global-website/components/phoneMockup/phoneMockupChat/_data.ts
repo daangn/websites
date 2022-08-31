@@ -6,7 +6,7 @@ import ItemImg from "@karrotmarket/gatsby-theme-global-website/src/images/img_ch
 export const data: PhoneMockUpChatData = {
   header: {
     name: "Emilia",
-    temperature: 36.5,
+    temperature: 430,
     info: "within 10 mins",
   },
   item: {

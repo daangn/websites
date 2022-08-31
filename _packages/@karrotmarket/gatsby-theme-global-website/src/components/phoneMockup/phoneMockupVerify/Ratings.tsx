@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 
 import { styled } from "../../../gatsby-theme-stitches/config";
 
-import { Flex } from "../../Flex";
 import { RatingType } from "./_type";
 
-import { ReactComponent as GroupIcon } from "../../../icons/group.svg";
+import { ReactComponent as Feedback1Icon } from "../../../icons/feedback_1.svg";
+import { ReactComponent as Feedback2Icon } from "../../../icons/feedback_2.svg";
 
 interface RatingProps {
   ratings: RatingType[];
@@ -26,12 +26,13 @@ const Ratings: React.FC<RatingProps> = ({ ratings }) => {
       <Title>Feedback</Title>
       {ratings.map((rating, i) => (
         <Container>
-          <Count>
-            <GroupIcon width={em(21)} height={em(21)}></GroupIcon>
-            <span>{rating.count}</span>
-          </Count>
-
+          {i === 0 ? (
+            <Feedback1Icon width={em(20)} />
+          ) : (
+            <Feedback2Icon width={em(20)} />
+          )}
           <Comment>{rating.comment}</Comment>
+          <Count>{rating.count}</Count>
         </Container>
       ))}
     </Wrapper>
@@ -42,9 +43,12 @@ const Wrapper = styled(motion.div, {
   display: "flex",
   flexDirection: "column",
   padding: em(24),
+  paddingBottom: em(28),
   background: "white",
-  borderRadius: em(24),
-  boxShadow: `${em(2)} ${em(6)} ${em(16)} ${em(8)} #00000010`,
+  borderRadius: em(8),
+  boxShadow: `0 ${em(12)} ${em(14)} rgba(0, 0, 0, 0.12), 0 0 ${em(
+    6
+  )} rgba(0, 0, 0, 0.06)`,
   width: em(270),
   "*": {
     fontFamily: "$system",
@@ -52,36 +56,35 @@ const Wrapper = styled(motion.div, {
 });
 
 const Title = styled("div", {
-  fontSize: em(18),
+  fontSize: em(22),
   fontWeight: "bold",
   marginRight: em(6),
-  marginBottom: em(24),
+  marginBottom: em(14),
 });
 
 const Container = styled("div", {
-  display: "flex",
+  rowCenterY: true,
+  width: "fit-content",
+  position: "relative",
+  padding: `${em(12)} ${em(16)}`,
+  background: "$gray100",
+  borderRadius: em(6),
+  marginBottom: em(20),
+  "&:last-of-type": {
+    marginBottom: 0,
+  },
 });
 
 const Comment = styled("div", {
-  display: "flex",
-  position: "relative",
   fontSize: em(16),
-  padding: `${em(12)} ${em(18)}`,
-  marginBottom: em(14),
   color: "$gray900",
-  background: "$gray100",
-  borderRadius: `${em(2)}  ${em(100)} ${em(100)} ${em(100)} `,
+  marginLeft: em(6),
 });
 
 const Count = styled("div", {
-  width: em(56),
-  display: "flex",
-  alignItems: "flex-start",
-  span: {
-    fontSize: em(14),
-    fontWeight: "bold",
-    marginLeft: em(4),
-  },
+  fontSize: em(16),
+  fontWeight: "bold",
+  marginLeft: em(4),
 });
 
 export default Ratings;

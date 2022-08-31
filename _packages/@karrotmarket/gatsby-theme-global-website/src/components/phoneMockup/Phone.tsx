@@ -1,10 +1,9 @@
 import * as React from "react";
 import { em, rem } from "polished";
 
-import {
-  MediaTypeMap,
-  styled,
-} from "../../gatsby-theme-stitches/config";
+import { MediaTypeMap, styled } from "../../gatsby-theme-stitches/config";
+import { colors } from "@karrotmarket/design-token";
+import { vars } from "@seed-design/design-token";
 
 const BackIcon = () => (
   <svg
@@ -67,7 +66,7 @@ const Phone: React.FC<PhoneProps> = ({
           headerSection
         ) : (
           <>
-            <TopSection></TopSection>
+            <TopSection />
             <HeaderSection>
               <BackIcon></BackIcon>
               <Header>{header}</Header>
@@ -102,17 +101,17 @@ const PhoneFrame = styled("div", {
   variants: {
     frameColor: {
       green: {
-        border: `${em(8)} solid $green500`,
+        border: `${em(6)} solid $green500`,
       },
       orange: {
-        border: `${em(8)}  solid $carrot600`,
+        border: `${em(6)}  solid $carrot500`,
       },
     },
   },
 });
 
 const TopSection = styled("div", {
-  height: em(10),
+  height: em(16),
   zIndex: 1,
   width: "100%",
   position: "relative",
@@ -124,7 +123,7 @@ const HeaderSection = styled("div", {
   position: "relative",
   display: "flex",
   alignItems: "center",
-  padding: `0 ${em(20)}`,
+  padding: `0 ${em(12)}`,
   zIndex: 1,
   background: "white",
   borderTopLeftRadius: em(54),
@@ -136,6 +135,8 @@ const Header = styled("div", {
   left: "50%",
   top: "50%",
   transform: "translate(-50%,-50%)",
+  fontSize: em(18),
+  letterSpacing: em(-0.5),
 });
 
 const Screen = styled("div", {

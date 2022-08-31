@@ -16,9 +16,10 @@ export const data: PhoneMockUpVerifyData = {
     name: "Emilia",
     id: "#10006",
     buttonText: "Rate",
+    karrotScore: 430,
   },
   ratings: [
-    { count: 31, comment: "Product as described" },
-    { count: 12, comment: "Kind and friendly" },
+    { count: 32, comment: "Item as described" },
+    { count: 12, comment: "Friendly" },
   ],
 };
