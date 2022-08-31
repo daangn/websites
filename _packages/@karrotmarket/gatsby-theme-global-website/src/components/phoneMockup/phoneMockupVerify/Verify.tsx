@@ -3,8 +3,6 @@ import { em } from "polished";
 import { motion } from "framer-motion";
 import { styled } from "../../../gatsby-theme-stitches/config";
 
-import { Space } from "../../Space";
-
 import { ReactComponent as PinIcon } from "../../../icons/pin.svg";
 import { ReactComponent as CheckIcon } from "../../../icons/check.svg";
 
@@ -39,7 +37,16 @@ const Verify: React.FC<VerifyProps> = ({ mapImage, buttonText, location }) => {
               type: "spring",
               bounce: 0.3,
             }}
-          ></Range>
+          />
+        </CenterContainer>
+        <CenterContainer>
+          <RangeBorder
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{
+              delay: 2,
+            }}
+          />
         </CenterContainer>
         <CenterContainer>
           <PinContainer
@@ -52,7 +59,7 @@ const Verify: React.FC<VerifyProps> = ({ mapImage, buttonText, location }) => {
               bounce: 0.4,
             }}
           >
-            <PinIcon width={em(32)}></PinIcon>
+            <PinIcon width={em(32)} />
           </PinContainer>
         </CenterContainer>
       </Map>
@@ -65,7 +72,7 @@ const Verify: React.FC<VerifyProps> = ({ mapImage, buttonText, location }) => {
             duration: 0.5,
           }}
         >
-          Current Location: <b>{location}</b>
+          Current Location: <b>"{location}"</b>
         </LocationText>
         <Button
           initial={{ opacity: 0, y: 14 }}
@@ -75,7 +82,7 @@ const Verify: React.FC<VerifyProps> = ({ mapImage, buttonText, location }) => {
             duration: 0.5,
           }}
         >
-          <CheckIcon width={em(18)} height={em(14)}></CheckIcon>
+          <CheckIcon height={em(18)} />
           <ButtonText>{buttonText}</ButtonText>
         </Button>
       </BottomSection>
@@ -104,11 +111,20 @@ const Range = styled(motion.div, {
   height: em(160),
   borderRadius: em(80),
 });
+const RangeBorder = styled(motion.div, {
+  border: `${em(1)} solid $carrot500`,
+  boxSizing: "border-box",
+  opacity: 0.3,
+  width: em(160),
+  height: em(160),
+  borderRadius: em(80),
+});
 const PinContainer = styled(motion.div, {});
 const LocationText = styled(motion.div, {
-  fontSize: em(16),
+  fontSize: em(15),
   marginBottom: em(30),
   textAlign: "left",
+  letterSpacing: em(-0.6),
 });
 const Button = styled(motion.button, {
   display: "flex",
@@ -125,9 +141,11 @@ const Button = styled(motion.button, {
 });
 const ButtonText = styled(motion.div, {
   marginLeft: em(6),
+  fontWeight: 700,
+  fontSize: em(17),
 });
 const BottomSection = styled(motion.div, {
-  padding: em(20),
+  padding: em(16),
 });
 
 export default Verify;

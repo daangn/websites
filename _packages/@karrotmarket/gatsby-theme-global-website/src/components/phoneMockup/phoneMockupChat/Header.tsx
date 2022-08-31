@@ -24,30 +24,30 @@ const Wrapper = styled("div", {
   display: "flex",
   flexDirection: "column",
 });
-
 const Container = styled("div", {
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
 });
-
 const UserName = styled("div", {
   color: "$gray900",
-  fontSize: em(17),
-  marginRight: em(4),
+  fontSize: em(16),
+  marginRight: em(5),
   fontWeight: "bold",
 });
 const UserTemperature = styled("div", {
-  color: "#1561A9",
-  border: `${em(2)} solid #1561A9`,
+  color: "$carrot500",
+  background: "rgba(255, 114, 54, 0.12)",
+  padding: `${em(4)} ${em(10)}`,
   borderRadius: em(100),
-  fontSize: em(11),
+  fontSize: em(10),
   fontWeight: "bold",
-  padding: `0 ${em(6)}`,
+  letterSpacing: em(-0.1),
 });
 const Info = styled("div", {
   color: "$gray600",
-  fontSize: em(12.25),
+  fontSize: em(11),
+  textAlign: "center",
 });
 
 export default Header;
