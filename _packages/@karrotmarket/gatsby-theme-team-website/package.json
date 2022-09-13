@@ -17,7 +17,7 @@
   "dependencies": {
     "@cometjs/core": "2.1.0",
     "@cometjs/graphql-utils": "2.0.3",
-    "@cometjs/react-utils": "1.1.0",
+    "@cometjs/react-utils": "2.0.3",
     "@karrotmarket/design-token": "1.1.2",
     "@karrotmarket/gatsby-plugin-lokalise-translation": "workspace:^",
     "@karrotmarket/gatsby-source-greenhouse-jobboard": "0.6.0",
