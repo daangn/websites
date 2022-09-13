@@ -67,7 +67,7 @@
   },
   "devDependencies": {
     "@babel/cli": "7.18.10",
-    "@babel/core": "7.18.10",
+    "@babel/core": "7.19.0",
     "@prismicio/helpers": "2.3.3",
     "@types/node": "18.0.0",
     "@types/react": "18.0.17",
