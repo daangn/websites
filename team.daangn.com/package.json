@@ -19,7 +19,6 @@
   ],
   "scripts": {
     "ultra": "yarn workspace @daangn/websites ultra --recursive --filter +team.daangn.com",
-    "init:gatsby": "babel gatsby -d . -x .ts,.tsx --presets gatsby-package",
     "develop": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
