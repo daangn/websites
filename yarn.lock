@@ -4653,7 +4653,7 @@ __metadata:
   dependencies:
     "@babel/cli": 7.18.10
     "@babel/core": 7.19.1
-    "@prismicio/helpers": 2.3.3
+    "@prismicio/helpers": 2.3.4
     "@types/node": 18.0.0
     "@types/react": 18.0.17
     "@types/react-dom": 18.0.6
@@ -4690,7 +4690,7 @@ __metadata:
     "@karrotmarket/gatsby-theme-website": "workspace:^"
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^"
     "@karrotmarket/react-stitches": 0.1.1-1
-    "@prismicio/helpers": 2.3.3
+    "@prismicio/helpers": 2.3.4
     "@reach/router": 1.3.4
     "@seed-design/design-token": alpha
     "@seed-design/stylesheet": alpha
@@ -5472,15 +5472,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prismicio/helpers@npm:2.3.3":
-  version: 2.3.3
-  resolution: "@prismicio/helpers@npm:2.3.3"
+"@prismicio/helpers@npm:2.3.4":
+  version: 2.3.4
+  resolution: "@prismicio/helpers@npm:2.3.4"
   dependencies:
-    "@prismicio/richtext": ^2.1.0
-    "@prismicio/types": ^0.2.1
+    "@prismicio/richtext": ^2.1.1
+    "@prismicio/types": ^0.2.3
     escape-html: ^1.0.3
     imgix-url-builder: ^0.0.3
-  checksum: 9ba518f878150117c71ec662d9f0b5ee4d4b75921578e3070b5f31527167b8e849a655103e9bc29bb8113326b8531f13f5d50003c55e2d504653ae47612ba4c0
+  checksum: 01bd0d42ba8a1981f7383198cf455be41508cbd5ba56c3fa006effeacd787fcfbc3b0d311c09f2e1c0a07fd3491bf22e9d1782a8685a5baee3ef1b64aa66b256
   languageName: node
   linkType: hard
 
@@ -5505,7 +5505,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prismicio/richtext@npm:^2.1.0":
+"@prismicio/richtext@npm:^2.1.1":
   version: 2.1.1
   resolution: "@prismicio/richtext@npm:2.1.1"
   dependencies:
@@ -5528,10 +5528,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prismicio/types@npm:^0.2.1":
-  version: 0.2.2
-  resolution: "@prismicio/types@npm:0.2.2"
-  checksum: a3b72a1adc548013ba4f356edbae15a3d7cd578538d9e69a81fe41e980dd31b4426a0dcc1711d1ef11b19268012f8a2465f7760d7487e294b9d330752acc8d0a
+"@prismicio/types@npm:^0.2.3":
+  version: 0.2.3
+  resolution: "@prismicio/types@npm:0.2.3"
+  checksum: 0512c3dbf7b8d3e0594198c6e6cee4dbc9be6260216b63dce5df342eacc69e737a578135f4341f7d9069b3bdb9e87fc51b98f9a06fb340d10f26f0facdff28a2
   languageName: node
   linkType: hard
 
