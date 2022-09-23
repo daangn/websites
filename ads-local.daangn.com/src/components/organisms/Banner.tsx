@@ -36,6 +36,7 @@ export function Banner() {
           type="image/webp"
         />
         <ImgPc
+          alt="person handling a phone with a karrot advertisement platform on the screen"
           src={advertisementPcBanner}
           srcSet={`${advertisementMobileBanner} 720w,
           ${advertisementPcBanner} 3761w`}

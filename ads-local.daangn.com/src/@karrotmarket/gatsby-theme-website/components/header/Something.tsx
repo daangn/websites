@@ -51,6 +51,27 @@ const TelLink = styled("a", {
   textDecoration: "none",
 });
 
+const GotoDaangnBusinessButton = styled('button', {
+  display: 'none',
+  "@md": {
+    display: 'inline-block',
+    backgroundColor:" $carrot500",
+    color: "$white",
+    padding: rem(8),
+    borderRadius: rem(4),
+    border: 'none',
+    cursor: 'pointer',
+    fontWeight: 'bold',
+    fontSize: rem(14),
+    lineHeight: rem(20),
+    letterSpacing: rem(-0.2),
+    textAlign: 'center',
+    textDecoration: 'none',
+    marginLeft: rem(8),
+  }
+})
+
+
 const Something: React.FC = () => {
   return (
     <QuestionInfo>
@@ -67,6 +88,11 @@ const Something: React.FC = () => {
           광고문의 <mark>1644-9736</mark>
         </p>
       </TelLink>
+      <GotoDaangnBusinessButton onClick={()=>{
+        location.href='https://business.daangn.com/login'
+      }}>
+        광고주센터
+      </GotoDaangnBusinessButton>
     </QuestionInfo>
   )
 };
