@@ -89,7 +89,7 @@ const Something: React.FC = () => {
         </p>
       </TelLink>
       <GotoDaangnBusinessButton onClick={()=>{
-        window.open('https://business.daangn.com/', '_blank')
+        location.href='https://business.daangn.com/login'
       }}>
         광고주센터
       </GotoDaangnBusinessButton>
