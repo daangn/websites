@@ -36,6 +36,7 @@ export function Banner() {
           type="image/webp"
         />
         <ImgPc
+          alt="main_banner_img"
           src={advertisementPcBanner}
           srcSet={`${advertisementMobileBanner} 720w,
           ${advertisementPcBanner} 3761w`}
