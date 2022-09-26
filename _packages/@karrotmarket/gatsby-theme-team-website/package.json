@@ -70,7 +70,7 @@
     "@babel/core": "7.19.1",
     "@prismicio/helpers": "2.3.5",
     "@types/node": "18.0.0",
-    "@types/react": "18.0.17",
+    "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",
     "babel-preset-gatsby-package": "2.23.0",
     "react": "18.2.0",
