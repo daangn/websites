@@ -3908,7 +3908,7 @@ __metadata:
     "@lokalise/node-api": 8.0.1
     "@types/node": 18.0.0
     babel-preset-gatsby-package: 2.23.0
-    concurrently: 7.3.0
+    concurrently: 7.4.0
     gatsby: 4.23.0
     typescript: 4.7.4
   peerDependencies:
@@ -3945,7 +3945,7 @@ __metadata:
     "@stitches/react": 1.2.8
     "@svgr/webpack": 6.3.1
     babel-preset-gatsby-package: 2.23.0
-    concurrently: 7.3.0
+    concurrently: 7.4.0
     framer-motion: 4.1.17
     gatsby: 4.23.0
     gatsby-plugin-image: 2.23.0
@@ -3988,7 +3988,7 @@ __metadata:
     "@types/react": 18.0.21
     "@types/react-dom": 18.0.6
     babel-preset-gatsby-package: 2.23.0
-    concurrently: 7.3.0
+    concurrently: 7.4.0
     gatsby: 4.23.0
     gatsby-plugin-image: 2.23.0
     gatsby-plugin-prismic-previews: 5.2.10
@@ -4119,7 +4119,7 @@ __metadata:
     babel-preset-gatsby-package: 2.23.0
     cjk-slug: 0.3.0
     common-tags: 1.8.2
-    concurrently: 7.3.0
+    concurrently: 7.4.0
     gatsby: 4.23.0
     html-entities: 2.3.3
     jest: 29.0.3
@@ -7933,12 +7933,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"concurrently@npm:7.3.0":
-  version: 7.3.0
-  resolution: "concurrently@npm:7.3.0"
+"concurrently@npm:7.4.0":
+  version: 7.4.0
+  resolution: "concurrently@npm:7.4.0"
   dependencies:
     chalk: ^4.1.0
-    date-fns: ^2.16.1
+    date-fns: ^2.29.1
     lodash: ^4.17.21
     rxjs: ^7.0.0
     shell-quote: ^1.7.3
@@ -7947,8 +7947,9 @@ __metadata:
     tree-kill: ^1.2.2
     yargs: ^17.3.1
   bin:
+    conc: dist/bin/concurrently.js
     concurrently: dist/bin/concurrently.js
-  checksum: 5de845e4947c550a6ff74ecc80e1897109abe339fe8a7fa117e7b8978362566ac4ee070e4475bdaa6fc453f780fadb9089739a02606e27e04affaa7dd8905d2d
+  checksum: cc547866ad8d009d184ca3a7115d6636052a5f56f5429d123092d651286043d7233f6429257e30e50f509894cd12798ea831896ac18092d8135f67ffcc8ac3ea
   languageName: node
   linkType: hard
 
@@ -8465,10 +8466,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"date-fns@npm:^2.16.1, date-fns@npm:^2.25.0, date-fns@npm:^2.28.0":
+"date-fns@npm:^2.25.0, date-fns@npm:^2.28.0":
   version: 2.28.0
   resolution: "date-fns@npm:2.28.0"
   checksum: a0516b2e4f99b8bffc6cc5193349f185f195398385bdcaf07f17c2c4a24473c99d933eb0018be4142a86a6d46cb0b06be6440ad874f15e795acbedd6fd727a1f
+  languageName: node
+  linkType: hard
+
+"date-fns@npm:^2.29.1":
+  version: 2.29.3
+  resolution: "date-fns@npm:2.29.3"
+  checksum: e01cf5b62af04e05dfff921bb9c9933310ed0e1ae9a81eb8653452e64dc841acf7f6e01e1a5ae5644d0337e9a7f936175fd2cb6819dc122fdd9c5e86c56be484
   languageName: node
   linkType: hard
 
@@ -11018,7 +11026,7 @@ __metadata:
     "@babel/core": 7.19.1
     "@types/node": 18.0.0
     babel-preset-gatsby-package: 2.23.0
-    concurrently: 7.3.0
+    concurrently: 7.4.0
     gatsby: 4.23.0
     typescript: 4.7.4
   peerDependencies:
