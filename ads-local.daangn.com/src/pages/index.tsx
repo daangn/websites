@@ -3,9 +3,11 @@ import "@seed-design/stylesheet/global.css";
 import * as React from "react";
 import type { PageProps, HeadProps } from "gatsby";
 import { rem } from 'polished';
-import BasicMeta from 'gatsby-plugin-head-seo/src/components/BasicMeta';
-import OpenGraph from 'gatsby-plugin-head-seo/src/components/OpenGraph';
-import TwitterCard from 'gatsby-plugin-head-seo/src/components/TwitterCard';
+import {
+  BasicMeta,
+  OpenGraph,
+  TwitterCard,
+} from 'gatsby-plugin-head-seo/src/components';
 import { mapAbstractTypeWithDefault } from "@cometjs/graphql-utils";
 import Header from "@karrotmarket/gatsby-theme-website/src/components/Header";
 import Footer from "@karrotmarket/gatsby-theme-website/src/components/Footer";

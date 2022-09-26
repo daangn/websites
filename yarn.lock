@@ -6145,7 +6145,7 @@ __metadata:
     adblock-detect-react: 1.0.5
     gatsby: 4.23.0
     gatsby-plugin-google-tagmanager: 4.23.0
-    gatsby-plugin-head-seo: 0.0.1
+    gatsby-plugin-head-seo: 0.0.2
     gatsby-plugin-image: 2.23.0
     gatsby-plugin-manifest: 4.23.0
     gatsby-plugin-module-resolver: 1.0.3
@@ -10858,9 +10858,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-head-seo@npm:0.0.1":
-  version: 0.0.1
-  resolution: "gatsby-plugin-head-seo@npm:0.0.1"
+"gatsby-plugin-head-seo@npm:0.0.2":
+  version: 0.0.2
+  resolution: "gatsby-plugin-head-seo@npm:0.0.2"
   dependencies:
     radix3: ^0.1.2
     schema-dts: ^1.1.0
@@ -10868,7 +10868,7 @@ __metadata:
     gatsby: ^4.19.0
     react: ^17.0.0 || ^18.0.0
     react-dom: ^17.0.0 || ^18.0.0
-  checksum: 8175c12fc40c6650bb0b7feb0f3b11333b1e4845faf585f21e67f76a5b355dc1f2d6f0f4a12d6f1891ff0c0df4afa64a9101500fc037e277147c683a69202124
+  checksum: 812793cff475a44f33a4e88dcdfd7260d42590dd742642998c34c9a2316bdd3cb7f002383d03a8eae4a882cff2d015a71d86f93e6d4702fcb2cd2f9590e64917
   languageName: node
   linkType: hard
 
