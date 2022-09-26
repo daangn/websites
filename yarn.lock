@@ -6145,10 +6145,10 @@ __metadata:
     adblock-detect-react: 1.0.5
     gatsby: 4.23.0
     gatsby-plugin-google-tagmanager: 4.23.0
+    gatsby-plugin-head-seo: 0.0.1
     gatsby-plugin-image: 2.23.0
     gatsby-plugin-manifest: 4.23.0
     gatsby-plugin-module-resolver: 1.0.3
-    gatsby-plugin-next-seo: 1.10.0
     gatsby-plugin-robots-txt: 1.7.1
     gatsby-plugin-sharp: 4.23.0
     gatsby-plugin-typegen: 3.0.0
@@ -10855,6 +10855,20 @@ __metadata:
     react: ^16.9.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.9.0 || ^17.0.0 || ^18.0.0
   checksum: bda72afcaefe666513decfb1613b6d7af847d7f86f149b6d5d86e9f41c61c4cbc9603894bbdb6262927ca66b05abea2cb90cdb950d4402527974f78803c0a04f
+  languageName: node
+  linkType: hard
+
+"gatsby-plugin-head-seo@npm:0.0.1":
+  version: 0.0.1
+  resolution: "gatsby-plugin-head-seo@npm:0.0.1"
+  dependencies:
+    radix3: ^0.1.2
+    schema-dts: ^1.1.0
+  peerDependencies:
+    gatsby: ^4.19.0
+    react: ^17.0.0 || ^18.0.0
+    react-dom: ^17.0.0 || ^18.0.0
+  checksum: 8175c12fc40c6650bb0b7feb0f3b11333b1e4845faf585f21e67f76a5b355dc1f2d6f0f4a12d6f1891ff0c0df4afa64a9101500fc037e277147c683a69202124
   languageName: node
   linkType: hard
 
@@ -16461,6 +16475,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"radix3@npm:^0.1.2":
+  version: 0.1.2
+  resolution: "radix3@npm:0.1.2"
+  checksum: 483ecb97ae51e8dbda04e1c393bb001739635799bd1d7a7d1086193458df61d85f9e936c44c7bde81aba370dfd6bce8ccbf0fa691911bb8ba83379c90f96fea4
+  languageName: node
+  linkType: hard
+
 "raf@npm:^3.1.0":
   version: 3.4.1
   resolution: "raf@npm:3.4.1"
@@ -17479,7 +17500,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"schema-dts@npm:1.1.0":
+"schema-dts@npm:1.1.0, schema-dts@npm:^1.1.0":
   version: 1.1.0
   resolution: "schema-dts@npm:1.1.0"
   peerDependencies:

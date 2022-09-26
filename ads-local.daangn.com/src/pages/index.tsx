@@ -1,10 +1,11 @@
 import "@seed-design/stylesheet/global.css";
 
 import * as React from "react";
-import type { PageProps } from "gatsby";
-import { Helmet } from "react-helmet-async";
-import {rem} from 'polished';
-import { GatsbySeo } from "gatsby-plugin-next-seo";
+import type { PageProps, HeadProps } from "gatsby";
+import { rem } from 'polished';
+import BasicMeta from 'gatsby-plugin-head-seo/src/components/BasicMeta';
+import OpenGraph from 'gatsby-plugin-head-seo/src/components/OpenGraph';
+import TwitterCard from 'gatsby-plugin-head-seo/src/components/TwitterCard';
 import { mapAbstractTypeWithDefault } from "@cometjs/graphql-utils";
 import Header from "@karrotmarket/gatsby-theme-website/src/components/Header";
 import Footer from "@karrotmarket/gatsby-theme-website/src/components/Footer";
@@ -19,8 +20,6 @@ import { DownloadBtnMobile } from "~/components/organisms/DownloadBtnMobile";
 
 import { useDetectAdBlock } from "adblock-detect-react";
 import { AdblockModal } from "~/components/organisms/AdblockModal";
-
-type IndexPageProps = PageProps<GatsbyTypes.IndexPageQuery>;
 
 export const query = graphql`
   query IndexPage {
@@ -37,6 +36,8 @@ export const query = graphql`
     site {
       siteMetadata {
         siteUrl
+        siteName
+        siteDescription
       }
     }
 
@@ -60,7 +61,9 @@ export const query = graphql`
   }
 `;
 
-const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
+export default function IndexPage({
+  data,
+}: PageProps<GatsbyTypes.IndexPageQuery>) {
   globalStyles();
 
   const [showModal, setShowModal] = React.useState(false);
@@ -77,40 +80,8 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
     throw new Error("No navigation data injected");
   }
 
-  const imgSrc = data.image?.childImageSharp?.fixed;
-  const site = data.site?.siteMetadata?.siteUrl;
-  const url = site && imgSrc ? site + imgSrc.src : "";
-
   return (
     <IndexDiv>
-      <Helmet>
-        <html lang="en" data-seed="light-only" data-seed-scale-color="light" />
-        <meta name="color-scheme" content="light dark" />
-      </Helmet>
-      <GatsbySeo
-        title="당근마켓 광고"
-        openGraph={{
-          title: "당근마켓 광고",
-          description: "동네 이웃들이 모이는 당근마켓에 광고해 보세요",
-          site_name: "당근마켓",
-          images: [
-            {
-              url: url,
-              width: imgSrc?.width,
-              height: imgSrc?.height,
-            },
-          ],
-        }}
-        twitter={{
-          cardType: "summary_large_image",
-        }}
-        metaTags={[
-          {
-            name: "thumbnail",
-            content: url,
-          },
-        ]}
-      />
       <DownloadBtnMobile />
       <Header
         navigationData={data.prismicSiteNavigation.data}
@@ -147,6 +118,54 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
   );
 };
 
+export function Head({
+  data,
+}: HeadProps<GatsbyTypes.IndexPageQuery>) {
+  const siteMetadata = data.site?.siteMetadata!;
+
+  const title = siteMetadata.siteName!;
+  const description = siteMetadata.siteDescription!;
+  const siteUrl = new URL(siteMetadata.siteUrl!);
+
+  const image = data.image?.childImageSharp?.fixed!;
+  const imageUrl = new URL(siteUrl);
+  imageUrl.pathname = image.src;
+
+  return (
+    <>
+      <title>{title}</title>
+      <BasicMeta
+        description={description}
+        urlSettings={{
+          canonicalUrl: new URL('https://ads-local.daangn.com'),
+        }}
+      />
+      <OpenGraph
+        url={siteUrl}
+        title={title}
+        description={description}
+        ogType={{
+          type: 'website',
+        }}
+        images={[
+          {
+            url: imageUrl,
+            width: image.width,
+            height: image.height,
+          },
+        ]}
+      />
+      <TwitterCard
+        card={{
+          type: 'summary_large_image',
+          title,
+          description,
+        }}
+      />
+    </>
+  );
+}
+
 const Disclaimer = styled('div',{
   display: 'flex',
   
@@ -182,5 +201,3 @@ const IndexDiv = styled("div", {
     minWidth: "auto",
   },
 });
-
-export default IndexPage;
