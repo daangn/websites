@@ -13,7 +13,7 @@
   "devDependencies": {
     "@cloudflare/workers-types": "3.14.1",
     "@cloudflare/wrangler": "1.19.13",
-    "esbuild": "0.15.5",
+    "esbuild": "0.15.9",
     "typescript": "4.7.4"
   }
 }
