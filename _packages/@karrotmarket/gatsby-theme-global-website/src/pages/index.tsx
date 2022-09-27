@@ -9,7 +9,7 @@ import {
 import {
   BasicMeta,
   OpenGraph,
-} from 'gatsby-plugin-head-seo/src/components';
+} from 'gatsby-plugin-head-seo/src';
 import { mapAbstractType } from "@cometjs/graphql-utils";
 import { withPrismicPreview } from "gatsby-plugin-prismic-previews";
 

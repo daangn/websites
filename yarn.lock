@@ -3948,7 +3948,7 @@ __metadata:
     concurrently: 7.4.0
     framer-motion: 4.1.17
     gatsby: 4.23.0
-    gatsby-plugin-head-seo: 0.0.2
+    gatsby-plugin-head-seo: 0.1.0
     gatsby-plugin-image: 2.23.0
     gatsby-plugin-preload-fonts: 3.23.0
     gatsby-plugin-prismic-previews: 5.2.10
@@ -6144,7 +6144,7 @@ __metadata:
     adblock-detect-react: 1.0.5
     gatsby: 4.23.0
     gatsby-plugin-google-tagmanager: 4.23.0
-    gatsby-plugin-head-seo: 0.0.2
+    gatsby-plugin-head-seo: 0.1.0
     gatsby-plugin-image: 2.23.0
     gatsby-plugin-manifest: 4.23.0
     gatsby-plugin-module-resolver: 1.0.3
@@ -10856,9 +10856,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-head-seo@npm:0.0.2":
-  version: 0.0.2
-  resolution: "gatsby-plugin-head-seo@npm:0.0.2"
+"gatsby-plugin-head-seo@npm:0.1.0":
+  version: 0.1.0
+  resolution: "gatsby-plugin-head-seo@npm:0.1.0"
   dependencies:
     radix3: ^0.1.2
     schema-dts: ^1.1.0
@@ -10866,7 +10866,7 @@ __metadata:
     gatsby: ^4.19.0
     react: ^17.0.0 || ^18.0.0
     react-dom: ^17.0.0 || ^18.0.0
-  checksum: 812793cff475a44f33a4e88dcdfd7260d42590dd742642998c34c9a2316bdd3cb7f002383d03a8eae4a882cff2d015a71d86f93e6d4702fcb2cd2f9590e64917
+  checksum: 7f23e5b69e2243497add0a43f7a0c4cbe476527f92f4674eb3391a73a2837da824dad419816bde9fd81872a2160b6c5b867fd09749910f7768f6cd06db54c337
   languageName: node
   linkType: hard
 

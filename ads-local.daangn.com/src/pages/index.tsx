@@ -7,7 +7,7 @@ import {
   BasicMeta,
   OpenGraph,
   TwitterCard,
-} from 'gatsby-plugin-head-seo/src/components';
+} from 'gatsby-plugin-head-seo/src';
 import { mapAbstractTypeWithDefault } from "@cometjs/graphql-utils";
 import Header from "@karrotmarket/gatsby-theme-website/src/components/Header";
 import Footer from "@karrotmarket/gatsby-theme-website/src/components/Footer";
