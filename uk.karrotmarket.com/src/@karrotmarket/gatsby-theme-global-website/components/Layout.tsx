@@ -1,13 +1,13 @@
 import * as React from "react";
 import { graphql } from "gatsby";
-import { Helmet } from "react-helmet-async";
 import Header from "@karrotmarket/gatsby-theme-global-website/src/components/Header";
 import Footer from "@karrotmarket/gatsby-theme-global-website/src/components/Footer";
 import globalStyles from "@karrotmarket/gatsby-theme-global-website/src/styles/global";
 
-interface LayoutProps {
-  data: GatsbyTypes.DefaultLayout_dataFragment;
-  id?: string;
+type LayoutProps = {
+  data: GatsbyTypes.DefaultLayout_dataFragment,
+  children: React.ReactNode,
+  id?: string,
 }
 
 export const query = graphql`

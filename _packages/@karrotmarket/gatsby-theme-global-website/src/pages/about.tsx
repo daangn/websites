@@ -1,13 +1,20 @@
 import React from "react";
 
 import { rem } from "polished";
-import { graphql, PageProps } from "gatsby";
-import { GatsbySeo } from "gatsby-plugin-next-seo";
+import {
+  graphql,
+  type PageProps,
+  type HeadProps,
+} from "gatsby";
+import {
+  BasicMeta,
+  OpenGraph,
+} from 'gatsby-plugin-head-seo/src/components';
 import { mapAbstractType } from "@cometjs/graphql-utils";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { withPrismicPreview } from "gatsby-plugin-prismic-previews";
 
-import { styled } from "../gatsby-theme-stitches/config";
+import { styled } from "gatsby-theme-stitches/src/config";
 
 import Layout from "../components/Layout";
 import DetailsList from "../components/about/DetailsList";
@@ -15,10 +22,13 @@ import SubtitleAndText from "../components/about/SubtitleAndText";
 import SubtitleAndLinks from "../components/about/SubtitleAndLinks";
 import SubtitleAndImages from "../components/about/SubtitleAndImages";
 
-type AboutPageProps = PageProps<GatsbyTypes.AboutPageQueryQuery>;
-
 export const query = graphql`
   query AboutPageQuery($lang: String, $dateFormat: String) {
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
     prismicSiteNavigation(uid: { eq: "global" }, lang: { eq: $lang }) {
       _previewable
       ...DefaultLayout_data
@@ -66,13 +76,60 @@ export const query = graphql`
   }
 `;
 
-const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
+export function Head({
+  data,
+  location,
+}: HeadProps<GatsbyTypes.AboutPageQueryQuery>) {
   if (!data.prismicGlobalContents?.data?.about_body) throw new Error("No data");
 
   const {
     about_page_title,
     about_page_description,
     about_opengraph_image,
+  } = data.prismicGlobalContents?.data;
+
+  const canonicalUrl = new URL(data.site.siteMetadata.siteUrl);
+  canonicalUrl.pathname = location.pathname;
+
+  const metaImage = about_opengraph_image?.localFile?.childImageSharp?.fixed;
+
+  return (
+    <>
+      <title>{about_page_title}</title>
+      <BasicMeta
+        description={about_page_description}
+        urlSettings={{
+          canonicalUrl,
+        }}
+      />
+      <OpenGraph
+        ogType="website"
+        url={canonicalUrl}
+        title={about_page_title}
+        description={about_page_description}
+        images={[
+          metaImage && {
+            url: new URL(
+              metaImage.src,
+              metaImage.src.startsWith('https')
+                ? metaImage.src
+                : canonicalUrl,
+            ),
+            width: metaImage.width,
+            height: metaImage.height,
+          },
+        ].filter(Boolean)}
+      />
+    </>
+  );
+}
+
+const AboutPage: React.FC<PageProps<GatsbyTypes.AboutPageQueryQuery>> = ({
+  data,
+}) => {
+  if (!data.prismicGlobalContents?.data?.about_body) throw new Error("No data");
+
+  const {
     about_background_image,
     about_title,
     about_body,
@@ -82,33 +139,14 @@ const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
     about_background_image?.localFile?.childImageSharp?.gatsbyImageData as any
   );
 
-  const metaImage = about_opengraph_image?.localFile?.childImageSharp?.fixed;
-
   return (
-    <Layout id="about-page" data={data.prismicSiteNavigation.data}>
-      <GatsbySeo
-        title={about_page_title}
-        description={about_page_description}
-        openGraph={{
-          title: about_page_title,
-          description: about_page_description,
-          ...(metaImage && {
-            images: [
-              {
-                url: metaImage.src,
-                width: metaImage.width,
-                height: metaImage.height,
-              },
-            ],
-          }),
-        }}
-      />
+    <Layout data={data.prismicSiteNavigation.data}>
       <ImageContianer>
         <Image image={backgroundImage} />
       </ImageContianer>
 
       <Container>
-        <Title dangerouslySetInnerHTML={{ __html: about_title.html }}></Title>
+        <Title dangerouslySetInnerHTML={{ __html: about_title.html }} />
 
         {about_body.map((content: any, i) =>
           mapAbstractType(content, {
