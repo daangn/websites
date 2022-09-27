@@ -1,7 +1,7 @@
 import * as React from "react";
 import { graphql } from "gatsby";
 
-import { styled } from "../../gatsby-theme-stitches/config";
+import { styled } from "gatsby-theme-stitches/src/config";
 
 import { Space } from "../Space";
 import AppLink from "../AppLink";

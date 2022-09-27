@@ -2,7 +2,7 @@ import * as React from "react";
 import { em } from "polished";
 
 import { Flex } from "../../Flex";
-import { styled } from "../../../gatsby-theme-stitches/config";
+import { styled } from "gatsby-theme-stitches/src/config";
 
 interface HeaderProps {
   name: string;

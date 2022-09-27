@@ -4,12 +4,11 @@ import { rem } from "polished";
 import { graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import {
-  Parallax,
   ParallaxBanner,
   ParallaxProvider,
 } from "react-scroll-parallax";
 
-import { styled } from "../../gatsby-theme-stitches/config";
+import { styled } from "gatsby-theme-stitches/src/config";
 
 import { ReactComponent as KarrotIcon } from "../../icons/karrot.svg";
 

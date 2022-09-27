@@ -1,6 +1,6 @@
 import * as React from "react";
 import { rem } from "polished";
-import { styled } from "../gatsby-theme-stitches/config";
+import { styled } from "gatsby-theme-stitches/src/config";
 
 import _Header from "@karrotmarket/gatsby-theme-website/src/components/Header";
 
