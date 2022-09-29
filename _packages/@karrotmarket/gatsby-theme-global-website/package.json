@@ -18,6 +18,7 @@
     "react-dom": "*"
   },
   "dependencies": {
+    "@cometjs/core": "2.1.0",
     "@cometjs/graphql-utils": "2.0.3",
     "@karrotmarket/design-token": "1.1.2",
     "@karrotmarket/gatsby-theme-prismic": "workspace:^",
@@ -29,7 +30,7 @@
     "@stitches/react": "1.2.8",
     "@svgr/webpack": "6.3.1",
     "framer-motion": "4.1.17",
-    "gatsby-plugin-head-seo": "0.2.0",
+    "gatsby-plugin-head-seo": "0.2.1",
     "gatsby-plugin-image": "2.23.0",
     "gatsby-plugin-preload-fonts": "3.23.0",
     "gatsby-plugin-prismic-previews": "5.2.10",

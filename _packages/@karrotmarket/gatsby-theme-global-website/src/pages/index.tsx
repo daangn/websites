@@ -11,6 +11,7 @@ import {
   OpenGraph,
   TwitterCard,
 } from 'gatsby-plugin-head-seo/src';
+import { required } from '@cometjs/core';
 import { mapAbstractType } from "@cometjs/graphql-utils";
 import { withPrismicPreview } from "gatsby-plugin-prismic-previews";
 
@@ -171,8 +172,8 @@ export const Head: React.FC<IndexPageHeadProps> = ({
           og={{
             ...props,
             type: 'website',
-            images: [
-              metaImage && {
+            ...metaImage && {
+              images: [{
                 url: new URL(
                   metaImage.src,
                   metaImage.src.startsWith('https')
@@ -181,8 +182,8 @@ export const Head: React.FC<IndexPageHeadProps> = ({
                 ),
                 width: metaImage.width,
                 height: metaImage.height,
-              },
-            ].filter(Boolean),
+              }],
+            },
           }}
         />,
         <TwitterCard

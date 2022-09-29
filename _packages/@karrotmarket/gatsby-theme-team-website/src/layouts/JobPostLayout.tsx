@@ -1,30 +1,28 @@
 import * as React from 'react';
-import type { PageProps } from 'gatsby';
-import { } from 'gatsby';
 import { rem } from 'polished';
 import { motion, AnimateSharedLayout } from 'framer-motion';
-import { graphql, navigate, Link } from 'gatsby';
+import {
+  graphql,
+  navigate,
+  Link,
+  type PageProps,
+} from 'gatsby';
+import {
+  HeadSeo,
+} from 'gatsby-plugin-head-seo/src';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { GatsbySeo } from 'gatsby-plugin-next-seo';
-import type { OverrideProps } from '@cometjs/core';
-import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
-import { useLocation } from '@reach/router';
+import {
+  required,
+  type OverrideProps,
+} from '@cometjs/core';
+import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 import { vars } from '@seed-design/design-token';
 
-import _PageTitle from '../components/PageTitle';
 import logoPath from '../assets/logo.png';
+import _PageTitle from '../components/PageTitle';
 import { ReactComponent as BackwardSvg } from '../assets/backwardOutlineM.svg';
-
 import JobPostingJsonLd from './jobPostLayout/JobPostingJsonLd';
 import generateProperties from './jobPostLayout/generateProperties';
-import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
-
-type JobPostLayoutProps = OverrideProps<
-  PageProps<GatsbyTypes.TeamWebSite_JobPostLayout_queryFragment>,
-  {
-    children: React.ReactNode,
-  }
->;
 
 export const query = graphql`
   fragment TeamWebsite_JobPostLayout_query on Query {
@@ -177,13 +175,18 @@ const TabLink = styled(motion(Link), {
   },
 });
 
+type JobPostLayoutProps = OverrideProps<
+  PageProps<GatsbyTypes.TeamWebSite_JobPostLayout_queryFragment>,
+  {
+    children: React.ReactNode,
+  }
+>;
 const JobPostLayout: React.FC<JobPostLayoutProps> = ({
   children,
+  location: { pathname: currentPath },
   data: { jobPost, prismicTeamContents },
 }) => {
   const messages = useTranslation();
-  const siteOrigin = useSiteOrigin();
-  const { pathname: currentPath } = useLocation();
 
   // Note: assertion 을 선호하긴 하는데...
   // Gatsby Cloud 환경에서 캐시를 좀 어그레시브 하게 쓰는지 자꾸 페이지가 넘어오네 -_-
@@ -198,43 +201,8 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
   const viewPath = `/jobs/${jobPost.ghId}/`;
   const applyPath = `/jobs/${jobPost.ghId}/apply/`;
 
-  const metaTitle = `${jobPost.title} | ${prismicTeamContents.data.jobs_page_meta_title}`;
-  const metaDescription = prismicTeamContents.data.jobs_page_meta_description;
-  const metaImage = prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
-
   return (
     <Container>
-      <GatsbySeo
-        title={metaTitle}
-        description={metaDescription}
-        // Note: 이 페이지 그냥 삭제하는게 맞을지 외부 링크에 대한 안내를 따로 할지 모르겠다.
-        // 당장 UI 디자인이 없으니 전자가 맞는것 같은데... 범용성 생각하면 후자가 맞는것도 같고
-        noindex={Boolean(jobPost.externalUrl)}
-        openGraph={{
-          title: metaTitle,
-          description: metaDescription,
-          ...metaImage && {
-            images: [{
-              url: siteOrigin + metaImage.src,
-              width: metaImage.width,
-              height: metaImage.height,
-            }],
-          },
-        }}
-        twitter={{
-          ...metaImage && {
-            cardType: 'summary_large_image',
-          },
-        }}
-      />
-
-      <JobPostingJsonLd
-        url={siteOrigin + currentPath}
-        logoUrl={siteOrigin + logoPath}
-        metaDescription={metaDescription}
-        jobPost={jobPost}
-      />
-
       <PreviousLink
         aria-label={messages.job_post_page__back_to_list}
         to="/jobs/"
@@ -302,5 +270,44 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
     </Container>
   );
 };
-
 export default JobPostLayout;
+
+type JobPostLayoutHeadProps = {
+  data: GatsbyTypes.TeamWebSite_JobPostLayout_queryFragment,
+  location: {
+    pathname: string,
+  },
+};
+export const JobPostLayoutHead: React.FC<JobPostLayoutHeadProps> = ({
+  location,
+  data: { jobPost, prismicTeamContents },
+}) => {
+  required(jobPost);
+  required(prismicTeamContents?.data);
+
+  const metaTitle = `${jobPost.title} | ${prismicTeamContents.data.jobs_page_meta_title}`;
+  const metaDescription = prismicTeamContents.data.jobs_page_meta_description;
+
+  return (
+    <HeadSeo
+      root={false}
+      location={location}
+      title={metaTitle}
+      description={metaDescription}
+    >
+      {({ url, description }) => [
+        <JobPostingJsonLd
+          key="jobposting-jsonld"
+          jobPost={jobPost}
+          url={url}
+          description={description}
+          logo={
+            logoPath.startsWith('http')
+              ? new URL(logoPath)
+              : new URL(logoPath, url)
+          }
+        />,
+      ]}
+    </HeadSeo>
+  );
+};

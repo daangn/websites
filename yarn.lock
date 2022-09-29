@@ -2803,7 +2803,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.10.3, @babel/runtime@npm:^7.12.13, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.15.4, @babel/runtime@npm:^7.16.7, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.9.2":
+"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.12.13, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.15.4, @babel/runtime@npm:^7.16.7, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.9.2":
   version: 7.16.7
   resolution: "@babel/runtime@npm:7.16.7"
   dependencies:
@@ -3934,6 +3934,7 @@ __metadata:
   dependencies:
     "@babel/cli": 7.18.10
     "@babel/core": 7.19.1
+    "@cometjs/core": 2.1.0
     "@cometjs/graphql-utils": 2.0.3
     "@karrotmarket/design-token": 1.1.2
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
@@ -3948,7 +3949,7 @@ __metadata:
     concurrently: 7.4.0
     framer-motion: 4.1.17
     gatsby: 4.23.0
-    gatsby-plugin-head-seo: 0.1.0
+    gatsby-plugin-head-seo: 0.2.1
     gatsby-plugin-image: 2.23.0
     gatsby-plugin-preload-fonts: 3.23.0
     gatsby-plugin-prismic-previews: 5.2.10
@@ -4031,21 +4032,21 @@ __metadata:
     babel-plugin-polished: 1.1.0
     babel-preset-gatsby-package: 2.23.0
     clsx: 1.2.1
+    concurrently: 7.4.0
     focus-trap-react: 8.11.3
     framer-motion: 4.1.17
     gatsby: 4.23.0
     gatsby-plugin-advanced-sitemap: 2.1.0
     gatsby-plugin-gatsby-cloud: 4.23.0
     gatsby-plugin-google-tagmanager: 4.23.0
+    gatsby-plugin-head-seo: 0.2.1
     gatsby-plugin-image: 2.23.0
     gatsby-plugin-layout: 3.23.0
     gatsby-plugin-local-search: 2.0.1
     gatsby-plugin-manifest: 4.23.0
     gatsby-plugin-module-resolver: 1.0.3
-    gatsby-plugin-next-seo: 1.10.0
     gatsby-plugin-prismic-previews: 5.2.10
     gatsby-plugin-prismic-schema: "workspace:*"
-    gatsby-plugin-react-helmet-async: 1.2.3
     gatsby-plugin-robots-txt: 1.7.1
     gatsby-plugin-sharp: 4.23.0
     gatsby-plugin-sitemap: 5.23.0
@@ -4058,7 +4059,6 @@ __metadata:
     polished: 4.2.2
     react: 18.2.0
     react-dom: 18.2.0
-    react-helmet-async: 1.3.0
     react-intersection-observer: 8.34.0
     react-swipeable: 6.2.2
     schema-dts: 1.1.0
@@ -5635,15 +5635,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-helmet@npm:^6.0.0":
-  version: 6.1.5
-  resolution: "@types/react-helmet@npm:6.1.5"
-  dependencies:
-    "@types/react": "*"
-  checksum: d059cc084d3b3071cce3421bb1170dd42819cf39b81afe60d4fbd66c5ef9ffeaadf1802df80efd9553258f621678f69ceb5a21d73df0d8539d40ae9a0f995485
-  languageName: node
-  linkType: hard
-
 "@types/react@npm:*":
   version: 17.0.44
   resolution: "@types/react@npm:17.0.44"
@@ -6144,7 +6135,7 @@ __metadata:
     adblock-detect-react: 1.0.5
     gatsby: 4.23.0
     gatsby-plugin-google-tagmanager: 4.23.0
-    gatsby-plugin-head-seo: 0.1.0
+    gatsby-plugin-head-seo: 0.2.1
     gatsby-plugin-image: 2.23.0
     gatsby-plugin-manifest: 4.23.0
     gatsby-plugin-module-resolver: 1.0.3
@@ -10856,9 +10847,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-head-seo@npm:0.1.0":
-  version: 0.1.0
-  resolution: "gatsby-plugin-head-seo@npm:0.1.0"
+"gatsby-plugin-head-seo@npm:0.2.1":
+  version: 0.2.1
+  resolution: "gatsby-plugin-head-seo@npm:0.2.1"
   dependencies:
     radix3: ^0.1.2
     schema-dts: ^1.1.0
@@ -10866,7 +10857,7 @@ __metadata:
     gatsby: ^4.19.0
     react: ^17.0.0 || ^18.0.0
     react-dom: ^17.0.0 || ^18.0.0
-  checksum: 7f23e5b69e2243497add0a43f7a0c4cbe476527f92f4674eb3391a73a2837da824dad419816bde9fd81872a2160b6c5b867fd09749910f7768f6cd06db54c337
+  checksum: 85b1f069200b38c9e83baf304a34756cc1926ab78b9de9f02aa8674ab18bb91f455c067740f24aa6f721e8586978a9882a6567a979decd8b42a8d55d29609988
   languageName: node
   linkType: hard
 
@@ -10945,21 +10936,6 @@ __metadata:
   peerDependencies:
     gatsby: ">=1"
   checksum: 13194a38db180b949618471e8833b92dee97ac300187b0ff01ed716873b5b0e9c469e0201416d52f7b2ea919a2bb1ee01fa83226f59bb62a65f9edb3e839482d
-  languageName: node
-  linkType: hard
-
-"gatsby-plugin-next-seo@npm:1.10.0":
-  version: 1.10.0
-  resolution: "gatsby-plugin-next-seo@npm:1.10.0"
-  dependencies:
-    "@babel/runtime": ^7.10.3
-    "@types/react-helmet": ^6.0.0
-    schema-dts: 0.6.0
-    type-fest: ^0.15.1
-  peerDependencies:
-    gatsby: ^2.0.0 || ^3.0.0 || ^4.0.0
-    react-helmet-async: ^1
-  checksum: ed02f47b129c181bbcde3061bccd7120e07a156bff74486ff4071d70dd93799b2c97f4fc411a73e64c98ed9bf81f43d5464832d4ede7cbfbcd004053cbc721f8
   languageName: node
   linkType: hard
 
@@ -11045,18 +11021,6 @@ __metadata:
     gatsby: ^2.25.0 || ^3.0.0 || ^4.0.0
   languageName: unknown
   linkType: soft
-
-"gatsby-plugin-react-helmet-async@npm:1.2.3":
-  version: 1.2.3
-  resolution: "gatsby-plugin-react-helmet-async@npm:1.2.3"
-  peerDependencies:
-    gatsby: ">=2"
-    react: ^16.6.0 || ^17 || ^18
-    react-dom: ^16.6.0 || ^17 || ^18
-    react-helmet-async: 1.x
-  checksum: d7fcd585fce47f30c6cbb625707e76856654c375108ef5dc65ad9d2e234b475b2786eb8cfa2c7379548814d55eafa9e029d802e02bad1deb42ad814a39329c61
-  languageName: node
-  linkType: hard
 
 "gatsby-plugin-robots-txt@npm:1.7.1":
   version: 1.7.1
@@ -16645,13 +16609,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-fast-compare@npm:^3.2.0":
-  version: 3.2.0
-  resolution: "react-fast-compare@npm:3.2.0"
-  checksum: 8ef272c825ae329f61633ce4ce7f15aa5b84e5214d88bc0823880236e03e985a13195befa2c7a4eda7db3b017dc7985729152d88445823f652403cf36c2b86aa
-  languageName: node
-  linkType: hard
-
 "react-focus-lock@npm:^2.5.2":
   version: 2.7.1
   resolution: "react-focus-lock@npm:2.7.1"
@@ -16665,22 +16622,6 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
   checksum: 186b2f3f95330bd953722412a37f4862b178ae5ffb9b87d78365eb3a636a157898183427c086855db9b14268f7877079c4aa2a99bba63b0b74f1cd5e3c2904ef
-  languageName: node
-  linkType: hard
-
-"react-helmet-async@npm:1.3.0":
-  version: 1.3.0
-  resolution: "react-helmet-async@npm:1.3.0"
-  dependencies:
-    "@babel/runtime": ^7.12.5
-    invariant: ^2.2.4
-    prop-types: ^15.7.2
-    react-fast-compare: ^3.2.0
-    shallowequal: ^1.1.0
-  peerDependencies:
-    react: ^16.6.0 || ^17.0.0 || ^18.0.0
-    react-dom: ^16.6.0 || ^17.0.0 || ^18.0.0
-  checksum: 7ca7e47f8af14ea186688b512a87ab912bf6041312b297f92516341b140b3f0f8aedf5a44d226d99e69ed067b0cc106e38aeb9c9b738ffcc63d10721c844db90
   languageName: node
   linkType: hard
 
@@ -17489,15 +17430,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"schema-dts@npm:0.6.0":
-  version: 0.6.0
-  resolution: "schema-dts@npm:0.6.0"
-  peerDependencies:
-    typescript: ^3.4.0
-  checksum: 6812e9294fb2d4788fc548a4d244843952504ba00cb41aa8faeef335363af316e1e761d4bea8ee9225ea23a812053d1c66496479248c99b7130b84b470cac955
-  languageName: node
-  linkType: hard
-
 "schema-dts@npm:1.1.0, schema-dts@npm:^1.1.0":
   version: 1.1.0
   resolution: "schema-dts@npm:1.1.0"
@@ -17708,13 +17640,6 @@ __metadata:
   version: 1.2.2
   resolution: "shallow-compare@npm:1.2.2"
   checksum: 900b9fd6931e1c5293ee67765b3a7043b10f83c147cf60c2869076e772189e9b25b664efa93cda09c411b08ff32e3614cf1b349f92e91ae14298ef1726ae0964
-  languageName: node
-  linkType: hard
-
-"shallowequal@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "shallowequal@npm:1.1.0"
-  checksum: f4c1de0837f106d2dbbfd5d0720a5d059d1c66b42b580965c8f06bb1db684be8783538b684092648c981294bf817869f743a066538771dbecb293df78f765e00
   languageName: node
   linkType: hard
 
@@ -19026,13 +18951,6 @@ __metadata:
   version: 0.13.1
   resolution: "type-fest@npm:0.13.1"
   checksum: e6bf2e3c449f27d4ef5d56faf8b86feafbc3aec3025fc9a5fbe2db0a2587c44714521f9c30d8516a833c8c506d6263f5cc11267522b10c6ccdb6cc55b0a9d1c4
-  languageName: node
-  linkType: hard
-
-"type-fest@npm:^0.15.1":
-  version: 0.15.1
-  resolution: "type-fest@npm:0.15.1"
-  checksum: a1a0cdbd7f802d9784324f185df055739e97424ecb60914e9025574a4bc07e4a063c152e4510ebf5989de8a263220de1f6b5cf1b05f0b333dbd5b21d9b4a271b
   languageName: node
   linkType: hard
 

@@ -1,22 +1,27 @@
 import * as React from 'react';
 import { rem } from 'polished';
-import { Link, navigate, PageProps } from 'gatsby';
-import { graphql } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/config';
-import { GatsbySeo, FAQJsonLd } from 'gatsby-plugin-next-seo';
-import { required } from '@cometjs/core';
-import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 import { matchSorter } from 'match-sorter';
+import {
+  graphql,
+  navigate,
+  Link,
+  type PageProps,
+  type HeadProps,
+} from 'gatsby';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { HeadSeo } from 'gatsby-plugin-head-seo/src';
+import { FAQPageJsonLd } from 'gatsby-plugin-head-seo/src/jsonld';
+import { required } from '@cometjs/core';
 import { vars } from '@seed-design/design-token';
+import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 
+import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import _PageTitle from '../components/PageTitle';
 import FaqAccordion from '../components/FaqAccordion';
 import _Search from '../components/Search';
 import { ReactComponent as SearchdSvg } from '../assets/searchOutlineM.svg';
 import _FaqList from '../components/FaqList';
 import { useURLSearchParams } from '../utils/useURLSearchParams'
-
-type FaqPageProps = PageProps<GatsbyTypes.TeamWebsite_FaqPageQuery>;
 
 export const query = graphql`
   query TeamWebsite_FaqPage(
@@ -141,9 +146,9 @@ const Search = styled(_Search, {
   },
 });
 
+type FaqPageProps = PageProps<GatsbyTypes.TeamWebsite_FaqPageQuery>;
 const FaqPage: React.FC<FaqPageProps> = ({
   data,
-  location,
 }) => {
   required(data.prismicTeamContents?.data);
 
@@ -178,20 +183,6 @@ const FaqPage: React.FC<FaqPageProps> = ({
 
   return (
     <Container>
-      <GatsbySeo
-        title={data.prismicTeamContents.data.faq_page_meta_title}
-        description={data.prismicTeamContents.data.faq_page_meta_description}
-        twitter={data.prismicTeamContents.data.twitter_site_handle != null ? {
-          cardType: 'summary',
-          site: data.prismicTeamContents.data.twitter_site_handle,
-        } : undefined}
-      />
-      <FAQJsonLd
-        questions={data.prismicFaq.data.entries!.map(faq => ({
-          question: faq.question || '',
-          answer: faq.answer.text || '',
-        }))}
-      />
       <PageTitle>
         {data.prismicTeamContents.data.faq_page_title.text}
       </PageTitle>
@@ -232,3 +223,43 @@ const FaqPage: React.FC<FaqPageProps> = ({
 };
 
 export default FaqPage;
+
+type FaqPageHeadProps = HeadProps<GatsbyTypes.TeamWebsite_FaqPageQuery>;
+export const Head: React.FC<FaqPageHeadProps> = ({
+  data,
+  location,
+}) => {
+  required(data.prismicTeamContents?.data);
+
+  const metaTitle = data.prismicTeamContents.data.faq_page_meta_title;
+  const metaDescription = data.prismicTeamContents.data.faq_page_meta_description;
+
+  return (
+    <HeadSeo
+      location={location}
+      title={metaTitle}
+      description={metaDescription}
+    >
+      {props => [
+        <DefaultLayoutHead
+          {...props}
+          location={location}
+          data={data}
+        />,
+        <FAQPageJsonLd
+          faq={{
+            '@type': 'FAQPage',
+            mainEntity: data.prismicFaq.data.entries!.map(faq => ({
+              '@type': 'Question',
+              name: faq.question,
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: faq.answer.text,
+              },
+            })),
+          }}
+        />,
+      ]}
+    </HeadSeo>
+  );
+};

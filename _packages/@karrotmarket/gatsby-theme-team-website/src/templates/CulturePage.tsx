@@ -1,13 +1,16 @@
 import * as React from 'react';
 import { rem } from 'polished';
-import type { PageProps } from 'gatsby';
-import { graphql } from 'gatsby';
+import {
+  graphql,
+  type PageProps,
+  type HeadProps,
+} from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { GatsbySeo } from 'gatsby-plugin-next-seo';
-import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
+import { HeadSeo } from 'gatsby-plugin-head-seo/src';
 import { required } from '@cometjs/core';
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
 
+import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import _PageTitle from '../components/PageTitle';
 import Divider from '../components/Divider';
 import PrismicTeamContentsDataCultureBodyKeyVisual from '../components/PrismicTeamContentsDataCultureBodyKeyVisual';
@@ -17,8 +20,6 @@ import PrismicTeamContentsDataCultureBodyTitleAndDescription from '../components
 import PrismicTeamContentsDataCultureBodyTitleAndIllustration from '../components/PrismicTeamContentsDataCultureBodyTitleAndIllustration';
 import PrismicTeamContentsDataCultureBodyIllustrationAndDescription from '../components/PrismicTeamContentsDataCultureBodyIllustrationAndDescription';
 import PrismicTeamContentsDataCultureBodyWideBanner from '../components/PrismicTeamContentsDataCultureBodyWideBanner';
-
-type CulturePageProps = PageProps<GatsbyTypes.TeamWebsite_CulturePageQuery, GatsbyTypes.SitePageContext>;
 
 export const query = graphql`
   query TeamWebsite_CulturePage(
@@ -88,39 +89,14 @@ const Content = styled('div', {
   },
 });
 
+type CulturePageProps = PageProps<GatsbyTypes.TeamWebsite_CulturePageQuery>;
 const CulturePage: React.FC<CulturePageProps> = ({
   data,
 }) => {
-  const siteOrigin = useSiteOrigin();
-
   required(data.prismicTeamContents?.data?.culture_body);
-
-  const metaTitle = data.prismicTeamContents.data.culture_page_meta_title;
-  const metaDescription = data.prismicTeamContents.data.culture_page_meta_description;
-  const metaImage = data.prismicTeamContents.data.culture_page_meta_image?.localFile?.childImageSharp?.fixed;
 
   return (
     <main>
-      <GatsbySeo
-        title={metaTitle}
-        description={metaDescription}
-        openGraph={{
-          title: metaTitle,
-          description: metaDescription,
-          ...metaImage && {
-            images: [{
-              url: siteOrigin + metaImage.src,
-              width: metaImage.width,
-              height: metaImage.height,
-            }],
-          },
-        }}
-        twitter={{
-          ...metaImage && {
-            cardType: 'summary_large_image',
-          },
-        }}
-      />
       <TitleContainer>
         <PageTitle>
           {data.prismicTeamContents.data.culture_page_title?.text}
@@ -182,3 +158,41 @@ const CulturePage: React.FC<CulturePageProps> = ({
 };
 
 export default CulturePage;
+
+type CulturePageHeadProps = HeadProps<GatsbyTypes.TeamWebsite_CulturePageQuery>;
+export const Head: React.FC<CulturePageHeadProps> = ({
+  data,
+  location,
+}) => {
+  required(data.prismicTeamContents?.data);
+
+  const metaTitle = data.prismicTeamContents.data.culture_page_meta_title;
+  const metaDescription = data.prismicTeamContents.data.culture_page_meta_description;
+  const metaImage = data.prismicTeamContents.data.culture_page_meta_image?.localFile?.childImageSharp?.fixed;
+
+  return (
+    <HeadSeo
+      location={location}
+      title={metaTitle}
+      description={metaDescription}
+    >
+      {props => (
+        <DefaultLayoutHead
+          {...props}
+          location={location}
+          data={data}
+          image={metaImage && {
+            url: new URL(
+              metaImage.src,
+              metaImage.src.startsWith('http')
+                ? metaImage.src
+                : props.url,
+            ),
+            width: metaImage.width,
+            height: metaImage.height,
+          }}
+        />
+      )}
+    </HeadSeo>
+  );
+};

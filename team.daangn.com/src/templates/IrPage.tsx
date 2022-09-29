@@ -2,22 +2,19 @@
 
 import * as React from 'react';
 import { rem } from 'polished';
-import type { PageProps } from 'gatsby';
 import {
   graphql,
   navigate,
-  withPrefix,
   Link,
+  type PageProps,
+  type HeadProps,
 } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import { required } from '@cometjs/core';
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
 import { vars } from '@seed-design/design-token';
 import PageTitle from '@karrotmarket/gatsby-theme-team-website/src/components/PageTitle';
 import { ReactComponent as BackwardSvg } from '@karrotmarket/gatsby-theme-team-website/src/assets/backwardOutlineM.svg';
-
-type IrPageProps = PageProps<GatsbyTypes.IrPageQuery>;
 
 export const query = graphql`
   query IrPage(
@@ -155,6 +152,7 @@ const FileListItem = styled('li', {
 const File = styled('a', {
 });
 
+type IrPageProps = PageProps<GatsbyTypes.IrPageQuery>;
 const IrPage: React.FC<IrPageProps> = ({
   data,
 }) => {
@@ -166,12 +164,6 @@ const IrPage: React.FC<IrPageProps> = ({
 
   return (
     <Container>
-      <GatsbySeo
-        title={[
-          data.prismicIr.data.title?.text,
-          '당근마켓 IR',
-        ].join(' | ')}
-      />
       <PreviousLink
         aria-label="목록으로 돌아가기"
         to="/ir/"
@@ -239,8 +231,22 @@ const IrPage: React.FC<IrPageProps> = ({
     </Container>
   );
 };
-
 export default IrPage;
+
+type IrPageHeadProps = HeadProps<GatsbyTypes.IrPageQuery>;
+export const Head: React.FC<IrPageHeadProps> = ({
+  data,
+}) => {
+  required(data.prismicIr?.data);
+  return (
+    <title>
+      {[
+        data.prismicIr.data.title?.text,
+        '당근마켓 IR'
+      ].join(' | ')}
+    </title>
+  );
+};
 
 function stripUUID(base: string) {
   return base.replace(/[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}_?/, '');

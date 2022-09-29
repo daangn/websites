@@ -7,9 +7,11 @@ import {
   type HeadProps,
 } from "gatsby";
 import {
-  BasicMeta,
+  HeadSeo,
   OpenGraph,
+  TwitterCard,
 } from 'gatsby-plugin-head-seo/src';
+import { required } from '@cometjs/core';
 import { mapAbstractType } from "@cometjs/graphql-utils";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { withPrismicPreview } from "gatsby-plugin-prismic-previews";
@@ -76,99 +78,6 @@ export const query = graphql`
   }
 `;
 
-export function Head({
-  data,
-  location,
-}: HeadProps<GatsbyTypes.AboutPageQueryQuery>) {
-  if (!data.prismicGlobalContents?.data?.about_body) throw new Error("No data");
-
-  const {
-    about_page_title,
-    about_page_description,
-    about_opengraph_image,
-  } = data.prismicGlobalContents?.data;
-
-  const canonicalUrl = new URL(data.site.siteMetadata.siteUrl);
-  canonicalUrl.pathname = location.pathname;
-
-  const metaImage = about_opengraph_image?.localFile?.childImageSharp?.fixed;
-
-  return (
-    <>
-      <title>{about_page_title}</title>
-      <BasicMeta
-        description={about_page_description}
-        urlSettings={{
-          canonicalUrl,
-        }}
-      />
-      <OpenGraph
-        ogType="website"
-        url={canonicalUrl}
-        title={about_page_title}
-        description={about_page_description}
-        images={[
-          metaImage && {
-            url: new URL(
-              metaImage.src,
-              metaImage.src.startsWith('https')
-                ? metaImage.src
-                : canonicalUrl,
-            ),
-            width: metaImage.width,
-            height: metaImage.height,
-          },
-        ].filter(Boolean)}
-      />
-    </>
-  );
-}
-
-const AboutPage: React.FC<PageProps<GatsbyTypes.AboutPageQueryQuery>> = ({
-  data,
-}) => {
-  if (!data.prismicGlobalContents?.data?.about_body) throw new Error("No data");
-
-  const {
-    about_background_image,
-    about_title,
-    about_body,
-  } = data.prismicGlobalContents?.data;
-
-  const backgroundImage = getImage(
-    about_background_image?.localFile?.childImageSharp?.gatsbyImageData as any
-  );
-
-  return (
-    <Layout data={data.prismicSiteNavigation.data}>
-      <ImageContianer>
-        <Image image={backgroundImage} />
-      </ImageContianer>
-
-      <Container>
-        <Title dangerouslySetInnerHTML={{ __html: about_title.html }} />
-
-        {about_body.map((content: any, i) =>
-          mapAbstractType(content, {
-            PrismicGlobalContentsDataAboutBodySubtitleAndText: (content) => (
-              <SubtitleAndText key={i} content={content} />
-            ),
-            PrismicGlobalContentsDataAboutBodySubtitleAndImages: (content) => (
-              <SubtitleAndImages key={i} content={content} />
-            ),
-            PrismicGlobalContentsDataAboutBodySubtitleAndLinks: (content) => (
-              <SubtitleAndLinks key={i} content={content} />
-            ),
-            PrismicGlobalContentsDataAboutBodyDetailsList: (content) => (
-              <DetailsList key={i} content={content} />
-            ),
-          })
-        )}
-      </Container>
-    </Layout>
-  );
-};
-
 const ImageContianer = styled("div", {
   height: "208px",
   width: "100%",
@@ -224,4 +133,100 @@ const Title = styled("div", {
   },
 });
 
+type AboutPageProps = PageProps<GatsbyTypes.AboutPageQueryQuery>;
+const AboutPage: React.FC<AboutPageProps> = ({
+  data,
+}) => {
+  if (!data.prismicGlobalContents?.data?.about_body) throw new Error("No data");
+
+  const {
+    about_background_image,
+    about_title,
+    about_body,
+  } = data.prismicGlobalContents?.data;
+
+  const backgroundImage = getImage(
+    about_background_image?.localFile?.childImageSharp?.gatsbyImageData as any
+  );
+
+  return (
+    <Layout data={data.prismicSiteNavigation.data}>
+      <ImageContianer>
+        <Image image={backgroundImage} />
+      </ImageContianer>
+
+      <Container>
+        <Title dangerouslySetInnerHTML={{ __html: about_title.html }} />
+
+        {about_body.map((content: any, i) =>
+          mapAbstractType(content, {
+            PrismicGlobalContentsDataAboutBodySubtitleAndText: (content) => (
+              <SubtitleAndText key={i} content={content} />
+            ),
+            PrismicGlobalContentsDataAboutBodySubtitleAndImages: (content) => (
+              <SubtitleAndImages key={i} content={content} />
+            ),
+            PrismicGlobalContentsDataAboutBodySubtitleAndLinks: (content) => (
+              <SubtitleAndLinks key={i} content={content} />
+            ),
+            PrismicGlobalContentsDataAboutBodyDetailsList: (content) => (
+              <DetailsList key={i} content={content} />
+            ),
+          })
+        )}
+      </Container>
+    </Layout>
+  );
+};
 export default withPrismicPreview(AboutPage, []);
+
+type AboutPageHeadProps = HeadProps<GatsbyTypes.AboutPageQueryQuery>;
+export const Head: React.FC<AboutPageHeadProps> = ({
+  data,
+  location,
+}) => {
+  required(data.prismicGlobalContents?.data);
+
+  const {
+    about_page_title,
+    about_page_description,
+    about_opengraph_image,
+  } = data.prismicGlobalContents?.data;
+
+  const metaImage = about_opengraph_image?.localFile?.childImageSharp?.fixed;
+
+  return (
+    <HeadSeo
+      location={location}
+      title={about_page_title}
+      description={about_page_description}
+    >
+      {props => [
+        <OpenGraph
+          og={{
+            ...props,
+            type: 'website',
+            ...metaImage && {
+              images: [{
+                url: new URL(
+                  metaImage.src,
+                  metaImage.src.startsWith('http')
+                    ? metaImage.src
+                    : props.url,
+                ),
+                width: metaImage.width,
+                height: metaImage.height,
+              }],
+            },
+          }}
+        />,
+        <TwitterCard
+          card={{
+            ...props,
+            type: 'summary',
+          }}
+        />,
+      ]}
+    </HeadSeo>
+  );
+}

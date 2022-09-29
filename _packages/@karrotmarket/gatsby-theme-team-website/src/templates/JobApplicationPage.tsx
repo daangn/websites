@@ -1,8 +1,12 @@
 import * as React from 'react';
-import type { PageProps } from 'gatsby';
-import { graphql, navigate } from 'gatsby';
+import {
+  graphql,
+  navigate,
+  type PageProps,
+  type HeadProps,
+} from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { GatsbySeo } from 'gatsby-plugin-next-seo';
+import { Robots } from 'gatsby-plugin-head-seo/src';
 import { rem } from 'polished';
 import { required } from '@cometjs/core';
 import type { PropOf, RefOf } from '@cometjs/react-utils';
@@ -20,8 +24,6 @@ import Button from '../components/Button';
 import _Spinner from '../components/Spinner';
 
 import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
-
-type JobApplicationPageProps = PageProps<GatsbyTypes.TeamWebsite_JobApplicationPageQuery, GatsbyTypes.SitePageContext>;
 
 export const query = graphql`
   query TeamWebsite_JobApplicationPage(
@@ -160,13 +162,14 @@ const makeEndpoint = (boardToken: string, jobId: string): string => {
   return `${host.replace(/\/$/, '')}/boards/${boardToken}/jobs/${jobId}/application/proxy`;
 };
 
+type JobApplicationPageProps = PageProps<GatsbyTypes.TeamWebsite_JobApplicationPageQuery>;
 const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
   data,
 }) => {
+  required(data.jobPost);
+
   const messages = useTranslation();
   const [state, dispatch] = React.useReducer(reducer, initialState);
-
-  required(data.jobPost);
 
   const jobApplicationFormEndpoint = makeEndpoint(data.jobPost.boardToken, data.jobPost.ghId);
 
@@ -228,7 +231,6 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
       action={jobApplicationFormEndpoint}
       onSubmit={handleSubmit}
     >
-      <GatsbySeo noindex />
       <ShortTextField
         name="first_name"
         label={messages.job_application_page__field_name_label}
@@ -361,3 +363,11 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
 };
 
 export default JobApplicationPage;
+
+type JobApplicationPageHeadProps = HeadProps<GatsbyTypes.TeamWebsite_JobApplicationPageQuery>;
+export const Head: React.FC<JobApplicationPageHeadProps> = ({
+}) => {
+  return (
+    <Robots none />
+  );
+}

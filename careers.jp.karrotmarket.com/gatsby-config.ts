@@ -6,6 +6,8 @@ dotenv.config();
 export const siteMetadata = {
   siteUrl: 'https://careers.jp.karrotmarket.com',
   siteName: 'Karrot Careers',
+  title: 'Karrot Careers',
+  description: 'Karrot brings neighbours together to build closely-knit local communities',
 };
 
 const config: GatsbyConfig = {

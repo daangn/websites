@@ -1,6 +1,6 @@
 import * as React from "react";
-import type { PageProps } from "gatsby";
-
+import { type PageProps } from "gatsby";
+import { Robots } from 'gatsby-plugin-head-seo/src';
 import { withPrismicPreviewResolver } from "gatsby-plugin-prismic-previews";
 import { styled } from "gatsby-theme-stitches/src/config";
 
@@ -17,3 +17,9 @@ const PreviewPage: React.FC<PageProps> = ({}) => {
 };
 
 export default withPrismicPreviewResolver(PreviewPage);
+
+export const Head: React.FC = () => {
+  return (
+    <Robots none />
+  );
+}

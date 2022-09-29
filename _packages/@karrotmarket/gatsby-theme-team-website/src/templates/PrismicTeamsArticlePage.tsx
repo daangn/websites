@@ -1,19 +1,19 @@
 import * as React from 'react';
 import { rem } from 'polished';
-import type { PageProps } from 'gatsby';
-import { graphql } from 'gatsby';
-import { GatsbySeo } from 'gatsby-plugin-next-seo';
+import {
+  graphql,
+  type PageProps,
+  type HeadProps,
+} from 'gatsby';
+import { HeadSeo } from 'gatsby-plugin-head-seo/src';
 import { styled } from 'gatsby-theme-stitches/src/config';
+import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
 import { required, Condition } from '@cometjs/core';
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
-import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
 
-import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
-
+import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import _PageTitle from '../components/PageTitle';
 import PrismicTeamsArticleDataBodyArticleSection from '../components/PrismicTeamsArticleDataBodyArticleSection';
-
-type TeamsArticlePageProps = PageProps<GatsbyTypes.TeamWebsite_TeamsArticlePageQuery, GatsbyTypes.SitePageContext>;
 
 export const query = graphql`
   query TeamWebsite_TeamsArticlePage(
@@ -76,39 +76,14 @@ const Content = styled('div', {
   gap: rem(64),
 });
 
+type TeamsArticlePageProps = PageProps<GatsbyTypes.TeamWebsite_TeamsArticlePageQuery>;
 const TeamsArticlePage: React.FC<TeamsArticlePageProps> = ({
   data,
 }) => {
-  const siteOrigin = useSiteOrigin();
-
   required(data.prismicTeamsArticle?.data?.body);
-
-  const metaTitle = data.prismicTeamsArticle.data.page_meta_title;
-  const metaDescription = data.prismicTeamsArticle.data.page_meta_description;
-  const metaImage = data.prismicTeamsArticle.data.page_meta_image?.localFile?.childImageSharp?.fixed;
 
   return (
     <Container>
-      <GatsbySeo
-        title={metaTitle}
-        description={metaDescription}
-        openGraph={{
-          title: metaTitle,
-          description: metaDescription,
-          ...metaImage && {
-            images: [{
-              url: siteOrigin + metaImage.src,
-              width: metaImage.width,
-              height: metaImage.height,
-            }],
-          },
-        }}
-        twitter={{
-          ...metaImage && {
-            cardType: 'summary_large_image',
-          },
-        }}
-      />
       <PageTitle>
         {data.prismicTeamsArticle.data.page_title?.text}
       </PageTitle>
@@ -130,3 +105,41 @@ const TeamsArticlePage: React.FC<TeamsArticlePageProps> = ({
 };
 
 export default withPrismicPreview(TeamsArticlePage);
+
+type TeamsArticlePageHeadProps = HeadProps<GatsbyTypes.TeamWebsite_TeamsArticlePageQuery>;
+export const Head: React.FC<TeamsArticlePageHeadProps> = ({
+  data,
+  location,
+}) => {
+  required(data.prismicTeamsArticle?.data);
+
+  const metaTitle = data.prismicTeamsArticle.data.page_meta_title;
+  const metaDescription = data.prismicTeamsArticle.data.page_meta_description;
+  const metaImage = data.prismicTeamsArticle.data.page_meta_image?.localFile?.childImageSharp?.fixed;
+
+  return (
+    <HeadSeo
+      location={location}
+      title={metaTitle}
+      description={metaDescription}
+    >
+      {props => (
+        <DefaultLayoutHead
+          {...props}
+          location={location}
+          data={data}
+          image={metaImage && {
+            url: new URL(
+              metaImage.src,
+              metaImage.src.startsWith('http')
+                ? metaImage.src
+                : props.url,
+            ),
+            width: metaImage.width,
+            height: metaImage.height,
+          }}
+        />
+      )}
+    </HeadSeo>
+  );
+}

@@ -1,18 +1,17 @@
 import * as React from 'react';
 import { rem } from 'polished';
-import { navigate } from '@reach/router';
-import type { PageProps } from 'gatsby';
-import { graphql } from 'gatsby';
+import {
+  graphql,
+  navigate,
+  type PageProps,
+  type HeadProps,
+} from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
+import { Robots } from 'gatsby-plugin-head-seo/src';
 import type { WithPrismicPreviewResolverProps } from 'gatsby-plugin-prismic-previews';
 import { withPrismicPreviewResolver } from 'gatsby-plugin-prismic-previews';
 
 import { ReactComponent as DaangniLoading } from '../assets/daangni_loading.svg';
-
-type PreviewResolverPageProps = (
-  & PageProps<GatsbyTypes.TeamWebsite_PreviewResolverPageQuery, GatsbyTypes.SitePageContext>
-  & WithPrismicPreviewResolverProps
-);
 
 export const query = graphql`
   query TeamWebsite_PreviewResolverPage(
@@ -51,11 +50,10 @@ const Description = styled('p', {
   },
 });
 
-const Note = styled('p', {
-  fontSize: '$caption1',
-  color: '$gray400',
-});
-
+type PreviewResolverPageProps = (
+  & PageProps<GatsbyTypes.TeamWebsite_PreviewResolverPageQuery>
+  & WithPrismicPreviewResolverProps
+);
 const PreviewResolverPage: React.FC<PreviewResolverPageProps> = ({
   isPrismicPreview,
 }) => {
@@ -83,3 +81,12 @@ const PreviewResolverPage: React.FC<PreviewResolverPageProps> = ({
 };
 
 export default withPrismicPreviewResolver(PreviewResolverPage);
+
+type PreviewResolverPageHeadProps = HeadProps<GatsbyTypes.TeamWebsite_PreviewResolverPageQuery>;
+export const Head: React.FC<PreviewResolverPageHeadProps> = () => {
+  return (
+    <>
+      <Robots none />
+    </>
+  );
+};
