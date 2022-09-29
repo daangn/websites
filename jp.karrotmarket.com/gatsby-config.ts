@@ -2,9 +2,8 @@ import type { GatsbyConfig } from "gatsby";
 
 const siteMetadata = {
   siteUrl: "https://jp.karrotmarket.com/",
-  siteName: "お住まいのまちのキャロット（Karrot）",
-  description:
-    "お住まいのまちのフリマアプリ、Karrot(キャロット)！ご近所さんと心あたたまる取引をしませんか？",
+  title: "お住まいのまちのキャロット（Karrot）",
+  description: "お住まいのまちのフリマアプリ、Karrot(キャロット)！ご近所さんと心あたたまる取引をしませんか？",
 };
 
 const config: GatsbyConfig = {
@@ -17,7 +16,7 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        name: siteMetadata.siteName,
+        name: siteMetadata.title,
         start_url: "/",
         background_color: "#FFFFFF",
         icon: "src/assets/favicon.svg",

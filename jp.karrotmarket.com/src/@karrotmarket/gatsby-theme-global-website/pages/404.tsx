@@ -1,5 +1,8 @@
 import * as React from "react";
-import { graphql, PageProps } from "gatsby";
+import {
+  graphql,
+  type PageProps,
+} from "gatsby";
 import { styled } from "gatsby-theme-stitches/src/config";
 import Layout from "@karrotmarket/gatsby-theme-global-website/src/components/Layout";
 
@@ -13,7 +16,6 @@ export const query = graphql`
 `;
 
 type NotFoundPageProps = PageProps<GatsbyTypes.NotFoundPageQueryQuery>;
-
 const NotFoundPage: React.FC<NotFoundPageProps> = ({ data }) => {
   if (!data.prismicSiteNavigation?.data) throw new Error("No data");
 

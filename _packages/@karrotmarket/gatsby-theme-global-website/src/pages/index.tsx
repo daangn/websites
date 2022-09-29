@@ -7,8 +7,9 @@ import {
   type HeadProps,
 } from 'gatsby';
 import {
-  BasicMeta,
+  HeadSeo,
   OpenGraph,
+  TwitterCard,
 } from 'gatsby-plugin-head-seo/src';
 import { mapAbstractType } from "@cometjs/graphql-utils";
 import { withPrismicPreview } from "gatsby-plugin-prismic-previews";
@@ -74,55 +75,8 @@ export const query = graphql`
   }
 `;
 
-export function Head({
-  data,
-  location,
-}: HeadProps<GatsbyTypes.IndexPageQueryQuery>) {
-  if (!data.prismicGlobalContents?.data?.main_body) throw new Error("No data");
-
-  const {
-    main_page_title,
-    main_page_description,
-    main_opengraph_image,
-  } = data.prismicGlobalContents?.data;
-
-  const canonicalUrl = new URL(data.site.siteMetadata.siteUrl);
-  canonicalUrl.pathname = location.pathname;
-
-  const metaImage = main_opengraph_image?.localFile?.childImageSharp?.fixed;
-
-  return (
-    <>
-      <title>{main_page_title}</title>
-      <BasicMeta
-        description={main_page_description}
-        urlSettings={{
-          canonicalUrl,
-        }}
-      />
-      <OpenGraph
-        ogType="website"
-        url={canonicalUrl}
-        title={main_page_title}
-        description={main_page_description}
-        images={[
-          metaImage && {
-            url: new URL(
-              metaImage.src,
-              metaImage.src.startsWith('https')
-                ? metaImage.src
-                : canonicalUrl,
-            ),
-            width: metaImage.width,
-            height: metaImage.height,
-          },
-        ].filter(Boolean)}
-      />
-    </>
-  );
-}
-
-const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQueryQuery>> = ({
+type IndexPageProps = PageProps<GatsbyTypes.IndexPageQueryQuery>;
+const IndexPage: React.FC<IndexPageProps> = ({
   data,
 }) => {
   if (!data.prismicGlobalContents?.data?.main_body || !data.hotArticles.nodes) {
@@ -188,3 +142,56 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQueryQuery>> = ({
 };
 
 export default withPrismicPreview(IndexPage, []);
+
+type IndexPageHeadProps = HeadProps<GatsbyTypes.IndexPageQueryQuery>;
+export const Head: React.FC<IndexPageHeadProps> = ({
+  data,
+  location,
+}) => {
+  if (!data.prismicGlobalContents?.data) {
+    throw new Error("No data");
+  }
+
+  const {
+    main_page_title,
+    main_page_description,
+    main_opengraph_image,
+  } = data.prismicGlobalContents?.data;
+
+  const metaImage = main_opengraph_image?.localFile?.childImageSharp?.fixed;
+
+  return (
+    <HeadSeo
+      location={location}
+      title={main_page_title}
+      description={main_page_description}
+    >
+      {props => [
+        <OpenGraph
+          og={{
+            ...props,
+            type: 'website',
+            images: [
+              metaImage && {
+                url: new URL(
+                  metaImage.src,
+                  metaImage.src.startsWith('https')
+                    ? metaImage.src
+                    : props.url,
+                ),
+                width: metaImage.width,
+                height: metaImage.height,
+              },
+            ].filter(Boolean),
+          }}
+        />,
+        <TwitterCard
+          card={{
+            ...props,
+            type: 'summary',
+          }}
+        />,
+      ]}
+    </HeadSeo>
+  );
+};

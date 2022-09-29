@@ -19,9 +19,8 @@ const config = ({
   plugins: [
     'gatsby-theme-stitches',
     'gatsby-plugin-svgr',
-    'gatsby-plugin-react-helmet-async',
     'gatsby-plugin-vercel-deploy',
-    'gatsby-plugin-next-seo',
+    'gatsby-plugin-head-seo',
     {
       resolve: 'gatsby-plugin-sharp',
       options: {

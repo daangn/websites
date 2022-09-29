@@ -2,10 +2,8 @@ import type { GatsbyConfig } from "gatsby";
 
 const siteMetadata = {
   siteUrl: "https://uk.karrotmarket.com/",
-  siteName:
-    "Karrot - Your Local Buying &amp; Selling Community for Verified Locals",
-  description:
-    "Karrot - the app for verified locals to buy &amp; sell. See what&#39;s for offer today!",
+  title: "Karrot - Your Local Buying &amp; Selling Community for Verified Locals",
+  description: "Karrot - the app for verified locals to buy &amp; sell. See what&#39;s for offer today!",
 };
 
 const config: GatsbyConfig = {
@@ -18,7 +16,7 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        name: siteMetadata.siteName,
+        name: siteMetadata.title,
         start_url: "/",
         background_color: "#FFFFFF",
         icon: "src/assets/favicon.svg",

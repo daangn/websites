@@ -1,10 +1,14 @@
 import "@seed-design/stylesheet/global.css";
 
 import * as React from "react";
-import type { PageProps, HeadProps } from "gatsby";
+import {
+  graphql,
+  type PageProps,
+  type HeadProps,
+} from "gatsby";
 import { rem } from 'polished';
 import {
-  BasicMeta,
+  HeadSeo,
   OpenGraph,
   TwitterCard,
 } from 'gatsby-plugin-head-seo/src';
@@ -17,7 +21,6 @@ import { Main } from "~/components/organisms/Main";
 import { LearnMore } from "~/components/organisms/LearnMore";
 import { Visitors } from "~/components/organisms/Visitors";
 import { Download } from "~/components/organisms/Download";
-import { graphql } from "gatsby";
 import { DownloadBtnMobile } from "~/components/organisms/DownloadBtnMobile";
 
 import { useDetectAdBlock } from "adblock-detect-react";
@@ -38,8 +41,6 @@ export const query = graphql`
     site {
       siteMetadata {
         siteUrl
-        siteName
-        siteDescription
       }
     }
 
@@ -122,49 +123,37 @@ export default function IndexPage({
 
 export function Head({
   data,
+  location,
 }: HeadProps<GatsbyTypes.IndexPageQuery>) {
-  const siteMetadata = data.site?.siteMetadata!;
-
-  const title = siteMetadata.siteName!;
-  const description = siteMetadata.siteDescription!;
-  const siteUrl = new URL(siteMetadata.siteUrl!);
+  const siteUrl = new URL(data.site!.siteMetadata!.siteUrl!);
 
   const image = data.image?.childImageSharp?.fixed!;
-  const imageUrl = new URL(siteUrl);
-  imageUrl.pathname = image.src;
+  const imageUrl = new URL(image.src, siteUrl);
 
   return (
-    <>
-      <title>{title}</title>
-      <BasicMeta
-        description={description}
-        urlSettings={{
-          canonicalUrl: new URL('https://ads-local.daangn.com'),
-        }}
-      />
-      <OpenGraph
-        url={siteUrl}
-        title={title}
-        description={description}
-        ogType={{
-          type: 'website',
-        }}
-        images={[
-          {
-            url: imageUrl,
-            width: image.width,
-            height: image.height,
-          },
-        ]}
-      />
-      <TwitterCard
-        card={{
-          type: 'summary_large_image',
-          title,
-          description,
-        }}
-      />
-    </>
+    <HeadSeo location={location}>
+      {props => [
+        <OpenGraph
+          og={{
+            ...props,
+            type: 'website',
+            images: [
+              {
+                url: imageUrl,
+                width: image.width,
+                height: image.height,
+              },
+            ]
+          }}
+        />,
+        <TwitterCard
+          card={{
+            ...props,
+            type: 'summary_large_image',
+          }}
+        />,
+      ]}
+    </HeadSeo>
   );
 }
 
