@@ -1,18 +1,24 @@
 import * as React from 'react';
-import type { PageProps } from 'gatsby';
-import { graphql, navigate } from 'gatsby';
+import {
+  graphql,
+  navigate,
+  type PageProps,
+  type HeadProps,
+} from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
+import { HeadSeo } from 'gatsby-plugin-head-seo/src';
 import { rem } from 'polished';
 import { required } from '@cometjs/core';
+import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
 import { useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
 
+import { DefaultLayoutHead } from '../layouts/DefaultLayout';
+import { JobPostLayoutHead } from '../layouts/JobPostLayout';
 import Button from '../components/Button';
 import ArrowLink from '../components/ArrowLink';
 import JobPostContentSection from '../components/JobPostContentSection';
 
 import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
-
-type JobPostPageProps = PageProps<GatsbyTypes.TeamWebsite_JobPostPageQuery, GatsbyTypes.SitePageContext>;
 
 export const query = graphql`
   query TeamWebsite_JobPostPage(
@@ -64,13 +70,14 @@ const ButtonContainer = styled('div', {
   },
 });
 
+type JobPostPageProps = PageProps<GatsbyTypes.TeamWebsite_JobPostPageQuery>;
 const JobPostPage: React.FC<JobPostPageProps> = ({
   data,
 }) => {
+  required(data.jobPost);
+
   const parseLink = useLinkParser();
   const messages = useTranslation();
-
-  required(data.jobPost);
 
   if (data.jobPost.externalUrl) {
     return (
@@ -128,3 +135,48 @@ const JobPostPage: React.FC<JobPostPageProps> = ({
 };
 
 export default JobPostPage;
+
+type JobPostPageHeadProps = HeadProps<GatsbyTypes.TeamWebsite_JobPostPageQuery>;
+export const Head: React.FC<JobPostPageHeadProps> = ({
+  location,
+  data,
+  data: { jobPost, prismicTeamContents },
+}) => {
+  required(jobPost);
+  required(prismicTeamContents);
+
+  const metaTitle = `${jobPost.title} | ${prismicTeamContents.data.jobs_page_meta_title}`;
+  const metaDescription = prismicTeamContents.data.jobs_page_meta_description;
+  const metaImage = prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
+
+  return (
+    <HeadSeo
+      location={location}
+      title={metaTitle}
+      description={metaDescription}
+    >
+      {props => [
+        <DefaultLayoutHead
+          {...props}
+          location={location}
+          data={data}
+          image={metaImage && {
+            url: new URL(
+              metaImage.src,
+              metaImage.src.startsWith('http')
+                ? metaImage.src
+                : props.url,
+            ),
+            width: metaImage.width,
+            height: metaImage.height,
+          }}
+        />,
+        <JobPostLayoutHead
+          {...props}
+          location={location}
+          data={data}
+        />,
+      ]}
+    </HeadSeo>
+  )
+};

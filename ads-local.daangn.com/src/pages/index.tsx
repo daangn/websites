@@ -1,10 +1,17 @@
 import "@seed-design/stylesheet/global.css";
 
 import * as React from "react";
-import type { PageProps } from "gatsby";
-import { Helmet } from "react-helmet-async";
-import {rem} from 'polished';
-import { GatsbySeo } from "gatsby-plugin-next-seo";
+import {
+  graphql,
+  type PageProps,
+  type HeadProps,
+} from "gatsby";
+import { rem } from 'polished';
+import {
+  HeadSeo,
+  OpenGraph,
+  TwitterCard,
+} from 'gatsby-plugin-head-seo/src';
 import { mapAbstractTypeWithDefault } from "@cometjs/graphql-utils";
 import Header from "@karrotmarket/gatsby-theme-website/src/components/Header";
 import Footer from "@karrotmarket/gatsby-theme-website/src/components/Footer";
@@ -14,13 +21,10 @@ import { Main } from "~/components/organisms/Main";
 import { LearnMore } from "~/components/organisms/LearnMore";
 import { Visitors } from "~/components/organisms/Visitors";
 import { Download } from "~/components/organisms/Download";
-import { graphql } from "gatsby";
 import { DownloadBtnMobile } from "~/components/organisms/DownloadBtnMobile";
 
 import { useDetectAdBlock } from "adblock-detect-react";
 import { AdblockModal } from "~/components/organisms/AdblockModal";
-
-type IndexPageProps = PageProps<GatsbyTypes.IndexPageQuery>;
 
 export const query = graphql`
   query IndexPage {
@@ -60,7 +64,9 @@ export const query = graphql`
   }
 `;
 
-const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
+export default function IndexPage({
+  data,
+}: PageProps<GatsbyTypes.IndexPageQuery>) {
   globalStyles();
 
   const [showModal, setShowModal] = React.useState(false);
@@ -77,40 +83,8 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
     throw new Error("No navigation data injected");
   }
 
-  const imgSrc = data.image?.childImageSharp?.fixed;
-  const site = data.site?.siteMetadata?.siteUrl;
-  const url = site && imgSrc ? site + imgSrc.src : "";
-
   return (
     <IndexDiv>
-      <Helmet>
-        <html lang="en" data-seed="light-only" data-seed-scale-color="light" />
-        <meta name="color-scheme" content="light dark" />
-      </Helmet>
-      <GatsbySeo
-        title="당근마켓 광고"
-        openGraph={{
-          title: "당근마켓 광고",
-          description: "동네 이웃들이 모이는 당근마켓에 광고해 보세요",
-          site_name: "당근마켓",
-          images: [
-            {
-              url: url,
-              width: imgSrc?.width,
-              height: imgSrc?.height,
-            },
-          ],
-        }}
-        twitter={{
-          cardType: "summary_large_image",
-        }}
-        metaTags={[
-          {
-            name: "thumbnail",
-            content: url,
-          },
-        ]}
-      />
       <DownloadBtnMobile />
       <Header
         navigationData={data.prismicSiteNavigation.data}
@@ -147,6 +121,42 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
   );
 };
 
+export function Head({
+  data,
+  location,
+}: HeadProps<GatsbyTypes.IndexPageQuery>) {
+  const siteUrl = new URL(data.site!.siteMetadata!.siteUrl!);
+
+  const image = data.image?.childImageSharp?.fixed!;
+  const imageUrl = new URL(image.src, siteUrl);
+
+  return (
+    <HeadSeo location={location}>
+      {props => [
+        <OpenGraph
+          og={{
+            ...props,
+            type: 'website',
+            images: [
+              {
+                url: imageUrl,
+                width: image.width,
+                height: image.height,
+              },
+            ]
+          }}
+        />,
+        <TwitterCard
+          card={{
+            ...props,
+            type: 'summary_large_image',
+          }}
+        />,
+      ]}
+    </HeadSeo>
+  );
+}
+
 const Disclaimer = styled('div',{
   display: 'flex',
   
@@ -182,5 +192,3 @@ const IndexDiv = styled("div", {
     minWidth: "auto",
   },
 });
-
-export default IndexPage;

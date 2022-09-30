@@ -3,6 +3,7 @@ import type { GatsbyConfig } from "gatsby";
 const config: GatsbyConfig = {
   plugins: [
     "gatsby-theme-stitches",
+    'gatsby-plugin-head-seo',
     "gatsby-plugin-svgr",
     {
       resolve: "gatsby-plugin-sharp",
@@ -25,7 +26,6 @@ const config: GatsbyConfig = {
     "gatsby-plugin-image",
     "gatsby-transformer-sharp",
     `gatsby-plugin-preload-fonts`,
-    "gatsby-plugin-react-helmet-async",
 
     "@karrotmarket/gatsby-theme-website",
     "@karrotmarket/gatsby-theme-prismic",

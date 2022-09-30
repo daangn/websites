@@ -1,6 +1,8 @@
-import React from 'react';
-import type { GatsbySSR } from "gatsby"
+import * as React from 'react';
+import { type GatsbySSR } from 'gatsby';
+import { type PluginOptions } from './types';
 
+// FIXME: extract to a plugin
 const PreferColorSchemeScript = () => {
   const colorSchemeScript = `
     (function(w, d) {
@@ -18,6 +20,30 @@ const PreferColorSchemeScript = () => {
   return <script dangerouslySetInnerHTML={{ __html: colorSchemeScript }} />;
 };
 
-export const onRenderBody: GatsbySSR["onRenderBody"] = ({ setPreBodyComponents }) => {
-  setPreBodyComponents([<PreferColorSchemeScript key="prefer-color-scheme" />]);
+export const onRenderBody: GatsbySSR["onRenderBody"] = ({
+  setHtmlAttributes,
+  setHeadComponents,
+  setPreBodyComponents,
+}, options) => {
+  const pluginOptions = options as unknown as PluginOptions;
+
+  setHtmlAttributes({
+    lang: pluginOptions.locale,
+    prefix: 'og: https://ogp.me/ns/website#',
+
+    // @ts-ignore
+    'data-seed': '',
+  });
+
+  setHeadComponents([
+    <meta
+      key="color-scheme"
+      name="color-scheme"
+      content="light dark"
+    />,
+  ]);
+
+  setPreBodyComponents([
+    <PreferColorSchemeScript key="prefer-color-scheme" />,
+  ]);
 };

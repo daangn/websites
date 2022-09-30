@@ -1,6 +1,6 @@
 import * as React from "react";
 import { em } from "polished";
-import { styled } from "../../../gatsby-theme-stitches/config";
+import { styled } from "gatsby-theme-stitches/src/config";
 
 import { Flex } from "../../Flex";
 import { Space } from "../../Space";

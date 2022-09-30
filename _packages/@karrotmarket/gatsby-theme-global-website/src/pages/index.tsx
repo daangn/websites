@@ -1,12 +1,19 @@
-import React from "react";
+import * as React from "react";
 
 import { rem } from "polished";
-import { graphql, PageProps } from "gatsby";
-import { GatsbySeo } from "gatsby-plugin-next-seo";
+import {
+  graphql,
+  type PageProps,
+  type HeadProps,
+} from 'gatsby';
+import {
+  HeadSeo,
+  OpenGraph,
+  TwitterCard,
+} from 'gatsby-plugin-head-seo/src';
+import { required } from '@cometjs/core';
 import { mapAbstractType } from "@cometjs/graphql-utils";
 import { withPrismicPreview } from "gatsby-plugin-prismic-previews";
-
-import { styled } from "../gatsby-theme-stitches/config";
 
 import Layout from "../components/Layout";
 import AppLink from "../components/AppLink";
@@ -19,10 +26,13 @@ import DownloadSection from "../components/home/DownloadSection";
 import ParallaxSection from "../components/home/ParallaxSection";
 import IllustrationSection from "../components/home/IllustrationSection";
 
-type IndexPageProps = PageProps<GatsbyTypes.IndexPageQueryQuery>;
-
 export const query = graphql`
   query IndexPageQuery($lang: String) {
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
     prismicSiteNavigation(uid: { eq: "global" }, lang: { eq: $lang }) {
       _previewable
       ...DefaultLayout_data
@@ -66,44 +76,22 @@ export const query = graphql`
   }
 `;
 
-const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
+type IndexPageProps = PageProps<GatsbyTypes.IndexPageQueryQuery>;
+const IndexPage: React.FC<IndexPageProps> = ({
+  data,
+}) => {
   if (!data.prismicGlobalContents?.data?.main_body || !data.hotArticles.nodes) {
     return <></>;
   }
 
   const {
-    main_page_title,
-    main_page_description,
-    main_opengraph_image,
     main_body,
   } = data.prismicGlobalContents?.data;
 
-  const metaImage = main_opengraph_image?.localFile?.childImageSharp?.fixed;
-
   return (
-    <Layout
-      id="index-page"
-      data={data.prismicSiteNavigation.data}
-    >
-      <GatsbySeo
-        title={main_page_title}
-        description={main_page_description}
-        openGraph={{
-          title: main_page_title,
-          description: main_page_description,
-          ...(metaImage && {
-            images: [
-              {
-                url: metaImage.src,
-                width: metaImage.width,
-                height: metaImage.height,
-              },
-            ],
-          }),
-        }}
-      />
-      <Wrapper>
-        {main_body.map((content: any, i) =>
+    <Layout data={data.prismicSiteNavigation.data}>
+      <div>
+        {main_body.map((content: any, i: number) =>
           mapAbstractType(content, {
             PrismicGlobalContentsDataMainBodyHeroSection: (content) => (
               <HeroSection
@@ -147,13 +135,64 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
           type="mobile"
           theme="primary"
           links={data.prismicGlobalContents?.data}
-        ></AppLink>
-      </Wrapper>
+        />
+      </div>
       <div style={{ minWidth: rem(1230) }}></div>
     </Layout>
   );
 };
 
-const Wrapper = styled("div", {});
-
 export default withPrismicPreview(IndexPage, []);
+
+type IndexPageHeadProps = HeadProps<GatsbyTypes.IndexPageQueryQuery>;
+export const Head: React.FC<IndexPageHeadProps> = ({
+  data,
+  location,
+}) => {
+  if (!data.prismicGlobalContents?.data) {
+    throw new Error("No data");
+  }
+
+  const {
+    main_page_title,
+    main_page_description,
+    main_opengraph_image,
+  } = data.prismicGlobalContents?.data;
+
+  const metaImage = main_opengraph_image?.localFile?.childImageSharp?.fixed;
+
+  return (
+    <HeadSeo
+      location={location}
+      title={main_page_title}
+      description={main_page_description}
+    >
+      {props => [
+        <OpenGraph
+          og={{
+            ...props,
+            type: 'website',
+            ...metaImage && {
+              images: [{
+                url: new URL(
+                  metaImage.src,
+                  metaImage.src.startsWith('http')
+                    ? metaImage.src
+                    : props.url,
+                ),
+                width: metaImage.width,
+                height: metaImage.height,
+              }],
+            },
+          }}
+        />,
+        <TwitterCard
+          card={{
+            ...props,
+            type: 'summary',
+          }}
+        />,
+      ]}
+    </HeadSeo>
+  );
+};

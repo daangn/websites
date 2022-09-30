@@ -1,25 +1,28 @@
 import * as React from 'react';
-import { Helmet } from 'react-helmet-async';
 import { rem } from 'polished';
-import type { PageProps } from 'gatsby';
-import { graphql } from 'gatsby';
+import {
+  graphql,
+  type PageProps,
+} from 'gatsby';
+import {
+  HeadSeo,
+  OpenGraph,
+  TwitterCard,
+  Facebook,
+} from 'gatsby-plugin-head-seo/src';
+import {
+  SocialProfileJsonLd,
+} from 'gatsby-plugin-head-seo/src/jsonld';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { GatsbySeo, SocialProfileJsonLd } from 'gatsby-plugin-next-seo';
-import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
-import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
-import type { OverrideProps } from '@cometjs/core';
-import { required } from '@cometjs/core';
-import { useLocation } from '@reach/router';
+import {
+  required,
+  type OverrideProps,
+} from '@cometjs/core';
 import _Header from '@karrotmarket/gatsby-theme-website/src/components/Header';
 import _Footer from '@karrotmarket/gatsby-theme-website/src/components/Footer';
 import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 
-type DefaultLayoutProps = OverrideProps<
-  PageProps<GatsbyTypes.TeamWebsite_DefaultLayout_queryFragment>,
-  {
-    children: any,
-  }
->;
+import logoPath from '../assets/logo.png';
 
 export const query = graphql`
   fragment TeamWebsite_DefaultLayout_query on Query {
@@ -72,60 +75,19 @@ const Footer = styled(_Footer, {
   },
 });
 
+type DefaultLayoutProps = OverrideProps<
+  PageProps<GatsbyTypes.TeamWebsite_DefaultLayout_queryFragment>, {
+    children: React.ReactNode,
+  }
+>;
 const DefaultLayout: React.FC<DefaultLayoutProps> = ({
   data,
   children,
 }) => {
-  try {
-    required(data.prismicSiteNavigation);
-    required(data.prismicTeamContents?.data);
-  } catch {
-    return (
-      <div id="layout">
-        {children}
-      </div>
-    );
-  }
-
-  const messages = useTranslation();
-
-  const siteOrigin = useSiteOrigin();
-  const { pathname: currentPath } = useLocation();
+  required(data.prismicSiteNavigation?.data);
 
   return (
     <>
-      <Helmet>
-        <html
-          lang={data.site.siteMetadata.locale}
-          prefix="og: https://ogp.me/ns/website#"
-          data-seed
-        />
-        <meta name="color-scheme" content="light dark" />
-        <body />
-      </Helmet>
-      <GatsbySeo
-        canonical={siteOrigin + currentPath}
-        openGraph={{
-          type: 'website',
-          url: siteOrigin + currentPath,
-        }}
-        facebook={data.prismicTeamContents.data.fb_app_id != null ? {
-          appId: data.prismicTeamContents.data.fb_app_id,
-        } : undefined}
-        twitter={data.prismicTeamContents.data.twitter_site_handle != null ? {
-          cardType: 'summary',
-          site: data.prismicTeamContents.data.twitter_site_handle,
-        } : undefined}
-      />
-      <SocialProfileJsonLd
-        type="Organization"
-        name={messages.form_field__organization_name}
-        url={siteOrigin}
-        sameAs={data.prismicSiteNavigation.data.sns_profiles
-          .map(profile => profile.link?.url)
-          .filter(Boolean) as string[]
-        }
-      />
       <Header
         navigationData={data.prismicSiteNavigation.data}
       />
@@ -136,5 +98,83 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
     </>
   );
 }
+export default DefaultLayout;
 
-export default withPrismicPreview(DefaultLayout);
+type DefaultLayoutHeadProps = {
+  location: {
+    pathname: string,
+  },
+  data: GatsbyTypes.TeamWebsite_DefaultLayout_queryFragment,
+  title?: string,
+  description?: string,
+  image?: {
+    url: URL,
+    width: number,
+    height: number,
+  },
+};
+export const DefaultLayoutHead: React.FC<DefaultLayoutHeadProps> = ({
+  location,
+  data,
+  title,
+  description,
+  image,
+}) => {
+  required(data.prismicTeamContents?.data);
+
+  const messages = useTranslation();
+
+  const facebookAppId = data.prismicTeamContents.data.facebook_app_id;
+  const twitterSiteHandle = data.prismicTeamContents.data.twitter_site_handle;
+
+  return (
+    <HeadSeo
+      root={false}
+      location={location}
+      title={title}
+      description={description}
+    >
+      {props => [
+        <OpenGraph
+          key="og"
+          og={{
+            ...props,
+            type: 'website',
+            ...image && {
+              images: [image],
+            },
+          }}
+        />,
+        <TwitterCard
+          key="twittercard"
+          card={{
+            ...props,
+            type: image ? 'summary_large_image' : 'summary',
+            site: twitterSiteHandle,
+          }}
+        />,
+        facebookAppId && (
+          <Facebook
+            key="facebook"
+            appId={facebookAppId}
+          />
+        ),
+        <SocialProfileJsonLd
+          key="org-jsonld"
+          type="Organization"
+          name={messages.form_field__organization_name}
+          url={new URL(props.url.origin)}
+          logo={
+            logoPath.startsWith('http')
+              ? new URL(logoPath)
+              : new URL(logoPath, props.url)
+          }
+          sameAs={data.prismicSiteNavigation.data.sns_profiles
+            .map(profile => new URL(profile.link?.url))
+            .filter(Boolean) as URL[]
+          }
+        />,
+      ]}
+    </HeadSeo>
+  );
+};

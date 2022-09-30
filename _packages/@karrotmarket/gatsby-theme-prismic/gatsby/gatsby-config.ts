@@ -32,13 +32,13 @@ const config = ({
         },
       },
     },
-    {
-      resolve: 'gatsby-plugin-prismic-previews',
-      options: {
-        repositoryName,
-        accessToken,
-      },
-    },
+    // {
+    //   resolve: 'gatsby-plugin-prismic-previews',
+    //   options: {
+    //     repositoryName,
+    //     accessToken,
+    //   },
+    // },
   ],
 });
 

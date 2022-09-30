@@ -1,9 +1,12 @@
 import * as React from 'react';
 import { rem } from 'polished';
-import type { PageProps } from 'gatsby';
-import { graphql } from 'gatsby';
+import {
+  graphql,
+  type PageProps,
+  type HeadProps,
+} from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { GatsbySeo } from 'gatsby-plugin-next-seo';
+import { Robots } from 'gatsby-plugin-head-seo/src';
 import { mapLink, useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
 import { required } from '@cometjs/core';
 import ButtonLink from '../components/Button';
@@ -12,7 +15,6 @@ import { withPrismicUnpublishedPreview } from 'gatsby-plugin-prismic-previews';
 
 import Illustration from '../templates/notFoundPage/Illustration';
 
-type NotFoundPageProps = PageProps<GatsbyTypes.TeamWebsite_NotFoundPageQuery, GatsbyTypes.SitePageContext>;
 
 export const query = graphql`
   query TeamWebsite_NotFoundPage(
@@ -69,6 +71,7 @@ const Control = styled('div', {
   },
 });
 
+type NotFoundPageProps = PageProps<GatsbyTypes.TeamWebsite_NotFoundPageQuery>;
 const NotFoundPage: React.FC<NotFoundPageProps> = ({
   data,
 }) => {
@@ -78,7 +81,6 @@ const NotFoundPage: React.FC<NotFoundPageProps> = ({
 
   return (
     <Container>
-      <GatsbySeo noindex nofollow />
       <Title>
         {data.prismicTeamContents.data.notfound_page_title.text}
       </Title>
@@ -120,3 +122,12 @@ const NotFoundPage: React.FC<NotFoundPageProps> = ({
 };
 
 export default withPrismicUnpublishedPreview(NotFoundPage);
+
+type NotFoundPageHeadProps = HeadProps<GatsbyTypes.TeamWebsite_NotFoundPageQuery>;
+export const Head: React.FC<NotFoundPageHeadProps> = () => {
+  return (
+    <>
+      <Robots none />
+    </>
+  );
+};

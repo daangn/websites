@@ -1,17 +1,18 @@
 import * as React from 'react';
 import { rem } from 'polished';
-import type { PageProps } from 'gatsby';
-import { graphql } from 'gatsby';
+import {
+  graphql,
+  type PageProps,
+  type HeadProps,
+} from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { GatsbySeo } from 'gatsby-plugin-next-seo';
+import { Robots } from 'gatsby-plugin-head-seo/src';
 import { mapLink, useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
 import { required } from '@cometjs/core';
 
 import DefaultLayout from '../layouts/DefaultLayout';
 import Illustration from '../templates/completedPage/Illustration';
 import ButtonLink from '../components/Button';
-
-type CompletedPageProps = PageProps<GatsbyTypes.TeamWebsite_CompletedPageQuery, GatsbyTypes.SitePageContext>;
 
 export const query = graphql`
   query TeamWebsite_CompletedPage(
@@ -61,6 +62,7 @@ const ButtonLinkGroup = styled('div',{
   gap: rem(16),
 })
 
+type CompletedPageProps = PageProps<GatsbyTypes.TeamWebsite_CompletedPageQuery>;
 const CompletedPage: React.FC<CompletedPageProps> = pageProps => {
   const { data } = pageProps;
   const parseLink = useLinkParser();
@@ -72,7 +74,6 @@ const CompletedPage: React.FC<CompletedPageProps> = pageProps => {
 
   return (
     <DefaultLayout {...pageProps}>
-      <GatsbySeo noindex nofollow />
       <Container>
         <Illustration />
         <MessageContainer>
@@ -116,3 +117,12 @@ const CompletedPage: React.FC<CompletedPageProps> = pageProps => {
 };
 
 export default CompletedPage;
+
+type CompletedPageHeadProps = HeadProps<GatsbyTypes.TeamWebsite_CompletedPageQuery>;
+export const Head: React.FC<CompletedPageHeadProps> = () => {
+  return (
+    <>
+      <Robots none />
+    </>
+  );
+};

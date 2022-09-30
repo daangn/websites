@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { rem } from 'polished';
-import type { PageProps } from 'gatsby';
-import { graphql, Link } from 'gatsby';
-import { GatsbySeo } from 'gatsby-plugin-next-seo';
+import {
+  graphql,
+  Link,
+  type PageProps,
+  type HeadProps,
+} from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
 import _PageTitle from '@karrotmarket/gatsby-theme-team-website/src/components/PageTitle';
 import FadeInWhenVisible from '@karrotmarket/gatsby-theme-team-website/src/components/FadeInWhenVisible';
-
-type IrListPageProps = PageProps<GatsbyTypes.IrListPageQuery>;
 
 export const query = graphql`
   query IrListPage(
@@ -135,15 +136,12 @@ const IrPublicationDate = styled('time', {
   color: vars.$scale.color.gray600,
 });
 
+type IrListPageProps = PageProps<GatsbyTypes.IrListPageQuery>;
 const IrListPage: React.FC<IrListPageProps> = ({
   data,
 }) => {
   return (
     <Container>
-      <GatsbySeo
-        title="당근마켓 IR"
-        description="당근마켓에서 제공하는 공식 투자자 정보입니다."
-      />
       <PageTitle>
         Investor Relations
       </PageTitle>
@@ -182,5 +180,18 @@ const IrListPage: React.FC<IrListPageProps> = ({
     </Container>
   );
 };
-
 export default IrListPage;
+
+type IrListPageHeadProps = HeadProps<GatsbyTypes.IrListPageQuery>;
+export const Head: React.FC<IrListPageHeadProps> = ({
+}) => {
+  return (
+    <>
+      <title>당근마켓 IR</title>
+      <meta
+        name="description"
+        content="당근마켓에서 제공하는 공식 투자자 정보입니다."
+      />
+    </>
+  );
+}

@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { rem } from "polished";
 import { graphql } from "gatsby";
-import { styled } from "../../gatsby-theme-stitches/config";
+import { styled } from "gatsby-theme-stitches/src/config";
 
 type DetailsListProps = {
   content: GatsbyTypes.DetailsList_contentFragment;

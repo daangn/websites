@@ -1,11 +1,9 @@
-import '@seed-design/stylesheet/global.css';
-
 import * as React from 'react';
-import type { PageProps } from 'gatsby';
-import { vars } from '@seed-design/design-token';
+import { type PageProps } from 'gatsby';
 import { globalCss } from 'gatsby-theme-stitches/src/config';
-import { useLocation } from '@reach/router';
+import { vars } from '@seed-design/design-token';
 import type { OverrideProps } from '@cometjs/core';
+import '@seed-design/stylesheet/global.css';
 
 import DefaultLayout from './DefaultLayout';
 import JobPostLayout from './JobPostLayout';
@@ -53,9 +51,7 @@ const LayoutSwitch: React.FC<LayoutSwitchProps> = ({
 }) => {
   globalStyles();
 
-  const { pathname: path } = useLocation();
-
-  if (/\/jobs\/\d+\/?/.test(path)) {
+  if (/\/jobs\/\d+\/?/.test(props.location.pathname)) {
     return (
       <DefaultLayout {...props}>
         <JobPostLayout {...props}>

@@ -6,6 +6,8 @@ dotenv.config();
 export const siteMetadata = {
   siteUrl: 'https://team.daangn.com',
   siteName: '당근마켓 팀',
+  title: '당근마켓 팀',
+  description: '이웃과 더 가까워지는 따뜻한 동네를 만들어요.',
 };
 
 const config: GatsbyConfig = {

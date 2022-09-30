@@ -1,13 +1,22 @@
 import React from "react";
 
 import { rem } from "polished";
-import { graphql, PageProps } from "gatsby";
-import { GatsbySeo } from "gatsby-plugin-next-seo";
+import {
+  graphql,
+  type PageProps,
+  type HeadProps,
+} from "gatsby";
+import {
+  HeadSeo,
+  OpenGraph,
+  TwitterCard,
+} from 'gatsby-plugin-head-seo/src';
+import { required } from '@cometjs/core';
 import { mapAbstractType } from "@cometjs/graphql-utils";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { withPrismicPreview } from "gatsby-plugin-prismic-previews";
 
-import { styled } from "../gatsby-theme-stitches/config";
+import { styled } from "gatsby-theme-stitches/src/config";
 
 import Layout from "../components/Layout";
 import DetailsList from "../components/about/DetailsList";
@@ -15,10 +24,13 @@ import SubtitleAndText from "../components/about/SubtitleAndText";
 import SubtitleAndLinks from "../components/about/SubtitleAndLinks";
 import SubtitleAndImages from "../components/about/SubtitleAndImages";
 
-type AboutPageProps = PageProps<GatsbyTypes.AboutPageQueryQuery>;
-
 export const query = graphql`
   query AboutPageQuery($lang: String, $dateFormat: String) {
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
     prismicSiteNavigation(uid: { eq: "global" }, lang: { eq: $lang }) {
       _previewable
       ...DefaultLayout_data
@@ -65,71 +77,6 @@ export const query = graphql`
     }
   }
 `;
-
-const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
-  if (!data.prismicGlobalContents?.data?.about_body) throw new Error("No data");
-
-  const {
-    about_page_title,
-    about_page_description,
-    about_opengraph_image,
-    about_background_image,
-    about_title,
-    about_body,
-  } = data.prismicGlobalContents?.data;
-
-  const backgroundImage = getImage(
-    about_background_image?.localFile?.childImageSharp?.gatsbyImageData as any
-  );
-
-  const metaImage = about_opengraph_image?.localFile?.childImageSharp?.fixed;
-
-  return (
-    <Layout id="about-page" data={data.prismicSiteNavigation.data}>
-      <GatsbySeo
-        title={about_page_title}
-        description={about_page_description}
-        openGraph={{
-          title: about_page_title,
-          description: about_page_description,
-          ...(metaImage && {
-            images: [
-              {
-                url: metaImage.src,
-                width: metaImage.width,
-                height: metaImage.height,
-              },
-            ],
-          }),
-        }}
-      />
-      <ImageContianer>
-        <Image image={backgroundImage} />
-      </ImageContianer>
-
-      <Container>
-        <Title dangerouslySetInnerHTML={{ __html: about_title.html }}></Title>
-
-        {about_body.map((content: any, i) =>
-          mapAbstractType(content, {
-            PrismicGlobalContentsDataAboutBodySubtitleAndText: (content) => (
-              <SubtitleAndText key={i} content={content} />
-            ),
-            PrismicGlobalContentsDataAboutBodySubtitleAndImages: (content) => (
-              <SubtitleAndImages key={i} content={content} />
-            ),
-            PrismicGlobalContentsDataAboutBodySubtitleAndLinks: (content) => (
-              <SubtitleAndLinks key={i} content={content} />
-            ),
-            PrismicGlobalContentsDataAboutBodyDetailsList: (content) => (
-              <DetailsList key={i} content={content} />
-            ),
-          })
-        )}
-      </Container>
-    </Layout>
-  );
-};
 
 const ImageContianer = styled("div", {
   height: "208px",
@@ -186,4 +133,100 @@ const Title = styled("div", {
   },
 });
 
+type AboutPageProps = PageProps<GatsbyTypes.AboutPageQueryQuery>;
+const AboutPage: React.FC<AboutPageProps> = ({
+  data,
+}) => {
+  if (!data.prismicGlobalContents?.data?.about_body) throw new Error("No data");
+
+  const {
+    about_background_image,
+    about_title,
+    about_body,
+  } = data.prismicGlobalContents?.data;
+
+  const backgroundImage = getImage(
+    about_background_image?.localFile?.childImageSharp?.gatsbyImageData as any
+  );
+
+  return (
+    <Layout data={data.prismicSiteNavigation.data}>
+      <ImageContianer>
+        <Image image={backgroundImage} />
+      </ImageContianer>
+
+      <Container>
+        <Title dangerouslySetInnerHTML={{ __html: about_title.html }} />
+
+        {about_body.map((content: any, i) =>
+          mapAbstractType(content, {
+            PrismicGlobalContentsDataAboutBodySubtitleAndText: (content) => (
+              <SubtitleAndText key={i} content={content} />
+            ),
+            PrismicGlobalContentsDataAboutBodySubtitleAndImages: (content) => (
+              <SubtitleAndImages key={i} content={content} />
+            ),
+            PrismicGlobalContentsDataAboutBodySubtitleAndLinks: (content) => (
+              <SubtitleAndLinks key={i} content={content} />
+            ),
+            PrismicGlobalContentsDataAboutBodyDetailsList: (content) => (
+              <DetailsList key={i} content={content} />
+            ),
+          })
+        )}
+      </Container>
+    </Layout>
+  );
+};
 export default withPrismicPreview(AboutPage, []);
+
+type AboutPageHeadProps = HeadProps<GatsbyTypes.AboutPageQueryQuery>;
+export const Head: React.FC<AboutPageHeadProps> = ({
+  data,
+  location,
+}) => {
+  required(data.prismicGlobalContents?.data);
+
+  const {
+    about_page_title,
+    about_page_description,
+    about_opengraph_image,
+  } = data.prismicGlobalContents?.data;
+
+  const metaImage = about_opengraph_image?.localFile?.childImageSharp?.fixed;
+
+  return (
+    <HeadSeo
+      location={location}
+      title={about_page_title}
+      description={about_page_description}
+    >
+      {props => [
+        <OpenGraph
+          og={{
+            ...props,
+            type: 'website',
+            ...metaImage && {
+              images: [{
+                url: new URL(
+                  metaImage.src,
+                  metaImage.src.startsWith('http')
+                    ? metaImage.src
+                    : props.url,
+                ),
+                width: metaImage.width,
+                height: metaImage.height,
+              }],
+            },
+          }}
+        />,
+        <TwitterCard
+          card={{
+            ...props,
+            type: 'summary',
+          }}
+        />,
+      ]}
+    </HeadSeo>
+  );
+}

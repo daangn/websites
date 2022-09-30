@@ -1,6 +1,6 @@
 import '@seed-design/stylesheet/global.css';
 
-import { globalCss } from "../gatsby-theme-stitches/config";
+import { globalCss } from "gatsby-theme-stitches/src/config";
 import { vars } from '@seed-design/design-token'
 import { rem } from "polished";
 

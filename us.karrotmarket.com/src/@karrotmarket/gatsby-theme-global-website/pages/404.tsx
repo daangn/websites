@@ -3,6 +3,8 @@ import { graphql, PageProps } from "gatsby";
 import { styled } from "gatsby-theme-stitches/src/config";
 import Layout from "@karrotmarket/gatsby-theme-global-website/src/components/Layout";
 
+export { Head } from '@karrotmarket/gatsby-theme-global-website/src/pages/404';
+
 export const query = graphql`
   query NotFoundPageQuery {
     prismicSiteNavigation(uid: { eq: "global" }, lang: { eq: "en-us" }) {

@@ -1,14 +1,18 @@
 import * as React from 'react';
-import type { PageProps } from 'gatsby';
-import { graphql, navigate } from 'gatsby';
+import {
+  graphql,
+  navigate,
+  type PageProps,
+  type HeadProps,
+} from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
-import { GatsbySeo } from 'gatsby-plugin-next-seo';
+import { HeadSeo } from 'gatsby-plugin-head-seo/src';
 import { rem } from 'polished';
 import $ from 'text2vdom';
 import { required } from '@cometjs/core';
 import { vars } from '@seed-design/design-token';
 
+import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import { ReactComponent as SearchdSvg } from '../assets/searchOutlineM.svg';
 import PageTitle from '../components/PageTitle';
 import _JobPostList from '../components/JobPostList';
@@ -19,10 +23,8 @@ import { useFlexSearch } from '../utils/useFlexSearch';
 import BannerArea from './jobsPage/BannerArea';
 import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 
-type JobsPageTemplateProps = PageProps<GatsbyTypes.TeamWebsite_JobsPageTemplateQuery, GatsbyTypes.SitePageContext>;
-
 export const query = graphql`
-  query TeamWebsite_JobsPageTemplate(
+  query TeamWebsite_JobsPage(
     $departmentId: String!
     $locale: String!
     $navigationId: String!
@@ -226,12 +228,14 @@ const JobPostList = styled(_JobPostList, {
   minHeight: '80vh',
 });
 
-const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
+type JobsPageProps = PageProps<GatsbyTypes.TeamWebsite_JobsPageQuery>;
+const JobsPage: React.FC<JobsPageProps> = ({
   data,
   pageContext,
   location
 }) => {
-  const siteOrigin = useSiteOrigin();
+  required(data.prismicTeamContents?.data);
+
   const messages = useTranslation();
 
   const searchParams = new URLSearchParams(location.search)
@@ -267,16 +271,6 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
 
   const searchResults = useFlexSearch(searchQuery);
 
-  required(data.prismicTeamContents?.data);
-
-  const metaTitleBase = data.prismicTeamContents.data.jobs_page_meta_title || messages.jobs_page__default_meta_title;
-  const metaTitle = data.currentJobDepartment
-    ? `${data.currentJobDepartment.name} | ${metaTitleBase}`
-    : metaTitleBase;
-
-  const metaDescription = data.prismicTeamContents.data.jobs_page_meta_description;
-  const metaImage = data.prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
-
   const filterAnchorId = '_filter';
   const onDepartmentFilterChange: React.ChangeEventHandler<HTMLSelectElement> = e => {
     const selectedDepartment = data.allJobDepartment.nodes
@@ -308,27 +302,6 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
       <BannerArea />
 
       <Container>
-        <GatsbySeo
-          title={metaTitle}
-          description={metaDescription}
-          openGraph={{
-            title: metaTitle,
-            description: metaDescription,
-            ...metaImage && {
-              images: [{
-                url: siteOrigin + metaImage.src,
-                width: metaImage.width,
-                height: metaImage.height,
-              }],
-            },
-          }}
-          twitter={{
-            ...metaImage && {
-              cardType: 'summary_large_image',
-            },
-          }}
-        />
-
         <PageTitle
           css={{
             marginBottom: rem(56),
@@ -421,4 +394,48 @@ const JobsPageTemplate: React.FC<JobsPageTemplateProps> = ({
   );
 };
 
-export default JobsPageTemplate;
+export default JobsPage;
+
+type JobsPageHeadProps = HeadProps<GatsbyTypes.TeamWebsite_JobsPageQuery>;
+export const Head: React.FC<JobsPageHeadProps> = ({
+  data,
+  location,
+}) => {
+  required(data.prismicTeamContents?.data);
+
+  const messages = useTranslation();
+
+  const metaTitleBase = data.prismicTeamContents.data.jobs_page_meta_title || messages.jobs_page__default_meta_title;
+  const metaTitle = data.currentJobDepartment
+    ? `${data.currentJobDepartment.name} | ${metaTitleBase}`
+    : metaTitleBase;
+
+  const metaDescription = data.prismicTeamContents.data.jobs_page_meta_description;
+  const metaImage = data.prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
+
+  return (
+    <HeadSeo
+      location={location}
+      title={metaTitle}
+      description={metaDescription}
+    >
+      {props => (
+        <DefaultLayoutHead
+          {...props}
+          location={location}
+          data={data}
+          image={metaImage && {
+            url: new URL(
+              metaImage.src,
+              metaImage.src.startsWith('http')
+                ? metaImage.src
+                : props.url,
+            ),
+            width: metaImage.width,
+            height: metaImage.height,
+          }}
+        />
+      )}
+    </HeadSeo>
+  );
+}

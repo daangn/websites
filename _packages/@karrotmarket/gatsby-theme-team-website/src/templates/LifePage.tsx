@@ -1,17 +1,18 @@
 import * as React from 'react';
 import { rem } from 'polished';
-import type { PageProps } from 'gatsby';
-import { graphql } from 'gatsby';
+import {
+  graphql,
+  type PageProps,
+  type HeadProps,
+} from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { GatsbySeo } from 'gatsby-plugin-next-seo';
+import { HeadSeo } from 'gatsby-plugin-head-seo/src';
 import { required } from '@cometjs/core';
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
-import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
 
+import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import _PageTitle from '../components/PageTitle';
 import PrismicTeamContentsDataLifeBodyLifeContent from '../components/PrismicTeamContentsDataLifeBodyLifeContent';
-
-type LifePageProps = PageProps<GatsbyTypes.TeamWebsite_LifePageQuery, GatsbyTypes.SitePageContext>;
 
 export const query = graphql`
   query TeamWebsite_LifePage(
@@ -74,39 +75,14 @@ const Content = styled('div', {
   gap: rem(64),
 });
 
+type LifePageProps = PageProps<GatsbyTypes.TeamWebsite_LifePageQuery>;
 const LifePage: React.FC<LifePageProps> = ({
   data,
 }) => {
-  const siteOrigin = useSiteOrigin();
-
   required(data.prismicTeamContents?.data?.life_body);
-
-  const metaTitle = data.prismicTeamContents.data.life_page_meta_title;
-  const metaDescription = data.prismicTeamContents.data.life_page_meta_description;
-  const metaImage = data.prismicTeamContents.data.life_page_meta_image?.localFile?.childImageSharp?.fixed;
 
   return (
     <Container>
-      <GatsbySeo
-        title={metaTitle}
-        description={metaDescription}
-        openGraph={{
-          title: metaTitle,
-          description: metaDescription,
-          ...metaImage && {
-            images: [{
-              url: siteOrigin + metaImage.src,
-              width: metaImage.width,
-              height: metaImage.height,
-            }],
-          },
-        }}
-        twitter={{
-          ...metaImage && {
-            cardType: 'summary_large_image',
-          },
-        }}
-      />
       <PageTitle>
         {data.prismicTeamContents.data.life_page_title?.text}
       </PageTitle>
@@ -126,3 +102,41 @@ const LifePage: React.FC<LifePageProps> = ({
 };
 
 export default LifePage;
+
+type LifePageHeadProps = HeadProps<GatsbyTypes.TeamWebsite_LifePageQuery>;
+export const Head: React.FC<LifePageHeadProps> = ({
+  data,
+  location,
+}) => {
+  required(data.prismicTeamContents?.data);
+
+  const metaTitle = data.prismicTeamContents.data.life_page_meta_title;
+  const metaDescription = data.prismicTeamContents.data.life_page_meta_description;
+  const metaImage = data.prismicTeamContents.data.life_page_meta_image?.localFile?.childImageSharp?.fixed;
+
+  return (
+    <HeadSeo
+      location={location}
+      title={metaTitle}
+      description={metaDescription}
+    >
+      {props => (
+        <DefaultLayoutHead
+          {...props}
+          location={location}
+          data={data}
+          image={metaImage && {
+            url: new URL(
+              metaImage.src,
+              metaImage.src.startsWith('http')
+                ? metaImage.src
+                : props.url,
+            ),
+            width: metaImage.width,
+            height: metaImage.height,
+          }}
+        />
+      )}
+    </HeadSeo>
+  );
+}

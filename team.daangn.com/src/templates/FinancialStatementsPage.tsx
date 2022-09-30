@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { rem } from 'polished';
-import type { PageProps } from 'gatsby';
-import { graphql, Link } from 'gatsby';
+import {
+  graphql,
+  Link,
+  type PageProps,
+  type HeadProps,
+} from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { required } from '@cometjs/core';
 import { vars } from '@seed-design/design-token';
-import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import _PageTitle from '@karrotmarket/gatsby-theme-team-website/src/components/PageTitle';
-
-type FinancialStatementsPageProps = PageProps<GatsbyTypes.FinancialStatementsPageQuery>;
 
 export const query = graphql`
   query FinancialStatementsPage(
@@ -211,6 +212,7 @@ const TableColValue = styled('td', {
   textAlign: 'right',
 });
 
+type FinancialStatementsPageProps = PageProps<GatsbyTypes.FinancialStatementsPageQuery>;
 const FinancialStatementsPage: React.FC<FinancialStatementsPageProps> = ({
   data,
 }) => {
@@ -221,10 +223,6 @@ const FinancialStatementsPage: React.FC<FinancialStatementsPageProps> = ({
 
   return (
     <Container>
-      <GatsbySeo
-        title="당근마켓 IR"
-        description="당근마켓에서 제공하는 공식 투자자 정보입니다."
-      />
       <PageTitle>
         Investor Relations
       </PageTitle>
@@ -296,5 +294,18 @@ const FinancialStatementsPage: React.FC<FinancialStatementsPageProps> = ({
     </Container>
   );
 };
-
 export default FinancialStatementsPage;
+
+type FinancialStatementsPageHeadProps = HeadProps<GatsbyTypes.FinancialStatementsPageQuery>;
+export const Head: React.FC<FinancialStatementsPageHeadProps> = ({
+}) => {
+  return (
+    <>
+      <title>당근마켓 IR</title>
+      <meta
+        name="description"
+        content="당근마켓에서 제공하는 공식 투자자 정보입니다."
+      />
+    </>
+  );
+}

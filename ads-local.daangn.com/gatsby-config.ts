@@ -4,7 +4,8 @@ const siteUrl = new URL("https://ads-local.daangn.com");
 
 const siteMetadata: GatsbyConfig["siteMetadata"] = {
   siteUrl: siteUrl.origin,
-  siteName: "당근마켓 광고"
+  title: "당근마켓 광고",
+  description: "동네 이웃들이 모이는 당근마켓에 광고해 보세요",
 };
 
 const config: GatsbyConfig = {
@@ -14,7 +15,7 @@ const config: GatsbyConfig = {
     "gatsby-theme-stitches",
     "gatsby-plugin-svgr",
     "gatsby-plugin-image",
-    "gatsby-plugin-next-seo",
+    'gatsby-plugin-head-seo',
     "@karrotmarket/gatsby-theme-prismic",
     "@karrotmarket/gatsby-theme-website",
     {

@@ -1,13 +1,16 @@
 import * as React from 'react';
 import { rem } from 'polished';
-import type { PageProps } from 'gatsby';
-import { graphql } from 'gatsby';
+import {
+  graphql,
+  type PageProps,
+  type HeadProps,
+} from 'gatsby';
+import { HeadSeo } from 'gatsby-plugin-head-seo/src';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { GatsbySeo } from 'gatsby-plugin-next-seo';
-import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
 import { required } from '@cometjs/core';
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
 
+import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import _PageTitle from '../components/PageTitle';
 import PrismicTeamContentsDataMainBodyKeyVisual from '../components/PrismicTeamContentsDataMainBodyKeyVisual';
 import PrismicTeamContentsDataMainBodyMemberQuoteCarousel from '../components/PrismicTeamContentsDataMainBodyMemberQuoteCarousel';
@@ -17,8 +20,6 @@ import PrismicTeamContentsDataMainBodyIllustrationAndDescription from '../compon
 import PrismicTeamContentsDataMainBodyWideBanner from '../components/PrismicTeamContentsDataMainBodyWideBanner';
 import PrismicTeamContentsDataMainBodyHowWeWork from '../components/PrismicTeamContentsDataMainBodyHowWeWork';
 import PrismicTeamContentsDataMainBodyBenefit from '../components/PrismicTeamContentsDataMainBodyBenefit';
-
-type IndexPageProps = PageProps<GatsbyTypes.TeamWebsite_IndexPageQuery, GatsbyTypes.SitePageContext>;
 
 export const query = graphql`
   query TeamWebsite_IndexPage(
@@ -89,39 +90,14 @@ const Content = styled('div', {
   },
 });
 
+type IndexPageProps = PageProps<GatsbyTypes.TeamWebsite_IndexPageQuery>;
 const IndexPage: React.FC<IndexPageProps> = ({
   data,
 }) => {
-  const siteOrigin = useSiteOrigin();
-
   required(data.prismicTeamContents?.data);
-
-  const metaTitle = data.prismicTeamContents.data.main_page_meta_title;
-  const metaDescription = data.prismicTeamContents.data.main_page_meta_description;
-  const metaImage = data.prismicTeamContents.data.main_page_meta_image?.localFile?.childImageSharp?.fixed;
 
   return (
     <main>
-      <GatsbySeo
-        title={metaTitle}
-        description={metaDescription}
-        openGraph={{
-          title: metaTitle,
-          description: metaDescription,
-          ...metaImage && {
-            images: [{
-              url: siteOrigin + metaImage.src,
-              width: metaImage.width,
-              height: metaImage.height,
-            }],
-          },
-        }}
-        twitter={{
-          ...metaImage && {
-            cardType: 'summary_large_image',
-          },
-        }}
-      />
       <TitleContainer>
         <PageTitle>
           {data.prismicTeamContents.data.main_page_title?.text}
@@ -188,3 +164,41 @@ const IndexPage: React.FC<IndexPageProps> = ({
 };
 
 export default IndexPage;
+
+type IndexPageHeadProps = HeadProps<GatsbyTypes.TeamWebsite_IndexPageQuery>;
+export const Head: React.FC<IndexPageHeadProps> = ({
+  data,
+  location,
+}) => {
+  required(data.prismicTeamContents?.data);
+
+  const metaTitle = data.prismicTeamContents.data.main_page_meta_title;
+  const metaDescription = data.prismicTeamContents.data.main_page_meta_description;
+  const metaImage = data.prismicTeamContents.data.main_page_meta_image?.localFile?.childImageSharp?.fixed;
+
+  return (
+    <HeadSeo
+      location={location}
+      title={metaTitle}
+      description={metaDescription}
+    >
+      {props => (
+        <DefaultLayoutHead
+          {...props}
+          location={location}
+          data={data}
+          image={metaImage && {
+            url: new URL(
+              metaImage.src,
+              metaImage.src.startsWith('http')
+                ? metaImage.src
+                : props.url,
+            ),
+            width: metaImage.width,
+            height: metaImage.height,
+          }}
+        />
+      )}
+    </HeadSeo>
+  );
+};

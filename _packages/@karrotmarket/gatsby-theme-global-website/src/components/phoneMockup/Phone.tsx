@@ -1,7 +1,10 @@
 import * as React from "react";
 import { em, rem } from "polished";
 
-import { MediaTypeMap, styled } from "../../gatsby-theme-stitches/config";
+import {
+  styled,
+  type MediaTypeMap,
+} from "gatsby-theme-stitches/src/config";
 import { colors } from "@karrotmarket/design-token";
 import { vars } from "@seed-design/design-token";
 
