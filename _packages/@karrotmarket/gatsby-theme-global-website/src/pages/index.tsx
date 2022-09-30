@@ -176,7 +176,7 @@ export const Head: React.FC<IndexPageHeadProps> = ({
               images: [{
                 url: new URL(
                   metaImage.src,
-                  metaImage.src.startsWith('https')
+                  metaImage.src.startsWith('http')
                     ? metaImage.src
                     : props.url,
                 ),
