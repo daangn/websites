@@ -17,8 +17,8 @@
     "@lokalise/node-api": "8.0.1"
   },
   "devDependencies": {
-    "@babel/cli": "7.18.10",
-    "@babel/core": "7.19.1",
+    "@babel/cli": "7.19.3",
+    "@babel/core": "7.19.3",
     "@types/node": "18.0.0",
     "babel-preset-gatsby-package": "2.23.0",
     "concurrently": "7.4.0",
