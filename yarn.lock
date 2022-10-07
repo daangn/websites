@@ -6119,13 +6119,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"adblock-detect-react@npm:1.0.5":
-  version: 1.0.5
-  resolution: "adblock-detect-react@npm:1.0.5"
+"adblock-detect-react@npm:1.1.0":
+  version: 1.1.0
+  resolution: "adblock-detect-react@npm:1.1.0"
   peerDependencies:
-    react: ^16.8.0 || ^17.0.0
-    react-dom: ^16.8.0 || ^17.0.0
-  checksum: 6998364335cda022993c5e48d4ffa0c02d0a8a66da1efe93262f7a195ea7074b254578fb0606da621285b85efe33b541d4dd787b4dc254220b2fa7e47cb04a17
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+  checksum: 714aeb3f190e0d5c35c5ed5330e5dc32acd03d969826806f67ba03ce53fe4b55e79f3e3121a70f600e5807e323479bb78bd64584a7173ed1d82323a5adce8dce
   languageName: node
   linkType: hard
 
@@ -6156,7 +6156,7 @@ __metadata:
     "@karrotmarket/react-stitches": 0.1.1-1
     "@seed-design/stylesheet": 1.0.0-beta.1
     "@stitches/react": 1.2.8
-    adblock-detect-react: 1.0.5
+    adblock-detect-react: 1.1.0
     gatsby: 4.24.3
     gatsby-plugin-google-tagmanager: 4.24.0
     gatsby-plugin-head-seo: 0.2.1
