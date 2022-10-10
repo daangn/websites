@@ -59,7 +59,7 @@ const Container = styled('a', {
 const BannerImage = styled('div', {
   margin: "0 auto",
   width: '100%',
-  maxWidth: rem(360),
+  maxWidth: rem(348),
   '@sm': {
     maxWidth: rem(576),
   },

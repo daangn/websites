@@ -147,8 +147,8 @@ const RightButton = styled('span', {
 })
 
 const CarouselButton = styled('button', {
-  width: rem(28),
-  height: rem(28),
+  width: rem(24),
+  height: rem(24),
   padding: 0,
   margin: 0,
   cursor: 'pointer',
