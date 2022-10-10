@@ -70,9 +70,30 @@ const BannerArea: React.FC = () => {
     return null
   }
 
+  const validBanners = banners.filter((banner) => {
+    if (!banner.link_href?.url) {
+      return false
+    }
+    if (!(banner.image_size_360?.alt && banner.image_size_360.localFile?.childImageSharp?.gatsbyImageData)) {
+      return false
+    }
+    if (!(banner.image_size_576?.alt && banner.image_size_576.localFile?.childImageSharp?.gatsbyImageData)) {
+      return false  
+    }
+    if (!(banner.image_size_768?.alt && banner.image_size_768.localFile?.childImageSharp?.gatsbyImageData)) {
+      return false
+    }
+    
+    return true
+  })
+
+  if (!validBanners.length) {
+    return null
+  }
+
   return (
     <Carousel>
-      {banners.map((banner, i) => (
+      {validBanners.map((banner, i) => (
         <Banner key={i} item={banner as GatsbyTypes.PrismicTeamBannerDataBodyBannerItem} />
       ))}
     </Carousel>
