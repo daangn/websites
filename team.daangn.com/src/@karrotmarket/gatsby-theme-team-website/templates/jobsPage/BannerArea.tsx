@@ -51,6 +51,54 @@ const BannerArea: React.FC = () => {
             url
           }
           background_color
+          body {
+            ... on PrismicTeamBannerDataBodyBanner {
+              id
+              items {
+                image_size_360 {
+                  alt
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData(
+                        layout: FULL_WIDTH
+                        placeholder: TRACED_SVG
+                        formats: [AVIF, WEBP, AUTO]
+                      )
+                    }
+                  }
+                }
+                image_size_576 {
+                  alt
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData(
+                        layout: FULL_WIDTH
+                        placeholder: TRACED_SVG
+                        formats: [AVIF, WEBP, AUTO]
+                      )
+                    }
+                  }
+                }
+                image_size_768 {
+                  alt
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData(
+                        layout: FULL_WIDTH
+                        placeholder: TRACED_SVG
+                        formats: [AVIF, WEBP, AUTO]
+                      )
+                    }
+                  }
+                }
+                link_href {
+                  id
+                  url
+                }
+                bg_color
+              }
+            }
+          }
         }
       }
     }
