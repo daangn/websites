@@ -5,11 +5,61 @@ import { rem } from 'polished'
 import { ReactComponent as ChevronLeft } from './assets/chevron_left.svg'
 import { ReactComponent as ChevronRight } from './assets/chevron_right.svg'
 
+type State = {
+  idx: number
+  count: number
+  visible: {
+    left: boolean
+    right: boolean
+  }
+}
+
+type Action = 
+  | {
+      type: 'LEFT',
+    } 
+  | {
+      type: 'RIGHT',
+    }
+
+const reducer: React.Reducer<State, Action> = (state, action) => {
+  switch (action.type) {
+    case 'LEFT':
+      const leftIdx = state.idx - 1
+      return {
+        ...state,
+        idx: leftIdx,
+        visible: {
+          left: leftIdx !== 0,
+          right: leftIdx !== state.count - 1
+        }
+      }
+      case 'RIGHT':
+        const rightIdx = state.idx + 1
+        return {
+          ...state,
+          idx: rightIdx,
+          visible: {
+            left: rightIdx !== 0,
+            right: rightIdx !== state.count - 1
+          }
+        }
+  }
+}
+
 interface CarouselProps {
   children: React.ReactNode
 }
 const Carousel: React.FC<CarouselProps> = ({ children }) => {
   const carouselRef = useRef<HTMLDivElement | null>(null)
+  const [state, dispatch] = React.useReducer(reducer, null, () => ({
+    idx: 0,
+    count: React.Children.toArray(children).length,
+    visible: {
+      left: false,
+      right: React.Children.toArray(children).length > 1,
+    }
+  }))
 
   const scrollToRight = (e: React.MouseEvent) => {
     e.preventDefault()
@@ -20,6 +70,8 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
         behavior: 'smooth',
       })
     }
+
+    dispatch({ type: 'RIGHT' })
   }
 
   const scrollToLeft = (e: React.MouseEvent) => {
@@ -31,6 +83,8 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
         behavior: 'smooth',
       })
     }
+
+    dispatch({ type: 'LEFT' })
   }
 
   return (
@@ -38,16 +92,20 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
       <CarouselItem className="carousel" ref={carouselRef}>
         {children}
       </CarouselItem>
-      <LeftButton onClick={scrollToLeft}>
-        <CarouselButton>
-          <ChevronLeft />
-        </CarouselButton>
-      </LeftButton>
-      <RightButton onClick={scrollToRight}>
-        <CarouselButton>
-          <ChevronRight />
-        </CarouselButton>
-      </RightButton>
+      {state.visible.left && (
+        <LeftButton onClick={scrollToLeft}>
+          <CarouselButton>
+            <ChevronLeft />
+          </CarouselButton>
+        </LeftButton>
+      )}
+      {state.visible.right && (
+        <RightButton onClick={scrollToRight}>
+          <CarouselButton>
+            <ChevronRight />
+          </CarouselButton>
+        </RightButton>
+      )}
     </Container>
   )
 }
@@ -77,27 +135,29 @@ const CarouselItem = styled('div', {
 const LeftButton = styled('span', {
   position: 'absolute',
   top: '50%',
-  left: rem(10),
+  left: rem(8),
   transform: 'translateY(-50%)'
 })
 
 const RightButton = styled('span', {
   position: 'absolute',
   top: '50%',
-  right: rem(10),
+  right: rem(8),
   transform: 'translateY(-50%)'
 })
 
 const CarouselButton = styled('button', {
-  width: rem(30),
-  height: rem(30),
+  width: rem(28),
+  height: rem(28),
+  padding: 0,
+  margin: 0,
   cursor: 'pointer',
   background: 'none',
   border: 'none',
   outline: 'none',
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'center'
+  justifyContent: 'center',
 })
 
 export default Carousel
