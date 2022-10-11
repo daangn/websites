@@ -26,6 +26,7 @@ const reducer: React.Reducer<State, Action> = (state, action) => {
   switch (action.type) {
     case 'LEFT':
       const leftIdx = state.idx - 1
+
       return {
         ...state,
         idx: leftIdx,
@@ -36,6 +37,7 @@ const reducer: React.Reducer<State, Action> = (state, action) => {
       }
       case 'RIGHT':
         const rightIdx = state.idx + 1
+        
         return {
           ...state,
           idx: rightIdx,
