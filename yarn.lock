@@ -4085,7 +4085,7 @@ __metadata:
     babel-preset-gatsby-package: 2.24.0
     clsx: 1.2.1
     concurrently: 7.4.0
-    focus-trap-react: 8.11.3
+    focus-trap-react: 10.0.0
     framer-motion: 4.1.17
     gatsby: 4.24.3
     gatsby-plugin-advanced-sitemap: 2.1.0
@@ -10355,25 +10355,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"focus-trap-react@npm:8.11.3":
-  version: 8.11.3
-  resolution: "focus-trap-react@npm:8.11.3"
+"focus-trap-react@npm:10.0.0":
+  version: 10.0.0
+  resolution: "focus-trap-react@npm:10.0.0"
   dependencies:
-    focus-trap: ^6.9.4
+    focus-trap: ^7.0.0
+    tabbable: ^6.0.0
   peerDependencies:
     prop-types: ^15.8.1
-    react: ">=16.0.0"
-    react-dom: ">=16.0.0"
-  checksum: d293b0645b91b2e7c4dee2329ab4aaab50c09d2f935478702f5049f1801db5ac647e6547e96af5e57475b63f3ee7d1fa86026a4539ac98175f5da0d61d8ac89f
+    react: ">=16.3.0"
+    react-dom: ">=16.3.0"
+  checksum: 44e98f61fbeb49b94f4d89bcc3c6833b31a07cdd742b74999c4dead54d3b7b06b6f094da76151575e7a052215eb305898b7bee5e3e759238302d45d78f85da1c
   languageName: node
   linkType: hard
 
-"focus-trap@npm:^6.9.4":
-  version: 6.9.4
-  resolution: "focus-trap@npm:6.9.4"
+"focus-trap@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "focus-trap@npm:7.0.0"
   dependencies:
-    tabbable: ^5.3.3
-  checksum: 0b4cebcc11010bd9397731092bd59a981e838c710c6497374ba70571875a14ab27c0db7d60f36005ec01bdabc3b9cfeda11d30ddf5b8874596dcc95e18913b3b
+    tabbable: ^6.0.0
+  checksum: 36812c880a5262478d5d8a678cae0a0576b3c801a7c00010d44154d5526aeaeaab5cd05aaf3199ceee97ff9be8defe47809f3712c8211bc829bde6c0614d7bb9
   languageName: node
   linkType: hard
 
@@ -18621,10 +18622,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tabbable@npm:^5.3.2, tabbable@npm:^5.3.3":
-  version: 5.3.3
-  resolution: "tabbable@npm:5.3.3"
-  checksum: 1aa56e1bb617cc10616c407f4e756f0607f3e2d30f9803664d70b85db037ca27e75918ed1c71443f3dc902e21dc9f991ce4b52d63a538c9b69b3218d3babcd70
+"tabbable@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "tabbable@npm:6.0.0"
+  checksum: a6bd253035b91b6ed280c77e07880f35d337509c2d49f6eef9e9d80a006bf6bddb42cdc5772f7a33a2a6625f47d2faa47b50398dda4bb83157a078c3002884ba
   languageName: node
   linkType: hard
 
