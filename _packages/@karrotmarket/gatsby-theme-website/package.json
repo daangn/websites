@@ -33,7 +33,7 @@
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",
     "babel-preset-gatsby-package": "2.24.0",
-    "gatsby": "4.24.3",
+    "gatsby": "4.24.4",
     "polished": "4.2.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
