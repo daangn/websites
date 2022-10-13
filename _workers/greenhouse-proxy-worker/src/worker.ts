@@ -1,31 +1,43 @@
-/// <reference types="@cloudflare/workers-types" />
-
-import { Router, listen } from 'worktop';
+import {
+  compose,
+  Router,
+  type Context as WorktopContext,
+} from 'worktop';
+import { HeadersObject, reply } from 'worktop/response';
+import { start } from 'worktop/cfw';
 import * as CORS from 'worktop/cors';
 import * as Base64 from 'worktop/base64';
+import * as Cache from 'worktop/cfw.cache';
 
-/**
- * Greenhouse Jobboard API Key
- *
- * wrangler secret 커맨드로 관리합니다.
- *
- * @See https://app3.greenhouse.io/configure/dev_center/credentials
- * @See https://developers.cloudflare.com/workers/cli-wrangler/commands#secret
- */
-declare var GH_JOBBOARD_API_KEY: string;
+interface Context extends WorktopContext {
+  bindings: {
+    /**
+    * Greenhouse Jobboard API Key
+    *
+    * wrangler secret 커맨드로 관리합니다.
+    *
+    * @See https://app3.greenhouse.io/configure/dev_center/credentials
+    * @See https://developers.cloudflare.com/workers/cli-wrangler/commands#secret
+    */
+    GH_JOBBOARD_API_KEY: string;
+  },
+}
 
-const API = new Router();
+const API = new Router<Context>();
 
-API.prepare = CORS.preflight();
+API.prepare = compose(
+  Cache.sync(),
+  CORS.preflight(),
+);
 
-API.add('GET', '/ping', (_req, res) => {
-  res.send(200, 'pong');
+API.add('GET', '/ping', (_req, _ctx) => {
+  return reply(200, 'pong');
 });
 
-API.add('POST', '/boards/:boardToken/jobs/:jobId/application/proxy', async (req, res) => {
-  const { boardToken, jobId } = req.params;
+API.add('POST', '/boards/:boardToken/jobs/:jobId/application/proxy', async (req, ctx) => {
+  const { boardToken, jobId } = ctx.params;
   const greenhouseEndpoint = `https://boards-api.greenhouse.io/v1/boards/${boardToken}/jobs/${jobId}`;
-  const body = await req.body.formData();
+  const requestBody = await req.formData();
 
   try {
     const response = await fetch(greenhouseEndpoint, {
@@ -33,17 +45,19 @@ API.add('POST', '/boards/:boardToken/jobs/:jobId/application/proxy', async (req,
       headers: {
         ...req.headers,
         'Accept': 'application/json',
-        'Authorization': `Basic ${Base64.encode(`${GH_JOBBOARD_API_KEY}:`)}`,
+        'Authorization': `Basic ${Base64.encode(`${ctx.bindings.GH_JOBBOARD_API_KEY}:`)}`,
       },
-      body,
+      body: requestBody,
     });
     if (response.ok) {
       const origin = req.headers.get('origin');
-      res.setHeader('Location', origin + '/completed/');
 
-      return res.send(303, response.body);
+      const responseHeaders: HeadersObject = {};
+      responseHeaders['Location'] = origin + '/completed';
+
+      return reply(303, response.body, responseHeaders);
     } else {
-      return res.send(
+      return reply(
         response.status,
         response.body,
         Object.fromEntries(response.headers.entries()),
@@ -51,10 +65,10 @@ API.add('POST', '/boards/:boardToken/jobs/:jobId/application/proxy', async (req,
     }
   } catch (error) {
     if (error instanceof Error) {
-      return res.send(500, error.message);
+      return reply(500, error.message);
     }
-    return res.send(500, 'Internal Server Error');
+    return reply(500, 'Internal Server Error');
   }
 });
 
-listen(API.run);
+export default start(API.run);
