@@ -20,7 +20,7 @@ const config: GatsbyConfig = {
       options: {
         headers: [
           {
-            source: '/completed*',
+            source: '/completed',
             headers: [
               {
                 key: 'Access-Control-Allow-Origin',
