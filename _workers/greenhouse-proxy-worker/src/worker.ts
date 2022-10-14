@@ -53,7 +53,7 @@ API.add('POST', '/boards/:boardToken/jobs/:jobId/application/proxy', async (req,
       const origin = req.headers.get('origin');
 
       const responseHeaders: HeadersObject = {};
-      responseHeaders['Location'] = origin + '/completed';
+      responseHeaders['Location'] = origin + '/completed/';
 
       return reply(303, response.body, responseHeaders);
     } else {
