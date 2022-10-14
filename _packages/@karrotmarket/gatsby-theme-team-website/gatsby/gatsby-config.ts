@@ -19,7 +19,6 @@ const config = ({
   plugins: [
     'gatsby-theme-stitches',
     'gatsby-plugin-svgr',
-    'gatsby-plugin-vercel-deploy',
     'gatsby-plugin-head-seo',
     {
       resolve: 'gatsby-plugin-sharp',
