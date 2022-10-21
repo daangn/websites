@@ -7,6 +7,7 @@ const siteMetadata: GatsbyConfig['siteMetadata'] = {
 };
 
 const config: GatsbyConfig = {
+  jsxRuntime: 'automatic',
   siteMetadata,
   plugins: [
     {
