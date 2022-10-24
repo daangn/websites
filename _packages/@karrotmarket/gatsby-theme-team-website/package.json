@@ -37,7 +37,7 @@
     "framer-motion": "4.1.17",
     "gatsby": "4.24.4",
     "gatsby-plugin-advanced-sitemap": "2.1.0",
-    "gatsby-plugin-gatsby-cloud": "4.24.0",
+    "gatsby-plugin-gatsby-cloud": "4.24.1",
     "gatsby-plugin-google-tagmanager": "4.24.0",
     "gatsby-plugin-head-seo": "0.2.1",
     "gatsby-plugin-image": "2.24.0",
