@@ -30,7 +30,7 @@
     "@karrotmarket/gatsby-transformer-job-post": "*",
     "gatsby": "4.24.4",
     "gatsby-plugin-advanced-sitemap": "2.1.0",
-    "gatsby-plugin-gatsby-cloud": "4.24.0",
+    "gatsby-plugin-gatsby-cloud": "4.24.1",
     "gatsby-plugin-google-tagmanager": "4.24.0",
     "gatsby-plugin-manifest": "4.24.0",
     "gatsby-plugin-robots-txt": "1.7.1",

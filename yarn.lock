@@ -4140,7 +4140,7 @@ __metadata:
     framer-motion: 4.1.17
     gatsby: 4.24.4
     gatsby-plugin-advanced-sitemap: 2.1.0
-    gatsby-plugin-gatsby-cloud: 4.24.0
+    gatsby-plugin-gatsby-cloud: 4.24.1
     gatsby-plugin-google-tagmanager: 4.24.0
     gatsby-plugin-head-seo: 0.2.1
     gatsby-plugin-image: 2.24.0
@@ -7728,7 +7728,7 @@ __metadata:
     dotenv-safe: 8.2.0
     gatsby: 4.24.4
     gatsby-plugin-advanced-sitemap: 2.1.0
-    gatsby-plugin-gatsby-cloud: 4.24.0
+    gatsby-plugin-gatsby-cloud: 4.24.1
     gatsby-plugin-google-tagmanager: 4.24.0
     gatsby-plugin-manifest: 4.24.0
     gatsby-plugin-robots-txt: 1.7.1
@@ -7757,7 +7757,7 @@ __metadata:
     dotenv-safe: 8.2.0
     gatsby: 4.24.4
     gatsby-plugin-advanced-sitemap: 2.1.0
-    gatsby-plugin-gatsby-cloud: 4.24.0
+    gatsby-plugin-gatsby-cloud: 4.24.1
     gatsby-plugin-google-tagmanager: 4.24.0
     gatsby-plugin-manifest: 4.24.0
     gatsby-plugin-robots-txt: 1.7.1
@@ -11159,9 +11159,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-gatsby-cloud@npm:4.24.0":
-  version: 4.24.0
-  resolution: "gatsby-plugin-gatsby-cloud@npm:4.24.0"
+"gatsby-plugin-gatsby-cloud@npm:4.24.1":
+  version: 4.24.1
+  resolution: "gatsby-plugin-gatsby-cloud@npm:4.24.1"
   dependencies:
     "@babel/runtime": ^7.15.4
     fs-extra: ^10.1.0
@@ -11173,7 +11173,7 @@ __metadata:
   peerDependencies:
     gatsby: ^4.0.0-next
     webpack: "*"
-  checksum: c20e1b8379e8e777b40f4d54d7342a46b7868f5c8d3c69e4247d9477bc3a2f4b7a79ae9d11f72a5482dd14c7bda62432104b5b15685e83a349de5d642247a897
+  checksum: a58e772267472b4d4c7b28e48a352fd3910731d688538d221bb769d8466d59a311872255f5fbbfeedf7d202c2e54c644d2971081099d6390dee3f09bf7c6c87a
   languageName: node
   linkType: hard
 
@@ -19251,7 +19251,7 @@ __metadata:
     dotenv-safe: 8.2.0
     gatsby: 4.24.4
     gatsby-plugin-advanced-sitemap: 2.1.0
-    gatsby-plugin-gatsby-cloud: 4.24.0
+    gatsby-plugin-gatsby-cloud: 4.24.1
     gatsby-plugin-google-tagmanager: 4.24.0
     gatsby-plugin-image: 2.24.0
     gatsby-plugin-manifest: 4.24.0
