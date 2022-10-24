@@ -20,7 +20,7 @@
   "dependencies": {
     "@cometjs/core": "2.1.0",
     "@seed-design/design-token": "alpha",
-    "@svgr/webpack": "6.4.0",
+    "@svgr/webpack": "6.5.0",
     "gatsby-plugin-svgr": "3.0.0-beta.0",
     "gatsby-theme-stitches": "1.0.0",
     "react-intersection-observer": "8.34.0"
