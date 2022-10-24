@@ -47,7 +47,7 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@babel/core": "7.19.3",
+    "@babel/core": "7.19.6",
     "@types/dotenv-safe": "8.1.2",
     "@types/node": "18.0.0",
     "@types/react": "18.0.21",
