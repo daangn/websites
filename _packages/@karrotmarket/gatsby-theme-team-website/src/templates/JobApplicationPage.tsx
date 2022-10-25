@@ -6,12 +6,14 @@ import {
   type HeadProps,
 } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { Robots } from 'gatsby-plugin-head-seo/src';
+import { HeadSeo, Robots } from 'gatsby-plugin-head-seo/src';
 import { rem } from 'polished';
 import { required } from '@cometjs/core';
 import type { PropOf, RefOf } from '@cometjs/react-utils';
 import { mapAbstractType } from '@cometjs/graphql-utils';
 
+import { DefaultLayoutHead } from '../layouts/DefaultLayout';
+import { JobPostLayoutHead } from '../layouts/JobPostLayout';
 import _PageTitle from '../components/PageTitle';
 import FileAttachmentField from '../components/formField/FileAttachmentField';
 import ShortTextField from '../components/formField/ShortTextField';
@@ -366,8 +368,46 @@ export default JobApplicationPage;
 
 type JobApplicationPageHeadProps = HeadProps<GatsbyTypes.TeamWebsite_JobApplicationPageQuery>;
 export const Head: React.FC<JobApplicationPageHeadProps> = ({
+  location,
+  data,
+  data: { jobPost, prismicTeamContents },
 }) => {
+  required(jobPost);
+  required(prismicTeamContents);
+
+  const metaTitle = `${jobPost.title} | ${prismicTeamContents.data.jobs_page_meta_title}`;
+  const metaDescription = prismicTeamContents.data.jobs_page_meta_description;
+  const metaImage = prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
+
   return (
-    <Robots none />
+    <HeadSeo
+      location={location}
+      title={metaTitle}
+      description={metaDescription}
+    >
+      {props => [
+        <DefaultLayoutHead
+          {...props}
+          location={location}
+          data={data}
+          image={metaImage && {
+            url: new URL(
+              metaImage.src,
+              metaImage.src.startsWith('http')
+                ? metaImage.src
+                : props.url,
+            ),
+            width: metaImage.width,
+            height: metaImage.height,
+          }}
+        />,
+        <JobPostLayoutHead
+          {...props}
+          location={location}
+          data={data}
+        />,
+        <Robots none />,
+      ]}
+    </HeadSeo>
   );
 }
