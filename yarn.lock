@@ -4088,7 +4088,7 @@ __metadata:
     "@babel/core": 7.19.6
     "@prismicio/helpers": 2.3.5
     "@types/node": 18.0.0
-    "@types/react": 18.0.21
+    "@types/react": 18.0.22
     "@types/react-dom": 18.0.6
     babel-preset-gatsby-package: 2.24.0
     concurrently: 7.4.0
@@ -4130,7 +4130,7 @@ __metadata:
     "@stitches/react": 1.2.8
     "@svgr/webpack": 6.5.0
     "@types/node": 18.0.0
-    "@types/react": 18.0.21
+    "@types/react": 18.0.22
     "@types/react-dom": 18.0.6
     babel-plugin-polished: 1.1.0
     babel-preset-gatsby-package: 2.24.0
@@ -4186,7 +4186,7 @@ __metadata:
     "@stitches/react": 1.2.8
     "@svgr/webpack": 6.5.0
     "@types/node": 18.0.0
-    "@types/react": 18.0.21
+    "@types/react": 18.0.22
     "@types/react-dom": 18.0.6
     babel-preset-gatsby-package: 2.24.0
     gatsby: 4.24.4
@@ -5908,14 +5908,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:18.0.21":
-  version: 18.0.21
-  resolution: "@types/react@npm:18.0.21"
+"@types/react@npm:18.0.22":
+  version: 18.0.22
+  resolution: "@types/react@npm:18.0.22"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: 36c1a7c9d507e81e2e629c1ad3db51d7b84d8b010c2d5008da411874286c6a5ccc711ae1d4c470efc0bdc77153cc8804a40e927e929e5164c669ca41b84b846d
+  checksum: e9e294c1b5467c502936f964be68e7284ec6a5d40c703e7429037d9b39ba5f9b0299d303dde06d0468e4e79957ac71ab5ab3ee8252bf6ff3cc09c2ee03695789
   languageName: node
   linkType: hard
 
@@ -7723,7 +7723,7 @@ __metadata:
     "@karrotmarket/gatsby-transformer-job-post": "*"
     "@types/dotenv-safe": 8.1.2
     "@types/node": 18.0.0
-    "@types/react": 18.0.21
+    "@types/react": 18.0.22
     "@types/react-dom": 18.0.6
     dotenv-safe: 8.2.0
     gatsby: 4.24.4
@@ -7752,7 +7752,7 @@ __metadata:
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^"
     "@types/dotenv-safe": 8.1.2
     "@types/node": 18.0.0
-    "@types/react": 18.0.21
+    "@types/react": 18.0.22
     "@types/react-dom": 18.0.6
     dotenv-safe: 8.2.0
     gatsby: 4.24.4
@@ -19244,7 +19244,7 @@ __metadata:
     "@seed-design/design-token": alpha
     "@types/dotenv-safe": 8.1.2
     "@types/node": 18.0.0
-    "@types/react": 18.0.21
+    "@types/react": 18.0.22
     "@types/react-dom": 18.0.6
     babel-preset-gatsby-package: 2.24.0
     cjk-slug: 0.3.0
