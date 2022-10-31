@@ -50,7 +50,7 @@
     "@babel/core": "7.19.6",
     "@types/dotenv-safe": "8.1.2",
     "@types/node": "18.0.0",
-    "@types/react": "18.0.22",
+    "@types/react": "18.0.24",
     "@types/react-dom": "18.0.7",
     "babel-preset-gatsby-package": "2.24.0",
     "dotenv-safe": "8.2.0",
