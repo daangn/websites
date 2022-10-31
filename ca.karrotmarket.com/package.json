@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@karrotmarket/gatsby-theme-global-website": "workspace:^",
-    "gatsby": "4.24.4",
+    "gatsby": "4.24.5",
     "gatsby-plugin-google-gtag": "4.24.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
