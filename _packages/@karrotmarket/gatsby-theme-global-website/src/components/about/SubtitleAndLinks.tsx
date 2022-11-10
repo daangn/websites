@@ -16,7 +16,7 @@ export const query = graphql`
       link {
         url
       }
-      date(formatString: $dateFormat)
+      date(formatString: "YYYY-MM-DD")
     }
   }
 `;

@@ -46,10 +46,11 @@ export const pluginOptionsSchema: GatsbyNode["pluginOptionsSchema"] = ({
   });
 };
 
-export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] =
-  ({ actions }) => {
-    const { createTypes } = actions;
-    const typeDefs = `
+export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] = ({
+  actions,
+}) => {
+  const gql = String.raw;
+  actions.createTypes(gql`
     type HotArticle implements Node {
       articleId: String
       image: String
@@ -57,9 +58,16 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
       region: String
       price: String
     }
-  `;
-    createTypes(typeDefs);
-  };
+  `);
+};
+
+export const setFieldsOnGraphQLNodeType: GatsbyNode['setFieldsOnGraphQLNodeType'] = ({
+  type,
+}) => {
+  if (type.name === '') {
+
+  }
+};
 
 export const sourceNodes: GatsbyNode["sourceNodes"] = async (
   { actions, createNodeId, createContentDigest },
