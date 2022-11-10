@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@karrotmarket/gatsby-theme-global-website": "workspace:^",
-    "gatsby": "4.24.5",
+    "gatsby": "4.24.8",
     "gatsby-plugin-google-gtag": "4.24.0",
     "gatsby-plugin-google-tagmanager": "4.24.0",
     "gatsby-plugin-typegen": "3.0.0",
