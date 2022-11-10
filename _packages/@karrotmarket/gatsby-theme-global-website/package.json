@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@babel/cli": "7.19.3",
-    "@babel/core": "7.19.6",
+    "@babel/core": "7.20.2",
     "babel-preset-gatsby-package": "2.24.0",
     "concurrently": "7.4.0",
     "gatsby": "4.24.5",
