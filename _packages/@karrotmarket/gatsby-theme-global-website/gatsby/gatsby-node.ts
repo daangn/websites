@@ -1,20 +1,14 @@
 import type { GatsbyNode } from "gatsby";
 import got from "got";
 
-type LocaleType = "en-gb" | "en-us" | "en-ca" | "ja-jp";
+const locales = ['en-gb', 'en-us', 'en-ca', 'ja-jp'] as const;
+type Locale = typeof locales[number];
 
-const CURRENCY_SIGN: { [i in LocaleType]: string } = {
+const CURRENCY: Record<Locale, string> = {
   "en-gb": "GBP",
   "en-us": "USD",
-  "en-ca": "USD",
+  "en-ca": "CAD",
   "ja-jp": "JPY",
-};
-
-const DATE_FORMAT: { [i in LocaleType]: string } = {
-  "en-gb": "MMM D, y",
-  "en-us": "MMM D, y",
-  "en-ca": "MMM D, y",
-  "ja-jp": "Y.M.D",
 };
 
 interface Article {
@@ -29,7 +23,7 @@ interface Article {
 }
 
 type PluginOptions = {
-  locale: string,
+  locale: Locale,
   hot_articles_api: string,
   hot_articles_api_special_key?: string,
 };
@@ -39,6 +33,7 @@ export const pluginOptionsSchema: GatsbyNode["pluginOptionsSchema"] = ({
 }) => {
   return Joi.object({
     locale: Joi.string()
+      .valid(...locales)
       .required()
       .default("en-gb")
       .description(`prismic locale 값`),
@@ -73,6 +68,7 @@ export const sourceNodes: GatsbyNode["sourceNodes"] = async (
   // must be validated by pluginOptionsSchema
   const pluginOptions = options as unknown as PluginOptions;
   const {
+    locale,
     hot_articles_api,
     hot_articles_api_special_key = process.env.HOT_ARTICLE_API_SPECIAL_KEY,
   } = pluginOptions;
@@ -102,13 +98,10 @@ export const sourceNodes: GatsbyNode["sourceNodes"] = async (
       articleId: article.id,
       image: article.first_image.file,
       region: article.region.fullname,
-      price: Number(article.price).toLocaleString(
-        options.locale as LocaleType,
-        {
-          style: "currency",
-          currency: CURRENCY_SIGN[options.locale as LocaleType],
-        }
-      ),
+      price: new Intl.NumberFormat(locale, {
+        style: "currency",
+        currency: CURRENCY[locale],
+      }).format(+article.price),
     });
   });
 
@@ -119,14 +112,14 @@ export const onCreatePage: GatsbyNode["onCreatePage"] = (
   { page, actions },
   options
 ) => {
+  const { locale } = options as unknown as PluginOptions;
   const { createPage, deletePage } = actions;
   deletePage(page);
   createPage({
     ...page,
     context: {
       ...page.context,
-      lang: options.locale,
-      dateFormat: DATE_FORMAT[options.locale as LocaleType],
+      locale,
     },
   });
 };

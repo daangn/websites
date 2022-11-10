@@ -27,17 +27,17 @@ import ParallaxSection from "../components/home/ParallaxSection";
 import IllustrationSection from "../components/home/IllustrationSection";
 
 export const query = graphql`
-  query IndexPageQuery($lang: String) {
+  query IndexPageQuery($locale: String) {
     site {
       siteMetadata {
         siteUrl
       }
     }
-    prismicSiteNavigation(uid: { eq: "global" }, lang: { eq: $lang }) {
+    prismicSiteNavigation(uid: { eq: "global" }, lang: { eq: $locale }) {
       _previewable
       ...DefaultLayout_data
     }
-    prismicGlobalContents(lang: { eq: $lang }) {
+    prismicGlobalContents(lang: { eq: $locale }) {
       _previewable
       data {
         main_page_title
