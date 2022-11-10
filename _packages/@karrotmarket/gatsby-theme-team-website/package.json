@@ -68,7 +68,7 @@
     "@babel/core": "7.20.2",
     "@prismicio/helpers": "2.3.5",
     "@types/node": "18.0.0",
-    "@types/react": "18.0.24",
+    "@types/react": "18.0.25",
     "@types/react-dom": "18.0.8",
     "babel-preset-gatsby-package": "2.24.0",
     "concurrently": "7.5.0",
