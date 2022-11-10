@@ -24,28 +24,16 @@ import BannerArea from './jobsPage/BannerArea';
 import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 
 export const query = graphql`
-  query TeamWebsite_JobsPage(
-    $departmentId: String!
-    $locale: String!
-    $navigationId: String!
-  ) {
+  query TeamWebsite_JobsPage($departmentId: String!, $locale: String!, $navigationId: String!) {
     ...TeamWebsite_DefaultLayout_query
-
-    prismicTeamContents(
-      lang: { eq: $locale }
-    ) {
+    prismicTeamContents(lang: {eq: $locale}) {
       data {
         jobs_page_meta_title
         jobs_page_meta_description
         jobs_page_meta_image {
           localFile {
             childImageSharp {
-              fixed(
-                width: 1200
-                height: 630
-                toFormat: PNG
-                quality: 90
-              ) {
+              fixed(width: 1200, height: 630, toFormat: PNG, quality: 90) {
                 src
                 width
                 height
@@ -58,43 +46,19 @@ export const query = graphql`
         }
       }
     }
-
-    currentJobDepartment: jobDepartment(
-      id: { eq: $departmentId }
-    ) {
+    currentJobDepartment: jobDepartment(id: {eq: $departmentId}) {
       name
     }
-
     allDepartmentFilteredJobPost: allJobPost(
-      filter: {
-        departments: {
-          elemMatch: {
-            id: { glob: $departmentId }
-          }
-        }
-      }
-      sort: {
-        fields: title
-        order: ASC
-      }
+      filter: {departments: {elemMatch: {id: {glob: $departmentId}}}}
+      sort: {title: ASC}
     ) {
       nodes {
         ...TeamWebsite_JobPostList_jobPosts
-
-        # Note: Command E 인덱싱용으로 노출
         absoluteUrl
       }
     }
-
-    allJobDepartment(filter: {
-      jobPosts: {
-        elemMatch: {
-          id: { 
-            glob: "*" 
-          }
-        }
-      }
-    }) {
+    allJobDepartment(filter: {jobPosts: {elemMatch: {id: {glob: "*"}}}}) {
       nodes {
         id
         name
@@ -105,8 +69,6 @@ export const query = graphql`
         }
       }
     }
-
-    # Note: Corporate reduce용 전체 jobPost
     allJobPost {
       totalCount
       nodes {
