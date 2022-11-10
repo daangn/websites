@@ -12,25 +12,11 @@ import _PageTitle from '@karrotmarket/gatsby-theme-team-website/src/components/P
 import FadeInWhenVisible from '@karrotmarket/gatsby-theme-team-website/src/components/FadeInWhenVisible';
 
 export const query = graphql`
-  query IrListPage(
-    $locale: String!
-    $navigationId: String!
-  ) {
+  query IrListPage($locale: String!, $navigationId: String!) {
     ...TeamWebsite_DefaultLayout_query
-
     allPrismicIr(
-      filter: {
-        uid: {
-          ne: null
-        }
-        tags: {
-          in: ["team.daangn.com"]
-        }
-      }
-      sort: {
-        fields: first_publication_date
-        order: DESC
-      }
+      filter: {uid: {ne: null}, tags: {in: ["team.daangn.com"]}}
+      sort: {first_publication_date: DESC}
     ) {
       nodes {
         uid
