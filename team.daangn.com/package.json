@@ -30,7 +30,7 @@
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^",
     "@seed-design/design-token": "alpha",
     "cjk-slug": "0.3.0",
-    "gatsby": "4.24.5",
+    "gatsby": "4.24.8",
     "gatsby-plugin-advanced-sitemap": "2.1.0",
     "gatsby-plugin-gatsby-cloud": "4.24.1",
     "gatsby-plugin-google-tagmanager": "4.24.0",
