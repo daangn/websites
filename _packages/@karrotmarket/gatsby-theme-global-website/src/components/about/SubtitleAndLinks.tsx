@@ -16,7 +16,7 @@ export const query = graphql`
       link {
         url
       }
-      date(formatString: $dateFormat)
+      dateFormatted
     }
   }
 `;
@@ -37,7 +37,7 @@ const SubtitleAndLinks: React.FC<SubtitleAndLinksProps> = ({ content }) => {
         {content.items.map((item) => (
           <LinkContainer>
             <Link href={item?.link?.url}>{item?.text}</Link>
-            {item.date}
+            {item.dateFormatted}
           </LinkContainer>
         ))}
       </Grid>

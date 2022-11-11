@@ -25,17 +25,17 @@ import SubtitleAndLinks from "../components/about/SubtitleAndLinks";
 import SubtitleAndImages from "../components/about/SubtitleAndImages";
 
 export const query = graphql`
-  query AboutPageQuery($lang: String, $dateFormat: String) {
+  query AboutPageQuery($locale: String) {
     site {
       siteMetadata {
         siteUrl
       }
     }
-    prismicSiteNavigation(uid: { eq: "global" }, lang: { eq: $lang }) {
+    prismicSiteNavigation(uid: { eq: "global" }, lang: { eq: $locale }) {
       _previewable
       ...DefaultLayout_data
     }
-    prismicGlobalContents(lang: { eq: $lang }) {
+    prismicGlobalContents(lang: { eq: $locale }) {
       _previewable
       data {
         about_page_title
