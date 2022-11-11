@@ -1,4 +1,4 @@
-import type { GatsbyNode } from "gatsby";
+import type { GatsbyNode } from 'gatsby';
 import got from "got";
 
 const locales = ['en-gb', 'en-us', 'en-ca', 'ja-jp'] as const;
@@ -61,12 +61,21 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
   `);
 };
 
-export const setFieldsOnGraphQLNodeType: GatsbyNode['setFieldsOnGraphQLNodeType'] = ({
-  type,
-}) => {
-  if (type.name === '') {
-
-  }
+export const createResolvers: GatsbyNode['createResolvers'] = ({
+  createResolvers,
+}, options) => {
+  const { locale } = options as unknown as PluginOptions;
+  createResolvers({
+    PrismicGlobalContentsDataAboutBodySubtitleAndLinksItem: {
+      dateFormatted: {
+        type: 'String!',
+        resolve(source: { date: string }) {
+          return new Intl.DateTimeFormat(locale)
+            .format(new Date(source.date));
+        },
+      }
+    },
+  })
 };
 
 export const sourceNodes: GatsbyNode["sourceNodes"] = async (
