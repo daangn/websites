@@ -38,7 +38,7 @@
     "gatsby-plugin-sharp": "5.0.0",
     "gatsby-plugin-svgr": "3.0.0-beta.0",
     "gatsby-source-prismic": "5.2.10",
-    "gatsby-theme-stitches": "1.0.0",
+    "gatsby-theme-stitches": "1.0.1",
     "gatsby-transformer-sharp": "5.0.0",
     "got": "11.8.5",
     "react-intersection-observer": "8.34.0",
