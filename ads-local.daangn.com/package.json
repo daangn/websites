@@ -31,7 +31,7 @@
     "gatsby-plugin-module-resolver": "1.0.3",
     "gatsby-plugin-robots-txt": "1.7.1",
     "gatsby-plugin-sharp": "5.0.0",
-    "gatsby-plugin-typegen": "3.0.0",
+    "gatsby-plugin-typegen": "3.1.0",
     "gatsby-source-filesystem": "5.0.0",
     "gatsby-theme-stitches": "1.0.1",
     "gatsby-transformer-sharp": "5.0.0",

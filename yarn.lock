@@ -4784,7 +4784,7 @@ __metadata:
     gatsby-plugin-module-resolver: 1.0.3
     gatsby-plugin-robots-txt: 1.7.1
     gatsby-plugin-sharp: 5.0.0
-    gatsby-plugin-typegen: 3.0.0
+    gatsby-plugin-typegen: 3.1.0
     gatsby-source-filesystem: 5.0.0
     gatsby-theme-stitches: 1.0.1
     gatsby-transformer-sharp: 5.0.0
@@ -6019,7 +6019,7 @@ __metadata:
     gatsby-plugin-manifest: 5.0.0
     gatsby-plugin-robots-txt: 1.7.1
     gatsby-plugin-sitemap: 6.0.0
-    gatsby-plugin-typegen: 3.0.0
+    gatsby-plugin-typegen: 3.1.0
     polished: 4.2.2
     react: 18.2.0
     react-dom: 18.2.0
@@ -6048,7 +6048,7 @@ __metadata:
     gatsby-plugin-manifest: 5.0.0
     gatsby-plugin-robots-txt: 1.7.1
     gatsby-plugin-sitemap: 6.0.0
-    gatsby-plugin-typegen: 3.0.0
+    gatsby-plugin-typegen: 3.1.0
     polished: 4.2.2
     react: 18.2.0
     react-dom: 18.2.0
@@ -9542,9 +9542,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-typegen@npm:3.0.0":
-  version: 3.0.0
-  resolution: "gatsby-plugin-typegen@npm:3.0.0"
+"gatsby-plugin-typegen@npm:3.1.0":
+  version: 3.1.0
+  resolution: "gatsby-plugin-typegen@npm:3.1.0"
   dependencies:
     "@graphql-codegen/add": ^3.1.1
     "@graphql-codegen/core": ^2.5.1
@@ -9561,9 +9561,9 @@ __metadata:
     slugify: ^1.6.5
     xstate: ^4.32.1
   peerDependencies:
-    gatsby: ^4.0.0
-    graphql: ^15.0.0
-  checksum: d88e80537554f5685b4b70f2ddf16292833f19eea4520951bf35c1943f370be347b8bfd0edae94e898f3c06d2a64959426dc66ce5564c3258d29e19232f8d099
+    gatsby: ^4.0.0 || ^5.0.0
+    graphql: ^15.0.0 || ^16.0.0
+  checksum: 7b870e7233fdf31ac0d08a9ca4ff3b319bad73c89565b12bcc9883da48de2273fcfef29c07f903429240c83367c1b8dd4925076f68004dcc599f10d6e6a351d4
   languageName: node
   linkType: hard
 
@@ -11803,7 +11803,7 @@ __metadata:
     gatsby: 5.0.1
     gatsby-plugin-google-gtag: 5.0.0
     gatsby-plugin-image: 3.0.0
-    gatsby-plugin-typegen: 3.0.0
+    gatsby-plugin-typegen: 3.1.0
     gatsby-plugin-web-font-loader: 1.0.4
     polished: 4.2.2
     react: 18.2.0
@@ -16897,7 +16897,7 @@ __metadata:
     gatsby-plugin-manifest: 5.0.0
     gatsby-plugin-robots-txt: 1.7.1
     gatsby-plugin-sitemap: 6.0.0
-    gatsby-plugin-typegen: 3.0.0
+    gatsby-plugin-typegen: 3.1.0
     gatsby-plugin-vercel-deploy: 1.0.1
     gatsby-source-filesystem: 5.0.0
     match-sorter: 6.3.1
@@ -17353,7 +17353,7 @@ __metadata:
     gatsby: 5.0.1
     gatsby-plugin-google-gtag: 5.0.0
     gatsby-plugin-google-tagmanager: 5.0.0
-    gatsby-plugin-typegen: 3.0.0
+    gatsby-plugin-typegen: 3.1.0
     react: 18.2.0
     react-dom: 18.2.0
     typescript: 4.8.4
@@ -17580,7 +17580,7 @@ __metadata:
     babel-plugin-polished: 1.1.0
     gatsby: 5.0.1
     gatsby-plugin-google-gtag: 5.0.0
-    gatsby-plugin-typegen: 3.0.0
+    gatsby-plugin-typegen: 3.1.0
     react: 18.2.0
     react-dom: 18.2.0
     typescript: 4.8.4
