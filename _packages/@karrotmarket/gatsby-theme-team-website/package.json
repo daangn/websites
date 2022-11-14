@@ -20,7 +20,7 @@
     "@cometjs/react-utils": "2.0.3",
     "@karrotmarket/design-token": "1.1.2",
     "@karrotmarket/gatsby-plugin-lokalise-translation": "workspace:^",
-    "@karrotmarket/gatsby-source-greenhouse-jobboard": "0.6.0",
+    "@karrotmarket/gatsby-source-greenhouse-jobboard": "0.7.0",
     "@karrotmarket/gatsby-theme-prismic": "workspace:^",
     "@karrotmarket/gatsby-theme-website": "workspace:^",
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^",
