@@ -2441,7 +2441,7 @@ __metadata:
     gatsby-plugin-sharp: 5.0.0
     gatsby-plugin-svgr: 3.0.0-beta.0
     gatsby-source-prismic: 5.2.10
-    gatsby-theme-stitches: 1.0.0
+    gatsby-theme-stitches: 1.0.1
     gatsby-transformer-sharp: 5.0.0
     got: 11.8.5
     polished: 4.2.2
@@ -2537,7 +2537,7 @@ __metadata:
     gatsby-plugin-svgr: 3.0.0-beta.0
     gatsby-source-filesystem: 5.0.0
     gatsby-source-prismic: 5.2.10
-    gatsby-theme-stitches: 1.0.0
+    gatsby-theme-stitches: 1.0.1
     gatsby-transformer-sharp: 5.0.0
     hangul-js: 0.2.6
     polished: 4.2.2
@@ -2572,7 +2572,7 @@ __metadata:
     babel-preset-gatsby-package: 2.24.0
     gatsby: 5.0.1
     gatsby-plugin-svgr: 3.0.0-beta.0
-    gatsby-theme-stitches: 1.0.0
+    gatsby-theme-stitches: 1.0.1
     polished: 4.2.2
     react: 18.2.0
     react-dom: 18.2.0
@@ -4779,7 +4779,7 @@ __metadata:
     gatsby-plugin-sharp: 5.0.0
     gatsby-plugin-typegen: 3.0.0
     gatsby-source-filesystem: 5.0.0
-    gatsby-theme-stitches: 1.0.0
+    gatsby-theme-stitches: 1.0.1
     gatsby-transformer-sharp: 5.0.0
     react: 18.2.0
     react-dom: 18.2.0
@@ -9731,14 +9731,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-theme-stitches@npm:1.0.0":
-  version: 1.0.0
-  resolution: "gatsby-theme-stitches@npm:1.0.0"
+"gatsby-theme-stitches@npm:1.0.1":
+  version: 1.0.1
+  resolution: "gatsby-theme-stitches@npm:1.0.1"
   peerDependencies:
     "@stitches/react": ^1.0.0
-    gatsby: ">=2.0.0"
+    gatsby: ^3.0.0 || ^4.0.0 || ^5.0.0
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 45abb90c329275f7d52f399018eec440175d950bc600ffb990aae5d582bd1b46ce92464c708a5fe244902642bf07fa850cc1006ec6e5674a79b9db3d3c35ba55
+  checksum: b7c5e8428cb1bacd2c106545924aa1ac4bd5e945646f0d9869101897f1e79a6e202aebba77a32ee001316bfba00a7181594e354d2b98d3918b2365df8a5bef3c
   languageName: node
   linkType: hard
 
