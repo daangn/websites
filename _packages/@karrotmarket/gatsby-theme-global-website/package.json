@@ -30,7 +30,7 @@
     "@stitches/react": "1.2.8",
     "@svgr/webpack": "6.5.1",
     "framer-motion": "4.1.17",
-    "gatsby-plugin-head-seo": "0.2.1",
+    "gatsby-plugin-head-seo": "0.3.0",
     "gatsby-plugin-image": "3.0.0",
     "gatsby-plugin-preload-fonts": "4.0.0",
     "gatsby-plugin-prismic-previews": "5.2.10",

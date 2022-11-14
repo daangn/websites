@@ -39,7 +39,7 @@
     "gatsby-plugin-advanced-sitemap": "2.1.0",
     "gatsby-plugin-gatsby-cloud": "5.0.0",
     "gatsby-plugin-google-tagmanager": "5.0.0",
-    "gatsby-plugin-head-seo": "0.2.1",
+    "gatsby-plugin-head-seo": "0.3.0",
     "gatsby-plugin-image": "3.0.0",
     "gatsby-plugin-layout": "4.0.0",
     "gatsby-plugin-local-search": "2.0.1",
