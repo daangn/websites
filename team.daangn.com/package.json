@@ -25,7 +25,7 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
-    "@karrotmarket/gatsby-source-greenhouse-jobboard": "0.6.0",
+    "@karrotmarket/gatsby-source-greenhouse-jobboard": "0.7.0",
     "@karrotmarket/gatsby-theme-team-website": "workspace:^",
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^",
     "@seed-design/design-token": "alpha",

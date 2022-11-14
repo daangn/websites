@@ -11,7 +11,7 @@
     "prepack": "yarn build"
   },
   "peerDependencies": {
-    "@karrotmarket/gatsby-source-greenhouse-jobboard": "^0.3.0 || ^0.4.0 || ^0.5.0 || ^0.6.0",
+    "@karrotmarket/gatsby-source-greenhouse-jobboard": "^0.3.0 || ^0.4.0 || ^0.5.0 || ^0.6.0 || ^0.7.0",
     "gatsby": "^4.19.0 || ^5.0.0"
   },
   "dependencies": {
@@ -20,7 +20,7 @@
   "devDependencies": {
     "@babel/cli": "7.19.3",
     "@babel/core": "7.20.2",
-    "@karrotmarket/gatsby-source-greenhouse-jobboard": "0.6.0",
+    "@karrotmarket/gatsby-source-greenhouse-jobboard": "0.7.0",
     "@types/common-tags": "1.8.1",
     "@types/jest": "29.2.2",
     "@types/node": "18.11.9",
