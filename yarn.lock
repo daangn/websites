@@ -2433,7 +2433,7 @@ __metadata:
     concurrently: 7.5.0
     framer-motion: 4.1.17
     gatsby: 5.0.1
-    gatsby-plugin-head-seo: 0.2.1
+    gatsby-plugin-head-seo: 0.3.0
     gatsby-plugin-image: 3.0.0
     gatsby-plugin-preload-fonts: 4.0.0
     gatsby-plugin-prismic-previews: 5.2.10
@@ -2523,7 +2523,7 @@ __metadata:
     gatsby-plugin-advanced-sitemap: 2.1.0
     gatsby-plugin-gatsby-cloud: 5.0.0
     gatsby-plugin-google-tagmanager: 5.0.0
-    gatsby-plugin-head-seo: 0.2.1
+    gatsby-plugin-head-seo: 0.3.0
     gatsby-plugin-image: 3.0.0
     gatsby-plugin-layout: 4.0.0
     gatsby-plugin-local-search: 2.0.1
@@ -4778,7 +4778,7 @@ __metadata:
     adblock-detect-react: 1.1.0
     gatsby: 5.0.1
     gatsby-plugin-google-tagmanager: 5.0.0
-    gatsby-plugin-head-seo: 0.2.1
+    gatsby-plugin-head-seo: 0.3.0
     gatsby-plugin-image: 3.0.0
     gatsby-plugin-manifest: 5.0.0
     gatsby-plugin-module-resolver: 1.0.3
@@ -9300,17 +9300,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-head-seo@npm:0.2.1":
-  version: 0.2.1
-  resolution: "gatsby-plugin-head-seo@npm:0.2.1"
+"gatsby-plugin-head-seo@npm:0.3.0":
+  version: 0.3.0
+  resolution: "gatsby-plugin-head-seo@npm:0.3.0"
   dependencies:
-    radix3: ^0.1.2
+    radix3: ^0.2.1
     schema-dts: ^1.1.0
   peerDependencies:
-    gatsby: ^4.19.0
+    gatsby: ^4.19.0 || ^5.0.0
     react: ^17.0.0 || ^18.0.0
     react-dom: ^17.0.0 || ^18.0.0
-  checksum: 85b1f069200b38c9e83baf304a34756cc1926ab78b9de9f02aa8674ab18bb91f455c067740f24aa6f721e8586978a9882a6567a979decd8b42a8d55d29609988
+    typescript: ^4.0.0
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 55cbde268279d5899526a427cf094b140acae40b5f2f818aacbe4ac789147f3362a4148786b2096a0532967b2bda88f17e074ceb131103bbea6d1bb9a81b1265
   languageName: node
   linkType: hard
 
@@ -14804,10 +14808,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"radix3@npm:^0.1.2":
-  version: 0.1.2
-  resolution: "radix3@npm:0.1.2"
-  checksum: 483ecb97ae51e8dbda04e1c393bb001739635799bd1d7a7d1086193458df61d85f9e936c44c7bde81aba370dfd6bce8ccbf0fa691911bb8ba83379c90f96fea4
+"radix3@npm:^0.2.1":
+  version: 0.2.1
+  resolution: "radix3@npm:0.2.1"
+  checksum: 4d7b7360000efb96bf542a7327aafe6f23a21b25add40f173ade2fb1a757be5f3dc4fd2caf6fab746b68d1b0f176d56fc9f529e8493307d69cc3cb4ca4fcb57e
   languageName: node
   linkType: hard
 

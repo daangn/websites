@@ -25,7 +25,7 @@
     "adblock-detect-react": "1.1.0",
     "gatsby": "5.0.1",
     "gatsby-plugin-google-tagmanager": "5.0.0",
-    "gatsby-plugin-head-seo": "0.2.1",
+    "gatsby-plugin-head-seo": "0.3.0",
     "gatsby-plugin-image": "3.0.0",
     "gatsby-plugin-manifest": "5.0.0",
     "gatsby-plugin-module-resolver": "1.0.3",
