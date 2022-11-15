@@ -9,16 +9,15 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { HeadSeo } from 'gatsby-plugin-head-seo/src';
 import { rem } from 'polished';
 import { required } from '@cometjs/core';
-import { useSiteOrigin } from '@karrotmarket/gatsby-theme-website/src/siteMetadata';
 import { useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
+import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 
 import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import { JobPostLayoutHead } from '../layouts/JobPostLayout';
 import Button from '../components/Button';
 import ArrowLink from '../components/ArrowLink';
 import JobPostContentSection from '../components/JobPostContentSection';
-
-import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
+import { lookup } from '../utils/common';
 
 export const query = graphql`
   query TeamWebsite_JobPostPage(
@@ -30,6 +29,7 @@ export const query = graphql`
     ...TeamWebsite_JobPostLayout_query
 
     jobPost(id: { eq: $id }) {
+      corporate
       # Avoid File System Route API
       ghId
       # applyPath: gatsbyPath(filePath: "/jobs/{JobPost.ghId}/apply")
@@ -148,12 +148,19 @@ export const Head: React.FC<JobPostPageHeadProps> = ({
   required(jobPost);
   required(prismicTeamContents);
 
-  const metaTitle = `${jobPost.title} | ${prismicTeamContents.data.jobs_page_meta_title}`;
+  const messages = useTranslation();
+  const corpName = lookup(jobPost.corporate, {
+    'KARROT_MARKET': messages.job_post_layout__property_karrot_market,
+    'KARROT_PAY': messages.job_post_layout__property_karrot_pay,
+  });
+
+  const metaTitle = `${jobPost.title} | ${prismicTeamContents.data.jobs_page_meta_title || corpName}`;
   const metaDescription = prismicTeamContents.data.jobs_page_meta_description;
   const metaImage = prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
 
   return (
     <HeadSeo
+      root={false}
       location={location}
       title={metaTitle}
       description={metaDescription}

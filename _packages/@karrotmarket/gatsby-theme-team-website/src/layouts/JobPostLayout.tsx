@@ -21,6 +21,8 @@ import { vars } from '@seed-design/design-token';
 import logoPath from '../assets/logo.png';
 import _PageTitle from '../components/PageTitle';
 import { ReactComponent as BackwardSvg } from '../assets/backwardOutlineM.svg';
+import { lookup } from '../utils/common';
+
 import JobPostingJsonLd from './jobPostLayout/JobPostingJsonLd';
 import generateProperties from './jobPostLayout/generateProperties';
 
@@ -285,12 +287,17 @@ export const JobPostLayoutHead: React.FC<JobPostLayoutHeadProps> = ({
   required(jobPost);
   required(prismicTeamContents?.data);
 
-  const metaTitle = `${jobPost.title} | ${prismicTeamContents.data.jobs_page_meta_title}`;
+  const messages = useTranslation();
+  const corpName = lookup(jobPost.corporate, {
+    'KARROT_MARKET': messages.job_post_layout__property_karrot_market,
+    'KARROT_PAY': messages.job_post_layout__property_karrot_pay,
+  });
+
+  const metaTitle = `${jobPost.title} | ${prismicTeamContents.data.jobs_page_meta_title || corpName}`;
   const metaDescription = prismicTeamContents.data.jobs_page_meta_description;
 
   return (
     <HeadSeo
-      root={false}
       location={location}
       title={metaTitle}
       description={metaDescription}
