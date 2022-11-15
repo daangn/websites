@@ -1,12 +1,12 @@
-import { PhoneMockupHomeData } from "@karrotmarket/gatsby-theme-global-website/src/components/phoneMockup/phoneMockupHome/_type";
+import { PhoneMockupHomeData } from "@karrotmarket/gatsby-theme-website-global/src/components/phoneMockup/phoneMockupHome/_type";
 
-import { ReactComponent as PopularIcon } from "@karrotmarket/gatsby-theme-global-website/src/icons/popular.svg";
-import { ReactComponent as NearbyIcon } from "@karrotmarket/gatsby-theme-global-website/src/icons/nearby.svg";
-import { ReactComponent as MostSearchedIcon } from "@karrotmarket/gatsby-theme-global-website/src/icons/most-searched.svg";
+import { ReactComponent as PopularIcon } from "@karrotmarket/gatsby-theme-website-global/src/icons/popular.svg";
+import { ReactComponent as NearbyIcon } from "@karrotmarket/gatsby-theme-website-global/src/icons/nearby.svg";
+import { ReactComponent as MostSearchedIcon } from "@karrotmarket/gatsby-theme-website-global/src/icons/most-searched.svg";
 
-import TableImg from "@karrotmarket/gatsby-theme-global-website/src/images/img_home_table.jpg";
-import PotImg from "@karrotmarket/gatsby-theme-global-website/src/images/img_home_pot.jpg";
-import AirpodImg from "@karrotmarket/gatsby-theme-global-website/src/images/img_home_airpod.jpg";
+import TableImg from "@karrotmarket/gatsby-theme-website-global/src/images/img_home_table.jpg";
+import PotImg from "@karrotmarket/gatsby-theme-website-global/src/images/img_home_pot.jpg";
+import AirpodImg from "@karrotmarket/gatsby-theme-website-global/src/images/img_home_airpod.jpg";
 
 export const data: PhoneMockupHomeData = {
   region: "Upper West Side",

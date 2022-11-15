@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@karrotmarket/gatsby-source-greenhouse-jobboard": "0.7.0",
-    "@karrotmarket/gatsby-theme-team-website": "*",
+    "@karrotmarket/gatsby-theme-website-team": "*",
     "@karrotmarket/gatsby-transformer-job-post": "*",
     "gatsby": "5.0.1",
     "gatsby-plugin-advanced-sitemap": "2.1.0",

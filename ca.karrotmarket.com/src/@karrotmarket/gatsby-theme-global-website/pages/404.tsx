@@ -1,9 +1,9 @@
 import * as React from "react";
 import { graphql, PageProps } from "gatsby";
-import Layout from "@karrotmarket/gatsby-theme-global-website/src/components/Layout";
-import { styled } from "@karrotmarket/gatsby-theme-global-website/src/gatsby-theme-stitches/config";
+import Layout from "@karrotmarket/gatsby-theme-website-global/src/components/Layout";
+import { styled } from "@karrotmarket/gatsby-theme-website-global/src/gatsby-theme-stitches/config";
 
-export { Head } from '@karrotmarket/gatsby-theme-global-website/src/pages/404';
+export { Head } from '@karrotmarket/gatsby-theme-website-global/src/pages/404';
 
 export const query = graphql`
   query NotFoundPageQuery {
