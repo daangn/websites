@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import { JobPostingJsonLd as Ld } from 'gatsby-plugin-head-seo/src/jsonld';
 import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 
+import { lookup } from '../../utils/common';
 import locations from './locations';
 
 type JobPostingJsonLdProps = {
@@ -32,9 +33,6 @@ const JobPostingJsonLd: React.FC<JobPostingJsonLdProps> = ({
   description,
   jobPost,
 }) => {
-  const lookup = (key: string, source: unknown) =>
-    (source as Record<string, string | undefined>)[key];
-
   const messages = useTranslation();
 
   return (
@@ -75,13 +73,13 @@ const JobPostingJsonLd: React.FC<JobPostingJsonLdProps> = ({
               '@type': 'Organization',
               name: messages.job_post_layout__property_karrot_market,
               url: 'https://www.daangn.com',
-              logo,
+              logo: logo?.toString(),
             },
             KARROT_PAY: {
               '@type': 'Organization',
               name: messages.job_post_layout__property_karrot_pay,
               url: 'https://www.daangnpay.com',
-              logo,
+              logo: logo?.toString(),
             },
           },
         ),

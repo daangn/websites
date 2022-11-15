@@ -129,7 +129,6 @@ export const DefaultLayoutHead: React.FC<DefaultLayoutHeadProps> = ({
 
   return (
     <HeadSeo
-      root={false}
       location={location}
       title={title}
       description={description}
