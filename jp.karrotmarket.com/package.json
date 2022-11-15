@@ -19,7 +19,7 @@
     "serve": "gatsby serve"
   },
   "dependencies": {
-    "@karrotmarket/gatsby-theme-global-website": "*",
+    "@karrotmarket/gatsby-theme-website-global": "*",
     "@seed-design/stylesheet": "alpha",
     "framer-motion": "4.1.17",
     "gatsby": "5.0.1",

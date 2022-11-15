@@ -8,8 +8,8 @@ import {
 } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
-import _PageTitle from '@karrotmarket/gatsby-theme-team-website/src/components/PageTitle';
-import FadeInWhenVisible from '@karrotmarket/gatsby-theme-team-website/src/components/FadeInWhenVisible';
+import _PageTitle from '@karrotmarket/gatsby-theme-website-team/src/components/PageTitle';
+import FadeInWhenVisible from '@karrotmarket/gatsby-theme-website-team/src/components/FadeInWhenVisible';
 
 export const query = graphql`
   query IrListPage($locale: String!, $navigationId: String!) {

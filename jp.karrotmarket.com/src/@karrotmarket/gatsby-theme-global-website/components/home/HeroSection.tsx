@@ -3,7 +3,7 @@ import { rem } from "polished";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { styled } from "gatsby-theme-stitches/src/config";
 
-import AppLink from "@karrotmarket/gatsby-theme-global-website/src/components/AppLink";
+import AppLink from "@karrotmarket/gatsby-theme-website-global/src/components/AppLink";
 
 type HeroSectionProps = {
   content: GatsbyTypes.HeroSection_contentFragment;

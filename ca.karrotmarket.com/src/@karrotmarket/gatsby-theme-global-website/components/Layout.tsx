@@ -1,9 +1,9 @@
 import * as React from "react";
 import { graphql } from "gatsby";
-import Header from "@karrotmarket/gatsby-theme-global-website/src/components/Header";
-import Footer from "@karrotmarket/gatsby-theme-global-website/src/components/Footer";
-import globalStyles from "@karrotmarket/gatsby-theme-global-website/src/styles/global";
-import { Space } from "@karrotmarket/gatsby-theme-global-website/src/components/Space";
+import Header from "@karrotmarket/gatsby-theme-website-global/src/components/Header";
+import Footer from "@karrotmarket/gatsby-theme-website-global/src/components/Footer";
+import globalStyles from "@karrotmarket/gatsby-theme-website-global/src/styles/global";
+import { Space } from "@karrotmarket/gatsby-theme-website-global/src/components/Space";
 
 interface LayoutProps {
   data: GatsbyTypes.DefaultLayout_queryFragment;

@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@karrotmarket/gatsby-source-greenhouse-jobboard": "0.7.0",
-    "@karrotmarket/gatsby-theme-team-website": "workspace:^",
+    "@karrotmarket/gatsby-theme-website-team": "workspace:^",
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^",
     "@seed-design/design-token": "alpha",
     "cjk-slug": "0.3.0",

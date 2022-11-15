@@ -116,7 +116,7 @@ const config: GatsbyConfig = {
     // 커스텀 플러그인
     '@karrotmarket/gatsby-plugin-lokalise-translation',
     {
-      resolve: '@karrotmarket/gatsby-theme-team-website',
+      resolve: '@karrotmarket/gatsby-theme-website-team',
       options: {
         locale: 'ja-jp',
         navigationId: 'careers.jp.karrotmarket.com',

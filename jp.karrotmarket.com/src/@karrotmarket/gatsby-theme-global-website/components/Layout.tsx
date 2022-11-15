@@ -2,9 +2,9 @@ import * as React from "react";
 import { graphql } from "gatsby";
 import { rem } from "polished";
 import { styled } from "gatsby-theme-stitches/src/config";
-import _Header from "@karrotmarket/gatsby-theme-global-website/src/components/Header";
-import Footer from "@karrotmarket/gatsby-theme-global-website/src/components/Footer";
-import globalStyles from "@karrotmarket/gatsby-theme-global-website/src/styles/global";
+import _Header from "@karrotmarket/gatsby-theme-website-global/src/components/Header";
+import Footer from "@karrotmarket/gatsby-theme-website-global/src/components/Footer";
+import globalStyles from "@karrotmarket/gatsby-theme-website-global/src/styles/global";
 
 interface LayoutProps {
   data: GatsbyTypes.DefaultLayout_dataFragment;

@@ -1,7 +1,7 @@
-import { PhoneMockUpChatData } from "@karrotmarket/gatsby-theme-global-website/src/components/phoneMockup/phoneMockupChat/_type";
+import { PhoneMockUpChatData } from "@karrotmarket/gatsby-theme-website-global/src/components/phoneMockup/phoneMockupChat/_type";
 
-import LocationImg from "@karrotmarket/gatsby-theme-global-website/src/images/img_chat_location.png";
-import ItemImg from "@karrotmarket/gatsby-theme-global-website/src/images/img_chat_item.png";
+import LocationImg from "@karrotmarket/gatsby-theme-website-global/src/images/img_chat_location.png";
+import ItemImg from "@karrotmarket/gatsby-theme-website-global/src/images/img_chat_item.png";
 
 export const data: PhoneMockUpChatData = {
   header: {

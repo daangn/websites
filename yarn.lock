@@ -2412,9 +2412,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@karrotmarket/gatsby-theme-global-website@*, @karrotmarket/gatsby-theme-global-website@workspace:^, @karrotmarket/gatsby-theme-global-website@workspace:_packages/@karrotmarket/gatsby-theme-global-website":
+"@karrotmarket/gatsby-theme-global-website@*, @karrotmarket/gatsby-theme-global-website@workspace:^, @karrotmarket/gatsby-theme-global-website@workspace:_packages/@karrotmarket/gatsby-theme-website-global":
   version: 0.0.0-use.local
-  resolution: "@karrotmarket/gatsby-theme-global-website@workspace:_packages/@karrotmarket/gatsby-theme-global-website"
+  resolution: "@karrotmarket/gatsby-theme-global-website@workspace:_packages/@karrotmarket/gatsby-theme-website-global"
   dependencies:
     "@babel/cli": 7.19.3
     "@babel/core": 7.20.2
@@ -2488,9 +2488,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@karrotmarket/gatsby-theme-team-website@*, @karrotmarket/gatsby-theme-team-website@workspace:^, @karrotmarket/gatsby-theme-team-website@workspace:_packages/@karrotmarket/gatsby-theme-team-website":
+"@karrotmarket/gatsby-theme-website-team@*, @karrotmarket/gatsby-theme-website-team@workspace:^, @karrotmarket/gatsby-theme-website-team@workspace:_packages/@karrotmarket/gatsby-theme-website-team":
   version: 0.0.0-use.local
-  resolution: "@karrotmarket/gatsby-theme-team-website@workspace:_packages/@karrotmarket/gatsby-theme-team-website"
+  resolution: "@karrotmarket/gatsby-theme-website-team@workspace:_packages/@karrotmarket/gatsby-theme-website-team"
   dependencies:
     "@babel/cli": 7.19.3
     "@babel/core": 7.20.2
@@ -6005,7 +6005,7 @@ __metadata:
   dependencies:
     "@babel/core": 7.20.2
     "@karrotmarket/gatsby-source-greenhouse-jobboard": 0.7.0
-    "@karrotmarket/gatsby-theme-team-website": "*"
+    "@karrotmarket/gatsby-theme-website-team": "*"
     "@karrotmarket/gatsby-transformer-job-post": "*"
     "@types/dotenv-safe": 8.1.2
     "@types/node": 18.11.9
@@ -6034,7 +6034,7 @@ __metadata:
   dependencies:
     "@babel/core": 7.20.2
     "@karrotmarket/gatsby-source-greenhouse-jobboard": 0.7.0
-    "@karrotmarket/gatsby-theme-team-website": "workspace:^"
+    "@karrotmarket/gatsby-theme-website-team": "workspace:^"
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^"
     "@types/dotenv-safe": 8.1.2
     "@types/node": 18.11.9
@@ -16879,7 +16879,7 @@ __metadata:
   dependencies:
     "@babel/core": 7.20.2
     "@karrotmarket/gatsby-source-greenhouse-jobboard": 0.7.0
-    "@karrotmarket/gatsby-theme-team-website": "workspace:^"
+    "@karrotmarket/gatsby-theme-website-team": "workspace:^"
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^"
     "@seed-design/design-token": alpha
     "@types/dotenv-safe": 8.1.2

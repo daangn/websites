@@ -1,4 +1,4 @@
-/// <reference types="@karrotmarket/gatsby-theme-team-website/src/types/svgr" />
+/// <reference types="@karrotmarket/gatsby-theme-website-team/src/types/svgr" />
 
 import * as React from 'react';
 import { rem } from 'polished';
@@ -13,8 +13,8 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { required } from '@cometjs/core';
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
 import { vars } from '@seed-design/design-token';
-import PageTitle from '@karrotmarket/gatsby-theme-team-website/src/components/PageTitle';
-import { ReactComponent as BackwardSvg } from '@karrotmarket/gatsby-theme-team-website/src/assets/backwardOutlineM.svg';
+import PageTitle from '@karrotmarket/gatsby-theme-website-team/src/components/PageTitle';
+import { ReactComponent as BackwardSvg } from '@karrotmarket/gatsby-theme-website-team/src/assets/backwardOutlineM.svg';
 
 export const query = graphql`
   query IrPage(
