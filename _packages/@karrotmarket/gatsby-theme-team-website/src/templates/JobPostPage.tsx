@@ -42,6 +42,7 @@ export const query = graphql`
       lang: { eq: $locale }
     ) {
       data {
+        enable_faq_page
         faq_page_entries {
           faq_page {
             uid
@@ -111,12 +112,14 @@ const JobPostPage: React.FC<JobPostPageProps> = ({
         >
           {messages.job_post_layout__tab_apply}
         </Button>
-        <Button
-          to={`/faq/`}
-          fullWidth={{ '@initial': true, '@sm': false }}
-        >
-          {messages.job_post_page__faq}
-        </Button>
+        {data.prismicTeamContents.data.enable_faq_page && (
+          <Button
+            to={`/faq/`}
+            fullWidth={{ '@initial': true, '@sm': false }}
+          >
+            {messages.job_post_page__faq}
+          </Button>
+        )}
       </ButtonContainer>
       <ArrowLink
         link={parseLink('/jobs/')}
