@@ -27,7 +27,7 @@
     "react-dom": "*"
   },
   "dependencies": {
-    "@prismicio/helpers": "2.3.5",
+    "@prismicio/helpers": "2.3.6",
     "gatsby-plugin-image": "3.0.0",
     "gatsby-plugin-prismic-previews": "5.2.10",
     "gatsby-source-prismic": "5.2.10",
