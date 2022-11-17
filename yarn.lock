@@ -2412,9 +2412,36 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@karrotmarket/gatsby-theme-global-website@*, @karrotmarket/gatsby-theme-global-website@workspace:^, @karrotmarket/gatsby-theme-global-website@workspace:_packages/@karrotmarket/gatsby-theme-website-global":
+"@karrotmarket/gatsby-theme-prismic@workspace:^, @karrotmarket/gatsby-theme-prismic@workspace:_packages/@karrotmarket/gatsby-theme-prismic":
   version: 0.0.0-use.local
-  resolution: "@karrotmarket/gatsby-theme-global-website@workspace:_packages/@karrotmarket/gatsby-theme-website-global"
+  resolution: "@karrotmarket/gatsby-theme-prismic@workspace:_packages/@karrotmarket/gatsby-theme-prismic"
+  dependencies:
+    "@babel/cli": 7.19.3
+    "@babel/core": 7.20.2
+    "@prismicio/helpers": 2.3.6
+    "@types/node": 18.11.9
+    "@types/react": 18.0.25
+    "@types/react-dom": 18.0.8
+    babel-preset-gatsby-package: 2.24.0
+    concurrently: 7.5.0
+    gatsby: 5.0.1
+    gatsby-plugin-image: 3.0.0
+    gatsby-plugin-prismic-previews: 5.2.10
+    gatsby-source-prismic: 5.2.10
+    prismic-reactjs: 1.3.4
+    react: 18.2.0
+    react-dom: 18.2.0
+    typescript: 4.8.4
+  peerDependencies:
+    gatsby: ^4.19.0 || ^5.0.0
+    react: "*"
+    react-dom: "*"
+  languageName: unknown
+  linkType: soft
+
+"@karrotmarket/gatsby-theme-website-global@*, @karrotmarket/gatsby-theme-website-global@workspace:^, @karrotmarket/gatsby-theme-website-global@workspace:_packages/@karrotmarket/gatsby-theme-website-global":
+  version: 0.0.0-use.local
+  resolution: "@karrotmarket/gatsby-theme-website-global@workspace:_packages/@karrotmarket/gatsby-theme-website-global"
   dependencies:
     "@babel/cli": 7.19.3
     "@babel/core": 7.20.2
@@ -2461,33 +2488,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@karrotmarket/gatsby-theme-prismic@workspace:^, @karrotmarket/gatsby-theme-prismic@workspace:_packages/@karrotmarket/gatsby-theme-prismic":
-  version: 0.0.0-use.local
-  resolution: "@karrotmarket/gatsby-theme-prismic@workspace:_packages/@karrotmarket/gatsby-theme-prismic"
-  dependencies:
-    "@babel/cli": 7.19.3
-    "@babel/core": 7.20.2
-    "@prismicio/helpers": 2.3.5
-    "@types/node": 18.11.9
-    "@types/react": 18.0.25
-    "@types/react-dom": 18.0.8
-    babel-preset-gatsby-package: 2.24.0
-    concurrently: 7.5.0
-    gatsby: 5.0.1
-    gatsby-plugin-image: 3.0.0
-    gatsby-plugin-prismic-previews: 5.2.10
-    gatsby-source-prismic: 5.2.10
-    prismic-reactjs: 1.3.4
-    react: 18.2.0
-    react-dom: 18.2.0
-    typescript: 4.8.4
-  peerDependencies:
-    gatsby: ^4.19.0 || ^5.0.0
-    react: "*"
-    react-dom: "*"
-  languageName: unknown
-  linkType: soft
-
 "@karrotmarket/gatsby-theme-website-team@*, @karrotmarket/gatsby-theme-website-team@workspace:^, @karrotmarket/gatsby-theme-website-team@workspace:_packages/@karrotmarket/gatsby-theme-website-team":
   version: 0.0.0-use.local
   resolution: "@karrotmarket/gatsby-theme-website-team@workspace:_packages/@karrotmarket/gatsby-theme-website-team"
@@ -2504,7 +2504,7 @@ __metadata:
     "@karrotmarket/gatsby-theme-website": "workspace:^"
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^"
     "@karrotmarket/react-stitches": 0.1.1-1
-    "@prismicio/helpers": 2.3.5
+    "@prismicio/helpers": 2.3.6
     "@reach/router": 1.3.4
     "@seed-design/design-token": alpha
     "@seed-design/stylesheet": alpha
@@ -3448,7 +3448,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prismicio/helpers@npm:2.3.5, @prismicio/helpers@npm:^2.3.3, @prismicio/helpers@npm:^2.3.4":
+"@prismicio/helpers@npm:2.3.6":
+  version: 2.3.6
+  resolution: "@prismicio/helpers@npm:2.3.6"
+  dependencies:
+    "@prismicio/richtext": ^2.1.1
+    "@prismicio/types": ^0.2.4
+    escape-html: ^1.0.3
+    imgix-url-builder: ^0.0.3
+  checksum: 76b2883897cd94a933c5335709643f2d9340adc05005f1defabc4e6addb60a16110873731796b3344c76fb10f778ef01f6b1920f2919717091de082d1b1d973c
+  languageName: node
+  linkType: hard
+
+"@prismicio/helpers@npm:^2.3.3, @prismicio/helpers@npm:^2.3.4":
   version: 2.3.5
   resolution: "@prismicio/helpers@npm:2.3.5"
   dependencies:
@@ -3480,6 +3492,13 @@ __metadata:
   version: 0.2.3
   resolution: "@prismicio/types@npm:0.2.3"
   checksum: 0512c3dbf7b8d3e0594198c6e6cee4dbc9be6260216b63dce5df342eacc69e737a578135f4341f7d9069b3bdb9e87fc51b98f9a06fb340d10f26f0facdff28a2
+  languageName: node
+  linkType: hard
+
+"@prismicio/types@npm:^0.2.4":
+  version: 0.2.4
+  resolution: "@prismicio/types@npm:0.2.4"
+  checksum: e1e5d6adfb65ad3a6a88f1f601e9e28e5c3039f17683ce8acdf5d55addff1e8e0e1af0eb7288654f6f4e7b97d58a3d2758f6c3f803916915b19a5778144a63bd
   languageName: node
   linkType: hard
 
@@ -5825,7 +5844,7 @@ __metadata:
   resolution: "ca.karrotmarket.com@workspace:ca.karrotmarket.com"
   dependencies:
     "@babel/core": 7.20.2
-    "@karrotmarket/gatsby-theme-global-website": "workspace:^"
+    "@karrotmarket/gatsby-theme-website-global": "workspace:^"
     babel-plugin-polished: 1.1.0
     gatsby: 5.0.1
     gatsby-plugin-google-gtag: 5.0.0
@@ -11796,7 +11815,7 @@ __metadata:
   resolution: "jp.karrotmarket.com@workspace:jp.karrotmarket.com"
   dependencies:
     "@babel/core": 7.20.2
-    "@karrotmarket/gatsby-theme-global-website": "*"
+    "@karrotmarket/gatsby-theme-website-global": "*"
     "@seed-design/stylesheet": alpha
     babel-plugin-polished: 1.1.0
     framer-motion: 4.1.17
@@ -17348,7 +17367,7 @@ __metadata:
   resolution: "uk.karrotmarket.com@workspace:uk.karrotmarket.com"
   dependencies:
     "@babel/core": 7.20.2
-    "@karrotmarket/gatsby-theme-global-website": "workspace:^"
+    "@karrotmarket/gatsby-theme-website-global": "workspace:^"
     babel-plugin-polished: 1.1.0
     gatsby: 5.0.1
     gatsby-plugin-google-gtag: 5.0.0
@@ -17576,7 +17595,7 @@ __metadata:
   resolution: "us.karrotmarket.com@workspace:us.karrotmarket.com"
   dependencies:
     "@babel/core": 7.20.2
-    "@karrotmarket/gatsby-theme-global-website": "workspace:^"
+    "@karrotmarket/gatsby-theme-website-global": "workspace:^"
     babel-plugin-polished: 1.1.0
     gatsby: 5.0.1
     gatsby-plugin-google-gtag: 5.0.0
