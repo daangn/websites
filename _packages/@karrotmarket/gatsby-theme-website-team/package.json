@@ -51,6 +51,7 @@
     "gatsby-plugin-sharp": "5.0.0",
     "gatsby-plugin-sitemap": "6.0.0",
     "gatsby-plugin-svgr": "3.0.0-beta.0",
+    "gatsby-plugin-turnstile": "1.0.3",
     "gatsby-source-filesystem": "5.0.0",
     "gatsby-source-prismic": "5.2.10",
     "gatsby-theme-stitches": "1.0.1",
