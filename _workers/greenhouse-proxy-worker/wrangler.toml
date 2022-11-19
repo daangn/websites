@@ -8,4 +8,4 @@ usage_model = 'unbound'
 workers_dev = true
 
 [vars]
-TURNSTILE_ENABLED = false
+TURNSTILE_ENABLED = true
