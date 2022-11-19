@@ -2535,7 +2535,7 @@ __metadata:
     gatsby-plugin-sharp: 5.0.0
     gatsby-plugin-sitemap: 6.0.0
     gatsby-plugin-svgr: 3.0.0-beta.0
-    gatsby-plugin-turnstile: 1.1.0
+    gatsby-plugin-turnstile: 1.1.1
     gatsby-source-filesystem: 5.0.0
     gatsby-source-prismic: 5.2.10
     gatsby-theme-stitches: 1.0.1
@@ -9562,14 +9562,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-turnstile@npm:1.1.0":
-  version: 1.1.0
-  resolution: "gatsby-plugin-turnstile@npm:1.1.0"
+"gatsby-plugin-turnstile@npm:1.1.1":
+  version: 1.1.1
+  resolution: "gatsby-plugin-turnstile@npm:1.1.1"
   peerDependencies:
     gatsby: ^3.0.0 || ^4.0.0 || ^5.0.0
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 0e662368e4b3a8b6b6a5227a278d0904fe57751137aaa296a2d2728a890d62c3b119f78a81147ba58588d9fa511da126ff84bd413cfc22073de044651c35e512
+  checksum: 983cd12b6ac0f912ef9ee38ba0d3eb9db322dca24d242af92b3af757e524a4e8e46248c8f04206b284e216f13342090652d2e9d8995b9865f1874a9483bd96c8
   languageName: node
   linkType: hard
 
