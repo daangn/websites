@@ -2535,6 +2535,7 @@ __metadata:
     gatsby-plugin-sharp: 5.0.0
     gatsby-plugin-sitemap: 6.0.0
     gatsby-plugin-svgr: 3.0.0-beta.0
+    gatsby-plugin-turnstile: 1.0.3
     gatsby-source-filesystem: 5.0.0
     gatsby-source-prismic: 5.2.10
     gatsby-theme-stitches: 1.0.1
@@ -9558,6 +9559,17 @@ __metadata:
     "@svgr/webpack": ">=2.0.0"
     gatsby: ">=3.0.0"
   checksum: 94992db328542fbecfa0d51084b4d271a60f74906b10d0cfd99a7df7a354321872d444d9f8a0fa342f3a6b2adfd9b6d6be5fdc18f4db51ebf34bb5b4789affb5
+  languageName: node
+  linkType: hard
+
+"gatsby-plugin-turnstile@npm:1.0.3":
+  version: 1.0.3
+  resolution: "gatsby-plugin-turnstile@npm:1.0.3"
+  peerDependencies:
+    gatsby: ^3.0.0 || ^4.0.0 || ^5.0.0
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: 9a0b99e5d4e710ec9623c37ef0c5358fe6e5f4d29e27d649c824b36dd1077ae0150bdeea8c0091e3f3b24694905f390266b77745c959be9508672520069c1750
   languageName: node
   linkType: hard
 

@@ -7,6 +7,7 @@ import {
 } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { HeadSeo, Robots } from 'gatsby-plugin-head-seo/src';
+import { useTurnstileSiteKey } from 'gatsby-plugin-turnstile/src';
 import { rem } from 'polished';
 import { required } from '@cometjs/core';
 import type { PropOf, RefOf } from '@cometjs/react-utils';
@@ -173,6 +174,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
   const messages = useTranslation();
   const [state, dispatch] = React.useReducer(reducer, initialState);
 
+  const turnstileSiteKey = useTurnstileSiteKey();
   const jobApplicationFormEndpoint = makeEndpoint(data.jobPost.boardToken, data.jobPost.ghId);
 
   type FormRef = RefOf<typeof Form>;
@@ -233,6 +235,10 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
       action={jobApplicationFormEndpoint}
       onSubmit={handleSubmit}
     >
+      <div
+        className="cf-turnstile"
+        data-sitekey={turnstileSiteKey}
+      />
       <ShortTextField
         name="first_name"
         label={messages.job_application_page__field_name_label}

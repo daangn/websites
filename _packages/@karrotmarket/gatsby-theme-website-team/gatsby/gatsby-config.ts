@@ -21,6 +21,12 @@ const config = ({
     'gatsby-plugin-svgr',
     'gatsby-plugin-head-seo',
     {
+      resolve: 'gatsby-plugin-turnstile',
+      options: {
+        siteKey: '0x4AAAAAAABTJUTRFC79Iemz',
+      },
+    },
+    {
       resolve: 'gatsby-plugin-sharp',
       options: {
         defaults: {
