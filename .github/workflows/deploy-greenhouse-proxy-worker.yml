@@ -28,3 +28,4 @@ jobs:
         uses: cloudflare/wrangler-action@2.0.0
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
+          workingDirectory: '_workers/greenhouse-proxy-worker/'
