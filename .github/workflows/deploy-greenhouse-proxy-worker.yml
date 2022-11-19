@@ -1,9 +1,11 @@
 name: Deploy greenhouse-proxy-worker
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - '_workers/greenhouse-proxy-worker/**'
+      - '.github/workflows/deploy-greenhouse-proxy-worker.yml'
     branches:
       - main
 
