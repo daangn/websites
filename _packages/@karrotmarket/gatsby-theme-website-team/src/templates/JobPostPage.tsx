@@ -87,7 +87,7 @@ const JobPostPage: React.FC<JobPostPageProps> = ({
           <strong>{messages.job_post_page__external_post_notice}</strong>
         </ContentWrapper>
         <Button
-            type="primary"
+            variant="primary"
             to={data.jobPost.externalUrl!}
             fullWidth={{ '@initial': true, '@sm': false }}
           >
@@ -106,7 +106,7 @@ const JobPostPage: React.FC<JobPostPageProps> = ({
       </ContentWrapper>
       <ButtonContainer>
         <Button
-          type="primary"
+          variant="primary"
           to={`/jobs/${data.jobPost.ghId}/apply/`}
           fullWidth={{ '@initial': true, '@sm': false }}
         >

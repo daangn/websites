@@ -356,7 +356,8 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
       )}
       <Button
         as="button"
-        type="primary"
+        type="submit"
+        variant="primary"
         fullWidth
         disabled={state === 'fetching'}
       >

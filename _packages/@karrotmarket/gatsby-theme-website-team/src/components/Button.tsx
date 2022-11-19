@@ -17,7 +17,7 @@ const Button = styled(Link, {
   cursor: 'pointer',
 
   variants: {
-    type: {
+    variant: {
       default: {
         color: vars.$scale.color.gray900,
         backgroundColor: vars.$scale.color.gray100,
@@ -44,7 +44,7 @@ const Button = styled(Link, {
     },
   },
   defaultVariants: {
-    type: 'default',
+    variant: 'default',
     fullWidth: false,
   },
 });
