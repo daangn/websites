@@ -15,9 +15,16 @@ jobs:
     name: Deploy
     steps:
       - uses: actions/checkout@v3
+      
+      - name: Setup Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: yarn install --immutable
 
       - name: Publish
         uses: cloudflare/wrangler-action@2.0.0
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
-          workingDirectory: '_workers/greenhouse-proxy-worker/'
