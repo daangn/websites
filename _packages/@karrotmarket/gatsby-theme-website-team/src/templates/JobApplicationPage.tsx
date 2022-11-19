@@ -235,10 +235,6 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
       action={jobApplicationFormEndpoint}
       onSubmit={handleSubmit}
     >
-      <div
-        className="cf-turnstile"
-        data-sitekey={turnstileSiteKey}
-      />
       <ShortTextField
         name="first_name"
         label={messages.job_application_page__field_name_label}
@@ -354,6 +350,10 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
           label={messages.job_application_page__terms_sensitive_info}
         />
       )}
+      <div
+        className="cf-turnstile"
+        data-sitekey={turnstileSiteKey}
+      />
       <Button
         as="button"
         type="submit"
