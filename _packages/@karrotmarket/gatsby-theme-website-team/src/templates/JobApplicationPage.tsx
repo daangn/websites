@@ -230,7 +230,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
   return (
     <Form
       ref={formRef}
-      method="post"
+      method="POST"
       encType="multipart/form-data"
       action={jobApplicationFormEndpoint}
       onSubmit={handleSubmit}
