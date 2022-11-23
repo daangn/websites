@@ -2517,7 +2517,7 @@ __metadata:
     babel-preset-gatsby-package: 2.24.0
     clsx: 1.2.1
     concurrently: 7.5.0
-    focus-trap-react: 10.0.0
+    focus-trap-react: 10.0.1
     framer-motion: 4.1.17
     gatsby: 5.0.1
     gatsby-plugin-advanced-sitemap: 2.1.0
@@ -8801,26 +8801,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"focus-trap-react@npm:10.0.0":
-  version: 10.0.0
-  resolution: "focus-trap-react@npm:10.0.0"
+"focus-trap-react@npm:10.0.1":
+  version: 10.0.1
+  resolution: "focus-trap-react@npm:10.0.1"
   dependencies:
-    focus-trap: ^7.0.0
-    tabbable: ^6.0.0
+    focus-trap: ^7.1.0
+    tabbable: ^6.0.1
   peerDependencies:
     prop-types: ^15.8.1
     react: ">=16.3.0"
     react-dom: ">=16.3.0"
-  checksum: 44e98f61fbeb49b94f4d89bcc3c6833b31a07cdd742b74999c4dead54d3b7b06b6f094da76151575e7a052215eb305898b7bee5e3e759238302d45d78f85da1c
+  checksum: 297124d956f17b2b0cc80b225b50a6b501b0c810b0c5a363e06ad5ec08b01a4392d033f8e9f59a2a4d9f241817df5d060f77d05d386495827a67598a4c154b25
   languageName: node
   linkType: hard
 
-"focus-trap@npm:^7.0.0":
-  version: 7.0.0
-  resolution: "focus-trap@npm:7.0.0"
+"focus-trap@npm:^7.1.0":
+  version: 7.1.0
+  resolution: "focus-trap@npm:7.1.0"
   dependencies:
-    tabbable: ^6.0.0
-  checksum: 36812c880a5262478d5d8a678cae0a0576b3c801a7c00010d44154d5526aeaeaab5cd05aaf3199ceee97ff9be8defe47809f3712c8211bc829bde6c0614d7bb9
+    tabbable: ^6.0.1
+  checksum: d21a934e0600d7ae66e9dd4a9ee624c3befda9f870414cedb097bc7e5e6dda49af036c7500b61e0ada56135551fd9679d6eb53b9e0a3ff2b74e7ad7385c2f3ab
   languageName: node
   linkType: hard
 
@@ -16831,10 +16831,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tabbable@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "tabbable@npm:6.0.0"
-  checksum: a6bd253035b91b6ed280c77e07880f35d337509c2d49f6eef9e9d80a006bf6bddb42cdc5772f7a33a2a6625f47d2faa47b50398dda4bb83157a078c3002884ba
+"tabbable@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "tabbable@npm:6.0.1"
+  checksum: 65e378ad69a97416f2fdce34ade11b8ff68b33d9b2d978920a9d285c77e1bb88cb35113a8f00af8c4f0163d788d451a48840a216fa918d6a3f0c554951deb984
   languageName: node
   linkType: hard
 
