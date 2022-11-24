@@ -2369,20 +2369,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@karrotmarket/design-token@npm:0.1.8-3":
-  version: 0.1.8-3
-  resolution: "@karrotmarket/design-token@npm:0.1.8-3"
-  checksum: 9c29d2904d74172c2be6c3f6a70534cbe6c82fa73a0c2d26b22b9721c0f883d6b28a734a3abb83e64a0f830076421f0f7371e7a64ba04b009a7967e26c71f4cd
-  languageName: node
-  linkType: hard
-
-"@karrotmarket/design-token@npm:1.1.2":
-  version: 1.1.2
-  resolution: "@karrotmarket/design-token@npm:1.1.2"
-  checksum: 9ec1524e9a573a07931d40cd4806692f5670721a6ec5247bd0449e0389088822a9a91496bfe422929a35aa12a2d663b1f2537fdba8e1dcebbf6ba6ff139e640c
-  languageName: node
-  linkType: hard
-
 "@karrotmarket/gatsby-plugin-lokalise-translation@workspace:^, @karrotmarket/gatsby-plugin-lokalise-translation@workspace:_packages/@karrotmarket/gatsby-plugin-lokalise-translation":
   version: 0.0.0-use.local
   resolution: "@karrotmarket/gatsby-plugin-lokalise-translation@workspace:_packages/@karrotmarket/gatsby-plugin-lokalise-translation"
@@ -2447,13 +2433,10 @@ __metadata:
     "@babel/core": 7.20.2
     "@cometjs/core": 2.1.0
     "@cometjs/graphql-utils": 2.0.3
-    "@karrotmarket/design-token": 1.1.2
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website": "workspace:^"
-    "@karrotmarket/react-stitches": 0.1.1-1
     "@reach/router": 1.3.4
-    "@seed-design/design-token": alpha
-    "@seed-design/stylesheet": alpha
+    "@seed-design/design-token": 1.0.0
     "@stitches/react": 1.2.8
     "@svgr/webpack": 6.5.1
     babel-preset-gatsby-package: 2.24.0
@@ -2465,6 +2448,7 @@ __metadata:
     gatsby-plugin-preload-fonts: 4.1.0
     gatsby-plugin-prismic-previews: 5.2.10
     gatsby-plugin-prismic-schema: "workspace:*"
+    gatsby-plugin-seed-design: 0.0.3
     gatsby-plugin-sharp: 5.1.0
     gatsby-plugin-svgr: 3.0.0-beta.0
     gatsby-source-prismic: 5.2.10
@@ -2479,7 +2463,6 @@ __metadata:
     sharp: 0.31.2
     typescript: 4.9.3
   peerDependencies:
-    "@karrotmarket/gatsby-theme-prismic": "*"
     "@stitches/react": ^0.1.0 || ^0.2.0 || ^1.0.0
     gatsby: ^4.19.0 || ^5.0.0
     polished: ^4.0.0
@@ -2497,17 +2480,14 @@ __metadata:
     "@cometjs/core": 2.1.0
     "@cometjs/graphql-utils": 2.0.3
     "@cometjs/react-utils": 2.0.3
-    "@karrotmarket/design-token": 1.1.2
     "@karrotmarket/gatsby-plugin-lokalise-translation": "workspace:^"
     "@karrotmarket/gatsby-source-greenhouse-jobboard": 0.7.0
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website": "workspace:^"
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^"
-    "@karrotmarket/react-stitches": 0.1.1-1
     "@prismicio/helpers": 2.3.6
     "@reach/router": 1.3.4
-    "@seed-design/design-token": alpha
-    "@seed-design/stylesheet": alpha
+    "@seed-design/design-token": 1.0.0
     "@stitches/react": 1.2.8
     "@svgr/webpack": 6.5.1
     "@types/node": 18.11.9
@@ -2532,6 +2512,7 @@ __metadata:
     gatsby-plugin-prismic-previews: 5.2.10
     gatsby-plugin-prismic-schema: "workspace:*"
     gatsby-plugin-robots-txt: 1.8.0
+    gatsby-plugin-seed-design: 0.0.3
     gatsby-plugin-sharp: 5.1.0
     gatsby-plugin-sitemap: 6.1.0
     gatsby-plugin-svgr: 3.0.0-beta.0
@@ -2564,14 +2545,16 @@ __metadata:
     "@babel/cli": 7.19.3
     "@babel/core": 7.20.2
     "@cometjs/core": 2.1.0
-    "@seed-design/design-token": alpha
+    "@seed-design/design-token": 1.0.0
     "@stitches/react": 1.2.8
     "@svgr/webpack": 6.5.1
     "@types/node": 18.11.9
     "@types/react": 18.0.25
     "@types/react-dom": 18.0.9
     babel-preset-gatsby-package: 2.24.0
+    concurrently: 7.6.0
     gatsby: 5.1.0
+    gatsby-plugin-seed-design: 0.0.3
     gatsby-plugin-svgr: 3.0.0-beta.0
     gatsby-theme-stitches: 1.0.1
     polished: 4.2.2
@@ -2613,19 +2596,6 @@ __metadata:
     gatsby: ^4.19.0 || ^5.0.0
   languageName: unknown
   linkType: soft
-
-"@karrotmarket/react-stitches@npm:0.1.1-1":
-  version: 0.1.1-1
-  resolution: "@karrotmarket/react-stitches@npm:0.1.1-1"
-  dependencies:
-    "@karrotmarket/design-token": 0.1.8-3
-    polished: ^4.1.2
-    type-fest: ^1.1.3
-  peerDependencies:
-    "@stitches/react": ^0.1.0 || ^0.2.0
-  checksum: a053e37f49e6798261b748c90063888bc88258189f62e714829db523a46bf9675cf99a75fee18712fbbd9a5c92fc30baa1e139d25747c2eceababd3cb7df5d0e
-  languageName: node
-  linkType: hard
 
 "@lezer/common@npm:^0.15.0, @lezer/common@npm:^0.15.7":
   version: 0.15.12
@@ -3562,6 +3532,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@seed-design/design-token@npm:1.0.0, @seed-design/design-token@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@seed-design/design-token@npm:1.0.0"
+  checksum: b1e82bd0f0dead5ca477c5420e871a25e0955eb06a7f1c46a2201d10312ca7c02796850a5c56b6347eb8b88d9b31e63d5c0191e14b40a4b1c59348b23b2e9739
+  languageName: node
+  linkType: hard
+
 "@seed-design/design-token@npm:alpha":
   version: 1.0.0-alpha.5
   resolution: "@seed-design/design-token@npm:1.0.0-alpha.5"
@@ -3569,10 +3546,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@seed-design/stylesheet@npm:1.0.0-beta.1":
-  version: 1.0.0-beta.1
-  resolution: "@seed-design/stylesheet@npm:1.0.0-beta.1"
-  checksum: 36a2d60a2894f4bc21b131d5575ec4331cba319899cabb170e57d89170877a65e44ca6f4530b564b3f5e367e2d73b0a63134cf1298ef3f5efd5bf93d5928be36
+"@seed-design/react-theming@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "@seed-design/react-theming@npm:2.0.3"
+  dependencies:
+    "@seed-design/design-token": ^1.0.0
+  peerDependencies:
+    react: ^17.0.0 || ^18.0.0
+    react-dom: ^17.0.0 || ^18.0.0
+  checksum: 2fdf62a65b9cccfec5f3952256c873fbf8bcdb3ed30d48efe2a20eef1987b1afa9eeb1d8defff5a8101a727416593e6fab772278448da19af40e7cb0108ebfd4
+  languageName: node
+  linkType: hard
+
+"@seed-design/stylesheet@npm:^1.0.0":
+  version: 1.0.1
+  resolution: "@seed-design/stylesheet@npm:1.0.1"
+  checksum: 53aa74c4ed43c8aef9b7ceb4b6ec9ac18328513bc64fd70240ed509eb512225f6d6c2db41f102ab68c07626293bfa46cd635daee7e44d7a77c50c19e19c43838
   languageName: node
   linkType: hard
 
@@ -4787,13 +4776,10 @@ __metadata:
   resolution: "ads-local.daangn.com@workspace:ads-local.daangn.com"
   dependencies:
     "@babel/core": 7.20.2
-    "@cometjs/core": 2.1.0
     "@cometjs/graphql-utils": 2.0.3
-    "@karrotmarket/design-token": 1.1.2
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website": "workspace:^"
-    "@karrotmarket/react-stitches": 0.1.1-1
-    "@seed-design/stylesheet": 1.0.0-beta.1
+    "@seed-design/design-token": 1.0.0
     "@stitches/react": 1.2.8
     adblock-detect-react: 1.1.0
     gatsby: 5.1.0
@@ -4803,6 +4789,7 @@ __metadata:
     gatsby-plugin-manifest: 5.1.0
     gatsby-plugin-module-resolver: 1.0.3
     gatsby-plugin-robots-txt: 1.8.0
+    gatsby-plugin-seed-design: 0.0.3
     gatsby-plugin-sharp: 5.1.0
     gatsby-plugin-typegen: 3.1.0
     gatsby-source-filesystem: 5.1.0
@@ -9497,6 +9484,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"gatsby-plugin-seed-design@npm:0.0.3":
+  version: 0.0.3
+  resolution: "gatsby-plugin-seed-design@npm:0.0.3"
+  dependencies:
+    "@seed-design/react-theming": ^2.0.3
+    "@seed-design/stylesheet": ^1.0.0
+  peerDependencies:
+    gatsby: ^3.0.0 || ^4.0.0 || ^5.0.0
+    react: ^17.0.0 || ^18.0.0
+    react-dom: ^17.0.0 || ^18.0.0
+  checksum: 9b238589da1b6c9815cd84a2bacf1cf6b44709598daa31be6486be06397f04dd7ed527776760c0534640f040f23be8dec90224d353f105e46f68e871e372fa10
+  languageName: node
+  linkType: hard
+
 "gatsby-plugin-sharp@npm:5.1.0":
   version: 5.1.0
   resolution: "gatsby-plugin-sharp@npm:5.1.0"
@@ -14094,7 +14095,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"polished@npm:4.2.2, polished@npm:^4.1.2":
+"polished@npm:4.2.2":
   version: 4.2.2
   resolution: "polished@npm:4.2.2"
   dependencies:
@@ -17265,13 +17266,6 @@ __metadata:
   version: 0.8.1
   resolution: "type-fest@npm:0.8.1"
   checksum: d61c4b2eba24009033ae4500d7d818a94fd6d1b481a8111612ee141400d5f1db46f199c014766b9fa9b31a6a7374d96fc748c6d688a78a3ce5a33123839becb7
-  languageName: node
-  linkType: hard
-
-"type-fest@npm:^1.1.3":
-  version: 1.4.0
-  resolution: "type-fest@npm:1.4.0"
-  checksum: b011c3388665b097ae6a109a437a04d6f61d81b7357f74cbcb02246f2f5bd72b888ae33631b99871388122ba0a87f4ff1c94078e7119ff22c70e52c0ff828201
   languageName: node
   linkType: hard
 

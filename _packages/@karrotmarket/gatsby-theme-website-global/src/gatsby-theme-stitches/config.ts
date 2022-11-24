@@ -1,5 +1,4 @@
 import { em, rem } from "polished";
-import { colors } from "@karrotmarket/design-token";
 import { createStitches } from "@stitches/react";
 
 import { convertColorScheme } from "./colors";
@@ -29,8 +28,6 @@ const stitches =
       mc: `(min-width: ${em(1230)})`,
     },
     theme: {
-      // @ts-ignore
-      colors: convertColorScheme(colors.light.scheme),
       fonts: {
         noto: '"Noto Sans JP" sans-serif',
         gilroy: "Gilroy",

@@ -1,9 +1,10 @@
-import React, { ReactElement } from "react";
-import { styled } from "~/gatsby-theme-stitches/config";
+import * as React from "react";
 import { rem } from "polished";
+import { styled } from "gatsby-theme-stitches/src/config";
 
 type SectionProps = {
-  backgroundColor: string;
+  backgroundColor: string,
+  children: React.ReactNode,
 };
 
 export const Section: React.FC<SectionProps> = ({
@@ -11,7 +12,9 @@ export const Section: React.FC<SectionProps> = ({
   children,
 }) => {
   return (
-    <Base css={{ backgroundColor: `${backgroundColor}` }}>{children}</Base>
+    <Base css={{ backgroundColor: `${backgroundColor}` }}>
+      {children}
+    </Base>
   );
 };
 

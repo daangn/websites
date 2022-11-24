@@ -1,8 +1,8 @@
 import * as React from "react";
-
 import { rem } from "polished";
 import { graphql } from "gatsby";
 import { styled } from "gatsby-theme-stitches/src/config";
+import { vars } from '@seed-design/design-token';
 
 export const query = graphql`
   fragment PopularSection_content on PrismicGlobalContentsDataMainBodyPopularSection {
@@ -109,13 +109,13 @@ const Title = styled("h2", {
 
 const MoreButton = styled("a", {
   fontSize: `$body1`,
-  color: `$carrot500`,
+  color: vars.$scale.color.carrot500,
   marginTop: rem(36),
   transition: "color 0.3s",
   textDecoration: "underline",
   "&:hover": {
     cursor: "pointer",
-    color: "$carrot600",
+    color: vars.$scale.color.carrot600,
   },
   "@md": {
     marginTop: rem(72),
@@ -146,7 +146,7 @@ const ItemContainer = styled("a", {
   display: "flex",
   position: "relative",
   flexDirection: "column",
-  color: "$gray900",
+  color: vars.$scale.color.gray900,
   textDecoration: "none",
   "&:hover": {
     cursor: "pointer",

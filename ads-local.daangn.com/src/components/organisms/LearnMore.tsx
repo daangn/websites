@@ -1,7 +1,9 @@
 import * as React from "react";
-import { styled } from "~/gatsby-theme-stitches/config";
-import { ArrowLink } from "~/components/molecules/ArrowLink";
 import { rem } from "polished";
+import { styled } from "gatsby-theme-stitches/src/config";
+import { vars } from '@seed-design/design-token';
+
+import { ArrowLink } from "~/components/molecules/ArrowLink";
 import chevronIconUrl from "~/image/chevron.svg";
 
 export const LearnMore = () => {
@@ -73,7 +75,7 @@ const Wrapper = styled("div", {
   alignItems: "center",
   justifyContent: "center",
   paddingY: rem(80),
-  backgroundColor: "$white",
+  backgroundColor: vars.$semantic.color.paperDefault,
 
   "@lg": {
     paddingY: rem(160),

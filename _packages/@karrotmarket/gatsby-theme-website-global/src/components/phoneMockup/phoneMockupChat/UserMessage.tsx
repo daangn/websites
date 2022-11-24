@@ -1,12 +1,14 @@
 import * as React from "react";
-
 import { em } from "polished";
 import { motion } from "framer-motion";
 import { styled } from "gatsby-theme-stitches/src/config";
+import { vars } from '@seed-design/design-token';
+
 import { messageMotionOption } from "./_config";
 
 interface UserMessageProps {
   userType?: "sender" | "receiver";
+  children: React.ReactNode;
 }
 
 const UserMessage: React.FC<UserMessageProps> = ({ children, userType }) => (
@@ -40,12 +42,12 @@ const Message = styled("div", {
     userType: {
       sender: {
         borderRadius: `${em(100)} ${em(2)} ${em(100)} ${em(100)} `,
-        color: "white",
-        background: "$carrot500",
+        color: vars.$scale.color.gray00,
+        background: vars.$scale.color.carrot500,
       },
       receiver: {
-        color: "$gray900",
-        background: "$gray100",
+        color: vars.$scale.color.gray900,
+        background: vars.$scale.color.gray100,
         borderRadius: `${em(2)}  ${em(100)} ${em(100)} ${em(100)} `,
       },
     },

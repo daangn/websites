@@ -1,10 +1,9 @@
-import React from "react";
-
-import { styled } from "~/gatsby-theme-stitches/config";
-import { ReactComponent as IconDaangnApp } from "~/image/icon_daangn_app.svg";
-
-import { Section } from "~/components/molecules/Section";
+import * as React from "react";
 import { rem } from "polished";
+import { styled } from "gatsby-theme-stitches/src/config";
+
+import { ReactComponent as IconDaangnApp } from "~/image/icon_daangn_app.svg";
+import { Section } from "~/components/molecules/Section";
 import { DownloadButton } from "~/components/molecules/DownloadButton";
 
 export const Download = () => {

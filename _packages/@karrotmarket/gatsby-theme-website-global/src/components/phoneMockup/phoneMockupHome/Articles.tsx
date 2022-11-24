@@ -1,11 +1,10 @@
 import * as React from "react";
 import { em } from "polished";
 import { motion } from "framer-motion";
-
 import { styled } from "gatsby-theme-stitches/src/config";
+import { vars } from '@seed-design/design-token';
 
 import { Article } from "./_type";
-import { Flex } from "../../Flex";
 
 import { ReactComponent as ChatCountIcon } from "../../../icons/chat-count.svg";
 import { ReactComponent as InterestCountIcon } from "../../../icons/interest-count.svg";
@@ -111,7 +110,7 @@ const InfoContainer = styled("div", {
 
 const Info = styled("div", {
   fontSize: em(12),
-  color: "$gray600",
+  color: vars.$scale.color.gray600,
 });
 
 const Spacer = styled("div", {
@@ -149,7 +148,7 @@ const CountInfo = styled("div", {
     fontSize: em(12),
   },
   svg: {
-    fill: `$gray600`,
+    fill: vars.$scale.color.gray600,
   },
 });
 

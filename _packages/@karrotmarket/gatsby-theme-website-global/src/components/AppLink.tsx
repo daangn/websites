@@ -2,9 +2,7 @@ import * as React from "react";
 import { rem } from "polished";
 import { graphql } from "gatsby";
 import { styled } from "gatsby-theme-stitches/src/config";
-
-import { Flex } from "./Flex";
-import { Space } from "./Space";
+import { vars } from '@seed-design/design-token';
 
 import { ReactComponent as AppStoreIcon } from "../icons/app_store.svg";
 import { ReactComponent as GooglePlayIcon } from "../icons/google_play.svg";
@@ -33,7 +31,7 @@ const SLinkButton = styled("a", {
     theme: {
       dark: {
         color: "white",
-        background: "$gray900",
+        background: vars.$scale.color.gray900,
         "& path": {
           fill: "white",
         },
@@ -42,27 +40,27 @@ const SLinkButton = styled("a", {
         },
       },
       light: {
-        color: "$gray900",
-        background: "$gray100",
+        color: vars.$scale.color.gray900,
+        background: vars.$scale.color.gray100,
         "& path": {
-          fill: "$gray900",
+          fill: vars.$scale.color.gray900,
         },
         "&:hover": {
-          background: "$gray200",
+          background: vars.$scale.color.gray200,
         },
       },
       primary: {
         color: "white",
-        background: "$carrot500",
+        background: vars.$scale.color.carrot500,
         "& path": {
           fill: "white",
         },
         "&:hover": {
-          background: "$carrot600",
+          background: vars.$scale.color.carrot600,
         },
       },
       white: {
-        color: "$gray900",
+        color: vars.$scale.color.gray900,
         background: "white",
       },
     },

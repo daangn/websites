@@ -1,8 +1,7 @@
 import * as React from "react";
 import { em } from "polished";
-
-import { Flex } from "../../Flex";
 import { styled } from "gatsby-theme-stitches/src/config";
+import { vars } from '@seed-design/design-token';
 
 interface HeaderProps {
   name: string;
@@ -30,13 +29,13 @@ const Container = styled("div", {
   alignItems: "center",
 });
 const UserName = styled("div", {
-  color: "$gray900",
+  color: vars.$scale.color.gray900,
   fontSize: em(16),
   marginRight: em(5),
   fontWeight: "bold",
 });
 const UserTemperature = styled("div", {
-  color: "$carrot500",
+  color: vars.$scale.color.carrot500,
   background: "rgba(255, 114, 54, 0.12)",
   padding: `${em(4)} ${em(10)}`,
   borderRadius: em(100),
@@ -45,7 +44,7 @@ const UserTemperature = styled("div", {
   letterSpacing: em(-0.1),
 });
 const Info = styled("div", {
-  color: "$gray600",
+  color: vars.$scale.color.gray600,
   fontSize: em(11),
   textAlign: "center",
 });

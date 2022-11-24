@@ -5,7 +5,6 @@ import {
   styled,
   type MediaTypeMap,
 } from "gatsby-theme-stitches/src/config";
-import { colors } from "@karrotmarket/design-token";
 import { vars } from "@seed-design/design-token";
 
 const BackIcon = () => (
@@ -36,6 +35,7 @@ interface PhoneProps {
   width?: number;
   containerWidth?: number;
   align?: "left" | "center";
+  children: React.ReactNode;
 }
 
 const Phone: React.FC<PhoneProps> = ({
@@ -104,10 +104,10 @@ const PhoneFrame = styled("div", {
   variants: {
     frameColor: {
       green: {
-        border: `${em(6)} solid $green500`,
+        border: `${em(6)} solid ${vars.$scale.color.green500}`,
       },
       orange: {
-        border: `${em(6)}  solid $carrot500`,
+        border: `${em(6)}  solid ${vars.$scale.color.carrot500}`,
       },
     },
   },
@@ -122,13 +122,13 @@ const TopSection = styled("div", {
 
 const HeaderSection = styled("div", {
   height: em(54),
-  borderBottom: `${em(1)} solid $gray200`,
+  borderBottom: `${em(1)} solid ${vars.$scale.color.gray200}`,
   position: "relative",
   display: "flex",
   alignItems: "center",
   padding: `0 ${em(12)}`,
   zIndex: 1,
-  background: "white",
+  background: vars.$semantic.color.paperDefault,
   borderTopLeftRadius: em(54),
   borderTopRightRadius: em(54),
 });

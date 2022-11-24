@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import { rem } from "polished";
 import { graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
@@ -7,7 +6,7 @@ import {
   ParallaxBanner,
   ParallaxProvider,
 } from "react-scroll-parallax";
-
+import { vars } from '@seed-design/design-token';
 import { styled } from "gatsby-theme-stitches/src/config";
 
 import { ReactComponent as KarrotIcon } from "../../icons/karrot.svg";
@@ -107,7 +106,7 @@ const Container = styled("div", {
   zIndex: 0,
   width: "$maxContent",
   margin: "0 auto",
-  color: "white",
+  color: vars.$semantic.color.paperBackground,
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",

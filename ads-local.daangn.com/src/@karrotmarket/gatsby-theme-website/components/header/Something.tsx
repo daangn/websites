@@ -1,6 +1,8 @@
 import * as React from "react";
 import { rem } from "polished";
 import { styled } from "gatsby-theme-stitches/src/config";
+import { vars } from '@seed-design/design-token';
+
 import { ReactComponent as IconCall } from "~/image/icon_call.svg";
 import { ReactComponent as Divider } from "~/image/divider.svg";
 
@@ -13,7 +15,7 @@ const QuestionInfo = styled("div", {
   p: { marginLeft: 8 },
   mark: {
     backgroundColor: "transparent",
-    color: "$carrot500",
+    color: vars.$semantic.color.primary,
     display: "none",
     "@md": {
       display: "inline",
@@ -47,7 +49,7 @@ const StyledDivider  = styled(Divider, {
 })
 
 const TelLink = styled("a", {
-  color: "$black",
+  color: vars.$scale.color.gray900,
   textDecoration: "none",
 });
 
@@ -55,8 +57,8 @@ const GotoDaangnBusinessButton = styled('button', {
   display: 'none',
   "@md": {
     display: 'inline-block',
-    backgroundColor:" $carrot500",
-    color: "$white",
+    backgroundColor: vars.$semantic.color.primary,
+    color: vars.$semantic.color.onPrimary,
     padding: rem(8),
     borderRadius: rem(4),
     border: 'none',
@@ -68,9 +70,8 @@ const GotoDaangnBusinessButton = styled('button', {
     textAlign: 'center',
     textDecoration: 'none',
     marginLeft: rem(8),
-  }
-})
-
+  },
+});
 
 const Something: React.FC = () => {
   return (

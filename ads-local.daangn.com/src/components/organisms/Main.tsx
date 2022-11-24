@@ -1,11 +1,11 @@
-import React from "react";
+import * as React from "react";
+import { graphql, useStaticQuery } from "gatsby";
+import { type ImageDataLike } from "gatsby-plugin-image";
 
 import { MainSection } from "~/components/organisms/MainSection";
 import { Main04 } from "~/components/organisms/Main04";
 import { NowStart } from "~/components/organisms/NowStart";
 import { UserQuoteCarousel } from "~/components/organisms/UserQuoteCarousel";
-import { graphql, useStaticQuery } from "gatsby";
-import { ImageDataLike } from "gatsby-plugin-image";
 
 export const Main = () => {
   const ImageQuery = useStaticQuery<GatsbyTypes.ImageQuery>(graphql`

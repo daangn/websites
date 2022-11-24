@@ -19,8 +19,9 @@
   },
   "dependencies": {
     "@cometjs/core": "2.1.0",
-    "@seed-design/design-token": "alpha",
+    "@seed-design/design-token": "1.0.0",
     "@svgr/webpack": "6.5.1",
+    "gatsby-plugin-seed-design": "0.0.3",
     "gatsby-plugin-svgr": "3.0.0-beta.0",
     "gatsby-theme-stitches": "1.0.1",
     "react-intersection-observer": "8.34.0"
@@ -33,6 +34,7 @@
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
     "babel-preset-gatsby-package": "2.24.0",
+    "concurrently": "7.6.0",
     "gatsby": "5.1.0",
     "polished": "4.2.2",
     "react": "18.2.0",

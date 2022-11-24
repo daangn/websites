@@ -1,11 +1,9 @@
 import * as React from "react";
-
-import { graphql } from "gatsby";
-import { rem } from "polished";
-import { motion } from "framer-motion";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { useInView } from "react-intersection-observer";
-
+import { motion } from "framer-motion";
+import { rem } from "polished";
+import { graphql } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { styled } from "gatsby-theme-stitches/src/config";
 
 type IllustrationSectionProps = {

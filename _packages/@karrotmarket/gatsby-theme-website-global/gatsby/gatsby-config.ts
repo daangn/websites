@@ -26,6 +26,12 @@ const config: GatsbyConfig = {
     "gatsby-plugin-image",
     "gatsby-transformer-sharp",
     `gatsby-plugin-preload-fonts`,
+    {
+      resolve: 'gatsby-plugin-seed-design',
+      options: {
+        mode: 'light-only',
+      },
+    },
 
     "@karrotmarket/gatsby-theme-website",
     "@karrotmarket/gatsby-theme-prismic",

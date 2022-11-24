@@ -1,8 +1,8 @@
 import * as React from "react";
-
 import { rem } from "polished";
 import { graphql } from "gatsby";
 import { styled } from "gatsby-theme-stitches/src/config";
+import { vars } from '@seed-design/design-token';
 
 export const query = graphql`
   fragment SubtitleAndLinks_content on PrismicGlobalContentsDataAboutBodySubtitleAndLinks {
@@ -67,7 +67,7 @@ const Title = styled("h2", {
 
 const LinkContainer = styled("div", {
   display: "inline",
-  color: "$gray600",
+  color: vars.$scale.color.gray600,
   fontFamily: "$system",
 });
 

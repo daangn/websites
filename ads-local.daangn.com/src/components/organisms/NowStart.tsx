@@ -1,7 +1,9 @@
-import React from "react";
-import { styled } from "~/gatsby-theme-stitches/config";
-import { Section } from "~/components/molecules/Section";
+import * as React from "react";
 import { StaticImage as Picture } from "gatsby-plugin-image";
+import { styled } from "gatsby-theme-stitches/src/config";
+import { vars } from '@seed-design/design-token';
+
+import { Section } from "~/components/molecules/Section";
 
 import { rem } from "polished";
 
@@ -109,7 +111,7 @@ const ImgRow = styled("div", {
 
 const ImgContainer = styled("div", {
   marginY: rem(43),
-  backgroundColor: "$white",
+  backgroundColor: vars.$semantic.color.paperDefault,
   paddingX: rem(64),
   border: `1px solid rgba(33, 33, 36, 0.07)`,
 
@@ -140,6 +142,6 @@ const StepNumber = styled("p", {
   fontSize: "$subtitle3",
   lineHeight: rem(31),
   fontWeight: "bold",
-  color: "$carrot500",
+  color: vars.$semantic.color.primary,
   marginY: rem(4),
 });

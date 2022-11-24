@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import { rem } from "polished";
 import { graphql } from "gatsby";
 import { getImage } from "gatsby-plugin-image";

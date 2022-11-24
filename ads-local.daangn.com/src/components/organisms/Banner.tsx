@@ -1,15 +1,14 @@
+import * as React from 'react';
+import { rem, em } from "polished";
+import { styled } from "gatsby-theme-stitches/src/config";
+
 import banner_avif from "~/image/img_cover_mobile.avif";
 import banner_webp from "~/image/img_cover_mobile.webp";
-
 import banner_pc_avif from "~/image/img_cover_pc.avif";
 import banner_pc_webp from "~/image/img_cover_pc.webp";
-
 import advertisementMobileBanner from "~/image/img_cover_mobile.png";
 import advertisementPcBanner from "~/image/img_cover_pc.png";
-
-import { styled } from "~/gatsby-theme-stitches/config";
 import { DownloadButton } from "~/components/molecules/DownloadButton";
-import { rem, em } from "polished";
 
 export function Banner() {
   return (

@@ -1,9 +1,9 @@
-import React, { ChangeEvent } from "react";
-import { graphql } from "gatsby";
-import { styled } from "~/gatsby-theme-stitches/config";
-import { Condition } from "@cometjs/core";
-import { rem } from "polished";
+import * as React from "react";
 import TextLoop from "react-text-loop";
+import { rem } from "polished";
+import { graphql } from "gatsby";
+import { styled } from "gatsby-theme-stitches/src/config";
+import { vars } from '@seed-design/design-token';
 
 type VisitorsProps = {
   data: GatsbyTypes.PrismicAdvertisementContentsDataBodyVisitorCountSlide_dataFragment;
@@ -64,7 +64,7 @@ const Wrapper = styled("div", {
   justifyContent: "center",
   alignItems: "center",
   height: rem(200),
-  backgroundColor: "$white",
+  backgroundColor: vars.$semantic.color.paperDefault,
 });
 
 const Container = styled("div", {
@@ -107,13 +107,6 @@ const TextContainer = styled("div", {
   },
 });
 
-const TextLoopMobile = styled(TextLoop, {
-  display: "inline",
-  "@md": {
-    display: "none",
-  },
-});
-
 const Region = styled("p", {
   fontSize: "$subtitle3",
   fontWeight: "bold",
@@ -123,7 +116,7 @@ const ColoredText = styled("p", {
   fontSize: "$subtitle2",
   paddingTop: rem(5),
   paddingBottom: rem(5),
-  color: "$carrot500",
+  color: vars.$semantic.color.primary,
   fontWeight: "bold",
 });
 

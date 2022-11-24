@@ -4,6 +4,7 @@ const config: GatsbyConfig = {
   plugins: [
     'gatsby-plugin-svgr',
     'gatsby-theme-stitches',
+    'gatsby-plugin-seed-design',
     '@karrotmarket/gatsby-theme-prismic',
   ],
 };

@@ -1,12 +1,9 @@
 import * as React from "react";
+import { rem } from "polished";
 import { graphql } from "gatsby";
-
 import { styled } from "gatsby-theme-stitches/src/config";
 
-import { Flex } from "../Flex";
-import { Space } from "../Space";
 import AppLink from "../AppLink";
-import { rem } from "polished";
 import PhoneMockupHome from "../phoneMockup/PhoneMockupHome";
 import HeroSectionBackground from "./HeroSectionBackground";
 

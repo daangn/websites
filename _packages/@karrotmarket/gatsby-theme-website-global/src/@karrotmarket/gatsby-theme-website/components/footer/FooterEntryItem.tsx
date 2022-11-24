@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Link } from "gatsby";
 import { useLocation } from "@reach/router";
+import { vars } from '@seed-design/design-token';
 
 import { styled } from "gatsby-theme-stitches/src/config";
 import {
@@ -14,7 +15,7 @@ const FooterEntryItemContainer = styled("li", {
 });
 
 const FooterEntryLink = styled(Link, {
-  color: "$gray900",
+  color: vars.$scale.color.gray900,
   textDecoration: "none",
   opacity: 1,
 
@@ -25,9 +26,9 @@ const FooterEntryLink = styled(Link, {
   variants: {
     active: {
       true: {
-        color: "$carrot500",
+        color: vars.$scale.color.carrot500,
         "&:hover, &:active, &:focus": {
-          color: "$carrot600",
+          color: vars.$scale.color.carrot600,
         },
       },
     },

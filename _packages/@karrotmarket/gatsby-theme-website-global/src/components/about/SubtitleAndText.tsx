@@ -1,10 +1,7 @@
 import * as React from "react";
-
 import { rem } from "polished";
 import { graphql } from "gatsby";
 import { styled } from "gatsby-theme-stitches/src/config";
-
-import { Space } from "../Space";
 
 export const query = graphql`
   fragment SubtitleAndText_content on PrismicGlobalContentsDataAboutBodySubtitleAndText {

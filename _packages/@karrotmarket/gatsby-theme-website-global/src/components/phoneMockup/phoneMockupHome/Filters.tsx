@@ -1,8 +1,8 @@
 import * as React from "react";
 import { em } from "polished";
 import { motion } from "framer-motion";
-
 import { styled } from "gatsby-theme-stitches/src/config";
+import { vars } from '@seed-design/design-token';
 
 import { Filter } from "./_type";
 
@@ -41,8 +41,8 @@ const Wrapper = styled(motion.div, {
 const Container = styled("div", {
   display: "grid",
 
-  color: "$gray700",
-  border: "1px solid $gray200",
+  color: vars.$scale.color.gray700,
+  border: `1px solid ${vars.$scale.color.gray200}`,
   gridTemplateColumns: "repeat(2, max-content)",
   padding: `${em(6)} ${em(14)}`,
   borderRadius: em(100),
@@ -56,8 +56,8 @@ const Container = styled("div", {
     active: {
       true: {
         background: "$gray100",
-        border: "1px solid $gray700",
-        color: "$gray900",
+        border: `1px solid ${vars.$scale.color.gray700}`,
+        color: vars.$scale.color.gray900,
       },
     },
     icon: {

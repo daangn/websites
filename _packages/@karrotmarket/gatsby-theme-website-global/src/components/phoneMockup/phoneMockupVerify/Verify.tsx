@@ -2,6 +2,7 @@ import * as React from "react";
 import { em } from "polished";
 import { motion } from "framer-motion";
 import { styled } from "gatsby-theme-stitches/src/config";
+import { vars } from '@seed-design/design-token';
 
 import { ReactComponent as PinIcon } from "../../../icons/pin.svg";
 import { ReactComponent as CheckIcon } from "../../../icons/check.svg";
@@ -105,14 +106,14 @@ const CenterContainer = styled("div", {
   transform: "translate(-50%,-50%)",
 });
 const Range = styled(motion.div, {
-  background: "$carrot500",
+  background: vars.$scale.color.carrot500,
   opacity: 0.15,
   width: em(160),
   height: em(160),
   borderRadius: em(80),
 });
 const RangeBorder = styled(motion.div, {
-  border: `${em(1)} solid $carrot500`,
+  border: `${em(1)} solid ${vars.$scale.color.carrot500}`,
   boxSizing: "border-box",
   opacity: 0.3,
   width: em(160),
@@ -131,7 +132,7 @@ const Button = styled(motion.button, {
   justifyContent: "center",
   alignItems: "center",
   background: "$carrot500",
-  color: "white",
+  color: vars.$semantic.color.paperDefault,
   width: "100%",
   height: em(50),
   borderRadius: em(6),

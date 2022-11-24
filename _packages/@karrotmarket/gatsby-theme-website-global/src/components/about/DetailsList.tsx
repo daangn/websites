@@ -1,8 +1,8 @@
 import * as React from "react";
-
 import { rem } from "polished";
 import { graphql } from "gatsby";
 import { styled } from "gatsby-theme-stitches/src/config";
+import { vars } from '@seed-design/design-token';
 
 type DetailsListProps = {
   content: GatsbyTypes.DetailsList_contentFragment;
@@ -50,10 +50,10 @@ const Grid = styled("div", {
 });
 
 const Label = styled("div", {
-  color: "$gray900",
+  color: vars.$scale.color.gray900,
 });
 const Text = styled("div", {
-  color: "$gray600",
+  color: vars.$scale.color.gray600,
 });
 
 export default DetailsList;

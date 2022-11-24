@@ -1,5 +1,3 @@
-import "@seed-design/stylesheet/global.css";
-
 import * as React from "react";
 import {
   graphql,
@@ -12,9 +10,12 @@ import {
   OpenGraph,
   TwitterCard,
 } from 'gatsby-plugin-head-seo/src';
+import { useDetectAdBlock } from "adblock-detect-react";
 import { mapAbstractTypeWithDefault } from "@cometjs/graphql-utils";
 import Header from "@karrotmarket/gatsby-theme-website/src/components/Header";
 import Footer from "@karrotmarket/gatsby-theme-website/src/components/Footer";
+import { vars } from '@seed-design/design-token';
+
 import { globalStyles, styled } from "~/gatsby-theme-stitches/config";
 import { Banner } from "~/components/organisms/Banner";
 import { Main } from "~/components/organisms/Main";
@@ -22,8 +23,6 @@ import { LearnMore } from "~/components/organisms/LearnMore";
 import { Visitors } from "~/components/organisms/Visitors";
 import { Download } from "~/components/organisms/Download";
 import { DownloadBtnMobile } from "~/components/organisms/DownloadBtnMobile";
-
-import { useDetectAdBlock } from "adblock-detect-react";
 import { AdblockModal } from "~/components/organisms/AdblockModal";
 
 export const query = graphql`
@@ -175,11 +174,11 @@ const DisclaimerContent = styled('div',{
   p : {
     fontSize: rem(12),
     lineHeight: rem(18),
-    color: '$gray600'
+    color: vars.$scale.color.gray600,
   },
   a: {
     textDecoration: 'underline',
-    color: '$gray900'
+    color: vars.$scale.color.gray900,
   }
   
 })
