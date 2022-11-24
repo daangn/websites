@@ -20,7 +20,7 @@
     "@karrotmarket/gatsby-theme-prismic": "workspace:^",
     "@karrotmarket/gatsby-theme-website": "workspace:^",
     "@karrotmarket/react-stitches": "0.1.1-1",
-    "@seed-design/stylesheet": "1.0.0-beta.1",
+    "@seed-design/stylesheet": "1.0.1",
     "@stitches/react": "1.2.8",
     "adblock-detect-react": "1.1.0",
     "gatsby": "5.1.0",
