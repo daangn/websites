@@ -6,12 +6,6 @@ export const onRenderBody: GatsbySSR['onRenderBody'] = ({
 }) => {
   setHtmlAttributes({
     lang: 'ja-JP',
-
-    // FIXME: extract to a plugin
-    // @ts-ignore
-    'data-seed': 'light-only',
-    // @ts-ignore
-    'data-seed-scale-color': 'light',
   });
 
   setHeadComponents([

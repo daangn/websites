@@ -5,6 +5,7 @@ import {
 } from "gatsby";
 import { styled } from "gatsby-theme-stitches/src/config";
 import Layout from "@karrotmarket/gatsby-theme-website-global/src/components/Layout";
+import { vars } from '@seed-design/design-token';
 
 export { Head } from '@karrotmarket/gatsby-theme-website-global/src/pages/404';
 
@@ -79,7 +80,7 @@ const Button = styled("a", {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  color: "$carrot500",
+  color: vars.$semantic.color.primary,
   textDecoration: "none",
   marginTop: 24,
   fontSize: "$body1",
@@ -89,7 +90,7 @@ const Button = styled("a", {
   },
 
   "&:hover": {
-    color: "$carrot600",
+    color: vars.$semantic.color.primaryHover,
   },
 });
 

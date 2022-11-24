@@ -2425,7 +2425,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@karrotmarket/gatsby-theme-website-global@*, @karrotmarket/gatsby-theme-website-global@workspace:^, @karrotmarket/gatsby-theme-website-global@workspace:_packages/@karrotmarket/gatsby-theme-website-global":
+"@karrotmarket/gatsby-theme-website-global@workspace:^, @karrotmarket/gatsby-theme-website-global@workspace:_packages/@karrotmarket/gatsby-theme-website-global":
   version: 0.0.0-use.local
   resolution: "@karrotmarket/gatsby-theme-website-global@workspace:_packages/@karrotmarket/gatsby-theme-website-global"
   dependencies:
@@ -3562,13 +3562,6 @@ __metadata:
   version: 1.0.1
   resolution: "@seed-design/stylesheet@npm:1.0.1"
   checksum: 53aa74c4ed43c8aef9b7ceb4b6ec9ac18328513bc64fd70240ed509eb512225f6d6c2db41f102ab68c07626293bfa46cd635daee7e44d7a77c50c19e19c43838
-  languageName: node
-  linkType: hard
-
-"@seed-design/stylesheet@npm:alpha":
-  version: 1.0.0-alpha.2
-  resolution: "@seed-design/stylesheet@npm:1.0.0-alpha.2"
-  checksum: f9091e7da55dd1a71b17fe4175e7999d6dbb09b97033a0c70e4bcf77285c017a51c321aac2f480aadbd798087702258f50e8f64fb084849551fe59e508fe82e6
   languageName: node
   linkType: hard
 
@@ -11810,8 +11803,8 @@ __metadata:
   resolution: "jp.karrotmarket.com@workspace:jp.karrotmarket.com"
   dependencies:
     "@babel/core": 7.20.2
-    "@karrotmarket/gatsby-theme-website-global": "*"
-    "@seed-design/stylesheet": alpha
+    "@karrotmarket/gatsby-theme-website-global": "workspace:^"
+    "@seed-design/design-token": 1.0.0
     babel-plugin-polished: 1.1.0
     framer-motion: 4.1.17
     gatsby: 5.1.0
