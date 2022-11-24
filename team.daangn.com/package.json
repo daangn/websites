@@ -36,7 +36,7 @@
     "gatsby-plugin-google-tagmanager": "5.0.0",
     "gatsby-plugin-image": "3.0.0",
     "gatsby-plugin-manifest": "5.0.0",
-    "gatsby-plugin-robots-txt": "1.7.1",
+    "gatsby-plugin-robots-txt": "1.8.0",
     "gatsby-plugin-sitemap": "6.0.0",
     "gatsby-plugin-typegen": "3.1.0",
     "gatsby-plugin-vercel-deploy": "1.0.1",
