@@ -49,7 +49,7 @@
     "@babel/cli": "7.19.3",
     "@babel/core": "7.20.2",
     "babel-preset-gatsby-package": "2.24.0",
-    "concurrently": "7.5.0",
+    "concurrently": "7.6.0",
     "gatsby": "5.0.1",
     "polished": "4.2.2",
     "react": "18.2.0",
