@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Link } from "gatsby";
 import { useLocation } from "@reach/router";
+import { vars } from '@seed-design/design-token';
 
 import { styled } from "gatsby-theme-stitches/src/config";
 import {
@@ -30,17 +31,17 @@ const NavigationListItemContainer = styled("li", {
 
 const NavigationLink = styled(Link, {
   textDecoration: "none",
-  color: "$gray900",
+  color: vars.$scale.color.gray900,
   "&:hover, &:active, &:focus": {
-    color: "$gray600",
+    color: vars.$scale.color.gray600,
   },
 
   variants: {
     active: {
       true: {
-        color: "$carrot500",
+        color: vars.$scale.color.carrot500,
         "&:hover, &:active, &:focus": {
-          color: "$carrot600",
+          color: vars.$scale.color.carrot600,
         },
       },
     },

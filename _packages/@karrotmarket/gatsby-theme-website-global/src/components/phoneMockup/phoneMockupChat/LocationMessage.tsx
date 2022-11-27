@@ -1,8 +1,8 @@
 import * as React from "react";
 import { em } from "polished";
 import { motion } from "framer-motion";
-
 import { styled } from "gatsby-theme-stitches/src/config";
+import { vars } from '@seed-design/design-token';
 
 import { messageMotionOption } from "./_config";
 
@@ -47,7 +47,7 @@ const Wrapper = styled(motion.div, {
 });
 
 const Container = styled("div", {
-  border: `${em(1)} solid $gray200`,
+  border: `${em(1)} solid ${vars.$scale.color.gray200}`,
   borderRadius: em(16),
   overflow: "hidden",
   marginBottom: em(14),
@@ -66,7 +66,7 @@ const Button = styled("div", {
   height: em(42),
   width: "100%",
   fontSize: em(16),
-  color: "$gray700",
+  color: vars.$scale.color.gray700,
 });
 
 const CenterContainer = styled("div", {

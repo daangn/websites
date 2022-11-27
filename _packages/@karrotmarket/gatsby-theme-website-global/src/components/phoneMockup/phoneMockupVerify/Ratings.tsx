@@ -1,8 +1,8 @@
 import * as React from "react";
 import { em } from "polished";
 import { motion } from "framer-motion";
-
 import { styled } from "gatsby-theme-stitches/src/config";
+import { vars } from '@seed-design/design-token';
 
 import { RatingType } from "./_type";
 
@@ -44,7 +44,7 @@ const Wrapper = styled(motion.div, {
   flexDirection: "column",
   padding: em(24),
   paddingBottom: em(28),
-  background: "white",
+  background: vars.$semantic.color.paperDefault,
   borderRadius: em(8),
   boxShadow: `0 ${em(12)} ${em(14)} rgba(0, 0, 0, 0.12), 0 0 ${em(
     6
@@ -77,7 +77,7 @@ const Container = styled("div", {
 
 const Comment = styled("div", {
   fontSize: em(16),
-  color: "$gray900",
+  color: vars.$scale.color.gray900,
   marginLeft: em(6),
 });
 

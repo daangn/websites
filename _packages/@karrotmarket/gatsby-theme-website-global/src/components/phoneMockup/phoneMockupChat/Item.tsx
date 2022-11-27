@@ -1,9 +1,7 @@
 import * as React from "react";
 import { em } from "polished";
 import { styled } from "gatsby-theme-stitches/src/config";
-
-import { Flex } from "../../Flex";
-import { Space } from "../../Space";
+import { vars } from '@seed-design/design-token';
 
 interface ItemProps {
   image: string;
@@ -27,7 +25,7 @@ const Wrapper = styled("div", {
   padding: em(16),
   display: "flex",
   alignItems: "center",
-  borderBottom: "1px solid $gray200",
+  borderBottom: `1px solid ${vars.$scale.color.gray200}`,
   zIndex: 1,
   background: "white",
 });

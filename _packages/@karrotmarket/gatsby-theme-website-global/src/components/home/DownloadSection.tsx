@@ -1,13 +1,12 @@
 import * as React from "react";
+import { rem } from "polished";
 import { graphql } from "gatsby";
-
 import { styled } from "gatsby-theme-stitches/src/config";
 
 import { Space } from "../Space";
 import AppLink from "../AppLink";
 
 import { ReactComponent as KarrotLogoIcon } from "../../icons/karrot_logo.svg";
-import { rem } from "polished";
 
 export const query = graphql`
   fragment DownloadSection_content on PrismicGlobalContentsDataMainBodyDownloadSection {

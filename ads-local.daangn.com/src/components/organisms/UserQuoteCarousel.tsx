@@ -1,13 +1,13 @@
-import React from "react";
-import { styled } from "~/gatsby-theme-stitches/config";
-import { rem } from "polished";
+import * as React from "react";
 import { useSwipeable } from "react-swipeable";
-import { ArrowLink } from "~/components/molecules/ArrowLink";
+import { rem } from "polished";
+import { styled } from "gatsby-theme-stitches/src/config";
+import { vars } from '@seed-design/design-token';
 
+import { ArrowLink } from "~/components/molecules/ArrowLink";
 import tensoba from "~/image/tensoba.jpg";
 import promiseBycicle from "~/image/promise_bycicle.jpg";
 import jjinijjini from "~/image/jjinijjini.jpg";
-
 import tensoba_m from "~/image/tensoba_m.jpg";
 import promiseBycicle_m from "~/image/promise_bycicle_m.jpg";
 import jjinijjini_m from "~/image/jjinijjini_m.jpg";
@@ -264,7 +264,7 @@ const Quote = styled("p", {
   typography: "$subtitle4",
   lineHeight: rem(28),
   fontWeight: "bold",
-  color: "$white",
+  color: vars.$static.color.staticWhite,
   paddingX: rem(24),
   "@md": {
     typography: "$subtitle3",
@@ -292,7 +292,7 @@ const ByRow = styled("div", {
 
 const By = styled("p", {
   typography: "$body3",
-  color: "$white",
+  color: vars.$static.color.staticWhite,
   paddingLeft: rem(24),
 
   "@md": {
@@ -305,7 +305,6 @@ const By = styled("p", {
     typography: "$body1",
     paddingLeft: 0,
     marginTop: rem(2),
-    color: "$white",
   },
 });
 
@@ -330,7 +329,7 @@ const Dots = styled("div", {
 const Dot = styled("button", {
   position: "relative",
   borderRadius: "100%",
-  border: "1px solid $white",
+  border: `1px solid ${vars.$static.color.staticWhite}`,
   width: rem(10),
   height: rem(10),
   padding: 0,
@@ -349,7 +348,7 @@ const Dot = styled("button", {
   variants: {
     active: {
       true: {
-        background: "$white",
+        background: vars.$static.color.staticWhite,
       },
     },
   },

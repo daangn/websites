@@ -1,6 +1,7 @@
-import React from "react";
-import { styled } from "~/gatsby-theme-stitches/config";
+import * as React from "react";
 import { rem } from "polished";
+import { styled } from "gatsby-theme-stitches/src/config";
+import { vars } from '@seed-design/design-token';
 
 import { ReactComponent as Close } from "~/image/Icon_Close.svg";
 
@@ -58,7 +59,7 @@ const ModalBody = styled("div", {
   flexDirection: "column",
   // flex: 1,
   fontSize: "$body3",
-  color: "$white",
+  color: vars.$semantic.color.paperDialog,
   fontWeight: "bold",
 
   "@md": {

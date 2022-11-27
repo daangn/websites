@@ -2,6 +2,8 @@ import * as React from "react";
 import { em } from "polished";
 import { motion } from "framer-motion";
 import { styled } from "gatsby-theme-stitches/src/config";
+import { vars } from '@seed-design/design-token';
+
 import { ReactComponent as KarrotScoreIcon } from "../../../icons/karrot_score.svg";
 
 interface ProfileProps {
@@ -41,7 +43,7 @@ const Wrapper = styled(motion.div, {
   display: "flex",
   flexDirection: "row",
   padding: em(24),
-  background: "white",
+  background: vars.$semantic.color.paperDefault,
   borderRadius: em(8),
   boxShadow: `0 ${em(12)} ${em(14)} rgba(0, 0, 0, 0.12), 0 0 ${em(
     6

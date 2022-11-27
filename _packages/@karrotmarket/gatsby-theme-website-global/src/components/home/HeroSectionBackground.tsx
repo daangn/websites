@@ -1,4 +1,6 @@
 import React from "react";
+import { Parallax, ParallaxProvider } from "react-scroll-parallax";
+import { rem } from "polished";
 import { styled } from "gatsby-theme-stitches/src/config";
 
 import { ReactComponent as HeroCeilingLightCableSvg } from "../../images/hero_ceiling_light_cable.svg";
@@ -7,9 +9,6 @@ import { ReactComponent as HeroChairSvg } from "../../images/hero_chair.svg";
 import { ReactComponent as HeroPlantSvg } from "../../images/hero_plant.svg";
 import { ReactComponent as HeroTableSvg } from "../../images/hero_table.svg";
 import { ReactComponent as HeroPaintingSvg } from "../../images/hero_painting.svg";
-import { Parallax, ParallaxProvider } from "react-scroll-parallax";
-import { Flex } from "../Flex";
-import { rem } from "polished";
 
 const HeroSectionBackground: React.FC = (props) => {
   return (

@@ -1,7 +1,5 @@
 import * as React from "react";
 import { em } from "polished";
-
-import { Flex } from "../../Flex";
 import { styled } from "gatsby-theme-stitches/src/config";
 
 import { ReactComponent as SearchIcon } from "../../../icons/search.svg";

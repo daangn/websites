@@ -1,5 +1,7 @@
 import * as React from "react";
-import { styled } from "~/gatsby-theme-stitches/config";
+import { styled } from "gatsby-theme-stitches/src/config";
+import { vars } from '@seed-design/design-token';
+
 import { ReactComponent as IconApple } from "~/image/icon_apple.svg";
 import { ReactComponent as IconGooglePlay } from "~/image/icon_google_play.svg";
 
@@ -67,19 +69,19 @@ const Button = styled("div", {
   variants: {
     buttonType: {
       carrot: {
-        backgroundColor: "$carrot500",
-        color: "$white",
+        backgroundColor: vars.$semantic.color.primary,
+        color: vars.$semantic.color.onPrimary,
 
         "&:hover": {
-          backgroundColor: "$carrot600",
+          backgroundColor: vars.$semantic.color.primaryHover,
         },
       },
       gray: {
-        backgroundColor: "$gray200",
-        color: "$gray900",
+        backgroundColor: vars.$scale.color.gray200,
+        color: vars.$scale.color.gray900,
 
         "&:hover": {
-          backgroundColor: "$gray300",
+          backgroundColor: vars.$scale.color.gray300,
         },
       },
     },

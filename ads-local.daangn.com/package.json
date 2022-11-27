@@ -14,13 +14,10 @@
     "not ie 11"
   ],
   "dependencies": {
-    "@cometjs/core": "2.1.0",
     "@cometjs/graphql-utils": "2.0.3",
-    "@karrotmarket/design-token": "1.1.2",
     "@karrotmarket/gatsby-theme-prismic": "workspace:^",
     "@karrotmarket/gatsby-theme-website": "workspace:^",
-    "@karrotmarket/react-stitches": "0.1.1-1",
-    "@seed-design/stylesheet": "1.0.0-beta.1",
+    "@seed-design/design-token": "1.0.0",
     "@stitches/react": "1.2.8",
     "adblock-detect-react": "1.1.0",
     "gatsby": "5.1.0",
@@ -30,6 +27,7 @@
     "gatsby-plugin-manifest": "5.1.0",
     "gatsby-plugin-module-resolver": "1.0.3",
     "gatsby-plugin-robots-txt": "1.8.0",
+    "gatsby-plugin-seed-design": "0.0.3",
     "gatsby-plugin-sharp": "5.1.0",
     "gatsby-plugin-typegen": "3.1.0",
     "gatsby-source-filesystem": "5.1.0",

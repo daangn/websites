@@ -1,15 +1,13 @@
-import React from "react";
-import { styled } from "~/gatsby-theme-stitches/config";
+import * as React from "react";
 import { rem } from "polished";
+import { graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage as Picture, getImage } from "gatsby-plugin-image";
-import { PageProps, graphql, useStaticQuery } from "gatsby";
-import {ReactComponent as IconCheck} from '~/image/icon_check.svg';
+import { styled } from "gatsby-theme-stitches/src/config";
+import { vars } from '@seed-design/design-token';
 
-
+import { ReactComponent as IconCheck } from '~/image/icon_check.svg';
 
 export const Main04 = () => {
-
-
   const ImageQuery = useStaticQuery<GatsbyTypes.AdsProductImgQueryQuery>(graphql`
     query AdsProductImgQuery {
       feedImg: file(relativePath: { eq: "img_sub_pc_03_1.png"}){
@@ -129,7 +127,7 @@ const Section = styled("div", {
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
-  backgroundColor: "$white",
+  backgroundColor: vars.$semantic.color.paperDefault,
   paddingY: rem(80),
   overflow: "hidden",
 
@@ -197,19 +195,17 @@ const Pill = styled('div', {
     marginLeft: rem(12),
     '@md': {
       marginLeft: rem(24),
-    }
+    },
   },
-  
-  
   
   variants: {
     active: {
       true: {
-        backgroundColor: '$carrot500',
-        color: '$white'
-      }
-    }
-  }
+        backgroundColor: vars.$semantic.color.primary,
+        color: vars.$semantic.color.onPrimary,
+      },
+    },
+  },
 })
 
 const ContentArea = styled('div', {
@@ -261,7 +257,7 @@ const AccentText = styled('div', {
   alignItems:'center',
   fontSize: rem(16),
   lineHeight: rem(28),
-  backgroundColor: '$carrot50',
+  backgroundColor: vars.$scale.color.carrot50,
   paddingX: rem(10),
   paddingY: rem(6),
 
@@ -272,7 +268,7 @@ const AccentText = styled('div', {
 
 const StyledIconCheck = styled(IconCheck, {
   path: {
-    fill: '$carrot500'
+    fill: vars.$semantic.color.primary,
   },
   viewBox: '0 0 24 24',
   marginRight: rem(12),

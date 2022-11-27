@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import { em, rem } from "polished";
 import { motion, AnimatePresence } from "framer-motion";
 import { styled } from "gatsby-theme-stitches/src/config";

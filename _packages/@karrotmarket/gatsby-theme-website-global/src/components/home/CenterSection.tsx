@@ -1,9 +1,7 @@
 import * as React from "react";
-
 import { rem } from "polished";
 import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
-
 import { styled } from "gatsby-theme-stitches/src/config";
 
 export const query = graphql`

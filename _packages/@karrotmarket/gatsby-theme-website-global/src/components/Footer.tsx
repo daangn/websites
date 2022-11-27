@@ -1,8 +1,6 @@
-import * as React from "react";
-
 import { rem } from "polished";
-
 import { styled } from "gatsby-theme-stitches/src/config";
+import { vars } from '@seed-design/design-token';
 import _Footer from "@karrotmarket/gatsby-theme-website/src/components/Footer";
 
 const Footer = styled(_Footer, {
@@ -10,7 +8,7 @@ const Footer = styled(_Footer, {
     fontFamily: "$system",
   },
 
-  borderTop: "1px solid $gray300",
+  borderTop: `1px solid ${vars.$scale.color.gray300}`,
   paddingBottom: rem(86),
   paddingTop: rem(32),
 
