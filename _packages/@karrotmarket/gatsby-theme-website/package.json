@@ -24,7 +24,7 @@
     "gatsby-plugin-seed-design": "0.2.0",
     "gatsby-plugin-svgr": "3.0.0-beta.0",
     "gatsby-theme-stitches": "1.0.1",
-    "react-intersection-observer": "8.34.0"
+    "react-intersection-observer": "9.4.1"
   },
   "devDependencies": {
     "@babel/cli": "7.19.3",
