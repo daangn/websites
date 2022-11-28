@@ -26,7 +26,7 @@ const Button = styled(Link, {
         },
       },
       primary: {
-        color: vars.$static.color.white,
+        color: vars.$static.color.staticWhite,
         backgroundColor: vars.$scale.color.carrot500,
         '&:hover': {
           backgroundColor: vars.$scale.color.carrot600,
