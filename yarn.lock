@@ -2449,7 +2449,7 @@ __metadata:
     polished: 4.2.2
     react: 18.2.0
     react-dom: 18.2.0
-    react-intersection-observer: 8.34.0
+    react-intersection-observer: 9.4.1
     react-scroll-parallax: 2.4.3
     sharp: 0.31.2
     typescript: 4.9.3
@@ -2516,7 +2516,7 @@ __metadata:
     polished: 4.2.2
     react: 18.2.0
     react-dom: 18.2.0
-    react-intersection-observer: 8.34.0
+    react-intersection-observer: 9.4.1
     react-swipeable: 6.2.2
     schema-dts: 1.1.0
     text2vdom: 1.0.0
@@ -2551,7 +2551,7 @@ __metadata:
     polished: 4.2.2
     react: 18.2.0
     react-dom: 18.2.0
-    react-intersection-observer: 8.34.0
+    react-intersection-observer: 9.4.1
     typescript: 4.9.3
   peerDependencies:
     "@karrotmarket/gatsby-theme-prismic": "*"
@@ -14992,12 +14992,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-intersection-observer@npm:8.34.0":
-  version: 8.34.0
-  resolution: "react-intersection-observer@npm:8.34.0"
+"react-intersection-observer@npm:9.4.1":
+  version: 9.4.1
+  resolution: "react-intersection-observer@npm:9.4.1"
   peerDependencies:
-    react: ^15.0.0 || ^16.0.0 || ^17.0.0|| ^18.0.0
-  checksum: 7713fecfd1512c7f5a60f9f0bf15403b8f8bbd4110bcafaeaea6de36a0e0eb60368c3638f99e9c97b75ad8fc787ea48c241dcb5c694f821d7f2976f709082cc5
+    react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+  checksum: 13d1c36658470a781d8db8870dbd272c5b4b32329fa69c27ee96424de4e1599526a9bf2a91ea59922c18323c97d6909f0ac120c5af6076d1c01e654b43fb03c1
   languageName: node
   linkType: hard
 
