@@ -2377,7 +2377,7 @@ __metadata:
     "@babel/core": 7.20.2
     "@lokalise/node-api": 8.2.0
     "@types/node": 18.11.9
-    babel-preset-gatsby-package: 2.24.0
+    babel-preset-gatsby-package: 3.2.0
     concurrently: 7.6.0
     gatsby: 5.1.0
     typescript: 4.9.3
@@ -2408,7 +2408,7 @@ __metadata:
     "@types/node": 18.11.9
     "@types/react": 18.0.25
     "@types/react-dom": 18.0.9
-    babel-preset-gatsby-package: 2.24.0
+    babel-preset-gatsby-package: 3.2.0
     concurrently: 7.6.0
     gatsby: 5.1.0
     gatsby-plugin-image: 3.1.0
@@ -2439,7 +2439,7 @@ __metadata:
     "@seed-design/design-token": 1.0.0
     "@stitches/react": 1.2.8
     "@svgr/webpack": 6.5.1
-    babel-preset-gatsby-package: 2.24.0
+    babel-preset-gatsby-package: 3.2.0
     concurrently: 7.6.0
     framer-motion: 4.1.17
     gatsby: 5.1.0
@@ -2494,7 +2494,7 @@ __metadata:
     "@types/react": 18.0.25
     "@types/react-dom": 18.0.9
     babel-plugin-polished: 1.1.0
-    babel-preset-gatsby-package: 2.24.0
+    babel-preset-gatsby-package: 3.2.0
     clsx: 1.2.1
     concurrently: 7.6.0
     focus-trap-react: 10.0.1
@@ -2551,7 +2551,7 @@ __metadata:
     "@types/node": 18.11.9
     "@types/react": 18.0.25
     "@types/react-dom": 18.0.9
-    babel-preset-gatsby-package: 2.24.0
+    babel-preset-gatsby-package: 3.2.0
     concurrently: 7.6.0
     gatsby: 5.1.0
     gatsby-plugin-seed-design: 0.2.0
@@ -2583,7 +2583,7 @@ __metadata:
     "@types/jest": 29.2.3
     "@types/node": 18.11.9
     babel-jest: 29.3.1
-    babel-preset-gatsby-package: 2.24.0
+    babel-preset-gatsby-package: 3.2.0
     cjk-slug: 0.3.0
     common-tags: 1.8.2
     concurrently: 7.6.0
@@ -5496,9 +5496,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-preset-gatsby-package@npm:2.24.0":
-  version: 2.24.0
-  resolution: "babel-preset-gatsby-package@npm:2.24.0"
+"babel-preset-gatsby-package@npm:3.2.0":
+  version: 3.2.0
+  resolution: "babel-preset-gatsby-package@npm:3.2.0"
   dependencies:
     "@babel/plugin-proposal-nullish-coalescing-operator": ^7.14.5
     "@babel/plugin-proposal-optional-chaining": ^7.14.5
@@ -5514,7 +5514,7 @@ __metadata:
     core-js: ^3.22.3
   peerDependencies:
     "@babel/core": ^7.11.6
-  checksum: 6ddfd9cd339bd35a012d772fd14436261e3236c227885eb8080885a70e4b1544a6010bea401d768d4f58bc970ff272a7a4e96651c8b7a7dcb0663945fd22180f
+  checksum: 18901cb32c4aa4d094fa611791ea7b343d5a0f3b7630fee4a5cc9638686adff08030cf189917cc5c5c4991f3228d437f599811d60fe42cd8617f2f787523c52c
   languageName: node
   linkType: hard
 
@@ -9456,7 +9456,7 @@ __metadata:
     "@babel/cli": 7.19.3
     "@babel/core": 7.20.2
     "@types/node": 18.11.9
-    babel-preset-gatsby-package: 2.24.0
+    babel-preset-gatsby-package: 3.2.0
     concurrently: 7.6.0
     gatsby: 5.1.0
     typescript: 4.9.3
@@ -16893,7 +16893,7 @@ __metadata:
     "@types/node": 18.11.9
     "@types/react": 18.0.25
     "@types/react-dom": 18.0.9
-    babel-preset-gatsby-package: 2.24.0
+    babel-preset-gatsby-package: 3.2.0
     cjk-slug: 0.3.0
     dotenv-safe: 8.2.0
     gatsby: 5.1.0
