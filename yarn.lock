@@ -2366,7 +2366,7 @@ __metadata:
   dependencies:
     "@babel/cli": 7.19.3
     "@babel/core": 7.20.2
-    "@lokalise/node-api": 8.2.0
+    "@lokalise/node-api": 9.2.0
     "@types/node": 18.11.9
     babel-preset-gatsby-package: 3.2.0
     concurrently: 7.6.0
@@ -2688,12 +2688,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lokalise/node-api@npm:8.2.0":
-  version: 8.2.0
-  resolution: "@lokalise/node-api@npm:8.2.0"
+"@lokalise/node-api@npm:9.2.0":
+  version: 9.2.0
+  resolution: "@lokalise/node-api@npm:9.2.0"
   dependencies:
-    got: ^11.8.3
-  checksum: 031fe7519dde79780ed3e5eda35c064d32021396dc3e6cf88ebe820db6400fd4a3e41bd8ba53ffdecb0801302cc47c190ead9305262819d28db4241fd6e94c0e
+    got: ^12.5.1
+  checksum: 1a9ffce28a5ad450a4854eed85a80f4f4c5752d782f6d9b84aaac0cd41163c790ba644023738b9c00432a316747b47db3f04e38a3eddcee2aae6567e41b97cfe
   languageName: node
   linkType: hard
 
@@ -10182,7 +10182,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"got@npm:11.8.5, got@npm:^11.8.2, got@npm:^11.8.3, got@npm:^11.8.5":
+"got@npm:11.8.5, got@npm:^11.8.2, got@npm:^11.8.5":
   version: 11.8.5
   resolution: "got@npm:11.8.5"
   dependencies:
@@ -10217,6 +10217,25 @@ __metadata:
     p-cancelable: ^3.0.0
     responselike: ^3.0.0
   checksum: f84b704ca8edb5af17b4df32d21729a0a837a680d197c9d5a922090024ffc15d71a2c5a470de57ca2bb3e3e55aa7e996767d9106df7c57eb99d8de84ce56691f
+  languageName: node
+  linkType: hard
+
+"got@npm:^12.5.1":
+  version: 12.5.3
+  resolution: "got@npm:12.5.3"
+  dependencies:
+    "@sindresorhus/is": ^5.2.0
+    "@szmarczak/http-timer": ^5.0.1
+    cacheable-lookup: ^7.0.0
+    cacheable-request: ^10.2.1
+    decompress-response: ^6.0.0
+    form-data-encoder: ^2.1.2
+    get-stream: ^6.0.1
+    http2-wrapper: ^2.1.10
+    lowercase-keys: ^3.0.0
+    p-cancelable: ^3.0.0
+    responselike: ^3.0.0
+  checksum: e35ea3ccdb5f2c36d0bb9648a6a87300d017900ce2e647ad95f54a6fb674a82fe7d53b2c838542d15a9fa25290cc5361d6f82cadac3e94b2e91d93b5670cf304
   languageName: node
   linkType: hard
 
