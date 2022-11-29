@@ -2600,7 +2600,7 @@ __metadata:
     react: 18.2.0
     react-dom: 18.2.0
     react-intersection-observer: 9.4.1
-    react-swipeable: 6.2.2
+    react-swipeable: 7.0.0
     schema-dts: 1.1.0
     text2vdom: 1.0.0
     typescript: 4.9.3
@@ -4864,7 +4864,7 @@ __metadata:
     gatsby-transformer-sharp: 5.2.0
     react: 18.2.0
     react-dom: 18.2.0
-    react-swipeable: 6.2.2
+    react-swipeable: 7.0.0
     react-text-loop: 2.3.0
     typescript: 4.9.3
     ultra-runner: 3.10.5
@@ -15217,12 +15217,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-swipeable@npm:6.2.2":
-  version: 6.2.2
-  resolution: "react-swipeable@npm:6.2.2"
+"react-swipeable@npm:7.0.0":
+  version: 7.0.0
+  resolution: "react-swipeable@npm:7.0.0"
   peerDependencies:
     react: ^16.8.3 || ^17 || ^18
-  checksum: a707aa9438cedcafbe1e0b9e133d518c423199fc6465e6ae862951c1cfdac2945088b3c12313e8fcc05906d0be0ecfe7ddd8221f9262a0e28c12d2eb98150434
+  checksum: 54d15933483f7aea8f69e6a9930e220fb3bd98f314cae89a8b797e8a3bb959b68e777fe199cd7729edfe65edfcb5d933c7312ea08626f1613a6fd5d30e646598
   languageName: node
   linkType: hard
 
