@@ -26,10 +26,10 @@ const Button = styled(Link, {
         },
       },
       primary: {
-        color: vars.$static.color.white,
-        backgroundColor: vars.$scale.color.carrot500,
+        color: vars.$semantic.color.onPrimary,
+        backgroundColor: vars.$semantic.color.primary,
         '&:hover': {
-          backgroundColor: vars.$scale.color.carrot600,
+          backgroundColor: vars.$semantic.color.primaryHover,
         },
       },
     },
