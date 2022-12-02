@@ -2449,7 +2449,7 @@ __metadata:
   dependencies:
     "@babel/cli": 7.19.3
     "@babel/core": 7.20.5
-    "@lokalise/node-api": 9.2.0
+    "@lokalise/node-api": 9.3.0
     "@types/node": 18.11.10
     babel-preset-gatsby-package: 3.2.0
     concurrently: 7.6.0
@@ -2771,12 +2771,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lokalise/node-api@npm:9.2.0":
-  version: 9.2.0
-  resolution: "@lokalise/node-api@npm:9.2.0"
+"@lokalise/node-api@npm:9.3.0":
+  version: 9.3.0
+  resolution: "@lokalise/node-api@npm:9.3.0"
   dependencies:
     got: ^12.5.1
-  checksum: 1a9ffce28a5ad450a4854eed85a80f4f4c5752d782f6d9b84aaac0cd41163c790ba644023738b9c00432a316747b47db3f04e38a3eddcee2aae6567e41b97cfe
+  checksum: 73f7894a9ac9d42e8d49065e84b82ae2444c8ae3ca50b2a47861c2337cb7fd7e24174e6c5ae98815cc4fe6dcdbd8a0141e87934c0201370fed0734f3a1c8b5b3
   languageName: node
   linkType: hard
 
