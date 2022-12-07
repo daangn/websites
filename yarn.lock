@@ -10408,7 +10408,7 @@ __metadata:
     "@cloudflare/workers-types": 4.20221111.1
     typescript: 4.9.3
     worktop: next
-    wrangler: 2.5.0
+    wrangler: 2.6.1
   languageName: unknown
   linkType: soft
 
@@ -18095,9 +18095,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrangler@npm:2.5.0":
-  version: 2.5.0
-  resolution: "wrangler@npm:2.5.0"
+"wrangler@npm:2.6.1":
+  version: 2.6.1
+  resolution: "wrangler@npm:2.6.1"
   dependencies:
     "@cloudflare/kv-asset-handler": ^0.2.0
     "@esbuild-plugins/node-globals-polyfill": ^0.1.1
@@ -18121,7 +18121,7 @@ __metadata:
   bin:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: 34f585a9b76b0a650c45dfb62b83616834ae415e1fb097b8bc66691bba2eb658c335f8ce6748ca19b2a13f2b33e44935dd335ad22ba53b51ee9ed322e14e011c
+  checksum: c0f58688c44693022c83d0115d07776db313744c24892968bfadf8c6a030afca758b6126fba93d16eebf4eb5616d24b91121e974bca6217113b52316292f9692
   languageName: node
   linkType: hard
 
