@@ -6,22 +6,9 @@ export const onRenderBody: GatsbySSR['onRenderBody'] = ({
 }) => {
   setHtmlAttributes({
     lang: 'ko',
-
-    // FIXME: extract to a plugin
-    // @ts-ignore
-    'data-seed': 'light-only',
-    // @ts-ignore
-    'data-seed-scale-color': 'light',
   });
 
   setHeadComponents([
-    // FIXME: extract to a plugin
-    <meta
-      key="color-scheme"
-      name="color-scheme"
-      content="light dark"
-    />,
-
     <meta
       key="formmat-detection-telephone"
       name="format-detection"

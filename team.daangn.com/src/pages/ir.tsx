@@ -8,29 +8,15 @@ import {
 } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
-import _PageTitle from '@karrotmarket/gatsby-theme-team-website/src/components/PageTitle';
-import FadeInWhenVisible from '@karrotmarket/gatsby-theme-team-website/src/components/FadeInWhenVisible';
+import _PageTitle from '@karrotmarket/gatsby-theme-website-team/src/components/PageTitle';
+import FadeInWhenVisible from '@karrotmarket/gatsby-theme-website-team/src/components/FadeInWhenVisible';
 
 export const query = graphql`
-  query IrListPage(
-    $locale: String!
-    $navigationId: String!
-  ) {
+  query IrListPage($locale: String!, $navigationId: String!) {
     ...TeamWebsite_DefaultLayout_query
-
     allPrismicIr(
-      filter: {
-        uid: {
-          ne: null
-        }
-        tags: {
-          in: ["team.daangn.com"]
-        }
-      }
-      sort: {
-        fields: first_publication_date
-        order: DESC
-      }
+      filter: {uid: {ne: null}, tags: {in: ["team.daangn.com"]}}
+      sort: {first_publication_date: DESC}
     ) {
       nodes {
         uid

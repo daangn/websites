@@ -16,9 +16,11 @@
     "ads-local.daangn.com"
   ],
   "resolutions": {
+    "got": "11.8.5",
     "graphql": "15.8.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "source-map": "0.7.4"
   },
   "scripts": {
     "postinstall": "yarn init:gatsby",
@@ -26,9 +28,9 @@
     "init:gatsby": "ultra --recursive init:gatsby"
   },
   "devDependencies": {
-    "@types/node": "18.0.0",
-    "typescript": "4.8.4",
+    "@types/node": "18.11.11",
+    "typescript": "4.9.3",
     "ultra-runner": "3.10.5"
   },
-  "packageManager": "yarn@3.2.4"
+  "packageManager": "yarn@3.3.0"
 }

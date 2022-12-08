@@ -1,10 +1,8 @@
 import * as React from "react";
-import { styled } from "~/gatsby-theme-stitches/config";
-import ArrowSvg, { ReactComponent as Arrow } from "~/image/arrow.svg";
-import ArrowSvgWhite, {
-  ReactComponent as ArrowWhite,
-} from "~/image/arrow_white.svg";
 import { rem } from "polished";
+
+import { ReactComponent as Arrow } from "~/image/arrow.svg";
+import { ReactComponent as ArrowWhite } from "~/image/arrow_white.svg";
 
 type ArrowLinkProps = {
   target: string;
@@ -39,21 +37,3 @@ export const ArrowLink: React.FC<ArrowLinkProps> = ({
     </>
   );
 };
-
-const Base = styled("div", {
-  width: 28,
-  aspectRatio: 1,
-  background: `url(${ArrowSvg})`,
-  backgroundRepeat: "no-repeat",
-  cursor: "pointer",
-  variants: {
-    color: {
-      white: {
-        background: `url(${ArrowSvgWhite})`,
-      },
-      black: {
-        background: `url(${ArrowSvg})`,
-      },
-    },
-  },
-});

@@ -1,0 +1,56 @@
+{
+  "name": "@karrotmarket/gatsby-theme-website-global",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "init:gatsby": "yarn build",
+    "build": "concurrently \"yarn:build:*\"",
+    "build:babel": "babel gatsby -d . -x .ts,.tsx --presets gatsby-package",
+    "build:dts": "tsc --emitDeclarationOnly --skipLibCheck -p tsconfig.gatsby.json",
+    "prepack": "yarn build"
+  },
+  "peerDependencies": {
+    "@stitches/react": "^0.1.0 || ^0.2.0 || ^1.0.0",
+    "gatsby": "^4.19.0 || ^5.0.0",
+    "polished": "^4.0.0",
+    "react": "*",
+    "react-dom": "*"
+  },
+  "dependencies": {
+    "@cometjs/core": "2.1.0",
+    "@cometjs/graphql-utils": "2.0.3",
+    "@karrotmarket/gatsby-theme-prismic": "workspace:^",
+    "@karrotmarket/gatsby-theme-website": "workspace:^",
+    "@reach/router": "1.3.4",
+    "@seed-design/design-token": "1.0.0",
+    "@stitches/react": "1.2.8",
+    "@svgr/webpack": "6.5.1",
+    "framer-motion": "4.1.17",
+    "gatsby-plugin-head-seo": "0.3.0",
+    "gatsby-plugin-image": "3.2.0",
+    "gatsby-plugin-preload-fonts": "4.2.0",
+    "gatsby-plugin-prismic-previews": "5.2.10",
+    "gatsby-plugin-prismic-schema": "workspace:*",
+    "gatsby-plugin-seed-design": "0.2.1",
+    "gatsby-plugin-sharp": "5.2.0",
+    "gatsby-plugin-svgr": "3.0.0-beta.0",
+    "gatsby-source-prismic": "5.2.10",
+    "gatsby-theme-stitches": "1.0.1",
+    "gatsby-transformer-sharp": "5.2.0",
+    "got": "11.8.5",
+    "react-intersection-observer": "9.4.1",
+    "react-scroll-parallax": "2.4.3",
+    "sharp": "0.31.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.19.3",
+    "@babel/core": "7.20.5",
+    "babel-preset-gatsby-package": "3.2.0",
+    "concurrently": "7.6.0",
+    "gatsby": "5.2.0",
+    "polished": "4.2.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "4.9.3"
+  }
+}

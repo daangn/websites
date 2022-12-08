@@ -1,8 +1,5 @@
 import { em, rem } from "polished";
-import { colors } from "@karrotmarket/design-token";
 import { createStitches } from "@stitches/react";
-
-import { convertColorScheme } from "./colors";
 
 export type MediaType = `@${"i" | "sm" | "md" | "lg" | "xl" | "xxl"}`;
 export const MediaTypeList: MediaType[] = [
@@ -29,8 +26,6 @@ export const { styled, css, globalCss, getCssText, theme, config } =
       xxl: `(min-width: ${em(1400)})`,
     },
     theme: {
-      // @ts-ignore
-      colors: convertColorScheme(colors.light.scheme),
       fonts: {
         noto: '"Noto Sans JP" sans-serif',
         gilroy: "Gilroy",

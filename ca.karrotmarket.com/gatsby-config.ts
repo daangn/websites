@@ -31,7 +31,7 @@ const config: GatsbyConfig = {
       },
     },
     {
-      resolve: "@karrotmarket/gatsby-theme-global-website",
+      resolve: "@karrotmarket/gatsby-theme-website-global",
       options: {
         locale: "en-ca",
         hot_articles_api:

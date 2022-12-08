@@ -1,9 +1,5 @@
 import { em, rem } from "polished";
-import { colors, fonts } from "@karrotmarket/design-token";
-import { createStitches } from "@stitches/react";
-import type { PropertyValue } from "@stitches/react";
-
-import { convertColorScheme } from "./colors";
+import { createStitches, type PropertyValue } from "@stitches/react";
 
 // should exports `styled`, `css` and `getCssString`
 const stitches =
@@ -18,8 +14,9 @@ const stitches =
       xxl: `(min-width: ${em(1400)})`,
     },
     theme: {
-      colors: convertColorScheme(colors.light.scheme),
-      fonts: fonts.default.semanticScheme,
+      fonts: {
+        system: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"'
+      },
       fontSizes: {
         heading1: rem(72),
         heading2: rem(60),
@@ -99,10 +96,6 @@ export const getCssText = stitches.getCssText;
 export const theme = stitches.theme;
 export const createTheme = stitches.createTheme;
 export const config = stitches.config;
-
-export const darkTheme = createTheme("dark-theme", {
-  colors: convertColorScheme(colors.dark.scheme),
-});
 
 export const globalStyles = globalCss({
   "*": { margin: 0, padding: 0 },

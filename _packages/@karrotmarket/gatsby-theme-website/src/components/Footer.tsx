@@ -2,7 +2,7 @@ import * as React from "react";
 import { rem } from "polished";
 import { graphql } from "gatsby";
 import { styled } from "gatsby-theme-stitches/src/config";
-import { vars } from "@seed-design/design-token"
+import { vars } from "@seed-design/design-token";
 
 import SocialServiceProfile from "./footer/SocialServiceProfile";
 import FooterEntryItem from "./footer/FooterEntryItem";

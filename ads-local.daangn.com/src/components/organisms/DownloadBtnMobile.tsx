@@ -1,7 +1,7 @@
 import React from "react";
-
-import { styled } from "~/gatsby-theme-stitches/config";
 import { rem } from "polished";
+import { styled } from "gatsby-theme-stitches/src/config";
+import { vars } from '@seed-design/design-token';
 
 export const DownloadBtnMobile: React.FC = () => {
   return (
@@ -36,13 +36,13 @@ const Button = styled("a", {
   height: rem(54),
   marginBottom: rem(16),
   borderRadius: 10,
-  backgroundColor: "$carrot500",
-  color: "$white",
+  backgroundColor: vars.$semantic.color.primary,
+  color: vars.$semantic.color.onPrimary,
   fontSize: 16,
   fontWeight: "bold",
   textDecoration: "none",
 
   "&:hover": {
-    backgroundColor: "$carrot600",
+    backgroundColor: vars.$semantic.color.primaryHover,
   },
 });

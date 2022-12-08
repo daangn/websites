@@ -6,3 +6,6 @@ compatibility_flags = [
 ]
 usage_model = 'unbound'
 workers_dev = true
+
+[vars]
+TURNSTILE_ENABLED = true

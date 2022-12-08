@@ -1,7 +1,12 @@
-import React from "react";
-import { styled } from "~/gatsby-theme-stitches/config";
+import * as React from "react";
 import { rem } from "polished";
-import { GatsbyImage, getImage, ImageDataLike } from "gatsby-plugin-image";
+import {
+  GatsbyImage,
+  getImage,
+  type ImageDataLike,
+} from "gatsby-plugin-image";
+import { styled } from "gatsby-theme-stitches/src/config";
+import { vars } from '@seed-design/design-token';
 
 type SectionProps = {
   titleBig: string[];
@@ -49,7 +54,7 @@ const Section = styled("div", {
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
-  backgroundColor: "$white",
+  backgroundColor: vars.$semantic.color.paperDefault,
   paddingTop: rem(80),
   overflow: "hidden",
 
