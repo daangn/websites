@@ -9,28 +9,25 @@ const siteMetadata: GatsbyConfig["siteMetadata"] = {
 };
 
 const config: GatsbyConfig = {
-  jsxRuntime: 'automatic',
+  jsxRuntime: "automatic",
   siteMetadata,
   plugins: [
     "gatsby-theme-stitches",
     "gatsby-plugin-svgr",
     "gatsby-plugin-image",
-    'gatsby-plugin-head-seo',
+    "gatsby-plugin-head-seo",
     "@karrotmarket/gatsby-theme-prismic",
     "@karrotmarket/gatsby-theme-website",
     {
-      resolve: 'gatsby-plugin-seed-design',
+      resolve: "gatsby-plugin-seed-design",
       options: {
-        mode: 'light-only',
+        mode: "light-only",
       },
     },
     {
-      resolve: 'gatsby-plugin-advanced-sitemap',
+      resolve: "gatsby-plugin-advanced-sitemap",
       options: {
-        exclude: [
-          '/404/',
-          '/404.html',
-        ],
+        exclude: ["/404/", "/404.html"],
       },
     },
     {
@@ -57,7 +54,7 @@ const config: GatsbyConfig = {
       resolve: "gatsby-plugin-sharp",
       options: {
         defaults: {
-          formats: ["avif", "webp", "auto"],
+          formats: ["webp", "auto"],
           placeholder: "dominantColor",
           quality: 80,
           breakpoints: [576, 768, 992, 1200, 1400, 1920],
@@ -93,34 +90,36 @@ const config: GatsbyConfig = {
       },
     },
     {
-      resolve: 'gatsby-plugin-google-tagmanager',
+      resolve: "gatsby-plugin-google-tagmanager",
       options: {
-        id: 'GTM-NC3HWHZ',
+        id: "GTM-NC3HWHZ",
         includeInDevelopment: false,
-        routeChangeEventName: 'gatsby-route-change',
+        routeChangeEventName: "gatsby-route-change",
         enableWebVitalsTracking: true,
       },
     },
     {
-      resolve: 'gatsby-plugin-robots-txt',
+      resolve: "gatsby-plugin-robots-txt",
       options: {
-        policy: [{
-          userAgent: '*',
-          allow: '/'
-        }],
+        policy: [
+          {
+            userAgent: "*",
+            allow: "/",
+          },
+        ],
         sitemap: `${siteMetadata.siteUrl}/sitemap.xml`,
-      }
+      },
     },
     {
-      resolve: 'gatsby-plugin-manifest',
+      resolve: "gatsby-plugin-manifest",
       options: {
         name: siteMetadata.siteName,
         short_name: siteMetadata.siteName,
-        start_url: '/',
-        theme_color: '#ff7e36',
-        background_color: '#ffffff',
-        display: 'minimal-ui',
-        icon: 'src/image/favicon.svg',
+        start_url: "/",
+        theme_color: "#ff7e36",
+        background_color: "#ffffff",
+        display: "minimal-ui",
+        icon: "src/image/favicon.svg",
       },
     },
   ],
