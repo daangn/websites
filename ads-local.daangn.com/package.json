@@ -19,7 +19,6 @@
     "@karrotmarket/gatsby-theme-website": "workspace:^",
     "@seed-design/design-token": "1.0.0",
     "@stitches/react": "1.2.8",
-    "adblock-detect-react": "1.1.0",
     "gatsby": "5.2.0",
     "gatsby-plugin-google-tagmanager": "5.2.0",
     "gatsby-plugin-head-seo": "0.3.0",

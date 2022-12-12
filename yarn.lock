@@ -4809,16 +4809,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"adblock-detect-react@npm:1.1.0":
-  version: 1.1.0
-  resolution: "adblock-detect-react@npm:1.1.0"
-  peerDependencies:
-    react: ">=16.8.0"
-    react-dom: ">=16.8.0"
-  checksum: 714aeb3f190e0d5c35c5ed5330e5dc32acd03d969826806f67ba03ce53fe4b55e79f3e3121a70f600e5807e323479bb78bd64584a7173ed1d82323a5adce8dce
-  languageName: node
-  linkType: hard
-
 "address@npm:1.1.2":
   version: 1.1.2
   resolution: "address@npm:1.1.2"
@@ -4843,7 +4833,6 @@ __metadata:
     "@karrotmarket/gatsby-theme-website": "workspace:^"
     "@seed-design/design-token": 1.0.0
     "@stitches/react": 1.2.8
-    adblock-detect-react: 1.1.0
     gatsby: 5.2.0
     gatsby-plugin-google-tagmanager: 5.2.0
     gatsby-plugin-head-seo: 0.3.0
