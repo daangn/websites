@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import { rem, em } from "polished";
 import { styled } from "gatsby-theme-stitches/src/config";
 
@@ -14,21 +14,21 @@ export function Banner() {
   return (
     <Background>
       <picture>
-        <source
+        {/* <source
           media={`(max-width: ${em(768)})`}
           srcSet={banner_avif}
           type="image/avif"
-        />
+        /> */}
         <source
           media={`(max-width: ${em(768)})`}
           srcSet={banner_webp}
           type="image/webp"
         />
-        <source
+        {/* <source
           media={`(min-width: ${em(768)})`}
           srcSet={banner_pc_avif}
           type="image/avif"
-        />
+        /> */}
         <source
           media={`(min-width: ${em(768)})`}
           srcSet={banner_pc_webp}

@@ -12,12 +12,22 @@ export const Main = () => {
     query Image {
       image0: file(relativePath: { eq: "img_sub_pc_01.png" }) {
         childImageSharp {
-          gatsbyImageData(height: 680, quality: 90, formats: [WEBP, AVIF, AUTO], placeholder: NONE)
+          gatsbyImageData(
+            height: 680
+            quality: 90
+            formats: [WEBP, AUTO]
+            placeholder: NONE
+          )
         }
       }
       image1: file(relativePath: { eq: "img_sub_pc_02.png" }) {
         childImageSharp {
-          gatsbyImageData(height: 680, quality: 90, formats: [WEBP, AVIF, AUTO], placeholder: NONE)
+          gatsbyImageData(
+            height: 680
+            quality: 90
+            formats: [WEBP, AUTO]
+            placeholder: NONE
+          )
         }
       }
     }
@@ -31,7 +41,10 @@ export const Main = () => {
           "우리 동네부터 다른 동네까지",
           "광고할 지역을 선택할 수 있어요.",
         ]}
-        image={ImageQuery.image0?.childImageSharp?.gatsbyImageData as unknown as  ImageDataLike}
+        image={
+          ImageQuery.image0?.childImageSharp
+            ?.gatsbyImageData as unknown as ImageDataLike
+        }
         right
       />
       <MainSection
@@ -40,7 +53,10 @@ export const Main = () => {
           "이웃들이 많이 보는 당근마켓 글 사이에서",
           "자연스럽게 홍보할 수 있어요.",
         ]}
-        image={ImageQuery.image1?.childImageSharp?.gatsbyImageData as unknown as  ImageDataLike}
+        image={
+          ImageQuery.image1?.childImageSharp
+            ?.gatsbyImageData as unknown as ImageDataLike
+        }
         right={false}
       />
       <Main04 />
