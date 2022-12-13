@@ -2522,7 +2522,7 @@ __metadata:
     gatsby-plugin-preload-fonts: 4.2.0
     gatsby-plugin-prismic-previews: 5.2.10
     gatsby-plugin-prismic-schema: "workspace:*"
-    gatsby-plugin-seed-design: 0.2.1
+    gatsby-plugin-seed-design: 0.2.4
     gatsby-plugin-sharp: 5.2.0
     gatsby-plugin-svgr: 3.0.0-beta.0
     gatsby-source-prismic: 5.2.10
@@ -2586,7 +2586,7 @@ __metadata:
     gatsby-plugin-prismic-previews: 5.2.10
     gatsby-plugin-prismic-schema: "workspace:*"
     gatsby-plugin-robots-txt: 1.8.0
-    gatsby-plugin-seed-design: 0.2.1
+    gatsby-plugin-seed-design: 0.2.4
     gatsby-plugin-sharp: 5.2.0
     gatsby-plugin-sitemap: 6.2.0
     gatsby-plugin-svgr: 3.0.0-beta.0
@@ -2628,7 +2628,7 @@ __metadata:
     babel-preset-gatsby-package: 3.2.0
     concurrently: 7.6.0
     gatsby: 5.2.0
-    gatsby-plugin-seed-design: 0.2.1
+    gatsby-plugin-seed-design: 0.2.4
     gatsby-plugin-svgr: 3.0.0-beta.0
     gatsby-theme-stitches: 1.0.1
     polished: 4.2.2
@@ -3620,22 +3620,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@seed-design/react-theming@npm:^2.1.1":
-  version: 2.1.1
-  resolution: "@seed-design/react-theming@npm:2.1.1"
+"@seed-design/react-theming@npm:^2.1.2":
+  version: 2.1.2
+  resolution: "@seed-design/react-theming@npm:2.1.2"
   dependencies:
     "@seed-design/design-token": ^1.0.0
   peerDependencies:
     react: ^17.0.0 || ^18.0.0
     react-dom: ^17.0.0 || ^18.0.0
-  checksum: 8e7a713b3295db6f61ef1f9addbe7b33f20bbd54d46a135f5cd2c6987494839bb4d8f4392059a73cc50ce8210e16390ef3f5889732cc734564568c146a78aa75
+  checksum: 321026002292f2a292fc9a9a129d16094e1e38585421931c3218916da7b58f57d518235f9a889e50892ee25c054e04af9e97bc6d335589a1c4eb1f41a2185c81
   languageName: node
   linkType: hard
 
-"@seed-design/stylesheet@npm:^1.0.0":
-  version: 1.0.1
-  resolution: "@seed-design/stylesheet@npm:1.0.1"
-  checksum: 53aa74c4ed43c8aef9b7ceb4b6ec9ac18328513bc64fd70240ed509eb512225f6d6c2db41f102ab68c07626293bfa46cd635daee7e44d7a77c50c19e19c43838
+"@seed-design/stylesheet@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@seed-design/stylesheet@npm:1.0.2"
+  checksum: fe8db99669741c4cf079b6c1b3e832e332df4ead6fc9ff97e6bec53349db542301a6d7fef6b174a6071322cba6573259aad589de177f2c43aa2ef3b2537b87b8
   languageName: node
   linkType: hard
 
@@ -4840,7 +4840,7 @@ __metadata:
     gatsby-plugin-manifest: 5.2.0
     gatsby-plugin-module-resolver: 1.0.3
     gatsby-plugin-robots-txt: 1.8.0
-    gatsby-plugin-seed-design: 0.2.1
+    gatsby-plugin-seed-design: 0.2.4
     gatsby-plugin-sharp: 5.2.0
     gatsby-plugin-typegen: 3.1.0
     gatsby-source-filesystem: 5.2.0
@@ -9511,17 +9511,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-seed-design@npm:0.2.1":
-  version: 0.2.1
-  resolution: "gatsby-plugin-seed-design@npm:0.2.1"
+"gatsby-plugin-seed-design@npm:0.2.4":
+  version: 0.2.4
+  resolution: "gatsby-plugin-seed-design@npm:0.2.4"
   dependencies:
-    "@seed-design/react-theming": ^2.1.1
-    "@seed-design/stylesheet": ^1.0.0
+    "@seed-design/react-theming": ^2.1.2
+    "@seed-design/stylesheet": ^1.0.2
   peerDependencies:
     gatsby: ^3.0.0 || ^4.0.0 || ^5.0.0
     react: ^17.0.0 || ^18.0.0
     react-dom: ^17.0.0 || ^18.0.0
-  checksum: c8da4928f86729cc87a4a0e1b4fbe8ee3f3b993318dfc9b1a06175a2369236c10da1ee15bb17b3be99ae59022bce9b53b6dd53bbbffee3f8f00b2232b0dfac90
+  checksum: a57512f400642736121f034189b57f537ad61c518fcb831d5d722d15f0a5a678ac7843ef8547ae4d073ab03ddc1313bfd96da93f541758d5433d6bf52cadd13c
   languageName: node
   linkType: hard
 
