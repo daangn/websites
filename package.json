@@ -16,7 +16,7 @@
     "ads-local.daangn.com"
   ],
   "resolutions": {
-    "got": "11.8.5",
+    "got": "11.8.6",
     "graphql": "15.8.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
