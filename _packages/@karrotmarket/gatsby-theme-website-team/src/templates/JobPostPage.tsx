@@ -60,6 +60,10 @@ const Container = styled('div', {
 
 const ContentWrapper = styled('article', {
   overflowX: 'hidden',
+
+  '& iframe': {
+    width: '100%',
+  },
 });
 
 const ButtonContainer = styled('div', {
