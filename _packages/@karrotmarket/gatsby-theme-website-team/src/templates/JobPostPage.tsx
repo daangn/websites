@@ -59,6 +59,7 @@ const Container = styled('div', {
 });
 
 const ContentWrapper = styled('article', {
+  overflowX: 'hidden',
 });
 
 const ButtonContainer = styled('div', {
