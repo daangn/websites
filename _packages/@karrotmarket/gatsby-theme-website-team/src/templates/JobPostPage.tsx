@@ -59,6 +59,11 @@ const Container = styled('div', {
 });
 
 const ContentWrapper = styled('article', {
+  overflowX: 'hidden',
+
+  '& iframe': {
+    maxWidth: '100%',
+  },
 });
 
 const ButtonContainer = styled('div', {
