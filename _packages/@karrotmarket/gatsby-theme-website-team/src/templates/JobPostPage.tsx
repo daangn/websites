@@ -62,7 +62,7 @@ const ContentWrapper = styled('article', {
   overflowX: 'hidden',
 
   '& iframe': {
-    width: '100%',
+    maxWidth: '100%',
   },
 });
 
