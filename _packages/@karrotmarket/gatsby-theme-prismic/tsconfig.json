@@ -2,8 +2,8 @@
   "extends": "../../../tsconfig.json",
   "compilerOptions": {
     "rootDir": "gatsby",
-    "declarationDir": ".",
-    "jsx": "preserve"
+    "outDir": ".",
+    "jsx": "react"
   },
   "include": [
     "gatsby"

@@ -1,6 +1,7 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
+    "noEmit": true,
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
@@ -9,6 +10,10 @@
     }
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "gatsby-config.ts",
+    "gatsby-node.ts"
+  ],
+  "exclude": [
   ]
 }

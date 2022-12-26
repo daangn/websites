@@ -2,12 +2,11 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "rootDir": "gatsby",
-    "declarationDir": "."
+    "outDir": "."
   },
   "include": [
     "gatsby"
   ],
   "exclude": [
-    "node_modules"
   ]
 }
