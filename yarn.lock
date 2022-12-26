@@ -2812,6 +2812,7 @@ __metadata:
   dependencies:
     "@babel/cli": 7.20.7
     "@babel/core": 7.20.7
+    "@prismicio/types": 0.2.7
     babel-preset-gatsby-package: 3.3.0
     concurrently: 7.6.0
     gatsby: 5.3.3
@@ -3710,6 +3711,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@prismicio/types@npm:0.2.7, @prismicio/types@npm:^0.2.7":
+  version: 0.2.7
+  resolution: "@prismicio/types@npm:0.2.7"
+  checksum: 0e9a7b6e8b9a5dd7f4741adf6faeef9d072dd6d3eb36a94214fec570819c34be6061a704a4ef2a39cbb0092e4fb03ff0fda924ccba98c5b68bf47128d1066cf4
+  languageName: node
+  linkType: hard
+
 "@prismicio/types@npm:^0.1.27":
   version: 0.1.29
   resolution: "@prismicio/types@npm:0.1.29"
@@ -3721,13 +3729,6 @@ __metadata:
   version: 0.2.3
   resolution: "@prismicio/types@npm:0.2.3"
   checksum: 0512c3dbf7b8d3e0594198c6e6cee4dbc9be6260216b63dce5df342eacc69e737a578135f4341f7d9069b3bdb9e87fc51b98f9a06fb340d10f26f0facdff28a2
-  languageName: node
-  linkType: hard
-
-"@prismicio/types@npm:^0.2.7":
-  version: 0.2.7
-  resolution: "@prismicio/types@npm:0.2.7"
-  checksum: 0e9a7b6e8b9a5dd7f4741adf6faeef9d072dd6d3eb36a94214fec570819c34be6061a704a4ef2a39cbb0092e4fb03ff0fda924ccba98c5b68bf47128d1066cf4
   languageName: node
   linkType: hard
 
