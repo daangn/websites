@@ -1,0 +1,23 @@
+{
+  "name": "@karrotmarket/gatsby-transformer-blog",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "init:gatsby": "yarn build",
+    "build": "concurrently \"yarn:build:*\"",
+    "build:babel": "babel gatsby -d . -x .ts --presets gatsby-package",
+    "build:dts": "tsc --emitDeclarationOnly --skipLibCheck",
+    "prepack": "yarn build"
+  },
+  "peerDependencies": {
+    "gatsby": "^4.19.0 || ^5.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.20.7",
+    "@babel/core": "7.20.7",
+    "babel-preset-gatsby-package": "3.3.0",
+    "concurrently": "7.6.0",
+    "gatsby": "5.3.3",
+    "typescript": "4.9.4"
+  }
+}
