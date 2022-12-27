@@ -44,8 +44,8 @@ const config = ({
         },
       },
     },
-    'gatsby-transformer-sharp',
     'gatsby-plugin-image',
+    'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-plugin-layout',
       options: {

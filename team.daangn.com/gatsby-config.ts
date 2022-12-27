@@ -1,9 +1,9 @@
 import type { GatsbyConfig } from 'gatsby';
 
-import dotenv from 'dotenv-safe';
+import * as dotenv from 'dotenv';
 dotenv.config();
 
-export const siteMetadata = {
+const siteMetadata = {
   siteUrl: 'https://team.daangn.com',
   siteName: '당근마켓 팀',
   title: '당근마켓 팀',

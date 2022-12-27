@@ -2454,7 +2454,7 @@ __metadata:
     "@types/node": 18.11.17
     babel-preset-gatsby-package: 3.3.0
     concurrently: 7.6.0
-    gatsby: 5.3.2
+    gatsby: 5.3.3
     typescript: 4.9.4
   peerDependencies:
     gatsby: ^4.19.0 || ^5.0.0
@@ -2485,7 +2485,7 @@ __metadata:
     "@types/react-dom": 18.0.10
     babel-preset-gatsby-package: 3.3.0
     concurrently: 7.6.0
-    gatsby: 5.3.2
+    gatsby: 5.3.3
     gatsby-plugin-image: 3.3.2
     gatsby-plugin-prismic-previews: 5.2.10
     gatsby-source-prismic: 5.2.10
@@ -2517,7 +2517,7 @@ __metadata:
     babel-preset-gatsby-package: 3.3.0
     concurrently: 7.6.0
     framer-motion: 4.1.17
-    gatsby: 5.3.2
+    gatsby: 5.3.3
     gatsby-plugin-head-seo: 0.3.0
     gatsby-plugin-image: 3.3.2
     gatsby-plugin-preload-fonts: 4.3.1
@@ -2574,7 +2574,7 @@ __metadata:
     concurrently: 7.6.0
     focus-trap-react: 10.0.2
     framer-motion: 4.1.17
-    gatsby: 5.3.2
+    gatsby: 5.3.3
     gatsby-plugin-advanced-sitemap: 2.1.0
     gatsby-plugin-gatsby-cloud: 5.3.1
     gatsby-plugin-google-tagmanager: 5.3.1
@@ -2628,7 +2628,7 @@ __metadata:
     "@types/react-dom": 18.0.10
     babel-preset-gatsby-package: 3.3.0
     concurrently: 7.6.0
-    gatsby: 5.3.2
+    gatsby: 5.3.3
     gatsby-plugin-seed-design: 0.2.4
     gatsby-plugin-svgr: 3.0.0-beta.0
     gatsby-theme-stitches: 1.0.1
@@ -2662,7 +2662,7 @@ __metadata:
     cjk-slug: 0.3.0
     common-tags: 1.8.2
     concurrently: 7.6.0
-    gatsby: 5.3.2
+    gatsby: 5.3.3
     html-entities: 2.3.3
     jest: 29.3.1
     typescript: 4.9.4
@@ -4843,7 +4843,7 @@ __metadata:
     "@karrotmarket/gatsby-theme-website": "workspace:^"
     "@seed-design/design-token": 1.0.0
     "@stitches/react": 1.2.8
-    gatsby: 5.3.2
+    gatsby: 5.3.3
     gatsby-plugin-google-tagmanager: 5.3.1
     gatsby-plugin-head-seo: 0.3.0
     gatsby-plugin-image: 3.3.2
@@ -5895,7 +5895,7 @@ __metadata:
     "@babel/core": 7.20.5
     "@karrotmarket/gatsby-theme-website-global": "workspace:^"
     babel-plugin-polished: 1.1.0
-    gatsby: 5.3.2
+    gatsby: 5.3.3
     gatsby-plugin-google-gtag: 5.3.0
     react: 18.2.0
     react-dom: 18.2.0
@@ -6057,8 +6057,8 @@ __metadata:
     "@types/node": 18.11.17
     "@types/react": 18.0.26
     "@types/react-dom": 18.0.10
-    dotenv-safe: 8.2.0
-    gatsby: 5.3.2
+    dotenv: 16.0.3
+    gatsby: 5.3.3
     gatsby-plugin-advanced-sitemap: 2.1.0
     gatsby-plugin-gatsby-cloud: 5.3.1
     gatsby-plugin-google-tagmanager: 5.3.1
@@ -6086,8 +6086,8 @@ __metadata:
     "@types/node": 18.11.17
     "@types/react": 18.0.26
     "@types/react-dom": 18.0.10
-    dotenv-safe: 8.2.0
-    gatsby: 5.3.2
+    dotenv: 16.0.3
+    gatsby: 5.3.3
     gatsby-plugin-advanced-sitemap: 2.1.0
     gatsby-plugin-gatsby-cloud: 5.3.1
     gatsby-plugin-google-tagmanager: 5.3.1
@@ -7426,12 +7426,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv-safe@npm:8.2.0":
-  version: 8.2.0
-  resolution: "dotenv-safe@npm:8.2.0"
-  dependencies:
-    dotenv: ^8.2.0
-  checksum: 8b73770330528d77630009afa44239127c44d634b0fa7d7545932a8e72686d774ceadea62d381ed7c911e0facac4ee1489132e44b746f36eb8f2e3ee6929eb78
+"dotenv@npm:16.0.3":
+  version: 16.0.3
+  resolution: "dotenv@npm:16.0.3"
+  checksum: afcf03f373d7a6d62c7e9afea6328e62851d627a4e73f2e12d0a8deae1cd375892004f3021883f8aec85932cd2834b091f568ced92b4774625b321db83b827f8
   languageName: node
   linkType: hard
 
@@ -9502,7 +9500,7 @@ __metadata:
     "@types/node": 18.11.17
     babel-preset-gatsby-package: 3.3.0
     concurrently: 7.6.0
-    gatsby: 5.3.2
+    gatsby: 5.3.3
     typescript: 4.9.4
   peerDependencies:
     gatsby: ^4.19.0 || ^5.0.0
@@ -9833,9 +9831,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby@npm:5.3.2":
-  version: 5.3.2
-  resolution: "gatsby@npm:5.3.2"
+"gatsby@npm:5.3.3":
+  version: 5.3.3
+  resolution: "gatsby@npm:5.3.3"
   dependencies:
     "@babel/code-frame": ^7.14.0
     "@babel/core": ^7.15.5
@@ -10011,7 +10009,7 @@ __metadata:
       optional: true
   bin:
     gatsby: ./cli.js
-  checksum: 2e3fbdb4b4aa86d368d402cfb5ebed333b8c8c33c2d7dab8cdd10e956eeed7f70d3641c1790b94e60d0b397aa6165a989ab74a0ae97ff037e3fc00ed5ce3603d
+  checksum: f064cabd53e609c143605b85427cbf245893dc65935e1ed57a397b31dde2c106427f0fa8a807b2c2d970afdee84c6e7232b2cdd1ac405f65149d1db6a9c220b1
   languageName: node
   linkType: hard
 
@@ -11823,7 +11821,7 @@ __metadata:
     "@seed-design/design-token": 1.0.0
     babel-plugin-polished: 1.1.0
     framer-motion: 4.1.17
-    gatsby: 5.3.2
+    gatsby: 5.3.3
     gatsby-plugin-google-gtag: 5.3.0
     gatsby-plugin-image: 3.3.2
     gatsby-plugin-typegen: 3.1.0
@@ -16848,8 +16846,8 @@ __metadata:
     "@types/react-dom": 18.0.10
     babel-preset-gatsby-package: 3.3.0
     cjk-slug: 0.3.0
-    dotenv-safe: 8.2.0
-    gatsby: 5.3.2
+    dotenv: 16.0.3
+    gatsby: 5.3.3
     gatsby-plugin-advanced-sitemap: 2.1.0
     gatsby-plugin-gatsby-cloud: 5.3.1
     gatsby-plugin-google-tagmanager: 5.3.1
@@ -17296,7 +17294,7 @@ __metadata:
     "@babel/core": 7.20.5
     "@karrotmarket/gatsby-theme-website-global": "workspace:^"
     babel-plugin-polished: 1.1.0
-    gatsby: 5.3.2
+    gatsby: 5.3.3
     gatsby-plugin-google-gtag: 5.3.0
     gatsby-plugin-google-tagmanager: 5.3.1
     gatsby-plugin-typegen: 3.1.0
@@ -17524,7 +17522,7 @@ __metadata:
     "@babel/core": 7.20.5
     "@karrotmarket/gatsby-theme-website-global": "workspace:^"
     babel-plugin-polished: 1.1.0
-    gatsby: 5.3.2
+    gatsby: 5.3.3
     gatsby-plugin-google-gtag: 5.3.0
     gatsby-plugin-typegen: 3.1.0
     react: 18.2.0

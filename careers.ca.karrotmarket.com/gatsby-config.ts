@@ -1,9 +1,9 @@
 import type { GatsbyConfig } from 'gatsby';
 
-import dotenv from 'dotenv-safe';
+import dotenv from 'dotenv';
 dotenv.config();
 
-export const siteMetadata = {
+const siteMetadata = {
   siteUrl: 'https://careers.ca.karrotmarket.com',
   siteName: 'Karrot Careers',
   title: 'Karrot Careers',
