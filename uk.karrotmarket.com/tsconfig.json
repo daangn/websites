@@ -1,6 +1,7 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
+    "noEmit": true,
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
@@ -10,6 +11,7 @@
   },
   "include": [
     "src/**/*",
+    "gatsby-config.ts",
     "gatsby-ssr.tsx"
   ]
 }
