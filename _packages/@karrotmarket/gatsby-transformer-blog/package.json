@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@babel/cli": "7.20.7",
-    "@babel/core": "7.20.7",
+    "@babel/core": "7.20.12",
     "@prismicio/types": "0.2.7",
     "babel-preset-gatsby-package": "3.3.0",
     "concurrently": "7.6.0",
