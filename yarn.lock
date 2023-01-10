@@ -1730,7 +1730,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cometjs/core@npm:2.1.0, @cometjs/core@npm:^2.1.0":
+"@cometjs/core@npm:2.1.1":
+  version: 2.1.1
+  resolution: "@cometjs/core@npm:2.1.1"
+  dependencies:
+    tsconfck: ^2.0.1
+  peerDependencies:
+    typescript: ^4.5.0
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 88834e8975c69c761f96b6fcb4034e7912aa6c0bef0eee0808bd35663ebb0f6e138a77b3e60099a06b53f3b32808c95163dc67b7ce8de88d17036848f3fe2c83
+  languageName: node
+  linkType: hard
+
+"@cometjs/core@npm:^2.1.0":
   version: 2.1.0
   resolution: "@cometjs/core@npm:2.1.0"
   peerDependencies:
@@ -2573,7 +2587,7 @@ __metadata:
   dependencies:
     "@babel/cli": 7.20.7
     "@babel/core": 7.20.12
-    "@cometjs/core": 2.1.0
+    "@cometjs/core": 2.1.1
     "@cometjs/graphql-utils": 2.0.3
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website": "workspace:^"
@@ -2619,7 +2633,7 @@ __metadata:
   dependencies:
     "@babel/cli": 7.20.7
     "@babel/core": 7.20.12
-    "@cometjs/core": 2.1.0
+    "@cometjs/core": 2.1.1
     "@cometjs/graphql-utils": 2.0.3
     "@cometjs/react-utils": 2.1.0
     "@karrotmarket/gatsby-plugin-lokalise-translation": "workspace:^"
@@ -2686,7 +2700,7 @@ __metadata:
   dependencies:
     "@babel/cli": 7.20.7
     "@babel/core": 7.20.12
-    "@cometjs/core": 2.1.0
+    "@cometjs/core": 2.1.1
     "@seed-design/design-token": 1.0.0
     "@stitches/react": 1.2.8
     "@svgr/webpack": 6.5.1
@@ -17218,6 +17232,20 @@ __metadata:
   version: 0.2.0
   resolution: "ts-easing@npm:0.2.0"
   checksum: e67ee862acca3b2e2718e736f31999adcef862d0df76d76a0e138588728d8a87dfec9978556044640bd0e90203590ad88ac2fe8746d0e9959b8d399132315150
+  languageName: node
+  linkType: hard
+
+"tsconfck@npm:^2.0.1":
+  version: 2.0.2
+  resolution: "tsconfck@npm:2.0.2"
+  peerDependencies:
+    typescript: ^4.3.5
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  bin:
+    tsconfck: bin/tsconfck.js
+  checksum: bc914042b2f5e1f9d7bbadd05b74031f32e2f1757061743d70d86d17dda0734d838e67abb0105b81db67c30b66496e5d408cbe216bb43b3d567a181b0448ddc1
   languageName: node
   linkType: hard
 
