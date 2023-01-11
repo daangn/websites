@@ -25,11 +25,11 @@
     "@types/jest": "29.2.5",
     "@types/node": "18.11.18",
     "babel-jest": "29.3.1",
-    "babel-preset-gatsby-package": "3.3.0",
+    "babel-preset-gatsby-package": "3.4.0",
     "cjk-slug": "0.3.0",
     "common-tags": "1.8.2",
     "concurrently": "7.6.0",
-    "gatsby": "5.3.3",
+    "gatsby": "5.4.0",
     "jest": "29.3.1",
     "typescript": "4.9.4"
   }
