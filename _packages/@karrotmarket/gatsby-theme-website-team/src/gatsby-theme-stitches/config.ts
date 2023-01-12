@@ -1,6 +1,6 @@
-import { em, rem } from 'polished';
 import type { PropertyValue } from '@stitches/react';
 import { createStitches } from '@stitches/react';
+import { em, rem } from 'polished';
 
 const stitches = createStitches({
   // follows Bootstrap's breakpoints practice
@@ -98,6 +98,14 @@ const stitches = createStitches({
             paddingX: rem(24),
           }
         : undefined,
+    blogContentArea: (value: boolean) =>
+      value
+        ? {
+          boxSizing: 'border-box',
+          maxWidth: '$maxContent',
+          margin: '0 auto',
+          paddingX: rem(72),
+        } : undefined,
   },
 });
 
