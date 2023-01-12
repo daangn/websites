@@ -1,15 +1,15 @@
-import { type Node } from 'gatsby';
 import {
-  type PrismicDocument,
   type ContentRelationshipField,
-  type TitleField,
-  type RichTextField,
-  type KeyTextField,
-  type ImageField,
   type GroupField,
-  type SliceZone,
+  type ImageField,
+  type KeyTextField,
+  type PrismicDocument,
+  type RichTextField,
   type Slice,
+  type SliceZone,
+  type TitleField,
 } from '@prismicio/types';
+import { type Node } from 'gatsby';
 
 type PrismicSourceNode = Node & {
   prismicId: string;
@@ -51,6 +51,10 @@ export type PrismicAboutBlogPostRichTextSectionSlice = Slice<
   'rich_text_section',
   {
     content: RichTextField;
+    id: string;
+    slice_type: string;
+    primary: RichTextField;
+    items: RichTextField;
   }
 >;
 
@@ -59,6 +63,10 @@ export type PrismicAboutBlogPostImageSectionSlice = Slice<
   {
     section_title: TitleField;
     section_body: RichTextField;
+    id: string;
+    slice_type: string;
+    primary: RichTextField;
+    items: RichTextField;
   },
   {
     image: ImageField;

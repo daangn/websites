@@ -1,14 +1,15 @@
+import slugify from 'cjk-slug';
 import { type GatsbyNode } from 'gatsby';
 import { createRemoteFileNode } from 'gatsby-source-filesystem';
 
 import {
+  type PrismicAboutBlogPostImageSectionSlice,
+  type PrismicAboutBlogPostNode,
+  type PrismicAboutBlogPostRichTextSectionSlice,
+  type PrismicMemberProfileNode,
   isPrismicAboutBlogCategoryNode,
   isPrismicAboutBlogPostNode,
   isPrismicMemberProfile,
-  type PrismicAboutBlogPostRichTextSectionSlice,
-  type PrismicAboutBlogPostImageSectionSlice,
-  type PrismicAboutBlogPostNode,
-  type PrismicMemberProfileNode,
 } from './types';
 
 export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({
@@ -56,6 +57,26 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
         },
         uid: {
           type: 'String!',
+        },
+        slug: {
+          type: 'String!',
+          resolve(node: PrismicAboutBlogPostNode) {
+            return node.uid && slugify(node.uid);
+          },
+        },
+        thumbnailImage: {
+          type: 'File!',
+          resolve(node: PrismicAboutBlogPostNode) {
+            if (!node.data.thumbnail_image.url) {
+              throw new Error(`BlogPost 의 thumbnail_image 필드 값이 비어있습니다. prismicId: ${node.prismicId}`);
+            }
+            return createRemoteFileNode({
+              url: node.data.thumbnail_image.url,
+              createNode,
+              createNodeId,
+              cache,
+            });
+          },
         },
         title: {
           type: 'String!',
@@ -131,7 +152,6 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       name: 'BlogPostBodyItem',
       types: ['BlogPostRichTextSection', 'BlogPostImageSection'],
       resolveType(parent: PrismicAboutBlogPostNode['data']['body'][number]) {
-        console.dir(parent, { depth: null });
         switch (parent.slice_type) {
           case 'rich_text_section':
             return 'BlogPostRichTextSection';
@@ -149,8 +169,32 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
         content: {
           type: 'JSON!',
           resolve(parent: PrismicAboutBlogPostRichTextSectionSlice) {
-            return parent.primary.content;
+            return parent;
           },
+        },
+        id: {
+          type: 'String!',
+          resolve(parent: PrismicAboutBlogPostRichTextSectionSlice) {
+            return parent.id;
+          }
+        },
+        sliceType: {
+          type: 'String!',
+          resolve(parent: PrismicAboutBlogPostRichTextSectionSlice) {
+            return parent.slice_type;
+          }
+        },
+        items: {
+          type: '[JSON!]!',
+          resolve(parent: PrismicAboutBlogPostRichTextSectionSlice) {
+            return parent.items;
+          }
+        },
+        primary: {
+          type: 'JSON!',
+          resolve(parent: PrismicAboutBlogPostRichTextSectionSlice) {
+            return parent.primary;
+          }
         },
       },
     }),
@@ -181,6 +225,30 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
               description: item.image_description,
             }));
           },
+        },
+        primary: {
+          type: 'JSON',
+          resolve(parent: PrismicAboutBlogPostImageSectionSlice) {
+            return parent.primary;
+          },
+        },
+        id: {
+          type: 'String!',
+          resolve(parent: PrismicAboutBlogPostRichTextSectionSlice) {
+            return parent.id;
+          }
+        },
+        sliceType: {
+          type: 'String!',
+          resolve(parent: PrismicAboutBlogPostRichTextSectionSlice) {
+            return parent.slice_type;
+          }
+        },
+        items: {
+          type: '[JSON!]!',
+          resolve(parent: PrismicAboutBlogPostRichTextSectionSlice) {
+            return parent.items;
+          }
         },
       },
     }),
