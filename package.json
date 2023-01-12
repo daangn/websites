@@ -28,6 +28,9 @@
     "lint": "rome check . --apply-suggested",
     "format": "rome format . --write"
   },
+  "dependencies": {
+    "@prismicio/react": "2.5.1"
+  },
   "devDependencies": {
     "@types/node": "18.14.2",
     "rome": "11.0.0",
