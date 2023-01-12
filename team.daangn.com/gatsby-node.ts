@@ -1,6 +1,6 @@
-import * as path from 'path';
 import type { GatsbyNode } from 'gatsby';
 import { createRemoteFileNode } from 'gatsby-source-filesystem';
+import * as path from 'path';
 
 export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = ({ actions }) => {
   actions.createRedirect({
@@ -32,6 +32,12 @@ export const createPages: GatsbyNode['createPages'] = async ({
         uid: string;
       }>;
     };
+    allBlogPost: {
+      nodes: Array<{
+        id: string;
+        slug: string;
+      }>;
+    };
   };
   const { data, errors } = await graphql<Data>(gql`
     {
@@ -59,6 +65,13 @@ export const createPages: GatsbyNode['createPages'] = async ({
       ) {
         nodes {
           uid
+        }
+      }
+
+      allBlogPost {
+        nodes {
+          id
+          slug
         }
       }
     }
@@ -106,4 +119,14 @@ export const createPages: GatsbyNode['createPages'] = async ({
     isPermanent: false,
     redirectInBrowser: true,
   });
+
+  for (const blogPost of data.allBlogPost.nodes) {
+    actions.createPage({
+      path: `/blog/archive/${blogPost.slug}/`,
+      component: path.resolve(basePath, 'src/templates/BlogPostPage.tsx'),
+      context: {
+        id: blogPost.id,
+      },
+    });
+  }
 };
