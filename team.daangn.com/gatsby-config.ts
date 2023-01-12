@@ -118,6 +118,7 @@ const config: GatsbyConfig = {
     },
 
     // 커스텀 플러그인
+    '@karrotmarket/gatsby-transformer-blog',
     {
       resolve: '@karrotmarket/gatsby-theme-website-team',
       options: {
