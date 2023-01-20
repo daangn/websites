@@ -47,7 +47,7 @@
     "@babel/core": "7.20.12",
     "babel-preset-gatsby-package": "3.4.0",
     "concurrently": "7.6.0",
-    "gatsby": "5.4.0",
+    "gatsby": "5.4.2",
     "polished": "4.2.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
