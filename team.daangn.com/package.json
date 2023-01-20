@@ -31,7 +31,7 @@
     "@seed-design/design-token": "alpha",
     "cjk-slug": "0.3.0",
     "dotenv": "16.0.3",
-    "gatsby": "5.4.0",
+    "gatsby": "5.4.2",
     "gatsby-plugin-advanced-sitemap": "2.1.0",
     "gatsby-plugin-gatsby-cloud": "5.4.0",
     "gatsby-plugin-google-tagmanager": "5.4.0",
