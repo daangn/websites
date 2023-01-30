@@ -64,6 +64,15 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
             return node.uid && slugify(node.uid);
           },
         },
+        publishedAt: {
+          type: 'Date!',
+          resolve(node: PrismicAboutBlogPostNode) {
+            if (!node.data.published_at) {
+              throw new Error(`BlogPost 의 published_at 필드 값이 비어있습니다. prismicId: ${node.prismicId}`);
+            }
+            return node.data.published_at;
+          },
+        },
         thumbnailImage: {
           type: 'File!',
           resolve(node: PrismicAboutBlogPostNode) {
