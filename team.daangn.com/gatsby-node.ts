@@ -38,7 +38,14 @@ export const createPages: GatsbyNode['createPages'] = async ({
         slug: string;
       }>;
     };
+    allBlogCategory: {
+      nodes: Array<{
+        name: string;
+        uid: string;
+      }>;
+    };
   };
+
   const { data, errors } = await graphql<Data>(gql`
     {
       allPrismicIr(
@@ -72,6 +79,13 @@ export const createPages: GatsbyNode['createPages'] = async ({
         nodes {
           id
           slug
+        }
+      }
+
+      allBlogCategory {
+        nodes {
+          name
+          uid
         }
       }
     }
@@ -129,4 +143,28 @@ export const createPages: GatsbyNode['createPages'] = async ({
       },
     });
   }
+
+  actions.createPage({
+    path: '/blog/',
+    component: path.resolve(basePath, 'src/templates/BlogMainPage.tsx'),
+    context: {
+      id: '*',
+    },
+  });
+
+  for (const blogCategory of data.allBlogCategory.nodes) {
+    actions.createPage({
+      path: `/blog/category/${blogCategory.uid}/`,
+      component: path.resolve(basePath, 'src/templates/BlogMainPage.tsx'),
+      context: {
+        id: blogCategory.uid,
+      },
+    });
+  }
+
+  actions.createRedirect({
+    fromPath: '/blog/cateogry/*',
+    toPath: '/blog/',
+    redirectInBrowser: true,
+  });
 };
