@@ -1,86 +1,79 @@
+import * as React from "react";
 import { rem } from "polished";
 import { styled } from "gatsby-theme-stitches/src/config";
-import { vars } from '@seed-design/design-token';
+
+import Button from "./Button";
 import { ReactComponent as FacebookIcon } from "../../assets/facebook.svg";
 import { ReactComponent as LinkedinIcon } from "../../assets/linkedin.svg";
 import { ReactComponent as TwitterIcon } from "../../assets/twitter.svg";
 import { ReactComponent as ShareIcon } from "../../assets/icon_share.svg";
 
 type ShareButtonsProps = {
-  visible: boolean;
+  onClickLinkShare: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const ShareButtons: React.FC<ShareButtonsProps> = ({ visible }) => {
-  const onClickFacebook = () => {};
-  const onClickLinkedin = () => {};
+const ShareButtons: React.FC<ShareButtonsProps> = ({ onClickLinkShare }) => {
+  const onClickSnsShare = (key: string) => {
+    const url = window.location.href;
+    const text = "당근의 소식을 전해요";
 
-  const onClickTwitter = () => {
-    const url = encodeURIComponent("https://about.daangn.com/blog/archive/큰-장바구니가-도착했어요/");
-    const text = "큰 장바구니가 도착했어요";
-    window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`,'당근 큰 장바구니', 'width=450, height=450');
+    switch (key) {
+      case "META":
+        window.open(`http://www.facebook.com/sharer.php?u=${url}&t=${text}`,"_blank");
+        break;
+      case "TWITTER":
+        window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`,"_blank");
+        break;
+      case "LINKEDIN":
+        window.open(`http://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${text}`,"_blank");
+    }
   };
 
   const onClickShare = async () => {
     try {
       await navigator.share({
-        url: "https://about.daangn.com/blog/archive/큰-장바구니가-도착했어요/",
-        text: "당근마켓 블로그에 방문해보세요.",
+        url: window.location.href,
+        text: "당근의 소식을 전해요",
       });
     } catch (error) {
-      alert("share");
+      onClickLinkShare(true);
+
+      setTimeout(() => {
+        onClickLinkShare(false);
+      }, 1500);
     }
   };
 
   return (
-    <ShareContainer visible={visible}>
-      <ShareButton>
+    <ShareContainer>
+      <Button onClick={() => onClickSnsShare("META")}>
         <FacebookIcon />
-      </ShareButton>
-      <ShareButton>
+      </Button>
+      <Button onClick={() => onClickSnsShare("LINKEDIN")}>
         <LinkedinIcon />
-      </ShareButton>
-      <ShareButton onClick={onClickTwitter}>
+      </Button>
+      <Button onClick={() => onClickSnsShare("TWITTER")}>
         <TwitterIcon />
-      </ShareButton>
-      <ShareButton onClick={onClickShare}>
+      </Button>
+      <Button onClick={onClickShare}>
         <ShareIcon/>
-      </ShareButton>
+      </Button>
     </ShareContainer>
   );
 };
 
 const ShareContainer = styled("div", {
-  display: "flex",
-  position: "fixed",
-  top: "35%",
-  right: "10%",
+  display: "none",
+  position: "absolute",
   flexDirection: "column",
   height: rem(300),
+  top: 0,
+  right: 4,
   marginTop: rem(44),
-  marginLeft: rem(26),
-  transition: "opacity 1.5s",
-  variants: {
-    visible: {
-      true: {
-        opacity: 1,
-      },
-      false: {
-        opacity: 0,
-      },
-    },
-  },
-});
 
-const ShareButton = styled("button", {
-  width: rem(32),
-  height: rem(32),
-  border: "none",
-  borderRadius: "50%",
-  lineHeight: rem(40),
-  marginBottom: rem(20),
-  backgroundColor: vars.$scale.color.gray50,
-  color: vars.$scale.color.gray700,
-  cursor: "pointer",
+  "@md": {
+    display: "flex",
+  },
 });
 
 export default ShareButtons;

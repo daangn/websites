@@ -15,7 +15,7 @@ const Container = styled("div", {
   border: "none",
   borderRadius: rem(40),
   backgroundColor: vars.$scale.color.gray50,
-  fontSize: rem(12),
+  fontSize: "$body2",
 });
 
 export default Tag;

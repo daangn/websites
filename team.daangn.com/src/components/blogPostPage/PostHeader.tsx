@@ -1,12 +1,28 @@
+import { graphql } from "gatsby";
 import { rem } from "polished";
 import { styled } from "gatsby-theme-stitches/src/config";
 import { vars } from "@seed-design/design-token";
 
-const PostHeader = ({ title, category, publishDate }) => {
+type PostHeaderProps = {
+  postHeader: GatsbyTypes.PostHeader_dataFragment,
+};
+
+export const query = graphql`
+  fragment PostHeader_data on BlogPost {
+    title
+    publishedAt
+    category {
+      name
+      uid
+    }
+  }
+`;
+
+const PostHeader: React.FC<PostHeaderProps> = ({ postHeader }) => {
   return (
     <Header>
-      <Title>{title}</Title>
-      <Wrapper>{category} | {publishDate}</Wrapper>
+      <Title>{postHeader.title}</Title>
+      <Wrapper>{postHeader.category.name} | {postHeader.publishedAt}</Wrapper>
     </Header>
   );
 };
@@ -19,12 +35,16 @@ const Header = styled("div", {
 });
 
 const Title = styled("h1", {
+  fontSize: "$subtitle1",
   marginBottom: rem(12),
+
+  "@md": {
+    fontSize: "$heading4",
+  },
 });
 
 const Wrapper = styled("div", {
   display: "flex",
-  fontSize: rem(14),
   color: vars.$scale.color.gray600,
 });
 
