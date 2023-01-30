@@ -1,5 +1,6 @@
 import {
   type ContentRelationshipField,
+  type DateField,
   type GroupField,
   type ImageField,
   type KeyTextField,
@@ -33,6 +34,7 @@ export type PrismicAboutBlogPostNode = PrismicSourceNode &
     {
       title: TitleField;
       summary: KeyTextField;
+      published_at: DateField;
       thumbnail_image: ImageField;
       author: ContentRelationshipField<'team_member'>;
       category: ContentRelationshipField<'about_blog_category'>;
