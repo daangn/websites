@@ -1,12 +1,12 @@
-import * as React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { graphql, Link } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/config';
-import { useLinkParser, mapLink } from '@karrotmarket/gatsby-theme-website/src/link';
+import { mapLink, useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
 import { vars } from '@seed-design/design-token';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Link, graphql } from 'gatsby';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import * as React from 'react';
 
-import JobPostSummary from './JobPostSummary';
 import FadeInWhenVisible from './FadeInWhenVisible';
+import JobPostSummary from './JobPostSummary';
 import EmptyPlaceholder from './jobPostList/EmptyPlaceholder';
 
 type JobPostListProps = {
