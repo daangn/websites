@@ -1,45 +1,76 @@
+import { graphql, navigate } from "gatsby";
 import { rem } from "polished";
 import { styled } from "gatsby-theme-stitches/src/config";
-import { vars } from '@seed-design/design-token';
+import { vars } from "@seed-design/design-token";
 
 type CategoryProps = {
   active: boolean,
-  children: React.ReactNode,
+  children?: React.ReactNode,
+  category: GatsbyTypes.Category_dataFragment,
+  pageContext: string,
 };
 
-const Category: React.FC<CategoryProps> = ({ active, children }) => {
+export const query = graphql`
+  fragment Category_category on BlogCategory {
+    uid
+    name
+  }
+`;
+
+const Category: React.FC<CategoryProps> = ({ category, pageContext }) => {
+  const handleCategoryClick = (e) => {
+    if (e.target.id === "*") {
+      navigate("/blog/");
+      return;
+    }
+
+    navigate(`/blog/category/${e.target.id}/`);
+  };
+
   return (
-    <Container active={active}>
-      {children}
+    <Container
+      id={category.uid}
+      onClick={handleCategoryClick}
+      active={pageContext === category.uid}
+    >
+      {category.name}
     </Container>
   );
 };
 
 const Container = styled("div", {
-  padding: `${rem(8)} ${rem(18)}`,
-  marginRight: rem(10),
-  border: `1px solid ${vars.$scale.color.gray600}`,
+  padding: `${rem(8)} ${rem(16)}`,
+  marginRight: rem(4),
+  border: "none",
   borderRadius: rem(40),
   lineHeight: rem(14),
-  fontSize: rem(14),
+  fontSize: "$caption3",
   cursor: "pointer",
+  textDecoration: "none",
   variants: {
     active: {
       true: {
         backgroundColor: vars.$scale.color.gray900,
         color: vars.$scale.color.gray00,
-        borderColor: vars.$scale.color.gray900,
+        fontWeight: "bold",
       },
       false: {
-        backgroundColor: vars.$scale.color.gray00,
+        backgroundColor: vars.$scale.color.gray100,
+        color: vars.$scale.color.gray700,
         '&:hover': {
           backgroundColor: vars.$scale.color.gray900,
           color: vars.$scale.color.gray00,
-          borderColor: vars.$scale.color.gray900,
+          fontWeight: "bold",
         },
       },
     },
   },
+
+  "@media (min-width: 880px)" : {
+    marginRight: rem(10),
+    padding: `${rem(10)} ${rem(20)}`,
+    fontSize: "$body2",
+  }
 });
 
 export default Category;

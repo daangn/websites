@@ -1,23 +1,39 @@
+import { graphql } from "gatsby";
 import { styled } from "gatsby-theme-stitches/src/config";
 
 import Category from "./Category";
 
-const CategoryList = ({ categories }) => {
+type CategoryListProps = {
+  query: GatsbyTypes.CategoryList_dataFragment,
+  pageContext: string,
+};
+
+export const query = graphql`
+  fragment CategoryList_query on Query {
+    allBlogCategory {
+      nodes {
+        ...Category_category
+      }
+    }
+  }
+`;
+
+const CategoryList: React.FC<CategoryListProps> = ({ query, pageContext }) => {
   return (
     <Container>
       <Category
         key="all"
         active={true}
-      >
-        전체
-      </Category>
-      {categories.map((category) => (
+        pageContext={pageContext}
+        category={{ uid: "*", name: "전체" }}
+      />
+      {query.allBlogCategory.nodes.map((category, i) => (
         <Category
-          key={category.uid}
+          key={i}
           active={false}
-        >
-          {category.name}
-        </Category>
+          pageContext={pageContext}
+          category={category}
+        />
       ))}
     </Container>
   );
@@ -27,7 +43,6 @@ const Container = styled("div", {
   display: "flex",
   overFlowX: "auto",
   boxSizing: "border-box",
-  margin: "0 auto",
 });
 
 export default CategoryList;
