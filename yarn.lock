@@ -4584,6 +4584,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/prismjs@npm:1.26.0":
+  version: 1.26.0
+  resolution: "@types/prismjs@npm:1.26.0"
+  checksum: cd5e7a6214c1f4213ec512a5fcf6d8fe37a56b813fc57ac95b5ff5ee074742bfdbd2f2730d9fd985205bf4586728e09baa97023f739e5aa1c9735a7c1ecbd11a
+  languageName: node
+  linkType: hard
+
 "@types/prop-types@npm:*":
   version: 15.7.4
   resolution: "@types/prop-types@npm:15.7.4"
@@ -14985,6 +14992,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prismjs@npm:1.29.0":
+  version: 1.29.0
+  resolution: "prismjs@npm:1.29.0"
+  checksum: 007a8869d4456ff8049dc59404e32d5666a07d99c3b0e30a18bd3b7676dfa07d1daae9d0f407f20983865fd8da56de91d09cb08e6aa61f5bc420a27c0beeaf93
+  languageName: node
+  linkType: hard
+
 "probe-image-size@npm:^7.2.3":
   version: 7.2.3
   resolution: "probe-image-size@npm:7.2.3"
@@ -17318,6 +17332,7 @@ __metadata:
     "@types/node": 18.14.2
     "@types/react": 18.0.28
     "@types/react-dom": 18.0.11
+    "@types/prismjs": 1.26.0
     babel-preset-gatsby-package: 3.5.0
     cjk-slug: 0.3.1
     dotenv: 16.0.3
@@ -17335,6 +17350,7 @@ __metadata:
     gatsby-source-filesystem: 5.6.0
     match-sorter: 6.3.1
     polished: 4.2.2
+    prismjs: 1.29.0
     react: 18.2.0
     react-dom: 18.2.0
     typescript: 4.9.5
