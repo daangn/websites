@@ -3161,7 +3161,7 @@ __metadata:
   dependencies:
     "@babel/cli": 7.20.7
     "@babel/core": 7.20.12
-    "@prismicio/helpers": 2.3.8
+    "@prismicio/helpers": 2.3.9
     "@types/node": 18.11.18
     "@types/react": 18.0.27
     "@types/react-dom": 18.0.10
@@ -3242,7 +3242,7 @@ __metadata:
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website": "workspace:^"
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^"
-    "@prismicio/helpers": 2.3.8
+    "@prismicio/helpers": 2.3.9
     "@reach/router": 1.3.4
     "@seed-design/design-token": 1.0.0
     "@stitches/react": 1.2.8
@@ -4202,15 +4202,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prismicio/helpers@npm:2.3.8":
-  version: 2.3.8
-  resolution: "@prismicio/helpers@npm:2.3.8"
+"@prismicio/helpers@npm:2.3.9":
+  version: 2.3.9
+  resolution: "@prismicio/helpers@npm:2.3.9"
   dependencies:
-    "@prismicio/richtext": ^2.1.3
+    "@prismicio/richtext": ^2.1.4
     "@prismicio/types": ^0.2.7
-    escape-html: ^1.0.3
     imgix-url-builder: ^0.0.3
-  checksum: 327a6e993369bbff70a0061612ab143b33397bd4ee7be4b46b01c208a99deb660f5aaa0ea7567381bef716989228c0e3c35507d874a5c77165aee052060b88c3
+  checksum: 58fd10130a50230ce21a9a016ce48bd52cfcef6c7857589a1fce61004027550559cf4d7833359cbec10c93646421705f4b7569c7818381438165ec1e4b04c36d
   languageName: node
   linkType: hard
 
@@ -4235,12 +4234,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prismicio/richtext@npm:^2.1.3":
-  version: 2.1.3
-  resolution: "@prismicio/richtext@npm:2.1.3"
+"@prismicio/richtext@npm:^2.1.4":
+  version: 2.1.4
+  resolution: "@prismicio/richtext@npm:2.1.4"
   dependencies:
     "@prismicio/types": ^0.2.7
-  checksum: 108498ade18290a6ef42e813fcd6b086d844f59587eca65056dcbe98209d114738e19c417c0ab4d7711425d678b51d1c139be1a7a75459fa4061ca7b268ebdbe
+  checksum: b27eb9917ba81472396fefd68672d81cdc0f28bf05a8d35641b512bca3a50aa9398ea44fdd1abd371ed48f2a51cfab7596e72664a91c856f402cf23648f7354a
   languageName: node
   linkType: hard
 
