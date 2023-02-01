@@ -31,7 +31,7 @@
     "babel-plugin-polished": "1.1.0",
     "clsx": "1.2.1",
     "focus-trap-react": "10.0.2",
-    "framer-motion": "4.1.17",
+    "framer-motion": "8.5.5",
     "gatsby": "5.5.0",
     "gatsby-plugin-advanced-sitemap": "2.1.0",
     "gatsby-plugin-gatsby-cloud": "5.5.0",

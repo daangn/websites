@@ -21,7 +21,7 @@
   "dependencies": {
     "@karrotmarket/gatsby-theme-website-global": "workspace:^",
     "@seed-design/design-token": "1.0.0",
-    "framer-motion": "4.1.17",
+    "framer-motion": "8.5.5",
     "gatsby": "5.5.0",
     "gatsby-plugin-google-gtag": "5.5.0",
     "gatsby-plugin-image": "3.5.0",
