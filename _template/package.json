@@ -13,11 +13,11 @@
     "not ie 11"
   ],
   "dependencies": {
-    "gatsby": "5.4.2",
+    "gatsby": "5.5.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "typescript": "4.9.4"
+    "typescript": "4.9.5"
   }
 }

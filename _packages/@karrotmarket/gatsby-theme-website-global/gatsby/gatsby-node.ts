@@ -38,8 +38,8 @@ export const pluginOptionsSchema: GatsbyNode["pluginOptionsSchema"] = ({
       .default("en-gb")
       .description(`prismic locale 값`),
     hot_articles_api: Joi.string()
-      .default("https://webapp.uk.karrotmarket.com/hot_articles.json?limit=6")
-      .description(`인기매물 api`),
+      .description(`인기매물 api`)
+      .required(),
     hot_articles_api_special_key: Joi.string()
       .description('Bot 차단 우회용 Secret')
       .optional(),

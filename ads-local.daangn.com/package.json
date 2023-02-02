@@ -14,24 +14,24 @@
     "not ie 11"
   ],
   "dependencies": {
-    "@cometjs/graphql-utils": "2.0.4",
+    "@cometjs/graphql-utils": "2.0.5",
     "@karrotmarket/gatsby-theme-prismic": "workspace:^",
     "@karrotmarket/gatsby-theme-website": "workspace:^",
     "@seed-design/design-token": "1.0.0",
     "@stitches/react": "1.2.8",
-    "gatsby": "5.4.2",
-    "gatsby-plugin-google-tagmanager": "5.4.0",
+    "gatsby": "5.5.0",
+    "gatsby-plugin-google-tagmanager": "5.5.0",
     "gatsby-plugin-head-seo": "0.3.0",
-    "gatsby-plugin-image": "3.4.0",
-    "gatsby-plugin-manifest": "5.4.0",
+    "gatsby-plugin-image": "3.5.0",
+    "gatsby-plugin-manifest": "5.5.0",
     "gatsby-plugin-module-resolver": "1.0.3",
     "gatsby-plugin-robots-txt": "1.8.0",
-    "gatsby-plugin-seed-design": "0.2.4",
-    "gatsby-plugin-sharp": "5.4.0",
+    "gatsby-plugin-seed-design": "0.2.5",
+    "gatsby-plugin-sharp": "5.5.0",
     "gatsby-plugin-typegen": "3.1.0",
-    "gatsby-source-filesystem": "5.4.0",
+    "gatsby-source-filesystem": "5.5.0",
     "gatsby-theme-stitches": "1.0.1",
-    "gatsby-transformer-sharp": "5.4.0",
+    "gatsby-transformer-sharp": "5.5.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-swipeable": "7.0.0",
@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.20.12",
-    "typescript": "4.9.4",
+    "typescript": "4.9.5",
     "ultra-runner": "3.10.5"
   }
 }
