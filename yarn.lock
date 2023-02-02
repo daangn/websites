@@ -2098,12 +2098,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cometjs/graphql-utils@npm:2.0.4":
-  version: 2.0.4
-  resolution: "@cometjs/graphql-utils@npm:2.0.4"
+"@cometjs/core@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "@cometjs/core@npm:2.2.0"
   dependencies:
-    "@cometjs/core": ^2.1.1
-  checksum: af253d16f5aff39e5a885b2e47b75f44d5d8d42cccf33282577debb15b0c958656d27f6b76817d903c2bbceeb8884d751fb85154fcb0e9ceaa88976dd2f3a154
+    tsconfck: ^2.0.1
+  peerDependencies:
+    typescript: ^4.5.0
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 9ee3a6b36c08de7672766429dd28bc408a3e334223809f143932e955153b08f0bb96b8e21463021e82add7e262746ab476483609dd8cf2ce714def5b240da5b4
+  languageName: node
+  linkType: hard
+
+"@cometjs/graphql-utils@npm:2.0.5":
+  version: 2.0.5
+  resolution: "@cometjs/graphql-utils@npm:2.0.5"
+  dependencies:
+    "@cometjs/core": ^2.2.0
+  checksum: 7f7acc249e1517474c7ce7632f6e15c8c148057c6373fc74af8c5c96e4a0872f79a35f743dccf99a42d932540c379974b0a0ed77a63e016139c7f22addbf06ec
   languageName: node
   linkType: hard
 
@@ -3189,7 +3203,7 @@ __metadata:
     "@babel/cli": 7.20.7
     "@babel/core": 7.20.12
     "@cometjs/core": 2.1.1
-    "@cometjs/graphql-utils": 2.0.4
+    "@cometjs/graphql-utils": 2.0.5
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website": "workspace:^"
     "@reach/router": 1.3.4
@@ -3235,7 +3249,7 @@ __metadata:
     "@babel/cli": 7.20.7
     "@babel/core": 7.20.12
     "@cometjs/core": 2.1.1
-    "@cometjs/graphql-utils": 2.0.4
+    "@cometjs/graphql-utils": 2.0.5
     "@cometjs/react-utils": 2.1.1
     "@karrotmarket/gatsby-plugin-lokalise-translation": "workspace:^"
     "@karrotmarket/gatsby-source-greenhouse-jobboard": 0.7.0
@@ -5582,7 +5596,7 @@ __metadata:
   resolution: "ads-local.daangn.com@workspace:ads-local.daangn.com"
   dependencies:
     "@babel/core": 7.20.12
-    "@cometjs/graphql-utils": 2.0.4
+    "@cometjs/graphql-utils": 2.0.5
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website": "workspace:^"
     "@seed-design/design-token": 1.0.0
