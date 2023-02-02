@@ -30,7 +30,7 @@
   "devDependencies": {
     "@babel/core": "7.20.12",
     "babel-plugin-polished": "1.1.0",
-    "typescript": "4.9.4",
+    "typescript": "4.9.5",
     "ultra-runner": "3.10.5"
   }
 }
