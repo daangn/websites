@@ -49,7 +49,7 @@ const config: GatsbyConfig = {
       options: {
         locale: "ja-jp",
         hot_articles_api:
-          "https://webapp.jp.karrotmarket.com/hot_articles.json?limit=6",
+          "https://jp.karrotmarket.com/buy-sell.json?limit=6",
       },
     },
     "@karrotmarket/gatsby-theme-prismic",

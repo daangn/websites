@@ -35,7 +35,7 @@ const config: GatsbyConfig = {
       options: {
         locale: "en-ca",
         hot_articles_api:
-          "https://webapp.ca.karrotmarket.com/hot_articles.json?limit=6",
+          "https://ca.karrotmarket.com/buy-sell.json?limit=6",
       },
     },
     "@karrotmarket/gatsby-theme-prismic",
