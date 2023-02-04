@@ -2084,7 +2084,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cometjs/core@npm:2.1.1, @cometjs/core@npm:^2.1.1":
+"@cometjs/core@npm:2.1.1":
   version: 2.1.1
   resolution: "@cometjs/core@npm:2.1.1"
   dependencies:
@@ -2121,15 +2121,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cometjs/react-utils@npm:2.1.1":
-  version: 2.1.1
-  resolution: "@cometjs/react-utils@npm:2.1.1"
+"@cometjs/react-utils@npm:2.1.2":
+  version: 2.1.2
+  resolution: "@cometjs/react-utils@npm:2.1.2"
   dependencies:
-    "@cometjs/core": ^2.1.1
+    "@cometjs/core": ^2.2.0
     fast-deep-equal: ^3.1.3
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 67e6139fd8a43769436503c587133a950a2decc01dd71646037e8d6cea776384d71af2dab2734235c48ba3652b6627255c621770bd9985922660a2018ca694d8
+  checksum: 23b5e78f74a4749dba89b5fdc7eec7d30f047772d81ccd4753f029ff530682b8dabdbf26b33425bb972199942253c7a248aed4dc1191354d4b51867ca1c5b74d
   languageName: node
   linkType: hard
 
@@ -3250,7 +3250,7 @@ __metadata:
     "@babel/core": 7.20.12
     "@cometjs/core": 2.1.1
     "@cometjs/graphql-utils": 2.0.5
-    "@cometjs/react-utils": 2.1.1
+    "@cometjs/react-utils": 2.1.2
     "@karrotmarket/gatsby-plugin-lokalise-translation": "workspace:^"
     "@karrotmarket/gatsby-source-greenhouse-jobboard": 0.7.0
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
