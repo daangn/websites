@@ -28,7 +28,7 @@
     "init:gatsby": "ultra --recursive init:gatsby"
   },
   "devDependencies": {
-    "@types/node": "18.11.18",
+    "@types/node": "18.11.19",
     "typescript": "4.9.5",
     "ultra-runner": "3.10.5"
   },
