@@ -1,7 +1,7 @@
 import * as React from "react";
 import { rem } from "polished";
 import { styled } from "gatsby-theme-stitches/src/config";
-import { vars } from '@seed-design/design-token';
+import { vars } from "@seed-design/design-token";
 
 import { ArrowLink } from "~/components/molecules/ArrowLink";
 import chevronIconUrl from "~/image/chevron.svg";
@@ -31,15 +31,18 @@ export const LearnMore = () => {
             <ArrowLink target="https://drive.google.com/file/d/1rXFkxvzxJHszsFnCKiqWafzb6bi-6uBU/view" id="content-pdf"/>
           </DocsLink> */}
           <DocsLink
-          id="content-howto"
+            id="content-howto"
             onClick={() => {
               handleClick(
-                "https://drive.google.com/file/d/1AmZz245syU0OLXH6gICmanVuhP3ySgYI/view"
+                "https://www.youtube.com/playlist?list=PLJCE_d2A9mEZzMPFBPEwYuX7RtsynatZ4"
               );
             }}
           >
-            <p>광고 심화 가이드</p>
-            <ArrowLink target="https://drive.google.com/file/d/1AmZz245syU0OLXH6gICmanVuhP3ySgYI/view" id="content-howto"/>
+            <p>광고 영상 가이드</p>
+            <ArrowLink
+              target="https://www.youtube.com/playlist?list=PLJCE_d2A9mEZzMPFBPEwYuX7RtsynatZ4"
+              id="content-howto"
+            />
           </DocsLink>
         </Item>
         <Item right>
