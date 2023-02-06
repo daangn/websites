@@ -15,7 +15,7 @@ export const Main04 = () => {
           childImageSharp {
             gatsbyImageData(
               height: 420
-              quality: 90
+              quality: 75
               formats: [WEBP, AUTO]
               placeholder: NONE
             )
@@ -25,7 +25,7 @@ export const Main04 = () => {
           childImageSharp {
             gatsbyImageData(
               height: 320
-              quality: 90
+              quality: 75
               formats: [WEBP, AUTO]
               placeholder: NONE
             )
@@ -35,7 +35,7 @@ export const Main04 = () => {
           childImageSharp {
             gatsbyImageData(
               height: 420
-              quality: 90
+              quality: 75
               formats: [WEBP, AUTO]
               placeholder: NONE
             )
@@ -45,7 +45,7 @@ export const Main04 = () => {
           childImageSharp {
             gatsbyImageData(
               height: 320
-              quality: 90
+              quality: 75
               formats: [WEBP, AUTO]
               placeholder: NONE
             )
