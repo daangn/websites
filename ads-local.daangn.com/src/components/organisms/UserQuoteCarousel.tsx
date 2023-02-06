@@ -2,7 +2,7 @@ import * as React from "react";
 import { useSwipeable } from "react-swipeable";
 import { rem } from "polished";
 import { styled } from "gatsby-theme-stitches/src/config";
-import { vars } from '@seed-design/design-token';
+import { vars } from "@seed-design/design-token";
 
 import { ArrowLink } from "~/components/molecules/ArrowLink";
 import tensoba from "~/image/tensoba.jpg";
@@ -33,7 +33,7 @@ export const UserQuoteCarousel: React.FC = () => {
       ],
       story: "음식점 '텐소바' 사장님 이야기",
       link: "https://www.youtube.com/watch?v=agdA0fMZ7u4",
-      id: 'Success Story_A'
+      id: "Success Story_A",
     },
     {
       picture: promiseBycicle,
@@ -44,7 +44,7 @@ export const UserQuoteCarousel: React.FC = () => {
       ],
       story: "자전거 대여점 ‘약속의 자전거' 사장님 이야기 ",
       link: "https://www.youtube.com/watch?v=iqDcidk3MbY",
-      id: 'Success Story_B'
+      id: "Success Story_B",
     },
     {
       picture: jjinijjini,
@@ -55,7 +55,7 @@ export const UserQuoteCarousel: React.FC = () => {
       ],
       story: "농수산물 '찌니찌니' 사장님 이야기",
       link: "https://www.youtube.com/watch?v=si4DM8_PxSk",
-      id: 'Success Story_C'
+      id: "Success Story_C",
     },
   ];
 
@@ -67,7 +67,7 @@ export const UserQuoteCarousel: React.FC = () => {
       ],
       story: "음식점 '텐소바' 사장님 이야기",
       link: "https://www.youtube.com/watch?v=agdA0fMZ7u4",
-      id: 'Success Story_A'
+      id: "Success Story_A",
     },
     {
       picture: promiseBycicle_m,
@@ -76,7 +76,7 @@ export const UserQuoteCarousel: React.FC = () => {
       ],
       story: "자전거 대여점 ‘약속의 자전거' 사장님 이야기 ",
       link: "https://www.youtube.com/watch?v=iqDcidk3MbY",
-      id: 'Success Story_B'
+      id: "Success Story_B",
     },
     {
       picture: jjinijjini_m,
@@ -85,7 +85,7 @@ export const UserQuoteCarousel: React.FC = () => {
       ],
       story: "농수산물 '찌니찌니' 사장님 이야기",
       link: "https://www.youtube.com/watch?v=si4DM8_PxSk",
-      id: 'Success Story_C'
+      id: "Success Story_C",
     },
   ];
 
@@ -147,7 +147,11 @@ export const UserQuoteCarousel: React.FC = () => {
                           <By>{item.story}</By>
                         </a>
                         <div style={{ marginLeft: rem(8) }}>
-                          <ArrowLink target={item.link} color={"white"} id={item.id} />
+                          <ArrowLink
+                            target={item.link}
+                            color={"white"}
+                            id={item.id}
+                          />
                         </div>
                       </ByRow>
                     </div>
@@ -191,7 +195,12 @@ export const UserQuoteCarousel: React.FC = () => {
       </SlideCamera>
       <Dots>
         {items.map((_, i) => (
-          <Dot key={i} active={slide === i} onClick={() => setSlide(i)} />
+          <Dot
+            aria-label={`carousel button index ${i + 1}`}
+            key={i}
+            active={slide === i}
+            onClick={() => setSlide(i)}
+          />
         ))}
       </Dots>
     </Container>
@@ -204,7 +213,7 @@ const Container = styled("div", {
   boxSizing: "border-box",
   display: "grid",
   maxWidth: "100vw",
-  paddingX: 0
+  paddingX: 0,
 });
 
 const SlideCamera = styled("div", {
