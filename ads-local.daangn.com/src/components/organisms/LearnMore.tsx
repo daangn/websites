@@ -34,7 +34,7 @@ export const LearnMore = () => {
             id="content-howto"
             onClick={() => {
               handleClick(
-                "https://drive.google.com/file/d/1AmZz245syU0OLXH6gICmanVuhP3ySgYI/view"
+                "https://www.youtube.com/playlist?list=PLJCE_d2A9mEZzMPFBPEwYuX7RtsynatZ4"
               );
             }}
           >
