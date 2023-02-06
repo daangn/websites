@@ -2084,21 +2084,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cometjs/core@npm:2.1.1":
-  version: 2.1.1
-  resolution: "@cometjs/core@npm:2.1.1"
-  dependencies:
-    tsconfck: ^2.0.1
-  peerDependencies:
-    typescript: ^4.5.0
-  peerDependenciesMeta:
-    typescript:
-      optional: true
-  checksum: 88834e8975c69c761f96b6fcb4034e7912aa6c0bef0eee0808bd35663ebb0f6e138a77b3e60099a06b53f3b32808c95163dc67b7ce8de88d17036848f3fe2c83
-  languageName: node
-  linkType: hard
-
-"@cometjs/core@npm:^2.2.0":
+"@cometjs/core@npm:2.2.0, @cometjs/core@npm:^2.2.0":
   version: 2.2.0
   resolution: "@cometjs/core@npm:2.2.0"
   dependencies:
@@ -3202,7 +3188,7 @@ __metadata:
   dependencies:
     "@babel/cli": 7.20.7
     "@babel/core": 7.20.12
-    "@cometjs/core": 2.1.1
+    "@cometjs/core": 2.2.0
     "@cometjs/graphql-utils": 2.0.5
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website": "workspace:^"
@@ -3248,7 +3234,7 @@ __metadata:
   dependencies:
     "@babel/cli": 7.20.7
     "@babel/core": 7.20.12
-    "@cometjs/core": 2.1.1
+    "@cometjs/core": 2.2.0
     "@cometjs/graphql-utils": 2.0.5
     "@cometjs/react-utils": 2.1.2
     "@karrotmarket/gatsby-plugin-lokalise-translation": "workspace:^"
@@ -3315,7 +3301,7 @@ __metadata:
   dependencies:
     "@babel/cli": 7.20.7
     "@babel/core": 7.20.12
-    "@cometjs/core": 2.1.1
+    "@cometjs/core": 2.2.0
     "@seed-design/design-token": 1.0.0
     "@stitches/react": 1.2.8
     "@svgr/webpack": 6.5.1
