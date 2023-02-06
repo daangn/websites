@@ -123,7 +123,7 @@ export const Main04 = () => {
                 id="guide-feed"
                 onClick={() =>
                   window.open(
-                    "https://daangnbiz.oopy.io/c2b5acd3-d4a0-43e5-b1f6-3f9fab9ca049",
+                    "https://bizschool.daangn.com/displayads",
                     "_blank"
                   )
                 }
@@ -164,7 +164,7 @@ export const Main04 = () => {
                 id="guide-search"
                 onClick={() =>
                   window.open(
-                    "https://daangnbiz.oopy.io/20f0c0cf-2baf-45e1-b91c-e37364f61f46",
+                    "https://bizschool.daangn.com/searchads",
                     "_blank"
                   )
                 }
