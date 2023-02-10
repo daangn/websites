@@ -55,7 +55,7 @@ const Title = styled('h1', {
   fontSize: '$subtitle1',
 
   '@sm': {
-    fontSize: '$heading3',
+    fontSize: '$heading4',
   },
 });
 
