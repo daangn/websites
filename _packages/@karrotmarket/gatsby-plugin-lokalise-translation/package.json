@@ -14,7 +14,7 @@
     "gatsby": "^4.19.0 || ^5.0.0"
   },
   "dependencies": {
-    "@lokalise/node-api": "9.5.0"
+    "@lokalise/node-api": "9.6.0"
   },
   "devDependencies": {
     "@babel/cli": "7.20.7",
