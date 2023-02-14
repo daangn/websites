@@ -3512,7 +3512,7 @@ __metadata:
     "@types/node": 18.11.19
     babel-jest: 29.4.2
     babel-preset-gatsby-package: 3.5.0
-    cjk-slug: 0.3.0
+    cjk-slug: 0.3.1
     common-tags: 1.8.2
     concurrently: 7.6.0
     gatsby: 5.5.0
@@ -7126,12 +7126,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cjk-slug@npm:0.3.0":
-  version: 0.3.0
-  resolution: "cjk-slug@npm:0.3.0"
+"cjk-slug@npm:0.3.1":
+  version: 0.3.1
+  resolution: "cjk-slug@npm:0.3.1"
   dependencies:
     normalize-cjk: ^0.4.0
-  checksum: 289f8943261e4714192e65fc980b255f9c8da1317c0d27cdbb3ffe9dab6b06ac4b734c4e3a6459246313a3c107687d5034c53cb97d95025bb225610e1e5913a1
+  checksum: e7bfa28e4cd61bb79088a31e6b19445febd54c3b1e30de22e08057e6cd044dd3503c308378f8567162ba24a03f687d58b8dfafd9c521e7d63e2c04a62ba705e2
   languageName: node
   linkType: hard
 
@@ -17918,7 +17918,7 @@ __metadata:
     "@types/react": 18.0.27
     "@types/react-dom": 18.0.10
     babel-preset-gatsby-package: 3.5.0
-    cjk-slug: 0.3.0
+    cjk-slug: 0.3.1
     dotenv: 16.0.3
     gatsby: 5.5.0
     gatsby-plugin-advanced-sitemap: 2.1.0
