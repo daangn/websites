@@ -1,5 +1,4 @@
 import type { GatsbyNode } from 'gatsby';
-import got from "got";
 
 const locales = ['en-gb', 'en-us', 'en-ca', 'ja-jp'] as const;
 type Locale = typeof locales[number];
@@ -92,19 +91,16 @@ export const sourceNodes: GatsbyNode["sourceNodes"] = async (
 
   const { createNode } = actions;
 
-  const response = await got<{ articles: Article[] }>(
-    hot_articles_api,
-    {
-      responseType: "json",
-      headers: {
-        ...hot_articles_api_special_key && {
-          'x-special-key': hot_articles_api_special_key,
-        },
+  const response = await fetch(hot_articles_api, {
+    headers: {
+      ...hot_articles_api_special_key && {
+        'x-special-key': hot_articles_api_special_key,
       },
     },
-  );
+  });
+  const data = await response.json() as { articles: Article[] };
 
-  response.body.articles.map((article) => {
+  data.articles.map((article) => {
     createNode({
       id: createNodeId(`HotArticle - ${article.id}`),
       parent: `__SOURCE__`,
