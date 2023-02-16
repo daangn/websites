@@ -3370,7 +3370,7 @@ __metadata:
     react: 18.2.0
     react-dom: 18.2.0
     react-intersection-observer: 9.4.1
-    react-scroll-parallax: 2.4.3
+    react-scroll-parallax: 3.3.2
     sharp: 0.31.3
     typescript: 4.9.5
   peerDependencies:
@@ -6569,6 +6569,13 @@ __metadata:
   dependencies:
     open: ^7.0.3
   checksum: 3d1a945d125cbbc6e6a841bef7540435d77d5aa61fc4d345896f5f0b3780fcf9c7145373deaedf62d674a427b187ae973f4410884f9fea0c15f7f01f9dc339c7
+  languageName: node
+  linkType: hard
+
+"bezier-easing@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "bezier-easing@npm:2.1.0"
+  checksum: ec22666b5385979b3e7a63eaf2631395b1be5beb3aed4f14cc70ae9eb09032082584f7e3eec045e4c122466987ed7e159f5b39f82b8a9870cd55e75b0d55a7d5
   languageName: node
   linkType: hard
 
@@ -14795,6 +14802,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"parallax-controller@npm:^1.5.0":
+  version: 1.6.0
+  resolution: "parallax-controller@npm:1.6.0"
+  dependencies:
+    bezier-easing: ^2.1.0
+  checksum: 6e245df50f43a1b7f36ba86ff444e4f13b349f6ac29cc2ffb3df44fceec8394b4fdadf8801f170d18e374d18e18540f5e535d0575a32ee541948e0597f7d4900
+  languageName: node
+  linkType: hard
+
 "param-case@npm:^3.0.4":
   version: 3.0.4
   resolution: "param-case@npm:3.0.4"
@@ -15687,7 +15703,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.5.10, prop-types@npm:^15.5.8, prop-types@npm:^15.6.1, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.5.8, prop-types@npm:^15.6.1, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -16096,15 +16112,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-scroll-parallax@npm:2.4.3":
-  version: 2.4.3
-  resolution: "react-scroll-parallax@npm:2.4.3"
+"react-scroll-parallax@npm:3.3.2":
+  version: 3.3.2
+  resolution: "react-scroll-parallax@npm:3.3.2"
   dependencies:
-    prop-types: ^15.5.10
+    parallax-controller: ^1.5.0
   peerDependencies:
-    react: ^16.3.0-0 || >=17.0.1
-    react-dom: ^16.3.0-0 || >=17.0.1
-  checksum: f2ddfeb585876ebf701a152b9aaa82e154f9e6ed5d0fe583b8d5c28bcde6b901f415a13e4cb9753869caa9635d73bd2264e65868effa78fa612fddf220d12695
+    react: ^16.8.0-0 || >=17.0.1 || ^18.0.0
+    react-dom: ^16.8.0-0 || >=17.0.1 || ^18.0.0
+  checksum: 900bbaa670fb7b07550938ab700358c2158c56493a73c7751c73ff2db71f94374a4e0e97713e32a46b5a333e1dce86f9de5c4fc0ebbaa1ed5bee1a955b4a7987
   languageName: node
   linkType: hard
 

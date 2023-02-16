@@ -67,7 +67,7 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({ content }) => {
                   <BackgroundImage image={bgImage} />
                 </Background>
               ),
-              amount: 0.2,
+              speed: 0.2,
               expanded: true,
             },
           ]}
