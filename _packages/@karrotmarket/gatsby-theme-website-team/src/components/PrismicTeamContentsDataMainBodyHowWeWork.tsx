@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { rem } from 'polished';
-import { motion, AnimateSharedLayout } from 'framer-motion';
+import { motion, LayoutGroup } from 'framer-motion';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token'
@@ -201,7 +201,7 @@ const PrismicTeamContentsDataMainBodyHowWeWork: React.FC<PrismicTeamContentsData
         </Title>
         <EntryGroupNav aria-hidden="true">
           <EntryGroupNavList>
-            <AnimateSharedLayout>
+            <LayoutGroup>
               {Object.entries(itemAggregation).map(([group], i) => (
                 <EntryGroupNavListItem key={group}>
                   <EntryGroupNavButton
@@ -215,7 +215,7 @@ const PrismicTeamContentsDataMainBodyHowWeWork: React.FC<PrismicTeamContentsData
                   )}
                 </EntryGroupNavListItem>
               ))}
-            </AnimateSharedLayout>
+            </LayoutGroup>
           </EntryGroupNavList>
         </EntryGroupNav>
       </Header>
