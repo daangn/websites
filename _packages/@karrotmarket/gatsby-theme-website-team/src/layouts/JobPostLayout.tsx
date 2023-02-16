@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { rem } from 'polished';
-import { motion, AnimateSharedLayout } from 'framer-motion';
+import { motion, LayoutGroup } from 'framer-motion';
 import {
   graphql,
   navigate,
@@ -229,8 +229,8 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
           ))}
         </PropertyList>
 
-        <AnimateSharedLayout>
-          {!jobPost.externalUrl&& (
+        <LayoutGroup>
+          {!jobPost.externalUrl && (
             <Tabs>
               <TabItemList role="tablist">
                 <TabItem key="jobpost-view">
@@ -266,7 +266,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
               </TabItemList>
             </Tabs>
           )}
-        </AnimateSharedLayout>
+        </LayoutGroup>
         {children}
       </main>
     </Container>
