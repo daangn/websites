@@ -20,6 +20,7 @@ const config = ({
     'gatsby-theme-stitches',
     'gatsby-plugin-svgr',
     'gatsby-plugin-head-seo',
+    'gatsby-transformer-remote-filesystem',
     {
       resolve: 'gatsby-plugin-turnstile',
       options: {

@@ -3,10 +3,10 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import FocusTrap from 'focus-trap-react';
 import { vars } from '@seed-design/design-token';
+import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
 
 import * as Field from './Field';
 import checkmarkUrl from '!!file-loader!./checkmark.svg';
-import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 
 type Props = {
   id?: string,

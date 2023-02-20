@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
 import { JobPostingJsonLd as Ld } from 'gatsby-plugin-head-seo/src/jsonld';
-import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
+import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
 
 import { lookup } from '../../utils/common';
 import locations from './locations';

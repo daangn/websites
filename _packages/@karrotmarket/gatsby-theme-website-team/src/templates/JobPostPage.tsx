@@ -10,7 +10,7 @@ import { HeadSeo } from 'gatsby-plugin-head-seo/src';
 import { rem } from 'polished';
 import { required } from '@cometjs/core';
 import { useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
-import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
+import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
 
 import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import { JobPostLayoutHead } from '../layouts/JobPostLayout';

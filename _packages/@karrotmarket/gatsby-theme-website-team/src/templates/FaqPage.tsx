@@ -13,7 +13,7 @@ import { HeadSeo } from 'gatsby-plugin-head-seo/src';
 import { FAQPageJsonLd } from 'gatsby-plugin-head-seo/src/jsonld';
 import { required } from '@cometjs/core';
 import { vars } from '@seed-design/design-token';
-import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
+import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
 
 import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import _PageTitle from '../components/PageTitle';
