@@ -2,9 +2,9 @@ import * as React from 'react';
 import { rem } from 'polished';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token'
+import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
 
 import ButtonLink from '../Button';
-import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 
 type EmptyPlaceholderProps = {
   link: string,

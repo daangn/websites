@@ -20,7 +20,7 @@ import {
 } from '@cometjs/core';
 import _Header from '@karrotmarket/gatsby-theme-website/src/components/Header';
 import _Footer from '@karrotmarket/gatsby-theme-website/src/components/Footer';
-import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
+import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
 
 import logoPath from '../assets/logo.png';
 

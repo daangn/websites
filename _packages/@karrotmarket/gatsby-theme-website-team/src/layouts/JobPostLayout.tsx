@@ -15,7 +15,7 @@ import {
   required,
   type OverrideProps,
 } from '@cometjs/core';
-import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
+import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
 import { vars } from '@seed-design/design-token';
 
 import logoPath from '../assets/logo.png';

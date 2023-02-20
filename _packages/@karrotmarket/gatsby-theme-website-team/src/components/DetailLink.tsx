@@ -1,8 +1,8 @@
 import * as React from 'react';
 import type { LinkType } from '@karrotmarket/gatsby-theme-website/src/link';
+import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
 
 import ArrowLink from './ArrowLink';
-import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 
 type DetailLinkProps = {
   link: LinkType,

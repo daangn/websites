@@ -11,6 +11,7 @@ import { rem } from 'polished';
 import $ from 'text2vdom';
 import { required } from '@cometjs/core';
 import { vars } from '@seed-design/design-token';
+import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
 
 import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import { ReactComponent as SearchdSvg } from '../assets/searchOutlineM.svg';
@@ -21,7 +22,6 @@ import {ReactComponent as ExpandMoreOutlineIcon} from '../assets/expand_more_out
 import { useFlexSearch } from '../utils/useFlexSearch';
 
 import BannerArea from './jobsPage/BannerArea';
-import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 
 export const query = graphql`
   query TeamWebsite_JobsPage($departmentId: String!, $locale: String!, $navigationId: String!) {

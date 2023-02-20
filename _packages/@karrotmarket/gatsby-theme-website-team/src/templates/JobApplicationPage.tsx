@@ -12,6 +12,7 @@ import { rem } from 'polished';
 import { required } from '@cometjs/core';
 import type { PropOf, RefOf } from '@cometjs/react-utils';
 import { mapAbstractType } from '@cometjs/graphql-utils';
+import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
 
 import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import { JobPostLayoutHead } from '../layouts/JobPostLayout';
@@ -25,8 +26,6 @@ import YesNoField from '../components/formField/YesNoField';
 import TermsField from '../components/formField/TermsField';
 import Button from '../components/Button';
 import _Spinner from '../components/Spinner';
-
-import { useTranslation } from '@karrotmarket/gatsby-plugin-lokalise-translation/src/translation';
 
 export const query = graphql`
   query TeamWebsite_JobApplicationPage(

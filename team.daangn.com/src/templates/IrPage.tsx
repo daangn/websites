@@ -45,7 +45,7 @@ export const query = graphql`
               url
 
               base
-              publicURL
+              localURL 
             }
           }
         }
@@ -159,7 +159,7 @@ const IrPage: React.FC<IrPageProps> = ({
   required(data.prismicIr);
 
   const attachments = data.prismicIr.data.attachment_group
-    ?.filter(attachment => attachment?.file?.localFileFixed?.publicURL)
+    ?.filter(attachment => attachment?.file?.localFileFixed?.localURL)
     ?? [];
 
   return (
