@@ -5,6 +5,7 @@ import { rem } from 'polished';
 import {
   graphql,
   navigate,
+  withPrefix,
   Link,
   type PageProps,
   type HeadProps,
@@ -32,19 +33,9 @@ export const query = graphql`
         }
         attachment_group {
           file {
-            #localFile {
-            #  base
-            #  publicURL
-            #}
-            # See https://github.com/gatsbyjs/gatsby/issues/35636
-            localFileFixed {
-
-              # FIXME
-              # See https://karrot.atlassian.net/browse/WMAS-46?focusedCommentId=36565
-              url
-
+            localFile {
               base
-              localURL 
+              publicURL
             }
           }
         }
@@ -157,7 +148,7 @@ const IrPage: React.FC<IrPageProps> = ({
 }) => {
   const ir = prismicData.prismicIr!;
   const attachments = ir.data.attachment_group
-    ?.filter(attachment => attachment?.file?.localFileFixed?.localURL)
+    ?.filter(attachment => attachment?.file?.localFile?.publicURL)
     ?? [];
 
   return (
@@ -210,13 +201,12 @@ const IrPage: React.FC<IrPageProps> = ({
             </AttachmentSectionTitle>
             <FileList>
               {attachments.map((attachment, i) => {
-                const file = attachment!.file!.localFileFixed!;
-                // const href = withPrefix(file.publicURL!);
-                const base = decodeURIComponent(stripUUID(file.base));
+                const file = attachment!.file!.localFile!;
+                const href = withPrefix(file.publicURL!);
+                const base = stripUUID(decodeURIComponent(file.base));
                 return (
                   <FileListItem key={i}>
-                    {/* FIXME: https://karrot.atlassian.net/browse/WMAS-46?focusedCommentId=36565 */}
-                    <File href={file!.url} download={base}>
+                    <File href={href} download={base}>
                       {base}
                     </File>
                   </FileListItem>

@@ -51,7 +51,6 @@
     "gatsby-source-filesystem": "5.6.0",
     "gatsby-source-prismic": "6.0.0-alpha.19",
     "gatsby-theme-stitches": "1.0.1",
-    "gatsby-transformer-remote-filesystem": "1.0.0",
     "gatsby-transformer-sharp": "5.6.0",
     "hangul-js": "0.2.6",
     "polished": "4.2.2",
