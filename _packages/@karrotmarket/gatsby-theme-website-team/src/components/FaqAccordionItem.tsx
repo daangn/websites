@@ -17,7 +17,7 @@ type FaqAccordionItemProps = {
 };
 
 export const query = graphql`
-  fragment TeamWebsite_FaqAccordionItem_entry on PrismicFaqDataEntries {
+  fragment TeamWebsite_FaqAccordionItem_entry on PrismicFaqDataEntriesItem {
     question
     answer {
       text

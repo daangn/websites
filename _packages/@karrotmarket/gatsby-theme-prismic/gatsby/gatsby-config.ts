@@ -20,6 +20,7 @@ const config = ({
     {
       resolve: 'gatsby-source-prismic',
       options: {
+        fetch,
         repositoryName,
         accessToken,
         customTypesApiToken,
