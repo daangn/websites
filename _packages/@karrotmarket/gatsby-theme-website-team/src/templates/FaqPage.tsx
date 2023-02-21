@@ -18,7 +18,7 @@ import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/tran
 import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import _PageTitle from '../components/PageTitle';
 import FaqAccordion from '../components/FaqAccordion';
-import SearchInput from '../components/SearchInput';
+import _SearchInput from '../components/SearchInput';
 import _FaqList from '../components/FaqList';
 import { useURLSearchParams } from '../utils/useURLSearchParams'
 
@@ -139,7 +139,7 @@ const FaqList = styled(_FaqList, {
   minHeight: '80vh',
 });
 
-const Search = styled(_Search, {
+const SearchInput = styled(_SearchInput, {
   '@lg': {
     minWidth: rem(300),
   },
