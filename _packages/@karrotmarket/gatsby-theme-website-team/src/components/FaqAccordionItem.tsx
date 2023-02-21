@@ -55,7 +55,7 @@ const Button = styled('button', {
   justifyContent: 'space-between',
 });
 
-const ChevronIcon = styled(SeedIcon, {
+const ExpandIcon = styled(SeedIcon, {
   width: rem(24),
   height: rem(24),
   padding: rem(4),
@@ -109,7 +109,7 @@ const FaqAccordionItem: React.FC<FaqAccordionItemProps> = ({
       <Header as="h2">
         <Button id={id} onClick={() => onClick?.(id)} onFocus={() => onFocus?.(id)}>
           {entry.question}
-          <ChevronIcon name="icon_expand_more_regular" rotate={open} aria-hidden />
+          <ExpandIcon name="icon_expand_more_regular" rotate={open} aria-hidden />
         </Button>
       </Header>
       <Panel>
