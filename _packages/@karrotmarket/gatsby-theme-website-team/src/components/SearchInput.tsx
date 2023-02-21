@@ -1,8 +1,17 @@
+import * as React from 'react';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import { vars } from '@seed-design/design-token';
 
-const Search = styled('div', {
+import SeedIcon from './SeedIcon';
+
+type SearchInputProps = {
+  query: string,
+  onChangeQuery: (value: string) => void;
+  placeholder: string,
+};
+
+const Root = styled('div', {
   gridArea: 'search',
   display: 'inline-flex',
   position: 'relative',
@@ -35,11 +44,39 @@ const Search = styled('div', {
       color: vars.$scale.color.carrot500,
     },
   },
-  '& > svg':{
+  '& > [data-seed-icon]':{
     color: vars.$scale.color.gray400,
     position: 'absolute',
-    left: rem(20),
+    left: rem(4),
+  },
+  '&:focus-within > [data-seed-icon]':{
+    color: vars.$semantic.color.primary,
   },
 });
 
-export default Search;
+const Icon = styled(SeedIcon, {
+  height: '100%',
+  padding: '0.9rem',
+  boxSizing: 'border-box',
+});
+
+export default function SearchInput({
+  query,
+  onChangeQuery,
+  placeholder,
+}: SearchInputProps) {
+  const handleChange = React.useCallback<React.ChangeEventHandler<HTMLInputElement>>(e => {
+    onChangeQuery(e.currentTarget.value);
+  }, [onChangeQuery]);
+
+  return (
+    <Root>
+      <input 
+        placeholder={placeholder}
+        value={query}
+        onChange={handleChange}
+      />
+        <Icon name="icon_search_regular" />
+    </Root>
+  );
+}

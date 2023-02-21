@@ -16,11 +16,11 @@ import {
   type OverrideProps,
 } from '@cometjs/core';
 import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
+import SeedIcon from '@karrotmarket/gatsby-theme-website-team/src/components/SeedIcon';
 import { vars } from '@seed-design/design-token';
 
 import logoPath from '../assets/logo.png';
 import _PageTitle from '../components/PageTitle';
-import { ReactComponent as BackwardSvg } from '../assets/backwardOutlineM.svg';
 import { lookup } from '../utils/common';
 
 import JobPostingJsonLd from './jobPostLayout/JobPostingJsonLd';
@@ -215,7 +215,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
           }
         }}
       >
-        <BackwardSvg />
+        <SeedIcon name="icon_backward_regular" />
       </PreviousLink>
 
       <main>

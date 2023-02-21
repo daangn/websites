@@ -14,7 +14,7 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
 import { vars } from '@seed-design/design-token';
 import PageTitle from '@karrotmarket/gatsby-theme-website-team/src/components/PageTitle';
-import { ReactComponent as BackwardSvg } from '@karrotmarket/gatsby-theme-website-team/src/assets/backwardOutlineM.svg';
+import SeedIcon from '@karrotmarket/gatsby-theme-website-team/src/components/SeedIcon';
 
 export const query = graphql`
   query IrPage(
@@ -163,7 +163,7 @@ const IrPage: React.FC<IrPageProps> = ({
           }
         }}
       >
-        <BackwardSvg />
+        <SeedIcon name="icon_backward_regular" size="100%" />
       </PreviousLink>
       <Content>
         <ContentHeader>

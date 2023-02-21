@@ -18,8 +18,7 @@ import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/tran
 import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import _PageTitle from '../components/PageTitle';
 import FaqAccordion from '../components/FaqAccordion';
-import _Search from '../components/Search';
-import { ReactComponent as SearchdSvg } from '../assets/searchOutlineM.svg';
+import SearchInput from '../components/SearchInput';
 import _FaqList from '../components/FaqList';
 import { useURLSearchParams } from '../utils/useURLSearchParams'
 
@@ -158,8 +157,7 @@ const FaqPage: React.FC<FaqPageProps> = ({
   const searchQuery = searchParams.get('q') || '';
   const [query, setQuery] = React.useState(searchQuery || '');
 
-  const handleSearchInputChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    const value = e.target.value;
+  const handleSearchInputChange = (value: string) => {
     setQuery(value);
     searchParams.set('q', value);
     navigate(`?${searchParams.toString()}`);
@@ -201,14 +199,11 @@ const FaqPage: React.FC<FaqPageProps> = ({
             </FaqGroup>
           ))}
         </FaqGroupList>
-        <Search>
-          <input 
-            placeholder={messages.faq_page__search}
-            value={query}
-            onChange={handleSearchInputChange}
-          />
-          <SearchdSvg />
-        </Search>
+        <SearchInput
+          query={query}
+          onChangeQuery={handleSearchInputChange}
+          placeholder={messages.faq_page__search}
+        />
       </Filters>
       {searchQuery ? (
         <FaqList 

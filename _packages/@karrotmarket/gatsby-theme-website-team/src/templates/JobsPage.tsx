@@ -12,13 +12,12 @@ import $ from 'text2vdom';
 import { required } from '@cometjs/core';
 import { vars } from '@seed-design/design-token';
 import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
+import SeedIcon from '@karrotmarket/gatsby-theme-website-team/src/components/SeedIcon';
 
 import { DefaultLayoutHead } from '../layouts/DefaultLayout';
-import { ReactComponent as SearchdSvg } from '../assets/searchOutlineM.svg';
 import PageTitle from '../components/PageTitle';
 import _JobPostList from '../components/JobPostList';
-import Search from '../components/Search'
-import {ReactComponent as ExpandMoreOutlineIcon} from '../assets/expand_more_outline_m.svg';
+import SearchInput from '../components/SearchInput'
 import { useFlexSearch } from '../utils/useFlexSearch';
 
 import BannerArea from './jobsPage/BannerArea';
@@ -177,14 +176,13 @@ const EtypeSelectWrapper = styled(SelectWrapper, {
   }
 })
 
-const ExpandIcon = styled(ExpandMoreOutlineIcon, {
+const ExpandIcon = styled(SeedIcon, {
   position: 'absolute',
   width: '0.8em',
-  height: '0.5em',
   right: rem(20),
-  top: rem(23),
+  top: rem(20),
   color: vars.$scale.color.gray700,
-})
+});
 
 const JobPostList = styled(_JobPostList, {
   minHeight: '80vh',
@@ -223,15 +221,13 @@ const JobsPage: React.FC<JobsPageProps> = ({
   })
 
   const [searchQuery, setSearchQuery] = React.useState('');
-  const [_isSearchPending, startSearchTransition] = React.useTransition();
+  const deferredSearchQuery = React.useDeferredValue(searchQuery);
 
-  const handleSearchInputChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    startSearchTransition(() => {
-      setSearchQuery(e.target.value);
-    });
-  }
+  const handleSearchQueryChange = React.useCallback((query: string) => {
+    setSearchQuery(query);
+  }, []);
 
-  const searchResults = useFlexSearch(searchQuery);
+  const searchResults = useFlexSearch(deferredSearchQuery);
 
   const filterAnchorId = '_filter';
   const onDepartmentFilterChange: React.ChangeEventHandler<HTMLSelectElement> = e => {
@@ -299,7 +295,7 @@ const JobsPage: React.FC<JobsPageProps> = ({
                   ))
                 }
               </Select>
-              <ExpandIcon />
+              <ExpandIcon name="icon_expand_more_regular" />
             </SelectWrapper>
             <SelectWrapper css={{ gridArea: 'corporate' }}>
               <Select 
@@ -322,7 +318,7 @@ const JobsPage: React.FC<JobsPageProps> = ({
                   )
                 })}
               </Select>
-              <ExpandIcon />
+              <ExpandIcon name="icon_expand_more_regular" />
             </SelectWrapper>
             <EtypeSelectWrapper css={{ gridArea: 'etype' }}>
               <Select
@@ -335,15 +331,13 @@ const JobsPage: React.FC<JobsPageProps> = ({
                 <option value="INTERN">{messages.jobs_page__employment_type_intern}</option>
                 <option value="ASSISTANT">{messages.jobs_page__employment_type_assistant}</option>
               </Select>
-              <ExpandIcon />
+              <ExpandIcon name="icon_expand_more_regular" />
             </EtypeSelectWrapper>
-            <Search>
-              <input
-                placeholder={messages.jobs_page__search}
-                onChange={handleSearchInputChange}
-              />
-              <SearchdSvg />
-            </Search>
+            <SearchInput
+              query={searchQuery}
+              onChangeQuery={handleSearchQueryChange}
+              placeholder={messages.jobs_page__search}
+            />
           </Filters>
           <JobPostList
             jobPosts={allSelectedJobPosts}
