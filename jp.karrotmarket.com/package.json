@@ -19,6 +19,7 @@
     "serve": "gatsby serve"
   },
   "dependencies": {
+    "@karrotmarket/gatsby-theme-prismic": "workspace:^",
     "@karrotmarket/gatsby-theme-website-global": "workspace:^",
     "@seed-design/design-token": "1.0.0",
     "framer-motion": "9.0.3",

@@ -16,7 +16,7 @@ export const query = graphql`
       }
     }
   }
-  fragment DownloadSection_links on PrismicGlobalContentsDataType {
+  fragment DownloadSection_links on PrismicGlobalContentsData {
     ...AppLink_links
   }
 `;

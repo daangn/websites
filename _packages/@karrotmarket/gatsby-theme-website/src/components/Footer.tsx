@@ -13,7 +13,7 @@ type FooterProps = {
 };
 
 export const query = graphql`
-  fragment Footer_navigationData on PrismicSiteNavigationDataType {
+  fragment Footer_navigationData on PrismicSiteNavigationData {
     copyright {
       html
     }

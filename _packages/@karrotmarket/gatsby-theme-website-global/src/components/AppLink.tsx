@@ -91,7 +91,7 @@ const LinkButton: React.FC<TLinkButton> = ({
 };
 
 export const query = graphql`
-  fragment AppLink_links on PrismicGlobalContentsDataType {
+  fragment AppLink_links on PrismicGlobalContentsData {
     app_store_link
     google_play_link
     one_link

@@ -5,9 +5,9 @@ import {
   type PageProps,
   type HeadProps,
 } from 'gatsby';
+import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
 import { HeadSeo } from 'gatsby-plugin-head-seo/src';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { required } from '@cometjs/core';
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
 
 import { DefaultLayoutHead } from '../layouts/DefaultLayout';
@@ -31,6 +31,7 @@ export const query = graphql`
     prismicTeamContents(
       lang: { eq: $locale }
     ) {
+      _previewable
       data {
         main_page_meta_title
         main_page_meta_description
@@ -94,8 +95,6 @@ type IndexPageProps = PageProps<GatsbyTypes.TeamWebsite_IndexPageQuery>;
 const IndexPage: React.FC<IndexPageProps> = ({
   data,
 }) => {
-  required(data.prismicTeamContents?.data);
-
   return (
     <main>
       <TitleContainer>
@@ -163,15 +162,13 @@ const IndexPage: React.FC<IndexPageProps> = ({
   );
 };
 
-export default IndexPage;
+export default withPrismicPreview(IndexPage);
 
 type IndexPageHeadProps = HeadProps<GatsbyTypes.TeamWebsite_IndexPageQuery>;
 export const Head: React.FC<IndexPageHeadProps> = ({
   data,
   location,
 }) => {
-  required(data.prismicTeamContents?.data);
-
   const metaTitle = data.prismicTeamContents.data.main_page_meta_title;
   const metaDescription = data.prismicTeamContents.data.main_page_meta_description;
   const metaImage = data.prismicTeamContents.data.main_page_meta_image?.localFile?.childImageSharp?.fixed;

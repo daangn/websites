@@ -12,25 +12,6 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = ({
   });
 };
 
-export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({
-  actions,
-}) => {
-  const gql = String.raw;
-  actions.createTypes(gql`
-    type PrismicFinancialStatements implements Node {
-      data: PrismicFinancialStatementsDataType!
-    }
-
-    type PrismicFinancialStatementsDataType {
-      items: [PrismicFinancialStatementsDataItems!]!
-    }
-
-    type PrismicFinancialStatementsDataItems {
-      summary: Boolean!
-    }
-  `);
-};
-
 export const createResolvers: GatsbyNode['createResolvers'] = ({
   createResolvers,
   actions: {
@@ -40,7 +21,7 @@ export const createResolvers: GatsbyNode['createResolvers'] = ({
   createNodeId,
 }) => {
   createResolvers({
-    PrismicLinkType: {
+    PrismicLinkField: {
       localFileFixed: {
         type: 'File',
         description: 'See https://github.com/gatsbyjs/gatsby/issues/35636',

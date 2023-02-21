@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@karrotmarket/gatsby-source-greenhouse-jobboard": "0.7.0",
+    "@karrotmarket/gatsby-theme-prismic": "workspace:^",
     "@karrotmarket/gatsby-theme-website-team": "workspace:^",
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^",
     "@seed-design/design-token": "alpha",
@@ -37,6 +38,7 @@
     "gatsby-plugin-google-tagmanager": "5.5.0",
     "gatsby-plugin-image": "3.5.0",
     "gatsby-plugin-manifest": "5.5.0",
+    "gatsby-plugin-prismic-previews": "6.0.0-alpha.19",
     "gatsby-plugin-robots-txt": "1.8.0",
     "gatsby-plugin-sitemap": "6.5.0",
     "gatsby-plugin-typegen": "3.1.0",

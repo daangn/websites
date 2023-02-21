@@ -7,13 +7,13 @@ import {
   type HeadProps,
 } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { required } from '@cometjs/core';
 import { vars } from '@seed-design/design-token';
 import _PageTitle from '@karrotmarket/gatsby-theme-website-team/src/components/PageTitle';
 
 export const query = graphql`
   query FinancialStatementsPage($uid: String!, $locale: String!, $navigationId: String!) {
     ...TeamWebsite_DefaultLayout_query
+
     allPrismicFinancialStatements(
       filter: {tags: {in: ["team.daangn.com"]}}
       sort: {data: {year: DESC}}
@@ -27,6 +27,7 @@ export const query = graphql`
         }
       }
     }
+
     prismicFinancialStatements(uid: {eq: $uid}) {
       uid
       data {
@@ -199,12 +200,11 @@ const TableColValue = styled('td', {
 
 type FinancialStatementsPageProps = PageProps<GatsbyTypes.FinancialStatementsPageQuery>;
 const FinancialStatementsPage: React.FC<FinancialStatementsPageProps> = ({
-  data,
+  data: prismicData,
 }) => {
-  required(data.prismicFinancialStatements?.data?.items);
-
-  const finances = data.allPrismicFinancialStatements.nodes
-    .filter(node => node.data.title?.text)
+  const current = prismicData.prismicFinancialStatements!;
+  const all = prismicData.allPrismicFinancialStatements.nodes
+    .filter(node => node.data.title?.text);
 
   return (
     <Container>
@@ -229,12 +229,12 @@ const FinancialStatementsPage: React.FC<FinancialStatementsPageProps> = ({
         <ContentScrollTarget id="content" />
         <SideNav>
           <SideNavList>
-            {finances.map(finance => (
+            {all.map(finance => (
               <SideNavItem key={finance.uid}>
 
                 <SideNavLink
                   to={`/ir/finances/${finance.uid}/#content`}
-                  selected={finance.uid === data.prismicFinancialStatements!.uid}
+                  selected={finance.uid === current.uid}
                 >
                   {finance.data.title!.text!}
                 </SideNavLink>
@@ -244,31 +244,31 @@ const FinancialStatementsPage: React.FC<FinancialStatementsPageProps> = ({
         </SideNav>
         <Table>
           <TableCaption style={{ display: 'none' }}>
-            {data.prismicFinancialStatements.data?.title?.text}
+            {current.data?.title?.text}
           </TableCaption>
           <thead>
             <tr>
               <TableRowHeader scope="row" position="start">
-                {data.prismicFinancialStatements.data.key_label || '항목'}
+                {current.data.key_label || '항목'}
               </TableRowHeader>
               <TableRowHeader scope="row" position="end">
-                {data.prismicFinancialStatements.data.value_label || '값'}
+                {current.data.value_label || '값'}
               </TableRowHeader>
             </tr>
           </thead>
           <tbody>
-            {data.prismicFinancialStatements.data.items
-              .filter(item => item!.key && item!.value)
+            {current.data.items
+              .filter(item => item.key && item.value)
               .map(item => (
-                <TableRow key={item!.key}>
+                <TableRow key={item.key}>
                   <TableColHeader
                     scope="col"
-                    summary={item!.summary ?? false}
+                    summary={item.summary ?? false}
                   >
-                    {item!.key}
+                    {item.key}
                   </TableColHeader>
                   <TableColValue>
-                    {item!.value}
+                    {item.value}
                   </TableColValue>
                 </TableRow>
               ))
