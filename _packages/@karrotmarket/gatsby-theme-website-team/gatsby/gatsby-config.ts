@@ -20,7 +20,13 @@ const config = ({
     'gatsby-theme-stitches',
     'gatsby-plugin-svgr',
     'gatsby-plugin-head-seo',
-    'gatsby-transformer-remote-filesystem',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'placeholder',
+        path: `${__dirname}/package.json`,
+      },
+    },
     {
       resolve: 'gatsby-plugin-turnstile',
       options: {

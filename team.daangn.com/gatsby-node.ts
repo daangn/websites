@@ -12,51 +12,6 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = ({
   });
 };
 
-export const createResolvers: GatsbyNode['createResolvers'] = ({
-  createResolvers,
-  actions: {
-    createNode,
-  },
-  cache,
-  createNodeId,
-}) => {
-  createResolvers({
-    PrismicLinkField: {
-      localFileFixed: {
-        type: 'File',
-        description: 'See https://github.com/gatsbyjs/gatsby/issues/35636',
-        resolve(source: any) {
-          if (!source.url) {
-            return null;
-          }
-
-          const url = new URL(source.url);
-
-          let name: string | undefined = undefined;
-          let ext: string | undefined = undefined;
-
-          const match = url.pathname.match(/\/([^/\\&\?]+)(\.\w{3,4})$/);
-          if (match) {
-            name = decodeURIComponent(match[1]);
-            ext = match[2] ?? undefined;
-            url.pathname.replace(match[1], name);
-            url.searchParams.set('_fix35636', 'true');
-          }
-
-          return createRemoteFileNode({
-            url: url.toString(),
-            cache,
-            createNode,
-            createNodeId,
-            name,
-            ext,
-          });
-        },
-      },
-    },
-  });
-};
-
 export const createPages: GatsbyNode['createPages'] = async ({
   graphql,
   actions,
