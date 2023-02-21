@@ -4,8 +4,7 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import { motion } from 'framer-motion';
 import { vars } from '@seed-design/design-token';
-
-import { ReactComponent as ChevronSvg } from './faqAccordionItem/chevron.svg'
+import SeedIcon from '@karrotmarket/gatsby-theme-website-team/src/components/SeedIcon';
 
 type FaqAccordionItemProps = {
   id: string,
@@ -56,9 +55,11 @@ const Button = styled('button', {
   justifyContent: 'space-between',
 });
 
-const ChevronIcon = styled(ChevronSvg, {
+const ChevronIcon = styled(SeedIcon, {
   width: rem(24),
   height: rem(24),
+  padding: rem(4),
+  boxSizing: 'border-box',
   transition: 'transform .3s',
   marginLeft: rem(12),
   color: vars.$scale.color.gray900,
@@ -108,7 +109,7 @@ const FaqAccordionItem: React.FC<FaqAccordionItemProps> = ({
       <Header as="h2">
         <Button id={id} onClick={() => onClick?.(id)} onFocus={() => onFocus?.(id)}>
           {entry.question}
-          <ChevronIcon rotate={open} aria-hidden />
+          <ChevronIcon name="icon_expand_more_regular" rotate={open} aria-hidden />
         </Button>
       </Header>
       <Panel>

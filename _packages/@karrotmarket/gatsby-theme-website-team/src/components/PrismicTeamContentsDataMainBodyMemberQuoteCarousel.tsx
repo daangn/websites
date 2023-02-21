@@ -5,9 +5,9 @@ import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token'
 
+import SeedIcon from './SeedIcon';
 import CarouselItem from './prismicTeamContentsDataMainBodyMemberQuoteCarousel/CarouselItem';
 import _ArrowButton from './prismicTeamContentsDataMainBodyMemberQuoteCarousel/ArrowButton';
-import { ReactComponent as ArrowButtonIcon } from './prismicTeamContentsDataMainBodyMemberQuoteCarousel/arrow.svg';
 
 type PrismicTeamContentsDataMainBodyMemberQuoteCarouselProps = {
   data: GatsbyTypes.PrismicTeamContentsDataMainBodyMemberQuoteCarousel_dataFragment,
@@ -114,6 +114,7 @@ const LeftArrowButton = styled(ArrowButton, {
   position: 'absolute',
   right: `calc(100% + ${rem(16)})`,
   top: rem(200),
+  transform: 'scaleX(-1)',
 });
 
 const RightArrowButton = styled(ArrowButton, {
@@ -182,12 +183,11 @@ const PrismicTeamContentsDataMainBodyMemberQuoteCarousel: React.FC<PrismicTeamCo
   return (
     <Container className={className}>
       <LeftArrowButton
-        direction="left"
         viewport={{ '@initial': 'initial', '@xxl': 'xxl' }}
         hide={slide === 0}
         onClick={() => setSlide(slide => Math.max(~~(slide / 2) * 2 - 2, 0))}
       >
-        <ArrowButtonIcon />
+        <SeedIcon name="icon_chevron_right_regular" />
       </LeftArrowButton>
       <SlideCamera {...swipeHandlers}>
         <Slide css={{ '$$slide': slide }}>
@@ -200,12 +200,11 @@ const PrismicTeamContentsDataMainBodyMemberQuoteCarousel: React.FC<PrismicTeamCo
         </Slide>
       </SlideCamera>
       <RightArrowButton
-        direction="right"
         viewport={{ '@initial': 'initial', '@xxl': 'xxl' }}
         hide={slide === items.length - 2}
         onClick={() => setSlide(slide => Math.min(~~(slide / 2) * 2 + 2, items.length - 1))}
       >
-        <ArrowButtonIcon />
+        <SeedIcon name="icon_chevron_right_regular" />
       </RightArrowButton>
       <Dots>
         {items.map((_item, i) => (

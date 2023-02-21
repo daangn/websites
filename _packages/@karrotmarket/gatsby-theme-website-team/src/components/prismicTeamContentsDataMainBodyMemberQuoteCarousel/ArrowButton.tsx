@@ -4,7 +4,9 @@ import { vars } from '@seed-design/design-token';
 
 const ArrowButton = styled('button', {
   color: vars.$scale.color.gray900,
-  border: 'none',
+  border: '1px solid',
+  borderColor: vars.$scale.color.gray900,
+  borderRadius: 999,
   background: 'none',
   padding: 0,
   cursor: 'pointer',
@@ -12,24 +14,12 @@ const ArrowButton = styled('button', {
   '&:hover': {
     opacity: 0.64,
   },
-  '& svg': {
-    display: 'inline-block',
+  '& > [data-seed-icon]': {
+    boxSizing: 'border-box',
+    padding: em(16),
+    paddingLeft: em(18),
     width: em(56),
     height: em(56),
-  },
-
-  variants: {
-    direction: {
-      left: {
-      },
-      right: {
-        transform: 'scaleX(-1)',
-      },
-    },
-  },
-
-  defaultVariants: {
-    direction: 'left',
   },
 });
 
