@@ -3,10 +3,8 @@ import type { GatsbySSR, GatsbyBrowser } from 'gatsby';
 
 import { PrismicPreviewProvider } from 'gatsby-plugin-prismic-previews';
 
-// @ts-ignore
-import { linkResolver } from './src/linkResolver';
-// @ts-ignore
-import { componentResolver } from './src/componentResolver';
+import { linkResolver } from '@karrotmarket/gatsby-theme-prismic/src/linkResolver';
+import { componentResolver } from '@karrotmarket/gatsby-theme-prismic/src/componentResolver';
 
 type WrapRootElement = (GatsbySSR | GatsbyBrowser)['wrapRootElement'];
 

@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@karrotmarket/gatsby-source-greenhouse-jobboard": "0.7.0",
+    "@karrotmarket/gatsby-theme-prismic": "workspace:^",
     "@karrotmarket/gatsby-theme-website-team": "*",
     "@karrotmarket/gatsby-transformer-job-post": "*",
     "dotenv": "16.0.3",

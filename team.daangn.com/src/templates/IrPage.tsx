@@ -10,7 +10,6 @@ import {
   type HeadProps,
 } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { required } from '@cometjs/core';
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
 import { vars } from '@seed-design/design-token';
 import PageTitle from '@karrotmarket/gatsby-theme-website-team/src/components/PageTitle';
@@ -154,11 +153,10 @@ const File = styled('a', {
 
 type IrPageProps = PageProps<GatsbyTypes.IrPageQuery>;
 const IrPage: React.FC<IrPageProps> = ({
-  data,
+  data: prismicData,
 }) => {
-  required(data.prismicIr);
-
-  const attachments = data.prismicIr.data.attachment_group
+  const ir = prismicData.prismicIr!;
+  const attachments = ir.data.attachment_group
     ?.filter(attachment => attachment?.file?.localFileFixed?.localURL)
     ?? [];
 
@@ -179,17 +177,17 @@ const IrPage: React.FC<IrPageProps> = ({
       <Content>
         <ContentHeader>
           <PageTitle>
-            {data.prismicIr.data.title?.text}
+            {ir.data.title?.text}
           </PageTitle>
           <Properties>
             <Property>
               <span>게시일</span>
-              <span>{data.prismicIr.first_publication_date}</span>
+              <span>{ir.first_publication_date}</span>
             </Property>
           </Properties>
         </ContentHeader>
         <Body>
-          {data.prismicIr.data.body.map(block => mapAbstractTypeWithDefault(block, {
+          {ir.data.body.map(block => mapAbstractTypeWithDefault(block, {
             PrismicIrDataBodyMainText: block => (
               <MainText
                 key={block.id}
@@ -237,11 +235,10 @@ type IrPageHeadProps = HeadProps<GatsbyTypes.IrPageQuery>;
 export const Head: React.FC<IrPageHeadProps> = ({
   data,
 }) => {
-  required(data.prismicIr?.data);
   return (
     <title>
       {[
-        data.prismicIr.data.title?.text,
+        data.prismicIr!.data.title?.text,
         '당근마켓 IR'
       ].join(' | ')}
     </title>

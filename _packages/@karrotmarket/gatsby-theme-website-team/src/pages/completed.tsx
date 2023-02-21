@@ -8,7 +8,6 @@ import {
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { Robots } from 'gatsby-plugin-head-seo/src';
 import { mapLink, useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
-import { required } from '@cometjs/core';
 
 import DefaultLayout from '../layouts/DefaultLayout';
 import Illustration from '../templates/completedPage/Illustration';
@@ -66,8 +65,6 @@ type CompletedPageProps = PageProps<GatsbyTypes.TeamWebsite_CompletedPageQuery>;
 const CompletedPage: React.FC<CompletedPageProps> = pageProps => {
   const { data } = pageProps;
   const parseLink = useLinkParser();
-
-  required(data.prismicTeamContents?.data);
 
   const messageContentsHtml =
     data.prismicTeamContents.data.completed_page_content?.html;

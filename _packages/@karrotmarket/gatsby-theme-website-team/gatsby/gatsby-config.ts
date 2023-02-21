@@ -5,7 +5,7 @@ import {
 } from 'hangul-js';
 
 // @ts-ignore
-import { linkResolver } from './src/@karrotmarket/gatsby-theme-prismic/linkResolver';
+import { linkResolver } from '@karrotmarket/gatsby-theme-website-team/src/@karrotmarket/gatsby-theme-prismic/linkResolver';
 import type { PluginOptions } from './types';
 
 const gql = String.raw;
@@ -44,8 +44,7 @@ const config = ({
           avifOptions: {},
         },
       },
-    },
-    'gatsby-plugin-image',
+    }, 'gatsby-plugin-image',
     'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-plugin-layout',

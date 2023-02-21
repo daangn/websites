@@ -8,7 +8,6 @@ import {
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { Robots } from 'gatsby-plugin-head-seo/src';
 import { mapLink, useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
-import { required } from '@cometjs/core';
 import ButtonLink from '../components/Button';
 
 import { withPrismicUnpublishedPreview } from 'gatsby-plugin-prismic-previews';
@@ -75,8 +74,6 @@ type NotFoundPageProps = PageProps<GatsbyTypes.TeamWebsite_NotFoundPageQuery>;
 const NotFoundPage: React.FC<NotFoundPageProps> = ({
   data,
 }) => {
-  required(data.prismicTeamContents?.data);
-
   const parseLink = useLinkParser();
 
   return (

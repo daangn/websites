@@ -1,5 +1,8 @@
 import type { GatsbyConfig } from "gatsby";
 
+// @ts-ignore
+import { linkResolver } from '@karrotmarket/gatsby-theme-website-global/src/@karrotmarket/gatsby-theme-prismic/linkResolver';
+
 const config: GatsbyConfig = {
   plugins: [
     "gatsby-theme-stitches",
@@ -34,7 +37,13 @@ const config: GatsbyConfig = {
     },
 
     "@karrotmarket/gatsby-theme-website",
-    "@karrotmarket/gatsby-theme-prismic",
+    {
+      resolve: '@karrotmarket/gatsby-theme-prismic',
+      options: {
+        accessToken: process.env.PRISMIC_ACCESS_TOKEN,
+        linkResolver,
+      },
+    },
   ],
 };
 

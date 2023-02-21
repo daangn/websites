@@ -14,6 +14,7 @@ import FadeInWhenVisible from '@karrotmarket/gatsby-theme-website-team/src/compo
 export const query = graphql`
   query IrListPage($locale: String!, $navigationId: String!) {
     ...TeamWebsite_DefaultLayout_query
+
     allPrismicIr(
       filter: {uid: {ne: null}, tags: {in: ["team.daangn.com"]}}
       sort: {first_publication_date: DESC}

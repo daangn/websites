@@ -11,7 +11,6 @@ import {
   OpenGraph,
   TwitterCard,
 } from 'gatsby-plugin-head-seo/src';
-import { required } from '@cometjs/core';
 import { mapAbstractType } from "@cometjs/graphql-utils";
 import { withPrismicPreview } from "gatsby-plugin-prismic-previews";
 
@@ -142,7 +141,7 @@ const IndexPage: React.FC<IndexPageProps> = ({
   );
 };
 
-export default withPrismicPreview(IndexPage, []);
+export default withPrismicPreview(IndexPage);
 
 type IndexPageHeadProps = HeadProps<GatsbyTypes.IndexPageQueryQuery>;
 export const Head: React.FC<IndexPageHeadProps> = ({

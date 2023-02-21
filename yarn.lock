@@ -6740,6 +6740,7 @@ __metadata:
   resolution: "ca.karrotmarket.com@workspace:ca.karrotmarket.com"
   dependencies:
     "@babel/core": 7.20.12
+    "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website-global": "workspace:^"
     babel-plugin-polished: 1.1.0
     gatsby: 5.5.0
@@ -6942,6 +6943,7 @@ __metadata:
   dependencies:
     "@babel/core": 7.20.12
     "@karrotmarket/gatsby-source-greenhouse-jobboard": 0.7.0
+    "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website-team": "*"
     "@karrotmarket/gatsby-transformer-job-post": "*"
     "@types/dotenv-safe": 8.1.2
@@ -6971,6 +6973,7 @@ __metadata:
   dependencies:
     "@babel/core": 7.20.12
     "@karrotmarket/gatsby-source-greenhouse-jobboard": 0.7.0
+    "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website-team": "workspace:^"
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^"
     "@types/dotenv-safe": 8.1.2
@@ -12870,6 +12873,7 @@ __metadata:
   resolution: "jp.karrotmarket.com@workspace:jp.karrotmarket.com"
   dependencies:
     "@babel/core": 7.20.12
+    "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website-global": "workspace:^"
     "@seed-design/design-token": 1.0.0
     babel-plugin-polished: 1.1.0
@@ -17875,6 +17879,7 @@ __metadata:
   dependencies:
     "@babel/core": 7.20.12
     "@karrotmarket/gatsby-source-greenhouse-jobboard": 0.7.0
+    "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website-team": "workspace:^"
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^"
     "@seed-design/design-token": alpha
@@ -17891,6 +17896,7 @@ __metadata:
     gatsby-plugin-google-tagmanager: 5.5.0
     gatsby-plugin-image: 3.5.0
     gatsby-plugin-manifest: 5.5.0
+    gatsby-plugin-prismic-previews: 6.0.0-alpha.19
     gatsby-plugin-robots-txt: 1.8.0
     gatsby-plugin-sitemap: 6.5.0
     gatsby-plugin-typegen: 3.1.0
@@ -18363,6 +18369,7 @@ __metadata:
   resolution: "uk.karrotmarket.com@workspace:uk.karrotmarket.com"
   dependencies:
     "@babel/core": 7.20.12
+    "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website-global": "workspace:^"
     babel-plugin-polished: 1.1.0
     gatsby: 5.5.0
@@ -18614,6 +18621,7 @@ __metadata:
   resolution: "us.karrotmarket.com@workspace:us.karrotmarket.com"
   dependencies:
     "@babel/core": 7.20.12
+    "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website-global": "workspace:^"
     babel-plugin-polished: 1.1.0
     gatsby: 5.5.0

@@ -1,6 +1,7 @@
-import { componentResolverFromMap } from 'gatsby-plugin-prismic-previews';
+import * as React from 'react';
+
 import TeamsArticlePageTemplate from '../../templates/PrismicTeamsArticlePage';
 
-export const componentResolve = componentResolverFromMap({
+export const componentResolver: Record<string, React.ComponentType<any>> = {
   teams_article: TeamsArticlePageTemplate,
-});
+};
