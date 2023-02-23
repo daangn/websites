@@ -1,6 +1,5 @@
 import * as React from "react";
 import { em } from "polished";
-import { motion } from "framer-motion";
 import { styled } from "gatsby-theme-stitches/src/config";
 import { vars } from '@seed-design/design-token';
 
@@ -15,14 +14,7 @@ interface RatingProps {
 
 const Articles: React.FC<RatingProps> = ({ articles }) => {
   return (
-    <Wrapper
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{
-        delay: 0.2,
-        duration: 0.5,
-      }}
-    >
+    <Wrapper>
       {articles.map((article, i) => {
         return (
           <Container key={i}>
@@ -65,7 +57,7 @@ const Articles: React.FC<RatingProps> = ({ articles }) => {
   );
 };
 
-const Wrapper = styled(motion.div, {
+const Wrapper = styled('div', {
   display: "flex",
   flexDirection: "column",
   padding: `0 ${em(12)}`,
