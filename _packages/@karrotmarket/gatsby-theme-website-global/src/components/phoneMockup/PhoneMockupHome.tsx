@@ -1,6 +1,5 @@
 import * as React from "react";
 import { em } from "polished";
-import { motion } from "framer-motion";
 import { styled } from "gatsby-theme-stitches/src/config";
 
 import Phone from "./Phone";
@@ -32,7 +31,7 @@ const PhoneMockupHome: React.FC<PhoneMockupHomeProps> = () => {
   );
 };
 
-const Wrapper = styled(motion.div, {});
+const Wrapper = styled('div', {});
 const Gradient = styled("div", {
   position: "absolute",
   bottom: em(8),
