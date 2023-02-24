@@ -1,10 +1,10 @@
 import * as React from "react";
 import { rem } from "polished";
+import { graphql, useStaticQuery } from 'gatsby';
 import { styled } from "gatsby-theme-stitches/src/config";
 import { vars } from '@seed-design/design-token';
 
-import { ReactComponent as IconCall } from "~/image/icon_call.svg";
-import { ReactComponent as Divider } from "~/image/divider.svg";
+import SeedIcon from '~/components/SeedIcon';
 
 const QuestionInfo = styled("div", {
   display: "flex",
@@ -25,37 +25,68 @@ const QuestionInfo = styled("div", {
 
 const DisplayAdsGuide = styled('div', {
   display: 'flex',
+  whiteSpace: 'nowrap',
 
-  cursor: "pointer",
-
-  "@md": {
+  '@md': {
     marginRight: rem(56),
   },
-  span: {
+
+  '& a': {
+    color: 'currentColor',
+    textDecoration: 'none',
+  },
+});
+
+const ContactWrapper = styled('span', {
+  display: 'inline-flex',
+  alignItems: 'center',
+});
+
+const DisplayContact = styled('div', {
+  whiteSpace: 'nowrap',
+
+  '@md': {
+    marginRight: rem(36),
+  },
+
+  '& a': {
+    color: 'currentColor',
+    textDecoration: 'none',
+  },
+
+  '& a > strong': {
+    color: vars.$semantic.color.primary,
     display: 'none',
-    "@md": {
-      display: 'inline-block'
-    }
-  }
+    '@md': {
+      display: 'inline',
+    },
+  },
+});
 
-})
+const CallIcon = styled(SeedIcon, {
+  display: 'none !important',
+  width: '1.5em',
+  height: '1.5em',
 
-const StyledDivider  = styled(Divider, {
-  marginX: rem(10),
+  '@md': {
+    display: 'inline-flex !important',
+  },
+});
+
+const Divider  = styled('span', {
+  borderLeft: `1px solid ${vars.$semantic.color.divider3}`,
+  marginLeft: rem(10),
+  height: '0.8rem',
 
   "@md": {
     display: 'none'
   }
 })
 
-const TelLink = styled("a", {
-  color: vars.$scale.color.gray900,
-  textDecoration: "none",
-});
-
-const GotoDaangnBusinessButton = styled('button', {
+const GotoDaangnBusinessButton = styled('a', {
   display: 'none',
-  "@md": {
+
+  '@md': {
     display: 'inline-block',
     backgroundColor: vars.$semantic.color.primary,
     color: vars.$semantic.color.onPrimary,
@@ -74,25 +105,50 @@ const GotoDaangnBusinessButton = styled('button', {
 });
 
 const Something: React.FC = () => {
+  const staticData = useStaticQuery<GatsbyTypes.HeaderExtensionQuery>(
+    graphql`
+      query HeaderExtension {
+        prismicAdsContent {
+          data {
+            header_guide {
+              html
+            }
+            header_contact {
+              html
+            }
+            business_center_link {
+              url
+            }
+          }
+        }
+      }
+    `,
+  );
+
+  const prismicAdsContent = staticData.prismicAdsContent!;
+
   return (
     <QuestionInfo>
-      <DisplayAdsGuide>
-        <p onClick={()=>document.getElementById("learn-more-section")!.scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-        })}><span>광고</span>가이드</p>
-      </DisplayAdsGuide>
-      <StyledDivider />
-      <IconCall />
-      <TelLink href="tel://1644-9736">
-        <p>
-          광고문의 <mark>1644-9736</mark>
-        </p>
-      </TelLink>
-      <GotoDaangnBusinessButton onClick={()=>{
-        location.href='https://business.daangn.com/login'
-      }}>
-        광고주센터
+      <DisplayAdsGuide
+        dangerouslySetInnerHTML={{
+          __html: prismicAdsContent.data.header_guide.html || '',
+        }}
+      />
+      <Divider />
+      <ContactWrapper>
+        <CallIcon name="icon_call_fill" />
+        <DisplayContact
+          dangerouslySetInnerHTML={{
+            __html: prismicAdsContent.data.header_contact.html || '',
+          }}
+        />
+      </ContactWrapper>
+      <GotoDaangnBusinessButton
+        href={prismicAdsContent.data.business_center_link?.url || '#'}
+        target="_blank"
+        rel="external noopener"
+      >
+        광고주 센터
       </GotoDaangnBusinessButton>
     </QuestionInfo>
   )

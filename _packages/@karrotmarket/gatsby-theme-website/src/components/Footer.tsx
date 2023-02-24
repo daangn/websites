@@ -167,7 +167,7 @@ const Footer: React.FC<FooterProps> = ({ className, navigationData }) => {
               <div
                 key={i}
                 dangerouslySetInnerHTML={{
-                  __html: contact.contact_info.html,
+                  __html: contact.contact_info.html || '',
                 }}
               />
             ))}
