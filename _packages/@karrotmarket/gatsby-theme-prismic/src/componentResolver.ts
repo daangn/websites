@@ -1,3 +1,3 @@
-import * as React from 'react';
+import { componentResolverFromMap } from 'gatsby-plugin-prismic-previews';
 
-export const componentResolver: Record<string, React.ComponentType> = {};
+export const componentResolver = componentResolverFromMap({});

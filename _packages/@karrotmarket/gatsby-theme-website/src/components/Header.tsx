@@ -17,7 +17,7 @@ type HeaderProps = {
 };
 
 export const query = graphql`
-  fragment Header_navigationData on PrismicSiteNavigationData {
+  fragment Header_navigationData on PrismicSiteNavigationDataType {
     ...NavigationMenu_data
   }
 `;

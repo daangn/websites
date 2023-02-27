@@ -9,15 +9,15 @@ type FaqListProps = {
   className?: string,
   emptyPlaceHolderLink: string,
   faqLists: GatsbyTypes.TeamWebsite_FaqList_faqListsFragment,
-}
+};
 
 export const query = graphql`
-  fragment TeamWebsite_FaqList_faqLists on PrismicFaqData {
+  fragment TeamWebsite_FaqList_faqLists on PrismicFaqDataType {
     entries {
       ...TeamWebsite_FaqAccordionItem_entry
     }
   }
-`
+`;
 
 const Container = styled('div', {
   display: 'grid',
@@ -29,6 +29,6 @@ const FaqList: React.FC<FaqListProps> = ({ faqLists, emptyPlaceHolderLink, class
       {faqLists.entries?.length > 0 ? <FaqAccordion data={faqLists} /> : <EmptyPlaceholder link={emptyPlaceHolderLink} buttonVisible={false} />}
     </Container>
   )
-}
+};
 
 export default React.memo(FaqList);
