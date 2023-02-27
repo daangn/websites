@@ -121,7 +121,7 @@ export default function PrismicAdsContentDataBodyGuideSection({
           {JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'FAQPage',
-            'mainEntry': [
+            'mainEntity': [
               (primary.faq_1_text && primary.faq_1_link?.url) && {
                 '@type': 'Question',
                 'name': primary.faq_1_text,
