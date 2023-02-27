@@ -2728,7 +2728,7 @@ __metadata:
     "@prismicio/helpers": 2.3.9
     "@reach/router": 1.3.4
     "@seed-design/design-token": 1.0.0
-    "@seed-design/icon": 0.1.7
+    "@seed-design/icon": 0.1.8
     "@stitches/react": 1.2.8
     "@svgr/webpack": 6.5.1
     "@types/node": 18.14.0
@@ -3859,9 +3859,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@seed-design/icon@npm:0.1.7":
-  version: 0.1.7
-  resolution: "@seed-design/icon@npm:0.1.7"
+"@seed-design/icon@npm:0.1.8":
+  version: 0.1.8
+  resolution: "@seed-design/icon@npm:0.1.8"
   dependencies:
     "@karrotmarket/karrot-ui-icon": 0.0.0-20230217.1
     commander: ^10.0.0
@@ -3872,7 +3872,7 @@ __metadata:
     string-dedent: ^3.0.1
   bin:
     seed-icon: bin/index.mjs
-  checksum: 7f4557f8e3838c61352df4e37eca4ec7b75226a6822d014c3334cf0c356797a85e5c93f4d4f67b5ee96fea7160b48924629e11ae1cab3876b7d192994f9c7202
+  checksum: 27aface29e724bd331eecb8f3d6f026509464d7d6285749d694398ae40cc758311353b590f2031753c5b39f34d1f18b89e896f466ad69b7873ec2f70b72fc59f
   languageName: node
   linkType: hard
 
@@ -5083,7 +5083,7 @@ __metadata:
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website": "workspace:^"
     "@seed-design/design-token": 1.0.0
-    "@seed-design/icon": 0.1.7
+    "@seed-design/icon": 0.1.8
     "@stitches/react": 1.2.8
     gatsby: 5.6.1
     gatsby-plugin-google-tagmanager: 5.6.0
