@@ -15,6 +15,7 @@ const config: GatsbyConfig = {
     "gatsby-theme-stitches",
     "gatsby-plugin-svgr",
     "gatsby-plugin-image",
+    'gatsby-plugin-react-helmet-async',
     "gatsby-plugin-head-seo",
     "@karrotmarket/gatsby-theme-prismic",
     "@karrotmarket/gatsby-theme-website",

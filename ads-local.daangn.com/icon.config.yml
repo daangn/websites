@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/daangn/seed-design/%40seed-design/icon%400.1.7/packages/icon/schema/schema.json
+
+icons:
+  - icon_chevron_right_regular
+  - icon_call_fill
+  - icon_close_regular
+  - icon_forward_regular
+
+componentPath: src/components/SeedIcon.tsx
+spritePath: src/assets/sprite.svg
+withContext: false
