@@ -158,23 +158,25 @@ export default function PrismicAdsContentDataBodyGuideSection({
 
 const Container = styled('section', {
   contentArea: true,
-  paddingY: '5rem',
+  paddingY: '10rem',
   display: 'grid',
   gap: rem(60),
 
   '@md': {
     width: '80%',
-    gridTemplateColumns: '1fr 1fr',
+    gridTemplateColumns: '1fr 2.5fr',
   },
 });
 
 const ContentWrapper = styled('div', {
   display: 'grid',
+  gridTemplateRows: 'repeat(2, max-content)',
   gap: '2.5rem',
   justifyContent: 'center',
 
   '@md': {
     justifyContent: 'start',
+    paddingTop: rem(28),
   },
 });
 
@@ -203,9 +205,14 @@ const FaqItem = styled('li', {
 });
 
 const FaqLink = styled('a', {
+  typography: '$body2',
   display: 'flex',
   justifyContent: 'space-between',
   color: 'currentColor',
   textDecoration: 'none',
   paddingY: rem(28),
+
+  '@md': {
+    typography: '$subtitle3',
+  },
 });
