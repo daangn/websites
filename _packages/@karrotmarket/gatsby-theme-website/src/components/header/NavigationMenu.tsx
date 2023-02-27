@@ -16,7 +16,7 @@ type NavigationMenuProps = {
 };
 
 export const query = graphql`
-  fragment NavigationMenu_data on PrismicSiteNavigationData {
+  fragment NavigationMenu_data on PrismicSiteNavigationDataType {
     header_entries {
       link {
         url

@@ -20,7 +20,7 @@ type SocialServiceProfileProps = {
 };
 
 export const query = graphql`
-  fragment SocialServiceProfile_profile on PrismicSiteNavigationDataSnsProfilesItem {
+  fragment SocialServiceProfile_profile on PrismicSiteNavigationDataSnsProfiles {
     service
     link {
       url
