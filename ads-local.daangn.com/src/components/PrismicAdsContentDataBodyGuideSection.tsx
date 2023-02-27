@@ -22,8 +22,7 @@ export const fragment = graphql`
         url
       }
 
-      faq_1_text
-      faq_1_link {
+      faq_1_text faq_1_link {
         url
       }
 
@@ -118,39 +117,38 @@ export default function PrismicAdsContentDataBodyGuideSection({
       <Helmet>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'FAQPage',
-              'mainEntry': [
-                (primary.faq_1_text && primary.faq_1_link?.url) && {
-                  '@type': 'Question',
-                  'name': primary.faq_1_text,
-                  'acceptedAnswer': {
-                    '@type': 'Answer',
-                    'text': `<a href="${primary.faq_1_link.url}">가이드 바로가기</a>`,
-                  },
+        >
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            'mainEntry': [
+              (primary.faq_1_text && primary.faq_1_link?.url) && {
+                '@type': 'Question',
+                'name': primary.faq_1_text,
+                'acceptedAnswer': {
+                  '@type': 'Answer',
+                  'text': `<a href="${primary.faq_1_link.url}">가이드 바로가기</a>`,
                 },
-                (primary.faq_2_text && primary.faq_2_link?.url) && {
-                  '@type': 'Question',
-                  'name': primary.faq_2_text,
-                  'acceptedAnswer': {
-                    '@type': 'Answer',
-                    'text': `<a href="${primary.faq_2_link.url}">가이드 바로가기</a>`,
-                  },
+              },
+              (primary.faq_2_text && primary.faq_2_link?.url) && {
+                '@type': 'Question',
+                'name': primary.faq_2_text,
+                'acceptedAnswer': {
+                  '@type': 'Answer',
+                  'text': `<a href="${primary.faq_2_link.url}">가이드 바로가기</a>`,
                 },
-                (primary.faq_3_text && primary.faq_3_link?.url) && {
-                  '@type': 'Question',
-                  'name': primary.faq_2_text,
-                  'acceptedAnswer': {
-                    '@type': 'Answer',
-                    'text': `<a href="${primary.faq_3_link.url}">가이드 바로가기</a>`,
-                  },
+              },
+              (primary.faq_3_text && primary.faq_3_link?.url) && {
+                '@type': 'Question',
+                'name': primary.faq_2_text,
+                'acceptedAnswer': {
+                  '@type': 'Answer',
+                  'text': `<a href="${primary.faq_3_link.url}">가이드 바로가기</a>`,
                 },
-              ].filter(Boolean),
-            }),
-          }}
-        />
+              },
+            ].filter(Boolean),
+          })}
+        </script>
       </Helmet>
     </Container>
   );
