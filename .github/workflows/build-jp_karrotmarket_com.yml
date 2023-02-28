@@ -4,14 +4,14 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
-      - '.github/workflows/jp_karrotmarket_com-*'
+      - '.github/workflows/build-jp_karrotmarket_com.yml'
       - jp.karrotmarket.com/**/*
       - yarn.lock
     branches:
       - main
   push:
     paths:
-      - '.github/workflows/jp_karrotmarket_com-*'
+      - '.github/workflows/build-jp_karrotmarket_com.yml'
       - jp.karrotmarket.com/**/*
       - yarn.lock
     branches:
