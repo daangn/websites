@@ -1644,9 +1644,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@daangn/websites@workspace:."
   dependencies:
+    "@prismicio/react": 2.5.1
     "@types/node": 18.14.2
     rome: 11.0.0
-    "@prismicio/react": 2.5.1
     typescript: 4.9.5
     ultra-runner: 3.10.5
   languageName: unknown
@@ -2822,7 +2822,6 @@ __metadata:
     "@babel/core": 7.20.12
     "@prismicio/types": 0.2.7
     babel-preset-gatsby-package: 3.5.0
-    cjk-slug: 0.3.0
     concurrently: 7.6.0
     gatsby: 5.6.1
     gatsby-source-filesystem: 5.6.0
@@ -3701,7 +3700,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prismicio/helpers@npm:^2.3.3, @prismicio/helpers@npm:^2.3.4":
+"@prismicio/helpers@npm:^2.3.4":
   version: 2.3.5
   resolution: "@prismicio/helpers@npm:2.3.5"
   dependencies:
@@ -3748,7 +3747,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prismicio/types@npm:0.2.7, @prismicio/types@npm:^0.2.7":
+"@prismicio/types@npm:0.2.7, @prismicio/types@npm:^0.2.0, @prismicio/types@npm:^0.2.3, @prismicio/types@npm:^0.2.7":
   version: 0.2.7
   resolution: "@prismicio/types@npm:0.2.7"
   checksum: 0e9a7b6e8b9a5dd7f4741adf6faeef9d072dd6d3eb36a94214fec570819c34be6061a704a4ef2a39cbb0092e4fb03ff0fda924ccba98c5b68bf47128d1066cf4
@@ -6525,15 +6524,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cjk-slug@npm:0.3.0":
-  version: 0.3.0
-  resolution: "cjk-slug@npm:0.3.0"
-  dependencies:
-    normalize-cjk: ^0.4.0
-  checksum: 289f8943261e4714192e65fc980b255f9c8da1317c0d27cdbb3ffe9dab6b06ac4b734c4e3a6459246313a3c107687d5034c53cb97d95025bb225610e1e5913a1
-  languageName: node
-  linkType: hard
-
 "cjk-slug@npm:0.3.1":
   version: 0.3.1
   resolution: "cjk-slug@npm:0.3.1"
@@ -8211,7 +8201,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"escape-html@npm:~1.0.3":
+"escape-html@npm:^1.0.3, escape-html@npm:~1.0.3":
   version: 1.0.3
   resolution: "escape-html@npm:1.0.3"
   checksum: 6213ca9ae00d0ab8bccb6d8d4e0a98e76237b2410302cf7df70aaa6591d509a2a37ce8998008cbecae8fc8ffaadf3fb0229535e6a145f3ce0b211d060decbb24
@@ -17330,9 +17320,9 @@ __metadata:
     "@seed-design/design-token": alpha
     "@types/dotenv-safe": 8.1.2
     "@types/node": 18.14.2
+    "@types/prismjs": 1.26.0
     "@types/react": 18.0.28
     "@types/react-dom": 18.0.11
-    "@types/prismjs": 1.26.0
     babel-preset-gatsby-package: 3.5.0
     cjk-slug: 0.3.1
     dotenv: 16.0.3
