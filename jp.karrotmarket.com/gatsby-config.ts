@@ -23,12 +23,13 @@ const config: GatsbyConfig = {
       },
     },
     {
-      resolve: "gatsby-plugin-google-gtag",
+      resolve: 'gatsby-plugin-google-tagmanager',
       options: {
-        trackingIds: ["GTM-KT237BF"],
-        pluginConfig: {
-          exclude: ["/preview/**"],
-        },
+        id: 'GTM-KT237BF',
+        includeInDevelopment: false,
+        defaultDataLayer: { platform: 'gatsby' },
+        routeChangeEventName: 'gatsby-route-change',
+        enableWebVitalsTracking: true,
       },
     },
     {

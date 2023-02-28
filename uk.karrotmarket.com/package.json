@@ -22,8 +22,7 @@
     "@karrotmarket/gatsby-theme-prismic": "workspace:^",
     "@karrotmarket/gatsby-theme-website-global": "workspace:^",
     "gatsby": "5.6.1",
-    "gatsby-plugin-google-gtag": "5.6.0",
-    "gatsby-plugin-google-tagmanager": "5.6.0",
+    "gatsby-plugin-google-tagmanager": "5.7.0",
     "gatsby-plugin-typegen": "3.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"

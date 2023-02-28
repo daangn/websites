@@ -6117,7 +6117,7 @@ __metadata:
     "@karrotmarket/gatsby-theme-website-global": "workspace:^"
     babel-plugin-polished: 1.1.0
     gatsby: 5.6.1
-    gatsby-plugin-google-gtag: 5.6.0
+    gatsby-plugin-google-tagmanager: 5.7.0
     react: 18.2.0
     react-dom: 18.2.0
     typescript: 4.9.5
@@ -9533,20 +9533,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-google-gtag@npm:5.6.0":
-  version: 5.6.0
-  resolution: "gatsby-plugin-google-gtag@npm:5.6.0"
-  dependencies:
-    "@babel/runtime": ^7.20.13
-    minimatch: ^3.1.2
-  peerDependencies:
-    gatsby: ^5.0.0-next
-    react: ^18.0.0 || ^0.0.0
-    react-dom: ^18.0.0 || ^0.0.0
-  checksum: 3c73082d7eae1ee85244ddd1cf657df95911ecce5901f40c14434174aa10a389cbbe83b8b27e8ca55a45d7600965c52ec59a8d75658934f6de90e7dea8a342eb
-  languageName: node
-  linkType: hard
-
 "gatsby-plugin-google-tagmanager@npm:5.6.0":
   version: 5.6.0
   resolution: "gatsby-plugin-google-tagmanager@npm:5.6.0"
@@ -9558,6 +9544,20 @@ __metadata:
     react: ^18.0.0 || ^0.0.0
     react-dom: ^18.0.0 || ^0.0.0
   checksum: 475783603bb5135f526dffaaeb6aea0dfd7e5208d1cf9b7dfdc857401eb7363ddfe203afc8fd01ffccd1670a6131e710bf0bd6259a7e6268125e07f5be3813ba
+  languageName: node
+  linkType: hard
+
+"gatsby-plugin-google-tagmanager@npm:5.7.0":
+  version: 5.7.0
+  resolution: "gatsby-plugin-google-tagmanager@npm:5.7.0"
+  dependencies:
+    "@babel/runtime": ^7.20.13
+    web-vitals: ^1.1.2
+  peerDependencies:
+    gatsby: ^5.0.0-next
+    react: ^18.0.0 || ^0.0.0
+    react-dom: ^18.0.0 || ^0.0.0
+  checksum: cc80c33ae149154a24bc0cdc4457337803d5e3f68be8fd7ba5242653780ae2e0509de9ac481fa901c9d3b9a1926052ed9b71efe083eca26536b588f91fda9ec1
   languageName: node
   linkType: hard
 
@@ -12212,7 +12212,7 @@ __metadata:
     babel-plugin-polished: 1.1.0
     framer-motion: 9.0.3
     gatsby: 5.6.1
-    gatsby-plugin-google-gtag: 5.6.0
+    gatsby-plugin-google-tagmanager: 5.7.0
     gatsby-plugin-image: 3.6.0
     gatsby-plugin-typegen: 3.1.0
     gatsby-plugin-web-font-loader: 1.0.4
@@ -17742,8 +17742,7 @@ __metadata:
     "@karrotmarket/gatsby-theme-website-global": "workspace:^"
     babel-plugin-polished: 1.1.0
     gatsby: 5.6.1
-    gatsby-plugin-google-gtag: 5.6.0
-    gatsby-plugin-google-tagmanager: 5.6.0
+    gatsby-plugin-google-tagmanager: 5.7.0
     gatsby-plugin-typegen: 3.1.0
     react: 18.2.0
     react-dom: 18.2.0
@@ -17971,7 +17970,7 @@ __metadata:
     "@karrotmarket/gatsby-theme-website-global": "workspace:^"
     babel-plugin-polished: 1.1.0
     gatsby: 5.6.1
-    gatsby-plugin-google-gtag: 5.6.0
+    gatsby-plugin-google-tagmanager: 5.7.0
     gatsby-plugin-typegen: 3.1.0
     react: 18.2.0
     react-dom: 18.2.0
