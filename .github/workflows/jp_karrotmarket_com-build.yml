@@ -5,7 +5,7 @@ on:
   pull_request:
     paths:
       - '.github/workflows/jp_karrotmarket_com-*'
-      - jp.karrotmarket.com
+      - jp.karrotmarket.com/**/*
       - yarn.lock
     branches:
       - main
