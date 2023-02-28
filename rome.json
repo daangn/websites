@@ -28,7 +28,8 @@
       "**/public/**/*",
       "**/dist/**/*",
       "**/__generated__/**/*",
-      "./_packages/**/gatsby-*.js"
+      "./_packages/**/gatsby-*.js",
+      "./_packages/**/*.d.ts"
     ]
   }
 }
