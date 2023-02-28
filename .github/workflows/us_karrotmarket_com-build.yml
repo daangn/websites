@@ -56,7 +56,7 @@ jobs:
         env:
           GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
           HOT_ARTICLE_API_SPECIAL_KEY: ${{ secrets.HOT_ARTICLE_API_SPECIAL_KEY }}
-          ASSETS_PREFIX: https://assets.us.karrotmarket.com
+          ASSET_PREFIX: https://assets.us.karrotmarket.com
           PREFIX_PATHS: true
           NODE_ENV: production
           CI: true
