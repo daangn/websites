@@ -52,12 +52,11 @@ jobs:
 
       - name: Build uk.karrotmarket.com
         run: |
-          yarn workspace uk.karrotmarket.com build --log-pages
+          yarn workspace uk.karrotmarket.com build --log-pages --prefix-paths
         env:
           GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
           HOT_ARTICLE_API_SPECIAL_KEY: ${{ secrets.HOT_ARTICLE_API_SPECIAL_KEY }}
           ASSET_PREFIX: https://assets.uk.karrotmarket.com
-          PREFIX_PATHS: true
           NODE_ENV: production
           CI: true
 
