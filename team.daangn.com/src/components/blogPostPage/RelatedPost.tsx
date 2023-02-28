@@ -1,7 +1,7 @@
-import { graphql, Link } from "gatsby";
-import { rem } from "polished";
-import { styled } from "gatsby-theme-stitches/src/config";
-import { vars } from "@seed-design/design-token";
+import { graphql, Link } from 'gatsby';
+import { rem } from 'polished';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { vars } from '@seed-design/design-token';
 
 type RelatedPostProps = {
   data: GatsbyTypes.RelatedPost_blogPostFragment;
@@ -29,7 +29,7 @@ const RelatedPost: React.FC<RelatedPostProps> = ({ data }) => {
     <Container>
       <RelatedPostsTitle>추천 포스트</RelatedPostsTitle>
       <CardContainer>
-        {data.relatedPosts.map(post => (
+        {data.relatedPosts.map((post) => (
           <PostCard key={post.slug}>
             <BlogLink to={`/blog/archive/${post.slug}/`}>
               {post.thumbnailImage.publicURL && (
@@ -46,66 +46,66 @@ const RelatedPost: React.FC<RelatedPostProps> = ({ data }) => {
   );
 };
 
-const Container = styled("section", {
-  width: "100%",
+const Container = styled('section', {
+  width: '100%',
   marginTop: rem(88),
   padding: `${rem(56)} 0`,
   backgroundColor: vars.$scale.color.gray50,
 });
 
-const RelatedPostsTitle = styled("h2", {
+const RelatedPostsTitle = styled('h2', {
   blogContentArea: true,
 });
 
-const CardContainer = styled("div", {
-  width: "100%",
+const CardContainer = styled('div', {
+  width: '100%',
   contentArea: true,
-  display: "grid",
-  gridTemplateColumns: "repeat(1, 1fr)",
+  display: 'grid',
+  gridTemplateColumns: 'repeat(1, 1fr)',
   rowGap: rem(48),
-  justifyItems: "center",
+  justifyItems: 'center',
   marginTop: rem(44),
-  "@lg" : {
-    gridTemplateColumns: "repeat(2, 1fr)",
-  }
+  '@lg': {
+    gridTemplateColumns: 'repeat(2, 1fr)',
+  },
 });
 
-const PostCard = styled("div", {
+const PostCard = styled('div', {
   maxWidth: rem(480),
 });
 
-const Image = styled("img", {
-  width: "100%",
+const Image = styled('img', {
+  width: '100%',
   maxWidth: 480,
   maxHeight: 270,
   borderRadius: rem(8),
 });
 
 const BlogLink = styled(Link, {
-  textDecoration: "none",
+  textDecoration: 'none',
 });
 
-const PostTitle = styled("h3", {
+const PostTitle = styled('h3', {
   marginTop: rem(20),
   color: vars.$scale.color.gray900,
-  fontSize: "$subtitle2",
+  fontSize: '$subtitle2',
 });
 
-const PostSummary = styled("p", {
+const PostSummary = styled('p', {
   marginTop: rem(4),
   color: vars.$scale.color.gray700,
-  fontSize: "$body2",
+  fontSize: '$body2',
 });
 
-const PostCategory = styled("div", {
-  width: "fit-content",
+const PostCategory = styled('div', {
+  width: 'fit-content',
   padding: `${rem(4)} ${rem(10)}`,
   marginTop: rem(12),
   border: `1px solid ${vars.$scale.color.gray700}`,
   borderRadius: rem(40),
   color: vars.$scale.color.gray700,
-  fontSize: "$caption1",
-  cursor: "pointer",
+  fontSize: '$caption1',
+  cursor: 'pointer',
 });
 
 export default RelatedPost;

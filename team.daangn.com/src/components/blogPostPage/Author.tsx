@@ -1,6 +1,6 @@
-import { graphql } from "gatsby";
-import { rem } from "polished";
-import { styled } from "gatsby-theme-stitches/src/config";
+import { graphql } from 'gatsby';
+import { rem } from 'polished';
+import { styled } from 'gatsby-theme-stitches/src/config';
 
 type AuthorProps = {
   data: GatsbyTypes.Author_dataFragment;
@@ -18,7 +18,7 @@ export const query = graphql`
   }
 `;
 
-const Author:React.FC<AuthorProps> = ({ data }) => {
+const Author: React.FC<AuthorProps> = ({ data }) => {
   return (
     <Container>
       {data.image?.publicURL && <AuthorImage src={data.image.publicURL} />}
@@ -30,26 +30,26 @@ const Author:React.FC<AuthorProps> = ({ data }) => {
   );
 };
 
-const Container = styled("div", {
-  display: "flex",
-  alignItems: "center",
+const Container = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
   margin: `${rem(56)} 0`,
 });
 
-const AuthorImage = styled("img", {
+const AuthorImage = styled('img', {
   width: rem(50),
   height: rem(50),
-  borderRadius: "50%",
+  borderRadius: '50%',
 });
 
-const AuthorInfo = styled("div", {
-  display: "flex",
-  flexDirection: "column",
+const AuthorInfo = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
   marginLeft: rem(12),
-  fontSize: "$body2",
+  fontSize: '$body2',
 });
 
-const AuthorName = styled("h3", {
+const AuthorName = styled('h3', {
   marginBottom: rem(4),
   fontWeight: 600,
 });

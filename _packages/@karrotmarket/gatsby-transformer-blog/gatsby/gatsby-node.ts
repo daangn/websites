@@ -68,7 +68,9 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           type: 'Date!',
           resolve(node: PrismicAboutBlogPostNode) {
             if (!node.data.published_at) {
-              throw new Error(`BlogPost 의 published_at 필드 값이 비어있습니다. prismicId: ${node.prismicId}`);
+              throw new Error(
+                `BlogPost 의 published_at 필드 값이 비어있습니다. prismicId: ${node.prismicId}`,
+              );
             }
             return node.data.published_at;
           },
@@ -77,7 +79,9 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           type: 'File!',
           resolve(node: PrismicAboutBlogPostNode) {
             if (!node.data.thumbnail_image.url) {
-              throw new Error(`BlogPost 의 thumbnail_image 필드 값이 비어있습니다. prismicId: ${node.prismicId}`);
+              throw new Error(
+                `BlogPost 의 thumbnail_image 필드 값이 비어있습니다. prismicId: ${node.prismicId}`,
+              );
             }
             return createRemoteFileNode({
               url: node.data.thumbnail_image.url,
@@ -185,25 +189,25 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           type: 'String!',
           resolve(parent: PrismicAboutBlogPostRichTextSectionSlice) {
             return parent.id;
-          }
+          },
         },
         sliceType: {
           type: 'String!',
           resolve(parent: PrismicAboutBlogPostRichTextSectionSlice) {
             return parent.slice_type;
-          }
+          },
         },
         items: {
           type: '[JSON!]!',
           resolve(parent: PrismicAboutBlogPostRichTextSectionSlice) {
             return parent.items;
-          }
+          },
         },
         primary: {
           type: 'JSON!',
           resolve(parent: PrismicAboutBlogPostRichTextSectionSlice) {
             return parent.primary;
-          }
+          },
         },
       },
     }),
@@ -245,19 +249,19 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           type: 'String!',
           resolve(parent: PrismicAboutBlogPostRichTextSectionSlice) {
             return parent.id;
-          }
+          },
         },
         sliceType: {
           type: 'String!',
           resolve(parent: PrismicAboutBlogPostRichTextSectionSlice) {
             return parent.slice_type;
-          }
+          },
         },
         items: {
           type: '[JSON!]!',
           resolve(parent: PrismicAboutBlogPostRichTextSectionSlice) {
             return parent.items;
-          }
+          },
         },
       },
     }),

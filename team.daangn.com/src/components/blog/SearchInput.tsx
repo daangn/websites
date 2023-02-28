@@ -1,8 +1,8 @@
-import { rem } from "polished";
-import { styled } from "gatsby-theme-stitches/src/config";
+import { rem } from 'polished';
+import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
 
-import { ReactComponent as Icon } from "../../assets/icon_search.svg";
+import { ReactComponent as Icon } from '../../assets/icon_search.svg';
 
 const SearchInput = () => {
   return (
@@ -13,19 +13,19 @@ const SearchInput = () => {
   );
 };
 
-const Container = styled("div", {
-  display: "none",
-  alignItems: "center",
+const Container = styled('div', {
+  display: 'none',
+  alignItems: 'center',
   padding: `${rem(8)} ${rem(18)}`,
-  border: "none",
+  border: 'none',
   borderRadius: rem(40),
   backgroundColor: vars.$scale.color.gray100,
   fontSize: rem(14),
   color: vars.$scale.color.gray700,
 
-  "@media (min-width: 880px)" : {
-    display: "flex",
-  }
+  '@media (min-width: 880px)': {
+    display: 'flex',
+  },
 });
 
 const SearchIcon = styled(Icon, {
@@ -33,14 +33,14 @@ const SearchIcon = styled(Icon, {
   height: rem(18),
 });
 
-const Input = styled("input", {
+const Input = styled('input', {
   width: rem(120),
   marginLeft: rem(4),
-  border: "none",
+  border: 'none',
   backgroundColor: vars.$scale.color.gray100,
-  fontSize: "$body2",
+  fontSize: '$body2',
   color: vars.$scale.color.gray700,
-  outline: "none",
+  outline: 'none',
 });
 
 export default SearchInput;

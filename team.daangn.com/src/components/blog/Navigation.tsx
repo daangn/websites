@@ -1,13 +1,13 @@
-import { graphql } from "gatsby";
-import { styled } from "gatsby-theme-stitches/src/config";
+import { graphql } from 'gatsby';
+import { styled } from 'gatsby-theme-stitches/src/config';
 
-import SearchInput from "./SearchInput";
-import CategoryList from "./CategoryList";
+import SearchInput from './SearchInput';
+import CategoryList from './CategoryList';
 
 type NavigationProos = {
-  query: GatsbyTypes.Navigation_queryFragment,
-  pageContext: string,
-}
+  query: GatsbyTypes.Navigation_queryFragment;
+  pageContext: string;
+};
 
 export const query = graphql`
   fragment Navigation_query on Query {
@@ -26,11 +26,11 @@ const Navigation: React.FC<NavigationProos> = ({ query, pageContext }) => {
   );
 };
 
-const BlogNavigation = styled("div", {
-  display: "flex",
-  justifyContent: "space-between",
-  marginLeft: "3rem",
-  marginRight: "3rem",
+const BlogNavigation = styled('div', {
+  display: 'flex',
+  justifyContent: 'space-between',
+  marginLeft: '3rem',
+  marginRight: '3rem',
 });
 
 export default Navigation;

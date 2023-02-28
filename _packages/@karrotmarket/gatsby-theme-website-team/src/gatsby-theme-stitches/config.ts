@@ -101,11 +101,12 @@ const stitches = createStitches({
     blogContentArea: (value: boolean) =>
       value
         ? {
-          boxSizing: 'border-box',
-          maxWidth: '$maxContent',
-          margin: '0 auto',
-          paddingX: rem(72),
-        } : undefined,
+            boxSizing: 'border-box',
+            maxWidth: '$maxContent',
+            margin: '0 auto',
+            paddingX: rem(72),
+          }
+        : undefined,
   },
 });
 

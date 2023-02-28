@@ -1,10 +1,10 @@
-import { graphql } from "gatsby";
-import { styled } from "gatsby-theme-stitches/src/config";
+import { graphql } from 'gatsby';
+import { styled } from 'gatsby-theme-stitches/src/config';
 
-import Tag from "./Tag";
+import Tag from './Tag';
 
 type TagsProps = {
-  data: GatsbyTypes.Tags_dataFragment,
+  data: GatsbyTypes.Tags_dataFragment;
 };
 
 export const query = graphql`
@@ -23,8 +23,8 @@ const TagList: React.FC<TagsProps> = ({ data }) => {
   );
 };
 
-const TagContainer = styled("div", {
-  display: "flex",
+const TagContainer = styled('div', {
+  display: 'flex',
 });
 
 export default TagList;

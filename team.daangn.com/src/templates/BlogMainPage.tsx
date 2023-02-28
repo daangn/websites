@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 import { graphql, type PageProps } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 
-import FeaturedPost from "../components/blog/FeaturedPost";
-import Navigation from "../components/blog/Navigation";
-import PostList from "../components/blog/PostList";
+import FeaturedPost from '../components/blog/FeaturedPost';
+import Navigation from '../components/blog/Navigation';
+import PostList from '../components/blog/PostList';
 
 export const query = graphql`
   query BlogPage($id: String!, $locale: String!, $navigationId: String!) {
@@ -29,14 +29,16 @@ type BlogMainPageProps = PageProps<GatsbyTypes.BlogPageQuery>;
 const BlogMainPage: React.FC<BlogMainPageProps> = ({ data, pageContext }) => {
   return (
     <Container>
-      {data.prismicAboutContent?.data?.featured_post && <FeaturedPost data={data.prismicAboutContent.data.featured_post} />}
+      {data.prismicAboutContent?.data?.featured_post && (
+        <FeaturedPost data={data.prismicAboutContent.data.featured_post} />
+      )}
       <Navigation query={data} pageContext={pageContext.id} />
       <PostList query={data} />
     </Container>
-  )
+  );
 };
 
-const Container = styled("div", {
+const Container = styled('div', {
   contentArea: true,
 });
 

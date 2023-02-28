@@ -1,6 +1,6 @@
-import { graphql } from "gatsby";
-import { rem } from "polished";
-import { styled } from "gatsby-theme-stitches/src/config";
+import { graphql } from 'gatsby';
+import { rem } from 'polished';
+import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
 
 type FeaturedPostProps = {
@@ -37,50 +37,50 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({ data }) => {
     <Container>
       <FeaturedImage src={data.document.data.thumbnail_image.localFile.publicURL} />
       <FeaturedDescription>
-          <FeaturedTitle>{data.document.data.title.text}</FeaturedTitle>
-          <FeaturedSummary>{data.document.data.summary}</FeaturedSummary>
+        <FeaturedTitle>{data.document.data.title.text}</FeaturedTitle>
+        <FeaturedSummary>{data.document.data.summary}</FeaturedSummary>
       </FeaturedDescription>
     </Container>
   );
 };
 
-const Container = styled("div", {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
+const Container = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
   marginBottom: rem(66),
 });
 
-const FeaturedImage = styled("img", {
-  width: "100%",
+const FeaturedImage = styled('img', {
+  width: '100%',
   maxWidth: 1054,
   maxheight: 634,
   borderRadius: rem(8),
 });
 
-const FeaturedDescription = styled("div", {
-  display: "flex",
-  flexDirection: "column",
+const FeaturedDescription = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
   marginTop: rem(20),
 });
 
-const FeaturedTitle = styled("h1", {
+const FeaturedTitle = styled('h1', {
   marginBottom: rem(2),
   typography: '$subtitle2',
 
-  "@media (min-width: 1096px)" : {
-    typography: "$subtitle1",
-  }
+  '@media (min-width: 1096px)': {
+    typography: '$subtitle1',
+  },
 });
 
-const FeaturedSummary = styled("p", {
+const FeaturedSummary = styled('p', {
   color: vars.$scale.color.gray700,
   typography: '$body2',
 
-  "@media (min-width: 1096px)" : {
-    typography: "$subtitle4",
-  }
+  '@media (min-width: 1096px)': {
+    typography: '$subtitle4',
+  },
 });
 
 export default FeaturedPost;
