@@ -1,7 +1,14 @@
-name: Deploy uk.karrotmarket.com
+name: Build (& Deploy) uk.karrotmarket.com
 
 on:
   workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/uk_karrotmarket_com-*'
+      - uk.karrotmarket.com
+      - yarn.lock
+    branches:
+      - main
   push:
     paths:
       - '.github/workflows/uk_karrotmarket_com-*'
@@ -13,9 +20,15 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    name: Deploy
+    name: Build (& Deploy)
     steps:
       - uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       
       - name: Setup Node.js 18.x
         uses: actions/setup-node@v3
@@ -41,9 +54,15 @@ jobs:
           yarn workspace uk.karrotmarket.com build --log-pages
         env:
           GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
+          HOT_ARTICLE_API_SPECIAL_KEY: ${{ secrets.HOT_ARTICLE_API_SPECIAL_KEY }}
+          ASSETS_PREFIX: https://assets.uk.karrotmarket.com
+          PREFIX_PATHS: true
           NODE_ENV: production
           CI: true
 
       - name: Deploy uk.karrotmarket.com
-        run: |
-          echo "TODO"
+        if: github.event_name != 'pull_request'
+        uses: jonelantha/gatsby-s3-action@v2
+        with:
+          dest-s3-bucket: uk.karrotmarket.com
+          cloudfront-id-to-invalidate: E26ALIG2PGHS9Z
