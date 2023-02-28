@@ -1,0 +1,28 @@
+name: Integration
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  chores:
+    runs-on: ubuntu-latest
+    name: Checking Chores
+    steps:
+      - uses: actions/checkout@v3
+     
+      - name: Setup Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
+
+      - name: Install Dependencies
+        run: yarn install --immutable
+
+      - name: Checking conventions via Rome
+        run: yarn rome ci .
