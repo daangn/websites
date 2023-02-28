@@ -1,0 +1,49 @@
+name: Deploy ca.karrotmarket.com
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/ca_karrotmarket_com-*'
+      - ca.karrotmarket.com
+      - yarn.lock
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
+
+      - name: Install Dependencies
+        run: yarn install --immutable
+
+      - name: Restore Gatsby Cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ca.karrotmarket.com/.cache
+            ca.karrotmarket.com/public
+          key: ${{ runner.os }}-gatsby-build-${{ github.run_id }}
+          restore-keys: |
+            ${{ runner.os }}-gatsby-build-
+
+      - name: Build ca.karrotmarket.com
+        run: |
+          yarn workspace ca.karrotmarket.com build --log-pages
+        env:
+          GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
+          NODE_ENV: production
+          CI: true
+
+      - name: Deploy ca.karrotmarket.com
+        run: |
+          echo "TODO"
