@@ -6,8 +6,6 @@ const siteMetadata = {
   description: "Karrot - the app for verified locals to buy &amp; sell. See what&#39;s for offer today!",
 };
 
-console.log('DEBUG: ', process.env.ASSET_PREFIX);
-
 const config: GatsbyConfig = {
   ...(process.env.ASSET_PREFIX && {
     assetPrefix: process.env.ASSET_PREFIX,

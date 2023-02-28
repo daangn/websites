@@ -1,18 +1,18 @@
-name: Build (& Deploy) us.karrotmarket.com
+name: Build (& Deploy) ca.karrotmarket.com
 
 on:
   workflow_dispatch:
   pull_request:
     paths:
-      - '.github/workflows/us_karrotmarket_com-*'
-      - us.karrotmarket.com/**/*
+      - '.github/workflows/ca_karrotmarket_com-*'
+      - ca.karrotmarket.com/**/*
       - yarn.lock
     branches:
       - main
   push:
     paths:
-      - '.github/workflows/us_karrotmarket_com-*'
-      - us.karrotmarket.com
+      - '.github/workflows/ca_karrotmarket_com-*'
+      - ca.karrotmarket.com/**/*
       - yarn.lock
     branches:
       - main
@@ -44,26 +44,27 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            us.karrotmarket.com/.cache
-            us.karrotmarket.com/public
+            ca.karrotmarket.com/.cache
+            ca.karrotmarket.com/public
           key: ${{ runner.os }}-gatsby-build-${{ github.run_id }}
           restore-keys: |
             ${{ runner.os }}-gatsby-build-
 
-      - name: Build us.karrotmarket.com
+      - name: Build ca.karrotmarket.com
         run: |
-          yarn workspace us.karrotmarket.com build --log-pages --prefix-paths
+          yarn workspace ca.karrotmarket.com build --log-pages --prefix-paths
         env:
           # GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
           HOT_ARTICLE_API_SPECIAL_KEY: ${{ secrets.HOT_ARTICLE_API_SPECIAL_KEY }}
-          ASSET_PREFIX: https://assets.us.karrotmarket.com
+          ASSET_PREFIX: https://assets.ca.karrotmarket.com
           NODE_ENV: production
           CI: true
 
-      - name: Deploy us.karrotmarket.com
+      - name: Deploy ca.karrotmarket.com
         if: github.event_name != 'pull_request'
         uses: jonelantha/gatsby-s3-action@v2
         with:
-          dest-s3-bucket: us.karrotmarket.com
-          cloudfront-id-to-invalidate: E35E31R7XDWVCM
-          public-source-path: us.karrotmarket.com/public
+          dest-s3-bucket: ca.karrotmarket.com
+          cloudfront-id-to-invalidate: E3266D3Q80IX3Q
+          public-source-path: ca.karrotmarket.com/public
+          sync-delete: false

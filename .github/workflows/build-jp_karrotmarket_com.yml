@@ -12,7 +12,7 @@ on:
   push:
     paths:
       - '.github/workflows/jp_karrotmarket_com-*'
-      - jp.karrotmarket.com
+      - jp.karrotmarket.com/**/*
       - yarn.lock
     branches:
       - main
@@ -67,3 +67,4 @@ jobs:
           dest-s3-bucket: jp.karrotmarket.com
           cloudfront-id-to-invalidate: E3OLUPD92LI886
           public-source-path: jp.karrotmarket.com/public
+          sync-delete: false

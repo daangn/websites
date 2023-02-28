@@ -1,24 +1,24 @@
-name: Build (& Deploy) uk.karrotmarket.com
+name: Build (& Deploy) us.karrotmarket.com
 
 on:
   workflow_dispatch:
   pull_request:
     paths:
-      - '.github/workflows/uk_karrotmarket_com-*'
-      - uk.karrotmarket.com/**/*
+      - '.github/workflows/us_karrotmarket_com-*'
+      - us.karrotmarket.com/**/*
       - yarn.lock
     branches:
       - main
   push:
     paths:
-      - '.github/workflows/uk_karrotmarket_com-*'
-      - uk.karrotmarket.com
+      - '.github/workflows/us_karrotmarket_com-*'
+      - us.karrotmarket.com/**/*
       - yarn.lock
     branches:
       - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     name: Build (& Deploy)
     steps:
@@ -44,26 +44,27 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            uk.karrotmarket.com/.cache
-            uk.karrotmarket.com/public
+            us.karrotmarket.com/.cache
+            us.karrotmarket.com/public
           key: ${{ runner.os }}-gatsby-build-${{ github.run_id }}
           restore-keys: |
             ${{ runner.os }}-gatsby-build-
 
-      - name: Build uk.karrotmarket.com
+      - name: Build us.karrotmarket.com
         run: |
-          yarn workspace uk.karrotmarket.com build --log-pages --prefix-paths
+          yarn workspace us.karrotmarket.com build --log-pages --prefix-paths
         env:
           # GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
           HOT_ARTICLE_API_SPECIAL_KEY: ${{ secrets.HOT_ARTICLE_API_SPECIAL_KEY }}
-          ASSET_PREFIX: https://assets.uk.karrotmarket.com
+          ASSET_PREFIX: https://assets.us.karrotmarket.com
           NODE_ENV: production
           CI: true
 
-      - name: Deploy uk.karrotmarket.com
+      - name: Deploy us.karrotmarket.com
         if: github.event_name != 'pull_request'
         uses: jonelantha/gatsby-s3-action@v2
         with:
-          dest-s3-bucket: uk.karrotmarket.com
-          cloudfront-id-to-invalidate: E26ALIG2PGHS9Z
-          public-source-path: uk.karrotmarket.com/public
+          dest-s3-bucket: us.karrotmarket.com
+          cloudfront-id-to-invalidate: E35E31R7XDWVCM
+          public-source-path: us.karrotmarket.com/public
+          sync-delete: false
