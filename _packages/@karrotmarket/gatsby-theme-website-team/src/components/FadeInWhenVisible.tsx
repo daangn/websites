@@ -3,7 +3,7 @@ import { useInView } from 'react-intersection-observer';
 import { motion, useAnimation, useReducedMotion } from 'framer-motion';
 
 type Props = {
-  children: React.ReactNode,
+  children: React.ReactNode;
 };
 
 const transition = {
@@ -17,30 +17,25 @@ const variants = {
   hidden: { opacity: 0, y: 30 },
 };
 
-type State = (
-  | 'INITIAL_VISIBLE'
-  | 'HIDDEN'
-  | 'VISIBLE'
-);
+type State = 'INITIAL_VISIBLE' | 'HIDDEN' | 'VISIBLE';
 
-type Action = (
-  | 'REDUCE_MOTION'
-  | 'APPEAR'
-  | 'DISAPPEAR'
-);
+type Action = 'REDUCE_MOTION' | 'APPEAR' | 'DISAPPEAR';
 
 const reducer: React.Reducer<State, Action> = (state, action) => {
   switch (state) {
     case 'INITIAL_VISIBLE': {
       switch (action) {
-        case 'REDUCE_MOTION': return 'VISIBLE';
-        case 'DISAPPEAR': return 'HIDDEN';
+        case 'REDUCE_MOTION':
+          return 'VISIBLE';
+        case 'DISAPPEAR':
+          return 'HIDDEN';
       }
       break;
     }
     case 'HIDDEN': {
       switch (action) {
-        case 'APPEAR': return 'VISIBLE';
+        case 'APPEAR':
+          return 'VISIBLE';
       }
       break;
     }
@@ -48,9 +43,7 @@ const reducer: React.Reducer<State, Action> = (state, action) => {
   return state;
 };
 
-const FadeInWhenVisible: React.FC<Props> = ({
-  children,
-}) => {
+const FadeInWhenVisible: React.FC<Props> = ({ children }) => {
   const [state, dispatch] = React.useReducer(reducer, 'INITIAL_VISIBLE');
 
   const controls = useAnimation();

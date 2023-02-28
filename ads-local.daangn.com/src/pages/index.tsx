@@ -1,12 +1,12 @@
-import * as React from "react";
-import { rem } from "polished";
-import { mapAbstractTypeWithDefault } from "@cometjs/graphql-utils";
-import { graphql, type PageProps, type HeadProps } from "gatsby";
-import { HeadSeo, OpenGraph, TwitterCard } from "gatsby-plugin-head-seo/src";
-import { globalStyles, styled } from "gatsby-theme-stitches/src/config";
-import Header from "@karrotmarket/gatsby-theme-website/src/components/Header";
-import Footer from "@karrotmarket/gatsby-theme-website/src/components/Footer";
-import { vars } from "@seed-design/design-token";
+import * as React from 'react';
+import { rem } from 'polished';
+import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
+import { graphql, type PageProps, type HeadProps } from 'gatsby';
+import { HeadSeo, OpenGraph, TwitterCard } from 'gatsby-plugin-head-seo/src';
+import { globalStyles, styled } from 'gatsby-theme-stitches/src/config';
+import Header from '@karrotmarket/gatsby-theme-website/src/components/Header';
+import Footer from '@karrotmarket/gatsby-theme-website/src/components/Footer';
+import { vars } from '@seed-design/design-token';
 
 import DownloadBtnMobile from '~/components/DownloadBtnMobile';
 import HeroSection from '~/components/HeroSection';
@@ -71,9 +71,7 @@ export const query = graphql`
   }
 `;
 
-export default function IndexPage({
-  data,
-}: PageProps<GatsbyTypes.IndexPageQuery>) {
+export default function IndexPage({ data }: PageProps<GatsbyTypes.IndexPageQuery>) {
   globalStyles();
 
   const prismicAdsContent = data.prismicAdsContent!;
@@ -81,79 +79,54 @@ export default function IndexPage({
 
   return (
     <div>
-      <DownloadBtnMobile
-        data={prismicAdsContent.data}
-      />
+      <DownloadBtnMobile data={prismicAdsContent.data} />
 
-      <Header
-        isStatic
-        navigationData={prismicSiteNavigation.data}
-      />
+      <Header isStatic navigationData={prismicSiteNavigation.data} />
 
       <main>
-        <HeroSection
-          data={prismicAdsContent.data}
-        />
+        <HeroSection data={prismicAdsContent.data} />
 
-        {prismicAdsContent.data.body
-          .map((data, i) =>
-            mapAbstractTypeWithDefault(data, {
-              PrismicAdsContentDataBodyUsageSliderSection: data => (
-                <PrismicAdsContentDataBodyUsageSliderSection
-                  key={i}
-                  data={data}
-                />
-              ),
-              PrismicAdsContentDataBodyPreviewSection: data => (
-                <PrismicAdsContentDataBodyPreviewSection
-                  key={i}
-                  data={data}
-                />
-              ),
-              PrismicAdsContentDataBodyDownloadSection: data => (
-                <PrismicAdsContentDataBodyDownloadSection
-                  key={i}
-                  data={data}
-                />
-              ),
-              PrismicAdsContentDataBodyFeaturesSection: data => (
-                <PrismicAdsContentDataBodyFeaturesSection
-                  key={i}
-                  data={data}
-                />
-              ),
-              PrismicAdsContentDataBodyStepsSection: data => (
-                <PrismicAdsContentDataBodyStepsSection
-                  key={i}
-                  data={data}
-                />
-              ),
-              PrismicAdsContentDataBodyUserStorySection: data => (
-                <PrismicAdsContentDataBodyUserStorySection
-                  key={i}
-                  data={data}
-                />
-              ),
-              PrismicAdsContentDataBodyGuideSection: data => (
-                <PrismicAdsContentDataBodyGuideSection
-                  key={i}
-                  data={data}
-                />
-              ),
-              _: null,
-            })
-          )
-        }
+        {prismicAdsContent.data.body.map((data, i) =>
+          mapAbstractTypeWithDefault(data, {
+            PrismicAdsContentDataBodyUsageSliderSection: (data) => (
+              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              <PrismicAdsContentDataBodyUsageSliderSection key={i} data={data} />
+            ),
+            PrismicAdsContentDataBodyPreviewSection: (data) => (
+              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              <PrismicAdsContentDataBodyPreviewSection key={i} data={data} />
+            ),
+            PrismicAdsContentDataBodyDownloadSection: (data) => (
+              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              <PrismicAdsContentDataBodyDownloadSection key={i} data={data} />
+            ),
+            PrismicAdsContentDataBodyFeaturesSection: (data) => (
+              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              <PrismicAdsContentDataBodyFeaturesSection key={i} data={data} />
+            ),
+            PrismicAdsContentDataBodyStepsSection: (data) => (
+              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              <PrismicAdsContentDataBodyStepsSection key={i} data={data} />
+            ),
+            PrismicAdsContentDataBodyUserStorySection: (data) => (
+              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              <PrismicAdsContentDataBodyUserStorySection key={i} data={data} />
+            ),
+            PrismicAdsContentDataBodyGuideSection: (data) => (
+              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              <PrismicAdsContentDataBodyGuideSection key={i} data={data} />
+            ),
+            _: null,
+          }),
+        )}
       </main>
 
-      <Footer
-        navigationData={prismicSiteNavigation.data}
-      />
+      <Footer navigationData={prismicSiteNavigation.data} />
 
       <Disclaimer>
         <DisclaimerContent
           dangerouslySetInnerHTML={{
-            __html: prismicAdsContent.data.disclaimer.html || ''
+            __html: prismicAdsContent.data.disclaimer?.html || '',
           }}
         />
       </Disclaimer>
@@ -161,10 +134,7 @@ export default function IndexPage({
   );
 }
 
-export function Head({
-  data,
-  location,
-}: HeadProps<GatsbyTypes.IndexPageQuery>) {
+export function Head({ data, location }: HeadProps<GatsbyTypes.IndexPageQuery>) {
   const siteMetadata = data.site?.siteMetadata!;
   const prismicAdsContent = data.prismicAdsContent!;
 
@@ -180,7 +150,7 @@ export function Head({
             type: 'website',
             title: prismicAdsContent.data.meta_title || siteMetadata.title!,
             description: prismicAdsContent.data.meta_description || siteMetadata.description!,
-            ...image && {
+            ...(image && {
               images: [
                 {
                   url: new URL(image.localFile!.publicURL!, siteUrl),
@@ -188,7 +158,7 @@ export function Head({
                   height: image.dimensions!.height,
                 },
               ],
-            }
+            }),
           }}
         />,
         <TwitterCard
@@ -202,21 +172,21 @@ export function Head({
   );
 }
 
-const Disclaimer = styled("div", {
-  display: "flex",
+const Disclaimer = styled('div', {
+  display: 'flex',
 
-  justifyContent: "center",
+  justifyContent: 'center',
   height: rem(190),
 });
 
-const DisclaimerContent = styled("div", {
-  boxSizing: "border-box",
+const DisclaimerContent = styled('div', {
+  boxSizing: 'border-box',
   borderTop: `1px solid ${vars.$semantic.color.divider3}`,
   paddingTop: rem(24),
   paddingX: rem(24),
   margin: '0 auto',
   maxWidth: 'var(--sizes-maxContent)',
-  width: "100%",
+  width: '100%',
 
   '& p': {
     fontSize: rem(12),
@@ -225,7 +195,7 @@ const DisclaimerContent = styled("div", {
   },
 
   '& a': {
-    textDecoration: "underline",
+    textDecoration: 'underline',
     color: vars.$scale.color.gray600,
   },
 });

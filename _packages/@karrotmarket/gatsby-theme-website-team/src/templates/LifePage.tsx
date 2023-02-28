@@ -1,10 +1,6 @@
 import * as React from 'react';
 import { rem } from 'polished';
-import {
-  graphql,
-  type PageProps,
-  type HeadProps,
-} from 'gatsby';
+import { graphql, type PageProps, type HeadProps } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { HeadSeo } from 'gatsby-plugin-head-seo/src';
 import { required } from '@cometjs/core';
@@ -76,26 +72,22 @@ const Content = styled('div', {
 });
 
 type LifePageProps = PageProps<GatsbyTypes.TeamWebsite_LifePageQuery>;
-const LifePage: React.FC<LifePageProps> = ({
-  data,
-}) => {
+const LifePage: React.FC<LifePageProps> = ({ data }) => {
   required(data.prismicTeamContents?.data?.life_body);
 
   return (
     <Container>
-      <PageTitle>
-        {data.prismicTeamContents.data.life_page_title?.text}
-      </PageTitle>
+      <PageTitle>{data.prismicTeamContents.data.life_page_title?.text}</PageTitle>
       <Content>
-        {data.prismicTeamContents.data.life_body.map((data, i) => mapAbstractTypeWithDefault(data!, {
-          PrismicTeamContentsDataLifeBodyLifeContent: data => (
-            <PrismicTeamContentsDataLifeBodyLifeContent
-              key={i}
-              data={data}
-            />
-          ),
-          _: null,
-        }))}
+        {data.prismicTeamContents.data.life_body.map((data, i) =>
+          mapAbstractTypeWithDefault(data!, {
+            PrismicTeamContentsDataLifeBodyLifeContent: (data) => (
+              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              <PrismicTeamContentsDataLifeBodyLifeContent key={i} data={data} />
+            ),
+            _: null,
+          }),
+        )}
       </Content>
     </Container>
   );
@@ -104,39 +96,33 @@ const LifePage: React.FC<LifePageProps> = ({
 export default LifePage;
 
 type LifePageHeadProps = HeadProps<GatsbyTypes.TeamWebsite_LifePageQuery>;
-export const Head: React.FC<LifePageHeadProps> = ({
-  data,
-  location,
-}) => {
+export const Head: React.FC<LifePageHeadProps> = ({ data, location }) => {
   required(data.prismicTeamContents?.data);
 
   const metaTitle = data.prismicTeamContents.data.life_page_meta_title;
   const metaDescription = data.prismicTeamContents.data.life_page_meta_description;
-  const metaImage = data.prismicTeamContents.data.life_page_meta_image?.localFile?.childImageSharp?.fixed;
+  const metaImage =
+    data.prismicTeamContents.data.life_page_meta_image?.localFile?.childImageSharp?.fixed;
 
   return (
-    <HeadSeo
-      location={location}
-      title={metaTitle}
-      description={metaDescription}
-    >
-      {props => (
+    <HeadSeo location={location} title={metaTitle} description={metaDescription}>
+      {(props) => (
         <DefaultLayoutHead
           {...props}
           location={location}
           data={data}
-          image={metaImage && {
-            url: new URL(
-              metaImage.src,
-              metaImage.src.startsWith('http')
-                ? metaImage.src
-                : props.url,
-            ),
-            width: metaImage.width,
-            height: metaImage.height,
-          }}
+          image={
+            metaImage && {
+              url: new URL(
+                metaImage.src,
+                metaImage.src.startsWith('http') ? metaImage.src : props.url,
+              ),
+              width: metaImage.width,
+              height: metaImage.height,
+            }
+          }
         />
       )}
     </HeadSeo>
   );
-}
+};

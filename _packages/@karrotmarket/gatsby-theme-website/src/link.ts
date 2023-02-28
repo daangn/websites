@@ -4,13 +4,13 @@ import { Fn } from '@cometjs/core';
 import { useSiteMetadata } from './siteMetadata';
 
 type InternalLink = {
-  t: 'Internal',
-  pathname: string,
+  t: 'Internal';
+  pathname: string;
 };
 
 type ExternalLink = {
-  t: 'External',
-  url: URL,
+  t: 'External';
+  url: URL;
 };
 
 export type LinkType = InternalLink | ExternalLink;
@@ -23,13 +23,13 @@ export function isExternalLink(link: LinkType): link is ExternalLink {
   return link.t === 'External';
 }
 
-export function mapLink<
-  RInternal,
-  RExternal,
->(link: LinkType, fn: {
-  Internal: Fn.T<RInternal, InternalLink>,
-  External: Fn.T<RExternal, ExternalLink>,
-}): RInternal | RExternal {
+export function mapLink<RInternal, RExternal>(
+  link: LinkType,
+  fn: {
+    Internal: Fn.T<RInternal, InternalLink>;
+    External: Fn.T<RExternal, ExternalLink>;
+  },
+): RInternal | RExternal {
   if (isInternalLink(link)) {
     return Fn.range(fn.Internal, link);
   } else {

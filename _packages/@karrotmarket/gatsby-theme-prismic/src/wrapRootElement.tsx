@@ -1,12 +1,12 @@
 import * as React from 'react';
-import type { GatsbySSR, GatsbyBrowser } from 'gatsby';
+import type { WrapRootElementNodeArgs, WrapPageElementBrowserArgs } from 'gatsby';
 
 import { PrismicPreviewProvider } from 'gatsby-plugin-prismic-previews';
 
 import { linkResolver } from '@karrotmarket/gatsby-theme-prismic/src/linkResolver';
 import { componentResolver } from '@karrotmarket/gatsby-theme-prismic/src/componentResolver';
 
-type WrapRootElement = (GatsbySSR | GatsbyBrowser)['wrapRootElement'];
+type WrapRootElementArgs = WrapRootElementNodeArgs | WrapPageElementBrowserArgs;
 
 const defaultRepositoryConfigs = [
   {
@@ -16,7 +16,7 @@ const defaultRepositoryConfigs = [
   },
 ];
 
-export const wrapRootElement: WrapRootElement = ({ element }: any) => {
+export const wrapRootElement = ({ element }: WrapRootElementArgs) => {
   return (
     <PrismicPreviewProvider repositoryConfigs={defaultRepositoryConfigs}>
       {element}

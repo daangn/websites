@@ -1,16 +1,16 @@
-import * as React from "react";
-import { Link } from "gatsby";
+import * as React from 'react';
+import { Link } from 'gatsby';
 import { rem } from 'polished';
-import { useLocation } from "@reach/router";
-import { vars } from "@seed-design/design-token";
+import { useLocation } from '@reach/router';
+import { vars } from '@seed-design/design-token';
 
-import { styled } from "gatsby-theme-stitches/src/config";
-import { mapLink, useLinkParser } from "../../link";
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { mapLink, useLinkParser } from '../../link';
 
 import externalSvgUrl from '!!file-loader!./footerEntryItem/external.svg';
 
-const FooterEntryItemContainer = styled("li", {
-  fontSize: "$caption2",
+const FooterEntryItemContainer = styled('li', {
+  fontSize: '$caption2',
   fontWeight: 700,
 });
 
@@ -19,7 +19,7 @@ const FooterEntryLink = styled(Link, {
   alignItems: 'center',
 
   color: vars.$scale.color.gray900,
-  textDecoration: "none",
+  textDecoration: 'none',
   opacity: 1,
 
   '&:hover, &:focus': {
@@ -50,11 +50,8 @@ const ExternalLink = styled(FooterEntryLink, {
 });
 
 interface FooterEntryItemProps {
-  entry: Pick<
-    GatsbyTypes.PrismicSiteNavigationDataFooterEntries,
-    "display_text"
-  > & {
-    readonly link: GatsbyTypes.Maybe<Pick<GatsbyTypes.PrismicLinkType, "url">>;
+  entry: Pick<GatsbyTypes.PrismicSiteNavigationDataFooterEntries, 'display_text'> & {
+    readonly link: GatsbyTypes.Maybe<Pick<GatsbyTypes.PrismicLinkType, 'url'>>;
   };
 }
 
@@ -69,8 +66,8 @@ const FooterEntryItem: React.FC<FooterEntryItemProps> = ({ entry }) => {
           <FooterEntryLink
             to={link.pathname}
             active={
-              link.pathname === "/"
-                ? location.pathname === "/"
+              link.pathname === '/'
+                ? location.pathname === '/'
                 : location.pathname.startsWith(link.pathname)
             }
           >
@@ -78,11 +75,7 @@ const FooterEntryItem: React.FC<FooterEntryItemProps> = ({ entry }) => {
           </FooterEntryLink>
         ),
         External: (link) => (
-          <ExternalLink
-            as="a"
-            rel="external noopener"
-            href={link.url.href}
-          >
+          <ExternalLink as="a" rel="external noopener" href={link.url.href}>
             {entry.display_text}
           </ExternalLink>
         ),

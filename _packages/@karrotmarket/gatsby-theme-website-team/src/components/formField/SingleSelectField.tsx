@@ -7,23 +7,22 @@ import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/tran
 import * as Field from './Field';
 
 type Props = {
-  id?: string,
-  className?: string,
-  label: string,
-  name: string,
-  description?: string,
-  required?: boolean,
+  id?: string;
+  className?: string;
+  label: string;
+  name: string;
+  description?: string;
+  required?: boolean;
   options: Array<{
-    label: string,
-    value: string,
-  }>,
-  defaultValue?: string,
+    label: string;
+    value: string;
+  }>;
+  defaultValue?: string;
 };
 
 const Container = styled(Field.Container, {
   display: 'grid',
   gridTemplateAreas: '"label" "select"',
-
 });
 
 const Select = styled(Field.Input, {
@@ -91,16 +90,14 @@ const SingleSelectField: React.FC<Props> = ({
           defaultValue={defaultValue}
         >
           <option value="">{messages.form_field__empty_placeholder}</option>
-          {options.map(option => (
+          {options.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>
           ))}
         </InnerSelect>
       </Select>
-      {description && (
-        <Field.Description>{description}</Field.Description>
-      )}
+      {description && <Field.Description>{description}</Field.Description>}
     </Container>
   );
 };

@@ -1,22 +1,22 @@
 // @ts-nocheck
 /* eslint-disable */
-import { forwardRef, type ForwardRefRenderFunction } from "react";
-import spriteUrl from "!!file-loader!../assets/sprite.svg";
+import { forwardRef, type ForwardRefRenderFunction } from 'react';
+import spriteUrl from '!!file-loader!../assets/sprite.svg';
 
 export interface SeedIconProps {
   name: IconName;
   size?: number | string;
   className?: string;
-};
+}
 
 const SeedIcon: ForwardRefRenderFunction<HTMLSpanElement, SeedIconProps> = (
   { name, className, size },
   ref,
 ) => {
-  return  (
+  return (
     <span
       ref={ref}
-      style={{ display: "inline-flex", width: size, height: size }}
+      style={{ display: 'inline-flex', width: size, height: size }}
       className={className}
       data-seed-icon={name}
       data-seed-icon-version="0.1.7"
@@ -29,9 +29,8 @@ const SeedIcon: ForwardRefRenderFunction<HTMLSpanElement, SeedIconProps> = (
 };
 
 export default forwardRef(SeedIcon);
-type IconName = (
-  | "icon_chevron_right_regular"
-  | "icon_call_fill"
-  | "icon_close_regular"
-  | "icon_forward_regular"
-);
+type IconName =
+  | 'icon_chevron_right_regular'
+  | 'icon_call_fill'
+  | 'icon_close_regular'
+  | 'icon_forward_regular';

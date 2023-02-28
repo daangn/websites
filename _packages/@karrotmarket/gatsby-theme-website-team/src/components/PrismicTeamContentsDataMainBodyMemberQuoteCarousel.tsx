@@ -3,15 +3,15 @@ import { useSwipeable } from 'react-swipeable';
 import { rem } from 'polished';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { vars } from '@seed-design/design-token'
+import { vars } from '@seed-design/design-token';
 
 import SeedIcon from './SeedIcon';
 import CarouselItem from './prismicTeamContentsDataMainBodyMemberQuoteCarousel/CarouselItem';
 import _ArrowButton from './prismicTeamContentsDataMainBodyMemberQuoteCarousel/ArrowButton';
 
 type PrismicTeamContentsDataMainBodyMemberQuoteCarouselProps = {
-  data: GatsbyTypes.PrismicTeamContentsDataMainBodyMemberQuoteCarousel_dataFragment,
-  className?: string,
+  data: GatsbyTypes.PrismicTeamContentsDataMainBodyMemberQuoteCarousel_dataFragment;
+  className?: string;
 };
 
 export const query = graphql`
@@ -29,7 +29,7 @@ const Container = styled('section', {
   boxSizing: 'border-box',
   display: 'grid',
   gap: rem(40),
-  
+
   '@lg': {
     gap: rem(56),
   },
@@ -40,23 +40,24 @@ const SlideCamera = styled('div', {
 });
 
 const Slide = styled('div', {
-  '$$width': rem(560),
-  '$$gap': rem(40),
+  $$width: rem(560),
+  $$gap: rem(40),
 
   display: 'flex',
   gap: '$$gap',
   transition: 'transform 0.3s ease-in-out',
 
-  transform: `translateX(calc(-100% * $$slide - $$gap * $$slide))`,
+  transform: 'translateX(calc(-100% * $$slide - $$gap * $$slide))',
   '@lg': {
-    transform: `translateX(max(calc(-1 * ($$width + $$gap)) * $$slide, calc(-50% * $$slide - $$gap / 2 * $$slide)))`,
+    transform:
+      'translateX(max(calc(-1 * ($$width + $$gap)) * $$slide, calc(-50% * $$slide - $$gap / 2 * $$slide)))',
   },
 
   '& > *': {
     flexShrink: 0,
     width: '100%',
     '@lg': {
-      maxWidth: `min($$width, calc(50% - $$gap / 2))`,
+      maxWidth: 'min($$width, calc(50% - $$gap / 2))',
     },
   },
 });
@@ -164,19 +165,18 @@ const Dot = styled('button', {
   },
 });
 
-const PrismicTeamContentsDataMainBodyMemberQuoteCarousel: React.FC<PrismicTeamContentsDataMainBodyMemberQuoteCarouselProps> = ({
-  data,
-  className,
-}) => {
+const PrismicTeamContentsDataMainBodyMemberQuoteCarousel: React.FC<
+  PrismicTeamContentsDataMainBodyMemberQuoteCarouselProps
+> = ({ data, className }) => {
   const items = data.items || [];
   const [slide, setSlide] = React.useState(0);
 
   const swipeHandlers = useSwipeable({
-    onSwipedLeft: _ => {
-      setSlide(slide => Math.min(slide + 1, items.length - 1));
+    onSwipedLeft: (_) => {
+      setSlide((slide) => Math.min(slide + 1, items.length - 1));
     },
-    onSwipedRight: _ => {
-      setSlide(slide => Math.max(slide - 1, 0));
+    onSwipedRight: (_) => {
+      setSlide((slide) => Math.max(slide - 1, 0));
     },
   });
 
@@ -185,34 +185,29 @@ const PrismicTeamContentsDataMainBodyMemberQuoteCarousel: React.FC<PrismicTeamCo
       <LeftArrowButton
         viewport={{ '@initial': 'initial', '@xxl': 'xxl' }}
         hide={slide === 0}
-        onClick={() => setSlide(slide => Math.max(~~(slide / 2) * 2 - 2, 0))}
+        onClick={() => setSlide((slide) => Math.max(~~(slide / 2) * 2 - 2, 0))}
       >
         <SeedIcon name="icon_chevron_right_regular" />
       </LeftArrowButton>
       <SlideCamera {...swipeHandlers}>
-        <Slide css={{ '$$slide': slide }}>
+        <Slide css={{ $$slide: slide }}>
           {items.map((item, i) => (
-            <CarouselItem
-              key={i}
-              item={item!}
-            />
+            // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+            <CarouselItem key={i} item={item!} />
           ))}
         </Slide>
       </SlideCamera>
       <RightArrowButton
         viewport={{ '@initial': 'initial', '@xxl': 'xxl' }}
         hide={slide === items.length - 2}
-        onClick={() => setSlide(slide => Math.min(~~(slide / 2) * 2 + 2, items.length - 1))}
+        onClick={() => setSlide((slide) => Math.min(~~(slide / 2) * 2 + 2, items.length - 1))}
       >
         <SeedIcon name="icon_chevron_right_regular" />
       </RightArrowButton>
       <Dots>
         {items.map((_item, i) => (
-          <Dot
-            key={i}
-            active={slide === i}
-            onClick={() => setSlide(i)}
-          />
+          // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+          <Dot key={i} active={slide === i} onClick={() => setSlide(i)} />
         ))}
       </Dots>
     </Container>

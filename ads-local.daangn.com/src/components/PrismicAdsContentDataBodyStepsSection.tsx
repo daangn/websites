@@ -28,38 +28,25 @@ export const fragment = graphql`
 `;
 
 type Props = {
-  data: GatsbyTypes.PrismicAdsContentDataBodyStepsSection_dataFragment,
+  data: GatsbyTypes.PrismicAdsContentDataBodyStepsSection_dataFragment;
 };
 
-export default function PrismicAdsContentDataBodyStepsSection({
-  data: {
-    primary,
-    items,
-  },
-}: Props) {
+export default function PrismicAdsContentDataBodyStepsSection({ data: { primary, items } }: Props) {
   return (
-    <Container
-      id={primary.section_id || undefined}
-    >
+    <Container id={primary.section_id || undefined}>
       <Content>
-        <Title>
-          {primary.section_title.text || ''}
-        </Title>
+        <Title>{primary.section_title?.text || ''}</Title>
         <Steps>
           {items.map((item, i) => {
-            const image = item.step_image?.localFile?.childImageSharp?.gatsbyImageData && getImage(item.step_image.localFile.childImageSharp.gatsbyImageData);
+            const image =
+              item.step_image?.localFile?.childImageSharp?.gatsbyImageData &&
+              getImage(item.step_image.localFile.childImageSharp.gatsbyImageData);
             return (
+              // rome-ignore lint/suspicious/noArrayIndexKey: it's ok here
               <Step key={i}>
                 <StepContent>
-                  <StepCaption>
-                    {item.step_text || ''}
-                  </StepCaption>
-                  {image && (
-                    <GatsbyImage
-                      image={image}
-                      alt={item.step_image.alt || ''}
-                    />
-                  )}
+                  <StepCaption>{item.step_text || ''}</StepCaption>
+                  {image && <GatsbyImage image={image} alt={item.step_image.alt || ''} />}
                 </StepContent>
               </Step>
             );

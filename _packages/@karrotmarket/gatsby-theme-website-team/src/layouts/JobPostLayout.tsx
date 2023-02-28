@@ -1,20 +1,10 @@
 import * as React from 'react';
 import { rem } from 'polished';
 import { motion, LayoutGroup } from 'framer-motion';
-import {
-  graphql,
-  navigate,
-  Link,
-  type PageProps,
-} from 'gatsby';
-import {
-  HeadSeo,
-} from 'gatsby-plugin-head-seo/src';
+import { graphql, navigate, Link, type PageProps } from 'gatsby';
+import { HeadSeo } from 'gatsby-plugin-head-seo/src';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import {
-  required,
-  type OverrideProps,
-} from '@cometjs/core';
+import { required, type OverrideProps } from '@cometjs/core';
 import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
 import SeedIcon from '@karrotmarket/gatsby-theme-website-team/src/components/SeedIcon';
 import { vars } from '@seed-design/design-token';
@@ -103,9 +93,9 @@ const PreviousLink = styled(Link, {
   },
 
   '@sm': {
-    marginBottom: rem(36)
+    marginBottom: rem(36),
   },
-})
+});
 
 const PropertyList = styled('ul', {
   display: 'flex',
@@ -180,7 +170,7 @@ const TabLink = styled(motion(Link), {
 type JobPostLayoutProps = OverrideProps<
   PageProps<GatsbyTypes.TeamWebSite_JobPostLayout_queryFragment>,
   {
-    children: React.ReactNode,
+    children: React.ReactNode;
   }
 >;
 const JobPostLayout: React.FC<JobPostLayoutProps> = ({
@@ -208,7 +198,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
       <PreviousLink
         aria-label={messages.job_post_page__back_to_list}
         to="/jobs/"
-        onClick={e => {
+        onClick={(e) => {
           if (window.history.state['fromList']) {
             e.preventDefault();
             navigate(-1);
@@ -222,10 +212,8 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
         <PageTitle>{jobPost.title}</PageTitle>
 
         <PropertyList>
-          {[...generateProperties(jobPost)].map(prop => (
-            <Property key={prop}>
-              {prop}
-            </Property>
+          {[...generateProperties(jobPost)].map((prop) => (
+            <Property key={prop}>{prop}</Property>
           ))}
         </PropertyList>
 
@@ -242,10 +230,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
                     {messages.job_post_layout__tab_view}
                   </TabLink>
                   {currentPath === viewPath && (
-                    <TabItemUnderline
-                      layoutId="jobpost-tab-underline"
-                      initial={false}
-                    />
+                    <TabItemUnderline layoutId="jobpost-tab-underline" initial={false} />
                   )}
                 </TabItem>
                 <TabItem key="jobpost-apply">
@@ -257,10 +242,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
                     {messages.job_post_layout__tab_apply}
                   </TabLink>
                   {currentPath === applyPath && (
-                    <TabItemUnderline
-                      layoutId="jobpost-tab-underline"
-                      initial={false}
-                    />
+                    <TabItemUnderline layoutId="jobpost-tab-underline" initial={false} />
                   )}
                 </TabItem>
               </TabItemList>
@@ -275,10 +257,10 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
 export default JobPostLayout;
 
 type JobPostLayoutHeadProps = {
-  data: GatsbyTypes.TeamWebSite_JobPostLayout_queryFragment,
+  data: GatsbyTypes.TeamWebSite_JobPostLayout_queryFragment;
   location: {
-    pathname: string,
-  },
+    pathname: string;
+  };
 };
 export const JobPostLayoutHead: React.FC<JobPostLayoutHeadProps> = ({
   location,
@@ -289,30 +271,24 @@ export const JobPostLayoutHead: React.FC<JobPostLayoutHeadProps> = ({
 
   const messages = useTranslation();
   const corpName = lookup(jobPost.corporate, {
-    'KARROT_MARKET': messages.job_post_layout__property_karrot_market,
-    'KARROT_PAY': messages.job_post_layout__property_karrot_pay,
+    KARROT_MARKET: messages.job_post_layout__property_karrot_market,
+    KARROT_PAY: messages.job_post_layout__property_karrot_pay,
   });
 
-  const metaTitle = `${jobPost.title} | ${prismicTeamContents.data.jobs_page_meta_title || corpName}`;
+  const metaTitle = `${jobPost.title} | ${
+    prismicTeamContents.data.jobs_page_meta_title || corpName
+  }`;
   const metaDescription = prismicTeamContents.data.jobs_page_meta_description;
 
   return (
-    <HeadSeo
-      location={location}
-      title={metaTitle}
-      description={metaDescription}
-    >
+    <HeadSeo location={location} title={metaTitle} description={metaDescription}>
       {({ url, description }) => [
         <JobPostingJsonLd
           key="jobposting-jsonld"
           jobPost={jobPost}
           url={url}
           description={description}
-          logo={
-            logoPath.startsWith('http')
-              ? new URL(logoPath)
-              : new URL(logoPath, url)
-          }
+          logo={logoPath.startsWith('http') ? new URL(logoPath) : new URL(logoPath, url)}
         />,
       ]}
     </HeadSeo>

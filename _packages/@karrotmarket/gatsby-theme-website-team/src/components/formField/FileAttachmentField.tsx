@@ -7,18 +7,18 @@ import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/tran
 import * as Field from './Field';
 
 type Props = {
-  id?: string,
-  name: string,
-  label: string,
-  placeholder?: string,
-  description?: string,
-  className?: string,
-  required?: boolean,
+  id?: string;
+  name: string;
+  label: string;
+  placeholder?: string;
+  description?: string;
+  className?: string;
+  required?: boolean;
 
   /**
    * Mime-types
    */
-  accepts: string[],
+  accepts: string[];
 };
 
 const FileInput = styled(Field.Input, {
@@ -77,13 +77,9 @@ const FileAttachmentField: React.FC<Props> = ({
         <Field.Label as="div" required={required} css={{ display: 'flex' }}>
           {label}
         </Field.Label>
-        <FileInput as="div">
-          {filename || messages.form_field__placeholder}
-        </FileInput>
+        <FileInput as="div">{filename || messages.form_field__placeholder}</FileInput>
       </label>
-      {description && (
-        <Field.Description>{description}</Field.Description>
-      )}
+      {description && <Field.Description>{description}</Field.Description>}
     </Field.Container>
   );
 };

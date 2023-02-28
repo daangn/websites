@@ -1,23 +1,10 @@
 import * as React from 'react';
 import { rem } from 'polished';
-import {
-  graphql,
-  type PageProps,
-} from 'gatsby';
-import {
-  HeadSeo,
-  OpenGraph,
-  TwitterCard,
-  Facebook,
-} from 'gatsby-plugin-head-seo/src';
-import {
-  SocialProfileJsonLd,
-} from 'gatsby-plugin-head-seo/src/jsonld';
+import { graphql, type PageProps } from 'gatsby';
+import { HeadSeo, OpenGraph, TwitterCard, Facebook } from 'gatsby-plugin-head-seo/src';
+import { SocialProfileJsonLd } from 'gatsby-plugin-head-seo/src/jsonld';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import {
-  required,
-  type OverrideProps,
-} from '@cometjs/core';
+import { required, type OverrideProps } from '@cometjs/core';
 import _Header from '@karrotmarket/gatsby-theme-website/src/components/Header';
 import _Footer from '@karrotmarket/gatsby-theme-website/src/components/Footer';
 import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
@@ -76,42 +63,36 @@ const Footer = styled(_Footer, {
 });
 
 type DefaultLayoutProps = OverrideProps<
-  PageProps<GatsbyTypes.TeamWebsite_DefaultLayout_queryFragment>, {
-    children: React.ReactNode,
+  PageProps<GatsbyTypes.TeamWebsite_DefaultLayout_queryFragment>,
+  {
+    children: React.ReactNode;
   }
 >;
-const DefaultLayout: React.FC<DefaultLayoutProps> = ({
-  data,
-  children,
-}) => {
+const DefaultLayout: React.FC<DefaultLayoutProps> = ({ data, children }) => {
   required(data.prismicSiteNavigation?.data);
 
   return (
     <>
-      <Header
-        navigationData={data.prismicSiteNavigation.data}
-      />
+      <Header navigationData={data.prismicSiteNavigation.data} />
       <div id="layout">{children}</div>
-      <Footer
-        navigationData={data.prismicSiteNavigation.data}
-      />
+      <Footer navigationData={data.prismicSiteNavigation.data} />
     </>
   );
-}
+};
 export default DefaultLayout;
 
 type DefaultLayoutHeadProps = {
   location: {
-    pathname: string,
-  },
-  data: GatsbyTypes.TeamWebsite_DefaultLayout_queryFragment,
-  title?: string,
-  description?: string,
+    pathname: string;
+  };
+  data: GatsbyTypes.TeamWebsite_DefaultLayout_queryFragment;
+  title?: string;
+  description?: string;
   image?: {
-    url: URL,
-    width: number,
-    height: number,
-  },
+    url: URL;
+    width: number;
+    height: number;
+  };
 };
 export const DefaultLayoutHead: React.FC<DefaultLayoutHeadProps> = ({
   location,
@@ -128,20 +109,16 @@ export const DefaultLayoutHead: React.FC<DefaultLayoutHeadProps> = ({
   const twitterSiteHandle = data.prismicTeamContents.data.twitter_site_handle;
 
   return (
-    <HeadSeo
-      location={location}
-      title={title}
-      description={description}
-    >
-      {props => [
+    <HeadSeo location={location} title={title} description={description}>
+      {(props) => [
         <OpenGraph
           key="og"
           og={{
             ...props,
             type: 'website',
-            ...image && {
+            ...(image && {
               images: [image],
-            },
+            }),
           }}
         />,
         <TwitterCard
@@ -152,25 +129,17 @@ export const DefaultLayoutHead: React.FC<DefaultLayoutHeadProps> = ({
             site: twitterSiteHandle,
           }}
         />,
-        facebookAppId && (
-          <Facebook
-            key="facebook"
-            appId={facebookAppId}
-          />
-        ),
+        facebookAppId && <Facebook key="facebook" appId={facebookAppId} />,
         <SocialProfileJsonLd
           key="org-jsonld"
           type="Organization"
           name={messages.form_field__organization_name}
           url={new URL(props.url.origin)}
-          logo={
-            logoPath.startsWith('http')
-              ? new URL(logoPath)
-              : new URL(logoPath, props.url)
-          }
-          sameAs={data.prismicSiteNavigation.data.sns_profiles
-            .map(profile => new URL(profile.link?.url))
-            .filter(Boolean) as URL[]
+          logo={logoPath.startsWith('http') ? new URL(logoPath) : new URL(logoPath, props.url)}
+          sameAs={
+            data.prismicSiteNavigation.data.sns_profiles
+              .map((profile) => new URL(profile.link?.url))
+              .filter(Boolean) as URL[]
           }
         />,
       ]}

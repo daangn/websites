@@ -36,31 +36,26 @@ export const fragment = graphql`
 `;
 
 type Props = {
-  data: GatsbyTypes.HeroSection_dataFragment,
+  data: GatsbyTypes.HeroSection_dataFragment;
 };
 
-export default function HeroSection({
-  data,
-}: Props) {
-  const defaultImage = (data.hero_image?.localFile?.childImageSharp?.gatsbyImageData && getImage(data.hero_image.localFile.childImageSharp.gatsbyImageData))!;
-  const pcMainImage = (data.hero_image?.thumbnails.pc_main?.localFile?.childImageSharp?.gatsbyImageData && getImage(data.hero_image.thumbnails.pc_main.localFile.childImageSharp.gatsbyImageData))!;
+export default function HeroSection({ data }: Props) {
+  const defaultImage = (data.hero_image?.localFile?.childImageSharp?.gatsbyImageData &&
+    getImage(data.hero_image.localFile.childImageSharp.gatsbyImageData))!;
+  const pcMainImage = (data.hero_image?.thumbnails.pc_main?.localFile?.childImageSharp
+    ?.gatsbyImageData &&
+    getImage(data.hero_image.thumbnails.pc_main.localFile.childImageSharp.gatsbyImageData))!;
 
   return (
     <Root>
-      <DefaultBackground
-        image={defaultImage}
-        alt={data.hero_image?.alt || ''}
-        loading="lazy"
-      />
+      <DefaultBackground image={defaultImage} alt={data.hero_image?.alt || ''} loading="lazy" />
       <PcMainBackground
         image={pcMainImage}
         alt={data.hero_image?.thumbnails.pc_main?.alt || ''}
         loading="lazy"
       />
       <Content>
-        <HeroTitle>
-          {data.hero_title.text || ''}
-        </HeroTitle>
+        <HeroTitle>{data.hero_title.text || ''}</HeroTitle>
         <ButtonContainer>
           <DownloadLinkButtonPlayStore id="google_top" />
           <DownloadLinkButtonAppStore id="apple_top" />

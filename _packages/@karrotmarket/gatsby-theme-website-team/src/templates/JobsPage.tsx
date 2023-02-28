@@ -1,10 +1,5 @@
 import * as React from 'react';
-import {
-  graphql,
-  navigate,
-  type PageProps,
-  type HeadProps,
-} from 'gatsby';
+import { graphql, navigate, type PageProps, type HeadProps } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { HeadSeo } from 'gatsby-plugin-head-seo/src';
 import { rem } from 'polished';
@@ -17,7 +12,7 @@ import SeedIcon from '@karrotmarket/gatsby-theme-website-team/src/components/See
 import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import PageTitle from '../components/PageTitle';
 import _JobPostList from '../components/JobPostList';
-import SearchInput from '../components/SearchInput'
+import SearchInput from '../components/SearchInput';
 import { useFlexSearch } from '../utils/useFlexSearch';
 
 import BannerArea from './jobsPage/BannerArea';
@@ -99,21 +94,12 @@ const FilterAnchor = styled('div', {
 
 const Filters = styled('div', {
   display: 'grid',
-  gridTemplateAreas: [
-    '"department"',
-    '"corporate"',
-    '"search"',
-  ].join('\n'),
+  gridTemplateAreas: ['"department"', '"corporate"', '"search"'].join('\n'),
   gap: rem(16),
 
   '@md': {
-    gridTemplateAreas: [
-      '"department corporate etype"',
-      '"search search search"',
-    ].join('\n'),
+    gridTemplateAreas: ['"department corporate etype"', '"search search search"'].join('\n'),
     gap: rem(20),
-
-
   },
 
   '@lg': {
@@ -128,7 +114,7 @@ const Filters = styled('div', {
 const SelectWrapper = styled('div', {
   position: 'relative',
   display: 'grid',
-})
+});
 
 const Select = styled('select', {
   display: 'grid',
@@ -169,12 +155,12 @@ const Select = styled('select', {
 const EtypeSelectWrapper = styled(SelectWrapper, {
   display: 'none',
   '@md': {
-    display: 'grid'
+    display: 'grid',
   },
   '@lg': {
-    display: 'grid'
-  }
-})
+    display: 'grid',
+  },
+});
 
 const ExpandIcon = styled(SeedIcon, {
   position: 'absolute',
@@ -189,36 +175,32 @@ const JobPostList = styled(_JobPostList, {
 });
 
 type JobsPageProps = PageProps<GatsbyTypes.TeamWebsite_JobsPageQuery>;
-const JobsPage: React.FC<JobsPageProps> = ({
-  data,
-  pageContext,
-  location
-}) => {
+const JobsPage: React.FC<JobsPageProps> = ({ data, pageContext, location }) => {
   required(data.prismicTeamContents?.data);
 
   const messages = useTranslation();
 
-  const searchParams = new URLSearchParams(location.search)
-  const employmentType = searchParams.get('etype') || ''
-  const corporate = searchParams.get('corp') || ''
-  
+  const searchParams = new URLSearchParams(location.search);
+  const employmentType = searchParams.get('etype') || '';
+  const corporate = searchParams.get('corp') || '';
+
   const allCorporates = data.allJobPost.nodes.reduce((acc, jobPost) => {
-    const corporateType = jobPost.corporate
+    const corporateType = jobPost.corporate;
     for (const corporate of acc) {
       if (corporate === corporateType) {
-        return acc
+        return acc;
       }
     }
-    acc.push(jobPost.corporate)
-    
-    return acc
-  }, [])
+    acc.push(jobPost.corporate);
+
+    return acc;
+  }, []);
 
   const allSelectedJobPosts = data.allDepartmentFilteredJobPost.nodes.filter((node) => {
-    if (!corporate) return true
+    if (!corporate) return true;
 
-    return node.corporate === corporate
-  })
+    return node.corporate === corporate;
+  });
 
   const [searchQuery, setSearchQuery] = React.useState('');
   const deferredSearchQuery = React.useDeferredValue(searchQuery);
@@ -230,29 +212,30 @@ const JobsPage: React.FC<JobsPageProps> = ({
   const searchResults = useFlexSearch(deferredSearchQuery);
 
   const filterAnchorId = '_filter';
-  const onDepartmentFilterChange: React.ChangeEventHandler<HTMLSelectElement> = e => {
-    const selectedDepartment = data.allJobDepartment.nodes
-      .find(department => department.id === e.target.value);
+  const onDepartmentFilterChange: React.ChangeEventHandler<HTMLSelectElement> = (e) => {
+    const selectedDepartment = data.allJobDepartment.nodes.find(
+      (department) => department.id === e.target.value,
+    );
 
-      if (selectedDepartment) {
-        const { slug } = selectedDepartment;
-        if (slug) {
-          navigate(`/jobs/${slug}/${window.location.search}#${filterAnchorId}`);
-        }
-      } else {
-        navigate(`/jobs/${window.location.search}#${filterAnchorId}`);
+    if (selectedDepartment) {
+      const { slug } = selectedDepartment;
+      if (slug) {
+        navigate(`/jobs/${slug}/${window.location.search}#${filterAnchorId}`);
       }
-  }
+    } else {
+      navigate(`/jobs/${window.location.search}#${filterAnchorId}`);
+    }
+  };
 
   const onFilterChange = (e: React.ChangeEvent<HTMLSelectElement>, query: string) => {
-    const value = e.target.value
+    const value = e.target.value;
     if (value) {
-      searchParams.set(query, value)
+      searchParams.set(query, value);
     } else {
-      searchParams.delete(query)
+      searchParams.delete(query);
     }
-    navigate(`?${searchParams.toString()}#${filterAnchorId}`)  
-  }
+    navigate(`?${searchParams.toString()}#${filterAnchorId}`);
+  };
 
   return (
     <>
@@ -272,59 +255,39 @@ const JobsPage: React.FC<JobsPageProps> = ({
           <FilterAnchor id={filterAnchorId} />
           <Filters>
             <SelectWrapper css={{ gridArea: 'department' }}>
-              <Select
-                defaultValue={pageContext.departmentId}
-                onChange={onDepartmentFilterChange}
-              >
-                <option
-                  key="*"
-                  value="*"
-                >
+              <Select defaultValue={pageContext.departmentId} onChange={onDepartmentFilterChange}>
+                <option key="*" value="*">
                   {$(messages.jobs_page__chapter_all, {
-                    n: () => <>{data.allJobPost.totalCount}</>
+                    n: () => <>{data.allJobPost.totalCount}</>,
                   })}
                 </option>
-                {data.allJobDepartment.nodes
-                  .map(department => (
-                    <option
-                      key={department.id}
-                      value={department.id}
-                    >
-                      {`${department.name} (${department.jobPosts.length})`}
-                    </option>
-                  ))
-                }
+                {data.allJobDepartment.nodes.map((department) => (
+                  <option key={department.id} value={department.id}>
+                    {`${department.name} (${department.jobPosts.length})`}
+                  </option>
+                ))}
               </Select>
               <ExpandIcon name="icon_expand_more_regular" />
             </SelectWrapper>
             <SelectWrapper css={{ gridArea: 'corporate' }}>
-              <Select 
-                defaultValue={corporate} 
-                onChange={e => onFilterChange(e, 'corp')}
-              >
+              <Select defaultValue={corporate} onChange={(e) => onFilterChange(e, 'corp')}>
                 <option key="*" value="">
                   {$(messages.jobs_page__corporate_all, {
-                    n: () => <>{allCorporates.length}</>
+                    n: () => <>{allCorporates.length}</>,
                   })}
                 </option>
                 {allCorporates.map((corp) => {
                   return (
-                    <option 
-                      key={corp}
-                      value={corp}
-                    >
+                    <option key={corp} value={corp}>
                       {messages[`jobs_page__${corp}`]}
                     </option>
-                  )
+                  );
                 })}
               </Select>
               <ExpandIcon name="icon_expand_more_regular" />
             </SelectWrapper>
             <EtypeSelectWrapper css={{ gridArea: 'etype' }}>
-              <Select
-                value={employmentType}
-                onChange={e => onFilterChange(e, 'etype')}
-              >
+              <Select value={employmentType} onChange={(e) => onFilterChange(e, 'etype')}>
                 <option value="">{messages.jobs_page__employment_type_all}</option>
                 <option value="FULL_TIME">{messages.jobs_page__employment_type_fulltime}</option>
                 <option value="CONTRACTOR">{messages.jobs_page__employment_type_contractor}</option>
@@ -353,45 +316,40 @@ const JobsPage: React.FC<JobsPageProps> = ({
 export default JobsPage;
 
 type JobsPageHeadProps = HeadProps<GatsbyTypes.TeamWebsite_JobsPageQuery>;
-export const Head: React.FC<JobsPageHeadProps> = ({
-  data,
-  location,
-}) => {
+export const Head: React.FC<JobsPageHeadProps> = ({ data, location }) => {
   required(data.prismicTeamContents?.data);
 
   const messages = useTranslation();
 
-  const metaTitleBase = data.prismicTeamContents.data.jobs_page_meta_title || messages.jobs_page__default_meta_title;
+  const metaTitleBase =
+    data.prismicTeamContents.data.jobs_page_meta_title || messages.jobs_page__default_meta_title;
   const metaTitle = data.currentJobDepartment
     ? `${data.currentJobDepartment.name} | ${metaTitleBase}`
     : metaTitleBase;
 
   const metaDescription = data.prismicTeamContents.data.jobs_page_meta_description;
-  const metaImage = data.prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
+  const metaImage =
+    data.prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
 
   return (
-    <HeadSeo
-      location={location}
-      title={metaTitle}
-      description={metaDescription}
-    >
-      {props => (
+    <HeadSeo location={location} title={metaTitle} description={metaDescription}>
+      {(props) => (
         <DefaultLayoutHead
           {...props}
           location={location}
           data={data}
-          image={metaImage && {
-            url: new URL(
-              metaImage.src,
-              metaImage.src.startsWith('http')
-                ? metaImage.src
-                : props.url,
-            ),
-            width: metaImage.width,
-            height: metaImage.height,
-          }}
+          image={
+            metaImage && {
+              url: new URL(
+                metaImage.src,
+                metaImage.src.startsWith('http') ? metaImage.src : props.url,
+              ),
+              width: metaImage.width,
+              height: metaImage.height,
+            }
+          }
         />
       )}
     </HeadSeo>
   );
-}
+};

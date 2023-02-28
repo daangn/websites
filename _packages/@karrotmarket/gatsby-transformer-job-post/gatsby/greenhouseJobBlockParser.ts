@@ -1,21 +1,19 @@
 import { decode } from 'html-entities';
 
 type Content = {
-  level: `H${1 | 2 | 3 | 4 | 5 | 6}`,
-  title: string,
-  bodyHtml: string,
+  level: `H${1 | 2 | 3 | 4 | 5 | 6}`;
+  title: string;
+  bodyHtml: string;
 };
 
 type Result = {
-  content: Content[],
-  raw: string,
+  content: Content[];
+  raw: string;
 };
 
 export function parseContent(contentHtml: string): Result {
   const splitter = /<(h[1-6])>(.*)<\/\1>/;
-  const parts = decode(contentHtml)
-    .replace(/<div.*>[\s\S]*?<\/div>/g, '')
-    .split(splitter);
+  const parts = decode(contentHtml).replace(/<div.*>[\s\S]*?<\/div>/g, '').split(splitter);
 
   const result: Result = {
     content: [],

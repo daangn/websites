@@ -4,7 +4,7 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 
 type JobPostContentSectionProps = {
-  content: GatsbyTypes.TeamWebsite_JobPostContentSection_contentFragment,
+  content: GatsbyTypes.TeamWebsite_JobPostContentSection_contentFragment;
 };
 
 export const query = graphql`
@@ -20,7 +20,7 @@ const Container = styled('section', {
   gap: '1.5rem',
   '&:not(:last-child)': {
     marginBottom: rem(56),
-  }
+  },
 });
 
 const Title = styled('h3', {
@@ -40,9 +40,7 @@ const Body = styled('div', {
   },
 });
 
-const JobPostContentSection: React.FC<JobPostContentSectionProps> = ({
-  content,
-}) => {
+const JobPostContentSection: React.FC<JobPostContentSectionProps> = ({ content }) => {
   return (
     <Container>
       <Title>{content.title}</Title>

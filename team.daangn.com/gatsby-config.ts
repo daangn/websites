@@ -143,9 +143,9 @@ const config: GatsbyConfig = {
       resolve: '@karrotmarket/gatsby-transformer-job-post',
       options: {
         defaultTags: {
-          'daangnmvp': ['MVP'],
-          'daangntest': ['사전지원'],
-          'daangntest1': ['개발 테스트'],
+          daangnmvp: ['MVP'],
+          daangntest: ['사전지원'],
+          daangntest1: ['개발 테스트'],
         },
       },
     },
@@ -154,10 +154,10 @@ const config: GatsbyConfig = {
 
 if (process.env.NODE_ENV === 'development') {
   config.plugins?.push({
-      resolve: '@karrotmarket/gatsby-source-greenhouse-jobboard',
-      options: {
-        boardToken: 'daangntest1',
-      },
+    resolve: '@karrotmarket/gatsby-source-greenhouse-jobboard',
+    options: {
+      boardToken: 'daangntest1',
+    },
   });
 }
 

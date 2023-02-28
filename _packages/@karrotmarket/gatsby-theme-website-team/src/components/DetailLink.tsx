@@ -5,24 +5,16 @@ import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/tran
 import ArrowLink from './ArrowLink';
 
 type DetailLinkProps = {
-  link: LinkType,
-  className?: string,
-  message?: string,
+  link: LinkType;
+  className?: string;
+  message?: string;
 };
 
-const DetailLink: React.FC<DetailLinkProps> = ({
-  link,
-  className,
-  message,
-}) => {
+const DetailLink: React.FC<DetailLinkProps> = ({ link, className, message }) => {
   const messages = useTranslation();
 
   return (
-    <ArrowLink
-      link={link}
-      className={className}
-      direction="forward"
-    >
+    <ArrowLink link={link} className={className} direction="forward">
       {message || messages.detail_link__default_label}
     </ArrowLink>
   );

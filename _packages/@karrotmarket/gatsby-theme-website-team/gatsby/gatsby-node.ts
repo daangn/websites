@@ -3,18 +3,14 @@ import type { PluginOptions } from './types';
 
 const gql = String.raw;
 
-export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
-  Joi,
-}) => {
+export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({ Joi }) => {
   return Joi.object({
     locale: Joi.string().required(),
     navigationId: Joi.string().required(),
   });
 };
 
-export const onCreateBabelConfig: GatsbyNode['onCreateBabelConfig'] = ({
-  actions,
-}) => {
+export const onCreateBabelConfig: GatsbyNode['onCreateBabelConfig'] = ({ actions }) => {
   actions.setBabelPlugin({
     name: require.resolve('babel-plugin-polished'),
     options: {},
@@ -68,9 +64,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
   // Strip HTML description
   const resolveDescriptionText = (source: { description?: string }) => {
     const tags = /<[^>]*>?/gm;
-    return source.description
-      ? source.description.replace(tags, '')
-      : null;
+    return source.description ? source.description.replace(tags, '') : null;
   };
 
   actions.createTypes([
@@ -90,18 +84,20 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       'GreenhouseJobBoardJobQuestionForYesNo',
       'GreenhouseJobBoardJobQuestionForSingleSelect',
       'GreenhouseJobBoardJobQuestionForMultiSelect',
-    ].map(name => schema.buildObjectType({
-      name,
-      interfaces: ['GreenhouseJobBoardJobQuestion'],
-      fields: {
-        descriptionText: {
-          type: 'String',
-          resolve: resolveDescriptionText,
+    ].map((name) =>
+      schema.buildObjectType({
+        name,
+        interfaces: ['GreenhouseJobBoardJobQuestion'],
+        fields: {
+          descriptionText: {
+            type: 'String',
+            resolve: resolveDescriptionText,
+          },
         },
-      },
-    })),
+      }),
+    ),
   ]);
- 
+
   // metadata
   actions.createTypes([
     schema.buildObjectType({
@@ -114,7 +110,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           resolve(source: { ghId: string }, _args, ctx) {
             const site = ctx.nodeModel.getNodeById({ id: 'Site', type: 'Site' });
             const { origin } = new URL(site.siteMetadata.siteUrl);
-            return origin + `/jobs/${source.ghId}/`;
+            return `${origin}/jobs/${source.ghId}/`;
           },
         },
       },
@@ -122,59 +118,57 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
   ]);
 };
 
-export const createPages: GatsbyNode['createPages'] = async ({
-  graphql,
-  actions,
-}, pluginOptions) => {
-  const {
-    locale,
-    navigationId,
-  } = pluginOptions as unknown as PluginOptions;
+export const createPages: GatsbyNode['createPages'] = async (
+  { graphql, actions },
+  pluginOptions,
+) => {
+  const { locale, navigationId } = pluginOptions as unknown as PluginOptions;
 
   type Data = {
     prismicTeamContents: {
       data?: {
-        enable_faq_page?: boolean,
-        enable_life_page?: boolean,
-        enable_culture_page?: boolean,
+        enable_faq_page?: boolean;
+        enable_life_page?: boolean;
+        enable_culture_page?: boolean;
         faq_page_entries: Array<{
           faq_page: {
             document: {
-              id: string,
-              uid: string,
+              id: string;
+              uid: string;
               data: {
                 entries: Array<{
-                  question: string,
+                  question: string;
                   answer: {
-                    text: string,
-                  }
-                }>
-              }
-            }
-          }
-        }>,
-      },
-    },
+                    text: string;
+                  };
+                }>;
+              };
+            };
+          };
+        }>;
+      };
+    };
     allPrismicTeamsArticle: {
       nodes: Array<{
-        uid: string,
-      }>,
-    },
+        uid: string;
+      }>;
+    };
     allJobPost: {
       nodes: Array<{
-        id: string,
-        ghId: string,
-      }>,
-    },
+        id: string;
+        ghId: string;
+      }>;
+    };
     allJobDepartment: {
       nodes: Array<{
-        id: string,
-        slug: string,
-      }>,
-    },
+        id: string;
+        slug: string;
+      }>;
+    };
   };
 
-  const { data, errors } = await graphql<Data>(gql`
+  const { data, errors } = await graphql<Data>(
+    gql`
     query ($locale: String!) {
       prismicTeamContents(lang: { eq: $locale }) {
         data {
@@ -223,7 +217,9 @@ export const createPages: GatsbyNode['createPages'] = async ({
         }
       }
     }
-  `, { locale });
+  `,
+    { locale },
+  );
 
   if (errors) {
     throw errors;
@@ -237,7 +233,10 @@ export const createPages: GatsbyNode['createPages'] = async ({
     throw new Error(`Prismic ${locale} 에 채용사이트 컨텐츠 데이터가 없습니다.`);
   }
 
-  if (data.prismicTeamContents.data.enable_faq_page && data.prismicTeamContents.data.faq_page_entries.length) {
+  if (
+    data.prismicTeamContents.data.enable_faq_page &&
+    data.prismicTeamContents.data.faq_page_entries.length
+  ) {
     actions.createRedirect({
       fromPath: '/faq/',
       toPath: `/faq/${data.prismicTeamContents.data.faq_page_entries[0].faq_page.document.uid}/`,
@@ -253,8 +252,8 @@ export const createPages: GatsbyNode['createPages'] = async ({
             locale,
             navigationId,
             id: faq.faq_page.document.id,
-          }
-        })
+          },
+        });
       }
     }
   }
@@ -305,7 +304,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
   }
 
   actions.createPage({
-    path: `/jobs/`,
+    path: '/jobs/',
     component: require.resolve('./src/templates/JobsPage.tsx'),
     context: {
       locale,
@@ -340,14 +339,11 @@ export const createPages: GatsbyNode['createPages'] = async ({
   }
 };
 
-export const onCreatePage: GatsbyNode['onCreateNode'] = ({
-  page: _page,
-  actions,
-}, pluginOptions) => {
-  const {
-    locale,
-    navigationId,
-  } = pluginOptions as unknown as PluginOptions;
+export const onCreatePage: GatsbyNode['onCreateNode'] = (
+  { page: _page, actions },
+  pluginOptions,
+) => {
+  const { locale, navigationId } = pluginOptions as unknown as PluginOptions;
 
   const page = _page as Page;
 
@@ -360,4 +356,4 @@ export const onCreatePage: GatsbyNode['onCreateNode'] = ({
       navigationId,
     },
   });
-}
+};

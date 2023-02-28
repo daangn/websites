@@ -1,13 +1,7 @@
 import * as React from 'react';
 import { rem } from 'polished';
 import { matchSorter } from 'match-sorter';
-import {
-  graphql,
-  navigate,
-  Link,
-  type PageProps,
-  type HeadProps,
-} from 'gatsby';
+import { graphql, navigate, Link, type PageProps, type HeadProps } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { HeadSeo } from 'gatsby-plugin-head-seo/src';
 import { FAQPageJsonLd } from 'gatsby-plugin-head-seo/src/jsonld';
@@ -20,7 +14,7 @@ import _PageTitle from '../components/PageTitle';
 import FaqAccordion from '../components/FaqAccordion';
 import _SearchInput from '../components/SearchInput';
 import _FaqList from '../components/FaqList';
-import { useURLSearchParams } from '../utils/useURLSearchParams'
+import { useURLSearchParams } from '../utils/useURLSearchParams';
 
 export const query = graphql`
   query TeamWebsite_FaqPage(
@@ -146,9 +140,7 @@ const SearchInput = styled(_SearchInput, {
 });
 
 type FaqPageProps = PageProps<GatsbyTypes.TeamWebsite_FaqPageQuery>;
-const FaqPage: React.FC<FaqPageProps> = ({
-  data,
-}) => {
+const FaqPage: React.FC<FaqPageProps> = ({ data }) => {
   required(data.prismicTeamContents?.data);
 
   const messages = useTranslation();
@@ -171,28 +163,20 @@ const FaqPage: React.FC<FaqPageProps> = ({
 
   const searchResults = {
     entries: [
-      ...matchSorter(
-        data.prismicFaq.data.entries,
-        searchQuery,
-        { keys: ['question', 'keywords'] },
-      ),
+      ...matchSorter(data.prismicFaq.data.entries, searchQuery, { keys: ['question', 'keywords'] }),
     ],
   };
 
   return (
     <Container>
-      <PageTitle>
-        {data.prismicTeamContents.data.faq_page_title.text}
-      </PageTitle>
+      <PageTitle>{data.prismicTeamContents.data.faq_page_title.text}</PageTitle>
       <Filters>
         <FaqGroupList>
-          {data.prismicTeamContents.data.faq_page_entries.map(faq => (
-            <FaqGroup
-              key={faq.faq_page.id} 
-            >
-              <FaqGroupLink 
-                to={`/faq/${faq.faq_page.uid}/?${searchParams.toString()}`} 
-                selected={faq.faq_page.uid === data.prismicFaq.uid} 
+          {data.prismicTeamContents.data.faq_page_entries.map((faq) => (
+            <FaqGroup key={faq.faq_page.id}>
+              <FaqGroupLink
+                to={`/faq/${faq.faq_page.uid}/?${searchParams.toString()}`}
+                selected={faq.faq_page.uid === data.prismicFaq.uid}
               >
                 {faq.faq_category_title}
               </FaqGroupLink>
@@ -206,10 +190,7 @@ const FaqPage: React.FC<FaqPageProps> = ({
         />
       </Filters>
       {searchQuery ? (
-        <FaqList 
-          faqLists={searchResults}
-          emptyPlaceHolderLink={`/faq/${data.prismicFaq.uid}/`} 
-        />
+        <FaqList faqLists={searchResults} emptyPlaceHolderLink={`/faq/${data.prismicFaq.uid}/`} />
       ) : (
         <FaqAccordion data={data.prismicFaq.data} />
       )}
@@ -220,31 +201,20 @@ const FaqPage: React.FC<FaqPageProps> = ({
 export default FaqPage;
 
 type FaqPageHeadProps = HeadProps<GatsbyTypes.TeamWebsite_FaqPageQuery>;
-export const Head: React.FC<FaqPageHeadProps> = ({
-  data,
-  location,
-}) => {
+export const Head: React.FC<FaqPageHeadProps> = ({ data, location }) => {
   required(data.prismicTeamContents?.data);
 
   const metaTitle = data.prismicTeamContents.data.faq_page_meta_title;
   const metaDescription = data.prismicTeamContents.data.faq_page_meta_description;
 
   return (
-    <HeadSeo
-      location={location}
-      title={metaTitle}
-      description={metaDescription}
-    >
-      {props => [
-        <DefaultLayoutHead
-          {...props}
-          location={location}
-          data={data}
-        />,
+    <HeadSeo location={location} title={metaTitle} description={metaDescription}>
+      {(props) => [
+        <DefaultLayoutHead {...props} location={location} data={data} />,
         <FAQPageJsonLd
           faq={{
             '@type': 'FAQPage',
-            mainEntity: data.prismicFaq.data.entries!.map(faq => ({
+            mainEntity: data.prismicFaq.data.entries!.map((faq) => ({
               '@type': 'Question',
               name: faq.question,
               acceptedAnswer: {

@@ -15,10 +15,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
   schema,
   cache,
   createNodeId,
-  actions: {
-    createNode,
-    createTypes,
-  },
+  actions: { createNode, createTypes },
 }) => {
   createTypes([
     schema.buildObjectType({
@@ -29,7 +26,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       },
       fields: {
         prismicId: {
-          type : 'String!',
+          type: 'String!',
         },
         uid: {
           type: 'String!',
@@ -77,7 +74,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
               throw new Error(`글 요약 비어있습니다. prismic id: ${node.prismicId}`);
             }
             return node.data.summary;
-          }
+          },
         },
         author: {
           type: 'MemberProfile',
@@ -104,7 +101,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
               return [];
             }
             return node.data.tags.split(',').map((tag) => tag.trim());
-          }
+          },
         },
         relatedPosts: {
           type: '[BlogPost!]!',
@@ -118,7 +115,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
               return [];
             }
             return node.data.related_posts
-              .map(({ post }) => ('id' in post) ? post.id : null)
+              .map(({ post }) => ('id' in post ? post.id : null))
               .filter(Boolean);
           },
         },
@@ -126,18 +123,15 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           type: '[BlogPostBodyItem!]!',
           resolve(node: PrismicAboutBlogPostNode) {
             return node.data.body;
-          }
-        }
+          },
+        },
       },
     }),
     schema.buildUnionType({
       name: 'BlogPostBodyItem',
-      types: [
-        'BlogPostRichTextSection',
-        'BlogPostImageSection',
-      ],
+      types: ['BlogPostRichTextSection', 'BlogPostImageSection'],
       resolveType(parent: PrismicAboutBlogPostNode['data']['body'][number]) {
-        console.dir(parent, { depth: null })
+        console.dir(parent, { depth: null });
         switch (parent.slice_type) {
           case 'rich_text_section':
             return 'BlogPostRichTextSection';
@@ -181,7 +175,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
         thumbnails: {
           type: '[BlogPostImageSectionImage!]!',
           resolve(parent: PrismicAboutBlogPostImageSectionSlice) {
-            return parent.items.map(item => ({
+            return parent.items.map((item) => ({
               image: item.image.url,
               alt: item.image.alt,
               description: item.image_description,
@@ -208,12 +202,12 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           },
         },
         alt: {
-          type: 'String'
+          type: 'String',
         },
         description: {
           type: 'JSON',
         },
-      }
+      },
     }),
     schema.buildObjectType({
       name: 'MemberProfile',
@@ -232,7 +226,9 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           type: 'String!',
           resolve(node: PrismicMemberProfileNode) {
             if (!node.data.name) {
-              throw new Error(`MemberProfile 의 name 필드 값이 비어있습니다. prismicId: ${node.prismicId}`);
+              throw new Error(
+                `MemberProfile 의 name 필드 값이 비어있습니다. prismicId: ${node.prismicId}`,
+              );
             }
             return node.data.name;
           },
@@ -241,7 +237,9 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           type: 'File!',
           resolve(node: PrismicMemberProfileNode) {
             if (!node.data.image.url) {
-              throw new Error(`MemberProfile 의 image 필드 값이 비어있습니다. prismicId: ${node.prismicId}`);
+              throw new Error(
+                `MemberProfile 의 image 필드 값이 비어있습니다. prismicId: ${node.prismicId}`,
+              );
             }
             return createRemoteFileNode({
               url: node.data.image.url,
@@ -255,7 +253,9 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           type: 'String!',
           resolve(node: PrismicMemberProfileNode) {
             if (!node.data.nickname) {
-              throw new Error(`MemberProfile 의 nickname 필드 값이 비어있습니다. prismicId: ${node.prismicId}`);
+              throw new Error(
+                `MemberProfile 의 nickname 필드 값이 비어있습니다. prismicId: ${node.prismicId}`,
+              );
             }
             return node.data.nickname;
           },
@@ -264,7 +264,9 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           type: 'String!',
           resolve(node: PrismicMemberProfileNode) {
             if (!node.data.email) {
-              throw new Error(`MemberProfile 의 email 필드 값이 비어있습니다. prismicId: ${node.prismicId}`);
+              throw new Error(
+                `MemberProfile 의 email 필드 값이 비어있습니다. prismicId: ${node.prismicId}`,
+              );
             }
             return node.data.email;
           },
@@ -273,7 +275,9 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           type: 'String!',
           resolve(node: PrismicMemberProfileNode) {
             if (!node.data.role) {
-              throw new Error(`MemberProfile 의 role 필드 값이 비어있습니다. prismicId: ${node.prismicId}`);
+              throw new Error(
+                `MemberProfile 의 role 필드 값이 비어있습니다. prismicId: ${node.prismicId}`,
+              );
             }
             return node.data.role;
           },

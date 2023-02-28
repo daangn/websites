@@ -3,14 +3,9 @@ import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/tran
 
 import SingleSelectField from './SingleSelectField';
 
-type Props = Omit<
-  React.ComponentProps<typeof SingleSelectField>,
-  'options'
->;
+type Props = Omit<React.ComponentProps<typeof SingleSelectField>, 'options'>;
 
-const YesNoField: React.FC<Props> = ({
-  ...props
-}) => {
+const YesNoField: React.FC<Props> = ({ ...props }) => {
   const messages = useTranslation();
 
   const YES_NO_OPTIONS = [
@@ -18,12 +13,7 @@ const YesNoField: React.FC<Props> = ({
     { label: messages.form_field__yes_placeholder, value: '1' },
   ];
 
-  return (
-    <SingleSelectField
-      {...props}
-      options={YES_NO_OPTIONS}
-    />
-  );
+  return <SingleSelectField {...props} options={YES_NO_OPTIONS} />;
 };
 
 export default YesNoField;

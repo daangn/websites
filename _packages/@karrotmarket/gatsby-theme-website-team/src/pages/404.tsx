@@ -1,10 +1,6 @@
 import * as React from 'react';
 import { rem } from 'polished';
-import {
-  graphql,
-  type PageProps,
-  type HeadProps,
-} from 'gatsby';
+import { graphql, type PageProps, type HeadProps } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { Robots } from 'gatsby-plugin-head-seo/src';
 import { mapLink, useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
@@ -13,7 +9,6 @@ import ButtonLink from '../components/Button';
 import { withPrismicUnpublishedPreview } from 'gatsby-plugin-prismic-previews';
 
 import Illustration from '../templates/notFoundPage/Illustration';
-
 
 export const query = graphql`
   query TeamWebsite_NotFoundPage(
@@ -71,48 +66,44 @@ const Control = styled('div', {
 });
 
 type NotFoundPageProps = PageProps<GatsbyTypes.TeamWebsite_NotFoundPageQuery>;
-const NotFoundPage: React.FC<NotFoundPageProps> = ({
-  data,
-}) => {
+const NotFoundPage: React.FC<NotFoundPageProps> = ({ data }) => {
   const parseLink = useLinkParser();
 
   return (
     <Container>
-      <Title>
-        {data.prismicTeamContents.data.notfound_page_title.text}
-      </Title>
+      <Title>{data.prismicTeamContents.data.notfound_page_title.text}</Title>
       <Illustration />
       <Control>
-        {data.prismicTeamContents.data.notfound_page_link_group
-          .map((entry, i) => {
-            const link = parseLink(entry.link.url);
-            return mapLink(link, {
-              Internal: link => (
-                <ButtonLink
-                  key={i}
-                  to={link.pathname}
-                  type={i === 0 ? 'primary' : 'default'}
-                  fullWidth={{ initial: true, '@sm': false }}
-                >
-                  {entry.display_text}
-                </ButtonLink>
-              ),
-              External: link => (
-                <ButtonLink
-                  as="a"
-                  target="_blank"
-                  rel="external noopener"
-                  key={i}
-                  href={link.url.href}
-                  type={i === 0 ? 'primary' : 'default'}
-                  fullWidth={{ initial: true, '@sm': false }}
-                >
-                  {entry.display_text}
-                </ButtonLink>
-              ),
-            });
-          })
-        }
+        {data.prismicTeamContents.data.notfound_page_link_group.map((entry, i) => {
+          const link = parseLink(entry.link.url);
+          return mapLink(link, {
+            Internal: (link) => (
+              <ButtonLink
+                // rome-ignore lint/suspicious/noArrayIndexKey: it's ok here
+                key={i}
+                to={link.pathname}
+                type={i === 0 ? 'primary' : 'default'}
+                fullWidth={{ initial: true, '@sm': false }}
+              >
+                {entry.display_text}
+              </ButtonLink>
+            ),
+            External: (link) => (
+              <ButtonLink
+                // rome-ignore lint/suspicious/noArrayIndexKey: it's ok here
+                key={i}
+                as="a"
+                target="_blank"
+                rel="external noopener"
+                href={link.url.href}
+                type={i === 0 ? 'primary' : 'default'}
+                fullWidth={{ initial: true, '@sm': false }}
+              >
+                {entry.display_text}
+              </ButtonLink>
+            ),
+          });
+        })}
       </Control>
     </Container>
   );

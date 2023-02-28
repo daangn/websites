@@ -10,25 +10,9 @@ export const onRenderBody: GatsbySSR['onRenderBody'] = ({
   });
 
   setHeadComponents([
-    <meta
-      key="formmat-detection-telephone"
-      name="format-detection"
-      content="telephone=no"
-    />,
-    <meta
-      key="formmat-detection-date"
-      name="format-detection"
-      content="date=no"
-    />,
-    <meta
-      key="format-detection-address"
-      name="format-detection"
-      content="address=no"
-    />,
-    <meta
-      key="format-detection-email"
-      name="format-detection"
-      content="email=no"
-    />,
+    <meta key="formmat-detection-telephone" name="format-detection" content="telephone=no" />,
+    <meta key="formmat-detection-date" name="format-detection" content="date=no" />,
+    <meta key="format-detection-address" name="format-detection" content="address=no" />,
+    <meta key="format-detection-email" name="format-detection" content="email=no" />,
   ]);
 };

@@ -4,29 +4,20 @@ import { mapLink, LinkType } from '@karrotmarket/gatsby-theme-website/src/link';
 import { styled } from 'gatsby-theme-stitches/src/config';
 
 type Props = {
-  id?: string,
-  className?: string,
-  link: LinkType,
-  children: React.ReactNode,
+  id?: string;
+  className?: string;
+  link: LinkType;
+  children: React.ReactNode;
 };
 
-export default function ArrowLink({
-  id,
-  className,
-  link,
-  children,
-}: Props) {
+export default function ArrowLink({ id, className, link, children }: Props) {
   return mapLink(link, {
-    Internal: link => (
-      <Link
-        id={id}
-        className={className}
-        to={link.pathname}
-      >
+    Internal: (link) => (
+      <Link id={id} className={className} to={link.pathname}>
         {children}
       </Link>
     ),
-    External: link => (
+    External: (link) => (
       <Link
         as="a"
         id={id}

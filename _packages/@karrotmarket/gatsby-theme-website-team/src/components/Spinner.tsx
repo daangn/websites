@@ -2,7 +2,7 @@ import * as React from 'react';
 import { styled, keyframes } from 'gatsby-theme-stitches/src/config';
 
 type SpinnerProps = {
-  className?: string,
+  className?: string;
 };
 
 const rotate = keyframes({
@@ -34,9 +34,7 @@ const Circle = styled('circle', {
   animation: `${dash} 1.5s ease-in-out infinite`,
 });
 
-const Spinner: React.FC<SpinnerProps> = ({
-  className,
-}) => {
+const Spinner: React.FC<SpinnerProps> = ({ className }) => {
   return (
     <Svg className={className} viewBox="0 0 50 50">
       <Circle

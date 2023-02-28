@@ -1,11 +1,7 @@
-import * as React from 'react'
+import * as React from 'react';
 
 export function useURLSearchParams(): URLSearchParams {
-  const [
-    getSnapshot,
-    getServerSnapshot,
-    subscribe,
-  ] = React.useMemo(() => {
+  const [getSnapshot, getServerSnapshot, subscribe] = React.useMemo(() => {
     return [
       () => window.location.search,
       () => '',
@@ -20,12 +16,9 @@ export function useURLSearchParams(): URLSearchParams {
 
   const search = React.useSyncExternalStore(
     subscribe,
-    typeof window !== "undefined" ? getSnapshot : getServerSnapshot,
+    typeof window !== 'undefined' ? getSnapshot : getServerSnapshot,
     getServerSnapshot,
   );
 
-  return React.useMemo(
-    () => new URLSearchParams(search),
-    [search],
-  );
+  return React.useMemo(() => new URLSearchParams(search), [search]);
 }

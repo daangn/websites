@@ -9,49 +9,48 @@ import * as Field from './Field';
 import checkmarkUrl from '!!file-loader!./checkmark.svg';
 
 type Props = {
-  id?: string,
-  className?: string,
-  label: string,
-  name: string,
-  description?: string,
-  required?: boolean,
+  id?: string;
+  className?: string;
+  label: string;
+  name: string;
+  description?: string;
+  required?: boolean;
   options: Array<{
-    label: string,
-    value: string,
-  }>,
+    label: string;
+    value: string;
+  }>;
 };
 
 type State = {
-  opened: boolean,
+  opened: boolean;
   selection: {
-    [value: string]: boolean,
-  },
+    [value: string]: boolean;
+  };
   options: Array<{
-    label: string,
-    value: string,
-  }>,
+    label: string;
+    value: string;
+  }>;
   selectedOptions: Array<{
-    label: string,
-    value: string,
-  }>,
+    label: string;
+    value: string;
+  }>;
 };
 
-type Action = (
+type Action =
   | {
-    type: 'OPEN',
-  }
+      type: 'OPEN';
+    }
   | {
-    type: 'CLOSE',
-  }
+      type: 'CLOSE';
+    }
   | {
-    type: 'SELECT_OPTION',
-    value: string,
-  }
+      type: 'SELECT_OPTION';
+      value: string;
+    }
   | {
-    type: 'UNSELECT_OPTION',
-    value: string,
-  }
-);
+      type: 'UNSELECT_OPTION';
+      value: string;
+    };
 
 const reducer: React.Reducer<State, Action> = (state, action) => {
   switch (action.type) {
@@ -71,7 +70,7 @@ const reducer: React.Reducer<State, Action> = (state, action) => {
       break;
     }
   }
-  const selectedOptions: Array<{ label: string, value: string }> = [];
+  const selectedOptions: Array<{ label: string; value: string }> = [];
   for (const option of state.options) {
     if (state.selection[option.value]) {
       selectedOptions.push(option);
@@ -169,7 +168,7 @@ const MenuItem = styled('button', {
 
 const MenuItemLabel = styled('span', {
   transition: 'transform 0.3s ease',
-  transform: `translateX($$offset)`,
+  transform: 'translateX($$offset)',
 });
 
 const MultiSelectField: React.FC<Props> = ({
@@ -190,7 +189,7 @@ const MultiSelectField: React.FC<Props> = ({
     opened: false,
     options,
     selectedOptions: [],
-    selection: Object.fromEntries(options.map(option => [option.value, false] as const)),
+    selection: Object.fromEntries(options.map((option) => [option.value, false] as const)),
   }));
 
   // TODO: 이거 required 밸리데이션 어떻게 하지...? :thinking_face:
@@ -203,27 +202,18 @@ const MultiSelectField: React.FC<Props> = ({
       <Select
         as="button"
         type="button"
-        onClick={e => {
+        onClick={(e) => {
           e.preventDefault();
           dispatch({ type: 'OPEN' });
         }}
       >
-        {state.selectedOptions.length === 0 && (
-          messages.form_field__empty_placeholder
-        )}
+        {state.selectedOptions.length === 0 && messages.form_field__empty_placeholder}
         <Selection>
-          {state.selectedOptions.map(option => (
-            <SelectionItem key={'label-' + option.value}>
-              {option.label}
-            </SelectionItem>
+          {state.selectedOptions.map((option) => (
+            <SelectionItem key={`label-${option.value}`}>{option.label}</SelectionItem>
           ))}
           {state.selectedOptions.map((option, i) => (
-            <input
-              key={'hidden-' + option.value}
-              type="hidden"
-              name={name}
-              value={option.value}
-            />
+            <input key={`hidden-${option.value}`} type="hidden" name={name} value={option.value} />
           ))}
         </Selection>
       </Select>
@@ -235,21 +225,19 @@ const MultiSelectField: React.FC<Props> = ({
           }}
         >
           <Menu>
-            {state.options.map(option => (
+            {state.options.map((option) => (
               <MenuItem
                 key={option.value}
                 selected={state.selection[option.value]}
-                onClick={
-                  e => {
-                    e.preventDefault();
-                    if (state.selection[option.value]) {
-                      dispatch({ type: 'UNSELECT_OPTION', value: option.value });
-                    } else {
-                      dispatch({ type: 'SELECT_OPTION', value: option.value });
-                    }
-                    e.stopPropagation();
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (state.selection[option.value]) {
+                    dispatch({ type: 'UNSELECT_OPTION', value: option.value });
+                  } else {
+                    dispatch({ type: 'SELECT_OPTION', value: option.value });
                   }
-                }
+                  e.stopPropagation();
+                }}
               >
                 <MenuItemLabel>{option.label}</MenuItemLabel>
               </MenuItem>
@@ -272,16 +260,14 @@ const MultiSelectField: React.FC<Props> = ({
             },
           }}
         >
-          {options.map(option => (
+          {options.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>
           ))}
         </Select>
       </noscript>
-      {description && (
-        <Field.Description>{description}</Field.Description>
-      )}
+      {description && <Field.Description>{description}</Field.Description>}
     </Field.Container>
   );
 };

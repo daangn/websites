@@ -3,13 +3,13 @@ import { rem } from 'polished';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
-import { vars } from '@seed-design/design-token'
+import { vars } from '@seed-design/design-token';
 
 import DetailLink from './DetailLink';
 
 type PrismicTeamContentsDataCultureBodyTitleAndDescriptionProps = {
-  data: GatsbyTypes.PrismicTeamContentsDataCultureBodyTitleAndDescription_dataFragment,
-  className?: string,
+  data: GatsbyTypes.PrismicTeamContentsDataCultureBodyTitleAndDescription_dataFragment;
+  className?: string;
 };
 
 export const query = graphql`
@@ -35,10 +35,7 @@ const Container = styled('section', {
 
   display: 'grid',
   gap: rem(24),
-  gridTemplateAreas: [
-    '"title"',
-    '"description"',
-  ].join('\n'),
+  gridTemplateAreas: ['"title"', '"description"'].join('\n'),
 
   '@md': {
     gap: rem(40),
@@ -49,16 +46,12 @@ const Container = styled('section', {
     alignTitle: {
       left: {
         '@md': {
-          gridTemplateAreas: [
-            '"title description"',
-          ].join('\n'),
+          gridTemplateAreas: ['"title description"'].join('\n'),
         },
       },
       right: {
         '@md': {
-          gridTemplateAreas: [
-            '"description title"',
-          ].join('\n'),
+          gridTemplateAreas: ['"description title"'].join('\n'),
         },
       },
     },
@@ -110,9 +103,9 @@ const Description = styled('div', {
   },
 });
 
-const PrismicTeamContentsDataCultureBodyTitleAndDescription: React.FC<PrismicTeamContentsDataCultureBodyTitleAndDescriptionProps> = ({
-  data,
-}) => {
+const PrismicTeamContentsDataCultureBodyTitleAndDescription: React.FC<
+  PrismicTeamContentsDataCultureBodyTitleAndDescriptionProps
+> = ({ data }) => {
   const parseLink = useLinkParser();
 
   if (data.primary == null) {
@@ -122,17 +115,13 @@ const PrismicTeamContentsDataCultureBodyTitleAndDescription: React.FC<PrismicTea
   const link = data.primary.link?.url && parseLink(data.primary.link.url);
 
   return (
-    <Container
-      alignTitle={data.primary.inverted === true ? 'right' : 'left'}
-    >
+    <Container alignTitle={data.primary.inverted === true ? 'right' : 'left'}>
       <TitleContainer>
         <KeyText>{data.primary.key_text}</KeyText>
         <Title>{data.primary.title?.text}</Title>
-        {link && (
-          <DetailLink link={link} />
-        )}
+        {link && <DetailLink link={link} />}
       </TitleContainer>
-      <Description dangerouslySetInnerHTML={{ __html: data.primary.description?.html || '' }}/>
+      <Description dangerouslySetInnerHTML={{ __html: data.primary.description?.html || '' }} />
     </Container>
   );
 };

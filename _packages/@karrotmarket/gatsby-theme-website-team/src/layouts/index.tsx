@@ -9,9 +9,9 @@ import DefaultLayout from './DefaultLayout';
 import JobPostLayout from './JobPostLayout';
 
 type LayoutSwitchProps = OverrideProps<
-  PageProps<any>,
+  PageProps<unknown>,
   {
-    children: React.ReactNode,
+    children: React.ReactNode;
   }
 >;
 
@@ -22,19 +22,19 @@ const globalStyles = globalCss({
   ':root': {
     colorSchema: 'light dark',
   },
-  'body': {
+  body: {
     accentColor: vars.$semantic.color.primary,
     background: vars.$semantic.color.paperDefault,
     color: vars.$scale.color.gray900,
     fontFamily: '$system',
     textRendering: 'optimizeLegibility',
     wordBreak: 'break-word',
-    WebkitFontSmoothing: 'antialiased'
+    WebkitFontSmoothing: 'antialiased',
   },
   'body:lang(ko)': {
     wordBreak: 'keep-all',
   },
-  'a': {
+  a: {
     color: vars.$scale.color.carrot500,
   },
   '@media (prefers-reduced-motion: no-preference)': {
@@ -45,27 +45,18 @@ const globalStyles = globalCss({
   },
 });
 
-const LayoutSwitch: React.FC<LayoutSwitchProps> = ({
-  children,
-  ...props
-}) => {
+const LayoutSwitch: React.FC<LayoutSwitchProps> = ({ children, ...props }) => {
   globalStyles();
 
   if (/\/jobs\/\d+\/?/.test(props.location.pathname)) {
     return (
       <DefaultLayout {...props}>
-        <JobPostLayout {...props}>
-          {children}
-        </JobPostLayout>
+        <JobPostLayout {...props}>{children}</JobPostLayout>
       </DefaultLayout>
     );
   }
 
-  return (
-    <DefaultLayout {...props}>
-      {children}
-    </DefaultLayout>
-  );
-}
+  return <DefaultLayout {...props}>{children}</DefaultLayout>;
+};
 
 export default LayoutSwitch;

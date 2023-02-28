@@ -34,29 +34,23 @@ export const fragment = graphql`
 `;
 
 type Props = {
-  data: GatsbyTypes.PrismicAdsContentDataBodyFeaturesSection_dataFragment,
+  data: GatsbyTypes.PrismicAdsContentDataBodyFeaturesSection_dataFragment;
 };
 
 export default function PrismicAdsContentDataBodyFeaturesSection({
-  data: {
-    primary,
-    items,
-  },
+  data: { primary, items },
 }: Props) {
   const [tabIndex, setTabIndex] = React.useState(0);
 
   return (
-    <Container
-      id={primary.section_id || undefined}
-    >
+    <Container id={primary.section_id || undefined}>
       <Content>
-        <Title>
-          {primary.section_title.text || ''}
-        </Title>
+        <Title>{primary.section_title?.text || ''}</Title>
         <Features>
           <TabControl>
             {items.map((item, i) => (
               <TabButton
+                // rome-ignore lint/suspicious/noArrayIndexKey: intentional
                 key={i}
                 active={i === tabIndex}
                 onClick={() => {
@@ -70,15 +64,16 @@ export default function PrismicAdsContentDataBodyFeaturesSection({
           <FeatureContainer>
             <Track
               css={{
-                '$$tabIndex': tabIndex,
+                $$tabIndex: tabIndex,
               }}
             >
               {items.map((item, i) => {
-                const image = item.preview_image?.localFile?.childImageSharp?.gatsbyImageData && getImage(item.preview_image.localFile.childImageSharp.gatsbyImageData);
+                const image =
+                  item.preview_image?.localFile?.childImageSharp?.gatsbyImageData &&
+                  getImage(item.preview_image.localFile.childImageSharp.gatsbyImageData);
                 return (
-                  <FeatureItem
-                    key={i}
-                  >
+                  // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+                  <FeatureItem key={i}>
                     <FeatureItemContent>
                       {image && (
                         <GatsbyImage
@@ -88,12 +83,10 @@ export default function PrismicAdsContentDataBodyFeaturesSection({
                         />
                       )}
                       <FeatureItemBody>
-                        <FeatureTitle>
-                          {item.feature_name || ''}
-                        </FeatureTitle>
+                        <FeatureTitle>{item.feature_name || ''}</FeatureTitle>
                         <FeatureDescription
                           dangerouslySetInnerHTML={{
-                            __html: item.feature_description.html || '',
+                            __html: item.feature_description?.html || '',
                           }}
                         />
                         <FeatureGuideLink
@@ -101,7 +94,7 @@ export default function PrismicAdsContentDataBodyFeaturesSection({
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          {(item.feature_name || `항목 ${i + 1}`)} 가이드 바로가기
+                          {item.feature_name || `항목 ${i + 1}`} 가이드 바로가기
                         </FeatureGuideLink>
                       </FeatureItemBody>
                     </FeatureItemContent>
@@ -208,7 +201,7 @@ const FeatureItemBody = styled('div', {
   '@md': {
     gridTemplateRows: 'repeat(3, max-content)',
     width: '90%',
-  }
+  },
 });
 
 const FeatureTitle = styled('h3', {

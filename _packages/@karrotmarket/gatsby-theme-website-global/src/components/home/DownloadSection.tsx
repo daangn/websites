@@ -1,12 +1,12 @@
-import * as React from "react";
-import { rem } from "polished";
-import { graphql } from "gatsby";
-import { styled } from "gatsby-theme-stitches/src/config";
+import * as React from 'react';
+import { rem } from 'polished';
+import { graphql } from 'gatsby';
+import { styled } from 'gatsby-theme-stitches/src/config';
 
-import { Space } from "../Space";
-import AppLink from "../AppLink";
+import { Space } from '../Space';
+import AppLink from '../AppLink';
 
-import { ReactComponent as KarrotLogoIcon } from "../../icons/karrot_logo.svg";
+import { ReactComponent as KarrotLogoIcon } from '../../icons/karrot_logo.svg';
 
 export const query = graphql`
   fragment DownloadSection_content on PrismicGlobalContentsDataMainBodyDownloadSection {
@@ -26,11 +26,8 @@ type DownloadSectionProps = {
   links: GatsbyTypes.DownloadSection_linksFragment;
 };
 
-const DownloadSection: React.FC<DownloadSectionProps> = ({
-  content,
-  links,
-}) => {
-  if (!content.primary || !links) return <></>;
+const DownloadSection: React.FC<DownloadSectionProps> = ({ content, links }) => {
+  if (!(content.primary && links)) return <></>;
 
   const { title } = content.primary;
 
@@ -45,34 +42,34 @@ const DownloadSection: React.FC<DownloadSectionProps> = ({
   );
 };
 
-const Section = styled("section", {
-  width: "100%",
-  height: "410px",
-  "@md": {
-    height: "610px",
+const Section = styled('section', {
+  width: '100%',
+  height: '410px',
+  '@md': {
+    height: '610px',
   },
 });
 
-const Container = styled("div", {
-  height: "100%",
-  margin: "0 auto",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
+const Container = styled('div', {
+  height: '100%',
+  margin: '0 auto',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
   paddingBottom: rem(24),
 });
 
-const Title = styled("h2", {
+const Title = styled('h2', {
   marginBottom: 0,
-  fontSize: "$heading4",
-  lineHeight: "$heading4",
+  fontSize: '$heading4',
+  lineHeight: '$heading4',
   marginTop: rem(28),
 
-  "@md": {
+  '@md': {
     marginBottom: rem(42),
-    fontSize: "$heading2",
-    lineHeight: "$heading2",
+    fontSize: '$heading2',
+    lineHeight: '$heading2',
   },
 });
 

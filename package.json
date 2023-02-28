@@ -24,7 +24,9 @@
   "scripts": {
     "postinstall": "yarn init:gatsby",
     "build:packages": "ultra --recursive --filter \"_packages/*\" build",
-    "init:gatsby": "ultra --recursive init:gatsby"
+    "init:gatsby": "ultra --recursive init:gatsby",
+    "lint": "rome check .",
+    "format": "rome format . --write"
   },
   "devDependencies": {
     "@types/node": "18.14.2",

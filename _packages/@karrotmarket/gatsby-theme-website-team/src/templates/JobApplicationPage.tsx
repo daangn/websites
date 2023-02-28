@@ -1,10 +1,5 @@
 import * as React from 'react';
-import {
-  graphql,
-  navigate,
-  type PageProps,
-  type HeadProps,
-} from 'gatsby';
+import { graphql, navigate, type PageProps, type HeadProps } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { HeadSeo, Robots } from 'gatsby-plugin-head-seo/src';
 import { TurnstileImplicitFormInput } from 'gatsby-plugin-turnstile/src';
@@ -92,18 +87,9 @@ export const query = graphql`
   }
 `;
 
-type State = (
-  | 'initial'
-  | 'invalid'
-  | 'fetching'
-  | 'completed'
-);
+type State = 'initial' | 'invalid' | 'fetching' | 'completed';
 
-type Action = (
-  | 'INVALID'
-  | 'FETCH_START'
-  | 'FETCH_COMPLETE'
-);
+type Action = 'INVALID' | 'FETCH_START' | 'FETCH_COMPLETE';
 
 const initialState: State = 'initial';
 
@@ -165,9 +151,7 @@ const makeEndpoint = (boardToken: string, jobId: string): string => {
 };
 
 type JobApplicationPageProps = PageProps<GatsbyTypes.TeamWebsite_JobApplicationPageQuery>;
-const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
-  data,
-}) => {
+const JobApplicationPage: React.FC<JobApplicationPageProps> = ({ data }) => {
   required(data.jobPost);
 
   const messages = useTranslation();
@@ -181,7 +165,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
   // Note: Progressive Enhancement
   // 사실 이거 없어도 기본 폼으로 100% 동작함
   type SubmitHandler = NonNullable<PropOf<typeof Form, 'onSubmit'>>;
-  const handleSubmit: SubmitHandler = e => {
+  const handleSubmit: SubmitHandler = (e) => {
     e.preventDefault();
 
     if (!formRef.current) {
@@ -223,7 +207,9 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
     }
   }, [state]);
 
-  const portfolioField = data.jobPost.parentJob.questions.find(question => question.name === 'cover_letter');
+  const portfolioField = data.jobPost.parentJob.questions.find(
+    (question) => question.name === 'cover_letter',
+  );
 
   return (
     <Form
@@ -240,7 +226,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
         required
       />
       {/* Treat the first_name as fullname */}
-      <input type="hidden" name="last_name" value={"\u200b"} />
+      <input type="hidden" name="last_name" value={'\u200b'} />
       <ShortTextField
         type="tel"
         name="phone"
@@ -275,67 +261,69 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
       )}
       {data.jobPost.parentJob.questions
         // Note: Custom Question 만 따로 렌더링
-        .filter(question => question.name.startsWith('question'))
-        .map(question => mapAbstractType(question, {
-        GreenhouseJobBoardJobQuestionForShortText: question => (
-          <ShortTextField
-            key={question.name}
-            name={question.name}
-            label={question.label}
-            description={question.description}
-            required={question.required}
-          />
-        ),
-        GreenhouseJobBoardJobQuestionForLongText: question => (
-          <LongTextField
-            key={question.name}
-            name={question.name}
-            label={question.label}
-            description={question.description}
-            required={question.required}
-          />
-        ),
-        GreenhouseJobBoardJobQuestionForAttachment: question => (
-          <FileAttachmentField
-            key={question.name}
-            accepts={greenhouseAcceptedMimeTypes}
-            placeholder={messages.job_application_page__field_file_placeholder}
-            name={question.name}
-            label={question.label}
-            description={question.description}
-            required={question.required}
-          />
-        ),
-        GreenhouseJobBoardJobQuestionForYesNo: question => (
-          <YesNoField
-            key={question.name}
-            name={question.name}
-            label={question.label}
-            description={question.description}
-            required={question.required}
-          />
-        ),
-        GreenhouseJobBoardJobQuestionForSingleSelect: question => (
-          <SingleSelectField
-            key={question.name}
-            name={question.name}
-            label={question.label}
-            description={question.description}
-            required={question.required}
-            options={[...question.options]}
-          />
-        ),
-        GreenhouseJobBoardJobQuestionForMultiSelect: question => (
-          <MultiSelectField
-            key={question.name}
-            name={question.name}
-            label={question.label}
-            description={question.description}
-            required={question.required}
-            options={[...question.options]}
-          />
-        ),
-      }))}
+        .filter((question) => question.name.startsWith('question'))
+        .map((question) =>
+          mapAbstractType(question, {
+            GreenhouseJobBoardJobQuestionForShortText: (question) => (
+              <ShortTextField
+                key={question.name}
+                name={question.name}
+                label={question.label}
+                description={question.description}
+                required={question.required}
+              />
+            ),
+            GreenhouseJobBoardJobQuestionForLongText: (question) => (
+              <LongTextField
+                key={question.name}
+                name={question.name}
+                label={question.label}
+                description={question.description}
+                required={question.required}
+              />
+            ),
+            GreenhouseJobBoardJobQuestionForAttachment: (question) => (
+              <FileAttachmentField
+                key={question.name}
+                accepts={greenhouseAcceptedMimeTypes}
+                placeholder={messages.job_application_page__field_file_placeholder}
+                name={question.name}
+                label={question.label}
+                description={question.description}
+                required={question.required}
+              />
+            ),
+            GreenhouseJobBoardJobQuestionForYesNo: (question) => (
+              <YesNoField
+                key={question.name}
+                name={question.name}
+                label={question.label}
+                description={question.description}
+                required={question.required}
+              />
+            ),
+            GreenhouseJobBoardJobQuestionForSingleSelect: (question) => (
+              <SingleSelectField
+                key={question.name}
+                name={question.name}
+                label={question.label}
+                description={question.description}
+                required={question.required}
+                options={[...question.options]}
+              />
+            ),
+            GreenhouseJobBoardJobQuestionForMultiSelect: (question) => (
+              <MultiSelectField
+                key={question.name}
+                name={question.name}
+                label={question.label}
+                description={question.description}
+                required={question.required}
+                options={[...question.options]}
+              />
+            ),
+          }),
+        )}
       {data.privacyPolicy?.data?.content?.html && (
         <TermsField
           terms={data.privacyPolicy.data.content.html}
@@ -349,18 +337,8 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({
         />
       )}
       <TurnstileImplicitFormInput />
-      <Button
-        as="button"
-        type="submit"
-        variant="primary"
-        fullWidth
-        disabled={state === 'fetching'}
-      >
-        {state === 'fetching' ? (
-          <Spinner />
-        ) : (
-          messages.job_application_page__button_submit
-        )}
+      <Button as="button" type="submit" variant="primary" fullWidth disabled={state === 'fetching'}>
+        {state === 'fetching' ? <Spinner /> : messages.job_application_page__button_submit}
       </Button>
     </Form>
   );
@@ -379,37 +357,30 @@ export const Head: React.FC<JobApplicationPageHeadProps> = ({
 
   const metaTitle = `${jobPost.title} | ${prismicTeamContents.data.jobs_page_meta_title}`;
   const metaDescription = prismicTeamContents.data.jobs_page_meta_description;
-  const metaImage = prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
+  const metaImage =
+    prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
 
   return (
-    <HeadSeo
-      location={location}
-      title={metaTitle}
-      description={metaDescription}
-    >
-      {props => [
+    <HeadSeo location={location} title={metaTitle} description={metaDescription}>
+      {(props) => [
         <DefaultLayoutHead
           {...props}
           location={location}
           data={data}
-          image={metaImage && {
-            url: new URL(
-              metaImage.src,
-              metaImage.src.startsWith('http')
-                ? metaImage.src
-                : props.url,
-            ),
-            width: metaImage.width,
-            height: metaImage.height,
-          }}
+          image={
+            metaImage && {
+              url: new URL(
+                metaImage.src,
+                metaImage.src.startsWith('http') ? metaImage.src : props.url,
+              ),
+              width: metaImage.width,
+              height: metaImage.height,
+            }
+          }
         />,
-        <JobPostLayoutHead
-          {...props}
-          location={location}
-          data={data}
-        />,
+        <JobPostLayoutHead {...props} location={location} data={data} />,
         <Robots none />,
       ]}
     </HeadSeo>
   );
-}
+};

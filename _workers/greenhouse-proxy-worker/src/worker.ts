@@ -1,8 +1,4 @@
-import {
-  compose,
-  Router,
-  type Context as WorktopContext,
-} from 'worktop';
+import { compose, Router, type Context as WorktopContext } from 'worktop';
 import { HeadersObject, reply } from 'worktop/response';
 import { start } from 'worktop/cfw';
 import * as CORS from 'worktop/cors';
@@ -34,15 +30,12 @@ interface Context extends WorktopContext {
      * @See https://developers.cloudflare.com/turnstile/get-started/server-side-validation/
      */
     TURNSTILE_SECRET_KEY: string;
-  },
+  };
 }
 
 const API = new Router<Context>();
 
-API.prepare = compose(
-  Cache.sync(),
-  CORS.preflight(),
-);
+API.prepare = compose(Cache.sync(), CORS.preflight());
 
 API.add('GET', '/ping', (_req, _ctx) => {
   return reply(200, 'pong');
@@ -74,7 +67,7 @@ API.add('POST', '/boards/:boardToken/jobs/:jobId/application/proxy', async (req,
         if (data.success !== true) {
           return reply(403, 'Are you human? Otherwise automated request does not allowed :(');
         }
-      }  catch (error) {
+      } catch (error) {
         if (error instanceof Error) {
           return reply(500, error.message);
         }
@@ -90,8 +83,8 @@ API.add('POST', '/boards/:boardToken/jobs/:jobId/application/proxy', async (req,
       method: 'POST',
       headers: {
         ...req.headers,
-        'Accept': 'application/json',
-        'Authorization': `Basic ${Base64.encode(`${ctx.bindings.GH_JOBBOARD_API_KEY}:`)}`,
+        Accept: 'application/json',
+        Authorization: `Basic ${Base64.encode(`${ctx.bindings.GH_JOBBOARD_API_KEY}:`)}`,
       },
       body: requestBody,
     });
@@ -99,15 +92,11 @@ API.add('POST', '/boards/:boardToken/jobs/:jobId/application/proxy', async (req,
       const origin = req.headers.get('origin');
 
       const responseHeaders: HeadersObject = {};
-      responseHeaders['Location'] = origin + '/completed/';
+      responseHeaders['Location'] = `${origin}/completed/`;
 
       return reply(303, response.body, responseHeaders);
     } else {
-      return reply(
-        response.status,
-        response.body,
-        Object.fromEntries(response.headers.entries()),
-      );
+      return reply(response.status, response.body, Object.fromEntries(response.headers.entries()));
     }
   } catch (error) {
     if (error instanceof Error) {

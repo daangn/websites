@@ -1,9 +1,11 @@
 type JobPostLike = {
-  corporate?: string,
-  employmentType?: string,
-}
+  corporate?: string;
+  employmentType?: string;
+};
 
-export default function *generateProperties(jobPost: JobPostLike): Generator<string, void, unknown> {
+export default function* generateProperties(
+  jobPost: JobPostLike,
+): Generator<string, void, unknown> {
   if (jobPost.corporate) {
     const corporate = {
       KARROT_MARKET: 'Karrot',

@@ -3,9 +3,9 @@ import { rem } from 'polished';
 import { styled } from 'gatsby-theme-stitches/src/config';
 
 type Props = {
-  id?: string,
-  className?: string,
-  href: string,
+  id?: string;
+  className?: string;
+  href: string;
   children: React.ReactNode;
 };
 
@@ -18,20 +18,9 @@ const LinkButton = styled('a', {
   },
 });
 
-export default function DownloadLinkButton({
-  id,
-  className,
-  href,
-  children,
-}: Props) {
+export default function DownloadLinkButton({ id, className, href, children }: Props) {
   return (
-    <LinkButton
-      id={id}
-      className={className}
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+    <LinkButton id={id} className={className} href={href} target="_blank" rel="noopener noreferrer">
       {children}
     </LinkButton>
   );

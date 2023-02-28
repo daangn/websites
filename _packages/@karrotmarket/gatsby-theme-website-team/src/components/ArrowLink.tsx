@@ -6,14 +6,14 @@ import type { LinkType } from '@karrotmarket/gatsby-theme-website/src/link';
 import { mapLink } from '@karrotmarket/gatsby-theme-website/src/link';
 import { vars } from '@seed-design/design-token';
 
-import { ReactComponent as ArrowSvg } from './arrowLink/arrow.svg'
+import { ReactComponent as ArrowSvg } from './arrowLink/arrow.svg';
 
 type ArrowLinkProps = {
-  link: LinkType,
-  direction: 'forward' | 'backward',
-  className?: string,
-  onClick?: React.MouseEventHandler,
-  children: string,
+  link: LinkType;
+  direction: 'forward' | 'backward';
+  className?: string;
+  onClick?: React.MouseEventHandler;
+  children: string;
 };
 
 const Base = styled(Link, {
@@ -43,7 +43,7 @@ const Base = styled(Link, {
           marginLeft: em(8),
           width: em(32, 20),
           height: em(32, 20),
-        }
+        },
       },
       backward: {
         justifyContent: 'flex-end',
@@ -54,32 +54,21 @@ const Base = styled(Link, {
           width: em(32, 20),
           height: em(32, 20),
           transform: 'scaleX(-1)',
-        }
+        },
       },
     },
   },
 });
 
-const ArrowLink: React.FC<ArrowLinkProps> = ({
-  link,
-  direction,
-  className,
-  onClick,
-  children,
-}) => {
+const ArrowLink: React.FC<ArrowLinkProps> = ({ link, direction, className, onClick, children }) => {
   return mapLink(link, {
-    Internal: link => (
-      <Base
-        to={link.pathname}
-        onClick={onClick}
-        direction={direction}
-        className={className}
-      >
+    Internal: (link) => (
+      <Base to={link.pathname} onClick={onClick} direction={direction} className={className}>
         {children}
         <ArrowSvg />
       </Base>
     ),
-    External: link => (
+    External: (link) => (
       <Base
         as="a"
         rel="external noopener"

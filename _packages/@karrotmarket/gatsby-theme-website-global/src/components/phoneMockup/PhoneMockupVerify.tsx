@@ -1,21 +1,21 @@
-import * as React from "react";
-import { em, rem } from "polished";
-import { motion } from "framer-motion";
-import { styled } from "gatsby-theme-stitches/src/config";
+import * as React from 'react';
+import { em, rem } from 'polished';
+import { motion } from 'framer-motion';
+import { styled } from 'gatsby-theme-stitches/src/config';
 
-import Phone from "./Phone";
-import Verify from "./phoneMockupVerify/Verify";
-import Profile from "./phoneMockupVerify/Profile";
-import Ratings from "./phoneMockupVerify/Ratings";
+import Phone from './Phone';
+import Verify from './phoneMockupVerify/Verify';
+import Profile from './phoneMockupVerify/Profile';
+import Ratings from './phoneMockupVerify/Ratings';
 
-import { data } from "./phoneMockupVerify/_data";
+import { data } from './phoneMockupVerify/_data';
 
 interface PhoneMockupVerifyProps {
   inView?: boolean;
 }
 
 const PhoneMockupVerify: React.FC<PhoneMockupVerifyProps> = ({ inView }) => {
-  if (!inView) return <EmptySpace></EmptySpace>;
+  if (!inView) return <EmptySpace />;
   return (
     <Wrapper
       {...{
@@ -39,46 +39,46 @@ const PhoneMockupVerify: React.FC<PhoneMockupVerifyProps> = ({ inView }) => {
         frameColor="orange"
         header={<Header>Verify</Header>}
         fontSize={{
-          "@i": { fontSize: rem(7.5) },
-          "@md": { fontSize: rem(13) },
+          '@i': { fontSize: rem(7.5) },
+          '@md': { fontSize: rem(13) },
         }}
       >
-        <Verify {...data.verify}></Verify>
+        <Verify {...data.verify} />
       </Phone>
       <FloatingContainer>
-        <Profile {...data.profile}></Profile>
-        <Ratings ratings={data.ratings}></Ratings>
+        <Profile {...data.profile} />
+        <Ratings ratings={data.ratings} />
       </FloatingContainer>
     </Wrapper>
   );
 };
 
 const Wrapper = styled(motion.div, {
-  position: "relative",
+  position: 'relative',
   width: rem(288),
-  "@md": {
+  '@md': {
     width: rem(490),
   },
 });
 
-const Header = styled("div", {
-  fontWeight: "bold",
+const Header = styled('div', {
+  fontWeight: 'bold',
 });
 
 const FloatingContainer = styled(motion.div, {
-  position: "absolute",
+  position: 'absolute',
   bottom: em(26),
   right: 0,
   zIndex: 0,
   fontSize: rem(9.5),
-  "@md": {
+  '@md': {
     fontSize: rem(16),
   },
 });
 
-const EmptySpace = styled("div", {
+const EmptySpace = styled('div', {
   fontSize: rem(7.5),
-  "@md": { fontSize: rem(13) },
+  '@md': { fontSize: rem(13) },
 
   width: em(1),
   height: em(600),

@@ -7,12 +7,12 @@ import { vars } from '@seed-design/design-token';
 import SeedIcon from '@karrotmarket/gatsby-theme-website-team/src/components/SeedIcon';
 
 type FaqAccordionItemProps = {
-  id: string,
-  entry: GatsbyTypes.TeamWebsite_FaqAccordionItem_entryFragment,
-  className?: string,
-  open?: boolean,
-  onClick?: (id: string) => void,
-  onFocus?: (id: string) => void,
+  id: string;
+  entry: GatsbyTypes.TeamWebsite_FaqAccordionItem_entryFragment;
+  className?: string;
+  open?: boolean;
+  onClick?: (id: string) => void;
+  onFocus?: (id: string) => void;
 };
 
 export const query = graphql`
@@ -119,7 +119,10 @@ const FaqAccordionItem: React.FC<FaqAccordionItemProps> = ({
           initial="collapsed"
           animate={open ? 'open' : 'collapsed'}
         >
-          <Content aria-hidden={!open} dangerouslySetInnerHTML={{ __html: entry.answer?.html || '' }} />
+          <Content
+            aria-hidden={!open}
+            dangerouslySetInnerHTML={{ __html: entry.answer?.html || '' }}
+          />
         </motion.div>
       </Panel>
     </Container>

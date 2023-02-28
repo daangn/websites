@@ -1,4 +1,4 @@
 export type PluginOptions = {
-  locale: string,
-  navigationId: string,
+  locale: string;
+  navigationId: string;
 };

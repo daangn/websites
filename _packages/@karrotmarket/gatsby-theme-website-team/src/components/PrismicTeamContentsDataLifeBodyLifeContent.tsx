@@ -3,11 +3,11 @@ import { rem } from 'polished';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { getImage, GatsbyImage } from 'gatsby-plugin-image';
-import { vars } from '@seed-design/design-token'
+import { vars } from '@seed-design/design-token';
 
 type PrismicTeamContentsDataLifeBodyLifeContentProps = {
-  data: GatsbyTypes.PrismicTeamContentsDataLifeBodyLifeContent_dataFragment,
-  className?: string,
+  data: GatsbyTypes.PrismicTeamContentsDataLifeBodyLifeContent_dataFragment;
+  className?: string;
 };
 
 export const query = graphql`
@@ -81,10 +81,9 @@ const ThumbnailCaption = styled('figcaption', {
   color: vars.$scale.color.gray500,
 });
 
-const PrismicTeamContentsDataLifeBodyLifeContent: React.FC<PrismicTeamContentsDataLifeBodyLifeContentProps> = ({
-  data,
-  className,
-}) => {
+const PrismicTeamContentsDataLifeBodyLifeContent: React.FC<
+  PrismicTeamContentsDataLifeBodyLifeContentProps
+> = ({ data, className }) => {
   if (!data.primary?.title?.text) {
     return null;
   }
@@ -95,20 +94,18 @@ const PrismicTeamContentsDataLifeBodyLifeContent: React.FC<PrismicTeamContentsDa
       <BodyText dangerouslySetInnerHTML={{ __html: data.primary.body_text?.html || '' }} />
       <ThumbnailContainer>
         {data.items.map((item, i) => {
-          const image = item.thumbnail_image?.localFile?.childImageSharp?.gatsbyImageData && getImage(item.thumbnail_image.localFile.childImageSharp.gatsbyImageData);
+          const image =
+            item.thumbnail_image?.localFile?.childImageSharp?.gatsbyImageData &&
+            getImage(item.thumbnail_image.localFile.childImageSharp.gatsbyImageData);
           if (image == null) {
-            return null
+            return null;
           }
 
           return (
+            // rome-ignore lint/suspicious/noArrayIndexKey: it's ok here since is there no dynamic state
             <Thumbnail key={i}>
-              <ThumbnailImage
-                image={image}
-                alt={item.thumbnail_image?.alt || ''}
-              />
-              <ThumbnailCaption>
-                {item.thumbnail_description?.text || ''}
-              </ThumbnailCaption>
+              <ThumbnailImage image={image} alt={item.thumbnail_image?.alt || ''} />
+              <ThumbnailCaption>{item.thumbnail_description?.text || ''}</ThumbnailCaption>
             </Thumbnail>
           );
         })}

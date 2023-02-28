@@ -1,13 +1,13 @@
-import * as React from "react";
-import { useInView } from "react-intersection-observer";
-import { graphql, Link } from "gatsby";
-import { rem } from "polished";
-import { styled } from "gatsby-theme-stitches/src/config";
+import * as React from 'react';
+import { useInView } from 'react-intersection-observer';
+import { graphql, Link } from 'gatsby';
+import { rem } from 'polished';
+import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
 
-import NavigationMenu from "./header/NavigationMenu";
-import Something from "./header/Something";
-import { ReactComponent as LogoSvg } from "./header/logo.svg";
+import NavigationMenu from './header/NavigationMenu';
+import Something from './header/Something';
+import { ReactComponent as LogoSvg } from './header/logo.svg';
 
 type HeaderProps = {
   className?: string;
@@ -22,67 +22,62 @@ export const query = graphql`
   }
 `;
 
-const Container = styled("header", {
-  position: "fixed",
+const Container = styled('header', {
+  position: 'fixed',
   top: 0,
   background: vars.$semantic.color.paperDefault,
-  width: "100%",
+  width: '100%',
   height: rem(58),
   zIndex: 2,
-  transition: "background 0.3s",
+  transition: 'background 0.3s',
 
-  "@sm": {
+  '@sm': {
     height: rem(68),
   },
 
   variants: {
     transparent: {
       true: {
-        background: "transparent",
+        background: 'transparent',
       },
     },
   },
 });
 
-const Placer = styled("div", {
+const Placer = styled('div', {
   height: rem(58),
 
-  "@sm": {
+  '@sm': {
     height: rem(68),
   },
 });
 
-const Content = styled("div", {
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  height: "100%",
+const Content = styled('div', {
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  height: '100%',
   paddingX: rem(24),
 
-  "@sm": {
+  '@sm': {
     contentArea: true,
   },
 });
 
 const HomeLink = styled(Link, {
-  display: "inline-block",
+  display: 'inline-block',
   lineHeight: 0,
 });
 
 const Logo = styled(LogoSvg, {
   height: rem(26),
 
-  "@sm": {
+  '@sm': {
     height: rem(32),
   },
 });
 
-const Header: React.FC<HeaderProps> = ({
-  className,
-  navigationData,
-  isStatic = false,
-  sns,
-}) => {
+const Header: React.FC<HeaderProps> = ({ className, navigationData, isStatic = false, sns }) => {
   const [placerRef, placerInView] = useInView({ threshold: 1, initialInView: true });
 
   return (
@@ -99,11 +94,7 @@ const Header: React.FC<HeaderProps> = ({
             <Logo />
           </HomeLink>
           <Something />
-          <NavigationMenu
-            controlId="navigation-menu"
-            data={navigationData}
-            sns={sns}
-          />
+          <NavigationMenu controlId="navigation-menu" data={navigationData} sns={sns} />
         </Content>
       </Container>
     </div>

@@ -6,9 +6,9 @@ import EmptyPlaceholder from './jobPostList/EmptyPlaceholder';
 import FaqAccordion from './FaqAccordion';
 
 type FaqListProps = {
-  className?: string,
-  emptyPlaceHolderLink: string,
-  faqLists: GatsbyTypes.TeamWebsite_FaqList_faqListsFragment,
+  className?: string;
+  emptyPlaceHolderLink: string;
+  faqLists: GatsbyTypes.TeamWebsite_FaqList_faqListsFragment;
 };
 
 export const query = graphql`
@@ -26,9 +26,13 @@ const Container = styled('div', {
 const FaqList: React.FC<FaqListProps> = ({ faqLists, emptyPlaceHolderLink, className }) => {
   return (
     <Container className={className}>
-      {faqLists.entries?.length > 0 ? <FaqAccordion data={faqLists} /> : <EmptyPlaceholder link={emptyPlaceHolderLink} buttonVisible={false} />}
+      {faqLists.entries?.length > 0 ? (
+        <FaqAccordion data={faqLists} />
+      ) : (
+        <EmptyPlaceholder link={emptyPlaceHolderLink} buttonVisible={false} />
+      )}
     </Container>
-  )
+  );
 };
 
 export default React.memo(FaqList);

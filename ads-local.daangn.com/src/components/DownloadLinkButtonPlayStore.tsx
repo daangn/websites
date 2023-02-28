@@ -6,14 +6,11 @@ import downloadAtPlayStoreUrl from '~/assets/download-playstore.svg';
 import DownloadLinkButton from './DownloadLinkButton';
 
 type Props = {
-  id?: string,
-  className?: string,
+  id?: string;
+  className?: string;
 };
 
-export default function DownloadLinkButtonPlayStore({
-  id,
-  className,
-}: Props) {
+export default function DownloadLinkButtonPlayStore({ id, className }: Props) {
   const staticData = useStaticQuery<GatsbyTypes.DownloadLinkButtonPlayStoreStaticQuery>(graphql`
     query DownloadLinkButtonPlayStoreStatic {
       prismicAdsContent {

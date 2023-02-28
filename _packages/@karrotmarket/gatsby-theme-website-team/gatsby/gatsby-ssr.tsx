@@ -20,11 +20,10 @@ const PreferColorSchemeScript = () => {
   return <script dangerouslySetInnerHTML={{ __html: colorSchemeScript }} />;
 };
 
-export const onRenderBody: GatsbySSR["onRenderBody"] = ({
-  setHtmlAttributes,
-  setHeadComponents,
-  setPreBodyComponents,
-}, options) => {
+export const onRenderBody: GatsbySSR['onRenderBody'] = (
+  { setHtmlAttributes, setHeadComponents, setPreBodyComponents },
+  options,
+) => {
   const pluginOptions = options as unknown as PluginOptions;
 
   setHtmlAttributes({
@@ -35,15 +34,7 @@ export const onRenderBody: GatsbySSR["onRenderBody"] = ({
     'data-seed': '',
   });
 
-  setHeadComponents([
-    <meta
-      key="color-scheme"
-      name="color-scheme"
-      content="light dark"
-    />,
-  ]);
+  setHeadComponents([<meta key="color-scheme" name="color-scheme" content="light dark" />]);
 
-  setPreBodyComponents([
-    <PreferColorSchemeScript key="prefer-color-scheme" />,
-  ]);
+  setPreBodyComponents([<PreferColorSchemeScript key="prefer-color-scheme" />]);
 };

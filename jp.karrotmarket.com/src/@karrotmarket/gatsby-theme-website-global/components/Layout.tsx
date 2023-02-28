@@ -1,10 +1,10 @@
-import * as React from "react";
-import { graphql } from "gatsby";
-import { rem } from "polished";
-import { styled } from "gatsby-theme-stitches/src/config";
-import _Header from "@karrotmarket/gatsby-theme-website-global/src/components/Header";
-import Footer from "@karrotmarket/gatsby-theme-website-global/src/components/Footer";
-import globalStyles from "@karrotmarket/gatsby-theme-website-global/src/styles/global";
+import * as React from 'react';
+import { graphql } from 'gatsby';
+import { rem } from 'polished';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import _Header from '@karrotmarket/gatsby-theme-website-global/src/components/Header';
+import Footer from '@karrotmarket/gatsby-theme-website-global/src/components/Footer';
+import globalStyles from '@karrotmarket/gatsby-theme-website-global/src/styles/global';
 
 interface LayoutProps {
   data: GatsbyTypes.DefaultLayout_dataFragment;
@@ -21,28 +21,28 @@ export const query = graphql`
 `;
 
 const Header = styled(_Header, {
-  "@sm": {
-    "nav > ul > li:first-child": {
-      display: "none",
+  '@sm': {
+    'nav > ul > li:first-child': {
+      display: 'none',
     },
   },
 
-  "header > div": {
-    "@sm": {
-      width: "100%",
+  'header > div': {
+    '@sm': {
+      width: '100%',
       // width: rem(540),
       paddingLeft: rem(16),
       paddingRight: rem(16),
     },
-    "@md": {
+    '@md': {
       paddingLeft: rem(0),
       paddingRight: rem(0),
       width: rem(720),
     },
-    "@lg": {
+    '@lg': {
       width: rem(960),
     },
-    "@xl": {
+    '@xl': {
       width: rem(1150),
     },
   },
@@ -63,7 +63,7 @@ const Layout: React.FC<LayoutProps> = ({ children, data, id }) => {
   );
 };
 
-const Main = styled("main", {
+const Main = styled('main', {
   paddingBottom: rem(120),
 });
 

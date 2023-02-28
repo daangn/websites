@@ -5,13 +5,13 @@ import { rem } from 'polished';
 import * as Field from './Field';
 
 type Props = {
-  id?: string,
-  className?: string,
-  label: string,
-  name: string,
-  required?: boolean,
-  placeholder?: string,
-  description?: string,
+  id?: string;
+  className?: string;
+  label: string;
+  name: string;
+  required?: boolean;
+  placeholder?: string;
+  description?: string;
 };
 
 const LongTextInput = styled(Field.Input, {
@@ -44,9 +44,7 @@ const LongTextField: React.FC<Props> = ({
         placeholder={placeholder}
         rows={5}
       />
-      {description && (
-        <Field.Description>{description}</Field.Description>
-      )}
+      {description && <Field.Description>{description}</Field.Description>}
     </Field.Container>
   );
 };

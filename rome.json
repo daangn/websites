@@ -9,7 +9,10 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "security": {
+        "noDangerouslySetInnerHtml":"off"
+      }
     }
   },
   "javascript": {
@@ -24,7 +27,8 @@
       "**/.cache/**/*",
       "**/public/**/*",
       "**/dist/**/*",
-      "**/__generated__/**/*"
+      "**/__generated__/**/*",
+      "./_packages/**/gatsby-*.js"
     ]
   }
 }

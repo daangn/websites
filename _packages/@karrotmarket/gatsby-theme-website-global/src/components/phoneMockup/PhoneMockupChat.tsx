@@ -1,18 +1,18 @@
-import * as React from "react";
-import { em, rem } from "polished";
-import { motion, AnimatePresence } from "framer-motion";
-import { styled } from "gatsby-theme-stitches/src/config";
+import * as React from 'react';
+import { em, rem } from 'polished';
+import { motion, AnimatePresence } from 'framer-motion';
+import { styled } from 'gatsby-theme-stitches/src/config';
 
-import Phone from "./Phone";
-import Item from "./phoneMockupChat/Item";
-import Header from "./phoneMockupChat/Header";
-import UserMessage from "./phoneMockupChat/UserMessage";
-import LocationMessage from "./phoneMockupChat/LocationMessage";
-import ReservationMessage from "./phoneMockupChat/ReservationMessage";
+import Phone from './Phone';
+import Item from './phoneMockupChat/Item';
+import Header from './phoneMockupChat/Header';
+import UserMessage from './phoneMockupChat/UserMessage';
+import LocationMessage from './phoneMockupChat/LocationMessage';
+import ReservationMessage from './phoneMockupChat/ReservationMessage';
 
-import { data } from "./phoneMockupChat/_data";
-import { Message } from "./phoneMockupChat/_type";
-import { chatAnimationInfiteLoop } from "./phoneMockupChat/_config";
+import { data } from './phoneMockupChat/_data';
+import { Message } from './phoneMockupChat/_type';
+import { chatAnimationInfiteLoop } from './phoneMockupChat/_config';
 
 interface PhoneMockupChatProps {
   inView?: boolean;
@@ -20,8 +20,8 @@ interface PhoneMockupChatProps {
 
 const PhoneMockupChat: React.FC<PhoneMockupChatProps> = ({ inView }) => {
   const [messages, setMessages] = React.useState<Message[]>([]);
-  const ref = React.useRef();
-  const interval = React.useRef<any>();
+  const ref = React.useRef<HTMLDivElement>(null);
+  const interval = React.useRef<ReturnType<typeof setInterval>>();
   const messageIndex = React.useRef<number>(0);
 
   React.useEffect(() => {
@@ -48,7 +48,7 @@ const PhoneMockupChat: React.FC<PhoneMockupChatProps> = ({ inView }) => {
     };
   }, [inView]);
 
-  if (!inView) return <EmptySpace></EmptySpace>;
+  if (!inView) return <EmptySpace />;
 
   return (
     <Wrapper
@@ -69,18 +69,14 @@ const PhoneMockupChat: React.FC<PhoneMockupChatProps> = ({ inView }) => {
     >
       <Phone frameColor="green" header={<Header {...data.header} />}>
         <Item {...data.item} />
-        <ChatBox ref={ref as any}>
+        <ChatBox ref={ref}>
           <AnimatePresence>
             {messages.map((message, i) => {
               const key = `${message.type}-${i}`;
               switch (message.type) {
-                case "reservation":
-                  return (
-                    <ReservationMessage key={key}>
-                      {message.text}
-                    </ReservationMessage>
-                  );
-                case "location":
+                case 'reservation':
+                  return <ReservationMessage key={key}>{message.text}</ReservationMessage>;
+                case 'location':
                   return (
                     <LocationMessage
                       key={key}
@@ -90,7 +86,7 @@ const PhoneMockupChat: React.FC<PhoneMockupChatProps> = ({ inView }) => {
                     />
                   );
                 default:
-                case "user":
+                case 'user':
                   return (
                     <UserMessage key={key} userType={message.userType}>
                       {message.text}
@@ -107,19 +103,19 @@ const PhoneMockupChat: React.FC<PhoneMockupChatProps> = ({ inView }) => {
 
 const Wrapper = styled(motion.div, {});
 const ChatBox = styled(motion.div, {
-  display: "flex",
-  flexDirection: "column",
+  display: 'flex',
+  flexDirection: 'column',
   padding: em(16),
-  position: "absolute",
+  position: 'absolute',
   bottom: 0,
   minHeight: `calc(100% - ${em(146)})`,
-  width: "100%",
-  boxSizing: "border-box",
+  width: '100%',
+  boxSizing: 'border-box',
 });
 
-const EmptySpace = styled("div", {
+const EmptySpace = styled('div', {
   fontSize: rem(10),
-  "@md": {
+  '@md': {
     fontSize: rem(16),
   },
 

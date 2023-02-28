@@ -2,14 +2,7 @@
 
 import * as React from 'react';
 import { rem } from 'polished';
-import {
-  graphql,
-  navigate,
-  withPrefix,
-  Link,
-  type PageProps,
-  type HeadProps,
-} from 'gatsby';
+import { graphql, navigate, withPrefix, Link, type PageProps, type HeadProps } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
 import { vars } from '@seed-design/design-token';
@@ -84,7 +77,7 @@ const PreviousLink = styled(Link, {
   '@sm': {
     marginBottom: rem(36),
   },
-})
+});
 
 const Content = styled('article', {
   display: 'grid',
@@ -130,33 +123,26 @@ const AttachmentSection = styled('section', {
   gap: '1rem',
 });
 
-const AttachmentSectionTitle = styled('h2', {
-});
+const AttachmentSectionTitle = styled('h2', {});
 
-const FileList = styled('ul', {
-});
+const FileList = styled('ul', {});
 
-const FileListItem = styled('li', {
-});
+const FileListItem = styled('li', {});
 
-const File = styled('a', {
-});
+const File = styled('a', {});
 
 type IrPageProps = PageProps<GatsbyTypes.IrPageQuery>;
-const IrPage: React.FC<IrPageProps> = ({
-  data: prismicData,
-}) => {
+const IrPage: React.FC<IrPageProps> = ({ data: prismicData }) => {
   const ir = prismicData.prismicIr!;
-  const attachments = ir.data.attachment_group
-    ?.filter(attachment => attachment?.file?.localFile?.publicURL)
-    ?? [];
+  const attachments =
+    ir.data.attachment_group?.filter((attachment) => attachment?.file?.localFile?.publicURL) ?? [];
 
   return (
     <Container>
       <PreviousLink
         aria-label="목록으로 돌아가기"
         to="/ir/"
-        onClick={e => {
+        onClick={(e) => {
           if (window.history.state['fromList']) {
             e.preventDefault();
             navigate(-1);
@@ -167,9 +153,7 @@ const IrPage: React.FC<IrPageProps> = ({
       </PreviousLink>
       <Content>
         <ContentHeader>
-          <PageTitle>
-            {ir.data.title?.text}
-          </PageTitle>
+          <PageTitle>{ir.data.title?.text}</PageTitle>
           <Properties>
             <Property>
               <span>게시일</span>
@@ -178,39 +162,39 @@ const IrPage: React.FC<IrPageProps> = ({
           </Properties>
         </ContentHeader>
         <Body>
-          {ir.data.body.map(block => mapAbstractTypeWithDefault(block, {
-            PrismicIrDataBodyMainText: block => (
-              <MainText
-                key={block.id}
-                dangerouslySetInnerHTML={{ __html: block.primary.text?.html || '' }}
-              />
-            ),
-            PrismicIrDataBodySupplementaryText: block => (
-              <SupplementaryText
-                key={block.id}
-                dangerouslySetInnerHTML={{ __html: block.primary.text?.html || '' }}
-              />
-            ),
-            _: null,
-          }))}
+          {ir.data.body.map((block) =>
+            mapAbstractTypeWithDefault(block, {
+              PrismicIrDataBodyMainText: (block) => (
+                <MainText
+                  key={block.id}
+                  dangerouslySetInnerHTML={{ __html: block.primary.text?.html || '' }}
+                />
+              ),
+              PrismicIrDataBodySupplementaryText: (block) => (
+                <SupplementaryText
+                  key={block.id}
+                  dangerouslySetInnerHTML={{ __html: block.primary.text?.html || '' }}
+                />
+              ),
+              _: null,
+            }),
+          )}
         </Body>
         {attachments.length > 0 && (
           <AttachmentSection>
-            <AttachmentSectionTitle>
-              첨부파일 다운로드
-            </AttachmentSectionTitle>
+            <AttachmentSectionTitle>첨부파일 다운로드</AttachmentSectionTitle>
             <FileList>
-              {attachments.map((attachment, i) => {
+              {attachments.map((attachment) => {
                 const file = attachment!.file!.localFile!;
                 const href = withPrefix(file.publicURL!);
                 const base = stripUUID(decodeURIComponent(file.base));
                 return (
-                  <FileListItem key={i}>
+                  <FileListItem key={href}>
                     <File href={href} download={base}>
                       {base}
                     </File>
                   </FileListItem>
-                )
+                );
               })}
             </FileList>
           </AttachmentSection>
@@ -222,19 +206,13 @@ const IrPage: React.FC<IrPageProps> = ({
 export default IrPage;
 
 type IrPageHeadProps = HeadProps<GatsbyTypes.IrPageQuery>;
-export const Head: React.FC<IrPageHeadProps> = ({
-  data,
-}) => {
-  return (
-    <title>
-      {[
-        data.prismicIr!.data.title?.text,
-        '당근마켓 IR'
-      ].join(' | ')}
-    </title>
-  );
+export const Head: React.FC<IrPageHeadProps> = ({ data }) => {
+  return <title>{[data.prismicIr!.data.title?.text, '당근마켓 IR'].join(' | ')}</title>;
 };
 
 function stripUUID(base: string) {
-  return base.replace(/[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}_?/, '');
+  return base.replace(
+    /[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}_?/,
+    '',
+  );
 }

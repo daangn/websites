@@ -8,8 +8,8 @@ import { mapLink, useLinkParser } from '@karrotmarket/gatsby-theme-website/src/l
 import DetailLink from './DetailLink';
 
 type PrismicTeamContentsDataMainBodyTitleAndIllustrationProps = {
-  data: GatsbyTypes.PrismicTeamContentsDataMainBodyTitleAndIllustration_dataFragment,
-  className?: string,
+  data: GatsbyTypes.PrismicTeamContentsDataMainBodyTitleAndIllustration_dataFragment;
+  className?: string;
 };
 
 export const query = graphql`
@@ -43,10 +43,7 @@ const Container = styled('section', {
   width: '100%',
   display: 'grid',
   gap: rem(60),
-  gridTemplateAreas: [
-    '"title"',
-    '"illust"',
-  ].join('\n'),
+  gridTemplateAreas: ['"title"', '"illust"'].join('\n'),
 
   '@md': {
     gap: rem(40),
@@ -57,16 +54,12 @@ const Container = styled('section', {
     alignTitle: {
       left: {
         '@md': {
-          gridTemplateAreas: [
-            '"title illust"',
-          ].join('\n'),
+          gridTemplateAreas: ['"title illust"'].join('\n'),
         },
       },
       right: {
         '@md': {
-          gridTemplateAreas: [
-            '"illust title"',
-          ].join('\n'),
+          gridTemplateAreas: ['"illust title"'].join('\n'),
         },
       },
     },
@@ -105,35 +98,28 @@ const Illustration = styled(GatsbyImage, {
   gridArea: 'illust',
 });
 
-const PrismicTeamContentsDataMainBodyTitleAndIllustration: React.FC<PrismicTeamContentsDataMainBodyTitleAndIllustrationProps> = ({
-  data,
-}) => {
+const PrismicTeamContentsDataMainBodyTitleAndIllustration: React.FC<
+  PrismicTeamContentsDataMainBodyTitleAndIllustrationProps
+> = ({ data }) => {
   const parseLink = useLinkParser();
 
   if (data.primary == null) {
     return null;
   }
 
-  const image = data.primary.illustration?.localFile?.childImageSharp?.gatsbyImageData && getImage(data.primary.illustration.localFile.childImageSharp.gatsbyImageData);
+  const image =
+    data.primary.illustration?.localFile?.childImageSharp?.gatsbyImageData &&
+    getImage(data.primary.illustration.localFile.childImageSharp.gatsbyImageData);
   const link = data.primary.link?.url && parseLink(data.primary.link.url);
 
   return (
-    <Container
-      alignTitle={data.primary.inverted === true ? 'right' : 'left'}
-    >
+    <Container alignTitle={data.primary.inverted === true ? 'right' : 'left'}>
       <TitleContainer>
         <KeyText>{data.primary.key_text}</KeyText>
         <Title>{data.primary.title?.text}</Title>
-        {link && (
-          <DetailLink link={link} />
-        )}
+        {link && <DetailLink link={link} />}
       </TitleContainer>
-      {image && (
-        <Illustration
-          image={image}
-          alt={data.primary.illustration?.alt || ''}
-        />
-      )}
+      {image && <Illustration image={image} alt={data.primary.illustration?.alt || ''} />}
     </Container>
   );
 };

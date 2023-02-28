@@ -1,8 +1,5 @@
 import type { GatsbyConfig } from 'gatsby';
-import {
-  disassemble as disassembleHangul,
-  assemble as assembleHangul,
-} from 'hangul-js';
+import { disassemble as disassembleHangul, assemble as assembleHangul } from 'hangul-js';
 
 // @ts-ignore
 import { linkResolver } from '@karrotmarket/gatsby-theme-website-team/src/@karrotmarket/gatsby-theme-prismic/linkResolver';
@@ -10,9 +7,7 @@ import type { PluginOptions } from './types';
 
 const gql = String.raw;
 
-const config = ({
-  locale,
-}: PluginOptions): GatsbyConfig => ({
+const config = ({ locale }: PluginOptions): GatsbyConfig => ({
   siteMetadata: {
     locale,
   },
@@ -50,7 +45,8 @@ const config = ({
           avifOptions: {},
         },
       },
-    }, 'gatsby-plugin-image',
+    },
+    'gatsby-plugin-image',
     'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-plugin-layout',
@@ -67,12 +63,9 @@ const config = ({
           tokenize: (str: string) => {
             const index = JSON.parse(str);
             const specialCharactersRegex = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g;
-            const splitTitle = index.title
-              .replace(specialCharactersRegex, '')
-              .trim()
-              .split(/\s/);
+            const splitTitle = index.title.replace(specialCharactersRegex, '').trim().split(/\s/);
 
-            const wordSet = new Set([...splitTitle,...index.keywords]);
+            const wordSet = new Set([...splitTitle, ...index.keywords]);
             const tokens: string[] = [];
             for (const word of wordSet) {
               const syllables = disassembleHangul(word);
@@ -83,7 +76,7 @@ const config = ({
             }
 
             return tokens;
-          }
+          },
         },
         query: gql`{
           allJobPost {
@@ -97,10 +90,11 @@ const config = ({
         ref: 'id',
         index: ['title', 'keywords'],
         store: ['id', 'title', 'keywords'],
+        // rome-ignore lint/suspicious/noExplicitAny: intentional
         normalizer: ({ data }: any) => data.allJobPost.nodes,
       },
     },
-    
+
     // 커스텀 플러그인
     '@karrotmarket/gatsby-theme-website',
     {

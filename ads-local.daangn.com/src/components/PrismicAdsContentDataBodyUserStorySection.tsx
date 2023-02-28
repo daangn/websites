@@ -23,8 +23,7 @@ export const fragment = graphql`
         text
       }
 
-      goto_text
-      goto_link {
+      goto_text goto_link {
         url
       }
 
@@ -60,14 +59,11 @@ export const fragment = graphql`
 `;
 
 type Props = {
-  data: GatsbyTypes.PrismicAdsContentDataBodyUserStorySection_dataFragment,
+  data: GatsbyTypes.PrismicAdsContentDataBodyUserStorySection_dataFragment;
 };
 
 export default function PrismicAdsContentDataBodyUserStorySection({
-  data: {
-    primary,
-    items,
-  },
+  data: { primary, items },
 }: Props) {
   const parseLink = useLinkParser();
   const [slide, setSlide] = React.useState(0);
@@ -75,7 +71,12 @@ export default function PrismicAdsContentDataBodyUserStorySection({
   const validItems = React.useMemo(() => {
     const validItems: Array<typeof items[number]> = [];
     for (const item of items) {
-      if (!(item.background_image?.localFile?.childImageSharp && item.background_image.thumbnails.mobile?.localFile?.childImageSharp)) {
+      if (
+        !(
+          item.background_image?.localFile?.childImageSharp &&
+          item.background_image.thumbnails?.mobile?.localFile?.childImageSharp
+        )
+      ) {
         console.error('some slide has no image');
         continue;
       }
@@ -105,13 +106,8 @@ export default function PrismicAdsContentDataBodyUserStorySection({
   }, [slide, validItems.length]);
 
   return (
-    <Container
-      id={primary.section_id || undefined}
-      {...swipeHandlers}
-    >
-      <SrOnly>
-        {primary.section_title.text || ''}
-      </SrOnly>
+    <Container id={primary.section_id || undefined} {...swipeHandlers}>
+      <SrOnly>{primary.section_title?.text || ''}</SrOnly>
       <Camera>
         <Track
           css={{
@@ -119,8 +115,13 @@ export default function PrismicAdsContentDataBodyUserStorySection({
           }}
         >
           {validItems.map((item, i) => {
-            const image = (item.background_image?.localFile?.childImageSharp?.gatsbyImageData && getImage(item.background_image.localFile.childImageSharp.gatsbyImageData))!;
-            const mobileImage = (item.background_image?.thumbnails.mobile?.localFile?.childImageSharp?.gatsbyImageData && getImage(item.background_image.thumbnails.mobile.localFile.childImageSharp.gatsbyImageData))!;
+            const image = (item.background_image?.localFile?.childImageSharp?.gatsbyImageData &&
+              getImage(item.background_image.localFile.childImageSharp.gatsbyImageData))!;
+            const mobileImage = (item.background_image?.thumbnails?.mobile?.localFile
+              ?.childImageSharp?.gatsbyImageData &&
+              getImage(
+                item.background_image.thumbnails.mobile.localFile.childImageSharp.gatsbyImageData,
+              ))!;
 
             return (
               <UserStoryItem>
@@ -135,12 +136,8 @@ export default function PrismicAdsContentDataBodyUserStorySection({
                   alt={item.background_image?.thumbnails?.mobile?.alt || ''}
                 />
                 <UserStoryContainer>
-                  <UserStoryQuote>
-                    {item.user_story.text || ''}
-                  </UserStoryQuote>
-                  <UserStoryLink
-                    link={parseLink(item.goto_link?.url || '#')}
-                  >
+                  <UserStoryQuote>{item.user_story?.text || ''}</UserStoryQuote>
+                  <UserStoryLink link={parseLink(item.goto_link?.url || '#')}>
                     {item.goto_text || '사장님 이야기'}
                   </UserStoryLink>
                 </UserStoryContainer>
@@ -152,8 +149,9 @@ export default function PrismicAdsContentDataBodyUserStorySection({
       <Dots>
         {items.map((_, i) => (
           <Dot
-            aria-label={`carousel button index ${i + 1}`}
+            // rome-ignore lint/suspicious/noArrayIndexKey: intentional
             key={i}
+            aria-label={`carousel button index ${i + 1}`}
             active={slide === i}
             onClick={() => setSlide(i)}
           />
@@ -191,10 +189,10 @@ const Track = styled('div', {
   display: 'flex',
   alignItems: 'center',
   transition: 'transform 0.3s ease-in-out',
-  transform: `translateX(calc(-100% * $$slide))`,
+  transform: 'translateX(calc(-100% * $$slide))',
   '& > *': {
     flexShrink: 0,
-    width: "100%",
+    width: '100%',
   },
 });
 
@@ -246,7 +244,7 @@ const UserStoryItem = styled('div', {
   height: '$$minHeight',
 
   '@lg': {
-    '$$minHeight': rem(500),
+    $$minHeight: rem(500),
     alignItems: 'center',
     justifyContent: 'end',
   },

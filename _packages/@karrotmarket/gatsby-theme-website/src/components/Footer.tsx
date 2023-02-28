@@ -1,11 +1,11 @@
-import * as React from "react";
-import { rem } from "polished";
-import { graphql } from "gatsby";
-import { styled } from "gatsby-theme-stitches/src/config";
-import { vars } from "@seed-design/design-token";
+import * as React from 'react';
+import { rem } from 'polished';
+import { graphql } from 'gatsby';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { vars } from '@seed-design/design-token';
 
-import SocialServiceProfile from "./footer/SocialServiceProfile";
-import FooterEntryItem from "./footer/FooterEntryItem";
+import SocialServiceProfile from './footer/SocialServiceProfile';
+import FooterEntryItem from './footer/FooterEntryItem';
 
 type FooterProps = {
   className?: string;
@@ -34,62 +34,62 @@ export const query = graphql`
   }
 `;
 
-const Container = styled("footer", {
-  display: "grid",
+const Container = styled('footer', {
+  display: 'grid',
   paddingTop: rem(32),
   paddingBottom: rem(96),
   borderTop: `1px solid ${vars.$scale.color.gray400}`,
 
-  "@sm": {
+  '@sm': {
     paddingTop: rem(70),
   },
 });
 
-const ContentWrapper = styled("div", {
+const ContentWrapper = styled('div', {
   contentArea: true,
-  width: "100%",
-  display: "grid",
+  width: '100%',
+  display: 'grid',
   gap: rem(42),
 
-  "@sm": {
+  '@sm': {
     gap: rem(36),
   },
 });
 
-const TopContent = styled("nav", {
-  width: "100%",
-  display: "flex",
-  flexDirection: "column",
+const TopContent = styled('nav', {
+  width: '100%',
+  display: 'flex',
+  flexDirection: 'column',
 
-  "@sm": {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    maxWidth: "$maxContent",
-    marginX: "auto",
+  '@sm': {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    maxWidth: '$maxContent',
+    marginX: 'auto',
   },
 
-  "> * + *": {
+  '> * + *': {
     marginTop: rem(28),
 
-    "@sm": {
+    '@sm': {
       marginTop: 0,
     },
   },
 });
 
-const InfoWrapper = styled("div", {
-  display: "flex",
+const InfoWrapper = styled('div', {
+  display: 'flex',
   gap: rem(16),
-  flexDirection: "column",
+  flexDirection: 'column',
   color: vars.$scale.color.gray600,
-  fontSize: "$caption1",
+  fontSize: '$caption1',
 });
 
-const Contact = styled("section", {
-  display: "flex",
+const Contact = styled('section', {
+  display: 'flex',
   maxWidth: rem(600),
-  flexWrap: "wrap",
+  flexWrap: 'wrap',
   gap: `${rem(4)} ${rem(8)}`,
 
   '& a': {
@@ -97,43 +97,43 @@ const Contact = styled("section", {
   },
 });
 
-const Copyright = styled("div", {
-  fontSize: "$caption2",
+const Copyright = styled('div', {
+  fontSize: '$caption2',
 });
 
-const FooterEntryList = styled("ul", {
-  display: "flex",
-  flexDirection: "column",
+const FooterEntryList = styled('ul', {
+  display: 'flex',
+  flexDirection: 'column',
   padding: 0,
-  listStyle: "none",
+  listStyle: 'none',
 
-  "& > * + *": {
+  '& > * + *': {
     marginTop: rem(28),
-    "@sm": {
+    '@sm': {
       marginTop: 0,
       marginLeft: rem(48),
     },
   },
 
-  "@sm": {
-    flexDirection: "row",
+  '@sm': {
+    flexDirection: 'row',
   },
 });
 
-const SocialServiceProfileList = styled("ul", {
-  display: "flex",
-  flexWrap: "wrap",
+const SocialServiceProfileList = styled('ul', {
+  display: 'flex',
+  flexWrap: 'wrap',
   gap: rem(24),
   padding: 0,
-  listStyle: "none",
+  listStyle: 'none',
 });
 
-const SocialServiceProfileItem = styled("li", {
-  display: "inline-flex",
+const SocialServiceProfileItem = styled('li', {
+  display: 'inline-flex',
   width: rem(32),
   height: rem(32),
-  alignItems: "center",
-  justifyContent: "center",
+  alignItems: 'center',
+  justifyContent: 'center',
 });
 
 const Footer: React.FC<FooterProps> = ({ className, navigationData }) => {
@@ -145,16 +145,15 @@ const Footer: React.FC<FooterProps> = ({ className, navigationData }) => {
             {navigationData.footer_entries
               .filter((entry) => entry.link?.url)
               .map((entry, i) => (
-                <FooterEntryItem
-                  key={i}
-                  entry={entry}
-                />
+                // rome-ignore lint/suspicious/noArrayIndexKey: it's ok here
+                <FooterEntryItem key={i} entry={entry} />
               ))}
           </FooterEntryList>
           <SocialServiceProfileList>
             {navigationData.sns_profiles
               .filter((profile) => profile.link)
               .map((profile, i) => (
+                // rome-ignore lint/suspicious/noArrayIndexKey: it's ok here
                 <SocialServiceProfileItem key={i}>
                   <SocialServiceProfile profile={profile} />
                 </SocialServiceProfileItem>
@@ -165,9 +164,10 @@ const Footer: React.FC<FooterProps> = ({ className, navigationData }) => {
           <Contact>
             {navigationData.contact_group.map((contact, i) => (
               <div
+                // rome-ignore lint/suspicious/noArrayIndexKey: it's ok here
                 key={i}
                 dangerouslySetInnerHTML={{
-                  __html: contact.contact_info.html || '',
+                  __html: contact?.contact_info?.html || '',
                 }}
               />
             ))}

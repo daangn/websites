@@ -8,9 +8,7 @@ import type {
 import { isGreenhouseDepartmentNode, isGreenhouseJobNode } from './types';
 import * as greenhouseJobBlockParser from './greenhouseJobBlockParser';
 import * as greenhouseJobCustomFieldParser from './greenhouseJobCustomFieldParser';
-export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
-  Joi,
-}) => {
+export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({ Joi }) => {
   return Joi.object({
     defaultTags: Joi.object().pattern(Joi.string(), Joi.array().items(Joi.string())),
   });
@@ -18,11 +16,14 @@ export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
 
 type PluginOptions = {
   defaultTags?: {
-    [boardToken: string]: string[],
-  },
+    [boardToken: string]: string[];
+  };
 };
 
-export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = (ctx, options) => {
+export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = (
+  ctx,
+  options,
+) => {
   const { actions, schema } = ctx;
   const { defaultTags = {} } = options as unknown as PluginOptions;
 
@@ -138,9 +139,9 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           description: '소속',
           async resolve(source: GreenhouseJobBoardJobNode, _args, ctx) {
             const departmentIds = source.departments
-              .filter(department => !department.child_ids.length)
-              .filter(department => department.id !== 0)
-              .map(department => department.id.toString());
+              .filter((department) => !department.child_ids.length)
+              .filter((department) => department.id !== 0)
+              .map((department) => department.id.toString());
 
             const { entries } = await ctx.nodeModel.findAll({
               type: 'JobDepartment',
@@ -176,7 +177,8 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
         },
         externalUrl: {
           type: 'String',
-          description: '외부 링크 (공고가 바깥에서 열리는 경우.. 좀 컨텐츠 많으면 노션 링크 선호되는 경우 있음)',
+          description:
+            '외부 링크 (공고가 바깥에서 열리는 경우.. 좀 컨텐츠 많으면 노션 링크 선호되는 경우 있음)',
           resolve(source: GreenhouseJobBoardJobNode) {
             return fieldParser.externalUrl(source, ctx)?.toString() ?? null;
           },
@@ -185,7 +187,10 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           type: '[String!]!',
           description: '목록에서 표시할 태그',
           resolve(source: GreenhouseJobBoardJobNode) {
-            return [...defaultTags[source.boardToken] ?? [], ...fieldParser.tags(source, ctx) ?? [] ];
+            return [
+              ...(defaultTags[source.boardToken] ?? []),
+              ...(fieldParser.tags(source, ctx) ?? []),
+            ];
           },
         },
       },
@@ -288,13 +293,8 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
   `);
 };
 
-export const onCreateNode: GatsbyNode['onCreateNode'] = (ctx,options) => {
-  const {
-    node,
-    actions,
-    createNodeId,
-    createContentDigest,
-  } = ctx;
+export const onCreateNode: GatsbyNode['onCreateNode'] = (ctx, options) => {
+  const { node, actions, createNodeId, createContentDigest } = ctx;
   if (isGreenhouseJobNode(node)) {
     const jobPostNode: NodeInput = {
       ...node,
@@ -312,7 +312,6 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = (ctx,options) => {
       parent: node,
       child: jobPostNode,
     });
-
   } else if (isGreenhouseDepartmentNode(node)) {
     // Leaf node 만 다룸
     if (node.child_ids.length) {

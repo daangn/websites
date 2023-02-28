@@ -24,10 +24,8 @@ export const fragment = graphql`
 
 const intl = new Intl.NumberFormat('ko');
 
-export default function PrismicAdsContentDataBodyUsageSliderSection({
-  data,
-}: Props) {
-  const items = data.items.filter(item => item.region || item.visitor_count);
+export default function PrismicAdsContentDataBodyUsageSliderSection({ data }: Props) {
+  const items = data.items.filter((item) => item.region || item.visitor_count);
   return (
     <Container id={data.primary.section_id || undefined}>
       <Wrapper>
@@ -35,14 +33,11 @@ export default function PrismicAdsContentDataBodyUsageSliderSection({
           <span>
             <TextLoop interval={3000}>
               {items.map((item, i) => (
+                // rome-ignore lint/suspicious/noArrayIndexKey: 컨텐츠 정적이라 괜찮음
                 <React.Fragment key={i}>
-                  <Region>
-                    {item.region!}
-                  </Region>
+                  <Region>{item.region!}</Region>
                   <p>{' 근처 '}</p>
-                  <ColoredText key={i}>
-                    {`${intl.format(item.visitor_count!)}명`}
-                  </ColoredText>
+                  <ColoredText>{`${intl.format(item.visitor_count!)}명`}</ColoredText>
                 </React.Fragment>
               ))}
             </TextLoop>
@@ -57,49 +52,49 @@ export default function PrismicAdsContentDataBodyUsageSliderSection({
       </Wrapper>
     </Container>
   );
-};
+}
 
 const Container = styled('section', {
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "center",
-  alignItems: "center",
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
   height: rem(200),
   backgroundColor: vars.$semantic.color.paperDefault,
 });
 
-const Wrapper = styled("div", {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
+const Wrapper = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
 });
 
-const TextContainer = styled("div", {
-  display: "grid",
-  gridTemplateRows: "repeat(4, auto)",
-  justifyItems: "center",
-  alignItems: "center",
+const TextContainer = styled('div', {
+  display: 'grid',
+  gridTemplateRows: 'repeat(4, auto)',
+  justifyItems: 'center',
+  alignItems: 'center',
   variants: {
     end: {
       true: {
-        alignSelf: "center",
-        "@md": {
-          alignSelf: "flex-end",
+        alignSelf: 'center',
+        '@md': {
+          alignSelf: 'flex-end',
         },
       },
     },
   },
-  "@md": {
-    gridTemplateColumns: "repeat(4, auto)",
-    gridTemplateRows: "auto auto",
+  '@md': {
+    gridTemplateColumns: 'repeat(4, auto)',
+    gridTemplateRows: 'auto auto',
   },
   p: {
-    display: "inline",
-    fontWeight: "bold",
-    fontSize: "$subtitle3",
-    "@md": {
-      fontSize: "$subtitle2",
+    display: 'inline',
+    fontWeight: 'bold',
+    fontSize: '$subtitle3',
+    '@md': {
+      fontSize: '$subtitle2',
     },
     paddingBottom: rem(8),
   },
@@ -108,24 +103,24 @@ const TextContainer = styled("div", {
   },
 });
 
-const Region = styled("p", {
-  fontSize: "$subtitle3",
-  fontWeight: "bold",
+const Region = styled('p', {
+  fontSize: '$subtitle3',
+  fontWeight: 'bold',
 });
 
-const ColoredText = styled("p", {
-  fontSize: "$subtitle2",
+const ColoredText = styled('p', {
+  fontSize: '$subtitle2',
   paddingTop: rem(5),
   paddingBottom: rem(5),
   color: vars.$semantic.color.primary,
-  fontWeight: "bold",
+  fontWeight: 'bold',
 });
 
-const Caption = styled("div", {
-  fontSize: "$caption3",
+const Caption = styled('div', {
+  fontSize: '$caption3',
 
-  "@md": {
-    fontSize: "$caption2",
+  '@md': {
+    fontSize: '$caption2',
   },
-  color: "#ADB1BA",
+  color: '#ADB1BA',
 });

@@ -1,6 +1,6 @@
-import * as React from "react";
-import { em } from "polished";
-import { styled } from "gatsby-theme-stitches/src/config";
+import * as React from 'react';
+import { em } from 'polished';
+import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
 
 interface ItemProps {
@@ -19,36 +19,36 @@ const Item: React.FC<ItemProps> = ({ image, name, price }) => (
   </Wrapper>
 );
 
-const Wrapper = styled("div", {
-  width: "100%",
-  boxSizing: "border-box",
+const Wrapper = styled('div', {
+  width: '100%',
+  boxSizing: 'border-box',
   padding: em(16),
-  display: "flex",
-  alignItems: "center",
+  display: 'flex',
+  alignItems: 'center',
   borderBottom: `1px solid ${vars.$scale.color.gray200}`,
   zIndex: 1,
-  background: "white",
+  background: 'white',
 });
 
-const Container = styled("div", {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "flex-start",
+const Container = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-start',
 });
 
-const Image = styled("img", {
+const Image = styled('img', {
   width: em(50),
   height: em(50),
   borderRadius: em(4),
   marginRight: em(20),
 });
-const Name = styled("div", {
+const Name = styled('div', {
   fontSize: em(14),
   marginBottom: em(4),
 });
-const Price = styled("div", {
+const Price = styled('div', {
   fontSize: em(14),
-  fontWeight: "bold",
+  fontWeight: 'bold',
 });
 
 export default Item;

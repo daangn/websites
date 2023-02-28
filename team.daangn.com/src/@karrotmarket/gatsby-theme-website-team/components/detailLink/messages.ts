@@ -1,3 +1,3 @@
 export default {
-  'detail': '자세히 보기',
+  detail: '자세히 보기',
 };

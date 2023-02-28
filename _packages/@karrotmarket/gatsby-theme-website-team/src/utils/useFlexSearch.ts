@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 
 export const useFlexSearch = (query?: string) => {
@@ -8,22 +8,24 @@ export const useFlexSearch = (query?: string) => {
         publicIndexURL
       }
     }
-  `)
+  `);
   const [searchResult, setSearchResult] = useState<string[]>();
-  const [flexIndex,setFlexIndex] = useState()
+  const [flexIndex, setFlexIndex] = useState();
   useEffect(() => {
     if (!staticData.localSearchJobPosts.publicIndexURL) return {};
     try {
-      fetch(staticData.localSearchJobPosts.publicIndexURL).then(async res=>{
+      fetch(staticData.localSearchJobPosts.publicIndexURL).then(async (res) => {
         setFlexIndex(await res.json());
       });
     } catch (e) {
-      console.warn("flexsearch index documment parse error.", e);
+      console.warn('flexsearch index documment parse error.', e);
     }
   }, [staticData.localSearchJobPosts.publicIndexURL]);
   useEffect(() => {
     if (query) {
-      const results = flexIndex?.[0].flatMap((entities) => entities[query.toLocaleLowerCase()] || []);
+      const results = flexIndex?.[0].flatMap(
+        (entities) => entities[query.toLocaleLowerCase()] || [],
+      );
       setSearchResult(Array.from(new Set(results)));
     } else {
       setSearchResult(undefined);

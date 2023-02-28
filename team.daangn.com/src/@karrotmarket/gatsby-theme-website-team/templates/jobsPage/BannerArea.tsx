@@ -1,4 +1,3 @@
-
 import { graphql, useStaticQuery } from 'gatsby';
 import * as React from 'react';
 
@@ -64,36 +63,52 @@ const BannerArea: React.FC = () => {
     }
 `);
 
-  const banners = staticData.prismicTeamBanner?.data.body[0].items
+  const banners = staticData.prismicTeamBanner?.data.body[0].items;
 
   if (!banners?.length) {
-    return null
+    return null;
   }
 
   const validBanners = banners.filter((banner) => {
     if (!banner.link_href?.url) {
-      return false
+      return false;
     }
-    if (!(banner.image_size_360?.alt && banner.image_size_360.localFile?.childImageSharp?.gatsbyImageData)) {
-      return false
+    if (
+      !(
+        banner.image_size_360?.alt &&
+        banner.image_size_360.localFile?.childImageSharp?.gatsbyImageData
+      )
+    ) {
+      return false;
     }
-    if (!(banner.image_size_576?.alt && banner.image_size_576.localFile?.childImageSharp?.gatsbyImageData)) {
-      return false  
+    if (
+      !(
+        banner.image_size_576?.alt &&
+        banner.image_size_576.localFile?.childImageSharp?.gatsbyImageData
+      )
+    ) {
+      return false;
     }
-    if (!(banner.image_size_768?.alt && banner.image_size_768.localFile?.childImageSharp?.gatsbyImageData)) {
-      return false
+    if (
+      !(
+        banner.image_size_768?.alt &&
+        banner.image_size_768.localFile?.childImageSharp?.gatsbyImageData
+      )
+    ) {
+      return false;
     }
-    
-    return true
-  })
+
+    return true;
+  });
 
   if (!validBanners.length) {
-    return null
+    return null;
   }
 
   return (
     <Carousel>
       {validBanners.map((banner, i) => (
+        // rome-ignore lint/suspicious/noArrayIndexKey: intentional
         <Banner key={i} item={banner as GatsbyTypes.PrismicTeamBannerDataBodyBannerItem} />
       ))}
     </Carousel>

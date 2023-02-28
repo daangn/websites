@@ -6,9 +6,9 @@ import { vars } from '@seed-design/design-token';
 import SeedIcon from './SeedIcon';
 
 type SearchInputProps = {
-  query: string,
+  query: string;
   onChangeQuery: (value: string) => void;
-  placeholder: string,
+  placeholder: string;
 };
 
 const Root = styled('div', {
@@ -23,8 +23,8 @@ const Root = styled('div', {
     marginLeft: 'auto',
   },
 
-  '& > input':{
-    flex:1,
+  '& > input': {
+    flex: 1,
     alignItems: 'center',
     height: rem(52),
     background: vars.$semantic.color.paperDefault,
@@ -44,12 +44,12 @@ const Root = styled('div', {
       color: vars.$scale.color.carrot500,
     },
   },
-  '& > [data-seed-icon]':{
+  '& > [data-seed-icon]': {
     color: vars.$scale.color.gray400,
     position: 'absolute',
     left: rem(4),
   },
-  '&:focus-within > [data-seed-icon]':{
+  '&:focus-within > [data-seed-icon]': {
     color: vars.$semantic.color.primary,
   },
 });
@@ -60,23 +60,18 @@ const Icon = styled(SeedIcon, {
   boxSizing: 'border-box',
 });
 
-export default function SearchInput({
-  query,
-  onChangeQuery,
-  placeholder,
-}: SearchInputProps) {
-  const handleChange = React.useCallback<React.ChangeEventHandler<HTMLInputElement>>(e => {
-    onChangeQuery(e.currentTarget.value);
-  }, [onChangeQuery]);
+export default function SearchInput({ query, onChangeQuery, placeholder }: SearchInputProps) {
+  const handleChange = React.useCallback<React.ChangeEventHandler<HTMLInputElement>>(
+    (e) => {
+      onChangeQuery(e.currentTarget.value);
+    },
+    [onChangeQuery],
+  );
 
   return (
     <Root>
-      <input 
-        placeholder={placeholder}
-        value={query}
-        onChange={handleChange}
-      />
-        <Icon name="icon_search_regular" />
+      <input placeholder={placeholder} value={query} onChange={handleChange} />
+      <Icon name="icon_search_regular" />
     </Root>
   );
 }

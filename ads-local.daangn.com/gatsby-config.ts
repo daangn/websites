@@ -1,65 +1,65 @@
-import type { GatsbyConfig } from "gatsby";
+import type { GatsbyConfig } from 'gatsby';
 
-const siteUrl = new URL("https://ads-local.daangn.com");
+const siteUrl = new URL('https://ads-local.daangn.com');
 
-const siteMetadata: GatsbyConfig["siteMetadata"] = {
+const siteMetadata: GatsbyConfig['siteMetadata'] = {
   siteUrl: siteUrl.origin,
-  title: "당근마켓 광고",
-  description: "동네 이웃들이 모이는 당근마켓에 광고해 보세요",
+  title: '당근마켓 광고',
+  description: '동네 이웃들이 모이는 당근마켓에 광고해 보세요',
 };
 
 const config: GatsbyConfig = {
-  jsxRuntime: "automatic",
+  jsxRuntime: 'automatic',
   siteMetadata,
   plugins: [
-    "gatsby-theme-stitches",
-    "gatsby-plugin-svgr",
-    "gatsby-plugin-image",
+    'gatsby-theme-stitches',
+    'gatsby-plugin-svgr',
+    'gatsby-plugin-image',
     'gatsby-plugin-react-helmet-async',
-    "gatsby-plugin-head-seo",
-    "@karrotmarket/gatsby-theme-prismic",
-    "@karrotmarket/gatsby-theme-website",
+    'gatsby-plugin-head-seo',
+    '@karrotmarket/gatsby-theme-prismic',
+    '@karrotmarket/gatsby-theme-website',
     {
-      resolve: "gatsby-plugin-seed-design",
+      resolve: 'gatsby-plugin-seed-design',
       options: {
-        mode: "light-only",
+        mode: 'light-only',
       },
     },
     {
-      resolve: "gatsby-plugin-advanced-sitemap",
+      resolve: 'gatsby-plugin-advanced-sitemap',
       options: {
-        exclude: ["/404/", "/404.html"],
+        exclude: ['/404/', '/404.html'],
       },
     },
     {
-      resolve: "gatsby-plugin-typegen",
+      resolve: 'gatsby-plugin-typegen',
       options: {
-        outputPath: "src/__generated__/gatsby-types.d.ts",
+        outputPath: 'src/__generated__/gatsby-types.d.ts',
         emitSchema: {
-          "src/__generated__/gatsby-schema.graphql": true,
-          "src/__generated__/gatsby-introspection.json": true,
+          'src/__generated__/gatsby-schema.graphql': true,
+          'src/__generated__/gatsby-introspection.json': true,
         },
         emitPluginDocuments: {
-          "src/__generated__/gatsby-plugin-documents.graphql": true,
+          'src/__generated__/gatsby-plugin-documents.graphql': true,
         },
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `images`,
-        path: `src/image/`,
+        name: 'images',
+        path: 'src/image/',
       },
     },
     {
-      resolve: "gatsby-plugin-sharp",
+      resolve: 'gatsby-plugin-sharp',
       options: {
         defaults: {
-          formats: ["webp", "auto"],
-          placeholder: "dominantColor",
+          formats: ['webp', 'auto'],
+          placeholder: 'dominantColor',
           quality: 80,
           breakpoints: [576, 768, 992, 1200, 1400, 1920],
-          backgroundColor: "transparent",
+          backgroundColor: 'transparent',
           tracedSVGOptions: {},
           blurredOptions: {},
           jpgOptions: {},
@@ -69,58 +69,58 @@ const config: GatsbyConfig = {
         },
       },
     },
-    `gatsby-transformer-sharp`,
+    'gatsby-transformer-sharp',
     {
-      resolve: "gatsby-plugin-typegen",
+      resolve: 'gatsby-plugin-typegen',
       options: {
-        outputPath: "src/__generated__/gatsby-types.d.ts",
+        outputPath: 'src/__generated__/gatsby-types.d.ts',
         emitSchema: {
-          "src/__generated__/gatsby-schema.graphql": true,
-          "src/__generated__/gatsby-introspection.json": true,
+          'src/__generated__/gatsby-schema.graphql': true,
+          'src/__generated__/gatsby-introspection.json': true,
         },
         emitPluginDocuments: {
-          "src/__generated__/gatsby-plugin-documents.graphql": true,
+          'src/__generated__/gatsby-plugin-documents.graphql': true,
         },
       },
     },
     {
-      resolve: "gatsby-plugin-module-resolver",
+      resolve: 'gatsby-plugin-module-resolver',
       options: {
-        root: "./src",
-        aliases: { "~": "./" },
+        root: './src',
+        aliases: { '~': './' },
       },
     },
     {
-      resolve: "gatsby-plugin-google-tagmanager",
+      resolve: 'gatsby-plugin-google-tagmanager',
       options: {
-        id: "GTM-NC3HWHZ",
+        id: 'GTM-NC3HWHZ',
         includeInDevelopment: false,
-        routeChangeEventName: "gatsby-route-change",
+        routeChangeEventName: 'gatsby-route-change',
         enableWebVitalsTracking: true,
       },
     },
     {
-      resolve: "gatsby-plugin-robots-txt",
+      resolve: 'gatsby-plugin-robots-txt',
       options: {
         policy: [
           {
-            userAgent: "*",
-            allow: "/",
+            userAgent: '*',
+            allow: '/',
           },
         ],
         sitemap: `${siteMetadata.siteUrl}/sitemap.xml`,
       },
     },
     {
-      resolve: "gatsby-plugin-manifest",
+      resolve: 'gatsby-plugin-manifest',
       options: {
         name: siteMetadata.siteName,
         short_name: siteMetadata.siteName,
-        start_url: "/",
-        theme_color: "#ff7e36",
-        background_color: "#ffffff",
-        display: "minimal-ui",
-        icon: "src/image/favicon.svg",
+        start_url: '/',
+        theme_color: '#ff7e36',
+        background_color: '#ffffff',
+        display: 'minimal-ui',
+        icon: 'src/image/favicon.svg',
       },
     },
   ],

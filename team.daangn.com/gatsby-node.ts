@@ -2,9 +2,7 @@ import * as path from 'path';
 import type { GatsbyNode } from 'gatsby';
 import { createRemoteFileNode } from 'gatsby-source-filesystem';
 
-export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = ({
-  actions,
-}) => {
+export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = ({ actions }) => {
   actions.createRedirect({
     fromPath: '/jobs/faq/',
     toPath: '/faq/',
@@ -26,14 +24,14 @@ export const createPages: GatsbyNode['createPages'] = async ({
   type Data = {
     allPrismicIr: {
       nodes: Array<{
-        uid: string,
-      }>,
-    },
+        uid: string;
+      }>;
+    };
     allPrismicFinancialStatements: {
       nodes: Array<{
-        uid: string,
-      }>,
-    },
+        uid: string;
+      }>;
+    };
   };
   const { data, errors } = await graphql<Data>(gql`
     {
@@ -72,7 +70,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
   if (!data) {
     throw new Error('Failed to fetch data for team.daangn.com');
   }
-  
+
   for (const ir of data.allPrismicIr.nodes) {
     if (!ir.uid) {
       reporter.warn('Some ir in Prismic CMS have empty uid');
@@ -102,7 +100,9 @@ export const createPages: GatsbyNode['createPages'] = async ({
   }
   actions.createRedirect({
     fromPath: '/ir/finances/',
-    toPath: `/ir/finances/${data.allPrismicFinancialStatements.nodes.filter(node => node.uid)[0].uid}/`,
+    toPath: `/ir/finances/${
+      data.allPrismicFinancialStatements.nodes.filter((node) => node.uid)[0].uid
+    }/`,
     isPermanent: false,
     redirectInBrowser: true,
   });

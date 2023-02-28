@@ -8,8 +8,8 @@ import { useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
 import _DetailLink from './DetailLink';
 
 type PrismicTeamContentsDataMainBodyWideBannerProps = {
-  data: GatsbyTypes.PrismicTeamContentsDataMainBodyWideBanner_dataFragment,
-  className?: string,
+  data: GatsbyTypes.PrismicTeamContentsDataMainBodyWideBanner_dataFragment;
+  className?: string;
 };
 
 export const query = graphql`
@@ -39,8 +39,7 @@ export const query = graphql`
   }
 `;
 
-const Container = styled('section', {
-});
+const Container = styled('section', {});
 
 const BannerImage = styled(GatsbyImage, {
   width: '100%',
@@ -71,19 +70,18 @@ const DetailLink = styled(_DetailLink, {
   justifyContent: 'center',
 });
 
-const PrismicTeamContentsDataMainBodyWideBanner: React.FC<PrismicTeamContentsDataMainBodyWideBannerProps> = ({
-  data,
-  className,
-}) => {
+const PrismicTeamContentsDataMainBodyWideBanner: React.FC<
+  PrismicTeamContentsDataMainBodyWideBannerProps
+> = ({ data, className }) => {
   const parseLink = useLinkParser();
 
   if (data.primary == null) {
     return null;
   }
 
-  const thumbnailImage = data.primary.thumbnail?.localFile?.childImageSharp?.gatsbyImageData && getImage(
-    data.primary.thumbnail.localFile.childImageSharp.gatsbyImageData
-  );
+  const thumbnailImage =
+    data.primary.thumbnail?.localFile?.childImageSharp?.gatsbyImageData &&
+    getImage(data.primary.thumbnail.localFile.childImageSharp.gatsbyImageData);
 
   return (
     <Container className={className}>
@@ -102,10 +100,7 @@ const PrismicTeamContentsDataMainBodyWideBanner: React.FC<PrismicTeamContentsDat
       >
         <Title>{data.primary.title?.text}</Title>
         {data.primary.link?.url && (
-          <DetailLink
-            link={parseLink(data.primary.link.url)}
-            message={data.primary.link_text}
-          />
+          <DetailLink link={parseLink(data.primary.link.url)} message={data.primary.link_text} />
         )}
       </BannerContainer>
     </Container>

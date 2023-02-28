@@ -4,10 +4,10 @@ const locales = ['en-gb', 'en-us', 'en-ca', 'ja-jp'] as const;
 type Locale = typeof locales[number];
 
 const CURRENCY: Record<Locale, string> = {
-  "en-gb": "GBP",
-  "en-us": "USD",
-  "en-ca": "CAD",
-  "ja-jp": "JPY",
+  'en-gb': 'GBP',
+  'en-us': 'USD',
+  'en-ca': 'CAD',
+  'ja-jp': 'JPY',
 };
 
 interface Article {
@@ -22,32 +22,24 @@ interface Article {
 }
 
 type PluginOptions = {
-  locale: Locale,
-  hot_articles_api: string,
-  hot_articles_api_special_key?: string,
+  locale: Locale;
+  hot_articles_api: string;
+  hot_articles_api_special_key?: string;
 };
 
-export const pluginOptionsSchema: GatsbyNode["pluginOptionsSchema"] = ({
-  Joi,
-}) => {
+export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({ Joi }) => {
   return Joi.object({
     locale: Joi.string()
       .valid(...locales)
       .required()
-      .default("en-gb")
-      .description(`prismic locale 값`),
-    hot_articles_api: Joi.string()
-      .description(`인기매물 api`)
-      .required(),
-    hot_articles_api_special_key: Joi.string()
-      .description('Bot 차단 우회용 Secret')
-      .optional(),
+      .default('en-gb')
+      .description('prismic locale 값'),
+    hot_articles_api: Joi.string().description('인기매물 api').required(),
+    hot_articles_api_special_key: Joi.string().description('Bot 차단 우회용 Secret').optional(),
   });
 };
 
-export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] = ({
-  actions,
-}) => {
+export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({ actions }) => {
   const gql = String.raw;
   actions.createTypes(gql`
     type HotArticle implements Node {
@@ -60,26 +52,23 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
   `);
 };
 
-export const createResolvers: GatsbyNode['createResolvers'] = ({
-  createResolvers,
-}, options) => {
+export const createResolvers: GatsbyNode['createResolvers'] = ({ createResolvers }, options) => {
   const { locale } = options as unknown as PluginOptions;
   createResolvers({
     PrismicGlobalContentsDataAboutBodySubtitleAndLinksItem: {
       dateFormatted: {
         type: 'String!',
         resolve(source: { date: string }) {
-          return new Intl.DateTimeFormat(locale)
-            .format(new Date(source.date));
+          return new Intl.DateTimeFormat(locale).format(new Date(source.date));
         },
-      }
+      },
     },
-  })
+  });
 };
 
-export const sourceNodes: GatsbyNode["sourceNodes"] = async (
+export const sourceNodes: GatsbyNode['sourceNodes'] = async (
   { actions, createNodeId, createContentDigest },
-  options
+  options,
 ) => {
   // must be validated by pluginOptionsSchema
   const pluginOptions = options as unknown as PluginOptions;
@@ -93,26 +82,26 @@ export const sourceNodes: GatsbyNode["sourceNodes"] = async (
 
   const response = await fetch(hot_articles_api, {
     headers: {
-      ...hot_articles_api_special_key && {
+      ...(hot_articles_api_special_key && {
         'x-special-key': hot_articles_api_special_key,
-      },
+      }),
     },
   });
-  const data = await response.json() as { articles: Article[] };
+  const data = (await response.json()) as { articles: Article[] };
 
   data.articles.map((article) => {
     createNode({
       id: createNodeId(`HotArticle - ${article.id}`),
-      parent: `__SOURCE__`,
+      parent: '__SOURCE__',
       internal: {
-        type: `HotArticle`,
+        type: 'HotArticle',
         contentDigest: createContentDigest(article),
       },
       articleId: article.id,
       image: article.first_image.file,
       region: article.region.fullname,
       price: new Intl.NumberFormat(locale, {
-        style: "currency",
+        style: 'currency',
         currency: CURRENCY[locale],
       }).format(+article.price),
     });
@@ -121,10 +110,7 @@ export const sourceNodes: GatsbyNode["sourceNodes"] = async (
   return;
 };
 
-export const onCreatePage: GatsbyNode["onCreatePage"] = (
-  { page, actions },
-  options
-) => {
+export const onCreatePage: GatsbyNode['onCreatePage'] = ({ page, actions }, options) => {
   const { locale } = options as unknown as PluginOptions;
   const { createPage, deletePage } = actions;
   deletePage(page);

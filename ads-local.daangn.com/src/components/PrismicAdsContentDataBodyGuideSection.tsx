@@ -40,27 +40,17 @@ export const fragment = graphql`
 `;
 
 type Props = {
-  data: GatsbyTypes.PrismicAdsContentDataBodyGuideSection_dataFragment,
+  data: GatsbyTypes.PrismicAdsContentDataBodyGuideSection_dataFragment;
 };
 
-export default function PrismicAdsContentDataBodyGuideSection({
-  data: {
-    primary,
-  },
-}: Props) {
+export default function PrismicAdsContentDataBodyGuideSection({ data: { primary } }: Props) {
   const parseLink = useLinkParser();
 
   return (
-    <Container
-      id={primary.section_id || undefined}
-    >
+    <Container id={primary.section_id || undefined}>
       <ContentWrapper>
-        <Title>
-          {primary.section_title.text || ''}
-        </Title>
-        <VideoGuideLink
-          link={parseLink(primary.video_link?.url || '#')}
-        >
+        <Title>{primary.section_title.text || ''}</Title>
+        <VideoGuideLink link={parseLink(primary.video_link?.url || '#')}>
           광고 영상 가이드
         </VideoGuideLink>
       </ContentWrapper>
@@ -72,13 +62,8 @@ export default function PrismicAdsContentDataBodyGuideSection({
             target="_blank"
             rel="external noopener"
           >
-            <span>
-              {primary.faq_1_text || ''}
-            </span>
-            <SeedIcon
-              name="icon_chevron_right_regular"
-              size="1em"
-            />
+            <span>{primary.faq_1_text || ''}</span>
+            <SeedIcon name="icon_chevron_right_regular" size="1em" />
           </FaqLink>
         </FaqItem>
         <FaqItem>
@@ -88,13 +73,8 @@ export default function PrismicAdsContentDataBodyGuideSection({
             target="_blank"
             rel="external noopener"
           >
-            <span>
-              {primary.faq_2_text || ''}
-            </span>
-            <SeedIcon
-              name="icon_chevron_right_regular"
-              size="1em"
-            />
+            <span>{primary.faq_2_text || ''}</span>
+            <SeedIcon name="icon_chevron_right_regular" size="1em" />
           </FaqLink>
         </FaqItem>
         <FaqItem>
@@ -104,48 +84,44 @@ export default function PrismicAdsContentDataBodyGuideSection({
             target="_blank"
             rel="external noopener"
           >
-            <span>
-              {primary.faq_3_text || ''}
-            </span>
-            <SeedIcon
-              name="icon_chevron_right_regular"
-              size="1em"
-            />
+            <span>{primary.faq_3_text || ''}</span>
+            <SeedIcon name="icon_chevron_right_regular" size="1em" />
           </FaqLink>
         </FaqItem>
       </FaqList>
       <Helmet>
-        <script
-          type="application/ld+json"
-        >
+        <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'FAQPage',
-            'mainEntity': [
-              (primary.faq_1_text && primary.faq_1_link?.url) && {
-                '@type': 'Question',
-                'name': primary.faq_1_text,
-                'acceptedAnswer': {
-                  '@type': 'Answer',
-                  'text': `<a href="${primary.faq_1_link.url}">가이드 바로가기</a>`,
+            mainEntity: [
+              primary.faq_1_text &&
+                primary.faq_1_link?.url && {
+                  '@type': 'Question',
+                  name: primary.faq_1_text,
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: `<a href="${primary.faq_1_link.url}">가이드 바로가기</a>`,
+                  },
                 },
-              },
-              (primary.faq_2_text && primary.faq_2_link?.url) && {
-                '@type': 'Question',
-                'name': primary.faq_2_text,
-                'acceptedAnswer': {
-                  '@type': 'Answer',
-                  'text': `<a href="${primary.faq_2_link.url}">가이드 바로가기</a>`,
+              primary.faq_2_text &&
+                primary.faq_2_link?.url && {
+                  '@type': 'Question',
+                  name: primary.faq_2_text,
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: `<a href="${primary.faq_2_link.url}">가이드 바로가기</a>`,
+                  },
                 },
-              },
-              (primary.faq_3_text && primary.faq_3_link?.url) && {
-                '@type': 'Question',
-                'name': primary.faq_2_text,
-                'acceptedAnswer': {
-                  '@type': 'Answer',
-                  'text': `<a href="${primary.faq_3_link.url}">가이드 바로가기</a>`,
+              primary.faq_3_text &&
+                primary.faq_3_link?.url && {
+                  '@type': 'Question',
+                  name: primary.faq_2_text,
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: `<a href="${primary.faq_3_link.url}">가이드 바로가기</a>`,
+                  },
                 },
-              },
             ].filter(Boolean),
           })}
         </script>

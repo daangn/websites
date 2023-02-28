@@ -1,11 +1,6 @@
 import * as React from 'react';
 import { rem } from 'polished';
-import {
-  graphql,
-  Link,
-  type PageProps,
-  type HeadProps,
-} from 'gatsby';
+import { graphql, Link, type PageProps, type HeadProps } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
 import _PageTitle from '@karrotmarket/gatsby-theme-website-team/src/components/PageTitle';
@@ -124,14 +119,10 @@ const IrPublicationDate = styled('time', {
 });
 
 type IrListPageProps = PageProps<GatsbyTypes.IrListPageQuery>;
-const IrListPage: React.FC<IrListPageProps> = ({
-  data,
-}) => {
+const IrListPage: React.FC<IrListPageProps> = ({ data }) => {
   return (
     <Container>
-      <PageTitle>
-        Investor Relations
-      </PageTitle>
+      <PageTitle>Investor Relations</PageTitle>
       <SubpageNav>
         <SubpageNavList>
           <SubpageNavListItem>
@@ -148,16 +139,12 @@ const IrListPage: React.FC<IrListPageProps> = ({
       </SubpageNav>
       <Content>
         <IrList>
-          {data.allPrismicIr.nodes.map(ir => (
+          {data.allPrismicIr.nodes.map((ir) => (
             <FadeInWhenVisible key={ir.uid}>
               <IrListItem>
                 <IrLink to={`/ir/${ir.uid}/`}>
-                  <IrTitle>
-                    {ir.data.title?.text}
-                  </IrTitle>
-                  <IrPublicationDate>
-                    {ir.first_publication_date}
-                  </IrPublicationDate>
+                  <IrTitle>{ir.data.title?.text}</IrTitle>
+                  <IrPublicationDate>{ir.first_publication_date}</IrPublicationDate>
                 </IrLink>
               </IrListItem>
             </FadeInWhenVisible>
@@ -170,15 +157,11 @@ const IrListPage: React.FC<IrListPageProps> = ({
 export default IrListPage;
 
 type IrListPageHeadProps = HeadProps<GatsbyTypes.IrListPageQuery>;
-export const Head: React.FC<IrListPageHeadProps> = ({
-}) => {
+export const Head: React.FC<IrListPageHeadProps> = () => {
   return (
     <>
       <title>당근마켓 IR</title>
-      <meta
-        name="description"
-        content="당근마켓에서 제공하는 공식 투자자 정보입니다."
-      />
+      <meta name="description" content="당근마켓에서 제공하는 공식 투자자 정보입니다." />
     </>
   );
-}
+};

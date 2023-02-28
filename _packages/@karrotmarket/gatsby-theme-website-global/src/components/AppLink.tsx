@@ -1,88 +1,83 @@
-import * as React from "react";
-import { rem } from "polished";
-import { graphql } from "gatsby";
-import { styled } from "gatsby-theme-stitches/src/config";
+import * as React from 'react';
+import { rem } from 'polished';
+import { graphql } from 'gatsby';
+import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
 
-import { ReactComponent as AppStoreIcon } from "../icons/app_store.svg";
-import { ReactComponent as GooglePlayIcon } from "../icons/google_play.svg";
+import { ReactComponent as AppStoreIcon } from '../icons/app_store.svg';
+import { ReactComponent as GooglePlayIcon } from '../icons/google_play.svg';
 
 interface TLinkButton {
-  theme: "dark" | "light" | "primary" | "white";
-  width: "full" | "fit";
+  theme: 'dark' | 'light' | 'primary' | 'white';
+  width: 'full' | 'fit';
 
   href?: string;
 }
 
-const SLinkButton = styled("a", {
+const SLinkButton = styled('a', {
   height: rem(54),
   borderRadius: rem(10),
-  fontSize: "$body1",
-  display: "flex",
-  alignItems: "center",
-  transition: "background 0.3s",
-  textDecoration: "none",
+  fontSize: '$body1',
+  display: 'flex',
+  alignItems: 'center',
+  transition: 'background 0.3s',
+  textDecoration: 'none',
 
-  "&:hover": {
-    cursor: "pointer",
+  '&:hover': {
+    cursor: 'pointer',
   },
 
   variants: {
     theme: {
       dark: {
-        color: "white",
+        color: 'white',
         background: vars.$scale.color.gray900,
-        "& path": {
-          fill: "white",
+        '& path': {
+          fill: 'white',
         },
-        "&:hover": {
-          background: "black",
+        '&:hover': {
+          background: 'black',
         },
       },
       light: {
         color: vars.$scale.color.gray900,
         background: vars.$scale.color.gray100,
-        "& path": {
+        '& path': {
           fill: vars.$scale.color.gray900,
         },
-        "&:hover": {
+        '&:hover': {
           background: vars.$scale.color.gray200,
         },
       },
       primary: {
-        color: "white",
+        color: 'white',
         background: vars.$scale.color.carrot500,
-        "& path": {
-          fill: "white",
+        '& path': {
+          fill: 'white',
         },
-        "&:hover": {
+        '&:hover': {
           background: vars.$scale.color.carrot600,
         },
       },
       white: {
         color: vars.$scale.color.gray900,
-        background: "white",
+        background: 'white',
       },
     },
     width: {
       full: {
-        width: "100%",
-        justifyContent: "center",
+        width: '100%',
+        justifyContent: 'center',
       },
       fit: {
         padding: `0 ${rem(28)}`,
-        boxSizing: "border-box",
+        boxSizing: 'border-box',
       },
     },
   },
 });
 
-const LinkButton: React.FC<TLinkButton> = ({
-  href,
-  children,
-  theme,
-  width,
-}) => {
+const LinkButton: React.FC<TLinkButton> = ({ href, children, theme, width }) => {
   return (
     <SLinkButton theme={theme} width={width} href={href}>
       {children}
@@ -101,19 +96,18 @@ export const query = graphql`
 
 interface TAppLink {
   links: GatsbyTypes.AppLink_linkFragment;
-  type: "mobile" | "desktop";
-  theme: "dark" | "light" | "primary" | "white";
+  type: 'mobile' | 'desktop';
+  theme: 'dark' | 'light' | 'primary' | 'white';
   inverted?: boolean;
 }
 
 const AppLink: React.FC<TAppLink> = ({ type, theme, links, inverted }) => {
-  const { google_play_link, app_store_link, one_link, one_link_button_text } =
-    links;
+  const { google_play_link, app_store_link, one_link, one_link_button_text } = links;
 
   return (
     <>
       <Wrapper type={type} inverted={inverted}>
-        {type === "desktop" ? (
+        {type === 'desktop' ? (
           <Container>
             <LinkButton href={app_store_link} theme={theme} width="fit">
               <AppStoreIcon />
@@ -126,7 +120,7 @@ const AppLink: React.FC<TAppLink> = ({ type, theme, links, inverted }) => {
           </Container>
         ) : (
           <LinkButton href={one_link} theme="primary" width="full">
-            {one_link_button_text || "App download"}
+            {one_link_button_text || 'App download'}
           </LinkButton>
         )}
       </Wrapper>
@@ -134,45 +128,45 @@ const AppLink: React.FC<TAppLink> = ({ type, theme, links, inverted }) => {
   );
 };
 
-const Wrapper = styled("div", {
+const Wrapper = styled('div', {
   variants: {
     type: {
       desktop: {
-        display: "none",
-        "@md": {
-          display: "flex",
+        display: 'none',
+        '@md': {
+          display: 'flex',
         },
       },
       mobile: {
-        display: "flex",
-        position: "fixed",
+        display: 'flex',
+        position: 'fixed',
         bottom: 0,
-        width: "100%",
+        width: '100%',
         padding: rem(16),
-        boxSizing: "border-box",
+        boxSizing: 'border-box',
         zIndex: 1,
-        "@md": {
-          display: "none",
+        '@md': {
+          display: 'none',
         },
       },
     },
     inverted: {
       true: {
         div: {
-          flexDirection: "row-reverse",
+          flexDirection: 'row-reverse',
         },
       },
     },
   },
 });
 
-const Container = styled("div", {
-  display: "grid",
-  gridTemplateColumns: "repeat(2, max-content)",
+const Container = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(2, max-content)',
   gridColumnGap: rem(12),
 });
 
-const Text = styled("div", {
+const Text = styled('div', {
   marginLeft: rem(12),
 });
 

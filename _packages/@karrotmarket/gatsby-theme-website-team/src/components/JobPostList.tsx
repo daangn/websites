@@ -10,10 +10,10 @@ import FadeInWhenVisible from './FadeInWhenVisible';
 import EmptyPlaceholder from './jobPostList/EmptyPlaceholder';
 
 type JobPostListProps = {
-  jobPosts: GatsbyTypes.TeamWebsite_JobPostList_jobPostsFragment,
-  className?: string,
-  filterEmploymentType?: string,
-  searchResults?: string[],
+  jobPosts: GatsbyTypes.TeamWebsite_JobPostList_jobPostsFragment;
+  className?: string;
+  filterEmploymentType?: string;
+  searchResults?: string[];
 };
 
 export const query = graphql`
@@ -62,19 +62,18 @@ const JobPostList: React.FC<JobPostListProps> = ({
   jobPosts,
   className,
   filterEmploymentType = '',
-  searchResults
+  searchResults,
 }) => {
   const parseLink = useLinkParser();
 
-  const orderedJobPosts = jobPosts 
-    .sort((a, b) => b.order - a.order);
+  const orderedJobPosts = jobPosts.sort((a, b) => b.order - a.order);
 
   const filteredJobPosts = orderedJobPosts
-    .filter(jobPosts =>{
-      if(!searchResults) return true;
-      return searchResults.includes(jobPosts.id)
+    .filter((jobPosts) => {
+      if (!searchResults) return true;
+      return searchResults.includes(jobPosts.id);
     })
-    .filter(jobPost => {
+    .filter((jobPost) => {
       if (filterEmploymentType === '') return true;
       return jobPost.employmentType === filterEmploymentType;
     });
@@ -84,7 +83,7 @@ const JobPostList: React.FC<JobPostListProps> = ({
       {filteredJobPosts.length > 0 ? (
         <List>
           <AnimatePresence initial={false}>
-            {filteredJobPosts.map(jobPost => {
+            {filteredJobPosts.map((jobPost) => {
               const link = jobPost.externalUrl
                 ? parseLink(jobPost.externalUrl)
                 : parseLink(`/jobs/${jobPost.ghId}/`);
@@ -93,13 +92,14 @@ const JobPostList: React.FC<JobPostListProps> = ({
                 <FadeInWhenVisible key={jobPost.id}>
                   <JobPostListItem>
                     {mapLink(link, {
-                      Internal: link => (
+                      Internal: (link) => (
                         <JobPostLink to={link.pathname} state={{ fromList: true }}>
                           <JobPostSummary jobPost={jobPost} />
                         </JobPostLink>
                       ),
-                      External: link => (
-                        <JobPostLink as="a"
+                      External: (link) => (
+                        <JobPostLink
+                          as="a"
                           href={link.url.href}
                           target="_blank"
                           rel="external noopener"
@@ -110,7 +110,7 @@ const JobPostList: React.FC<JobPostListProps> = ({
                     })}
                   </JobPostListItem>
                 </FadeInWhenVisible>
-              )
+              );
             })}
           </AnimatePresence>
         </List>

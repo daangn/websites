@@ -18,9 +18,7 @@ const config: GatsbyConfig = {
       resolve: 'gatsby-plugin-gatsby-cloud',
       options: {
         headers: {
-          '/completed/': [
-            'Access-Control-Allow-Origin: *',
-          ],
+          '/completed/': ['Access-Control-Allow-Origin: *'],
         },
       },
     },
@@ -125,7 +123,7 @@ const config: GatsbyConfig = {
       resolve: '@karrotmarket/gatsby-transformer-job-post',
       options: {
         defaultTags: {
-          'daangntest1': ['개발 테스트'],
+          daangntest1: ['개발 테스트'],
         },
       },
     },

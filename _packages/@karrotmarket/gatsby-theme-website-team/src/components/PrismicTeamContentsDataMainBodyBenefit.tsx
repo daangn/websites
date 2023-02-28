@@ -2,11 +2,11 @@ import * as React from 'react';
 import { rem } from 'polished';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { vars } from '@seed-design/design-token'
+import { vars } from '@seed-design/design-token';
 
 type PrismicTeamContentsDataMainBodyBenefitProps = {
-  data: GatsbyTypes.PrismicTeamContentsDataMainBodyBenefit_dataFragment,
-  className?: string,
+  data: GatsbyTypes.PrismicTeamContentsDataMainBodyBenefit_dataFragment;
+  className?: string;
 };
 
 export const query = graphql`
@@ -116,30 +116,24 @@ const BenefitDetail = styled('div', {
   },
 });
 
-const PrismicTeamContentsDataMainBodyBenefit: React.FC<PrismicTeamContentsDataMainBodyBenefitProps> = ({
-  data,
-  className,
-}) => {
+const PrismicTeamContentsDataMainBodyBenefit: React.FC<
+  PrismicTeamContentsDataMainBodyBenefitProps
+> = ({ data, className }) => {
   return (
     <Container className={className}>
       <Header>
-        <Title>
-          {data.primary?.title?.text}
-        </Title>
+        <Title>{data.primary?.title?.text}</Title>
       </Header>
       <BenefitGroupList>
         {(data.items || []).map((item, i) => (
+          // rome-ignore lint/suspicious/noArrayIndexKey: intentional
           <BenefitGroup key={i}>
             <BenefitGroupTitle data-num={(i + 1).toString().padStart(2, '0')}>
               {item.subtitle}
             </BenefitGroupTitle>
             <Benefit>
-              <BenefitSummary>
-                {item.subtext}
-              </BenefitSummary>
-              <BenefitDetail
-                dangerouslySetInnerHTML={{ __html: item.description?.html || '' }}
-              />
+              <BenefitSummary>{item.subtext}</BenefitSummary>
+              <BenefitDetail dangerouslySetInnerHTML={{ __html: item.description?.html || '' }} />
             </Benefit>
           </BenefitGroup>
         ))}

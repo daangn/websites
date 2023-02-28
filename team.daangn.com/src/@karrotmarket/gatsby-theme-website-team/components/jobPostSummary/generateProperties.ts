@@ -1,13 +1,15 @@
 type JobPostLike = {
-  corporate?: string,
-  employmentType?: string,
-}
+  corporate?: string;
+  employmentType?: string;
+};
 
-export default function *generateProperties(jobPost: JobPostLike): Generator<string, void, unknown> {
+export default function* generateProperties(
+  jobPost: JobPostLike,
+): Generator<string, void, unknown> {
   if (jobPost.corporate) {
     yield {
-      'KARROT_MARKET': '당근마켓',
-      'KARROT_PAY': '당근페이',
+      KARROT_MARKET: '당근마켓',
+      KARROT_PAY: '당근페이',
     }[jobPost.corporate] || '당근마켓';
   }
 

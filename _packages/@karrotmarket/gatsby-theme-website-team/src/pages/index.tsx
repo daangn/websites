@@ -1,10 +1,6 @@
 import * as React from 'react';
 import { rem } from 'polished';
-import {
-  graphql,
-  type PageProps,
-  type HeadProps,
-} from 'gatsby';
+import { graphql, type PageProps, type HeadProps } from 'gatsby';
 import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
 import { HeadSeo } from 'gatsby-plugin-head-seo/src';
 import { styled } from 'gatsby-theme-stitches/src/config';
@@ -92,71 +88,50 @@ const Content = styled('div', {
 });
 
 type IndexPageProps = PageProps<GatsbyTypes.TeamWebsite_IndexPageQuery>;
-const IndexPage: React.FC<IndexPageProps> = ({
-  data,
-}) => {
+const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
   return (
     <main>
       <TitleContainer>
-        <PageTitle>
-          {data.prismicTeamContents.data.main_page_title?.text}
-        </PageTitle>
+        <PageTitle>{data.prismicTeamContents.data.main_page_title?.text}</PageTitle>
       </TitleContainer>
       <Content>
-        {data.prismicTeamContents.data.main_body
-          ?.filter(Boolean)
-          ?.map((data, i) => mapAbstractTypeWithDefault(data!, {
-            PrismicTeamContentsDataMainBodyKeyVisual: data => (
-              <PrismicTeamContentsDataMainBodyKeyVisual
-                key={i}
-                data={data}
-              />
+        {data.prismicTeamContents.data.main_body?.filter(Boolean)?.map((data, i) =>
+          mapAbstractTypeWithDefault(data!, {
+            PrismicTeamContentsDataMainBodyKeyVisual: (data) => (
+              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              <PrismicTeamContentsDataMainBodyKeyVisual key={i} data={data} />
             ),
-            PrismicTeamContentsDataMainBodyMemberQuoteCarousel: data => (
-              <PrismicTeamContentsDataMainBodyMemberQuoteCarousel
-                key={i}
-                data={data}
-              />
+            PrismicTeamContentsDataMainBodyMemberQuoteCarousel: (data) => (
+              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              <PrismicTeamContentsDataMainBodyMemberQuoteCarousel key={i} data={data} />
             ),
-            PrismicTeamContentsDataMainBodyTitleAndDescription: data => (
-              <PrismicTeamContentsDataMainBodyTitleAndDescription
-                key={i}
-                data={data}
-              />
+            PrismicTeamContentsDataMainBodyTitleAndDescription: (data) => (
+              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              <PrismicTeamContentsDataMainBodyTitleAndDescription key={i} data={data} />
             ),
-            PrismicTeamContentsDataMainBodyTitleAndIllustration: data => (
-              <PrismicTeamContentsDataMainBodyTitleAndIllustration
-                key={i}
-                data={data}
-              />
+            PrismicTeamContentsDataMainBodyTitleAndIllustration: (data) => (
+              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              <PrismicTeamContentsDataMainBodyTitleAndIllustration key={i} data={data} />
             ),
-            PrismicTeamContentsDataMainBodyIllustrationAndDescription: data => (
-              <PrismicTeamContentsDataMainBodyIllustrationAndDescription
-                key={i}
-                data={data}
-              />
+            PrismicTeamContentsDataMainBodyIllustrationAndDescription: (data) => (
+              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              <PrismicTeamContentsDataMainBodyIllustrationAndDescription key={i} data={data} />
             ),
-            PrismicTeamContentsDataMainBodyWideBanner: data => (
-              <PrismicTeamContentsDataMainBodyWideBanner
-                key={i}
-                data={data}
-              />
+            PrismicTeamContentsDataMainBodyWideBanner: (data) => (
+              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              <PrismicTeamContentsDataMainBodyWideBanner key={i} data={data} />
             ),
-            PrismicTeamContentsDataMainBodyHowWeWork: data => (
-              <PrismicTeamContentsDataMainBodyHowWeWork
-                key={i}
-                data={data}
-              />
+            PrismicTeamContentsDataMainBodyHowWeWork: (data) => (
+              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              <PrismicTeamContentsDataMainBodyHowWeWork key={i} data={data} />
             ),
-             PrismicTeamContentsDataMainBodyBenefit: data => (
-              <PrismicTeamContentsDataMainBodyBenefit
-                key={i}
-                data={data}
-              />
+            PrismicTeamContentsDataMainBodyBenefit: (data) => (
+              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              <PrismicTeamContentsDataMainBodyBenefit key={i} data={data} />
             ),
             _: null,
-          }))
-        }
+          }),
+        )}
       </Content>
     </main>
   );
@@ -165,35 +140,29 @@ const IndexPage: React.FC<IndexPageProps> = ({
 export default withPrismicPreview(IndexPage);
 
 type IndexPageHeadProps = HeadProps<GatsbyTypes.TeamWebsite_IndexPageQuery>;
-export const Head: React.FC<IndexPageHeadProps> = ({
-  data,
-  location,
-}) => {
+export const Head: React.FC<IndexPageHeadProps> = ({ data, location }) => {
   const metaTitle = data.prismicTeamContents.data.main_page_meta_title;
   const metaDescription = data.prismicTeamContents.data.main_page_meta_description;
-  const metaImage = data.prismicTeamContents.data.main_page_meta_image?.localFile?.childImageSharp?.fixed;
+  const metaImage =
+    data.prismicTeamContents.data.main_page_meta_image?.localFile?.childImageSharp?.fixed;
 
   return (
-    <HeadSeo
-      location={location}
-      title={metaTitle}
-      description={metaDescription}
-    >
-      {props => (
+    <HeadSeo location={location} title={metaTitle} description={metaDescription}>
+      {(props) => (
         <DefaultLayoutHead
           {...props}
           location={location}
           data={data}
-          image={metaImage && {
-            url: new URL(
-              metaImage.src,
-              metaImage.src.startsWith('http')
-                ? metaImage.src
-                : props.url,
-            ),
-            width: metaImage.width,
-            height: metaImage.height,
-          }}
+          image={
+            metaImage && {
+              url: new URL(
+                metaImage.src,
+                metaImage.src.startsWith('http') ? metaImage.src : props.url,
+              ),
+              width: metaImage.width,
+              height: metaImage.height,
+            }
+          }
         />
       )}
     </HeadSeo>

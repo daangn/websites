@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { rem } from 'polished';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { vars } from '@seed-design/design-token'
+import { vars } from '@seed-design/design-token';
 import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
 
 import ButtonLink from '../Button';
 
 type EmptyPlaceholderProps = {
-  link: string,
-  className?: string,
-  buttonVisible?: boolean,
+  link: string;
+  className?: string;
+  buttonVisible?: boolean;
 };
 
 const Container = styled('div', {
@@ -41,10 +41,7 @@ const EmptyPlaceholder: React.FC<EmptyPlaceholderProps> = ({
       <Content>
         <Text>{messages.job_post_list__empty_placeholder__no_results}</Text>
         {buttonVisible && (
-          <ButtonLink
-            to={link}
-            fullWidth={{ '@initial': true, '@sm': false }}
-          >
+          <ButtonLink to={link} fullWidth={{ '@initial': true, '@sm': false }}>
             {messages.job_post_list__empty_placeholder__back_to_list}
           </ButtonLink>
         )}

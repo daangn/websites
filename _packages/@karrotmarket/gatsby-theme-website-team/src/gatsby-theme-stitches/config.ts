@@ -14,7 +14,8 @@ const stitches = createStitches({
   },
   theme: {
     fonts: {
-      system: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"'
+      system:
+        '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"',
     },
     fontSizes: {
       heading1: rem(72),
@@ -51,22 +52,27 @@ const stitches = createStitches({
     sizes: {
       maxContent: rem(1200),
     },
-    zIndices: {
-    },
+    zIndices: {},
   },
   utils: {
     typography: (value: PropertyValue<'fontSize' | 'lineHeight'>) => ({
       fontSize: value,
       lineHeight: value,
     }),
-    gridFullColumns: (value: boolean) => value ? ({
-      gridColumnStart: 1,
-      gridColumnEnd: 'end',
-    }) : undefined,
-    gridFullRows: (value: boolean) => value ? ({
-      gridRowStart: 1,
-      gridRowEnd: 'end',
-    }) : undefined,
+    gridFullColumns: (value: boolean) =>
+      value
+        ? {
+            gridColumnStart: 1,
+            gridColumnEnd: 'end',
+          }
+        : undefined,
+    gridFullRows: (value: boolean) =>
+      value
+        ? {
+            gridRowStart: 1,
+            gridRowEnd: 'end',
+          }
+        : undefined,
     marginX: (value: Stitches.PropertyValue<'margin'>) => ({
       marginLeft: value,
       marginRight: value,
@@ -83,12 +89,15 @@ const stitches = createStitches({
       paddingTop: value,
       paddingBottom: value,
     }),
-    contentArea: (value: boolean) => value ? ({
-      boxSizing: 'border-box',
-      maxWidth: '$maxContent',
-      margin: '0 auto',
-      paddingX: rem(24),
-    }) : undefined,
+    contentArea: (value: boolean) =>
+      value
+        ? {
+            boxSizing: 'border-box',
+            maxWidth: '$maxContent',
+            margin: '0 auto',
+            paddingX: rem(24),
+          }
+        : undefined,
   },
 });
 

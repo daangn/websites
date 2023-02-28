@@ -3,11 +3,11 @@ import { rem } from 'polished';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { getImage, GatsbyImage } from 'gatsby-plugin-image';
-import { vars } from '@seed-design/design-token'
+import { vars } from '@seed-design/design-token';
 
 type CarouselItemProps = {
-  item: GatsbyTypes.TeamWebsite_CarouselItem_itemFragment,
-  className?: string,
+  item: GatsbyTypes.TeamWebsite_CarouselItem_itemFragment;
+  className?: string;
 };
 
 export const query = graphql`
@@ -43,7 +43,7 @@ const ImageContainer = styled('figure', {
 const QuoteContainer = styled('figure', {
   display: 'grid',
   gap: rem(16),
-  
+
   '@md': {
     gap: rem(24),
   },
@@ -67,13 +67,10 @@ const By = styled('figcaption', {
   },
 });
 
-const CarouselItem: React.FC<CarouselItemProps> = ({
-  item,
-  className,
-}) => {
-  const image = item.image?.localFile?.childImageSharp?.gatsbyImageData && getImage(
-    item.image.localFile.childImageSharp.gatsbyImageData
-  );
+const CarouselItem: React.FC<CarouselItemProps> = ({ item, className }) => {
+  const image =
+    item.image?.localFile?.childImageSharp?.gatsbyImageData &&
+    getImage(item.image.localFile.childImageSharp.gatsbyImageData);
 
   if (image == null || item.quote == null || item.who == null) {
     return null;

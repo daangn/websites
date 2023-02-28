@@ -2,7 +2,7 @@ import * as React from 'react';
 import { rem } from 'polished';
 import { graphql } from 'gatsby';
 import { getImage, GatsbyImage } from 'gatsby-plugin-image';
-import { styled } from "gatsby-theme-stitches/src/config";
+import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
 
 export const fragment = graphql`
@@ -29,41 +29,24 @@ export const fragment = graphql`
 `;
 
 type Props = {
-  data: GatsbyTypes.PrismicAdsContentDataBodyPreviewSection_dataFragment,
+  data: GatsbyTypes.PrismicAdsContentDataBodyPreviewSection_dataFragment;
 };
 
-export default function PrismicAdsContentDataBodyPreviewSection({
-  data: {
-    primary,
-  },
-}: Props) {
-  const previewImage = primary.image?.localFile?.childImageSharp?.gatsbyImageData && getImage(primary.image.localFile.childImageSharp.gatsbyImageData);
+export default function PrismicAdsContentDataBodyPreviewSection({ data: { primary } }: Props) {
+  const previewImage =
+    primary.image?.localFile?.childImageSharp?.gatsbyImageData &&
+    getImage(primary.image.localFile.childImageSharp.gatsbyImageData);
 
   return (
-    <Container
-      id={primary.section_id || undefined}
-      reversed={primary.reversed ?? false}
-    >
-      <Content
-        reversed={primary.reversed ?? false}
-      >
-        <TextWrapper
-          reversed={primary.reversed ?? false}
-        >
-          <Title>
-            {primary.section_title.text || ''}
-          </Title>
-          <Description>
-            {primary.section_description.text || ''}
-          </Description>
+    <Container id={primary.section_id || undefined} reversed={primary.reversed ?? false}>
+      <Content reversed={primary.reversed ?? false}>
+        <TextWrapper reversed={primary.reversed ?? false}>
+          <Title>{primary.section_title.text || ''}</Title>
+          <Description>{primary.section_description.text || ''}</Description>
         </TextWrapper>
         <Preview>
           {previewImage && (
-            <GatsbyImage
-              image={previewImage}
-              alt={primary.image.alt || ''}
-              loading="lazy"
-            />
+            <GatsbyImage image={previewImage} alt={primary.image.alt || ''} loading="lazy" />
           )}
         </Preview>
       </Content>
@@ -77,8 +60,7 @@ const Container = styled('section', {
       true: {
         background: vars.$scale.color.carrotAlpha50,
       },
-      false: {
-      },
+      false: {},
     },
   },
 });
@@ -87,10 +69,7 @@ const Content = styled('div', {
   contentArea: true,
 
   display: 'grid',
-  gridTemplate: [
-    '"text"    auto',
-    `"preview" ${rem(300)}`,
-  ].join('\n'),
+  gridTemplate: ['"text"    auto', `"preview" ${rem(300)}`].join('\n'),
   paddingTop: rem(90),
 
   '@md': {
@@ -101,18 +80,12 @@ const Content = styled('div', {
     reversed: {
       true: {
         '@md': {
-          gridTemplate: [
-            `"text preview" ${rem(680)} /`,
-            ` 1fr  1fr`,
-          ].join('\n'),
+          gridTemplate: [`"text preview" ${rem(680)} /`, ' 1fr  1fr'].join('\n'),
         },
       },
       false: {
         '@md': {
-          gridTemplate: [
-            `"preview text" ${rem(680)} /`,
-            ` 1fr     1fr`,
-          ].join('\n'),
+          gridTemplate: [`"preview text" ${rem(680)} /`, ' 1fr     1fr'].join('\n'),
         },
       },
     },

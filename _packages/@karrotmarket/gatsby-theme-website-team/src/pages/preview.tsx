@@ -1,11 +1,6 @@
 import * as React from 'react';
 import { rem } from 'polished';
-import {
-  graphql,
-  navigate,
-  type PageProps,
-  type HeadProps,
-} from 'gatsby';
+import { graphql, navigate, type PageProps, type HeadProps } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { Robots } from 'gatsby-plugin-head-seo/src';
 import type { WithPrismicPreviewResolverProps } from 'gatsby-plugin-prismic-previews';
@@ -50,14 +45,10 @@ const Description = styled('p', {
   },
 });
 
-type PreviewResolverPageProps = (
-  & PageProps<GatsbyTypes.TeamWebsite_PreviewResolverPageQuery>
-  & WithPrismicPreviewResolverProps
-);
-const PreviewResolverPage: React.FC<PreviewResolverPageProps> = ({
-  isPrismicPreview,
-}) => {
-  const [count, countUpToThree] = React.useReducer(c => (c % 4) + 1, 1);
+type PreviewResolverPageProps = PageProps<GatsbyTypes.TeamWebsite_PreviewResolverPageQuery> &
+  WithPrismicPreviewResolverProps;
+const PreviewResolverPage: React.FC<PreviewResolverPageProps> = ({ isPrismicPreview }) => {
+  const [count, countUpToThree] = React.useReducer((c) => (c % 4) + 1, 1);
   React.useEffect(() => {
     const interval = setInterval(countUpToThree, 1000);
     return () => void clearInterval(interval);

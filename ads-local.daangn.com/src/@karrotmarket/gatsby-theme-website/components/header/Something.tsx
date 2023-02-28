@@ -1,24 +1,24 @@
-import * as React from "react";
-import { rem } from "polished";
+import * as React from 'react';
+import { rem } from 'polished';
 import { graphql, useStaticQuery } from 'gatsby';
-import { styled } from "gatsby-theme-stitches/src/config";
+import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
 
 import SeedIcon from '~/components/SeedIcon';
 
-const QuestionInfo = styled("div", {
-  display: "flex",
-  alignItems: "center",
-  typography: "$body2",
-  fontWeight: "bold",
+const QuestionInfo = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  typography: '$body2',
+  fontWeight: 'bold',
 
   p: { marginLeft: 8 },
   mark: {
-    backgroundColor: "transparent",
+    backgroundColor: 'transparent',
     color: vars.$semantic.color.primary,
-    display: "none",
-    "@md": {
-      display: "inline",
+    display: 'none',
+    '@md': {
+      display: 'inline',
     },
   },
 });
@@ -73,15 +73,15 @@ const CallIcon = styled(SeedIcon, {
   },
 });
 
-const Divider  = styled('span', {
+const Divider = styled('span', {
   borderLeft: `1px solid ${vars.$semantic.color.divider3}`,
   marginLeft: rem(10),
   height: '0.8rem',
 
-  "@md": {
-    display: 'none'
-  }
-})
+  '@md': {
+    display: 'none',
+  },
+});
 
 const GotoDaangnBusinessButton = styled('a', {
   display: 'none',
@@ -131,7 +131,7 @@ const Something: React.FC = () => {
     <QuestionInfo>
       <DisplayAdsGuide
         dangerouslySetInnerHTML={{
-          __html: prismicAdsContent.data.header_guide.html || '',
+          __html: prismicAdsContent.data.header_guide?.html || '',
         }}
       />
       <Divider />
@@ -139,7 +139,7 @@ const Something: React.FC = () => {
         <CallIcon name="icon_call_fill" />
         <DisplayContact
           dangerouslySetInnerHTML={{
-            __html: prismicAdsContent.data.header_contact.html || '',
+            __html: prismicAdsContent.data.header_contact?.html || '',
           }}
         />
       </ContactWrapper>
@@ -151,7 +151,7 @@ const Something: React.FC = () => {
         광고주 센터
       </GotoDaangnBusinessButton>
     </QuestionInfo>
-  )
+  );
 };
 
 export default Something;

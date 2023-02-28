@@ -7,7 +7,7 @@ import { vars } from '@seed-design/design-token';
 import generateProperties from './jobPostSummary/generateProperties';
 
 type JobPostSummaryProps = {
-  jobPost: GatsbyTypes.TeamWebsite_JobPostSummary_jobPostFragment,
+  jobPost: GatsbyTypes.TeamWebsite_JobPostSummary_jobPostFragment;
 };
 
 export const query = graphql`
@@ -118,22 +118,18 @@ const Property = styled('div', {
   },
 });
 
-const JobPostSummary: React.FC<JobPostSummaryProps> = ({
-  jobPost,
-}) => {
+const JobPostSummary: React.FC<JobPostSummaryProps> = ({ jobPost }) => {
   return (
     <Container>
       <Title>{jobPost.title}</Title>
       <TagContainer>
-        {jobPost.tags.map(tag => (
+        {jobPost.tags.map((tag) => (
           <Tag key={tag}>{tag}</Tag>
         ))}
       </TagContainer>
       <Properties>
-        {[...generateProperties(jobPost)].map(property => (
-          <Property key={property}>
-            {property}
-          </Property>
+        {[...generateProperties(jobPost)].map((property) => (
+          <Property key={property}>{property}</Property>
         ))}
       </Properties>
     </Container>

@@ -1,11 +1,11 @@
-import * as React from "react";
-import { em } from "polished";
-import { motion } from "framer-motion";
-import { styled } from "gatsby-theme-stitches/src/config";
+import * as React from 'react';
+import { em } from 'polished';
+import { motion } from 'framer-motion';
+import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
 
-import { ReactComponent as PinIcon } from "../../../icons/pin.svg";
-import { ReactComponent as CheckIcon } from "../../../icons/check.svg";
+import { ReactComponent as PinIcon } from '../../../icons/pin.svg';
+import { ReactComponent as CheckIcon } from '../../../icons/check.svg';
 
 interface VerifyProps {
   mapImage: string;
@@ -16,7 +16,7 @@ interface VerifyProps {
 const Verify: React.FC<VerifyProps> = ({ mapImage, buttonText, location }) => {
   return (
     <Wrapper>
-      <Map
+      <MapVisual
         css={{
           backgroundImage: `url(${mapImage})`,
         }}
@@ -35,7 +35,7 @@ const Verify: React.FC<VerifyProps> = ({ mapImage, buttonText, location }) => {
             transition={{
               delay: 1.2,
               duration: 0.8,
-              type: "spring",
+              type: 'spring',
               bounce: 0.3,
             }}
           />
@@ -56,14 +56,14 @@ const Verify: React.FC<VerifyProps> = ({ mapImage, buttonText, location }) => {
             transition={{
               delay: 0.8,
               duration: 0.8,
-              type: "spring",
+              type: 'spring',
               bounce: 0.4,
             }}
           >
             <PinIcon width={em(32)} />
           </PinContainer>
         </CenterContainer>
-      </Map>
+      </MapVisual>
       <BottomSection>
         <LocationText
           initial={{ opacity: 0, y: 14 }}
@@ -91,20 +91,22 @@ const Verify: React.FC<VerifyProps> = ({ mapImage, buttonText, location }) => {
   );
 };
 
-const Wrapper = styled("div", {});
+const Wrapper = styled('div', {});
 
-const Map = styled(motion.div, {
+const MapVisual = styled(motion.div, {
   height: em(260),
-  width: "100%",
-  position: "relative",
-  backgroundSize: "cover",
+  width: '100%',
+  position: 'relative',
+  backgroundSize: 'cover',
 });
-const CenterContainer = styled("div", {
-  position: "absolute",
-  left: "50%",
-  top: "50%",
-  transform: "translate(-50%,-50%)",
+
+const CenterContainer = styled('div', {
+  position: 'absolute',
+  left: '50%',
+  top: '50%',
+  transform: 'translate(-50%,-50%)',
 });
+
 const Range = styled(motion.div, {
   background: vars.$scale.color.carrot500,
   opacity: 0.15,
@@ -112,39 +114,45 @@ const Range = styled(motion.div, {
   height: em(160),
   borderRadius: em(80),
 });
+
 const RangeBorder = styled(motion.div, {
   border: `${em(1)} solid ${vars.$scale.color.carrot500}`,
-  boxSizing: "border-box",
+  boxSizing: 'border-box',
   opacity: 0.3,
   width: em(160),
   height: em(160),
   borderRadius: em(80),
 });
+
 const PinContainer = styled(motion.div, {});
+
 const LocationText = styled(motion.div, {
   fontSize: em(15),
   marginBottom: em(30),
-  textAlign: "left",
+  textAlign: 'left',
   letterSpacing: em(-0.6),
 });
+
 const Button = styled(motion.button, {
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  background: "$carrot500",
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  background: '$carrot500',
   color: vars.$semantic.color.paperDefault,
-  width: "100%",
+  width: '100%',
   height: em(50),
   borderRadius: em(6),
-  border: "none",
+  border: 'none',
   fontSize: em(16),
-  fontWeight: "bold",
+  fontWeight: 'bold',
 });
+
 const ButtonText = styled(motion.div, {
   marginLeft: em(6),
   fontWeight: 700,
   fontSize: em(17),
 });
+
 const BottomSection = styled(motion.div, {
   padding: em(16),
 });

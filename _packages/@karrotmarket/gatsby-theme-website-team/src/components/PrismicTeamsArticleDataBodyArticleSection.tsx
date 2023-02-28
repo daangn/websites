@@ -4,11 +4,11 @@ import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { getImage, GatsbyImage } from 'gatsby-plugin-image';
 import { Condition } from '@cometjs/core';
-import { vars } from '@seed-design/design-token'
+import { vars } from '@seed-design/design-token';
 
 type PrismicTeamsArticleDataBodyArticleSectionProps = {
-  data: GatsbyTypes.PrismicTeamsArticleDataBodyArticleSection_dataFragment,
-  className?: string,
+  data: GatsbyTypes.PrismicTeamsArticleDataBodyArticleSection_dataFragment;
+  className?: string;
 };
 
 export const query = graphql`
@@ -82,10 +82,9 @@ const ThumbnailCaption = styled('figcaption', {
   color: vars.$scale.color.gray500,
 });
 
-const PrismicTeamsArticleDataBodyArticleSection: React.FC<PrismicTeamsArticleDataBodyArticleSectionProps> = ({
-  data,
-  className,
-}) => {
+const PrismicTeamsArticleDataBodyArticleSection: React.FC<
+  PrismicTeamsArticleDataBodyArticleSectionProps
+> = ({ data, className }) => {
   if (!data.primary?.title?.text) {
     return null;
   }
@@ -96,20 +95,18 @@ const PrismicTeamsArticleDataBodyArticleSection: React.FC<PrismicTeamsArticleDat
       <BodyText dangerouslySetInnerHTML={{ __html: data.primary.body_text?.html || '' }} />
       <ThumbnailContainer>
         {data.items?.filter(Condition.isTruthy).map((item, i) => {
-          const image = item.thumbnail_image?.localFile?.childImageSharp?.gatsbyImageData && getImage(item.thumbnail_image.localFile.childImageSharp.gatsbyImageData);
+          const image =
+            item.thumbnail_image?.localFile?.childImageSharp?.gatsbyImageData &&
+            getImage(item.thumbnail_image.localFile.childImageSharp.gatsbyImageData);
           if (image == null) {
-            return null
+            return null;
           }
 
           return (
+            // rome-ignore lint/suspicious/noArrayIndexKey: intentional
             <Thumbnail key={i}>
-              <ThumbnailImage
-                image={image}
-                alt={item.thumbnail_image?.alt || ''}
-              />
-              <ThumbnailCaption>
-                {item.thumbnail_description?.text || ''}
-              </ThumbnailCaption>
+              <ThumbnailImage image={image} alt={item.thumbnail_image?.alt || ''} />
+              <ThumbnailCaption>{item.thumbnail_description?.text || ''}</ThumbnailCaption>
             </Thumbnail>
           );
         })}

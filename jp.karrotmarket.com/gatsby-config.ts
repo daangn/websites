@@ -1,9 +1,10 @@
-import type { GatsbyConfig } from "gatsby";
+import type { GatsbyConfig } from 'gatsby';
 
 const siteMetadata = {
-  siteUrl: "https://jp.karrotmarket.com/",
-  title: "お住まいのまちのキャロット（Karrot）",
-  description: "お住まいのまちのフリマアプリ、Karrot(キャロット)！ご近所さんと心あたたまる取引をしませんか？",
+  siteUrl: 'https://jp.karrotmarket.com/',
+  title: 'お住まいのまちのキャロット（Karrot）',
+  description:
+    'お住まいのまちのフリマアプリ、Karrot(キャロット)！ご近所さんと心あたたまる取引をしませんか？',
 };
 
 const config: GatsbyConfig = {
@@ -14,12 +15,12 @@ const config: GatsbyConfig = {
   siteMetadata,
   plugins: [
     {
-      resolve: "gatsby-plugin-manifest",
+      resolve: 'gatsby-plugin-manifest',
       options: {
         name: siteMetadata.title,
-        start_url: "/",
-        background_color: "#FFFFFF",
-        icon: "src/assets/favicon.svg",
+        start_url: '/',
+        background_color: '#FFFFFF',
+        icon: 'src/assets/favicon.svg',
       },
     },
     {
@@ -46,14 +47,13 @@ const config: GatsbyConfig = {
       },
     },
     {
-      resolve: "@karrotmarket/gatsby-theme-website-global",
+      resolve: '@karrotmarket/gatsby-theme-website-global',
       options: {
-        locale: "ja-jp",
-        hot_articles_api:
-          "https://jp.karrotmarket.com/buy-sell.json?limit=6",
+        locale: 'ja-jp',
+        hot_articles_api: 'https://jp.karrotmarket.com/buy-sell.json?limit=6',
       },
     },
-    "@karrotmarket/gatsby-theme-prismic",
+    '@karrotmarket/gatsby-theme-prismic',
   ],
 };
 

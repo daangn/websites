@@ -1,25 +1,22 @@
-import * as React from "react";
-import { Link } from "gatsby";
-import { useLocation } from "@reach/router";
+import * as React from 'react';
+import { Link } from 'gatsby';
+import { useLocation } from '@reach/router';
 import { vars } from '@seed-design/design-token';
 
-import { styled } from "gatsby-theme-stitches/src/config";
-import {
-  mapLink,
-  useLinkParser,
-} from "@karrotmarket/gatsby-theme-website/src/link";
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { mapLink, useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
 
-const FooterEntryItemContainer = styled("li", {
-  fontSize: "$caption2",
+const FooterEntryItemContainer = styled('li', {
+  fontSize: '$caption2',
   fontWeight: 700,
 });
 
 const FooterEntryLink = styled(Link, {
   color: vars.$scale.color.gray900,
-  textDecoration: "none",
+  textDecoration: 'none',
   opacity: 1,
 
-  "&:hover": {
+  '&:hover': {
     opacity: 0.64,
   },
 
@@ -27,7 +24,7 @@ const FooterEntryLink = styled(Link, {
     active: {
       true: {
         color: vars.$scale.color.carrot500,
-        "&:hover, &:active, &:focus": {
+        '&:hover, &:active, &:focus': {
           color: vars.$scale.color.carrot600,
         },
       },
@@ -36,11 +33,8 @@ const FooterEntryLink = styled(Link, {
 });
 
 interface FooterEntryItemProps {
-  entry: Pick<
-    GatsbyTypes.PrismicSiteNavigationDataFooterEntries,
-    "display_text"
-  > & {
-    readonly link: GatsbyTypes.Maybe<Pick<GatsbyTypes.PrismicLinkType, "url">>;
+  entry: Pick<GatsbyTypes.PrismicSiteNavigationDataFooterEntries, 'display_text'> & {
+    readonly link: GatsbyTypes.Maybe<Pick<GatsbyTypes.PrismicLinkType, 'url'>>;
   };
 }
 
@@ -53,13 +47,13 @@ const FooterEntryItem: React.FC<FooterEntryItemProps> = ({ entry }) => {
       {mapLink(parseLink(entry.link!.url!), {
         Internal: (link) => (
           <FooterEntryLink
-            {...(link.pathname === "/" || link.pathname === "/about"
+            {...(link.pathname === '/' || link.pathname === '/about'
               ? {
                   to: link.pathname,
                   active: link.pathname === location.pathname,
                 }
               : {
-                  as: "a",
+                  as: 'a',
                   href: link.pathname,
                 })}
           >
@@ -67,12 +61,7 @@ const FooterEntryItem: React.FC<FooterEntryItemProps> = ({ entry }) => {
           </FooterEntryLink>
         ),
         External: (link) => (
-          <FooterEntryLink
-            as="a"
-            target="_blank"
-            rel="external noopener"
-            href={link.url.href}
-          >
+          <FooterEntryLink as="a" target="_blank" rel="external noopener" href={link.url.href}>
             {entry.display_text}
           </FooterEntryLink>
         ),

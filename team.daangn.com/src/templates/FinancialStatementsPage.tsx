@@ -1,11 +1,6 @@
 import * as React from 'react';
 import { rem } from 'polished';
-import {
-  graphql,
-  Link,
-  type PageProps,
-  type HeadProps,
-} from 'gatsby';
+import { graphql, Link, type PageProps, type HeadProps } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
 import _PageTitle from '@karrotmarket/gatsby-theme-website-team/src/components/PageTitle';
@@ -115,8 +110,7 @@ const Content = styled('div', {
   },
 });
 
-const SideNav = styled('nav', {
-});
+const SideNav = styled('nav', {});
 
 const SideNavList = styled('ul', {
   display: 'grid',
@@ -199,18 +193,15 @@ const TableColValue = styled('td', {
 });
 
 type FinancialStatementsPageProps = PageProps<GatsbyTypes.FinancialStatementsPageQuery>;
-const FinancialStatementsPage: React.FC<FinancialStatementsPageProps> = ({
-  data: prismicData,
-}) => {
+const FinancialStatementsPage: React.FC<FinancialStatementsPageProps> = ({ data: prismicData }) => {
   const current = prismicData.prismicFinancialStatements!;
-  const all = prismicData.allPrismicFinancialStatements.nodes
-    .filter(node => node.data.title?.text);
+  const all = prismicData.allPrismicFinancialStatements.nodes.filter(
+    (node) => node.data.title?.text,
+  );
 
   return (
     <Container>
-      <PageTitle>
-        Investor Relations
-      </PageTitle>
+      <PageTitle>Investor Relations</PageTitle>
       <SubpageNav>
         <SubpageNavList>
           <SubpageNavListItem>
@@ -229,9 +220,8 @@ const FinancialStatementsPage: React.FC<FinancialStatementsPageProps> = ({
         <ContentScrollTarget id="content" />
         <SideNav>
           <SideNavList>
-            {all.map(finance => (
+            {all.map((finance) => (
               <SideNavItem key={finance.uid}>
-
                 <SideNavLink
                   to={`/ir/finances/${finance.uid}/#content`}
                   selected={finance.uid === current.uid}
@@ -243,9 +233,7 @@ const FinancialStatementsPage: React.FC<FinancialStatementsPageProps> = ({
           </SideNavList>
         </SideNav>
         <Table>
-          <TableCaption style={{ display: 'none' }}>
-            {current.data?.title?.text}
-          </TableCaption>
+          <TableCaption style={{ display: 'none' }}>{current.data?.title?.text}</TableCaption>
           <thead>
             <tr>
               <TableRowHeader scope="row" position="start">
@@ -258,21 +246,15 @@ const FinancialStatementsPage: React.FC<FinancialStatementsPageProps> = ({
           </thead>
           <tbody>
             {current.data.items
-              .filter(item => item.key && item.value)
-              .map(item => (
+              .filter((item) => item.key && item.value)
+              .map((item) => (
                 <TableRow key={item.key}>
-                  <TableColHeader
-                    scope="col"
-                    summary={item.summary ?? false}
-                  >
+                  <TableColHeader scope="col" summary={item.summary ?? false}>
                     {item.key}
                   </TableColHeader>
-                  <TableColValue>
-                    {item.value}
-                  </TableColValue>
+                  <TableColValue>{item.value}</TableColValue>
                 </TableRow>
-              ))
-            }
+              ))}
           </tbody>
         </Table>
       </Content>
@@ -282,15 +264,11 @@ const FinancialStatementsPage: React.FC<FinancialStatementsPageProps> = ({
 export default FinancialStatementsPage;
 
 type FinancialStatementsPageHeadProps = HeadProps<GatsbyTypes.FinancialStatementsPageQuery>;
-export const Head: React.FC<FinancialStatementsPageHeadProps> = ({
-}) => {
+export const Head: React.FC<FinancialStatementsPageHeadProps> = () => {
   return (
     <>
       <title>당근마켓 IR</title>
-      <meta
-        name="description"
-        content="당근마켓에서 제공하는 공식 투자자 정보입니다."
-      />
+      <meta name="description" content="당근마켓에서 제공하는 공식 투자자 정보입니다." />
     </>
   );
-}
+};

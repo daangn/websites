@@ -1,3 +1,3 @@
 export default {
-  'detail': 'Details',
+  detail: 'Details',
 };

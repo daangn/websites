@@ -5,8 +5,8 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { styled } from 'gatsby-theme-stitches/src/config';
 
 type PrismicTeamContentsDataCultureBodyKeyVisualProps = {
-  data: GatsbyTypes.PrismicTeamContentsDataCultureBodyKeyVisual_dataFragment,
-  className?: string,
+  data: GatsbyTypes.PrismicTeamContentsDataCultureBodyKeyVisual_dataFragment;
+  className?: string;
 };
 
 export const query = graphql`
@@ -111,17 +111,16 @@ const Description = styled('p', {
   },
 });
 
-const PrismicTeamContentsDataCultureBodyKeyVisual: React.FC<PrismicTeamContentsDataCultureBodyKeyVisualProps> = ({
-  data,
-  className,
-}) => {
+const PrismicTeamContentsDataCultureBodyKeyVisual: React.FC<
+  PrismicTeamContentsDataCultureBodyKeyVisualProps
+> = ({ data, className }) => {
   if (data.primary == null) {
     return null;
   }
 
-  const image = data.primary.key_visual_image?.localFile?.childImageSharp?.gatsbyImageData && getImage(
-    data.primary.key_visual_image.localFile.childImageSharp.gatsbyImageData
-  );
+  const image =
+    data.primary.key_visual_image?.localFile?.childImageSharp?.gatsbyImageData &&
+    getImage(data.primary.key_visual_image.localFile.childImageSharp.gatsbyImageData);
 
   if (image == null) {
     return null;
@@ -129,11 +128,13 @@ const PrismicTeamContentsDataCultureBodyKeyVisual: React.FC<PrismicTeamContentsD
 
   // Note: 선택적으로 art-direction 적용
   // CMS 에서 portrait 추가 이미지 업로드하면 사용, landscape 이미지가 항상 우선 됨
-  const portraitImage = (
-    data.primary.key_visual_image?.thumbnails?.portrait?.localFile?.childImageSharp?.gatsbyImageData && getImage(
-      data.primary.key_visual_image.thumbnails.portrait.localFile.childImageSharp.gatsbyImageData,
-    )
-  ) ?? image;
+  const portraitImage =
+    (data.primary.key_visual_image?.thumbnails?.portrait?.localFile?.childImageSharp
+      ?.gatsbyImageData &&
+      getImage(
+        data.primary.key_visual_image.thumbnails.portrait.localFile.childImageSharp.gatsbyImageData,
+      )) ??
+    image;
 
   return (
     <Container className={className}>
@@ -146,11 +147,7 @@ const PrismicTeamContentsDataCultureBodyKeyVisual: React.FC<PrismicTeamContentsD
             },
           }}
         >
-          <Image
-            layout="landscape"
-            image={image}
-            alt={data.primary?.key_visual_image?.alt ?? ''}
-          />
+          <Image layout="landscape" image={image} alt={data.primary?.key_visual_image?.alt ?? ''} />
           <Image
             layout="portrait"
             image={portraitImage}
@@ -158,9 +155,7 @@ const PrismicTeamContentsDataCultureBodyKeyVisual: React.FC<PrismicTeamContentsD
           />
         </ImageContainer>
       )}
-      <Description>
-        {data.primary?.description?.text}
-      </Description>
+      <Description>{data.primary?.description?.text}</Description>
     </Container>
   );
 };

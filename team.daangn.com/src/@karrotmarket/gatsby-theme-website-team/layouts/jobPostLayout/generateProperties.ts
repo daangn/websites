@@ -1,10 +1,12 @@
 type JobPostLike = {
-  corporate?: string,
-  employmentType?: string,
-  priorExperience?: string,
-}
+  corporate?: string;
+  employmentType?: string;
+  priorExperience?: string;
+};
 
-export default function *generateProperties(jobPost: JobPostLike): Generator<string, void, unknown> {
+export default function* generateProperties(
+  jobPost: JobPostLike,
+): Generator<string, void, unknown> {
   if (jobPost.corporate) {
     const corporate = {
       KARROT_MARKET: '당근마켓',
@@ -14,7 +16,7 @@ export default function *generateProperties(jobPost: JobPostLike): Generator<str
       yield corporate;
     }
   }
-  
+
   if (jobPost.employmentType) {
     const employmentType = {
       FULL_TIME: '정규직',

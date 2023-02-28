@@ -8,8 +8,8 @@ import { useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
 import DetailLink from './DetailLink';
 
 type PrismicTeamContentsDataCultureBodyIllustrationAndDescriptionProps = {
-  data: GatsbyTypes.PrismicTeamContentsDataCultureBodyIllustrationAndDescription_dataFragment,
-  className?: string,
+  data: GatsbyTypes.PrismicTeamContentsDataCultureBodyIllustrationAndDescription_dataFragment;
+  className?: string;
 };
 
 export const query = graphql`
@@ -45,31 +45,23 @@ const Container = styled('section', {
   display: 'grid',
   gap: rem(40),
 
-  gridTemplateAreas: [
-    '"illustration"',
-    '"description"',
-  ].join('\n'),
+  gridTemplateAreas: ['"illustration"', '"description"'].join('\n'),
 
   variants: {
     expanded: {
-      true: {
-      },
+      true: {},
     },
     alignIllustration: {
       left: {
         '@xl': {
           gridTemplateColumns: '0.5fr 0.5fr 1fr',
-          gridTemplateAreas: [
-            '"illustration illustration description"',
-          ].join('\n'),
-        }
+          gridTemplateAreas: ['"illustration illustration description"'].join('\n'),
+        },
       },
       right: {
         '@xl': {
           gridTemplateColumns: '1fr 0.5fr 0.5fr',
-          gridTemplateAreas: [
-            '"description illustration illustration"',
-          ].join('\n'),
+          gridTemplateAreas: ['"description illustration illustration"'].join('\n'),
         },
       },
     },
@@ -122,15 +114,12 @@ const Description = styled('p', {
 
 const PrismicTeamContentsDataCultureBodyIllustrationAndDescription: React.FC<
   PrismicTeamContentsDataCultureBodyIllustrationAndDescriptionProps
-> = ({
-  data,
-  className,
-}) => {
+> = ({ data, className }) => {
   const parseLink = useLinkParser();
 
-  const image = data.primary?.illustration?.localFile?.childImageSharp?.gatsbyImageData && getImage(
-    data.primary.illustration.localFile.childImageSharp.gatsbyImageData
-  );
+  const image =
+    data.primary?.illustration?.localFile?.childImageSharp?.gatsbyImageData &&
+    getImage(data.primary.illustration.localFile.childImageSharp.gatsbyImageData);
 
   if (image == null || data.primary?.description == null) {
     return null;
@@ -143,18 +132,12 @@ const PrismicTeamContentsDataCultureBodyIllustrationAndDescription: React.FC<
       alignIllustration={data.primary?.inverted === true ? 'right' : 'left'}
     >
       <IllustrationContainer>
-        <GatsbyImage
-          image={image}
-          alt={data.primary?.illustration?.alt || ''}
-        />
+        <GatsbyImage image={image} alt={data.primary?.illustration?.alt || ''} />
       </IllustrationContainer>
       <DescriptionContainer>
         <Description>{data.primary.description.text}</Description>
         {data.primary.link?.url && (
-          <DetailLink
-            link={parseLink(data.primary.link.url)}
-            message={data.primary.link_text}
-          />
+          <DetailLink link={parseLink(data.primary.link.url)} message={data.primary.link_text} />
         )}
       </DescriptionContainer>
     </Container>

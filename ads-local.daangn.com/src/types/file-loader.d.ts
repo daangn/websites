@@ -8,7 +8,6 @@ declare module '*.jpg' {
   export default url;
 }
 
-
 declare module '*.webp' {
   const value: string;
   export default value;

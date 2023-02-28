@@ -1,11 +1,8 @@
-import * as React from "react";
-import { em, rem } from "polished";
+import * as React from 'react';
+import { em, rem } from 'polished';
 
-import {
-  styled,
-  type MediaTypeMap,
-} from "gatsby-theme-stitches/src/config";
-import { vars } from "@seed-design/design-token";
+import { styled, type MediaTypeMap } from 'gatsby-theme-stitches/src/config';
+import { vars } from '@seed-design/design-token';
 
 const BackIcon = () => (
   <svg
@@ -27,14 +24,16 @@ interface FontSize {
 }
 
 interface PhoneProps {
-  frameColor?: "orange" | "green";
+  frameColor?: 'orange' | 'green';
+  // rome-ignore lint/suspicious/noExplicitAny: will be removed soon
   header?: any;
+  // rome-ignore lint/suspicious/noExplicitAny: will be removed soon
   headerSection?: any;
   fontSize?: MediaTypeMap<FontSize>;
   height?: number;
   width?: number;
   containerWidth?: number;
-  align?: "left" | "center";
+  align?: 'left' | 'center';
   children: React.ReactNode;
 }
 
@@ -62,7 +61,7 @@ const Phone: React.FC<PhoneProps> = ({
         css={{
           height: em(height || 500),
           width: em(width || 376),
-          margin: align !== "left" ? "0 auto" : 0,
+          margin: align !== 'left' ? '0 auto' : 0,
         }}
       >
         {headerSection ? (
@@ -71,7 +70,7 @@ const Phone: React.FC<PhoneProps> = ({
           <>
             <TopSection />
             <HeaderSection>
-              <BackIcon></BackIcon>
+              <BackIcon />
               <Header>{header}</Header>
             </HeaderSection>
           </>
@@ -83,24 +82,24 @@ const Phone: React.FC<PhoneProps> = ({
   );
 };
 
-const Wrapper = styled("div", {
+const Wrapper = styled('div', {
   width: em(500),
-  overflow: "hidden",
-  "*": {
-    fontFamily: "$system",
+  overflow: 'hidden',
+  '*': {
+    fontFamily: '$system',
   },
   fontSize: rem(10),
-  "@md": {
+  '@md': {
     fontSize: rem(16),
   },
 });
 
-const PhoneFrame = styled("div", {
+const PhoneFrame = styled('div', {
   width: em(376),
-  overflow: "hidden",
+  overflow: 'hidden',
   borderRadius: `${em(54)} ${em(54)} 0 0`,
-  position: "relative",
-  background: "white",
+  position: 'relative',
+  background: 'white',
   variants: {
     frameColor: {
       green: {
@@ -113,19 +112,19 @@ const PhoneFrame = styled("div", {
   },
 });
 
-const TopSection = styled("div", {
+const TopSection = styled('div', {
   height: em(16),
   zIndex: 1,
-  width: "100%",
-  position: "relative",
+  width: '100%',
+  position: 'relative',
 });
 
-const HeaderSection = styled("div", {
+const HeaderSection = styled('div', {
   height: em(54),
   borderBottom: `${em(1)} solid ${vars.$scale.color.gray200}`,
-  position: "relative",
-  display: "flex",
-  alignItems: "center",
+  position: 'relative',
+  display: 'flex',
+  alignItems: 'center',
   padding: `0 ${em(12)}`,
   zIndex: 1,
   background: vars.$semantic.color.paperDefault,
@@ -133,19 +132,19 @@ const HeaderSection = styled("div", {
   borderTopRightRadius: em(54),
 });
 
-const Header = styled("div", {
-  position: "absolute",
-  left: "50%",
-  top: "50%",
-  transform: "translate(-50%,-50%)",
+const Header = styled('div', {
+  position: 'absolute',
+  left: '50%',
+  top: '50%',
+  transform: 'translate(-50%,-50%)',
   fontSize: em(18),
   letterSpacing: em(-0.5),
 });
 
-const Screen = styled("div", {
-  display: "flex",
+const Screen = styled('div', {
+  display: 'flex',
   flex: 1,
-  flexDirection: "column",
+  flexDirection: 'column',
 });
 
 export default Phone;

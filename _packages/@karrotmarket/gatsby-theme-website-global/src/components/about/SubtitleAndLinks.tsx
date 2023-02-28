@@ -1,7 +1,7 @@
-import * as React from "react";
-import { rem } from "polished";
-import { graphql } from "gatsby";
-import { styled } from "gatsby-theme-stitches/src/config";
+import * as React from 'react';
+import { rem } from 'polished';
+import { graphql } from 'gatsby';
+import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
 
 export const query = graphql`
@@ -26,7 +26,7 @@ type SubtitleAndLinksProps = {
 };
 
 const SubtitleAndLinks: React.FC<SubtitleAndLinksProps> = ({ content }) => {
-  if (!content.primary || !content.items) throw new Error("No data");
+  if (!(content.primary && content.items)) throw new Error('No data');
 
   const { subtitle } = content.primary;
 
@@ -45,35 +45,35 @@ const SubtitleAndLinks: React.FC<SubtitleAndLinksProps> = ({ content }) => {
   );
 };
 
-const Grid = styled("div", {
-  display: "grid",
+const Grid = styled('div', {
+  display: 'grid',
 
   gridRowGap: rem(20),
 
-  "@md": {
+  '@md': {
     gridRowGap: rem(12),
   },
 });
 
-const Section = styled("section", {});
+const Section = styled('section', {});
 
-const Title = styled("h2", {
-  fontSize: "$heading5",
-  lineHeight: "$heading5",
+const Title = styled('h2', {
+  fontSize: '$heading5',
+  lineHeight: '$heading5',
 
   marginTop: rem(72),
   marginBottom: rem(14),
 });
 
-const LinkContainer = styled("div", {
-  display: "inline",
+const LinkContainer = styled('div', {
+  display: 'inline',
   color: vars.$scale.color.gray600,
-  fontFamily: "$system",
+  fontFamily: '$system',
 });
 
-const Link = styled("a", {
+const Link = styled('a', {
   marginRight: rem(8),
-  fontFamily: "$system",
+  fontFamily: '$system',
 });
 
 export default SubtitleAndLinks;

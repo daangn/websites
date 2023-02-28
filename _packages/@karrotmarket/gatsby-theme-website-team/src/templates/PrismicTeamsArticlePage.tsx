@@ -1,10 +1,6 @@
 import * as React from 'react';
 import { rem } from 'polished';
-import {
-  graphql,
-  type PageProps,
-  type HeadProps,
-} from 'gatsby';
+import { graphql, type PageProps, type HeadProps } from 'gatsby';
 import { HeadSeo } from 'gatsby-plugin-head-seo/src';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
@@ -77,28 +73,22 @@ const Content = styled('div', {
 });
 
 type TeamsArticlePageProps = PageProps<GatsbyTypes.TeamWebsite_TeamsArticlePageQuery>;
-const TeamsArticlePage: React.FC<TeamsArticlePageProps> = ({
-  data,
-}) => {
+const TeamsArticlePage: React.FC<TeamsArticlePageProps> = ({ data }) => {
   required(data.prismicTeamsArticle?.data?.body);
 
   return (
     <Container>
-      <PageTitle>
-        {data.prismicTeamsArticle.data.page_title?.text}
-      </PageTitle>
+      <PageTitle>{data.prismicTeamsArticle.data.page_title?.text}</PageTitle>
       <Content>
-        {data.prismicTeamsArticle.data.body
-          .filter(Condition.isTruthy)
-          .map((data, i) => mapAbstractTypeWithDefault(data, {
-            PrismicTeamsArticleDataBodyArticleSection: data => (
-              <PrismicTeamsArticleDataBodyArticleSection
-                key={i}
-                data={data}
-              />
+        {data.prismicTeamsArticle.data.body.filter(Condition.isTruthy).map((data, i) =>
+          mapAbstractTypeWithDefault(data, {
+            PrismicTeamsArticleDataBodyArticleSection: (data) => (
+              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              <PrismicTeamsArticleDataBodyArticleSection key={i} data={data} />
             ),
-          _: null,
-        }))}
+            _: null,
+          }),
+        )}
       </Content>
     </Container>
   );
@@ -107,39 +97,33 @@ const TeamsArticlePage: React.FC<TeamsArticlePageProps> = ({
 export default withPrismicPreview(TeamsArticlePage);
 
 type TeamsArticlePageHeadProps = HeadProps<GatsbyTypes.TeamWebsite_TeamsArticlePageQuery>;
-export const Head: React.FC<TeamsArticlePageHeadProps> = ({
-  data,
-  location,
-}) => {
+export const Head: React.FC<TeamsArticlePageHeadProps> = ({ data, location }) => {
   required(data.prismicTeamsArticle?.data);
 
   const metaTitle = data.prismicTeamsArticle.data.page_meta_title;
   const metaDescription = data.prismicTeamsArticle.data.page_meta_description;
-  const metaImage = data.prismicTeamsArticle.data.page_meta_image?.localFile?.childImageSharp?.fixed;
+  const metaImage =
+    data.prismicTeamsArticle.data.page_meta_image?.localFile?.childImageSharp?.fixed;
 
   return (
-    <HeadSeo
-      location={location}
-      title={metaTitle}
-      description={metaDescription}
-    >
-      {props => (
+    <HeadSeo location={location} title={metaTitle} description={metaDescription}>
+      {(props) => (
         <DefaultLayoutHead
           {...props}
           location={location}
           data={data}
-          image={metaImage && {
-            url: new URL(
-              metaImage.src,
-              metaImage.src.startsWith('http')
-                ? metaImage.src
-                : props.url,
-            ),
-            width: metaImage.width,
-            height: metaImage.height,
-          }}
+          image={
+            metaImage && {
+              url: new URL(
+                metaImage.src,
+                metaImage.src.startsWith('http') ? metaImage.src : props.url,
+              ),
+              width: metaImage.width,
+              height: metaImage.height,
+            }
+          }
         />
       )}
     </HeadSeo>
   );
-}
+};

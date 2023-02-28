@@ -1,13 +1,13 @@
-import * as React from "react";
-import { em } from "polished";
-import { motion } from "framer-motion";
-import { styled } from "gatsby-theme-stitches/src/config";
+import * as React from 'react';
+import { em } from 'polished';
+import { motion } from 'framer-motion';
+import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
 
-import { messageMotionOption } from "./_config";
+import { messageMotionOption } from './_config';
 
 interface UserMessageProps {
-  userType?: "sender" | "receiver";
+  userType?: 'sender' | 'receiver';
   children: React.ReactNode;
 }
 
@@ -18,22 +18,22 @@ const UserMessage: React.FC<UserMessageProps> = ({ children, userType }) => (
 );
 
 const Wrapper = styled(motion.div, {
-  display: "flex",
+  display: 'flex',
   variants: {
     userType: {
       sender: {
-        justifyContent: "flex-end",
+        justifyContent: 'flex-end',
       },
       receiver: {
-        justifyContent: "flex-start",
+        justifyContent: 'flex-start',
       },
     },
   },
 });
 
-const Message = styled("div", {
-  display: "flex",
-  position: "relative",
+const Message = styled('div', {
+  display: 'flex',
+  position: 'relative',
   fontSize: em(18),
   padding: `${em(12)} ${em(22)}`,
   marginBottom: em(14),

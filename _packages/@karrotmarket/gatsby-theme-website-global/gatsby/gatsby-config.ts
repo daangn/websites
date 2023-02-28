@@ -1,22 +1,22 @@
-import type { GatsbyConfig } from "gatsby";
+import type { GatsbyConfig } from 'gatsby';
 
 // @ts-ignore
 import { linkResolver } from '@karrotmarket/gatsby-theme-website-global/src/@karrotmarket/gatsby-theme-prismic/linkResolver';
 
 const config: GatsbyConfig = {
   plugins: [
-    "gatsby-theme-stitches",
+    'gatsby-theme-stitches',
     'gatsby-plugin-head-seo',
-    "gatsby-plugin-svgr",
+    'gatsby-plugin-svgr',
     {
-      resolve: "gatsby-plugin-sharp",
+      resolve: 'gatsby-plugin-sharp',
       options: {
         defaults: {
-          formats: ["avif", "webp", "auto"],
-          placeholder: "dominantColor",
+          formats: ['avif', 'webp', 'auto'],
+          placeholder: 'dominantColor',
           quality: 80,
           breakpoints: [576, 768, 992, 1200, 1400, 1920],
-          backgroundColor: "transparent",
+          backgroundColor: 'transparent',
           tracedSVGOptions: {},
           blurredOptions: {},
           jpgOptions: {},
@@ -26,9 +26,9 @@ const config: GatsbyConfig = {
         },
       },
     },
-    "gatsby-plugin-image",
-    "gatsby-transformer-sharp",
-    `gatsby-plugin-preload-fonts`,
+    'gatsby-plugin-image',
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-preload-fonts',
     {
       resolve: 'gatsby-plugin-seed-design',
       options: {
@@ -36,7 +36,7 @@ const config: GatsbyConfig = {
       },
     },
 
-    "@karrotmarket/gatsby-theme-website",
+    '@karrotmarket/gatsby-theme-website',
     {
       resolve: '@karrotmarket/gatsby-theme-prismic',
       options: {

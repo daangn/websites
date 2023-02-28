@@ -3,11 +3,11 @@ import { rem } from 'polished';
 import { motion, LayoutGroup } from 'framer-motion';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { vars } from '@seed-design/design-token'
+import { vars } from '@seed-design/design-token';
 
 type PrismicTeamContentsDataCultureBodyHowWeWorkProps = {
-  data: GatsbyTypes.PrismicTeamContentsDataCultureBodyHowWeWork_dataFragment,
-  className?: string,
+  data: GatsbyTypes.PrismicTeamContentsDataCultureBodyHowWeWork_dataFragment;
+  className?: string;
 };
 
 export const query = graphql`
@@ -164,16 +164,16 @@ const EntryDescription = styled('p', {
   color: vars.$scale.color.gray700,
 });
 
-const PrismicTeamContentsDataCultureBodyHowWeWork: React.FC<PrismicTeamContentsDataCultureBodyHowWeWorkProps> = ({
-  data,
-}) => {
+const PrismicTeamContentsDataCultureBodyHowWeWork: React.FC<
+  PrismicTeamContentsDataCultureBodyHowWeWorkProps
+> = ({ data }) => {
   const [slide, setSlide] = React.useState(0);
 
   type ItemAggregation = {
     [group: string]: Array<{
-      keyText: string,
-      description: string,
-    }>,
+      keyText: string;
+      description: string;
+    }>;
   };
 
   const itemAggregation = (data.items || []).reduce((state, item) => {
@@ -186,10 +186,7 @@ const PrismicTeamContentsDataCultureBodyHowWeWork: React.FC<PrismicTeamContentsD
       description: item.description.text,
     };
 
-    void (state[item.group]
-      ? state[item.group].push(entry)
-      : state[item.group] = [entry]
-    );
+    void (state[item.group] ? state[item.group].push(entry) : (state[item.group] = [entry]));
 
     return state;
   }, {} as ItemAggregation);
@@ -197,23 +194,16 @@ const PrismicTeamContentsDataCultureBodyHowWeWork: React.FC<PrismicTeamContentsD
   return (
     <Container>
       <Header>
-        <Title>
-          {data.primary?.title?.text}
-        </Title>
+        <Title>{data.primary?.title?.text}</Title>
         <EntryGroupNav aria-hidden="true">
           <EntryGroupNavList>
             <LayoutGroup>
               {Object.entries(itemAggregation).map(([group], i) => (
                 <EntryGroupNavListItem key={group}>
-                  <EntryGroupNavButton
-                    onClick={() => setSlide(i)}
-                    active={i === slide}
-                  >
+                  <EntryGroupNavButton onClick={() => setSlide(i)} active={i === slide}>
                     {group}
                   </EntryGroupNavButton>
-                  {i === slide && (
-                    <EntryGroupNavUnderline layoutId="how-we-work-underline" />
-                  )}
+                  {i === slide && <EntryGroupNavUnderline layoutId="how-we-work-underline" />}
                 </EntryGroupNavListItem>
               ))}
             </LayoutGroup>
@@ -234,8 +224,8 @@ const PrismicTeamContentsDataCultureBodyHowWeWork: React.FC<PrismicTeamContentsD
           >
             <EntryGroupTitle>{group}</EntryGroupTitle>
             <Entries>
-              {entries.map((entry, i) => (
-                <Entry key={i}>
+              {entries.map((entry) => (
+                <Entry key={entry.keyText}>
                   <EntryTitle>{entry.keyText}</EntryTitle>
                   <EntryDescription>{entry.description}</EntryDescription>
                 </Entry>

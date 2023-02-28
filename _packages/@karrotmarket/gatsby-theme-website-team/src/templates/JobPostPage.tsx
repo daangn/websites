@@ -1,10 +1,5 @@
 import * as React from 'react';
-import {
-  graphql,
-  navigate,
-  type PageProps,
-  type HeadProps,
-} from 'gatsby';
+import { graphql, navigate, type PageProps, type HeadProps } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { HeadSeo } from 'gatsby-plugin-head-seo/src';
 import { rem } from 'polished';
@@ -77,9 +72,7 @@ const ButtonContainer = styled('div', {
 });
 
 type JobPostPageProps = PageProps<GatsbyTypes.TeamWebsite_JobPostPageQuery>;
-const JobPostPage: React.FC<JobPostPageProps> = ({
-  data,
-}) => {
+const JobPostPage: React.FC<JobPostPageProps> = ({ data }) => {
   required(data.jobPost);
 
   const parseLink = useLinkParser();
@@ -92,12 +85,12 @@ const JobPostPage: React.FC<JobPostPageProps> = ({
           <strong>{messages.job_post_page__external_post_notice}</strong>
         </ContentWrapper>
         <Button
-            variant="primary"
-            to={data.jobPost.externalUrl!}
-            fullWidth={{ '@initial': true, '@sm': false }}
-          >
-            {messages.job_post_page__external_post_link}
-          </Button>
+          variant="primary"
+          to={data.jobPost.externalUrl!}
+          fullWidth={{ '@initial': true, '@sm': false }}
+        >
+          {messages.job_post_page__external_post_link}
+        </Button>
       </Container>
     );
   }
@@ -106,6 +99,7 @@ const JobPostPage: React.FC<JobPostPageProps> = ({
     <Container>
       <ContentWrapper>
         {data.jobPost.content.map((content, i) => (
+          // rome-ignore lint/suspicious/noArrayIndexKey: it's ok here
           <JobPostContentSection key={i} content={content} />
         ))}
       </ContentWrapper>
@@ -118,10 +112,7 @@ const JobPostPage: React.FC<JobPostPageProps> = ({
           {messages.job_post_layout__tab_apply}
         </Button>
         {data.prismicTeamContents.data.enable_faq_page && (
-          <Button
-            to={`/faq/`}
-            fullWidth={{ '@initial': true, '@sm': false }}
-          >
+          <Button to={'/faq/'} fullWidth={{ '@initial': true, '@sm': false }}>
             {messages.job_post_page__faq}
           </Button>
         )}
@@ -129,7 +120,7 @@ const JobPostPage: React.FC<JobPostPageProps> = ({
       <ArrowLink
         link={parseLink('/jobs/')}
         direction="backward"
-        onClick={e => {
+        onClick={(e) => {
           if (window.history.state['fromList']) {
             e.preventDefault();
             navigate(-1);
@@ -155,43 +146,37 @@ export const Head: React.FC<JobPostPageHeadProps> = ({
 
   const messages = useTranslation();
   const corpName = lookup(jobPost.corporate, {
-    'KARROT_MARKET': messages.job_post_layout__property_karrot_market,
-    'KARROT_PAY': messages.job_post_layout__property_karrot_pay,
+    KARROT_MARKET: messages.job_post_layout__property_karrot_market,
+    KARROT_PAY: messages.job_post_layout__property_karrot_pay,
   });
 
-  const metaTitle = `${jobPost.title} | ${prismicTeamContents.data.jobs_page_meta_title || corpName}`;
+  const metaTitle = `${jobPost.title} | ${
+    prismicTeamContents.data.jobs_page_meta_title || corpName
+  }`;
   const metaDescription = prismicTeamContents.data.jobs_page_meta_description;
-  const metaImage = prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
+  const metaImage =
+    prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
 
   return (
-    <HeadSeo
-      root={false}
-      location={location}
-      title={metaTitle}
-      description={metaDescription}
-    >
-      {props => [
+    <HeadSeo root={false} location={location} title={metaTitle} description={metaDescription}>
+      {(props) => [
         <DefaultLayoutHead
           {...props}
           location={location}
           data={data}
-          image={metaImage && {
-            url: new URL(
-              metaImage.src,
-              metaImage.src.startsWith('http')
-                ? metaImage.src
-                : props.url,
-            ),
-            width: metaImage.width,
-            height: metaImage.height,
-          }}
+          image={
+            metaImage && {
+              url: new URL(
+                metaImage.src,
+                metaImage.src.startsWith('http') ? metaImage.src : props.url,
+              ),
+              width: metaImage.width,
+              height: metaImage.height,
+            }
+          }
         />,
-        <JobPostLayoutHead
-          {...props}
-          location={location}
-          data={data}
-        />,
+        <JobPostLayoutHead {...props} location={location} data={data} />,
       ]}
     </HeadSeo>
-  )
+  );
 };

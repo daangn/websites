@@ -23,14 +23,10 @@ export const fragment = graphql`
 `;
 
 type Props = {
-  data: GatsbyTypes.PrismicAdsContentDataBodyDownloadSection_dataFragment,
+  data: GatsbyTypes.PrismicAdsContentDataBodyDownloadSection_dataFragment;
 };
 
-export default function PrismicAdsContentDataBodyDownloadSection({
-  data: {
-    primary,
-  },
-}: Props) {
+export default function PrismicAdsContentDataBodyDownloadSection({ data: { primary } }: Props) {
   return (
     <Container id={primary.section_id || undefined}>
       <Content>
@@ -38,12 +34,10 @@ export default function PrismicAdsContentDataBodyDownloadSection({
           <IconDaangnApp />
         </IconContainer>
         <TextContainer>
-          <Title>
-            {primary.section_title.text || ''}
-          </Title>
+          <Title>{primary.section_title?.text || ''}</Title>
           <Body
             dangerouslySetInnerHTML={{
-              __html: primary.section_body.html || '',
+              __html: primary.section_body?.html || '',
             }}
           />
         </TextContainer>
@@ -54,7 +48,7 @@ export default function PrismicAdsContentDataBodyDownloadSection({
       </Content>
     </Container>
   );
-};
+}
 
 const Container = styled('section', {
   background: vars.$semantic.color.paperBackground,
@@ -70,8 +64,7 @@ const Content = styled('div', {
   wordBreak: 'keep-all',
 });
 
-const IconContainer = styled('div', {
-});
+const IconContainer = styled('div', {});
 
 const TextContainer = styled('div', {
   display: 'grid',
