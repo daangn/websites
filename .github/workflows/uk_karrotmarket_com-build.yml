@@ -67,3 +67,4 @@ jobs:
         with:
           dest-s3-bucket: uk.karrotmarket.com
           cloudfront-id-to-invalidate: E26ALIG2PGHS9Z
+          public-source-path: uk.karrotmarket.com/public
