@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "rome.rome",
+    "editorconfig.editorconfig",
+    "graphql.vscode-graphql"
+  ],
+  "unwantedRecommendations": []
+}

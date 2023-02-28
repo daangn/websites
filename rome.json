@@ -1,0 +1,30 @@
+{
+  "$schema": "./node_modules/rome/configuration_schema.json",
+  "formatter": {
+    "enabled": true,
+    "indentSize": 2,
+    "indentStyle": "space",
+    "lineWidth": 100
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "semicolons": "always",
+      "trailingComma": "all"
+    }
+  },
+  "files": {
+    "ignore": [
+      "**/.cache/**/*",
+      "**/public/**/*",
+      "**/dist/**/*",
+      "**/__generated__/**/*"
+    ]
+  }
+}
