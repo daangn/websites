@@ -54,6 +54,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ data }) => {
           <PostBody>
             <ContentContainer>
               <SliceZone
+                // rome-ignore lint/suspicious/noExplicitAny: intentional
                 slices={data.blogPost.body as any[]}
                 components={{
                   rich_text_section: PostBodyRichText,
