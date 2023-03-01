@@ -56,7 +56,7 @@
     "polished": "4.2.2",
     "react-intersection-observer": "9.4.3",
     "react-swipeable": "7.0.0",
-    "schema-dts": "1.1.0",
+    "schema-dts": "1.1.2",
     "text2vdom": "1.0.0",
     "use-dark-mode": "2.3.1"
   },

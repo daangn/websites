@@ -2768,7 +2768,7 @@ __metadata:
     react-dom: 18.2.0
     react-intersection-observer: 9.4.3
     react-swipeable: 7.0.0
-    schema-dts: 1.1.0
+    schema-dts: 1.1.2
     text2vdom: 1.0.0
     typescript: 4.9.5
     use-dark-mode: 2.3.1
@@ -16158,7 +16158,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"schema-dts@npm:1.1.0, schema-dts@npm:^1.1.0":
+"schema-dts@npm:1.1.2":
+  version: 1.1.2
+  resolution: "schema-dts@npm:1.1.2"
+  peerDependencies:
+    typescript: ">=4.1.0"
+  checksum: 29703363b26215174268bf205a12ea78f1d264c8e696316de36ed8be2ab23e691ccea251899ba9245d89a45af5978c8a1ee162b7a4d07db999fd3300d842b4b6
+  languageName: node
+  linkType: hard
+
+"schema-dts@npm:^1.1.0":
   version: 1.1.0
   resolution: "schema-dts@npm:1.1.0"
   peerDependencies:
