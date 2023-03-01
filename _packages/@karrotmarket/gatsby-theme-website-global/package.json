@@ -36,7 +36,7 @@
     "gatsby-source-prismic": "5.2.10",
     "gatsby-theme-stitches": "1.0.1",
     "gatsby-transformer-sharp": "5.6.0",
-    "react-intersection-observer": "9.4.1",
+    "react-intersection-observer": "9.4.3",
     "react-scroll-parallax": "3.3.2",
     "sharp": "0.31.3"
   },
