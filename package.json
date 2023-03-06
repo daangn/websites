@@ -6,6 +6,7 @@
   "workspaces": [
     "_packages/**",
     "_workers/**",
+    "www.example.com",
     "team.daangn.com",
     "careers.ca.karrotmarket.com",
     "careers.jp.karrotmarket.com",
