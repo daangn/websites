@@ -2,13 +2,12 @@ import { type GatsbyNode } from 'gatsby';
 import { createRemoteFileNode } from 'gatsby-source-filesystem';
 
 import {
-  isPrismicAboutBlogCategoryNode,
-  isPrismicAboutBlogPostNode,
-  isPrismicMemberProfile,
-  type PrismicAboutBlogPostRichTextSectionSlice,
-  type PrismicAboutBlogPostImageSectionSlice,
-  type PrismicAboutBlogPostNode,
   type PrismicMemberProfileNode,
+  type PrismicPostNode,
+  type PrismicPostRichTextSectionSlice,
+  isPrismicMemberProfile,
+  isPrismicPostCategoryNode,
+  isPrismicPostNode,
 } from './types';
 
 export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({
@@ -19,7 +18,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
 }) => {
   createTypes([
     schema.buildObjectType({
-      name: 'BlogCategory',
+      name: 'PostCategory',
       interfaces: ['Node'],
       extensions: {
         dontInfer: {},
@@ -42,12 +41,12 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       },
     }),
     schema.buildObjectType({
-      name: 'BlogPost',
+      name: 'Post',
       interfaces: ['Node'],
       extensions: {
         dontInfer: {},
         childOf: {
-          types: ['PrismicAboutBlogPost'],
+          types: ['PrismicPost'],
         },
       },
       fields: {
@@ -59,7 +58,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
         },
         title: {
           type: 'String!',
-          resolve(node: PrismicAboutBlogPostNode) {
+          resolve(node: PrismicPostNode) {
             const titleNode = node.data.title[0];
             if (!titleNode?.text) {
               throw new Error(`글 제목이 비어있습니다. prismic id: ${node.prismicId}`);
@@ -69,7 +68,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
         },
         summary: {
           type: 'String!',
-          resolve(node: PrismicAboutBlogPostNode) {
+          resolve(node: PrismicPostNode) {
             if (!node.data.summary) {
               throw new Error(`글 요약 비어있습니다. prismic id: ${node.prismicId}`);
             }
@@ -86,7 +85,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           },
         },
         category: {
-          type: 'BlogCategory!',
+          type: 'PostCategory!',
           extensions: {
             link: {
               by: 'prismicId',
@@ -96,7 +95,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
         },
         tags: {
           type: '[String!]!',
-          resolve(node: PrismicAboutBlogPostNode) {
+          resolve(node: PrismicPostNode) {
             if (!node.data.tags) {
               return [];
             }
@@ -104,13 +103,13 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           },
         },
         relatedPosts: {
-          type: '[BlogPost!]!',
+          type: '[Post!]!',
           extensions: {
             link: {
               by: 'prismicId',
             },
           },
-          resolve(node: PrismicAboutBlogPostNode) {
+          resolve(node: PrismicPostNode) {
             if (!node.data.related_posts || node.data.related_posts.length === 0) {
               return [];
             }
@@ -120,92 +119,24 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           },
         },
         body: {
-          type: '[BlogPostBodyItem!]!',
-          resolve(node: PrismicAboutBlogPostNode) {
+          type: '[PostRichTextSection!]!',
+          resolve(node: PrismicPostNode) {
             return node.data.body;
           },
         },
       },
     }),
-    schema.buildUnionType({
-      name: 'BlogPostBodyItem',
-      types: ['BlogPostRichTextSection', 'BlogPostImageSection'],
-      resolveType(parent: PrismicAboutBlogPostNode['data']['body'][number]) {
-        console.dir(parent, { depth: null });
-        switch (parent.slice_type) {
-          case 'rich_text_section':
-            return 'BlogPostRichTextSection';
-          case 'image_section':
-            return 'BlogPostImageSection';
-        }
-      },
-    }),
     schema.buildObjectType({
-      name: 'BlogPostRichTextSection',
+      name: 'PostRichTextSection',
       extensions: {
         dontInfer: {},
       },
       fields: {
         content: {
           type: 'JSON!',
-          resolve(parent: PrismicAboutBlogPostRichTextSectionSlice) {
+          resolve(parent: PrismicPostRichTextSectionSlice) {
             return parent.primary.content;
           },
-        },
-      },
-    }),
-    schema.buildObjectType({
-      name: 'BlogPostImageSection',
-      extensions: {
-        dontInfer: {},
-      },
-      fields: {
-        title: {
-          type: 'String!',
-          resolve(parent: PrismicAboutBlogPostImageSectionSlice) {
-            return parent.primary.section_title[0]?.text ?? null;
-          },
-        },
-        content: {
-          type: 'JSON',
-          resolve(parent: PrismicAboutBlogPostImageSectionSlice) {
-            return parent.primary.section_body;
-          },
-        },
-        thumbnails: {
-          type: '[BlogPostImageSectionImage!]!',
-          resolve(parent: PrismicAboutBlogPostImageSectionSlice) {
-            return parent.items.map((item) => ({
-              image: item.image.url,
-              alt: item.image.alt,
-              description: item.image_description,
-            }));
-          },
-        },
-      },
-    }),
-    schema.buildObjectType({
-      name: 'BlogPostImageSectionImage',
-      extensions: {
-        dontInfer: {},
-      },
-      fields: {
-        image: {
-          type: 'File!',
-          resolve(parent: { image: string }) {
-            return createRemoteFileNode({
-              url: parent.image,
-              createNode,
-              createNodeId,
-              cache,
-            });
-          },
-        },
-        alt: {
-          type: 'String',
-        },
-        description: {
-          type: 'JSON',
         },
       },
     }),
@@ -293,27 +224,27 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({
   createNodeId,
   createContentDigest,
 }) => {
-  if (isPrismicAboutBlogCategoryNode(node)) {
+  if (isPrismicPostCategoryNode(node)) {
     actions.createNode({
       ...node,
-      id: createNodeId(`PrismicAboutBlogCategory:${node.id} >>> BlogCategory`),
+      id: createNodeId(`PrismicPostCategory:${node.id} >>> PostCategory`),
       parent: node.id,
       children: [],
       internal: {
-        type: 'BlogCategory',
+        type: 'PostCategory',
         contentDigest: createContentDigest(node),
       },
     });
   }
 
-  if (isPrismicAboutBlogPostNode(node)) {
+  if (isPrismicPostNode(node)) {
     actions.createNode({
       ...node,
-      id: createNodeId(`PrismicAboutBlogPost:${node.id} >>> BlogPost`),
+      id: createNodeId(`PrismicPost:${node.id} >>> Post`),
       parent: node.id,
       children: [],
       internal: {
-        type: 'BlogPost',
+        type: 'Post',
         contentDigest: createContentDigest(node),
       },
     });

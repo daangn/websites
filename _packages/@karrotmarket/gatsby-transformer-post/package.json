@@ -1,5 +1,5 @@
 {
-  "name": "@karrotmarket/gatsby-transformer-blog",
+  "name": "@karrotmarket/gatsby-transformer-post",
   "version": "0.0.0",
   "private": true,
   "scripts": {
