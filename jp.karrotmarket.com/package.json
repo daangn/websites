@@ -22,7 +22,7 @@
     "@karrotmarket/gatsby-theme-prismic": "workspace:^",
     "@karrotmarket/gatsby-theme-website-global": "workspace:^",
     "@seed-design/design-token": "1.0.0",
-    "framer-motion": "10.0.1",
+    "framer-motion": "10.0.2",
     "gatsby": "5.6.1",
     "gatsby-plugin-google-tagmanager": "5.7.0",
     "gatsby-plugin-image": "3.6.0",

@@ -2662,7 +2662,7 @@ __metadata:
     "@svgr/webpack": 6.5.1
     babel-preset-gatsby-package: 3.5.0
     concurrently: 7.6.0
-    framer-motion: 10.0.1
+    framer-motion: 10.0.2
     gatsby: 5.6.1
     gatsby-plugin-head-seo: 0.3.0
     gatsby-plugin-image: 3.6.0
@@ -2717,7 +2717,7 @@ __metadata:
     clsx: 1.2.1
     concurrently: 7.6.0
     focus-trap-react: 10.0.2
-    framer-motion: 10.0.1
+    framer-motion: 10.0.2
     gatsby: 5.6.1
     gatsby-plugin-advanced-sitemap: 2.1.0
     gatsby-plugin-gatsby-cloud: 5.6.0
@@ -9108,9 +9108,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:10.0.1":
-  version: 10.0.1
-  resolution: "framer-motion@npm:10.0.1"
+"framer-motion@npm:10.0.2":
+  version: 10.0.2
+  resolution: "framer-motion@npm:10.0.2"
   dependencies:
     "@emotion/is-prop-valid": ^0.8.2
     tslib: ^2.4.0
@@ -9120,7 +9120,7 @@ __metadata:
   dependenciesMeta:
     "@emotion/is-prop-valid":
       optional: true
-  checksum: 37081c26f949b8e3e86ad6268ed44661c64b20de3da118677375f8e77f3b04a762085d467d328cb8866e5667e03ad2397be18b9c29a1aeca4be223c8971fe826
+  checksum: f22ba943a4b51538201dc36b68df883e1d1375dbf2f4dd068fd44c627b5c32fac70b657e04d905336f14d0dda9f6fd5323c1e59ac590be4b3d8e5555d9a5964a
   languageName: node
   linkType: hard
 
@@ -12156,7 +12156,7 @@ __metadata:
     "@karrotmarket/gatsby-theme-website-global": "workspace:^"
     "@seed-design/design-token": 1.0.0
     babel-plugin-polished: 1.1.0
-    framer-motion: 10.0.1
+    framer-motion: 10.0.2
     gatsby: 5.6.1
     gatsby-plugin-google-tagmanager: 5.7.0
     gatsby-plugin-image: 3.6.0
