@@ -61,8 +61,8 @@
     "use-dark-mode": "2.3.1"
   },
   "devDependencies": {
-    "@babel/cli": "7.20.7",
-    "@babel/core": "7.20.12",
+    "@babel/cli": "7.21.0",
+    "@babel/core": "7.21.0",
     "@prismicio/helpers": "2.3.9",
     "@seed-design/icon": "0.1.8",
     "@types/node": "18.14.6",
