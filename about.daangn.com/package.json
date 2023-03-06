@@ -1,0 +1,23 @@
+{
+  "name": "about.daangn.com",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "develop": "gatsby develop",
+    "build": "gatsby build  --prefix-paths",
+    "clean": "gatsby clean",
+    "serve": "gatsby serve"
+  },
+  "browserslist": [
+    "defaults",
+    "not ie 11"
+  ],
+  "dependencies": {
+    "gatsby": "5.6.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "typescript": "4.9.5"
+  }
+}

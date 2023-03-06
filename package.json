@@ -14,7 +14,8 @@
     "ca.karrotmarket.com",
     "us.karrotmarket.com",
     "jp.karrotmarket.com",
-    "ads-local.daangn.com"
+    "ads-local.daangn.com",
+    "about.daangn.com"
   ],
   "resolutions": {
     "graphql": "15.8.0",
