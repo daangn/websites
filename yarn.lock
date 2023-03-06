@@ -1644,7 +1644,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@daangn/websites@workspace:."
   dependencies:
-    "@types/node": 18.14.2
+    "@types/node": 18.14.6
     rome: 11.0.0
     typescript: 4.9.5
     ultra-runner: 3.10.5
@@ -2649,7 +2649,7 @@ __metadata:
     "@babel/cli": 7.20.7
     "@babel/core": 7.20.12
     "@prismicio/helpers": 2.3.9
-    "@types/node": 18.14.2
+    "@types/node": 18.14.6
     "@types/react": 18.0.28
     "@types/react-dom": 18.0.11
     babel-preset-gatsby-package: 3.5.0
@@ -2732,7 +2732,7 @@ __metadata:
     "@seed-design/icon": 0.1.8
     "@stitches/react": 1.2.8
     "@svgr/webpack": 6.5.1
-    "@types/node": 18.14.2
+    "@types/node": 18.14.6
     "@types/react": 18.0.28
     "@types/react-dom": 18.0.11
     babel-plugin-polished: 1.1.0
@@ -2789,7 +2789,7 @@ __metadata:
     "@seed-design/design-token": 1.0.0
     "@stitches/react": 1.2.8
     "@svgr/webpack": 6.5.1
-    "@types/node": 18.14.2
+    "@types/node": 18.14.6
     "@types/react": 18.0.28
     "@types/react-dom": 18.0.11
     babel-preset-gatsby-package: 3.5.0
@@ -2839,7 +2839,7 @@ __metadata:
     "@karrotmarket/gatsby-source-greenhouse-jobboard": 0.9.0
     "@types/common-tags": 1.8.1
     "@types/jest": 29.4.0
-    "@types/node": 18.14.2
+    "@types/node": 18.14.6
     babel-jest: 29.4.3
     babel-preset-gatsby-package: 3.5.0
     cjk-slug: 0.3.1
@@ -4502,10 +4502,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:18.14.2":
-  version: 18.14.2
-  resolution: "@types/node@npm:18.14.2"
-  checksum: 53c07e721f6ae33de71306f6a0b75dae6066a4f55bd5484c93bd59ff25f0c5f004ceafeef509a4d0cb9e24a247efc34d50489bcc1b05a53ecc68e2fc088e65cb
+"@types/node@npm:18.14.6":
+  version: 18.14.6
+  resolution: "@types/node@npm:18.14.6"
+  checksum: 2f88f482cabadc6dbddd627a1674239e68c3c9beab56eb4ae2309fb96fd17fc3a509d99b0309bafe13b58529574f49ecf3a583f2ebe2896dd32fe4be436dc96e
   languageName: node
   linkType: hard
 
@@ -6276,7 +6276,7 @@ __metadata:
     "@karrotmarket/gatsby-theme-website-team": "*"
     "@karrotmarket/gatsby-transformer-job-post": "*"
     "@types/dotenv-safe": 8.1.2
-    "@types/node": 18.14.2
+    "@types/node": 18.14.6
     "@types/react": 18.0.28
     "@types/react-dom": 18.0.11
     dotenv: 16.0.3
@@ -6306,7 +6306,7 @@ __metadata:
     "@karrotmarket/gatsby-theme-website-team": "workspace:^"
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^"
     "@types/dotenv-safe": 8.1.2
-    "@types/node": 18.14.2
+    "@types/node": 18.14.6
     "@types/react": 18.0.28
     "@types/react-dom": 18.0.11
     dotenv: 16.0.3
@@ -17275,7 +17275,7 @@ __metadata:
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^"
     "@seed-design/design-token": alpha
     "@types/dotenv-safe": 8.1.2
-    "@types/node": 18.14.2
+    "@types/node": 18.14.6
     "@types/react": 18.0.28
     "@types/react-dom": 18.0.11
     babel-preset-gatsby-package: 3.5.0
