@@ -2763,6 +2763,7 @@ __metadata:
     "@babel/cli": 7.21.0
     "@babel/core": 7.21.0
     "@cometjs/core": 2.2.0
+    "@cometjs/react-utils": 2.1.2
     "@seed-design/design-token": 1.0.0
     "@stitches/react": 1.2.8
     "@svgr/webpack": 6.5.1
