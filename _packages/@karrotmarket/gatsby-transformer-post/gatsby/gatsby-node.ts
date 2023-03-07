@@ -1,3 +1,4 @@
+import slugify from 'cjk-slug';
 import { type GatsbyNode } from 'gatsby';
 import { createRemoteFileNode } from 'gatsby-source-filesystem';
 
@@ -55,6 +56,39 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
         },
         uid: {
           type: 'String!',
+        },
+        slug: {
+          type: 'String!',
+          resolve(node: PrismicPostNode) {
+            return node.uid && slugify(node.uid);
+          },
+        },
+        publishedAt: {
+          type: 'Date!',
+          resolve(node: PrismicPostNode) {
+            if (!node.data.published_at) {
+              throw new Error(
+                `Post 의 published_at 필드 값이 비어있습니다. prismicId: ${node.prismicId}`,
+              );
+            }
+            return node.data.published_at;
+          },
+        },
+        thumbnailImage: {
+          type: 'File!',
+          resolve(node: PrismicPostNode) {
+            if (!node.data.thumbnail_image.url) {
+              throw new Error(
+                `Post 의 thumbnail_image 필드 값이 비어있습니다. prismicId: ${node.prismicId}`,
+              );
+            }
+            return createRemoteFileNode({
+              url: node.data.thumbnail_image.url,
+              createNode,
+              createNodeId,
+              cache,
+            });
+          },
         },
         title: {
           type: 'String!',
@@ -135,7 +169,31 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
         content: {
           type: 'JSON!',
           resolve(parent: PrismicPostRichTextSectionSlice) {
-            return parent.primary.content;
+            return parent;
+          },
+        },
+        id: {
+          type: 'String!',
+          resolve(parent: PrismicPostRichTextSectionSlice) {
+            return parent.id;
+          },
+        },
+        sliceType: {
+          type: 'String!',
+          resolve(parent: PrismicPostRichTextSectionSlice) {
+            return parent.slice_type;
+          },
+        },
+        items: {
+          type: '[JSON!]!',
+          resolve(parent: PrismicPostRichTextSectionSlice) {
+            return parent.items;
+          },
+        },
+        primary: {
+          type: 'JSON!',
+          resolve(parent: PrismicPostRichTextSectionSlice) {
+            return parent.primary;
           },
         },
       },
