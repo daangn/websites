@@ -1,5 +1,6 @@
 import {
   type ContentRelationshipField,
+  type DateField,
   type GroupField,
   type ImageField,
   type KeyTextField,
@@ -33,6 +34,7 @@ export type PrismicPostNode = PrismicSourceNode &
     {
       title: TitleField;
       summary: KeyTextField;
+      published_at: DateField;
       thumbnail_image: ImageField;
       author: ContentRelationshipField<'team_member'>;
       category: ContentRelationshipField<'post_category'>;
@@ -49,6 +51,10 @@ export type PrismicPostRichTextSectionSlice = Slice<
   'rich_text_section',
   {
     content: RichTextField;
+    id: string;
+    slice_type: string;
+    primary: RichTextField;
+    items: RichTextField;
   }
 >;
 
