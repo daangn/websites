@@ -61,8 +61,8 @@ const InnerSelect = styled(Field.Input, {
   },
   '& option': {
     background: vars.$semantic.color.paperDefault,
-    color: vars.$semantic.color.inkText
-  }
+    color: vars.$semantic.color.inkText,
+  },
 });
 
 const SingleSelectField: React.FC<Props> = ({
