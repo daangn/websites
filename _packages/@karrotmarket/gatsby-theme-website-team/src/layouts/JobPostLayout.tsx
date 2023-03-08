@@ -5,9 +5,9 @@ import { graphql, navigate, Link, type PageProps } from 'gatsby';
 import { HeadSeo } from 'gatsby-plugin-head-seo/src';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { required, type OverrideProps } from '@cometjs/core';
-import SeedIcon from '@karrotmarket/gatsby-theme-website/src/components/SeedIcon';
-import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
 import { vars } from '@seed-design/design-token';
+import SeedIcon from '@karrotmarket/gatsby-theme-seed-design/src/Icon';
+import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
 
 import logoPath from '../assets/logo.png';
 import _PageTitle from '../components/PageTitle';

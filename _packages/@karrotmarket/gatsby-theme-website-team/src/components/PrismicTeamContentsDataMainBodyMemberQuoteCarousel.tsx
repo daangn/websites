@@ -4,7 +4,7 @@ import { rem } from 'polished';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
-import SeedIcon from '@karrotmarket/gatsby-theme-website/src/components/SeedIcon';
+import SeedIcon from '@karrotmarket/gatsby-theme-seed-design/src/Icon';
 
 import CarouselItem from './prismicTeamContentsDataMainBodyMemberQuoteCarousel/CarouselItem';
 import _ArrowButton from './prismicTeamContentsDataMainBodyMemberQuoteCarousel/ArrowButton';

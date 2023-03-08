@@ -20,7 +20,7 @@ const config: GatsbyConfig = {
     '@karrotmarket/gatsby-theme-prismic',
     '@karrotmarket/gatsby-theme-website',
     {
-      resolve: 'gatsby-plugin-seed-design',
+      resolve: '@karrotmarket/gatsby-theme-seed-design',
       options: {
         mode: 'light-only',
       },

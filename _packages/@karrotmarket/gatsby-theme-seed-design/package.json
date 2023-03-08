@@ -1,5 +1,5 @@
 {
-  "name": "@karrotmarket/gatsby-theme-seed-icon",
+  "name": "@karrotmarket/gatsby-theme-seed-design",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -12,6 +12,9 @@
     "gatsby": "^4.19.0 || ^5.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
+  },
+  "dependencies": {
+    "gatsby-plugin-seed-design": "0.2.5"
   },
   "devDependencies": {
     "@babel/cli": "7.21.0",
