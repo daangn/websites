@@ -43,35 +43,30 @@ const Container = styled('a', {
   },
 });
 
-const Icon = styled('img', {
-  width: '1em',
-  height: '1em',
-});
-
-const socialServiceProfileConfigMap: Record<string, { comp: React.SVGProps<SVGSVGElement> }> = {
+const socialServiceProfileConfigMap: Record<string, { comp: () => React.ReactElement }> = {
   github: {
-    comp: <GithubIcon />,
+    comp: () => <GithubIcon />,
   },
   twitter: {
-    comp: <TwitterIcon />,
+    comp: () => <TwitterIcon />,
   },
   facebook: {
-    comp: <FacebookIcon />,
+    comp: () => <FacebookIcon />,
   },
   instagram: {
-    comp: <InstagramIcon />,
+    comp: () => <InstagramIcon />,
   },
   medium: {
-    comp: <MediumIcon />,
+    comp: () => <MediumIcon />,
   },
   line: {
-    comp: <LineIcon />,
+    comp: () => <LineIcon />,
   },
   youtube: {
-    comp: <YoutubeIcon />,
+    comp: () => <YoutubeIcon />,
   },
   naver_blog: {
-    comp: <NaverBlogIcon />,
+    comp: () => <NaverBlogIcon />,
   },
 };
 
@@ -87,6 +82,8 @@ export default function SocialServiceProfile({ className, profile }: SocialServi
     return null;
   }
 
+  const Icon = config.comp;
+
   return (
     <Container
       className={className}
@@ -94,7 +91,7 @@ export default function SocialServiceProfile({ className, profile }: SocialServi
       target="_blank"
       rel="external noopener"
     >
-      {config.comp}
+      <Icon />
     </Container>
   );
 }

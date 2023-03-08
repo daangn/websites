@@ -6,7 +6,7 @@
     "init:gatsby": "yarn build",
     "build": "concurrently \"yarn:build:*\"",
     "build:babel": "babel gatsby -d . -x .ts,.tsx --presets gatsby-package",
-    "build:dts": "tsc --emitDeclarationOnly --skipLibCheck",
+    "build:dts": "tsc -p tsconfig.build.json --emitDeclarationOnly --skipLibCheck",
     "prepack": "yarn build"
   },
   "peerDependencies": {
