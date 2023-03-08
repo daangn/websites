@@ -4,9 +4,8 @@
     "jsx": "react"
   },
   "include": [
+    "src",
     "gatsby"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": []
 }
