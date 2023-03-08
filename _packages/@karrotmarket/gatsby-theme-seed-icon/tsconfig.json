@@ -1,13 +1,12 @@
 {
   "extends": "../../../tsconfig.json",
   "compilerOptions": {
+    "noEmit": true,
     "jsx": "react"
   },
   "include": [
     "src",
     "gatsby"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": []
 }

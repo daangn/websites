@@ -6,8 +6,8 @@ import { graphql, navigate, withPrefix, Link, type PageProps, type HeadProps } f
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
 import { vars } from '@seed-design/design-token';
+import SeedIcon from '@karrotmarket/gatsby-theme-website/src/components/SeedIcon';
 import PageTitle from '@karrotmarket/gatsby-theme-website-team/src/components/PageTitle';
-import SeedIcon from '@karrotmarket/gatsby-theme-website-team/src/components/SeedIcon';
 
 export const query = graphql`
   query IrPage(

@@ -4,7 +4,7 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import { motion } from 'framer-motion';
 import { vars } from '@seed-design/design-token';
-import SeedIcon from '@karrotmarket/gatsby-theme-website-team/src/components/SeedIcon';
+import SeedIcon from '@karrotmarket/gatsby-theme-website/src/components/SeedIcon';
 
 type FaqAccordionItemProps = {
   id: string;

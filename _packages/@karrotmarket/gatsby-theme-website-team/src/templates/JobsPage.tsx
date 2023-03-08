@@ -7,7 +7,7 @@ import $ from 'text2vdom';
 import { required } from '@cometjs/core';
 import { vars } from '@seed-design/design-token';
 import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
-import SeedIcon from '@karrotmarket/gatsby-theme-website-team/src/components/SeedIcon';
+import SeedIcon from '@karrotmarket/gatsby-theme-website/src/components/SeedIcon';
 
 import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import PageTitle from '../components/PageTitle';

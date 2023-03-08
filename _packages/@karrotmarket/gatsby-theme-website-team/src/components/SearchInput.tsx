@@ -2,8 +2,7 @@ import * as React from 'react';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import { vars } from '@seed-design/design-token';
-
-import SeedIcon from './SeedIcon';
+import SeedIcon from '@karrotmarket/gatsby-theme-website/src/components/SeedIcon';
 
 type SearchInputProps = {
   query: string;
