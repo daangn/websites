@@ -6,6 +6,7 @@ const config: GatsbyConfig = {
     'gatsby-theme-stitches',
     'gatsby-plugin-seed-design',
     '@karrotmarket/gatsby-theme-prismic',
+    '@karrotmarket/gatsby-theme-seed-icon',
   ],
 };
 

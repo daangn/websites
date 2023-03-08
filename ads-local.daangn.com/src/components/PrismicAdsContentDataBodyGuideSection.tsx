@@ -5,9 +5,9 @@ import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
 import { useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
+import SeedIcon from '@karrotmarket/gatsby-theme-website/src/components/SeedIcon';
 
 import ArrowLink from './ArrowLink';
-import SeedIcon from './SeedIcon';
 
 export const fragment = graphql`
   fragment PrismicAdsContentDataBodyGuideSection_data on PrismicAdsContentDataBodyGuideSection {

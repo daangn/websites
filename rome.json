@@ -11,7 +11,7 @@
     "rules": {
       "recommended": true,
       "security": {
-        "noDangerouslySetInnerHtml":"off"
+        "noDangerouslySetInnerHtml": "off"
       }
     }
   },
@@ -29,7 +29,8 @@
       "**/dist/**/*",
       "**/__generated__/**/*",
       "./_packages/**/gatsby-*.js",
-      "./_packages/**/*.d.ts"
+      "./_packages/**/*.d.ts",
+      "./_packages/@karrotmarket/gatsby-theme-seed-icon/src/SeedIcon.tsx"
     ]
   }
 }

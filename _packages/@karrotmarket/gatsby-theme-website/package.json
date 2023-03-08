@@ -20,6 +20,7 @@
   "dependencies": {
     "@cometjs/core": "2.2.0",
     "@cometjs/react-utils": "2.1.2",
+    "@karrotmarket/gatsby-theme-seed-icon": "workspace:^",
     "@seed-design/design-token": "1.0.0",
     "@svgr/webpack": "6.5.1",
     "gatsby-plugin-seed-design": "0.2.5",

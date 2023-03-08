@@ -5,8 +5,8 @@ import { graphql, navigate, Link, type PageProps } from 'gatsby';
 import { HeadSeo } from 'gatsby-plugin-head-seo/src';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { required, type OverrideProps } from '@cometjs/core';
+import SeedIcon from '@karrotmarket/gatsby-theme-website/src/components/SeedIcon';
 import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
-import SeedIcon from '@karrotmarket/gatsby-theme-website-team/src/components/SeedIcon';
 import { vars } from '@seed-design/design-token';
 
 import logoPath from '../assets/logo.png';
