@@ -1,8 +1,6 @@
 import { em, rem } from 'polished';
 import { createStitches } from '@stitches/react';
 
-import { convertColorScheme } from './colors';
-
 export type MediaType = `@${'i' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl'}`;
 export const MediaTypeList: MediaType[] = ['@i', '@sm', '@md', '@lg', '@xl', '@xxl'];
 export type MediaTypeMap<T> = Partial<{ [i in MediaType]: T }>;
