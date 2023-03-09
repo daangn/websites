@@ -137,7 +137,10 @@ export default function PrismicAdsContentDataBodyUserStorySection({
                 />
                 <UserStoryContainer>
                   <UserStoryQuote>{item.user_story?.text || ''}</UserStoryQuote>
-                  <UserStoryLink link={parseLink(item.goto_link?.url || '#')}>
+                  <UserStoryLink
+                    link={parseLink(item.goto_link?.url || '#')}
+                    id={`user_story_${i + 1}`}
+                  >
                     {item.goto_text || '사장님 이야기'}
                   </UserStoryLink>
                 </UserStoryContainer>

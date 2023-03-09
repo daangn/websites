@@ -93,6 +93,7 @@ export default function PrismicAdsContentDataBodyFeaturesSection({
                           href={item.feature_link?.url || '#'}
                           target="_blank"
                           rel="noopener noreferrer"
+                          id={tabIndex === 0 ? 'guide-feed' : 'guide-search'}
                         >
                           {item.feature_name || `항목 ${i + 1}`} 가이드 바로가기
                         </FeatureGuideLink>
