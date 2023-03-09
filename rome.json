@@ -30,7 +30,7 @@
       "**/__generated__/**/*",
       "./_packages/**/gatsby-*.js",
       "./_packages/**/*.d.ts",
-      "./_packages/@karrotmarket/gatsby-theme-seed-icon/src/SeedIcon.tsx"
+      "./_packages/@karrotmarket/gatsby-theme-seed-design/src/Icon.tsx"
     ]
   }
 }

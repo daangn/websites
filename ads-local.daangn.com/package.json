@@ -16,6 +16,7 @@
   "dependencies": {
     "@cometjs/graphql-utils": "2.0.5",
     "@karrotmarket/gatsby-theme-prismic": "workspace:^",
+    "@karrotmarket/gatsby-theme-seed-design": "workspace:^",
     "@karrotmarket/gatsby-theme-website": "workspace:^",
     "@seed-design/design-token": "1.0.0",
     "@stitches/react": "1.2.8",
@@ -27,7 +28,6 @@
     "gatsby-plugin-module-resolver": "1.0.3",
     "gatsby-plugin-react-helmet-async": "1.2.3",
     "gatsby-plugin-robots-txt": "1.8.0",
-    "gatsby-plugin-seed-design": "0.2.5",
     "gatsby-plugin-sharp": "5.6.0",
     "gatsby-plugin-typegen": "3.1.0",
     "gatsby-source-filesystem": "5.6.0",

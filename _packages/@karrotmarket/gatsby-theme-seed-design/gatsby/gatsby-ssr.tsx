@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { type GatsbySSR } from 'gatsby';
 
-import spriteUrl from '!!file-loader!@karrotmarket/gatsby-theme-seed-icon/src/sprite.svg';
+import spriteUrl from '!!file-loader!@karrotmarket/gatsby-theme-seed-design/src/sprite.svg';
 
 export const onRenderBody: GatsbySSR['onRenderBody'] = ({ setHeadComponents }) => {
   setHeadComponents([

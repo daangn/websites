@@ -9,6 +9,6 @@ icons:
   - icon_close_regular
   - icon_forward_regular
 
-componentPath: src/SeedIcon.tsx
+componentPath: src/Icon.tsx
 spritePath: src/sprite.svg
 withContext: false

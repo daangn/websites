@@ -30,7 +30,7 @@ const config: GatsbyConfig = {
     'gatsby-transformer-sharp',
     'gatsby-plugin-preload-fonts',
     {
-      resolve: 'gatsby-plugin-seed-design',
+      resolve: '@karrotmarket/gatsby-theme-seed-design',
       options: {
         mode: 'light-only',
       },

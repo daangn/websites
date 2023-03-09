@@ -6,8 +6,8 @@ import { rem } from 'polished';
 import $ from 'text2vdom';
 import { required } from '@cometjs/core';
 import { vars } from '@seed-design/design-token';
+import SeedIcon from '@karrotmarket/gatsby-theme-seed-design/src/Icon';
 import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
-import SeedIcon from '@karrotmarket/gatsby-theme-website/src/components/SeedIcon';
 
 import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import PageTitle from '../components/PageTitle';
