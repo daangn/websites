@@ -3,7 +3,7 @@ import { rem } from 'polished';
 import { graphql, useStaticQuery } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
-import SeedIcon from '@karrotmarket/gatsby-theme-website/src/components/SeedIcon';
+import SeedIcon from '@karrotmarket/gatsby-theme-seed-design/src/Icon';
 
 const QuestionInfo = styled('div', {
   display: 'flex',
