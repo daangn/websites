@@ -2,13 +2,13 @@
 import * as React from 'react';
 import spriteUrl from '!!file-loader!./sprite.svg';
 
-export interface SeedIconProps {
+export interface IconProps {
   name: IconName;
   size?: number | string;
   className?: string;
 }
 
-const SeedIcon: React.ForwardRefRenderFunction<HTMLSpanElement, SeedIconProps> = (
+const Icon: React.ForwardRefRenderFunction<HTMLSpanElement, SeedIconProps> = (
   { name, className, size },
   ref,
 ) => {
@@ -18,7 +18,7 @@ const SeedIcon: React.ForwardRefRenderFunction<HTMLSpanElement, SeedIconProps> =
       style={{ display: 'inline-flex', width: size, height: size }}
       className={className}
       data-seed-icon={name}
-      data-seed-icon-version="0.1.8"
+      data-seed-icon-version="0.1.10"
     >
       <svg viewBox="0 0 24 24">
         <use href={`${spriteUrl}#${name}`} />
@@ -27,7 +27,7 @@ const SeedIcon: React.ForwardRefRenderFunction<HTMLSpanElement, SeedIconProps> =
   );
 };
 
-export default React.forwardRef(SeedIcon);
+export default React.forwardRef(Icon);
 type IconName =
   | 'icon_backward_regular'
   | 'icon_search_regular'
