@@ -50,7 +50,7 @@ export default function PrismicAdsContentDataBodyGuideSection({ data: { primary 
     <Container id={primary.section_id || undefined}>
       <ContentWrapper>
         <Title>{primary.section_title.text || ''}</Title>
-        <VideoGuideLink link={parseLink(primary.video_link?.url || '#')}>
+        <VideoGuideLink link={parseLink(primary.video_link?.url || '#')} id="content-howto">
           광고 영상 가이드
         </VideoGuideLink>
       </ContentWrapper>
