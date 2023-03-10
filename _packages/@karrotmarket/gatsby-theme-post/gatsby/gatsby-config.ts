@@ -1,20 +1,12 @@
 import type { GatsbyConfig } from 'gatsby';
-import { assemble as assembleHangul, disassemble as disassembleHangul } from 'hangul-js';
 
-import type { PluginOptions } from './types';
 // @ts-ignore
-import { linkResolver } from '@karrotmarket/gatsby-theme-website-team/src/@karrotmarket/gatsby-theme-prismic/linkResolver';
+import { linkResolver } from '@karrotmarket/gatsby-theme-post/src/@karrotmarket/gatsby-theme-prismic/linkResolver';
 
-const gql = String.raw;
-
-const config = ({ locale }: PluginOptions): GatsbyConfig => ({
-  siteMetadata: {
-    locale,
-  },
+const config = (): GatsbyConfig => ({
   plugins: [
     'gatsby-theme-stitches',
     'gatsby-plugin-svgr',
-    'gatsby-plugin-head-seo',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -49,49 +41,9 @@ const config = ({ locale }: PluginOptions): GatsbyConfig => ({
     'gatsby-plugin-image',
     'gatsby-transformer-sharp',
     {
-      resolve: 'gatsby-plugin-layout',
+      resolve: 'gatsby-plugin-seed-design',
       options: {
-        component: require.resolve('./src/layouts/index.tsx'),
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-local-search',
-      options: {
-        name: 'jobPosts',
-        engine: 'flexsearch',
-        engineOptions: {
-          tokenize: (str: string) => {
-            const index = JSON.parse(str);
-            const specialCharactersRegex = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g;
-            const splitTitle = index.title.replace(specialCharactersRegex, '').trim().split(/\s/);
-
-            const wordSet = new Set([...splitTitle, ...index.keywords]);
-            const tokens: string[] = [];
-            for (const word of wordSet) {
-              const syllables = disassembleHangul(word);
-              for (let i = 0; i < syllables.length; i++) {
-                const token = assembleHangul(syllables.slice(0, i + 1)).toLocaleLowerCase();
-                tokens.push(token);
-              }
-            }
-
-            return tokens;
-          },
-        },
-        query: gql`{
-          allJobPost {
-            nodes {
-              id
-              title
-              keywords
-            }
-          }
-        }`,
-        ref: 'id',
-        index: ['title', 'keywords'],
-        store: ['id', 'title', 'keywords'],
-        // rome-ignore lint/suspicious/noExplicitAny: intentional
-        normalizer: ({ data }: any) => data.allJobPost.nodes,
+        mode: 'light-only',
       },
     },
 

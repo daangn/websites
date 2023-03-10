@@ -36,5 +36,8 @@
     "typescript": "4.9.5",
     "ultra-runner": "3.10.5"
   },
-  "packageManager": "yarn@3.4.1"
+  "packageManager": "yarn@3.4.1",
+  "dependencies": {
+    "babel-plugin-polished": "1.1.0"
+  }
 }
