@@ -1,8 +1,7 @@
-/*.js
-/*.d.ts
-
 /.cache/
 /public/
+/dist/
 
-# gatsby-plugin-typegen v3 까지 존버하기
+/*.js
+
 /src/__generated__/
