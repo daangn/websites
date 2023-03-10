@@ -1,19 +1,19 @@
-import * as React from 'react';
-import { rem } from 'polished';
-import { matchSorter } from 'match-sorter';
-import { graphql, navigate, Link, type PageProps, type HeadProps } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/config';
+import { required } from '@cometjs/core';
+import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
+import { vars } from '@seed-design/design-token';
+import { type HeadProps, Link, type PageProps, graphql, navigate } from 'gatsby';
 import { HeadSeo } from 'gatsby-plugin-head-seo/src';
 import { FAQPageJsonLd } from 'gatsby-plugin-head-seo/src/jsonld';
-import { required } from '@cometjs/core';
-import { vars } from '@seed-design/design-token';
-import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { matchSorter } from 'match-sorter';
+import { rem } from 'polished';
+import * as React from 'react';
 
-import { DefaultLayoutHead } from '../layouts/DefaultLayout';
-import _PageTitle from '../components/PageTitle';
 import FaqAccordion from '../components/FaqAccordion';
-import _SearchInput from '../components/SearchInput';
 import _FaqList from '../components/FaqList';
+import _PageTitle from '../components/PageTitle';
+import _SearchInput from '../components/SearchInput';
+import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import { useURLSearchParams } from '../utils/useURLSearchParams';
 
 export const query = graphql`
@@ -98,7 +98,7 @@ const FaqGroupList = styled('ul', {
   alignItems: 'center',
   overflow: 'auto',
   gap: rem(50),
-  marginBottom: rem(52),
+  marginBottom: rem(36),
 
   '@lg': {
     marginBottom: '0',
@@ -110,6 +110,11 @@ const FaqGroup = styled('li', {
   fontWeight: 'bold',
   float: 'left',
   whiteSpace: 'nowrap',
+  height: rem(40),
+
+  '@lg': {
+    height: 'fit-content',
+  },
 });
 
 const FaqGroupLink = styled(Link, {
