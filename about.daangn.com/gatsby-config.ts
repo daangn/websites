@@ -1,7 +1,9 @@
 import type { GatsbyConfig } from 'gatsby';
 
-const siteMetadata: GatsbyConfig['siteMetadata'] = {
-  // 추후에 변경 필요
+import * as dotenv from 'dotenv';
+dotenv.config();
+
+const siteMetadata = {
   siteUrl: 'https://about.daangn.com',
   siteName: '당근마켓 팀',
   title: '당근마켓 팀',
@@ -12,17 +14,25 @@ const config: GatsbyConfig = {
   jsxRuntime: 'automatic',
   siteMetadata,
   plugins: [
+    'gatsby-plugin-gatsby-cloud',
     {
-      resolve: 'gatsby-plugin-typegen',
+      resolve: 'gatsby-plugin-vercel-deploy',
       options: {
-        outputPath: 'src/__generated__/gatsby-types.d.ts',
-        emitSchema: {
-          'src/__generated__/gatsby-schema.graphql': true,
-          'src/__generated__/gatsby-introspection.json': true,
-        },
-        emitPluginDocuments: {
-          'src/__generated__/gatsby-plugin-documents.graphql': true,
-        },
+        headers: [
+          {
+            source: '/completed/',
+            headers: [
+              {
+                key: 'Access-Control-Allow-Origin',
+                value: '*',
+              },
+              {
+                key: 'Access-Control-Allow-Methods',
+                value: 'HEAD, GET, OPTIONS',
+              },
+            ],
+          },
+        ],
       },
     },
     {
@@ -66,10 +76,90 @@ const config: GatsbyConfig = {
         ],
       },
     },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: null,
+        sitemap: `${siteMetadata.siteUrl}/sitemap.xml`,
+        policy: [
+          { userAgent: '*', allow: '/' },
+          { userAgent: '*', disallow: '/dev-404-page/' },
+          { userAgent: '*', disallow: '/404/' },
+          { userAgent: '*', disallow: '/404.html' },
+          { userAgent: '*', disallow: '/offline-plugin-app-shell-fallback/' },
+          { userAgent: '*', disallow: '/preview/' },
+          { userAgent: '*', disallow: '/completed/' },
+          { userAgent: '*', disallow: '/*/apply/$' },
+        ],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-google-tagmanager',
+      options: {
+        id: 'GTM-KD32GF9',
+        includeInDevelopment: false,
+        defaultDataLayer: { platform: 'gatsby' },
+        routeChangeEventName: 'gatsby-route-change',
+        enableWebVitalsTracking: true,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-typegen',
+      options: {
+        outputPath: 'src/__generated__/gatsby-types.d.ts',
+        emitSchema: {
+          'src/__generated__/gatsby-schema.graphql': true,
+          'src/__generated__/gatsby-introspection.json': true,
+        },
+        emitPluginDocuments: {
+          'src/__generated__/gatsby-plugin-documents.graphql': true,
+        },
+      },
+    },
+
     // 커스텀 플러그인
     '@karrotmarket/gatsby-transformer-post',
-    '@karrotmarket/gatsby-theme-post',
+    {
+      resolve: '@karrotmarket/gatsby-theme-website-team',
+      options: {
+        locale: 'ko-kr',
+        navigationId: 'about.daangn.com',
+      },
+    },
+    {
+      resolve: '@karrotmarket/gatsby-source-greenhouse-jobboard',
+      options: {
+        boardToken: 'daangn',
+        forceGC: true,
+      },
+    },
+    {
+      resolve: '@karrotmarket/gatsby-source-greenhouse-jobboard',
+      options: {
+        boardToken: 'daangntest',
+        forceGC: true,
+      },
+    },
+    {
+      resolve: '@karrotmarket/gatsby-transformer-job-post',
+      options: {
+        defaultTags: {
+          daangnmvp: ['MVP'],
+          daangntest: ['사전지원'],
+          daangntest1: ['개발 테스트'],
+        },
+      },
+    },
   ],
 };
+
+if (process.env.NODE_ENV === 'development') {
+  config.plugins?.push({
+    resolve: '@karrotmarket/gatsby-source-greenhouse-jobboard',
+    options: {
+      boardToken: 'daangntest1',
+    },
+  });
+}
 
 export default config;

@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/jobs/faq",
+      "destination": "/faq/",
+      "permanent": true
+    },
+    {
+      "source": "/jobs/faq/",
+      "destination": "/faq/",
+      "permanent": true
+    }
+  ]
+}
