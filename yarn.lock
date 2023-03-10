@@ -2686,7 +2686,7 @@ __metadata:
   dependencies:
     "@babel/cli": 7.21.0
     "@babel/core": 7.21.0
-    "@seed-design/icon": 0.1.11
+    "@seed-design/icon": 0.1.12
     "@types/react": 18.0.28
     "@types/react-dom": 18.0.11
     babel-preset-gatsby-package: 3.7.0
@@ -3939,9 +3939,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@seed-design/icon@npm:0.1.11":
-  version: 0.1.11
-  resolution: "@seed-design/icon@npm:0.1.11"
+"@seed-design/icon@npm:0.1.12":
+  version: 0.1.12
+  resolution: "@seed-design/icon@npm:0.1.12"
   dependencies:
     "@karrotmarket/karrot-ui-icon": 0.0.0-20230217.1
     commander: ^10.0.0
@@ -3952,7 +3952,7 @@ __metadata:
     string-dedent: ^3.0.1
   bin:
     seed-icon: bin/index.mjs
-  checksum: c79b646ab22c741e2e1a54debfc46d77d85e6a9aa8fd7424208ee79b667606f5172e931ecb8370af59ec57c4166ede6118f45e2ab1413b86ea65f030f8d11ef3
+  checksum: 266fd65b94d7e7d0c288cb2444aeec7d99e9cc3fd54da7d1814b6223bf7a21909403e8171bb4d10b5728b7dd2a958c916de769d8b198dd8f76aa73d03cc157c4
   languageName: node
   linkType: hard
 
