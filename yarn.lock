@@ -2607,7 +2607,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@karrotmarket/gatsby-theme-post@workspace:*, @karrotmarket/gatsby-theme-post@workspace:_packages/@karrotmarket/gatsby-theme-post":
+"@karrotmarket/gatsby-theme-post@workspace:_packages/@karrotmarket/gatsby-theme-post":
   version: 0.0.0-use.local
   resolution: "@karrotmarket/gatsby-theme-post@workspace:_packages/@karrotmarket/gatsby-theme-post"
   dependencies:
@@ -2871,7 +2871,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@karrotmarket/gatsby-transformer-post@workspace:*, @karrotmarket/gatsby-transformer-post@workspace:_packages/@karrotmarket/gatsby-transformer-post":
+"@karrotmarket/gatsby-transformer-post@workspace:_packages/@karrotmarket/gatsby-transformer-post":
   version: 0.0.0-use.local
   resolution: "@karrotmarket/gatsby-transformer-post@workspace:_packages/@karrotmarket/gatsby-transformer-post"
   dependencies:
@@ -5078,28 +5078,30 @@ __metadata:
   resolution: "about.daangn.com@workspace:about.daangn.com"
   dependencies:
     "@babel/core": 7.21.0
-    "@karrotmarket/gatsby-theme-post": "workspace:*"
+    "@karrotmarket/gatsby-source-greenhouse-jobboard": 0.9.0
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
-    "@karrotmarket/gatsby-transformer-post": "workspace:*"
+    "@karrotmarket/gatsby-theme-website-team": "workspace:^"
+    "@karrotmarket/gatsby-transformer-job-post": "workspace:^"
     "@seed-design/design-token": alpha
+    "@types/dotenv-safe": 8.1.2
     "@types/node": 18.14.6
     "@types/react": 18.0.28
     "@types/react-dom": 18.0.11
-    babel-preset-gatsby-package: 3.5.0
+    babel-preset-gatsby-package: 3.7.0
     cjk-slug: 0.3.1
     dotenv: 16.0.3
     gatsby: 5.7.0
     gatsby-plugin-advanced-sitemap: 2.1.0
-    gatsby-plugin-gatsby-cloud: 5.6.0
-    gatsby-plugin-google-tagmanager: 5.6.0
-    gatsby-plugin-image: 3.6.0
-    gatsby-plugin-manifest: 5.6.0
+    gatsby-plugin-gatsby-cloud: 5.7.0
+    gatsby-plugin-google-tagmanager: 5.7.0
+    gatsby-plugin-image: 3.7.0
+    gatsby-plugin-manifest: 5.7.0
     gatsby-plugin-prismic-previews: 5.2.10
     gatsby-plugin-robots-txt: 1.8.0
-    gatsby-plugin-sitemap: 6.6.0
+    gatsby-plugin-sitemap: 6.7.0
     gatsby-plugin-typegen: 3.1.0
     gatsby-plugin-vercel-deploy: 1.1.0
-    gatsby-source-filesystem: 5.6.0
+    gatsby-source-filesystem: 5.7.0
     match-sorter: 6.3.1
     polished: 4.2.2
     react: 18.2.0
@@ -9682,24 +9684,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-gatsby-cloud@npm:5.6.0":
-  version: 5.6.0
-  resolution: "gatsby-plugin-gatsby-cloud@npm:5.6.0"
-  dependencies:
-    "@babel/runtime": ^7.20.13
-    fs-extra: ^11.1.0
-    gatsby-core-utils: ^4.6.0
-    gatsby-telemetry: ^4.6.0
-    kebab-hash: ^0.1.2
-    lodash: ^4.17.21
-    webpack-assets-manifest: ^5.1.0
-  peerDependencies:
-    gatsby: ^5.0.0-next
-    webpack: "*"
-  checksum: 3b57603ce59ce486de1dde0421b39e16d7fde0e5f91c7429360e287bfa2f6050a50ebcd510dbe06eaf9826d866e5e8e38445f4a6b05db01f5e8810c623c13e46
-  languageName: node
-  linkType: hard
-
 "gatsby-plugin-gatsby-cloud@npm:5.7.0":
   version: 5.7.0
   resolution: "gatsby-plugin-gatsby-cloud@npm:5.7.0"
@@ -9715,20 +9699,6 @@ __metadata:
     gatsby: ^5.0.0-next
     webpack: "*"
   checksum: cccc0db2700915d183b237669dcd283747b8c3405fb8dad3b311e2012a980d087e253bc2555b2be2976633e049c06ab75929fcd3e527993c3c38c5846d2cc8c8
-  languageName: node
-  linkType: hard
-
-"gatsby-plugin-google-tagmanager@npm:5.6.0":
-  version: 5.6.0
-  resolution: "gatsby-plugin-google-tagmanager@npm:5.6.0"
-  dependencies:
-    "@babel/runtime": ^7.20.13
-    web-vitals: ^1.1.2
-  peerDependencies:
-    gatsby: ^5.0.0-next
-    react: ^18.0.0 || ^0.0.0
-    react-dom: ^18.0.0 || ^0.0.0
-  checksum: 475783603bb5135f526dffaaeb6aea0dfd7e5208d1cf9b7dfdc857401eb7363ddfe203afc8fd01ffccd1670a6131e710bf0bd6259a7e6268125e07f5be3813ba
   languageName: node
   linkType: hard
 
@@ -9854,21 +9824,6 @@ __metadata:
   peerDependencies:
     gatsby: ">= 2.20.0"
   checksum: ef4bf8add3b28ef7b8ae193c8e1368c5ae13d8570759a481bb882d5ee2c7669db97bbea335ac75f7a2a5729d4b35db34681685274e556972769c0f7b62b428c0
-  languageName: node
-  linkType: hard
-
-"gatsby-plugin-manifest@npm:5.6.0":
-  version: 5.6.0
-  resolution: "gatsby-plugin-manifest@npm:5.6.0"
-  dependencies:
-    "@babel/runtime": ^7.20.13
-    gatsby-core-utils: ^4.6.0
-    gatsby-plugin-utils: ^4.6.0
-    semver: ^7.3.8
-    sharp: ^0.31.3
-  peerDependencies:
-    gatsby: ^5.0.0-next
-  checksum: f7b746efeafbf22de9eb2824a7cde0e95ae5ba631914d81e5812e688ff9f432a3ff2b385e4068b96a1d6e124d20cb306234cb7b1ce652a6cb26a4d6d1d41403d
   languageName: node
   linkType: hard
 
@@ -10065,22 +10020,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-sitemap@npm:6.6.0":
-  version: 6.6.0
-  resolution: "gatsby-plugin-sitemap@npm:6.6.0"
-  dependencies:
-    "@babel/runtime": ^7.20.13
-    common-tags: ^1.8.2
-    minimatch: ^3.1.2
-    sitemap: ^7.1.1
-  peerDependencies:
-    gatsby: ^5.0.0-next
-    react: ^18.0.0 || ^0.0.0
-    react-dom: ^18.0.0 || ^0.0.0
-  checksum: d49631bbd110c0912881a212d1e85a486a56a0a8c4070a767761c02cafd7fadbc5b7b997ccf329dac99226cb73fa1ea3c691212fc182e031e7732cd7a16cdadb
-  languageName: node
-  linkType: hard
-
 "gatsby-plugin-sitemap@npm:6.7.0":
   version: 6.7.0
   resolution: "gatsby-plugin-sitemap@npm:6.7.0"
@@ -10231,25 +10170,6 @@ __metadata:
     "@types/sharp": ^0.31.1
     sharp: ^0.31.3
   checksum: 7e084fdb3fb72ac1a5d395b412e41f171da8edebc8c38144c24b165b68c9e0e1115b6e1c32e825be091a91752be0a905cf875ad47d81368d0d566bb9ff975cb6
-  languageName: node
-  linkType: hard
-
-"gatsby-source-filesystem@npm:5.6.0":
-  version: 5.6.0
-  resolution: "gatsby-source-filesystem@npm:5.6.0"
-  dependencies:
-    "@babel/runtime": ^7.20.13
-    chokidar: ^3.5.3
-    file-type: ^16.5.4
-    fs-extra: ^11.1.0
-    gatsby-core-utils: ^4.6.0
-    mime: ^3.0.0
-    pretty-bytes: ^5.6.0
-    valid-url: ^1.0.9
-    xstate: ^4.35.3
-  peerDependencies:
-    gatsby: ^5.0.0-next
-  checksum: 65575e512b99d6d35f7e6ef0f9cb81bef063bd3493220f8cd6e717bcb4ae741326c715a79e614d24c6a4c8f2c8f74fec3e6afdf248d3e0b8a5493bea9c2364d7
   languageName: node
   linkType: hard
 
