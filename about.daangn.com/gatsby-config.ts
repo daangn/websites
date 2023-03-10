@@ -1,10 +1,8 @@
 import type { GatsbyConfig } from 'gatsby';
 
-const siteUrl = new URL('https://www.example.com');
-
 const siteMetadata: GatsbyConfig['siteMetadata'] = {
   // 추후에 변경 필요
-  siteUrl: 'https://team.daangn.com',
+  siteUrl: 'https://about.daangn.com',
   siteName: '당근마켓 팀',
   title: '당근마켓 팀',
   description: '이웃과 더 가까워지는 따뜻한 동네를 만들어요.',
@@ -69,47 +67,9 @@ const config: GatsbyConfig = {
       },
     },
     // 커스텀 플러그인
-    {
-      resolve: '@karrotmarket/gatsby-theme-website-team',
-      options: {
-        locale: 'ko-kr',
-        navigationId: 'team.daangn.com',
-      },
-    },
-    {
-      resolve: '@karrotmarket/gatsby-source-greenhouse-jobboard',
-      options: {
-        boardToken: 'daangn',
-        forceGC: true,
-      },
-    },
-    {
-      resolve: '@karrotmarket/gatsby-source-greenhouse-jobboard',
-      options: {
-        boardToken: 'daangntest',
-        forceGC: true,
-      },
-    },
-    {
-      resolve: '@karrotmarket/gatsby-transformer-job-post',
-      options: {
-        defaultTags: {
-          daangnmvp: ['MVP'],
-          daangntest: ['사전지원'],
-          daangntest1: ['개발 테스트'],
-        },
-      },
-    },
+    '@karrotmarket/gatsby-transformer-post',
+    '@karrotmarket/gatsby-theme-post',
   ],
 };
-
-if (process.env.NODE_ENV === 'development') {
-  config.plugins?.push({
-    resolve: '@karrotmarket/gatsby-source-greenhouse-jobboard',
-    options: {
-      boardToken: 'daangntest1',
-    },
-  });
-}
 
 export default config;
