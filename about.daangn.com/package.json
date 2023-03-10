@@ -13,11 +13,36 @@
     "not ie 11"
   ],
   "dependencies": {
+    "@karrotmarket/gatsby-theme-post": "workspace:*",
+    "@karrotmarket/gatsby-theme-prismic": "workspace:^",
+    "@karrotmarket/gatsby-transformer-post": "workspace:*",
+    "@seed-design/design-token": "alpha",
+    "cjk-slug": "0.3.1",
+    "dotenv": "16.0.3",
     "gatsby": "5.7.0",
+    "gatsby-plugin-advanced-sitemap": "2.1.0",
+    "gatsby-plugin-gatsby-cloud": "5.6.0",
+    "gatsby-plugin-google-tagmanager": "5.6.0",
+    "gatsby-plugin-image": "3.6.0",
+    "gatsby-plugin-manifest": "5.6.0",
+    "gatsby-plugin-prismic-previews": "5.2.10",
+    "gatsby-plugin-robots-txt": "1.8.0",
+    "gatsby-plugin-sitemap": "6.6.0",
+    "gatsby-plugin-typegen": "3.1.0",
+    "gatsby-plugin-vercel-deploy": "1.1.0",
+    "gatsby-source-filesystem": "5.6.0",
+    "match-sorter": "6.3.1",
+    "polished": "4.2.2",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "typescript": "4.9.5"
+    "@babel/core": "7.21.0",
+    "@types/node": "18.14.6",
+    "@types/react": "18.0.28",
+    "@types/react-dom": "18.0.11",
+    "babel-preset-gatsby-package": "3.5.0",
+    "typescript": "4.9.5",
+    "ultra-runner": "3.10.5"
   }
 }
