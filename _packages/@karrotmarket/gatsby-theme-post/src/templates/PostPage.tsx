@@ -17,9 +17,7 @@ export const query = graphql`
 `;
 
 const PostPage: React.FC = () => {
-  return (
-    <div>포스트 페이지 템플릿</div>
-  );
+  return <div>포스트 페이지 템플릿</div>;
 };
 
 export default PostPage;
