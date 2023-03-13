@@ -58,6 +58,7 @@ const Button = styled('button', {
 const ExpandIcon = styled(SeedIcon, {
   width: rem(24),
   height: rem(24),
+  minWidth: rem(24),
   padding: rem(4),
   boxSizing: 'border-box',
   transition: 'transform .3s',
