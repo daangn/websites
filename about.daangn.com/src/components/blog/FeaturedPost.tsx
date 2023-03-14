@@ -41,7 +41,10 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({ data }) => {
   return (
     <Container>
       {data?.document?.data?.thumbnail_image?.localFile?.childImageSharp?.gatsbyImageData && (
-        <FeaturedImage image={data.document.data.thumbnail_image.localFile.childImageSharp.gatsbyImageData} alt={data?.document?.data?.thumbnail_image?.alt || ''} />
+        <FeaturedImage
+          image={data.document.data.thumbnail_image.localFile.childImageSharp.gatsbyImageData}
+          alt={data?.document?.data?.thumbnail_image?.alt || ''}
+        />
       )}
       <FeaturedDescription>
         <FeaturedTitle>{data.document.data.title.text}</FeaturedTitle>
