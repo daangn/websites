@@ -2686,7 +2686,7 @@ __metadata:
   dependencies:
     "@babel/cli": 7.21.0
     "@babel/core": 7.21.0
-    "@seed-design/icon": 0.1.10
+    "@seed-design/icon": 0.1.13
     "@types/react": 18.0.28
     "@types/react-dom": 18.0.11
     babel-preset-gatsby-package: 3.7.0
@@ -3939,9 +3939,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@seed-design/icon@npm:0.1.10":
-  version: 0.1.10
-  resolution: "@seed-design/icon@npm:0.1.10"
+"@seed-design/icon@npm:0.1.13":
+  version: 0.1.13
+  resolution: "@seed-design/icon@npm:0.1.13"
   dependencies:
     "@karrotmarket/karrot-ui-icon": 0.0.0-20230217.1
     commander: ^10.0.0
@@ -3952,7 +3952,7 @@ __metadata:
     string-dedent: ^3.0.1
   bin:
     seed-icon: bin/index.mjs
-  checksum: ec114a2712198e2d2b11531cf4616420ce9d89cc47fa36e5e2b34dd6693b6e3af3a5e83b194475c1d30a6af3572c00599c0227d66d1e26c6a418dc3d02fafddd
+  checksum: a0319a909d28653b3e2fad57b4316f985965844284c98d21cc30adf4f40955573216426f55b57e077c3d0d8aa6d24ff7400f87349f39e0323d5d7459cda51573
   languageName: node
   linkType: hard
 
@@ -5218,7 +5218,7 @@ __metadata:
     "@karrotmarket/gatsby-theme-seed-design": "workspace:^"
     "@karrotmarket/gatsby-theme-website": "workspace:^"
     "@seed-design/design-token": 1.0.0
-    "@seed-design/icon": 0.1.10
+    "@seed-design/icon": 0.1.13
     "@stitches/react": 1.2.8
     gatsby: 5.7.0
     gatsby-plugin-google-tagmanager: 5.7.0
