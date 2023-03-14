@@ -3784,7 +3784,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prismicio/richtext@npm:^2.1.4":
+"@prismicio/react@npm:2.5.2":
+  version: 2.5.2
+  resolution: "@prismicio/react@npm:2.5.2"
+  dependencies:
+    "@prismicio/helpers": ^2.3.8
+    "@prismicio/richtext": ^2.1.3
+    "@prismicio/types": ^0.2.7
+  peerDependencies:
+    "@prismicio/client": ^6
+    react: ^16.8 || ^17 || ^18
+  peerDependenciesMeta:
+    "@prismicio/client":
+      optional: true
+  checksum: c2c06d4ea238701a2b04b7036c572762e0e30d18623b9889e44493fe4515c835b89a818c1dda6922151892c2095237d537fcb7314c0a46df480bef9b5fb2a06a
+  languageName: node
+  linkType: hard
+
+"@prismicio/richtext@npm:^2.1.3, @prismicio/richtext@npm:^2.1.4":
   version: 2.1.4
   resolution: "@prismicio/richtext@npm:2.1.4"
   dependencies:
@@ -5082,6 +5099,7 @@ __metadata:
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website-team": "workspace:^"
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^"
+    "@prismicio/react": 2.5.2
     "@seed-design/design-token": alpha
     "@types/dotenv-safe": 8.1.2
     "@types/node": 18.14.6
@@ -5104,6 +5122,7 @@ __metadata:
     gatsby-source-filesystem: 5.7.0
     match-sorter: 6.3.1
     polished: 4.2.2
+    prismjs: 1.29.0
     react: 18.2.0
     react-dom: 18.2.0
     typescript: 4.9.5
@@ -15428,6 +15447,13 @@ __metadata:
     ramda: ^0.26.1
     uuid: ^3.3.2
   checksum: 2e647240b9133a80b93379a60a478cef19eb3ed8f0569e103bb6fcfbba890672b2373cac288b1840d39ef2d69b6c182f9e371f4962ca31458df22b72725f3dea
+  languageName: node
+  linkType: hard
+
+"prismjs@npm:1.29.0":
+  version: 1.29.0
+  resolution: "prismjs@npm:1.29.0"
+  checksum: 007a8869d4456ff8049dc59404e32d5666a07d99c3b0e30a18bd3b7676dfa07d1daae9d0f407f20983865fd8da56de91d09cb08e6aa61f5bc420a27c0beeaf93
   languageName: node
   linkType: hard
 

@@ -1,6 +1,6 @@
-import * as path from 'path';
 import type { GatsbyNode } from 'gatsby';
 import { createRemoteFileNode } from 'gatsby-source-filesystem';
+import * as path from 'path';
 
 export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = ({ actions }) => {
   actions.createRedirect({
@@ -32,6 +32,18 @@ export const createPages: GatsbyNode['createPages'] = async ({
         uid: string;
       }>;
     };
+    allPost: {
+      nodes: Array<{
+        id: string;
+        slug: string;
+      }>;
+    };
+    allPostCategory: {
+      nodes: Array<{
+        name: string;
+        uid: string;
+      }>;
+    };
   };
   const { data, errors } = await graphql<Data>(gql`
     {
@@ -59,6 +71,20 @@ export const createPages: GatsbyNode['createPages'] = async ({
       ) {
         nodes {
           uid
+        }
+      }
+
+      allPost {
+        nodes {
+          id
+          slug
+        }
+      }
+
+      allPostCategory {
+        nodes {
+          uid
+          name
         }
       }
     }
@@ -104,6 +130,40 @@ export const createPages: GatsbyNode['createPages'] = async ({
       data.allPrismicFinancialStatements.nodes.filter((node) => node.uid)[0].uid
     }/`,
     isPermanent: false,
+    redirectInBrowser: true,
+  });
+
+  actions.createPage({
+    path: '/blog/',
+    component: path.resolve(basePath, 'src/templates/BlogMainPage.tsx'),
+    context: {
+      id: '*',
+    },
+  });
+
+  for (const post of data.allPost.nodes) {
+    actions.createPage({
+      path: `/blog/archive/${post.slug}/`,
+      component: path.resolve(basePath, 'src/templates/BlogPostPage.tsx'),
+      context: {
+        id: post.id,
+      },
+    });
+  }
+
+  for (const postCategory of data.allPostCategory.nodes) {
+    actions.createPage({
+      path: `/blog/category/${postCategory.uid}/`,
+      component: path.resolve(basePath, 'src/templates/BlogMainPage.tsx'),
+      context: {
+        id: postCategory.uid,
+      },
+    });
+  }
+
+  actions.createRedirect({
+    fromPath: '/blog/cateogry/*',
+    toPath: '/blog/',
     redirectInBrowser: true,
   });
 };
