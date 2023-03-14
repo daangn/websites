@@ -19,7 +19,6 @@ export const query = graphql`
 `;
 
 const PostList: React.FC<PostListProps> = ({ data }) => {
-  console.log('data.allPost.nodes ::', data.allPost.nodes.length);
   return (
     <>
       {data.allPost.nodes.length === 0 ? (

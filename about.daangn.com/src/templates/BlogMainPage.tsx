@@ -35,8 +35,6 @@ export const query = graphql`
 type BlogMainPageProps = PageProps<GatsbyTypes.BlogPageQuery>;
 
 const BlogMainPage: React.FC<BlogMainPageProps> = ({ data, pageContext }) => {
-
-  console.log("data ::", data);
   return (
     <Container>
       {data.prismicBlogContent?.data?.featured_post && (
