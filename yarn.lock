@@ -2772,7 +2772,7 @@ __metadata:
     babel-preset-gatsby-package: 3.7.0
     clsx: 1.2.1
     concurrently: 7.6.0
-    focus-trap-react: 10.0.2
+    focus-trap-react: 10.1.1
     framer-motion: 10.0.2
     gatsby: 5.7.0
     gatsby-plugin-advanced-sitemap: 2.1.0
@@ -9161,21 +9161,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"focus-trap-react@npm:10.0.2":
-  version: 10.0.2
-  resolution: "focus-trap-react@npm:10.0.2"
+"focus-trap-react@npm:10.1.1":
+  version: 10.1.1
+  resolution: "focus-trap-react@npm:10.1.1"
   dependencies:
-    focus-trap: ^7.2.0
-    tabbable: ^6.0.1
+    focus-trap: ^7.4.0
+    tabbable: ^6.1.1
   peerDependencies:
     prop-types: ^15.8.1
     react: ">=16.3.0"
     react-dom: ">=16.3.0"
-  checksum: 9bd33883764ef78b6aae3314814ff0eab48477d045acae7eef0246df563c7d0db0b3935cc9bd25d261ec272322b424d8d3e8581ef0bcccdfdd65ee72d8916d0b
+  checksum: 66bf8d9efa0efda77b7dc2591736fa38e2892151362db7543ea81e70187b8d2e25f471a31175eb0596a862ec8c6391c943bc5fbf69cfaaeb61c0ef2aa3e4750c
   languageName: node
   linkType: hard
 
-"focus-trap@npm:^7.2.0":
+"focus-trap@npm:^7.4.0":
   version: 7.4.0
   resolution: "focus-trap@npm:7.4.0"
   dependencies:
@@ -17378,7 +17378,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tabbable@npm:^6.0.1, tabbable@npm:^6.1.1":
+"tabbable@npm:^6.1.1":
   version: 6.1.1
   resolution: "tabbable@npm:6.1.1"
   checksum: 348639497262241ce8e0ccb0664ea582a386183107299ee8f27cf7b56bc84f36e09eaf667d3cb4201e789634012a91f7129bcbd49760abe874fbace35b4cf429
