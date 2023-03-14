@@ -4,11 +4,11 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
 
 type RelatedPostProps = {
-  data: GatsbyTypes.RelatedPost_blogPostFragment;
+  data: GatsbyTypes.RelatedPost_postFragment;
 };
 
 export const query = graphql`
-  fragment RelatedPost_blogPost on BlogPost {
+  fragment RelatedPost_post on Post {
     relatedPosts {
       slug
       title
@@ -26,23 +26,29 @@ export const query = graphql`
 
 const RelatedPost: React.FC<RelatedPostProps> = ({ data }) => {
   return (
-    <Container>
-      <RelatedPostsTitle>추천 포스트</RelatedPostsTitle>
-      <CardContainer>
-        {data.relatedPosts.map((post) => (
-          <PostCard key={post.slug}>
-            <BlogLink to={`/blog/archive/${post.slug}/`}>
-              {post.thumbnailImage.publicURL && (
-                <Image src={post.thumbnailImage.publicURL} alt={`${post.title}_이미지`} />
-              )}
-              <PostTitle>{post.title}</PostTitle>
-              <PostSummary>{post.summary}</PostSummary>
-            </BlogLink>
-            <PostCategory>{post.category.name}</PostCategory>
-          </PostCard>
-        ))}
-      </CardContainer>
-    </Container>
+    <>
+      {data.relatedPosts.length === 0 ? (
+        <></>
+      ) : (
+        <Container>
+          <RelatedPostsTitle>추천 포스트</RelatedPostsTitle>
+          <CardContainer>
+            {data.relatedPosts.map((post) => (
+              <PostCard key={post.slug}>
+                <BlogLink to={`/blog/archive/${post.slug}/`}>
+                  {post.thumbnailImage.publicURL && (
+                    <Image src={post.thumbnailImage.publicURL} alt={`${post.title}_이미지`} />
+                  )}
+                  <PostTitle>{post.title}</PostTitle>
+                  <PostSummary>{post.summary}</PostSummary>
+                </BlogLink>
+                <PostCategory>{post.category.name}</PostCategory>
+              </PostCard>
+            ))}
+          </CardContainer>
+        </Container>
+      )}
+    </>
   );
 };
 

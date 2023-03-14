@@ -8,7 +8,7 @@ type PostHeaderProps = {
 };
 
 export const query = graphql`
-  fragment PostHeader_data on BlogPost {
+  fragment PostHeader_data on Post {
     title
     publishedAt
     category {

@@ -3,11 +3,11 @@ import { rem } from 'polished';
 import { styled } from 'gatsby-theme-stitches/src/config';
 
 type AuthorProps = {
-  data: GatsbyTypes.Author_dataFragment;
+  data: GatsbyTypes.Author_postFragment;
 };
 
 export const query = graphql`
-  fragment Author_blogPost on BlogPost {
+  fragment Author_post on Post {
     author {
       nickname
       image {

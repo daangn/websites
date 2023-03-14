@@ -9,7 +9,7 @@ import 'prismjs/themes/prism-tomorrow.css';
 const PostBodyRichText = ({
   slice,
 }: {
-  slice: Queries.PrismicEventPageDataBodyHeroMedia;
+  slice: Queries.PostRichTextSection;
 }) => {
   React.useEffect(() => {
     Prism.highlightAll();

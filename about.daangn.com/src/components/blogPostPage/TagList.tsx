@@ -8,7 +8,7 @@ type TagsProps = {
 };
 
 export const query = graphql`
-  fragment Tags_blogPost on BlogPost {
+  fragment Tags_post on Post {
     tags
   }
 `;
