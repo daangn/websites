@@ -5,12 +5,12 @@ import { rem } from 'polished';
 import PostCard from './PostCard';
 
 type PostListProps = {
-  data: GatsbyTypes.PostList_postconnectionFragment;
+  data: GatsbyTypes.PostList_queryFragment;
 };
 
 export const query = graphql`
-  fragment PostList_postconnection on PostConnection {
-    allPost(filter: {category: {uid: {glob: $id, ne: 'pr'}}}) {
+  fragment PostList_query on Query {
+    allPost(filter: {category: {uid: {glob: $id, ne: "pr"}}}) {
       nodes {
         ...PostCard_post
       }
@@ -18,15 +18,20 @@ export const query = graphql`
   }
 `;
 
-console.log("!!!!!query ::", query);
-
 const PostList: React.FC<PostListProps> = ({ data }) => {
+  console.log('data.allPost.nodes ::', data.allPost.nodes.length);
   return (
-    <Container>
-      {data.allPost.nodes.map((post) => (
-        <PostCard key={post.slug} post={post} />
-      ))}
-    </Container>
+    <>
+      {data.allPost.nodes.length === 0 ? (
+        <NoPostDescription>등록된 글이 없습니다.</NoPostDescription>
+      ) : (
+        <Container>
+          {data.allPost.nodes.map((post) => (
+            <PostCard key={post.slug} post={post} />
+          ))}
+        </Container>
+      )}
+    </>
   );
 };
 
@@ -42,6 +47,12 @@ const Container = styled('div', {
   '@media (min-width: 880px)': {
     gridTemplateColumns: 'repeat(2, 1fr)',
   },
+});
+
+const NoPostDescription = styled('div', {
+  width: '100%',
+  marginTop: rem(64),
+  textAlign: 'center',
 });
 
 export default PostList;

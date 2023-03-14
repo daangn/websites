@@ -10,7 +10,7 @@ type CategoryListProps = {
 
 export const query = graphql`
   fragment CategoryList_query on Query {
-    allPostCategory {
+    allPostCategory(filter: {uid: {ne: "pr"}}) {
       nodes {
         ...Category_category
       }

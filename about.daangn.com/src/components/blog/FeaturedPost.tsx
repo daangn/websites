@@ -10,7 +10,7 @@ type FeaturedPostProps = {
 };
 
 export const query = graphql`
-  fragment FeaturedPost_blogContent on PrismicLinkType {
+  fragment FeaturedPost_blogContent on PrismicBlogContentDataType {
     featured_post {
       uid
       document {
@@ -40,8 +40,8 @@ export const query = graphql`
 const FeaturedPost: React.FC<FeaturedPostProps> = ({ data }) => {
   return (
     <Container>
-      {data?.document?.data?.thumbnail_image?.gatsbyImageData && (
-        <FeaturedImage image={data.document.data.thumbnail_image.gatsbyImageData} alt={data?.document?.data?.thumbnail_image?.alt || ''} />
+      {data?.document?.data?.thumbnail_image?.localFile?.childImageSharp?.gatsbyImageData && (
+        <FeaturedImage image={data.document.data.thumbnail_image.localFile.childImageSharp.gatsbyImageData} alt={data?.document?.data?.thumbnail_image?.alt || ''} />
       )}
       <FeaturedDescription>
         <FeaturedTitle>{data.document.data.title.text}</FeaturedTitle>
