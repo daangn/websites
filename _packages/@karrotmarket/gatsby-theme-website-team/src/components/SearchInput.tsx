@@ -55,7 +55,8 @@ const Root = styled('div', {
 
 const Icon = styled(SeedIcon, {
   width: rem(52),
-  height: '100%',
+  height: rem(52),
+  minWidth: rem(52),
   padding: '0.9rem',
   boxSizing: 'border-box',
 });
