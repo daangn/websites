@@ -31,7 +31,7 @@
     "format": "rome format . --write"
   },
   "devDependencies": {
-    "@types/node": "18.15.2",
+    "@types/node": "18.15.3",
     "rome": "11.0.0",
     "typescript": "4.9.5",
     "ultra-runner": "3.10.5"
