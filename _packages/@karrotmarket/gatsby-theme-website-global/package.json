@@ -26,7 +26,7 @@
     "@seed-design/design-token": "1.0.0",
     "@stitches/react": "1.2.8",
     "@svgr/webpack": "6.5.1",
-    "framer-motion": "10.0.2",
+    "framer-motion": "10.3.1",
     "gatsby-plugin-head-seo": "0.3.0",
     "gatsby-plugin-image": "3.7.0",
     "gatsby-plugin-preload-fonts": "4.7.0",
