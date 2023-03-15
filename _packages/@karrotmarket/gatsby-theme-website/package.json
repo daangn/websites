@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@babel/cli": "7.21.0",
-    "@babel/core": "7.21.0",
+    "@babel/core": "7.21.3",
     "@stitches/react": "1.2.8",
     "@types/node": "18.15.2",
     "@types/react": "18.0.28",
