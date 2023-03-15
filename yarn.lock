@@ -96,7 +96,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:7.21.0, @babel/core@npm:^7.11.6, @babel/core@npm:^7.12.3, @babel/core@npm:^7.14.0, @babel/core@npm:^7.19.6, @babel/core@npm:^7.20.12":
+"@babel/core@npm:7.21.3":
+  version: 7.21.3
+  resolution: "@babel/core@npm:7.21.3"
+  dependencies:
+    "@ampproject/remapping": ^2.2.0
+    "@babel/code-frame": ^7.18.6
+    "@babel/generator": ^7.21.3
+    "@babel/helper-compilation-targets": ^7.20.7
+    "@babel/helper-module-transforms": ^7.21.2
+    "@babel/helpers": ^7.21.0
+    "@babel/parser": ^7.21.3
+    "@babel/template": ^7.20.7
+    "@babel/traverse": ^7.21.3
+    "@babel/types": ^7.21.3
+    convert-source-map: ^1.7.0
+    debug: ^4.1.0
+    gensync: ^1.0.0-beta.2
+    json5: ^2.2.2
+    semver: ^6.3.0
+  checksum: bef25fbea96f461bf79bd1d0e4f0cdce679fd5ada464a89c1141ddba59ae1adfdbb23e04440c266ed525712d33d5ffd818cd8b0c25b1dee0e648d5559516153a
+  languageName: node
+  linkType: hard
+
+"@babel/core@npm:^7.11.6, @babel/core@npm:^7.12.3, @babel/core@npm:^7.14.0, @babel/core@npm:^7.19.6, @babel/core@npm:^7.20.12":
   version: 7.21.0
   resolution: "@babel/core@npm:7.21.0"
   dependencies:
@@ -142,6 +165,18 @@ __metadata:
     "@jridgewell/trace-mapping": ^0.3.17
     jsesc: ^2.5.1
   checksum: 69085a211ff91a7a608ee3f86e6fcb9cf5e724b756d792a713b0c328a671cd3e423e1ef1b12533f366baba0616caffe0a7ba9d328727eab484de5961badbef00
+  languageName: node
+  linkType: hard
+
+"@babel/generator@npm:^7.21.3":
+  version: 7.21.3
+  resolution: "@babel/generator@npm:7.21.3"
+  dependencies:
+    "@babel/types": ^7.21.3
+    "@jridgewell/gen-mapping": ^0.3.2
+    "@jridgewell/trace-mapping": ^0.3.17
+    jsesc: ^2.5.1
+  checksum: be6bb5a32a0273260b91210d4137b7b5da148a2db8dd324654275cb0af865ae59de5e1536e93ac83423b2586415059e1c24cf94293026755cf995757238da749
   languageName: node
   linkType: hard
 
@@ -426,6 +461,15 @@ __metadata:
   bin:
     parser: ./bin/babel-parser.js
   checksum: e2b89de2c63d4cdd2cafeaea34f389bba729727eec7a8728f736bc472a59396059e3e9fe322c9bed8fd126d201fb609712949dc8783f4cae4806acd9a73da6ff
+  languageName: node
+  linkType: hard
+
+"@babel/parser@npm:^7.21.3":
+  version: 7.21.3
+  resolution: "@babel/parser@npm:7.21.3"
+  bin:
+    parser: ./bin/babel-parser.js
+  checksum: a71e6456a1260c2a943736b56cc0acdf5f2a53c6c79e545f56618967e51f9b710d1d3359264e7c979313a7153741b1d95ad8860834cc2ab4ce4f428b13cc07be
   languageName: node
   linkType: hard
 
@@ -1538,6 +1582,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/traverse@npm:^7.21.3":
+  version: 7.21.3
+  resolution: "@babel/traverse@npm:7.21.3"
+  dependencies:
+    "@babel/code-frame": ^7.18.6
+    "@babel/generator": ^7.21.3
+    "@babel/helper-environment-visitor": ^7.18.9
+    "@babel/helper-function-name": ^7.21.0
+    "@babel/helper-hoist-variables": ^7.18.6
+    "@babel/helper-split-export-declaration": ^7.18.6
+    "@babel/parser": ^7.21.3
+    "@babel/types": ^7.21.3
+    debug: ^4.1.0
+    globals: ^11.1.0
+  checksum: 0af5bcd47a2fc501592b90ac1feae9d449afb9ab0772a4f6e68230f4cd3a475795d538c1de3f880fe3414b6c2820bac84d02c6549eea796f39d74a603717447b
+  languageName: node
+  linkType: hard
+
 "@babel/types@npm:^7.0.0, @babel/types@npm:^7.0.0-beta.49, @babel/types@npm:^7.16.8, @babel/types@npm:^7.18.6, @babel/types@npm:^7.18.9, @babel/types@npm:^7.20.0, @babel/types@npm:^7.20.2, @babel/types@npm:^7.20.5, @babel/types@npm:^7.20.7, @babel/types@npm:^7.21.0, @babel/types@npm:^7.21.2, @babel/types@npm:^7.3.0, @babel/types@npm:^7.3.3, @babel/types@npm:^7.4.4, @babel/types@npm:^7.8.3":
   version: 7.21.2
   resolution: "@babel/types@npm:7.21.2"
@@ -1546,6 +1608,17 @@ __metadata:
     "@babel/helper-validator-identifier": ^7.19.1
     to-fast-properties: ^2.0.0
   checksum: a45a52acde139e575502c6de42c994bdbe262bafcb92ae9381fb54cdf1a3672149086843fda655c7683ce9806e998fd002bbe878fa44984498d0fdc7935ce7ff
+  languageName: node
+  linkType: hard
+
+"@babel/types@npm:^7.21.3":
+  version: 7.21.3
+  resolution: "@babel/types@npm:7.21.3"
+  dependencies:
+    "@babel/helper-string-parser": ^7.19.4
+    "@babel/helper-validator-identifier": ^7.19.1
+    to-fast-properties: ^2.0.0
+  checksum: b750274718ba9cefd0b81836c464009bb6ba339fccce51b9baff497a0a2d96c044c61dc90cf203cec0adc770454b53a9681c3f7716883c802b85ab84c365ba35
   languageName: node
   linkType: hard
 
@@ -2612,7 +2685,7 @@ __metadata:
   resolution: "@karrotmarket/gatsby-theme-post@workspace:_packages/@karrotmarket/gatsby-theme-post"
   dependencies:
     "@babel/cli": 7.21.0
-    "@babel/core": 7.21.0
+    "@babel/core": 7.21.3
     "@cometjs/core": 2.2.0
     "@cometjs/graphql-utils": 2.0.5
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
@@ -2658,7 +2731,7 @@ __metadata:
   resolution: "@karrotmarket/gatsby-theme-prismic@workspace:_packages/@karrotmarket/gatsby-theme-prismic"
   dependencies:
     "@babel/cli": 7.21.0
-    "@babel/core": 7.21.0
+    "@babel/core": 7.21.3
     "@prismicio/helpers": 2.3.9
     "@types/node": 18.15.2
     "@types/react": 18.0.28
@@ -2685,7 +2758,7 @@ __metadata:
   resolution: "@karrotmarket/gatsby-theme-seed-design@workspace:_packages/@karrotmarket/gatsby-theme-seed-design"
   dependencies:
     "@babel/cli": 7.21.0
-    "@babel/core": 7.21.0
+    "@babel/core": 7.21.3
     "@seed-design/icon": 0.1.13
     "@types/react": 18.0.28
     "@types/react-dom": 18.0.11
@@ -2707,7 +2780,7 @@ __metadata:
   resolution: "@karrotmarket/gatsby-theme-website-global@workspace:_packages/@karrotmarket/gatsby-theme-website-global"
   dependencies:
     "@babel/cli": 7.21.0
-    "@babel/core": 7.21.0
+    "@babel/core": 7.21.3
     "@cometjs/core": 2.2.0
     "@cometjs/graphql-utils": 2.0.5
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
@@ -2751,7 +2824,7 @@ __metadata:
   resolution: "@karrotmarket/gatsby-theme-website-team@workspace:_packages/@karrotmarket/gatsby-theme-website-team"
   dependencies:
     "@babel/cli": 7.21.0
-    "@babel/core": 7.21.0
+    "@babel/core": 7.21.3
     "@cometjs/core": 2.2.0
     "@cometjs/graphql-utils": 2.0.5
     "@cometjs/react-utils": 2.1.2
@@ -2816,7 +2889,7 @@ __metadata:
   resolution: "@karrotmarket/gatsby-theme-website@workspace:_packages/@karrotmarket/gatsby-theme-website"
   dependencies:
     "@babel/cli": 7.21.0
-    "@babel/core": 7.21.0
+    "@babel/core": 7.21.3
     "@cometjs/core": 2.2.0
     "@cometjs/react-utils": 2.1.2
     "@karrotmarket/gatsby-theme-seed-design": "workspace:^"
@@ -2851,7 +2924,7 @@ __metadata:
   resolution: "@karrotmarket/gatsby-transformer-job-post@workspace:_packages/@karrotmarket/gatsby-transformer-job-post"
   dependencies:
     "@babel/cli": 7.21.0
-    "@babel/core": 7.21.0
+    "@babel/core": 7.21.3
     "@karrotmarket/gatsby-source-greenhouse-jobboard": 0.9.0
     "@types/common-tags": 1.8.1
     "@types/jest": 29.4.1
@@ -2876,7 +2949,7 @@ __metadata:
   resolution: "@karrotmarket/gatsby-transformer-post@workspace:_packages/@karrotmarket/gatsby-transformer-post"
   dependencies:
     "@babel/cli": 7.21.0
-    "@babel/core": 7.21.0
+    "@babel/core": 7.21.3
     "@prismicio/types": 0.2.7
     babel-preset-gatsby-package: 3.7.0
     concurrently: 7.6.0
@@ -5094,7 +5167,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "about.daangn.com@workspace:about.daangn.com"
   dependencies:
-    "@babel/core": 7.21.0
+    "@babel/core": 7.21.3
     "@karrotmarket/gatsby-source-greenhouse-jobboard": 0.9.0
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website-team": "workspace:^"
@@ -5212,7 +5285,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "ads-local.daangn.com@workspace:ads-local.daangn.com"
   dependencies:
-    "@babel/core": 7.21.0
+    "@babel/core": 7.21.3
     "@cometjs/graphql-utils": 2.0.5
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-seed-design": "workspace:^"
@@ -6241,7 +6314,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "ca.karrotmarket.com@workspace:ca.karrotmarket.com"
   dependencies:
-    "@babel/core": 7.21.0
+    "@babel/core": 7.21.3
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website-global": "workspace:^"
     babel-plugin-polished: 1.1.0
@@ -6421,7 +6494,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "careers.ca.karrotmarket.com@workspace:careers.ca.karrotmarket.com"
   dependencies:
-    "@babel/core": 7.21.0
+    "@babel/core": 7.21.3
     "@karrotmarket/gatsby-source-greenhouse-jobboard": 0.9.0
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website-team": "*"
@@ -6451,7 +6524,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "careers.jp.karrotmarket.com@workspace:careers.jp.karrotmarket.com"
   dependencies:
-    "@babel/core": 7.21.0
+    "@babel/core": 7.21.3
     "@karrotmarket/gatsby-source-greenhouse-jobboard": 0.9.0
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website-team": "workspace:^"
@@ -12329,7 +12402,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "jp.karrotmarket.com@workspace:jp.karrotmarket.com"
   dependencies:
-    "@babel/core": 7.21.0
+    "@babel/core": 7.21.3
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website-global": "workspace:^"
     "@seed-design/design-token": 1.0.0
@@ -17460,7 +17533,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "team.daangn.com@workspace:team.daangn.com"
   dependencies:
-    "@babel/core": 7.21.0
+    "@babel/core": 7.21.3
     "@karrotmarket/gatsby-source-greenhouse-jobboard": 0.9.0
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website-team": "workspace:^"
@@ -17929,7 +18002,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "uk.karrotmarket.com@workspace:uk.karrotmarket.com"
   dependencies:
-    "@babel/core": 7.21.0
+    "@babel/core": 7.21.3
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website-global": "workspace:^"
     babel-plugin-polished: 1.1.0
@@ -18159,7 +18232,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "us.karrotmarket.com@workspace:us.karrotmarket.com"
   dependencies:
-    "@babel/core": 7.21.0
+    "@babel/core": 7.21.3
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website-global": "workspace:^"
     babel-plugin-polished: 1.1.0
