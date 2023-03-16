@@ -2697,7 +2697,7 @@ __metadata:
     babel-plugin-polished: 1.1.0
     babel-preset-gatsby-package: 3.7.0
     concurrently: 7.6.0
-    framer-motion: 10.3.1
+    framer-motion: 10.3.2
     gatsby: 5.7.0
     gatsby-plugin-head-seo: 0.3.0
     gatsby-plugin-image: 3.7.0
@@ -2792,7 +2792,7 @@ __metadata:
     "@svgr/webpack": 6.5.1
     babel-preset-gatsby-package: 3.7.0
     concurrently: 7.6.0
-    framer-motion: 10.3.1
+    framer-motion: 10.3.2
     gatsby: 5.7.0
     gatsby-plugin-head-seo: 0.3.0
     gatsby-plugin-image: 3.7.0
@@ -2846,7 +2846,7 @@ __metadata:
     clsx: 1.2.1
     concurrently: 7.6.0
     focus-trap-react: 10.1.1
-    framer-motion: 10.3.1
+    framer-motion: 10.3.2
     gatsby: 5.7.0
     gatsby-plugin-advanced-sitemap: 2.1.0
     gatsby-plugin-gatsby-cloud: 5.7.0
@@ -9355,9 +9355,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:10.3.1":
-  version: 10.3.1
-  resolution: "framer-motion@npm:10.3.1"
+"framer-motion@npm:10.3.2":
+  version: 10.3.2
+  resolution: "framer-motion@npm:10.3.2"
   dependencies:
     "@emotion/is-prop-valid": ^0.8.2
     tslib: ^2.4.0
@@ -9372,7 +9372,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: e34fafd71ff90dcf03cd234b9fd286db43910f96ecc409622a0a5f3e40dd5b10fdfaea9ad8d0eec83b800c7e5c0a712aa57617df2c762baa96086218e7f19ae2
+  checksum: 701c57bbeeb543f5351eecb4bf9cba82347c07a6599ab9b8547592f593abd5bdd7ee22265b3b98558eef4d61c90e9bc567785677a7765941c9e50bd46be6e425
   languageName: node
   linkType: hard
 
@@ -12407,7 +12407,7 @@ __metadata:
     "@karrotmarket/gatsby-theme-website-global": "workspace:^"
     "@seed-design/design-token": 1.0.0
     babel-plugin-polished: 1.1.0
-    framer-motion: 10.3.1
+    framer-motion: 10.3.2
     gatsby: 5.7.0
     gatsby-plugin-google-tagmanager: 5.7.0
     gatsby-plugin-image: 3.7.0
