@@ -54,6 +54,7 @@ const config: GatsbyConfig = {
       },
     },
     '@karrotmarket/gatsby-theme-prismic',
+    '@karrotmarket/gatsby-theme-brochure',
   ],
 };
 
