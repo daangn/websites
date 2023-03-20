@@ -1544,7 +1544,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.12.13, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.15.4, @babel/runtime@npm:^7.17.8, @babel/runtime@npm:^7.17.9, @babel/runtime@npm:^7.20.13, @babel/runtime@npm:^7.20.7, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.9.2":
+"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.12.13, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.17.8, @babel/runtime@npm:^7.17.9, @babel/runtime@npm:^7.20.13, @babel/runtime@npm:^7.20.7, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.9.2":
   version: 7.21.0
   resolution: "@babel/runtime@npm:7.21.0"
   dependencies:
@@ -2707,7 +2707,7 @@ __metadata:
     gatsby-plugin-sharp: 5.7.0
     gatsby-plugin-svgr: 3.0.0-beta.0
     gatsby-plugin-turnstile: 1.1.1
-    gatsby-source-prismic: 5.2.10
+    gatsby-source-prismic: 5.3.0
     gatsby-theme-stitches: 1.0.1
     gatsby-transformer-sharp: 5.7.0
     polished: 4.2.2
@@ -2741,7 +2741,7 @@ __metadata:
     gatsby: 5.7.0
     gatsby-plugin-image: 3.7.0
     gatsby-plugin-prismic-previews: 5.3.0
-    gatsby-source-prismic: 5.2.10
+    gatsby-source-prismic: 5.3.0
     prismic-reactjs: 1.3.4
     react: 18.2.0
     react-dom: 18.2.0
@@ -2800,7 +2800,7 @@ __metadata:
     gatsby-plugin-prismic-previews: 5.3.0
     gatsby-plugin-sharp: 5.7.0
     gatsby-plugin-svgr: 3.0.0-beta.0
-    gatsby-source-prismic: 5.2.10
+    gatsby-source-prismic: 5.3.0
     gatsby-theme-stitches: 1.0.1
     gatsby-transformer-sharp: 5.7.0
     polished: 4.2.2
@@ -2864,7 +2864,7 @@ __metadata:
     gatsby-plugin-svgr: 3.0.0-beta.0
     gatsby-plugin-turnstile: 1.1.1
     gatsby-source-filesystem: 5.7.0
-    gatsby-source-prismic: 5.2.10
+    gatsby-source-prismic: 5.3.0
     gatsby-theme-stitches: 1.0.1
     gatsby-transformer-sharp: 5.7.0
     hangul-js: 0.2.6
@@ -9408,17 +9408,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fs-extra@npm:^10.1.0":
-  version: 10.1.0
-  resolution: "fs-extra@npm:10.1.0"
-  dependencies:
-    graceful-fs: ^4.2.0
-    jsonfile: ^6.0.1
-    universalify: ^2.0.0
-  checksum: dc94ab37096f813cc3ca12f0f1b5ad6744dfed9ed21e953d72530d103cea193c2f81584a39e9dee1bea36de5ee66805678c0dddc048e8af1427ac19c00fffc50
-  languageName: node
-  linkType: hard
-
 "fs-extra@npm:^11.1.0":
   version: 11.1.0
   resolution: "fs-extra@npm:11.1.0"
@@ -9572,29 +9561,6 @@ __metadata:
   bin:
     gatsby: cli.js
   checksum: 09fe537c3c5c3bc4606665fcc77d0dd6d047d4153cf1c6980005400c16bf3f79b66e21bf55e1a74763c5108e68ba2c5d6c1707b206d13dbf680331d979aa9aab
-  languageName: node
-  linkType: hard
-
-"gatsby-core-utils@npm:^3.25.0":
-  version: 3.25.0
-  resolution: "gatsby-core-utils@npm:3.25.0"
-  dependencies:
-    "@babel/runtime": ^7.15.4
-    ci-info: 2.0.0
-    configstore: ^5.0.1
-    fastq: ^1.13.0
-    file-type: ^16.5.3
-    fs-extra: ^10.1.0
-    got: ^11.8.5
-    import-from: ^4.0.0
-    lmdb: 2.5.3
-    lock: ^1.1.0
-    node-object-hash: ^2.3.10
-    proper-lockfile: ^4.1.2
-    resolve-from: ^5.0.0
-    tmp: ^0.2.1
-    xdg-basedir: ^4.0.0
-  checksum: d67e1b56b32762f9f416bc0e3df8841247b735ac64ceb192ebbf50a7715bfe383586871a11031d2d0d986954df5ffd0e78b573e431e7c0557b9066d9cc353e4b
   languageName: node
   linkType: hard
 
@@ -10133,7 +10099,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-source-filesystem@npm:5.7.0":
+"gatsby-source-filesystem@npm:5.7.0, gatsby-source-filesystem@npm:^5.0.0":
   version: 5.7.0
   resolution: "gatsby-source-filesystem@npm:5.7.0"
   dependencies:
@@ -10152,29 +10118,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-source-filesystem@npm:^4.0.0":
-  version: 4.25.0
-  resolution: "gatsby-source-filesystem@npm:4.25.0"
-  dependencies:
-    "@babel/runtime": ^7.15.4
-    chokidar: ^3.5.3
-    file-type: ^16.5.4
-    fs-extra: ^10.1.0
-    gatsby-core-utils: ^3.25.0
-    md5-file: ^5.0.0
-    mime: ^2.5.2
-    pretty-bytes: ^5.4.1
-    valid-url: ^1.0.9
-    xstate: 4.32.1
-  peerDependencies:
-    gatsby: ^4.0.0-next
-  checksum: 73cbcb8b9b439430f87157132d16fc0fc2b7569c57786392e7a290588829b6b3f5ce462c2109e9fab432b60b60340b71e801ad98ba2a0ff835f8100192bb4ce3
-  languageName: node
-  linkType: hard
-
-"gatsby-source-prismic@npm:5.2.10":
-  version: 5.2.10
-  resolution: "gatsby-source-prismic@npm:5.2.10"
+"gatsby-source-prismic@npm:5.3.0":
+  version: 5.3.0
+  resolution: "gatsby-source-prismic@npm:5.3.0"
   dependencies:
     "@imgix/gatsby": ^1.7.5
     "@prismicio/client": ^6.4.2
@@ -10184,12 +10130,12 @@ __metadata:
     camel-case: ^4.1.2
     fp-ts: ^2.10.5
     gatsby-node-helpers: ^1.2.1
-    gatsby-source-filesystem: ^4.0.0
+    gatsby-source-filesystem: ^5.0.0
     node-fetch: ^2.6.5
   peerDependencies:
-    gatsby: ^3.0.0-next.0 || ^4.0.0-next.0
-    gatsby-plugin-image: ^1.3.0-next.1 || ^2.0.0-next.0
-  checksum: 1d6066997f9bdc88f421c6075c1d1e07df6798b3a1b11aa6f01b56aef845bef974c2dfdd100536164ff5c422af62802e7c274b23f26adf2f71b1e23b394e6590
+    gatsby: ^3.0.0-next.0 || ^4.0.0-next.0 || ^5
+    gatsby-plugin-image: ^1.3.0-next.1 || ^2.0.0-next.0 || ^3
+  checksum: 22c508116ca91a6186a1c0a7991854b7d4e38f0f25d7993a8534b7320d0d7e8c749c41cd179bc581edf2bcde17dcb74d9fa00973df28b2ba66b20ed6b6651a37
   languageName: node
   linkType: hard
 
@@ -13129,15 +13075,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"md5-file@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "md5-file@npm:5.0.0"
-  bin:
-    md5-file: cli.js
-  checksum: c606a00ff58adf5428e8e2f36d86e5d3c7029f9688126faca302cd83b5e92cac183a62e1d1f05fae7c2614e80f993326fd0a8d6a3a913c41ec7ea0eefc25aa76
-  languageName: node
-  linkType: hard
-
 "md5@npm:^2.2.1":
   version: 2.3.0
   resolution: "md5@npm:2.3.0"
@@ -13294,7 +13231,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mime@npm:^2.0.3, mime@npm:^2.4.4, mime@npm:^2.5.2":
+"mime@npm:^2.0.3, mime@npm:^2.4.4":
   version: 2.6.0
   resolution: "mime@npm:2.6.0"
   bin:
@@ -15133,7 +15070,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pretty-bytes@npm:^5.4.1, pretty-bytes@npm:^5.6.0":
+"pretty-bytes@npm:^5.6.0":
   version: 5.6.0
   resolution: "pretty-bytes@npm:5.6.0"
   checksum: 9c082500d1e93434b5b291bd651662936b8bd6204ec9fa17d563116a192d6d86b98f6d328526b4e8d783c07d5499e2614a807520249692da9ec81564b2f439cd
@@ -18842,13 +18779,6 @@ __metadata:
   version: 2.0.0
   resolution: "xmlhttprequest-ssl@npm:2.0.0"
   checksum: 1e98df67f004fec15754392a131343ea92e6ab5ac4d77e842378c5c4e4fd5b6a9134b169d96842cc19422d77b1606b8df84a5685562b3b698cb68441636f827e
-  languageName: node
-  linkType: hard
-
-"xstate@npm:4.32.1":
-  version: 4.32.1
-  resolution: "xstate@npm:4.32.1"
-  checksum: c16298b2b3dab7689da99d5b1e5128d2ca3bf381f37c8cb95e4af83bb1044b9251629fc00758f7f31785a72c2ddddd26f602b2801e6068cd78373b7f6dd6c28b
   languageName: node
   linkType: hard
 
