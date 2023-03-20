@@ -42,7 +42,7 @@
     "gatsby-plugin-local-search": "2.0.1",
     "gatsby-plugin-manifest": "5.7.0",
     "gatsby-plugin-module-resolver": "1.0.3",
-    "gatsby-plugin-prismic-previews": "5.2.10",
+    "gatsby-plugin-prismic-previews": "5.3.0",
     "gatsby-plugin-robots-txt": "1.8.0",
     "gatsby-plugin-sharp": "5.7.0",
     "gatsby-plugin-sitemap": "6.7.0",
