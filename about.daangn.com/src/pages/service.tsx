@@ -4,6 +4,7 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import * as React from 'react';
 
+import externalSvgUrl from '!!file-loader!../assets/external.svg';
 import IconFleamarket from '../assets/icon_fleamarket.png';
 import SeviceImage1 from '../assets/service_img_01.png';
 import IconCommunity from '../assets/icon_community.png';
@@ -37,11 +38,10 @@ const ServicePage: React.FC = () => {
         <LeftContent>
           <ServiceTitle>
             <ServiceIcon src={IconFleamarket} alt='중고거래_아이콘' />
-            <ServieaName>중고거래</ServieaName>
+            <ServiceName>중고거래</ServiceName>
           </ServiceTitle>
           <ServiceDescription>
             당근에서 동네 이웃들과 가깝고 따뜻한 거래를 경험해요.
-            <br />
             동네인증, 매너온도는 물론 머신러닝 기술을 통한 게시글 분석으로
             모두가 안전하게 거래할 수 있도록 노력하고 있어요.
           </ServiceDescription>
@@ -56,7 +56,7 @@ const ServicePage: React.FC = () => {
         <LeftContent>
           <ServiceTitle>
             <ServiceIcon src={IconCommunity} alt='동네생활_아이콘' />
-            <ServieaName>동네생활</ServieaName>
+            <ServiceName>동네생활</ServiceName>
           </ServiceTitle>
           <ServiceDescription>
             동네 실시간 소식부터, 맛집 정보, 모임, 일상 공유까지.
@@ -74,12 +74,10 @@ const ServicePage: React.FC = () => {
         <LeftContent>
           <ServiceTitle>
             <ServiceIcon src={IconStore} alt='동네가게_아이콘' />
-            <ServieaName>동네가게</ServieaName>
+            <ServiceName>동네가게</ServiceName>
           </ServiceTitle>
           <ServiceDescription>
-            동네 실시간 소식부터, 맛집 정보, 모임, 일상 공유까지.
-            지금 우리 동네의 다양한 이야기를 이웃과 함께 나누어요.
-            동네 이웃만 알 수 있는 진짜 정보를 동네생활에서 확인해보세요.
+            동네 가게의 소식과 쿠폰, 이웃들의 후기로 내 근처 가게들을 발견할 수 있어요. 내 근처는 우리 동네 이웃들과 소상공인을 연결하고, 우리 동네 맞춤형 정보를 제공하는 공간이에요.
           </ServiceDescription>
         </LeftContent>
         <RightContent>
@@ -92,7 +90,9 @@ const ServicePage: React.FC = () => {
         <LeftContent>
           <ServiceTitle>
             <ServiceIcon src={IconBusiness} alt='당근비즈니스_아이콘' />
-            <ServieaName>당근비즈니스</ServieaName>
+            <ServiceLink as="a" target="_blank" rel="external noopener" href='https://business.daangn.com/'>
+            당근비즈니스
+            </ServiceLink>
           </ServiceTitle>
           <ServiceDescription>
             당근 이웃을 내 고객으로 만드는 강력한 비결!
@@ -132,7 +132,7 @@ const ServicePage: React.FC = () => {
         <LeftContent>
           <ServiceTitle>
             <ServiceIcon src={IconJobs} alt='당근알바_아이콘' />
-            <ServieaName>당근알바</ServieaName>
+            <ServiceName>당근알바</ServiceName>
           </ServiceTitle>
           <ServiceDescription>
             우리 동네에서 찾는 당근알바. 당근하듯 쉽고 빠르게 동네에서 일거리를 찾고 일할 분을 구할 수 있어요.
@@ -149,7 +149,7 @@ const ServicePage: React.FC = () => {
         <LeftContent>
           <ServiceTitle>
             <ServiceIcon src={IconUsedcar} alt='중고차직거래_아이콘' />
-            <ServieaName>중고차 직거래</ServieaName>
+            <ServiceName>중고차 직거래</ServiceName>
           </ServiceTitle>
           <ServiceDescription>
             직거래로 합리적인 가격에 중고차 거래를 해보세요.
@@ -166,7 +166,7 @@ const ServicePage: React.FC = () => {
         <LeftContent>
           <ServiceTitle>
             <ServiceIcon src={IconRealestate} alt='부동산직거래_아이콘' />
-            <ServieaName>부동산 직거래</ServieaName>
+            <ServiceName>부동산 직거래</ServiceName>
           </ServiceTitle>
           <ServiceDescription>
             당근에서 부동산도 편리하고, 투명하게 직거래 할 수 있어요.
@@ -183,7 +183,9 @@ const ServicePage: React.FC = () => {
         <LeftContent>
           <ServiceTitle>
             <ServiceIcon src={IconPay} alt='당근페이_아이콘' />
-            <ServieaName>당근페이</ServieaName>
+            <ServiceLink as="a" target="_blank" rel="external noopener" href='https://www.daangnpay.com/'>
+              당근페이
+            </ServiceLink>
           </ServiceTitle>
           <ServiceDescription>
             현금과 개인정보를 주고받지 않고 더 쉽고 안전하게 송금해요.
@@ -208,27 +210,47 @@ const Container = styled('main', {
 const TitleArea = styled('section', {
   width: '100%',
   textAlign: 'left',
-  marginBottom: rem(100),
+  marginBottom: 0,
+
+  '@lg': {
+    marginBottom: rem(80),
+  },
 });
 
 const Title = styled('h1', {
-  fontSize: rem(40),
+  typography: '$subtitle2',
+  whiteSpace: 'pre-line',
   textAlign: 'left',
+
+  '@sm': {
+    typography: '$heading3',
+  },
 });
 
 const Card = styled('div', {
   display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-  minHeight: rem(220),
-  maxHeight: rem(400),
+  flexDirection: 'column-reverse',
+  marginTop: rem(64),
+
+  '@lg': {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    minHeight: rem(220),
+    maxHeight: rem(400),
+    marginTop: 0,
+  },
 });
 
 const CardLine = styled('hr', {
+  display: 'none',
   borderWidth: '0 0 1px 0',
   borderColor: vars.$scale.color.gray200,
   width: '100%',
   margin: `${rem(68)} 0`,
+
+  '@lg': {
+    display: 'block',
+  }
 });
 
 const LeftContent = styled('div', {
@@ -236,36 +258,81 @@ const LeftContent = styled('div', {
   flexDirection: 'column',
   alignItems: 'flex-start',
   justifyContent: 'space-between',
-  width: '40%',
-});
+  width: '100%',
 
-const ServiceIcon = styled('img', {
-  width: rem(72),
-  marginBottom: rem(80),
+  '@lg': {
+    width: '40%',
+  }
 });
 
 const ServiceTitle = styled('div', {
   display: 'flex',
-  flexDirection: 'column',
+  flexDirection: 'row',
+  alignItems: 'center',
+  marginTop: rem(24),
+
+  '@lg': {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    marginTop: 0,
+  }
 });
 
-const ServieaName = styled('h2', {
+const ServiceIcon = styled('img', {
+  width: rem(40),
+  marginRight: rem(10),
+
+  '@lg': {
+    width: rem(72),
+    marginBottom: rem(80),
+    marginRight: 0,
+  }
+});
+
+const ServiceName = styled('h3', {
+  fontSize: '$subtitle1',
+  lineHeight: '$subtitle1'
+});
+
+const ServiceLink = styled(Link, {
+  display: 'inline-flex',
+  textDecoration: 'none',
   fontSize: '$subtitle2',
+  fontWeight: 'bold',
+  color: vars.$scale.color.gray900,
+  '&:hover, &:focus': {
+    color: vars.$scale.color.gray600,
+  },
+
+  '&::after': {
+    content: '',
+    display: 'inline-block',
+    width: rem(28),
+    height: rem(28),
+    backgroundColor: 'currentColor',
+    maskImage: `url(${externalSvgUrl})`,
+  },
 });
 
 const ServiceDescription = styled('p', {
+  marginTop: rem(24),
   fontSize: '$body2',
-  color: vars.$scale.color.gray600,
-  letterSpacing: rem(0.6),
-  lineHeight: '150%',
+  lineHeight: '$body2',
+  color: vars.$scale.color.gray700,
+
+  '@lg': {
+    marginTop: 0,
+  },
 });
 
 const RightContent = styled('div', {
-  width: '40%',
-  marginLeft: rem(80),
-  background: 'lightblue',
-});
+  width: '100%',
 
+  '@lg': {
+    width: '40%',
+    marginLeft: rem(80),
+  }
+});
 
 const ServiceImage = styled('img', {
   width: '100%',
@@ -275,26 +342,41 @@ const ServiceImage = styled('img', {
 
 const SubCardWrapper = styled('div', {
   display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'space-between',
+  flexDirection: 'column',
   width: '100%',
-  marginTop: rem(60),
+  marginTop: rem(24),
+
+  '@lg': {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: rem(60),
+  },
 });
 
 const SubCard = styled('div', {
-  maxWidth: rem(328),
+  width: '100%',
+  marginBottom: rem(20),
+
+  '@lg': {
+    maxWidth: rem(328),
+    marginBottom: 0,
+  },
 });
 
 const SubCardTitle = styled('h3', {
   fontSize: '$subtitle3',
-  marginBottom: rem(20),
+  marginBottom: rem(12),
+
+  '@lg': {
+    marginBottom: rem(20),
+  },
 });
 
 const SubCardDesctiption = styled('p', {
   fontSize: '$caption1',
-  color: vars.$scale.color.gray600,
+  lineHeight: '$caption1',
+  color: vars.$scale.color.gray700,
   letterSpacing: rem(0.4),
-  lineHeight: '140%',
 });
 
 export default ServicePage;
