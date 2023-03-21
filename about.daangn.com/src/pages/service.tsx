@@ -5,21 +5,21 @@ import { rem } from 'polished';
 import * as React from 'react';
 
 import externalSvgUrl from '!!file-loader!../assets/external.svg';
-import IconFleamarket from '../assets/icon_fleamarket.png';
-import SeviceImage1 from '../assets/service_img_01.png';
-import IconCommunity from '../assets/icon_community.png';
-import SeviceImage2 from '../assets/service_img_02.png';
-import IconStore from '../assets/icon_store.png';
-import SeviceImage3 from '../assets/service_img_03.png';
 import IconBusiness from '../assets/icon_business.png';
-import SeviceImage4 from '../assets/service_img_04.png';
+import IconCommunity from '../assets/icon_community.png';
+import IconFleamarket from '../assets/icon_fleamarket.png';
 import IconJobs from '../assets/icon_jobs.png';
-import SeviceImage5 from '../assets/service_img_05.png';
-import IconUsedcar from '../assets/icon_usedcar.png';
-import SeviceImage6 from '../assets/service_img_06.png';
-import IconRealestate from '../assets/icon_realestate.png';
-import SeviceImage7 from '../assets/service_img_07.png';
 import IconPay from '../assets/icon_pay.png';
+import IconRealestate from '../assets/icon_realestate.png';
+import IconStore from '../assets/icon_store.png';
+import IconUsedcar from '../assets/icon_usedcar.png';
+import SeviceImage1 from '../assets/service_img_01.png';
+import SeviceImage2 from '../assets/service_img_02.png';
+import SeviceImage3 from '../assets/service_img_03.png';
+import SeviceImage4 from '../assets/service_img_04.png';
+import SeviceImage5 from '../assets/service_img_05.png';
+import SeviceImage6 from '../assets/service_img_06.png';
+import SeviceImage7 from '../assets/service_img_07.png';
 import SeviceImage8 from '../assets/service_img_08.png';
 
 export const query = graphql`
@@ -310,9 +310,10 @@ const ServiceName = styled('h3', {
 const ServiceLink = styled(Link, {
   display: 'inline-flex',
   textDecoration: 'none',
-  fontSize: '$subtitle2',
+  fontSize: '$subtitle1',
   fontWeight: 'bold',
   color: vars.$scale.color.gray900,
+  
   '&:hover, &:focus': {
     color: vars.$scale.color.gray600,
   },
