@@ -4,6 +4,7 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 const Content = styled('div', {
   contentArea: true,
   width: '100%',
+  boxSizing: 'border-box',
   textAlign: 'center',
 
   paddingY: rem(120),

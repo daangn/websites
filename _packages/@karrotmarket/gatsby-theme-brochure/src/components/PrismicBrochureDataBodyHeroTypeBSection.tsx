@@ -76,11 +76,13 @@ export default function PrismicBrochureDataBodyHeroTypeBSection({ section }: Pro
         image={defaultBackgroundImage}
         alt={section.primary.background_image?.alt || ''}
         loading="lazy"
+        aria-hidden
       />
       <WideBackground
         image={wideBackgroundImage}
         alt={section.primary.background_image?.thumbnails?.wide?.alt || ''}
         loading="lazy"
+        aria-hidden
       />
       <Content>
         <TitleContainer

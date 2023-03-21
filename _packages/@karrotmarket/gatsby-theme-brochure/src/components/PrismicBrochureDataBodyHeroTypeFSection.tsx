@@ -31,6 +31,12 @@ export const fragments = graphql`
         localFile {
           childImageSharp {
             gatsbyImageData(
+              layout: FULL_WIDTH
+              placeholder: NONE
+              width: 440
+              quality: 100
+            )
+            wideGatsbyImageData: gatsbyImageData(
               layout: FIXED
               placeholder: NONE
               width: 440
@@ -54,6 +60,10 @@ export default function PrismicBrochureDataBodyHeroTypeFSection({ section }: Pro
     section.primary.component_image?.localFile?.childImageSharp?.gatsbyImageData &&
     getImage(section.primary.component_image.localFile.childImageSharp.gatsbyImageData);
 
+  const wideComponentImage =
+    section.primary.component_image?.localFile?.childImageSharp?.gatsbyImageData &&
+    getImage(section.primary.component_image.localFile.childImageSharp.wideGatsbyImageData);
+
   return (
     <RootContainer
       id={section.primary.section_id || undefined}
@@ -69,6 +79,12 @@ export default function PrismicBrochureDataBodyHeroTypeFSection({ section }: Pro
           <Extension id={section.primary.extension} />
         </Body>
         <ComponentImage image={componentImage} alt={section.primary.component_image?.alt || ''} />
+        <ComponentImage
+          wide
+          aria-hidden
+          image={wideComponentImage}
+          alt={section.primary.component_image?.alt || ''}
+        />
       </Content>
     </RootContainer>
   );

@@ -16,6 +16,7 @@ export const fragment = graphql`
       body {
         __typename
         ...PrismicBrochureDataBodyAppDownloadSection_section
+        ...PrismicBrochureDataBodyBuySellGuideSection_section
         ...PrismicBrochureDataBodyHeroTypeBSection_section
         ...PrismicBrochureDataBodyHeroTypeFSection_section
         ...PrismicBrochureDataBodyVerticalHighlightSection_section
