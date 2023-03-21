@@ -18,8 +18,8 @@ export const query = graphql`
 
 export default function IndexPage({ data }: PageProps<GatsbyTypes.IndexPageQuery>) {
   return (
-    <Layout data={data.prismicSiteNavigation.data}>
-      <BrochureSliceZone brochure={data.prismicBrochure} />
+    <Layout data={data.prismicSiteNavigation!.data}>
+      <BrochureSliceZone brochure={data.prismicBrochure!} />
     </Layout>
   );
 }

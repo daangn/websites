@@ -5,7 +5,8 @@ import { mapAbstractType } from '@cometjs/graphql-utils';
 import PrismicBrochureDataBodyAppDownloadSection from './PrismicBrochureDataBodyAppDownloadSection';
 import PrismicBrochureDataBodyBuySellGuideSection from './PrismicBrochureDataBodyBuySellGuideSection';
 import PrismicBrochureDataBodyFeatureGridSection from './PrismicBrochureDataBodyFeatureGridSection';
-import PrismicBrochureDataBodyHeroSection from './PrismicBrochureDataBodyHeroSection';
+import PrismicBrochureDataBodyHeroTypeBSection from './PrismicBrochureDataBodyHeroTypeBSection';
+import PrismicBrochureDataBodyHeroTypeFSection from './PrismicBrochureDataBodyHeroTypeFSection';
 import PrismicBrochureDataBodyVerticalHighlightSection from './PrismicBrochureDataBodyVerticalHighlightSection';
 
 export const fragment = graphql`
@@ -15,6 +16,8 @@ export const fragment = graphql`
       body {
         __typename
         ...PrismicBrochureDataBodyAppDownloadSection_section
+        ...PrismicBrochureDataBodyHeroTypeBSection_section
+        ...PrismicBrochureDataBodyHeroTypeFSection_section
       }
     }
   }
@@ -42,8 +45,11 @@ export default function BrochureSliceZone({ brochure }: Props) {
           PrismicBrochureDataBodyFeatureGridSection: (section) => (
             <PrismicBrochureDataBodyFeatureGridSection key={i} section={section} />
           ),
-          PrismicBrochureDataBodyHeroSection: (section) => (
-            <PrismicBrochureDataBodyHeroSection key={i} section={section} />
+          PrismicBrochureDataBodyHeroTypeBSection: (section) => (
+            <PrismicBrochureDataBodyHeroTypeBSection key={i} section={section} />
+          ),
+          PrismicBrochureDataBodyHeroTypeFSection: (section) => (
+            <PrismicBrochureDataBodyHeroTypeFSection key={i} section={section} />
           ),
           PrismicBrochureDataBodyVerticalHighlightSection: (section) => (
             <PrismicBrochureDataBodyVerticalHighlightSection key={i} section={section} />
