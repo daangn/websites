@@ -56,7 +56,7 @@ const Container = styled('div', {
       },
       false: {
         backgroundColor: vars.$scale.color.gray100,
-        color: vars.$scale.color.gray700,
+        color: vars.$scale.color.gray600,
         '&:hover': {
           backgroundColor: vars.$scale.color.gray900,
           color: vars.$scale.color.gray00,
@@ -68,7 +68,7 @@ const Container = styled('div', {
 
   '@media (min-width: 880px)': {
     marginRight: rem(10),
-    padding: `${rem(10)} ${rem(20)}`,
+    padding: `${rem(14)} ${rem(20)}`,
     fontSize: '$body2',
   },
 });

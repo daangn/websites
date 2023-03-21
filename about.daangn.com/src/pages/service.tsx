@@ -259,7 +259,7 @@ const CardLine = styled('hr', {
   borderWidth: '0 0 1px 0',
   borderColor: vars.$scale.color.gray200,
   width: '100%',
-  margin: `${rem(68)} 0`,
+  margin: `${rem(88)} 0`,
 
   '@lg': {
     display: 'block',
@@ -282,7 +282,7 @@ const ServiceTitle = styled('div', {
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
-  marginTop: rem(24),
+  marginTop: rem(20),
 
   '@lg': {
     flexDirection: 'column',
@@ -303,14 +303,19 @@ const ServiceIcon = styled('img', {
 });
 
 const ServiceName = styled('h3', {
-  fontSize: '$subtitle1',
-  lineHeight: '$subtitle1',
+  fontSize: rem(22),
+  lineHeight: '$subtitle3',
+
+  '@lg': {
+    fontSize: '$subtitle1',
+    lineHeight: '$subtitle1',
+  },
 });
 
 const ServiceLink = styled(Link, {
   display: 'inline-flex',
   textDecoration: 'none',
-  fontSize: '$subtitle1',
+  fontSize: rem(22),
   fontWeight: 'bold',
   color: vars.$scale.color.gray900,
 
@@ -323,19 +328,31 @@ const ServiceLink = styled(Link, {
     display: 'inline-block',
     width: rem(28),
     height: rem(28),
+    marginTop: rem(0),
     backgroundColor: 'currentColor',
     maskImage: `url(${externalSvgUrl})`,
+
+    '@lg': {
+      width: rem(40),
+      height: rem(40),
+      marginTop: rem(5),
+    },
+  },
+
+  '@lg': {
+    fontSize: '$subtitle1',
+    lineHeight: '$subtitle1',
   },
 });
 
 const ServiceDescription = styled('p', {
-  marginTop: rem(24),
+  marginTop: rem(12),
   fontSize: '$body2',
-  lineHeight: '$body2',
+  lineHeight: '160%',
   color: vars.$scale.color.gray700,
 
   '@lg': {
-    marginTop: 0,
+    marginTop: rem(10),
   },
 });
 
@@ -358,18 +375,18 @@ const SubCardWrapper = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   width: '100%',
-  marginTop: rem(24),
+  marginTop: rem(30),
 
   '@lg': {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: rem(60),
+    marginTop: rem(100),
   },
 });
 
 const SubCard = styled('div', {
   width: '100%',
-  marginBottom: rem(20),
+  marginBottom: rem(32),
 
   '@lg': {
     maxWidth: rem(328),
@@ -378,17 +395,18 @@ const SubCard = styled('div', {
 });
 
 const SubCardTitle = styled('h3', {
-  fontSize: '$subtitle3',
+  fontSize: rem(22),
   marginBottom: rem(12),
 
   '@lg': {
+    fontSize: '$subtitle2',
     marginBottom: rem(20),
   },
 });
 
 const SubCardDesctiption = styled('p', {
-  fontSize: '$caption1',
-  lineHeight: '$caption1',
+  fontSize: '$body2',
+  lineHeight: '160%',
   color: vars.$scale.color.gray700,
   letterSpacing: rem(0.4),
 });

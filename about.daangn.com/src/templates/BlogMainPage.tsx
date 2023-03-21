@@ -1,5 +1,6 @@
 import { type PageProps, graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
 import React from 'react';
 
 import FeaturedPost from '../components/blog/FeaturedPost';

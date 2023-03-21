@@ -1,6 +1,6 @@
-import { rem } from 'polished';
-import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
 
 type ButtonProps = {
   onClick?: () => void;
@@ -12,15 +12,19 @@ const Button: React.FC<ButtonProps> = ({ onClick, children }) => {
 };
 
 const Container = styled('button', {
-  width: rem(32),
-  height: rem(32),
+  width: rem(34),
+  height: rem(34),
   border: 'none',
   borderRadius: '50%',
   lineHeight: rem(40),
   marginBottom: rem(20),
-  backgroundColor: vars.$scale.color.gray50,
+  backgroundColor: vars.$scale.color.gray100,
   color: vars.$scale.color.gray700,
   cursor: 'pointer',
+  textAlign: 'center',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 });
 
 export default Button;

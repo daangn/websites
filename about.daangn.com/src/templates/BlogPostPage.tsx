@@ -1,18 +1,18 @@
-import * as React from 'react';
-import { graphql, type PageProps } from 'gatsby';
-import { rem } from 'polished';
 import { required } from '@cometjs/core';
 import { SliceZone } from '@prismicio/react';
-import { styled, keyframes } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
+import { type PageProps, graphql } from 'gatsby';
+import { keyframes, styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
+import * as React from 'react';
 
-import PostBodyRichText from '../components/blogPostPage/PostBodyRichText';
-import ShareButtons from '../components/blogPostPage/ShareButtons';
 import Author from '../components/blogPostPage/Author';
-import TagList from '../components/blogPostPage/TagList';
-import PostHeader from '../components/blogPostPage/PostHeader';
+import PostBodyRichText from '../components/blogPostPage/PostBodyRichText';
 import PostFooter from '../components/blogPostPage/PostFooter';
+import PostHeader from '../components/blogPostPage/PostHeader';
 import RelatedPost from '../components/blogPostPage/RelatedPost';
+import ShareButtons from '../components/blogPostPage/ShareButtons';
+import TagList from '../components/blogPostPage/TagList';
 
 export const query = graphql`
   query BlogPostPage($id: String!, $locale: String!, $navigationId: String!) {
@@ -87,8 +87,8 @@ const ThumbnailImage = styled('img', {
   maxWidth: 1024,
   maxHeight: 600,
   width: '100%',
-  borderRadius: rem(8),
-  marginBottom: rem(44),
+  borderRadius: rem(40),
+  marginBottom: rem(88),
 });
 
 const PostBody = styled('section', {

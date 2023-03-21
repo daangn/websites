@@ -1,7 +1,7 @@
-import { Link } from 'gatsby';
-import { rem } from 'polished';
-import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
+import { Link } from 'gatsby';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
 
 const PostFooter = () => {
   return (
@@ -27,7 +27,7 @@ const Home = styled(Link, {
   padding: `${rem(16)} ${rem(20)}`,
   border: 'none',
   borderRadius: rem(40),
-  backgroundColor: vars.$scale.color.gray50,
+  backgroundColor: vars.$scale.color.gray100,
   color: vars.$scale.color.gray900,
   fontSize: '$body1',
   fontWeight: 'bold',

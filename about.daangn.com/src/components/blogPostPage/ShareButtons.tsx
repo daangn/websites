@@ -1,12 +1,12 @@
-import * as React from 'react';
-import { rem } from 'polished';
 import { styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
+import * as React from 'react';
 
-import Button from './Button';
 import { ReactComponent as FacebookIcon } from '../../assets/facebook.svg';
+import { ReactComponent as ShareIcon } from '../../assets/icon_share.svg';
 import { ReactComponent as LinkedinIcon } from '../../assets/linkedin.svg';
 import { ReactComponent as TwitterIcon } from '../../assets/twitter.svg';
-import { ReactComponent as ShareIcon } from '../../assets/icon_share.svg';
+import Button from './Button';
 
 type ShareButtonsProps = {
   onClickLinkShare: React.Dispatch<React.SetStateAction<boolean>>;
@@ -69,13 +69,13 @@ const ShareContainer = styled('div', {
   display: 'none',
   position: 'absolute',
   flexDirection: 'column',
-  height: rem(300),
-  top: 0,
-  right: 4,
-  marginTop: rem(44),
+
 
   '@md': {
     display: 'flex',
+    height: rem(300),
+    top: 0,
+    right: 4,
   },
 });
 

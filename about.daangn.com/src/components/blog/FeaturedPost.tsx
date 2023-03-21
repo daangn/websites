@@ -60,7 +60,7 @@ const Container = styled(Link, {
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  marginBottom: rem(66),
+  marginBottom: rem(100),
   textDecoration: 'none',
 });
 
@@ -68,13 +68,13 @@ const FeaturedImage = styled(GatsbyImage, {
   width: '100%',
   maxWidth: 1054,
   maxheight: 634,
-  borderRadius: rem(8),
+  borderRadius: rem(40),
 });
 
 const FeaturedDescription = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-  marginTop: rem(20),
+  marginTop: rem(44),
 });
 
 const FeaturedTitle = styled('h1', {
@@ -88,7 +88,7 @@ const FeaturedTitle = styled('h1', {
 });
 
 const FeaturedSummary = styled('p', {
-  color: vars.$scale.color.gray700,
+  color: vars.$scale.color.gray600,
   typography: '$body2',
   textAlign: 'center',
 
