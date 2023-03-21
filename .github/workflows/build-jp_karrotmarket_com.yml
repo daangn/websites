@@ -2,6 +2,13 @@ name: Build (& Deploy) jp.karrotmarket.com
 
 on:
   workflow_dispatch:
+    inputs:
+      clean:
+        description: Clean before Build
+        type: boolean
+        required: true
+        default: false
+
   pull_request:
     paths:
       - '.github/workflows/build-jp_karrotmarket_com.yml'
@@ -49,6 +56,11 @@ jobs:
           key: ${{ runner.os }}-gatsby-build-${{ github.run_id }}
           restore-keys: |
             ${{ runner.os }}-gatsby-build-
+
+      - name: Clean before Build
+        if: ${{ fromJSON(github.event.inputs.clean) }}
+        run: |
+          yarn workspace jp.karrotmarket.com clean
 
       - name: Build jp.karrotmarket.com
         run: |
