@@ -18,6 +18,7 @@ export const fragment = graphql`
         ...PrismicBrochureDataBodyAppDownloadSection_section
         ...PrismicBrochureDataBodyHeroTypeBSection_section
         ...PrismicBrochureDataBodyHeroTypeFSection_section
+        ...PrismicBrochureDataBodyVerticalHighlightSection_section
       }
     }
   }

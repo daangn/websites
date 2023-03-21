@@ -9,6 +9,8 @@ type Props = {
 };
 
 export default function Extension({ id }: Props) {
+  // Note: 여기 반드시 *정적*으로 유지해야 됩니다. Hook 만들지 마세요.
+
   if (id === 'pc_app_download') {
     const staticData = useStaticQuery(graphql`
       query PrismicBrochureDataBodyHeroTypeFSectionExtensionStatic {
@@ -24,13 +26,10 @@ export default function Extension({ id }: Props) {
     return (
       <ButtonContainer>
         <DownloadLinkButtonPlayStore
-          id="google_bottom"
+          id="google_top"
           brochureData={staticData.prismicBrochure.data}
         />
-        <DownloadLinkButtonAppStore
-          id="apple_bottom"
-          brochureData={staticData.prismicBrochure.data}
-        />
+        <DownloadLinkButtonAppStore id="apple_top" brochureData={staticData.prismicBrochure.data} />
       </ButtonContainer>
     );
   }
