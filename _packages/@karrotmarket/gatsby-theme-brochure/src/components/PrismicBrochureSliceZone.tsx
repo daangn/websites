@@ -36,24 +36,30 @@ export default function BrochureSliceZone({ brochure }: Props) {
         mapAbstractType(slice, {
           PrismicBrochureDataBodyAppDownloadSection: (section) => (
             <PrismicBrochureDataBodyAppDownloadSection
+              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
               key={i}
               brochureData={brochure.data}
               section={section}
             />
           ),
           PrismicBrochureDataBodyBuySellGuideSection: (section) => (
+            // rome-ignore lint/suspicious/noArrayIndexKey: intentional
             <PrismicBrochureDataBodyBuySellGuideSection key={i} section={section} />
           ),
           PrismicBrochureDataBodyFeatureGridSection: (section) => (
+            // rome-ignore lint/suspicious/noArrayIndexKey: intentional
             <PrismicBrochureDataBodyFeatureGridSection key={i} section={section} />
           ),
           PrismicBrochureDataBodyHeroTypeBSection: (section) => (
+            // rome-ignore lint/suspicious/noArrayIndexKey: intentional
             <PrismicBrochureDataBodyHeroTypeBSection key={i} section={section} />
           ),
           PrismicBrochureDataBodyHeroTypeFSection: (section) => (
+            // rome-ignore lint/suspicious/noArrayIndexKey: intentional
             <PrismicBrochureDataBodyHeroTypeFSection key={i} section={section} />
           ),
           PrismicBrochureDataBodyVerticalHighlightSection: (section) => (
+            // rome-ignore lint/suspicious/noArrayIndexKey: intentional
             <PrismicBrochureDataBodyVerticalHighlightSection key={i} section={section} />
           ),
           _: null,
