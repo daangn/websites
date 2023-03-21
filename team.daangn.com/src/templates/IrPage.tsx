@@ -24,6 +24,10 @@ export const query = graphql`
         }
         attachment_group {
           file {
+
+            # FIXME: Gatsby Cloud 버리고 나서 localFile 로 다시 복구
+            url
+
             localFile {
               base
               publicURL
@@ -188,7 +192,8 @@ const IrPage: React.FC<IrPageProps> = ({ data: prismicData }) => {
                 const base = stripUUID(decodeURIComponent(file.base));
                 return (
                   <FileListItem key={href}>
-                    <File href={href} download={base}>
+                    {/* FIXME: Gatsby Cloud 버리고 나서 다시 localFile 기반으로 복구 */}
+                    <File href={attachment!.file!.url!} download={base}>
                       {base}
                     </File>
                   </FileListItem>
