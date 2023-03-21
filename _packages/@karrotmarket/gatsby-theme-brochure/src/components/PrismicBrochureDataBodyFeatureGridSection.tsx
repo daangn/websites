@@ -91,6 +91,7 @@ export default function PrismicBrochureDataBodyFeatureGridSection({ section }: P
               getImage(item.item_image.localFile.childImageSharp.gatsbyImageData);
 
             return (
+              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
               <Feature key={i}>
                 <FeatureImage image={itemImage} alt={item.item_image?.alt || ''} />
                 <FeatureBody>
