@@ -58,7 +58,7 @@ jobs:
             ${{ runner.os }}-gatsby-build-
 
       - name: Clean before Build
-        if: ${{ github.event.inputs.clean === 'true' }}
+        if: ${{ github.event.inputs.clean == 'true' }}
         run: |
           yarn workspace jp.karrotmarket.com clean
 
