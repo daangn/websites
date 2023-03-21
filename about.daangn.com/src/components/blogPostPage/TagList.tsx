@@ -1,5 +1,6 @@
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
 
 import Tag from './Tag';
 
@@ -25,6 +26,9 @@ const TagList: React.FC<TagsProps> = ({ data }) => {
 
 const TagContainer = styled('div', {
   display: 'flex',
+  flexWrap: 'wrap',
+  gap: rem(12),
+  width: '100%',
 });
 
 export default TagList;

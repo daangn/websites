@@ -40,7 +40,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
 const Image = styled('img', {
   width: '100%',
   height: 210,
-  borderRadius: rem(8),
+  borderRadius: rem(20),
 
   '@media (min-width: 1096px)': {
     width: 480,
@@ -63,8 +63,8 @@ const PostTitle = styled('h3', {
 });
 
 const PostSummary = styled('p', {
-  marginTop: rem(4),
-  color: vars.$scale.color.gray700,
+  marginTop: rem(12),
+  color: vars.$scale.color.gray600,
   fontSize: '$body3',
   whiteSpace: 'pre-line',
 
@@ -78,10 +78,10 @@ const PostCategory = styled(Link, {
   display: 'inline-block',
   width: 'fit-content',
   padding: `${rem(4)} ${rem(10)}`,
-  marginTop: rem(12),
-  border: `1px solid ${vars.$scale.color.gray700}`,
+  marginTop: rem(24),
+  border: `1px solid ${vars.$scale.color.gray600}`,
   borderRadius: rem(40),
-  color: vars.$scale.color.gray700,
+  color: vars.$scale.color.gray600,
   typography: '$caption2',
   cursor: 'pointer',
   textDecoration: 'none',

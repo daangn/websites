@@ -1,6 +1,6 @@
+import spriteUrl from './sprite.svg';
 /* eslint-disable */
 import * as React from 'react';
-import spriteUrl from '!!file-loader!./sprite.svg';
 
 export interface IconProps {
   name: IconName;
@@ -18,7 +18,7 @@ const Icon: React.ForwardRefRenderFunction<HTMLSpanElement, SeedIconProps> = (
       style={{ display: 'inline-flex', width: size, height: size }}
       className={className}
       data-seed-icon={name}
-      data-seed-icon-version="0.1.10"
+      data-seed-icon-version="0.1.13"
     >
       <svg viewBox="0 0 24 24">
         <use href={`${spriteUrl}#${name}`} />
@@ -35,4 +35,5 @@ type IconName =
   | 'icon_chevron_right_regular'
   | 'icon_call_fill'
   | 'icon_close_regular'
-  | 'icon_forward_regular';
+  | 'icon_forward_regular'
+  | 'icon_ios_share_fill';
