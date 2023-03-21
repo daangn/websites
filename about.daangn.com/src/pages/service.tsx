@@ -313,7 +313,7 @@ const ServiceLink = styled(Link, {
   fontSize: '$subtitle1',
   fontWeight: 'bold',
   color: vars.$scale.color.gray900,
-  
+
   '&:hover, &:focus': {
     color: vars.$scale.color.gray600,
   },
