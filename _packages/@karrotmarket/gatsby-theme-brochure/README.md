@@ -1,8 +1,8 @@
-# @karrotmarket/gatsby-theme-brochuer
+# @karrotmarket/gatsby-theme-brochure
 
 ## Roles
 
-- Prismic `brochuer.json` 타입 컨텐츠에 대한 슬라이스 구현 제공
+- Prismic `brochure.json` 타입 컨텐츠에 대한 슬라이스 구현 제공
 
 ## Generic Slices
 
