@@ -1,5 +1,6 @@
 import { vars } from '@seed-design/design-token';
-import { graphql } from 'gatsby';
+import slugify from 'cjk-slug';
+import { Link, graphql } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
@@ -39,7 +40,7 @@ export const query = graphql`
 
 const FeaturedPost: React.FC<FeaturedPostProps> = ({ data }) => {
   return (
-    <Container>
+    <Container to={`/blog/archive/${slugify(data.document.uid)}/`}>
       {data?.document?.data?.thumbnail_image?.localFile?.childImageSharp?.gatsbyImageData && (
         <FeaturedImage
           image={data.document.data.thumbnail_image.localFile.childImageSharp.gatsbyImageData}
@@ -54,12 +55,13 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({ data }) => {
   );
 };
 
-const Container = styled('div', {
+const Container = styled(Link, {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
   marginBottom: rem(66),
+  textDecoration: 'none',
 });
 
 const FeaturedImage = styled(GatsbyImage, {
@@ -76,6 +78,7 @@ const FeaturedDescription = styled('div', {
 });
 
 const FeaturedTitle = styled('h1', {
+  color: vars.$scale.color.gray900,
   marginBottom: rem(2),
   typography: '$subtitle2',
 
@@ -87,6 +90,7 @@ const FeaturedTitle = styled('h1', {
 const FeaturedSummary = styled('p', {
   color: vars.$scale.color.gray700,
   typography: '$body2',
+  textAlign: 'center',
 
   '@media (min-width: 1096px)': {
     typography: '$subtitle4',
