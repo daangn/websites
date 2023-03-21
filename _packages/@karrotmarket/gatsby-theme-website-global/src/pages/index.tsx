@@ -18,7 +18,7 @@ import ParallaxSection from '../components/home/ParallaxSection';
 import IllustrationSection from '../components/home/IllustrationSection';
 
 export const query = graphql`
-  query IndexPageQuery($locale: String) {
+  query ThemeWebsiteGlobal_IndexPageQuery($locale: String) {
     site {
       siteMetadata {
         siteUrl
@@ -67,7 +67,7 @@ export const query = graphql`
   }
 `;
 
-type IndexPageProps = PageProps<GatsbyTypes.IndexPageQueryQuery>;
+type IndexPageProps = PageProps<GatsbyTypes.ThemeWebsiteGlobal_IndexPageQueryQuery>;
 const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
   if (!(data.prismicGlobalContents?.data?.main_body && data.hotArticles.nodes)) {
     return <></>;
@@ -123,7 +123,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
 
 export default withPrismicPreview(IndexPage);
 
-type IndexPageHeadProps = HeadProps<GatsbyTypes.IndexPageQueryQuery>;
+type IndexPageHeadProps = HeadProps<GatsbyTypes.ThemeWebsiteGlobal_IndexPageQueryQuery>;
 export const Head: React.FC<IndexPageHeadProps> = ({ data, location }) => {
   if (!data.prismicGlobalContents?.data) {
     throw new Error('No data');

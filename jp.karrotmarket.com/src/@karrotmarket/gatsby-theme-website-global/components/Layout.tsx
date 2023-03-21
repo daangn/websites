@@ -56,15 +56,12 @@ const Layout: React.FC<LayoutProps> = ({ children, data, id }) => {
   return (
     <>
       <Header key="header" navigationData={data} sns />
-      <Main id={id}>{children}</Main>
+
+      <main id={id}>{children}</main>
 
       <Footer key="footer" navigationData={data} />
     </>
   );
 };
-
-const Main = styled('main', {
-  paddingBottom: rem(120),
-});
 
 export default Layout;

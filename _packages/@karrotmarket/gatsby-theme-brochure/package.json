@@ -1,0 +1,49 @@
+{
+  "name": "@karrotmarket/gatsby-theme-brochure",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "init:gatsby": "yarn build",
+    "build": "concurrently \"yarn:build:*\"",
+    "build:babel": "babel gatsby -d . -x .ts,.tsx --presets gatsby-package",
+    "build:dts": "tsc --emitDeclarationOnly --skipLibCheck -p tsconfig.gatsby.json",
+    "prepack": "yarn build"
+  },
+  "files": [
+    "index.js",
+    "src",
+    "gatsby-config.js"
+  ],
+  "peerDependencies": {
+    "gatsby": "^4.19.0 || ^5.0.0",
+    "react": "*",
+    "react-dom": "*"
+  },
+  "dependencies": {
+    "@seed-design/design-token": "1.0.0",
+    "gatsby-plugin-head-seo": "0.3.0",
+    "gatsby-plugin-image": "3.7.0",
+    "gatsby-plugin-react-helmet-async": "1.2.3",
+    "gatsby-plugin-sharp": "5.7.0",
+    "gatsby-theme-stitches": "1.0.1",
+    "gatsby-transformer-sharp": "5.7.0",
+    "polished": "4.2.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-helmet-async": "1.3.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.21.0",
+    "@babel/core": "7.21.3",
+    "@cometjs/graphql-utils": "2.0.5",
+    "@types/node": "18.15.3",
+    "@types/react": "18.0.28",
+    "@types/react-dom": "18.0.11",
+    "babel-preset-gatsby-package": "3.7.0",
+    "concurrently": "7.6.0",
+    "gatsby": "5.7.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "4.9.5"
+  }
+}

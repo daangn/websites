@@ -2680,6 +2680,38 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@karrotmarket/gatsby-theme-brochure@workspace:^, @karrotmarket/gatsby-theme-brochure@workspace:_packages/@karrotmarket/gatsby-theme-brochure":
+  version: 0.0.0-use.local
+  resolution: "@karrotmarket/gatsby-theme-brochure@workspace:_packages/@karrotmarket/gatsby-theme-brochure"
+  dependencies:
+    "@babel/cli": 7.21.0
+    "@babel/core": 7.21.3
+    "@cometjs/graphql-utils": 2.0.5
+    "@seed-design/design-token": 1.0.0
+    "@types/node": 18.15.3
+    "@types/react": 18.0.28
+    "@types/react-dom": 18.0.11
+    babel-preset-gatsby-package: 3.7.0
+    concurrently: 7.6.0
+    gatsby: 5.7.0
+    gatsby-plugin-head-seo: 0.3.0
+    gatsby-plugin-image: 3.7.0
+    gatsby-plugin-react-helmet-async: 1.2.3
+    gatsby-plugin-sharp: 5.7.0
+    gatsby-theme-stitches: 1.0.1
+    gatsby-transformer-sharp: 5.7.0
+    polished: 4.2.2
+    react: 18.2.0
+    react-dom: 18.2.0
+    react-helmet-async: 1.3.0
+    typescript: 4.9.5
+  peerDependencies:
+    gatsby: ^4.19.0 || ^5.0.0
+    react: "*"
+    react-dom: "*"
+  languageName: unknown
+  linkType: soft
+
 "@karrotmarket/gatsby-theme-post@workspace:_packages/@karrotmarket/gatsby-theme-post":
   version: 0.0.0-use.local
   resolution: "@karrotmarket/gatsby-theme-post@workspace:_packages/@karrotmarket/gatsby-theme-post"
@@ -4684,6 +4716,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:18.15.3":
+  version: 18.15.3
+  resolution: "@types/node@npm:18.15.3"
+  checksum: 31b1d92475a82c30de29aa6c0771b18a276552d191283b4423ba2d61b3f01159bf0d02576c0b7cc834b043997893800db6bb47f246083ed85aa45e79c80875d7
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:18.15.5":
   version: 18.15.5
   resolution: "@types/node@npm:18.15.5"
@@ -5306,6 +5345,7 @@ __metadata:
     gatsby-source-filesystem: 5.7.0
     gatsby-theme-stitches: 1.0.1
     gatsby-transformer-sharp: 5.7.0
+    polished: 4.2.2
     react: 18.2.0
     react-dom: 18.2.0
     react-helmet-async: 1.3.0
@@ -12349,6 +12389,7 @@ __metadata:
   resolution: "jp.karrotmarket.com@workspace:jp.karrotmarket.com"
   dependencies:
     "@babel/core": 7.21.3
+    "@karrotmarket/gatsby-theme-brochure": "workspace:^"
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website-global": "workspace:^"
     "@seed-design/design-token": 1.0.0
