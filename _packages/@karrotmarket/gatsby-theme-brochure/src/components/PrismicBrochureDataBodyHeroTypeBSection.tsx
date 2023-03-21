@@ -137,7 +137,6 @@ const Content = styled('div', {
 const TitleContainer = styled('div', {
   '& h1': {
     typography: '$subtitle1',
-    wordBreak: 'keep-all',
     whiteSpace: 'initial',
 
     '@md': {

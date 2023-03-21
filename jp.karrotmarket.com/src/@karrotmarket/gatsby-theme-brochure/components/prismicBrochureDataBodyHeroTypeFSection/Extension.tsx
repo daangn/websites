@@ -25,11 +25,11 @@ export default function Extension({ id }: Props) {
 
     return (
       <ButtonContainer>
+        <DownloadLinkButtonAppStore id="apple_top" brochureData={staticData.prismicBrochure.data} />
         <DownloadLinkButtonPlayStore
           id="google_top"
           brochureData={staticData.prismicBrochure.data}
         />
-        <DownloadLinkButtonAppStore id="apple_top" brochureData={staticData.prismicBrochure.data} />
       </ButtonContainer>
     );
   }

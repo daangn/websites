@@ -6,12 +6,9 @@ const TitleContainer = styled('div', {
     textAlign: 'left',
 
     typography: '$subtitle1',
-    wordBreak: 'keep-all',
-    whiteSpace: 'initial',
 
     '@md': {
       typography: '$heading1',
-      whiteSpace: 'pre-line',
     },
   },
 });

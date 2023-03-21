@@ -6,6 +6,7 @@ const Content = styled('div', {
 
   display: 'grid',
   gridTemplateAreas: ['"body"', '"image"'].join('\n'),
+  alignItems: 'center',
   gap: rem(40),
 
   '@md': {

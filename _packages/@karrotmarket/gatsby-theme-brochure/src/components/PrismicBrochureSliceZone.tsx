@@ -10,13 +10,14 @@ import PrismicBrochureDataBodyHeroTypeFSection from './PrismicBrochureDataBodyHe
 import PrismicBrochureDataBodyVerticalHighlightSection from './PrismicBrochureDataBodyVerticalHighlightSection';
 
 export const fragment = graphql`
-  fragment BrochureSliceZone_brochure on PrismicBrochure {
+  fragment PrismicBrochureSliceZone_brochure on PrismicBrochure {
     data {
       ...PrismicBrochureDataBodyAppDownloadSection_brochureData
       body {
         __typename
         ...PrismicBrochureDataBodyAppDownloadSection_section
         ...PrismicBrochureDataBodyBuySellGuideSection_section
+        ...PrismicBrochureDataBodyFeatureGridSection_section
         ...PrismicBrochureDataBodyHeroTypeBSection_section
         ...PrismicBrochureDataBodyHeroTypeFSection_section
         ...PrismicBrochureDataBodyVerticalHighlightSection_section

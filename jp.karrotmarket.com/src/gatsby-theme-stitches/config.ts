@@ -26,15 +26,16 @@ export const { styled, css, globalCss, getCssText, theme, config } = createStitc
     },
     fontSizes: {
       heading1: rem(72),
-      heading2: rem(58),
+      heading2: rem(54),
       heading3: rem(42),
       heading4: rem(28),
       heading5: rem(24),
       subtitle1: rem(26),
       subtitle2: rem(20),
       subtitle3: rem(18),
-      body1: rem(16),
-      body2: rem(14),
+      body1: rem(22),
+      body2: rem(20),
+      body3: rem(18),
       caption1: rem(13),
       caption2: rem(12),
     },
@@ -49,6 +50,7 @@ export const { styled, css, globalCss, getCssText, theme, config } = createStitc
       subtitle3: '140%',
       body1: '140%',
       body2: '140%',
+      body3: '140%',
       caption1: '140%',
       caption2: '140%',
     },
@@ -58,6 +60,11 @@ export const { styled, css, globalCss, getCssText, theme, config } = createStitc
     zIndices: {},
   },
   utils: {
+    typography: (value: string) => ({
+      fontSize: value,
+      lineHeight: value,
+    }),
+
     /**
      * override
      */
@@ -134,11 +141,11 @@ export const { styled, css, globalCss, getCssText, theme, config } = createStitc
       '& strong': { color: value },
     }),
 
-    paddingX: (value) => ({
+    paddingX: (value: string | number) => ({
       paddingLeft: value,
       paddingRight: value,
     }),
-    paddingY: (value) => ({
+    paddingY: (value: string | number) => ({
       paddingTop: value,
       paddingBottom: value,
     }),

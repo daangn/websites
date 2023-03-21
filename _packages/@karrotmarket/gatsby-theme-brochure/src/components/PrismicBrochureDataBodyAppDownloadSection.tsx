@@ -66,8 +66,8 @@ export default function PrismicBrochureDataBodyAppDownloadSection({
           />
         </Body>
         <ButtonContainer>
-          <DownloadLinkButtonPlayStore id="google_bottom" brochureData={brochureData} />
           <DownloadLinkButtonAppStore id="apple_bottom" brochureData={brochureData} />
+          <DownloadLinkButtonPlayStore id="google_bottom" brochureData={brochureData} />
         </ButtonContainer>
       </Content>
     </RootContainer>
