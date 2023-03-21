@@ -70,7 +70,6 @@ const ShareContainer = styled('div', {
   position: 'absolute',
   flexDirection: 'column',
 
-
   '@md': {
     display: 'flex',
     height: rem(300),
