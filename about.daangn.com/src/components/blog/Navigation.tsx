@@ -1,8 +1,8 @@
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 
-import SearchInput from './SearchInput';
 import CategoryList from './CategoryList';
+import SearchInput from './SearchInput';
 
 type NavigationProos = {
   query: GatsbyTypes.Navigation_queryFragment;
@@ -21,7 +21,7 @@ const Navigation: React.FC<NavigationProos> = ({ query, pageContext }) => {
       <div>
         <CategoryList query={query} pageContext={pageContext} />
       </div>
-      <SearchInput />
+      {/* <SearchInput /> */}
     </BlogNavigation>
   );
 };
