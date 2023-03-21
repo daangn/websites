@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
 import { getImage, GatsbyImage } from 'gatsby-plugin-image';
-import { rem } from 'polished';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { vars } from '@seed-design/design-token';
 
 export const fragments = graphql`
   fragment PrismicBrochureDataBodyHeroTypeBSection_section on PrismicBrochureDataBodyHeroTypeBSection {
