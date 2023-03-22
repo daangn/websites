@@ -296,7 +296,7 @@ const ServiceIcon = styled('img', {
   marginRight: rem(10),
 
   '@lg': {
-    width: rem(72),
+    width: rem(80),
     marginBottom: rem(80),
     marginRight: 0,
   },

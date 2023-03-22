@@ -1,5 +1,6 @@
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
 
 import CategoryList from './CategoryList';
 import SearchInput from './SearchInput';
@@ -29,8 +30,11 @@ const Navigation: React.FC<NavigationProos> = ({ query, pageContext }) => {
 const BlogNavigation = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
-  marginLeft: '3rem',
-  marginRight: '3rem',
+  margin: 0,
+
+  '@lg': {
+    margin: `0 ${rem(48)}`,
+  },
 });
 
 export default Navigation;

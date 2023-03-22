@@ -10,7 +10,10 @@ type PostListProps = {
 
 export const query = graphql`
   fragment PostList_query on Query {
-    allPost(filter: {category: {uid: {glob: $id, ne: "pr"}}}) {
+    allPost(
+      filter: {category: {uid: {glob: $id, ne: "pr"}}}
+      sort: {publishedAt: DESC}
+    ) {
       nodes {
         ...PostCard_post
       }

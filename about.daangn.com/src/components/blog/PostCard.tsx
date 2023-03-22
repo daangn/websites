@@ -55,7 +55,7 @@ const BlogLink = styled(Link, {
 const PostTitle = styled('h3', {
   marginTop: rem(20),
   color: vars.$scale.color.gray900,
-  fontSize: '$subtitle3',
+  fontSize: rem(22),
 
   '@media (min-width: 1096px)': {
     fontSize: '$subtitle2',
@@ -63,14 +63,18 @@ const PostTitle = styled('h3', {
 });
 
 const PostSummary = styled('p', {
-  marginTop: rem(12),
+  marginTop: rem(10),
   color: vars.$scale.color.gray600,
-  fontSize: '$body3',
+  fontSize: '$body2',
   whiteSpace: 'pre-line',
+
+  '@sm': {
+    marginTop: rem(12),
+    // fontSize: '$body1',
+  },
 
   '@media (min-width: 1096px)': {
     width: '100%',
-    fontSize: '$body2',
   },
 });
 
@@ -78,13 +82,18 @@ const PostCategory = styled(Link, {
   display: 'inline-block',
   width: 'fit-content',
   padding: `${rem(4)} ${rem(10)}`,
-  marginTop: rem(24),
-  border: `1px solid ${vars.$scale.color.gray600}`,
+  marginTop: rem(18),
+  border: 'none',
   borderRadius: rem(40),
+  backgroundColor: vars.$scale.color.gray100,
   color: vars.$scale.color.gray600,
   typography: '$caption2',
   cursor: 'pointer',
   textDecoration: 'none',
+
+  '@sm': {
+    marginTop: rem(24),
+  },
 
   '@media (min-width: 1096px)': {
     typography: '$caption1',

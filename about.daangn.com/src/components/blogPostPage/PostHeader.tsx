@@ -1,7 +1,7 @@
-import { graphql } from 'gatsby';
-import { rem } from 'polished';
-import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
+import { graphql } from 'gatsby';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
 
 type PostHeaderProps = {
   postHeader: GatsbyTypes.PostHeader_dataFragment;
@@ -33,7 +33,11 @@ const Header = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  marginBottom: rem(66),
+  marginBottom: rem(33),
+
+  '@sm': {
+    marginBottom: rem(66),
+  },
 });
 
 const Title = styled('h1', {

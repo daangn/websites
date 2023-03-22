@@ -56,31 +56,50 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({ data }) => {
 };
 
 const Container = styled(Link, {
-  display: 'flex',
+  display: 'none',
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
   marginBottom: rem(100),
   textDecoration: 'none',
+
+  '@sm': {
+    display: 'flex',
+  },
 });
 
 const FeaturedImage = styled(GatsbyImage, {
   width: '100%',
   maxWidth: 1054,
   maxheight: 634,
-  borderRadius: rem(40),
+  borderRadius: rem(20),
+
+  '@sm': {
+    borderRadius: rem(40),
+  },
 });
 
 const FeaturedDescription = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-  marginTop: rem(44),
+  marginTop: rem(20),
+  wordWrap: 'break-word',
+  textAlign: 'center',
+
+  '@sm': {
+    marginTop: rem(44),
+  },
 });
 
 const FeaturedTitle = styled('h1', {
   color: vars.$scale.color.gray900,
   marginBottom: rem(2),
-  typography: '$subtitle2',
+  typography: '$subtitle3',
+  fontSize: rem(22),
+
+  '@sm': {
+    typography: '$subtitle2',
+  },
 
   '@media (min-width: 1096px)': {
     typography: '$subtitle1',
