@@ -8,7 +8,7 @@ icons:
   - icon_call_fill
   - icon_close_regular
   - icon_forward_regular
-  - icon_ios_share_fill
+  - icon_ios_share_regular
 
 componentPath: src/Icon.tsx
 spritePath: src/sprite.svg
