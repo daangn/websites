@@ -8,7 +8,7 @@ const Tag = ({ children }) => {
 
 const Container = styled('div', {
   width: 'fit-content',
-  padding: `${rem(6)} ${rem(12)}`,
+  padding: `${rem(8)} ${rem(16)}`,
   border: 'none',
   borderRadius: rem(40),
   backgroundColor: vars.$scale.color.gray100,

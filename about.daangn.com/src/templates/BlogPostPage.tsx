@@ -87,8 +87,13 @@ const ThumbnailImage = styled('img', {
   maxWidth: 1024,
   maxHeight: 600,
   width: '100%',
-  borderRadius: rem(40),
-  marginBottom: rem(88),
+  borderRadius: rem(20),
+  marginBottom: rem(24),
+
+  '@sm': {
+    borderRadius: rem(40),
+    marginBottom: rem(88),
+  },
 });
 
 const PostBody = styled('section', {

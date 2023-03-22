@@ -39,12 +39,12 @@ const Category: React.FC<CategoryProps> = ({ category, pageContext }) => {
 };
 
 const Container = styled('div', {
-  padding: `${rem(8)} ${rem(16)}`,
-  marginRight: rem(4),
+  padding: `${rem(12)} ${rem(18)}`,
+  marginRight: rem(8),
   border: 'none',
   borderRadius: rem(40),
   lineHeight: rem(14),
-  fontSize: '$caption3',
+  fontSize: '$body3',
   cursor: 'pointer',
   textDecoration: 'none',
   variants: {
@@ -69,7 +69,7 @@ const Container = styled('div', {
   '@media (min-width: 880px)': {
     marginRight: rem(10),
     padding: `${rem(14)} ${rem(20)}`,
-    fontSize: '$body2',
+    fontSize: '$subtitle4',
   },
 });
 

@@ -59,7 +59,7 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({ onClickLinkShare }) => {
         <TwitterIcon />
       </Button>
       <Button onClick={onClickShare}>
-        <SeedIcon name="icon_ios_share_fill" size="100%" />
+        <SeedIcon name="icon_ios_share_regular" size="100%" />
       </Button>
     </ShareContainer>
   );

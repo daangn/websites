@@ -12,9 +12,10 @@ const Button: React.FC<ButtonProps> = ({ onClick, children }) => {
 };
 
 const Container = styled('button', {
-  width: rem(34),
-  height: rem(34),
+  width: rem(44),
+  height: rem(44),
   border: 'none',
+  padding: rem(10),
   borderRadius: '50%',
   lineHeight: rem(40),
   marginBottom: rem(20),

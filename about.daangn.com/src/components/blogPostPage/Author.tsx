@@ -1,6 +1,6 @@
 import { graphql } from 'gatsby';
-import { rem } from 'polished';
 import { styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
 
 type AuthorProps = {
   data: GatsbyTypes.Author_postFragment;
@@ -51,7 +51,7 @@ const AuthorInfo = styled('div', {
 
 const AuthorName = styled('h3', {
   marginBottom: rem(4),
-  fontWeight: 600,
+  fontWeight: 700,
 });
 
 export default Author;
