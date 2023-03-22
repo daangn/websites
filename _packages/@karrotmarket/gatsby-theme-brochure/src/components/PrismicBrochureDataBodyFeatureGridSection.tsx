@@ -40,6 +40,7 @@ export const fragments = graphql`
             gatsbyImageData(
               placeholder: NONE
               layout: FIXED
+              quality: 100
             )
           }
         }
