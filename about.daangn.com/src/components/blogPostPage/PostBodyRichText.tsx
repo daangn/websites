@@ -1,10 +1,10 @@
-import React from 'react';
 import { PrismicRichText } from '@prismicio/react';
-import { rem } from 'polished';
-import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism-tomorrow.css';
+import React from 'react';
 
 const PostBodyRichText = ({
   slice,
@@ -16,7 +16,7 @@ const PostBodyRichText = ({
   }, []);
 
   return (
-    <section>
+    <Container>
       <PrismicRichText
         field={slice.primary.content}
         components={{
@@ -53,9 +53,28 @@ const PostBodyRichText = ({
           ),
         }}
       />
-    </section>
+    </Container>
   );
 };
+
+const Container = styled('section', {
+  width: '100%',
+  lineHeight: rem(24),
+  fontSize: '$body2',
+  color: vars.$scale.color.gray700,
+  letterSpacing: rem(0.1),
+
+  '& a': {
+    color: vars.$scale.color.gray700,
+    fontWeight: 'bold',
+  },
+
+  '@sm': {
+    fontSize: '$body1',
+    lineHeight: rem(28),
+    letterSpacing: rem(0.4),
+  },
+});
 
 const SubTitle = styled('h2', {
   marginTop: rem(40),
@@ -63,11 +82,19 @@ const SubTitle = styled('h2', {
 });
 
 const Description = styled('p', {
+  width: '100%',
   marginBottom: rem(12),
-  lineHeight: rem(28),
-  fontSize: '$body1',
+  lineHeight: rem(24),
+  fontSize: '$body2',
   color: vars.$scale.color.gray700,
-  letterSpacing: rem(0.4),
+  letterSpacing: rem(0.1),
+  wordBreak: 'break-all',
+
+  '@sm': {
+    fontSize: '$body1',
+    lineHeight: rem(28),
+    letterSpacing: rem(0.4),
+  },
 });
 
 const UList = styled('ul', {
@@ -76,16 +103,14 @@ const UList = styled('ul', {
   marginBottom: rem(12),
   paddingInlineStart: rem(42),
   color: vars.$scale.color.gray700,
-  fontSize: '$body1',
 });
 
 const OList = styled('ol', {
-  lineHeight: rem(30),
   margin: 0,
   marginBottom: rem(12),
+  lineHeight: rem(30),
   paddingInlineStart: rem(42),
   color: vars.$scale.color.gray700,
-  fontSize: '$body1',
 });
 
 const Image = styled('img', {
