@@ -1,5 +1,4 @@
 import type { GatsbyNode } from 'gatsby';
-import { createRemoteFileNode } from 'gatsby-source-filesystem';
 import * as path from 'path';
 
 export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = ({ actions }) => {
