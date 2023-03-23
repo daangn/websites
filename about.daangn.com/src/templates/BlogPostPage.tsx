@@ -1,4 +1,3 @@
-import { required } from '@cometjs/core';
 import { SliceZone } from '@prismicio/react';
 import { vars } from '@seed-design/design-token';
 import { type PageProps, graphql } from 'gatsby';
@@ -10,9 +9,9 @@ import Author from '../components/blogPostPage/Author';
 import PostBodyRichText from '../components/blogPostPage/PostBodyRichText';
 import PostFooter from '../components/blogPostPage/PostFooter';
 import PostHeader from '../components/blogPostPage/PostHeader';
-import RelatedPost from '../components/blogPostPage/RelatedPost';
 import ShareButtons from '../components/blogPostPage/ShareButtons';
 import TagList from '../components/blogPostPage/TagList';
+// import RelatedPost from '../components/blogPostPage/RelatedPost';
 
 export const query = graphql`
   query BlogPostPage($id: String!, $locale: String!, $navigationId: String!) {
@@ -67,7 +66,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ data }) => {
           <PostFooter />
           {modalOpen && <Modal>링크가 복사되었어요</Modal>}
         </Container>
-        <RelatedPost data={data.post} />
+        {/* <RelatedPost data={data.post} /> */}
       </>
     )
   );
@@ -100,7 +99,6 @@ const PostBody = styled('section', {
   position: 'relative',
   boxSizing: 'border-box',
   maxWidth: rem(1024),
-  paddingX: rem(8),
   margin: '0 auto',
   textAlign: 'left',
 

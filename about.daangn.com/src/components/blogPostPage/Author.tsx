@@ -1,3 +1,4 @@
+import { vars } from '@seed-design/design-token';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
@@ -40,6 +41,7 @@ const AuthorImage = styled('img', {
   width: rem(50),
   height: rem(50),
   borderRadius: '50%',
+  border: `1px solid ${vars.$scale.color.gray100}`,
 });
 
 const AuthorInfo = styled('div', {
