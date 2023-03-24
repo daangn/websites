@@ -16,12 +16,12 @@
     "@babel/cli": "7.21.0",
     "@babel/core": "7.21.3",
     "@prismicio/types": "0.2.7",
-    "babel-preset-gatsby-package": "3.7.0",
+    "babel-preset-gatsby-package": "3.8.0",
     "concurrently": "7.6.0",
-    "gatsby": "5.7.0",
+    "gatsby": "5.8.0",
     "typescript": "4.9.5"
   },
   "dependencies": {
-    "gatsby-source-filesystem": "5.7.0"
+    "gatsby-source-filesystem": "5.8.0"
   }
 }
