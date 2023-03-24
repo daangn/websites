@@ -6,7 +6,7 @@ import { rem } from 'polished';
 type CategoryProps = {
   active: boolean;
   children?: React.ReactNode;
-  category: GatsbyTypes.Category_dataFragment;
+  category: GatsbyTypes.Category_categoryFragment;
   pageContext: string;
 };
 
@@ -18,13 +18,16 @@ export const query = graphql`
 `;
 
 const Category: React.FC<CategoryProps> = ({ category, pageContext }) => {
-  const handleCategoryClick = (e) => {
-    if (e.target.id === '*') {
-      navigate('/blog/');
+  const handleCategoryClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const targetElement = e.target as HTMLElement;
+    const categoryId = targetElement.id;
+
+    if (categoryId === '*') {
+      navigate(`/blog/${window.location.search}#_filter`);
       return;
     }
 
-    navigate(`/blog/category/${e.target.id}/`);
+    navigate(`/blog/category/${categoryId}/${window.location.search}#_filter`);
   };
 
   return (
