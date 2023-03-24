@@ -4,7 +4,7 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import Category from './Category';
 
 type CategoryListProps = {
-  query: GatsbyTypes.CategoryList_dataFragment;
+  query: GatsbyTypes.CategoryList_queryFragment;
   pageContext: string;
 };
 
