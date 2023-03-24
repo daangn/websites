@@ -41,6 +41,7 @@ const BlogMainPage: React.FC<BlogMainPageProps> = ({ data, pageContext }) => {
       {data.prismicBlogContent?.data?.featured_post && (
         <FeaturedPost data={data.prismicBlogContent.data.featured_post} />
       )}
+      <CategoryAnchor id='#_filter' />
       <Navigation query={data} pageContext={pageContext.id} />
       <PostList data={data} />
     </Container>
@@ -49,6 +50,16 @@ const BlogMainPage: React.FC<BlogMainPageProps> = ({ data, pageContext }) => {
 
 const Container = styled('div', {
   contentArea: true,
+});
+
+const CategoryAnchor = styled('div', {
+  position: 'absolute',
+  bottom: '100%',
+  height: rem(58),
+
+  '@sm': {
+    height: rem(68),
+  },
 });
 
 export default BlogMainPage;

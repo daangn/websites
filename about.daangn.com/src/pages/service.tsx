@@ -69,7 +69,6 @@ query ServicePage($locale: String!, $navigationId: String!) {
 type ServicePageProps = PageProps<GatsbyTypes.ServicePageQuery>;
 
 const ServiceMainPage: React.FC<ServicePageProps> = ({ data }) => {
-  console.log('data ::', data);
   const services = data.prismicServiceContent?.data.body[0].items;
   const subServices = data.prismicServiceContent?.data.body[1].items;
 

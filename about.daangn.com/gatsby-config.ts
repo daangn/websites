@@ -116,6 +116,12 @@ const config: GatsbyConfig = {
         },
       },
     },
+    {
+      resolve: 'gatsby-plugin-seed-design',
+      options: {
+        mode: 'light-only',
+      },
+    },
 
     // 커스텀 플러그인
     '@karrotmarket/gatsby-transformer-post',

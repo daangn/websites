@@ -3,7 +3,7 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 
 import CategoryList from './CategoryList';
-import SearchInput from './SearchInput';
+// import SearchInput from './SearchInput';
 
 type NavigationProos = {
   query: GatsbyTypes.Navigation_queryFragment;
