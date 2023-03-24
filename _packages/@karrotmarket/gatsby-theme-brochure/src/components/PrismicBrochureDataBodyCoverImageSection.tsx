@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
-import { getImage } from 'gatsby-plugin-image';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 import RootContainer from './prismicBrochureDataBodyCoverImageSection/RootContainer';
 
@@ -40,18 +41,26 @@ type Props = {
 };
 
 export default function PrismicBrochureDataBodyCoverImageSection({ section }: Props) {
-  const defaultCoverImage =
-    section.primary.cover_image?.localFile?.childImageSharp?.gatsbyImageData &&
-    getImage(section.primary.coverImage.localFile.childImageSharp.gatsbyImageData);
   const wideImage =
-    section.primary.cover_image?.thumbnails?.wide?.localFile?.childImageSharp?.gatsbyImageData &&
-    getImage(
-      section.primary.cover_image.thumbnails.wide.localFile.childImageSharp?.gatsbyImageData,
-    );
+    section.primary.cover_image?.thumbnails?.wide?.localFile?.childImageSharp?.gatsbyImageData
 
   return (
     <RootContainer id={section.primary.section_id || undefined}>
-      TODO: PrismicBrochureDataBodyCoverImageSection
+      <ImageContainer>
+        <GatsbyImage
+          image={wideImage}
+          alt={section.primary.cover_image.alt}
+          objectFit="cover"
+          style={{
+            minHeight: '18.75rem',
+          }}
+        />
+      </ImageContainer>
     </RootContainer>
   );
 }
+
+const ImageContainer = styled("div", {
+  objectFit: 'cover',
+  minHeight: '18.75rem',
+})
