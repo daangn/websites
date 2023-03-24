@@ -12,6 +12,11 @@ query ServicePage($locale: String!, $navigationId: String!) {
   ...TeamWebsite_DefaultLayout_query
   prismicServiceContent {
     data {
+      service_page_meta_title
+      service_page_meta_description
+      service_page_title {
+        text
+      }
       body {
         ... on PrismicServiceContentDataBodyServiceDescription {
           id
@@ -56,11 +61,6 @@ query ServicePage($locale: String!, $navigationId: String!) {
           }
         }
       }
-      service_page_meta_title
-      service_page_meta_description
-      service_page_title {
-        text
-      }
     }
   }
 }
@@ -81,7 +81,7 @@ const ServiceMainPage: React.FC<ServicePageProps> = ({ data }) => {
   return (
     <Container>
       <TitleArea>
-        <Title>당신근처의 당근마켓</Title>
+        <Title>{data.prismicServiceContent?.data.service_page_title?.text}</Title>
       </TitleArea>
 
       {services?.map(
