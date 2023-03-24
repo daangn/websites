@@ -36,7 +36,7 @@
     "@babel/cli": "7.21.0",
     "@babel/core": "7.21.3",
     "@cometjs/graphql-utils": "2.0.5",
-    "@types/node": "18.15.3",
+    "@types/node": "18.15.6",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
     "babel-preset-gatsby-package": "3.8.0",
