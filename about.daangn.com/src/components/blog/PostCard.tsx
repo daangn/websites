@@ -24,7 +24,7 @@ export const query = graphql`
 
 const PostCard: React.FC<PostCardProps> = ({ post }) => {
   return (
-    <div>
+    <Container>
       <BlogLink to={`/blog/archive/${post.slug}/`}>
         {post.thumbnailImage.publicURL && (
           <Image src={post.thumbnailImage.publicURL} alt={`${post.title}_이미지`} />
@@ -33,26 +33,42 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
         <PostSummary>{post.summary}</PostSummary>
       </BlogLink>
       <PostCategory to={`/blog/category/${post.category.uid}/`}>{post.category.name}</PostCategory>
-    </div>
+    </Container>
   );
 };
 
-const Image = styled('img', {
-  width: '100%',
-  height: 210,
-  borderRadius: rem(20),
+const Container = styled('div', {
+  width: rem(320),
+  minHeight: rem(320),
 
-  '@media (min-width: 1096px)': {
-    width: 480,
-    height: 270,
+  '@sm': {
+    width: rem(380),
+    height: rem(360),
+  },
+
+  '@lg': {
+    width: rem(440),
+    height: rem(420),
+  },
+
+  '@xl': {
+    width: rem(480),
+    height: rem(460),
   },
 });
 
 const BlogLink = styled(Link, {
+  width: '100%',
   textDecoration: 'none',
 });
 
+const Image = styled('img', {
+  width: '100%',
+  borderRadius: rem(20),
+});
+
 const PostTitle = styled('h3', {
+  width: '100%',
   marginTop: rem(20),
   color: vars.$scale.color.gray900,
   fontSize: rem(22),
@@ -63,6 +79,7 @@ const PostTitle = styled('h3', {
 });
 
 const PostSummary = styled('p', {
+  width: '100%',
   marginTop: rem(10),
   color: vars.$scale.color.gray600,
   fontSize: '$body2',
@@ -70,11 +87,6 @@ const PostSummary = styled('p', {
 
   '@sm': {
     marginTop: rem(12),
-    // fontSize: '$body1',
-  },
-
-  '@media (min-width: 1096px)': {
-    width: '100%',
   },
 });
 
@@ -88,14 +100,14 @@ const PostCategory = styled(Link, {
   backgroundColor: vars.$scale.color.gray100,
   color: vars.$scale.color.gray600,
   typography: '$caption2',
-  cursor: 'pointer',
   textDecoration: 'none',
+  cursor: 'pointer',
 
   '@sm': {
     marginTop: rem(24),
   },
 
-  '@media (min-width: 1096px)': {
+  '@lg': {
     typography: '$caption1',
   },
 });
