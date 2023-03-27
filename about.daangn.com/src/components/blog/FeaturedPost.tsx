@@ -69,13 +69,18 @@ const Container = styled(Link, {
 });
 
 const FeaturedImage = styled(GatsbyImage, {
+  opacity: 0.99,
   width: '100%',
   maxWidth: 1054,
   maxheight: 634,
   borderRadius: rem(20),
+  '-webkit-border-radius': rem(20),
+  '-moz-border-radius': rem(20),
 
   '@sm': {
     borderRadius: rem(40),
+    '-webkit-border-radius': rem(40),
+    '-moz-border-radius': rem(40),
   },
 });
 
