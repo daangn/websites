@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled } from 'gatsby-theme-stitches/src/config'
+import { styled } from 'gatsby-theme-stitches/src/config';
 import { graphql } from 'gatsby';
 
 import RootContainer from './prismicBrochureDataBodyHowToSection/RootContainer';
@@ -54,23 +54,24 @@ export default function PrismicBrochureDataBodyHowToSection({ section }: Props) 
           />
           <Steps>
             {section.items.map((item: any, i) => {
-              console.log(item)
+              console.log(item);
               return (
-              <Step>
-                <StepImageContainer>
-                  <GatsbyImage
-                    image={item.step_image.localFile.childImageSharp.gatsbyImageData}
-                    alt={item.step_title}
+                <Step>
+                  <StepImageContainer>
+                    <GatsbyImage
+                      image={item.step_image.localFile.childImageSharp.gatsbyImageData}
+                      alt={item.step_title}
+                    />
+                  </StepImageContainer>
+                  <StepTitle>{item.step_title}</StepTitle>
+                  <StepDescriptionContainer
+                    dangerouslySetInnerHTML={{
+                      __html: item.step_description.html,
+                    }}
                   />
-                </StepImageContainer>
-                <StepTitle>{item.step_title}</StepTitle>
-                <StepDescriptionContainer
-                  dangerouslySetInnerHTML={{
-                    __html: item.step_description.html,
-                  }}
-                />
-              </Step>
-            )})}
+                </Step>
+              );
+            })}
           </Steps>
         </Inner>
       </Container>
@@ -78,52 +79,52 @@ export default function PrismicBrochureDataBodyHowToSection({ section }: Props) 
   );
 }
 
-const Container = styled("div", {
+const Container = styled('div', {
   display: 'flex',
   justifyContent: 'center',
-})
+});
 
-const Inner = styled("div", {
-  width: "45rem",
+const Inner = styled('div', {
+  width: '45rem',
   marginTop: '5rem',
   padding: '2rem',
-  "@lg": {
+  '@lg': {
     width: '60rem',
-  }
-})
+  },
+});
 
-const TitleContainer = styled("div", {
+const TitleContainer = styled('div', {
   fontSize: rem(54),
   fontWeight: 'bold',
   marginBottom: '4.4375rem',
-})
+});
 
-const Steps = styled("div", {
-  display: 'flex',
-  flexDirection: "column",
-  gap: '2.25rem',
-  '@lg': {
-    flexDirection: "row",
-  }
-})
-
-const Step = styled("div", {
+const Steps = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-})
+  gap: '2.25rem',
+  '@lg': {
+    flexDirection: 'row',
+  },
+});
 
-const StepImageContainer = styled("div", {
+const Step = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+});
+
+const StepImageContainer = styled('div', {
   width: '100%',
   borderRadius: '1.25rem',
   overflow: 'hidden',
   marginBottom: '1.5rem',
-  "@lg": {
+  '@lg': {
     width: '18.5rem',
     height: '18.5rem',
   },
-})
+});
 
-const StepTitle = styled("div", {
+const StepTitle = styled('div', {
   backgroundColor: vars.$semantic.color.successLow,
   padding: '1rem',
   textAlign: 'center',
@@ -131,10 +132,10 @@ const StepTitle = styled("div", {
   fontWeight: 'bold',
   borderRadius: '.75rem',
   marginBottom: '1rem',
-})
+});
 
-const StepDescriptionContainer = styled("div", {
+const StepDescriptionContainer = styled('div', {
   fontSize: '1.125rem',
   fontWeight: 'normal',
   color: vars.$scale.color.gray700,
-})
+});

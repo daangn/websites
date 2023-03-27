@@ -42,7 +42,7 @@ type Props = {
 
 export default function PrismicBrochureDataBodyCoverImageSection({ section }: Props) {
   const wideImage =
-    section.primary.cover_image?.thumbnails?.wide?.localFile?.childImageSharp?.gatsbyImageData
+    section.primary.cover_image?.thumbnails?.wide?.localFile?.childImageSharp?.gatsbyImageData;
 
   return (
     <RootContainer id={section.primary.section_id || undefined}>
@@ -60,7 +60,7 @@ export default function PrismicBrochureDataBodyCoverImageSection({ section }: Pr
   );
 }
 
-const ImageContainer = styled("div", {
+const ImageContainer = styled('div', {
   objectFit: 'cover',
   minHeight: '18.75rem',
-})
+});
