@@ -49,10 +49,14 @@ export default function PrismicBrochureDataBodyFaqSection({ section }: Props) {
         <Inner>
           <TitleContainer dangerouslySetInnerHTML={{ __html: section.primary.title.html }} />
           <Questions>
-            {section.items.map((item: any, i: number) => {
-              console.log(item);
+            {section.items.map((item, i: number) => {
               return (
-                <Question key={i} questionText={item.question} answerText={item.answer_text.html} />
+                <Question
+                  // rome-ignore lint/suspicious/noArrayIndexKey: 순서가 바뀌지 않음
+                  key={i}
+                  questionText={item.question}
+                  answerText={item.answer_text.html}
+                />
               );
             })}
           </Questions>

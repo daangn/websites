@@ -53,10 +53,10 @@ export default function PrismicBrochureDataBodyHowToSection({ section }: Props) 
             }}
           />
           <Steps>
-            {section.items.map((item: any, i) => {
-              console.log(item);
+            {section.items.map((item, i: number) => {
               return (
-                <Step>
+                // rome-ignore lint/suspicious/noArrayIndexKey: 순서가 바뀌지 않음
+                <Step key={i}>
                   <StepImageContainer>
                     <GatsbyImage
                       image={item.step_image.localFile.childImageSharp.gatsbyImageData}
