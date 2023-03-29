@@ -11,7 +11,6 @@ import externalSvgUrl from '!!file-loader!./footerEntryItem/external.svg';
 
 const FooterEntryItemContainer = styled('li', {
   fontSize: '$caption2',
-  fontWeight: 700,
 });
 
 const FooterEntryLink = styled(Link, {
@@ -50,7 +49,7 @@ const ExternalLink = styled(FooterEntryLink, {
 });
 
 interface FooterEntryItemProps {
-  entry: Pick<GatsbyTypes.PrismicSiteNavigationDataFooterEntries, 'display_text'> & {
+  entry: Pick<GatsbyTypes.PrismicSiteNavigationDataFooterEntries, 'text'> & {
     readonly link: GatsbyTypes.Maybe<Pick<GatsbyTypes.PrismicLinkType, 'url'>>;
   };
 }
@@ -70,14 +69,20 @@ const FooterEntryItem: React.FC<FooterEntryItemProps> = ({ entry }) => {
                 ? location.pathname === '/'
                 : location.pathname.startsWith(link.pathname)
             }
-          >
-            {entry.display_text}
-          </FooterEntryLink>
+            dangerouslySetInnerHTML={{
+              __html: entry.text?.html || '',
+            }}
+          />
         ),
         External: (link) => (
-          <ExternalLink as="a" rel="external noopener" href={link.url.href}>
-            {entry.display_text}
-          </ExternalLink>
+          <ExternalLink
+            as="a"
+            rel="external noopener"
+            href={link.url.href}
+            dangerouslySetInnerHTML={{
+              __html: entry.text?.html || '',
+            }}
+          />
         ),
       })}
     </FooterEntryItemContainer>

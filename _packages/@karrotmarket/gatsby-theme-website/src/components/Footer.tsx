@@ -23,9 +23,11 @@ export const query = graphql`
       }
     }
     footer_entries {
-      display_text
       link {
         url
+      }
+      text {
+        html
       }
     }
     sns_profiles {
