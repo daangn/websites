@@ -2976,6 +2976,22 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@karrotmarket/gatsby-transformer-note-com@workspace:^, @karrotmarket/gatsby-transformer-note-com@workspace:_packages/@karrotmarket/gatsby-transformer-note-com":
+  version: 0.0.0-use.local
+  resolution: "@karrotmarket/gatsby-transformer-note-com@workspace:_packages/@karrotmarket/gatsby-transformer-note-com"
+  dependencies:
+    "@babel/cli": 7.21.0
+    "@babel/core": 7.21.3
+    babel-preset-gatsby-package: 3.8.0
+    concurrently: 7.6.0
+    gatsby: 5.8.0
+    gatsby-source-note-com: 0.0.3
+    typescript: 5.0.2
+  peerDependencies:
+    gatsby: ^4.0.0 || ^5.0.0
+  languageName: unknown
+  linkType: soft
+
 "@karrotmarket/gatsby-transformer-post@workspace:_packages/@karrotmarket/gatsby-transformer-post":
   version: 0.0.0-use.local
   resolution: "@karrotmarket/gatsby-transformer-post@workspace:_packages/@karrotmarket/gatsby-transformer-post"
@@ -5215,6 +5231,7 @@ __metadata:
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website-team": "workspace:^"
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^"
+    "@karrotmarket/gatsby-transformer-note-com": "workspace:^"
     "@prismicio/react": 2.5.2
     "@seed-design/design-token": alpha
     "@types/dotenv-safe": 8.1.2
@@ -10190,6 +10207,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"gatsby-source-note-com@npm:0.0.3":
+  version: 0.0.3
+  resolution: "gatsby-source-note-com@npm:0.0.3"
+  dependencies:
+    note-com-js: ^0.0.1
+  peerDependencies:
+    gatsby: ^4.0.0 || ^5.0.0
+  checksum: 8133e781b7e32586f5f18fef965deff5a5d764b94a275f83a9e48e1342e02e91a2ae8de755e931285b7963a2e516c489425206813f26f4da52ac1d1f18829ec2
+  languageName: node
+  linkType: hard
+
 "gatsby-source-prismic@npm:5.3.0":
   version: 5.3.0
   resolution: "gatsby-source-prismic@npm:5.3.0"
@@ -14007,7 +14035,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"note-com-js@npm:0.0.1":
+"note-com-js@npm:^0.0.1":
   version: 0.0.1
   resolution: "note-com-js@npm:0.0.1"
   checksum: a6d3c75fd2bea43143582dc8b8069205d855cb0c065bb4a8ed127e0a7ba8569caa181c8f4ee9c9c6e6d39f29afb82fcac8407394aa18f48455510f5097fab5d4
