@@ -32,7 +32,7 @@ router.get('/creators/:creator/notes', async ({ params }) => {
         title: note.name,
         description: note.description,
         image_url: note.eyecatch,
-        last_update: note.publish_at,
+        last_update: new Date(note.publish_at).getTime(),
         blob: note,
       })),
     };

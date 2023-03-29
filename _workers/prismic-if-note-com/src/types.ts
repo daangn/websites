@@ -8,6 +8,6 @@ export type IntegrationFieldsItem = {
   title: string;
   description: string;
   image_url: string;
-  last_update: string;
+  last_update: number;
   blob: unknown;
 };
