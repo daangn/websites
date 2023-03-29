@@ -2689,7 +2689,7 @@ __metadata:
     "@cometjs/graphql-utils": 2.0.5
     "@seed-design/design-token": 1.0.0
     "@types/node": 18.15.10
-    "@types/react": 18.0.28
+    "@types/react": 18.0.31
     "@types/react-dom": 18.0.11
     babel-preset-gatsby-package: 3.8.0
     concurrently: 7.6.0
@@ -2766,7 +2766,7 @@ __metadata:
     "@babel/core": 7.21.3
     "@prismicio/helpers": 2.3.9
     "@types/node": 18.15.10
-    "@types/react": 18.0.28
+    "@types/react": 18.0.31
     "@types/react-dom": 18.0.11
     babel-preset-gatsby-package: 3.8.0
     concurrently: 7.6.0
@@ -2792,7 +2792,7 @@ __metadata:
     "@babel/cli": 7.21.0
     "@babel/core": 7.21.3
     "@seed-design/icon": 0.1.13
-    "@types/react": 18.0.28
+    "@types/react": 18.0.31
     "@types/react-dom": 18.0.11
     babel-preset-gatsby-package: 3.8.0
     gatsby: 5.8.0
@@ -2871,7 +2871,7 @@ __metadata:
     "@stitches/react": 1.2.8
     "@svgr/webpack": 6.5.1
     "@types/node": 18.15.10
-    "@types/react": 18.0.28
+    "@types/react": 18.0.31
     "@types/react-dom": 18.0.11
     babel-plugin-polished: 1.1.0
     babel-preset-gatsby-package: 3.8.0
@@ -2929,7 +2929,7 @@ __metadata:
     "@stitches/react": 1.2.8
     "@svgr/webpack": 6.5.1
     "@types/node": 18.15.10
-    "@types/react": 18.0.28
+    "@types/react": 18.0.31
     "@types/react-dom": 18.0.11
     babel-preset-gatsby-package: 3.8.0
     concurrently: 7.6.0
@@ -4783,7 +4783,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:18.0.28":
+"@types/react@npm:*":
   version: 18.0.28
   resolution: "@types/react@npm:18.0.28"
   dependencies:
@@ -4791,6 +4791,17 @@ __metadata:
     "@types/scheduler": "*"
     csstype: ^3.0.2
   checksum: e752df961105e5127652460504785897ca6e77259e0da8f233f694f9e8f451cde7fa0709d4456ade0ff600c8ce909cfe29f9b08b9c247fa9b734e126ec53edd7
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:18.0.31":
+  version: 18.0.31
+  resolution: "@types/react@npm:18.0.31"
+  dependencies:
+    "@types/prop-types": "*"
+    "@types/scheduler": "*"
+    csstype: ^3.0.2
+  checksum: 6befbd5587e266905b50fd6bbd7c1cacd557bddf99e6a9862ca2f1d06df3dca71b9d485a37d010479730f021aab93b852d417c714de5efc2f41be0ff4c09b4db
   languageName: node
   linkType: hard
 
@@ -5208,7 +5219,7 @@ __metadata:
     "@seed-design/design-token": alpha
     "@types/dotenv-safe": 8.1.2
     "@types/node": 18.15.10
-    "@types/react": 18.0.28
+    "@types/react": 18.0.31
     "@types/react-dom": 18.0.11
     babel-preset-gatsby-package: 3.8.0
     cjk-slug: 0.3.1
@@ -6526,7 +6537,7 @@ __metadata:
     "@karrotmarket/gatsby-transformer-job-post": "*"
     "@types/dotenv-safe": 8.1.2
     "@types/node": 18.15.10
-    "@types/react": 18.0.28
+    "@types/react": 18.0.31
     "@types/react-dom": 18.0.11
     dotenv: 16.0.3
     gatsby: 5.8.0
@@ -6556,7 +6567,7 @@ __metadata:
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^"
     "@types/dotenv-safe": 8.1.2
     "@types/node": 18.15.10
-    "@types/react": 18.0.28
+    "@types/react": 18.0.31
     "@types/react-dom": 18.0.11
     dotenv: 16.0.3
     gatsby: 5.8.0
@@ -17510,7 +17521,7 @@ __metadata:
     "@seed-design/design-token": alpha
     "@types/dotenv-safe": 8.1.2
     "@types/node": 18.15.10
-    "@types/react": 18.0.28
+    "@types/react": 18.0.31
     "@types/react-dom": 18.0.11
     babel-preset-gatsby-package: 3.8.0
     cjk-slug: 0.3.1

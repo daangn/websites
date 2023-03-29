@@ -37,7 +37,7 @@
     "@babel/cli": "7.21.0",
     "@babel/core": "7.21.3",
     "@types/node": "18.15.10",
-    "@types/react": "18.0.28",
+    "@types/react": "18.0.31",
     "@types/react-dom": "18.0.11",
     "babel-preset-gatsby-package": "3.8.0",
     "concurrently": "7.6.0",
