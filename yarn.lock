@@ -14035,7 +14035,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"note-com-js@npm:^0.0.1":
+"note-com-js@npm:0.0.1, note-com-js@npm:^0.0.1":
   version: 0.0.1
   resolution: "note-com-js@npm:0.0.1"
   checksum: a6d3c75fd2bea43143582dc8b8069205d855cb0c065bb4a8ed127e0a7ba8569caa181c8f4ee9c9c6e6d39f29afb82fcac8407394aa18f48455510f5097fab5d4
