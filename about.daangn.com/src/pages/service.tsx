@@ -17,6 +17,22 @@ query ServicePage($locale: String!, $navigationId: String!) {
       service_page_title {
         text
       }
+      service_page_og_image {
+        localFile {
+          childImageSharp {
+            fixed(
+              width: 1200
+              height: 630
+              toFormat: PNG
+              quality: 90
+            ) {
+              src
+              width
+              height
+            }
+          }
+        }
+      }
       body {
         ... on PrismicServiceContentDataBodyServiceDescription {
           id
@@ -68,7 +84,7 @@ query ServicePage($locale: String!, $navigationId: String!) {
 
 type ServicePageProps = PageProps<GatsbyTypes.ServicePageQuery>;
 
-const ServiceMainPage: React.FC<ServicePageProps> = ({ data }) => {
+const ServicePage: React.FC<ServicePageProps> = ({ data }) => {
   const services = data.prismicServiceContent?.data.body[0].items;
   const subServices = data.prismicServiceContent?.data.body[1].items;
 
@@ -348,4 +364,4 @@ const SubCardDesctiption = styled('p', {
   letterSpacing: rem(0.4),
 });
 
-export default ServiceMainPage;
+export default ServicePage;

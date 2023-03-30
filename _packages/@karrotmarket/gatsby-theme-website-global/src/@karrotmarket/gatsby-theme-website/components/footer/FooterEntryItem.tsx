@@ -8,7 +8,6 @@ import { mapLink, useLinkParser } from '@karrotmarket/gatsby-theme-website/src/l
 
 const FooterEntryItemContainer = styled('li', {
   fontSize: '$caption2',
-  fontWeight: 700,
 });
 
 const FooterEntryLink = styled(Link, {
@@ -33,7 +32,7 @@ const FooterEntryLink = styled(Link, {
 });
 
 interface FooterEntryItemProps {
-  entry: Pick<GatsbyTypes.PrismicSiteNavigationDataFooterEntries, 'display_text'> & {
+  entry: Pick<GatsbyTypes.PrismicSiteNavigationDataFooterEntries, 'text'> & {
     readonly link: GatsbyTypes.Maybe<Pick<GatsbyTypes.PrismicLinkType, 'url'>>;
   };
 }
@@ -56,14 +55,21 @@ const FooterEntryItem: React.FC<FooterEntryItemProps> = ({ entry }) => {
                   as: 'a',
                   href: link.pathname,
                 })}
-          >
-            {entry.display_text}
-          </FooterEntryLink>
+            dangerouslySetInnerHTML={{
+              __html: entry.text?.html || '',
+            }}
+          />
         ),
         External: (link) => (
-          <FooterEntryLink as="a" target="_blank" rel="external noopener" href={link.url.href}>
-            {entry.display_text}
-          </FooterEntryLink>
+          <FooterEntryLink
+            as="a"
+            target="_blank"
+            rel="external noopener"
+            href={link.url.href}
+            dangerouslySetInnerHTML={{
+              __html: entry.text?.html || '',
+            }}
+          />
         ),
       })}
     </FooterEntryItemContainer>
