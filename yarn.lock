@@ -2985,7 +2985,8 @@ __metadata:
     babel-preset-gatsby-package: 3.8.0
     concurrently: 7.6.0
     gatsby: 5.8.0
-    gatsby-source-note-com: 0.0.3
+    gatsby-source-filesystem: 5.8.0
+    gatsby-source-note-com: 0.0.4
     typescript: 5.0.2
   peerDependencies:
     gatsby: ^4.0.0 || ^5.0.0
@@ -10207,14 +10208,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-source-note-com@npm:0.0.3":
-  version: 0.0.3
-  resolution: "gatsby-source-note-com@npm:0.0.3"
+"gatsby-source-note-com@npm:0.0.4":
+  version: 0.0.4
+  resolution: "gatsby-source-note-com@npm:0.0.4"
   dependencies:
     note-com-js: ^0.0.1
   peerDependencies:
     gatsby: ^4.0.0 || ^5.0.0
-  checksum: 8133e781b7e32586f5f18fef965deff5a5d764b94a275f83a9e48e1342e02e91a2ae8de755e931285b7963a2e516c489425206813f26f4da52ac1d1f18829ec2
+  checksum: c95b03dfeaea8c9a12c0d41ae93327fbc9994eb22e68bea81437457724434ed26ee4e8783e245f8fba28c366431413013bb8bd74816d1066e8147c8e018ad22f
   languageName: node
   linkType: hard
 
