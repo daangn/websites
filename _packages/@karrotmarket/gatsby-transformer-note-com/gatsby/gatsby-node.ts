@@ -28,6 +28,12 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
             return source.name;
           },
         },
+        noteUrl: {
+          type: 'String!',
+          resolve(source: NoteTextNoteNode) {
+            return source.note_url;
+          },
+        },
         bodyHtml: {
           type: 'String!',
           resolve(source: NoteTextNoteNode) {
