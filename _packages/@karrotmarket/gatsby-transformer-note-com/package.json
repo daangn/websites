@@ -1,0 +1,27 @@
+{
+  "name": "@karrotmarket/gatsby-transformer-note-com",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "init:gatsby": "yarn build",
+    "build": "concurrently \"yarn:build:*\"",
+    "build:babel": "babel gatsby -d . -x .ts --presets gatsby-package",
+    "build:dts": "tsc --emitDeclarationOnly --skipLibCheck",
+    "prepack": "yarn build"
+  },
+  "peerDependencies": {
+    "gatsby": "^4.0.0 || ^5.0.0"
+  },
+  "dependencies": {
+    "gatsby-source-filesystem": "5.8.0",
+    "gatsby-source-note-com": "0.0.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.21.0",
+    "@babel/core": "7.21.3",
+    "babel-preset-gatsby-package": "3.8.0",
+    "concurrently": "7.6.0",
+    "gatsby": "5.8.0",
+    "typescript": "5.0.2"
+  }
+}
