@@ -11931,6 +11931,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"itty-router@npm:3.0.12":
+  version: 3.0.12
+  resolution: "itty-router@npm:3.0.12"
+  checksum: aedc7d66e5606bc57a503a0386cb80083b5adc863de2a634676223c84c8106087db7a53155119d47b86f501278dab60f5758d386f1a0b72b7e15589a3b588a65
+  languageName: node
+  linkType: hard
+
 "javascript-stringify@npm:^2.0.1":
   version: 2.1.0
   resolution: "javascript-stringify@npm:2.1.0"
@@ -14000,6 +14007,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"note-com-js@npm:0.0.1":
+  version: 0.0.1
+  resolution: "note-com-js@npm:0.0.1"
+  checksum: a6d3c75fd2bea43143582dc8b8069205d855cb0c065bb4a8ed127e0a7ba8569caa181c8f4ee9c9c6e6d39f29afb82fcac8407394aa18f48455510f5097fab5d4
+  languageName: node
+  linkType: hard
+
 "npm-run-path@npm:4.0.1, npm-run-path@npm:^4.0.1":
   version: 4.0.1
   resolution: "npm-run-path@npm:4.0.1"
@@ -15166,6 +15180,18 @@ __metadata:
   checksum: a1f3a9ebb46df44d7a02a0ae5457023c8f4ca94925b81cdbf99ae34756429787533ce24dcfd3237a5d10215300b2b4be813d1944b2e5109f00e9cb1f1989bf58
   languageName: node
   linkType: hard
+
+"prismic-if-note-com@workspace:_workers/prismic-if-note-com":
+  version: 0.0.0-use.local
+  resolution: "prismic-if-note-com@workspace:_workers/prismic-if-note-com"
+  dependencies:
+    "@cloudflare/workers-types": 4.20230321.0
+    itty-router: 3.0.12
+    note-com-js: 0.0.1
+    typescript: 5.0.2
+    wrangler: 2.13.0
+  languageName: unknown
+  linkType: soft
 
 "prismic-reactjs@npm:1.3.4":
   version: 1.3.4
