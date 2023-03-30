@@ -2976,7 +2976,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@karrotmarket/gatsby-transformer-note-com@workspace:_packages/@karrotmarket/gatsby-transformer-note-com":
+"@karrotmarket/gatsby-transformer-note-com@workspace:*, @karrotmarket/gatsby-transformer-note-com@workspace:_packages/@karrotmarket/gatsby-transformer-note-com":
   version: 0.0.0-use.local
   resolution: "@karrotmarket/gatsby-transformer-note-com@workspace:_packages/@karrotmarket/gatsby-transformer-note-com"
   dependencies:
@@ -12458,6 +12458,7 @@ __metadata:
     "@karrotmarket/gatsby-theme-brochure": "workspace:^"
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website-global": "workspace:^"
+    "@karrotmarket/gatsby-transformer-note-com": "workspace:*"
     "@seed-design/design-token": 1.0.0
     babel-plugin-polished: 1.1.0
     framer-motion: 10.8.5
