@@ -1,6 +1,6 @@
 import { type GatsbyNode } from 'gatsby';
 import { createRemoteFileNode } from 'gatsby-source-filesystem';
-import { type NoteTextNoteNode } from 'gatsby-source-note-com/types';
+import { type NoteContentNode, type NoteTextNoteNode } from 'gatsby-source-note-com/types';
 
 export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({
   schema,
@@ -9,6 +9,65 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
   cache,
 }) => {
   actions.createTypes([
+    schema.buildObjectType({
+      name: 'NoteContent',
+      interfaces: ['Node'],
+      extensions: {
+        infer: false,
+      },
+      fields: {
+        noteId: {
+          type: 'String!',
+          resolve(source: NoteContentNode) {
+            return source.noteId.toString();
+          },
+        },
+        title: {
+          type: 'String!',
+          resolve(source: NoteContentNode) {
+            return source.name;
+          },
+        },
+        noteUrl: {
+          type: 'String!',
+          resolve(source: NoteContentNode) {
+            return source.noteUrl;
+          },
+        },
+        bodyIntro: {
+          type: 'String!',
+          resolve(source: NoteContentNode) {
+            return source.body;
+          },
+        },
+        eyecatch: {
+          type: 'File!',
+          resolve(source: NoteContentNode) {
+            return createRemoteFileNode({
+              url: source.eyecatch,
+              createNode: actions.createNode,
+              createNodeId: createNodeId,
+              cache,
+            });
+          },
+        },
+        hashtags: {
+          type: '[String!]!',
+          resolve(source: NoteContentNode) {
+            if (!source.hashtags) {
+              return [];
+            }
+            return source.hashtags.map((tag) => tag.hashtag.name);
+          },
+        },
+        publishedAt: {
+          type: 'String!',
+          resolve(source: NoteContentNode) {
+            return source.publishAt;
+          },
+        },
+      },
+    }),
     schema.buildObjectType({
       name: 'Note',
       interfaces: ['Node'],
@@ -140,6 +199,21 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({
   createNodeId,
   createContentDigest,
 }) => {
+  if (node.internal.type === 'NoteContent') {
+    const contentNode = {
+      id: createNodeId(`NoteContent-${node.id} >>> NoteContent`),
+      parent: node.id,
+      children: [],
+      internal: {
+        type: 'Content',
+        contentDigest: createContentDigest(node),
+      },
+    };
+
+    actions.createNode(contentNode);
+    actions.createParentChildLink({ parent: node, child: contentNode });
+  }
+
   if (node.internal.type === 'NoteTextNote') {
     const noteNode = {
       ...node,
