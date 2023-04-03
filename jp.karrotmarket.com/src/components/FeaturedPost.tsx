@@ -22,7 +22,7 @@ const FeaturedPost: React.FC<FeaturedPostProps> = (props) => {
 
   return (
     <Container target="_blank" rel="external noopener" href={props.noteUrl}>
-      <FeaturedImage image={thumbnailImage} />
+      <FeaturedImage image={thumbnailImage} alt={`${props.title}_イメージ`} />
       <FeaturedDescription>
         <FeaturedTitle>{props.title}</FeaturedTitle>
       </FeaturedDescription>
