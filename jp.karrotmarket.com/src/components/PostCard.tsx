@@ -5,15 +5,16 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 
 type PostCardProps = {
-  post: GatsbyTypes.PostCard_noteFragment;
+  post: GatsbyTypes.PostCard_noteContentFragment;
 };
 
 export const query = graphql`
-  fragment PostCard_note on Note {
-    hashtags
+  fragment PostCard_note on NoteContent {
     id
     noteUrl
+    hashtags
     title
+    bodyIntro
     eyecatch {
       childImageSharp {
         gatsbyImageData
@@ -31,11 +32,12 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
   return (
     <Container>
       <NoteLink target="_blank" rel="external noopener" href={post.noteUrl}>
-        <Image image={thumbnailImage} />
+        <Image image={thumbnailImage} alt={`${post.title}_イメージ`} />
         <PostTitle>{post.title}</PostTitle>
+        <PostSummary>{post.bodyIntro}</PostSummary>
         <HashtagWrapper>
-          {hashtags.map((hashtag) => (
-            <PostHashtag>{hashtag}</PostHashtag>
+          {hashtags.map((hashtag: string) => (
+            <PostHashtag key={hashtag}>{hashtag}</PostHashtag>
           ))}
         </HashtagWrapper>
       </NoteLink>
@@ -85,6 +87,32 @@ const PostTitle = styled('h3', {
   },
 });
 
+const PostSummary = styled('div', {
+  width: '100%',
+  marginTop: rem(10),
+  color: vars.$scale.color.gray600,
+  fontSize: '$body4',
+  whiteSpace: 'pre-line',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  'white-space': 'nowrap',
+
+  '@sm': {
+    marginTop: rem(12),
+  },
+
+  '@lg': {
+    typography: '$body3',
+  },
+});
+
+const HashtagWrapper = styled('div', {
+  width: '100%',
+  maxHeight: rem(50),
+  overflowX: 'scroll',
+  overflowY: 'hidden',
+});
+
 const PostHashtag = styled('span', {
   display: 'inline-block',
   width: 'fit-content',
@@ -105,13 +133,6 @@ const PostHashtag = styled('span', {
   '@lg': {
     typography: '$caption1',
   },
-});
-
-const HashtagWrapper = styled('div', {
-  width: '100%',
-  maxHeight: rem(50),
-  overflowX: 'scroll',
-  overflowY: 'hidden',
 });
 
 export default PostCard;
