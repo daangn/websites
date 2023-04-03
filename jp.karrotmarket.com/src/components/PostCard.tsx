@@ -92,10 +92,9 @@ const PostSummary = styled('div', {
   marginTop: rem(10),
   color: vars.$scale.color.gray600,
   fontSize: '$body4',
-  whiteSpace: 'pre-line',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
-  'white-space': 'nowrap',
+  whiteSpace: 'nowrap',
 
   '@sm': {
     marginTop: rem(12),
