@@ -7,6 +7,7 @@ import * as React from 'react';
 type FeaturedPostProps = {
   id: string;
   title: string;
+  bodyIntro: string;
   noteUrl: string;
   eyecatch: {
     childImageSharp: {
@@ -25,6 +26,7 @@ const FeaturedPost: React.FC<FeaturedPostProps> = (props) => {
       <FeaturedImage image={thumbnailImage} alt={`${props.title}_イメージ`} />
       <FeaturedDescription>
         <FeaturedTitle>{props.title}</FeaturedTitle>
+        <FeaturedSummary>{props.bodyIntro}</FeaturedSummary>
       </FeaturedDescription>
     </Container>
   );
@@ -80,10 +82,25 @@ const FeaturedTitle = styled('h1', {
 
   '@sm': {
     typography: '$subtitle2',
+    marginBottom: rem(10),
   },
 
   '@lg': {
     typography: '$subtitle1',
+  },
+});
+
+const FeaturedSummary = styled('p', {
+  maxWidth: rem(800),
+  color: vars.$scale.color.gray600,
+  typography: '$subtitle4',
+  textAlign: 'center',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
+
+  '@lg': {
+    typography: '$body2',
   },
 });
 
