@@ -10,7 +10,7 @@ type PostListProps = {
 
 export const query = graphql`
   fragment PostList_query on Query {
-    allNote {
+    allNoteContent {
       nodes {
         ...PostCard_note
       }
@@ -21,11 +21,11 @@ export const query = graphql`
 const PostList: React.FC<PostListProps> = ({ data }) => {
   return (
     <>
-      {data.allNote.nodes.length === 0 ? (
+      {data.allNoteContent.nodes.length === 0 ? (
         <NoPostDescription>登録された記事がありません。</NoPostDescription>
       ) : (
         <Container>
-          {data.allNote.nodes.map((post) => (
+          {data.allNoteContent.nodes.map((post) => (
             <PostCard key={post.id} post={post} />
           ))}
         </Container>
