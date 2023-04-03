@@ -49,19 +49,17 @@ export default function BlogPage({ data }: PageProps<GatsbyTypes.BlogPageQuery>)
 type BlogPageHeadProps = HeadProps<GatsbyTypes.BlogPageQuery>;
 
 export const Head: React.FC<BlogPageHeadProps> = ({ data, location }) => {
-  const {
-    blog_page_meta_title,
-    blog_page_meta_description,
-    blog_page_meta_image
-  } = data.prismicGlobalContents?.data;
+  const { blog_page_meta_title, blog_page_meta_description, blog_page_meta_image } =
+    data.prismicGlobalContents?.data;
   const metaImage = blog_page_meta_image?.localFile?.childImageSharp?.fixed;
 
   return (
     <HeadSeo
       location={location}
       root
-      title= {blog_page_meta_title}
-      description={blog_page_meta_description}>
+      title={blog_page_meta_title}
+      description={blog_page_meta_description}
+    >
       {(props) => [
         <OpenGraph
           og={{
@@ -90,7 +88,7 @@ export const Head: React.FC<BlogPageHeadProps> = ({ data, location }) => {
       ]}
     </HeadSeo>
   );
-}
+};
 
 const Container = styled('div', {
   contentArea: true,
