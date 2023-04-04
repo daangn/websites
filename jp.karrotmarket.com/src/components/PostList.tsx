@@ -41,7 +41,7 @@ const Container = styled('div', {
   rowGap: rem(24),
   justifyItems: 'center',
   justifyContent: 'center',
-  marginTop: rem(24),
+  margin: `${rem(24)} 0`,
 
   '@media (min-width: 880px)': {
     gridTemplateColumns: 'repeat(2, 1fr)',

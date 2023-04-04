@@ -5,7 +5,7 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 
 type PostCardProps = {
-  post: GatsbyTypes.PostCard_noteContentFragment;
+  post: GatsbyTypes.PostCard_noteFragment;
 };
 
 export const query = graphql`
@@ -47,7 +47,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
 
 const Container = styled('div', {
   width: rem(320),
-  minHeight: rem(320),
+  minHeight: rem(300),
 
   '@sm': {
     width: rem(380),
@@ -108,8 +108,13 @@ const PostSummary = styled('div', {
 const HashtagWrapper = styled('div', {
   width: '100%',
   maxHeight: rem(50),
-  overflowX: 'scroll',
+  paddingBottom: 0,
+  overflowX: 'auto',
   overflowY: 'hidden',
+
+  '@sm': {
+    paddingBottom: rem(18),
+  },
 });
 
 const PostHashtag = styled('span', {
