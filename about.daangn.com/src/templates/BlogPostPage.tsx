@@ -7,6 +7,10 @@ import * as React from 'react';
 
 import Author from '../components/blogPostPage/Author';
 import PostBodyRichText from '../components/blogPostPage/PostBodyRichText';
+import PostBodyGroupImage from '../components/blogPostPage/PostBodyGroupImage';
+import PostBodyQuote from '../components/blogPostPage/PostBodyQuote';
+import PostBodyVerticalQuote from '../components/blogPostPage/PostBodyVerticalQuote';
+import PostBodyCtaButton from '../components/blogPostPage/PostBodyCtaButton';
 import PostFooter from '../components/blogPostPage/PostFooter';
 import PostHeader from '../components/blogPostPage/PostHeader';
 import ShareButtons from '../components/blogPostPage/ShareButtons';
@@ -26,11 +30,30 @@ export const query = graphql`
       ...Author_post
       ...RelatedPost_post
       body {
-        primary
-        content
-        id
-        items
-        slice_type: sliceType
+        ... on PostRichTextSection {
+          id
+          primary
+          slice_type: sliceType
+        }
+        ... on PostGroupImageSection {
+          id
+          slice_type: sliceType
+        }
+        ... on PostQuoteSection {
+          id
+          primary
+          slice_type: sliceType
+        }
+        ... on PostVerticalQuoteSection {
+          id
+          primary
+          slice_type: sliceType
+        }
+        ... on PostCtaButtonSection {
+          id
+          primary
+          slice_type: sliceType
+        }
       }
     }
   }
@@ -56,6 +79,10 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ data }) => {
                 slices={data.post.body as any[]}
                 components={{
                   rich_text_section: PostBodyRichText,
+                  group_image_section: PostBodyGroupImage,
+                  quote_section: PostBodyQuote,
+                  vertical_quote_section: PostBodyVerticalQuote,
+                  cta_button: PostBodyCtaButton,
                 }}
               />
             </ContentContainer>
@@ -137,6 +164,8 @@ const Modal = styled('div', {
 const ContentContainer = styled('div', {
   display: 'flex',
   flexFlow: 'row nowrap',
+  flexDirection: 'column',
+  alignItems: 'center',
   height: 'auto',
   overflow: 'auto',
 });

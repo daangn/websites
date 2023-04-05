@@ -9,7 +9,7 @@ import React from 'react';
 const PostBodyRichText = ({
   slice,
 }: {
-  slice: Queries.PostRichTextSection;
+  slice: GatsbyTypes.PostRichTextSection;
 }) => {
   React.useEffect(() => {
     Prism.highlightAll();
