@@ -24,13 +24,10 @@
   },
   "files": {
     "ignore": [
-      "**/.cache/**/*",
-      "**/public/**/*",
-      "**/dist/**/*",
-      "**/__generated__/**/*",
-      "./_packages/**/gatsby-*.js",
-      "./_packages/**/*.d.ts",
-      "./_packages/@karrotmarket/gatsby-theme-seed-design/src/Icon.tsx"
+      "**/.cache/**/*", "**/public/**/*", "**/dist/**/*", "**/__generated__/**/*",
+      "./**/gatsby-*.js", "./**/*.d.ts", "./**/wrapRootElement.js",
+      "./_packages/@karrotmarket/gatsby-theme-seed-design/src/Icon.tsx",
+      "./_packages/**/*.cache.json"
     ]
   }
 }

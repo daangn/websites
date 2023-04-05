@@ -59,7 +59,9 @@ const FooterEntryItem: React.FC<FooterEntryItemProps> = ({ entry }) => {
   const location = useLocation();
 
   return (
+    // rome-ignore lint/style/noNonNullAssertion: intentional
     <FooterEntryItemContainer key={entry.link!.url!}>
+      {/* rome-ignore lint/style/noNonNullAssertion: intentional */}
       {mapLink(parseLink(entry.link!.url!), {
         Internal: (link) => (
           <FooterEntryLink

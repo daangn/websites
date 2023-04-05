@@ -56,7 +56,9 @@ const NavigationListItem: React.FC<FooterEntryItemProps> = ({ entry }) => {
   const location = useLocation();
 
   return (
+    // rome-ignore lint/style/noNonNullAssertion: intentional
     <NavigationListItemContainer key={entry.link!.url}>
+      {/* rome-ignore lint/style/noNonNullAssertion: intentional */}
       {mapLink(parseLink(entry.link!.url), {
         Internal: (link) => (
           <NavigationLink

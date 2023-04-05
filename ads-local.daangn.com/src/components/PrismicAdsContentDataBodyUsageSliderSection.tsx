@@ -35,8 +35,10 @@ export default function PrismicAdsContentDataBodyUsageSliderSection({ data }: Pr
               {items.map((item, i) => (
                 // rome-ignore lint/suspicious/noArrayIndexKey: 컨텐츠 정적이라 괜찮음
                 <React.Fragment key={i}>
+                  {/* rome-ignore lint/style/noNonNullAssertion: intentional */}
                   <Region>{item.region!}</Region>
                   <p>{' 근처 '}</p>
+                  {/* rome-ignore lint/style/noNonNullAssertion: intentional */}
                   <ColoredText>{`${intl.format(item.visitor_count!)}명`}</ColoredText>
                 </React.Fragment>
               ))}

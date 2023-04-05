@@ -86,6 +86,7 @@ const JobPostPage: React.FC<JobPostPageProps> = ({ data }) => {
         </ContentWrapper>
         <Button
           variant="primary"
+          // rome-ignore lint/style/noNonNullAssertion: intentional
           to={data.jobPost.externalUrl!}
           fullWidth={{ '@initial': true, '@sm': false }}
         >

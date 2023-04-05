@@ -5,9 +5,6 @@
     "outDir": ".",
     "jsx": "preserve"
   },
-  "include": [
-    "gatsby"
-  ],
-  "exclude": [
-  ]
+  "include": ["gatsby"],
+  "exclude": []
 }

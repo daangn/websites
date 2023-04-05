@@ -124,6 +124,7 @@ const Something: React.FC = () => {
     `,
   );
 
+  // rome-ignore lint/style/noNonNullAssertion: intentional
   const prismicAdsContent = staticData.prismicAdsContent!;
 
   return (

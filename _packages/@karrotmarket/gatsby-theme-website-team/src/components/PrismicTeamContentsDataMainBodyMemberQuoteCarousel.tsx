@@ -193,6 +193,7 @@ const PrismicTeamContentsDataMainBodyMemberQuoteCarousel: React.FC<
         <Slide css={{ $$slide: slide }}>
           {items.map((item, i) => (
             // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+            // rome-ignore lint/style/noNonNullAssertion: intentional
             <CarouselItem key={i} item={item!} />
           ))}
         </Slide>

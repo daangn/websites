@@ -60,11 +60,16 @@ const FaqAccordion: React.FC<FaqAccordionProps> = ({ className, data }) => {
           .filter((entry) => entry.question && entry.answer)
           .map((entry) => (
             <FaqAccordionItem
+              // rome-ignore lint/style/noNonNullAssertion: intentional
               key={entry.question!}
+              // rome-ignore lint/style/noNonNullAssertion: intentional
               id={entry.question!}
               entry={entry}
+              // rome-ignore lint/style/noNonNullAssertion: intentional
               open={state.id === entry.question!}
+              // rome-ignore lint/style/noNonNullAssertion: intentional
               onClick={() => dispatch({ type: 'CLICK', id: entry.question! })}
+              // rome-ignore lint/style/noNonNullAssertion: intentional
               onFocus={() => dispatch({ type: 'FOCUS', id: entry.question! })}
             />
           ))}

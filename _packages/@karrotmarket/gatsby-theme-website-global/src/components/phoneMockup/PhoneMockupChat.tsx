@@ -29,7 +29,7 @@ const PhoneMockupChat: React.FC<PhoneMockupChatProps> = ({ inView }) => {
       interval.current = setInterval(() => {
         if (messageIndex.current < 0) return messageIndex.current++;
 
-        let newMessage = data.messages[messageIndex.current++];
+        const newMessage = data.messages[messageIndex.current++];
         if (!newMessage) {
           if (chatAnimationInfiteLoop) {
             messageIndex.current = 0;
@@ -85,13 +85,13 @@ const PhoneMockupChat: React.FC<PhoneMockupChatProps> = ({ inView }) => {
                       image={message.image}
                     />
                   );
-                default:
                 case 'user':
                   return (
                     <UserMessage key={key} userType={message.userType}>
                       {message.text}
                     </UserMessage>
                   );
+                default:
               }
             })}
           </AnimatePresence>

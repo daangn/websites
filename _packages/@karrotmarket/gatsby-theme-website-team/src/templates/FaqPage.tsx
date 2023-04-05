@@ -219,6 +219,7 @@ export const Head: React.FC<FaqPageHeadProps> = ({ data, location }) => {
         <FAQPageJsonLd
           faq={{
             '@type': 'FAQPage',
+            // rome-ignore lint/style/noNonNullAssertion: intentional
             mainEntity: data.prismicFaq.data.entries!.map((faq) => ({
               '@type': 'Question',
               name: faq.question,

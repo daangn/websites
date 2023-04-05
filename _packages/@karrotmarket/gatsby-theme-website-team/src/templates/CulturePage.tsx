@@ -96,6 +96,7 @@ const CulturePage: React.FC<CulturePageProps> = ({ data }) => {
       </TitleContainer>
       <Content>
         {data.prismicTeamContents.data.culture_body.map((data, i) =>
+          // rome-ignore lint/style/noNonNullAssertion: intentional
           mapAbstractTypeWithDefault(data!, {
             PrismicTeamContentsDataCultureBodyKeyVisual: (data) => (
               // rome-ignore lint/suspicious/noArrayIndexKey: intentional

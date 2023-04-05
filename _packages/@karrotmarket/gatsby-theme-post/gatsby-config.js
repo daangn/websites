@@ -13,11 +13,6 @@ const config = () => ({
       path: `${__dirname}/package.json`
     }
   }, {
-    resolve: 'gatsby-plugin-turnstile',
-    options: {
-      siteKey: '0x4AAAAAAABTJUTRFC79Iemz'
-    }
-  }, {
     resolve: 'gatsby-plugin-sharp',
     options: {
       defaults: {

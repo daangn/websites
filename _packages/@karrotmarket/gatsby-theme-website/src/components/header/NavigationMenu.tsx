@@ -170,6 +170,7 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ controlId, className, d
             {data.sns_profiles
               .filter((profile) => profile.link)
               .map((profile) => (
+                // rome-ignore lint/style/noNonNullAssertion: intentional
                 <SocialServiceProfileItem key={profile.link!.url}>
                   <SocialServiceProfile profile={profile} />
                 </SocialServiceProfileItem>

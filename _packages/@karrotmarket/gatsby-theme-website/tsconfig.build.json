@@ -5,8 +5,6 @@
     "outDir": ".",
     "jsx": "react"
   },
-  "include": [
-    "gatsby"
-  ],
+  "include": ["gatsby"],
   "exclude": []
 }

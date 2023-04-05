@@ -40,8 +40,10 @@ type Props = {
 };
 
 export default function HeroSection({ data }: Props) {
+  // rome-ignore lint/style/noNonNullAssertion: intentional
   const defaultImage = (data.hero_image?.localFile?.childImageSharp?.gatsbyImageData &&
     getImage(data.hero_image.localFile.childImageSharp.gatsbyImageData))!;
+  // rome-ignore lint/style/noNonNullAssertion: intentional
   const pcMainImage = (data.hero_image?.thumbnails.pc_main?.localFile?.childImageSharp
     ?.gatsbyImageData &&
     getImage(data.hero_image.thumbnails.pc_main.localFile.childImageSharp.gatsbyImageData))!;
