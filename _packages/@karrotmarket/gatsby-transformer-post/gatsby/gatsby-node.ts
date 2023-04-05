@@ -282,6 +282,12 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
             return parent.primary.group_image_caption;
           },
         },
+        primary: {
+          type: 'JSON!',
+          resolve(parent: PrismicPostDataBodyGroupImageSectionSlice) {
+            return parent.primary;
+          },
+        },
       },
     }),
     schema.buildObjectType({
