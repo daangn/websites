@@ -115,8 +115,10 @@ export default function PrismicAdsContentDataBodyUserStorySection({
           }}
         >
           {validItems.map((item, i) => {
+            // rome-ignore lint/style/noNonNullAssertion: intentional
             const image = (item.background_image?.localFile?.childImageSharp?.gatsbyImageData &&
               getImage(item.background_image.localFile.childImageSharp.gatsbyImageData))!;
+            // rome-ignore lint/style/noNonNullAssertion: intentional
             const mobileImage = (item.background_image?.thumbnails?.mobile?.localFile
               ?.childImageSharp?.gatsbyImageData &&
               getImage(

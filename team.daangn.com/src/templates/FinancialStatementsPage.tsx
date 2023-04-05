@@ -194,6 +194,7 @@ const TableColValue = styled('td', {
 
 type FinancialStatementsPageProps = PageProps<GatsbyTypes.FinancialStatementsPageQuery>;
 const FinancialStatementsPage: React.FC<FinancialStatementsPageProps> = ({ data: prismicData }) => {
+  // rome-ignore lint/style/noNonNullAssertion: intentional
   const current = prismicData.prismicFinancialStatements!;
   const all = prismicData.allPrismicFinancialStatements.nodes.filter(
     (node) => node.data.title?.text,
@@ -226,6 +227,7 @@ const FinancialStatementsPage: React.FC<FinancialStatementsPageProps> = ({ data:
                   to={`/ir/finances/${finance.uid}/#content`}
                   selected={finance.uid === current.uid}
                 >
+                  {/* rome-ignore lint/style/noNonNullAssertion: intentional */}
                   {finance.data.title!.text!}
                 </SideNavLink>
               </SideNavItem>
@@ -236,9 +238,11 @@ const FinancialStatementsPage: React.FC<FinancialStatementsPageProps> = ({ data:
           <TableCaption style={{ display: 'none' }}>{current.data?.title?.text}</TableCaption>
           <thead>
             <tr>
+              {/* rome-ignore lint/a11y/noHeaderScope: intentional */}
               <TableRowHeader scope="row" position="start">
                 {current.data.key_label || '항목'}
               </TableRowHeader>
+              {/* rome-ignore lint/a11y/noHeaderScope: intentional */}
               <TableRowHeader scope="row" position="end">
                 {current.data.value_label || '값'}
               </TableRowHeader>
@@ -249,6 +253,7 @@ const FinancialStatementsPage: React.FC<FinancialStatementsPageProps> = ({ data:
               .filter((item) => item.key && item.value)
               .map((item) => (
                 <TableRow key={item.key}>
+                  {/* rome-ignore lint/a11y/noHeaderScope: intentional */}
                   <TableColHeader scope="col" summary={item.summary ?? false}>
                     {item.key}
                   </TableColHeader>

@@ -1,7 +1,10 @@
 {
   "transform": {
-    "\\.[jt]sx?$": ["babel-jest", {
-      "presets": ["babel-preset-gatsby-package"]
-    }]
+    "\\.[jt]sx?$": [
+      "babel-jest",
+      {
+        "presets": ["babel-preset-gatsby-package"]
+      }
+    ]
   }
 }

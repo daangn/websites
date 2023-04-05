@@ -131,6 +131,7 @@ const File = styled('a', {});
 
 type IrPageProps = PageProps<GatsbyTypes.IrPageQuery>;
 const IrPage: React.FC<IrPageProps> = ({ data: prismicData }) => {
+  // rome-ignore lint/style/noNonNullAssertion: intentional
   const ir = prismicData.prismicIr!;
   const attachments =
     ir.data.attachment_group?.filter((attachment) => attachment?.file?.localFile?.publicURL) ?? [];
@@ -183,7 +184,9 @@ const IrPage: React.FC<IrPageProps> = ({ data: prismicData }) => {
             <AttachmentSectionTitle>첨부파일 다운로드</AttachmentSectionTitle>
             <FileList>
               {attachments.map((attachment) => {
+                // rome-ignore lint/style/noNonNullAssertion: intentional
                 const file = attachment!.file!.localFile!;
+                // rome-ignore lint/style/noNonNullAssertion: intentional
                 const href = withPrefix(file.publicURL!);
                 const base = stripUUID(decodeURIComponent(file.base));
                 return (
@@ -205,6 +208,7 @@ export default IrPage;
 
 type IrPageHeadProps = HeadProps<GatsbyTypes.IrPageQuery>;
 export const Head: React.FC<IrPageHeadProps> = ({ data }) => {
+  // rome-ignore lint/style/noNonNullAssertion: intentional
   return <title>{[data.prismicIr!.data.title?.text, '당근마켓 IR'].join(' | ')}</title>;
 };
 

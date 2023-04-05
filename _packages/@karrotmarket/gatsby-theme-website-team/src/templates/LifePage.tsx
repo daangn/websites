@@ -80,6 +80,7 @@ const LifePage: React.FC<LifePageProps> = ({ data }) => {
       <PageTitle>{data.prismicTeamContents.data.life_page_title?.text}</PageTitle>
       <Content>
         {data.prismicTeamContents.data.life_body.map((data, i) =>
+          // rome-ignore lint/style/noNonNullAssertion: intentional
           mapAbstractTypeWithDefault(data!, {
             PrismicTeamContentsDataLifeBodyLifeContent: (data) => (
               // rome-ignore lint/suspicious/noArrayIndexKey: intentional

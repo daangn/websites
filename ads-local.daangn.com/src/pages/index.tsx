@@ -74,7 +74,9 @@ export const query = graphql`
 export default function IndexPage({ data }: PageProps<GatsbyTypes.IndexPageQuery>) {
   globalStyles();
 
+  // rome-ignore lint/style/noNonNullAssertion: intentional
   const prismicAdsContent = data.prismicAdsContent!;
+  // rome-ignore lint/style/noNonNullAssertion: intentional
   const prismicSiteNavigation = data.prismicSiteNavigation!;
 
   return (
@@ -135,9 +137,12 @@ export default function IndexPage({ data }: PageProps<GatsbyTypes.IndexPageQuery
 }
 
 export function Head({ data, location }: HeadProps<GatsbyTypes.IndexPageQuery>) {
+  // rome-ignore lint/style/noNonNullAssertion: intentional
   const siteMetadata = data.site?.siteMetadata!;
+  // rome-ignore lint/style/noNonNullAssertion: intentional
   const prismicAdsContent = data.prismicAdsContent!;
 
+  // rome-ignore lint/style/noNonNullAssertion: intentional
   const siteUrl = new URL(siteMetadata.siteUrl!);
   const image = prismicAdsContent.data.meta_image;
 
@@ -148,13 +153,18 @@ export function Head({ data, location }: HeadProps<GatsbyTypes.IndexPageQuery>) 
           og={{
             ...props,
             type: 'website',
+            // rome-ignore lint/style/noNonNullAssertion: intentional
             title: prismicAdsContent.data.meta_title || siteMetadata.title!,
+            // rome-ignore lint/style/noNonNullAssertion: intentional
             description: prismicAdsContent.data.meta_description || siteMetadata.description!,
             ...(image && {
               images: [
                 {
+                  // rome-ignore lint/style/noNonNullAssertion: intentional
                   url: new URL(image.localFile!.publicURL!, siteUrl),
+                  // rome-ignore lint/style/noNonNullAssertion: intentional
                   width: image.dimensions!.width,
+                  // rome-ignore lint/style/noNonNullAssertion: intentional
                   height: image.dimensions!.height,
                 },
               ],

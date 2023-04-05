@@ -21,7 +21,9 @@ export const query = graphql`
 
 export default function IndexPage({ data }: PageProps<GatsbyTypes.IndexPageQuery>) {
   return (
+    // rome-ignore lint/style/noNonNullAssertion: intentional
     <Layout data={data.prismicSiteNavigation!.data}>
+      {/* rome-ignore lint/style/noNonNullAssertion: intentional */}
       <PrismicBrochureSliceZone brochure={data.prismicBrochure!} />
     </Layout>
   );

@@ -37,6 +37,7 @@ export default function BlogPage({ data }: PageProps<GatsbyTypes.BlogPageQuery>)
   const featuredPost = data.allNoteContent.nodes[0];
 
   return (
+    // rome-ignore lint/style/noNonNullAssertion: intentional
     <Layout data={data.prismicSiteNavigation!.data}>
       <Container>
         <FeaturedPost {...featuredPost} />

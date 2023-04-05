@@ -1,6 +1,3 @@
 {
-  "extends": [
-    "config:base",
-    "schedule:daily"
-  ]
+  "extends": ["config:base", "schedule:daily"]
 }

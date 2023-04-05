@@ -96,6 +96,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
       </TitleContainer>
       <Content>
         {data.prismicTeamContents.data.main_body?.filter(Boolean)?.map((data, i) =>
+          // rome-ignore lint/style/noNonNullAssertion: intentional
           mapAbstractTypeWithDefault(data!, {
             PrismicTeamContentsDataMainBodyKeyVisual: (data) => (
               // rome-ignore lint/suspicious/noArrayIndexKey: intentional
