@@ -42,7 +42,13 @@ export type PrismicPostNode = PrismicSourceNode &
       related_posts: GroupField<{
         post: ContentRelationshipField<'post'>;
       }>;
-      body: SliceZone<PrismicPostRichTextSectionSlice>;
+      body: SliceZone<
+        | PrismicPostRichTextSectionSlice
+        | PrismicPostDataBodyGroupImageSectionSlice
+        | PrismicPostDataBodyQuoteSectionSlice
+        | PrismicPostDataBodyVerticalQuoteSectionSlice
+        | PrismicPostDataBodyCtaButtonSlice
+      >;
     },
     'post'
   >;
@@ -55,6 +61,50 @@ export type PrismicPostRichTextSectionSlice = Slice<
     slice_type: string;
     primary: RichTextField;
     items: RichTextField;
+  }
+>;
+
+export type PrismicPostDataBodyGroupImageSectionSlice = Slice<
+  'group_image_section',
+  {
+    id: string;
+    slice_type: string;
+    group_image_caption: string;
+    group_image1: ImageField;
+    group_image2: ImageField;
+  }
+>;
+
+export type PrismicPostDataBodyQuoteSectionSlice = Slice<
+  'quote_section',
+  {
+    id: string;
+    slice_type: string;
+    primary: RichTextField;
+  }
+>;
+
+export type PrismicPostDataBodyVerticalQuoteSectionSlice = Slice<
+  'vertical_quote_section',
+  {
+    id: string;
+    slice_type: string;
+    primary: RichTextField;
+  }
+>;
+
+export type PrismicPostDataBodyCtaButtonSlice = Slice<
+  'cta_button',
+  {
+    id: string;
+    slice_type: string;
+    primary: {
+      cta_button_text: string;
+      cta_phrase: string;
+      cta_button_url: {
+        url: string;
+      };
+    };
   }
 >;
 
