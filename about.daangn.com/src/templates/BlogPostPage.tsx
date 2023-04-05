@@ -100,7 +100,10 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ data }) => {
         <Container>
           <PostHeader postHeader={data.post} />
           {data.post.thumbnailImage.childImageSharp?.gatsbyImageData && (
-            <ThumbnailImage image={data.post.thumbnailImage.childImageSharp?.gatsbyImageData} alt={''} />
+            <ThumbnailImage
+              image={data.post.thumbnailImage.childImageSharp?.gatsbyImageData}
+              alt={`${data.post.title}_포스트썸네일`}
+            />
           )}
           <PostBody>
             <ContentContainer>
@@ -128,7 +131,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ data }) => {
     )
   );
 };
-BlogPostPage
+BlogPostPage;
 type BlogPostPageHeadProps = HeadProps<GatsbyTypes.BlogPostPageQuery>;
 
 export const Head: React.FC<BlogPostPageHeadProps> = ({ data, location }) => {
@@ -137,12 +140,7 @@ export const Head: React.FC<BlogPostPageHeadProps> = ({ data, location }) => {
   const metaImage = data.post?.ogImage.childImageSharp?.fixed;
 
   return (
-    <HeadSeo
-      location={location}
-      root
-      title={title}
-      description={description}
-    >
+    <HeadSeo location={location} root title={title} description={description}>
       {(props) => [
         <OpenGraph
           og={{

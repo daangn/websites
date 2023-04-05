@@ -170,7 +170,8 @@ const ServicePage: React.FC<ServicePageProps> = ({ data }) => {
 type ServicePageHeadProps = HeadProps<GatsbyTypes.ServicePageQuery>;
 
 export const Head: React.FC<ServicePageHeadProps> = ({ data, location }) => {
-  const { service_page_meta_title, service_page_meta_description, service_page_og_image } = data.prismicServiceContent?.data;
+  const { service_page_meta_title, service_page_meta_description, service_page_og_image } =
+    data.prismicServiceContent?.data;
   const metaImage = service_page_og_image?.localFile?.childImageSharp?.fixed;
 
   return (
