@@ -24,7 +24,7 @@
     "@karrotmarket/gatsby-theme-website-global": "workspace:^",
     "@karrotmarket/gatsby-transformer-note-com": "workspace:*",
     "@seed-design/design-token": "1.0.0",
-    "framer-motion": "10.8.5",
+    "framer-motion": "10.10.0",
     "gatsby": "5.8.0",
     "gatsby-plugin-google-tagmanager": "5.8.0",
     "gatsby-plugin-image": "3.8.0",
