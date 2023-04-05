@@ -6,11 +6,11 @@ import { rem } from 'polished';
 import * as React from 'react';
 
 import Author from '../components/blogPostPage/Author';
-import PostBodyRichText from '../components/blogPostPage/PostBodyRichText';
+import PostBodyCtaButton from '../components/blogPostPage/PostBodyCtaButton';
 import PostBodyGroupImage from '../components/blogPostPage/PostBodyGroupImage';
 import PostBodyQuote from '../components/blogPostPage/PostBodyQuote';
+import PostBodyRichText from '../components/blogPostPage/PostBodyRichText';
 import PostBodyVerticalQuote from '../components/blogPostPage/PostBodyVerticalQuote';
-import PostBodyCtaButton from '../components/blogPostPage/PostBodyCtaButton';
 import PostFooter from '../components/blogPostPage/PostFooter';
 import PostHeader from '../components/blogPostPage/PostHeader';
 import ShareButtons from '../components/blogPostPage/ShareButtons';
@@ -38,6 +38,18 @@ export const query = graphql`
         ... on PostGroupImageSection {
           id
           slice_type: sliceType
+          primary
+          groupImageCaption
+          groupImage1 {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          groupImage2 {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
         }
         ... on PostQuoteSection {
           id
