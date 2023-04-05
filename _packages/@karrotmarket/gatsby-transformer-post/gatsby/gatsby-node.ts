@@ -4,6 +4,10 @@ import { createRemoteFileNode } from 'gatsby-source-filesystem';
 
 import {
   type PrismicMemberProfileNode,
+  type PrismicPostDataBodyCtaButtonSlice,
+  type PrismicPostDataBodyGroupImageSectionSlice,
+  type PrismicPostDataBodyQuoteSectionSlice,
+  type PrismicPostDataBodyVerticalQuoteSectionSlice,
   type PrismicPostNode,
   type PrismicPostRichTextSectionSlice,
   isPrismicMemberProfile,
@@ -153,11 +157,35 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           },
         },
         body: {
-          type: '[PostRichTextSection!]!',
+          type: '[PostBodyItem!]!',
           resolve(node: PrismicPostNode) {
             return node.data.body;
           },
         },
+      },
+    }),
+    schema.buildUnionType({
+      name: 'PostBodyItem',
+      types: [
+        'PostRichTextSection',
+        'PostGroupImageSection',
+        'PostQuoteSection',
+        'PostVerticalQuoteSection',
+        'PostCtaButtonSection',
+      ],
+      resolveType(parent: PrismicPostNode['data']['body'][number]) {
+        switch (parent.slice_type) {
+          case 'rich_text_section':
+            return 'PostRichTextSection';
+          case 'group_image_section':
+            return 'PostGroupImageSection';
+          case 'quote_section':
+            return 'PostQuoteSection';
+          case 'vertical_quote_section':
+            return 'PostVerticalQuoteSection';
+          case 'cta_button':
+            return 'PostCtaButtonSection';
+        }
       },
     }),
     schema.buildObjectType({
@@ -193,6 +221,142 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
         primary: {
           type: 'JSON!',
           resolve(parent: PrismicPostRichTextSectionSlice) {
+            return parent.primary;
+          },
+        },
+      },
+    }),
+    schema.buildObjectType({
+      name: 'PostGroupImageSection',
+      extensions: {
+        dontInfer: {},
+      },
+      fields: {
+        id: {
+          type: 'String!',
+          resolve(parent: PrismicPostDataBodyGroupImageSectionSlice) {
+            return parent.id;
+          },
+        },
+        sliceType: {
+          type: 'String!',
+          resolve(parent: PrismicPostDataBodyGroupImageSectionSlice) {
+            return parent.slice_type;
+          },
+        },
+        groupImage1: {
+          type: 'File!',
+          resolve(parent: PrismicPostDataBodyGroupImageSectionSlice) {
+            if (!parent.primary.group_image1.url) {
+              throw new Error(
+                `GroupImageSection 의 image 필드 값이 비어있습니다. prismicId: ${parent.id}`,
+              );
+            }
+            return createRemoteFileNode({
+              url: parent.primary.group_image1.url,
+              createNode,
+              createNodeId,
+              cache,
+            });
+          },
+        },
+        groupImage2: {
+          type: 'File!',
+          resolve(parent: PrismicPostDataBodyGroupImageSectionSlice) {
+            if (!parent.primary.group_image2.url) {
+              throw new Error(
+                `GroupImageSection 의 image 필드 값이 비어있습니다. prismicId: ${parent.id}`,
+              );
+            }
+            return createRemoteFileNode({
+              url: parent.primary.group_image2.url,
+              createNode,
+              createNodeId,
+              cache,
+            });
+          },
+        },
+        groupImageCaption: {
+          type: 'String!',
+          resolve(parent: PrismicPostDataBodyGroupImageSectionSlice) {
+            return parent.primary.group_image_caption;
+          },
+        },
+      },
+    }),
+    schema.buildObjectType({
+      name: 'PostQuoteSection',
+      extensions: {
+        dontInfer: {},
+      },
+      fields: {
+        id: {
+          type: 'String!',
+          resolve(parent: PrismicPostDataBodyQuoteSectionSlice) {
+            return parent.id;
+          },
+        },
+        sliceType: {
+          type: 'String!',
+          resolve(parent: PrismicPostDataBodyQuoteSectionSlice) {
+            return parent.slice_type;
+          },
+        },
+        primary: {
+          type: 'JSON!',
+          resolve(parent: PrismicPostDataBodyQuoteSectionSlice) {
+            return parent.primary;
+          },
+        },
+      },
+    }),
+    schema.buildObjectType({
+      name: 'PostVerticalQuoteSection',
+      extensions: {
+        dontInfer: {},
+      },
+      fields: {
+        id: {
+          type: 'String!',
+          resolve(parent: PrismicPostDataBodyVerticalQuoteSectionSlice) {
+            return parent.id;
+          },
+        },
+        sliceType: {
+          type: 'String!',
+          resolve(parent: PrismicPostDataBodyVerticalQuoteSectionSlice) {
+            return parent.slice_type;
+          },
+        },
+        primary: {
+          type: 'JSON!',
+          resolve(parent: PrismicPostDataBodyVerticalQuoteSectionSlice) {
+            return parent.primary;
+          },
+        },
+      },
+    }),
+    schema.buildObjectType({
+      name: 'PostCtaButtonSection',
+      extensions: {
+        dontInfer: {},
+      },
+      fields: {
+        id: {
+          type: 'String!',
+          resolve(parent: PrismicPostDataBodyCtaButtonSlice) {
+            return parent.id;
+          },
+        },
+        sliceType: {
+          type: 'String!',
+          resolve(parent: PrismicPostDataBodyCtaButtonSlice) {
+            return parent.slice_type;
+          },
+        },
+        primary: {
+          type: 'JSON!',
+          resolve(parent: PrismicPostDataBodyCtaButtonSlice) {
             return parent.primary;
           },
         },
