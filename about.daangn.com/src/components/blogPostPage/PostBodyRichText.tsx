@@ -6,11 +6,11 @@ import Prism from 'prismjs';
 import 'prismjs/themes/prism-tomorrow.css';
 import React from 'react';
 
-const PostBodyRichText = ({
-  slice,
-}: {
+type PostBodyRichTextProps = {
   slice: GatsbyTypes.PostRichTextSection;
-}) => {
+};
+
+const PostBodyRichText: React.FC<PostBodyRichTextProps> = ({ slice }) => {
   React.useEffect(() => {
     Prism.highlightAll();
   }, []);
@@ -59,10 +59,11 @@ const PostBodyRichText = ({
 
 const Container = styled('section', {
   width: '100%',
-  lineHeight: rem(24),
+  marginBottom: rem(10),
   fontSize: '$body2',
-  color: vars.$scale.color.gray700,
+  lineHeight: rem(24),
   letterSpacing: rem(0.1),
+  color: vars.$scale.color.gray700,
 
   '& a': {
     color: vars.$scale.color.gray700,
