@@ -25,8 +25,9 @@
   "files": {
     "ignore": [
       "**/.cache/**/*", "**/public/**/*", "**/dist/**/*", "**/__generated__/**/*",
-      "./**/gatsby-*.js", "./**/*.d.ts",
-      "./_packages/@karrotmarket/gatsby-theme-seed-design/src/Icon.tsx", "./**/wrapRootElement.js"
+      "./**/gatsby-*.js", "./**/*.d.ts", "./**/wrapRootElement.js",
+      "./_packages/@karrotmarket/gatsby-theme-seed-design/src/Icon.tsx",
+      "./_packages/**/*.cache.json"
     ]
   }
 }
