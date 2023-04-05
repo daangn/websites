@@ -2,6 +2,7 @@ import { vars } from '@seed-design/design-token';
 import { type HeadProps, Link, type PageProps, graphql } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { styled } from 'gatsby-theme-stitches/src/config';
+import { HeadSeo, OpenGraph, TwitterCard } from 'gatsby-plugin-head-seo/src';
 import { rem } from 'polished';
 import * as React from 'react';
 
@@ -163,6 +164,49 @@ const ServicePage: React.FC<ServicePageProps> = ({ data }) => {
         },
       )}
     </Container>
+  );
+};
+
+type ServicePageHeadProps = HeadProps<GatsbyTypes.ServicePageQuery>;
+
+export const Head: React.FC<ServicePageHeadProps> = ({ data, location }) => {
+  const { service_page_meta_title, service_page_meta_description, service_page_og_image } = data.prismicServiceContent?.data;
+  const metaImage = service_page_og_image?.localFile?.childImageSharp?.fixed;
+
+  return (
+    <HeadSeo
+      location={location}
+      root
+      title={service_page_meta_title}
+      description={service_page_meta_description}
+    >
+      {(props) => [
+        <OpenGraph
+          og={{
+            ...props,
+            type: 'website',
+            ...(metaImage && {
+              images: [
+                {
+                  url: new URL(
+                    metaImage.src,
+                    metaImage.src.startsWith('http') ? metaImage.src : props.url,
+                  ),
+                  width: metaImage.width,
+                  height: metaImage.height,
+                },
+              ],
+            }),
+          }}
+        />,
+        <TwitterCard
+          card={{
+            ...props,
+            type: 'summary',
+          }}
+        />,
+      ]}
+    </HeadSeo>
   );
 };
 

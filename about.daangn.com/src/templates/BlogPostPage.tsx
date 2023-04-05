@@ -1,7 +1,9 @@
 import { SliceZone } from '@prismicio/react';
 import { vars } from '@seed-design/design-token';
-import { type PageProps, graphql } from 'gatsby';
+import { type HeadProps, type PageProps, graphql } from 'gatsby';
 import { keyframes, styled } from 'gatsby-theme-stitches/src/config';
+import { HeadSeo, OpenGraph, TwitterCard } from 'gatsby-plugin-head-seo/src';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { rem } from 'polished';
 import * as React from 'react';
 
@@ -24,11 +26,22 @@ export const query = graphql`
       slug
       ...PostHeader_data
       thumbnailImage {
-        publicURL
+        childImageSharp {
+          gatsbyImageData
+        }
       }
       ...Tags_post
       ...Author_post
       ...RelatedPost_post
+      ogImage: thumbnailImage {
+        childImageSharp {
+          fixed(width: 1200, height: 630, toFormat: PNG, quality: 90) {
+            src
+            width
+            height
+          }
+        }
+      }
       body {
         ... on PostRichTextSection {
           id
@@ -68,6 +81,11 @@ export const query = graphql`
         }
       }
     }
+    prismicBlogContent {
+      data {
+        blog_page_meta_description
+      }
+    }
   }
 `;
 
@@ -81,8 +99,8 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ data }) => {
       <>
         <Container>
           <PostHeader postHeader={data.post} />
-          {data.post.thumbnailImage.publicURL && (
-            <ThumbnailImage src={data.post.thumbnailImage.publicURL} />
+          {data.post.thumbnailImage.childImageSharp?.gatsbyImageData && (
+            <ThumbnailImage image={data.post.thumbnailImage.childImageSharp?.gatsbyImageData} alt={''} />
           )}
           <PostBody>
             <ContentContainer>
@@ -110,6 +128,50 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ data }) => {
     )
   );
 };
+BlogPostPage
+type BlogPostPageHeadProps = HeadProps<GatsbyTypes.BlogPostPageQuery>;
+
+export const Head: React.FC<BlogPostPageHeadProps> = ({ data, location }) => {
+  const title = data.post?.title;
+  const description = data.prismicBlogContent?.data?.blog_page_meta_description || '';
+  const metaImage = data.post?.ogImage.childImageSharp?.fixed;
+
+  return (
+    <HeadSeo
+      location={location}
+      root
+      title={title}
+      description={description}
+    >
+      {(props) => [
+        <OpenGraph
+          og={{
+            ...props,
+            type: 'website',
+            ...(metaImage && {
+              images: [
+                {
+                  url: new URL(
+                    metaImage.src,
+                    metaImage.src.startsWith('http') ? metaImage.src : props.url,
+                  ),
+                  width: metaImage.width,
+                  height: metaImage.height,
+                },
+              ],
+            }),
+          }}
+        />,
+        <TwitterCard
+          card={{
+            ...props,
+            type: 'summary',
+          }}
+        />,
+      ]}
+    </HeadSeo>
+  );
+};
 
 const Container = styled('div', {
   contentArea: true,
@@ -121,7 +183,7 @@ const Container = styled('div', {
   },
 });
 
-const ThumbnailImage = styled('img', {
+const ThumbnailImage = styled(GatsbyImage, {
   maxWidth: 1024,
   maxHeight: 600,
   width: '100%',
