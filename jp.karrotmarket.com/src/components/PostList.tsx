@@ -19,13 +19,15 @@ export const query = graphql`
 `;
 
 const PostList: React.FC<PostListProps> = ({ data }) => {
+  const postList = data.allNoteContent.nodes.slice(1);
+
   return (
     <>
       {data.allNoteContent.nodes.length === 0 ? (
         <NoPostDescription>登録された記事がありません。</NoPostDescription>
       ) : (
         <Container>
-          {data.allNoteContent.nodes.map((post) => (
+          {postList.map((post) => (
             <PostCard key={post.id} post={post} />
           ))}
         </Container>
