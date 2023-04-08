@@ -10,8 +10,24 @@ const GuideBody = styled('div', {
   margin: 'auto',
 
   '@md': {
-    paddingX: rem(60),
+    // paddingX: rem(60),
+    paddingY: rem(40),
   },
+  variants: {
+    guideFor: {
+      sell: {
+        '@md': {
+          paddingLeft: rem(24),
+          paddingRight: rem(60),
+        },
+      },
+      buy: {
+        '@md': {
+          paddingLeft: rem(60),
+        }
+      },
+    }
+  }
 });
 
 export default GuideBody;
