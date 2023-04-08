@@ -94,7 +94,7 @@ export default function PrismicBrochureDataBodyFeatureGridSection({ section }: P
             return (
               // rome-ignore lint/suspicious/noArrayIndexKey: intentional
               <Feature key={i}>
-                <FeatureImage image={itemImage} alt={item.item_image?.alt || ''} />
+                <FeatureImage image={itemImage} alt={item.item_image?.alt || ''} objectFit='contain' />
                 <FeatureBody>
                   <FeatureTitle
                     dangerouslySetInnerHTML={{
