@@ -86,9 +86,13 @@ const Inner = styled('div', {
 });
 
 const TitleContainer = styled('div', {
-  fontSize: rem(42),
-  textAlign: 'center',
+  fontSize: rem(26),
+  textAlign: 'left',
   marginBottom: '3rem',
+  '@lg': {
+    fontSize: rem(42),
+    textAlign: 'center',
+  }
 });
 
 const Questions = styled('div', {});
@@ -158,19 +162,25 @@ const QuestionContainer = styled('div', {
 });
 
 const QuestionTitle = styled('button', {
+  display: 'flex',
+  alignItems: 'center',
   appearance: 'none',
   border: 'none',
   background: 'none',
   width: '100%',
-  display: 'flex',
   padding: '2rem 0',
   justifyContent: 'space-between',
   cursor: 'pointer',
+  color: vars.$scale.color.gray900,
 });
 
 const QuestionTitleLabel = styled('div', {
-  fontSize: '1.25rem',
   fontWeight: 'bold',
+  fontSize: '0.8125rem',
+  textAlign: 'left',
+  '@md': {
+    fontSize: '1.25rem',
+  }
 });
 
 const QuestionTitleIcon = styled('div', {
