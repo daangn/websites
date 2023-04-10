@@ -20,6 +20,8 @@ const Guide = styled('div', {
   variants: {
     guideFor: {
       sell: {
+        paddingTop: rem(0),
+        paddingBottom: rem(40),
         $$backgroundColor: vars.$scale.color.greenAlpha50,
         $$accentColor: vars.$scale.color.green500,
 
@@ -30,6 +32,8 @@ const Guide = styled('div', {
         },
       },
       buy: {
+        paddingTop: rem(40),
+        paddingBottom: rem(0),
         $$backgroundColor: vars.$scale.color.carrotAlpha50,
         $$accentColor: vars.$scale.color.carrot500,
 

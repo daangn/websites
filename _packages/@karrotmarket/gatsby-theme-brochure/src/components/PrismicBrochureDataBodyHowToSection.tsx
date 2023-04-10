@@ -42,6 +42,7 @@ type Props = {
 };
 
 export default function PrismicBrochureDataBodyHowToSection({ section }: Props) {
+  console.log(section)
   return (
     <RootContainer id={section.primary.section_id || undefined}>
       <Container>
@@ -63,7 +64,7 @@ export default function PrismicBrochureDataBodyHowToSection({ section }: Props) 
                       alt={item.step_title}
                     />
                   </StepImageContainer>
-                  <StepTitle>{item.step_title}</StepTitle>
+                  <StepTitle theme={section.primary.theme}>{item.step_title}</StepTitle>
                   <StepDescriptionContainer
                     dangerouslySetInnerHTML={{
                       __html: item.step_description.html,
@@ -94,23 +95,30 @@ const Inner = styled('div', {
 });
 
 const TitleContainer = styled('div', {
-  fontSize: rem(54),
+  fontSize: rem(28),
+  letterSpacing: rem(0),
   fontWeight: 'bold',
   marginBottom: '4.4375rem',
+  '@lg': {
+    fontSize: rem(42),
+  }
 });
 
 const Steps = styled('div', {
   display: 'flex',
   flexDirection: 'column',
+  alignItems: 'center',
   gap: '2.25rem',
   '@lg': {
     flexDirection: 'row',
+    alignItems: 'flex-start',
   },
 });
 
 const Step = styled('div', {
   display: 'flex',
   flexDirection: 'column',
+  maxWidth: '30rem',
 });
 
 const StepImageContainer = styled('div', {
@@ -125,13 +133,23 @@ const StepImageContainer = styled('div', {
 });
 
 const StepTitle = styled('div', {
-  backgroundColor: vars.$semantic.color.successLow,
+  backgroundColor: vars.$scale.color.carrot50,
   padding: '1rem',
   textAlign: 'center',
   fontSize: '1.125rem',
   fontWeight: 'bold',
   borderRadius: '.75rem',
   marginBottom: '1rem',
+  variants: {
+    theme: {
+      green: {
+        backgroundColor: vars.$scale.color.green50,
+      },
+      carrot: {
+        backgroundColor: vars.$scale.color.carrot50,
+      }
+    }
+  }
 });
 
 const StepDescriptionContainer = styled('div', {

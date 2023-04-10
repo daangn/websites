@@ -4,6 +4,7 @@ const Body = styled('div', {
   gridArea: 'body',
   display: 'grid',
   alignItems: 'center',
+  justifyContent: 'flex-start',
 });
 
 export default Body;

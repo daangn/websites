@@ -34,7 +34,6 @@ export const fragments = graphql`
           childImageSharp {
             gatsbyImageData(
               placeholder: BLURRED
-              layout: CONSTRAINED
             )
           }
         }
@@ -53,7 +52,6 @@ export const fragments = graphql`
           childImageSharp {
             gatsbyImageData(
               placeholder: BLURRED
-              layout: CONSTRAINED
             )
           }
         }
@@ -95,7 +93,7 @@ export default function PrismicBrochureDataBodyBuySellGuideSection({ section }: 
         <Body>
           <Guide guideFor="sell">
             <GuideImage image={sellImage} alt={section.primary.sell_image?.alt || ''} />
-            <GuideBody>
+            <GuideBody guideFor="sell">
               <GuideLabel>{section.primary.sell_label || ''}</GuideLabel>
               <GuideTitle>{section.primary.sell_title?.text || ''}</GuideTitle>
               <GuideDescription>{section.primary.sell_description?.text || ''}</GuideDescription>
@@ -103,7 +101,7 @@ export default function PrismicBrochureDataBodyBuySellGuideSection({ section }: 
           </Guide>
           <Guide guideFor="buy">
             <GuideImage image={buyImage} alt={section.primary.buy_image?.alt || ''} />
-            <GuideBody>
+            <GuideBody guideFor="buy">
               <GuideLabel>{section.primary.buy_label || ''}</GuideLabel>
               <GuideTitle>{section.primary.buy_title?.text || ''}</GuideTitle>
               <GuideDescription>{section.primary.buy_description?.text || ''}</GuideDescription>
