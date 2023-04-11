@@ -13,6 +13,10 @@ import {
   isPrismicMemberProfile,
   isPrismicPostCategoryNode,
   isPrismicPostNode,
+  isNoteContentNode,
+  PostNode,
+  isPrismicPost,
+  PrismicPostCategoryNode,
 } from './types';
 
 export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({
@@ -29,8 +33,11 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
         dontInfer: {},
       },
       fields: {
-        prismicId: {
+        categoryId: {
           type: 'String!',
+          resolve(node: PrismicPostCategoryNode) {
+            return node.prismicId;
+          },
         },
         uid: {
           type: 'String!',
@@ -49,117 +56,173 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       name: 'Post',
       interfaces: ['Node'],
       extensions: {
-        dontInfer: {},
+        infer: false,
         childOf: {
-          types: ['PrismicPost'],
+          types: ['PrismicPost', 'NoteContent'],
         },
       },
       fields: {
-        prismicId: {
+        postId: {
           type: 'String!',
+          resolve(node: PostNode) {
+            if (isPrismicPost(node)) {
+              return node.prismicId;
+            } else {
+              return node.noteId.toString();
+            }
+          },
         },
         uid: {
           type: 'String!',
+          resolve(node: PostNode) {
+            if (isPrismicPost(node)) {
+              return node.uid;
+            } else {
+              return node.key;
+            }
+          },
         },
         slug: {
           type: 'String!',
-          resolve(node: PrismicPostNode) {
-            return node.uid && slugify(node.uid);
+          resolve(node: PostNode) {
+            if (isPrismicPost(node)) {
+              return node.uid && slugify(node.uid as string);
+            } else {
+              return node.slug;
+            }
           },
         },
         publishedAt: {
           type: 'Date!',
-          resolve(node: PrismicPostNode) {
-            if (!node.data.published_at) {
-              throw new Error(
-                `Post 의 published_at 필드 값이 비어있습니다. prismicId: ${node.prismicId}`,
-              );
+          resolve(node: PostNode) {
+            if (isPrismicPost(node)) {
+              if (!node.data.published_at) {
+                throw new Error(
+                  `Post 의 publishedAt 필드 값이 비어있습니다. postId: ${node.postId}`,
+                );
+              }
+              return node.data.published_at;
+            } else {
+              return node.publishAt;
             }
-            return node.data.published_at;
           },
         },
         thumbnailImage: {
           type: 'File!',
-          resolve(node: PrismicPostNode) {
-            if (!node.data.thumbnail_image.url) {
-              throw new Error(
-                `Post 의 thumbnail_image 필드 값이 비어있습니다. prismicId: ${node.prismicId}`,
-              );
+          resolve(node: PostNode) {
+            if (isPrismicPost(node)) {
+              if (!node.data.thumbnail_image.url) {
+                throw new Error(
+                  `Post 의 thumbnailImage 필드 값이 비어있습니다. postId: ${node.postId}`,
+                );
+              }
+              return createRemoteFileNode({
+                url: node.data.thumbnail_image.url as string,
+                createNode,
+                createNodeId,
+                cache,
+              });
+            } else {
+              return createRemoteFileNode({
+                url: node.eyecatch,
+                createNode,
+                createNodeId,
+                cache,
+              });
             }
-            return createRemoteFileNode({
-              url: node.data.thumbnail_image.url,
-              createNode,
-              createNodeId,
-              cache,
-            });
           },
         },
         title: {
           type: 'String!',
-          resolve(node: PrismicPostNode) {
-            const titleNode = node.data.title[0];
-            if (!titleNode?.text) {
-              throw new Error(`글 제목이 비어있습니다. prismic id: ${node.prismicId}`);
+          resolve(node: PostNode) {
+            if (isPrismicPost(node)) {
+              const titleNode = node.data.title[0];
+              if (!titleNode?.text) {
+                throw new Error(`글 제목이 비어있습니다. postId: ${node.postId}`);
+              }
+              return titleNode.text;
+            } else {
+              return node.name;
             }
-            return titleNode.text;
           },
         },
         summary: {
           type: 'String!',
-          resolve(node: PrismicPostNode) {
-            if (!node.data.summary) {
-              throw new Error(`글 요약 비어있습니다. prismic id: ${node.prismicId}`);
+          resolve(node: PostNode) {
+            if (isPrismicPost(node)) {
+              if (!node.data.summary) {
+                throw new Error(`글 요약 비어있습니다. postId: ${node.postId}`);
+              }
+              return node.data.summary;
+            } else {
+              return node.body;
             }
-            return node.data.summary;
           },
         },
         author: {
           type: 'MemberProfile',
           extensions: {
             link: {
-              by: 'prismicId',
+              by: 'authorId',
               from: 'data.author.id',
             },
           },
         },
         category: {
-          type: 'PostCategory!',
+          type: 'PostCategory',
           extensions: {
             link: {
-              by: 'prismicId',
+              by: 'categoryId',
               from: 'data.category.id',
             },
           },
         },
         tags: {
           type: '[String!]!',
-          resolve(node: PrismicPostNode) {
-            if (!node.data.tags) {
-              return [];
+          resolve(node: PostNode) {
+            if (isPrismicPost(node)) {
+              if (!node.data.tags) {
+                return [];
+              }
+              return node.data.tags.split(',').map((tag) => tag.trim());
+            } else {
+              if (!node.hashtags) {
+                return [];
+              }
+              return node.hashtags.map((tag) => tag.hashtag.name);
             }
-            return node.data.tags.split(',').map((tag) => tag.trim());
           },
         },
         relatedPosts: {
           type: '[Post!]!',
           extensions: {
             link: {
-              by: 'prismicId',
+              by: 'postId',
             },
           },
-          resolve(node: PrismicPostNode) {
-            if (!node.data.related_posts || node.data.related_posts.length === 0) {
+          resolve(node: PostNode) {
+            if (isPrismicPost(node)) {
+              if (!node.data.related_posts || node.data.related_posts.length === 0) {
+                return [];
+              }
+              return node.data.related_posts
+                .map(({ post }) => ('id' in post ? post.id : null))
+                .filter(Boolean);
+            } else {
+              // TODO: Note.com 연관 포스트 구현
               return [];
             }
-            return node.data.related_posts
-              .map(({ post }) => ('id' in post ? post.id : null))
-              .filter(Boolean);
           },
         },
         body: {
           type: '[PostBodyItem!]!',
-          resolve(node: PrismicPostNode) {
-            return node.data.body;
+          resolve(node: PostNode) {
+            if (isPrismicPost(node)) {
+              return node.data.body;
+            } else {
+              // Note: Note.com 상세 페이지 없음
+              return [];
+            }
           },
         },
       },
@@ -249,7 +312,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           resolve(parent: PrismicPostDataBodyGroupImageSectionSlice) {
             if (!parent.primary.group_image1.url) {
               throw new Error(
-                `GroupImageSection 의 image 필드 값이 비어있습니다. prismicId: ${parent.id}`,
+                `GroupImageSection 의 image 필드 값이 비어있습니다. postId: ${parent.id}`,
               );
             }
             return createRemoteFileNode({
@@ -265,7 +328,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           resolve(parent: PrismicPostDataBodyGroupImageSectionSlice) {
             if (!parent.primary.group_image2.url) {
               throw new Error(
-                `GroupImageSection 의 image 필드 값이 비어있습니다. prismicId: ${parent.id}`,
+                `GroupImageSection 의 image 필드 값이 비어있습니다. postId: ${parent.id}`,
               );
             }
             return createRemoteFileNode({
@@ -378,8 +441,11 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
         },
       },
       fields: {
-        prismicId: {
+        authorId: {
           type: 'String!',
+          resolve(source: PrismicMemberProfileNode) {
+            return source.prismicId;
+          },
         },
         name: {
           type: 'String!',
@@ -453,7 +519,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({
   createContentDigest,
 }) => {
   if (isPrismicPostCategoryNode(node)) {
-    actions.createNode({
+    const prismicPostCategoryNode = {
       ...node,
       id: createNodeId(`PrismicPostCategory:${node.id} >>> PostCategory`),
       parent: node.id,
@@ -462,11 +528,30 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({
         type: 'PostCategory',
         contentDigest: createContentDigest(node),
       },
-    });
+    };
+
+    actions.createNode(prismicPostCategoryNode);
+    actions.createParentChildLink({ parent: node, child: prismicPostCategoryNode });
+  }
+
+  if (isNoteContentNode(node)) {
+    const noteContentNode = {
+      ...node,
+      id: createNodeId(`NoteContent-${node.id} >>> Post`),
+      parent: node.id,
+      children: [],
+      internal: {
+        type: 'Post',
+        contentDigest: createContentDigest(node),
+      },
+    };
+
+    actions.createNode(noteContentNode);
+    actions.createParentChildLink({ parent: node, child: noteContentNode });
   }
 
   if (isPrismicPostNode(node)) {
-    actions.createNode({
+    const prismicPostNode = {
       ...node,
       id: createNodeId(`PrismicPost:${node.id} >>> Post`),
       parent: node.id,
@@ -475,11 +560,14 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({
         type: 'Post',
         contentDigest: createContentDigest(node),
       },
-    });
+    };
+
+    actions.createNode(prismicPostNode);
+    actions.createParentChildLink({ parent: node, child: prismicPostNode });
   }
 
   if (isPrismicMemberProfile(node)) {
-    actions.createNode({
+    const prismicMemberProfileNode = {
       ...node,
       id: createNodeId(`PrismicMemberProfile:${node.id} >>> MemberProfile`),
       parent: node.id,
@@ -488,6 +576,9 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({
         type: 'MemberProfile',
         contentDigest: createContentDigest(node),
       },
-    });
+    };
+
+    actions.createNode(prismicMemberProfileNode);
+    actions.createParentChildLink({ parent: node, child: prismicMemberProfileNode });
   }
 };

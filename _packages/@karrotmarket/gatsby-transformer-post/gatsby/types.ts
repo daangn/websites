@@ -10,6 +10,7 @@ import {
   type SliceZone,
   type TitleField,
 } from '@prismicio/types';
+import { type NoteContentNode } from 'gatsby-source-note-com/types';
 import { type Node } from 'gatsby';
 
 type PrismicSourceNode = Node & {
@@ -126,4 +127,15 @@ export type PrismicMemberProfileNode = PrismicSourceNode &
 
 export function isPrismicMemberProfile(node: Node): node is PrismicMemberProfileNode {
   return node.internal.type === 'PrismicMemberProfile';
+}
+
+export function isNoteContentNode(node: Node): node is NoteContentNode {
+  return node.internal.type === 'NoteContent';
+}
+
+export type PostNode = PrismicPostNode | NoteContentNode;
+
+// When building a schema, check if the post node is a Prismic post
+export function isPrismicPost(node: PostNode): node is PrismicPostNode {
+  return node.prismicId !== undefined;
 }
