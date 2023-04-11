@@ -20,6 +20,10 @@ export const query = graphql`
 `;
 
 const Author: React.FC<AuthorProps> = ({ data }) => {
+  if (!data) {
+    return null
+  }
+  
   return (
     <Container>
       {data.image?.publicURL && <AuthorImage src={data.image.publicURL} />}

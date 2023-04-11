@@ -3004,6 +3004,7 @@ __metadata:
     concurrently: 7.6.0
     gatsby: 5.8.0
     gatsby-source-filesystem: 5.8.0
+    gatsby-source-note-com: 0.0.5
     typescript: 5.0.3
   peerDependencies:
     gatsby: ^4.19.0 || ^5.0.0
