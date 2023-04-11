@@ -42,7 +42,6 @@ type Props = {
 };
 
 export default function PrismicBrochureDataBodyHowToSection({ section }: Props) {
-  console.log(section)
   return (
     <RootContainer id={section.primary.section_id || undefined}>
       <Container>
@@ -101,7 +100,7 @@ const TitleContainer = styled('div', {
   marginBottom: '4.4375rem',
   '@lg': {
     fontSize: rem(42),
-  }
+  },
 });
 
 const Steps = styled('div', {
@@ -147,9 +146,9 @@ const StepTitle = styled('div', {
       },
       carrot: {
         backgroundColor: vars.$scale.color.carrot50,
-      }
-    }
-  }
+      },
+    },
+  },
 });
 
 const StepDescriptionContainer = styled('div', {
