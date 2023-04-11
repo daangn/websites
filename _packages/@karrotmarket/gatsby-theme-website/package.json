@@ -22,7 +22,7 @@
     "@cometjs/react-utils": "2.1.2",
     "@karrotmarket/gatsby-theme-seed-design": "workspace:^",
     "@seed-design/design-token": "1.0.0",
-    "@svgr/webpack": "6.5.1",
+    "@svgr/webpack": "7.0.0",
     "gatsby-plugin-svgr": "3.0.0-beta.0",
     "gatsby-theme-stitches": "1.0.1",
     "react-intersection-observer": "9.4.3"
