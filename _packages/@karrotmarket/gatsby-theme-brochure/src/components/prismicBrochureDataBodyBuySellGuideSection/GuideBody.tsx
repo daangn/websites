@@ -24,10 +24,10 @@ const GuideBody = styled('div', {
       buy: {
         '@md': {
           paddingLeft: rem(60),
-        }
+        },
       },
-    }
-  }
+    },
+  },
 });
 
 export default GuideBody;

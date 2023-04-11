@@ -92,7 +92,7 @@ const TitleContainer = styled('div', {
   '@lg': {
     fontSize: rem(42),
     textAlign: 'center',
-  }
+  },
 });
 
 const Questions = styled('div', {});
@@ -180,7 +180,7 @@ const QuestionTitleLabel = styled('div', {
   textAlign: 'left',
   '@md': {
     fontSize: '1.25rem',
-  }
+  },
 });
 
 const QuestionTitleIcon = styled('div', {
