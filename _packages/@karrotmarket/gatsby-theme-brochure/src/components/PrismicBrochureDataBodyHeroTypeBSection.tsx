@@ -55,8 +55,6 @@ type Props = {
 };
 
 export default function PrismicBrochureDataBodyHeroTypeBSection({ section }: Props) {
-  console.log(section);
-
   const defaultBackgroundImage =
     section.primary.background_image?.localFile?.childImageSharp?.gatsbyImageData &&
     getImage(section.primary.background_image.localFile.childImageSharp.gatsbyImageData);
