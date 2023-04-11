@@ -1,5 +1,5 @@
 {
-  "name": "@karrotmarket/gatsby-transformer-note-com",
+  "name": "@karrotmarket/gatsby-transformer-note-post",
   "version": "0.0.0",
   "private": true,
   "scripts": {
