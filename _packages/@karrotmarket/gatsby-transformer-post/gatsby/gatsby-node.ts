@@ -194,10 +194,11 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           },
         },
         relatedPosts: {
-          type: '[Post!]!',
+          type: '[Post]!',
           extensions: {
             link: {
               by: 'postId',
+              from: 'prismicId',
             },
           },
           resolve(node: PostNode) {

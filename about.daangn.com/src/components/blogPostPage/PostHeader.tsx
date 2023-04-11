@@ -23,7 +23,7 @@ const PostHeader: React.FC<PostHeaderProps> = ({ postHeader }) => {
     <Header>
       <Title>{postHeader.title}</Title>
       <Wrapper>
-        {postHeader.category.name} | {postHeader.publishedAt}
+        {postHeader.category?.name} | {postHeader.publishedAt}
       </Wrapper>
     </Header>
   );
