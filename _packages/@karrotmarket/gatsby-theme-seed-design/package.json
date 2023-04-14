@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@babel/cli": "7.21.0",
-    "@babel/core": "7.21.3",
+    "@babel/core": "7.21.4",
     "@seed-design/icon": "0.1.13",
     "@types/react": "18.0.35",
     "@types/react-dom": "18.0.11",

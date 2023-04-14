@@ -41,7 +41,7 @@
     "react-text-loop": "2.3.0"
   },
   "devDependencies": {
-    "@babel/core": "7.21.3",
+    "@babel/core": "7.21.4",
     "@seed-design/icon": "0.1.13",
     "typescript": "5.0.4",
     "ultra-runner": "3.10.5"
