@@ -150,21 +150,24 @@ export const Head: React.FC<IndexPageHeadProps> = ({ data, location }) => {
   return (
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
       {(props) => (
-        <DefaultLayoutHead
-          {...props}
-          location={location}
-          data={data}
-          image={
-            metaImage && {
-              url: new URL(
-                metaImage.src,
-                metaImage.src.startsWith('http') ? metaImage.src : props.url,
-              ),
-              width: metaImage.width,
-              height: metaImage.height,
+        <>
+          <DefaultLayoutHead
+            {...props}
+            location={location}
+            data={data}
+            image={
+              metaImage && {
+                url: new URL(
+                  metaImage.src,
+                  metaImage.src.startsWith('http') ? metaImage.src : props.url,
+                ),
+                width: metaImage.width,
+                height: metaImage.height,
+              }
             }
-          }
-        />
+          />
+          <link rel="canonical" href="https://about.daangn.com/" />
+        </>
       )}
     </HeadSeo>
   );

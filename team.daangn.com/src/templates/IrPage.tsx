@@ -213,9 +213,16 @@ const IrPage: React.FC<IrPageProps> = ({ data: prismicData }) => {
 export default IrPage;
 
 type IrPageHeadProps = HeadProps<GatsbyTypes.IrPageQuery>;
-export const Head: React.FC<IrPageHeadProps> = ({ data }) => {
-  // rome-ignore lint/style/noNonNullAssertion: intentional
-  return <title>{[data.prismicIr!.data.title?.text, '당근마켓 IR'].join(' | ')}</title>;
+export const Head: React.FC<IrPageHeadProps> = ({ data, location }) => {
+  const canonicalUrl = 'https://about.daangn.com'.concat(location.pathname);
+
+  return (
+    <>
+      {/* rome-ignore lint/style/noNonNullAssertion: intentional */}
+      <title>{[data.prismicIr!.data.title?.text, '당근마켓 IR'].join(' | ')}</title>
+      <link rel="canonical" href={canonicalUrl} />
+    </>
+  );
 };
 
 function stripUUID(base: string) {

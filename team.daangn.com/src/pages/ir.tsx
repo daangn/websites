@@ -162,6 +162,7 @@ export const Head: React.FC<IrListPageHeadProps> = () => {
     <>
       <title>당근마켓 IR</title>
       <meta name="description" content="당근마켓에서 제공하는 공식 투자자 정보입니다." />
+      <link rel="canonical" href="https://about.daangn.com/ir/" />
     </>
   );
 };
