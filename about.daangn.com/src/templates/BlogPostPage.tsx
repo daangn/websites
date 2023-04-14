@@ -140,7 +140,7 @@ export const Head: React.FC<BlogPostPageHeadProps> = ({ data, location }) => {
   const metaImage = data.post?.ogImage.childImageSharp?.fixed;
 
   return (
-    <HeadSeo location={location} root title={title} description={description}>
+    <HeadSeo location={location} title={title} description={description}>
       {(props) => [
         <OpenGraph
           og={{

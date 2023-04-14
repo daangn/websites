@@ -20,7 +20,6 @@ export default function PrismicBrochureHead({ location, brochure }: Props) {
   return (
     <HeadSeo
       location={location}
-      root={false}
       title={brochure.data.page_title}
       description={brochure.data.page_description}
     />

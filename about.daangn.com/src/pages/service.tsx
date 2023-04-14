@@ -177,7 +177,6 @@ export const Head: React.FC<ServicePageHeadProps> = ({ data, location }) => {
   return (
     <HeadSeo
       location={location}
-      root
       title={service_page_meta_title}
       description={service_page_meta_description}
     >
