@@ -22,7 +22,7 @@
     "@stitches/react": "1.2.8",
     "gatsby": "5.8.0",
     "gatsby-plugin-google-tagmanager": "5.8.0",
-    "gatsby-plugin-head-seo": "0.3.0",
+    "gatsby-plugin-head-seo": "1.0.1",
     "gatsby-plugin-image": "3.8.0",
     "gatsby-plugin-manifest": "5.8.0",
     "gatsby-plugin-module-resolver": "1.0.3",
