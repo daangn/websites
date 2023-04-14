@@ -22,6 +22,6 @@
     "babel-preset-gatsby-package": "3.8.0",
     "concurrently": "7.6.0",
     "gatsby": "5.8.0",
-    "typescript": "5.0.3"
+    "typescript": "5.0.4"
   }
 }
