@@ -211,6 +211,7 @@ export const Head: React.FC<FaqPageHeadProps> = ({ data, location }) => {
 
   const metaTitle = data.prismicTeamContents.data.faq_page_meta_title;
   const metaDescription = data.prismicTeamContents.data.faq_page_meta_description;
+  const canonicalUrl = 'https://about.daangn.com'.concat(location.pathname);
 
   return (
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
@@ -230,6 +231,7 @@ export const Head: React.FC<FaqPageHeadProps> = ({ data, location }) => {
             })),
           }}
         />,
+        <link rel="canonical" href={canonicalUrl} />,
       ]}
     </HeadSeo>
   );

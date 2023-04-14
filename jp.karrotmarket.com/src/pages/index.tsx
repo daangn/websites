@@ -31,7 +31,7 @@ export default function IndexPage({ data }: PageProps<GatsbyTypes.IndexPageQuery
 
 export function Head({ location, data }: HeadProps<GatsbyTypes.IndexPageQuery>) {
   return (
-    <HeadSeo location={location} root>
+    <HeadSeo location={location}>
       <PrismicBrochureHead location={location} brochure={data.prismicBrochure} />
     </HeadSeo>
   );

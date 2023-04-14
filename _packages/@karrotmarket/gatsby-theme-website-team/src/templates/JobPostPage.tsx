@@ -157,9 +157,10 @@ export const Head: React.FC<JobPostPageHeadProps> = ({
   const metaDescription = prismicTeamContents.data.jobs_page_meta_description;
   const metaImage =
     prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
+  const canonicalUrl = 'https://about.daangn.com'.concat(location.pathname);
 
   return (
-    <HeadSeo root={false} location={location} title={metaTitle} description={metaDescription}>
+    <HeadSeo location={location} title={metaTitle} description={metaDescription}>
       {(props) => [
         <DefaultLayoutHead
           {...props}
@@ -177,6 +178,7 @@ export const Head: React.FC<JobPostPageHeadProps> = ({
           }
         />,
         <JobPostLayoutHead {...props} location={location} data={data} />,
+        <link rel="canonical" href={canonicalUrl} />,
       ]}
     </HeadSeo>
   );

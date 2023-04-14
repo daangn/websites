@@ -269,11 +269,14 @@ const FinancialStatementsPage: React.FC<FinancialStatementsPageProps> = ({ data:
 export default FinancialStatementsPage;
 
 type FinancialStatementsPageHeadProps = HeadProps<GatsbyTypes.FinancialStatementsPageQuery>;
-export const Head: React.FC<FinancialStatementsPageHeadProps> = () => {
+export const Head: React.FC<FinancialStatementsPageHeadProps> = ({ location }) => {
+  const canonicalUrl = 'https://about.daangn.com'.concat(location.pathname);
+
   return (
     <>
       <title>당근마켓 IR</title>
       <meta name="description" content="당근마켓에서 제공하는 공식 투자자 정보입니다." />
+      <link rel="canonical" href={canonicalUrl} />
     </>
   );
 };

@@ -62,7 +62,6 @@ export const Head: React.FC<BlogPageHeadProps> = ({ data, location }) => {
   return (
     <HeadSeo
       location={location}
-      root
       title={blog_page_meta_title}
       description={blog_page_meta_description}
     >
