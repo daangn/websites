@@ -20,7 +20,8 @@ const PostBodyRichText: React.FC<PostBodyRichTextProps> = ({ slice }) => {
       <PrismicRichText
         field={slice.primary.content}
         components={{
-          heading2: ({ children, key }) => <SubTitle key={key}>{children}</SubTitle>,
+          heading2: ({ children, key }) => <Heading2 key={key}>{children}</Heading2>,
+          heading3: ({ children, key }) => <Heading3 key={key}>{children}</Heading3>,
           paragraph: ({ children, key }) => <Description key={key}>{children}</Description>,
           preformatted: ({ node, key }) => {
             return (
@@ -77,9 +78,14 @@ const Container = styled('section', {
   },
 });
 
-const SubTitle = styled('h2', {
+const Heading2 = styled('h2', {
   marginTop: rem(40),
-  marginBottom: rem(18),
+  marginBottom: rem(18.72),
+});
+
+const Heading3 = styled('h3', {
+  marginTop: rem(24),
+  marginBottom: rem(14),
 });
 
 const Description = styled('p', {
