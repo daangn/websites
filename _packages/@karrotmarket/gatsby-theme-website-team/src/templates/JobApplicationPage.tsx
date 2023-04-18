@@ -363,26 +363,31 @@ export const Head: React.FC<JobApplicationPageHeadProps> = ({
 
   return (
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
-      {(props) => [
-        <DefaultLayoutHead
-          {...props}
-          location={location}
-          data={data}
-          image={
-            metaImage && {
-              url: new URL(
-                metaImage.src,
-                metaImage.src.startsWith('http') ? metaImage.src : props.url,
-              ),
-              width: metaImage.width,
-              height: metaImage.height,
+      {(props) => (
+        <>
+          {props.url.toString().includes("team.daangn.com") && (
+            <meta http-equiv="refresh" content={`0; url=${canonicalUrl}`} />
+          )}
+          <DefaultLayoutHead
+            {...props}
+            location={location}
+            data={data}
+            image={
+              metaImage && {
+                url: new URL(
+                  metaImage.src,
+                  metaImage.src.startsWith('http') ? metaImage.src : props.url,
+                ),
+                width: metaImage.width,
+                height: metaImage.height,
+              }
             }
-          }
-        />,
-        <JobPostLayoutHead {...props} location={location} data={data} />,
-        <Robots none />,
-        <link rel="canonical" href={canonicalUrl} />,
-      ]}
+          />
+          <JobPostLayoutHead {...props} location={location} data={data} />
+          <Robots none />
+          <link rel="canonical" href={canonicalUrl} />
+        </>
+      )}
     </HeadSeo>
   );
 };

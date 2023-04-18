@@ -215,24 +215,29 @@ export const Head: React.FC<FaqPageHeadProps> = ({ data, location }) => {
 
   return (
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
-      {(props) => [
-        <DefaultLayoutHead {...props} location={location} data={data} />,
-        <FAQPageJsonLd
-          faq={{
-            '@type': 'FAQPage',
-            // rome-ignore lint/style/noNonNullAssertion: intentional
-            mainEntity: data.prismicFaq.data.entries!.map((faq) => ({
-              '@type': 'Question',
-              name: faq.question,
-              acceptedAnswer: {
-                '@type': 'Answer',
-                text: faq.answer.text,
-              },
-            })),
-          }}
-        />,
-        <link rel="canonical" href={canonicalUrl} />,
-      ]}
+      {(props) => (
+        <>
+          {props.url.toString().includes("team.daangn.com") && (
+            <meta http-equiv="refresh" content={`0; url=${canonicalUrl}`} />
+          )}
+          <DefaultLayoutHead {...props} location={location} data={data} />
+          <FAQPageJsonLd
+            faq={{
+              '@type': 'FAQPage',
+              // rome-ignore lint/style/noNonNullAssertion: intentional
+              mainEntity: data.prismicFaq.data.entries!.map((faq) => ({
+                '@type': 'Question',
+                name: faq.question,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: faq.answer.text,
+                },
+              })),
+            }}
+          />
+          <link rel="canonical" href={canonicalUrl} />
+        </>
+      )}
     </HeadSeo>
   );
 };

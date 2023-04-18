@@ -151,6 +151,9 @@ export const Head: React.FC<IndexPageHeadProps> = ({ data, location }) => {
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
       {(props) => (
         <>
+          {props.url.toString().includes("team.daangn.com") && (
+            <meta http-equiv="refresh" content="0; url=https://about.daangn.com/" />
+          )}
           <DefaultLayoutHead
             {...props}
             location={location}

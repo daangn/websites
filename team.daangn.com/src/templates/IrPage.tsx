@@ -218,6 +218,7 @@ export const Head: React.FC<IrPageHeadProps> = ({ data, location }) => {
 
   return (
     <>
+      <meta http-equiv="refresh" content={`0; url=${canonicalUrl}`} />
       {/* rome-ignore lint/style/noNonNullAssertion: intentional */}
       <title>{[data.prismicIr!.data.title?.text, '당근마켓 IR'].join(' | ')}</title>
       <link rel="canonical" href={canonicalUrl} />
