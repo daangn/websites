@@ -365,7 +365,7 @@ export const Head: React.FC<JobApplicationPageHeadProps> = ({
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
       {(props) => (
         <>
-          {props.url.toString().includes("team.daangn.com") && (
+          {props.url.toString().includes('team.daangn.com') && (
             <meta http-equiv="refresh" content={`0; url=${canonicalUrl}`} />
           )}
           <DefaultLayoutHead
