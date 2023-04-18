@@ -160,6 +160,7 @@ type IrListPageHeadProps = HeadProps<GatsbyTypes.IrListPageQuery>;
 export const Head: React.FC<IrListPageHeadProps> = () => {
   return (
     <>
+      <meta http-equiv="refresh" content="0; url=https://about.daangn.com/ir/" />
       <title>당근마켓 IR</title>
       <meta name="description" content="당근마켓에서 제공하는 공식 투자자 정보입니다." />
       <link rel="canonical" href="https://about.daangn.com/ir/" />

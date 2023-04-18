@@ -21,6 +21,7 @@ import YesNoField from '../components/formField/YesNoField';
 import TermsField from '../components/formField/TermsField';
 import Button from '../components/Button';
 import _Spinner from '../components/Spinner';
+import { isCanonicalUrl } from '../utils/common';
 
 export const query = graphql`
   query TeamWebsite_JobApplicationPage(
@@ -363,26 +364,31 @@ export const Head: React.FC<JobApplicationPageHeadProps> = ({
 
   return (
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
-      {(props) => [
-        <DefaultLayoutHead
-          {...props}
-          location={location}
-          data={data}
-          image={
-            metaImage && {
-              url: new URL(
-                metaImage.src,
-                metaImage.src.startsWith('http') ? metaImage.src : props.url,
-              ),
-              width: metaImage.width,
-              height: metaImage.height,
+      {(props) => (
+        <>
+          {!isCanonicalUrl(String(props.url)) && (
+            <meta http-equiv="refresh" content={`0; url=${canonicalUrl}`} />
+          )}
+          <DefaultLayoutHead
+            {...props}
+            location={location}
+            data={data}
+            image={
+              metaImage && {
+                url: new URL(
+                  metaImage.src,
+                  metaImage.src.startsWith('http') ? metaImage.src : props.url,
+                ),
+                width: metaImage.width,
+                height: metaImage.height,
+              }
             }
-          }
-        />,
-        <JobPostLayoutHead {...props} location={location} data={data} />,
-        <Robots none />,
-        <link rel="canonical" href={canonicalUrl} />,
-      ]}
+          />
+          <JobPostLayoutHead {...props} location={location} data={data} />
+          <Robots none />
+          <link rel="canonical" href={canonicalUrl} />
+        </>
+      )}
     </HeadSeo>
   );
 };

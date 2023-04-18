@@ -9,6 +9,7 @@ import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
 import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import _PageTitle from '../components/PageTitle';
 import PrismicTeamContentsDataLifeBodyLifeContent from '../components/PrismicTeamContentsDataLifeBodyLifeContent';
+import { isCanonicalUrl } from '../utils/common';
 
 export const query = graphql`
   query TeamWebsite_LifePage(
@@ -110,6 +111,9 @@ export const Head: React.FC<LifePageHeadProps> = ({ data, location }) => {
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
       {(props) => (
         <>
+          {!isCanonicalUrl(String(props.url)) && (
+            <meta http-equiv="refresh" content={`0; url=${canonicalUrl}`} />
+          )}
           <DefaultLayoutHead
             {...props}
             location={location}

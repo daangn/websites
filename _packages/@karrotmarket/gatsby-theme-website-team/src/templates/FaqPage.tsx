@@ -15,6 +15,7 @@ import _PageTitle from '../components/PageTitle';
 import _SearchInput from '../components/SearchInput';
 import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import { useURLSearchParams } from '../utils/useURLSearchParams';
+import { isCanonicalUrl } from '../utils/common';
 
 export const query = graphql`
   query TeamWebsite_FaqPage(
@@ -215,24 +216,29 @@ export const Head: React.FC<FaqPageHeadProps> = ({ data, location }) => {
 
   return (
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
-      {(props) => [
-        <DefaultLayoutHead {...props} location={location} data={data} />,
-        <FAQPageJsonLd
-          faq={{
-            '@type': 'FAQPage',
-            // rome-ignore lint/style/noNonNullAssertion: intentional
-            mainEntity: data.prismicFaq.data.entries!.map((faq) => ({
-              '@type': 'Question',
-              name: faq.question,
-              acceptedAnswer: {
-                '@type': 'Answer',
-                text: faq.answer.text,
-              },
-            })),
-          }}
-        />,
-        <link rel="canonical" href={canonicalUrl} />,
-      ]}
+      {(props) => (
+        <>
+          {!isCanonicalUrl(String(props.url)) && (
+            <meta http-equiv="refresh" content={`0; url=${canonicalUrl}`} />
+          )}
+          <DefaultLayoutHead {...props} location={location} data={data} />
+          <FAQPageJsonLd
+            faq={{
+              '@type': 'FAQPage',
+              // rome-ignore lint/style/noNonNullAssertion: intentional
+              mainEntity: data.prismicFaq.data.entries!.map((faq) => ({
+                '@type': 'Question',
+                name: faq.question,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: faq.answer.text,
+                },
+              })),
+            }}
+          />
+          <link rel="canonical" href={canonicalUrl} />
+        </>
+      )}
     </HeadSeo>
   );
 };

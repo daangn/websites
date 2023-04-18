@@ -12,7 +12,7 @@ import { JobPostLayoutHead } from '../layouts/JobPostLayout';
 import Button from '../components/Button';
 import ArrowLink from '../components/ArrowLink';
 import JobPostContentSection from '../components/JobPostContentSection';
-import { lookup } from '../utils/common';
+import { lookup, isCanonicalUrl } from '../utils/common';
 
 export const query = graphql`
   query TeamWebsite_JobPostPage(
@@ -161,25 +161,30 @@ export const Head: React.FC<JobPostPageHeadProps> = ({
 
   return (
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
-      {(props) => [
-        <DefaultLayoutHead
-          {...props}
-          location={location}
-          data={data}
-          image={
-            metaImage && {
-              url: new URL(
-                metaImage.src,
-                metaImage.src.startsWith('http') ? metaImage.src : props.url,
-              ),
-              width: metaImage.width,
-              height: metaImage.height,
+      {(props) => (
+        <>
+          {!isCanonicalUrl(String(props.url)) && (
+            <meta http-equiv="refresh" content={`0; url=${canonicalUrl}`} />
+          )}
+          <DefaultLayoutHead
+            {...props}
+            location={location}
+            data={data}
+            image={
+              metaImage && {
+                url: new URL(
+                  metaImage.src,
+                  metaImage.src.startsWith('http') ? metaImage.src : props.url,
+                ),
+                width: metaImage.width,
+                height: metaImage.height,
+              }
             }
-          }
-        />,
-        <JobPostLayoutHead {...props} location={location} data={data} />,
-        <link rel="canonical" href={canonicalUrl} />,
-      ]}
+          />
+          <JobPostLayoutHead {...props} location={location} data={data} />
+          <link rel="canonical" href={canonicalUrl} />
+        </>
+      )}
     </HeadSeo>
   );
 };
