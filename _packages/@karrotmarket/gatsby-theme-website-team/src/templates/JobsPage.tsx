@@ -337,7 +337,7 @@ export const Head: React.FC<JobsPageHeadProps> = ({ data, location }) => {
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
       {(props) => (
         <>
-          {!isCanonicalUrl(props.url.toString()) && (
+          {!isCanonicalUrl(String(props.url)) && (
             <meta http-equiv="refresh" content={`0; url=${canonicalUrl}`} />
           )}
           <DefaultLayoutHead
