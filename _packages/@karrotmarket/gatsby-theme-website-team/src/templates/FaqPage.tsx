@@ -218,7 +218,6 @@ export const Head: React.FC<FaqPageHeadProps> = ({ data, location }) => {
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
       {(props) => (
         <>
-
           {!isCanonicalUrl(props.url.toString()) && (
             <meta http-equiv="refresh" content={`0; url=${canonicalUrl}`} />
           )}
