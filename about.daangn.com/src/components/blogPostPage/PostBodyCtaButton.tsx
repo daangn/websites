@@ -24,17 +24,17 @@ const PostBodyCtaButton: React.FC<PostBodyCtaButtonProps> = ({ slice }) => {
 
 const Container = styled('section', {
   width: '100%',
-  marginTop: rem(100),
+  marginTop: rem(40),
   marginBottom: rem(60),
   textAlign: 'center',
   color: vars.$scale.color.gray700,
   borderRadius: rem(22),
-  // backgroundColor: vars.$scale.color.gray100,
-  // padding: `${rem(40)} 0`,
+  backgroundColor: vars.$scale.color.gray100,
+  padding: `${rem(60)} 0`,
 });
 
 const Button = styled('button', {
-  width: rem(100),
+  minWidth: rem(100),
   height: rem(40),
   marginTop: rem(20),
   border: `2px solid ${vars.$scale.color.carrot500}`,
