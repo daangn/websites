@@ -12,7 +12,7 @@ import { JobPostLayoutHead } from '../layouts/JobPostLayout';
 import Button from '../components/Button';
 import ArrowLink from '../components/ArrowLink';
 import JobPostContentSection from '../components/JobPostContentSection';
-import { lookup } from '../utils/common';
+import { lookup, isCanonicalUrl } from '../utils/common';
 
 export const query = graphql`
   query TeamWebsite_JobPostPage(
@@ -163,7 +163,7 @@ export const Head: React.FC<JobPostPageHeadProps> = ({
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
       {(props) => (
         <>
-          {props.url.toString().includes('team.daangn.com') && (
+          {!isCanonicalUrl(props.url.toString()) && (
             <meta http-equiv="refresh" content={`0; url=${canonicalUrl}`} />
           )}
           <DefaultLayoutHead

@@ -21,6 +21,7 @@ import YesNoField from '../components/formField/YesNoField';
 import TermsField from '../components/formField/TermsField';
 import Button from '../components/Button';
 import _Spinner from '../components/Spinner';
+import { isCanonicalUrl } from '../utils/common';
 
 export const query = graphql`
   query TeamWebsite_JobApplicationPage(
@@ -365,7 +366,7 @@ export const Head: React.FC<JobApplicationPageHeadProps> = ({
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
       {(props) => (
         <>
-          {props.url.toString().includes('team.daangn.com') && (
+          {!isCanonicalUrl(props.url.toString()) && (
             <meta http-equiv="refresh" content={`0; url=${canonicalUrl}`} />
           )}
           <DefaultLayoutHead

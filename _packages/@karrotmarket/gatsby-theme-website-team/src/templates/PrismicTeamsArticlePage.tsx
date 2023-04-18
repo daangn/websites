@@ -10,6 +10,7 @@ import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
 import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import _PageTitle from '../components/PageTitle';
 import PrismicTeamsArticleDataBodyArticleSection from '../components/PrismicTeamsArticleDataBodyArticleSection';
+import { isCanonicalUrl } from '../utils/common';
 
 export const query = graphql`
   query TeamWebsite_TeamsArticlePage(
@@ -110,7 +111,7 @@ export const Head: React.FC<TeamsArticlePageHeadProps> = ({ data, location }) =>
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
       {(props) => (
         <>
-          {props.url.toString().includes('team.daangn.com') && (
+          {!isCanonicalUrl(props.url.toString()) && (
             <meta http-equiv="refresh" content={`0; url=${canonicalUrl}`} />
           )}
           <DefaultLayoutHead

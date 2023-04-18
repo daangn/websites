@@ -16,6 +16,7 @@ import PrismicTeamContentsDataCultureBodyTitleAndDescription from '../components
 import PrismicTeamContentsDataCultureBodyTitleAndIllustration from '../components/PrismicTeamContentsDataCultureBodyTitleAndIllustration';
 import PrismicTeamContentsDataCultureBodyIllustrationAndDescription from '../components/PrismicTeamContentsDataCultureBodyIllustrationAndDescription';
 import PrismicTeamContentsDataCultureBodyWideBanner from '../components/PrismicTeamContentsDataCultureBodyWideBanner';
+import { isCanonicalUrl } from '../utils/common';
 
 export const query = graphql`
   query TeamWebsite_CulturePage(
@@ -154,7 +155,7 @@ export const Head: React.FC<CulturePageHeadProps> = ({ data, location }) => {
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
       {(props) => (
         <>
-          {props.url.toString().includes('team.daangn.com') && (
+          {!isCanonicalUrl(props.url.toString()) && (
             <meta http-equiv="refresh" content={`0; url=${canonicalUrl}`} />
           )}
           <DefaultLayoutHead

@@ -15,6 +15,7 @@ import _PageTitle from '../components/PageTitle';
 import _SearchInput from '../components/SearchInput';
 import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import { useURLSearchParams } from '../utils/useURLSearchParams';
+import { isCanonicalUrl } from '../utils/common';
 
 export const query = graphql`
   query TeamWebsite_FaqPage(
@@ -217,7 +218,8 @@ export const Head: React.FC<FaqPageHeadProps> = ({ data, location }) => {
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
       {(props) => (
         <>
-          {props.url.toString().includes('team.daangn.com') && (
+
+          {!isCanonicalUrl(props.url.toString()) && (
             <meta http-equiv="refresh" content={`0; url=${canonicalUrl}`} />
           )}
           <DefaultLayoutHead {...props} location={location} data={data} />

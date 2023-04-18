@@ -16,6 +16,7 @@ import PrismicTeamContentsDataMainBodyIllustrationAndDescription from '../compon
 import PrismicTeamContentsDataMainBodyWideBanner from '../components/PrismicTeamContentsDataMainBodyWideBanner';
 import PrismicTeamContentsDataMainBodyHowWeWork from '../components/PrismicTeamContentsDataMainBodyHowWeWork';
 import PrismicTeamContentsDataMainBodyBenefit from '../components/PrismicTeamContentsDataMainBodyBenefit';
+import { isCanonicalUrl } from '../utils/common';
 
 export const query = graphql`
   query TeamWebsite_IndexPage(
@@ -151,7 +152,7 @@ export const Head: React.FC<IndexPageHeadProps> = ({ data, location }) => {
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
       {(props) => (
         <>
-          {props.url.toString().includes('team.daangn.com') && (
+          {!isCanonicalUrl(props.url.toString()) && (
             <meta http-equiv="refresh" content="0; url=https://about.daangn.com/" />
           )}
           <DefaultLayoutHead
