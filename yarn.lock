@@ -2628,7 +2628,7 @@ __metadata:
     "@babel/cli": 7.21.0
     "@babel/core": 7.21.4
     "@cometjs/graphql-utils": 2.0.5
-    "@seed-design/design-token": 1.0.0
+    "@seed-design/design-token": 1.0.1
     "@types/node": 18.15.11
     "@types/react": 18.0.35
     "@types/react-dom": 18.0.11
@@ -2664,7 +2664,7 @@ __metadata:
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website": "workspace:^"
     "@reach/router": 1.3.4
-    "@seed-design/design-token": 1.0.0
+    "@seed-design/design-token": 1.0.1
     "@stitches/react": 1.2.8
     "@svgr/webpack": 7.0.0
     babel-plugin-polished: 1.1.0
@@ -2760,7 +2760,7 @@ __metadata:
     "@karrotmarket/gatsby-theme-seed-design": "workspace:^"
     "@karrotmarket/gatsby-theme-website": "workspace:^"
     "@reach/router": 1.3.4
-    "@seed-design/design-token": 1.0.0
+    "@seed-design/design-token": 1.0.1
     "@stitches/react": 1.2.8
     "@svgr/webpack": 7.0.0
     babel-preset-gatsby-package: 3.8.0
@@ -2808,7 +2808,7 @@ __metadata:
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^"
     "@prismicio/helpers": 2.3.9
     "@reach/router": 1.3.4
-    "@seed-design/design-token": 1.0.0
+    "@seed-design/design-token": 1.0.1
     "@stitches/react": 1.2.8
     "@svgr/webpack": 7.0.0
     "@types/node": 18.15.11
@@ -2866,7 +2866,7 @@ __metadata:
     "@cometjs/core": 2.2.0
     "@cometjs/react-utils": 2.1.2
     "@karrotmarket/gatsby-theme-seed-design": "workspace:^"
-    "@seed-design/design-token": 1.0.0
+    "@seed-design/design-token": 1.0.1
     "@stitches/react": 1.2.8
     "@svgr/webpack": 7.0.0
     "@types/node": 18.15.11
@@ -3988,14 +3988,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@seed-design/design-token@npm:1.0.0":
-  version: 1.0.0
-  resolution: "@seed-design/design-token@npm:1.0.0"
-  checksum: b1e82bd0f0dead5ca477c5420e871a25e0955eb06a7f1c46a2201d10312ca7c02796850a5c56b6347eb8b88d9b31e63d5c0191e14b40a4b1c59348b23b2e9739
-  languageName: node
-  linkType: hard
-
-"@seed-design/design-token@npm:^1.0.0":
+"@seed-design/design-token@npm:1.0.1, @seed-design/design-token@npm:^1.0.0":
   version: 1.0.1
   resolution: "@seed-design/design-token@npm:1.0.1"
   checksum: 4b75bcb51a42faf32904c57946445095c25cfaf3d4ef2ef15563e335df3ab29322539a8820198db850f47d08c4999fa0a5c6c94dcff7071b5a19fd95cc1dbfa8
@@ -5296,7 +5289,7 @@ __metadata:
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-seed-design": "workspace:^"
     "@karrotmarket/gatsby-theme-website": "workspace:^"
-    "@seed-design/design-token": 1.0.0
+    "@seed-design/design-token": 1.0.1
     "@seed-design/icon": 0.1.13
     "@stitches/react": 1.2.8
     gatsby: 5.8.0
@@ -12474,7 +12467,7 @@ __metadata:
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website-global": "workspace:^"
     "@karrotmarket/gatsby-transformer-note-post": "workspace:*"
-    "@seed-design/design-token": 1.0.0
+    "@seed-design/design-token": 1.0.1
     babel-plugin-polished: 1.1.0
     framer-motion: 10.10.0
     gatsby: 5.8.0
