@@ -1,6 +1,6 @@
 /* eslint-disable */
 import * as React from "react";
-import spriteUrl from "./sprite.svg";
+import { iconData } from "./IconData";
 
 export interface IconProps {
   name: IconName;
@@ -8,21 +8,19 @@ export interface IconProps {
   className?: string;
 };
 
-const Icon: React.ForwardRefRenderFunction<HTMLSpanElement, SeedIconProps> = (
+const Icon: React.ForwardRefRenderFunction<HTMLSpanElement, IconProps> = (
   { name, className, size },
   ref,
 ) => {
-  return  (
+  return (
     <span
       ref={ref}
       style={{ display: "inline-flex", width: size, height: size }}
       className={className}
       data-seed-icon={name}
-      data-seed-icon-version="0.1.13"
+      data-seed-icon-version="0.2.0"
     >
-      <svg viewBox="0 0 24 24">  
-        <use href={`${spriteUrl}#${name}`} />
-      </svg>
+      {iconData[name]}
     </span>
   );
 };
