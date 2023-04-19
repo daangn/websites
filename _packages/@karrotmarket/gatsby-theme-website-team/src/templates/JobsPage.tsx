@@ -167,8 +167,8 @@ const ExpandIcon = styled(SeedIcon, {
   position: 'absolute',
   width: rem(18),
   right: rem(20),
-  top: "50%",
-  transform: "translateY(-50%)",
+  top: '50%',
+  transform: 'translateY(-50%)',
   color: vars.$scale.color.gray700,
 });
 
