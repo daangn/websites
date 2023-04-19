@@ -165,9 +165,10 @@ const EtypeSelectWrapper = styled(SelectWrapper, {
 
 const ExpandIcon = styled(SeedIcon, {
   position: 'absolute',
-  width: '0.8em',
+  width: rem(18),
   right: rem(20),
-  top: rem(20),
+  top: "50%",
+  transform: "translateY(-50%)",
   color: vars.$scale.color.gray700,
 });
 

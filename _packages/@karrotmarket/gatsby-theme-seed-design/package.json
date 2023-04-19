@@ -19,7 +19,7 @@
   "devDependencies": {
     "@babel/cli": "7.21.0",
     "@babel/core": "7.21.4",
-    "@seed-design/icon": "0.1.13",
+    "@seed-design/icon": "0.2.0",
     "@types/react": "18.0.35",
     "@types/react-dom": "18.0.11",
     "babel-preset-gatsby-package": "3.8.0",
