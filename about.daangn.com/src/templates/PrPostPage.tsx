@@ -52,7 +52,6 @@ export const query = graphql`
 type PrPostPageProps = PageProps<GatsbyTypes.PrPostPageQuery>;
 
 const PrPostPage: React.FC<PrPostPageProps> = ({ data }) => {
-  console.log('data ::', data);
   return (
     <Container>
       <Header>
@@ -103,7 +102,11 @@ const Header = styled("div", {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  marginBottom: rem(66),
+  marginBottom: rem(33),
+
+  '@sm': {
+    marginBottom: rem(66),
+  },
 });
 
 const Title = styled("h1", {
@@ -165,17 +168,24 @@ const AuthorName = styled("h3", {
 });
 
 const Tags = styled("div", {
-  display: "flex",
+  display: 'flex',
+  flexWrap: 'wrap',
+  columnGap: rem(4),
+  rowGap: rem(12),
+  width: '100%',
+
+  '@sm': {
+    gap: rem(12),
+  },
 });
 
 const Tag = styled("div", {
-  width: "fit-content",
-  padding: `${rem(6)} ${rem(12)}`,
-  marginLeft: rem(8),
-  border: "none",
+  width: 'fit-content',
+  padding: `${rem(8)} ${rem(16)}`,
+  border: 'none',
   borderRadius: rem(40),
-  backgroundColor: vars.$scale.color.gray50,
-  fontSize: "$body2",
+  backgroundColor: vars.$scale.color.gray100,
+  fontSize: '$body3',
 });
 
 const Footer = styled("div", {

@@ -47,8 +47,12 @@ const PostCard: React.FC<PrCardProps> = ({ data }) => {
 const Container = styled(Link, {
   display: 'flex',
   width: '100%',
-  marginBottom: rem(40),
+  marginBottom: rem(24),
   textDecoration: "none",
+
+  '@sm': {
+    marginBottom: rem(52),
+  }
 });
 
 const ThumbnailImage = styled(GatsbyImage, {
@@ -56,15 +60,16 @@ const ThumbnailImage = styled(GatsbyImage, {
   height: rem(90),
   minWidth: rem(130),
   minHeight: rem(90),
-  borderRadius: rem(12),
+  borderRadius: rem(8),
   marginRight: rem(20),
+  opacity: 0.99,
+  objectFit: 'cover',
 
   '@sm': {
-    width: rem(220),
-    height: rem(160),
-    minWidth: rem(220),
-    minHeight: rem(160),
+    minWidth: rem(184),
+    minHeight: rem(138),
     marginRight: rem(72),
+    borderRadius: rem(12),
   }
 });
 
@@ -73,11 +78,11 @@ const DescriptionWrapper = styled('div', {
 });
 
 const Title = styled('h3', {
-  fontSize: "$subtitle5",
+  fontSize: "$subtitle4",
   color: vars.$scale.color.gray900,
 
   '@sm': {
-    fontSize: "$subtitle4",
+    fontSize: "$subtitle3",
   },
 });
 
@@ -94,9 +99,7 @@ const Summary = styled("p", {
 });
 
 const PublishDate = styled("p", {
-  position: 'absolute',
-  bottom: 10,
-  marginTop: rem(4),
+  marginTop: rem(10),
   color: vars.$scale.color.gray600,
   fontSize: "$body3",
   whiteSpace: 'pre-line',
