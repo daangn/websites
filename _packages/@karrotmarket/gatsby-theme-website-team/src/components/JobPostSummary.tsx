@@ -70,7 +70,7 @@ const TagContainer = styled('div', {
 const Tag = styled('span', {
   typography: '$caption3',
   fontWeight: 'bold',
-  color: vars.$static.color.white,
+  color: vars.$scale.color.gray00,
   background: vars.$scale.color.carrot500,
   borderRadius: rem(6),
   padding: `${rem(5)} ${rem(8)}`,
