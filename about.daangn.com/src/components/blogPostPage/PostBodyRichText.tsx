@@ -90,6 +90,7 @@ const Heading3 = styled('h3', {
 
 const Description = styled('p', {
   width: '100%',
+  minHeight: rem(16),
   marginBottom: rem(12),
   lineHeight: rem(24),
   fontSize: '$body2',
