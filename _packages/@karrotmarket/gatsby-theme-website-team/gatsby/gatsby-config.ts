@@ -78,6 +78,7 @@ const config = ({ locale }: PluginOptions): GatsbyConfig => ({
             return tokens;
           },
         },
+        optimize: true,
         query: gql`{
           allJobPost {
             nodes {
@@ -90,6 +91,7 @@ const config = ({ locale }: PluginOptions): GatsbyConfig => ({
         ref: 'id',
         index: ['title', 'keywords'],
         store: ['id', 'title', 'keywords'],
+        worker: true,
         // rome-ignore lint/suspicious/noExplicitAny: intentional
         normalizer: ({ data }: any) => data.allJobPost.nodes,
       },
