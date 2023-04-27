@@ -277,9 +277,9 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           },
         },
         groupImageCaption: {
-          type: 'String!',
+          type: 'String',
           resolve(parent: PrismicPostDataBodyGroupImageSectionSlice) {
-            return parent.primary.group_image_caption;
+            return parent.primary?.group_image_caption;
           },
         },
         primary: {

@@ -1,20 +1,14 @@
+import * as React from 'react';
 import { PrismicRichText } from '@prismicio/react';
-import { vars } from '@seed-design/design-token';
-import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
-import Prism from 'prismjs';
-import 'prismjs/themes/prism-tomorrow.css';
-import React from 'react';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { vars } from '@seed-design/design-token';
 
-type PostBodyRichTextProps = {
+type PrPostBodyRichText = {
   slice: GatsbyTypes.PostRichTextSection;
 };
 
-const PostBodyRichText: React.FC<PostBodyRichTextProps> = ({ slice }) => {
-  React.useEffect(() => {
-    Prism.highlightAll();
-  }, []);
-
+const PrPostBodyRichText: React.FC<PrPostBodyRichText> = ({ slice }) => {
   return (
     <Container>
       <PrismicRichText
@@ -58,12 +52,20 @@ const PostBodyRichText: React.FC<PostBodyRichTextProps> = ({ slice }) => {
   );
 };
 
+export const Head: React.FC = () => {
+  return (
+    <>
+      <meta name="robots" content="noindex" />
+    </>
+  );
+};
+
 const Container = styled('section', {
   width: '100%',
   marginBottom: rem(10),
   fontSize: '$body2',
-  lineHeight: rem(28),
-  letterSpacing: rem(0.1),
+  lineHeight: rem(26),
+  letterSpacing: rem(0.4),
   color: vars.$scale.color.gray700,
 
   '& a': {
@@ -79,8 +81,15 @@ const Container = styled('section', {
 });
 
 const Heading2 = styled('h2', {
-  marginTop: rem(40),
-  marginBottom: rem(18.72),
+  fontSize: rem(20),
+  marginTop: rem(20),
+  marginBottom: rem(12),
+
+  '@sm': {
+    fontSize: rem(24),
+    marginTop: rem(40),
+    marginBottom: rem(18.72),
+  },
 });
 
 const Heading3 = styled('h3', {
@@ -92,7 +101,7 @@ const Description = styled('p', {
   width: '100%',
   minHeight: rem(16),
   marginBottom: rem(12),
-  lineHeight: rem(24),
+  lineHeight: rem(26),
   letterSpacing: rem(0.4),
   fontSize: '$body2',
   color: vars.$scale.color.gray700,
@@ -106,27 +115,19 @@ const Description = styled('p', {
 });
 
 const UList = styled('ul', {
+  lineHeight: rem(30),
   margin: 0,
   marginBottom: rem(12),
-  paddingInlineStart: rem(32),
+  paddingInlineStart: rem(42),
   color: vars.$scale.color.gray700,
-
-  '@sm': {
-    lineHeight: rem(30),
-    paddingInlineStart: rem(42),
-  },
 });
 
 const OList = styled('ol', {
   margin: 0,
   marginBottom: rem(12),
-  paddingInlineStart: rem(32),
+  lineHeight: rem(30),
+  paddingInlineStart: rem(42),
   color: vars.$scale.color.gray700,
-
-  '@sm': {
-    paddingInlineStart: rem(42),
-    lineHeight: rem(30),
-  },
 });
 
 const Image = styled('img', {
@@ -136,4 +137,4 @@ const Image = styled('img', {
 
 const Embed = styled('div', {});
 
-export default PostBodyRichText;
+export default PrPostBodyRichText;

@@ -69,7 +69,7 @@ export type PrismicPostDataBodyGroupImageSectionSlice = Slice<
   {
     id: string;
     slice_type: string;
-    group_image_caption: string;
+    group_image_caption: string | null;
     group_image1: ImageField;
     group_image2: ImageField;
   }

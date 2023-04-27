@@ -23,7 +23,6 @@ export const query = graphql`
   query BlogPostPage($id: String!, $locale: String!, $navigationId: String!) {
     ...TeamWebsite_DefaultLayout_query
     post(id: { eq: $id }) {
-      slug
       ...PostHeader_data
       thumbnailImage {
         childImageSharp {

@@ -17,7 +17,7 @@ const PostBodyGroupImage: React.FC<PostBodyGroupImageProps> = ({ slice }) => {
     getImage(slice.groupImage2.childImageSharp?.gatsbyImageData);
   const groupImage1Alt = slice.primary.group_image1.alt || '';
   const groupImage2Alt = slice.primary.group_image2.alt || '';
-  const groupImageCaption = slice.groupImageCaption;
+  const groupImageCaption = slice?.groupImageCaption || '';
 
   if (!(groupImage1 && groupImage2)) {
     return null;
