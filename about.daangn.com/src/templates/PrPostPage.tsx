@@ -52,11 +52,12 @@ const PrPostPage: React.FC<PrPostPageProps> = ({ data }) => {
     <Container>
       <Header>
         <Title>{data.post?.title}</Title>
-        <Date>{data.post?.publishedAt}</Date>
+        <PublishedAt>{data.post?.publishedAt}</PublishedAt>
       </Header>
       <Body>
         <ContentContainer>
           <SliceZone
+            // rome-ignore lint/suspicious/noExplicitAny: intentional
             slices={data.post?.body as any[]}
             components={{
               rich_text_section: PrPostBodyRichText,
@@ -114,7 +115,7 @@ const Title = styled('h1', {
   },
 });
 
-const Date = styled('div', {
+const PublishedAt = styled('div', {
   display: 'flex',
   color: vars.$scale.color.gray600,
 });
