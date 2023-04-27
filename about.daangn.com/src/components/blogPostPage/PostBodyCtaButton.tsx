@@ -50,7 +50,6 @@ const Button = styled('button', {
   fontWeight: 'bold',
   fontSize: '$body2',
   cursor: 'pointer',
-
 });
 
 export default PostBodyCtaButton;
