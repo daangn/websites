@@ -37,7 +37,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
         slug: string;
         category: {
           uid: string;
-        }
+        };
       }>;
     };
     allPostCategory: {
@@ -146,7 +146,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
     },
   });
 
-  const prPost = data.allPost.nodes.filter(post => post.category.uid === 'pr');
+  const prPost = data.allPost.nodes.filter((post) => post.category.uid === 'pr');
   for (const post of prPost) {
     actions.createPage({
       path: `/company/pr/archive/${post.slug}/`,
@@ -157,7 +157,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
     });
   }
 
-  const blogPost = data.allPost.nodes.filter(post => post.category.uid !== 'pr');
+  const blogPost = data.allPost.nodes.filter((post) => post.category.uid !== 'pr');
   for (const post of blogPost) {
     actions.createPage({
       path: `/blog/archive/${post.slug}/`,

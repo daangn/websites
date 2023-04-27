@@ -1,8 +1,5 @@
 import * as React from 'react';
-import {
-  graphql,
-  type PageProps,
-} from 'gatsby';
+import { graphql, type PageProps } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import PrCard from '../../components/pr/PrCard';
 
@@ -23,10 +20,18 @@ export const query = graphql`
 const PrPage: React.FC<PrPageProps> = ({ data }) => {
   return (
     <Container>
-      {data.allPost.nodes.map(node => (
+      {data.allPost.nodes.map((node) => (
         <PrCard key={node.slug} data={node} />
       ))}
     </Container>
+  );
+};
+
+export const Head: React.FC = () => {
+  return (
+    <>
+      <meta name="robots" content="noindex" />
+    </>
   );
 };
 

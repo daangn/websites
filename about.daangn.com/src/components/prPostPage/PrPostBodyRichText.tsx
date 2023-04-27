@@ -1,7 +1,7 @@
-import * as React from "react";
-import { PrismicRichText } from "@prismicio/react";
-import { rem } from "polished";
-import { styled } from "gatsby-theme-stitches/src/config";
+import * as React from 'react';
+import { PrismicRichText } from '@prismicio/react';
+import { rem } from 'polished';
+import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
 
 type PrPostBodyRichText = {
@@ -50,7 +50,15 @@ const PrPostBodyRichText: React.FC<PrPostBodyRichText> = ({ slice }) => {
       />
     </Container>
   );
-}
+};
+
+export const Head: React.FC = () => {
+  return (
+    <>
+      <meta name="robots" content="noindex" />
+    </>
+  );
+};
 
 const Container = styled('section', {
   width: '100%',
@@ -91,6 +99,7 @@ const Heading3 = styled('h3', {
 
 const Description = styled('p', {
   width: '100%',
+  minHeight: rem(16),
   marginBottom: rem(12),
   lineHeight: rem(26),
   letterSpacing: rem(0.4),
@@ -121,8 +130,8 @@ const OList = styled('ol', {
   color: vars.$scale.color.gray700,
 });
 
-const Image = styled("img", {
-  width: "100%",
+const Image = styled('img', {
+  width: '100%',
   margin: `${rem(20)} 0`,
 });
 
