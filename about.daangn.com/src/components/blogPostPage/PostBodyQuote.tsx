@@ -14,7 +14,7 @@ type PostBodyQuoteProps = {
 const PostBodyQuote: React.FC<PostBodyQuoteProps> = ({ slice }) => {
   return (
     <Container>
-      <QuoteOpen />
+      <QuoteOpen style={{ width: '18px' }} />
       <PrismicRichText
         field={slice.primary.quote}
         components={{
@@ -24,7 +24,7 @@ const PostBodyQuote: React.FC<PostBodyQuoteProps> = ({ slice }) => {
           heading5: ({ children, key }) => <Heading5 key={key}>{children}</Heading5>,
         }}
       />
-      <QuoteClose />
+      <QuoteClose style={{ width: '18px' }} />
     </Container>
   );
 };
@@ -33,6 +33,7 @@ const Container = styled('section', {
   width: '100%',
   textAlign: 'center',
   color: vars.$scale.color.gray600,
+  margin: `${rem(50)} 0`,
 });
 
 const QuoteText = styled('p', {

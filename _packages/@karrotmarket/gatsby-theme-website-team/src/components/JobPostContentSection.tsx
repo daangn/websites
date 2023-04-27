@@ -43,7 +43,7 @@ const Body = styled('div', {
 const JobPostContentSection: React.FC<JobPostContentSectionProps> = ({ content }) => {
   return (
     <Container>
-      <Title>{content.title}</Title>
+      <Title dangerouslySetInnerHTML={{ __html: content.title }} />
       <Body dangerouslySetInnerHTML={{ __html: content.bodyHtml }} />
     </Container>
   );

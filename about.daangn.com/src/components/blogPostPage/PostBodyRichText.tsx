@@ -64,10 +64,10 @@ const Container = styled('section', {
   fontSize: '$body2',
   lineHeight: rem(28),
   letterSpacing: rem(0.1),
-  color: vars.$scale.color.gray700,
+  color: vars.$scale.color.gray900,
 
   '& a': {
-    color: vars.$scale.color.gray700,
+    color: vars.$scale.color.gray900,
     fontWeight: 'bold',
   },
 
@@ -95,7 +95,6 @@ const Description = styled('p', {
   lineHeight: rem(24),
   letterSpacing: rem(0.4),
   fontSize: '$body2',
-  color: vars.$scale.color.gray700,
   wordBreak: 'break-all',
 
   '@sm': {
@@ -109,7 +108,6 @@ const UList = styled('ul', {
   margin: 0,
   marginBottom: rem(12),
   paddingInlineStart: rem(32),
-  color: vars.$scale.color.gray700,
 
   '@sm': {
     lineHeight: rem(30),
@@ -121,7 +119,6 @@ const OList = styled('ol', {
   margin: 0,
   marginBottom: rem(12),
   paddingInlineStart: rem(32),
-  color: vars.$scale.color.gray700,
 
   '@sm': {
     paddingInlineStart: rem(42),

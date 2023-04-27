@@ -10,7 +10,7 @@ type PostBodyCtaButtonProps = {
 const PostBodyCtaButton: React.FC<PostBodyCtaButtonProps> = ({ slice }) => {
   return (
     <Container>
-      <p>{slice.primary.cta_phrase}</p>
+      <strong>{slice.primary.cta_phrase}</strong>
       <Button
         onClick={() => {
           window.location.href = slice.primary.cta_button_url?.url;
@@ -23,26 +23,32 @@ const PostBodyCtaButton: React.FC<PostBodyCtaButtonProps> = ({ slice }) => {
 };
 
 const Container = styled('section', {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
   width: '100%',
-  marginTop: rem(40),
-  marginBottom: rem(60),
+  padding: `${rem(60)} 0`,
+  marginTop: rem(20),
+  marginBottom: rem(40),
+  borderRadius: rem(20),
+  backgroundColor: vars.$scale.color.gray100,
   textAlign: 'center',
   color: vars.$scale.color.gray700,
-  borderRadius: rem(22),
-  backgroundColor: vars.$scale.color.gray100,
-  padding: `${rem(60)} 0`,
 });
 
 const Button = styled('button', {
+  display: 'flex',
+  alignItems: 'center',
   minWidth: rem(100),
   height: rem(40),
-  marginTop: rem(20),
-  border: `2px solid ${vars.$scale.color.carrot500}`,
-  borderRadius: rem(4),
+  marginTop: rem(12),
+  padding: `${rem(22)} ${rem(16)}`,
+  border: 'none',
+  borderRadius: rem(6),
   backgroundColor: vars.$scale.color.carrot500,
-  fontWeight: 'bold',
-  fontSize: '$body3',
   color: vars.$scale.color.gray100,
+  fontWeight: 'bold',
+  fontSize: '$body2',
   cursor: 'pointer',
 });
 

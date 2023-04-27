@@ -117,7 +117,7 @@ const Title = styled('h1', {
 
 const PublishedAt = styled('div', {
   display: 'flex',
-  color: vars.$scale.color.gray600,
+  color: vars.$scale.color.gray700,
 });
 
 const Body = styled('section', {
