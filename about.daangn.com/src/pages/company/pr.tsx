@@ -4,7 +4,7 @@ import {
   type PageProps,
 } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import PrCard from '../components/pr/PrCard';
+import PrCard from '../../components/pr/PrCard';
 
 type PrPageProps = PageProps<GatsbyTypes.PrPageQuery>;
 

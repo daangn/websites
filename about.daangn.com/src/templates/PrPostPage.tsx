@@ -86,7 +86,7 @@ const PrPostPage: React.FC<PrPostPageProps> = ({ data }) => {
         </Tags>
       </Body>
       <Footer>
-        <Home to="/pr">PR 홈</Home>
+        <Home to="/company/pr/">PR 홈</Home>
       </Footer>
     </Container>
   );

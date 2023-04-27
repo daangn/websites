@@ -149,7 +149,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
   const prPost = data.allPost.nodes.filter(post => post.category.uid === 'pr');
   for (const post of prPost) {
     actions.createPage({
-      path: `/pr/archive/${post.slug}/`,
+      path: `/company/pr/archive/${post.slug}/`,
       component: path.resolve(basePath, 'src/templates/PrPostPage.tsx'),
       context: {
         id: post.id,

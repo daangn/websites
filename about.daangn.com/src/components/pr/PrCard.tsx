@@ -28,9 +28,8 @@ export const query = graphql`
 `;
 
 const PostCard: React.FC<PrCardProps> = ({ data }) => {
-  console.log('data ::', data);
   return (
-      <Container to={`/pr/archive/${data.slug}/`}>
+      <Container to={`/company/pr/archive/${data.slug}/`}>
         <ThumbnailImage
           alt={"이미지"}
           image={data.thumbnailImage?.childImageSharp?.gatsbyImageData}
