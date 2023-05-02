@@ -98,16 +98,19 @@ const Title = styled('h2', {
 });
 
 const Text = styled('div', {
+  marginBottom: rem(28),
+
+  '@md': {
+    marginBottom: rem(12),
+  },
   '*': {
     fontSize: '$body1',
     lineHeight: '$body1',
-    marginBottom: rem(28),
 
     '@md': {
       textAlign: 'center',
       fontSize: '$subtitle3',
       lineHeight: '$subtitle3',
-      marginBottom: rem(12),
     },
   },
 });

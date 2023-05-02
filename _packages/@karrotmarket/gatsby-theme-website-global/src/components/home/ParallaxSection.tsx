@@ -102,7 +102,7 @@ const Container = styled('div', {
   top: '50%',
   transform: 'translate(-50%,-50%)',
   zIndex: 0,
-  width: '$maxContent',
+  width: 'min(100vw, $maxContent)',
   margin: '0 auto',
   color: vars.$semantic.color.paperBackground,
   display: 'flex',
