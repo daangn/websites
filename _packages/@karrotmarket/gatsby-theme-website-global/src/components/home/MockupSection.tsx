@@ -41,7 +41,15 @@ const PhoneMockup: { [key in PhoneMockupType]: React.FC } = {
   PhoneMockupChat,
 };
 
-type MockupIconType = 'Keyword' | 'Location' | 'Reservation' | 'Write' | 'Search' | 'MakeAnOffer' | 'Chat' | 'MeetUp';
+type MockupIconType =
+  | 'Keyword'
+  | 'Location'
+  | 'Reservation'
+  | 'Write'
+  | 'Search'
+  | 'MakeAnOffer'
+  | 'Chat'
+  | 'MeetUp';
 const MockupIcon: { [key in MockupIconType]: React.FC } = {
   Keyword: KeywordIcon,
   Location: LocationIcon,
@@ -80,7 +88,7 @@ const MockupSection: React.FC<MockupSectionProps> = ({ content }) => {
           />
           <Grid>
             {content.items.map((info, i) => {
-              console.log(info?.icon)
+              console.log(info?.icon);
               const Icon = MockupIcon[info?.icon as MockupIconType];
               return (
                 // rome-ignore lint/suspicious/noArrayIndexKey: will be removed soon
@@ -190,14 +198,14 @@ const InfoContainer = styled('div', {
     alignItems: 'center',
   },
 
-  'svg': {
+  svg: {
     width: rem(24),
     height: rem(24),
     opacity: 0.6,
     marginRight: rem(4),
-    "path": {
+    path: {
       fill: vars.$scale.color.gray900,
-    }
+    },
   },
 });
 
