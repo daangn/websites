@@ -11,6 +11,11 @@ import { ReactComponent as WriteIcon } from '../../icons/write.svg';
 import { ReactComponent as KeywordIcon } from '../../icons/keyword.svg';
 import { ReactComponent as LocationIcon } from '../../icons/location_outline.svg';
 import { ReactComponent as ReservationIcon } from '../../icons/reservation.svg';
+import { ReactComponent as SearchIcon } from '../../icons/mock-magnifying-glass-solid.svg';
+import { ReactComponent as MakeAnOfferIcon } from '../../icons/mock-money-bill-1-wave-regular.svg';
+import { ReactComponent as ChatIcon } from '../../icons/mock-comments-solid.svg';
+import { ReactComponent as MeetUpIcon } from '../../icons/mock-handshake-solid.svg';
+import { vars } from '@seed-design/design-token';
 
 export const query = graphql`
   fragment MockupSection_content on PrismicGlobalContentsDataMainBodyMockupSection {
@@ -36,12 +41,16 @@ const PhoneMockup: { [key in PhoneMockupType]: React.FC } = {
   PhoneMockupChat,
 };
 
-type MockupIconType = 'Keyword' | 'Location' | 'Reservation' | 'Write';
+type MockupIconType = 'Keyword' | 'Location' | 'Reservation' | 'Write' | 'Search' | 'MakeAnOffer' | 'Chat' | 'MeetUp';
 const MockupIcon: { [key in MockupIconType]: React.FC } = {
   Keyword: KeywordIcon,
   Location: LocationIcon,
   Reservation: ReservationIcon,
   Write: WriteIcon,
+  Search: SearchIcon,
+  MakeAnOffer: MakeAnOfferIcon,
+  Chat: ChatIcon,
+  MeetUp: MeetUpIcon,
 };
 
 type MockupSectionProps = {
@@ -71,11 +80,12 @@ const MockupSection: React.FC<MockupSectionProps> = ({ content }) => {
           />
           <Grid>
             {content.items.map((info, i) => {
+              console.log(info?.icon)
               const Icon = MockupIcon[info?.icon as MockupIconType];
               return (
                 // rome-ignore lint/suspicious/noArrayIndexKey: will be removed soon
                 <InfoContainer key={i}>
-                  <Icon />
+                  {Icon && <Icon />}
                   <span>{info?.text}</span>
                 </InfoContainer>
               );
@@ -102,7 +112,7 @@ const Grid = styled('div', {
 
   '@md': {
     gridTemplateColumns: 'repeat(2, max-content)',
-    gridRowGap: rem(0),
+    gridRowGap: rem(16),
     gridColumnGap: rem(30),
     marginTop: rem(40),
     marginBottom: rem(0),
@@ -178,6 +188,16 @@ const InfoContainer = styled('div', {
   span: {
     opacity: 0.6,
     alignItems: 'center',
+  },
+
+  'svg': {
+    width: rem(24),
+    height: rem(24),
+    opacity: 0.6,
+    marginRight: rem(4),
+    "path": {
+      fill: vars.$scale.color.gray900,
+    }
   },
 });
 

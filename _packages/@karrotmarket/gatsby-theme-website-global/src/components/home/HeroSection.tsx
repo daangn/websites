@@ -43,7 +43,7 @@ type HeroSectionProps = {
 
 const HeroSection: React.FC<HeroSectionProps> = ({ content, links }) => {
   if (!(content.primary && links)) return <></>;
-  const { title, background_color } = content.primary;
+  const { title, background_color, text } = content.primary;
 
   return (
     <Section css={{ background: background_color }}>
@@ -51,6 +51,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ content, links }) => {
       <Container>
         <LeftContainer>
           <Title dangerouslySetInnerHTML={{ __html: title?.html }} />
+          <Text dangerouslySetInnerHTML={{ __html: text?.html }} />
           <AppLink theme="primary" type="desktop" links={links} />
         </LeftContainer>
         <RightContainer>
@@ -103,10 +104,6 @@ const RightContainer = styled('div', {
 });
 
 const Title = styled('div', {
-  marginBottom: rem(0),
-  '@md': {
-    marginBottom: rem(36),
-  },
   '*': {
     fontSize: rem(32),
     lineHeight: '120%',
@@ -116,6 +113,24 @@ const Title = styled('div', {
       fontSize: '$heading1',
       lineHeight: '$heading1',
     },
+  },
+});
+
+const Text = styled('div', {
+  marginBottom: rem(32),
+  '@md': {
+    marginBottom: rem(36),
+  },
+
+  marginTop: rem(16),
+  '*': {
+    fontSize: rem(18),
+    lineHeight: '120%',
+
+    '@md': {
+      fontSize: rem(28),
+      lineHeight: "1.5",
+    }
   },
 });
 
