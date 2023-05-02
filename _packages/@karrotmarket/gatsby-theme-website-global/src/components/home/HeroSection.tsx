@@ -129,8 +129,8 @@ const Text = styled('div', {
 
     '@md': {
       fontSize: rem(28),
-      lineHeight: "1.5",
-    }
+      lineHeight: '1.5',
+    },
   },
 });
 

@@ -46,7 +46,7 @@ const Button = styled('button', {
   border: 'none',
   borderRadius: rem(6),
   backgroundColor: vars.$scale.color.carrot500,
-  color: vars.$scale.color.gray100,
+  color: vars.$scale.color.gray00,
   fontWeight: 'bold',
   fontSize: '$body2',
   cursor: 'pointer',
