@@ -15,6 +15,7 @@ import PostBodyRichText from '../components/blogPostPage/PostBodyRichText';
 import PostBodyVerticalQuote from '../components/blogPostPage/PostBodyVerticalQuote';
 import PostFooter from '../components/blogPostPage/PostFooter';
 import PostHeader from '../components/blogPostPage/PostHeader';
+import PostBodySingleImage from '../components/blogPostPage/PostBodySingleImage';
 import ShareButtons from '../components/blogPostPage/ShareButtons';
 import TagList from '../components/blogPostPage/TagList';
 // import RelatedPost from '../components/blogPostPage/RelatedPost';
@@ -78,6 +79,16 @@ export const query = graphql`
           primary
           slice_type: sliceType
         }
+        ... on PostSingleImageSection {
+          id
+          imageCaption
+          slice_type: sliceType
+          image {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
       }
     }
     prismicBlogContent {
@@ -115,6 +126,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ data }) => {
                   quote_section: PostBodyQuote,
                   vertical_quote_section: PostBodyVerticalQuote,
                   cta_button: PostBodyCtaButton,
+                  single_image_section: PostBodySingleImage,
                 }}
               />
             </ContentContainer>

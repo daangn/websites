@@ -10,6 +10,7 @@ import {
   type PrismicPostDataBodyVerticalQuoteSectionSlice,
   type PrismicPostNode,
   type PrismicPostRichTextSectionSlice,
+  type PrismicPostDataBodySingleImageSectionSlice,
   isPrismicMemberProfile,
   isPrismicPostCategoryNode,
   isPrismicPostNode,
@@ -172,6 +173,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
         'PostQuoteSection',
         'PostVerticalQuoteSection',
         'PostCtaButtonSection',
+        'PostSingleImageSection',
       ],
       resolveType(parent: PrismicPostNode['data']['body'][number]) {
         switch (parent.slice_type) {
@@ -185,6 +187,8 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
             return 'PostVerticalQuoteSection';
           case 'cta_button':
             return 'PostCtaButtonSection';
+          case 'single_image_section':
+            return 'PostSingleImageSection';
         }
       },
     }),
@@ -439,6 +443,54 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
               );
             }
             return node.data.role;
+          },
+        },
+      },
+    }),
+    schema.buildObjectType({
+      name: 'PostSingleImageSection',
+      extensions: {
+        dontInfer: {},
+      },
+      fields: {
+        id: {
+          type: 'String!',
+          resolve(parent: PrismicPostDataBodySingleImageSectionSlice) {
+            return parent.id;
+          },
+        },
+        sliceType: {
+          type: 'String!',
+          resolve(parent: PrismicPostDataBodySingleImageSectionSlice) {
+            return parent.slice_type;
+          },
+        },
+        image: {
+          type: 'File!',
+          resolve(parent: PrismicPostDataBodySingleImageSectionSlice) {
+            if (!parent.primary.image.url) {
+              throw new Error(
+                `SingleImageSection 의 image 필드 값이 비어있습니다. prismicId: ${parent.id}`,
+              );
+            }
+            return createRemoteFileNode({
+              url: parent.primary.image.url,
+              createNode,
+              createNodeId,
+              cache,
+            });
+          },
+        },
+        imageCaption: {
+          type: 'String',
+          resolve(parent: PrismicPostDataBodySingleImageSectionSlice) {
+            return parent.primary?.image_caption_text;
+          },
+        },
+        primary: {
+          type: 'JSON!',
+          resolve(parent: PrismicPostDataBodyGroupImageSectionSlice) {
+            return parent.primary;
           },
         },
       },
