@@ -48,6 +48,7 @@ export type PrismicPostNode = PrismicSourceNode &
         | PrismicPostDataBodyQuoteSectionSlice
         | PrismicPostDataBodyVerticalQuoteSectionSlice
         | PrismicPostDataBodyCtaButtonSlice
+        | PrismicPostDataBodySingleImageSectionSlice
       >;
     },
     'post'
@@ -105,6 +106,16 @@ export type PrismicPostDataBodyCtaButtonSlice = Slice<
         url: string;
       };
     };
+  }
+>;
+
+export type PrismicPostDataBodySingleImageSectionSlice = Slice<
+  'single_image_section',
+  {
+    id: string;
+    slice_type: string;
+    image: ImageField;
+    image_caption_text: string | null;
   }
 >;
 
