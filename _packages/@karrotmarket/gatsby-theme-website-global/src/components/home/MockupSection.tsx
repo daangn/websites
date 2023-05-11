@@ -88,7 +88,6 @@ const MockupSection: React.FC<MockupSectionProps> = ({ content }) => {
           />
           <Grid>
             {content.items.map((info, i) => {
-              console.log(info?.icon);
               const Icon = MockupIcon[info?.icon as MockupIconType];
               return (
                 // rome-ignore lint/suspicious/noArrayIndexKey: will be removed soon
