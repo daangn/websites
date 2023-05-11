@@ -11,6 +11,7 @@ import {
   type PrismicPostNode,
   type PrismicPostRichTextSectionSlice,
   type PrismicPostDataBodySingleImageSectionSlice,
+  type PrismicPostDataBodyDividerSlice,
   isPrismicMemberProfile,
   isPrismicPostCategoryNode,
   isPrismicPostNode,
@@ -174,6 +175,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
         'PostVerticalQuoteSection',
         'PostCtaButtonSection',
         'PostSingleImageSection',
+        'PostDivider',
       ],
       resolveType(parent: PrismicPostNode['data']['body'][number]) {
         switch (parent.slice_type) {
@@ -189,6 +191,8 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
             return 'PostCtaButtonSection';
           case 'single_image_section':
             return 'PostSingleImageSection';
+          case 'divider':
+            return 'PostDivider';
         }
       },
     }),
@@ -491,6 +495,44 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           type: 'JSON!',
           resolve(parent: PrismicPostDataBodyGroupImageSectionSlice) {
             return parent.primary;
+          },
+        },
+      },
+    }),
+    schema.buildObjectType({
+      name: 'PostDivider',
+      extensions: {
+        dontInfer: {},
+      },
+      fields: {
+        id: {
+          type: 'String!',
+          resolve(parent: PrismicPostDataBodyDividerSlice) {
+            return parent.id;
+          },
+        },
+        sliceType: {
+          type: 'String!',
+          resolve(parent: PrismicPostDataBodyDividerSlice) {
+            return parent.slice_type;
+          },
+        },
+        fullWidthLineDivider: {
+          type: 'Boolean',
+          resolve(parent: PrismicPostDataBodyDividerSlice) {
+            return parent.primary?.full_width_line_divider;
+          },
+        },
+        lineDivider: {
+          type: 'Boolean',
+          resolve(parent: PrismicPostDataBodyDividerSlice) {
+            return parent.primary?.line_divider;
+          },
+        },
+        dotDivider: {
+          type: 'Boolean',
+          resolve(parent: PrismicPostDataBodyDividerSlice) {
+            return parent.primary?.dot_divider;
           },
         },
       },

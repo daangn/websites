@@ -49,6 +49,7 @@ export type PrismicPostNode = PrismicSourceNode &
         | PrismicPostDataBodyVerticalQuoteSectionSlice
         | PrismicPostDataBodyCtaButtonSlice
         | PrismicPostDataBodySingleImageSectionSlice
+        | PrismicPostDataBodyDividerSlice
       >;
     },
     'post'
@@ -116,6 +117,15 @@ export type PrismicPostDataBodySingleImageSectionSlice = Slice<
     slice_type: string;
     image: ImageField;
     image_caption_text: string | null;
+  }
+>;
+
+export type PrismicPostDataBodyDividerSlice = Slice<
+  'divider',
+  {
+    full_width_line_divider: boolean;
+    line_divider: boolean;
+    dot_divider: boolean;
   }
 >;
 

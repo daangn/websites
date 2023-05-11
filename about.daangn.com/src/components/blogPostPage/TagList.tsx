@@ -29,6 +29,11 @@ const TagContainer = styled('div', {
   flexWrap: 'wrap',
   gap: rem(12),
   width: '100%',
+
+  /*
+    Temporarily Applied Styles
+  */
+  padding: `0 ${rem(8)}`,
 });
 
 export default TagList;
