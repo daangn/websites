@@ -38,21 +38,34 @@ const Container = styled('section', {
 
 const QuoteText = styled('p', {
   margin: `${rem(20)} 0`,
+  padding: `0 ${rem(8)}`,
 });
 
 const Heading3 = styled(QuoteText, {
-  typography: '$subtitle1',
+  typography: '$subtitle2',
   fontWeight: 'bold',
+
+  '@md': {
+    typography: '$subtitle1',
+  },
 });
 
 const Heading4 = styled(QuoteText, {
-  typography: '$subtitle2',
+  typography: '$subtitle3',
   fontWeight: 'bold',
+
+  '@md': {
+    typography: '$subtitle2',
+  },
 });
 
 const Heading5 = styled(QuoteText, {
-  typography: '$subtitle3',
+  typography: '$subtitle4',
   fontWeight: 'bold',
+
+  '@md': {
+    typography: '$subtitle3',
+  },
 });
 
 export default PostBodyQuote;
