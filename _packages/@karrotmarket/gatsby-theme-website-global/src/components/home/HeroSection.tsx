@@ -114,7 +114,7 @@ const Title = styled('div', {
       lineHeight: '$heading1',
 
       // https://daangn.slack.com/archives/C01DG5MV5UH/p1683018916888919?thread_ts=1682373700.371559&cid=C01DG5MV5UH
-      width: "400px",
+      width: '400px',
     },
   },
 });
