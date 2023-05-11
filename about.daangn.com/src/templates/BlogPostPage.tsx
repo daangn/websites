@@ -12,6 +12,7 @@ import PostBodyCtaButton from '../components/blogPostPage/PostBodyCtaButton';
 import PostBodyGroupImage from '../components/blogPostPage/PostBodyGroupImage';
 import PostBodyQuote from '../components/blogPostPage/PostBodyQuote';
 import PostBodyRichText from '../components/blogPostPage/PostBodyRichText';
+import PostBodyDivider from '../components/blogPostPage/PostBodyDivider';
 import PostBodyVerticalQuote from '../components/blogPostPage/PostBodyVerticalQuote';
 import PostFooter from '../components/blogPostPage/PostFooter';
 import PostHeader from '../components/blogPostPage/PostHeader';
@@ -89,6 +90,13 @@ export const query = graphql`
             }
           }
         }
+        ... on PostDivider {
+          id
+          slice_type: sliceType
+          fullWidthLineDivider
+          dotDivider
+          lineDivider
+        }
       }
     }
     prismicBlogContent {
@@ -127,6 +135,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ data }) => {
                   vertical_quote_section: PostBodyVerticalQuote,
                   cta_button: PostBodyCtaButton,
                   single_image_section: PostBodySingleImage,
+                  divider: PostBodyDivider,
                 }}
               />
             </ContentContainer>
@@ -142,7 +151,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ data }) => {
     )
   );
 };
-BlogPostPage;
+
 type BlogPostPageHeadProps = HeadProps<GatsbyTypes.BlogPostPageQuery>;
 
 export const Head: React.FC<BlogPostPageHeadProps> = ({ data, location }) => {
@@ -154,6 +163,7 @@ export const Head: React.FC<BlogPostPageHeadProps> = ({ data, location }) => {
     <HeadSeo location={location} title={title} description={description}>
       {(props) => [
         <OpenGraph
+          key="og"
           og={{
             ...props,
             type: 'website',
@@ -172,6 +182,7 @@ export const Head: React.FC<BlogPostPageHeadProps> = ({ data, location }) => {
           }}
         />,
         <TwitterCard
+          key="twitter"
           card={{
             ...props,
             type: 'summary',
