@@ -27,13 +27,18 @@ const Container = styled('section', {
   flexDirection: 'column',
   alignItems: 'center',
   width: '100%',
-  padding: `${rem(60)} 0`,
+  padding: `${rem(40)} 0`,
   marginTop: rem(20),
   marginBottom: rem(40),
-  borderRadius: rem(20),
+  borderRadius: rem(10),
   backgroundColor: vars.$scale.color.gray100,
   textAlign: 'center',
   color: vars.$scale.color.gray700,
+
+  '@md': {
+    padding: `${rem(60)} 0`,
+    borderRadius: rem(20),
+  },
 });
 
 const Button = styled('button', {

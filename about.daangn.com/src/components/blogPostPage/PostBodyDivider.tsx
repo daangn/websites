@@ -3,6 +3,8 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import React from 'react';
 
+import DotDivider from './DotDivider';
+
 type PostBodyDividerProps = {
   slice: GatsbyTypes.PostDivider;
 };
@@ -22,8 +24,12 @@ const Container = styled('section', {
   flexDirection: 'column',
   alignItems: 'center',
   width: '100%',
-  margin: `${rem(52)} 0`,
+  margin: `${rem(16)} 0`,
   textAlign: 'center',
+
+  '@md': {
+    margin: `${rem(36)} 0`,
+  },
 });
 
 const FullWidthLineDivider = styled('hr', {
@@ -36,14 +42,6 @@ const LineDivider = styled('hr', {
   width: '33%',
   border: 'none',
   borderTop: `2px solid ${vars.$scale.color.gray400}`,
-});
-
-const DotDivider = styled('hr', {
-  width: '8%',
-  border: 'none',
-  borderTop: `8px dotted ${vars.$scale.color.gray500}`,
-  borderSpacing: '50px',
-  borderCollapse: 'separate',
 });
 
 export default PostBodyDivider;
