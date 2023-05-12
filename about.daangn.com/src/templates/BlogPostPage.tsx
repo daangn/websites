@@ -209,6 +209,7 @@ const ThumbnailImage = styled(GatsbyImage, {
   width: '100%',
   borderRadius: rem(20),
   marginBottom: rem(24),
+  opacity: 0.99,
 
   '@sm': {
     borderRadius: rem(40),
