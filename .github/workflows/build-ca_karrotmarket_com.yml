@@ -16,6 +16,8 @@ on:
       - yarn.lock
     branches:
       - main
+  repository_dispatch:
+    types: ca.karrotmarket.com
 
 jobs:
   build-and-deploy:
