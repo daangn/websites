@@ -23,6 +23,8 @@ on:
       - yarn.lock
     branches:
       - main
+  repository_dispatch:
+    types: jp.karrotmarket.com
 
 jobs:
   deploy:
