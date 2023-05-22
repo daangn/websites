@@ -97,6 +97,11 @@ export const Head: React.FC<BlogPageHeadProps> = ({ data, location }) => {
 
 const Container = styled('div', {
   contentArea: true,
+  marginTop: rem(36),
+
+  '@sm': {
+    marginTop: rem(40),
+  },
 });
 
 const CategoryAnchor = styled('div', {

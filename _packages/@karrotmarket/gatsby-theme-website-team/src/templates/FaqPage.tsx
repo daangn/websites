@@ -70,6 +70,7 @@ export const query = graphql`
 
 const Container = styled('main', {
   contentArea: true,
+  contentSpaceTop: true,
   maxWidth: rem(1200),
 });
 

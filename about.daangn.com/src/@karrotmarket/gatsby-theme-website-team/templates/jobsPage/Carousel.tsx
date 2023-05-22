@@ -114,11 +114,10 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
 
 const Container = styled('div', {
   position: 'relative',
-  marginTop: rem(-36),
+  marginTop: 0,
   marginBottom: rem(36),
 
   '@sm': {
-    marginTop: rem(-100),
     marginBottom: rem(100),
   },
 });

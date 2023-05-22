@@ -91,6 +91,7 @@ const PrPostPage: React.FC<PrPostPageProps> = ({ data }) => {
 
 const Container = styled('div', {
   contentArea: true,
+  contentSpaceTop: true,
   textAlign: 'center',
   color: vars.$scale.color.gray900,
 });

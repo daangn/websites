@@ -195,8 +195,13 @@ export const Head: React.FC<BlogPostPageHeadProps> = ({ data, location }) => {
 
 const Container = styled('div', {
   contentArea: true,
+  marginTop: rem(36),
   textAlign: 'center',
   color: vars.$scale.color.gray900,
+
+  '@sm': {
+    marginTop: rem(40),
+  },
 
   '@md': {
     blogContentArea: true,

@@ -46,14 +46,6 @@ export const query = graphql`
   }
 `;
 
-const Header = styled(_Header, {
-  marginBottom: rem(36),
-
-  '@sm': {
-    marginBottom: rem(100),
-  },
-});
-
 const Footer = styled(_Footer, {
   marginTop: rem(120),
 
@@ -73,7 +65,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ data, children }) => {
 
   return (
     <>
-      <Header navigationData={data.prismicSiteNavigation.data} />
+      <_Header navigationData={data.prismicSiteNavigation.data} />
       <div id="layout">{children}</div>
       <Footer navigationData={data.prismicSiteNavigation.data} />
     </>

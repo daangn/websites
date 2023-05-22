@@ -43,6 +43,7 @@ export const query = graphql`
 
 const Container = styled('main', {
   contentArea: true,
+  contentSpaceTop: true,
 });
 
 const PageTitle = styled(_PageTitle, {
