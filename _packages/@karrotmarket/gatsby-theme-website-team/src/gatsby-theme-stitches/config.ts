@@ -98,6 +98,16 @@ const stitches = createStitches({
             paddingX: rem(24),
           }
         : undefined,
+    contentSpaceTop: (value: boolean) =>
+      value
+        ? {
+            marginTop: rem(36),
+
+            '@sm': {
+              marginTop: rem(100),
+            },
+          }
+        : undefined,
   },
 });
 

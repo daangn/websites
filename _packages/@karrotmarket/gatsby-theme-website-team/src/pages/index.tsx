@@ -67,6 +67,10 @@ export const query = graphql`
   }
 `;
 
+const MainContainer = styled('main', {
+  contentSpaceTop: true,
+});
+
 const TitleContainer = styled('div', {
   contentArea: true,
 });
@@ -91,7 +95,7 @@ const Content = styled('div', {
 type IndexPageProps = PageProps<GatsbyTypes.TeamWebsite_IndexPageQuery>;
 const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
   return (
-    <main>
+    <MainContainer>
       <TitleContainer>
         <PageTitle>{data.prismicTeamContents.data.main_page_title?.text}</PageTitle>
       </TitleContainer>
@@ -135,7 +139,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
           }),
         )}
       </Content>
-    </main>
+    </MainContainer>
   );
 };
 

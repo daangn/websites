@@ -29,6 +29,7 @@ export const query = graphql`
 
 const Container = styled('main', {
   contentArea: true,
+  contentSpaceTop: true,
 });
 
 const Content = styled('div', {

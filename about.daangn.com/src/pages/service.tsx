@@ -212,6 +212,7 @@ export const Head: React.FC<ServicePageHeadProps> = ({ data, location }) => {
 
 const Container = styled('main', {
   contentArea: true,
+  contentSpaceTop: true,
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',

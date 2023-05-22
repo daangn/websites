@@ -37,6 +37,7 @@ export const Head: React.FC = () => {
 
 const Container = styled('main', {
   contentArea: true,
+  contentSpaceTop: true,
 });
 
 export default PrPage;

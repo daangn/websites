@@ -56,6 +56,7 @@ export const query = graphql`
 
 const Container = styled('div', {
   contentArea: true,
+  contentSpaceTop: true,
   maxWidth: rem(760),
 });
 
