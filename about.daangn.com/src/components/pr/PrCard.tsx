@@ -41,29 +41,32 @@ const PostCard: React.FC<PrCardProps> = ({ data }) => {
 
 const Container = styled(Link, {
   display: 'flex',
-  width: '100%',
   marginBottom: rem(24),
   textDecoration: 'none',
 
   '@sm': {
     marginBottom: rem(52),
   },
+
+  '@md': {
+    paddingLeft: rem(72),
+  },
 });
 
 const ThumbnailImage = styled(GatsbyImage, {
-  width: rem(130),
+  width: rem(160),
   height: rem(90),
-  minWidth: rem(130),
+  minWidth: rem(160),
   minHeight: rem(90),
   borderRadius: rem(8),
   marginRight: rem(20),
   opacity: 0.99,
   objectFit: 'cover',
 
-  '@sm': {
-    minWidth: rem(184),
-    minHeight: rem(138),
-    marginRight: rem(72),
+  '@md': {
+    minWidth: rem(240),
+    minHeight: rem(135),
+    marginRight: rem(88),
     borderRadius: rem(12),
   },
 });
@@ -83,13 +86,25 @@ const Title = styled('h3', {
 
 const Summary = styled('p', {
   display: 'none',
+  maxWidth: rem(600),
   marginTop: rem(8),
   color: vars.$scale.color.gray700,
   fontSize: '$body3',
   whiteSpace: 'pre-line',
 
-  '@sm': {
-    display: 'block',
+  '@md': {
+    display: '-webkit-box',
+    width: rem(400),
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+    wordBreak: 'break-word',
+    '-webkit-line-clamp': 2,
+    '-webkit-box-orient': 'vertical',
+  },
+
+  '@lg': {
+    width: '100%',
+    '-webkit-line-clamp': 5,
   },
 });
 
