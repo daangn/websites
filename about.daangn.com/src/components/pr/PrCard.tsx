@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { graphql, Link, type PageProps } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import { rem } from 'polished';
-import { GatsbyImage } from 'gatsby-plugin-image';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
 
@@ -24,12 +24,15 @@ export const query = graphql`
 `;
 
 const PostCard: React.FC<PrCardProps> = ({ data }) => {
+  const image =
+    data.thumbnailImage?.childImageSharp?.gatsbyImageData &&
+    getImage(data.thumbnailImage.childImageSharp.gatsbyImageData);
+
   return (
     <Container to={`/company/pr/archive/${data.slug}/`}>
-      <ThumbnailImage
-        alt={'이미지'}
-        image={data.thumbnailImage?.childImageSharp?.gatsbyImageData}
-      />
+      <ThumbnailWrapper>
+        {image && <ThumbnailImage alt={`썸네일-${data.title}`} image={image} />}
+      </ThumbnailWrapper>
       <DescriptionWrapper>
         <Title>{data.title}</Title>
         <Summary>{data.summary}</Summary>
@@ -41,78 +44,94 @@ const PostCard: React.FC<PrCardProps> = ({ data }) => {
 
 const Container = styled(Link, {
   display: 'flex',
+  width: '100%',
   marginBottom: rem(24),
   textDecoration: 'none',
 
   '@sm': {
     marginBottom: rem(52),
   },
-
-  '@md': {
-    paddingLeft: rem(72),
-  },
 });
 
-const ThumbnailImage = styled(GatsbyImage, {
-  width: rem(160),
-  height: rem(90),
-  minWidth: rem(160),
-  minHeight: rem(90),
+const ThumbnailWrapper = styled('div', {
+  width: rem(110),
+  aspectRatio: '16 / 9',
   borderRadius: rem(8),
-  marginRight: rem(20),
-  opacity: 0.99,
-  objectFit: 'cover',
+  backgroundColor: vars.$scale.color.gray100,
+  overflow: 'hidden',
+
+  '@sm': {
+    width: rem(180),
+    borderRadius: rem(10),
+  },
 
   '@md': {
-    minWidth: rem(240),
-    minHeight: rem(135),
-    marginRight: rem(88),
+    width: rem(240),
     borderRadius: rem(12),
   },
 });
 
+const ThumbnailImage = styled(GatsbyImage, {
+  height: '100%',
+  opacity: 0.99,
+  objectFit: 'cover',
+});
+
 const DescriptionWrapper = styled('div', {
-  position: 'relative',
+  marginLeft: rem(20),
+  maxHeight: rem(67.5),
+
+  '@sm': {
+    marginLeft: rem(44),
+    maxHeight: rem(101.25),
+  },
+
+  '@md': {
+    marginLeft: rem(72),
+    maxHeight: rem(135),
+  },
 });
 
 const Title = styled('h3', {
-  fontSize: '$subtitle4',
+  width: rem(210),
+  wordBreak: 'break-all',
+  fontSize: vars.$scale.dimension.fontSize200,
+  fontWeight: 500,
   color: vars.$scale.color.gray900,
 
   '@sm': {
-    fontSize: '$subtitle3',
+    width: 'auto',
+    fontSize: vars.$scale.dimension.fontSize300,
+    fontWeight: vars.$static.fontWeight.bold,
+  },
+
+  '@md': {
+    fontSize: vars.$scale.dimension.fontSize400,
   },
 });
 
 const Summary = styled('p', {
   display: 'none',
-  maxWidth: rem(600),
   marginTop: rem(8),
-  color: vars.$scale.color.gray700,
-  fontSize: '$body3',
+  overflow: 'hidden',
   whiteSpace: 'pre-line',
+  textOverflow: 'ellipsis',
+  wordBreak: 'break-word',
+  '-webkit-line-clamp': 2,
+  '-webkit-box-orient': 'vertical',
+  color: vars.$scale.color.gray700,
+  fontSize: vars.$scale.dimension.fontSize150,
 
   '@md': {
     display: '-webkit-box',
-    width: rem(400),
-    textOverflow: 'ellipsis',
-    overflow: 'hidden',
-    wordBreak: 'break-word',
-    '-webkit-line-clamp': 2,
-    '-webkit-box-orient': 'vertical',
-  },
-
-  '@lg': {
-    width: '100%',
-    '-webkit-line-clamp': 5,
+    maxWidth: rem(700),
   },
 });
 
 const PublishDate = styled('p', {
   marginTop: rem(10),
   color: vars.$scale.color.gray600,
-  fontSize: '$body3',
-  whiteSpace: 'pre-line',
+  fontSize: vars.$scale.dimension.fontSize100,
 });
 
 export default PostCard;

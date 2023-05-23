@@ -52,14 +52,6 @@ const PrPostBodyRichText: React.FC<PrPostBodyRichText> = ({ slice }) => {
   );
 };
 
-export const Head: React.FC = () => {
-  return (
-    <>
-      <meta name="robots" content="noindex" />
-    </>
-  );
-};
-
 const Container = styled('section', {
   width: '100%',
   marginBottom: rem(10),

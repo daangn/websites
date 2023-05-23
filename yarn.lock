@@ -3995,6 +3995,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@seed-design/design-token@npm:1.0.3":
+  version: 1.0.3
+  resolution: "@seed-design/design-token@npm:1.0.3"
+  checksum: a60330bf16b13c3124c8745dd212d1e11b459ae65e2781e4b97b162a23d023c4fa01829b0673018ee483130294b0fc7525c719bed9ac413638897212d7f01b76
+  languageName: node
+  linkType: hard
+
 "@seed-design/design-token@npm:alpha":
   version: 1.0.0-alpha.6
   resolution: "@seed-design/design-token@npm:1.0.0-alpha.6"
@@ -5170,7 +5177,7 @@ __metadata:
     "@karrotmarket/gatsby-theme-website-team": "workspace:^"
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^"
     "@prismicio/react": 2.5.2
-    "@seed-design/design-token": alpha
+    "@seed-design/design-token": 1.0.3
     "@types/dotenv-safe": 8.1.2
     "@types/node": 18.15.11
     "@types/prismjs": 1.26.0

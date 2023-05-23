@@ -89,6 +89,14 @@ const PrPostPage: React.FC<PrPostPageProps> = ({ data }) => {
   );
 };
 
+export const Head: React.FC = () => {
+  return (
+    <>
+      <meta name="robots" content="noindex, nofollow" />
+    </>
+  );
+};
+
 const Container = styled('div', {
   contentArea: true,
   contentSpaceTop: true,
