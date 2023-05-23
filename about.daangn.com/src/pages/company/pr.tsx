@@ -10,7 +10,10 @@ export const query = graphql`
   query PrPage($locale: String!, $navigationId: String!) {
     ...TeamWebsite_DefaultLayout_query
 
-    allPost(filter: {category: {uid: {eq: "pr"}}}) {
+    allPost(
+      filter: {category: {name: {eq: "pr"}}}
+      sort: {publishedAt: DESC}
+    ) {
       nodes {
         ...PrCard_post
       }
@@ -19,7 +22,6 @@ export const query = graphql`
 `;
 
 const PrPage: React.FC<PrPageProps> = ({ data }) => {
-  console.log('data ::', data);
   return (
     <Main>
       <Title>당근마켓 보도자료</Title>
@@ -33,6 +35,14 @@ const PrPage: React.FC<PrPageProps> = ({ data }) => {
         </section>
       )}
     </Main>
+  );
+};
+
+export const Head: React.FC = () => {
+  return (
+    <>
+      <meta name="robots" content="noindex, nofollow" />
+    </>
   );
 };
 
