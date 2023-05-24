@@ -2927,7 +2927,7 @@ __metadata:
     concurrently: 7.6.0
     gatsby: 5.8.0
     gatsby-source-filesystem: 5.8.0
-    gatsby-source-note-com: 0.0.5
+    gatsby-source-note-com: 0.0.6
     typescript: 5.0.4
   peerDependencies:
     gatsby: ^4.0.0 || ^5.0.0
@@ -10215,14 +10215,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-source-note-com@npm:0.0.5":
-  version: 0.0.5
-  resolution: "gatsby-source-note-com@npm:0.0.5"
+"gatsby-source-note-com@npm:0.0.6":
+  version: 0.0.6
+  resolution: "gatsby-source-note-com@npm:0.0.6"
   dependencies:
-    note-com-js: ^0.0.2
+    note-com-js: ^0.0.3
   peerDependencies:
     gatsby: ^4.0.0 || ^5.0.0
-  checksum: 27ac886c0a12f033564e03f247668a8b35ef787f1842d2391217b305d6e3dc095120527e7e08dab686322d4e31931e7858c53f0535bf36a8d3a4aa3ed7978dad
+  checksum: 5f26c05d5a4b984879ab38b220ec27a7c5f202c9f9104312206fb900a4089b93d07981eb78b2f17282e2f5a14b10f89b0017d2048c43d8c283662c5167e117e9
   languageName: node
   linkType: hard
 
@@ -14074,10 +14074,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"note-com-js@npm:0.0.2, note-com-js@npm:^0.0.2":
-  version: 0.0.2
-  resolution: "note-com-js@npm:0.0.2"
-  checksum: af81ac5f54b41d99e4bce21f4f031050ea917249451d9c369582443a3ad53ffb41801d9c145186e95711c1e2b869d889605c9d33f52f1866ba3f01d678d5621d
+"note-com-js@npm:0.0.3, note-com-js@npm:^0.0.3":
+  version: 0.0.3
+  resolution: "note-com-js@npm:0.0.3"
+  checksum: 1d1f9b2fcff85a5c139331adfa0230d261f0ec9d9522abde49e4ee3d5a58fd1c29b3d219184914d6f9cac0314d4d4e69045350aef68add0f843e91ce3e2d7930
   languageName: node
   linkType: hard
 
@@ -15254,7 +15254,7 @@ __metadata:
   dependencies:
     "@cloudflare/workers-types": 4.20230404.0
     itty-router: 3.0.12
-    note-com-js: 0.0.2
+    note-com-js: 0.0.3
     typescript: 5.0.4
     wrangler: 2.15.1
   languageName: unknown
