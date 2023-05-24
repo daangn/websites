@@ -26,6 +26,7 @@ export const query = graphql`
           }
         }
       }
+      headerQuote
       ogImage: thumbnailImage {
         childImageSharp {
           fixed(width: 1200, height: 630, toFormat: PNG, quality: 90) {
@@ -59,10 +60,18 @@ const PrPostPage: React.FC<PrPostPageProps> = ({ data }) => {
   return (
     <Container>
       <Header>
+        <HeaderInformationWrapper>보도자료 | {data.post?.publishedAt}</HeaderInformationWrapper>
         <Title>{data.post?.title}</Title>
-        <PublishedAt>{data.post?.publishedAt}</PublishedAt>
+        {data.post?.headerQuote && (
+          <HeaderQuoteWrapper>
+            {data.post?.headerQuote.map((quote) => (
+              <p>"{quote.text}"</p>
+            ))}
+          </HeaderQuoteWrapper>
+        )}
       </Header>
       <Body>
+        <Divider />
         <ContentContainer>
           <SliceZone
             // rome-ignore lint/suspicious/noExplicitAny: intentional
@@ -87,7 +96,7 @@ const PrPostPage: React.FC<PrPostPageProps> = ({ data }) => {
         </Author>
         <Tags>
           {data.post?.tags?.map((tag) => (
-            <Tag key={tag}>{tag}</Tag>
+            <Tag key={tag}>#{tag}</Tag>
           ))}
         </Tags>
       </Body>
@@ -120,22 +129,38 @@ const Header = styled('div', {
   marginBottom: rem(33),
 
   '@sm': {
-    marginBottom: rem(76),
+    marginBottom: rem(50),
   },
 });
 
 const Title = styled('h1', {
   fontSize: vars.$scale.dimension.fontSize600,
-  marginBottom: rem(12),
+  marginBottom: rem(20),
 
   '@md': {
+    fontWeight: 800,
     fontSize: vars.$scale.dimension.fontSize800,
   },
 });
 
-const PublishedAt = styled('div', {
-  display: 'flex',
+const HeaderInformationWrapper = styled('div', {
+  marginBottom: rem(20),
+  fontSize: vars.$scale.dimension.fontSize100,
   color: vars.$scale.color.gray600,
+});
+
+const HeaderQuoteWrapper = styled('div', {
+  lineHeight: 1.5,
+  fontWeight: 600,
+  color: vars.$scale.color.gray700,
+});
+
+const Divider = styled('hr', {
+  width: '100%',
+  maxWidth: rem(900),
+  margin: `${rem(64)} 0`,
+  border: 'none',
+  borderTop: `1px solid ${vars.$scale.color.gray300}`,
 });
 
 const Body = styled('section', {
@@ -161,8 +186,8 @@ const ContentContainer = styled('div', {
 const Author = styled('div', {
   display: 'flex',
   alignItems: 'center',
-  margin: `${rem(56)} 0`,
   marginTop: rem(90),
+  marginBottom: rem(48),
 });
 
 const AuthorImage = styled(GatsbyImage, {
@@ -178,8 +203,9 @@ const AuthorInfo = styled('div', {
   fontSize: '$body2',
 });
 
-const AuthorName = styled('h3', {
+const AuthorName = styled('span', {
   marginBottom: rem(4),
+  fontSize: vars.$scale.dimension.fontSize300,
   fontWeight: 600,
 });
 
@@ -197,11 +223,9 @@ const Tags = styled('div', {
 
 const Tag = styled('div', {
   width: 'fit-content',
-  padding: `${rem(8)} ${rem(16)}`,
   border: 'none',
-  borderRadius: rem(40),
-  backgroundColor: vars.$scale.color.gray100,
-  fontSize: '$body3',
+  fontSize: vars.$scale.dimension.fontSize100,
+  fontColor: vars.$scale.color.gray700,
 });
 
 const Footer = styled('div', {

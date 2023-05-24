@@ -24,7 +24,6 @@ const PrPostBodySummaryBulletSection: React.FC<PrPostBodySummaryBulletSection> =
 
 const Container = styled('section', {
   width: '100%',
-  marginTop: rem(10),
   marginBottom: rem(40),
   fontSize: vars.$scale.dimension.fontSize150,
 
@@ -39,7 +38,7 @@ const UList = styled('ul', {
 });
 
 const Strong = styled('strong', {
-  fontWeight: 600,
+  fontWeight: 700,
 });
 
 export default PrPostBodySummaryBulletSection;
