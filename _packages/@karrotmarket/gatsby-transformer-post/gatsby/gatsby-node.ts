@@ -12,6 +12,7 @@ import {
   type PrismicPostRichTextSectionSlice,
   type PrismicPostDataBodySingleImageSectionSlice,
   type PrismicPostDataBodyDividerSlice,
+  type PrismicPostDataBodySummaryBulletSectionSlice,
   isPrismicMemberProfile,
   isPrismicPostCategoryNode,
   isPrismicPostNode,
@@ -142,6 +143,16 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
             return node.data.tags.split(',').map((tag) => tag.trim());
           },
         },
+        // headerQuote: {
+        //   type: 'String',
+        //   resolve(node: PrismicPostNode) {
+        //     console.log('node::', node);
+        //     // if (!node.data.header_quote?.html || node.data.header_quote?.length === 0) {
+        //     //   return '';
+        //     // }
+        //     return node.data.header_quote;
+        //   },
+        // },
         relatedPosts: {
           type: '[Post!]!',
           extensions: {
@@ -176,6 +187,8 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
         'PostCtaButtonSection',
         'PostSingleImageSection',
         'PostDivider',
+        'PostSummaryBulletSection',
+        // 'PostSummaryBulletPoint',
       ],
       resolveType(parent: PrismicPostNode['data']['body'][number]) {
         switch (parent.slice_type) {
@@ -193,6 +206,10 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
             return 'PostSingleImageSection';
           case 'divider':
             return 'PostDivider';
+          case 'summary_bullet_section':
+            return 'PostSummaryBulletSection';
+          // case 'summary_bullet_point':
+          // return 'PostSummaryBulletPoint';
         }
       },
     }),
@@ -533,6 +550,32 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           type: 'Boolean',
           resolve(parent: PrismicPostDataBodyDividerSlice) {
             return parent.primary?.dot_divider;
+          },
+        },
+      },
+    }),
+    schema.buildObjectType({
+      name: 'PostSummaryBulletSection',
+      extensions: {
+        dontInfer: {},
+      },
+      fields: {
+        id: {
+          type: 'String!',
+          resolve(parent: PrismicPostDataBodySummaryBulletSectionSlice) {
+            return parent.id;
+          },
+        },
+        sliceType: {
+          type: 'String!',
+          resolve(parent: PrismicPostDataBodySummaryBulletSectionSlice) {
+            return parent.slice_type;
+          },
+        },
+        primary: {
+          type: 'JSON!',
+          resolve(parent: PrismicPostDataBodySummaryBulletSectionSlice) {
+            return parent.primary;
           },
         },
       },
