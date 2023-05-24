@@ -39,7 +39,7 @@ export type PrismicPostNode = PrismicSourceNode &
       author: ContentRelationshipField<'team_member'>;
       category: ContentRelationshipField<'post_category'>;
       tags: KeyTextField;
-      // header_quote: RichTextField;
+      header_quote: RichTextField;
       related_posts: GroupField<{
         post: ContentRelationshipField<'post'>;
       }>;

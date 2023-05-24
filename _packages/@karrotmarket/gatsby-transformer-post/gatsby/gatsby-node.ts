@@ -143,16 +143,12 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
             return node.data.tags.split(',').map((tag) => tag.trim());
           },
         },
-        // headerQuote: {
-        //   type: 'String',
-        //   resolve(node: PrismicPostNode) {
-        //     console.log('node::', node);
-        //     // if (!node.data.header_quote?.html || node.data.header_quote?.length === 0) {
-        //     //   return '';
-        //     // }
-        //     return node.data.header_quote;
-        //   },
-        // },
+        headerQuote: {
+          type: '[JSON]',
+          resolve(node: PrismicPostNode) {
+            return node.data.header_quote;
+          },
+        },
         relatedPosts: {
           type: '[Post!]!',
           extensions: {
