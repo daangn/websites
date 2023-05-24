@@ -55,7 +55,7 @@ const PrPostBodyRichText: React.FC<PrPostBodyRichText> = ({ slice }) => {
 const Container = styled('section', {
   width: '100%',
   marginBottom: rem(10),
-  fontSize: '$body2',
+  fontSize: vars.$scale.dimension.fontSize150,
   lineHeight: rem(26),
   letterSpacing: rem(0.4),
   color: vars.$scale.color.gray900,
@@ -66,27 +66,28 @@ const Container = styled('section', {
   },
 
   '@sm': {
-    fontSize: '$body1',
+    fontSize: vars.$scale.dimension.fontSize200,
     lineHeight: rem(28),
     letterSpacing: rem(0.4),
   },
 });
 
 const Heading2 = styled('h2', {
-  fontSize: rem(20),
   marginTop: rem(20),
   marginBottom: rem(12),
+  fontSize: vars.$scale.dimension.fontSize500,
 
   '@sm': {
-    fontSize: rem(24),
     marginTop: rem(40),
     marginBottom: rem(18.72),
+    fontSize: vars.$scale.dimension.fontSize400,
   },
 });
 
 const Heading3 = styled('h3', {
   marginTop: rem(24),
   marginBottom: rem(14),
+  fontSize: vars.$scale.dimension.fontSize400,
 });
 
 const Description = styled('p', {
@@ -95,12 +96,12 @@ const Description = styled('p', {
   marginBottom: rem(12),
   lineHeight: rem(26),
   letterSpacing: rem(0.4),
-  fontSize: '$body2',
   color: vars.$scale.color.gray900,
+  textAlign: 'justify',
+  textJustify: 'distribute',
   wordBreak: 'break-all',
 
   '@sm': {
-    fontSize: '$body1',
     lineHeight: rem(28),
     letterSpacing: rem(0.4),
   },

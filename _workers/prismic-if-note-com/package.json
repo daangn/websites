@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "itty-router": "3.0.12",
-    "note-com-js": "0.0.2"
+    "note-com-js": "0.0.3"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "4.20230404.0",

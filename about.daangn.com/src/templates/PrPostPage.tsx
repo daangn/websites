@@ -7,6 +7,7 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
 
 import PrPostBodyRichText from '../components/prPostPage/PrPostBodyRichText';
+import PrPostBodySummaryBulletSection from '../components/prPostPage/PrPostBodySummaryBulletSection';
 
 export const query = graphql`
   query PrPostPage($id: String!, $locale: String!, $navigationId: String!) {
@@ -25,6 +26,7 @@ export const query = graphql`
           }
         }
       }
+      headerQuote
       ogImage: thumbnailImage {
         childImageSharp {
           fixed(width: 1200, height: 630, toFormat: PNG, quality: 90) {
@@ -40,6 +42,11 @@ export const query = graphql`
           primary
           slice_type: sliceType
         }
+        ... on PostSummaryBulletSection {
+          id
+          primary
+          slice_type: sliceType
+        }
       }
     }
   }
@@ -48,19 +55,30 @@ export const query = graphql`
 type PrPostPageProps = PageProps<GatsbyTypes.PrPostPageQuery>;
 
 const PrPostPage: React.FC<PrPostPageProps> = ({ data }) => {
+  console.log('data ::', data);
+
   return (
     <Container>
       <Header>
+        <HeaderInformationWrapper>보도자료 | {data.post?.publishedAt}</HeaderInformationWrapper>
         <Title>{data.post?.title}</Title>
-        <PublishedAt>{data.post?.publishedAt}</PublishedAt>
+        {data.post?.headerQuote && (
+          <HeaderQuoteWrapper>
+            {data.post?.headerQuote.map((quote) => (
+              <p>"{quote.text}"</p>
+            ))}
+          </HeaderQuoteWrapper>
+        )}
       </Header>
       <Body>
+        <Divider />
         <ContentContainer>
           <SliceZone
             // rome-ignore lint/suspicious/noExplicitAny: intentional
             slices={data.post?.body as any[]}
             components={{
               rich_text_section: PrPostBodyRichText,
+              summary_bullet_section: PrPostBodySummaryBulletSection,
             }}
           />
         </ContentContainer>
@@ -78,7 +96,7 @@ const PrPostPage: React.FC<PrPostPageProps> = ({ data }) => {
         </Author>
         <Tags>
           {data.post?.tags?.map((tag) => (
-            <Tag key={tag}>{tag}</Tag>
+            <Tag key={tag}>#{tag}</Tag>
           ))}
         </Tags>
       </Body>
@@ -111,28 +129,44 @@ const Header = styled('div', {
   marginBottom: rem(33),
 
   '@sm': {
-    marginBottom: rem(66),
+    marginBottom: rem(50),
   },
 });
 
 const Title = styled('h1', {
-  fontSize: '$subtitle1',
-  marginBottom: rem(12),
+  fontSize: vars.$scale.dimension.fontSize600,
+  marginBottom: rem(20),
 
   '@md': {
-    fontSize: '$heading4',
+    fontWeight: 800,
+    fontSize: vars.$scale.dimension.fontSize800,
   },
 });
 
-const PublishedAt = styled('div', {
-  display: 'flex',
+const HeaderInformationWrapper = styled('div', {
+  marginBottom: rem(20),
+  fontSize: vars.$scale.dimension.fontSize100,
+  color: vars.$scale.color.gray600,
+});
+
+const HeaderQuoteWrapper = styled('div', {
+  lineHeight: 1.5,
+  fontWeight: 600,
   color: vars.$scale.color.gray700,
+});
+
+const Divider = styled('hr', {
+  width: '100%',
+  maxWidth: rem(900),
+  margin: `${rem(64)} 0`,
+  border: 'none',
+  borderTop: `1px solid ${vars.$scale.color.gray300}`,
 });
 
 const Body = styled('section', {
   position: 'relative',
   boxSizing: 'border-box',
-  maxWidth: rem(1024),
+  maxWidth: rem(900),
   paddingX: rem(8),
   margin: '0 auto',
   textAlign: 'left',
@@ -144,15 +178,16 @@ const Body = styled('section', {
 
 const ContentContainer = styled('div', {
   display: 'flex',
-  flexFlow: 'row nowrap',
+  flexDirection: 'column',
+  alignItems: 'center',
   height: 'auto',
-  overflow: 'auto',
 });
 
 const Author = styled('div', {
   display: 'flex',
   alignItems: 'center',
-  margin: `${rem(56)} 0`,
+  marginTop: rem(90),
+  marginBottom: rem(48),
 });
 
 const AuthorImage = styled(GatsbyImage, {
@@ -168,8 +203,9 @@ const AuthorInfo = styled('div', {
   fontSize: '$body2',
 });
 
-const AuthorName = styled('h3', {
+const AuthorName = styled('span', {
   marginBottom: rem(4),
+  fontSize: vars.$scale.dimension.fontSize300,
   fontWeight: 600,
 });
 
@@ -187,11 +223,9 @@ const Tags = styled('div', {
 
 const Tag = styled('div', {
   width: 'fit-content',
-  padding: `${rem(8)} ${rem(16)}`,
   border: 'none',
-  borderRadius: rem(40),
-  backgroundColor: vars.$scale.color.gray100,
-  fontSize: '$body3',
+  fontSize: vars.$scale.dimension.fontSize100,
+  fontColor: vars.$scale.color.gray700,
 });
 
 const Footer = styled('div', {

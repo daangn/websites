@@ -39,6 +39,7 @@ export type PrismicPostNode = PrismicSourceNode &
       author: ContentRelationshipField<'team_member'>;
       category: ContentRelationshipField<'post_category'>;
       tags: KeyTextField;
+      header_quote: RichTextField;
       related_posts: GroupField<{
         post: ContentRelationshipField<'post'>;
       }>;
@@ -50,6 +51,7 @@ export type PrismicPostNode = PrismicSourceNode &
         | PrismicPostDataBodyCtaButtonSlice
         | PrismicPostDataBodySingleImageSectionSlice
         | PrismicPostDataBodyDividerSlice
+        | PrismicPostDataBodySummaryBulletSectionSlice
       >;
     },
     'post'
@@ -126,6 +128,15 @@ export type PrismicPostDataBodyDividerSlice = Slice<
     full_width_line_divider: boolean;
     line_divider: boolean;
     dot_divider: boolean;
+  }
+>;
+
+export type PrismicPostDataBodySummaryBulletSectionSlice = Slice<
+  'summary_bullet_section',
+  {
+    id: string;
+    slice_type: string;
+    primary: RichTextField;
   }
 >;
 

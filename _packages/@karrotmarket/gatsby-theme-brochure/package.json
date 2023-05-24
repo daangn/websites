@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@seed-design/design-token": "1.0.1",
-    "gatsby-plugin-head-seo": "1.0.1",
+    "gatsby-plugin-head-seo": "1.0.2",
     "gatsby-plugin-image": "3.8.0",
     "gatsby-plugin-react-helmet-async": "1.2.3",
     "gatsby-plugin-sharp": "5.8.0",
