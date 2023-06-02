@@ -35,4 +35,6 @@ type IconName = (
   | "icon_close_regular"
   | "icon_forward_regular"
   | "icon_ios_share_regular"
+  | "icon_chevron_left_fill"
+  | "icon_chevron_right_fill"
 );

@@ -50,7 +50,8 @@
     "polished": "4.2.2",
     "prismjs": "1.29.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-responsive-carousel": "3.2.23"
   },
   "devDependencies": {
     "@babel/core": "7.21.4",
