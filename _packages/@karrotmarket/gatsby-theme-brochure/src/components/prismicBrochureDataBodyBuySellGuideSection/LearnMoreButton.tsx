@@ -3,13 +3,13 @@ import { rem } from 'polished';
 
 const LearnMoreButton = styled('a', {
   fontSize: rem(24),
-  fontWeight: "bold",
-  textDecoration: "none",
-  display: "inline-flex",
-  alignItems: "center",
-  textAlign: "center",
-  "& > svg": {
-    marginLeft: ".5rem",
+  fontWeight: 'bold',
+  textDecoration: 'none',
+  display: 'inline-flex',
+  alignItems: 'center',
+  textAlign: 'center',
+  '& > svg': {
+    marginLeft: '.5rem',
   },
 });
 
