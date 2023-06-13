@@ -55,7 +55,7 @@ const Layout: React.FC<LayoutProps> = ({ children, data, id }) => {
 
   return (
     <>
-      <Header key="header" navigationData={data} sns />
+      <Header key="header" navigationData={data} />
 
       <main id={id}>{children}</main>
 
