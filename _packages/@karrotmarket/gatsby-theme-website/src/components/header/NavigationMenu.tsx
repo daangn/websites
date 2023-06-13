@@ -153,13 +153,13 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ controlId, className, d
   return (
     <Container className={className}>
       <HamburgerControl type="checkbox" id={controlId} ref={hamburgerRef} />
-      <Hamburger htmlFor={controlId} disabled={{ '@sm': true }}>
+      <Hamburger htmlFor={controlId} disabled={{ '@md': true }}>
         <HamburgerSvg viewBox="0 0 100 100">
           <Line d="M 20 30 H 80 C 80 30 95 30 95 65 C 95 80 90 80 85 80 C 80 80 75 75 75 75 L 25 25" />
           <Line d="M 20 70 H 80 C 80 70 95 70 95 35 C 95 20 90 20 85 20 C 80 20 75 25 75 25 L 25 75" />
         </HamburgerSvg>
       </Hamburger>
-      <NavigationList fixed={{ initial: true, '@sm': false }}>
+      <NavigationList fixed={{ initial: true, '@md': false }}>
         {data.header_entries
           .filter((entry) => entry.link)
           .map((entry) => (
