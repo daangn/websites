@@ -51,6 +51,12 @@ const Container = styled(Link, {
   '@sm': {
     marginBottom: rem(52),
   },
+
+  transition: 'all .3s ease-in-out',
+
+  '&:hover': {
+    transform: 'scale(1.03)',
+  },
 });
 
 const ThumbnailWrapper = styled('div', {
@@ -101,6 +107,7 @@ const Title = styled('h3', {
 
   '@sm': {
     width: 'auto',
+    maxWidth: rem(500),
     fontSize: vars.$scale.dimension.fontSize300,
     fontWeight: vars.$static.fontWeight.bold,
   },
@@ -124,7 +131,7 @@ const Summary = styled('p', {
 
   '@md': {
     display: '-webkit-box',
-    maxWidth: rem(700),
+    maxWidth: rem(500),
   },
 });
 
