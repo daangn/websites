@@ -1,5 +1,6 @@
 import { type HeadProps, type PageProps, graphql } from 'gatsby';
 import { HeadSeo, OpenGraph, TwitterCard } from 'gatsby-plugin-head-seo/src';
+import { styled } from 'gatsby-theme-stitches/src/config';
 import * as React from 'react';
 
 import FullImageSection from '../../components/company/FullImageSection';
@@ -8,6 +9,7 @@ import VerticalCard from '../../components/company/VerticalCard';
 import SummaryCard from '../../components/company/SummaryCard';
 import InvestorsSection from '../../components/company/InvestorsSection';
 import PrSection from '../../components/company/PrSection';
+import TempHeroSection from '../../components/company/TempHeroSection';
 
 export const query = graphql`
   query CompanyPage($locale: String!, $navigationId: String!) {
@@ -78,6 +80,14 @@ export const query = graphql`
                   }
                 }
               }
+              image_mobile {
+                alt
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData
+                  }
+                }
+              }
             }
           }
           ... on PrismicCompanyContentDataBodySummaryCard {
@@ -98,7 +108,7 @@ export const query = graphql`
             slice_type
             primary {
               title {
-                html
+                text
               }
             }
             items {
@@ -135,39 +145,42 @@ export const query = graphql`
   }
 `;
 
-
 type CompanyPageProps = PageProps<GatsbyTypes.CompanyPageQuery>;
 
 const CompanyPage: React.FC<CompanyPageProps> = ({ data }) => {
   return (
-    <main>
+    <Main>
       {data.prismicCompanyContent?.data.body.map((slice) => {
         switch (slice.slice_type) {
           case 'full_image': {
-            return (<FullImageSection slice={slice} key={slice.id} />)
+            return <TempHeroSection slice={slice} key={slice.id} />;
+            // return <FullImageSection slice={slice} key={slice.id} />;
           }
           case 'horizontal_card': {
-            return (<HorizontalCard slice={slice} key={slice.id} />)
+            return <HorizontalCard slice={slice} key={slice.id} />;
           }
           case 'vertical_card': {
-            return (<VerticalCard slice={slice} key={slice.id} />)
+            return <VerticalCard slice={slice} key={slice.id} />;
           }
           case 'summary_card': {
-            return (<SummaryCard slice={slice} key={slice.id} />)
+            return <SummaryCard slice={slice} key={slice.id} />;
           }
           case 'investors_section': {
-            return (<InvestorsSection slice={slice} key={slice.id} />)
+            return <InvestorsSection slice={slice} key={slice.id} />;
           }
           case 'pr_section': {
-            return (<PrSection slice={slice} data={data} key={slice.id} />)
+            return <PrSection slice={slice} data={data} key={slice.id} />;
           }
           default:
             break;
         }
       })}
-    </main>
+    </Main>
   );
 };
 
-export default CompanyPage;
+const Main = styled('main', {
+  contentSpaceTop: true,
+});
 
+export default CompanyPage;
