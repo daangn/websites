@@ -13,7 +13,10 @@ type FullImageProps = {
 const FullImageSection: React.FC<FullImageProps> = ({ slice }) => {
   return (
     <HeroImageSection>
-      <Image image={slice.primary.full_image.localFile.childImageSharp.gatsbyImageData} alt={slice.primary.full_image.alt} />
+      <Image
+        image={slice.primary.full_image.localFile.childImageSharp.gatsbyImageData}
+        alt={slice.primary.full_image.alt}
+      />
       <TextWrapper>
         <PrismicRichText
           field={slice.primary.full_image_text.richText}

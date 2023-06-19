@@ -44,7 +44,10 @@ const BlogListSection: React.FC<BlogListSectionProps> = ({ slice, data }) => {
       <BlogCardWraaper ref={scrollRef}>
         {data.allPost.nodes.map((post) => (
           <BlogCard key={post.slug} to={`/blog/archive/${post.slug}`}>
-            <BlogcardThumbnail src={post.thumbnailImage?.publicURL} alt={`${post.slug}_썸네일이미지`} />
+            <BlogcardThumbnail
+              src={post.thumbnailImage?.publicURL}
+              alt={`${post.slug}_썸네일이미지`}
+            />
             <BlogTitleBox>
               <BlogTitle>{post.title}</BlogTitle>
             </BlogTitleBox>
@@ -96,12 +99,12 @@ const BlogCardWraaper = styled('div', {
   width: '100%',
   margin: `${rem(60)} 0`,
 
-  "&::-webkit-scrollbar": {
-    display: "none",
+  '&::-webkit-scrollbar': {
+    display: 'none',
   },
-  "&": {
-    scrollbarWidth: "none",
-    "-ms-overflow-style": "none",
+  '&': {
+    scrollbarWidth: 'none',
+    '-ms-overflow-style': 'none',
   },
 });
 
@@ -129,7 +132,7 @@ const BlogCard = styled(Link, {
     top: rem(-4),
     transform: 'scale(1.05)',
     transition: 'transform 0.2s ease-out, top 0.2s ease-out',
-  }
+  },
 });
 
 const BlogcardThumbnail = styled('img', {
@@ -154,6 +157,6 @@ const BlogTitle = styled('p', {
   padding: `${rem(16)} ${rem(20)}`,
   fontSize: vars.$scale.dimension.fontSize200,
   fontWeight: 600,
-})
+});
 
 export default BlogListSection;

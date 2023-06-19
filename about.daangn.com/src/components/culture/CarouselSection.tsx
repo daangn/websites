@@ -15,20 +15,26 @@ type CarouselProps = {
   slice: GatsbyTypes.Carousel;
 };
 
-const PrevArrow: React.FC<ArrowProps> = (clickHandler, hasPrev ) => hasPrev && (
-  <PrevArrowWapper onClick={clickHandler}>
-    <SeedIcon name="icon_chevron_left_fill" size="24px" />
-  </PrevArrowWapper>
-);
+const PrevArrow: React.FC<ArrowProps> = (clickHandler, hasPrev) =>
+  hasPrev && (
+    <PrevArrowWapper onClick={clickHandler}>
+      <SeedIcon name="icon_chevron_left_fill" size="24px" />
+    </PrevArrowWapper>
+  );
 
-const NextArrow: React.FC<ArrowProps> = (clickHandler, hasNext) => hasNext && (
-  <NextArrowWapper onClick={clickHandler}>
-    <SeedIcon name="icon_chevron_right_fill" size="24px" />
-  </NextArrowWapper>
-);
+const NextArrow: React.FC<ArrowProps> = (clickHandler, hasNext) =>
+  hasNext && (
+    <NextArrowWapper onClick={clickHandler}>
+      <SeedIcon name="icon_chevron_right_fill" size="24px" />
+    </NextArrowWapper>
+  );
 
 const CarouselSection: React.FC<CarouselProps> = ({ slice }) => {
   const [centerMode, setCenterMode] = React.useState(false);
+  // const swiper = new Swiper('.swiper', {
+  //   // configure Swiper to use modules
+  //   modules: [Navigation, Pagination],
+  // });
 
   React.useEffect(() => {
     const handleResize = () => {
@@ -36,8 +42,8 @@ const CarouselSection: React.FC<CarouselProps> = ({ slice }) => {
       setCenterMode(!isMobileScreen);
     };
     handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, [centerMode]);
 
   return (
@@ -55,7 +61,7 @@ const CarouselSection: React.FC<CarouselProps> = ({ slice }) => {
           swipeable={true}
           showStatus={false}
         >
-          {slice.items.map(item => (
+          {slice.items.map((item) => (
             <Card key={item?.carousel_card_title}>
               <ImageWrapper>
                 <CarouselImage
@@ -73,17 +79,26 @@ const CarouselSection: React.FC<CarouselProps> = ({ slice }) => {
           ))}
         </Carousel>
       </CarouselWrapper>
+      {/* <div className="swiper">
+        <div className="swiper-wrapper">
+          <div className="swiper-slide">Slide 1</div>
+          <div className="swiper-slide">Slide 2</div>
+          <div className="swiper-slide">Slide 3</div>
+        </div>
+        <div className="swiper-pagination" />
+        <div className="swiper-button-prev" />
+        <div className="swiper-button-next" />
+      </div> */}
     </Container>
   );
 };
-
 
 const ArrowWapper = styled('div', {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   position: 'absolute',
-  top: '30%',
+  top: '40%',
   width: rem(24),
   height: rem(24),
   padding: rem(20),
@@ -96,18 +111,18 @@ const ArrowWapper = styled('div', {
   backgroundColor: 'none',
 
   '@md': {
-    top: '35%',
+    top: '45%',
     backgroundColor: vars.$scale.color.gray00,
-  }
-})
+  },
+});
 
 const PrevArrowWapper = styled(ArrowWapper, {
   left: 10,
-})
+});
 
 const NextArrowWapper = styled(ArrowWapper, {
   right: 10,
-})
+});
 
 const Container = styled('section', {
   display: 'flex',
@@ -128,9 +143,9 @@ const CarouselSectionTitle = styled('h2', {
   fontSize: vars.$scale.dimension.fontSize600,
 
   '@md': {
-    fontSize: vars.$scale.dimension.fontSize800,
+    fontSize: vars.$scale.dimension.fontSize900,
   },
-})
+});
 
 const CarouselWrapper = styled('div', {
   width: '100%',
