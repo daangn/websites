@@ -14,6 +14,7 @@ const PrPostBodySummaryBulletSection: React.FC<PrPostBodySummaryBulletSection> =
       <PrismicRichText
         field={slice.primary.summary_bullet_content}
         components={{
+          paragraph: ({ children, key }) => <Paragraph key={key}>{children}</Paragraph>,
           list: ({ children, key }) => <UList key={key}>{children}</UList>,
           strong: ({ children, key }) => <Strong key={key}>{children}</Strong>,
         }}
@@ -39,6 +40,10 @@ const UList = styled('ul', {
 
 const Strong = styled('strong', {
   fontWeight: 700,
+});
+
+const Paragraph = styled('p', {
+  lineHeight: rem(30),
 });
 
 export default PrPostBodySummaryBulletSection;
