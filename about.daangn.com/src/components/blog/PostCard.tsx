@@ -26,9 +26,11 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
   return (
     <Container>
       <BlogLink to={`/blog/archive/${post.slug}/`}>
-        {post.thumbnailImage.publicURL && (
-          <Image src={post.thumbnailImage.publicURL} alt={`${post.title}_이미지`} />
-        )}
+        <ImageWrapper>
+          {post.thumbnailImage.publicURL && (
+            <Image src={post.thumbnailImage.publicURL} alt={`${post.title}_이미지`} />
+          )}
+        </ImageWrapper>
         <PostTitle>{post.title}</PostTitle>
         <PostSummary>{post.summary}</PostSummary>
       </BlogLink>
@@ -55,6 +57,12 @@ const Container = styled('div', {
     width: rem(480),
     height: rem(460),
   },
+
+  // transition: 'all .3s ease-in-out',
+
+  '&:hover h3': {
+    color: vars.$scale.color.gray600,
+  },
 });
 
 const BlogLink = styled(Link, {
@@ -62,9 +70,20 @@ const BlogLink = styled(Link, {
   textDecoration: 'none',
 });
 
-const Image = styled('img', {
+const ImageWrapper = styled('div', {
   width: '100%',
   borderRadius: rem(20),
+  overflow: 'hidden',
+});
+
+const Image = styled('img', {
+  width: '100%',
+  transition: 'all .3s ease-in-out',
+
+  '&:hover': {
+    transform: 'scale(1.03)',
+    filter: 'brightness(90%)',
+  },
 });
 
 const PostTitle = styled('h3', {
