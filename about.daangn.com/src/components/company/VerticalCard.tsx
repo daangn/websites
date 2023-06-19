@@ -13,106 +13,133 @@ const VerticalCard: React.FC<VerticalCardProps> = ({ slice }) => {
     slice.primary?.full_width_image?.localFile?.childImageSharp?.gatsbyImageData &&
     getImage(slice.primary.full_width_image.localFile.childImageSharp.gatsbyImageData);
 
+  const mobileImage =
+    slice.primary?.image_mobile?.localFile?.childImageSharp?.gatsbyImageData &&
+    getImage(slice.primary.image_mobile.localFile.childImageSharp.gatsbyImageData);
+
   return (
-    <Container>
-      <ImageWrapper>
-        {image && (
-          <Image
-            image={image}
-            alt={slice.primary?.full_width_image?.alt || ''}
+    <Section>
+      <Wrapper>
+        <ImageWrapper>
+          {image && mobileImage && (
+            <>
+              <Image image={image} alt={slice.primary?.full_width_image?.alt || ''} />
+              <MobileImage image={mobileImage} alt={slice.primary?.image_mobile?.alt || ''} />
+            </>
+          )}
+        </ImageWrapper>
+        <TextWapper>
+          <Title
+            dangerouslySetInnerHTML={{
+              __html: slice.primary?.title?.html || '',
+            }}
           />
-        )}
-      </ImageWrapper>
-      <TextWapper>
-        <Title
-          dangerouslySetInnerHTML={{
-            __html: slice.primary?.title?.html || '',
-          }}
-        />
-        <Description>{slice.primary.description}</Description>
-      </TextWapper>
-    </Container>
+          <Description>{slice.primary.description}</Description>
+        </TextWapper>
+      </Wrapper>
+    </Section>
   );
 };
 
-const Container = styled('section', {
+const Section = styled('section', {
+  position: 'relative',
+  width: '100%',
+  height: rem(208),
+  margin: `${rem(40)} 0`,
+  boxSizing: 'border-box',
+
+  '@sm': {
+    height: rem(340),
+  },
+
+  '@md': {
+    height: rem(450),
+  },
+});
+
+const Wrapper = styled('div', {
   display: 'flex',
   flexDirection: 'column-reverse',
   justifyContent: 'flex-end',
   width: '100%',
-  height: 'auto',
-  margin: `${rem(40)} 0`,
-  boxSizing: 'border-box',
 
   '@md': {
     flexDirection: 'column',
-    height: '100vh',
-    margin: 0,
   },
 });
 
 const ImageWrapper = styled('div', {
+  position: 'absolute',
+  objectFit: 'cover',
+  top: 0,
+  left: 0,
+  zIndex: 1,
+
   display: 'flex',
   width: '100%',
-  height: '40%',
-
-  '@md': {
-    height: '60%',
-  },
+  height: '100%',
 });
 
 const Image = styled(GatsbyImage, {
+  display: 'none !important',
   width: '100%',
-  height: '100%',
+  height: rem(450),
   border: 'none',
   objectFit: 'cover',
-});
-
-const TextWapper = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'flex-start',
-  alignItems: 'center',
-  height: 'auto',
-  marginLeft: rem(0),
-  padding: rem(16),
-  textAlign: 'center',
 
   '@md': {
-    height: '40%',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: rem(20),
-    marginTop: rem(40),
-    textAlign: 'left',
+    display: 'block !important',
   },
 });
 
-const Title = styled('h2', {
+const MobileImage = styled(GatsbyImage, {
+  display: 'block !important',
   width: '100%',
-  marginBottom: rem(20),
-  fontSize: vars.$scale.dimension.fontSize200,
-  color: vars.$scale.color.gray900,
+  height: '100%',
 
   '@md': {
-    width: '50%',
-    marginBottom: 0,
-    fontSize: vars.$scale.dimension.fontSize500,
+    display: 'none !important',
+  },
+});
+
+const TextWapper = styled('div', {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  zIndex: 2,
+
+
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  textAlign: 'center',
+  width: '100%',
+  height: 'auto',
+  boxSizing: 'border-box',
+  color: vars.$scale.color.gray00,
+});
+
+const Title = styled('div', {
+  width: '100%',
+  marginBottom: rem(24),
+
+  '& h2': {
+    fontSize: vars.$scale.dimension.fontSize600,
+
+    '@md': {
+      fontSize: vars.$scale.dimension.fontSize900,
+    },
   },
 });
 
 const Description = styled('p', {
   width: '100%',
+  maxWidth: rem(600),
   lineHeight: '150%',
-  textAlign: 'left',
-  color: vars.$scale.color.gray700,
-
-  '@md': {
-    width: '50%',
-    maxWidth: rem(440),
-  },
+  textAlign: 'center',
+  fontSize: vars.$scale.dimension.fontSize300,
 });
 
 export default VerticalCard;
-

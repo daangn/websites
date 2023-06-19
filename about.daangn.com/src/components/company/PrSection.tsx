@@ -49,12 +49,8 @@ const PrSection: React.FC<PrSectionProps> = ({ slice, data }) => {
         <PrListWraaper ref={scrollRef}>
           {data.allPost.nodes.map((post) => (
             <PrCard key={post.slug} to={`/company/pr/archive/${post.slug}/`}>
-              <PrTitle>
-                {post.title}
-              </PrTitle>
-              <PublishedAt dateTime={post.publishedAt}>
-                {post.publishedAt}
-              </PublishedAt>
+              <PrTitle>{post.title}</PrTitle>
+              <PublishedAt dateTime={post.publishedAt}>{post.publishedAt}</PublishedAt>
             </PrCard>
           ))}
         </PrListWraaper>
@@ -62,7 +58,6 @@ const PrSection: React.FC<PrSectionProps> = ({ slice, data }) => {
     </Section>
   );
 };
-
 
 const Section = styled('section', {
   display: 'flex',
@@ -84,7 +79,6 @@ const Image = styled(GatsbyImage, {
   height: '100%',
   objectFit: 'cover',
   filter: 'brightness(50%)',
-
 });
 
 const ContentWrapper = styled('div', {
@@ -126,13 +120,14 @@ const PrListWraaper = styled('div', {
   width: '100%',
   overflowX: 'scroll',
   margin: `${rem(60)} 0`,
+  paddingX: rem(24),
 
-  "&::-webkit-scrollbar": {
-    display: "none",
+  '&::-webkit-scrollbar': {
+    display: 'none',
   },
-  "&": {
-    scrollbarWidth: "none",
-    "-ms-overflow-style": "none",
+  '&': {
+    scrollbarWidth: 'none',
+    '-ms-overflow-style': 'none',
   },
 });
 
@@ -158,10 +153,10 @@ const PrCard = styled(Link, {
     height: rem(200),
   },
 
+  transition: 'all .3s ease-in-out',
+
   '&:hover': {
-    top: rem(-4),
-    transform: 'scale(1.05)',
-    transition: 'transform 0.6s ease-out, top 1s ease-out',
+    transform: 'scale(1.03)',
   },
 });
 

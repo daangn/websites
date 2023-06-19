@@ -11,14 +11,15 @@ type InvestorsSectionProps = {
 const InvestorsSection: React.FC<InvestorsSectionProps> = ({ slice }) => {
   return (
     <Container>
-      <Title
-        dangerouslySetInnerHTML={{
-          __html: slice?.primary.title?.html || '',
-        }}
-      />
+      <Title>{slice?.primary.title?.text}</Title>
       <LogoWapper>
-        {slice.items.map((item) => (
-          <Logo src={item?.image?.localFile?.publicURL || ''} alt={item?.image?.alt || ''} />
+        {slice.items.map((item, index) => (
+          <Logo
+            // rome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+            key={index}
+            src={item?.image?.localFile?.publicURL || ''}
+            alt={item?.image?.alt || ''}
+          />
         ))}
       </LogoWapper>
     </Container>
@@ -32,30 +33,21 @@ const Container = styled('section', {
   justifyContent: 'center',
   width: '100%',
   height: 'auto',
-
-  backgroundColor: '#EBF7FA',
-  marginTop: rem(80),
-  paddingBottom: rem(60),
-
-  '@md': {
-    height: '100vh',
-    marginTop: 0,
-    paddingBottom: 0,
-  },
+  backgroundColor: vars.$scale.color.gray50,
+  padding: `${rem(160)} 0`,
 });
 
-const Title = styled('div', {
+const Title = styled('h2', {
   width: rem(300),
-  margin: `${rem(40)} 0`,
-  marginBottom: rem(60),
+  marginBottom: rem(40),
   paddingTop: rem(40),
   textAlign: 'center',
-  fontSize: vars.$scale.dimension.fontSize300,
+  fontSize: vars.$scale.dimension.fontSize700,
 
   '@md': {
     width: '100%',
     paddingTop: 0,
-    fontSize: vars.$scale.dimension.fontSize500,
+    fontSize: vars.$scale.dimension.fontSize900,
   },
 });
 
@@ -65,7 +57,7 @@ const LogoWapper = styled('div', {
   justifyContent: 'space-between',
   maxWidth: rem(400),
   gap: rem(10),
-  padding : `${rem(30)} ${rem(40)}`,
+  padding: `${rem(30)} ${rem(40)}`,
 
   '@md': {
     gap: rem(20),
@@ -75,7 +67,7 @@ const LogoWapper = styled('div', {
 
   '@xl': {
     gap: rem(50),
-    padding : `${rem(40)} ${rem(200)}`,
+    padding: `${rem(40)} ${rem(200)}`,
   },
 });
 
