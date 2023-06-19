@@ -15,9 +15,7 @@ const FullImageSection: React.FC<FullImageProps> = ({ slice }) => {
 
   return (
     <HeroImageSection>
-      {image && (
-        <Image image={image} alt={slice.primary?.full_image?.alt || ''} />
-      )}
+      {image && <Image image={image} alt={slice.primary?.full_image?.alt || ''} />}
       <Text
         dangerouslySetInnerHTML={{
           __html: slice?.primary?.text?.html || '',
@@ -83,4 +81,3 @@ const Text = styled('div', {
 });
 
 export default FullImageSection;
-
