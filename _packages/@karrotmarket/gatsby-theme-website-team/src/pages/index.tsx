@@ -16,6 +16,7 @@ import PrismicTeamContentsDataMainBodyIllustrationAndDescription from '../compon
 import PrismicTeamContentsDataMainBodyWideBanner from '../components/PrismicTeamContentsDataMainBodyWideBanner';
 import PrismicTeamContentsDataMainBodyHowWeWork from '../components/PrismicTeamContentsDataMainBodyHowWeWork';
 import PrismicTeamContentsDataMainBodyBenefit from '../components/PrismicTeamContentsDataMainBodyBenefit';
+import LatestBlogSection from '../components/LatestBlogSection';
 import { isCanonicalUrl } from '../utils/common';
 
 export const query = graphql`
@@ -64,6 +65,7 @@ export const query = graphql`
         }
       }
     }
+    ...LatestBlogPostList_query
   }
 `;
 
@@ -137,6 +139,10 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
             ),
             _: null,
           }),
+        )}
+        {/* kr에서만 사용하는 임시 섹션 */}
+        {data.site.siteMetadata.locale === 'ko-kr' && (
+          <LatestBlogSection data={data} />
         )}
       </Content>
     </MainContainer>

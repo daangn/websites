@@ -97,6 +97,27 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
             });
           },
         },
+        verticalThumbnailImage: {
+          type: 'File!',
+          resolve(node: PrismicPostNode) {
+            if (!node.tags.includes('blog')) {
+              return null;
+            }
+
+            if (!node.data.vertical_thumbnail_image.url) {
+              throw new Error(
+                `Post 의 vertical_thumbnail_image 필드 값이 비어있습니다. prismicId: ${node.prismicId}`,
+              );
+            }
+
+            return createRemoteFileNode({
+              url: node.data.vertical_thumbnail_image.url,
+              createNode,
+              createNodeId,
+              cache,
+            });
+          },
+        },
         title: {
           type: 'String!',
           resolve(node: PrismicPostNode) {
