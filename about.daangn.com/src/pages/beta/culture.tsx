@@ -1,12 +1,16 @@
 import { type HeadProps, type PageProps, graphql } from 'gatsby';
 import { HeadSeo, OpenGraph, TwitterCard } from 'gatsby-plugin-head-seo/src';
+import { rem } from 'polished';
+import { styled } from 'gatsby-theme-stitches/src/config';
 import * as React from 'react';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 import FullImageSection from '../../components/culture/FullImageSection';
 import ListCardSection from '../../components/culture/ListCardSection';
 import BlogListSection from '../../components/culture/BlogListSection';
 import CarouselSection from '../../components/culture/CarouselSection';
+import TempHeroSection from '../../components/culture/TempHeroSection';
+import FullWidthImageSection from '../../components/culture/FullWidthImageSection';
 
 export const query = graphql`
   query CulturePage($locale: String!, $navigationId: String!) {
@@ -64,6 +68,7 @@ export const query = graphql`
             primary {
               full_image_text {
                 richText
+                text
               }
               full_image {
                 alt
@@ -83,8 +88,9 @@ export const query = graphql`
             }
             items {
               card_title
+              card_summary
               card_description {
-                html
+                text
               }
               card_image {
                 alt
@@ -103,6 +109,23 @@ export const query = graphql`
               blog_list_title
             }
           }
+          ... on PrismicCultureContentDataBodyFullWidthImage {
+            id
+            slice_type
+            primary {
+              image {
+                alt
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData
+                  }
+                }
+              }
+              description {
+                html
+              }
+            }
+          }
         }
       }
     }
@@ -112,36 +135,39 @@ export const query = graphql`
 type CulturePageProps = PageProps<GatsbyTypes.CulturePageQuery>;
 
 const CulturePage: React.FC<CulturePageProps> = ({ data }) => {
+  console.log(data);
   return (
-    <main>
+    <Main>
       {data.prismicCultureContent?.data.body.map((slice) => {
         switch (slice.slice_type) {
           case 'full_image': {
             return (
-              <FullImageSection slice={slice} key={slice.id} />
-            )
+              <TempHeroSection slice={slice} key={slice.id} />
+              // <FullImageSection slice={slice} key={slice.id} />
+            );
+          }
+          case 'full_width_image': {
+            return <FullWidthImageSection slice={slice} key={slice.id} />;
           }
           case 'list_card': {
-            return (
-              <ListCardSection slice={slice} key={slice.id} />
-            )
+            return <ListCardSection slice={slice} key={slice.id} />;
           }
           case 'blog_list_section': {
-            return (
-              <BlogListSection slice={slice} data={data} key={slice.id} />
-            )
+            return <BlogListSection slice={slice} data={data} key={slice.id} />;
           }
           case 'carousel': {
-            return (
-              <CarouselSection slice={slice} key={slice.id} />
-            )
+            return <CarouselSection slice={slice} key={slice.id} />;
           }
           default:
             break;
         }
       })}
-    </main>
+    </Main>
   );
 };
+
+const Main = styled('main', {
+  contentSpaceTop: true,
+});
 
 export default CulturePage;
