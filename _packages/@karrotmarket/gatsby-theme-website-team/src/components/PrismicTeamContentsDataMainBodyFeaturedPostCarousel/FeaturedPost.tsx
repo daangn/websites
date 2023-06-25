@@ -84,8 +84,12 @@ const Summary = styled('p', {
 
 const FeaturedPost: React.FC<FeaturedPostProps> = ({ item, className }) => {
   const image =
-    item.main_page_featured_post?.document?.data?.thumbnail_image?.localFile?.childImageSharp?.gatsbyImageData &&
-    getImage(item.main_page_featured_post.document.data.thumbnail_image.localFile.childImageSharp.gatsbyImageData);
+    item.main_page_featured_post?.document?.data?.thumbnail_image?.localFile?.childImageSharp
+      ?.gatsbyImageData &&
+    getImage(
+      item.main_page_featured_post.document.data.thumbnail_image.localFile.childImageSharp
+        .gatsbyImageData,
+    );
 
   if (image == null) {
     return null;

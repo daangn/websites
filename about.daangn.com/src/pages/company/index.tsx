@@ -204,17 +204,13 @@ export default CompanyPage;
 type CompanyPageHeadProps = HeadProps<GatsbyTypes.CompanyPageQuery>;
 
 export const Head: React.FC<CompanyPageHeadProps> = ({ data, location }) => {
-  const metaTitle = data?.prismicCompanyContent?.data.company_page_meta_title || "";
-  const metaDescription = data?.prismicCompanyContent?.data.company_page_meta_description || "";
+  const metaTitle = data?.prismicCompanyContent?.data.company_page_meta_title || '';
+  const metaDescription = data?.prismicCompanyContent?.data.company_page_meta_description || '';
   const metaImage =
     data?.prismicCompanyContent?.data.company_page_og_image?.localFile?.childImageSharp?.fixed;
 
   return (
-    <HeadSeo
-      location={location}
-      title={metaTitle}
-      description={metaDescription}
-    >
+    <HeadSeo location={location} title={metaTitle} description={metaDescription}>
       {(props) => [
         <OpenGraph
           og={{

@@ -56,7 +56,8 @@ type BlogPageHeadProps = HeadProps<GatsbyTypes.BlogPageQuery>;
 
 export const Head: React.FC<BlogPageHeadProps> = ({ data, location }) => {
   const { blog_page_meta_title, blog_page_meta_description, blog_page_og_image } =
-    data.prismicBlogContent?.data;
+    // rome-ignore lint/suspicious/noExplicitAny: <explanation>
+    data.prismicBlogContent?.data as any;
   const metaImage = blog_page_og_image?.localFile?.childImageSharp?.fixed;
 
   return (

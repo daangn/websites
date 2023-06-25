@@ -140,9 +140,7 @@ const CulturePage: React.FC<CulturePageProps> = ({ data }) => {
       {data.prismicCultureContent?.data.body.map((slice) => {
         switch (slice.slice_type) {
           case 'full_image': {
-            return (
-              <TempHeroSection slice={slice} key={slice.id} />
-            );
+            return <TempHeroSection slice={slice} key={slice.id} />;
           }
           case 'full_width_image': {
             return <FullWidthImageSection slice={slice} key={slice.id} />;
@@ -173,17 +171,13 @@ export default CulturePage;
 type CulturePageHeadProps = HeadProps<GatsbyTypes.CulturePageQuery>;
 
 export const Head: React.FC<CulturePageHeadProps> = ({ data, location }) => {
-  const metaTitle = data?.prismicCultureContent?.data.culture_page_meta_title || "";
-  const metaDescription = data?.prismicCultureContent?.data.culture_page_meta_description || "";
+  const metaTitle = data?.prismicCultureContent?.data.culture_page_meta_title || '';
+  const metaDescription = data?.prismicCultureContent?.data.culture_page_meta_description || '';
   const metaImage =
     data?.prismicCultureContent?.data.culture_page_og_image?.localFile?.childImageSharp?.fixed;
 
   return (
-    <HeadSeo
-      location={location}
-      title={metaTitle}
-      description={metaDescription}
-    >
+    <HeadSeo location={location} title={metaTitle} description={metaDescription}>
       {(props) => [
         <OpenGraph
           og={{

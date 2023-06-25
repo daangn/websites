@@ -31,9 +31,7 @@ const ListCardSection: React.FC<ListCardProps> = ({ slice }) => {
             <CultureTextWapper>
               <DescritionTitle>{item.card_title}</DescritionTitle>
               {/* <DescriptionSummary>{item.card_summary}</DescriptionSummary> */}
-              <Description>
-                {item.card_description.text}
-              </Description>
+              <Description>{item.card_description.text}</Description>
             </CultureTextWapper>
             <GraphicWrapper>
               <CultureGraphic
@@ -43,12 +41,12 @@ const ListCardSection: React.FC<ListCardProps> = ({ slice }) => {
             </GraphicWrapper>
           </CultureDescriptionCard>
         ))}
-          <BlogCard key="cta-to-blog">
-            <CultureTextWapper>
-              <DescritionTitle>당근마켓 팀문화는 최고의 자산이에요</DescritionTitle>
-              <BlogCtaButton to="/blog/category/culture/">문화 보러가기</BlogCtaButton>
-            </CultureTextWapper>
-          </BlogCard>
+        <BlogCard key="cta-to-blog">
+          <CultureTextWapper>
+            <DescritionTitle>당근마켓 팀문화는 최고의 자산이에요</DescritionTitle>
+            <BlogCtaButton to="/blog/category/culture/">문화 보러가기</BlogCtaButton>
+          </CultureTextWapper>
+        </BlogCard>
       </CardWrapper>
     </CultureSection>
   );

@@ -226,7 +226,10 @@ const PrismicTeamContentsDataMainBodyFeaturedPostCarousel: React.FC<
       <TextContainer>
         <KeyText>당근마켓이 일하는 이야기</KeyText>
         <Title>사용자 가치를 최우선으로 생각해요</Title>
-        <Summary>만드는 사람이 불편할 수록, 쓰는 사람은 편하다는 믿음으로 언제나 사용자 관점에서 생각하며 지속적인 테스트를 통해 답을 찾아요.</Summary>
+        <Summary>
+          만드는 사람이 불편할 수록, 쓰는 사람은 편하다는 믿음으로 언제나 사용자 관점에서 생각하며
+          지속적인 테스트를 통해 답을 찾아요.
+        </Summary>
       </TextContainer>
       <Container className={className}>
         <LeftArrowButton

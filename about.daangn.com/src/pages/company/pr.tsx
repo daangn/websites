@@ -38,14 +38,6 @@ const PrPage: React.FC<PrPageProps> = ({ data }) => {
   );
 };
 
-export const Head: React.FC = () => {
-  return (
-    <>
-      <meta name="robots" content="noindex, nofollow" />
-    </>
-  );
-};
-
 const Main = styled('main', {
   contentArea: true,
   contentSpaceTop: true,
@@ -66,3 +58,11 @@ const NoPostDescription = styled('div', {
 });
 
 export default PrPage;
+
+export const Head: React.FC = () => {
+  return (
+    <>
+      <meta name="robots" content="noindex, nofollow" />
+    </>
+  );
+};

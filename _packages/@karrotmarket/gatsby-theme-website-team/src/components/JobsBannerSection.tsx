@@ -23,9 +23,9 @@ const TextWrapper = styled('div', {
   display: 'grid',
   justifyContent: 'center',
   gap: rem(32),
-  gridArea: "1/1",
-  position: "relative",
-  placeItems: "center",
+  gridArea: '1/1',
+  position: 'relative',
+  placeItems: 'center',
   paddingX: rem(64),
   paddingY: rem(72),
 
@@ -53,16 +53,16 @@ const JobsBannerSection: React.FC = () => {
   return (
     <Container>
       <StaticImage
-        style={{ gridArea: "1/1", width: "100%", }}
+        style={{ gridArea: '1/1', width: '100%' }}
         layout="fullWidth"
         alt="이미지_채용배너"
-        src={"./JobsBannerSection/jobs_banner.png"}
-        formats={["auto", "webp", "avif"]}
+        src={'./JobsBannerSection/jobs_banner.png'}
+        formats={['auto', 'webp', 'avif']}
       />
       <TextWrapper>
         <Title>당근마켓의 여정에 함께 하세요</Title>
         <DetailLink
-          link={parseLink("https://about.daangn.com/jobs/")}
+          link={parseLink('https://about.daangn.com/jobs/')}
           message="채용공고 보러 가기"
         />
       </TextWrapper>

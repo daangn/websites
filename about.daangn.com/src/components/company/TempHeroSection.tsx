@@ -17,7 +17,9 @@ const TempHeroSection: React.FC<TempHeroSectionProps> = ({ slice }) => {
         alt={slice.primary.full_image.alt}
       />
       <Description>
-        당근마켓은 동네 곳곳에 흩어져 있던 이웃과 정보, 가게를 연결하며 동네에 가치를 불어넣습니다. 중고거래, 모임, 가게 홍보와 결제까지, 대한민국을 넘어 전 세계 곳곳 동네의 모든 것을 당근마켓으로 연결해나가고 있어요.
+        당근마켓은 동네 곳곳에 흩어져 있던 이웃과 정보, 가게를 연결하며 동네에 가치를 불어넣습니다.
+        중고거래, 모임, 가게 홍보와 결제까지, 대한민국을 넘어 전 세계 곳곳 동네의 모든 것을
+        당근마켓으로 연결해나가고 있어요.
       </Description>
     </Section>
   );
