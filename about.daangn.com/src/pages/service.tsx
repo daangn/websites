@@ -100,6 +100,7 @@ const ServicePage: React.FC<ServicePageProps> = ({ data }) => {
   return (
     <Container>
       <SimpleReveal
+        key="1"
         render={({ ref, cn, style }) => (
           <TitleArea ref={ref} className={cn()} style={style}>
             <Title>{data.prismicServiceContent?.data.service_page_title?.text}</Title>
@@ -122,8 +123,10 @@ const ServicePage: React.FC<ServicePageProps> = ({ data }) => {
         ) => {
           return (
             <SimpleReveal
+              // rome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+              key={i}
               render={({ ref, cn, style }) => (
-                <React.Fragment key={service_key}>
+                <React.Fragment>
                   <Card ref={ref} className={cn()} style={style}>
                     <LeftContent>
                       <ServiceTitle>
@@ -193,6 +196,8 @@ export const Head: React.FC<ServicePageHeadProps> = ({ data, location }) => {
   } = data.prismicServiceContent?.data as any;
 
   const metaImage = service_page_og_image?.localFile?.childImageSharp?.fixed;
+
+  console.log('metaImage ::', metaImage);
 
   return (
     <HeadSeo
@@ -314,6 +319,11 @@ const ServiceTitle = styled('div', {
 const ServiceIcon = styled(GatsbyImage, {
   width: rem(40),
   marginRight: rem(10),
+  display: 'none !important',
+
+  '@sm': {
+    display: 'inline-block !important',
+  },
 
   '@lg': {
     width: rem(80),
@@ -389,6 +399,11 @@ const ServiceImage = styled(GatsbyImage, {
   width: '100%',
   height: '100%',
   objectFit: 'cover',
+  borderRadius: rem(15),
+
+  '@md': {
+    borderRadius: rem(30),
+  },
 });
 
 const SubCardWrapper = styled('div', {

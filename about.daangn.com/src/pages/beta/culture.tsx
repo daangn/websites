@@ -135,7 +135,6 @@ export const query = graphql`
 type CulturePageProps = PageProps<GatsbyTypes.CulturePageQuery>;
 
 const CulturePage: React.FC<CulturePageProps> = ({ data }) => {
-  console.log(data);
   return (
     <Main>
       {data.prismicCultureContent?.data.body.map((slice) => {
@@ -143,7 +142,6 @@ const CulturePage: React.FC<CulturePageProps> = ({ data }) => {
           case 'full_image': {
             return (
               <TempHeroSection slice={slice} key={slice.id} />
-              // <FullImageSection slice={slice} key={slice.id} />
             );
           }
           case 'full_width_image': {
@@ -171,3 +169,47 @@ const Main = styled('main', {
 });
 
 export default CulturePage;
+
+type CulturePageHeadProps = HeadProps<GatsbyTypes.CulturePageQuery>;
+
+export const Head: React.FC<CulturePageHeadProps> = ({ data, location }) => {
+  const metaTitle = data?.prismicCultureContent?.data.culture_page_meta_title || "";
+  const metaDescription = data?.prismicCultureContent?.data.culture_page_meta_description || "";
+  const metaImage =
+    data?.prismicCultureContent?.data.culture_page_og_image?.localFile?.childImageSharp?.fixed;
+
+  return (
+    <HeadSeo
+      location={location}
+      title={metaTitle}
+      description={metaDescription}
+    >
+      {(props) => [
+        <OpenGraph
+          og={{
+            ...props,
+            type: 'website',
+            ...(metaImage && {
+              images: [
+                {
+                  url: new URL(
+                    metaImage.src,
+                    metaImage.src.startsWith('http') ? metaImage.src : props.url,
+                  ),
+                  width: metaImage.width,
+                  height: metaImage.height,
+                },
+              ],
+            }),
+          }}
+        />,
+        <TwitterCard
+          card={{
+            ...props,
+            type: 'summary',
+          }}
+        />,
+      ]}
+    </HeadSeo>
+  );
+};

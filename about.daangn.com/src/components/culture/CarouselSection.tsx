@@ -98,7 +98,7 @@ const ArrowWapper = styled('div', {
   justifyContent: 'center',
   alignItems: 'center',
   position: 'absolute',
-  top: '40%',
+  top: '35%',
   width: rem(24),
   height: rem(24),
   padding: rem(20),
@@ -111,7 +111,14 @@ const ArrowWapper = styled('div', {
   backgroundColor: 'none',
 
   '@md': {
+    top: '40%',
+  },
+
+  '@lg': {
     top: '45%',
+  },
+
+  '@xl': {
     backgroundColor: vars.$scale.color.gray00,
   },
 });
@@ -137,12 +144,14 @@ const Container = styled('section', {
 });
 
 const CarouselSectionTitle = styled('h2', {
+  maxWidth: rem(220),
   marginBottom: rem(48),
   padding: `0 ${rem(16)}`,
   textAlign: 'center',
   fontSize: vars.$scale.dimension.fontSize600,
 
   '@md': {
+    maxWidth: rem(800),
     fontSize: vars.$scale.dimension.fontSize900,
   },
 });
@@ -160,13 +169,13 @@ const Card = styled('div', {
 const ImageWrapper = styled('div', {
   width: '100%',
   // aspectRatio: '16 / 9',
-  // borderRadius: rem(60),
   overflow: 'hidden',
-  padding: `${rem(20)} ${rem(10)}`,
+  padding: `${rem(20)} ${rem(15)}`,
 });
 
 const CarouselImage = styled(GatsbyImage, {
   width: '100%',
+  // height: rem(500),
   // height: 'auto',
   opacity: 0.99,
   objectFit: 'cover',

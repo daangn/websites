@@ -3,6 +3,7 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { rem } from 'polished';
 import React from 'react';
+import { Link } from 'gatsby';
 
 type ListCardProps = {
   slice: GatsbyTypes.ListCard;
@@ -11,7 +12,7 @@ type ListCardProps = {
 const ListCardSection: React.FC<ListCardProps> = ({ slice }) => {
   return (
     <CultureSection>
-      <TempKeyText>우리의 문화</TempKeyText>
+      {/* <TempKeyText>우리의 문화</TempKeyText> */}
       <CultureSectionTitle>당근마켓 팀은 이렇게 일해요</CultureSectionTitle>
       {/* <TempTextWrapper>
         <TempTitleContainer>
@@ -42,6 +43,12 @@ const ListCardSection: React.FC<ListCardProps> = ({ slice }) => {
             </GraphicWrapper>
           </CultureDescriptionCard>
         ))}
+          <BlogCard key="cta-to-blog">
+            <CultureTextWapper>
+              <DescritionTitle>당근마켓 팀문화는 최고의 자산이에요</DescritionTitle>
+              <BlogCtaButton to="/blog/category/culture/">문화 보러가기</BlogCtaButton>
+            </CultureTextWapper>
+          </BlogCard>
       </CardWrapper>
     </CultureSection>
   );
@@ -52,7 +59,11 @@ const CultureSection = styled('section', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  margin: `${rem(160)} 0`,
+  margin: `${rem(96)} 0`,
+
+  '@sm': {
+    margin: `${rem(160)} 0`,
+  },
 });
 
 const TempTextWrapper = styled('div', {
@@ -70,16 +81,16 @@ const TempTitleContainer = styled('div', {
   alignItems: 'flex-start',
 });
 
-const TempKeyText = styled('span', {
-  typography: '$body2',
-  fontWeight: 'bold',
-  marginBottom: rem(4),
+// const TempKeyText = styled('span', {
+//   typography: '$body2',
+//   fontWeight: 'bold',
+//   marginBottom: rem(4),
 
-  '@md': {
-    typography: '$subtitle3',
-    marginBottom: rem(8),
-  },
-});
+//   '@md': {
+//     typography: '$subtitle3',
+//     marginBottom: rem(8),
+//   },
+// });
 
 const TempTitle = styled('h2', {
   maxWidth: rem(250),
@@ -107,37 +118,50 @@ const TempDescription = styled('div', {
 });
 
 const CultureSectionTitle = styled('h2', {
-  // margin: `${rem(72)} 0`,
-  marginBottom: rem(120),
-  fontSize: vars.$scale.dimension.fontSize800,
+  maxWidth: rem(200),
+  marginBottom: rem(32),
+  fontSize: vars.$scale.dimension.fontSize600,
+  textAlign: 'center',
 
   '@md': {
+    maxWidth: rem(800),
+    marginBottom: rem(120),
     fontSize: vars.$scale.dimension.fontSize900,
   },
 });
 
 const CardWrapper = styled('div', {
   display: 'grid',
-  gridTemplateColumns: 'repeat(2, 1fr)',
-  gap: rem(30),
+  gridTemplateColumns: 'repeat(1, 1fr)',
+  gap: rem(14),
+  justifyItems: 'center',
+
+  '@md': {
+    gridTemplateColumns: 'repeat(2, 1fr)',
+    gap: rem(30),
+  },
 });
 
 const CultureDescriptionCard = styled('div', {
   display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'flex-start',
+  flexDirection: 'column-reverse',
+  justifyContent: 'center',
   alignItems: 'center',
-  width: rem(405),
-  height: rem(548),
-  padding: `${rem(46)} ${rem(50)}`,
-  border: 'none',
+  width: '90%',
+  height: rem(400),
+  padding: `${rem(30)} ${rem(28)}`,
+  borderRadius: rem(30),
+  border: `1px solid ${vars.$scale.color.gray50}`,
   backgroundColor: vars.$scale.color.gray00,
-  boxShadow: 'none',
+  boxShadow: '0px 0px 64px 0px rgba(125, 121, 139, 0.15) ',
   boxSizing: 'border-box',
 
-  '@md': {
-    borderRadius: rem(30),
-    boxShadow: '0px 0px 64px 0px rgba(17, 12, 46, 0.15) ',
+  '@sm': {
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    width: rem(405),
+    height: rem(548),
+    padding: `${rem(46)} ${rem(50)}`,
   },
 });
 
@@ -145,7 +169,11 @@ const CultureTextWapper = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   width: '100%',
-  marginBottom: rem(38),
+  marginBottom: 0,
+
+  '@sm': {
+    marginBottom: rem(38),
+  },
 });
 
 const DescritionTitle = styled('h3', {
@@ -182,13 +210,40 @@ const Description = styled('div', {
 
 const GraphicWrapper = styled('div', {
   display: 'flex',
-  justifyContent: 'center',
+  justifyContent: 'flex-start',
   width: '100%',
+
+  '@sm': {
+    justifyContent: 'center',
+  },
 });
 
 const CultureGraphic = styled(GatsbyImage, {
-  width: rem(216),
-  height: rem(216),
+  width: rem(64),
+  height: rem(64),
+  marginBottom: rem(66),
+
+  '@sm': {
+    width: rem(216),
+    height: rem(216),
+    marginBottom: rem(0),
+  },
+});
+
+const BlogCard = styled(CultureDescriptionCard, {
+  backgroundColor: '#FFDD87',
+  justifyContent: 'flex-end',
+
+  '@md': {
+    justifyContent: 'flex-start',
+  },
+});
+
+const BlogCtaButton = styled(Link, {
+  textDecoration: 'none',
+  color: vars.$scale.color.gray900,
+  fontSize: vars.$scale.dimension.fontSize300,
+  fontWeight: 'bold',
 });
 
 export default ListCardSection;

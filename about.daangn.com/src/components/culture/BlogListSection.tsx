@@ -3,6 +3,7 @@ import { vars } from '@seed-design/design-token';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import React from 'react';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 type BlogListSectionProps = {
   slice: GatsbyTypes.BlogListSection;
@@ -12,14 +13,16 @@ type BlogListSectionProps = {
 export const query = graphql`
   fragment BlogPostList_query on Query {
     allPost(
-      filter: {category: {uid: {ne: "pr"}}}
+      filter: {category: {uid: {eq: "career"}}}
       sort: {publishedAt: DESC}
     ) {
       nodes {
         slug
         title
-        thumbnailImage {
-          publicURL
+        verticalThumbnailImage {
+          childImageSharp {
+            gatsbyImageData
+          }
         }
       }
     }
@@ -45,7 +48,7 @@ const BlogListSection: React.FC<BlogListSectionProps> = ({ slice, data }) => {
         {data.allPost.nodes.map((post) => (
           <BlogCard key={post.slug} to={`/blog/archive/${post.slug}`}>
             <BlogcardThumbnail
-              src={post.thumbnailImage?.publicURL}
+              image={post.verticalThumbnailImage?.childImageSharp?.gatsbyImageData}
               alt={`${post.slug}_썸네일이미지`}
             />
             <BlogTitleBox>
@@ -109,6 +112,7 @@ const BlogCardWraaper = styled('div', {
 });
 
 const BlogCard = styled(Link, {
+  boxSizing: 'border-box',
   position: 'relative',
   display: 'flex',
   flexShrink: 0,
@@ -116,47 +120,47 @@ const BlogCard = styled(Link, {
   alignItems: 'center',
   justifyContent: 'center',
   overflow: 'hidden',
-  width: rem(240),
-  height: rem(320),
+  width: rem(245),
+  height: rem(322),
   margin: rem(16),
   marginBottom: rem(40),
-  borderRadius: rem(20),
+  borderRadius: rem(30),
   backgroundColor: vars.$scale.color.gray00,
   boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 2px 0px',
   color: vars.$scale.color.gray900,
   cursor: 'pointer',
   textDecoration: 'none',
+  transition: 'all .3s ease-in-out',
 
   '&:hover': {
-    boxShadow: 'rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px',
-    top: rem(-4),
-    transform: 'scale(1.05)',
-    transition: 'transform 0.2s ease-out, top 0.2s ease-out',
+    transform: 'translateY(-8px)',
   },
 });
 
-const BlogcardThumbnail = styled('img', {
+const BlogcardThumbnail = styled(GatsbyImage, {
   position: 'absolute',
   top: 0,
-  height: rem(240),
+  height: '100%',
   objectFit: 'scale-down',
 });
 
 const BlogTitleBox = styled('div', {
   position: 'absolute',
-  top: 240,
+  top: 225,
   width: '100%',
-  height: rem(80),
+  height: rem(100),
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   textAlign: 'center',
+  background: 'linear-gradient(rgba(175, 175, 175, 0) 0%, rgb(129 129 129 / 53%) 100%)',
 });
 
 const BlogTitle = styled('p', {
   padding: `${rem(16)} ${rem(20)}`,
-  fontSize: vars.$scale.dimension.fontSize200,
-  fontWeight: 600,
+  color: vars.$scale.color.gray00,
+  fontSize: vars.$scale.dimension.fontSize300,
+  fontWeight: 'bold',
 });
 
 export default BlogListSection;
