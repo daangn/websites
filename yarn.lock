@@ -5205,6 +5205,7 @@ __metadata:
     react: 18.2.0
     react-dom: 18.2.0
     react-responsive-carousel: 3.2.23
+    simple-reveal: 0.6.0
     typescript: 5.0.4
     ultra-runner: 3.10.5
   languageName: unknown
@@ -16895,6 +16896,15 @@ __metadata:
     once: ^1.3.1
     simple-concat: ^1.0.0
   checksum: e4132fd27cf7af230d853fa45c1b8ce900cb430dd0a3c6d3829649fe4f2b26574c803698076c4006450efb0fad2ba8c5455fbb5755d4b0a5ec42d4f12b31d27e
+  languageName: node
+  linkType: hard
+
+"simple-reveal@npm:0.6.0":
+  version: 0.6.0
+  resolution: "simple-reveal@npm:0.6.0"
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: 43688ab95d024c79b546e3edbc6403773b377a047862616b6a0d5d17c62836ad306024366aa66baea5e263f46ca9bf086f088d04bcc10c96153a3b3b73811cf9
   languageName: node
   linkType: hard
 
