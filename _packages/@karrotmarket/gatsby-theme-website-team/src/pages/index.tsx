@@ -16,7 +16,9 @@ import PrismicTeamContentsDataMainBodyIllustrationAndDescription from '../compon
 import PrismicTeamContentsDataMainBodyWideBanner from '../components/PrismicTeamContentsDataMainBodyWideBanner';
 import PrismicTeamContentsDataMainBodyHowWeWork from '../components/PrismicTeamContentsDataMainBodyHowWeWork';
 import PrismicTeamContentsDataMainBodyBenefit from '../components/PrismicTeamContentsDataMainBodyBenefit';
+import PrismicTeamContentsDataMainBodyFeaturedPostCarousel from '../components/PrismicTeamContentsDataMainBodyFeaturedPostCarousel';
 import LatestBlogSection from '../components/LatestBlogSection';
+import JobsBannerSection from '../components/JobsBannerSection';
 import { isCanonicalUrl } from '../utils/common';
 
 export const query = graphql`
@@ -62,6 +64,22 @@ export const query = graphql`
           ...PrismicTeamContentsDataMainBodyWideBanner_data
           ...PrismicTeamContentsDataMainBodyHowWeWork_data
           ...PrismicTeamContentsDataMainBodyBenefit_data
+          ...PrismicTeamContentsDataMainBodyFeaturedPostCarousel_data
+          # ... on PrismicTeamContentsDataMainBodyFeaturedPostCarousel {
+          #   id
+          #   slice_type
+          #   items {
+          #     main_page_featured_post {
+          #       slug
+          #       uid
+          #       localFile {
+          #         childImageSharp {
+          #           gatsbyImageData
+          #         }
+          #       }
+          #     }
+          #   }
+          # }
         }
       }
     }
@@ -137,12 +155,21 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
               // rome-ignore lint/suspicious/noArrayIndexKey: intentional
               <PrismicTeamContentsDataMainBodyBenefit key={i} data={data} />
             ),
+            // 임시 컴포넌트 for KR
+            PrismicTeamContentsDataMainBodyFeaturedPostCarousel: (data) => (
+              // <h2 key={i}>featured article 블로그 섹션</h2>
+              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              <PrismicTeamContentsDataMainBodyFeaturedPostCarousel key={i} data={data} />
+            ),
             _: null,
           }),
         )}
         {/* kr에서만 사용하는 임시 섹션 */}
         {data.site.siteMetadata.locale === 'ko-kr' && (
-          <LatestBlogSection data={data} />
+          <>
+            <LatestBlogSection data={data} />
+            <JobsBannerSection />
+          </>
         )}
       </Content>
     </MainContainer>

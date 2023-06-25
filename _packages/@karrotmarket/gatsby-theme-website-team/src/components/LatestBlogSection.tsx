@@ -42,7 +42,7 @@ const TextWrapper = styled('div', {
   display: 'grid',
   justifyContent: 'center',
   gap: rem(32),
-  width: '100%',
+  // width: '100%',
   paddingX: rem(64),
   paddingY: rem(72),
 
@@ -96,14 +96,14 @@ const BlogCard = styled(Link, {
   marginBottom: rem(40),
   borderRadius: rem(30),
   backgroundColor: vars.$scale.color.gray00,
-  boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 2px 0px',
+  boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 10px 0px',
   color: vars.$scale.color.gray900,
   cursor: 'pointer',
   textDecoration: 'none',
+  transition: 'all .3s ease-in-out',
 
   '&:hover': {
-    boxShadow: 'rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px',
-    borderRadius: rem(50),
+    transform: 'scale(1.03)',
   },
 });
 
@@ -122,14 +122,16 @@ const BlogTitleBox = styled('div', {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  textAlign: 'center',
+  textAlign: 'left',
   background: 'linear-gradient(rgba(175, 175, 175, 0) 0%, rgb(129 129 129 / 53%) 100%)',
 });
 
 const BlogTitle = styled('p', {
+  width: '100%',
+  maxWidth: rem(200),
   padding: `${rem(16)} ${rem(20)}`,
   color: vars.$scale.color.gray00,
-  fontSize: vars.$scale.dimension.fontSize300,
+  fontSize: vars.$scale.dimension.fontSize400,
   fontWeight: 'bold',
 });
 
@@ -150,7 +152,7 @@ const LatestBlogSection: React.FC<LatestBlogSectionProps> = ({ data, className }
       <TextWrapper>
         <Title>당근마켓의 이야기가 더 궁금하다면</Title>
           <DetailLink
-            link={parseLink("https://about.daangn.com/jobs/")}
+            link={parseLink("https://about.daangn.com/blog/")}
             message="블로그 글 보러가기"
           />
       </TextWrapper>
