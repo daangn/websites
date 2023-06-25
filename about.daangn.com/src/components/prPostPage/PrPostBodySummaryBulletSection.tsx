@@ -34,8 +34,12 @@ const Container = styled('section', {
 });
 
 const UList = styled('ul', {
-  lineHeight: rem(30),
+  lineHeight: rem(25),
   paddingInlineStart: rem(20),
+
+  '@sm': {
+    lineHeight: rem(30),
+  },
 });
 
 const Strong = styled('strong', {
@@ -43,7 +47,11 @@ const Strong = styled('strong', {
 });
 
 const Paragraph = styled('p', {
-  lineHeight: rem(30),
+  lineHeight: rem(25),
+
+  '@sm': {
+    lineHeight: rem(30),
+  },
 });
 
 export default PrPostBodySummaryBulletSection;
