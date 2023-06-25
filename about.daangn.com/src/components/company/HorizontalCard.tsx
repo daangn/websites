@@ -22,7 +22,7 @@ const HorizontalCard: React.FC<HorizontalCardProps> = ({ slice }) => {
       <Wrapper>
         <TextArea>
           <TextWapper>
-            <KeyText>당근의 처음</KeyText>
+            <KeyText>당근의 시작</KeyText>
             <Title
               dangerouslySetInnerHTML={{
                 __html: slice.primary?.title?.html || '',
@@ -81,8 +81,9 @@ const TextArea = styled('div', {
   flexDirection: 'column',
   alignItems: 'center',
   height: 'auto',
-  padding: rem(16),
+  padding: rem(24),
   boxSizing: 'border-box',
+  paddingBottom: rem(88),
 
   '@md': {
     alignItems: 'flex-start',
@@ -97,17 +98,18 @@ const TextWapper = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   width: 'auto',
-  alignItems: 'center',
-
-  '@md': {
-    alignItems: 'flex-start',
-  },
+  alignItems: 'flex-start',
 });
 
 const KeyText = styled('span', {
-  marginBottom: rem(24),
+  marginTop: rem(36),
+  marginBottom: rem(16),
   fontWeight: 'bold',
   fontSize: vars.$scale.dimension.fontSize300,
+
+  '@sm': {
+    marginTop: 0,
+  },
 });
 
 const Title = styled('div', {
@@ -128,11 +130,15 @@ const Title = styled('div', {
 });
 
 const Description = styled('p', {
-  marginTop: rem(24),
-  lineHeight: '150%',
+  marginTop: rem(48),
+  lineHeight: '170%',
   textAlign: 'left',
-  fontSize: vars.$scale.dimension.fontSize300,
+  fontSize: vars.$scale.dimension.fontSize200,
   color: vars.$scale.color.gray700,
+
+  '@sm': {
+    fontSize: vars.$scale.dimension.fontSize300,
+  },
 
   '@md': {
     maxWidth: rem(280),
@@ -140,7 +146,6 @@ const Description = styled('p', {
 
   '@lg': {
     maxWidth: rem(420),
-    marginTop: rem(48),
   },
 });
 

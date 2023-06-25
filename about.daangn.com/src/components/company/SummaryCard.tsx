@@ -38,22 +38,32 @@ const Container = styled('section', {
   alignItems: 'center',
   width: '100%',
   height: 'auto',
-  marginBottom: rem(160),
+  marginY: rem(96),
+
+  '@sm': {
+    marginY: rem(160),
+  },
 });
 
 const TitleWrapper = styled('div', {
   width: '100%',
-  textAlign: 'left',
+  textAlign: 'center',
+
+  '@sm': {
+    textAlign: 'left',
+  },
 });
 
 const Title = styled('h2', {
-  maxWidth: rem(300),
-  margin: `${rem(40)} 0`,
-  marginBottom: rem(60),
-  fontSize: vars.$scale.dimension.fontSize700,
+  maxWidth: rem(335),
+  margin: 0,
+  marginBottom: rem(48),
+  fontSize: vars.$scale.dimension.fontSize600,
 
   '@md': {
     maxWidth: rem(400),
+    margin: `${rem(40)} 0`,
+    marginBottom: rem(60),
     fontSize: vars.$scale.dimension.fontSize900,
   },
 });
@@ -64,36 +74,32 @@ const CardWrapper = styled('div', {
   flexWrap: 'wrap',
   justifyContent: 'center',
   alignItems: 'center',
-  gap: rem(20),
   width: '100%',
-  // maxWidth: rem(800),
+  gap: rem(14),
 
-  '@lg': {
-    // gap: rem(35),
-    // maxWidth: rem(1000),
+  '@sm': {
+    gap: rem(20),
   },
 });
 
 const Card = styled('div', {
   display: 'flex',
-  flexDirection: 'column',
+  flexDirection: 'row',
   justifyContent: 'space-between',
+  alignItems: 'center',
   width: '100%',
-  maxWidth: rem(280),
-  height: rem(180),
+  height: rem(120),
   padding: rem(16),
   backgroundColor: vars.$scale.color.gray100,
   borderRadius: rem(18),
   boxSizing: 'border-box',
 
-  // '@sm': {
-  //   maxWidth: rem(280),
-  //   height: rem(180),
-  // },
-
   '@md': {
-    maxWidth: rem(360),
-    height: rem(220),
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    maxWidth: rem(420),
+    height: rem(300),
+    padding: rem(30),
   },
 
   '@lg': {
@@ -105,8 +111,8 @@ const Card = styled('div', {
 });
 
 const CardText = styled('h3', {
-  maxWidth: rem(160),
-  fontSize: vars.$scale.dimension.fontSize400,
+  maxWidth: rem(200),
+  fontSize: vars.$scale.dimension.fontSize300,
 
   '@md': {
     maxWidth: rem(260),
@@ -115,7 +121,7 @@ const CardText = styled('h3', {
 });
 
 const IconWrapper = styled('div', {
-  width: '100%',
+  width: 'auto',
   height: rem(50),
   textAlign: 'right',
 

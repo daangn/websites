@@ -44,13 +44,9 @@ const VerticalCard: React.FC<VerticalCardProps> = ({ slice }) => {
 const Section = styled('section', {
   position: 'relative',
   width: '100%',
-  height: rem(208),
+  height: rem(536),
   margin: `${rem(40)} 0`,
   boxSizing: 'border-box',
-
-  '@sm': {
-    height: rem(340),
-  },
 
   '@md': {
     height: rem(450),
@@ -108,8 +104,6 @@ const TextWapper = styled('div', {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   zIndex: 2,
-
-
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -123,7 +117,12 @@ const TextWapper = styled('div', {
 
 const Title = styled('div', {
   width: '100%',
+  maxWidth: rem(220),
   marginBottom: rem(24),
+
+  '@sm': {
+    maxWidth: rem(800),
+  },
 
   '& h2': {
     fontSize: vars.$scale.dimension.fontSize600,
@@ -136,10 +135,15 @@ const Title = styled('div', {
 
 const Description = styled('p', {
   width: '100%',
-  maxWidth: rem(600),
-  lineHeight: '150%',
+  maxWidth: rem(250),
+  lineHeight: '170%',
   textAlign: 'center',
-  fontSize: vars.$scale.dimension.fontSize300,
+  fontSize: vars.$scale.dimension.fontSize200,
+
+  '@sm': {
+    maxWidth: rem(600),
+    fontSize: vars.$scale.dimension.fontSize300,
+  },
 });
 
 export default VerticalCard;

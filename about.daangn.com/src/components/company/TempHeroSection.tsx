@@ -17,7 +17,7 @@ const TempHeroSection: React.FC<TempHeroSectionProps> = ({ slice }) => {
         alt={slice.primary.full_image.alt}
       />
       <Description>
-        누구나 사용하는 지역 커뮤니티 로컬앱을 꿈꿔요. 근처 이웃들은 진짜 우리 동네 이야기를 주고받을 수 있고, 가게 사장님은 이웃들의 목소리를 가장 가까이서 귀 기울여 들을 수 있지요. 이웃과 더 가까워지는 풍요로운 동네가 될 수 있도록 당근마켓은 오늘도 머리를 맞대고 있습니다.
+        당근마켓은 동네 곳곳에 흩어져 있던 이웃과 정보, 가게를 연결하며 동네에 가치를 불어넣습니다. 중고거래, 모임, 가게 홍보와 결제까지, 대한민국을 넘어 전 세계 곳곳 동네의 모든 것을 당근마켓으로 연결해나가고 있어요.
       </Description>
     </Section>
   );
@@ -25,8 +25,10 @@ const TempHeroSection: React.FC<TempHeroSectionProps> = ({ slice }) => {
 
 const Section = styled('section', {
   contentArea: false,
+  marginBottom: rem(96),
 
   '@md': {
+    marginBottom: rem(0),
     contentArea: true,
     borderRadius: rem(30),
   },

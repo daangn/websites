@@ -34,15 +34,19 @@ const Container = styled('section', {
   width: '100%',
   height: 'auto',
   backgroundColor: vars.$scale.color.gray50,
-  padding: `${rem(160)} 0`,
+  padding: `${rem(80)} 0`,
+
+  '@md': {
+    padding: `${rem(160)} 0`,
+  },
 });
 
 const Title = styled('h2', {
-  width: rem(300),
+  width: rem(330),
   marginBottom: rem(40),
   paddingTop: rem(40),
   textAlign: 'center',
-  fontSize: vars.$scale.dimension.fontSize700,
+  fontSize: vars.$scale.dimension.fontSize600,
 
   '@md': {
     width: '100%',
@@ -54,7 +58,7 @@ const Title = styled('h2', {
 const LogoWapper = styled('div', {
   display: 'flex',
   flexWrap: 'wrap',
-  justifyContent: 'space-between',
+  justifyContent: 'center',
   maxWidth: rem(400),
   gap: rem(10),
   padding: `${rem(30)} ${rem(40)}`,
@@ -62,7 +66,6 @@ const LogoWapper = styled('div', {
   '@md': {
     gap: rem(20),
     maxWidth: rem(700),
-    justifyContent: 'center',
   },
 
   '@xl': {

@@ -29,13 +29,13 @@ export const query = graphql`
 const PrSection: React.FC<PrSectionProps> = ({ slice, data }) => {
   const scrollRef = React.useRef<HTMLDivElement>(null);
 
-  React.useEffect(() => {
-    const container = scrollRef.current;
-    if (!container) return;
-    const containerWidth = container.clientWidth;
-    const contentWidth = container.scrollWidth;
-    container.scrollLeft = (contentWidth - containerWidth) / 2;
-  });
+  // React.useEffect(() => {
+  //   const container = scrollRef.current;
+  //   if (!container) return;
+  //   const containerWidth = container.clientWidth;
+  //   const contentWidth = container.scrollWidth;
+  //   container.scrollLeft = (contentWidth - containerWidth) / 2;
+  // });
 
   return (
     <Section>
@@ -68,9 +68,11 @@ const Section = styled('section', {
   width: '100%',
   height: 'calc(100vh - 58px)',
   overflow: 'hidden',
+  marginBottom: rem(-120),
 
   '@sm': {
     height: 'calc(100vh - 68px)',
+    marginBottom: rem(-160),
   },
 });
 
@@ -78,7 +80,6 @@ const Image = styled(GatsbyImage, {
   width: '100%',
   height: '100%',
   objectFit: 'cover',
-  filter: 'brightness(50%)',
 });
 
 const ContentWrapper = styled('div', {
@@ -91,12 +92,14 @@ const ContentWrapper = styled('div', {
 });
 
 const PrSectionTitle = styled('h2', {
+  maxWidth: rem(320),
   margin: `${rem(20)} 0`,
   fontSize: vars.$scale.dimension.fontSize600,
   color: vars.$scale.color.gray00,
 
   '@md': {
-    fontSize: vars.$scale.dimension.fontSize800,
+    maxWidth: rem(700),
+    fontSize: vars.$scale.dimension.fontSize900,
   },
 });
 
@@ -137,8 +140,8 @@ const PrCard = styled(Link, {
   flexDirection: 'column',
   alignItems: 'flex-start',
   justifyContent: 'space-around',
-  width: rem(180),
-  height: rem(160),
+  width: rem(200),
+  height: rem(240),
   margin: rem(8),
   opacity: 0.85,
   padding: `${rem(4)} ${rem(20)}`,
