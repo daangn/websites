@@ -31,8 +31,12 @@ const TextContainer = styled('section', {
   flexWrap: 'wrap',
   gap: `${rem(24)} 0`,
   alignItems: 'center',
-  marginBottom: rem(-60),
+  marginBottom: rem(-40),
   textAlign: 'center',
+
+  '@md': {
+    marginBottom: rem(-60),
+  },
 });
 
 const KeyText = styled('span', {
@@ -47,19 +51,23 @@ const KeyText = styled('span', {
 const Title = styled('h2', {
   whiteSpace: 'pre-line',
   typography: '$subtitle2',
+  maxWidth: rem(250),
 
   '@md': {
     typography: '$heading4',
+    maxWidth: rem(700),
   },
 });
 
 const Summary = styled('p', {
-  maxWidth: rem(500),
+  maxWidth: rem(300),
   color: vars.$scale.color.gray700,
   typography: '$body2',
+  lineHeight: '150%',
 
   '@md': {
     typography: '$body1',
+    maxWidth: rem(500),
   },
 });
 
@@ -87,6 +95,8 @@ const Slide = styled('div', {
   display: 'flex',
   gap: '$$gap',
   transition: 'transform 0.3s ease-in-out',
+  borderRadius: rem(30),
+  margin: `0 ${rem(12)}`,
 
   transform: 'translateX(calc(-100% * $$slide - $$gap * $$slide))',
   '@lg': {

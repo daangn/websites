@@ -5,6 +5,8 @@ import { rem } from 'polished';
 import React from 'react';
 import { Link } from 'gatsby';
 
+import CtaButton from '../CtaButton';
+
 type ListCardProps = {
   slice: GatsbyTypes.ListCard;
 };
@@ -44,7 +46,7 @@ const ListCardSection: React.FC<ListCardProps> = ({ slice }) => {
         <BlogCard key="cta-to-blog">
           <CultureTextWapper>
             <DescritionTitle>당근마켓 팀문화는 최고의 자산이에요</DescritionTitle>
-            <BlogCtaButton to="/blog/category/culture/">문화 보러가기</BlogCtaButton>
+            <CtaButton link="/blog/category/culture/">문화 보러가기</CtaButton>
           </CultureTextWapper>
         </BlogCard>
       </CardWrapper>
@@ -235,13 +237,6 @@ const BlogCard = styled(CultureDescriptionCard, {
   '@md': {
     justifyContent: 'flex-start',
   },
-});
-
-const BlogCtaButton = styled(Link, {
-  textDecoration: 'none',
-  color: vars.$scale.color.gray900,
-  fontSize: vars.$scale.dimension.fontSize300,
-  fontWeight: 'bold',
 });
 
 export default ListCardSection;

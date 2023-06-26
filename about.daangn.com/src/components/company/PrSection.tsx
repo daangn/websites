@@ -1,9 +1,11 @@
 import { vars } from '@seed-design/design-token';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { getImage, GatsbyImage } from 'gatsby-plugin-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
 import { rem } from 'polished';
 import { Link, graphql } from 'gatsby';
+
+import CtaButton from '../CtaButton';
 
 type PrSectionProps = {
   slice: GatsbyTypes.PrSection;
@@ -45,7 +47,7 @@ const PrSection: React.FC<PrSectionProps> = ({ slice, data }) => {
       />
       <ContentWrapper>
         <PrSectionTitle>{slice.primary.section_title.text}</PrSectionTitle>
-        <Button to='/company/pr/'>자세히보기</Button>
+        <CtaButton link='/company/pr/'>보도자료 보러 가기</CtaButton>
         <PrListWraaper ref={scrollRef}>
           {data.allPost.nodes.map((post) => (
             <PrCard key={post.slug} to={`/company/pr/archive/${post.slug}/`}>
@@ -95,7 +97,7 @@ const PrSectionTitle = styled('h2', {
   maxWidth: rem(320),
   margin: `${rem(20)} 0`,
   fontSize: vars.$scale.dimension.fontSize600,
-  color: vars.$scale.color.gray00,
+  color: vars.$scale.color.gray900,
 
   '@md': {
     maxWidth: rem(700),

@@ -58,10 +58,14 @@ const Container = styled('div', {
     height: rem(460),
   },
 
-  // transition: 'all .3s ease-in-out',
+  transition: 'all .3s ease-in-out',
 
   '&:hover h3': {
-    color: vars.$scale.color.gray600,
+    color: vars.$scale.color.gray700,
+  },
+
+  '&:hover': {
+    transform: 'translateY(-8px)',
   },
 });
 
@@ -78,12 +82,8 @@ const ImageWrapper = styled('div', {
 
 const Image = styled('img', {
   width: '100%',
-  transition: 'all .3s ease-in-out',
-
-  '&:hover': {
-    transform: 'scale(1.03)',
-    filter: 'brightness(90%)',
-  },
+  height: '100%',
+  borderRadius: rem(20),
 });
 
 const PostTitle = styled('h3', {

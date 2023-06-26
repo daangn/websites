@@ -5,6 +5,8 @@ import { rem } from 'polished';
 import React from 'react';
 import { GatsbyImage } from 'gatsby-plugin-image';
 
+import CtaButton from '../CtaButton';
+
 type BlogListSectionProps = {
   slice: GatsbyTypes.BlogListSection;
   data: GatsbyTypes.BlogPostList_queryFragment;
@@ -43,7 +45,7 @@ const BlogListSection: React.FC<BlogListSectionProps> = ({ slice, data }) => {
   return (
     <BlogSection>
       <BlogSectionTitle>{slice.primary.blog_list_title}</BlogSectionTitle>
-      <Button to='/blog'>자세히보기</Button>
+      <CtaButton link="/blog/category/career/">자세히보기</CtaButton>
       <BlogCardWraaper ref={scrollRef}>
         {data.allPost.nodes.map((post) => (
           <BlogCard key={post.slug} to={`/blog/archive/${post.slug}`}>
@@ -79,19 +81,6 @@ const BlogSectionTitle = styled('h2', {
   '@md': {
     fontSize: vars.$scale.dimension.fontSize800,
   },
-});
-
-const Button = styled(Link, {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  width: rem(110),
-  height: rem(40),
-  margin: rem(20),
-  borderRadius: rem(20),
-  textDecoration: 'none',
-  backgroundColor: vars.$scale.color.gray900,
-  color: vars.$scale.color.gray00,
 });
 
 const BlogCardWraaper = styled('div', {
@@ -159,7 +148,7 @@ const BlogTitleBox = styled('div', {
 const BlogTitle = styled('p', {
   padding: `${rem(16)} ${rem(20)}`,
   color: vars.$scale.color.gray00,
-  fontSize: vars.$scale.dimension.fontSize300,
+  fontSize: vars.$scale.dimension.fontSize400,
   fontWeight: 'bold',
 });
 

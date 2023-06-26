@@ -42,7 +42,7 @@ const Container = styled('article', {
   gridTemplateRows: 'repeat(2, min-content)',
   justifyContent: 'center',
   borderRadius: rem(30),
-  boxShadow: 'rgba(0, 0, 0, 0.05) 0px 4px 24px 0px',
+  boxShadow: 'rgba(0, 0, 0, 0.05) 0px 4px 8px 0px',
   boxSizing: 'border-box',
   marginBottom: rem(20),
 });
@@ -57,13 +57,17 @@ const Image = styled(GatsbyImage, {
 
 const TextWrapper = styled('figure', {
   display: 'grid',
-  padding: `${rem(44)} ${rem(40)}`,
+  padding: `${rem(22)} ${rem(20)}`,
   borderRadius: `0 0 ${rem(30)} ${rem(30)}`,
   backgroundColor: vars.$scale.color.gray00,
+
+  '@sm': {
+    padding: `${rem(44)} ${rem(40)}`,
+  },
 });
 
 const Title = styled('h3', {
-  typography: '$subtitle4',
+  typography: '$subtitle3',
   fontWeight: 'bold',
 
   '@md': {
@@ -73,11 +77,12 @@ const Title = styled('h3', {
 });
 
 const Summary = styled('p', {
-  typography: '$body2',
+  typography: '$body3',
   color: vars.$scale.color.gray600,
-  marginTop: rem(12),
+  marginTop: rem(4),
 
   '@md': {
+    marginTop: rem(12),
     typography: '$subtitle4',
   },
 });
