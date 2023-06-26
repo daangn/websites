@@ -31,10 +31,6 @@ const NextArrow: React.FC<ArrowProps> = (clickHandler, hasNext) =>
 
 const CarouselSection: React.FC<CarouselProps> = ({ slice }) => {
   const [centerMode, setCenterMode] = React.useState(false);
-  // const swiper = new Swiper('.swiper', {
-  //   // configure Swiper to use modules
-  //   modules: [Navigation, Pagination],
-  // });
 
   React.useEffect(() => {
     const handleResize = () => {
@@ -51,8 +47,8 @@ const CarouselSection: React.FC<CarouselProps> = ({ slice }) => {
       <CarouselSectionTitle>{slice.primary.carousel_section_title}</CarouselSectionTitle>
       <CarouselWrapper>
         <Carousel
-          centerMode={centerMode}
-          centerSlidePercentage={65}
+          // centerMode={centerMode}
+          // centerSlidePercentage={65}
           infiniteLoop={true}
           showArrows={true}
           showIndicators={false}
@@ -79,16 +75,6 @@ const CarouselSection: React.FC<CarouselProps> = ({ slice }) => {
           ))}
         </Carousel>
       </CarouselWrapper>
-      {/* <div className="swiper">
-        <div className="swiper-wrapper">
-          <div className="swiper-slide">Slide 1</div>
-          <div className="swiper-slide">Slide 2</div>
-          <div className="swiper-slide">Slide 3</div>
-        </div>
-        <div className="swiper-pagination" />
-        <div className="swiper-button-prev" />
-        <div className="swiper-button-next" />
-      </div> */}
     </Container>
   );
 };
@@ -158,7 +144,6 @@ const CarouselSectionTitle = styled('h2', {
 
 const CarouselWrapper = styled('div', {
   width: '100%',
-  height: 'auto',
 });
 
 const Card = styled('div', {
@@ -175,15 +160,11 @@ const ImageWrapper = styled('div', {
 
 const CarouselImage = styled(GatsbyImage, {
   width: '100%',
-  // height: rem(500),
-  // height: 'auto',
+  maxWidth: rem(900),
+  aspectRatio: '16 / 9',
   opacity: 0.99,
   objectFit: 'cover',
   borderRadius: rem(30),
-
-  '@md': {
-    borderRadius: rem(60),
-  },
 });
 
 const CarouselTitle = styled('h3', {

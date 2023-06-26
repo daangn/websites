@@ -42,7 +42,6 @@ const TextWrapper = styled('div', {
   display: 'grid',
   justifyContent: 'center',
   gap: rem(32),
-  // width: '100%',
   paddingX: rem(64),
   paddingY: rem(72),
 
