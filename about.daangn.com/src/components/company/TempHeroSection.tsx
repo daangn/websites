@@ -3,6 +3,7 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
 import { rem } from 'polished';
 import { vars } from '@seed-design/design-token';
+import { SimpleReveal } from 'simple-reveal';
 
 type TempHeroSectionProps = {
   slice: GatsbyTypes.FullImage;
@@ -11,16 +12,32 @@ type TempHeroSectionProps = {
 const TempHeroSection: React.FC<TempHeroSectionProps> = ({ slice }) => {
   return (
     <Section>
-      <PageTitle>더 따뜻한 당신근처를 위하여</PageTitle>
+      <SimpleReveal
+        render={({ ref, cn, style }) => (
+          <PageTitle ref={ref} className={cn()} style={style}>
+            더 따뜻한 당신근처를 위하여
+          </PageTitle>
+        )}
+        duration={1000}
+        delay={200}
+        initialTransform="translateY(2rem)"
+      />
       <Image
         image={slice.primary.full_image.localFile.childImageSharp.gatsbyImageData}
         alt={slice.primary.full_image.alt}
       />
-      <Description>
-        당근마켓은 동네 곳곳에 흩어져 있던 이웃과 정보, 가게를 연결하며 동네에 가치를 불어넣습니다.
-        중고거래, 모임, 가게 홍보와 결제까지, 대한민국을 넘어 전 세계 곳곳 동네의 모든 것을
-        당근마켓으로 연결해나가고 있어요.
-      </Description>
+      <SimpleReveal
+        render={({ ref, cn, style }) => (
+          <Description ref={ref} className={cn()} style={style}>
+            당근마켓은 동네 곳곳에 흩어져 있던 이웃과 정보, 가게를 연결하며 동네에 가치를
+            불어넣습니다. 중고거래, 모임, 가게 홍보와 결제까지, 대한민국을 넘어 전 세계 곳곳 동네의
+            모든 것을 당근마켓으로 연결해나가고 있어요.
+          </Description>
+        )}
+        duration={1000}
+        delay={400}
+        initialTransform="translateY(2rem)"
+      />
     </Section>
   );
 };

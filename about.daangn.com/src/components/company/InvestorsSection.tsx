@@ -3,6 +3,7 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { getImage, GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
 import { rem } from 'polished';
+import { SimpleReveal } from 'simple-reveal';
 
 type InvestorsSectionProps = {
   slice: GatsbyTypes.PrismicCompanyContentDataBodyInvestorsSection;
@@ -11,17 +12,33 @@ type InvestorsSectionProps = {
 const InvestorsSection: React.FC<InvestorsSectionProps> = ({ slice }) => {
   return (
     <Container>
-      <Title>{slice?.primary.title?.text}</Title>
-      <LogoWapper>
-        {slice.items.map((item, index) => (
-          <Logo
-            // rome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-            key={index}
-            src={item?.image?.localFile?.publicURL || ''}
-            alt={item?.image?.alt || ''}
-          />
-        ))}
-      </LogoWapper>
+      <SimpleReveal
+        render={({ ref, cn, style }) => (
+          <Title ref={ref} className={cn()} style={style}>
+            {slice?.primary.title?.text}
+          </Title>
+        )}
+        duration={1000}
+        delay={600}
+        initialTransform="translateY(2rem)"
+      />
+      <SimpleReveal
+        render={({ ref, cn, style }) => (
+          <LogoWapper ref={ref} className={cn()} style={style}>
+            {slice.items.map((item, index) => (
+              <Logo
+                // rome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+                key={index}
+                src={item?.image?.localFile?.publicURL || ''}
+                alt={item?.image?.alt || ''}
+              />
+            ))}
+          </LogoWapper>
+        )}
+        duration={1000}
+        delay={600}
+        initialTransform="translateY(2rem)"
+      />
     </Container>
   );
 };
@@ -59,13 +76,13 @@ const LogoWapper = styled('div', {
   display: 'flex',
   flexWrap: 'wrap',
   justifyContent: 'center',
-  maxWidth: rem(400),
+  maxWidth: rem(500),
   gap: rem(10),
   padding: `${rem(30)} ${rem(40)}`,
 
   '@md': {
     gap: rem(20),
-    maxWidth: rem(700),
+    maxWidth: rem(900),
   },
 
   '@xl': {
@@ -85,8 +102,8 @@ const Logo = styled('img', {
   },
 
   '@md': {
-    width: rem(200),
-    mexHeight: rem(100),
+    width: rem(300),
+    mexHeight: rem(120),
   },
 });
 

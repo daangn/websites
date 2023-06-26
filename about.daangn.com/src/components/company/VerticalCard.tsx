@@ -3,6 +3,7 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { getImage, GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
 import { rem } from 'polished';
+import { SimpleReveal } from 'simple-reveal';
 
 type VerticalCardProps = {
   slice: GatsbyTypes.PrismicCompanyContentDataBodyVerticalCard;
@@ -29,12 +30,31 @@ const VerticalCard: React.FC<VerticalCardProps> = ({ slice }) => {
           )}
         </ImageWrapper>
         <TextWapper>
-          <Title
-            dangerouslySetInnerHTML={{
-              __html: slice.primary?.title?.html || '',
-            }}
+          <SimpleReveal
+            render={({ ref, cn, style }) => (
+              <Title
+                ref={ref}
+                className={cn()}
+                style={style}
+                dangerouslySetInnerHTML={{
+                  __html: slice.primary?.title?.html || '',
+                }}
+              />
+            )}
+            duration={1000}
+            delay={1200}
+            initialTransform="translateY(2rem)"
           />
-          <Description>{slice.primary.description}</Description>
+          <SimpleReveal
+            render={({ ref, cn, style }) => (
+              <Description ref={ref} className={cn()} style={style}>
+                {slice.primary.description}
+              </Description>
+            )}
+            duration={1000}
+            delay={1400}
+            initialTransform="translateY(2rem)"
+          />
         </TextWapper>
       </Wrapper>
     </Section>

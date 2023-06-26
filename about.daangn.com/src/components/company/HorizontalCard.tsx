@@ -3,6 +3,7 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { getImage, GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
 import { rem } from 'polished';
+import { SimpleReveal } from 'simple-reveal';
 
 type HorizontalCardProps = {
   slice: GatsbyTypes.PrismicCompanyContentDataBodyHorizontalCard;
@@ -22,13 +23,41 @@ const HorizontalCard: React.FC<HorizontalCardProps> = ({ slice }) => {
       <Wrapper>
         <TextArea>
           <TextWapper>
-            <KeyText>당근의 시작</KeyText>
-            <Title
-              dangerouslySetInnerHTML={{
-                __html: slice.primary?.title?.html || '',
-              }}
+            <SimpleReveal
+              render={({ ref, cn, style }) => (
+                <KeyText ref={ref} className={cn()} style={style}>
+                  당근의 시작
+                </KeyText>
+              )}
+              duration={1000}
+              delay={600}
+              initialTransform="translateY(2rem)"
             />
-            <Description>{slice.primary.description}</Description>
+            <SimpleReveal
+              render={({ ref, cn, style }) => (
+                <Title
+                  ref={ref}
+                  className={cn()}
+                  style={style}
+                  dangerouslySetInnerHTML={{
+                    __html: slice.primary?.title?.html || '',
+                  }}
+                />
+              )}
+              duration={1000}
+              delay={800}
+              initialTransform="translateY(2rem)"
+            />
+            <SimpleReveal
+              render={({ ref, cn, style }) => (
+                <Description ref={ref} className={cn()} style={style}>
+                  {slice.primary.description}
+                </Description>
+              )}
+              duration={1000}
+              delay={1000}
+              initialTransform="translateY(2rem)"
+            />
           </TextWapper>
         </TextArea>
         {image && mobileImage && (
@@ -167,7 +196,7 @@ const Image = styled(GatsbyImage, {
   display: 'none !important',
   width: '100%',
   height: 'auto',
-  borderRadius: rem(60),
+  borderRadius: rem(30),
 
   '@md': {
     display: 'block !important',

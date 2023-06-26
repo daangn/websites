@@ -4,6 +4,7 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
 import { rem } from 'polished';
 import { Link, graphql } from 'gatsby';
+import { SimpleReveal } from 'simple-reveal';
 
 import CtaButton from '../CtaButton';
 
@@ -31,14 +32,6 @@ export const query = graphql`
 const PrSection: React.FC<PrSectionProps> = ({ slice, data }) => {
   const scrollRef = React.useRef<HTMLDivElement>(null);
 
-  // React.useEffect(() => {
-  //   const container = scrollRef.current;
-  //   if (!container) return;
-  //   const containerWidth = container.clientWidth;
-  //   const contentWidth = container.scrollWidth;
-  //   container.scrollLeft = (contentWidth - containerWidth) / 2;
-  // });
-
   return (
     <Section>
       <Image
@@ -46,8 +39,18 @@ const PrSection: React.FC<PrSectionProps> = ({ slice, data }) => {
         alt={slice.primary.background_image.alt}
       />
       <ContentWrapper>
-        <PrSectionTitle>{slice.primary.section_title.text}</PrSectionTitle>
-        <CtaButton link='/company/pr/'>보도자료 보러 가기</CtaButton>
+        <SimpleReveal
+          render={({ ref, cn, style }) => (
+            <div ref={ref} className={cn()} style={style}>
+              <PrSectionTitle>{slice.primary.section_title.text}</PrSectionTitle>
+              <CtaButton link='/company/pr/'>보도자료 보러 가기</CtaButton>
+            </div>
+          )}
+          duration={1000}
+          delay={2000}
+          initialTransform="translateY(2rem)"
+        />
+
         <PrListWraaper ref={scrollRef}>
           {data.allPost.nodes.map((post) => (
             <PrCard key={post.slug} to={`/company/pr/archive/${post.slug}/`}>
@@ -105,19 +108,6 @@ const PrSectionTitle = styled('h2', {
   },
 });
 
-const Button = styled(Link, {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  width: rem(110),
-  height: rem(40),
-  margin: rem(20),
-  borderRadius: rem(20),
-  textDecoration: 'none',
-  border: `1px solid ${vars.$scale.color.gray00}`,
-  color: vars.$scale.color.gray00,
-});
-
 const PrListWraaper = styled('div', {
   display: 'flex',
   flexWrap: 'nowrap',
@@ -125,7 +115,11 @@ const PrListWraaper = styled('div', {
   width: '100%',
   overflowX: 'scroll',
   margin: `${rem(60)} 0`,
-  paddingX: rem(24),
+  // paddingX: rem(24),
+  paddingLeft: rem(24),
+  paddingRight: rem(30),
+  marginLeft: rem(24),
+  // marginRight: rem(24),
 
   '&::-webkit-scrollbar': {
     display: 'none',

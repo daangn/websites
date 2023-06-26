@@ -3,6 +3,7 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { getImage, GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
 import { rem } from 'polished';
+import { SimpleReveal } from 'simple-reveal';
 
 type SummaryCardProps = {
   slice: GatsbyTypes.PrismicCompanyContentDataBodySummaryCard;
@@ -12,19 +13,35 @@ const SummaryCard: React.FC<SummaryCardProps> = ({ slice }) => {
   return (
     <Container>
       <TitleWrapper>
-        <Title>당근마켓은 더 큰 꿈을 향해달리고 있어요</Title>
+        <SimpleReveal
+          render={({ ref, cn, style }) => (
+            <Title ref={ref} className={cn()} style={style}>
+              당근마켓은 더 큰 꿈을 향해달리고 있어요
+            </Title>
+          )}
+          duration={1000}
+          delay={200}
+          initialTransform="translateY(2rem)"
+        />
       </TitleWrapper>
       <CardWrapper>
-        {slice.items.map((item) => (
-          <Card key={item.summary_text}>
-            <CardText>{item.summary_text}</CardText>
-            <IconWrapper>
-              <IconImage
-                src={item.graphic_image?.localFile?.publicURL || ''}
-                alt={item.graphic_image?.alt || ''}
-              />
-            </IconWrapper>
-          </Card>
+        {slice.items.map((item, i) => (
+          <SimpleReveal
+            render={({ ref, cn, style }) => (
+              <Card key={item.summary_text} ref={ref} className={cn()} style={style}>
+                <CardText>{item.summary_text}</CardText>
+                <IconWrapper>
+                  <IconImage
+                    src={item.graphic_image?.localFile?.publicURL || ''}
+                    alt={item.graphic_image?.alt || ''}
+                  />
+                </IconWrapper>
+              </Card>
+            )}
+            duration={1000}
+            delay={300 * (i + 1)}
+            initialTransform="translateY(2rem)"
+          />
         ))}
       </CardWrapper>
     </Container>
