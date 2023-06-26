@@ -229,7 +229,7 @@ export const Head: React.FC<ServicePageHeadProps> = ({ data, location }) => {
           key='twitter'
           card={{
             ...props,
-            type: 'summary',
+            type: 'summary_large_image',
           }}
         />,
       ]}

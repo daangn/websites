@@ -200,7 +200,7 @@ export const Head: React.FC<CulturePageHeadProps> = ({ data, location }) => {
         <TwitterCard
           card={{
             ...props,
-            type: 'summary',
+            type: 'summary_large_image',
           }}
         />,
       ]}
