@@ -47,10 +47,9 @@ const PrSection: React.FC<PrSectionProps> = ({ slice, data }) => {
             </div>
           )}
           duration={1000}
-          delay={2000}
+          delay={400}
           initialTransform="translateY(2rem)"
         />
-
         <PrListWraaper ref={scrollRef}>
           {data.allPost.nodes.map((post) => (
             <PrCard key={post.slug} to={`/company/pr/archive/${post.slug}/`}>
@@ -76,8 +75,11 @@ const Section = styled('section', {
   marginBottom: rem(-120),
 
   '@sm': {
-    height: 'calc(100vh - 68px)',
     marginBottom: rem(-160),
+  },
+
+  '@lg': {
+    height: 'auto',
   },
 });
 

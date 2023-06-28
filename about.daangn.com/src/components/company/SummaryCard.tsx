@@ -1,6 +1,5 @@
 import { vars } from '@seed-design/design-token';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { getImage, GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
 import { rem } from 'polished';
 import { SimpleReveal } from 'simple-reveal';
@@ -16,7 +15,7 @@ const SummaryCard: React.FC<SummaryCardProps> = ({ slice }) => {
         <SimpleReveal
           render={({ ref, cn, style }) => (
             <Title ref={ref} className={cn()} style={style}>
-              당근마켓은 더 큰 꿈을 향해달리고 있어요
+              {slice.primary.title?.text}
             </Title>
           )}
           duration={1000}
@@ -78,7 +77,7 @@ const Title = styled('h2', {
   fontSize: vars.$scale.dimension.fontSize600,
 
   '@md': {
-    maxWidth: rem(400),
+    maxWidth: rem(520),
     margin: `${rem(40)} 0`,
     marginBottom: rem(60),
     fontSize: vars.$scale.dimension.fontSize900,
@@ -94,8 +93,13 @@ const CardWrapper = styled('div', {
   width: '100%',
   gap: rem(14),
 
-  '@sm': {
-    gap: rem(20),
+  '@lg': {
+    gap: rem(24),
+  },
+
+  '@xl': {
+    justifyContent: 'flex-start',
+    gap: rem(30),
   },
 });
 
@@ -120,6 +124,11 @@ const Card = styled('div', {
   },
 
   '@lg': {
+    maxWidth: rem(480),
+    height: rem(300),
+  },
+
+  '@xl': {
     maxWidth: rem(550),
     height: rem(340),
     padding: rem(35),

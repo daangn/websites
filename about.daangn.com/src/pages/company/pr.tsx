@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { graphql, type PageProps } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import PrCard from '../../components/pr/PrCard';
 import { rem } from 'polished';
+
+import PrCard from '../../components/pr/PrCard';
 
 type PrPageProps = PageProps<GatsbyTypes.PrPageQuery>;
 

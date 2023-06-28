@@ -10,12 +10,16 @@ import _DetailLink from './DetailLink';
 const Container = styled('section', {
   display: 'grid',
   width: '100%',
-  height: rem(360),
+  height: rem(260),
   backgroundColor: 'lightgray',
   marginBottom: rem(-120),
 
   '@sm': {
     marginBottom: rem(-160),
+  },
+
+  '@md': {
+    marginBottom: rem(-100),
   },
 });
 

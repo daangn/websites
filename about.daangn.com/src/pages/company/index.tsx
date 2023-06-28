@@ -109,6 +109,11 @@ export const query = graphql`
           ... on PrismicCompanyContentDataBodySummaryCard {
             id
             slice_type
+            primary {
+              title {
+                text
+              }
+            }
             items {
               summary_text
               graphic_image {

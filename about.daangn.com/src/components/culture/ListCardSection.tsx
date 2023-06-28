@@ -32,7 +32,6 @@ const ListCardSection: React.FC<ListCardProps> = ({ slice }) => {
           <CultureDescriptionCard key={item?.card_title}>
             <CultureTextWapper>
               <DescritionTitle>{item.card_title}</DescritionTitle>
-              {/* <DescriptionSummary>{item.card_summary}</DescriptionSummary> */}
               <Description>{item.card_description.text}</Description>
             </CultureTextWapper>
             <GraphicWrapper>
@@ -158,9 +157,10 @@ const CultureDescriptionCard = styled('div', {
 
   '@sm': {
     flexDirection: 'column',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
     width: rem(405),
-    height: rem(548),
+    height: rem(434),
     padding: `${rem(46)} ${rem(50)}`,
   },
 });
@@ -209,13 +209,7 @@ const Description = styled('div', {
 });
 
 const GraphicWrapper = styled('div', {
-  display: 'flex',
-  justifyContent: 'flex-start',
   width: '100%',
-
-  '@sm': {
-    justifyContent: 'center',
-  },
 });
 
 const CultureGraphic = styled(GatsbyImage, {
@@ -224,8 +218,8 @@ const CultureGraphic = styled(GatsbyImage, {
   marginBottom: rem(66),
 
   '@sm': {
-    width: rem(216),
-    height: rem(216),
+    width: rem(108),
+    height: rem(108),
     marginBottom: rem(0),
   },
 });

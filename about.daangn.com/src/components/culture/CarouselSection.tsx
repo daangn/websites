@@ -48,8 +48,10 @@ const CarouselSection: React.FC<CarouselProps> = ({ slice }) => {
       <CarouselWrapper>
         <Carousel
           // centerMode={centerMode}
-          // centerSlidePercentage={65}
+          centerSlidePercentage={50}
           infiniteLoop={true}
+          // autoPlay={true}
+          // interval={2000}
           showArrows={true}
           showIndicators={false}
           renderArrowPrev={PrevArrow}

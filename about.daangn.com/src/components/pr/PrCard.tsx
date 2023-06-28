@@ -72,13 +72,20 @@ const ThumbnailWrapper = styled('div', {
   },
 
   '@md': {
+    width: rem(220),
+    borderRadius: rem(12),
+  },
+
+  '@lg': {
     width: rem(240),
     borderRadius: rem(12),
   },
 });
 
 const ThumbnailImage = styled(GatsbyImage, {
+  width: '100%',
   height: '100%',
+  overflow: 'hidden',
   opacity: 0.99,
   objectFit: 'cover',
 });
@@ -106,13 +113,20 @@ const Title = styled('h3', {
   color: vars.$scale.color.gray900,
 
   '@sm': {
-    width: 'auto',
-    maxWidth: rem(500),
+    // width: 'auto',
+    width: rem(350),
+    // maxWidth: rem(500),
     fontSize: vars.$scale.dimension.fontSize300,
     fontWeight: vars.$static.fontWeight.bold,
   },
 
   '@md': {
+    width: rem(400),
+    fontSize: vars.$scale.dimension.fontSize400,
+  },
+
+  '@lg': {
+    width: rem(500),
     fontSize: vars.$scale.dimension.fontSize400,
   },
 });
@@ -126,11 +140,16 @@ const Summary = styled('p', {
   wordBreak: 'break-word',
   '-webkit-line-clamp': 2,
   '-webkit-box-orient': 'vertical',
+  width: '100%',
   color: vars.$scale.color.gray700,
   fontSize: vars.$scale.dimension.fontSize150,
 
   '@md': {
     display: '-webkit-box',
+    maxWidth: rem(400),
+  },
+
+  '@lg': {
     maxWidth: rem(500),
   },
 });

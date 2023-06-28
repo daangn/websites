@@ -82,12 +82,12 @@ const LogoWapper = styled('div', {
 
   '@md': {
     gap: rem(20),
-    maxWidth: rem(900),
+    maxWidth: rem(1000),
   },
 
   '@xl': {
-    gap: rem(50),
-    padding: `${rem(40)} ${rem(200)}`,
+    gap: rem(44),
+    padding: `${rem(40)} ${rem(20)}`,
   },
 });
 
