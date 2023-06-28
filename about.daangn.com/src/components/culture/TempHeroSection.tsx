@@ -11,14 +11,13 @@ type TempHeroSectionProps = {
 const TempHeroSection: React.FC<TempHeroSectionProps> = ({ slice }) => {
   return (
     <Section>
-      <PageTitle>우리는 함께 성장할 수 있다고 믿어요.</PageTitle>
+      <PageTitle>즐겁게 몰입하고 크게 성장합니다</PageTitle>
       <Image
         image={slice.primary.full_image.localFile.childImageSharp.gatsbyImageData}
         alt={slice.primary.full_image.alt}
       />
       <Description>
-        당근마켓 팀에는 일에 몰입할 때 즐거움을 느끼는 사람들이 모였습니다. 사용자의 문제를 발견하면
-        주도적으로 해결하고, 상상할 수도 없던 일을 함께 이루어가며 매일 성장하고 있습니다.{' '}
+        당근마켓 팀에는 일에 몰입할 때 즐거움을 느끼는 사람들이 모였습니다. 각자 주도적으로 일하며 최고의 역량을 발휘하고, 팀은 서로의 가능성을 최대로 끌어내면서 혼자서는 상상조차 할 수 없던 눈부신 성장을 함께 만들어가고 있습니다.
       </Description>
     </Section>
   );

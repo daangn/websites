@@ -69,7 +69,7 @@ const BlogCardWraaper = styled('div', {
   flexDirection: 'row',
   overflowX: 'scroll',
   width: '100%',
-  margin: `${rem(60)} 0`,
+  marginTop: rem(60),
 
   '&::-webkit-scrollbar': {
     display: 'none',
@@ -149,7 +149,7 @@ const LatestBlogSection: React.FC<LatestBlogSectionProps> = ({ data, className }
   return (
     <Container className={className}>
       <TextWrapper>
-        <Title>당근마켓의 이야기가 더 궁금하다면</Title>
+        <Title>당근마켓 팀 이야기가 더 궁금하다면</Title>
         <DetailLink
           link={parseLink('https://about.daangn.com/blog/')}
           message="블로그 글 보러가기"

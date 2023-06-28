@@ -45,7 +45,7 @@ const BlogListSection: React.FC<BlogListSectionProps> = ({ slice, data }) => {
   return (
     <BlogSection>
       <BlogSectionTitle>{slice.primary.blog_list_title}</BlogSectionTitle>
-      <CtaButton link="/blog/category/career/">자세히보기</CtaButton>
+      <CtaButton link="/blog/category/career/">당근마켓 팀 이야기가 더 궁금하다면</CtaButton>
       <BlogCardWraaper ref={scrollRef}>
         {data.allPost.nodes.map((post) => (
           <BlogCard key={post.slug} to={`/blog/archive/${post.slug}`}>
@@ -141,7 +141,7 @@ const BlogTitleBox = styled('div', {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  textAlign: 'center',
+  textAlign: 'left',
   background: 'linear-gradient(rgba(175, 175, 175, 0) 0%, rgb(129 129 129 / 53%) 100%)',
 });
 

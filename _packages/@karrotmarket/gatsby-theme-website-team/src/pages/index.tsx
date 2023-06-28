@@ -65,21 +65,6 @@ export const query = graphql`
           ...PrismicTeamContentsDataMainBodyHowWeWork_data
           ...PrismicTeamContentsDataMainBodyBenefit_data
           ...PrismicTeamContentsDataMainBodyFeaturedPostCarousel_data
-          # ... on PrismicTeamContentsDataMainBodyFeaturedPostCarousel {
-          #   id
-          #   slice_type
-          #   items {
-          #     main_page_featured_post {
-          #       slug
-          #       uid
-          #       localFile {
-          #         childImageSharp {
-          #           gatsbyImageData
-          #         }
-          #       }
-          #     }
-          #   }
-          # }
         }
       }
     }

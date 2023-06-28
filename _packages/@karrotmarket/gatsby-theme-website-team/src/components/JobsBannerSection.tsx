@@ -17,30 +17,21 @@ const Container = styled('section', {
   '@sm': {
     marginBottom: rem(-160),
   },
-
-  '@md': {
-    marginBottom: rem(-100),
-  },
 });
 
 const TextWrapper = styled('div', {
   display: 'grid',
-  justifyContent: 'center',
-  gap: rem(32),
   gridArea: '1/1',
+  justifyContent: 'center',
+  alignContent: 'center',
   position: 'relative',
   placeItems: 'center',
-  paddingX: rem(64),
-  paddingY: rem(72),
-
-  '@md': {
-    paddingY: rem(100),
-  },
 });
 
 const Title = styled('h1', {
   textAlign: 'center',
   typography: '$subtitle2',
+  marginBottom: rem(30),
 
   '@md': {
     typography: '$heading4',
@@ -57,14 +48,14 @@ const JobsBannerSection: React.FC = () => {
   return (
     <Container>
       <StaticImage
-        style={{ gridArea: '1/1', width: '100%' }}
+        style={{ gridArea: '1/1', height: '100%' }}
         layout="fullWidth"
         alt="이미지_채용배너"
         src={'./JobsBannerSection/jobs_banner.png'}
         formats={['auto', 'webp', 'avif']}
       />
       <TextWrapper>
-        <Title>당근마켓의 여정에 함께 하세요</Title>
+        <Title>당근마켓과 함께 성장해보세요</Title>
         <DetailLink
           link={parseLink('https://about.daangn.com/jobs/')}
           message="채용공고 보러 가기"

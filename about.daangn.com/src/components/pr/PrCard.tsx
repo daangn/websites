@@ -52,10 +52,10 @@ const Container = styled(Link, {
     marginBottom: rem(52),
   },
 
-  transition: 'all .3s ease-in-out',
+  transition: 'all .2s ease-in-out',
 
   '&:hover': {
-    transform: 'scale(1.03)',
+    transform: 'scale(1.02)',
   },
 });
 

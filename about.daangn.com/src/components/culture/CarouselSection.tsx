@@ -86,7 +86,7 @@ const ArrowWapper = styled('div', {
   justifyContent: 'center',
   alignItems: 'center',
   position: 'absolute',
-  top: '35%',
+  top: '30%',
   width: rem(24),
   height: rem(24),
   padding: rem(20),
@@ -98,12 +98,8 @@ const ArrowWapper = styled('div', {
   textAlign: 'center',
   backgroundColor: 'none',
 
-  '@md': {
+  '@sm': {
     top: '40%',
-  },
-
-  '@lg': {
-    top: '45%',
   },
 
   '@xl': {
@@ -112,11 +108,19 @@ const ArrowWapper = styled('div', {
 });
 
 const PrevArrowWapper = styled(ArrowWapper, {
-  left: 10,
+  left: 15,
+
+  '@sm': {
+    left: 25,
+  },
 });
 
 const NextArrowWapper = styled(ArrowWapper, {
-  right: 10,
+  right: 15,
+
+  '@sm': {
+    right: 25,
+  },
 });
 
 const Container = styled('section', {
@@ -132,7 +136,7 @@ const Container = styled('section', {
 });
 
 const CarouselSectionTitle = styled('h2', {
-  maxWidth: rem(220),
+  maxWidth: rem(240),
   marginBottom: rem(48),
   padding: `0 ${rem(16)}`,
   textAlign: 'center',
@@ -146,6 +150,8 @@ const CarouselSectionTitle = styled('h2', {
 
 const CarouselWrapper = styled('div', {
   width: '100%',
+  maxWidth: rem(900),
+  position: 'relative',
 });
 
 const Card = styled('div', {
@@ -155,9 +161,10 @@ const Card = styled('div', {
 
 const ImageWrapper = styled('div', {
   width: '100%',
-  // aspectRatio: '16 / 9',
+  aspectRatio: '16 / 9',
   overflow: 'hidden',
   padding: `${rem(20)} ${rem(15)}`,
+  marginBottom: rem(44),
 });
 
 const CarouselImage = styled(GatsbyImage, {
@@ -166,7 +173,11 @@ const CarouselImage = styled(GatsbyImage, {
   aspectRatio: '16 / 9',
   opacity: 0.99,
   objectFit: 'cover',
-  borderRadius: rem(30),
+  borderRadius: rem(20),
+
+  '@md': {
+    borderRadius: rem(30),
+  },
 });
 
 const CarouselTitle = styled('h3', {

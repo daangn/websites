@@ -180,6 +180,7 @@ export const Head: React.FC<CulturePageHeadProps> = ({ data, location }) => {
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
       {(props) => [
         <OpenGraph
+          key="og"
           og={{
             ...props,
             type: 'website',
@@ -198,6 +199,7 @@ export const Head: React.FC<CulturePageHeadProps> = ({ data, location }) => {
           }}
         />,
         <TwitterCard
+          key="twitter"
           card={{
             ...props,
             type: 'summary_large_image',

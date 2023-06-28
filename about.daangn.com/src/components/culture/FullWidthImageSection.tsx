@@ -53,15 +53,18 @@ const Text = styled('span', {
   position: 'absolute',
   top: '50%',
   left: '50%',
+  width: rem(250),
   transform: 'translate(-50%, -50%)',
   zIndex: 2,
   textAlign: 'center',
   color: vars.$scale.color.gray00,
+  lineHeight: '150%',
   fontWeight: 'bold',
   fontSize: vars.$scale.dimension.fontSize500,
 
   '@sm': {
     fontSize: vars.$scale.dimension.fontSize700,
+    width: rem(450),
   },
 });
 
