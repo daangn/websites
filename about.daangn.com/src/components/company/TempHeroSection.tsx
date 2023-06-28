@@ -29,7 +29,9 @@ const TempHeroSection: React.FC<TempHeroSectionProps> = ({ slice }) => {
       <SimpleReveal
         render={({ ref, cn, style }) => (
           <Description ref={ref} className={cn()} style={style}>
-            당근마켓은 가까이 있지만 서로 소통한 적 없던 동네 이웃이 처음 만날 수 있는 공간을 만들어갑니다. 중고거래부터 모임, 홍보와 결제까지 대한민국을 넘어 전 세계 동네가 있는 곳이라면 어디서든 당근마켓으로 연결될 수 있습니다.
+            당근마켓은 가까이 있지만 서로 소통한 적 없던 동네 이웃이 처음 만날 수 있는 공간을
+            만들어갑니다. 중고거래부터 모임, 홍보와 결제까지 대한민국을 넘어 전 세계 동네가 있는
+            곳이라면 어디서든 당근마켓으로 연결될 수 있습니다.
           </Description>
         )}
         duration={1000}

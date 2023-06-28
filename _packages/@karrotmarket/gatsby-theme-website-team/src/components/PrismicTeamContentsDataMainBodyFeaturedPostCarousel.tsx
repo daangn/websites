@@ -237,7 +237,8 @@ const PrismicTeamContentsDataMainBodyFeaturedPostCarousel: React.FC<
         <KeyText>당근이 일하는 방식</KeyText>
         <Title>사용자 가치를 가장 중요하게 생각해요</Title>
         <Summary>
-          좋은 서비스에 대한 답은 항상 사용자에게 있어요. 오래 고민하는 대신 빠르게 실험하며 사용자를 위한 서비스를 만들어요.
+          좋은 서비스에 대한 답은 항상 사용자에게 있어요. 오래 고민하는 대신 빠르게 실험하며
+          사용자를 위한 서비스를 만들어요.
         </Summary>
       </TextContainer>
       <Container className={className}>

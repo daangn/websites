@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { graphql, type PageProps, type HeadProps, } from 'gatsby';
+import { graphql, type PageProps, type HeadProps } from 'gatsby';
 import { HeadSeo, OpenGraph, TwitterCard } from 'gatsby-plugin-head-seo/src';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
