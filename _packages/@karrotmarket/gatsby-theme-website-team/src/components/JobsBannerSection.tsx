@@ -31,7 +31,7 @@ const TextWrapper = styled('div', {
 const Title = styled('h1', {
   textAlign: 'center',
   typography: '$subtitle2',
-  marginBottom: rem(30),
+  marginBottom: rem(12),
 
   '@md': {
     typography: '$heading4',

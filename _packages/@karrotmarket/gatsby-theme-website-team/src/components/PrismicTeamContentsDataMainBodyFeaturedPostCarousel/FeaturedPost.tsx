@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { rem } from 'polished';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { getImage, GatsbyImage } from 'gatsby-plugin-image';
 import { vars } from '@seed-design/design-token';
@@ -37,7 +37,7 @@ export const query = graphql`
   }
 `;
 
-const Container = styled('article', {
+const Container = styled(Link, {
   display: 'grid',
   gridTemplateRows: 'repeat(2, min-content)',
   justifyContent: 'center',
@@ -45,6 +45,8 @@ const Container = styled('article', {
   boxShadow: 'rgba(0, 0, 0, 0.05) 0px 4px 8px 0px',
   boxSizing: 'border-box',
   marginBottom: rem(20),
+  cursor: 'pointer',
+  textDecoration: 'none',
 });
 
 const ImageWrapper = styled('figure', {
@@ -69,6 +71,7 @@ const TextWrapper = styled('figure', {
 const Title = styled('h3', {
   typography: '$subtitle3',
   fontWeight: 'bold',
+  color: vars.$scale.color.gray900,
 
   '@md': {
     typography: '$subtitle2',
@@ -100,7 +103,7 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({ item, className }) => {
     return null;
   }
   return (
-    <Container className={className}>
+    <Container className={className} to={`/blog/archive/${item.main_page_featured_post.slug}/`}>
       <ImageWrapper>
         <Image image={image} alt={item.image?.alt || ''} />
       </ImageWrapper>

@@ -40,10 +40,12 @@ const TextContainer = styled('section', {
 });
 
 const KeyText = styled('span', {
+  marginBottom: rem(-18),
   typography: '$body2',
   fontWeight: 'bold',
 
   '@md': {
+    marginBottom: 0,
     typography: '$subtitle3',
   },
 });
@@ -179,7 +181,11 @@ const Dots = styled('div', {
   display: 'flex',
   flexWrap: 'wrap',
   justifyContent: 'center',
-  gap: rem(32),
+  gap: rem(12),
+
+  '@md': {
+    gap: rem(32),
+  },
 
   '@lg': {
     '& > :nth-child(2n)': {
@@ -192,11 +198,16 @@ const Dot = styled('button', {
   position: 'relative',
   borderRadius: '100%',
   border: `1px solid ${vars.$scale.color.gray900}`,
-  width: rem(12),
-  height: rem(12),
+  width: rem(8),
+  height: rem(8),
   padding: 0,
   background: vars.$semantic.color.paperDefault,
   cursor: 'pointer',
+
+  '@md': {
+    width: rem(12),
+    height: rem(12),
+  },
 
   '&::after': {
     content: '',

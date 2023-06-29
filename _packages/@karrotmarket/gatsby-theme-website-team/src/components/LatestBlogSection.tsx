@@ -122,7 +122,8 @@ const BlogTitleBox = styled('div', {
   justifyContent: 'center',
   alignItems: 'center',
   textAlign: 'left',
-  background: 'linear-gradient(rgba(175, 175, 175, 0) 0%, rgb(129 129 129 / 53%) 100%)',
+  background: 'linear-gradient(rgba(175, 175, 175, 0) 0%, rgb(129 129 129 / 30%) 100%)',
+  backgroundBlendMode: 'multiply',
 });
 
 const BlogTitle = styled('p', {

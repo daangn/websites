@@ -40,7 +40,7 @@ const Container = styled('footer', {
   display: 'grid',
   paddingTop: rem(32),
   paddingBottom: rem(96),
-  borderTop: `1px solid ${vars.$scale.color.gray400}`,
+  borderTop: `1px solid ${vars.$scale.color.gray100}`,
 
   '@sm': {
     paddingTop: rem(70),
