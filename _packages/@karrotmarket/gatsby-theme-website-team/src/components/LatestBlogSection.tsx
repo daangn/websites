@@ -122,8 +122,23 @@ const BlogTitleBox = styled('div', {
   justifyContent: 'center',
   alignItems: 'center',
   textAlign: 'left',
-  background: 'linear-gradient(rgba(175, 175, 175, 0) 0%, rgb(129 129 129 / 30%) 100%)',
-  backgroundBlendMode: 'multiply',
+  $$dominant: 'color-mix(in srgb, $$backgroundColor 50%, #494949)',
+  background: 'linear-gradient(rgba(175, 175, 175, 0) 0%, rgb(129 129 129 / 40%) 100%)',
+  // background: 'linear-gradient(to top, #494949, $$backgroundColor, transparent)',
+
+  // background: 'linear-gradient(to top, $$dominant, $$backgroundColor, transparent)',
+  // background: 'linear-gradient(to top, color-mix(in srgb, $$backgroundColor 25%, #818080), $$backgroundColor, transparent)',
+
+  // background: 'linear-gradient(rgba(175, 175, 175, 0) 0%, color-mix(in srgb, $$backgroundColor 25%, #525252) 80%)',
+  // background: 'linear-gradient(to top, color-mix(in srgb, $$backgroundColor 25%, #818080), transparent)',
+  // background: 'linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent)',
+  // mixBlendMode: 'multiply',
+  // backgroundBlendMode: 'multiply',
+
+  // background: 'linear-gradient($$backgroundColor, color-mix(in srgb, $$backgroundColor 50%, #525252))',
+  // background: '-webkit-linear-gradient($$backgroundColor, #333)',
+  // '-webkit-background-clip': 'text',
+  // '-webkit-text-fill-color': 'transparent',
 });
 
 const BlogTitle = styled('p', {
@@ -136,6 +151,7 @@ const BlogTitle = styled('p', {
 });
 
 const LatestBlogSection: React.FC<LatestBlogSectionProps> = ({ data, className }) => {
+  console.log('data::', data);
   const parseLink = useLinkParser();
   const scrollRef = React.useRef<HTMLDivElement>(null);
 
@@ -163,7 +179,7 @@ const LatestBlogSection: React.FC<LatestBlogSectionProps> = ({ data, className }
               image={post.verticalThumbnailImage?.childImageSharp?.gatsbyImageData}
               alt={`${post.slug}_썸네일이미지`}
             />
-            <BlogTitleBox>
+            <BlogTitleBox css={{ $$backgroundColor: post.verticalThumbnailImage?.childImageSharp?.gatsbyImageData.backgroundColor || '#000000' }}>
               <BlogTitle>{post.title}</BlogTitle>
             </BlogTitleBox>
           </BlogCard>
