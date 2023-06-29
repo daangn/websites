@@ -15,7 +15,7 @@ type BlogListSectionProps = {
 export const query = graphql`
   fragment BlogPostList_query on Query {
     allPost(
-      filter: {category: {uid: {eq: "career"}}}
+      filter: {category: {name: {eq: "커리어"}}}
       sort: {publishedAt: DESC}
     ) {
       nodes {
