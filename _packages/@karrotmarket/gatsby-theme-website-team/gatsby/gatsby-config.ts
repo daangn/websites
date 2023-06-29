@@ -104,6 +104,7 @@ const config = ({ locale }: PluginOptions): GatsbyConfig => ({
         linkResolver,
       },
     },
+    '@karrotmarket/gatsby-transformer-post',
   ],
 });
 
