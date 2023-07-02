@@ -40,7 +40,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
 };
 
 const Container = styled('div', {
-  width: rem(320),
+  width: rem(360),
   minHeight: rem(320),
 
   '@sm': {
@@ -82,7 +82,7 @@ const ImageWrapper = styled('div', {
 
 const Image = styled('img', {
   width: '100%',
-  height: '100%',
+  height: 'auto',
   borderRadius: rem(20),
 });
 

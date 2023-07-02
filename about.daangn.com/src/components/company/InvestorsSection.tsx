@@ -19,7 +19,7 @@ const InvestorsSection: React.FC<InvestorsSectionProps> = ({ slice }) => {
           </Title>
         )}
         duration={1000}
-        delay={600}
+        delay={400}
         initialTransform="translateY(2rem)"
       />
       <SimpleReveal
@@ -59,24 +59,27 @@ const Container = styled('section', {
 });
 
 const Title = styled('h2', {
-  width: rem(330),
+  width: '100%',
+  maxWidth: rem(330),
   marginBottom: rem(40),
   paddingTop: rem(40),
   textAlign: 'center',
   fontSize: vars.$scale.dimension.fontSize600,
 
   '@md': {
-    width: '100%',
+    maxWidth: rem(500),
     paddingTop: 0,
     fontSize: vars.$scale.dimension.fontSize900,
+  },
+
+  '@lg': {
+    maxWidth: rem(1200),
   },
 });
 
 const LogoWapper = styled('div', {
-  display: 'flex',
-  flexWrap: 'wrap',
-  justifyContent: 'center',
-  maxWidth: rem(500),
+  display: 'grid',
+  gridTemplateColumns: 'repeat(2, 1fr)',
   gap: rem(10),
   padding: `${rem(30)} ${rem(40)}`,
 
@@ -85,7 +88,8 @@ const LogoWapper = styled('div', {
     maxWidth: rem(1000),
   },
 
-  '@xl': {
+  '@lg': {
+    gridTemplateColumns: 'repeat(3, 1fr)',
     gap: rem(44),
     padding: `${rem(40)} ${rem(20)}`,
   },

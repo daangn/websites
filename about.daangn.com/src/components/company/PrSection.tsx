@@ -137,20 +137,21 @@ const PrCard = styled(Link, {
   flexShrink: 0,
   flexDirection: 'column',
   alignItems: 'flex-start',
-  justifyContent: 'space-around',
+  justifyContent: 'space-between',
   width: rem(200),
-  height: rem(240),
+  height: rem(200),
   margin: rem(8),
   opacity: 0.85,
-  padding: `${rem(4)} ${rem(20)}`,
+  padding: `${rem(24)} ${rem(30)}`,
   borderRadius: rem(30),
   backgroundColor: vars.$scale.color.gray00,
   color: vars.$scale.color.gray900,
   cursor: 'pointer',
   textDecoration: 'none',
+  boxSizing: 'border-box',
 
   '@sm': {
-    width: rem(260),
+    width: rem(300),
     height: rem(200),
   },
 
@@ -162,13 +163,12 @@ const PrCard = styled(Link, {
 });
 
 const PrTitle = styled('p', {
-  maxWidth: rem(180),
+  width: '100%',
   textAlign: 'left',
-  fontSize: vars.$scale.dimension.fontSize300,
+  fontSize: vars.$scale.dimension.fontSize200,
   fontWeight: 700,
 
   '@sm': {
-    maxWidth: rem(200),
     fontSize: vars.$scale.dimension.fontSize400,
   },
 });

@@ -26,8 +26,9 @@ const SummaryCard: React.FC<SummaryCardProps> = ({ slice }) => {
       <CardWrapper>
         {slice.items.map((item, i) => (
           <SimpleReveal
+            key={item.summary_text}
             render={({ ref, cn, style }) => (
-              <Card key={item.summary_text} ref={ref} className={cn()} style={style}>
+              <Card ref={ref} className={cn()} style={style}>
                 <CardText>{item.summary_text}</CardText>
                 <IconWrapper>
                   <IconImage
@@ -62,16 +63,17 @@ const Container = styled('section', {
 });
 
 const TitleWrapper = styled('div', {
-  width: '100%',
+  width: 'auto',
   textAlign: 'center',
 
-  '@sm': {
+  '@md': {
+    width: '100%',
     textAlign: 'left',
   },
 });
 
 const Title = styled('h2', {
-  maxWidth: rem(335),
+  maxWidth: rem(300),
   margin: 0,
   marginBottom: rem(48),
   fontSize: vars.$scale.dimension.fontSize600,
@@ -109,30 +111,20 @@ const Card = styled('div', {
   justifyContent: 'space-between',
   alignItems: 'center',
   width: '100%',
+  minWidth: rem(300),
   height: rem(120),
   padding: rem(16),
   backgroundColor: vars.$scale.color.gray100,
-  borderRadius: rem(18),
+  borderRadius: rem(20),
   boxSizing: 'border-box',
 
   '@md': {
     flexDirection: 'column',
     alignItems: 'flex-start',
-    maxWidth: rem(420),
-    height: rem(300),
-    padding: rem(30),
-  },
-
-  '@lg': {
-    maxWidth: rem(480),
-    height: rem(300),
-  },
-
-  '@xl': {
     maxWidth: rem(550),
     height: rem(340),
     padding: rem(35),
-    borderRadius: rem(24),
+    borderRadius: rem(30),
   },
 });
 

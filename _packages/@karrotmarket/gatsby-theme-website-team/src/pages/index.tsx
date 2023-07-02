@@ -5,6 +5,7 @@ import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
 import { HeadSeo } from 'gatsby-plugin-head-seo/src';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
+import { SimpleReveal } from 'simple-reveal';
 
 import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import _PageTitle from '../components/PageTitle';
@@ -102,7 +103,16 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
   return (
     <MainContainer>
       <TitleContainer>
-        <PageTitle>{data.prismicTeamContents.data.main_page_title?.text}</PageTitle>
+        <SimpleReveal
+          render={({ ref, cn, style }) => (
+            <PageTitle ref={ref} className={cn()} style={style}>
+              {data.prismicTeamContents.data.main_page_title?.text}
+            </PageTitle>
+          )}
+          duration={1000}
+          delay={200}
+          initialTransform="translateY(2rem)"
+        />
       </TitleContainer>
       <Content>
         {data.prismicTeamContents.data.main_body?.filter(Boolean)?.map((data, i) =>

@@ -1,28 +1,43 @@
 import { vars } from '@seed-design/design-token';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { GatsbyImage } from 'gatsby-plugin-image';
+import { getImage, GatsbyImage } from 'gatsby-plugin-image';
 import { rem } from 'polished';
 import React from 'react';
+import { SimpleReveal } from 'simple-reveal';
 
 type FullWidthImageProps = {
   slice: GatsbyTypes.FullWidthImage;
 };
 
 const FullWidthImageSection: React.FC<FullWidthImageProps> = ({ slice }) => {
+  const image =
+    slice.primary?.image?.localFile?.childImageSharp?.gatsbyImageData &&
+    getImage(slice.primary.image.localFile.childImageSharp.gatsbyImageData);
+
+  const mobileImage =
+    slice.primary?.vertical_image?.localFile?.childImageSharp?.gatsbyImageData &&
+    getImage(slice.primary.vertical_image.localFile.childImageSharp.gatsbyImageData);
+
   return (
     <Section>
       <ImageWrappe>
-        <Image
-          image={slice.primary.image.localFile.childImageSharp.gatsbyImageData}
-          alt={slice.primary.image.alt}
-        />
+        <Image image={image} alt={slice.primary?.image?.alt || ''} />
+        <MobileImage image={mobileImage} alt={slice.primary?.vertical_image?.alt || ''} />
       </ImageWrappe>
-      {/* <Text>{slice.primary.description}</Text> */}
-      <Text
-        dangerouslySetInnerHTML={{
-          __html: slice.primary.description.html || '',
-        }}
-      />
+      <Text>
+        <SimpleReveal
+          render={({ ref, cn, style }) => (
+            <p
+              ref={ref} className={cn()} style={style}
+            >
+              {slice.primary.description.text}
+            </p>
+          )}
+          duration={1000}
+          delay={200}
+          initialTransform="translateY(2rem)"
+        />
+      </Text>
     </Section>
   );
 };
@@ -45,8 +60,23 @@ const ImageWrappe = styled('div', {
 });
 
 const Image = styled(GatsbyImage, {
+  display: 'none !important',
   width: '100%',
   height: '100%',
+
+  '@sm': {
+    display: 'block !important',
+  },
+});
+
+const MobileImage = styled(GatsbyImage, {
+  display: 'block !important',
+  width: '100%',
+  height: '100%',
+
+  '@sm': {
+    display: 'none !important',
+  },
 });
 
 const Text = styled('span', {

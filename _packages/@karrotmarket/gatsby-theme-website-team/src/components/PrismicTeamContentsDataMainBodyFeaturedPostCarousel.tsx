@@ -5,9 +5,13 @@ import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
 import SeedIcon from '@karrotmarket/gatsby-theme-seed-design/src/Icon';
+import { SimpleReveal } from 'simple-reveal';
 
 import FeaturedPost from './PrismicTeamContentsDataMainBodyFeaturedPostCarousel/FeaturedPost';
 import _ArrowButton from './PrismicTeamContentsDataMainBodyFeaturedPostCarousel/ArrowButton';
+
+import { ReactComponent as ArrowLeft } from './PrismicTeamContentsDataMainBodyFeaturedPostCarousel/arrow_left.svg';
+import { ReactComponent as ArrowRight } from './PrismicTeamContentsDataMainBodyFeaturedPostCarousel/arrow_right.svg';
 
 type PrismicTeamContentsDataMainBodyMemberQuoteCarouselProps = {
   data: GatsbyTypes.PrismicTeamContentsDataMainBodyMemberQuoteCarousel_dataFragment;
@@ -99,6 +103,7 @@ const Slide = styled('div', {
   transition: 'transform 0.3s ease-in-out',
   borderRadius: rem(30),
   margin: `0 ${rem(12)}`,
+  opacity: 0.99,
 
   transform: 'translateX(calc(-100% * $$slide - $$gap * $$slide))',
   '@lg': {
@@ -245,12 +250,35 @@ const PrismicTeamContentsDataMainBodyFeaturedPostCarousel: React.FC<
   return (
     <>
       <TextContainer>
-        <KeyText>당근이 일하는 방식</KeyText>
-        <Title>사용자 가치를 가장 중요하게 생각해요</Title>
-        <Summary>
-          좋은 서비스에 대한 답은 항상 사용자에게 있어요. 오래 고민하는 대신 빠르게 실험하며
-          사용자를 위한 서비스를 만들어요.
-        </Summary>
+        <SimpleReveal
+          render={({ ref, cn, style }) => (
+            <KeyText ref={ref} className={cn()} style={style}>
+              당근이 일하는 방식
+            </KeyText>
+          )}
+          duration={1000}
+          initialTransform="translateY(2rem)"
+        />
+        <SimpleReveal
+          render={({ ref, cn, style }) => (
+            <Title ref={ref} className={cn()} style={style}>
+              사용자 가치를 가장 중요하게 생각해요
+            </Title>
+          )}
+          duration={1000}
+          delay={200}
+          initialTransform="translateY(2rem)"
+        />
+        <SimpleReveal
+          render={({ ref, cn, style }) => (
+            <Summary ref={ref} className={cn()} style={style}>
+              좋은 서비스에 대한 답은 항상 사용자에게 있어요. 오래 고민하는 대신 빠르게 실험하며 사용자를 위한 서비스를 만들어요.
+            </Summary>
+          )}
+          duration={1000}
+          delay={400}
+          initialTransform="translateY(2rem)"
+        />
       </TextContainer>
       <Container className={className}>
         <LeftArrowButton
@@ -259,6 +287,8 @@ const PrismicTeamContentsDataMainBodyFeaturedPostCarousel: React.FC<
           onClick={() => setSlide((slide) => Math.max(~~(slide / 2) * 2 - 2, 0))}
         >
           <SeedIcon name="icon_chevron_right_regular" />
+          {/* <ArrowLeft /> */}
+
         </LeftArrowButton>
         <SlideCamera {...swipeHandlers}>
           <Slide css={{ $$slide: slide }}>
@@ -274,6 +304,7 @@ const PrismicTeamContentsDataMainBodyFeaturedPostCarousel: React.FC<
           hide={slide === items.length - 2}
           onClick={() => setSlide((slide) => Math.min(~~(slide / 2) * 2 + 2, items.length - 1))}
         >
+          {/* <ArrowRight /> */}
           <SeedIcon name="icon_chevron_right_regular" />
         </RightArrowButton>
         <Dots>

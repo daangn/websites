@@ -4,6 +4,7 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import React from 'react';
 import { GatsbyImage } from 'gatsby-plugin-image';
+import { SimpleReveal } from 'simple-reveal';
 
 import CtaButton from '../CtaButton';
 
@@ -44,8 +45,15 @@ const BlogListSection: React.FC<BlogListSectionProps> = ({ slice, data }) => {
 
   return (
     <BlogSection>
-      <BlogSectionTitle>{slice.primary.blog_list_title}</BlogSectionTitle>
-      <CtaButton link="/blog/category/career/">당근마켓 팀 이야기가 더 궁금하다면</CtaButton>
+      <SimpleReveal
+        render={({ ref, cn, style }) => (
+          <BlogSectionTitle ref={ref} className={cn()} style={style}>{slice.primary.blog_list_title}</BlogSectionTitle>
+        )}
+        duration={1000}
+        delay={200}
+        initialTransform="translateY(2rem)"
+      />
+      <CtaButton link="/blog/category/career/">블로그 글  보러 가기</CtaButton>
       <BlogCardWraaper ref={scrollRef}>
         {data.allPost.nodes.map((post) => (
           <BlogCard key={post.slug} to={`/blog/archive/${post.slug}`}>
@@ -69,17 +77,21 @@ const BlogSection = styled('section', {
   alignItems: 'center',
   justifyContent: 'center',
   width: '100%',
-  padding: `${rem(100)} 0`,
+  paddingTop: rem(64),
+
+  '@md': {
+    paddingTop: rem(160),
+  },
 });
 
 const BlogSectionTitle = styled('h2', {
-  margin: `${rem(20)} 0`,
+  margin: `${rem(28)} 0`,
   padding: `0 ${rem(16)}`,
   textAlign: 'center',
   fontSize: vars.$scale.dimension.fontSize600,
 
   '@md': {
-    fontSize: vars.$scale.dimension.fontSize800,
+    fontSize: vars.$scale.dimension.fontSize900,
   },
 });
 
@@ -89,7 +101,11 @@ const BlogCardWraaper = styled('div', {
   flexDirection: 'row',
   overflowX: 'scroll',
   width: '100%',
-  margin: `${rem(60)} 0`,
+  marginTop: rem(80),
+
+  '@md': {
+    marginTop: rem(110),
+  },
 
   '&::-webkit-scrollbar': {
     display: 'none',
@@ -120,6 +136,7 @@ const BlogCard = styled(Link, {
   cursor: 'pointer',
   textDecoration: 'none',
   transition: 'all .3s ease-in-out',
+  opacity: 0.99,
 
   '&:hover': {
     transform: 'translateY(-8px)',
@@ -135,17 +152,19 @@ const BlogcardThumbnail = styled(GatsbyImage, {
 
 const BlogTitleBox = styled('div', {
   position: 'absolute',
-  top: 225,
+  top: 205,
   width: '100%',
-  height: rem(100),
+  height: rem(120),
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   textAlign: 'left',
-  background: 'linear-gradient(rgba(175, 175, 175, 0) 0%, rgb(129 129 129 / 53%) 100%)',
+  background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.40) 100%)',
 });
 
 const BlogTitle = styled('p', {
+  width: '100%',
+  maxWidth: rem(200),
   padding: `${rem(16)} ${rem(20)}`,
   color: vars.$scale.color.gray00,
   fontSize: vars.$scale.dimension.fontSize400,

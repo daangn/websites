@@ -161,7 +161,7 @@ const Description = styled('p', {
   fontSize: vars.$scale.dimension.fontSize200,
 
   '@sm': {
-    maxWidth: rem(600),
+    maxWidth: rem(500),
     fontSize: vars.$scale.dimension.fontSize300,
   },
 });

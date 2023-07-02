@@ -5,6 +5,7 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 import { vars } from '@seed-design/design-token';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
+import { SimpleReveal } from 'simple-reveal';
 
 import _DetailLink from './DetailLink';
 
@@ -43,10 +44,10 @@ const TextWrapper = styled('div', {
   justifyContent: 'center',
   gap: rem(32),
   paddingX: rem(64),
-  paddingY: rem(72),
+  paddingBottom: rem(12),
 
   '@md': {
-    paddingY: rem(100),
+    paddingBottom: rem(50),
   },
 });
 
@@ -100,9 +101,10 @@ const BlogCard = styled(Link, {
   cursor: 'pointer',
   textDecoration: 'none',
   transition: 'all .3s ease-in-out',
+  opacity: 0.99,
 
   '&:hover': {
-    transform: 'scale(1.03)',
+    transform: 'translateY(-8px)',
   },
 });
 
@@ -115,30 +117,14 @@ const BlogcardThumbnail = styled(GatsbyImage, {
 
 const BlogTitleBox = styled('div', {
   position: 'absolute',
-  top: 225,
+  top: 205,
   width: '100%',
-  height: rem(100),
+  height: rem(120),
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   textAlign: 'left',
-  $$dominant: 'color-mix(in srgb, $$backgroundColor 50%, #494949)',
-  background: 'linear-gradient(rgba(175, 175, 175, 0) 0%, rgb(129 129 129 / 40%) 100%)',
-  // background: 'linear-gradient(to top, #494949, $$backgroundColor, transparent)',
-
-  // background: 'linear-gradient(to top, $$dominant, $$backgroundColor, transparent)',
-  // background: 'linear-gradient(to top, color-mix(in srgb, $$backgroundColor 25%, #818080), $$backgroundColor, transparent)',
-
-  // background: 'linear-gradient(rgba(175, 175, 175, 0) 0%, color-mix(in srgb, $$backgroundColor 25%, #525252) 80%)',
-  // background: 'linear-gradient(to top, color-mix(in srgb, $$backgroundColor 25%, #818080), transparent)',
-  // background: 'linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent)',
-  // mixBlendMode: 'multiply',
-  // backgroundBlendMode: 'multiply',
-
-  // background: 'linear-gradient($$backgroundColor, color-mix(in srgb, $$backgroundColor 50%, #525252))',
-  // background: '-webkit-linear-gradient($$backgroundColor, #333)',
-  // '-webkit-background-clip': 'text',
-  // '-webkit-text-fill-color': 'transparent',
+  background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.40) 100%)',
 });
 
 const BlogTitle = styled('p', {
@@ -151,7 +137,6 @@ const BlogTitle = styled('p', {
 });
 
 const LatestBlogSection: React.FC<LatestBlogSectionProps> = ({ data, className }) => {
-  console.log('data::', data);
   const parseLink = useLinkParser();
   const scrollRef = React.useRef<HTMLDivElement>(null);
 
@@ -165,13 +150,20 @@ const LatestBlogSection: React.FC<LatestBlogSectionProps> = ({ data, className }
 
   return (
     <Container className={className}>
-      <TextWrapper>
-        <Title>당근마켓 팀 이야기가 더 궁금하다면</Title>
-        <DetailLink
-          link={parseLink('https://about.daangn.com/blog/')}
-          message="블로그 글 보러가기"
-        />
-      </TextWrapper>
+      <SimpleReveal
+        render={({ ref, cn, style }) => (
+          <TextWrapper ref={ref} className={cn()} style={style}>
+            <Title>당근마켓 팀 이야기가 더 궁금하다면</Title>
+            <DetailLink
+              link={parseLink('https://about.daangn.com/blog/')}
+              message="블로그 글 보러가기"
+            />
+          </TextWrapper>
+        )}
+        duration={1000}
+        delay={200}
+        initialTransform="translateY(2rem)"
+      />
       <BlogCardWraaper ref={scrollRef}>
         {data.allPost.nodes.map((post) => (
           <BlogCard key={post.slug} to={`/blog/archive/${post.slug}`}>
@@ -179,7 +171,7 @@ const LatestBlogSection: React.FC<LatestBlogSectionProps> = ({ data, className }
               image={post.verticalThumbnailImage?.childImageSharp?.gatsbyImageData}
               alt={`${post.slug}_썸네일이미지`}
             />
-            <BlogTitleBox css={{ $$backgroundColor: post.verticalThumbnailImage?.childImageSharp?.gatsbyImageData.backgroundColor || '#000000' }}>
+            <BlogTitleBox>
               <BlogTitle>{post.title}</BlogTitle>
             </BlogTitleBox>
           </BlogCard>

@@ -68,6 +68,7 @@ export const Head: React.FC<BlogPageHeadProps> = ({ data, location }) => {
     >
       {(props) => [
         <OpenGraph
+          key='og'
           og={{
             ...props,
             type: 'website',
@@ -86,6 +87,7 @@ export const Head: React.FC<BlogPageHeadProps> = ({ data, location }) => {
           }}
         />,
         <TwitterCard
+          key='twitter'
           card={{
             ...props,
             type: 'summary_large_image',

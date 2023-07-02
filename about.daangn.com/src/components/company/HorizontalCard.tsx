@@ -119,7 +119,7 @@ const TextArea = styled('div', {
     width: '50%',
     height: '100%',
     marginBottom: 0,
-    paddingBottom: rem(40),
+    paddingBottom: 0,
   },
 });
 
@@ -187,7 +187,7 @@ const ImageArea = styled('div', {
   marginTop: rem(8),
 
   '@md': {
-    width: rem(450),
+    width: rem(510),
     marginTop: rem(0),
   },
 });
@@ -197,6 +197,7 @@ const Image = styled(GatsbyImage, {
   width: '100%',
   height: 'auto',
   borderRadius: rem(30),
+  opacity: 0.99,
 
   '@md': {
     display: 'block !important',

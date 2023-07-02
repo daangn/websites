@@ -1,5 +1,5 @@
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { GatsbyImage } from 'gatsby-plugin-image';
+import { getImage, GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
 import { rem } from 'polished';
 import { vars } from '@seed-design/design-token';
@@ -10,6 +10,14 @@ type TempHeroSectionProps = {
 };
 
 const TempHeroSection: React.FC<TempHeroSectionProps> = ({ slice }) => {
+  const image =
+    slice.primary?.full_image?.localFile?.childImageSharp?.gatsbyImageData &&
+    getImage(slice.primary.full_image.localFile.childImageSharp.gatsbyImageData);
+
+  const mobileImage =
+    slice.primary?.mobile_image?.localFile?.childImageSharp?.gatsbyImageData &&
+    getImage(slice.primary.mobile_image.localFile.childImageSharp.gatsbyImageData);
+
   return (
     <Section>
       <SimpleReveal
@@ -22,16 +30,12 @@ const TempHeroSection: React.FC<TempHeroSectionProps> = ({ slice }) => {
         delay={200}
         initialTransform="translateY(2rem)"
       />
-      <Image
-        image={slice.primary.full_image.localFile.childImageSharp.gatsbyImageData}
-        alt={slice.primary.full_image.alt}
-      />
+      <Image image={image} alt={slice.primary?.full_image?.alt || ''} />
+      <MobileImage image={mobileImage} alt={slice.primary?.mobile_image?.alt || ''} />
       <SimpleReveal
         render={({ ref, cn, style }) => (
           <Description ref={ref} className={cn()} style={style}>
-            당근마켓은 가까이 있지만 서로 소통한 적 없던 동네 이웃이 처음 만날 수 있는 공간을
-            만들어갑니다. 중고거래부터 모임, 홍보와 결제까지 대한민국을 넘어 전 세계 동네가 있는
-            곳이라면 어디서든 당근마켓으로 연결될 수 있습니다.
+            당근마켓은 활발한 교류가 있는 지역 생활 커뮤니티를 꿈꿉니다. 누구나 동네에서의 즐겁고 따뜻한 연결을 경험할 수 있도록 하이퍼로컬의 새로운 길을 만들어가고 있습니다.
           </Description>
         )}
         duration={1000}
@@ -72,16 +76,32 @@ const PageTitle = styled('h1', {
 });
 
 const Image = styled(GatsbyImage, {
+  display: 'none !important',
   width: '100%',
   borderRadius: 0,
+  opacity: 0.99,
+
+  '@sm': {
+    display: 'block !important',
+  },
 
   '@md': {
     borderRadius: rem(30),
   },
 });
 
+const MobileImage = styled(GatsbyImage, {
+  display: 'block !important',
+  width: '100%',
+  height: '100%',
+
+  '@sm': {
+    display: 'none !important',
+  },
+});
+
 const Description = styled('p', {
-  maxWidth: rem(720),
+  maxWidth: rem(700),
   marginTop: rem(32),
   paddingX: rem(24),
   lineHeight: rem(25),

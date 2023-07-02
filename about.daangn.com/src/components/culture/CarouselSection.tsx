@@ -4,7 +4,10 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 import { rem } from 'polished';
 import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
-import SeedIcon from '@karrotmarket/gatsby-theme-seed-design/src/Icon';
+import { SimpleReveal } from 'simple-reveal';
+
+import { ReactComponent as ArrowLeft } from '../../assets/arrow_left.svg';
+import { ReactComponent as ArrowRight } from '../../assets/arrow_right.svg';
 
 type ArrowProps = {
   clickHandler: () => void;
@@ -18,40 +21,35 @@ type CarouselProps = {
 const PrevArrow: React.FC<ArrowProps> = (clickHandler, hasPrev) =>
   hasPrev && (
     <PrevArrowWapper onClick={clickHandler}>
-      <SeedIcon name="icon_chevron_left_fill" size="24px" />
+      <ArrowLeft />
     </PrevArrowWapper>
   );
 
 const NextArrow: React.FC<ArrowProps> = (clickHandler, hasNext) =>
   hasNext && (
     <NextArrowWapper onClick={clickHandler}>
-      <SeedIcon name="icon_chevron_right_fill" size="24px" />
+      <ArrowRight />
     </NextArrowWapper>
   );
 
 const CarouselSection: React.FC<CarouselProps> = ({ slice }) => {
-  const [centerMode, setCenterMode] = React.useState(false);
-
-  React.useEffect(() => {
-    const handleResize = () => {
-      const isMobileScreen = window.innerWidth <= 1062;
-      setCenterMode(!isMobileScreen);
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [centerMode]);
-
   return (
     <Container>
-      <CarouselSectionTitle>{slice.primary.carousel_section_title}</CarouselSectionTitle>
+      <SimpleReveal
+        render={({ ref, cn, style }) => (
+          <CarouselSectionTitle ref={ref} className={cn()} style={style}>
+            {slice.primary.carousel_section_title}
+          </CarouselSectionTitle>
+        )}
+        duration={1000}
+        delay={200}
+        initialTransform="translateY(2rem)"
+      />
       <CarouselWrapper>
         <Carousel
-          // centerMode={centerMode}
-          centerSlidePercentage={50}
           infiniteLoop={true}
           // autoPlay={true}
-          // interval={2000}
+          // interval={4000}
           showArrows={true}
           showIndicators={false}
           renderArrowPrev={PrevArrow}
@@ -87,9 +85,8 @@ const ArrowWapper = styled('div', {
   alignItems: 'center',
   position: 'absolute',
   top: '30%',
-  width: rem(24),
-  height: rem(24),
-  padding: rem(20),
+  width: rem(44),
+  height: rem(44),
   color: 'darkgray',
   fontSize: '2em',
   cursor: 'pointer',
@@ -99,27 +96,35 @@ const ArrowWapper = styled('div', {
   backgroundColor: 'none',
 
   '@sm': {
-    top: '40%',
+    top: '35%',
   },
 
-  '@xl': {
-    backgroundColor: vars.$scale.color.gray00,
+  '@md': {
+    top: '40%',
   },
 });
 
 const PrevArrowWapper = styled(ArrowWapper, {
-  left: 15,
+  left: 20,
 
   '@sm': {
-    left: 25,
+    left: 30,
+  },
+
+  '@md': {
+    left: 50,
   },
 });
 
 const NextArrowWapper = styled(ArrowWapper, {
-  right: 15,
+  right: 20,
 
   '@sm': {
-    right: 25,
+    right: 30,
+  },
+
+  '@md': {
+    right: 50,
   },
 });
 
@@ -143,7 +148,8 @@ const CarouselSectionTitle = styled('h2', {
   fontSize: vars.$scale.dimension.fontSize600,
 
   '@md': {
-    maxWidth: rem(800),
+    marginBottom: rem(80),
+    maxWidth: rem(400),
     fontSize: vars.$scale.dimension.fontSize900,
   },
 });
@@ -163,17 +169,14 @@ const ImageWrapper = styled('div', {
   width: '100%',
   aspectRatio: '16 / 9',
   overflow: 'hidden',
-  padding: `${rem(20)} ${rem(15)}`,
   marginBottom: rem(44),
 });
 
 const CarouselImage = styled(GatsbyImage, {
   width: '100%',
-  maxWidth: rem(900),
-  aspectRatio: '16 / 9',
   opacity: 0.99,
   objectFit: 'cover',
-  borderRadius: rem(20),
+  borderRadius: rem(0),
 
   '@md': {
     borderRadius: rem(30),

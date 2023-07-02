@@ -1,16 +1,15 @@
 import { type HeadProps, type PageProps, graphql } from 'gatsby';
 import { HeadSeo, OpenGraph, TwitterCard } from 'gatsby-plugin-head-seo/src';
-import { rem } from 'polished';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import * as React from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
-import FullImageSection from '../../components/culture/FullImageSection';
-import ListCardSection from '../../components/culture/ListCardSection';
-import BlogListSection from '../../components/culture/BlogListSection';
-import CarouselSection from '../../components/culture/CarouselSection';
-import TempHeroSection from '../../components/culture/TempHeroSection';
-import FullWidthImageSection from '../../components/culture/FullWidthImageSection';
+import FullImageSection from '../components/culture/FullImageSection';
+import ListCardSection from '../components/culture/ListCardSection';
+import BlogListSection from '../components/culture/BlogListSection';
+import CarouselSection from '../components/culture/CarouselSection';
+import TempHeroSection from '../components/culture/TempHeroSection';
+import FullWidthImageSection from '../components/culture/FullWidthImageSection';
 
 export const query = graphql`
   query CulturePage($locale: String!, $navigationId: String!) {
@@ -53,7 +52,7 @@ export const query = graphql`
                 alt
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(width: 620, height: 470)
+                    gatsbyImageData(width: 2880)
                   }
                 }
               }
@@ -71,6 +70,14 @@ export const query = graphql`
                 text
               }
               full_image {
+                alt
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData
+                  }
+                }
+              }
+              mobile_image {
                 alt
                 localFile {
                   childImageSharp {
@@ -121,8 +128,16 @@ export const query = graphql`
                   }
                 }
               }
+              vertical_image {
+                alt
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData
+                  }
+                }
+              }
               description {
-                html
+                text
               }
             }
           }

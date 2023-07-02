@@ -49,6 +49,14 @@ export const query = graphql`
                   }
                 }
               }
+              mobile_image {
+                alt
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData
+                  }
+                }
+              }
               text {
                 html
               }
@@ -218,6 +226,7 @@ export const Head: React.FC<CompanyPageHeadProps> = ({ data, location }) => {
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
       {(props) => [
         <OpenGraph
+          key='og'
           og={{
             ...props,
             type: 'website',
@@ -236,6 +245,7 @@ export const Head: React.FC<CompanyPageHeadProps> = ({ data, location }) => {
           }}
         />,
         <TwitterCard
+          key='twitter'
           card={{
             ...props,
             type: 'summary_large_image',

@@ -3,6 +3,7 @@ import { rem } from 'polished';
 import { graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { styled } from 'gatsby-theme-stitches/src/config';
+import { SimpleReveal } from 'simple-reveal';
 
 type PrismicTeamContentsDataMainBodyKeyVisualProps = {
   data: GatsbyTypes.PrismicTeamContentsDataMainBodyKeyVisual_dataFragment;
@@ -145,7 +146,16 @@ const PrismicTeamContentsDataMainBodyKeyVisual: React.FC<
           />
         </ImageContainer>
       )}
-      <Description>{data.primary.description?.text}</Description>
+      <SimpleReveal
+        render={({ ref, cn, style }) => (
+          <Description ref={ref} className={cn()} style={style}>
+            {data.primary.description?.text}
+          </Description>
+        )}
+        duration={1000}
+        delay={400}
+        initialTransform="translateY(2rem)"
+      />
     </Container>
   );
 };

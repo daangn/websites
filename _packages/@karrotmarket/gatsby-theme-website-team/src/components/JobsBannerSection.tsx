@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { rem } from 'polished';
 import { StaticImage } from 'gatsby-plugin-image';
-import { vars } from '@seed-design/design-token';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
+import { SimpleReveal } from 'simple-reveal';
 
 import _DetailLink from './DetailLink';
 
@@ -54,13 +54,20 @@ const JobsBannerSection: React.FC = () => {
         src={'./JobsBannerSection/jobs_banner.png'}
         formats={['auto', 'webp', 'avif']}
       />
-      <TextWrapper>
-        <Title>당근마켓과 함께 성장해보세요</Title>
-        <DetailLink
-          link={parseLink('https://about.daangn.com/jobs/')}
-          message="채용공고 보러 가기"
-        />
-      </TextWrapper>
+      <SimpleReveal
+        render={({ ref, cn, style }) => (
+          <TextWrapper ref={ref} className={cn()} style={style}>
+            <Title>당근마켓과 함께 성장해보세요</Title>
+            <DetailLink
+              link={parseLink('https://about.daangn.com/jobs/')}
+              message="채용공고 보러 가기"
+            />
+          </TextWrapper>
+        )}
+        duration={1000}
+        delay={200}
+        initialTransform="translateY(2rem)"
+      />
     </Container>
   );
 };

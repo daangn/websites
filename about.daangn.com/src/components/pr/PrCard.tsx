@@ -65,6 +65,7 @@ const ThumbnailWrapper = styled('div', {
   borderRadius: rem(8),
   backgroundColor: vars.$scale.color.gray100,
   overflow: 'hidden',
+  opacity: 0.99,
 
   '@sm': {
     width: rem(180),
