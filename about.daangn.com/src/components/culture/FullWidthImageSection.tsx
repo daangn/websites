@@ -27,9 +27,7 @@ const FullWidthImageSection: React.FC<FullWidthImageProps> = ({ slice }) => {
       <Text>
         <SimpleReveal
           render={({ ref, cn, style }) => (
-            <p
-              ref={ref} className={cn()} style={style}
-            >
+            <p ref={ref} className={cn()} style={style}>
               {slice.primary.description.text}
             </p>
           )}

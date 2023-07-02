@@ -35,7 +35,9 @@ const TempHeroSection: React.FC<TempHeroSectionProps> = ({ slice }) => {
       <SimpleReveal
         render={({ ref, cn, style }) => (
           <Description ref={ref} className={cn()} style={style}>
-            당근마켓 팀에는 일에 몰입할 때 즐거움을 느끼는 사람들이 모였습니다. 개인은 자신의 역량을 마음껏 발휘하고 팀은 서로의 잠재력을 최대로 끌어내면서, 혼자서는 상상할 수 없던 눈부신 성장을 함께 이루어가고 있습니다.
+            당근마켓 팀에는 일에 몰입할 때 즐거움을 느끼는 사람들이 모였습니다. 개인은 자신의 역량을
+            마음껏 발휘하고 팀은 서로의 잠재력을 최대로 끌어내면서, 혼자서는 상상할 수 없던 눈부신
+            성장을 함께 이루어가고 있습니다.
           </Description>
         )}
         duration={1000}

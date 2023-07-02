@@ -107,7 +107,10 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({ item, className }) => {
     return null;
   }
   return (
-    <Container className={className} to={`/blog/archive/${slugify(item.main_page_featured_post.uid)}/`}>
+    <Container
+      className={className}
+      to={`/blog/archive/${slugify(item.main_page_featured_post.uid)}/`}
+    >
       <ImageWrapper>
         <Image image={image} alt={item.image?.alt || ''} />
       </ImageWrapper>

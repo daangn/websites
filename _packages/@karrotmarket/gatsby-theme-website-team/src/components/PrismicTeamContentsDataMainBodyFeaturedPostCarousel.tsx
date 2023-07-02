@@ -272,7 +272,8 @@ const PrismicTeamContentsDataMainBodyFeaturedPostCarousel: React.FC<
         <SimpleReveal
           render={({ ref, cn, style }) => (
             <Summary ref={ref} className={cn()} style={style}>
-              좋은 서비스에 대한 답은 항상 사용자에게 있어요. 오래 고민하는 대신 빠르게 실험하며 사용자를 위한 서비스를 만들어요.
+              좋은 서비스에 대한 답은 항상 사용자에게 있어요. 오래 고민하는 대신 빠르게 실험하며
+              사용자를 위한 서비스를 만들어요.
             </Summary>
           )}
           duration={1000}
@@ -288,7 +289,6 @@ const PrismicTeamContentsDataMainBodyFeaturedPostCarousel: React.FC<
         >
           <SeedIcon name="icon_chevron_right_regular" />
           {/* <ArrowLeft /> */}
-
         </LeftArrowButton>
         <SlideCamera {...swipeHandlers}>
           <Slide css={{ $$slide: slide }}>

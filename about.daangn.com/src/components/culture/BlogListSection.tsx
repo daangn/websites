@@ -47,13 +47,15 @@ const BlogListSection: React.FC<BlogListSectionProps> = ({ slice, data }) => {
     <BlogSection>
       <SimpleReveal
         render={({ ref, cn, style }) => (
-          <BlogSectionTitle ref={ref} className={cn()} style={style}>{slice.primary.blog_list_title}</BlogSectionTitle>
+          <BlogSectionTitle ref={ref} className={cn()} style={style}>
+            {slice.primary.blog_list_title}
+          </BlogSectionTitle>
         )}
         duration={1000}
         delay={200}
         initialTransform="translateY(2rem)"
       />
-      <CtaButton link="/blog/category/career/">블로그 글  보러 가기</CtaButton>
+      <CtaButton link="/blog/category/career/">블로그 글 보러 가기</CtaButton>
       <BlogCardWraaper ref={scrollRef}>
         {data.allPost.nodes.map((post) => (
           <BlogCard key={post.slug} to={`/blog/archive/${post.slug}`}>
