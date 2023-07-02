@@ -93,16 +93,18 @@ const PrismicTeamContentsDataMainBodyWideBanner: React.FC<
           alt={data.primary.thumbnail?.alt || ''}
         />
       )}
-      <BannerContainer
-        css={{
-          backgroundColor: data.primary.background_color,
-        }}
-      >
-        <Title>{data.primary.title?.text}</Title>
-        {data.primary.link?.url && (
-          <DetailLink link={parseLink(data.primary.link.url)} message={data.primary.link_text} />
-        )}
-      </BannerContainer>
+      {data.primary.title?.text && (
+        <BannerContainer
+          css={{
+            backgroundColor: data.primary.background_color,
+          }}
+        >
+          <Title>{data.primary.title?.text}</Title>
+          {data.primary.link?.url && (
+            <DetailLink link={parseLink(data.primary.link.url)} message={data.primary.link_text} />
+          )}
+        </BannerContainer>
+      )}
     </Container>
   );
 };

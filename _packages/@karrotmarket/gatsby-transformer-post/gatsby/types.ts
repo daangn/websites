@@ -36,6 +36,7 @@ export type PrismicPostNode = PrismicSourceNode &
       summary: KeyTextField;
       published_at: DateField;
       thumbnail_image: ImageField;
+      vertical_thumbnail_image: ImageField;
       author: ContentRelationshipField<'team_member'>;
       category: ContentRelationshipField<'post_category'>;
       tags: KeyTextField;

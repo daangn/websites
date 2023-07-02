@@ -55,8 +55,6 @@ export const query = graphql`
 type PrPostPageProps = PageProps<GatsbyTypes.PrPostPageQuery>;
 
 const PrPostPage: React.FC<PrPostPageProps> = ({ data }) => {
-  console.log('data ::', data);
-
   return (
     <Container>
       <Header>
@@ -134,6 +132,7 @@ const Header = styled('div', {
 });
 
 const Title = styled('h1', {
+  maxWidth: rem(600),
   fontSize: vars.$scale.dimension.fontSize600,
   marginBottom: rem(20),
 

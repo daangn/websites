@@ -2847,6 +2847,7 @@ __metadata:
     react-intersection-observer: 9.4.3
     react-swipeable: 7.0.0
     schema-dts: 1.1.2
+    simple-reveal: 0.6.0
     text2vdom: 1.0.0
     typescript: 5.0.4
     use-dark-mode: 2.3.1
@@ -5204,6 +5205,8 @@ __metadata:
     prismjs: 1.29.0
     react: 18.2.0
     react-dom: 18.2.0
+    react-responsive-carousel: 3.2.23
+    simple-reveal: 0.6.0
     typescript: 5.0.4
     ultra-runner: 3.10.5
   languageName: unknown
@@ -6723,6 +6726,13 @@ __metadata:
   version: 1.2.2
   resolution: "cjs-module-lexer@npm:1.2.2"
   checksum: 977f3f042bd4f08e368c890d91eecfbc4f91da0bc009a3c557bc4dfbf32022ad1141244ac1178d44de70fc9f3dea7add7cd9a658a34b9fae98a55d8f92331ce5
+  languageName: node
+  linkType: hard
+
+"classnames@npm:^2.2.5":
+  version: 2.3.2
+  resolution: "classnames@npm:2.3.2"
+  checksum: 2c62199789618d95545c872787137262e741f9db13328e216b093eea91c85ef2bfb152c1f9e63027204e2559a006a92eb74147d46c800a9f96297ae1d9f96f4e
   languageName: node
   linkType: hard
 
@@ -15653,6 +15663,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-easy-swipe@npm:^0.0.21":
+  version: 0.0.21
+  resolution: "react-easy-swipe@npm:0.0.21"
+  dependencies:
+    prop-types: ^15.5.8
+  checksum: 225f12a9dd410db1c790220867ab1eb58e2ef0a2bdae8541330805fc5b9905e242ab307b019f9aaed76473849a753f363baff03fa8a77e7a1860d7b41dc83ec0
+  languageName: node
+  linkType: hard
+
 "react-error-overlay@npm:^6.0.11":
   version: 6.0.11
   resolution: "react-error-overlay@npm:6.0.11"
@@ -15792,6 +15811,17 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 2c7fe9cbd766f5e54beb4bec2e2efb2de3583037b23fef8fa511ab426ed7f1ae992382db5acd8ab5bfb030a4b93a06a2ebca41377d6eeaf0e6791bb0a59616a4
+  languageName: node
+  linkType: hard
+
+"react-responsive-carousel@npm:3.2.23":
+  version: 3.2.23
+  resolution: "react-responsive-carousel@npm:3.2.23"
+  dependencies:
+    classnames: ^2.2.5
+    prop-types: ^15.5.8
+    react-easy-swipe: ^0.0.21
+  checksum: 8a5b915f140a05425554a0c108c60a0b103dae49808486d39147df09c832ad712c7d7f4a66f0d0c39529ca095b4a327f0cc440d91b5f7a39ab13076931f74bd0
   languageName: node
   linkType: hard
 
@@ -16867,6 +16897,15 @@ __metadata:
     once: ^1.3.1
     simple-concat: ^1.0.0
   checksum: e4132fd27cf7af230d853fa45c1b8ce900cb430dd0a3c6d3829649fe4f2b26574c803698076c4006450efb0fad2ba8c5455fbb5755d4b0a5ec42d4f12b31d27e
+  languageName: node
+  linkType: hard
+
+"simple-reveal@npm:0.6.0":
+  version: 0.6.0
+  resolution: "simple-reveal@npm:0.6.0"
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: 43688ab95d024c79b546e3edbc6403773b377a047862616b6a0d5d17c62836ad306024366aa66baea5e263f46ca9bf086f088d04bcc10c96153a3b3b73811cf9
   languageName: node
   linkType: hard
 

@@ -5,6 +5,8 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { HeadSeo, OpenGraph, TwitterCard } from 'gatsby-plugin-head-seo/src';
 import { rem } from 'polished';
 import * as React from 'react';
+import 'simple-reveal/index.css';
+import { SimpleReveal } from 'simple-reveal';
 
 import externalSvgUrl from '!!file-loader!../assets/external.svg';
 
@@ -97,9 +99,15 @@ const ServicePage: React.FC<ServicePageProps> = ({ data }) => {
 
   return (
     <Container>
-      <TitleArea>
-        <Title>{data.prismicServiceContent?.data.service_page_title?.text}</Title>
-      </TitleArea>
+      <SimpleReveal
+        key="1"
+        render={({ ref, cn, style }) => (
+          <TitleArea ref={ref} className={cn()} style={style}>
+            <Title>{data.prismicServiceContent?.data.service_page_title?.text}</Title>
+          </TitleArea>
+        )}
+        duration={500}
+      />
 
       {services?.map(
         (
@@ -114,52 +122,62 @@ const ServicePage: React.FC<ServicePageProps> = ({ data }) => {
           i,
         ) => {
           return (
-            <React.Fragment key={service_key}>
-              <Card>
-                <LeftContent>
-                  <ServiceTitle>
-                    <ServiceIcon
-                      image={service_icon.localFile.childImageSharp.gatsbyImageData}
-                      alt={service_icon?.alt}
-                    />
-                    {service_url.url ? (
-                      <ServiceLink
-                        as="a"
-                        target="_blank"
-                        rel="external noopener"
-                        href={service_url.url}
-                      >
-                        {service_name.text}
-                      </ServiceLink>
-                    ) : (
-                      <ServiceName>{service_name.text}</ServiceName>
-                    )}
-                  </ServiceTitle>
-                  <ServiceDescription>{service_description}</ServiceDescription>
-                </LeftContent>
-                <RightContent>
-                  <ServiceImage
-                    image={service_image.localFile.childImageSharp.gatsbyImageData}
-                    alt={service_image?.alt}
-                  />
-                </RightContent>
-              </Card>
+            <SimpleReveal
+              // rome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+              key={i}
+              render={({ ref, cn, style }) => (
+                <React.Fragment>
+                  <Card ref={ref} className={cn()} style={style}>
+                    <LeftContent>
+                      <ServiceTitle>
+                        <ServiceIcon
+                          image={service_icon.localFile.childImageSharp.gatsbyImageData}
+                          alt={service_icon?.alt}
+                        />
+                        {service_url.url ? (
+                          <ServiceLink
+                            as="a"
+                            target="_blank"
+                            rel="external noopener"
+                            href={service_url.url}
+                          >
+                            {service_name.text}
+                          </ServiceLink>
+                        ) : (
+                          <ServiceName>{service_name.text}</ServiceName>
+                        )}
+                      </ServiceTitle>
+                      <ServiceDescription>{service_description}</ServiceDescription>
+                    </LeftContent>
+                    <RightContent>
+                      <ServiceImage
+                        image={service_image.localFile.childImageSharp.gatsbyImageData}
+                        alt={service_image?.alt}
+                      />
+                    </RightContent>
+                  </Card>
 
-              {subServices?.filter(({ parent_service_key }) => parent_service_key === service_key)
-                .length > 0 && (
-                <SubCardWrapper>
-                  {subServices
-                    ?.filter(({ parent_service_key }) => parent_service_key === service_key)
-                    .map((item) => (
-                      <SubCard key={item.sub_service_key + String(i)}>
-                        <SubCardTitle>{item.sub_service_name.text}</SubCardTitle>
-                        <SubCardDesctiption>{item.sub_service_description}</SubCardDesctiption>
-                      </SubCard>
-                    ))}
-                </SubCardWrapper>
+                  {subServices?.filter(
+                    ({ parent_service_key }) => parent_service_key === service_key,
+                  ).length > 0 && (
+                    <SubCardWrapper>
+                      {subServices
+                        ?.filter(({ parent_service_key }) => parent_service_key === service_key)
+                        .map((item) => (
+                          <SubCard key={item.sub_service_key + String(i)}>
+                            <SubCardTitle>{item.sub_service_name.text}</SubCardTitle>
+                            <SubCardDesctiption>{item.sub_service_description}</SubCardDesctiption>
+                          </SubCard>
+                        ))}
+                    </SubCardWrapper>
+                  )}
+                  {isNotLastLine(i) && <CardLine />}
+                </React.Fragment>
               )}
-              {isNotLastLine(i) && <CardLine />}
-            </React.Fragment>
+              duration={1000}
+              delay={150 * (i + 1)}
+              initialTransform="translateY(2rem)"
+            />
           );
         },
       )}
@@ -170,9 +188,16 @@ const ServicePage: React.FC<ServicePageProps> = ({ data }) => {
 type ServicePageHeadProps = HeadProps<GatsbyTypes.ServicePageQuery>;
 
 export const Head: React.FC<ServicePageHeadProps> = ({ data, location }) => {
-  const { service_page_meta_title, service_page_meta_description, service_page_og_image } =
-    data.prismicServiceContent?.data;
+  const {
+    service_page_meta_title,
+    service_page_meta_description,
+    service_page_og_image,
+    // rome-ignore lint/suspicious/noExplicitAny: <explanation>
+  } = data.prismicServiceContent?.data as any;
+
   const metaImage = service_page_og_image?.localFile?.childImageSharp?.fixed;
+
+  console.log('metaImage ::', metaImage);
 
   return (
     <HeadSeo
@@ -182,6 +207,7 @@ export const Head: React.FC<ServicePageHeadProps> = ({ data, location }) => {
     >
       {(props) => [
         <OpenGraph
+          key='og'
           og={{
             ...props,
             type: 'website',
@@ -200,9 +226,10 @@ export const Head: React.FC<ServicePageHeadProps> = ({ data, location }) => {
           }}
         />,
         <TwitterCard
+          key='twitter'
           card={{
             ...props,
-            type: 'summary',
+            type: 'summary_large_image',
           }}
         />,
       ]}
@@ -292,6 +319,11 @@ const ServiceTitle = styled('div', {
 const ServiceIcon = styled(GatsbyImage, {
   width: rem(40),
   marginRight: rem(10),
+  display: 'none !important',
+
+  '@sm': {
+    display: 'inline-block !important',
+  },
 
   '@lg': {
     width: rem(80),
@@ -367,6 +399,11 @@ const ServiceImage = styled(GatsbyImage, {
   width: '100%',
   height: '100%',
   objectFit: 'cover',
+  borderRadius: rem(15),
+
+  '@md': {
+    borderRadius: rem(30),
+  },
 });
 
 const SubCardWrapper = styled('div', {

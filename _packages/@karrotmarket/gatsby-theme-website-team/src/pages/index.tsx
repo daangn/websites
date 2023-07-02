@@ -5,6 +5,7 @@ import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
 import { HeadSeo } from 'gatsby-plugin-head-seo/src';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
+import { SimpleReveal } from 'simple-reveal';
 
 import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import _PageTitle from '../components/PageTitle';
@@ -16,6 +17,9 @@ import PrismicTeamContentsDataMainBodyIllustrationAndDescription from '../compon
 import PrismicTeamContentsDataMainBodyWideBanner from '../components/PrismicTeamContentsDataMainBodyWideBanner';
 import PrismicTeamContentsDataMainBodyHowWeWork from '../components/PrismicTeamContentsDataMainBodyHowWeWork';
 import PrismicTeamContentsDataMainBodyBenefit from '../components/PrismicTeamContentsDataMainBodyBenefit';
+import PrismicTeamContentsDataMainBodyFeaturedPostCarousel from '../components/PrismicTeamContentsDataMainBodyFeaturedPostCarousel';
+import LatestBlogSection from '../components/LatestBlogSection';
+import JobsBannerSection from '../components/JobsBannerSection';
 import { isCanonicalUrl } from '../utils/common';
 
 export const query = graphql`
@@ -61,9 +65,11 @@ export const query = graphql`
           ...PrismicTeamContentsDataMainBodyWideBanner_data
           ...PrismicTeamContentsDataMainBodyHowWeWork_data
           ...PrismicTeamContentsDataMainBodyBenefit_data
+          ...PrismicTeamContentsDataMainBodyFeaturedPostCarousel_data
         }
       }
     }
+    ...LatestBlogPostList_query
   }
 `;
 
@@ -97,7 +103,16 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
   return (
     <MainContainer>
       <TitleContainer>
-        <PageTitle>{data.prismicTeamContents.data.main_page_title?.text}</PageTitle>
+        <SimpleReveal
+          render={({ ref, cn, style }) => (
+            <PageTitle ref={ref} className={cn()} style={style}>
+              {data.prismicTeamContents.data.main_page_title?.text}
+            </PageTitle>
+          )}
+          duration={1000}
+          delay={200}
+          initialTransform="translateY(2rem)"
+        />
       </TitleContainer>
       <Content>
         {data.prismicTeamContents.data.main_body?.filter(Boolean)?.map((data, i) =>
@@ -135,8 +150,21 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
               // rome-ignore lint/suspicious/noArrayIndexKey: intentional
               <PrismicTeamContentsDataMainBodyBenefit key={i} data={data} />
             ),
+            // 임시 컴포넌트 for KR
+            PrismicTeamContentsDataMainBodyFeaturedPostCarousel: (data) => (
+              // <h2 key={i}>featured article 블로그 섹션</h2>
+              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              <PrismicTeamContentsDataMainBodyFeaturedPostCarousel key={i} data={data} />
+            ),
             _: null,
           }),
+        )}
+        {/* kr에서만 사용하는 임시 섹션 */}
+        {data.site.siteMetadata.locale === 'ko-kr' && (
+          <>
+            <LatestBlogSection data={data} />
+            <JobsBannerSection />
+          </>
         )}
       </Content>
     </MainContainer>

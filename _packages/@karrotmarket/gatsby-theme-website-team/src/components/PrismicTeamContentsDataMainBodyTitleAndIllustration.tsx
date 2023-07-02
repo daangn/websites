@@ -3,7 +3,8 @@ import { rem } from 'polished';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { getImage, GatsbyImage } from 'gatsby-plugin-image';
-import { mapLink, useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
+import { useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
+import { SimpleReveal } from 'simple-reveal';
 
 import DetailLink from './DetailLink';
 
@@ -114,11 +115,18 @@ const PrismicTeamContentsDataMainBodyTitleAndIllustration: React.FC<
 
   return (
     <Container alignTitle={data.primary.inverted === true ? 'right' : 'left'}>
-      <TitleContainer>
-        <KeyText>{data.primary.key_text}</KeyText>
-        <Title>{data.primary.title?.text}</Title>
-        {link && <DetailLink link={link} />}
-      </TitleContainer>
+      <SimpleReveal
+        render={({ ref, cn, style }) => (
+          <TitleContainer ref={ref} className={cn()} style={style}>
+            <KeyText>{data.primary.key_text}</KeyText>
+            <Title>{data.primary.title?.text}</Title>
+            {link && <DetailLink link={link} />}
+          </TitleContainer>
+        )}
+        duration={1000}
+        delay={200}
+        initialTransform="translateY(2rem)"
+      />
       {image && <Illustration image={image} alt={data.primary.illustration?.alt || ''} />}
     </Container>
   );

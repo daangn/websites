@@ -97,9 +97,8 @@ const Description = styled('p', {
   lineHeight: rem(26),
   letterSpacing: rem(0.4),
   color: vars.$scale.color.gray900,
-  textAlign: 'justify',
-  textJustify: 'distribute',
-  wordBreak: 'break-all',
+  textAlign: 'left',
+  wordBreak: 'keep-all',
 
   '@sm': {
     lineHeight: rem(28),

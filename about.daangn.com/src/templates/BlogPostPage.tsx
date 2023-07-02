@@ -185,7 +185,7 @@ export const Head: React.FC<BlogPostPageHeadProps> = ({ data, location }) => {
           key="twitter"
           card={{
             ...props,
-            type: 'summary',
+            type: 'summary_large_image',
           }}
         />,
       ]}

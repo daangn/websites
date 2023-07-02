@@ -95,7 +95,8 @@ const Description = styled('p', {
   lineHeight: rem(24),
   letterSpacing: rem(0.4),
   fontSize: '$body2',
-  wordBreak: 'break-all',
+  textAlign: 'left',
+  wordBreak: 'keep-all',
 
   '@sm': {
     fontSize: '$body1',
