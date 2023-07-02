@@ -71,7 +71,6 @@ const BlogCardWraaper = styled('div', {
   overflowX: 'scroll',
   width: '100%',
   marginTop: rem(60),
-  animation: 'scroll 40s linear infinite',
 
   '&::-webkit-scrollbar': {
     display: 'none',
