@@ -90,8 +90,8 @@ const Image = styled(GatsbyImage, {
     round: {
       true: {
         borderRadius: rem(30),
-      }
-    }
+      },
+    },
   },
 });
 

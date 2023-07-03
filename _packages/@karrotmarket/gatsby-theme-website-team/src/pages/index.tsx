@@ -122,11 +122,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
           mapAbstractTypeWithDefault(data!, {
             PrismicTeamContentsDataMainBodyKeyVisual: (data) => (
               // rome-ignore lint/suspicious/noArrayIndexKey: intentional
-              <PrismicTeamContentsDataMainBodyKeyVisual
-                key={i}
-                data={data}
-                locale={locale}
-              />
+              <PrismicTeamContentsDataMainBodyKeyVisual key={i} data={data} locale={locale} />
             ),
             PrismicTeamContentsDataMainBodyMemberQuoteCarousel: (data) => (
               // rome-ignore lint/suspicious/noArrayIndexKey: intentional
