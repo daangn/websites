@@ -68,8 +68,7 @@ const BlogList = styled('div', {
   position: 'relative',
   width: 'calc(278px * 14)',
   height: rem(400),
-  overflowX: 'hidden',
-  overflowY: 'hidden',
+  overflow: 'hidden',
 });
 
 const scrollPrimaryAnimation = keyframes({
