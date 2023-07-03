@@ -63,10 +63,11 @@ const PageTitle = styled('h1', {
   paddingX: rem(24),
   typography: '$subtitle2',
   whiteSpace: 'pre-line',
-  maxWidth: rem(400),
+  maxWidth: rem(200),
 
   '@sm': {
     typography: '$heading4',
+    maxWidth: rem(400),
   },
 
   '@md': {

@@ -18,6 +18,7 @@ export const query = graphql`
     allPost(
       filter: {category: {name: {eq: "커리어"}}}
       sort: {publishedAt: DESC}
+      limit: 5
     ) {
       nodes {
         slug
@@ -79,10 +80,10 @@ const BlogSection = styled('section', {
   alignItems: 'center',
   justifyContent: 'center',
   width: '100%',
-  paddingTop: rem(64),
+  marginTop: rem(64),
 
   '@md': {
-    paddingTop: rem(160),
+    marginTop: rem(160),
   },
 });
 
@@ -107,6 +108,10 @@ const BlogCardWraaper = styled('div', {
 
   '@md': {
     marginTop: rem(110),
+  },
+
+  '@xl': {
+    width: rem(1380),
   },
 
   '&::-webkit-scrollbar': {

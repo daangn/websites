@@ -116,6 +116,7 @@ const PrListWraaper = styled('div', {
   flexDirection: 'row',
   width: '100%',
   overflowX: 'scroll',
+  overflowY: 'hidden',
   margin: `${rem(60)} 0`,
   // paddingX: rem(24),
   paddingLeft: rem(24),
