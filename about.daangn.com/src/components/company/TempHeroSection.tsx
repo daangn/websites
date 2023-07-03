@@ -23,7 +23,7 @@ const TempHeroSection: React.FC<TempHeroSectionProps> = ({ slice }) => {
       <SimpleReveal
         render={({ ref, cn, style }) => (
           <PageTitle ref={ref} className={cn()} style={style}>
-            더 따뜻한 당신근처를 위하여
+            더 가깝고 따뜻한 당신 근처를 위하여
           </PageTitle>
         )}
         duration={1000}

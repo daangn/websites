@@ -100,6 +100,8 @@ const Content = styled('div', {
 
 type IndexPageProps = PageProps<GatsbyTypes.TeamWebsite_IndexPageQuery>;
 const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
+  const locale = data.site.siteMetadata.locale;
+
   return (
     <MainContainer>
       <TitleContainer>
@@ -120,7 +122,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
           mapAbstractTypeWithDefault(data!, {
             PrismicTeamContentsDataMainBodyKeyVisual: (data) => (
               // rome-ignore lint/suspicious/noArrayIndexKey: intentional
-              <PrismicTeamContentsDataMainBodyKeyVisual key={i} data={data} />
+              <PrismicTeamContentsDataMainBodyKeyVisual key={i} data={data} locale={locale} />
             ),
             PrismicTeamContentsDataMainBodyMemberQuoteCarousel: (data) => (
               // rome-ignore lint/suspicious/noArrayIndexKey: intentional
