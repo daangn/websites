@@ -66,7 +66,6 @@ const DetailLink = styled(_DetailLink, {
 
 const BlogList = styled('div', {
   position: 'relative',
-  // width: '100vw',
   width: 'calc(278px * 14)',
   height: rem(400),
   overflowX: 'hidden',
@@ -150,7 +149,7 @@ const BlogTitleBox = styled('div', {
   top: 205,
   width: '100%',
   height: rem(120),
-  display: 'flex !important',
+  display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   textAlign: 'left',
