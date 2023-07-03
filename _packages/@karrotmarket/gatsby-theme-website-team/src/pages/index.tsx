@@ -110,7 +110,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
             </PageTitle>
           )}
           duration={1000}
-          delay={200}
+          delay={0}
           initialTransform="translateY(2rem)"
         />
       </TitleContainer>
