@@ -3,7 +3,7 @@ import { rem } from 'polished';
 import { graphql, Link } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { vars } from '@seed-design/design-token';
-import { styled } from 'gatsby-theme-stitches/src/config';
+import { styled, keyframes } from 'gatsby-theme-stitches/src/config';
 import { useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
 import { SimpleReveal } from 'simple-reveal';
 
@@ -19,7 +19,7 @@ export const query = graphql`
     allPost(
       filter: {category: {uid: {ne: "pr"}}}
       sort: {publishedAt: DESC}
-      limit: 20
+      limit: 14
     ) {
       nodes {
         slug
@@ -64,21 +64,50 @@ const DetailLink = styled(_DetailLink, {
   justifyContent: 'center',
 });
 
+const BlogList = styled('div', {
+  position: 'relative',
+  width: 'calc(278px * 14)',
+  height: rem(400),
+  overflowX: 'hidden',
+});
+
+const scrollPrimaryAnimation = keyframes({
+  '0%': { transform: 'translateX(0%)' },
+  '100%': { transform: 'translateX(-100%)' },
+});
+
+const scrollSecondaryAnimation = keyframes({
+  '0%': { transform: 'translateX(100%)' },
+  '100%': { transform: 'translateX(0%)' },
+});
+
 const BlogCardWraaper = styled('div', {
-  display: 'flex',
-  flexWrap: 'nowrap',
   flexDirection: 'row',
   overflowX: 'scroll',
-  width: '100%',
   marginTop: rem(60),
+  animation: `${scrollPrimaryAnimation} 50s linear infinite`,
+
+  width: 'inherit',
+  height: 'inherit',
+  position: 'absolute',
+  left: '0%',
+  top: '0%',
+  display: 'flex',
+  alignIems: 'center',
+  justifyContent: 'space-around',
 
   '&::-webkit-scrollbar': {
     display: 'none',
   },
+
   '&': {
     scrollbarWidth: 'none',
     '-ms-overflow-style': 'none',
   },
+});
+
+const SecondaryBlogCardWraaper = styled(BlogCardWraaper, {
+  animation: `${scrollSecondaryAnimation} 50s linear infinite`,
 });
 
 const BlogCard = styled(Link, {
@@ -125,6 +154,7 @@ const BlogTitleBox = styled('div', {
   alignItems: 'center',
   textAlign: 'left',
   background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.40) 100%)',
+  zIndex: 200,
 });
 
 const BlogTitle = styled('p', {
@@ -134,19 +164,11 @@ const BlogTitle = styled('p', {
   color: vars.$scale.color.gray00,
   fontSize: vars.$scale.dimension.fontSize400,
   fontWeight: 'bold',
+  zIndex: 300,
 });
 
 const LatestBlogSection: React.FC<LatestBlogSectionProps> = ({ data, className }) => {
   const parseLink = useLinkParser();
-  const scrollRef = React.useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    const container = scrollRef.current;
-    if (!container) return;
-    const containerWidth = container.clientWidth;
-    const contentWidth = container.scrollWidth;
-    container.scrollLeft = (contentWidth - containerWidth) / 2;
-  }, []);
 
   return (
     <Container className={className}>
@@ -164,19 +186,34 @@ const LatestBlogSection: React.FC<LatestBlogSectionProps> = ({ data, className }
         delay={200}
         initialTransform="translateY(2rem)"
       />
-      <BlogCardWraaper ref={scrollRef}>
-        {data.allPost.nodes.map((post) => (
-          <BlogCard key={post.slug} to={`/blog/archive/${post.slug}`}>
-            <BlogcardThumbnail
-              image={post.verticalThumbnailImage?.childImageSharp?.gatsbyImageData}
-              alt={`${post.slug}_썸네일이미지`}
-            />
-            <BlogTitleBox>
-              <BlogTitle>{post.title}</BlogTitle>
-            </BlogTitleBox>
-          </BlogCard>
-        ))}
-      </BlogCardWraaper>
+      <BlogList>
+        <BlogCardWraaper>
+          {data.allPost.nodes.map((post) => (
+            <BlogCard key={post.slug} to={`/blog/archive/${post.slug}`}>
+              <BlogcardThumbnail
+                image={post.verticalThumbnailImage?.childImageSharp?.gatsbyImageData}
+                alt={`${post.slug}_썸네일이미지`}
+              />
+              <BlogTitleBox>
+                <BlogTitle>{post.title}</BlogTitle>
+              </BlogTitleBox>
+            </BlogCard>
+          ))}
+        </BlogCardWraaper>
+        <SecondaryBlogCardWraaper>
+          {data.allPost.nodes.map((post) => (
+            <BlogCard key={post.slug} to={`/blog/archive/${post.slug}`}>
+              <BlogcardThumbnail
+                image={post.verticalThumbnailImage?.childImageSharp?.gatsbyImageData}
+                alt={`${post.slug}_썸네일이미지`}
+              />
+              <BlogTitleBox>
+                <BlogTitle>{post.title}</BlogTitle>
+              </BlogTitleBox>
+            </BlogCard>
+          ))}
+        </SecondaryBlogCardWraaper>
+      </BlogList>
     </Container>
   );
 };

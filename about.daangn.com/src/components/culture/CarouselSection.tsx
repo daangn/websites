@@ -87,7 +87,6 @@ const ArrowWapper = styled('div', {
   top: '30%',
   width: rem(44),
   height: rem(44),
-  color: 'darkgray',
   fontSize: '2em',
   cursor: 'pointer',
   zIndex: 2,
