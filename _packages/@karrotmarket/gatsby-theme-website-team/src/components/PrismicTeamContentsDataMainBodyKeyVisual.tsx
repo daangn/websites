@@ -7,6 +7,7 @@ import { SimpleReveal } from 'simple-reveal';
 
 type PrismicTeamContentsDataMainBodyKeyVisualProps = {
   data: GatsbyTypes.PrismicTeamContentsDataMainBodyKeyVisual_dataFragment;
+  locale?: string;
   className?: string;
 };
 
@@ -86,6 +87,11 @@ const Image = styled(GatsbyImage, {
         },
       },
     },
+    round: {
+      true: {
+        borderRadius: rem(30),
+      }
+    }
   },
 });
 
@@ -111,7 +117,7 @@ const Description = styled('p', {
 
 const PrismicTeamContentsDataMainBodyKeyVisual: React.FC<
   PrismicTeamContentsDataMainBodyKeyVisualProps
-> = ({ data, className }) => {
+> = ({ data, className, locale }) => {
   if (data.primary == null) {
     return null;
   }
@@ -138,7 +144,13 @@ const PrismicTeamContentsDataMainBodyKeyVisual: React.FC<
     <Container className={className}>
       {image && (
         <ImageContainer expanded={{ '@initial': data.primary.expanded ?? false, '@md': true }}>
-          <Image layout="landscape" image={image} alt={data.primary?.key_visual_image?.alt ?? ''} />
+          <Image
+            layout="landscape"
+            // round는 KR에서만 적용
+            round={locale === 'ko-kr'}
+            image={image}
+            alt={data.primary?.key_visual_image?.alt ?? ''}
+          />
           <Image
             layout="portrait"
             image={portraitImage}
