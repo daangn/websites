@@ -84,7 +84,7 @@ const ArrowWapper = styled('div', {
   justifyContent: 'center',
   alignItems: 'center',
   position: 'absolute',
-  top: '30%',
+  top: '26%',
   width: rem(44),
   height: rem(44),
   fontSize: '2em',
@@ -99,7 +99,7 @@ const ArrowWapper = styled('div', {
   },
 
   '@md': {
-    top: '40%',
+    top: '38%',
   },
 });
 

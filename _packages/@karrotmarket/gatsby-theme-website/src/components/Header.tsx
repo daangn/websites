@@ -28,7 +28,7 @@ const Container = styled('header', {
   background: vars.$semantic.color.paperDefault,
   width: '100%',
   height: rem(58),
-  zIndex: 2,
+  zIndex: 100,
   transition: 'background 0.3s',
 
   '@sm': {
