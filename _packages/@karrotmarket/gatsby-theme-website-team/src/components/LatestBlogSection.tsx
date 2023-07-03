@@ -86,7 +86,7 @@ const BlogCardWraaper = styled('div', {
   flexDirection: 'row',
   overflowX: 'scroll',
   marginTop: rem(60),
-  animation: `${scrollPrimaryAnimation} 50s linear infinite`,
+  animation: `${scrollPrimaryAnimation} 60s linear infinite`,
 
   width: 'inherit',
   height: 'inherit',
@@ -108,7 +108,7 @@ const BlogCardWraaper = styled('div', {
 });
 
 const SecondaryBlogCardWraaper = styled(BlogCardWraaper, {
-  animation: `${scrollSecondaryAnimation} 50s linear infinite`,
+  animation: `${scrollSecondaryAnimation} 60s linear infinite`,
 });
 
 const BlogCard = styled(Link, {
