@@ -118,11 +118,9 @@ const PrListWraaper = styled('div', {
   overflowX: 'scroll',
   overflowY: 'hidden',
   margin: `${rem(60)} 0`,
-  // paddingX: rem(24),
   paddingLeft: rem(24),
   paddingRight: rem(30),
   marginLeft: rem(24),
-  // marginRight: rem(24),
 
   '&::-webkit-scrollbar': {
     display: 'none',
