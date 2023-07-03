@@ -100,8 +100,6 @@ const ArrowWapper = styled('div', {
 
   '@md': {
     top: '38%',
-    // width: rem(44),
-    // height: rem(44),
   },
 });
 
