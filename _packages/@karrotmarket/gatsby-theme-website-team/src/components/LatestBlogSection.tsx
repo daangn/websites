@@ -72,13 +72,13 @@ const BlogList = styled('div', {
 });
 
 const scrollPrimaryAnimation = keyframes({
-  '0%': { transform: 'translateX(0%)' },
-  '100%': { transform: 'translateX(-100%)' },
+  '0%': { left: '0%' },
+  '100%': { left: '-100%' },
 });
 
 const scrollSecondaryAnimation = keyframes({
-  '0%': { transform: 'translateX(100%)' },
-  '100%': { transform: 'translateX(0%)' },
+  '0%': { left: '100%' },
+  '100%': { left: '0%' },
 });
 
 const BlogCardWraaper = styled('div', {
@@ -125,6 +125,7 @@ const BlogCard = styled(Link, {
   marginBottom: rem(40),
   borderRadius: rem(30),
   backgroundColor: vars.$scale.color.gray00,
+  borderBox: 'border-box',
   boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 10px 0px',
   color: vars.$scale.color.gray900,
   cursor: 'pointer',
