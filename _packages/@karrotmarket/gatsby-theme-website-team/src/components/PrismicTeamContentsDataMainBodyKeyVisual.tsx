@@ -90,6 +90,7 @@ const Image = styled(GatsbyImage, {
     round: {
       true: {
         borderRadius: rem(30),
+        opacity: 0.99,
       },
     },
   },
