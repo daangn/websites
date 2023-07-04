@@ -27,13 +27,9 @@ const ListCardSection: React.FC<ListCardProps> = ({ slice }) => {
       <CardWrapper>
         {slice.items.map((item, i) => (
           <SimpleReveal
+            key={item?.card_title}
             render={({ ref, cn, style }) => (
-              <CultureDescriptionCard
-                key={item?.card_title}
-                ref={ref}
-                className={cn()}
-                style={style}
-              >
+              <CultureDescriptionCard ref={ref} className={cn()} style={style}>
                 <CultureTextWapper>
                   <DescritionTitle>{item.card_title}</DescritionTitle>
                   <Description>{item.card_description.text}</Description>

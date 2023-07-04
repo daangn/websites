@@ -100,7 +100,7 @@ const ServicePage: React.FC<ServicePageProps> = ({ data }) => {
   return (
     <Container>
       <SimpleReveal
-        key="1"
+        key="title"
         render={({ ref, cn, style }) => (
           <TitleArea ref={ref} className={cn()} style={style}>
             <Title>{data.prismicServiceContent?.data.service_page_title?.text}</Title>
@@ -129,11 +129,11 @@ const ServicePage: React.FC<ServicePageProps> = ({ data }) => {
                 <React.Fragment>
                   <Card ref={ref} className={cn()} style={style}>
                     <LeftContent>
-                      <ServiceTitle>
-                        <ServiceIcon
-                          image={service_icon.localFile.childImageSharp.gatsbyImageData}
-                          alt={service_icon?.alt}
-                        />
+                      <ServiceIcon
+                        image={service_icon.localFile.childImageSharp.gatsbyImageData}
+                        alt={service_icon?.alt}
+                      />
+                      <ServiceText>
                         {service_url.url ? (
                           <ServiceLink
                             as="a"
@@ -146,8 +146,8 @@ const ServicePage: React.FC<ServicePageProps> = ({ data }) => {
                         ) : (
                           <ServiceName>{service_name.text}</ServiceName>
                         )}
-                      </ServiceTitle>
-                      <ServiceDescription>{service_description}</ServiceDescription>
+                        <ServiceDescription>{service_description}</ServiceDescription>
+                      </ServiceText>
                     </LeftContent>
                     <RightContent>
                       <ServiceImage
@@ -196,8 +196,6 @@ export const Head: React.FC<ServicePageHeadProps> = ({ data, location }) => {
   } = data.prismicServiceContent?.data as any;
 
   const metaImage = service_page_og_image?.localFile?.childImageSharp?.fixed;
-
-  console.log('metaImage ::', metaImage);
 
   return (
     <HeadSeo
@@ -303,7 +301,7 @@ const LeftContent = styled('div', {
   },
 });
 
-const ServiceTitle = styled('div', {
+const ServiceText = styled('div', {
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
@@ -390,7 +388,8 @@ const RightContent = styled('div', {
   width: '100%',
 
   '@lg': {
-    width: '40%',
+    width: rem(540),
+    height: rem(320),
     marginLeft: rem(80),
   },
 });
@@ -399,7 +398,7 @@ const ServiceImage = styled(GatsbyImage, {
   width: '100%',
   height: '100%',
   objectFit: 'cover',
-  borderRadius: rem(15),
+  borderRadius: rem(20),
 
   '@md': {
     borderRadius: rem(30),

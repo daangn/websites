@@ -6,8 +6,8 @@ import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import { SimpleReveal } from 'simple-reveal';
 
-import { ReactComponent as ArrowLeft } from '../../assets/arrow_left.svg';
-import { ReactComponent as ArrowRight } from '../../assets/arrow_right.svg';
+import { ReactComponent as ArrowLineLeft } from '../../assets/arrow_line_left.svg';
+import { ReactComponent as ArrowLineRight } from '../../assets/arrow_line_right.svg';
 
 type ArrowProps = {
   clickHandler: () => void;
@@ -21,14 +21,14 @@ type CarouselProps = {
 const PrevArrow: React.FC<ArrowProps> = (clickHandler, hasPrev) =>
   hasPrev && (
     <PrevArrowWapper onClick={clickHandler}>
-      <ArrowLeft />
+      <ArrowLineLeft />
     </PrevArrowWapper>
   );
 
 const NextArrow: React.FC<ArrowProps> = (clickHandler, hasNext) =>
   hasNext && (
     <NextArrowWapper onClick={clickHandler}>
-      <ArrowRight />
+      <ArrowLineRight />
     </NextArrowWapper>
   );
 
@@ -84,22 +84,30 @@ const ArrowWapper = styled('div', {
   justifyContent: 'center',
   alignItems: 'center',
   position: 'absolute',
-  top: '26%',
-  width: rem(44),
-  height: rem(44),
+  top: '28%',
+  width: rem(34),
+  height: rem(34),
   fontSize: '2em',
   cursor: 'pointer',
   zIndex: 2,
   borderRadius: '50%',
   textAlign: 'center',
-  backgroundColor: 'none',
+  backgroundColor: 'rgba(255, 255, 255, 0.4)',
 
   '@sm': {
-    top: '35%',
+    top: '32%',
+    width: rem(38),
+    height: rem(38),
   },
 
   '@md': {
     top: '38%',
+    width: rem(44),
+    height: rem(44),
+  },
+
+  '@lg': {
+    top: '275',
   },
 });
 
@@ -166,6 +174,7 @@ const Card = styled('div', {
 
 const ImageWrapper = styled('div', {
   width: '100%',
+  maxWidth: rem(900),
   aspectRatio: '16 / 9',
   overflow: 'hidden',
   marginBottom: rem(44),
@@ -177,7 +186,7 @@ const CarouselImage = styled(GatsbyImage, {
   objectFit: 'cover',
   borderRadius: rem(0),
 
-  '@md': {
+  '@lg': {
     borderRadius: rem(30),
   },
 });
