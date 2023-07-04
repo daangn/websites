@@ -303,8 +303,7 @@ const LeftContent = styled('div', {
 
 const ServiceText = styled('div', {
   display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'center',
+  flexDirection: 'column',
   marginTop: rem(20),
 
   '@lg': {
@@ -319,11 +318,8 @@ const ServiceIcon = styled(GatsbyImage, {
   marginRight: rem(10),
   display: 'none !important',
 
-  '@sm': {
-    display: 'inline-block !important',
-  },
-
   '@lg': {
+    display: 'inline-block !important',
     width: rem(80),
     marginBottom: rem(80),
     marginRight: 0,
@@ -374,6 +370,7 @@ const ServiceLink = styled(Link, {
 });
 
 const ServiceDescription = styled('p', {
+  maxWidth: rem(540),
   marginTop: rem(12),
   fontSize: '$body2',
   lineHeight: '160%',
@@ -396,11 +393,12 @@ const RightContent = styled('div', {
 
 const ServiceImage = styled(GatsbyImage, {
   width: '100%',
+  maxWidth: rem(540),
   height: '100%',
   objectFit: 'cover',
   borderRadius: rem(20),
 
-  '@md': {
+  '@lg': {
     borderRadius: rem(30),
   },
 });
@@ -408,10 +406,11 @@ const ServiceImage = styled(GatsbyImage, {
 const SubCardWrapper = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-  width: '100%',
+  width: 'auto',
   marginTop: rem(30),
 
   '@lg': {
+    width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: rem(100),
@@ -439,6 +438,7 @@ const SubCardTitle = styled('h3', {
 });
 
 const SubCardDesctiption = styled('p', {
+  maxWidth: rem(540),
   fontSize: '$body2',
   lineHeight: '160%',
   color: vars.$scale.color.gray700,
