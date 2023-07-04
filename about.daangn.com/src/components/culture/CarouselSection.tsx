@@ -107,7 +107,7 @@ const ArrowWapper = styled('div', {
   },
 
   '@lg': {
-    top: '275'
+    top: '275',
   },
 });
 
