@@ -25,10 +25,12 @@ const PrPostBodySummaryBulletSection: React.FC<PrPostBodySummaryBulletSection> =
 
 const Container = styled('section', {
   width: '100%',
+  marginTop: rem(20),
   marginBottom: rem(40),
   fontSize: vars.$scale.dimension.fontSize150,
 
   '@sm': {
+    marginTop: rem(40),
     fontSize: vars.$scale.dimension.fontSize200,
   },
 });

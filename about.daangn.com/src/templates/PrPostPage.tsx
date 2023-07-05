@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { graphql, Link, type PageProps } from 'gatsby';
+import { type HeadProps, type PageProps, graphql, Link } from 'gatsby';
 import { rem } from 'polished';
 import { GatsbyImage } from 'gatsby-plugin-image';
+import { HeadSeo, OpenGraph, TwitterCard } from 'gatsby-plugin-head-seo/src';
 import { SliceZone } from '@prismicio/react';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
@@ -17,6 +18,7 @@ export const query = graphql`
       title
       publishedAt
       tags
+      summary
       author {
         nickname
         role
@@ -34,6 +36,11 @@ export const query = graphql`
             width
             height
           }
+        }
+      }
+      thumbnailImage {
+        childImageSharp {
+          gatsbyImageData
         }
       }
       body {
@@ -63,13 +70,19 @@ const PrPostPage: React.FC<PrPostPageProps> = ({ data }) => {
         {data.post?.headerQuote && (
           <HeaderQuoteWrapper>
             {data.post?.headerQuote.map((quote) => (
-              <p>"{quote.text}"</p>
+              <p key={quote.text}>"{quote.text}"</p>
             ))}
           </HeaderQuoteWrapper>
         )}
       </Header>
       <Body>
         <Divider />
+        {data?.post?.thumbnailImage.childImageSharp?.gatsbyImageData && (
+          <ThumbnailImage
+            image={data.post.thumbnailImage.childImageSharp?.gatsbyImageData}
+            alt={`${data.post.title}_PR썸네일`}
+          />
+        )}
         <ContentContainer>
           <SliceZone
             // rome-ignore lint/suspicious/noExplicitAny: intentional
@@ -105,11 +118,44 @@ const PrPostPage: React.FC<PrPostPageProps> = ({ data }) => {
   );
 };
 
-export const Head: React.FC = () => {
+type PrPostPageHeadProps = HeadProps<GatsbyTypes.PrPostPageQuery>;
+
+export const Head: React.FC<PrPostPageHeadProps> = ({ data, location }) => {
+  const title = data.post?.title;
+  const description = data.post?.summary || '';
+  const metaImage = data.post?.ogImage.childImageSharp?.fixed;
+
   return (
-    <>
-      <meta name="robots" content="noindex, nofollow" />
-    </>
+    <HeadSeo location={location} title={title} description={description}>
+      {(props) => [
+        <OpenGraph
+          key="og"
+          og={{
+            ...props,
+            type: 'website',
+            ...(metaImage && {
+              images: [
+                {
+                  url: new URL(
+                    metaImage.src,
+                    metaImage.src.startsWith('http') ? metaImage.src : props.url,
+                  ),
+                  width: metaImage.width,
+                  height: metaImage.height,
+                },
+              ],
+            }),
+          }}
+        />,
+        <TwitterCard
+          key="twitter"
+          card={{
+            ...props,
+            type: 'summary_large_image',
+          }}
+        />,
+      ]}
+    </HeadSeo>
   );
 };
 
@@ -132,11 +178,12 @@ const Header = styled('div', {
 });
 
 const Title = styled('h1', {
-  maxWidth: rem(600),
-  fontSize: vars.$scale.dimension.fontSize600,
+  maxWidth: rem(300),
+  fontSize: vars.$scale.dimension.fontSize500,
   marginBottom: rem(20),
 
   '@md': {
+    maxWidth: rem(900),
     fontWeight: 800,
     fontSize: vars.$scale.dimension.fontSize800,
   },
@@ -149,17 +196,39 @@ const HeaderInformationWrapper = styled('div', {
 });
 
 const HeaderQuoteWrapper = styled('div', {
+  maxWidth: rem(300),
   lineHeight: 1.5,
   fontWeight: 600,
   color: vars.$scale.color.gray700,
+  fontSize: vars.$scale.dimension.fontSize150,
+
+  '@md': {
+    maxWidth: rem(800),
+    fontSize: vars.$scale.dimension.fontSize200,
+  },
 });
 
 const Divider = styled('hr', {
   width: '100%',
   maxWidth: rem(900),
-  margin: `${rem(64)} 0`,
+  marginTop: rem(32),
   border: 'none',
   borderTop: `1px solid ${vars.$scale.color.gray300}`,
+
+  '@md': {
+    marginTop: rem(64),
+  },
+});
+
+const ThumbnailImage = styled(GatsbyImage, {
+  width: '100%',
+  margin: 'auto 0',
+  maxWidth: rem(900),
+  marginTop: rem(20),
+
+  '@sm': {
+    marginTop: rem(60),
+  },
 });
 
 const Body = styled('section', {
