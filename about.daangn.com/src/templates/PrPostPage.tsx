@@ -183,7 +183,7 @@ const Title = styled('h1', {
   marginBottom: rem(20),
 
   '@md': {
-    maxWidth: rem(900),
+    maxWidth: rem(700),
     fontWeight: 800,
     fontSize: vars.$scale.dimension.fontSize800,
   },
@@ -203,7 +203,7 @@ const HeaderQuoteWrapper = styled('div', {
   fontSize: vars.$scale.dimension.fontSize150,
 
   '@md': {
-    maxWidth: rem(800),
+    maxWidth: rem(700),
     fontSize: vars.$scale.dimension.fontSize200,
   },
 });
