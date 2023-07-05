@@ -19,7 +19,11 @@ export const query = graphql`
         main_page_meta_image {
           localFile {
             childImageSharp {
-              gatsbyImageData
+              fixed(width: 1200, height: 630, toFormat: PNG, quality: 90) {
+                src
+                width
+                height
+              }
             }
           }
         }
@@ -84,7 +88,7 @@ export const Head: React.FC<PrPageHeadProps> = ({ data, location }) => {
    * (임시)어바웃당근 메인페이지와 동일한 og 이미지 사용
    */
   const metaImage =
-    data.prismicTeamContents.data.main_page_meta_image?.localFile?.childImageSharp?.fixed;
+    data.prismicTeamContents?.data.main_page_meta_image?.localFile?.childImageSharp?.fixed;
 
   return (
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>

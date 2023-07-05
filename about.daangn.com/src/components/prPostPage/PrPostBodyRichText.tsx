@@ -93,7 +93,7 @@ const Heading3 = styled('h3', {
 const Description = styled('p', {
   width: '100%',
   minHeight: rem(16),
-  marginBottom: rem(12),
+  marginBottom: rem(6),
   lineHeight: rem(26),
   letterSpacing: rem(0.4),
   color: vars.$scale.color.gray900,
@@ -101,6 +101,7 @@ const Description = styled('p', {
   wordBreak: 'keep-all',
 
   '@sm': {
+    marginBottom: rem(12),
     lineHeight: rem(28),
     letterSpacing: rem(0.4),
   },
