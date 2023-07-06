@@ -92,12 +92,14 @@ const Heading3 = styled('h3', {
 
 const Description = styled('p', {
   width: '100%',
+  maxWidth: rem(900),
   minHeight: rem(16),
   marginBottom: rem(6),
   lineHeight: rem(26),
   letterSpacing: rem(0.4),
   color: vars.$scale.color.gray900,
   textAlign: 'left',
+  wordWrap: 'break-word',
   wordBreak: 'keep-all',
 
   '@sm': {
