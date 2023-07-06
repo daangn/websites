@@ -222,7 +222,6 @@ const Divider = styled('hr', {
 
 const ThumbnailImage = styled(GatsbyImage, {
   width: '100%',
-  margin: 'auto 0',
   maxWidth: rem(900),
   marginTop: rem(20),
 
