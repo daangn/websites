@@ -212,12 +212,12 @@ const ThumbnailImage = styled(GatsbyImage, {
   maxWidth: 1024,
   maxHeight: 600,
   width: '100%',
-  borderRadius: rem(20),
+  borderRadius: rem(15),
   marginBottom: rem(24),
   opacity: 0.99,
 
   '@sm': {
-    borderRadius: rem(40),
+    borderRadius: rem(30),
     marginBottom: rem(88),
   },
 });
