@@ -43,6 +43,7 @@ const Container = styled('section', {
 
 const Button = styled('button', {
   display: 'flex',
+  justifyContent: 'center',
   alignItems: 'center',
   minWidth: rem(100),
   height: rem(40),
