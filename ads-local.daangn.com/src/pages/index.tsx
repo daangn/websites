@@ -147,38 +147,41 @@ export function Head({ data, location }: HeadProps<GatsbyTypes.IndexPageQuery>) 
   const image = prismicAdsContent.data.meta_image;
 
   return (
-    <HeadSeo location={location}>
-      {(props) => [
-        <OpenGraph
-          og={{
-            ...props,
-            type: 'website',
-            // rome-ignore lint/style/noNonNullAssertion: intentional
-            title: prismicAdsContent.data.meta_title || siteMetadata.title!,
-            // rome-ignore lint/style/noNonNullAssertion: intentional
-            description: prismicAdsContent.data.meta_description || siteMetadata.description!,
-            ...(image && {
-              images: [
-                {
-                  // rome-ignore lint/style/noNonNullAssertion: intentional
-                  url: new URL(image.localFile!.publicURL!, siteUrl),
-                  // rome-ignore lint/style/noNonNullAssertion: intentional
-                  width: image.dimensions!.width,
-                  // rome-ignore lint/style/noNonNullAssertion: intentional
-                  height: image.dimensions!.height,
-                },
-              ],
-            }),
-          }}
-        />,
-        <TwitterCard
-          card={{
-            ...props,
-            type: image ? 'summary_large_image' : 'summary',
-          }}
-        />,
-      ]}
-    </HeadSeo>
+    <>
+      <meta http-equiv="refresh" content="0; url=https://business.daangn.com/" />
+      <HeadSeo location={location}>
+        {(props) => [
+          <OpenGraph
+            og={{
+              ...props,
+              type: 'website',
+              // rome-ignore lint/style/noNonNullAssertion: intentional
+              title: prismicAdsContent.data.meta_title || siteMetadata.title!,
+              // rome-ignore lint/style/noNonNullAssertion: intentional
+              description: prismicAdsContent.data.meta_description || siteMetadata.description!,
+              ...(image && {
+                images: [
+                  {
+                    // rome-ignore lint/style/noNonNullAssertion: intentional
+                    url: new URL(image.localFile!.publicURL!, siteUrl),
+                    // rome-ignore lint/style/noNonNullAssertion: intentional
+                    width: image.dimensions!.width,
+                    // rome-ignore lint/style/noNonNullAssertion: intentional
+                    height: image.dimensions!.height,
+                  },
+                ],
+              }),
+            }}
+          />,
+          <TwitterCard
+            card={{
+              ...props,
+              type: image ? 'summary_large_image' : 'summary',
+            }}
+          />,
+        ]}
+      </HeadSeo>
+    </>
   );
 }
 
