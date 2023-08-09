@@ -3,10 +3,6 @@ import { graphql, type PageProps, type HeadProps } from 'gatsby';
 import { HeadSeo, OpenGraph, TwitterCard } from 'gatsby-plugin-head-seo/src';
 import { globalStyles } from 'gatsby-theme-stitches/src/config';
 
-import { vars } from '@seed-design/design-token';
-
-
-
 export const query = graphql`
   query IndexPage {
     site {
@@ -30,10 +26,6 @@ export const query = graphql`
             height
           }
         }
-
-
-  
-
         disclaimer {
           html
         }
@@ -44,11 +36,8 @@ export const query = graphql`
 
 export default function IndexPage() {
   globalStyles();
-  
 
-  return (
-    <div />
-  );
+  return <div />;
 }
 
 export function Head({ data, location }: HeadProps<GatsbyTypes.IndexPageQuery>) {
