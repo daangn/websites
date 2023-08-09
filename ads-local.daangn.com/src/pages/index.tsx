@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { rem } from 'polished';
 import { graphql, type PageProps, type HeadProps } from 'gatsby';
 import { HeadSeo, OpenGraph, TwitterCard } from 'gatsby-plugin-head-seo/src';
-import { globalStyles, styled } from 'gatsby-theme-stitches/src/config';
+import { globalStyles } from 'gatsby-theme-stitches/src/config';
 
 import { vars } from '@seed-design/design-token';
 
@@ -15,13 +14,6 @@ export const query = graphql`
         siteUrl
         title
         description
-      }
-    }
-
-    prismicSiteNavigation(uid: { eq: "ads-local.daangn.com" }) {
-      data {
-        ...Header_navigationData
-        ...Footer_navigationData
       }
     }
 
@@ -39,19 +31,8 @@ export const query = graphql`
           }
         }
 
-        ...DownloadBtnMobile_data
-        ...HeroSection_data
 
-        body {
-          __typename
-          ...PrismicAdsContentDataBodyUsageSliderSection_data
-          ...PrismicAdsContentDataBodyPreviewSection_data
-          ...PrismicAdsContentDataBodyDownloadSection_data
-          ...PrismicAdsContentDataBodyFeaturesSection_data
-          ...PrismicAdsContentDataBodyStepsSection_data
-          ...PrismicAdsContentDataBodyUserStorySection_data
-          ...PrismicAdsContentDataBodyGuideSection_data
-        }
+  
 
         disclaimer {
           html
@@ -61,10 +42,9 @@ export const query = graphql`
   }
 `;
 
-export default function IndexPage({ data }: PageProps<GatsbyTypes.IndexPageQuery>) {
+export default function IndexPage() {
   globalStyles();
-  // rome-ignore lint/style/noNonNullAssertion: intentional
-  const prismicSiteNavigation = data.prismicSiteNavigation!;
+  
 
   return (
     <div />
@@ -83,6 +63,7 @@ export function Head({ data, location }: HeadProps<GatsbyTypes.IndexPageQuery>) 
 
   return (
     <>
+      <meta name="robots" content="noindex" />
       <meta http-equiv="refresh" content="0; url=https://business.daangn.com/" />
       <HeadSeo location={location}>
         {(props) => [
@@ -119,31 +100,3 @@ export function Head({ data, location }: HeadProps<GatsbyTypes.IndexPageQuery>) 
     </>
   );
 }
-
-const Disclaimer = styled('div', {
-  display: 'flex',
-
-  justifyContent: 'center',
-  height: rem(190),
-});
-
-const DisclaimerContent = styled('div', {
-  boxSizing: 'border-box',
-  borderTop: `1px solid ${vars.$semantic.color.divider3}`,
-  paddingTop: rem(24),
-  paddingX: rem(24),
-  margin: '0 auto',
-  maxWidth: 'var(--sizes-maxContent)',
-  width: '100%',
-
-  '& p': {
-    fontSize: rem(12),
-    lineHeight: rem(18),
-    color: vars.$scale.color.gray600,
-  },
-
-  '& a': {
-    textDecoration: 'underline',
-    color: vars.$scale.color.gray600,
-  },
-});
