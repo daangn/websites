@@ -1,22 +1,12 @@
 import * as React from 'react';
 import { rem } from 'polished';
-import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
 import { graphql, type PageProps, type HeadProps } from 'gatsby';
 import { HeadSeo, OpenGraph, TwitterCard } from 'gatsby-plugin-head-seo/src';
 import { globalStyles, styled } from 'gatsby-theme-stitches/src/config';
-import Header from '@karrotmarket/gatsby-theme-website/src/components/Header';
-import Footer from '@karrotmarket/gatsby-theme-website/src/components/Footer';
+
 import { vars } from '@seed-design/design-token';
 
-import DownloadBtnMobile from '~/components/DownloadBtnMobile';
-import HeroSection from '~/components/HeroSection';
-import PrismicAdsContentDataBodyUsageSliderSection from '~/components/PrismicAdsContentDataBodyUsageSliderSection';
-import PrismicAdsContentDataBodyPreviewSection from '~/components/PrismicAdsContentDataBodyPreviewSection';
-import PrismicAdsContentDataBodyDownloadSection from '~/components/PrismicAdsContentDataBodyDownloadSection';
-import PrismicAdsContentDataBodyFeaturesSection from '~/components/PrismicAdsContentDataBodyFeaturesSection';
-import PrismicAdsContentDataBodyStepsSection from '~/components/PrismicAdsContentDataBodyStepsSection';
-import PrismicAdsContentDataBodyUserStorySection from '~/components/PrismicAdsContentDataBodyUserStorySection';
-import PrismicAdsContentDataBodyGuideSection from '~/components/PrismicAdsContentDataBodyGuideSection';
+
 
 export const query = graphql`
   query IndexPage {
@@ -73,66 +63,11 @@ export const query = graphql`
 
 export default function IndexPage({ data }: PageProps<GatsbyTypes.IndexPageQuery>) {
   globalStyles();
-
-  // rome-ignore lint/style/noNonNullAssertion: intentional
-  const prismicAdsContent = data.prismicAdsContent!;
   // rome-ignore lint/style/noNonNullAssertion: intentional
   const prismicSiteNavigation = data.prismicSiteNavigation!;
 
   return (
-    <div>
-      <DownloadBtnMobile data={prismicAdsContent.data} />
-
-      <Header isStatic navigationData={prismicSiteNavigation.data} />
-
-      <main>
-        <HeroSection data={prismicAdsContent.data} />
-
-        {prismicAdsContent.data.body.map((data, i) =>
-          mapAbstractTypeWithDefault(data, {
-            PrismicAdsContentDataBodyUsageSliderSection: (data) => (
-              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
-              <PrismicAdsContentDataBodyUsageSliderSection key={i} data={data} />
-            ),
-            PrismicAdsContentDataBodyPreviewSection: (data) => (
-              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
-              <PrismicAdsContentDataBodyPreviewSection key={i} data={data} />
-            ),
-            PrismicAdsContentDataBodyDownloadSection: (data) => (
-              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
-              <PrismicAdsContentDataBodyDownloadSection key={i} data={data} />
-            ),
-            PrismicAdsContentDataBodyFeaturesSection: (data) => (
-              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
-              <PrismicAdsContentDataBodyFeaturesSection key={i} data={data} />
-            ),
-            PrismicAdsContentDataBodyStepsSection: (data) => (
-              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
-              <PrismicAdsContentDataBodyStepsSection key={i} data={data} />
-            ),
-            PrismicAdsContentDataBodyUserStorySection: (data) => (
-              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
-              <PrismicAdsContentDataBodyUserStorySection key={i} data={data} />
-            ),
-            PrismicAdsContentDataBodyGuideSection: (data) => (
-              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
-              <PrismicAdsContentDataBodyGuideSection key={i} data={data} />
-            ),
-            _: null,
-          }),
-        )}
-      </main>
-
-      <Footer navigationData={prismicSiteNavigation.data} />
-
-      <Disclaimer>
-        <DisclaimerContent
-          dangerouslySetInnerHTML={{
-            __html: prismicAdsContent.data.disclaimer?.html || '',
-          }}
-        />
-      </Disclaimer>
-    </div>
+    <div />
   );
 }
 
