@@ -62,7 +62,7 @@ const Container = styled('section', {
 const RelatedPostsTitle = styled('h2', {
   contentArea: true,
   maxWidth: rem(1100),
-  width: "100%",
+  width: '100%',
   display: 'flex',
   justifyContent: 'center',
 
