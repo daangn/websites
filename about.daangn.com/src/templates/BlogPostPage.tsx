@@ -19,7 +19,7 @@ import PostHeader from '../components/blogPostPage/PostHeader';
 import PostBodySingleImage from '../components/blogPostPage/PostBodySingleImage';
 import ShareButtons from '../components/blogPostPage/ShareButtons';
 import TagList from '../components/blogPostPage/TagList';
-// import RelatedPost from '../components/blogPostPage/RelatedPost';
+import RelatedPost from '../components/blogPostPage/RelatedPost';
 
 export const query = graphql`
   query BlogPostPage($id: String!, $locale: String!, $navigationId: String!) {
@@ -146,7 +146,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ data }) => {
           <PostFooter />
           {modalOpen && <Modal>링크가 복사되었어요</Modal>}
         </Container>
-        {/* <RelatedPost data={data.post} /> */}
+        <RelatedPost data={data.post} />
       </>
     )
   );
