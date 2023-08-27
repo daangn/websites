@@ -44,7 +44,7 @@ export const query = graphql`
 const PrPage: React.FC<PrPageProps> = ({ data }) => {
   return (
     <Main>
-      <Title>당근마켓 보도자료</Title>
+      <Title>당근 보도자료</Title>
       {data.allPost.nodes.length === 0 ? (
         <NoPostDescription>등록된 글이 없습니다.</NoPostDescription>
       ) : (
@@ -82,8 +82,8 @@ export default PrPage;
 type PrPageHeadProps = HeadProps<GatsbyTypes.PrPageQuery>;
 
 export const Head: React.FC<PrPageHeadProps> = ({ data, location }) => {
-  const metaTitle = '당근마켓 보도자료';
-  const metaDescription = '당근마켓에서 제공하는 공식 보도자료입니다.';
+  const metaTitle = '당근 보도자료';
+  const metaDescription = '당근에서 제공하는 공식 보도자료입니다.';
   /**
    * (임시)어바웃당근 메인페이지와 동일한 og 이미지 사용
    */
