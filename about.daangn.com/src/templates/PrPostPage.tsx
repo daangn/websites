@@ -121,7 +121,7 @@ const PrPostPage: React.FC<PrPostPageProps> = ({ data }) => {
 type PrPostPageHeadProps = HeadProps<GatsbyTypes.PrPostPageQuery>;
 
 export const Head: React.FC<PrPostPageHeadProps> = ({ data, location }) => {
-  const title = data.post?.title ? `${data.post?.title} | 당근마켓 보도자료` : '당근마켓 보도자료';
+  const title = data.post?.title ? `${data.post?.title} | 당근 보도자료` : '당근 보도자료';
   const description = data.post?.summary || '';
   const metaImage = data.post?.ogImage.childImageSharp?.fixed;
 
