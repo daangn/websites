@@ -5,8 +5,8 @@ import { parseContent } from '../gatsby/greenhouseJobBlockParser';
 describe('Greenhouse content block parser', () => {
   it('should parses full content (encoded)', () => {
     const input = stripIndent`
-      &lt;div class=&quot;content-intro&quot;&gt;&lt;h3&gt;당근팀 합류 여정에 오르신 것을 진심으로 환영해요&lt;/h3&gt;
-      &lt;p&gt;당근은 회사의 성장에 맞춰 개인이 함께 성장할 수 있는 환경을 만들기 위해 노력을 하고 있어요.&amp;nbsp;&lt;/p&gt;
+      &lt;div class=&quot;content-intro&quot;&gt;&lt;h3&gt;당근 팀 합류 여정에 오르신 것을 진심으로 환영해요&lt;/h3&gt;
+      &lt;p&gt;당근마켓은 회사의 성장에 맞춰 개인이 함께 성장할 수 있는 환경을 만들기 위해 노력을 하고 있어요.&amp;nbsp;&lt;/p&gt;
       &lt;p&gt;멋진 동료들과 행복한 고민을 하는 그 순간이 올 수 있도록 당근 채용팀이 도와드릴게요.&lt;/p&gt;
       &lt;hr&gt;
       &lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;/div&gt;&lt;h3&gt;이런 일을 해요&lt;/h3&gt;
@@ -44,9 +44,9 @@ describe('Greenhouse content block parser', () => {
       &lt;li&gt;1. 서류 접수 →&amp;nbsp; 2. 화상 면접 →&amp;nbsp; 3. 직무 면접(퀴즈) →&amp;nbsp; 4. 컬쳐핏 면접&lt;/li&gt;
       &lt;/ul&gt;&lt;div class=&quot;content-conclusion&quot;&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;
       &lt;hr&gt;
-      &lt;h3&gt;&lt;strong&gt;당근 전형 소개&lt;/strong&gt;&lt;/h3&gt;
+      &lt;h3&gt;&lt;strong&gt;당근마켓 전형 소개&lt;/strong&gt;&lt;/h3&gt;
       &lt;h4&gt;&lt;strong&gt;서류 전형&lt;/strong&gt;&lt;/h4&gt;
-      &lt;p&gt;당근은 자유형식의 지원서를 받고 있어요.&lt;/p&gt;
+      &lt;p&gt;당근마켓은 자유형식의 지원서를 받고 있어요.&lt;/p&gt;
       &lt;p&gt;본인의 강점이 잘 드러나는 다양한 정보를 자유롭게 활용해 이력서를 작성해 주세요.&amp;nbsp;&lt;/p&gt;
       &lt;ul&gt;
       &lt;li&gt;문서 형식은 hwp(한글) 파일을 제외하고 word, pdf, 웹 링크 등 자유롭게 선택해주시면 돼요.&lt;/li&gt;
@@ -60,7 +60,7 @@ describe('Greenhouse content block parser', () => {
       &lt;h4&gt;직무 면접&lt;/h4&gt;
       &lt;p&gt;지원하신 직무와 업무 연관성이 높은 당근 팀원들과 직무 역량, 경험에 대해 화상 면접보다 심층적인 이야기를 나누는 단계예요.&lt;br&gt;과제가 출제되었을 경우 과제에 대한 질문을 드려요.&lt;/p&gt;
       &lt;h4&gt;컬쳐핏 면접(정규직 공통)&lt;/h4&gt;
-      &lt;p&gt;당근은 면접을 단순히 회사에 사람을 뽑는 자리로 생각하지 않아요. 당근과 지원자가 서로 추구하는 가치관과 생각을 교환하는 시간이라고 생각하고 있어요. 컬쳐핏 단계는 당근이 추구하는 문화와 일하는 방식과 잘 어울릴 수 있는 분인지 확인하는 단계예요. 또한 포지션에 대한 전문성을 다시금 확인하는 이야기를 나눠요.&lt;/p&gt;
+      &lt;p&gt;당근마켓은 면접을 단순히 회사에 사람을 뽑는 자리로 생각하지 않아요. 당근마켓과 지원자가 서로 추구하는 가치관과 생각을 교환하는 시간이라고 생각하고 있어요. 컬쳐핏 단계는 당근이 추구하는 문화와 일하는 방식과 잘 어울릴 수 있는 분인지 확인하는 단계예요. 또한 포지션에 대한 전문성을 다시금 확인하는 이야기를 나눠요.&lt;/p&gt;
       &lt;h4&gt;안내사항&lt;/h4&gt;
       &lt;ul&gt;
       &lt;li&gt;본 공고는 모집 완료 시 조기 마감될 수 있어요.&lt;/li&gt;
