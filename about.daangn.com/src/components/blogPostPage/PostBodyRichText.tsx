@@ -140,16 +140,17 @@ const EmbedWrapper = styled('div', {
   justifyContent: 'center',
   alignItems: 'center',
 });
+
 const Embed = styled('div', {
-  "& > iframe": {
+  '& > iframe': {
     width: 300,
     height: 160,
 
-    "@sm" : {
+    '@sm': {
       width: 500,
       height: 300,
-    }
-  }
+    },
+  },
 });
 
 export default PostBodyRichText;
