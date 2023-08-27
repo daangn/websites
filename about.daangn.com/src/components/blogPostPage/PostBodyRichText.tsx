@@ -44,13 +44,15 @@ const PostBodyRichText: React.FC<PostBodyRichTextProps> = ({ slice }) => {
             );
           },
           embed: ({ node, key }) => (
-            <Embed
-              key={key}
-              data-oembed={node.oembed.embed_url}
-              data-oembed-type={node.oembed.type}
-              data-oembed-provider={node.oembed.provider_name}
-              dangerouslySetInnerHTML={{ __html: node.oembed.html ?? '' }}
-            />
+            <EmbedWrapper>
+              <Embed
+                key={key}
+                data-oembed={node.oembed.embed_url}
+                data-oembed-type={node.oembed.type}
+                data-oembed-provider={node.oembed.provider_name}
+                dangerouslySetInnerHTML={{ __html: node.oembed.html ?? '' }}
+              />
+            </EmbedWrapper>
           ),
         }}
       />
@@ -132,6 +134,23 @@ const Image = styled('img', {
   margin: `${rem(20)} 0`,
 });
 
-const Embed = styled('div', {});
+const EmbedWrapper = styled('div', {
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+});
+
+const Embed = styled('div', {
+  '& > iframe': {
+    width: 300,
+    height: 160,
+
+    '@sm': {
+      width: 500,
+      height: 300,
+    },
+  },
+});
 
 export default PostBodyRichText;
