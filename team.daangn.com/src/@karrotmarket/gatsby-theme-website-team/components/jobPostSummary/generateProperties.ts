@@ -8,9 +8,9 @@ export default function* generateProperties(
 ): Generator<string, void, unknown> {
   if (jobPost.corporate) {
     yield {
-      KARROT_MARKET: '당근마켓',
+      KARROT_MARKET: '당근',
       KARROT_PAY: '당근페이',
-    }[jobPost.corporate] || '당근마켓';
+    }[jobPost.corporate] || '당근';
   }
 
   if (jobPost.employmentType) {

@@ -23,7 +23,7 @@ export const corporate: FieldParser<'KARROT_MARKET' | 'KARROT_PAY' | null> = (
     field &&
     (() => {
       switch (field.value) {
-        case '당근마켓':
+        case '당근':
           return 'KARROT_MARKET';
         case '당근페이':
           return 'KARROT_PAY';

@@ -100,7 +100,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
         },
         corporate: {
           type: 'JobCorporate', // 이거 왜 nullable 이더라...?
-          description: '회사 (당근마켓, 당근페이)',
+          description: '회사 (당근, 당근페이)',
           resolve(source: GreenhouseJobBoardJobNode) {
             return fieldParser.corporate(source, ctx);
           },

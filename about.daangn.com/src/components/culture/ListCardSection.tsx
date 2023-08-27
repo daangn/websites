@@ -17,7 +17,7 @@ const ListCardSection: React.FC<ListCardProps> = ({ slice }) => {
       <SimpleReveal
         render={({ ref, cn, style }) => (
           <CultureSectionTitle ref={ref} className={cn()} style={style}>
-            당근마켓 팀은 이렇게 일해요
+            당근 팀은 이렇게 일해요
           </CultureSectionTitle>
         )}
         duration={1000}
@@ -51,7 +51,7 @@ const ListCardSection: React.FC<ListCardProps> = ({ slice }) => {
           render={({ ref, cn, style }) => (
             <BlogCard key="cta-to-blog" ref={ref} className={cn()} style={style}>
               <CultureTextWapper>
-                <BlogCardTitle>당근마켓 팀 문화는 끊임없이 발전 중이에요</BlogCardTitle>
+                <BlogCardTitle>당근 팀 문화는 끊임없이 발전 중이에요</BlogCardTitle>
                 <CtaButton link="/blog/category/culture/">블로그 글 보러가기</CtaButton>
               </CultureTextWapper>
             </BlogCard>

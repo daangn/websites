@@ -5,8 +5,8 @@ dotenv.config();
 
 const siteMetadata = {
   siteUrl: 'https://team.daangn.com',
-  siteName: '당근마켓 팀',
-  title: '당근마켓 팀',
+  siteName: '당근 팀',
+  title: '당근 팀',
   description: '이웃과 더 가까워지는 따뜻한 동네를 만들어요.',
 };
 
