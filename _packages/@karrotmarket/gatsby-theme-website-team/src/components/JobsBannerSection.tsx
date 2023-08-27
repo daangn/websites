@@ -57,7 +57,7 @@ const JobsBannerSection: React.FC = () => {
       <SimpleReveal
         render={({ ref, cn, style }) => (
           <TextWrapper ref={ref} className={cn()} style={style}>
-            <Title>당근마켓과 함께 성장해보세요</Title>
+            <Title>당근과 함께 성장해보세요</Title>
             <DetailLink
               link={parseLink('https://about.daangn.com/jobs/')}
               message="채용공고 보러 가기"

@@ -35,8 +35,8 @@ const TempHeroSection: React.FC<TempHeroSectionProps> = ({ slice }) => {
       <SimpleReveal
         render={({ ref, cn, style }) => (
           <Description ref={ref} className={cn()} style={style}>
-            당근마켓은 활발한 교류가 있는 지역 생활 커뮤니티를 꿈꿉니다. 누구나 동네에서의 즐겁고
-            따뜻한 연결을 경험할 수 있도록 하이퍼로컬의 새로운 길을 만들어가고 있습니다.
+            당근은 활발한 교류가 있는 지역 생활 커뮤니티를 꿈꿉니다. 누구나 동네에서의 즐겁고 따뜻한
+            연결을 경험할 수 있도록 하이퍼로컬의 새로운 길을 만들어가고 있습니다.
           </Description>
         )}
         duration={1000}

@@ -176,7 +176,7 @@ const LatestBlogSection: React.FC<LatestBlogSectionProps> = ({ data, className }
       <SimpleReveal
         render={({ ref, cn, style }) => (
           <TextWrapper ref={ref} className={cn()} style={style}>
-            <Title>당근마켓 팀 이야기가 더 궁금하다면</Title>
+            <Title>당근 팀 이야기가 더 궁금하다면</Title>
             <DetailLink
               link={parseLink('https://about.daangn.com/blog/')}
               message="블로그 글 보러가기"

@@ -155,7 +155,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ data }) => {
 type BlogPostPageHeadProps = HeadProps<GatsbyTypes.BlogPostPageQuery>;
 
 export const Head: React.FC<BlogPostPageHeadProps> = ({ data, location }) => {
-  const title = data.post?.title ? `${data.post.title} | 당근마켓 블로그` : '당근마켓 블로그';
+  const title = data.post?.title ? `${data.post.title} | 당근 블로그` : '당근 블로그';
   const description = data.prismicBlogContent?.data?.blog_page_meta_description || '';
   const metaImage = data.post?.ogImage.childImageSharp?.fixed;
 

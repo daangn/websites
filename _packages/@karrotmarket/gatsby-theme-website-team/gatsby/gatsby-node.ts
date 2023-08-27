@@ -269,17 +269,6 @@ export const createPages: GatsbyNode['createPages'] = async (
     });
   }
 
-  if (data.prismicTeamContents.data.enable_culture_page) {
-    actions.createPage({
-      path: '/culture/',
-      component: require.resolve('./src/templates/CulturePage.tsx'),
-      context: {
-        locale,
-        navigationId,
-      },
-    });
-  }
-
   for (const jobPost of data.allJobPost.nodes) {
     actions.createPage({
       path: `/jobs/${jobPost.ghId}/`,
