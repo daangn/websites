@@ -9,7 +9,7 @@ export default function* generateProperties(
 ): Generator<string, void, unknown> {
   if (jobPost.corporate) {
     const corporate = {
-      KARROT_MARKET: '당근마켓',
+      KARROT_MARKET: '당근',
       KARROT_PAY: '당근페이',
     }[jobPost.corporate];
     if (corporate) {
