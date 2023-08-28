@@ -209,8 +209,8 @@ const Container = styled('div', {
 });
 
 const ThumbnailImage = styled(GatsbyImage, {
-  maxWidth: 1024,
-  maxHeight: 600,
+  maxWidth: 900,
+  maxHeight: 506.25,
   width: '100%',
   borderRadius: rem(15),
   marginBottom: rem(24),
@@ -225,7 +225,7 @@ const ThumbnailImage = styled(GatsbyImage, {
 const PostBody = styled('section', {
   position: 'relative',
   boxSizing: 'border-box',
-  maxWidth: rem(1024),
+  maxWidth: rem(900),
   margin: '0 auto',
   textAlign: 'left',
 
