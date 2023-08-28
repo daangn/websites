@@ -20,7 +20,7 @@
   "scripts": {
     "ultra": "yarn workspace @daangn/websites ultra --recursive --filter +careers.ca.karrotmarket.com",
     "develop": "gatsby develop",
-    "build": "gatsby clean && gatsby build",
+    "build": "build:packages && gatsby clean && gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean"
   },
