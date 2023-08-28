@@ -83,7 +83,7 @@ const Container = styled('section', {
 const Heading2 = styled('h2', {
   marginTop: rem(40),
   marginBottom: rem(18.72),
-  lineHeight: "150%",
+  lineHeight: '150%',
   fontSize: rem(26),
 
   '@sm': {
@@ -94,7 +94,7 @@ const Heading2 = styled('h2', {
 const Heading3 = styled('h3', {
   marginTop: rem(24),
   marginBottom: rem(14),
-  lineHeight: "150%",
+  lineHeight: '150%',
   fontSize: rem(22),
 
   '@sm': {
