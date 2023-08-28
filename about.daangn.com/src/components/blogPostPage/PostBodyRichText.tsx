@@ -83,27 +83,39 @@ const Container = styled('section', {
 const Heading2 = styled('h2', {
   marginTop: rem(40),
   marginBottom: rem(18.72),
+  lineHeight: '150%',
+  fontSize: rem(26),
+
+  '@sm': {
+    fontSize: rem(30),
+  },
 });
 
 const Heading3 = styled('h3', {
   marginTop: rem(24),
   marginBottom: rem(14),
+  lineHeight: '150%',
+  fontSize: rem(22),
+
+  '@sm': {
+    fontSize: rem(25),
+  },
 });
 
 const Description = styled('p', {
   width: '100%',
   minHeight: rem(16),
   marginBottom: rem(12),
-  lineHeight: rem(24),
-  letterSpacing: rem(0.4),
-  fontSize: '$body2',
+  lineHeight: rem(28),
+  letterSpacing: rem(0),
+  fontSize: rem(17),
   textAlign: 'left',
   wordBreak: 'keep-all',
 
   '@sm': {
-    fontSize: '$body1',
+    fontSize: rem(17),
     lineHeight: rem(28),
-    letterSpacing: rem(0.4),
+    letterSpacing: rem(0.1),
   },
 });
 
