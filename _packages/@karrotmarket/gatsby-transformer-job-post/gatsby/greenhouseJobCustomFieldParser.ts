@@ -28,9 +28,9 @@ export const corporate: FieldParser<'KARROT_MARKET' | 'KARROT_PAY' | null> = (
         case '당근페이':
           return 'KARROT_PAY';
         case 'Karrot Canada':
-            return 'KARROT_MARKET';
+          return 'KARROT_MARKET';
         case 'Karrot Japan':
-            return 'KARROT_MARKET';
+          return 'KARROT_MARKET';
         case null: {
           reporter.warn(reporter.stripIndent`
           Corporate 필드 값이 비어있습니다. (See https://app3.greenhouse.io/plans/${node.ghId})
