@@ -23,10 +23,10 @@ export const query = graphql`
 const Author: React.FC<AuthorProps> = ({ data }) => {
   return (
     <Container
-      css={{ cursor: data?.profileLink ? "pointer" : "auto" }}
+      css={{ cursor: data?.profileLink ? 'pointer' : 'auto' }}
       onClick={() => {
         if (data?.profileLink) {
-          window.open(data.profileLink, "_blank");
+          window.open(data.profileLink, '_blank');
         }
       }}
     >
