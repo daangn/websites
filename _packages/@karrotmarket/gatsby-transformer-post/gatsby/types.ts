@@ -153,6 +153,10 @@ export type PrismicMemberProfileNode = PrismicSourceNode &
       email: KeyTextField;
       role: KeyTextField;
       image: ImageField;
+      link: string;
+      profile_link: {
+        url: string;
+      };
     },
     'member_profile'
   >;
