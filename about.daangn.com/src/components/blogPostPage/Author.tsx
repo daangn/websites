@@ -14,6 +14,7 @@ export const query = graphql`
       image {
         publicURL
       }
+      profileLink
       role
     }
   }
@@ -21,7 +22,14 @@ export const query = graphql`
 
 const Author: React.FC<AuthorProps> = ({ data }) => {
   return (
-    <Container>
+    <Container
+      css={{ cursor: data?.profileLink ? 'pointer' : 'auto' }}
+      onClick={() => {
+        if (data?.profileLink) {
+          window.open(data.profileLink, '_blank');
+        }
+      }}
+    >
       {data.image?.publicURL && <AuthorImage src={data.image.publicURL} />}
       <AuthorInfo>
         <AuthorName>{data.nickname}</AuthorName>

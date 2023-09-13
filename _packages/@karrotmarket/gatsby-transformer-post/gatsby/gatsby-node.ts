@@ -483,6 +483,12 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
             return node.data.role;
           },
         },
+        profileLink: {
+          type: 'String',
+          resolve(node: PrismicMemberProfileNode) {
+            return node.data?.profile_link?.url;
+          },
+        },
       },
     }),
     schema.buildObjectType({
