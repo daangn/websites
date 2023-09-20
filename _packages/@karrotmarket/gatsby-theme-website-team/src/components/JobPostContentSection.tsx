@@ -17,7 +17,6 @@ export const query = graphql`
 const Container = styled('section', {
   display: 'flex',
   flexDirection: 'column',
-  gap: '1.5rem',
   '&:not(:last-child)': {
     marginBottom: rem(56),
   },
