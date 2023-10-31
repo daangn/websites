@@ -45,6 +45,7 @@
   "jobs_page__employment_type_assistant": "Temporary",
   "jobs_page__employment_type_contractor": "Contractor",
   "jobs_page__employment_type_fulltime": "Full-time",
+  "jobs_page__employment_type_parttime": "Part-time",
   "jobs_page__employment_type_intern": "Intern",
   "jobs_page__search": "Search"
 }

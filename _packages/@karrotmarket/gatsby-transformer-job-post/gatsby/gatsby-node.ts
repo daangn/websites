@@ -263,6 +263,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       CONTRACTOR
       INTERN
       ASSISTANT
+      PART_TIME
     }
 
     enum JobPriorExperience {
