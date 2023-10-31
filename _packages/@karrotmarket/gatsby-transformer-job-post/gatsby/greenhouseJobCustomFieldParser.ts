@@ -50,10 +50,9 @@ export const corporate: FieldParser<'KARROT_MARKET' | 'KARROT_PAY' | null> = (
   );
 };
 
-export const employmentType: FieldParser<'FULL_TIME' | 'CONTRACTOR' | 'INTERN' | 'ASSISTANT' | 'PART_TIME'> = (
-  node,
-  { reporter },
-) => {
+export const employmentType: FieldParser<
+  'FULL_TIME' | 'CONTRACTOR' | 'INTERN' | 'ASSISTANT' | 'PART_TIME'
+> = (node, { reporter }) => {
   const fieldId = 5033980003;
   const field = findMetadataById(node, fieldId);
   return (
