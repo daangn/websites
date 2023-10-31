@@ -28,7 +28,7 @@
     "babel-preset-gatsby-package": "3.8.0",
     "cjk-slug": "0.3.1",
     "common-tags": "1.8.2",
-    "concurrently": "7.6.0",
+    "concurrently": "8.2.2",
     "gatsby": "5.8.0",
     "jest": "29.5.0",
     "typescript": "5.0.4"

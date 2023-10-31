@@ -69,7 +69,7 @@
     "@types/react": "18.0.35",
     "@types/react-dom": "18.0.11",
     "babel-preset-gatsby-package": "3.8.0",
-    "concurrently": "7.6.0",
+    "concurrently": "8.2.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "5.0.4"
