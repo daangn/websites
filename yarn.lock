@@ -1637,7 +1637,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@daangn/websites@workspace:."
   dependencies:
-    "@types/node": 18.15.11
+    "@types/node": 18.18.8
     rome: 12.0.0
     typescript: 5.0.4
     ultra-runner: 3.10.5
@@ -2629,7 +2629,7 @@ __metadata:
     "@babel/core": 7.21.4
     "@cometjs/graphql-utils": 2.0.5
     "@seed-design/design-token": 1.0.1
-    "@types/node": 18.15.11
+    "@types/node": 18.18.8
     "@types/react": 18.0.35
     "@types/react-dom": 18.0.11
     babel-preset-gatsby-package: 3.8.0
@@ -2706,7 +2706,7 @@ __metadata:
     "@babel/cli": 7.21.0
     "@babel/core": 7.21.4
     "@prismicio/helpers": 2.3.9
-    "@types/node": 18.15.11
+    "@types/node": 18.18.8
     "@types/react": 18.0.35
     "@types/react-dom": 18.0.11
     babel-preset-gatsby-package: 3.8.0
@@ -2811,7 +2811,7 @@ __metadata:
     "@seed-design/design-token": 1.0.1
     "@stitches/react": 1.2.8
     "@svgr/webpack": 7.0.0
-    "@types/node": 18.15.11
+    "@types/node": 18.18.8
     "@types/react": 18.0.35
     "@types/react-dom": 18.0.11
     babel-plugin-polished: 1.1.0
@@ -2870,7 +2870,7 @@ __metadata:
     "@seed-design/design-token": 1.0.1
     "@stitches/react": 1.2.8
     "@svgr/webpack": 7.0.0
-    "@types/node": 18.15.11
+    "@types/node": 18.18.8
     "@types/react": 18.0.35
     "@types/react-dom": 18.0.11
     babel-preset-gatsby-package: 3.8.0
@@ -2902,7 +2902,7 @@ __metadata:
     "@karrotmarket/gatsby-source-greenhouse-jobboard": 0.9.0
     "@types/common-tags": 1.8.1
     "@types/jest": 29.5.0
-    "@types/node": 18.15.11
+    "@types/node": 18.18.8
     babel-jest: 29.5.0
     babel-preset-gatsby-package: 3.8.0
     cjk-slug: 0.3.1
@@ -4682,10 +4682,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:18.15.11, @types/node@npm:>=10.0.0":
+"@types/node@npm:*, @types/node@npm:>=10.0.0":
   version: 18.15.11
   resolution: "@types/node@npm:18.15.11"
   checksum: 977b4ad04708897ff0eb049ecf82246d210939c82461922d20f7d2dcfd81bbc661582ba3af28869210f7e8b1934529dcd46bff7d448551400f9d48b9d3bddec3
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:18.18.8":
+  version: 18.18.8
+  resolution: "@types/node@npm:18.18.8"
+  dependencies:
+    undici-types: ~5.26.4
+  checksum: d6a82bfc28bca8e4e32ffc9526798d1aea62f6993ea3a535cd3f47ac3f725a48efe3f484d68168dd154af0001c89935e4e1d77e7b1809c3824c6382bf99b86f6
   languageName: node
   linkType: hard
 
@@ -5180,7 +5189,7 @@ __metadata:
     "@prismicio/react": 2.5.2
     "@seed-design/design-token": 1.0.3
     "@types/dotenv-safe": 8.1.2
-    "@types/node": 18.15.11
+    "@types/node": 18.18.8
     "@types/prismjs": 1.26.0
     "@types/react": 18.0.35
     "@types/react-dom": 18.0.11
@@ -6511,7 +6520,7 @@ __metadata:
     "@karrotmarket/gatsby-theme-website-team": "*"
     "@karrotmarket/gatsby-transformer-job-post": "*"
     "@types/dotenv-safe": 8.1.2
-    "@types/node": 18.15.11
+    "@types/node": 18.18.8
     "@types/react": 18.0.35
     "@types/react-dom": 18.0.11
     dotenv: 16.0.3
@@ -6541,7 +6550,7 @@ __metadata:
     "@karrotmarket/gatsby-theme-website-team": "workspace:^"
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^"
     "@types/dotenv-safe": 8.1.2
-    "@types/node": 18.15.11
+    "@types/node": 18.18.8
     "@types/react": 18.0.35
     "@types/react-dom": 18.0.11
     dotenv: 16.0.3
@@ -17696,7 +17705,7 @@ __metadata:
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^"
     "@seed-design/design-token": alpha
     "@types/dotenv-safe": 8.1.2
-    "@types/node": 18.15.11
+    "@types/node": 18.18.8
     "@types/react": 18.0.35
     "@types/react-dom": 18.0.11
     babel-preset-gatsby-package: 3.8.0
@@ -18226,6 +18235,13 @@ __metadata:
   version: 0.1.2
   resolution: "unc-path-regex@npm:0.1.2"
   checksum: a05fa2006bf4606051c10fc7968f08ce7b28fa646befafa282813aeb1ac1a56f65cb1b577ca7851af2726198d59475bb49b11776036257b843eaacee2860a4ec
+  languageName: node
+  linkType: hard
+
+"undici-types@npm:~5.26.4":
+  version: 5.26.5
+  resolution: "undici-types@npm:5.26.5"
+  checksum: 3192ef6f3fd5df652f2dc1cd782b49d6ff14dc98e5dced492aa8a8c65425227da5da6aafe22523c67f035a272c599bb89cfe803c1db6311e44bed3042fc25487
   languageName: node
   linkType: hard
 
