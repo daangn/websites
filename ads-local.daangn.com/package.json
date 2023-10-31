@@ -18,7 +18,7 @@
     "@karrotmarket/gatsby-theme-prismic": "workspace:^",
     "@karrotmarket/gatsby-theme-seed-design": "workspace:^",
     "@karrotmarket/gatsby-theme-website": "workspace:^",
-    "@seed-design/design-token": "1.0.1",
+    "@seed-design/design-token": "1.0.3",
     "@stitches/react": "1.2.8",
     "gatsby": "5.8.0",
     "gatsby-plugin-google-tagmanager": "5.8.0",

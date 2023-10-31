@@ -20,7 +20,7 @@
     "react-dom": "*"
   },
   "dependencies": {
-    "@seed-design/design-token": "1.0.1",
+    "@seed-design/design-token": "1.0.3",
     "gatsby-plugin-head-seo": "1.0.2",
     "gatsby-plugin-image": "3.8.0",
     "gatsby-plugin-react-helmet-async": "1.2.3",
