@@ -296,6 +296,7 @@ const JobsPage: React.FC<JobsPageProps> = ({ data, pageContext, location }) => {
                 <option value="CONTRACTOR">{messages.jobs_page__employment_type_contractor}</option>
                 <option value="INTERN">{messages.jobs_page__employment_type_intern}</option>
                 <option value="ASSISTANT">{messages.jobs_page__employment_type_assistant}</option>
+                <option value="PART_TIME">{messages.jobs_page__employment_type_parttime}</option>
               </Select>
               <ExpandIcon name="icon_expand_more_regular" />
             </EtypeSelectWrapper>

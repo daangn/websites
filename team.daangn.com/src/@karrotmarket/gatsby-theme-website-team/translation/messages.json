@@ -47,6 +47,7 @@
   "jobs_page__employment_type_contractor": "계약직",
   "jobs_page__employment_type_fulltime": "정규직",
   "jobs_page__employment_type_intern": "인턴",
+  "jobs_page__employment_type_parttime": "파트타임",
   "jobs_page__search": "검색",
   "faq_page__search": "검색"
 }

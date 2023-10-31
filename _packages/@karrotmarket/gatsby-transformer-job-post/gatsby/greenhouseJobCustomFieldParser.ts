@@ -50,7 +50,7 @@ export const corporate: FieldParser<'KARROT_MARKET' | 'KARROT_PAY' | null> = (
   );
 };
 
-export const employmentType: FieldParser<'FULL_TIME' | 'CONTRACTOR' | 'INTERN' | 'ASSISTANT'> = (
+export const employmentType: FieldParser<'FULL_TIME' | 'CONTRACTOR' | 'INTERN' | 'ASSISTANT' | 'PART_TIME'> = (
   node,
   { reporter },
 ) => {
@@ -68,6 +68,8 @@ export const employmentType: FieldParser<'FULL_TIME' | 'CONTRACTOR' | 'INTERN' |
           return 'INTERN';
         case '어시스턴트':
           return 'ASSISTANT';
+        case '파트타임':
+          return 'PART_TIME';
         case null: {
           reporter.warn(reporter.stripIndent`
           Employment Type 필드 값이 비어있습니다. (https://app3.greenhouse.io/plans/${node.ghId})
