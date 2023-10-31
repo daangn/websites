@@ -22,8 +22,8 @@
     "@seed-design/icon": "0.2.0",
     "@types/react": "18.0.35",
     "@types/react-dom": "18.0.11",
-    "babel-preset-gatsby-package": "3.8.0",
-    "gatsby": "5.8.0",
+    "babel-preset-gatsby-package": "3.12.0",
+    "gatsby": "5.12.9",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "5.0.4"
