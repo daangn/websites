@@ -10898,7 +10898,7 @@ __metadata:
     "@cloudflare/workers-types": 4.20230404.0
     typescript: 5.0.4
     worktop: next
-    wrangler: 2.15.1
+    wrangler: 2.20.1
   languageName: unknown
   linkType: soft
 
@@ -15266,7 +15266,7 @@ __metadata:
     itty-router: 3.0.12
     note-com-js: 0.0.3
     typescript: 5.0.4
-    wrangler: 2.15.1
+    wrangler: 2.20.1
   languageName: unknown
   linkType: soft
 
@@ -18854,9 +18854,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrangler@npm:2.15.1":
-  version: 2.15.1
-  resolution: "wrangler@npm:2.15.1"
+"wrangler@npm:2.20.1":
+  version: 2.20.1
+  resolution: "wrangler@npm:2.20.1"
   dependencies:
     "@cloudflare/kv-asset-handler": ^0.2.0
     "@esbuild-plugins/node-globals-polyfill": ^0.1.1
@@ -18880,7 +18880,7 @@ __metadata:
   bin:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: c4e49cf609c2d72dc4ffd41584ea39eaebe91464a8fe81c8d082b3701c90e6565ecd76db685f8670149d58bcde52bd7f440ad0be4ecb3b40d4aedf014b6cccd4
+  checksum: 9e49b89ef30dd915e3ac3f922af881c26c5dd1e35fa317ea496866d3f6c927b3cf7d00f108b79f4389bf08039de38cf60a9fedbb0543dd1998e8d4a6bc2c57fa
   languageName: node
   linkType: hard
 
