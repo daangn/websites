@@ -22,6 +22,7 @@ export default function* generateProperties(
       CONTRACTOR: 'Contract',
       INTERN: 'Intern',
       ASSISTANT: 'Temporary',
+      PART_TIME: 'Part-time',
     }[jobPost.employmentType];
     if (employmentType) {
       yield employmentType;
