@@ -14,7 +14,7 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "gatsby-plugin-seed-design": "0.2.5"
+    "gatsby-plugin-seed-design": "0.2.7"
   },
   "devDependencies": {
     "@babel/cli": "7.21.0",
