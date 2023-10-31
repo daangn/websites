@@ -53,8 +53,8 @@
     "@babel/core": "7.21.4",
     "@types/dotenv-safe": "8.1.2",
     "@types/node": "18.15.11",
-    "@types/react": "18.0.35",
-    "@types/react-dom": "18.0.11",
+    "@types/react": "18.2.33",
+    "@types/react-dom": "18.2.14",
     "babel-preset-gatsby-package": "3.8.0",
     "typescript": "5.0.4",
     "ultra-runner": "3.10.5"
