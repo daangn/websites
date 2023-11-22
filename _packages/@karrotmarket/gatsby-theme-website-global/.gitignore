@@ -1,7 +1,0 @@
-/.cache/
-/public/
-/dist/
-
-/*.js
-!/index.js
-/*.d.ts
