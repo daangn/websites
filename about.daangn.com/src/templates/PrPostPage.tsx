@@ -261,6 +261,7 @@ const AuthorImage = styled(GatsbyImage, {
   width: rem(50),
   height: rem(50),
   borderRadius: '50%',
+  border: `1px solid ${vars.$scale.color.gray100}`,
 });
 
 const AuthorInfo = styled('div', {
