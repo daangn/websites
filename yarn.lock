@@ -2621,38 +2621,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@karrotmarket/gatsby-theme-brochure@workspace:^, @karrotmarket/gatsby-theme-brochure@workspace:_packages/@karrotmarket/gatsby-theme-brochure":
-  version: 0.0.0-use.local
-  resolution: "@karrotmarket/gatsby-theme-brochure@workspace:_packages/@karrotmarket/gatsby-theme-brochure"
-  dependencies:
-    "@babel/cli": 7.21.0
-    "@babel/core": 7.21.4
-    "@cometjs/graphql-utils": 2.0.5
-    "@seed-design/design-token": 1.0.1
-    "@types/node": 18.15.11
-    "@types/react": 18.0.35
-    "@types/react-dom": 18.0.11
-    babel-preset-gatsby-package: 3.8.0
-    concurrently: 7.6.0
-    gatsby: 5.8.0
-    gatsby-plugin-head-seo: 1.0.2
-    gatsby-plugin-image: 3.8.0
-    gatsby-plugin-react-helmet-async: 1.2.3
-    gatsby-plugin-sharp: 5.8.0
-    gatsby-theme-stitches: 1.0.1
-    gatsby-transformer-sharp: 5.8.0
-    polished: 4.2.2
-    react: 18.2.0
-    react-dom: 18.2.0
-    react-helmet-async: 1.3.0
-    typescript: 5.0.4
-  peerDependencies:
-    gatsby: ^4.19.0 || ^5.0.0
-    react: "*"
-    react-dom: "*"
-  languageName: unknown
-  linkType: soft
-
 "@karrotmarket/gatsby-theme-post@workspace:_packages/@karrotmarket/gatsby-theme-post":
   version: 0.0.0-use.local
   resolution: "@karrotmarket/gatsby-theme-post@workspace:_packages/@karrotmarket/gatsby-theme-post"
@@ -2745,50 +2713,6 @@ __metadata:
     gatsby: ^4.19.0 || ^5.0.0
     react: ^18.0.0
     react-dom: ^18.0.0
-  languageName: unknown
-  linkType: soft
-
-"@karrotmarket/gatsby-theme-website-global@workspace:^, @karrotmarket/gatsby-theme-website-global@workspace:_packages/@karrotmarket/gatsby-theme-website-global":
-  version: 0.0.0-use.local
-  resolution: "@karrotmarket/gatsby-theme-website-global@workspace:_packages/@karrotmarket/gatsby-theme-website-global"
-  dependencies:
-    "@babel/cli": 7.21.0
-    "@babel/core": 7.21.4
-    "@cometjs/core": 2.2.0
-    "@cometjs/graphql-utils": 2.0.5
-    "@karrotmarket/gatsby-theme-prismic": "workspace:^"
-    "@karrotmarket/gatsby-theme-seed-design": "workspace:^"
-    "@karrotmarket/gatsby-theme-website": "workspace:^"
-    "@reach/router": 1.3.4
-    "@seed-design/design-token": 1.0.1
-    "@stitches/react": 1.2.8
-    "@svgr/webpack": 7.0.0
-    babel-preset-gatsby-package: 3.8.0
-    concurrently: 7.6.0
-    framer-motion: 10.10.0
-    gatsby: 5.8.0
-    gatsby-plugin-head-seo: 1.0.2
-    gatsby-plugin-image: 3.8.0
-    gatsby-plugin-preload-fonts: 4.8.0
-    gatsby-plugin-prismic-previews: 5.3.0
-    gatsby-plugin-sharp: 5.8.0
-    gatsby-plugin-svgr: 3.0.0-beta.0
-    gatsby-source-prismic: 5.3.0
-    gatsby-theme-stitches: 1.0.1
-    gatsby-transformer-sharp: 5.8.0
-    polished: 4.2.2
-    react: 18.2.0
-    react-dom: 18.2.0
-    react-intersection-observer: 9.4.3
-    react-scroll-parallax: 3.3.2
-    sharp: 0.32.0
-    typescript: 5.0.4
-  peerDependencies:
-    "@stitches/react": ^0.1.0 || ^0.2.0 || ^1.0.0
-    gatsby: ^4.19.0 || ^5.0.0
-    polished: ^4.0.0
-    react: "*"
-    react-dom: "*"
   languageName: unknown
   linkType: soft
 
@@ -2915,23 +2839,6 @@ __metadata:
   peerDependencies:
     "@karrotmarket/gatsby-source-greenhouse-jobboard": ^0.3.0 || ^0.4.0 || ^0.5.0 || ^0.6.0 || ^0.7.0 || ^0.8.0 || ^0.9.0
     gatsby: ^4.19.0 || ^5.0.0
-  languageName: unknown
-  linkType: soft
-
-"@karrotmarket/gatsby-transformer-note-post@workspace:*, @karrotmarket/gatsby-transformer-note-post@workspace:_packages/@karrotmarket/gatsby-transformer-note-post":
-  version: 0.0.0-use.local
-  resolution: "@karrotmarket/gatsby-transformer-note-post@workspace:_packages/@karrotmarket/gatsby-transformer-note-post"
-  dependencies:
-    "@babel/cli": 7.21.0
-    "@babel/core": 7.21.4
-    babel-preset-gatsby-package: 3.8.0
-    concurrently: 7.6.0
-    gatsby: 5.8.0
-    gatsby-source-filesystem: 5.8.0
-    gatsby-source-note-com: 0.0.6
-    typescript: 5.0.4
-  peerDependencies:
-    gatsby: ^4.0.0 || ^5.0.0
   languageName: unknown
   linkType: soft
 
@@ -4000,30 +3907,6 @@ __metadata:
   version: 1.0.3
   resolution: "@seed-design/design-token@npm:1.0.3"
   checksum: a60330bf16b13c3124c8745dd212d1e11b459ae65e2781e4b97b162a23d023c4fa01829b0673018ee483130294b0fc7525c719bed9ac413638897212d7f01b76
-  languageName: node
-  linkType: hard
-
-"@seed-design/design-token@npm:alpha":
-  version: 1.0.0-alpha.6
-  resolution: "@seed-design/design-token@npm:1.0.0-alpha.6"
-  checksum: 8e5b325fd32c0997cec1c3490ea8fda481ec17895f0670c7490d6c2112096ce3db6ae67421e5ebb460fa333441523fdd3cee80fdf4786cc09fe65afbfd71d0ef
-  languageName: node
-  linkType: hard
-
-"@seed-design/icon@npm:0.1.13":
-  version: 0.1.13
-  resolution: "@seed-design/icon@npm:0.1.13"
-  dependencies:
-    "@karrotmarket/karrot-ui-icon": 0.0.0-20230217.1
-    commander: ^10.0.0
-    findup-sync: ^5.0.0
-    get-tsconfig: ^4.4.0
-    js-yaml: ^4.1.0
-    kleur: ^4.1.5
-    string-dedent: ^3.0.1
-  bin:
-    seed-icon: bin/index.mjs
-  checksum: a0319a909d28653b3e2fad57b4316f985965844284c98d21cc30adf4f40955573216426f55b57e077c3d0d8aa6d24ff7400f87349f39e0323d5d7459cda51573
   languageName: node
   linkType: hard
 
@@ -5290,42 +5173,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ads-local.daangn.com@workspace:ads-local.daangn.com":
-  version: 0.0.0-use.local
-  resolution: "ads-local.daangn.com@workspace:ads-local.daangn.com"
-  dependencies:
-    "@babel/core": 7.21.4
-    "@cometjs/graphql-utils": 2.0.5
-    "@karrotmarket/gatsby-theme-prismic": "workspace:^"
-    "@karrotmarket/gatsby-theme-seed-design": "workspace:^"
-    "@karrotmarket/gatsby-theme-website": "workspace:^"
-    "@seed-design/design-token": 1.0.1
-    "@seed-design/icon": 0.1.13
-    "@stitches/react": 1.2.8
-    gatsby: 5.8.0
-    gatsby-plugin-google-tagmanager: 5.8.0
-    gatsby-plugin-head-seo: 1.0.2
-    gatsby-plugin-image: 3.8.0
-    gatsby-plugin-manifest: 5.8.0
-    gatsby-plugin-module-resolver: 1.0.3
-    gatsby-plugin-react-helmet-async: 1.2.3
-    gatsby-plugin-robots-txt: 1.8.0
-    gatsby-plugin-sharp: 5.8.0
-    gatsby-plugin-typegen: 3.1.0
-    gatsby-source-filesystem: 5.8.0
-    gatsby-theme-stitches: 1.0.1
-    gatsby-transformer-sharp: 5.8.0
-    polished: 4.2.2
-    react: 18.2.0
-    react-dom: 18.2.0
-    react-helmet-async: 1.3.0
-    react-swipeable: 7.0.0
-    react-text-loop: 2.3.0
-    typescript: 5.0.4
-    ultra-runner: 3.10.5
-  languageName: unknown
-  linkType: soft
-
 "agent-base@npm:5":
   version: 5.1.1
   resolution: "agent-base@npm:5.1.1"
@@ -6076,16 +5923,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-runtime@npm:^6.26.0":
-  version: 6.26.0
-  resolution: "babel-runtime@npm:6.26.0"
-  dependencies:
-    core-js: ^2.4.0
-    regenerator-runtime: ^0.11.0
-  checksum: 8aeade94665e67a73c1ccc10f6fd42ba0c689b980032b70929de7a6d9a12eb87ef51902733f8fefede35afea7a5c3ef7e916a64d503446c1eedc9e3284bd3d50
-  languageName: node
-  linkType: hard
-
 "balanced-match@npm:^1.0.0":
   version: 1.0.2
   resolution: "balanced-match@npm:1.0.2"
@@ -6320,23 +6157,6 @@ __metadata:
   checksum: e4bcd3948d289c5127591fbedf10c0b639ccbf00243504e4e127374a15c3bc8eed0d28d4aaab08ff6f1cf2abc0cce6ba3085ed32f4f90e82a5683ce0014e1b6e
   languageName: node
   linkType: hard
-
-"ca.karrotmarket.com@workspace:ca.karrotmarket.com":
-  version: 0.0.0-use.local
-  resolution: "ca.karrotmarket.com@workspace:ca.karrotmarket.com"
-  dependencies:
-    "@babel/core": 7.21.4
-    "@karrotmarket/gatsby-theme-prismic": "workspace:^"
-    "@karrotmarket/gatsby-theme-website-global": "workspace:^"
-    babel-plugin-polished: 1.1.0
-    gatsby: 5.8.0
-    gatsby-plugin-google-tagmanager: 5.8.0
-    react: 18.2.0
-    react-dom: 18.2.0
-    typescript: 5.0.4
-    ultra-runner: 3.10.5
-  languageName: unknown
-  linkType: soft
 
 "cacache@npm:^16.1.0":
   version: 16.1.3
@@ -7203,13 +7023,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:^2.4.0":
-  version: 2.6.12
-  resolution: "core-js@npm:2.6.12"
-  checksum: 44fa9934a85f8c78d61e0c8b7b22436330471ffe59ec5076fe7f324d6e8cf7f824b14b1c81ca73608b13bdb0fef035bd820989bf059767ad6fa13123bb8bd016
-  languageName: node
-  linkType: hard
-
 "core-js@npm:^3.22.3":
   version: 3.30.1
   resolution: "core-js@npm:3.30.1"
@@ -7582,13 +7395,6 @@ __metadata:
   version: 3.1.2
   resolution: "csstype@npm:3.1.2"
   checksum: e1a52e6c25c1314d6beef5168da704ab29c5186b877c07d822bd0806717d9a265e8493a2e35ca7e68d0f5d472d43fac1cdce70fd79fd0853dff81f3028d857b5
-  languageName: node
-  linkType: hard
-
-"cxs@npm:^6.2.0":
-  version: 6.2.0
-  resolution: "cxs@npm:6.2.0"
-  checksum: 792f070d9f2f5144c5ed9e03db8b7e53310217db7149fc2131cd376936ae7d26edb0fa31a4dfa6ccea595f6cddc134ac6c51fa077b1c848bb9a409f0b525f568
   languageName: node
   linkType: hard
 
@@ -9993,18 +9799,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-react-helmet-async@npm:1.2.3":
-  version: 1.2.3
-  resolution: "gatsby-plugin-react-helmet-async@npm:1.2.3"
-  peerDependencies:
-    gatsby: ">=2"
-    react: ^16.6.0 || ^17 || ^18
-    react-dom: ^16.6.0 || ^17 || ^18
-    react-helmet-async: 1.x
-  checksum: d7fcd585fce47f30c6cbb625707e76856654c375108ef5dc65ad9d2e234b475b2786eb8cfa2c7379548814d55eafa9e029d802e02bad1deb42ad814a39329c61
-  languageName: node
-  linkType: hard
-
 "gatsby-plugin-robots-txt@npm:1.8.0":
   version: 1.8.0
   resolution: "gatsby-plugin-robots-txt@npm:1.8.0"
@@ -10161,16 +9955,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-web-font-loader@npm:1.0.4":
-  version: 1.0.4
-  resolution: "gatsby-plugin-web-font-loader@npm:1.0.4"
-  dependencies:
-    babel-runtime: ^6.26.0
-    webfontloader: ^1.6.28
-  checksum: 7cb4df8ed58d56656150ef7d5277f9acec91a7153afeccdfc1cac75482a25a8d926957a7892ccfbaf3ab743b02b3c9ca5a95e06f3c69370b53426616ed0d4359
-  languageName: node
-  linkType: hard
-
 "gatsby-react-router-scroll@npm:^6.8.0":
   version: 6.8.0
   resolution: "gatsby-react-router-scroll@npm:6.8.0"
@@ -10222,17 +10006,6 @@ __metadata:
   peerDependencies:
     gatsby: ^5.0.0-next
   checksum: 4a8ebf29f444cfcae61074f7f8cb1c98d6bad13e5f60d57c18c5934e70c68d910d7606773f0675b9f16e5ea1190aa7285dd3a7b119ea1daa23457193439dcd68
-  languageName: node
-  linkType: hard
-
-"gatsby-source-note-com@npm:0.0.6":
-  version: 0.0.6
-  resolution: "gatsby-source-note-com@npm:0.0.6"
-  dependencies:
-    note-com-js: ^0.0.3
-  peerDependencies:
-    gatsby: ^4.0.0 || ^5.0.0
-  checksum: 5f26c05d5a4b984879ab38b220ec27a7c5f202c9f9104312206fb900a4089b93d07981eb78b2f17282e2f5a14b10f89b0017d2048c43d8c283662c5167e117e9
   languageName: node
   linkType: hard
 
@@ -11984,13 +11757,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"itty-router@npm:3.0.12":
-  version: 3.0.12
-  resolution: "itty-router@npm:3.0.12"
-  checksum: aedc7d66e5606bc57a503a0386cb80083b5adc863de2a634676223c84c8106087db7a53155119d47b86f501278dab60f5758d386f1a0b72b7e15589a3b588a65
-  languageName: node
-  linkType: hard
-
 "javascript-stringify@npm:^2.0.1":
   version: 2.1.0
   resolution: "javascript-stringify@npm:2.1.0"
@@ -12474,31 +12240,6 @@ __metadata:
   checksum: 055df3841e00d7ed065ef1cc3330cf69097ab2ffec3083d8b1d6edfd2e25504bf2983f5249d6f0459bcad99fe21bb0c9f6f1cc03569713af27cd5eb00ee7bb7d
   languageName: node
   linkType: hard
-
-"jp.karrotmarket.com@workspace:jp.karrotmarket.com":
-  version: 0.0.0-use.local
-  resolution: "jp.karrotmarket.com@workspace:jp.karrotmarket.com"
-  dependencies:
-    "@babel/core": 7.21.4
-    "@karrotmarket/gatsby-theme-brochure": "workspace:^"
-    "@karrotmarket/gatsby-theme-prismic": "workspace:^"
-    "@karrotmarket/gatsby-theme-website-global": "workspace:^"
-    "@karrotmarket/gatsby-transformer-note-post": "workspace:*"
-    "@seed-design/design-token": 1.0.1
-    babel-plugin-polished: 1.1.0
-    framer-motion: 10.10.0
-    gatsby: 5.8.0
-    gatsby-plugin-google-tagmanager: 5.8.0
-    gatsby-plugin-image: 3.8.0
-    gatsby-plugin-typegen: 3.1.0
-    gatsby-plugin-web-font-loader: 1.0.4
-    polished: 4.2.2
-    react: 18.2.0
-    react-dom: 18.2.0
-    typescript: 5.0.4
-    ultra-runner: 3.10.5
-  languageName: unknown
-  linkType: soft
 
 "js-base64@npm:~3.7.0":
   version: 3.7.5
@@ -14084,13 +13825,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"note-com-js@npm:0.0.3, note-com-js@npm:^0.0.3":
-  version: 0.0.3
-  resolution: "note-com-js@npm:0.0.3"
-  checksum: 1d1f9b2fcff85a5c139331adfa0230d261f0ec9d9522abde49e4ee3d5a58fd1c29b3d219184914d6f9cac0314d4d4e69045350aef68add0f843e91ce3e2d7930
-  languageName: node
-  linkType: hard
-
 "npm-run-path@npm:4.0.1, npm-run-path@npm:^4.0.1":
   version: 4.0.1
   resolution: "npm-run-path@npm:4.0.1"
@@ -14690,20 +14424,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"performance-now@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "performance-now@npm:0.2.0"
-  checksum: 2020aecc3980c280bf0a0382d476cf4e725a10433e853f853c57bc3ed084ab8aa880fac87e92d1b44d30138b8da2d2b77aad321ef3d7ce50b34500a4f4f84d0f
-  languageName: node
-  linkType: hard
-
-"performance-now@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "performance-now@npm:2.1.0"
-  checksum: 534e641aa8f7cba160f0afec0599b6cecefbb516a2e837b512be0adbe6c1da5550e89c78059c7fabc5c9ffdf6627edabe23eb7c518c4500067a898fa65c2b550
-  languageName: node
-  linkType: hard
-
 "physical-cpu-count@npm:^2.0.0":
   version: 2.0.0
   resolution: "physical-cpu-count@npm:2.0.0"
@@ -15258,18 +14978,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prismic-if-note-com@workspace:_workers/prismic-if-note-com":
-  version: 0.0.0-use.local
-  resolution: "prismic-if-note-com@workspace:_workers/prismic-if-note-com"
-  dependencies:
-    "@cloudflare/workers-types": 4.20230404.0
-    itty-router: 3.0.12
-    note-com-js: 0.0.3
-    typescript: 5.0.4
-    wrangler: 2.15.1
-  languageName: unknown
-  linkType: soft
-
 "prismic-reactjs@npm:1.3.4":
   version: 1.3.4
   resolution: "prismic-reactjs@npm:1.3.4"
@@ -15519,15 +15227,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"raf@npm:^3.1.0":
-  version: 3.4.1
-  resolution: "raf@npm:3.4.1"
-  dependencies:
-    performance-now: ^2.1.0
-  checksum: 50ba284e481c8185dbcf45fc4618ba3aec580bb50c9121385d5698cb6012fe516d2015b1df6dd407a7b7c58d44be8086108236affbce1861edd6b44637c8cd52
-  languageName: node
-  linkType: hard
-
 "ramda@npm:^0.26.1":
   version: 0.26.1
   resolution: "ramda@npm:0.26.1"
@@ -15679,20 +15378,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-fast-compare@npm:2.0.4":
-  version: 2.0.4
-  resolution: "react-fast-compare@npm:2.0.4"
-  checksum: 06046595f90a4e3e3a56f40a8078c00aa71bdb064ddb98343f577f546aa22e888831fd45f009c93b34707cc842b4c637737e956fd13d6f80607ee92fb9cf9a1c
-  languageName: node
-  linkType: hard
-
-"react-fast-compare@npm:^3.2.0":
-  version: 3.2.1
-  resolution: "react-fast-compare@npm:3.2.1"
-  checksum: 209b4dc3a9cc79c074a26ec020459efd8be279accaca612db2edb8ada2a28849ea51cf3d246fc0fafb344949b93a63a43798b6c1787559b0a128571883fe6859
-  languageName: node
-  linkType: hard
-
 "react-focus-lock@npm:^2.5.2":
   version: 2.9.4
   resolution: "react-focus-lock@npm:2.9.4"
@@ -15710,22 +15395,6 @@ __metadata:
     "@types/react":
       optional: true
   checksum: f4c696bdbde5008560388622b994c00502d1faeeabff32b02964770c8c020208872f5f6b914b249a8bf3e97cc12e58bb0d227cd33460093654156b7b7f4c8d76
-  languageName: node
-  linkType: hard
-
-"react-helmet-async@npm:1.3.0":
-  version: 1.3.0
-  resolution: "react-helmet-async@npm:1.3.0"
-  dependencies:
-    "@babel/runtime": ^7.12.5
-    invariant: ^2.2.4
-    prop-types: ^15.7.2
-    react-fast-compare: ^3.2.0
-    shallowequal: ^1.1.0
-  peerDependencies:
-    react: ^16.6.0 || ^17.0.0 || ^18.0.0
-    react-dom: ^16.6.0 || ^17.0.0 || ^18.0.0
-  checksum: 7ca7e47f8af14ea186688b512a87ab912bf6041312b297f92516341b140b3f0f8aedf5a44d226d99e69ed067b0cc106e38aeb9c9b738ffcc63d10721c844db90
   languageName: node
   linkType: hard
 
@@ -15756,19 +15425,6 @@ __metadata:
   version: 3.0.4
   resolution: "react-lifecycles-compat@npm:3.0.4"
   checksum: a904b0fc0a8eeb15a148c9feb7bc17cec7ef96e71188280061fc340043fd6d8ee3ff233381f0e8f95c1cf926210b2c4a31f38182c8f35ac55057e453d6df204f
-  languageName: node
-  linkType: hard
-
-"react-motion@npm:^0.5.2":
-  version: 0.5.2
-  resolution: "react-motion@npm:0.5.2"
-  dependencies:
-    performance-now: ^0.2.0
-    prop-types: ^15.5.8
-    raf: ^3.1.0
-  peerDependencies:
-    react: ^0.14.9 || ^15.3.0 || ^16.0.0
-  checksum: b1b2ab15d0e7492be827576fa7238c11679b52495a640b1234400771fdeac9ded8909532135b4a84be28e21e63dc97d54758d08ba280f90409b54104730b29c0
   languageName: node
   linkType: hard
 
@@ -15888,20 +15544,6 @@ __metadata:
   peerDependencies:
     react: ^16.8.3 || ^17 || ^18
   checksum: 54d15933483f7aea8f69e6a9930e220fb3bd98f314cae89a8b797e8a3bb959b68e777fe199cd7729edfe65edfcb5d933c7312ea08626f1613a6fd5d30e646598
-  languageName: node
-  linkType: hard
-
-"react-text-loop@npm:2.3.0":
-  version: 2.3.0
-  resolution: "react-text-loop@npm:2.3.0"
-  dependencies:
-    cxs: ^6.2.0
-    react-fast-compare: 2.0.4
-    react-motion: ^0.5.2
-  peerDependencies:
-    react: ^15.0.1 || ^16.0.1
-    react-dom: ^15.0.1 || ^16.0.1
-  checksum: 8bf07265b35866d2ac086eceb40a8d6b9db8838b8047cef15ef4a9e5081aa7aa2c2fe51e7aa4c17ee379ac75f44cf16c2d541d3da134e8981b515bb36c499b9b
   languageName: node
   linkType: hard
 
@@ -16075,13 +15717,6 @@ __metadata:
   version: 1.4.2
   resolution: "regenerate@npm:1.4.2"
   checksum: 3317a09b2f802da8db09aa276e469b57a6c0dd818347e05b8862959c6193408242f150db5de83c12c3fa99091ad95fb42a6db2c3329bfaa12a0ea4cbbeb30cb0
-  languageName: node
-  linkType: hard
-
-"regenerator-runtime@npm:^0.11.0":
-  version: 0.11.1
-  resolution: "regenerator-runtime@npm:0.11.1"
-  checksum: 3c97bd2c7b2b3247e6f8e2147a002eb78c995323732dad5dc70fac8d8d0b758d0295e7015b90d3d444446ae77cbd24b9f9123ec3a77018e81d8999818301b4f4
   languageName: node
   linkType: hard
 
@@ -16767,13 +16402,6 @@ __metadata:
   version: 1.2.2
   resolution: "shallow-compare@npm:1.2.2"
   checksum: 900b9fd6931e1c5293ee67765b3a7043b10f83c147cf60c2869076e772189e9b25b664efa93cda09c411b08ff32e3614cf1b349f92e91ae14298ef1726ae0964
-  languageName: node
-  linkType: hard
-
-"shallowequal@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "shallowequal@npm:1.1.0"
-  checksum: f4c1de0837f106d2dbbfd5d0720a5d059d1c66b42b580965c8f06bb1db684be8783538b684092648c981294bf817869f743a066538771dbecb293df78f765e00
   languageName: node
   linkType: hard
 
@@ -17685,44 +17313,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"team.daangn.com@workspace:team.daangn.com":
-  version: 0.0.0-use.local
-  resolution: "team.daangn.com@workspace:team.daangn.com"
-  dependencies:
-    "@babel/core": 7.21.4
-    "@karrotmarket/gatsby-source-greenhouse-jobboard": 0.9.0
-    "@karrotmarket/gatsby-theme-prismic": "workspace:^"
-    "@karrotmarket/gatsby-theme-website-team": "workspace:^"
-    "@karrotmarket/gatsby-transformer-job-post": "workspace:^"
-    "@seed-design/design-token": alpha
-    "@types/dotenv-safe": 8.1.2
-    "@types/node": 18.15.11
-    "@types/react": 18.0.35
-    "@types/react-dom": 18.0.11
-    babel-preset-gatsby-package: 3.8.0
-    cjk-slug: 0.3.1
-    dotenv: 16.0.3
-    gatsby: 5.8.0
-    gatsby-plugin-advanced-sitemap: 2.1.0
-    gatsby-plugin-gatsby-cloud: 5.8.0
-    gatsby-plugin-google-tagmanager: 5.8.0
-    gatsby-plugin-image: 3.8.0
-    gatsby-plugin-manifest: 5.8.0
-    gatsby-plugin-prismic-previews: 5.3.0
-    gatsby-plugin-robots-txt: 1.8.0
-    gatsby-plugin-sitemap: 6.8.0
-    gatsby-plugin-typegen: 3.1.0
-    gatsby-plugin-vercel-deploy: 1.1.0
-    gatsby-source-filesystem: 5.8.0
-    match-sorter: 6.3.1
-    polished: 4.2.2
-    react: 18.2.0
-    react-dom: 18.2.0
-    typescript: 5.0.4
-    ultra-runner: 3.10.5
-  languageName: unknown
-  linkType: soft
-
 "terser-webpack-plugin@npm:^5.3.6, terser-webpack-plugin@npm:^5.3.7":
   version: 5.3.7
   resolution: "terser-webpack-plugin@npm:5.3.7"
@@ -18154,24 +17744,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uk.karrotmarket.com@workspace:uk.karrotmarket.com":
-  version: 0.0.0-use.local
-  resolution: "uk.karrotmarket.com@workspace:uk.karrotmarket.com"
-  dependencies:
-    "@babel/core": 7.21.4
-    "@karrotmarket/gatsby-theme-prismic": "workspace:^"
-    "@karrotmarket/gatsby-theme-website-global": "workspace:^"
-    babel-plugin-polished: 1.1.0
-    gatsby: 5.8.0
-    gatsby-plugin-google-tagmanager: 5.8.0
-    gatsby-plugin-typegen: 3.1.0
-    react: 18.2.0
-    react-dom: 18.2.0
-    typescript: 5.0.4
-    ultra-runner: 3.10.5
-  languageName: unknown
-  linkType: soft
-
 "ultra-runner@npm:3.10.5":
   version: 3.10.5
   resolution: "ultra-runner@npm:3.10.5"
@@ -18384,24 +17956,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"us.karrotmarket.com@workspace:us.karrotmarket.com":
-  version: 0.0.0-use.local
-  resolution: "us.karrotmarket.com@workspace:us.karrotmarket.com"
-  dependencies:
-    "@babel/core": 7.21.4
-    "@karrotmarket/gatsby-theme-prismic": "workspace:^"
-    "@karrotmarket/gatsby-theme-website-global": "workspace:^"
-    babel-plugin-polished: 1.1.0
-    gatsby: 5.8.0
-    gatsby-plugin-google-tagmanager: 5.8.0
-    gatsby-plugin-typegen: 3.1.0
-    react: 18.2.0
-    react-dom: 18.2.0
-    typescript: 5.0.4
-    ultra-runner: 3.10.5
-  languageName: unknown
-  linkType: soft
-
 "use-callback-ref@npm:^1.3.0":
   version: 1.3.0
   resolution: "use-callback-ref@npm:1.3.0"
@@ -18599,13 +18153,6 @@ __metadata:
   version: 1.1.2
   resolution: "web-vitals@npm:1.1.2"
   checksum: 92071029089277166e11141b735831d9011e85737d32c1360034676db898ab0ca95f19041ee01904f2189ad6e711b9da6b17567e4831290a429a586c98bc573f
-  languageName: node
-  linkType: hard
-
-"webfontloader@npm:^1.6.28":
-  version: 1.6.28
-  resolution: "webfontloader@npm:1.6.28"
-  checksum: cbebbe593cb0d27dbb4d418f7f96bd9893024f1f2062e858af76209b6524e25d766964b6e2a724f3b694fadef661dd3a01065455a96df05337b3281ca09ab656
   languageName: node
   linkType: hard
 
