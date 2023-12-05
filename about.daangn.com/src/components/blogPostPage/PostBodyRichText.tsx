@@ -58,7 +58,7 @@ const PostBodyRichText: React.FC<PostBodyRichTextProps> = ({ slice }) => {
             <PrismicLink
               key={key}
               data-id="post-hyperlink"
-              data-link={node.data.url}
+              data-link={node.data.url.replace("https://about.daangn.com/", "")}
               field={node.data}
             >
               <>{children}</>
