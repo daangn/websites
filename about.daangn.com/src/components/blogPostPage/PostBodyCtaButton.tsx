@@ -12,6 +12,8 @@ const PostBodyCtaButton: React.FC<PostBodyCtaButtonProps> = ({ slice }) => {
     <Container>
       <strong>{slice.primary.cta_phrase}</strong>
       <Button
+        data-id="post-cta"
+        data-link={slice.primary.cta_button_url?.url}
         onClick={() => {
           window.location.href = slice.primary.cta_button_url?.url;
         }}
