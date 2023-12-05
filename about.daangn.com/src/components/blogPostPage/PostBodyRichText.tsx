@@ -1,4 +1,4 @@
-import { PrismicRichText } from '@prismicio/react';
+import { PrismicRichText, PrismicLink } from '@prismicio/react';
 import { vars } from '@seed-design/design-token';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
@@ -53,6 +53,16 @@ const PostBodyRichText: React.FC<PostBodyRichTextProps> = ({ slice }) => {
                 dangerouslySetInnerHTML={{ __html: node.oembed.html ?? '' }}
               />
             </EmbedWrapper>
+          ),
+          hyperlink: ({ node, children, key }) => (
+            <PrismicLink
+              key={key}
+              data-id="post-hyperlink"
+              data-link={node.data.url}
+              field={node.data}
+            >
+              <>{children}</>
+            </PrismicLink>
           ),
         }}
       />
