@@ -13,7 +13,7 @@ const PostBodyCtaButton: React.FC<PostBodyCtaButtonProps> = ({ slice }) => {
       <strong>{slice.primary.cta_phrase}</strong>
       <Button
         data-id="post-cta"
-        data-link={slice.primary.cta_button_url?.url}
+        data-link={slice.primary.cta_button_url?.url.replace("https://about.daangn.com/", "")}
         onClick={() => {
           window.location.href = slice.primary.cta_button_url?.url;
         }}
