@@ -23,14 +23,11 @@ const PostBodyRichText: React.FC<PostBodyRichTextProps> = ({ slice }) => {
           heading2: ({ children, key }) => <Heading2 key={key}>{children}</Heading2>,
           heading3: ({ children, key }) => <Heading3 key={key}>{children}</Heading3>,
           paragraph: ({ children, key, node }) => {
-            return node.text.includes("<mark") || node.text.includes("<font") ? (
-              <Description
-                dangerouslySetInnerHTML={{ __html: node.text || '' }}
-                key={key}
-              />
+            return node.text.includes('<span') || node.text.includes('<font') ? (
+              <Description dangerouslySetInnerHTML={{ __html: node.text || '' }} key={key} />
             ) : (
               <Description key={key}>{children}</Description>
-            )
+            );
           },
           preformatted: ({ node, key }) => {
             return (
@@ -67,7 +64,9 @@ const PostBodyRichText: React.FC<PostBodyRichTextProps> = ({ slice }) => {
             <PrismicLink
               key={key}
               data-id="post-hyperlink"
-              data-link={node.data?.url ? node.data.url.replace("https://about.daangn.com/", "") : ""}
+              data-link={
+                node.data?.url ? node.data.url.replace('https://about.daangn.com/', '') : ''
+              }
               field={node.data}
             >
               <>{children}</>
@@ -135,6 +134,10 @@ const Description = styled('p', {
     fontSize: rem(17),
     lineHeight: rem(28),
     letterSpacing: rem(0.1),
+  },
+
+  '& span': {
+    paddingInline: rem(4),
   },
 });
 
