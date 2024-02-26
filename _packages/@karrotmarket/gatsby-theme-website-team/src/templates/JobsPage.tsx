@@ -171,6 +171,7 @@ const ExpandIcon = styled(SeedIcon, {
   top: '50%',
   transform: 'translateY(-50%)',
   color: vars.$scale.color.gray700,
+  pointerEvents: 'none',
 });
 
 const JobPostList = styled(_JobPostList, {
@@ -270,7 +271,7 @@ const JobsPage: React.FC<JobsPageProps> = ({ data, pageContext, location }) => {
                   </option>
                 ))}
               </Select>
-              <ExpandIcon name="icon_expand_more_regular" />
+              <ExpandIcon name="icon_expand_more_regular" aria-hidden />
             </SelectWrapper>
             <SelectWrapper css={{ gridArea: 'corporate' }}>
               <Select defaultValue={corporate} onChange={(e) => onFilterChange(e, 'corp')}>
@@ -287,7 +288,7 @@ const JobsPage: React.FC<JobsPageProps> = ({ data, pageContext, location }) => {
                   );
                 })}
               </Select>
-              <ExpandIcon name="icon_expand_more_regular" />
+              <ExpandIcon name="icon_expand_more_regular" aria-hidden />
             </SelectWrapper>
             <EtypeSelectWrapper css={{ gridArea: 'etype' }}>
               <Select value={employmentType} onChange={(e) => onFilterChange(e, 'etype')}>
@@ -298,7 +299,7 @@ const JobsPage: React.FC<JobsPageProps> = ({ data, pageContext, location }) => {
                 <option value="ASSISTANT">{messages.jobs_page__employment_type_assistant}</option>
                 <option value="PART_TIME">{messages.jobs_page__employment_type_parttime}</option>
               </Select>
-              <ExpandIcon name="icon_expand_more_regular" />
+              <ExpandIcon name="icon_expand_more_regular" aria-hidden />
             </EtypeSelectWrapper>
             <SearchInput
               query={searchQuery}
