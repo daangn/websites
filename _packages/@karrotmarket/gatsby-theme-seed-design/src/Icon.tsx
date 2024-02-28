@@ -2,14 +2,14 @@
 import * as React from "react";
 import { iconData } from "./IconData";
 
-export interface IconProps {
+export interface IconProps extends React.HTMLAttributes<HTMLSpanElement> {
   name: IconName;
   size?: number | string;
   className?: string;
 };
 
 const Icon: React.ForwardRefRenderFunction<HTMLSpanElement, IconProps> = (
-  { name, className, size },
+  { name, className, size, ...props },
   ref,
 ) => {
   return (
@@ -19,6 +19,7 @@ const Icon: React.ForwardRefRenderFunction<HTMLSpanElement, IconProps> = (
       className={className}
       data-seed-icon={name}
       data-seed-icon-version="0.2.0"
+      {...props}
     >
       {iconData[name]}
     </span>
