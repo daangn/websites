@@ -13,5 +13,10 @@
     "editor.codeActionsOnSave": {
       "source.organizeImports.rome": true
     }
+  },
+  "[javascript][typescript]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports.rome": "explicit"
+    }
   }
 }

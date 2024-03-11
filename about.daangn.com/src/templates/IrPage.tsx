@@ -28,6 +28,7 @@ export const query = graphql`
               base
               publicURL
             }
+            raw
           }
         }
         body {
@@ -185,6 +186,9 @@ const IrPage: React.FC<IrPageProps> = ({ data: prismicData }) => {
             <AttachmentSectionTitle>첨부파일 다운로드</AttachmentSectionTitle>
             <FileList>
               {attachments.map((attachment) => {
+                if (!attachment?.file?.raw) {
+                  return null;
+                }
                 // rome-ignore lint/style/noNonNullAssertion: intentional
                 const file = attachment!.file!.localFile!;
                 // rome-ignore lint/style/noNonNullAssertion: intentional
@@ -192,7 +196,8 @@ const IrPage: React.FC<IrPageProps> = ({ data: prismicData }) => {
                 const base = stripUUID(decodeURIComponent(file.base));
                 return (
                   <FileListItem key={href}>
-                    <File href={href} download={base}>
+                    {/* vercel환경에서 `File` 서빙에 이슈가 있어 raw url을 그대로 사용합니다. */}
+                    <File href={attachment.file.raw.url} target="_blank" rel="external noopener">
                       {base}
                     </File>
                   </FileListItem>
