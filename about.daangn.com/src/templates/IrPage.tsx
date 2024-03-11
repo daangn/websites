@@ -197,7 +197,7 @@ const IrPage: React.FC<IrPageProps> = ({ data: prismicData }) => {
                 return (
                   <FileListItem key={href}>
                     {/* vercel환경에서 `File` 서빙에 이슈가 있어 raw url을 그대로 사용합니다. */}
-                    <File href={attachment?.file?.raw.url} target="_blank" rel="external noopener">
+                    <File href={attachment.file.raw.url} target="_blank" rel="external noopener">
                       {base}
                     </File>
                   </FileListItem>
