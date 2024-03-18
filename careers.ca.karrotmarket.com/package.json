@@ -25,30 +25,30 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
-    "@karrotmarket/gatsby-source-greenhouse-jobboard": "0.9.0",
+    "@karrotmarket/gatsby-source-greenhouse-jobboard": "^0.9.0",
     "@karrotmarket/gatsby-theme-prismic": "workspace:^",
     "@karrotmarket/gatsby-theme-website-team": "*",
     "@karrotmarket/gatsby-transformer-job-post": "*",
-    "dotenv": "16.0.3",
-    "gatsby": "5.8.0",
-    "gatsby-plugin-advanced-sitemap": "2.1.0",
-    "gatsby-plugin-gatsby-cloud": "5.8.0",
-    "gatsby-plugin-google-tagmanager": "5.8.0",
-    "gatsby-plugin-manifest": "5.8.0",
-    "gatsby-plugin-robots-txt": "1.8.0",
-    "gatsby-plugin-sitemap": "6.8.0",
-    "gatsby-plugin-typegen": "3.1.0",
-    "polished": "4.2.2",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "dotenv": "^16.0.3",
+    "gatsby": "^5.8.0",
+    "gatsby-plugin-advanced-sitemap": "^2.1.0",
+    "gatsby-plugin-gatsby-cloud": "^5.8.0",
+    "gatsby-plugin-google-tagmanager": "^5.8.0",
+    "gatsby-plugin-manifest": "^5.8.0",
+    "gatsby-plugin-robots-txt": "^1.8.0",
+    "gatsby-plugin-sitemap": "^6.8.0",
+    "gatsby-plugin-typegen": "^3.1.0",
+    "polished": "^4.2.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@babel/core": "7.21.4",
-    "@types/dotenv-safe": "8.1.2",
-    "@types/node": "18.15.11",
-    "@types/react": "18.0.35",
-    "@types/react-dom": "18.0.11",
-    "typescript": "5.0.4",
-    "ultra-runner": "3.10.5"
+    "@babel/core": "^7.21.4",
+    "@types/dotenv-safe": "^8.1.2",
+    "@types/node": "^18.15.11",
+    "@types/react": "^18.0.35",
+    "@types/react-dom": "^18.0.11",
+    "typescript": "^5.0.4",
+    "ultra-runner": "^3.10.5"
   }
 }
