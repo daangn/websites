@@ -1,14 +1,14 @@
-import * as React from 'react';
-import { rem } from 'polished';
-import { graphql, type PageProps, type HeadProps } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/config';
-import { HeadSeo } from 'gatsby-plugin-head-seo/src';
 import { required } from '@cometjs/core';
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
+import { type HeadProps, type PageProps, graphql } from 'gatsby';
+import { HeadSeo } from 'gatsby-plugin-head-seo/src';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
+import * as React from 'react';
 
-import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import _PageTitle from '../components/PageTitle';
 import PrismicTeamContentsDataLifeBodyLifeContent from '../components/PrismicTeamContentsDataLifeBodyLifeContent';
+import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import { isCanonicalUrl } from '../utils/common';
 
 export const query = graphql`
@@ -81,10 +81,10 @@ const LifePage: React.FC<LifePageProps> = ({ data }) => {
       <PageTitle>{data.prismicTeamContents.data.life_page_title?.text}</PageTitle>
       <Content>
         {data.prismicTeamContents.data.life_body.map((data, i) =>
-          // rome-ignore lint/style/noNonNullAssertion: intentional
+          // biome-ignore lint/style/noNonNullAssertion: intentional
           mapAbstractTypeWithDefault(data!, {
             PrismicTeamContentsDataLifeBodyLifeContent: (data) => (
-              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              // biome-ignore lint/suspicious/noArrayIndexKey: intentional
               <PrismicTeamContentsDataLifeBodyLifeContent key={i} data={data} />
             ),
             _: null,

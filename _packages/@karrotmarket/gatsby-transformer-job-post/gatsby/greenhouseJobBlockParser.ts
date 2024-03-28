@@ -13,7 +13,9 @@ type Result = {
 
 export function parseContent(contentHtml: string): Result {
   const splitter = /<(h[1-6])>(.*)<\/\1>/;
-  const parts = decode(contentHtml).replace(/<div.*>[\s\S]*?<\/div>/g, '').split(splitter);
+  const parts = decode(contentHtml)
+    .replace(/<div.*>[\s\S]*?<\/div>/g, '')
+    .split(splitter);
 
   const result: Result = {
     content: [],

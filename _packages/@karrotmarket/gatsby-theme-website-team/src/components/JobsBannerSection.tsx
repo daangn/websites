@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { rem } from 'polished';
+import { useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
 import { StaticImage } from 'gatsby-plugin-image';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
+import { rem } from 'polished';
+import * as React from 'react';
 import { SimpleReveal } from 'simple-reveal';
 
 import _DetailLink from './DetailLink';

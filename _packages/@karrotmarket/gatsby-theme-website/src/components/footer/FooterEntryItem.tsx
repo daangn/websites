@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { Link } from 'gatsby';
-import { rem } from 'polished';
 import { useLocation } from '@reach/router';
 import { vars } from '@seed-design/design-token';
+import { Link } from 'gatsby';
+import { rem } from 'polished';
+import * as React from 'react';
 
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { mapLink, useLinkParser } from '../../link';
@@ -50,7 +50,7 @@ const ExternalLink = styled(FooterEntryLink, {
 
 interface FooterEntryItemProps {
   entry: Pick<GatsbyTypes.PrismicSiteNavigationDataFooterEntries, 'text'> & {
-    readonly link: GatsbyTypes.Maybe<Pick<GatsbyTypes.PrismicLinkType, 'url'>>;
+    readonly link: GatsbyTypes.Maybe<Pick<GatsbyTypes.PrismicLinkField, 'url'>>;
   };
 }
 
@@ -59,9 +59,9 @@ const FooterEntryItem: React.FC<FooterEntryItemProps> = ({ entry }) => {
   const location = useLocation();
 
   return (
-    // rome-ignore lint/style/noNonNullAssertion: intentional
+    // biome-ignore lint/style/noNonNullAssertion: intentional
     <FooterEntryItemContainer key={entry.link!.url!}>
-      {/* rome-ignore lint/style/noNonNullAssertion: intentional */}
+      {/* biome-ignore lint/style/noNonNullAssertion: intentional */}
       {mapLink(parseLink(entry.link!.url!), {
         Internal: (link) => (
           <FooterEntryLink

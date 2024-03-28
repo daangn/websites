@@ -1,6 +1,6 @@
-import * as React from 'react';
-import type { LinkType } from '@karrotmarket/gatsby-theme-website/src/link';
 import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
+import type { LinkType } from '@karrotmarket/gatsby-theme-website/src/link';
+import * as React from 'react';
 
 import ArrowLink from './ArrowLink';
 

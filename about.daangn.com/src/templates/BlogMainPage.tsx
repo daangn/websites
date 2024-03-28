@@ -1,6 +1,6 @@
 import { type HeadProps, type PageProps, graphql } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/config';
 import { HeadSeo, OpenGraph, TwitterCard } from 'gatsby-plugin-head-seo/src';
+import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import React from 'react';
 
@@ -45,7 +45,7 @@ const BlogMainPage: React.FC<BlogMainPageProps> = ({ data, pageContext }) => {
       {data.prismicBlogContent?.data?.featured_post && (
         <FeaturedPost data={data.prismicBlogContent.data.featured_post} />
       )}
-      <CategoryAnchor id='#_filter' />
+      <CategoryAnchor id="#_filter" />
       <Navigation query={data} pageContext={pageContext.id} />
       <PostList data={data} />
     </Container>
@@ -56,7 +56,7 @@ type BlogPageHeadProps = HeadProps<GatsbyTypes.BlogPageQuery>;
 
 export const Head: React.FC<BlogPageHeadProps> = ({ data, location }) => {
   const { blog_page_meta_title, blog_page_meta_description, blog_page_og_image } =
-    // rome-ignore lint/suspicious/noExplicitAny: <explanation>
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     data.prismicBlogContent?.data as any;
   const metaImage = blog_page_og_image?.localFile?.childImageSharp?.fixed;
 
@@ -68,7 +68,7 @@ export const Head: React.FC<BlogPageHeadProps> = ({ data, location }) => {
     >
       {(props) => [
         <OpenGraph
-          key='og'
+          key="og"
           og={{
             ...props,
             type: 'website',
@@ -87,7 +87,7 @@ export const Head: React.FC<BlogPageHeadProps> = ({ data, location }) => {
           }}
         />,
         <TwitterCard
-          key='twitter'
+          key="twitter"
           card={{
             ...props,
             type: 'summary_large_image',

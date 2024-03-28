@@ -1,8 +1,8 @@
 import { vars } from '@seed-design/design-token';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { getImage, GatsbyImage } from 'gatsby-plugin-image';
-import React from 'react';
 import { rem } from 'polished';
+import React from 'react';
 import { SimpleReveal } from 'simple-reveal';
 
 type InvestorsSectionProps = {
@@ -27,7 +27,7 @@ const InvestorsSection: React.FC<InvestorsSectionProps> = ({ slice }) => {
           <LogoWapper ref={ref} className={cn()} style={style}>
             {slice.items.map((item, index) => (
               <Logo
-                // rome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+                // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                 key={index}
                 src={item?.image?.localFile?.publicURL || ''}
                 alt={item?.image?.alt || ''}

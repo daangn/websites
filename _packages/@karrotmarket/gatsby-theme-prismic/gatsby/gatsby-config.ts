@@ -1,5 +1,5 @@
-import type { GatsbyConfig } from 'gatsby';
 import type { LinkResolverFunction } from '@prismicio/helpers';
+import type { GatsbyConfig } from 'gatsby';
 
 // https://karrot.prismic.io
 const repositoryName = 'karrot';
@@ -25,18 +25,18 @@ const config = ({ accessToken, linkResolver }: ThemeOptions): GatsbyConfig => ({
         linkResolver,
         shouldDownloadFiles: true,
         imageImgixParams: {
-          auto: 'compress,format',
+          auto: ['compress', 'format'],
           fit: 'max',
           q: 100,
         },
-      },
+      } satisfies import('gatsby-source-prismic').PluginOptions,
     },
     {
       resolve: 'gatsby-plugin-prismic-previews',
       options: {
         repositoryName,
         accessToken,
-      },
+      } satisfies import('gatsby-plugin-prismic-previews').PluginOptions,
     },
   ],
 });

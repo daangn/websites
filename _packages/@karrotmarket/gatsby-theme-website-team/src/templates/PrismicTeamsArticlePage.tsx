@@ -1,15 +1,15 @@
-import * as React from 'react';
-import { rem } from 'polished';
-import { graphql, type PageProps, type HeadProps } from 'gatsby';
-import { HeadSeo } from 'gatsby-plugin-head-seo/src';
-import { styled } from 'gatsby-theme-stitches/src/config';
-import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
-import { required, Condition } from '@cometjs/core';
+import { Condition, required } from '@cometjs/core';
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
+import { type HeadProps, type PageProps, graphql } from 'gatsby';
+import { HeadSeo } from 'gatsby-plugin-head-seo/src';
+import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
+import * as React from 'react';
 
-import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import _PageTitle from '../components/PageTitle';
 import PrismicTeamsArticleDataBodyArticleSection from '../components/PrismicTeamsArticleDataBodyArticleSection';
+import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import { isCanonicalUrl } from '../utils/common';
 
 export const query = graphql`
@@ -84,7 +84,7 @@ const TeamsArticlePage: React.FC<TeamsArticlePageProps> = ({ data }) => {
         {data.prismicTeamsArticle.data.body.filter(Condition.isTruthy).map((data, i) =>
           mapAbstractTypeWithDefault(data, {
             PrismicTeamsArticleDataBodyArticleSection: (data) => (
-              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              // biome-ignore lint/suspicious/noArrayIndexKey: intentional
               <PrismicTeamsArticleDataBodyArticleSection key={i} data={data} />
             ),
             _: null,

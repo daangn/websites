@@ -1,10 +1,10 @@
-import * as React from 'react';
-import slugify from 'cjk-slug';
-import { rem } from 'polished';
-import { graphql, Link } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/config';
-import { getImage, GatsbyImage } from 'gatsby-plugin-image';
 import { vars } from '@seed-design/design-token';
+import slugify from 'cjk-slug';
+import { Link, graphql } from 'gatsby';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
+import * as React from 'react';
 
 type FeaturedPostProps = {
   item: GatsbyTypes.TeamWebsite_FeaturedPostProps_itemFragment;

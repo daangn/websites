@@ -1,4 +1,4 @@
-import { PrismicRichText, PrismicLink } from '@prismicio/react';
+import { PrismicLink, PrismicRichText } from '@prismicio/react';
 import { vars } from '@seed-design/design-token';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
@@ -69,7 +69,7 @@ const PostBodyRichText: React.FC<PostBodyRichTextProps> = ({ slice }) => {
               }
               field={node.data}
             >
-              <>{children}</>
+              {children}
             </PrismicLink>
           ),
         }}

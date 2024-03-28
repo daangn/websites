@@ -1,12 +1,12 @@
-import * as React from 'react';
+import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
+import { vars } from '@seed-design/design-token';
+import FocusTrap from 'focus-trap-react';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
-import FocusTrap from 'focus-trap-react';
-import { vars } from '@seed-design/design-token';
-import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
+import * as React from 'react';
 
-import * as Field from './Field';
 import checkmarkUrl from '!!file-loader!./checkmark.svg';
+import * as Field from './Field';
 
 type Props = {
   id?: string;

@@ -108,7 +108,7 @@ const BannerArea: React.FC = () => {
   return (
     <Carousel>
       {validBanners.map((banner, i) => (
-        // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+        // biome-ignore lint/suspicious/noArrayIndexKey: intentional
         <Banner key={i} item={banner as GatsbyTypes.PrismicTeamBannerDataBodyBannerItem} />
       ))}
     </Carousel>

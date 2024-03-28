@@ -1,18 +1,18 @@
-import * as React from 'react';
-import { graphql, navigate, type PageProps, type HeadProps } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/config';
-import { HeadSeo } from 'gatsby-plugin-head-seo/src';
-import { rem } from 'polished';
 import { required } from '@cometjs/core';
-import { useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
 import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
+import { useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
+import { type HeadProps, type PageProps, graphql, navigate } from 'gatsby';
+import { HeadSeo } from 'gatsby-plugin-head-seo/src';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
+import * as React from 'react';
 
+import ArrowLink from '../components/ArrowLink';
+import Button from '../components/Button';
+import JobPostContentSection from '../components/JobPostContentSection';
 import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import { JobPostLayoutHead } from '../layouts/JobPostLayout';
-import Button from '../components/Button';
-import ArrowLink from '../components/ArrowLink';
-import JobPostContentSection from '../components/JobPostContentSection';
-import { lookup, isCanonicalUrl } from '../utils/common';
+import { isCanonicalUrl, lookup } from '../utils/common';
 
 export const query = graphql`
   query TeamWebsite_JobPostPage(
@@ -86,7 +86,7 @@ const JobPostPage: React.FC<JobPostPageProps> = ({ data }) => {
         </ContentWrapper>
         <Button
           variant="primary"
-          // rome-ignore lint/style/noNonNullAssertion: intentional
+          // biome-ignore lint/style/noNonNullAssertion: intentional
           to={data.jobPost.externalUrl!}
           fullWidth={{ '@initial': true, '@sm': false }}
         >
@@ -100,7 +100,7 @@ const JobPostPage: React.FC<JobPostPageProps> = ({ data }) => {
     <Container>
       <ContentWrapper>
         {data.jobPost.content.map((content, i) => (
-          // rome-ignore lint/suspicious/noArrayIndexKey: it's ok here
+          // biome-ignore lint/suspicious/noArrayIndexKey: it's ok here
           <JobPostContentSection key={i} content={content} />
         ))}
       </ContentWrapper>
@@ -122,7 +122,7 @@ const JobPostPage: React.FC<JobPostPageProps> = ({ data }) => {
         link={parseLink('/jobs/')}
         direction="backward"
         onClick={(e) => {
-          if (window.history.state['fromList']) {
+          if (window.history.state.fromList) {
             e.preventDefault();
             navigate(-1);
           }

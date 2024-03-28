@@ -1,12 +1,12 @@
 import { vars } from '@seed-design/design-token';
 import { type HeadProps, Link, type PageProps, graphql } from 'gatsby';
+import { HeadSeo, OpenGraph, TwitterCard } from 'gatsby-plugin-head-seo/src';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { HeadSeo, OpenGraph, TwitterCard } from 'gatsby-plugin-head-seo/src';
 import { rem } from 'polished';
 import * as React from 'react';
-import 'simple-reveal/index.css';
 import { SimpleReveal } from 'simple-reveal';
+import 'simple-reveal/index.css';
 
 import externalSvgUrl from '!!file-loader!../assets/external.svg';
 
@@ -123,7 +123,7 @@ const ServicePage: React.FC<ServicePageProps> = ({ data }) => {
         ) => {
           return (
             <SimpleReveal
-              // rome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
               key={i}
               render={({ ref, cn, style }) => (
                 <React.Fragment>
@@ -192,7 +192,7 @@ export const Head: React.FC<ServicePageHeadProps> = ({ data, location }) => {
     service_page_meta_title,
     service_page_meta_description,
     service_page_og_image,
-    // rome-ignore lint/suspicious/noExplicitAny: <explanation>
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   } = data.prismicServiceContent?.data as any;
 
   const metaImage = service_page_og_image?.localFile?.childImageSharp?.fixed;
@@ -205,7 +205,7 @@ export const Head: React.FC<ServicePageHeadProps> = ({ data, location }) => {
     >
       {(props) => [
         <OpenGraph
-          key='og'
+          key="og"
           og={{
             ...props,
             type: 'website',
@@ -224,7 +224,7 @@ export const Head: React.FC<ServicePageHeadProps> = ({ data, location }) => {
           }}
         />,
         <TwitterCard
-          key='twitter'
+          key="twitter"
           card={{
             ...props,
             type: 'summary_large_image',

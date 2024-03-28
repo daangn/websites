@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { rem } from 'polished';
-import { graphql } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/config';
-import { getImage, GatsbyImage } from 'gatsby-plugin-image';
 import { Condition } from '@cometjs/core';
 import { vars } from '@seed-design/design-token';
+import { graphql } from 'gatsby';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
+import * as React from 'react';
 
 type PrismicTeamsArticleDataBodyArticleSectionProps = {
   data: GatsbyTypes.PrismicTeamsArticleDataBodyArticleSection_dataFragment;
@@ -103,7 +103,7 @@ const PrismicTeamsArticleDataBodyArticleSection: React.FC<
           }
 
           return (
-            // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+            // biome-ignore lint/suspicious/noArrayIndexKey: intentional
             <Thumbnail key={i}>
               <ThumbnailImage image={image} alt={item.thumbnail_image?.alt || ''} />
               <ThumbnailCaption>{item.thumbnail_description?.text || ''}</ThumbnailCaption>

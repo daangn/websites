@@ -1,6 +1,6 @@
 import { vars } from '@seed-design/design-token';
-import { styled } from 'gatsby-theme-stitches/src/config';
 import { GatsbyImage } from 'gatsby-plugin-image';
+import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import React from 'react';
 import { Carousel } from 'react-responsive-carousel';

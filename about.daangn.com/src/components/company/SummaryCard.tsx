@@ -1,7 +1,7 @@
 import { vars } from '@seed-design/design-token';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import React from 'react';
 import { rem } from 'polished';
+import React from 'react';
 import { SimpleReveal } from 'simple-reveal';
 
 type SummaryCardProps = {

@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { type GatsbySSR } from 'gatsby';
+import * as React from 'react';
 import { type PluginOptions } from './types';
 
 // FIXME: extract to a plugin

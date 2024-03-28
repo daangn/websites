@@ -1,9 +1,9 @@
-import * as React from 'react';
+import type { OverrideProps } from '@cometjs/core';
+import { vars } from '@seed-design/design-token';
+import '@seed-design/stylesheet/global.css';
 import { type PageProps } from 'gatsby';
 import { globalCss } from 'gatsby-theme-stitches/src/config';
-import { vars } from '@seed-design/design-token';
-import type { OverrideProps } from '@cometjs/core';
-import '@seed-design/stylesheet/global.css';
+import * as React from 'react';
 
 import DefaultLayout from './DefaultLayout';
 import JobPostLayout from './JobPostLayout';

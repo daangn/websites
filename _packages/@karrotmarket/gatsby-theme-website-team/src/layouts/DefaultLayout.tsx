@@ -1,13 +1,13 @@
-import * as React from 'react';
-import { rem } from 'polished';
-import { graphql, type PageProps } from 'gatsby';
-import { HeadSeo, OpenGraph, TwitterCard, Facebook } from 'gatsby-plugin-head-seo/src';
+import { type OverrideProps, required } from '@cometjs/core';
+import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
+import _Footer from '@karrotmarket/gatsby-theme-website/src/components/Footer';
+import _Header from '@karrotmarket/gatsby-theme-website/src/components/Header';
+import { type PageProps, graphql } from 'gatsby';
+import { Facebook, HeadSeo, OpenGraph, TwitterCard } from 'gatsby-plugin-head-seo/src';
 import { SocialProfileJsonLd } from 'gatsby-plugin-head-seo/src/jsonld';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { required, type OverrideProps } from '@cometjs/core';
-import _Header from '@karrotmarket/gatsby-theme-website/src/components/Header';
-import _Footer from '@karrotmarket/gatsby-theme-website/src/components/Footer';
-import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
+import { rem } from 'polished';
+import * as React from 'react';
 
 import logoPath from '../assets/logo.png';
 

@@ -1,7 +1,7 @@
-import * as React from 'react';
+import { AnimatePresence } from 'framer-motion';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { AnimatePresence } from 'framer-motion';
+import * as React from 'react';
 
 import FaqAccordionItem from './FaqAccordionItem';
 
@@ -11,7 +11,7 @@ type FaqAccordionProps = {
 };
 
 export const query = graphql`
-  fragment TeamWebsite_FaqAccordion_faqData on PrismicFaqDataType {
+  fragment TeamWebsite_FaqAccordion_faqData on PrismicFaqData {
     entries {
       ...TeamWebsite_FaqAccordionItem_entry
     }
@@ -60,16 +60,16 @@ const FaqAccordion: React.FC<FaqAccordionProps> = ({ className, data }) => {
           .filter((entry) => entry.question && entry.answer)
           .map((entry) => (
             <FaqAccordionItem
-              // rome-ignore lint/style/noNonNullAssertion: intentional
+              // biome-ignore lint/style/noNonNullAssertion: intentional
               key={entry.question!}
-              // rome-ignore lint/style/noNonNullAssertion: intentional
+              // biome-ignore lint/style/noNonNullAssertion: intentional
               id={entry.question!}
               entry={entry}
-              // rome-ignore lint/style/noNonNullAssertion: intentional
+              // biome-ignore lint/style/noNonNullAssertion: intentional
               open={state.id === entry.question!}
-              // rome-ignore lint/style/noNonNullAssertion: intentional
+              // biome-ignore lint/style/noNonNullAssertion: intentional
               onClick={() => dispatch({ type: 'CLICK', id: entry.question! })}
-              // rome-ignore lint/style/noNonNullAssertion: intentional
+              // biome-ignore lint/style/noNonNullAssertion: intentional
               onFocus={() => dispatch({ type: 'FOCUS', id: entry.question! })}
             />
           ))}

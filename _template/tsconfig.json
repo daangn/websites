@@ -4,9 +4,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-  ]
+  "include": ["src/**/*"],
+  "exclude": []
 }

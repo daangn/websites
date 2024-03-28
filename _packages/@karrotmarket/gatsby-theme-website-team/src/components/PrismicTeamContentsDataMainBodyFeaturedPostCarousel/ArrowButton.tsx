@@ -1,6 +1,6 @@
-import { em } from 'polished';
-import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { em } from 'polished';
 
 const ArrowButton = styled('button', {
   color: vars.$scale.color.gray900,

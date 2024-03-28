@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
+import React, { useRef } from 'react';
 
 import { ReactComponent as ChevronLeft } from './assets/chevron_left.svg';
 import { ReactComponent as ChevronRight } from './assets/chevron_right.svg';
@@ -24,9 +24,8 @@ type Action =
 
 const reducer: React.Reducer<State, Action> = (state, action) => {
   switch (action.type) {
-    case 'LEFT':
+    case 'LEFT': {
       const leftIdx = state.idx - 1;
-
       return {
         ...state,
         idx: leftIdx,
@@ -35,9 +34,9 @@ const reducer: React.Reducer<State, Action> = (state, action) => {
           right: leftIdx !== state.count - 1,
         },
       };
-    case 'RIGHT':
+    }
+    case 'RIGHT': {
       const rightIdx = state.idx + 1;
-
       return {
         ...state,
         idx: rightIdx,
@@ -46,6 +45,7 @@ const reducer: React.Reducer<State, Action> = (state, action) => {
           right: rightIdx !== state.count - 1,
         },
       };
+    }
   }
 };
 

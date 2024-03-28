@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { Fn } from '@cometjs/core';
+import * as React from 'react';
 
 import { useSiteMetadata } from './siteMetadata';
 

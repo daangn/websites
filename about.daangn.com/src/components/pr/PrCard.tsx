@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { graphql, Link } from 'gatsby';
-import { rem } from 'polished';
+import { vars } from '@seed-design/design-token';
+import { Link, graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { vars } from '@seed-design/design-token';
+import { rem } from 'polished';
+import * as React from 'react';
 
 type PrCardProps = {
   data: GatsbyTypes.PrCard_postFragment;

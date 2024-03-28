@@ -1,8 +1,8 @@
-import { styled } from 'gatsby-theme-stitches/src/config';
-import { getImage, GatsbyImage } from 'gatsby-plugin-image';
-import React from 'react';
-import { rem } from 'polished';
 import { vars } from '@seed-design/design-token';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
+import React from 'react';
 import { SimpleReveal } from 'simple-reveal';
 
 type TempHeroSectionProps = {

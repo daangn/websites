@@ -1,13 +1,13 @@
-import slugify from 'cjk-slug';
-import type { GatsbyNode, NodeInput } from 'gatsby';
 import type {
   GreenhouseJobBoardDepartmentNode,
   GreenhouseJobBoardJobNode,
 } from '@karrotmarket/gatsby-source-greenhouse-jobboard/types';
+import slugify from 'cjk-slug';
+import type { GatsbyNode, NodeInput } from 'gatsby';
 
-import { isGreenhouseDepartmentNode, isGreenhouseJobNode } from './types';
 import * as greenhouseJobBlockParser from './greenhouseJobBlockParser';
 import * as greenhouseJobCustomFieldParser from './greenhouseJobCustomFieldParser';
+import { isGreenhouseDepartmentNode, isGreenhouseJobNode } from './types';
 export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({ Joi }) => {
   return Joi.object({
     defaultTags: Joi.object().pattern(Joi.string(), Joi.array().items(Joi.string())),

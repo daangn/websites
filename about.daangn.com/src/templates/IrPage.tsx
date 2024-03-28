@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { rem } from 'polished';
-import { graphql, navigate, withPrefix, Link, type PageProps, type HeadProps } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/config';
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
-import { vars } from '@seed-design/design-token';
 import SeedIcon from '@karrotmarket/gatsby-theme-seed-design/src/Icon';
 import PageTitle from '@karrotmarket/gatsby-theme-website-team/src/components/PageTitle';
+import { vars } from '@seed-design/design-token';
+import { type HeadProps, Link, type PageProps, graphql, navigate, withPrefix } from 'gatsby';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
+import * as React from 'react';
 
 export const query = graphql`
   query IrPage(
@@ -133,7 +133,7 @@ const File = styled('a', {});
 
 type IrPageProps = PageProps<GatsbyTypes.IrPageQuery>;
 const IrPage: React.FC<IrPageProps> = ({ data: prismicData }) => {
-  // rome-ignore lint/style/noNonNullAssertion: intentional
+  // biome-ignore lint/style/noNonNullAssertion: intentional
   const ir = prismicData.prismicIr!;
   const attachments =
     ir.data.attachment_group?.filter((attachment) => attachment?.file?.localFile?.publicURL) ?? [];
@@ -144,7 +144,7 @@ const IrPage: React.FC<IrPageProps> = ({ data: prismicData }) => {
         aria-label="목록으로 돌아가기"
         to="/ir/"
         onClick={(e) => {
-          if (window.history.state['fromList']) {
+          if (window.history.state.fromList) {
             e.preventDefault();
             navigate(-1);
           }
@@ -189,9 +189,9 @@ const IrPage: React.FC<IrPageProps> = ({ data: prismicData }) => {
                 if (!attachment?.file?.raw) {
                   return null;
                 }
-                // rome-ignore lint/style/noNonNullAssertion: intentional
+                // biome-ignore lint/style/noNonNullAssertion: intentional
                 const file = attachment!.file!.localFile!;
-                // rome-ignore lint/style/noNonNullAssertion: intentional
+                // biome-ignore lint/style/noNonNullAssertion: intentional
                 const href = withPrefix(file.publicURL!);
                 const base = stripUUID(decodeURIComponent(file.base));
                 return (
@@ -214,7 +214,7 @@ export default IrPage;
 
 type IrPageHeadProps = HeadProps<GatsbyTypes.IrPageQuery>;
 export const Head: React.FC<IrPageHeadProps> = ({ data }) => {
-  // rome-ignore lint/style/noNonNullAssertion: intentional
+  // biome-ignore lint/style/noNonNullAssertion: intentional
   return <title>{[data.prismicIr!.data.title?.text, '당근마켓 IR'].join(' | ')}</title>;
 };
 

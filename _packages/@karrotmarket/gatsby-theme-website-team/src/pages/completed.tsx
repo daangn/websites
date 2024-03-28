@@ -1,13 +1,13 @@
-import * as React from 'react';
-import { rem } from 'polished';
-import { graphql, type PageProps, type HeadProps } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/config';
-import { Robots } from 'gatsby-plugin-head-seo/src';
 import { mapLink, useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
+import { type HeadProps, type PageProps, graphql } from 'gatsby';
+import { Robots } from 'gatsby-plugin-head-seo/src';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
+import * as React from 'react';
 
+import ButtonLink from '../components/Button';
 import DefaultLayout from '../layouts/DefaultLayout';
 import Illustration from '../templates/completedPage/Illustration';
-import ButtonLink from '../components/Button';
 
 export const query = graphql`
   query TeamWebsite_CompletedPage(
@@ -78,7 +78,7 @@ const CompletedPage: React.FC<CompletedPageProps> = (pageProps) => {
             return mapLink(link, {
               Internal: (link) => (
                 <ButtonLink
-                  // rome-ignore lint/suspicious/noArrayIndexKey: it's ok here
+                  // biome-ignore lint/suspicious/noArrayIndexKey: it's ok here
                   key={i}
                   to={link.pathname}
                   type={i === 0 ? 'primary' : 'default'}
@@ -89,7 +89,7 @@ const CompletedPage: React.FC<CompletedPageProps> = (pageProps) => {
               ),
               External: (link) => (
                 <ButtonLink
-                  // rome-ignore lint/suspicious/noArrayIndexKey: it's ok here
+                  // biome-ignore lint/suspicious/noArrayIndexKey: it's ok here
                   key={i}
                   as="a"
                   target="_blank"

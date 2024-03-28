@@ -1,18 +1,18 @@
-import * as React from 'react';
+import { vars } from '@seed-design/design-token';
 import { graphql } from 'gatsby';
 import { rem } from 'polished';
-import { vars } from '@seed-design/design-token';
+import * as React from 'react';
 
 import { styled } from 'gatsby-theme-stitches/src/config';
 
-import { ReactComponent as GithubIcon } from './socialServiceProfile/github.svg';
 import { ReactComponent as FacebookIcon } from './socialServiceProfile/facebook.svg';
-import { ReactComponent as TwitterIcon } from './socialServiceProfile/twitter.svg';
-import { ReactComponent as MediumIcon } from './socialServiceProfile/medium.svg';
+import { ReactComponent as GithubIcon } from './socialServiceProfile/github.svg';
 import { ReactComponent as InstagramIcon } from './socialServiceProfile/instagram.svg';
 import { ReactComponent as LineIcon } from './socialServiceProfile/line.svg';
-import { ReactComponent as YoutubeIcon } from './socialServiceProfile/youtube.svg';
+import { ReactComponent as MediumIcon } from './socialServiceProfile/medium.svg';
 import { ReactComponent as NaverBlogIcon } from './socialServiceProfile/naver_blog.svg';
+import { ReactComponent as TwitterIcon } from './socialServiceProfile/twitter.svg';
+import { ReactComponent as YoutubeIcon } from './socialServiceProfile/youtube.svg';
 
 type SocialServiceProfileProps = {
   className?: string;
@@ -20,7 +20,7 @@ type SocialServiceProfileProps = {
 };
 
 export const query = graphql`
-  fragment SocialServiceProfile_profile on PrismicSiteNavigationDataSnsProfiles {
+  fragment SocialServiceProfile_profile on PrismicSiteNavigationDataSnsProfilesItem {
     service
     link {
       url

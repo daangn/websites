@@ -1,8 +1,8 @@
-import * as React from 'react';
+import { vars } from '@seed-design/design-token';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
-import { vars } from '@seed-design/design-token';
+import * as React from 'react';
 
 import generateProperties from './jobPostSummary/generateProperties';
 

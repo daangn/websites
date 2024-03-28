@@ -1,10 +1,10 @@
-import * as React from 'react';
+import SeedIcon from '@karrotmarket/gatsby-theme-seed-design/src/Icon';
+import { vars } from '@seed-design/design-token';
+import { motion } from 'framer-motion';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
-import { motion } from 'framer-motion';
-import { vars } from '@seed-design/design-token';
-import SeedIcon from '@karrotmarket/gatsby-theme-seed-design/src/Icon';
+import * as React from 'react';
 
 type FaqAccordionItemProps = {
   id: string;
@@ -16,7 +16,7 @@ type FaqAccordionItemProps = {
 };
 
 export const query = graphql`
-  fragment TeamWebsite_FaqAccordionItem_entry on PrismicFaqDataEntries {
+  fragment TeamWebsite_FaqAccordionItem_entry on PrismicFaqDataEntriesItem {
     question
     answer {
       text

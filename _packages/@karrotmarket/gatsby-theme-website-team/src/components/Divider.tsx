@@ -1,5 +1,5 @@
-import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
+import { styled } from 'gatsby-theme-stitches/src/config';
 
 const Divider = styled('hr', {
   width: '100%',

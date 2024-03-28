@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { graphql, type PageProps, type HeadProps } from 'gatsby';
+import { type HeadProps, type PageProps, graphql } from 'gatsby';
 import { HeadSeo, OpenGraph, TwitterCard } from 'gatsby-plugin-head-seo/src';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
+import * as React from 'react';
 
 import PrCard from '../../components/pr/PrCard';
 
@@ -94,7 +94,7 @@ export const Head: React.FC<PrPageHeadProps> = ({ data, location }) => {
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
       {(props) => [
         <OpenGraph
-          key='og'
+          key="og"
           og={{
             ...props,
             type: 'website',
@@ -113,7 +113,7 @@ export const Head: React.FC<PrPageHeadProps> = ({ data, location }) => {
           }}
         />,
         <TwitterCard
-          key='twitter'
+          key="twitter"
           card={{
             ...props,
             type: 'summary_large_image',

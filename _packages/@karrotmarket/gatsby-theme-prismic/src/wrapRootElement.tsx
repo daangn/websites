@@ -1,10 +1,10 @@
+import type { WrapPageElementBrowserArgs, WrapRootElementNodeArgs } from 'gatsby';
 import * as React from 'react';
-import type { WrapRootElementNodeArgs, WrapPageElementBrowserArgs } from 'gatsby';
 
 import { PrismicPreviewProvider } from 'gatsby-plugin-prismic-previews';
 
-import { linkResolver } from '@karrotmarket/gatsby-theme-prismic/src/linkResolver';
 import { componentResolver } from '@karrotmarket/gatsby-theme-prismic/src/componentResolver';
+import { linkResolver } from '@karrotmarket/gatsby-theme-prismic/src/linkResolver';
 
 type WrapRootElementArgs = WrapRootElementNodeArgs | WrapPageElementBrowserArgs;
 

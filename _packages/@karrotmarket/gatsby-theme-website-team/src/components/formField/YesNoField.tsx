@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
+import * as React from 'react';
 
 import SingleSelectField from './SingleSelectField';
 

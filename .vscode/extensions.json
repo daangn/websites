@@ -1,4 +1,4 @@
 {
-  "recommendations": ["rome.rome", "editorconfig.editorconfig", "graphql.vscode-graphql"],
+  "recommendations": ["biomejs.biome", "editorconfig.editorconfig", "graphql.vscode-graphql"],
   "unwantedRecommendations": []
 }

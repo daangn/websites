@@ -9,10 +9,6 @@
       "gatsby-theme-stitches/src/*": ["./src/gatsby-theme-stitches/*"]
     }
   },
-  "include": [
-    "src/**/*",
-    "gatsby-config.ts"
-  ],
-  "exclude": [
-  ]
+  "include": ["src/**/*", "gatsby-config.ts"],
+  "exclude": []
 }

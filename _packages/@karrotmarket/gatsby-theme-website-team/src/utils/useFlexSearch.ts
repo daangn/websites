@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
+import { useEffect, useState } from 'react';
 
 export const useFlexSearch = (query?: string) => {
   const staticData = useStaticQuery<GatsbyTypes.UseFlexSearchIndexStaticQuery>(graphql`

@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { rem } from 'polished';
-import { motion, LayoutGroup } from 'framer-motion';
+import { vars } from '@seed-design/design-token';
+import { LayoutGroup, motion } from 'framer-motion';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { vars } from '@seed-design/design-token';
+import { rem } from 'polished';
+import * as React from 'react';
 
 type PrismicTeamContentsDataCultureBodyHowWeWorkProps = {
   data: GatsbyTypes.PrismicTeamContentsDataCultureBodyHowWeWork_dataFragment;
@@ -186,7 +186,11 @@ const PrismicTeamContentsDataCultureBodyHowWeWork: React.FC<
       description: item.description.text,
     };
 
-    void (state[item.group] ? state[item.group].push(entry) : (state[item.group] = [entry]));
+    if (state[item.group]) {
+      state[item.group].push(entry);
+    } else {
+      state[item.group] = [entry];
+    }
 
     return state;
   }, {} as ItemAggregation);

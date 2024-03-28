@@ -1,10 +1,10 @@
 import { PrismicRichText } from '@prismicio/react';
 
 import { vars } from '@seed-design/design-token';
-import { styled } from 'gatsby-theme-stitches/src/config';
 import { GatsbyImage } from 'gatsby-plugin-image';
-import React from 'react';
+import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
+import React from 'react';
 
 type FullImageProps = {
   slice: GatsbyTypes.FullImage;

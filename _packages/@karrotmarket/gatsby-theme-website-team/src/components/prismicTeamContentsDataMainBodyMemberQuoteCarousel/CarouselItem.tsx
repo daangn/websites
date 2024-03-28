@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { rem } from 'polished';
-import { graphql } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/config';
-import { getImage, GatsbyImage } from 'gatsby-plugin-image';
 import { vars } from '@seed-design/design-token';
+import { graphql } from 'gatsby';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
+import * as React from 'react';
 
 type CarouselItemProps = {
   item: GatsbyTypes.TeamWebsite_CarouselItem_itemFragment;

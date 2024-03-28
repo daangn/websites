@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { graphql } from 'gatsby';
-import { rem } from 'polished';
-import { styled } from 'gatsby-theme-stitches/src/config';
 import { useLocation } from '@reach/router';
 import { vars } from '@seed-design/design-token';
+import { graphql } from 'gatsby';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
+import * as React from 'react';
 
 import SocialServiceProfile from '../footer/SocialServiceProfile';
 import NavigationListItem from './NavigationListItem';
@@ -16,7 +16,7 @@ type NavigationMenuProps = {
 };
 
 export const query = graphql`
-  fragment NavigationMenu_data on PrismicSiteNavigationDataType {
+  fragment NavigationMenu_data on PrismicSiteNavigationData {
     header_entries {
       link {
         url
@@ -147,7 +147,10 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ controlId, className, d
   const location = useLocation();
 
   React.useEffect(() => {
-    hamburgerRef.current.checked = false;
+    location.pathname;
+    if (hamburgerRef.current) {
+      hamburgerRef.current.checked = false;
+    }
   }, [location.pathname]);
 
   return (
@@ -170,7 +173,7 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ controlId, className, d
             {data.sns_profiles
               .filter((profile) => profile.link)
               .map((profile) => (
-                // rome-ignore lint/style/noNonNullAssertion: intentional
+                // biome-ignore lint/style/noNonNullAssertion: intentional
                 <SocialServiceProfileItem key={profile.link!.url}>
                   <SocialServiceProfile profile={profile} />
                 </SocialServiceProfileItem>

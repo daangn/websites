@@ -1,5 +1,5 @@
+import { keyframes, styled } from 'gatsby-theme-stitches/src/config';
 import * as React from 'react';
-import { styled, keyframes } from 'gatsby-theme-stitches/src/config';
 
 type SpinnerProps = {
   className?: string;

@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { rem } from 'polished';
-import { graphql } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/config';
-import { getImage, GatsbyImage } from 'gatsby-plugin-image';
 import { mapLink, useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
+import { graphql } from 'gatsby';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
+import * as React from 'react';
 
 import DetailLink from './DetailLink';
 

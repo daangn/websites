@@ -1,5 +1,5 @@
-import * as React from 'react';
 import type { PageProps } from 'gatsby';
+import * as React from 'react';
 
 type NotFoundPageProps = PageProps;
 

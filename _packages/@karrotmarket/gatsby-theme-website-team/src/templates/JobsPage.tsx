@@ -1,22 +1,22 @@
-import * as React from 'react';
-import { graphql, navigate, type PageProps, type HeadProps } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/config';
-import { HeadSeo } from 'gatsby-plugin-head-seo/src';
-import { rem } from 'polished';
-import $ from 'text2vdom';
 import { required } from '@cometjs/core';
-import { vars } from '@seed-design/design-token';
 import SeedIcon from '@karrotmarket/gatsby-theme-seed-design/src/Icon';
 import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
+import { vars } from '@seed-design/design-token';
+import { type HeadProps, type PageProps, graphql, navigate } from 'gatsby';
+import { HeadSeo } from 'gatsby-plugin-head-seo/src';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
+import * as React from 'react';
+import $ from 'text2vdom';
 
-import { DefaultLayoutHead } from '../layouts/DefaultLayout';
-import PageTitle from '../components/PageTitle';
 import _JobPostList from '../components/JobPostList';
+import PageTitle from '../components/PageTitle';
 import SearchInput from '../components/SearchInput';
+import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import { useFlexSearch } from '../utils/useFlexSearch';
 
-import BannerArea from './jobsPage/BannerArea';
 import { isCanonicalUrl } from '../utils/common';
+import BannerArea from './jobsPage/BannerArea';
 
 export const query = graphql`
   query TeamWebsite_JobsPage($departmentId: String!, $locale: String!, $navigationId: String!) {

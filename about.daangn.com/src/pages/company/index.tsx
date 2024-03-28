@@ -5,11 +5,11 @@ import * as React from 'react';
 
 import FullImageSection from '../../components/company/FullImageSection';
 import HorizontalCard from '../../components/company/HorizontalCard';
-import VerticalCard from '../../components/company/VerticalCard';
-import SummaryCard from '../../components/company/SummaryCard';
 import InvestorsSection from '../../components/company/InvestorsSection';
 import PrSection from '../../components/company/PrSection';
+import SummaryCard from '../../components/company/SummaryCard';
 import TempHeroSection from '../../components/company/TempHeroSection';
+import VerticalCard from '../../components/company/VerticalCard';
 
 export const query = graphql`
   query CompanyPage($locale: String!, $navigationId: String!) {
@@ -226,7 +226,7 @@ export const Head: React.FC<CompanyPageHeadProps> = ({ data, location }) => {
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
       {(props) => [
         <OpenGraph
-          key='og'
+          key="og"
           og={{
             ...props,
             type: 'website',
@@ -245,7 +245,7 @@ export const Head: React.FC<CompanyPageHeadProps> = ({ data, location }) => {
           }}
         />,
         <TwitterCard
-          key='twitter'
+          key="twitter"
           card={{
             ...props,
             type: 'summary_large_image',

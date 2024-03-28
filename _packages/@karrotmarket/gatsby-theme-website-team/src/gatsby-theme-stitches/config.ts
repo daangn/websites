@@ -1,6 +1,6 @@
-import { em, rem } from 'polished';
 import type { PropertyValue } from '@stitches/react';
 import { createStitches } from '@stitches/react';
+import { em, rem } from 'polished';
 
 const stitches = createStitches({
   // follows Bootstrap's breakpoints practice

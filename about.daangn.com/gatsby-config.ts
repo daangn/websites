@@ -1,7 +1,6 @@
 import type { GatsbyConfig } from 'gatsby';
 
-import * as dotenv from 'dotenv';
-dotenv.config();
+import 'dotenv/config';
 
 const siteMetadata = {
   siteUrl: 'https://about.daangn.com',

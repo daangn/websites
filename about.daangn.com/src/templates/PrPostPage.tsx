@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { type HeadProps, type PageProps, graphql, Link } from 'gatsby';
-import { rem } from 'polished';
-import { GatsbyImage } from 'gatsby-plugin-image';
-import { HeadSeo, OpenGraph, TwitterCard } from 'gatsby-plugin-head-seo/src';
 import { SliceZone } from '@prismicio/react';
-import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
+import { type HeadProps, Link, type PageProps, graphql } from 'gatsby';
+import { HeadSeo, OpenGraph, TwitterCard } from 'gatsby-plugin-head-seo/src';
+import { GatsbyImage } from 'gatsby-plugin-image';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
+import * as React from 'react';
 
 import PrPostBodyRichText from '../components/prPostPage/PrPostBodyRichText';
 import PrPostBodySummaryBulletSection from '../components/prPostPage/PrPostBodySummaryBulletSection';
@@ -85,7 +85,7 @@ const PrPostPage: React.FC<PrPostPageProps> = ({ data }) => {
         )}
         <ContentContainer>
           <SliceZone
-            // rome-ignore lint/suspicious/noExplicitAny: intentional
+            // biome-ignore lint/suspicious/noExplicitAny: intentional
             slices={data.post?.body as any[]}
             components={{
               rich_text_section: PrPostBodyRichText,

@@ -1,5 +1,6 @@
 const DotDivider = () => {
   return (
+    // biome-ignore lint/a11y/noSvgWithoutTitle: no title needed
     <svg width="70" height="30" viewBox="0 0 300 200">
       <line
         x1="60"

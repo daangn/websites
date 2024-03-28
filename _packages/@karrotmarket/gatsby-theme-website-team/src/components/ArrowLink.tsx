@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { em } from 'polished';
-import { Link } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/config';
 import type { LinkType } from '@karrotmarket/gatsby-theme-website/src/link';
 import { mapLink } from '@karrotmarket/gatsby-theme-website/src/link';
 import { vars } from '@seed-design/design-token';
+import { Link } from 'gatsby';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { em } from 'polished';
+import * as React from 'react';
 
 import { ReactComponent as ArrowSvg } from './arrowLink/arrow.svg';
 

@@ -21,25 +21,25 @@
     "@cometjs/core": "^2.2.0",
     "@cometjs/react-utils": "^2.1.2",
     "@karrotmarket/gatsby-theme-seed-design": "workspace:^",
-    "@seed-design/design-token": "^1.0.1",
-    "@svgr/webpack": "^7.0.0",
+    "@seed-design/design-token": "^1.0.3",
+    "@svgr/webpack": "^8.1.0",
     "gatsby-plugin-svgr": "^3.0.0-beta.0",
     "gatsby-theme-stitches": "^1.0.1",
-    "react-intersection-observer": "^9.4.3"
+    "react-intersection-observer": "^9.8.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.21.0",
-    "@babel/core": "^7.21.4",
+    "@babel/cli": "^7.23.9",
+    "@babel/core": "^7.24.0",
     "@stitches/react": "^1.2.8",
-    "@types/node": "^18.15.11",
-    "@types/react": "^18.0.35",
-    "@types/react-dom": "^18.0.11",
-    "babel-preset-gatsby-package": "^3.8.0",
-    "concurrently": "^7.6.0",
-    "gatsby": "^5.8.0",
-    "polished": "^4.2.2",
+    "@types/node": "^20.11.28",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "babel-preset-gatsby-package": "^3.13.1",
+    "concurrently": "^8.2.2",
+    "gatsby": "^5.13.3",
+    "polished": "^4.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "typescript": "^5.0.4"
+    "typescript": "^5.4.2"
   }
 }

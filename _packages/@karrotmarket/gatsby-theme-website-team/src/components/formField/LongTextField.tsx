@@ -1,6 +1,6 @@
-import * as React from 'react';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
+import * as React from 'react';
 
 import * as Field from './Field';
 

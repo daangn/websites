@@ -1,9 +1,9 @@
 import { vars } from '@seed-design/design-token';
-import { styled } from 'gatsby-theme-stitches/src/config';
-import { GatsbyImage } from 'gatsby-plugin-image';
-import React from 'react';
-import { rem } from 'polished';
 import { Link, graphql } from 'gatsby';
+import { GatsbyImage } from 'gatsby-plugin-image';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
+import React from 'react';
 import { SimpleReveal } from 'simple-reveal';
 
 import CtaButton from '../CtaButton';
@@ -43,7 +43,7 @@ const PrSection: React.FC<PrSectionProps> = ({ slice, data }) => {
           render={({ ref, cn, style }) => (
             <div ref={ref} className={cn()} style={style}>
               <PrSectionTitle>{slice.primary.section_title.text}</PrSectionTitle>
-              <CtaButton link='/company/pr/'>보도자료 보러 가기</CtaButton>
+              <CtaButton link="/company/pr/">보도자료 보러 가기</CtaButton>
             </div>
           )}
           duration={1000}

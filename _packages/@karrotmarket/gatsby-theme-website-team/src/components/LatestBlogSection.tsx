@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { rem } from 'polished';
-import { graphql, Link } from 'gatsby';
-import { GatsbyImage } from 'gatsby-plugin-image';
-import { vars } from '@seed-design/design-token';
-import { styled, keyframes } from 'gatsby-theme-stitches/src/config';
 import { useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
+import { vars } from '@seed-design/design-token';
+import { Link, graphql } from 'gatsby';
+import { GatsbyImage } from 'gatsby-plugin-image';
+import { keyframes, styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
+import * as React from 'react';
 import { SimpleReveal } from 'simple-reveal';
 
 import _DetailLink from './DetailLink';

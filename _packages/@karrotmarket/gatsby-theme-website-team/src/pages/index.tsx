@@ -1,25 +1,25 @@
-import * as React from 'react';
-import { rem } from 'polished';
-import { graphql, type PageProps, type HeadProps } from 'gatsby';
-import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
-import { HeadSeo } from 'gatsby-plugin-head-seo/src';
-import { styled } from 'gatsby-theme-stitches/src/config';
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
+import { type HeadProps, type PageProps, graphql } from 'gatsby';
+import { HeadSeo } from 'gatsby-plugin-head-seo/src';
+import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
+import * as React from 'react';
 import { SimpleReveal } from 'simple-reveal';
 
-import { DefaultLayoutHead } from '../layouts/DefaultLayout';
+import JobsBannerSection from '../components/JobsBannerSection';
+import LatestBlogSection from '../components/LatestBlogSection';
 import _PageTitle from '../components/PageTitle';
+import PrismicTeamContentsDataMainBodyBenefit from '../components/PrismicTeamContentsDataMainBodyBenefit';
+import PrismicTeamContentsDataMainBodyFeaturedPostCarousel from '../components/PrismicTeamContentsDataMainBodyFeaturedPostCarousel';
+import PrismicTeamContentsDataMainBodyHowWeWork from '../components/PrismicTeamContentsDataMainBodyHowWeWork';
+import PrismicTeamContentsDataMainBodyIllustrationAndDescription from '../components/PrismicTeamContentsDataMainBodyIllustrationAndDescription';
 import PrismicTeamContentsDataMainBodyKeyVisual from '../components/PrismicTeamContentsDataMainBodyKeyVisual';
 import PrismicTeamContentsDataMainBodyMemberQuoteCarousel from '../components/PrismicTeamContentsDataMainBodyMemberQuoteCarousel';
 import PrismicTeamContentsDataMainBodyTitleAndDescription from '../components/PrismicTeamContentsDataMainBodyTitleAndDescription';
 import PrismicTeamContentsDataMainBodyTitleAndIllustration from '../components/PrismicTeamContentsDataMainBodyTitleAndIllustration';
-import PrismicTeamContentsDataMainBodyIllustrationAndDescription from '../components/PrismicTeamContentsDataMainBodyIllustrationAndDescription';
 import PrismicTeamContentsDataMainBodyWideBanner from '../components/PrismicTeamContentsDataMainBodyWideBanner';
-import PrismicTeamContentsDataMainBodyHowWeWork from '../components/PrismicTeamContentsDataMainBodyHowWeWork';
-import PrismicTeamContentsDataMainBodyBenefit from '../components/PrismicTeamContentsDataMainBodyBenefit';
-import PrismicTeamContentsDataMainBodyFeaturedPostCarousel from '../components/PrismicTeamContentsDataMainBodyFeaturedPostCarousel';
-import LatestBlogSection from '../components/LatestBlogSection';
-import JobsBannerSection from '../components/JobsBannerSection';
+import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import { isCanonicalUrl } from '../utils/common';
 
 export const query = graphql`
@@ -118,44 +118,44 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
       </TitleContainer>
       <Content>
         {data.prismicTeamContents.data.main_body?.filter(Boolean)?.map((data, i) =>
-          // rome-ignore lint/style/noNonNullAssertion: intentional
+          // biome-ignore lint/style/noNonNullAssertion: intentional
           mapAbstractTypeWithDefault(data!, {
             PrismicTeamContentsDataMainBodyKeyVisual: (data) => (
-              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              // biome-ignore lint/suspicious/noArrayIndexKey: intentional
               <PrismicTeamContentsDataMainBodyKeyVisual key={i} data={data} locale={locale} />
             ),
             PrismicTeamContentsDataMainBodyMemberQuoteCarousel: (data) => (
-              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              // biome-ignore lint/suspicious/noArrayIndexKey: intentional
               <PrismicTeamContentsDataMainBodyMemberQuoteCarousel key={i} data={data} />
             ),
             PrismicTeamContentsDataMainBodyTitleAndDescription: (data) => (
-              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              // biome-ignore lint/suspicious/noArrayIndexKey: intentional
               <PrismicTeamContentsDataMainBodyTitleAndDescription key={i} data={data} />
             ),
             PrismicTeamContentsDataMainBodyTitleAndIllustration: (data) => (
-              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              // biome-ignore lint/suspicious/noArrayIndexKey: intentional
               <PrismicTeamContentsDataMainBodyTitleAndIllustration key={i} data={data} />
             ),
             PrismicTeamContentsDataMainBodyIllustrationAndDescription: (data) => (
-              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              // biome-ignore lint/suspicious/noArrayIndexKey: intentional
               <PrismicTeamContentsDataMainBodyIllustrationAndDescription key={i} data={data} />
             ),
             PrismicTeamContentsDataMainBodyWideBanner: (data) => (
-              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              // biome-ignore lint/suspicious/noArrayIndexKey: intentional
               <PrismicTeamContentsDataMainBodyWideBanner key={i} data={data} />
             ),
             PrismicTeamContentsDataMainBodyHowWeWork: (data) => (
-              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              // biome-ignore lint/suspicious/noArrayIndexKey: intentional
               <PrismicTeamContentsDataMainBodyHowWeWork key={i} data={data} />
             ),
             PrismicTeamContentsDataMainBodyBenefit: (data) => (
-              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              // biome-ignore lint/suspicious/noArrayIndexKey: intentional
               <PrismicTeamContentsDataMainBodyBenefit key={i} data={data} />
             ),
             // 임시 컴포넌트 for KR
             PrismicTeamContentsDataMainBodyFeaturedPostCarousel: (data) => (
               // <h2 key={i}>featured article 블로그 섹션</h2>
-              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              // biome-ignore lint/suspicious/noArrayIndexKey: intentional
               <PrismicTeamContentsDataMainBodyFeaturedPostCarousel key={i} data={data} />
             ),
             _: null,

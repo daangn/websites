@@ -4,9 +4,6 @@
     "rootDir": "gatsby",
     "outDir": "."
   },
-  "include": [
-    "gatsby"
-  ],
-  "exclude": [
-  ]
+  "include": ["gatsby"],
+  "exclude": []
 }

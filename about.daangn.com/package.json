@@ -13,10 +13,7 @@
       "email": "carson@daangn.com"
     }
   ],
-  "browserslist": [
-    "defaults",
-    "not ie 11"
-  ],
+  "browserslist": ["defaults", "not ie 11"],
   "scripts": {
     "ultra": "yarn workspace @daangn/websites ultra --recursive --filter +team.daangn.com",
     "develop": "gatsby develop",
@@ -25,29 +22,29 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
-    "@karrotmarket/gatsby-source-greenhouse-jobboard": "^0.9.0",
+    "@karrotmarket/gatsby-source-greenhouse-jobboard": "^0.10.1",
     "@karrotmarket/gatsby-theme-prismic": "workspace:^",
     "@karrotmarket/gatsby-theme-website-team": "workspace:^",
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^",
-    "@prismicio/react": "^2.5.2",
+    "@prismicio/react": "^2.7.3",
     "@seed-design/design-token": "^1.0.3",
     "cjk-slug": "^0.3.1",
     "dotenv": "^16.0.3",
-    "gatsby": "^5.8.0",
+    "gatsby": "^5.13.3",
     "gatsby-plugin-advanced-sitemap": "^2.1.0",
-    "gatsby-plugin-gatsby-cloud": "^5.8.0",
-    "gatsby-plugin-google-tagmanager": "^5.8.0",
-    "gatsby-plugin-image": "^3.8.0",
-    "gatsby-plugin-manifest": "^5.8.0",
-    "gatsby-plugin-prismic-previews": "^5.3.0",
+    "gatsby-plugin-gatsby-cloud": "^5.13.1",
+    "gatsby-plugin-google-tagmanager": "^5.13.1",
+    "gatsby-plugin-image": "^3.13.1",
+    "gatsby-plugin-manifest": "^5.13.1",
+    "gatsby-plugin-prismic-previews": "^6.0.1",
     "gatsby-plugin-robots-txt": "^1.8.0",
-    "gatsby-plugin-seed-design": "^0.2.5",
-    "gatsby-plugin-sitemap": "^6.8.0",
+    "gatsby-plugin-seed-design": "^0.2.7",
+    "gatsby-plugin-sitemap": "^6.13.1",
     "gatsby-plugin-typegen": "^3.1.0",
     "gatsby-plugin-vercel-deploy": "^1.1.0",
-    "gatsby-source-filesystem": "^5.8.0",
+    "gatsby-source-filesystem": "^5.13.1",
     "match-sorter": "^6.3.1",
-    "polished": "^4.2.2",
+    "polished": "^4.3.1",
     "prismjs": "^1.29.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -55,14 +52,14 @@
     "simple-reveal": "^0.6.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.21.4",
-    "@types/dotenv-safe": "^8.1.2",
-    "@types/node": "^18.15.11",
-    "@types/prismjs": "^1.26.0",
-    "@types/react": "^18.0.35",
-    "@types/react-dom": "^18.0.11",
-    "babel-preset-gatsby-package": "^3.8.0",
-    "typescript": "^5.0.4",
+    "@babel/core": "^7.24.0",
+    "@types/dotenv-safe": "^8.1.6",
+    "@types/node": "^20.11.28",
+    "@types/prismjs": "^1.26.3",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "babel-preset-gatsby-package": "^3.13.1",
+    "typescript": "^5.4.2",
     "ultra-runner": "^3.10.5"
   }
 }

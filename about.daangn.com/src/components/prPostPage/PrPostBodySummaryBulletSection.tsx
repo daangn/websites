@@ -1,8 +1,8 @@
-import * as React from 'react';
 import { PrismicRichText } from '@prismicio/react';
-import { rem } from 'polished';
-import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
+import * as React from 'react';
 
 type PrPostBodySummaryBulletSection = {
   slice: GatsbyTypes.PostSummaryBulletSection;

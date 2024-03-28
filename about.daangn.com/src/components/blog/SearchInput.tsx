@@ -1,6 +1,6 @@
-import { rem } from 'polished';
-import { styled } from 'gatsby-theme-stitches/src/config';
 import { vars } from '@seed-design/design-token';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
 
 import { ReactComponent as Icon } from '../../assets/icon_search.svg';
 

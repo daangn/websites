@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { rem } from 'polished';
-import { graphql, Link, type PageProps, type HeadProps } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/config';
-import { vars } from '@seed-design/design-token';
-import _PageTitle from '@karrotmarket/gatsby-theme-website-team/src/components/PageTitle';
 import FadeInWhenVisible from '@karrotmarket/gatsby-theme-website-team/src/components/FadeInWhenVisible';
+import _PageTitle from '@karrotmarket/gatsby-theme-website-team/src/components/PageTitle';
+import { vars } from '@seed-design/design-token';
+import { type HeadProps, Link, type PageProps, graphql } from 'gatsby';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
+import * as React from 'react';
 
 export const query = graphql`
   query IrListPage($locale: String!, $navigationId: String!) {

@@ -1,14 +1,14 @@
-import * as React from 'react';
-import { useSwipeable } from 'react-swipeable';
-import { rem } from 'polished';
+import SeedIcon from '@karrotmarket/gatsby-theme-seed-design/src/Icon';
+import { vars } from '@seed-design/design-token';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { vars } from '@seed-design/design-token';
-import SeedIcon from '@karrotmarket/gatsby-theme-seed-design/src/Icon';
+import { rem } from 'polished';
+import * as React from 'react';
+import { useSwipeable } from 'react-swipeable';
 import { SimpleReveal } from 'simple-reveal';
 
-import FeaturedPost from './PrismicTeamContentsDataMainBodyFeaturedPostCarousel/FeaturedPost';
 import _ArrowButton from './PrismicTeamContentsDataMainBodyFeaturedPostCarousel/ArrowButton';
+import FeaturedPost from './PrismicTeamContentsDataMainBodyFeaturedPostCarousel/FeaturedPost';
 
 import { ReactComponent as ArrowLeft } from './PrismicTeamContentsDataMainBodyFeaturedPostCarousel/arrow_left.svg';
 import { ReactComponent as ArrowRight } from './PrismicTeamContentsDataMainBodyFeaturedPostCarousel/arrow_right.svg';
@@ -293,8 +293,8 @@ const PrismicTeamContentsDataMainBodyFeaturedPostCarousel: React.FC<
         <SlideCamera {...swipeHandlers}>
           <Slide css={{ $$slide: slide }}>
             {items.map((item, i) => (
-              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
-              // rome-ignore lint/style/noNonNullAssertion: intentional
+              // biome-ignore lint/suspicious/noArrayIndexKey: intentional
+              // biome-ignore lint/style/noNonNullAssertion: intentional
               <FeaturedPost key={i} item={item!} />
             ))}
           </Slide>
@@ -309,7 +309,7 @@ const PrismicTeamContentsDataMainBodyFeaturedPostCarousel: React.FC<
         </RightArrowButton>
         <Dots>
           {items.map((_item, i) => (
-            // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+            // biome-ignore lint/suspicious/noArrayIndexKey: intentional
             <Dot key={i} active={slide === i} onClick={() => setSlide(i)} />
           ))}
         </Dots>

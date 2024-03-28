@@ -25,4 +25,4 @@ jobs:
         run: yarn install --immutable
 
       - name: Checking conventions via Rome
-        run: yarn rome ci .
+        run: yarn biome ci .

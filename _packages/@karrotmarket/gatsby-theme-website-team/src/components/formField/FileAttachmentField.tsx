@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { styled } from 'gatsby-theme-stitches/src/config';
 import type { PropOf } from '@cometjs/react-utils';
-import { vars } from '@seed-design/design-token';
 import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
+import { vars } from '@seed-design/design-token';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import * as React from 'react';
 
 import * as Field from './Field';
 

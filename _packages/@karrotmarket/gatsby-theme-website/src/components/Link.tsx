@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { Link as GatsbyLink, type GatsbyLinkProps } from 'gatsby';
 import { type IntrinsicElementWrapperFuntion } from '@cometjs/react-utils';
+import { Link as GatsbyLink, type GatsbyLinkProps } from 'gatsby';
+import * as React from 'react';
 
 import { type LinkType, mapLink } from '../link';
 
@@ -16,7 +16,7 @@ const Link: IntrinsicElementWrapperFuntion<'a', Props> = (
 ) => {
   return mapLink(link, {
     Internal: (link) => (
-      // rome-ignore lint/suspicious/noExplicitAny: sorry
+      // biome-ignore lint/suspicious/noExplicitAny: sorry
       <GatsbyLink {...otherProps} ref={forwaredRef as any} to={link.pathname}>
         {children}
       </GatsbyLink>

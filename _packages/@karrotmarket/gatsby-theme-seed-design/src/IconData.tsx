@@ -2,6 +2,7 @@ import * as React from 'react';
 
 export const iconData: Record<string, React.ReactNode> = {
   icon_backward_regular: (
+    // biome-ignore lint/a11y/noSvgWithoutTitle: no title needed
     <svg
       id="icon_backward_regular"
       width="24"
@@ -20,6 +21,7 @@ export const iconData: Record<string, React.ReactNode> = {
     </svg>
   ),
   icon_search_regular: (
+    // biome-ignore lint/a11y/noSvgWithoutTitle: no title needed
     <svg
       id="icon_search_regular"
       width="24"
@@ -40,6 +42,7 @@ export const iconData: Record<string, React.ReactNode> = {
     </svg>
   ),
   icon_expand_more_regular: (
+    // biome-ignore lint/a11y/noSvgWithoutTitle: no title needed
     <svg
       id="icon_expand_more_regular"
       width="24"
@@ -60,6 +63,7 @@ export const iconData: Record<string, React.ReactNode> = {
     </svg>
   ),
   icon_chevron_right_regular: (
+    // biome-ignore lint/a11y/noSvgWithoutTitle: no title needed
     <svg
       id="icon_chevron_right_regular"
       width="24"
@@ -80,6 +84,7 @@ export const iconData: Record<string, React.ReactNode> = {
     </svg>
   ),
   icon_call_fill: (
+    // biome-ignore lint/a11y/noSvgWithoutTitle: no title needed
     <svg
       id="icon_call_fill"
       width="24"
@@ -98,6 +103,7 @@ export const iconData: Record<string, React.ReactNode> = {
     </svg>
   ),
   icon_close_regular: (
+    // biome-ignore lint/a11y/noSvgWithoutTitle: no title needed
     <svg
       id="icon_close_regular"
       width="24"
@@ -118,6 +124,7 @@ export const iconData: Record<string, React.ReactNode> = {
     </svg>
   ),
   icon_forward_regular: (
+    // biome-ignore lint/a11y/noSvgWithoutTitle: no title needed
     <svg
       id="icon_forward_regular"
       width="24"
@@ -136,6 +143,7 @@ export const iconData: Record<string, React.ReactNode> = {
     </svg>
   ),
   icon_ios_share_regular: (
+    // biome-ignore lint/a11y/noSvgWithoutTitle: no title needed
     <svg
       id="icon_ios_share_regular"
       width="24"
@@ -158,6 +166,7 @@ export const iconData: Record<string, React.ReactNode> = {
     </svg>
   ),
   icon_chevron_left_fill: (
+    // biome-ignore lint/a11y/noSvgWithoutTitle: no title needed
     <svg
       id="icon_chevron_left_fill"
       width="24"
@@ -178,6 +187,7 @@ export const iconData: Record<string, React.ReactNode> = {
     </svg>
   ),
   icon_chevron_right_fill: (
+    // biome-ignore lint/a11y/noSvgWithoutTitle: no title needed
     <svg
       id="icon_chevron_right_fill"
       width="24"

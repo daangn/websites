@@ -1,25 +1,25 @@
 import { SliceZone } from '@prismicio/react';
 import { vars } from '@seed-design/design-token';
 import { type HeadProps, type PageProps, graphql } from 'gatsby';
-import { keyframes, styled } from 'gatsby-theme-stitches/src/config';
 import { HeadSeo, OpenGraph, TwitterCard } from 'gatsby-plugin-head-seo/src';
 import { GatsbyImage } from 'gatsby-plugin-image';
+import { keyframes, styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import * as React from 'react';
 
 import Author from '../components/blogPostPage/Author';
 import PostBodyCtaButton from '../components/blogPostPage/PostBodyCtaButton';
+import PostBodyDivider from '../components/blogPostPage/PostBodyDivider';
 import PostBodyGroupImage from '../components/blogPostPage/PostBodyGroupImage';
 import PostBodyQuote from '../components/blogPostPage/PostBodyQuote';
 import PostBodyRichText from '../components/blogPostPage/PostBodyRichText';
-import PostBodyDivider from '../components/blogPostPage/PostBodyDivider';
+import PostBodySingleImage from '../components/blogPostPage/PostBodySingleImage';
 import PostBodyVerticalQuote from '../components/blogPostPage/PostBodyVerticalQuote';
 import PostFooter from '../components/blogPostPage/PostFooter';
 import PostHeader from '../components/blogPostPage/PostHeader';
-import PostBodySingleImage from '../components/blogPostPage/PostBodySingleImage';
+import RelatedPost from '../components/blogPostPage/RelatedPost';
 import ShareButtons from '../components/blogPostPage/ShareButtons';
 import TagList from '../components/blogPostPage/TagList';
-import RelatedPost from '../components/blogPostPage/RelatedPost';
 
 export const query = graphql`
   query BlogPostPage($id: String!, $locale: String!, $navigationId: String!) {
@@ -126,7 +126,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ data }) => {
           <PostBody>
             <ContentContainer>
               <SliceZone
-                // rome-ignore lint/suspicious/noExplicitAny: intentional
+                // biome-ignore lint/suspicious/noExplicitAny: intentional
                 slices={data.post.body as any[]}
                 components={{
                   rich_text_section: PostBodyRichText,

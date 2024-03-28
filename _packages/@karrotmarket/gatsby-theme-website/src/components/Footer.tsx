@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { rem } from 'polished';
+import { vars } from '@seed-design/design-token';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { vars } from '@seed-design/design-token';
+import { rem } from 'polished';
+import * as React from 'react';
 
-import SocialServiceProfile from './footer/SocialServiceProfile';
 import FooterEntryItem from './footer/FooterEntryItem';
+import SocialServiceProfile from './footer/SocialServiceProfile';
 
 type FooterProps = {
   className?: string;
@@ -13,7 +13,7 @@ type FooterProps = {
 };
 
 export const query = graphql`
-  fragment Footer_navigationData on PrismicSiteNavigationDataType {
+  fragment Footer_navigationData on PrismicSiteNavigationData {
     copyright {
       html
     }
@@ -147,7 +147,7 @@ const Footer: React.FC<FooterProps> = ({ className, navigationData }) => {
             {navigationData.footer_entries
               .filter((entry) => entry.link?.url)
               .map((entry, i) => (
-                // rome-ignore lint/suspicious/noArrayIndexKey: it's ok here
+                // biome-ignore lint/suspicious/noArrayIndexKey: it's ok here
                 <FooterEntryItem key={i} entry={entry} />
               ))}
           </FooterEntryList>
@@ -155,7 +155,7 @@ const Footer: React.FC<FooterProps> = ({ className, navigationData }) => {
             {navigationData.sns_profiles
               .filter((profile) => profile.link)
               .map((profile, i) => (
-                // rome-ignore lint/suspicious/noArrayIndexKey: it's ok here
+                // biome-ignore lint/suspicious/noArrayIndexKey: it's ok here
                 <SocialServiceProfileItem key={i}>
                   <SocialServiceProfile profile={profile} />
                 </SocialServiceProfileItem>
@@ -166,7 +166,7 @@ const Footer: React.FC<FooterProps> = ({ className, navigationData }) => {
           <Contact>
             {navigationData.contact_group.map((contact, i) => (
               <div
-                // rome-ignore lint/suspicious/noArrayIndexKey: it's ok here
+                // biome-ignore lint/suspicious/noArrayIndexKey: it's ok here
                 key={i}
                 dangerouslySetInnerHTML={{
                   __html: contact?.contact_info?.html || '',

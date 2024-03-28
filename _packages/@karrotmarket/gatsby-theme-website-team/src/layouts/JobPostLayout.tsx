@@ -1,13 +1,13 @@
-import * as React from 'react';
-import { rem } from 'polished';
-import { motion, LayoutGroup } from 'framer-motion';
-import { graphql, navigate, Link, type PageProps } from 'gatsby';
-import { HeadSeo } from 'gatsby-plugin-head-seo/src';
-import { styled } from 'gatsby-theme-stitches/src/config';
-import { required, type OverrideProps } from '@cometjs/core';
-import { vars } from '@seed-design/design-token';
+import { type OverrideProps, required } from '@cometjs/core';
 import SeedIcon from '@karrotmarket/gatsby-theme-seed-design/src/Icon';
 import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
+import { vars } from '@seed-design/design-token';
+import { LayoutGroup, motion } from 'framer-motion';
+import { Link, type PageProps, graphql, navigate } from 'gatsby';
+import { HeadSeo } from 'gatsby-plugin-head-seo/src';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
+import * as React from 'react';
 
 import logoPath from '../assets/logo.png';
 import _PageTitle from '../components/PageTitle';
@@ -52,7 +52,7 @@ export const query = graphql`
       id
       ghId
       title
-      corporate 
+      corporate
       employmentType
       priorExperience
       externalUrl
@@ -200,7 +200,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
         aria-label={messages.job_post_page__back_to_list}
         to="/jobs/"
         onClick={(e) => {
-          if (window.history.state['fromList']) {
+          if (window.history.state.fromList) {
             e.preventDefault();
             navigate(-1);
           }

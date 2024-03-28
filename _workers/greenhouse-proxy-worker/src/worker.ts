@@ -1,9 +1,9 @@
-import { compose, Router, type Context as WorktopContext } from 'worktop';
-import { HeadersObject, reply } from 'worktop/response';
-import { start } from 'worktop/cfw';
-import * as CORS from 'worktop/cors';
+import { Router, type Context as WorktopContext, compose } from 'worktop';
 import * as Base64 from 'worktop/base64';
+import { start } from 'worktop/cfw';
 import * as Cache from 'worktop/cfw.cache';
+import * as CORS from 'worktop/cors';
+import { HeadersObject, reply } from 'worktop/response';
 
 interface Context extends WorktopContext {
   bindings: {
@@ -92,7 +92,7 @@ API.add('POST', '/boards/:boardToken/jobs/:jobId/application/proxy', async (req,
       const origin = req.headers.get('origin');
 
       const responseHeaders: HeadersObject = {};
-      responseHeaders['Location'] = `${origin}/completed/`;
+      responseHeaders.Location = `${origin}/completed/`;
 
       return reply(303, response.body, responseHeaders);
     } else {

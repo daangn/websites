@@ -4,12 +4,12 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import * as React from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
-import FullImageSection from '../components/culture/FullImageSection';
-import ListCardSection from '../components/culture/ListCardSection';
 import BlogListSection from '../components/culture/BlogListSection';
 import CarouselSection from '../components/culture/CarouselSection';
-import TempHeroSection from '../components/culture/TempHeroSection';
+import FullImageSection from '../components/culture/FullImageSection';
 import FullWidthImageSection from '../components/culture/FullWidthImageSection';
+import ListCardSection from '../components/culture/ListCardSection';
+import TempHeroSection from '../components/culture/TempHeroSection';
 
 export const query = graphql`
   query CulturePage($locale: String!, $navigationId: String!) {

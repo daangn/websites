@@ -11,7 +11,7 @@ type FeaturedPostProps = {
 };
 
 export const query = graphql`
-  fragment FeaturedPost_blogContent on PrismicBlogContentDataType {
+  fragment FeaturedPost_blogContent on PrismicBlogContentData {
     featured_post {
       uid
       document {

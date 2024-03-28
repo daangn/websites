@@ -1,7 +1,7 @@
+import { vars } from '@seed-design/design-token';
 import { Link } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
-import { vars } from '@seed-design/design-token';
 
 const Button = styled(Link, {
   textDecoration: 'none',

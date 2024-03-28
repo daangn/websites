@@ -1,9 +1,9 @@
-import * as React from 'react';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
+import * as React from 'react';
 
-import EmptyPlaceholder from './jobPostList/EmptyPlaceholder';
 import FaqAccordion from './FaqAccordion';
+import EmptyPlaceholder from './jobPostList/EmptyPlaceholder';
 
 type FaqListProps = {
   className?: string;
@@ -12,7 +12,7 @@ type FaqListProps = {
 };
 
 export const query = graphql`
-  fragment TeamWebsite_FaqList_faqLists on PrismicFaqDataType {
+  fragment TeamWebsite_FaqList_faqLists on PrismicFaqData {
     entries {
       ...TeamWebsite_FaqAccordionItem_entry
     }

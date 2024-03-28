@@ -4,11 +4,8 @@
     "jsx": "react",
     "paths": {
       "gatsby-theme-stitches/src/*": ["./src/gatsby-theme-stitches/*"]
-    },
+    }
   },
-  "include": [
-    "src/**/*",
-    "gatsby"
-  ],
+  "include": ["src/**/*", "gatsby"],
   "exclude": []
 }

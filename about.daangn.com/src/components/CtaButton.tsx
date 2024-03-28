@@ -1,7 +1,7 @@
-import { Link } from 'gatsby';
-import { em } from 'polished';
 import { vars } from '@seed-design/design-token';
+import { Link } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
+import { em } from 'polished';
 
 import { ReactComponent as ArrowSvg } from '../assets/arrow.svg';
 

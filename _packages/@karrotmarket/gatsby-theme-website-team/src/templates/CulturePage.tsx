@@ -1,21 +1,21 @@
-import * as React from 'react';
-import { rem } from 'polished';
-import { graphql, type PageProps, type HeadProps } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/config';
-import { HeadSeo } from 'gatsby-plugin-head-seo/src';
 import { required } from '@cometjs/core';
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
+import { type HeadProps, type PageProps, graphql } from 'gatsby';
+import { HeadSeo } from 'gatsby-plugin-head-seo/src';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
+import * as React from 'react';
 
-import { DefaultLayoutHead } from '../layouts/DefaultLayout';
-import _PageTitle from '../components/PageTitle';
 import Divider from '../components/Divider';
-import PrismicTeamContentsDataCultureBodyKeyVisual from '../components/PrismicTeamContentsDataCultureBodyKeyVisual';
-import PrismicTeamContentsDataCultureBodyHowWeWork from '../components/PrismicTeamContentsDataCultureBodyHowWeWork';
+import _PageTitle from '../components/PageTitle';
 import PrismicTeamContentsDataCultureBodyBenefit from '../components/PrismicTeamContentsDataCultureBodyBenefit';
+import PrismicTeamContentsDataCultureBodyHowWeWork from '../components/PrismicTeamContentsDataCultureBodyHowWeWork';
+import PrismicTeamContentsDataCultureBodyIllustrationAndDescription from '../components/PrismicTeamContentsDataCultureBodyIllustrationAndDescription';
+import PrismicTeamContentsDataCultureBodyKeyVisual from '../components/PrismicTeamContentsDataCultureBodyKeyVisual';
 import PrismicTeamContentsDataCultureBodyTitleAndDescription from '../components/PrismicTeamContentsDataCultureBodyTitleAndDescription';
 import PrismicTeamContentsDataCultureBodyTitleAndIllustration from '../components/PrismicTeamContentsDataCultureBodyTitleAndIllustration';
-import PrismicTeamContentsDataCultureBodyIllustrationAndDescription from '../components/PrismicTeamContentsDataCultureBodyIllustrationAndDescription';
 import PrismicTeamContentsDataCultureBodyWideBanner from '../components/PrismicTeamContentsDataCultureBodyWideBanner';
+import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import { isCanonicalUrl } from '../utils/common';
 
 export const query = graphql`
@@ -98,38 +98,38 @@ const CulturePage: React.FC<CulturePageProps> = ({ data }) => {
       </TitleContainer>
       <Content>
         {data.prismicTeamContents.data.culture_body.map((data, i) =>
-          // rome-ignore lint/style/noNonNullAssertion: intentional
+          // biome-ignore lint/style/noNonNullAssertion: intentional
           mapAbstractTypeWithDefault(data!, {
             PrismicTeamContentsDataCultureBodyKeyVisual: (data) => (
-              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              // biome-ignore lint/suspicious/noArrayIndexKey: intentional
               <PrismicTeamContentsDataCultureBodyKeyVisual key={i} data={data} />
             ),
             PrismicTeamContentsDataCultureBodyHowWeWork: (data) => (
-              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              // biome-ignore lint/suspicious/noArrayIndexKey: intentional
               <PrismicTeamContentsDataCultureBodyHowWeWork key={i} data={data} />
             ),
             PrismicTeamContentsDataCultureBodyBenefit: (data) => (
-              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              // biome-ignore lint/suspicious/noArrayIndexKey: intentional
               <PrismicTeamContentsDataCultureBodyBenefit key={i} data={data} />
             ),
             PrismicTeamContentsDataCultureBodyIllustrationAndDescription: (data) => (
-              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              // biome-ignore lint/suspicious/noArrayIndexKey: intentional
               <PrismicTeamContentsDataCultureBodyIllustrationAndDescription key={i} data={data} />
             ),
             PrismicTeamContentsDataCultureBodyTitleAndDescription: (data) => (
-              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              // biome-ignore lint/suspicious/noArrayIndexKey: intentional
               <PrismicTeamContentsDataCultureBodyTitleAndDescription key={i} data={data} />
             ),
             PrismicTeamContentsDataCultureBodyTitleAndIllustration: (data) => (
-              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              // biome-ignore lint/suspicious/noArrayIndexKey: intentional
               <PrismicTeamContentsDataCultureBodyTitleAndIllustration key={i} data={data} />
             ),
             PrismicTeamContentsDataCultureBodyWideBanner: (data) => (
-              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              // biome-ignore lint/suspicious/noArrayIndexKey: intentional
               <PrismicTeamContentsDataCultureBodyWideBanner key={i} data={data} />
             ),
             PrismicTeamContentsDataCultureBodyDivider: (
-              // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+              // biome-ignore lint/suspicious/noArrayIndexKey: intentional
               <Divider key={i} />
             ),
             _: null,

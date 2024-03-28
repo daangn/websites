@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { rem } from 'polished';
-import { graphql, navigate, type PageProps, type HeadProps } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/config';
+import { type HeadProps, type PageProps, graphql, navigate } from 'gatsby';
 import { Robots } from 'gatsby-plugin-head-seo/src';
 import type { WithPrismicPreviewResolverProps } from 'gatsby-plugin-prismic-previews';
 import { withPrismicPreviewResolver } from 'gatsby-plugin-prismic-previews';
+import { styled } from 'gatsby-theme-stitches/src/config';
+import { rem } from 'polished';
+import * as React from 'react';
 
 import { ReactComponent as DaangniLoading } from '../assets/daangni_loading.svg';
 

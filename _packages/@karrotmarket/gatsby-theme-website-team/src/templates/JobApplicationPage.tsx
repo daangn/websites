@@ -1,26 +1,26 @@
-import * as React from 'react';
-import { graphql, navigate, type PageProps, type HeadProps } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/config';
+import { required } from '@cometjs/core';
+import { mapAbstractType } from '@cometjs/graphql-utils';
+import type { PropOf, RefOf } from '@cometjs/react-utils';
+import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
+import { type HeadProps, type PageProps, graphql, navigate } from 'gatsby';
 import { HeadSeo, Robots } from 'gatsby-plugin-head-seo/src';
 import { TurnstileImplicitFormInput } from 'gatsby-plugin-turnstile/src';
+import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
-import { required } from '@cometjs/core';
-import type { PropOf, RefOf } from '@cometjs/react-utils';
-import { mapAbstractType } from '@cometjs/graphql-utils';
-import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
+import * as React from 'react';
 
+import Button from '../components/Button';
+import _PageTitle from '../components/PageTitle';
+import _Spinner from '../components/Spinner';
+import FileAttachmentField from '../components/formField/FileAttachmentField';
+import LongTextField from '../components/formField/LongTextField';
+import MultiSelectField from '../components/formField/MultiSelectField';
+import ShortTextField from '../components/formField/ShortTextField';
+import SingleSelectField from '../components/formField/SingleSelectField';
+import TermsField from '../components/formField/TermsField';
+import YesNoField from '../components/formField/YesNoField';
 import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import { JobPostLayoutHead } from '../layouts/JobPostLayout';
-import _PageTitle from '../components/PageTitle';
-import FileAttachmentField from '../components/formField/FileAttachmentField';
-import ShortTextField from '../components/formField/ShortTextField';
-import LongTextField from '../components/formField/LongTextField';
-import SingleSelectField from '../components/formField/SingleSelectField';
-import MultiSelectField from '../components/formField/MultiSelectField';
-import YesNoField from '../components/formField/YesNoField';
-import TermsField from '../components/formField/TermsField';
-import Button from '../components/Button';
-import _Spinner from '../components/Spinner';
 import { isCanonicalUrl } from '../utils/common';
 
 export const query = graphql`
@@ -206,7 +206,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({ data }) => {
     if (state === 'completed') {
       navigate('/completed/');
     }
-  }, [state]);
+  }, [data.jobPost, state]);
 
   const portfolioField = data.jobPost.parentJob.questions.find(
     (question) => question.name === 'cover_letter',

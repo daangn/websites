@@ -1,8 +1,8 @@
-import * as React from 'react';
+import SeedIcon from '@karrotmarket/gatsby-theme-seed-design/src/Icon';
+import { vars } from '@seed-design/design-token';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
-import { vars } from '@seed-design/design-token';
-import SeedIcon from '@karrotmarket/gatsby-theme-seed-design/src/Icon';
+import * as React from 'react';
 
 type SearchInputProps = {
   query: string;

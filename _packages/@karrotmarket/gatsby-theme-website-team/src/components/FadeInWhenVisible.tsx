@@ -1,6 +1,6 @@
+import { motion, useAnimation, useReducedMotion } from 'framer-motion';
 import * as React from 'react';
 import { useInView } from 'react-intersection-observer';
-import { motion, useAnimation, useReducedMotion } from 'framer-motion';
 
 type Props = {
   children: React.ReactNode;

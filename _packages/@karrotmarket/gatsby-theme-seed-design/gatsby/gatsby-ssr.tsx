@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { type GatsbySSR } from 'gatsby';
+import * as React from 'react';
 
 import spriteUrl from '!!file-loader!@karrotmarket/gatsby-theme-seed-design/src/sprite.svg';
 

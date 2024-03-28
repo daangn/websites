@@ -1,5 +1,5 @@
 import type { GatsbyConfig } from 'gatsby';
-import { disassemble as disassembleHangul, assemble as assembleHangul } from 'hangul-js';
+import { assemble as assembleHangul, disassemble as disassembleHangul } from 'hangul-js';
 
 // @ts-ignore
 import { linkResolver } from '@karrotmarket/gatsby-theme-website-team/src/@karrotmarket/gatsby-theme-prismic/linkResolver';
@@ -90,7 +90,7 @@ const config = ({ locale }: PluginOptions): GatsbyConfig => ({
         ref: 'id',
         index: ['title', 'keywords'],
         store: ['id', 'title', 'keywords'],
-        // rome-ignore lint/suspicious/noExplicitAny: intentional
+        // biome-ignore lint/suspicious/noExplicitAny: intentional
         normalizer: ({ data }: any) => data.allJobPost.nodes,
       },
     },

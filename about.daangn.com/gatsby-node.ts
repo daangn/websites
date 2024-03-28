@@ -1,5 +1,5 @@
+import * as path from 'node:path';
 import type { GatsbyNode } from 'gatsby';
-import * as path from 'path';
 
 export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = ({ actions }) => {
   actions.createRedirect({

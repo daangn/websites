@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { rem } from 'polished';
+import { vars } from '@seed-design/design-token';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { vars } from '@seed-design/design-token';
+import { rem } from 'polished';
+import * as React from 'react';
 
 type PrismicTeamContentsDataCultureBodyBenefitProps = {
   data: GatsbyTypes.PrismicTeamContentsDataCultureBodyBenefit_dataFragment;
@@ -126,7 +126,7 @@ const PrismicTeamContentsDataCultureBodyBenefit: React.FC<
       </Header>
       <BenefitGroupList>
         {(data.items || []).map((item, i) => (
-          // rome-ignore lint/suspicious/noArrayIndexKey: intentional
+          // biome-ignore lint/suspicious/noArrayIndexKey: intentional
           <BenefitGroup key={i}>
             <BenefitGroupTitle data-num={(i + 1).toString().padStart(2, '0')}>
               {item.subtitle}
