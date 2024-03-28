@@ -1,0 +1,28 @@
+diff --git a/dist/gatsby-node/createSchemaCustomization.cjs b/dist/gatsby-node/createSchemaCustomization.cjs
+index a0db146dbb3c017244d1694f7f48b8afa4a62db9..860f1df5b28400357d3f6531b63ab86258d2f15a 100644
+--- a/dist/gatsby-node/createSchemaCustomization.cjs
++++ b/dist/gatsby-node/createSchemaCustomization.cjs
+@@ -247,7 +247,8 @@ const createSchemaCustomization = async (args, options) => {
+         },
+         raw: {
+           type: "JSON!",
+-          description: "**Do not use this field unless you know what you are doing**. The unprocessed field value returned from the Prismic REST API."
++          description: "**Do not use this field unless you know what you are doing**. The unprocessed field value returned from the Prismic REST API.",
++          resolve: (source) => source
+         }
+       }
+     }),
+diff --git a/dist/gatsby-node/createSchemaCustomization.js b/dist/gatsby-node/createSchemaCustomization.js
+index 20861da6e36d2484eeebbec57d5b36c5c06d0d40..64b0288d4b463cc974bf5678b480737b9f68159f 100644
+--- a/dist/gatsby-node/createSchemaCustomization.js
++++ b/dist/gatsby-node/createSchemaCustomization.js
+@@ -245,7 +245,8 @@ const createSchemaCustomization = async (args, options) => {
+         },
+         raw: {
+           type: "JSON!",
+-          description: "**Do not use this field unless you know what you are doing**. The unprocessed field value returned from the Prismic REST API."
++          description: "**Do not use this field unless you know what you are doing**. The unprocessed field value returned from the Prismic REST API.",
++          resolve: source => source
+         }
+       }
+     }),

@@ -34,7 +34,7 @@
     "gatsby-plugin-sharp": "^5.13.1",
     "gatsby-plugin-svgr": "^3.0.0-beta.0",
     "gatsby-plugin-turnstile": "^1.1.1",
-    "gatsby-source-prismic": "^6.0.1",
+    "gatsby-source-prismic": "patch:gatsby-source-prismic@npm%3A6.0.1#~/.yarn/patches/gatsby-source-prismic-npm-6.0.1-def93125b2.patch",
     "gatsby-theme-stitches": "^1.0.1",
     "gatsby-transformer-sharp": "^5.13.1",
     "react-intersection-observer": "^9.8.1",

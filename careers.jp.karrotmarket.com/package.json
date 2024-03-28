@@ -13,7 +13,10 @@
       "email": "webmaster@daangn.com"
     }
   ],
-  "browserslist": ["defaults", "not ie 11"],
+  "browserslist": [
+    "defaults",
+    "not ie 11"
+  ],
   "scripts": {
     "ultra": "yarn workspace @daangn/websites ultra --recursive --filter +careers.jp.karrotmarket.com",
     "develop": "gatsby develop",

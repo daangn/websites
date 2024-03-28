@@ -13,7 +13,10 @@
       "email": "carson@daangn.com"
     }
   ],
-  "browserslist": ["defaults", "not ie 11"],
+  "browserslist": [
+    "defaults",
+    "not ie 11"
+  ],
   "scripts": {
     "ultra": "yarn workspace @daangn/websites ultra --recursive --filter +team.daangn.com",
     "develop": "gatsby develop",
