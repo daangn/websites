@@ -36,6 +36,9 @@ export const query = graphql`
           value
           summary
         }
+        note {
+          html
+        }
       }
     }
   }
@@ -193,6 +196,21 @@ const TableColValue = styled('td', {
   textAlign: 'right',
 });
 
+const FinancialStatements = styled('div', {
+  display: 'grid',
+  gap: '16px',
+});
+
+const Note = styled('div', {
+  typography: '$body2',
+  textAlign: 'left',
+  whiteSpace: 'pre-line',
+  wordBreak: 'keep-all',
+  '& > p': {
+    marginY: rem(16),
+  },
+});
+
 type FinancialStatementsPageProps = PageProps<GatsbyTypes.FinancialStatementsPageQuery>;
 const FinancialStatementsPage: React.FC<FinancialStatementsPageProps> = ({ data: prismicData }) => {
   // biome-ignore lint/style/noNonNullAssertion: intentional
@@ -235,31 +253,36 @@ const FinancialStatementsPage: React.FC<FinancialStatementsPageProps> = ({ data:
             ))}
           </SideNavList>
         </SideNav>
-        <Table>
-          <TableCaption style={{ display: 'none' }}>{current.data?.title?.text}</TableCaption>
-          <thead>
-            <tr>
-              <TableRowHeader scope="row" position="start">
-                {current.data.key_label || '항목'}
-              </TableRowHeader>
-              <TableRowHeader scope="row" position="end">
-                {current.data.value_label || '값'}
-              </TableRowHeader>
-            </tr>
-          </thead>
-          <tbody>
-            {current.data.items
-              .filter((item) => item.key && item.value)
-              .map((item) => (
-                <TableRow key={item.key}>
-                  <TableColHeader scope="col" summary={item.summary ?? false}>
-                    {item.key}
-                  </TableColHeader>
-                  <TableColValue>{item.value}</TableColValue>
-                </TableRow>
-              ))}
-          </tbody>
-        </Table>
+        <FinancialStatements>
+          <Table>
+            <TableCaption style={{ display: 'none' }}>{current.data?.title?.text}</TableCaption>
+            <thead>
+              <tr>
+                <TableRowHeader scope="row" position="start">
+                  {current.data.key_label || '항목'}
+                </TableRowHeader>
+                <TableRowHeader scope="row" position="end">
+                  {current.data.value_label || '값'}
+                </TableRowHeader>
+              </tr>
+            </thead>
+            <tbody>
+              {current.data.items
+                .filter((item) => item.key && item.value)
+                .map((item) => (
+                  <TableRow key={item.key}>
+                    <TableColHeader scope="col" summary={item.summary ?? false}>
+                      {item.key}
+                    </TableColHeader>
+                    <TableColValue>{item.value}</TableColValue>
+                  </TableRow>
+                ))}
+            </tbody>
+          </Table>
+          {current.data.note.html && (
+            <Note dangerouslySetInnerHTML={{ __html: current.data.note.html }} />
+          )}
+        </FinancialStatements>
       </Content>
     </Container>
   );
