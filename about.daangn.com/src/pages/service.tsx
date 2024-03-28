@@ -87,6 +87,7 @@ query ServicePage($locale: String!, $navigationId: String!) {
 
 type ServicePageProps = PageProps<GatsbyTypes.ServicePageQuery>;
 
+// FIXME: 갈아 엎자 걍...
 const ServicePage: React.FC<ServicePageProps> = ({ data }) => {
   const services = data.prismicServiceContent?.data.body[0].items;
   const subServices = data.prismicServiceContent?.data.body[1].items;
@@ -134,7 +135,7 @@ const ServicePage: React.FC<ServicePageProps> = ({ data }) => {
                         alt={service_icon?.alt}
                       />
                       <ServiceText>
-                        {service_url.url ? (
+                        {service_url?.url ? (
                           <ServiceLink
                             as="a"
                             target="_blank"
