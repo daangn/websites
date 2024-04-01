@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { isBrowser } from './common';
 
 export function useURLSearchParams(): URLSearchParams {
   const [getSnapshot, getServerSnapshot, subscribe] = React.useMemo(() => {
@@ -16,7 +17,7 @@ export function useURLSearchParams(): URLSearchParams {
 
   const search = React.useSyncExternalStore(
     subscribe,
-    typeof window !== 'undefined' ? getSnapshot : getServerSnapshot,
+    isBrowser ? getSnapshot : getServerSnapshot,
     getServerSnapshot,
   );
 

@@ -11,7 +11,7 @@ import * as React from 'react';
 
 import logoPath from '../assets/logo.png';
 import _PageTitle from '../components/PageTitle';
-import { lookup } from '../utils/common';
+import { isBrowser, lookup } from '../utils/common';
 
 import JobPostingJsonLd from './jobPostLayout/JobPostingJsonLd';
 import generateProperties from './jobPostLayout/generateProperties';
@@ -226,7 +226,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
                   <TabLink
                     to={viewPath}
                     active={currentPath === viewPath}
-                    state={{ y: typeof window !== 'undefined' && window.scrollY }}
+                    state={{ y: isBrowser && window.scrollY }}
                   >
                     {messages.job_post_layout__tab_view}
                   </TabLink>
@@ -238,7 +238,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
                   <TabLink
                     to={applyPath}
                     active={currentPath === applyPath}
-                    state={{ y: typeof window !== 'undefined' && window.scrollY }}
+                    state={{ y: isBrowser && window.scrollY }}
                   >
                     {messages.job_post_layout__tab_apply}
                   </TabLink>

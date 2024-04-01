@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { isBrowser } from './common';
 
 export function usePrefersColorScheme(): 'light' | 'dark' {
   const [getSnapshot, getServerSnapshot, subscribe] = React.useMemo(() => {
@@ -18,7 +19,7 @@ export function usePrefersColorScheme(): 'light' | 'dark' {
 
   return React.useSyncExternalStore(
     subscribe,
-    typeof window !== 'undefined' ? getSnapshot : getServerSnapshot,
+    isBrowser ? getSnapshot : getServerSnapshot,
     getServerSnapshot,
   );
 }

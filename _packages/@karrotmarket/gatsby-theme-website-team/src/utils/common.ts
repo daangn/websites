@@ -17,3 +17,5 @@ export function isCanonicalUrl(url: string): boolean {
 
   return false;
 }
+
+export const isBrowser = typeof window !== 'undefined'
