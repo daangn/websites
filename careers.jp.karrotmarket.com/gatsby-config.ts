@@ -1,5 +1,6 @@
 import type { GatsbyConfig } from 'gatsby';
 
+import { vars } from '@seed-design/design-token';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -28,8 +29,8 @@ const config: GatsbyConfig = {
         name: siteMetadata.siteName,
         short_name: siteMetadata.siteName,
         start_url: '/',
-        theme_color: '#ff7e36',
-        background_color: '#ffffff',
+        theme_color: vars.$scale.color.carrot500,
+        background_color: vars.$scale.color.gray00,
         display: 'minimal-ui',
         icon: 'src/assets/favicon.svg',
       },
