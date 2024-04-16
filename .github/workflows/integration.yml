@@ -13,16 +13,16 @@ jobs:
     runs-on: ubuntu-latest
     name: Checking Chores
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
      
-      - name: Setup Node.js 18.x
-        uses: actions/setup-node@v3
+      - name: Setup Node.js 20.x
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: yarn
 
       - name: Install Dependencies
         run: yarn install --immutable
 
-      - name: Checking conventions via Rome
+      - name: Checking conventions via Biome
         run: yarn biome ci .
