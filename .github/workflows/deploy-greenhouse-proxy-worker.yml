@@ -28,6 +28,6 @@ jobs:
       - name: Publish
         uses: cloudflare/wrangler-action@v3
         with:
-          apiToken: ${{ secrets.ORG_CLOUDFLARE_API_TOKEN }}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           workingDirectory: _workers/greenhouse-proxy-worker
           packageManager: yarn
