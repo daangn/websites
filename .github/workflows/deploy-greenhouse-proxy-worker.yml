@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - '_workers/greenhouse-proxy-worker/**'
-      - '.github/workflows/deploy-greenhouse-proxy-worker.yml'
+      - _workers/greenhouse-proxy-worker/**
+      - .github/workflows/deploy-greenhouse-proxy-worker.yml
     branches:
       - main
 
@@ -29,4 +29,5 @@ jobs:
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.ORG_CLOUDFLARE_API_TOKEN }}
-          workingDirectory: '_workers/greenhouse-proxy-worker/'
+          workingDirectory: _workers/greenhouse-proxy-worker
+          packageManager: yarn
