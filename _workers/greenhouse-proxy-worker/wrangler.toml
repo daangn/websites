@@ -1,11 +1,7 @@
-name = 'greenhouse-proxy-worker'
-main = 'src/worker.ts'
-compatibility_date = '2022-10-12'
-compatibility_flags = [
-  'url_standard',
-]
-usage_model = 'unbound'
-workers_dev = true
+name = "greenhouse-proxy-worker"
+account_id = "aad5c82543cd1f267b89737d0f56405e"
+main = "src/worker.ts"
+compatibility_date = "2024-04-03"
 
 [vars]
 TURNSTILE_ENABLED = true
