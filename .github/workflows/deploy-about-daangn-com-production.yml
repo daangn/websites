@@ -25,10 +25,17 @@ jobs:
       - name: Install Dependencies
         run: yarn install --immutable
 
+      - name: Get the Wrangler version
+        id: wrangler-version
+        run: |
+          yarn workspace about-daangn-com-production wrangler --version |\
+          cut -f 2 | sed 's/^/WRANGLER_VERSION=/' >> "$GITHUB_OUTPUT"
+
       - name: Deploy Pages
         uses: cloudflare/wrangler-action@v3
         with:
           workingDirectory: _workers/about-daangn-com-production
           packageManager: yarn
+          wranglerVersion: ${{ steps.wrangler-version.outputs.WRANGLER_VERSION }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
