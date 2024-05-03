@@ -1,0 +1,34 @@
+name: Deploy about-daangn-com-production
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - _workers/about-daangn-com-production/**
+      - .github/workflows/deploy-about-daangn-com-production.yml
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: yarn
+
+      - name: Install Dependencies
+        run: yarn install --immutable
+
+      - name: Deploy Pages
+        uses: cloudflare/wrangler-action@2.0.0
+        with:
+          command: pages deploy
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          workingDirectory: _workers/about-daangn-com-production
+          packageManager: yarn

@@ -9,8 +9,8 @@
     "worktop": "next"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "4.20230404.0",
+    "@cloudflare/workers-types": "^4.20240502.0",
     "typescript": "^5.4.2",
-    "wrangler": "^2.15.1"
+    "wrangler": "^3.53.1"
   }
 }

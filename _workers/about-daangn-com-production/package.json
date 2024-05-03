@@ -1,0 +1,14 @@
+{
+  "name": "about-daangn-com-production",
+  "private": true,
+  "dependencies": {
+    "@microlabs/otel-cf-workers": "^1.0.0-rc.36",
+    "@opentelemetry/api": "^1.8.0",
+    "hono": "^4.3.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240502.0",
+    "typescript": "^5.4.5",
+    "wrangler": "^3.53.1"
+  }
+}
