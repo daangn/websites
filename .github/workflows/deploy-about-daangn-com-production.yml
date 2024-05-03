@@ -34,6 +34,7 @@ jobs:
       - name: Deploy Pages
         uses: cloudflare/wrangler-action@v3
         with:
+          command: pages deploy
           workingDirectory: _workers/about-daangn-com-production
           packageManager: yarn
           wranglerVersion: ${{ steps.wrangler-version.outputs.WRANGLER_VERSION }}

@@ -28,7 +28,7 @@ jobs:
       - name: Get the Wrangler version
         id: wrangler-version
         run: |
-          yarn workspace about-daangn-com-production wrangler --version |\
+          yarn workspace greenhouse-proxy-worker wrangler --version |\
           cut -f 2 | sed 's/^/WRANGLER_VERSION=/' >> "$GITHUB_OUTPUT"
 
       - name: Deploy Workers
