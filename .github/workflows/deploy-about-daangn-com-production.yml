@@ -28,7 +28,6 @@ jobs:
       - name: Deploy Pages
         uses: cloudflare/wrangler-action@v3
         with:
-          command: pages deploy
           workingDirectory: _workers/about-daangn-com-production
           packageManager: yarn
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
