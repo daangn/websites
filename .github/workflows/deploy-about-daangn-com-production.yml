@@ -26,9 +26,10 @@ jobs:
         run: yarn install --immutable
 
       - name: Deploy Pages
-        uses: cloudflare/wrangler-action@2.0.0
+        uses: cloudflare/wrangler-action@v3
         with:
           command: pages deploy
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           workingDirectory: _workers/about-daangn-com-production
           packageManager: yarn
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}

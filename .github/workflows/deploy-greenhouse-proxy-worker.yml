@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Setup Node.js 20.x
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -25,9 +25,10 @@ jobs:
       - name: Install Dependencies
         run: yarn install --immutable
 
-      - name: Publish
+      - name: Deploy Workers
         uses: cloudflare/wrangler-action@v3
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           workingDirectory: _workers/greenhouse-proxy-worker
           packageManager: yarn
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
