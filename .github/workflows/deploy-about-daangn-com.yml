@@ -1,11 +1,11 @@
-name: Deploy about.daangn.com content
+name: Deploy about.daangn.com
 
 on:
   workflow_dispatch:
   push:
     paths:
-      - about.daangn.com/**
       - .github/workflows/deploy-about-daangn-com.yml
+      - about.daangn.com/**
     branches:
       - main
 
@@ -39,7 +39,8 @@ jobs:
             echo "endpoint = https://${{ secrets.CLOUDFLARE_ACCOUNT_ID }}.r2.cloudflarestorage.com"
             echo "acl = private"
           } > ~/.config/rclone/rclone.conf
-      
+        shell: bash
+
       - name: Install Dependencies
         run: yarn install --immutable
 
@@ -49,8 +50,8 @@ jobs:
           echo "date=$(/bin/date -u "+%Y%m%d")" >> $GITHUB_OUTPUT
         shell: bash
 
-      - name: Sync latest snapshot
-        id: artifact-cache
+      - name: Restore content snapshot
+        id: content-snapshot
         # Uses actions/cache instead of actions/upload-artifacts
         #
         # The implementation quality of actions/cache is superior to that of upload-artifacts/download-artifacts.
@@ -60,18 +61,17 @@ jobs:
         # The current site artifact is about 500MB due to zstd compression.
         #
         # Choose appropriate key stretagy to reduce cache thrashing and maximize hits.
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         with:
           enableCrossOsArchive: true
           path: |
             about.daangn.com/public
           key: public-${{ steps.get-date.outputs.date }}
-          restore-keys: |
-            public
+          restore-keys: public
 
-      - name: GatsbyJS build cache
+      - name: Restore build cache
         id: build-cache
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         with:
           path: |
             about.daangn.com/.cache
@@ -80,8 +80,26 @@ jobs:
       - name: Build about.daangn.com
         run: yarn workspace about.daangn.com build
 
+      - name: Save build cache
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            about.daangn.com/.cache
+          key: build-cache-gatsby-v5-${{ runner.os }}
+
+      - name: Save content snapshot
+        uses: actions/cache/save@v4
+        with:
+          enableCrossOsArchive: true
+          path: |
+            about.daangn.com/public
+          key: public-${{ steps.get-date.outputs.date }}
+          restore-keys: public
+
       - name: Upload artifacts (immutable first)
         run: rclone copy --immutable about.daangn.com/public/static karrot:websites-about-daangn-com/static
+        shell: bash
 
       - name: Upload artifacts (all)
         run: rclone copy about.daangn.com/public karrot:websites-about-daangn-com
+        shell: bash
