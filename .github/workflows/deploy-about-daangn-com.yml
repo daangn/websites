@@ -25,9 +25,9 @@ jobs:
           node-version: 20
           cache: yarn
 
-      - name: Project cache
+      - name: Restore project cache
         id: project-cache
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         with:
           path: |
             _packages/**/*.tsbuildinfo
@@ -36,6 +36,14 @@ jobs:
 
       - name: Install Dependencies
         run: yarn install --immutable
+
+      - name: Save project cache
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            _packages/**/*.tsbuildinfo
+            _packages/**/.ultra.cache.json
+          key: packages-cache-${{ hashFiles('_packages/**') }}
 
       - name: Get date
         id: get-date
@@ -55,7 +63,6 @@ jobs:
         # Choose appropriate key stretagy to reduce cache thrashing and maximize hits.
         uses: actions/cache/restore@v4
         with:
-          enableCrossOsArchive: true
           path: |
             about.daangn.com/public
           key: about_daangn_com-public-daily_${{ steps.get-date.outputs.date }}
@@ -83,7 +90,6 @@ jobs:
       - name: Save daily content snapshot
         uses: actions/cache/save@v4
         with:
-          enableCrossOsArchive: true
           path: |
             about.daangn.com/public
           key: about_daangn_com-public-daily_${{ steps.get-date.outputs.date }}
@@ -95,6 +101,8 @@ jobs:
         # Sync this up to the today's first build
         if: steps.build-cache.outputs.cache-hit != 'true' || steps.content-cache.outputs.cache-hit != 'true'
         run: gh extension install actions/gh-actions-cache
+        env:
+          GH_TOKEN: ${{ github.token }}
 
       - name: Cleanup stale content cache
         if: steps.content-cache.outputs.cache-hit != 'true'
@@ -110,7 +118,6 @@ jobs:
         if: steps.content-snapshot.outputs.cache-hit != 'true'
         uses: actions/cache/save@v4
         with:
-          enableCrossOsArchive: true
           path: about.daangn.com/public
           key: about_daangn_com-public-latest
 
@@ -165,7 +172,6 @@ jobs:
         id: content-snapshot
         uses: actions/cache/restore@v4
         with:
-          enableCrossOsArchive: true
           path: |
             about.daangn.com/public
           key: about_daangn_com-public-daily-${{ steps.get-date.outputs.date }}
