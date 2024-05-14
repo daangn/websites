@@ -42,8 +42,8 @@ jobs:
         run: |
           echo "date=$(/bin/date -u "+%Y%m%d")" >> $GITHUB_OUTPUT
 
-      - name: (about.daangn.com) Restore daily snapshot
-        id: content-snapshot
+      - name: (about.daangn.com) Restore daily content cache
+        id: content-cache
         # Uses actions/cache instead of actions/upload-artifacts
         #
         # The implementation quality of actions/cache is superior to that of upload-artifacts/download-artifacts.
@@ -58,26 +58,27 @@ jobs:
           enableCrossOsArchive: true
           path: |
             about.daangn.com/public
-          key: about_daangn_com-public-daily-${{ steps.get-date.outputs.date }}
-          restore-keys: about_daangn_com-public-baseline
+          key: about_daangn_com-public-daily_${{ steps.get-date.outputs.date }}
+          restore-keys: about_daangn_com-public-latest
 
-      - name: (about.daangn.com) Restore build cache
+      - name: (about.daangn.com) Restore daily build cache
         id: build-cache
         uses: actions/cache/restore@v4
         with:
           path: |
             about.daangn.com/.cache
-          key: about_daangn_com-build-cache-gatsby-v5-${{ runner.os }}
+          key: about_daangn_com-${{ runner.os }}-cache-daily_${{ steps.get-date.outputs.date }}
+          restore-keys: about_daangn_com-${{ runner.os }}-cache-latest
 
       - name: Build about.daangn.com
         run: yarn workspace about.daangn.com build
 
-      - name: Save build cache
+      - name: (about.daangn.com) Save daily build cache
         uses: actions/cache/save@v4
         with:
           path: |
             about.daangn.com/.cache
-          key: about_daangn_com-build-cache-gatsby-v5-${{ runner.os }}
+          key: about_daangn_com-${{ runner.os }}-cache-daily_${{ steps.get-date.outputs.date }}
 
       - name: Save daily content snapshot
         uses: actions/cache/save@v4
@@ -85,30 +86,50 @@ jobs:
           enableCrossOsArchive: true
           path: |
             about.daangn.com/public
-          key: about_daangn_com-public-${{ steps.get-date.outputs.date }}
+          key: about_daangn_com-public-daily_${{ steps.get-date.outputs.date }}
 
       # 이거 실행 직후에 워크플로우 취소되면 조금 곤란할 수도...
-      - name: Cleanup baseline snapshot
+
+      - name: Install actions-cache extension
         # If cache hit doesn't match, that means that's the first build today. 
         # Sync this up to the today's first build
-        if: steps.content-snapshot.outputs.cache-hit != 'true'
+        if: steps.build-cache.outputs.cache-hit != 'true' || steps.content-cache.outputs.cache-hit != 'true'
+        run: gh extension install actions/gh-actions-cache
+
+      - name: Cleanup stale content cache
+        if: steps.content-cache.outputs.cache-hit != 'true'
         run: |
-          gh extension install actions/gh-actions-cache
-          gh actions-cache delete public-baseline \
+          gh actions-cache delete about_daangn_com-public-latest \
             -R ${{ github.repository }} \
             -B ${{ github.ref }} \
             --confirm || echo "not exist"
         env:
           GH_TOKEN: ${{ github.token }}
 
-      - name: Save baseline snapshot
+      - name: Persist daily content cache
         if: steps.content-snapshot.outputs.cache-hit != 'true'
         uses: actions/cache/save@v4
         with:
           enableCrossOsArchive: true
-          path: |
-            about.daangn.com/public
-          key: about_daangn_com-public-baseline
+          path: about.daangn.com/public
+          key: about_daangn_com-public-latest
+
+      - name: Cleanup stale build cache
+        if: steps.build-cache.outputs.cache-hit != 'true'
+        run: |
+          gh actions-cache delete about_daangn_com-${{ runner.os }}-cache-latest \
+            -R ${{ github.repository }} \
+            -B ${{ github.ref }} \
+            --confirm || echo "not exist"
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Persist daily build cache
+        if: steps.build-snapshot.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: about.daangn.com/.cache
+          key: about_daangn_com-${{ runner.os }}-cache-latest
 
   # 배포는 Atomicity 보장을 위해 Concurrency 제약이 있으면 안됨
   # 실제로는 빌드 디펜던시가 걸려서 배포 경합은 없을 것
