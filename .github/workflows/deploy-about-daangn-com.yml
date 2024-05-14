@@ -10,9 +10,12 @@ on:
       - main
 
 jobs:
-  deploy:
+  build:
+    name: Build
     runs-on: ubuntu-latest
-    name: Deploy
+    concurrency:
+      group: workflow-${{ github.workflow }}
+      cancel-in-progress: true
     steps:
       - uses: actions/checkout@v4
 
@@ -21,24 +24,6 @@ jobs:
         with:
           node-version: 20
           cache: yarn
-
-      - name: Setup Rclone
-        uses: cometkim/rclone-actions/setup-rclone@main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Configure Rclone
-        run: |
-          mkdir -p ~/.config/rclone
-          {
-            echo "[r2]"
-            echo "type = s3"
-            echo "provider = Cloudflare"
-            echo "access_key_id = ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}"
-            echo "secret_access_key = ${{ secrets.CLOUDFLARE_R2_SECRET_ACCESS_KEY }}"
-            echo "endpoint = https://${{ secrets.CLOUDFLARE_ACCOUNT_ID }}.r2.cloudflarestorage.com"
-            echo "acl = private"
-          } > ~/.config/rclone/rclone.conf
 
       - name: Install Dependencies
         run: yarn install --immutable
@@ -93,6 +78,7 @@ jobs:
             about.daangn.com/public
           key: public-${{ steps.get-date.outputs.date }}
 
+      # 이거 실행 직후에 워크플로우 취소되면 조금 곤란할 수도...
       - name: Cleanup baseline snapshot
         # If cache hit doesn't match, that means that's the first build today. 
         # Sync this up to the today's first build
@@ -103,6 +89,8 @@ jobs:
             -R ${{ github.repository }} \
             -B ${{ github.ref }} \
             --confirm
+        env:
+          GH_TOKEN: ${{ github.token }}
 
       - name: Save baseline snapshot
         if: steps.content-snapshot.outputs.cache-hit != 'true'
@@ -112,6 +100,46 @@ jobs:
           path: |
             about.daangn.com/public
           key: public-baseline
+
+  # 배포는 Atomicity 보장을 위해 Concurrency 제약이 있으면 안됨
+  # 실제로는 빌드 디펜던시가 걸려서 배포 경합은 없을 것
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - name: Setup Rclone
+        uses: cometkim/rclone-actions/setup-rclone@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Rclone
+        run: |
+          mkdir -p ~/.config/rclone
+          {
+            echo "[r2]"
+            echo "type = s3"
+            echo "provider = Cloudflare"
+            echo "access_key_id = ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}"
+            echo "secret_access_key = ${{ secrets.CLOUDFLARE_R2_SECRET_ACCESS_KEY }}"
+            echo "endpoint = https://${{ secrets.CLOUDFLARE_ACCOUNT_ID }}.r2.cloudflarestorage.com"
+            echo "acl = private"
+          } > ~/.config/rclone/rclone.conf
+
+      - name: Get date
+        id: get-date
+        run: |
+          echo "date=$(/bin/date -u "+%Y%m%d")" >> $GITHUB_OUTPUT
+
+      - name: Restore content snapshot
+        id: content-snapshot
+        uses: actions/cache/restore@v4
+        with:
+          enableCrossOsArchive: true
+          path: |
+            about.daangn.com/public
+          key: public-daily-${{ steps.get-date.outputs.date }}
+          restore-keys: public-baseline
 
       - name: Upload artifacts (immutable first)
         run: |
