@@ -39,7 +39,6 @@ jobs:
             echo "endpoint = https://${{ secrets.CLOUDFLARE_ACCOUNT_ID }}.r2.cloudflarestorage.com"
             echo "acl = private"
           } > ~/.config/rclone/rclone.conf
-        shell: bash
 
       - name: Install Dependencies
         run: yarn install --immutable
@@ -48,9 +47,8 @@ jobs:
         id: get-date
         run: |
           echo "date=$(/bin/date -u "+%Y%m%d")" >> $GITHUB_OUTPUT
-        shell: bash
 
-      - name: Restore content snapshot
+      - name: Restore daily snapshot
         id: content-snapshot
         # Uses actions/cache instead of actions/upload-artifacts
         #
@@ -66,8 +64,8 @@ jobs:
           enableCrossOsArchive: true
           path: |
             about.daangn.com/public
-          key: public-${{ steps.get-date.outputs.date }}
-          restore-keys: public
+          key: public-daily-${{ steps.get-date.outputs.date }}
+          restore-keys: public-baseline
 
       - name: Restore build cache
         id: build-cache
@@ -87,7 +85,7 @@ jobs:
             about.daangn.com/.cache
           key: build-cache-gatsby-v5-${{ runner.os }}
 
-      - name: Save content snapshot
+      - name: Save daily content snapshot
         uses: actions/cache/save@v4
         with:
           enableCrossOsArchive: true
@@ -95,14 +93,25 @@ jobs:
             about.daangn.com/public
           key: public-${{ steps.get-date.outputs.date }}
 
-      - name: Save content snapshot (backup)
+      - name: Cleanup baseline snapshot
+        # If cache hit doesn't match, that means that's the first build today. 
+        # Sync this up to the today's first build
+        if: steps.content-snapshot.outputs.cache-hit != 'true'
+        run: |
+          gh extension install actions/gh-actions-cache
+          gh actions-cache delete public-baseline \
+            -R ${{ github.repository }} \
+            -B {{ github.ref }} \
+            --confirm
+
+      - name: Save baseline snapshot
         if: steps.content-snapshot.outputs.cache-hit != 'true'
         uses: actions/cache/save@v4
         with:
           enableCrossOsArchive: true
           path: |
             about.daangn.com/public
-          key: public
+          key: public-baseline
 
       - name: Upload artifacts (immutable first)
         run: |
@@ -118,7 +127,7 @@ jobs:
             --immutable --ignore-existing \
             about.daangn.com/public/static r2:websites-about-daangn-com/static
 
-      - name: Upload artifacts (all)
+      - name: Upload artifacts (rest)
         run: |
           rclone copy \
             --size-only \
