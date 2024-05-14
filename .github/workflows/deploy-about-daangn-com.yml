@@ -31,7 +31,7 @@ jobs:
         run: |
           mkdir -p ~/.config/rclone
           {
-            echo "[karrot]"
+            echo "[r2]"
             echo "type = s3"
             echo "provider = Cloudflare"
             echo "access_key_id = ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}"
@@ -116,7 +116,7 @@ jobs:
             --stats 5 \
             --progress \
             --immutable --ignore-existing \
-            about.daangn.com/public/static karrot:websites-about-daangn-com/static
+            about.daangn.com/public/static r2:websites-about-daangn-com/static
 
       - name: Upload artifacts (all)
         run: |
@@ -129,5 +129,5 @@ jobs:
             --log-level INFO \
             --stats 5 \
             --progress \
-            --exclude about.daangn.com/public/static/** \
-            about.daangn.com/public karrot:websites-about-daangn-com
+            --exclude "about.daangn.com/public/static/**" \
+            about.daangn.com/public r2:websites-about-daangn-com
