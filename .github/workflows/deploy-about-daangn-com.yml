@@ -42,7 +42,7 @@ jobs:
         run: |
           echo "date=$(/bin/date -u "+%Y%m%d")" >> $GITHUB_OUTPUT
 
-      - name: Restore daily snapshot
+      - name: (about.daangn.com) Restore daily snapshot
         id: content-snapshot
         # Uses actions/cache instead of actions/upload-artifacts
         #
@@ -58,16 +58,16 @@ jobs:
           enableCrossOsArchive: true
           path: |
             about.daangn.com/public
-          key: public-daily-${{ steps.get-date.outputs.date }}
-          restore-keys: public-baseline
+          key: about_daangn_com-public-daily-${{ steps.get-date.outputs.date }}
+          restore-keys: about_daangn_com-public-baseline
 
-      - name: Restore build cache
+      - name: (about.daangn.com) Restore build cache
         id: build-cache
         uses: actions/cache/restore@v4
         with:
           path: |
             about.daangn.com/.cache
-          key: build-cache-gatsby-v5-${{ runner.os }}
+          key: about_daangn_com-build-cache-gatsby-v5-${{ runner.os }}
 
       - name: Build about.daangn.com
         run: yarn workspace about.daangn.com build
@@ -77,7 +77,7 @@ jobs:
         with:
           path: |
             about.daangn.com/.cache
-          key: build-cache-gatsby-v5-${{ runner.os }}
+          key: about_daangn_com-build-cache-gatsby-v5-${{ runner.os }}
 
       - name: Save daily content snapshot
         uses: actions/cache/save@v4
@@ -85,7 +85,7 @@ jobs:
           enableCrossOsArchive: true
           path: |
             about.daangn.com/public
-          key: public-${{ steps.get-date.outputs.date }}
+          key: about_daangn_com-public-${{ steps.get-date.outputs.date }}
 
       # 이거 실행 직후에 워크플로우 취소되면 조금 곤란할 수도...
       - name: Cleanup baseline snapshot
@@ -108,7 +108,7 @@ jobs:
           enableCrossOsArchive: true
           path: |
             about.daangn.com/public
-          key: public-baseline
+          key: about_daangn_com-public-baseline
 
   # 배포는 Atomicity 보장을 위해 Concurrency 제약이 있으면 안됨
   # 실제로는 빌드 디펜던시가 걸려서 배포 경합은 없을 것
@@ -147,8 +147,8 @@ jobs:
           enableCrossOsArchive: true
           path: |
             about.daangn.com/public
-          key: public-daily-${{ steps.get-date.outputs.date }}
-          restore-keys: public-baseline
+          key: about_daangn_com-public-daily-${{ steps.get-date.outputs.date }}
+          restore-keys: about_daangn_com-public-baseline
 
       - name: Upload artifacts (immutable first)
         run: |
