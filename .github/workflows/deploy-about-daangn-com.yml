@@ -106,24 +106,28 @@ jobs:
 
       - name: Upload artifacts (immutable first)
         run: |
-          rclone sync \
-            --quiet \
-            --checksum \
+          rclone copy \
+            --size-only \
             --fast-list \
             --transfers 8 \
-            --checkers 16 \
-            --buffer-size 32M \
-            --stats 10 \
-            --immutable about.daangn.com/public/static karrot:websites-about-daangn-com/static
+            --checkers 50 \
+            --buffer-size 128M \
+            --log-level INFO \
+            --stats 5 \
+            --progress \
+            --immutable --ignore-existing \
+            about.daangn.com/public/static karrot:websites-about-daangn-com/static
 
       - name: Upload artifacts (all)
         run: |
-          rclone sync \
-            --quiet \
-            --checksum \
+          rclone copy \
+            --size-only \
             --fast-list \
             --transfers 8 \
-            --checkers 16 \
-            --buffer-size 32M \
-            --stats 10 \
+            --checkers 50 \
+            --buffer-size 128M \
+            --log-level INFO \
+            --stats 5 \
+            --progress \
+            --exclude about.daangn.com/public/static/** \
             about.daangn.com/public karrot:websites-about-daangn-com
