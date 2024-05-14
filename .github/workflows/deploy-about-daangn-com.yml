@@ -101,7 +101,7 @@ jobs:
           gh extension install actions/gh-actions-cache
           gh actions-cache delete public-baseline \
             -R ${{ github.repository }} \
-            -B {{ github.ref }} \
+            -B ${{ github.ref }} \
             --confirm
 
       - name: Save baseline snapshot
