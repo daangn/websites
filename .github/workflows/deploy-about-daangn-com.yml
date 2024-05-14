@@ -28,7 +28,7 @@ jobs:
           cache: yarn
 
       - name: Setup Rclone
-        uses: cometkim/rclone-actions/setup-rclone@b02ddbe0a769e3b15c4e80c1329980d667561a51
+        uses: cometkim/rclone-actions/setup-rclone@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -45,10 +45,6 @@ jobs:
             echo "acl = private"
           } > ~/.config/rclone/rclone.conf
 
-      - name: Test rclone
-        run: |
-          rclone --help
-      
       - name: Install Dependencies
         run: yarn install --immutable
 
@@ -78,19 +74,19 @@ jobs:
           restore-keys: |
             public
 
-      # - name: GatsbyJS build cache
-      #   id: build-cache
-      #   uses: actions/cache@v4
-      #   with:
-      #     path: |
-      #       about.daangn.com/.cache
-      #     key: build-cache-gatsby-v5-${{ runner.os }}
+      - name: GatsbyJS build cache
+        id: build-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            about.daangn.com/.cache
+          key: build-cache-gatsby-v5-${{ runner.os }}
 
-      # - name: Build about.daangn.com
-      #   run: yarn workspace about.daangn.com build
+      - name: Build about.daangn.com
+        run: yarn workspace about.daangn.com build
 
-      # - name: Upload artifacts (immutable first)
-      #   run: rclone copy --immutable about.daangn.com/public/static karrot:websites-about-daangn-com/static
+      - name: Upload artifacts (immutable first)
+        run: rclone copy --immutable about.daangn.com/public/static karrot:websites-about-daangn-com/static
 
-      # - name: Upload artifacts (all)
-      #   run: rclone copy about.daangn.com/public karrot:websites-about-daangn-com
+      - name: Upload artifacts (all)
+        run: rclone copy about.daangn.com/public karrot:websites-about-daangn-com
