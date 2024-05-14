@@ -2,15 +2,17 @@ name: Deploy about.daangn.com
 
 on:
   workflow_dispatch:
-  pull_request:
-    paths:
-      - .github/workflows/deploy-about-daangn-com.yml
-    branches:
-      - main   
   push:
     paths:
       - .github/workflows/deploy-about-daangn-com.yml
       - about.daangn.com/**
+    branches:
+      - main
+  # Beaware this might leaks secrets
+  # This should only be allowed trigger for workflow testing by authorized ones
+  pull_request_target:
+    paths:
+      - .github/workflows/deploy-about-daangn-com.yml
     branches:
       - main
 
