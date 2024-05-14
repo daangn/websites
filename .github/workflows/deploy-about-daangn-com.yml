@@ -94,12 +94,36 @@ jobs:
           path: |
             about.daangn.com/public
           key: public-${{ steps.get-date.outputs.date }}
-          restore-keys: public
+
+      - name: Save content snapshot (backup)
+        if: steps.content-snapshot.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          enableCrossOsArchive: true
+          path: |
+            about.daangn.com/public
+          key: public
 
       - name: Upload artifacts (immutable first)
-        run: rclone copy --immutable about.daangn.com/public/static karrot:websites-about-daangn-com/static
-        shell: bash
+        run: |
+          rclone sync \
+            --quiet \
+            --checksum \
+            --fast-list \
+            --transfers 8 \
+            --checkers 16 \
+            --buffer-size 32M \
+            --stats 10 \
+            --immutable about.daangn.com/public/static karrot:websites-about-daangn-com/static
 
       - name: Upload artifacts (all)
-        run: rclone copy about.daangn.com/public karrot:websites-about-daangn-com
-        shell: bash
+        run: |
+          rclone sync \
+            --quiet \
+            --checksum \
+            --fast-list \
+            --transfers 8 \
+            --checkers 16 \
+            --buffer-size 32M \
+            --stats 10 \
+            about.daangn.com/public karrot:websites-about-daangn-com
