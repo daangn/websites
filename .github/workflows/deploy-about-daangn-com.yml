@@ -50,7 +50,7 @@ jobs:
         shell: bash
 
       - name: Sync latest snapshot
-        id: download-artifact
+        id: artifact-cache
         # Uses actions/cache instead of actions/upload-artifacts
         #
         # The implementation quality of actions/cache is superior to that of upload-artifacts/download-artifacts.
@@ -70,7 +70,7 @@ jobs:
             public
 
       - name: GatsbyJS build cache
-        id: download-artifact
+        id: build-cache
         uses: actions/cache@v4
         with:
           path: |
