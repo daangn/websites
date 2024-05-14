@@ -50,7 +50,7 @@ jobs:
         run: |
           echo "date=$(/bin/date -u "+%Y%m%d")" >> $GITHUB_OUTPUT
 
-      - name: (about.daangn.com) Restore daily content cache
+      - name: Restore about.daangn.com daily content cache
         id: content-cache
         # Uses actions/cache instead of actions/upload-artifacts
         #
@@ -68,7 +68,7 @@ jobs:
           key: about_daangn_com-public-daily_${{ steps.get-date.outputs.date }}
           restore-keys: about_daangn_com-public-latest
 
-      - name: (about.daangn.com) Restore daily build cache
+      - name: Restore about.daangn.com daily build cache
         id: build-cache
         uses: actions/cache/restore@v4
         with:
@@ -80,14 +80,14 @@ jobs:
       - name: Build about.daangn.com
         run: yarn workspace about.daangn.com build
 
-      - name: (about.daangn.com) Save daily build cache
+      - name: Save about.daangn.com daily build cache
         uses: actions/cache/save@v4
         with:
           path: |
             about.daangn.com/.cache
           key: about_daangn_com-${{ runner.os }}-cache-daily_${{ steps.get-date.outputs.date }}
 
-      - name: Save daily content snapshot
+      - name: Save about.daangn.com daily content cache
         uses: actions/cache/save@v4
         with:
           path: |
@@ -104,7 +104,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
 
-      - name: Cleanup stale content cache
+      - name: Cleanup about.daangn.com stale content cache
         if: steps.content-cache.outputs.cache-hit != 'true'
         run: |
           gh actions-cache delete about_daangn_com-public-latest \
@@ -114,14 +114,14 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
 
-      - name: Persist daily content cache
-        if: steps.content-snapshot.outputs.cache-hit != 'true'
+      - name: Persist about.daangn.com daily content cache
+        if: steps.content-cache.outputs.cache-hit != 'true'
         uses: actions/cache/save@v4
         with:
           path: about.daangn.com/public
           key: about_daangn_com-public-latest
 
-      - name: Cleanup stale build cache
+      - name: Cleanup about.daangn.com stale build cache
         if: steps.build-cache.outputs.cache-hit != 'true'
         run: |
           gh actions-cache delete about_daangn_com-${{ runner.os }}-cache-latest \
@@ -131,8 +131,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
 
-      - name: Persist daily build cache
-        if: steps.build-snapshot.outputs.cache-hit != 'true'
+      - name: Persist about.daangn.com daily build cache
+        if: steps.build-cache.outputs.cache-hit != 'true'
         uses: actions/cache/save@v4
         with:
           path: about.daangn.com/.cache
@@ -168,14 +168,14 @@ jobs:
         run: |
           echo "date=$(/bin/date -u "+%Y%m%d")" >> $GITHUB_OUTPUT
 
-      - name: Restore content snapshot
-        id: content-snapshot
+      - name: Restore about.daangn.com daily content cache
+        id: content-cache
         uses: actions/cache/restore@v4
         with:
           path: |
             about.daangn.com/public
-          key: about_daangn_com-public-daily-${{ steps.get-date.outputs.date }}
-          restore-keys: about_daangn_com-public-baseline
+          key: about_daangn_com-public-daily_${{ steps.get-date.outputs.date }}
+          restore-keys: about_daangn_com-public-latest
 
       - name: Upload artifacts (immutable first)
         run: |
