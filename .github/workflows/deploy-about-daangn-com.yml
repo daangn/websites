@@ -1,4 +1,4 @@
-name: Deploy about-daangn-com-production
+name: Deploy about.daangn.com content
 
 on:
   workflow_dispatch:
