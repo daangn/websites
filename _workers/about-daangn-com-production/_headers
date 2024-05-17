@@ -1,0 +1,3 @@
+/completed/
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: HEAD, GET, OPTIONS
