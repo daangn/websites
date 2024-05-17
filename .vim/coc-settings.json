@@ -1,6 +1,7 @@
 {
   "eslint.enable": false,
   "prettier.enable": false,
+  "json.format.enable": false,
   "biome.enable": true,
   "coc.preferences.formatOnSave": true
 }
