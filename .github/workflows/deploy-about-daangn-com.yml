@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - .github/workflows/deploy-about-daangn-com.yml
+      - _packages/@karrotmarket/gatsby-*/**
       - about.daangn.com/**
     branches:
       - main
