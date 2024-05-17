@@ -10,4 +10,4 @@ pages_build_output_dir = "public"
 
 [[r2_buckets]]
 binding = "CONTENT_BUCKET"
-bucket_name = "about-daangn-com-production"
+bucket_name = "websites-about-daangn-com"
