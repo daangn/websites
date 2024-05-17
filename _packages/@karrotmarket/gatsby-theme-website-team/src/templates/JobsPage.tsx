@@ -184,9 +184,10 @@ const JobsPage: React.FC<JobsPageProps> = ({ data, pageContext, location }) => {
 
   const messages = useTranslation();
 
-  const searchParams = new URLSearchParams(location.search);
-  const employmentType = searchParams.get('etype') || '';
-  const corporate = searchParams.get('corp') || '';
+  const initialSearchParams = new URLSearchParams(location.search);
+  const initialSearchQuery = initialSearchParams.get('q') || '';
+  const employmentType = initialSearchParams.get('etype') || '';
+  const corporate = initialSearchParams.get('corp') || '';
 
   const allCorporates = data.allJobPost.nodes.reduce((acc, jobPost) => {
     const corporateType = jobPost.corporate;
@@ -206,14 +207,28 @@ const JobsPage: React.FC<JobsPageProps> = ({ data, pageContext, location }) => {
     return node.corporate === corporate;
   });
 
-  const [searchQuery, setSearchQuery] = React.useState('');
+  const [searchQuery, setSearchQuery] = React.useState(initialSearchQuery);
   const deferredSearchQuery = React.useDeferredValue(searchQuery);
+
+  const searchResults = useFlexSearch(deferredSearchQuery);
 
   const handleSearchQueryChange = React.useCallback((query: string) => {
     setSearchQuery(query);
+
+    const searchParams = new URLSearchParams(window.location.search);
+    searchParams.set('q', query);
+
+    const search = searchParams.toString();
+    if (search) {
+      navigate(`?${search}#${filterAnchorId}`);
+    } else {
+      navigate(`#${filterAnchorId}`);
+    }
   }, []);
 
-  const searchResults = useFlexSearch(deferredSearchQuery);
+  const handleResetFilter = React.useCallback(() => {
+    setSearchQuery('');
+  }, []);
 
   const filterAnchorId = '_filter';
   const onDepartmentFilterChange: React.ChangeEventHandler<HTMLSelectElement> = (e) => {
@@ -233,12 +248,20 @@ const JobsPage: React.FC<JobsPageProps> = ({ data, pageContext, location }) => {
 
   const onFilterChange = (e: React.ChangeEvent<HTMLSelectElement>, query: string) => {
     const value = e.target.value;
+
+    const searchParams = new URLSearchParams(window.location.search);
     if (value) {
       searchParams.set(query, value);
     } else {
       searchParams.delete(query);
     }
-    navigate(`?${searchParams.toString()}#${filterAnchorId}`);
+
+    const search = searchParams.toString();
+    if (search) {
+      navigate(`?${search}#${filterAnchorId}`);
+    } else {
+      navigate(`#${filterAnchorId}`);
+    }
   };
 
   return (
@@ -311,6 +334,8 @@ const JobsPage: React.FC<JobsPageProps> = ({ data, pageContext, location }) => {
             jobPosts={allSelectedJobPosts}
             filterEmploymentType={employmentType}
             searchResults={searchResults}
+            resetLink={`/jobs/#${filterAnchorId}`}
+            onResetFilter={handleResetFilter}
           />
         </Content>
       </Container>

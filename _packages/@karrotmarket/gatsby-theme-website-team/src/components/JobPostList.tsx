@@ -14,6 +14,8 @@ type JobPostListProps = {
   className?: string;
   filterEmploymentType?: string;
   searchResults?: string[];
+  resetLink: string;
+  onResetFilter?: () => void;
 };
 
 export const query = graphql`
@@ -63,6 +65,8 @@ const JobPostList: React.FC<JobPostListProps> = ({
   className,
   filterEmploymentType = '',
   searchResults,
+  resetLink,
+  onResetFilter,
 }) => {
   const parseLink = useLinkParser();
 
@@ -115,7 +119,7 @@ const JobPostList: React.FC<JobPostListProps> = ({
           </AnimatePresence>
         </List>
       ) : (
-        <EmptyPlaceholder link="/jobs/" />
+        <EmptyPlaceholder link={resetLink} onReset={onResetFilter} />
       )}
     </Container>
   );

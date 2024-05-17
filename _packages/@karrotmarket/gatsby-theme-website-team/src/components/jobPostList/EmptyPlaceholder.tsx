@@ -10,6 +10,7 @@ type EmptyPlaceholderProps = {
   link: string;
   className?: string;
   buttonVisible?: boolean;
+  onReset?: () => void;
 };
 
 const Container = styled('div', {
@@ -33,6 +34,7 @@ const EmptyPlaceholder: React.FC<EmptyPlaceholderProps> = ({
   link,
   className,
   buttonVisible = true,
+  onReset,
 }) => {
   const messages = useTranslation();
 
@@ -41,7 +43,7 @@ const EmptyPlaceholder: React.FC<EmptyPlaceholderProps> = ({
       <Content>
         <Text>{messages.job_post_list__empty_placeholder__no_results}</Text>
         {buttonVisible && (
-          <ButtonLink to={link} fullWidth={{ '@initial': true, '@sm': false }}>
+          <ButtonLink to={link} fullWidth={{ '@initial': true, '@sm': false }} onClick={onReset}>
             {messages.job_post_list__empty_placeholder__back_to_list}
           </ButtonLink>
         )}
