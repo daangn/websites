@@ -20,6 +20,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install actions-cache extension
+        run: gh extension install actions/gh-actions-cache
+        env:
+          GH_TOKEN: ${{ github.token }}
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -82,15 +87,9 @@ jobs:
         run: yarn workspace about.daangn.com build
 
       # 빌드 직후에 워크플로우 취소되면 조금 곤란할 수도...
-      - name: Install actions-cache extension
+      - name: Save about.daangn.com daily build cache
         # If cache hit doesn't match, that means that's the first build today. 
         # Sync this up to the today's first build
-        if: steps.build-cache.outputs.cache-hit != 'true' || steps.content-cache.outputs.cache-hit != 'true'
-        run: gh extension install actions/gh-actions-cache
-        env:
-          GH_TOKEN: ${{ github.token }}
-
-      - name: Save about.daangn.com daily build cache
         if:  steps.content-cache.outputs.cache-hit != 'true'
         uses: actions/cache/save@v4
         with:
