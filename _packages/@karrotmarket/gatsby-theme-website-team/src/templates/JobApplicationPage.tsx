@@ -147,6 +147,7 @@ const greenhouseAcceptedMimeTypes = [
 ];
 
 const makeEndpoint = (boardToken: string, jobId: string): string => {
+  // FIXME: 환경변수 쓰지 말고 명시적 config 으로 변경할 것
   const host = process.env.GATSBY_JOB_APPLICATION_FORM_HOST || 'http://localhost:8787';
   return `${host.replace(/\/$/, '')}/boards/${boardToken}/jobs/${jobId}/application/proxy`;
 };

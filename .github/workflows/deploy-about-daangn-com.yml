@@ -80,6 +80,8 @@ jobs:
 
       - name: Build about.daangn.com
         run: yarn workspace about.daangn.com build
+        env:
+          GATSBY_JOB_APPLICATION_FORM_HOST: https://greenhouse-proxy-worker.karrot.workers.dev
 
       - name: Save about.daangn.com daily build cache
         uses: actions/cache/save@v4
