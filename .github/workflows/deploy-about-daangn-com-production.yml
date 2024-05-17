@@ -22,6 +22,15 @@ jobs:
           node-version: 20
           cache: yarn
 
+      - name: Restore project cache
+        id: project-cache
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            _packages/**/*.tsbuildinfo
+            _packages/**/.ultra.cache.json
+          key: packages-cache-${{ hashFiles('_packages/**') }}
+
       - name: Install Dependencies
         run: yarn install --immutable
 
