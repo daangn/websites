@@ -80,25 +80,8 @@ jobs:
 
       - name: Build about.daangn.com
         run: yarn workspace about.daangn.com build
-        env:
-          GATSBY_JOB_APPLICATION_FORM_HOST: https://greenhouse-proxy-worker.karrot.workers.dev
 
-      - name: Save about.daangn.com daily build cache
-        uses: actions/cache/save@v4
-        with:
-          path: |
-            about.daangn.com/.cache
-          key: about_daangn_com-${{ runner.os }}-cache-daily_${{ steps.get-date.outputs.date }}
-
-      - name: Save about.daangn.com daily content cache
-        uses: actions/cache/save@v4
-        with:
-          path: |
-            about.daangn.com/public
-          key: about_daangn_com-public-daily_${{ steps.get-date.outputs.date }}
-
-      # 이거 실행 직후에 워크플로우 취소되면 조금 곤란할 수도...
-
+      # 빌드 직후에 워크플로우 취소되면 조금 곤란할 수도...
       - name: Install actions-cache extension
         # If cache hit doesn't match, that means that's the first build today. 
         # Sync this up to the today's first build
@@ -107,8 +90,23 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
 
+      - name: Save about.daangn.com daily build cache
+        if:  steps.content-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            about.daangn.com/.cache
+          key: about_daangn_com-${{ runner.os }}-cache-daily_${{ steps.get-date.outputs.date }}
+
+      - name: Save about.daangn.com daily content cache
+        if:  steps.content-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            about.daangn.com/public
+          key: about_daangn_com-public-daily_${{ steps.get-date.outputs.date }}
+
       - name: Cleanup about.daangn.com stale content cache
-        if: steps.content-cache.outputs.cache-hit != 'true'
         run: |
           gh actions-cache delete about_daangn_com-public-latest \
             -R ${{ github.repository }} \
@@ -117,15 +115,13 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
 
-      - name: Persist about.daangn.com daily content cache
-        if: steps.content-cache.outputs.cache-hit != 'true'
+      - name: Persist about.daangn.com content cache
         uses: actions/cache/save@v4
         with:
           path: about.daangn.com/public
           key: about_daangn_com-public-latest
 
       - name: Cleanup about.daangn.com stale build cache
-        if: steps.build-cache.outputs.cache-hit != 'true'
         run: |
           gh actions-cache delete about_daangn_com-${{ runner.os }}-cache-latest \
             -R ${{ github.repository }} \
@@ -134,8 +130,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
 
-      - name: Persist about.daangn.com daily build cache
-        if: steps.build-cache.outputs.cache-hit != 'true'
+      - name: Persist about.daangn.com build cache
         uses: actions/cache/save@v4
         with:
           path: about.daangn.com/.cache
@@ -171,14 +166,14 @@ jobs:
         run: |
           echo "date=$(/bin/date -u "+%Y%m%d")" >> $GITHUB_OUTPUT
 
-      - name: Restore about.daangn.com daily content cache
+      - name: Restore about.daangn.com latest content cache
         id: content-cache
         uses: actions/cache/restore@v4
         with:
           path: |
             about.daangn.com/public
-          key: about_daangn_com-public-daily_${{ steps.get-date.outputs.date }}
-          restore-keys: about_daangn_com-public-latest
+          key: about_daangn_com-public-latest
+          fail-on-cache-miss: true
 
       - name: Upload artifacts (immutable first)
         run: |
