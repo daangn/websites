@@ -84,7 +84,11 @@ jobs:
           restore-keys: about_daangn_com-${{ runner.os }}-cache-latest
 
       - name: Build about.daangn.com
-        run: yarn workspace about.daangn.com build
+        id: build
+        run: |
+          echo "presum=${{ hashFiles('about.daangn.com/public/**') }}" >> $GITHUB_OUTPUT
+          yarn workspace about.daangn.com build
+          echo "postsum=${{ hashFiles('about.daangn.com/public/**') }}" >> $GITHUB_OUTPUT
 
       # 빌드 직후에 워크플로우 취소되면 조금 곤란할 수도...
       - name: Save about.daangn.com daily build cache
@@ -106,6 +110,7 @@ jobs:
           key: about_daangn_com-public-daily_${{ steps.get-date.outputs.date }}
 
       - name: Cleanup about.daangn.com stale content cache
+        if: steps.build.outputs.presum != steps.build.outputs.postsum
         run: |
           gh actions-cache delete about_daangn_com-public-latest \
             -R ${{ github.repository }} \
@@ -115,6 +120,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
 
       - name: Persist about.daangn.com content cache
+        if: steps.build.outputs.presum != steps.build.outputs.postsum
         uses: actions/cache/save@v4
         with:
           path: about.daangn.com/public
