@@ -13,27 +13,6 @@ const config: GatsbyConfig = {
   jsxRuntime: 'automatic',
   siteMetadata,
   plugins: [
-    'gatsby-plugin-gatsby-cloud',
-    {
-      resolve: 'gatsby-plugin-vercel-deploy',
-      options: {
-        headers: [
-          {
-            source: '/completed/',
-            headers: [
-              {
-                key: 'Access-Control-Allow-Origin',
-                value: '*',
-              },
-              {
-                key: 'Access-Control-Allow-Methods',
-                value: 'HEAD, GET, OPTIONS',
-              },
-            ],
-          },
-        ],
-      },
-    },
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
