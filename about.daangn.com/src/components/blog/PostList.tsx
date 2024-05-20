@@ -30,8 +30,6 @@ const PostList: React.FC<PostListProps> = ({ data, location }) => {
   const searchQuery = initialSearchParams.get('q') || '';
   const searchResults = useSearchIndex(searchQuery);
 
-  console.log(data.allPost.nodes, searchResults);
-
   return (
     <>
       {data.allPost.nodes.length === 0 ? (
