@@ -21,7 +21,7 @@
     "@prismicio/types": "^0.2.8",
     "babel-preset-gatsby-package": "^3.13.1",
     "concurrently": "^8.2.2",
-    "gatsby": "^5.13.3",
+    "gatsby": "^5.13.5",
     "typescript": "^5.4.2"
   }
 }

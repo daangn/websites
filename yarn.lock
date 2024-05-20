@@ -3243,7 +3243,7 @@ __metadata:
     babel-preset-gatsby-package: "npm:^3.13.1"
     concurrently: "npm:^8.2.2"
     framer-motion: "npm:^11.0.14"
-    gatsby: "npm:^5.13.3"
+    gatsby: "npm:^5.13.5"
     gatsby-plugin-head-seo: "npm:^1.0.2"
     gatsby-plugin-image: "npm:^3.13.1"
     gatsby-plugin-preload-fonts: "npm:^4.13.1"
@@ -3283,7 +3283,7 @@ __metadata:
     "@types/react-dom": "npm:^18.2.22"
     babel-preset-gatsby-package: "npm:^3.13.1"
     concurrently: "npm:^8.2.2"
-    gatsby: "npm:^5.13.3"
+    gatsby: "npm:^5.13.5"
     gatsby-plugin-image: "npm:^3.13.1"
     gatsby-plugin-prismic-previews: "npm:^6.0.1"
     gatsby-source-prismic: "patch:gatsby-source-prismic@npm%3A6.0.1#~/.yarn/patches/gatsby-source-prismic-npm-6.0.1-def93125b2.patch"
@@ -3308,7 +3308,7 @@ __metadata:
     "@types/react": "npm:^18.2.66"
     "@types/react-dom": "npm:^18.2.22"
     babel-preset-gatsby-package: "npm:^3.13.1"
-    gatsby: "npm:^5.13.3"
+    gatsby: "npm:^5.13.5"
     gatsby-plugin-seed-design: "npm:^0.2.7"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
@@ -3348,7 +3348,7 @@ __metadata:
     concurrently: "npm:^8.2.2"
     focus-trap-react: "npm:^10.2.3"
     framer-motion: "npm:^11.0.14"
-    gatsby: "npm:^5.13.3"
+    gatsby: "npm:^5.13.5"
     gatsby-plugin-advanced-sitemap: "npm:^2.1.0"
     gatsby-plugin-gatsby-cloud: "npm:^5.13.1"
     gatsby-plugin-google-tagmanager: "npm:^5.13.1"
@@ -3403,7 +3403,7 @@ __metadata:
     "@types/react-dom": "npm:^18.2.22"
     babel-preset-gatsby-package: "npm:^3.13.1"
     concurrently: "npm:^8.2.2"
-    gatsby: "npm:^5.13.3"
+    gatsby: "npm:^5.13.5"
     gatsby-plugin-svgr: "npm:^3.0.0-beta.0"
     gatsby-theme-stitches: "npm:^1.0.1"
     polished: "npm:^4.3.1"
@@ -3436,7 +3436,7 @@ __metadata:
     cjk-slug: "npm:^0.3.1"
     common-tags: "npm:^1.8.2"
     concurrently: "npm:^8.2.2"
-    gatsby: "npm:^5.13.3"
+    gatsby: "npm:^5.13.5"
     html-entities: "npm:^2.3.3"
     jest: "npm:^29.5.0"
     typescript: "npm:^5.4.2"
@@ -3455,7 +3455,7 @@ __metadata:
     "@prismicio/types": "npm:^0.2.8"
     babel-preset-gatsby-package: "npm:^3.13.1"
     concurrently: "npm:^8.2.2"
-    gatsby: "npm:^5.13.3"
+    gatsby: "npm:^5.13.5"
     gatsby-source-filesystem: "npm:^5.13.1"
     typescript: "npm:^5.4.2"
   peerDependencies:
@@ -5620,7 +5620,7 @@ __metadata:
     babel-preset-gatsby-package: "npm:^3.13.1"
     cjk-slug: "npm:^0.3.1"
     dotenv: "npm:^16.0.3"
-    gatsby: "npm:^5.13.3"
+    gatsby: "npm:^5.13.5"
     gatsby-plugin-advanced-sitemap: "npm:^2.1.0"
     gatsby-plugin-gatsby-cloud: "npm:^5.13.1"
     gatsby-plugin-google-tagmanager: "npm:^5.13.1"
@@ -7047,7 +7047,7 @@ __metadata:
     "@types/react": "npm:^18.2.66"
     "@types/react-dom": "npm:^18.2.22"
     dotenv: "npm:^16.0.3"
-    gatsby: "npm:^5.13.3"
+    gatsby: "npm:^5.13.5"
     gatsby-plugin-advanced-sitemap: "npm:^2.1.0"
     gatsby-plugin-gatsby-cloud: "npm:^5.13.1"
     gatsby-plugin-google-tagmanager: "npm:^5.13.1"
@@ -7077,7 +7077,7 @@ __metadata:
     "@types/react": "npm:^18.2.66"
     "@types/react-dom": "npm:^18.2.22"
     dotenv: "npm:^16.0.3"
-    gatsby: "npm:^5.13.3"
+    gatsby: "npm:^5.13.5"
     gatsby-plugin-advanced-sitemap: "npm:^2.1.0"
     gatsby-plugin-gatsby-cloud: "npm:^5.13.1"
     gatsby-plugin-google-tagmanager: "npm:^5.13.1"
@@ -10965,7 +10965,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby@npm:^5.13.3":
+"gatsby@npm:^5.13.5":
   version: 5.13.5
   resolution: "gatsby@npm:5.13.5"
   dependencies:
