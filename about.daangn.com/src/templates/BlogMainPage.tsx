@@ -39,15 +39,14 @@ export const query = graphql`
 
 type BlogMainPageProps = PageProps<GatsbyTypes.BlogPageQuery>;
 
-const BlogMainPage: React.FC<BlogMainPageProps> = ({ data, pageContext }) => {
+const BlogMainPage: React.FC<BlogMainPageProps> = ({ data, pageContext, location }) => {
   return (
     <Container>
       {data.prismicBlogContent?.data?.featured_post && (
         <FeaturedPost data={data.prismicBlogContent.data.featured_post} />
       )}
-      <CategoryAnchor id="#_filter" />
-      <Navigation query={data} pageContext={pageContext.id} />
-      <PostList data={data} />
+      <Navigation query={data} pageContext={pageContext.id} location={location} />
+      <PostList data={data} location={location} />
     </Container>
   );
 };
@@ -104,16 +103,6 @@ const Container = styled('div', {
 
   '@sm': {
     marginTop: rem(40),
-  },
-});
-
-const CategoryAnchor = styled('div', {
-  position: 'absolute',
-  bottom: '100%',
-  height: rem(58),
-
-  '@sm': {
-    height: rem(68),
   },
 });
 

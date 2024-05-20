@@ -19,6 +19,7 @@ const Icon: React.ForwardRefRenderFunction<HTMLSpanElement, IconProps> = (
       className={className}
       data-seed-icon={name}
       data-seed-icon-version="0.2.0"
+      aria-hidden
       {...props}
     >
       {iconData[name]}

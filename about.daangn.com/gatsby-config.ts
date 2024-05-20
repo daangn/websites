@@ -1,6 +1,9 @@
 import type { GatsbyConfig } from 'gatsby';
+import * as Hangul from 'hangul-js';
 
 import 'dotenv/config';
+
+const gql = String.raw;
 
 const siteMetadata = {
   siteUrl: 'https://about.daangn.com',
@@ -98,6 +101,52 @@ const config: GatsbyConfig = {
       resolve: 'gatsby-plugin-seed-design',
       options: {
         mode: 'light-only',
+      },
+    },
+
+    {
+      resolve: 'gatsby-plugin-local-search',
+      options: {
+        name: 'blogPosts',
+        engine: 'flexsearch',
+        engineOptions: {
+          tokenize: (str: string) => {
+            const index = JSON.parse(str);
+            const specialCharactersRegex = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g;
+            const splitTitle = index.title.replace(specialCharactersRegex, '').trim().split(/\s/);
+            const splitSummary = index.summary
+              .replace(specialCharactersRegex, '')
+              .trim()
+              .split(/\s/);
+
+            const wordSet = new Set([...splitTitle, ...splitSummary, ...index.tags]);
+            const tokens: string[] = [];
+            for (const word of wordSet) {
+              const syllables = Hangul.disassemble(word);
+              for (let i = 0; i < syllables.length; i++) {
+                const token = Hangul.assemble(syllables.slice(0, i + 1)).toLocaleLowerCase();
+                tokens.push(token);
+              }
+            }
+
+            return tokens;
+          },
+        },
+        query: gql`{
+          allPost {
+            nodes {
+              id
+              title
+              summary
+              tags
+            }
+          }
+        }`,
+        ref: 'id',
+        index: ['title', 'summary', 'tags'],
+        store: ['id'],
+        // biome-ignore lint/suspicious/noExplicitAny: intentional
+        normalizer: ({ data }: any) => data.allPost.nodes,
       },
     },
 

@@ -73,9 +73,9 @@ const JobPostList: React.FC<JobPostListProps> = ({
   const orderedJobPosts = jobPosts.sort((a, b) => b.order - a.order);
 
   const filteredJobPosts = orderedJobPosts
-    .filter((jobPosts) => {
+    .filter((jobPost) => {
       if (!searchResults) return true;
-      return searchResults.includes(jobPosts.id);
+      return searchResults.includes(jobPost.id);
     })
     .filter((jobPost) => {
       if (filterEmploymentType === '') return true;

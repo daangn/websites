@@ -89,7 +89,7 @@ const config = ({ locale }: PluginOptions): GatsbyConfig => ({
         }`,
         ref: 'id',
         index: ['title', 'keywords'],
-        store: ['id', 'title', 'keywords'],
+        store: ['id'],
         // biome-ignore lint/suspicious/noExplicitAny: intentional
         normalizer: ({ data }: any) => data.allJobPost.nodes,
       },
