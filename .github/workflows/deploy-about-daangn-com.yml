@@ -20,11 +20,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install actions-cache extension
-        run: gh extension install actions/gh-actions-cache
-        env:
-          GH_TOKEN: ${{ github.token }}
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -51,12 +46,7 @@ jobs:
             _packages/**/.ultra.cache.json
           key: packages-cache-${{ hashFiles('_packages/**') }}
 
-      - name: Get date
-        id: get-date
-        run: |
-          echo "date=$(/bin/date -u "+%Y%m%d")" >> $GITHUB_OUTPUT
-
-      - name: Restore about.daangn.com daily content cache
+      - name: Restore about.daangn.com content cache
         id: content-cache
         # Uses actions/cache instead of actions/upload-artifacts
         #
@@ -71,17 +61,15 @@ jobs:
         with:
           path: |
             about.daangn.com/public
-          key: about_daangn_com-public-daily_${{ steps.get-date.outputs.date }}
-          restore-keys: about_daangn_com-public-latest
+          key: about_daangn_com-public-latest
 
-      - name: Restore about.daangn.com daily build cache
+      - name: Restore about.daangn.com build cache
         id: build-cache
         uses: actions/cache/restore@v4
         with:
           path: |
             about.daangn.com/.cache
-          key: about_daangn_com-${{ runner.os }}-cache-daily_${{ steps.get-date.outputs.date }}
-          restore-keys: about_daangn_com-${{ runner.os }}-cache-latest
+          key: about_daangn_com-${{ runner.os }}-cache-latest
 
       - name: Build about.daangn.com
         id: build
@@ -91,23 +79,11 @@ jobs:
           echo "postsum=${{ hashFiles('about.daangn.com/public/**') }}" >> $GITHUB_OUTPUT
 
       # 빌드 직후에 워크플로우 취소되면 조금 곤란할 수도...
-      - name: Save about.daangn.com daily build cache
-        # If cache hit doesn't match, that means that's the first build today. 
-        # Sync this up to the today's first build
-        if:  steps.content-cache.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v4
-        with:
-          path: |
-            about.daangn.com/.cache
-          key: about_daangn_com-${{ runner.os }}-cache-daily_${{ steps.get-date.outputs.date }}
-
-      - name: Save about.daangn.com daily content cache
-        if:  steps.content-cache.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v4
-        with:
-          path: |
-            about.daangn.com/public
-          key: about_daangn_com-public-daily_${{ steps.get-date.outputs.date }}
+      - name: Install actions-cache extension
+        if: steps.build.outputs.presum != steps.build.outputs.postsum
+        run: gh extension install actions/gh-actions-cache
+        env:
+          GH_TOKEN: ${{ github.token }}
 
       - name: Cleanup about.daangn.com stale content cache
         if: steps.build.outputs.presum != steps.build.outputs.postsum
@@ -127,6 +103,7 @@ jobs:
           key: about_daangn_com-public-latest
 
       - name: Cleanup about.daangn.com stale build cache
+        if: steps.build.outputs.presum != steps.build.outputs.postsum
         run: |
           gh actions-cache delete about_daangn_com-${{ runner.os }}-cache-latest \
             -R ${{ github.repository }} \
@@ -136,6 +113,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
 
       - name: Persist about.daangn.com build cache
+        if: steps.build.outputs.presum != steps.build.outputs.postsum
         uses: actions/cache/save@v4
         with:
           path: about.daangn.com/.cache
