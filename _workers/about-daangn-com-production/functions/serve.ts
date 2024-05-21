@@ -15,7 +15,7 @@ export const serve = makeServe<HonoEnv>({
       return await getAssetResponse('about-daangn-com-production:immutable', assetPath, c);
     } else {
       console.debug('getContent (public)');
-      c.header('Cache-Control', 'public, s-maxage=8640, must-revalidate');
+      c.header('Cache-Control', 'public, max-age=0, s-maxage=86400, must-revalidate');
       return await getAssetResponse(
         `about-daangn-com-production:public:${c.env.PUBLIC_TAG}`,
         assetPath,
