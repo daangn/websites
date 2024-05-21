@@ -1,5 +1,5 @@
-import { vars } from '@seed-design/design-token';
 import SeedIcon from '@karrotmarket/gatsby-theme-seed-design/src/Icon';
+import { vars } from '@seed-design/design-token';
 import { navigate } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';

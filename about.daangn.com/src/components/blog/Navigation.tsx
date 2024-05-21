@@ -1,7 +1,7 @@
-import * as React from 'react';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
+import * as React from 'react';
 
 import CategoryList from './CategoryList';
 import SearchInput from './SearchInput';
