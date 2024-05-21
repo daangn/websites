@@ -5,6 +5,7 @@ import * as React from 'react';
 
 import PostCard from './PostCard';
 import EmptyPlaceholder from './postList/EmptyPlaceholder';
+import { useSearchIndex } from './postList/useSearchIndex';
 
 type PostListProps = {
   data: GatsbyTypes.PostList_queryFragment;
@@ -53,40 +54,6 @@ const PostList: React.FC<PostListProps> = ({ data, location }) => {
       )}
     </>
   );
-};
-
-const useSearchIndex = (query?: string) => {
-  const staticData = useStaticQuery<GatsbyTypes.UseSearchIndexStaticQuery>(graphql`
-    query UseSearchIndexStatic {
-      localSearchBlogPosts {
-        publicIndexURL
-      }
-    }
-  `);
-  const [searchResult, setSearchResult] = React.useState<string[]>();
-  const [flexIndex, setFlexIndex] = React.useState();
-  React.useEffect(() => {
-    if (!staticData.localSearchBlogPosts?.publicIndexURL) return {};
-    try {
-      fetch(staticData.localSearchBlogPosts.publicIndexURL).then(async (res) => {
-        setFlexIndex(await res.json());
-      });
-    } catch (e) {
-      console.warn('flexsearch index documment parse error.', e);
-    }
-  }, [staticData.localSearchBlogPosts?.publicIndexURL]);
-  React.useEffect(() => {
-    if (query?.trim()) {
-      const results = flexIndex?.[0].flatMap(
-        (entities) => entities[query.toLocaleLowerCase()] || [],
-      );
-      setSearchResult(Array.from(new Set(results)));
-    } else {
-      setSearchResult(undefined);
-    }
-  }, [query, flexIndex]);
-
-  return searchResult;
 };
 
 const Container = styled('div', {
