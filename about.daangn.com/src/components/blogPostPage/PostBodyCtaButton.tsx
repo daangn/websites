@@ -1,4 +1,6 @@
 import { vars } from '@seed-design/design-token';
+import { useLinkParser, mapLink } from '@karrotmarket/gatsby-theme-website/src/link';
+import { Link } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import React from 'react';
@@ -8,18 +10,22 @@ type PostBodyCtaButtonProps = {
 };
 
 const PostBodyCtaButton: React.FC<PostBodyCtaButtonProps> = ({ slice }) => {
+  const parseLink = useLinkParser();
   return (
     <Container>
       <strong>{slice.primary.cta_phrase}</strong>
-      <Button
-        data-id="post-cta"
-        data-link={slice.primary.cta_button_url?.url.replace('https://about.daangn.com/', '')}
-        onClick={() => {
-          window.location.href = slice.primary.cta_button_url?.url;
-        }}
-      >
-        {slice.primary.cta_button_text}
-      </Button>
+      {mapLink(parseLink(slice.primary.cta_button_url?.url), {
+        Internal: (link) => (
+          <Button to={link.pathname} id="post-cta">
+            {slice.primary.cta_button_text}
+          </Button>
+        ),
+        External: (link) => (
+          <Button as="a" href={link.url.href} rel="external noopener" id="post-cta">
+            {slice.primary.cta_button_text}
+          </Button>
+        ),
+      })}
     </Container>
   );
 };
@@ -43,7 +49,7 @@ const Container = styled('section', {
   },
 });
 
-const Button = styled('button', {
+const Button = styled(Link, {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
