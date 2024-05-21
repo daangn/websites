@@ -50,20 +50,17 @@ const Container = styled('section', {
 });
 
 const Button = styled(Link, {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  minWidth: rem(100),
-  height: rem(40),
-  marginTop: rem(12),
-  padding: `${rem(22)} ${rem(16)}`,
+  minWidth: '100px',
+  marginTop: '16px',
+  padding: '12px 16px',
   border: 'none',
-  borderRadius: rem(6),
+  borderRadius: '6px',
   backgroundColor: vars.$scale.color.carrot500,
   color: vars.$scale.color.gray00,
   fontWeight: 'bold',
   fontSize: '$body2',
   cursor: 'pointer',
+  textDecoration: 'none',
 });
 
 export default PostBodyCtaButton;
