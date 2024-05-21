@@ -51,6 +51,7 @@ async function getAssetResponse(
 ): Promise<Response | null> {
   console.debug(`getAssetResponse: ${assetPath}`);
 
+  console.debug(`cache open: ${cacheName}`);
   const cache = await caches.open(cacheName);
 
   let res = await cache.match(c.req.raw);
