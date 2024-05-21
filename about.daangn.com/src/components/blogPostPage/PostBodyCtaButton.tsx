@@ -1,5 +1,5 @@
+import { mapLink, useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
 import { vars } from '@seed-design/design-token';
-import { useLinkParser, mapLink } from '@karrotmarket/gatsby-theme-website/src/link';
 import { Link } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
