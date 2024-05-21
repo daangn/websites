@@ -27,8 +27,9 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: |
-            _packages/**/*.tsbuildinfo
-            _packages/**/.ultra.cache.json
+            _packages/**/*
+            \!_packages/**/*.tsbuildinfo
+            \!_packages/**/.ultra.cache.json
           key: packages-cache-${{ hashFiles('_packages/**') }}
 
       - name: Install Dependencies
