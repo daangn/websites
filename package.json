@@ -24,6 +24,9 @@
     "lint": "biome check . --apply",
     "format": "biome format . --write"
   },
+  "resolutions": {
+    "sharp": "0.33.4"
+  },
   "devDependencies": {
     "@biomejs/biome": "1.6.1",
     "@types/node": "^20.11.28",

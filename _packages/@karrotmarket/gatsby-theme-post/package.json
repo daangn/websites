@@ -39,7 +39,7 @@
     "gatsby-transformer-sharp": "^5.13.1",
     "react-intersection-observer": "^9.8.1",
     "react-scroll-parallax": "^3.4.5",
-    "sharp": "^0.33.2"
+    "sharp": "^0.33.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.23.9",
