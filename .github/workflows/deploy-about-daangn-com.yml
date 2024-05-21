@@ -9,6 +9,9 @@ on:
       - about.daangn.com/**
     branches:
       - main
+  # FIXME: 이거 지우기 웹훅 트리거 만들기... 일정 다녀 와서
+  schedule:
+    - cron: "*/15 * * * *"
 
 jobs:
   build:
