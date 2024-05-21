@@ -25,7 +25,7 @@
     "format": "biome format . --write"
   },
   "resolutions": {
-    "sharp": "0.33.4"
+    "sharp": "0.32.6"
   },
   "devDependencies": {
     "@biomejs/biome": "1.6.1",
