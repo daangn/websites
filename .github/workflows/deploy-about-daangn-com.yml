@@ -165,7 +165,6 @@ jobs:
             --buffer-size 128M \
             --log-level INFO \
             --stats 5 \
-            --progress \
             --immutable --ignore-existing \
             about.daangn.com/public/static r2:websites-about-daangn-com/static
 
@@ -179,7 +178,6 @@ jobs:
             --buffer-size 128M \
             --log-level INFO \
             --stats 5 \
-            --progress \
             --exclude "about.daangn.com/public/static/**" \
             about.daangn.com/public r2:websites-about-daangn-com
 
