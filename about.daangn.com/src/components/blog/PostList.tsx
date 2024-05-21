@@ -29,7 +29,7 @@ export const query = graphql`
 const PostList: React.FC<PostListProps> = ({ data, location }) => {
   const initialSearchParams = new URLSearchParams(location.search);
   const searchQuery = initialSearchParams.get('q') || '';
-  const searchResults = undefined; // FIXME
+  const searchResults = useSearchIndex(searchQuery);
 
   return (
     <>
