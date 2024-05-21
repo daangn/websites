@@ -28,6 +28,8 @@ jobs:
         with:
           path: |
             _packages/**/*
+            \!_packages/**/gatsby-*.js
+            \!_packages/**/gatsby-*.d.ts
             \!_packages/**/*.tsbuildinfo
             \!_packages/**/.ultra.cache.json
           key: packages-cache-${{ hashFiles('_packages/**') }}
