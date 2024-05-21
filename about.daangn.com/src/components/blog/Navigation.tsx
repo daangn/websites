@@ -1,6 +1,5 @@
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
-import { rem } from 'polished';
 import * as React from 'react';
 
 import CategoryList from './CategoryList';
@@ -35,10 +34,10 @@ const BlogNavigation = styled('div', {
   justifyContent: 'space-between',
   margin: 0,
   scrollBehavior: 'smooth',
-  scrollMarginTop: rem(68),
+  scrollMarginTop: '96px',
 
   '@lg': {
-    margin: `0 ${rem(48)}`,
+    margin: '0 48px',
   },
 });
 
