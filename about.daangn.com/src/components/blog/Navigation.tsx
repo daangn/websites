@@ -7,9 +7,10 @@ import CategoryList from './CategoryList';
 import SearchInput from './SearchInput';
 
 type NavigationProos = {
-  query: GatsbyTypes.Navigation_queryFragment;
   pageContext: string;
-  location: Location;
+  query: GatsbyTypes.Navigation_queryFragment;
+  search: string;
+  onSearchChange: (query: string) => void;
 };
 
 export const query = graphql`
@@ -18,13 +19,13 @@ export const query = graphql`
   }
 `;
 
-const Navigation: React.FC<NavigationProos> = ({ query, pageContext, location }) => {
+const Navigation: React.FC<NavigationProos> = ({ query, pageContext, search, onSearchChange }) => {
   return (
     <BlogNavigation id="_filter">
       <div>
         <CategoryList query={query} pageContext={pageContext} />
       </div>
-      <SearchInput location={location} />
+      <SearchInput search={search} onSearchChange={onSearchChange} />
     </BlogNavigation>
   );
 };

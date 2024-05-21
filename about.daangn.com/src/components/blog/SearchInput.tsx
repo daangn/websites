@@ -6,40 +6,17 @@ import { rem } from 'polished';
 import * as React from 'react';
 
 type Props = {
-  location: Location;
-  onChangeQuery?: (query: string) => void;
+  search: string;
+  onSearchChange: (query: string) => void;
 };
 
-const SearchInput = ({ location, onChangeQuery }: Props) => {
-  const searchParams = new URLSearchParams(location.search);
-  const [searchQuery, setSearchQuery] = React.useState(() => searchParams.get('q') || '');
-
-  const filterAnchorId = '_filter';
+const SearchInput = ({ search, onSearchChange }: Props) => {
   const handleSearchQueryChange = React.useCallback<React.ChangeEventHandler<HTMLInputElement>>(
     (e) => {
-      const query = e.currentTarget.value;
-      setSearchQuery(query);
-      onChangeQuery?.(query);
-
-      const searchParams = new URLSearchParams(window.location.search);
-      searchParams.set('q', query);
-
-      const search = searchParams.toString();
-      if (search) {
-        navigate(`?${search}#${filterAnchorId}`);
-      } else {
-        navigate(`#${filterAnchorId}`);
-      }
+      onSearchChange(e.currentTarget.value);
     },
-    [onChangeQuery],
+    [onSearchChange],
   );
-
-  // FIXME: 땜빵 수준이 영 별로다..
-  React.useEffect(() => {
-    if (searchParams.size === 0) {
-      setSearchQuery('');
-    }
-  }, [searchParams]);
 
   return (
     <Container>
@@ -47,7 +24,7 @@ const SearchInput = ({ location, onChangeQuery }: Props) => {
       <Input
         type="text"
         placeholder="블로그 검색"
-        value={searchQuery}
+        value={search}
         onChange={handleSearchQueryChange}
       />
     </Container>

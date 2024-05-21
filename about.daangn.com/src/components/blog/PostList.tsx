@@ -9,7 +9,8 @@ import { useSearchIndex } from './postList/useSearchIndex';
 
 type PostListProps = {
   data: GatsbyTypes.PostList_queryFragment;
-  location: Location;
+  searchResults?: string[];
+  onResetFilter?: () => void;
 };
 
 export const query = graphql`
@@ -26,23 +27,19 @@ export const query = graphql`
   }
 `;
 
-const PostList: React.FC<PostListProps> = ({ data, location }) => {
-  const initialSearchParams = new URLSearchParams(location.search);
-  const searchQuery = initialSearchParams.get('q') || '';
-  const searchResults = useSearchIndex(searchQuery);
-
+const PostList: React.FC<PostListProps> = ({ data, searchResults, onResetFilter }) => {
   return (
     <>
       {data.allPost.nodes.length === 0 ? (
         <NoPostDescription>등록된 글이 없습니다.</NoPostDescription>
-      ) : searchResults?.length === 0 ? (
-        <EmptyPlaceholder link="/blog/#_filter" />
       ) : searchResults === undefined ? (
         <Container>
           {data.allPost.nodes.map((post) => (
             <PostCard key={post.slug} post={post} />
           ))}
         </Container>
+      ) : searchResults.length === 0 ? (
+        <EmptyPlaceholder link="/blog/#_filter" onReset={onResetFilter} />
       ) : (
         <Container>
           {data.allPost.nodes

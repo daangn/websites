@@ -1,12 +1,13 @@
-import { type HeadProps, type PageProps, graphql } from 'gatsby';
+import { type HeadProps, type PageProps, graphql, navigate } from 'gatsby';
 import { HeadSeo, OpenGraph, TwitterCard } from 'gatsby-plugin-head-seo/src';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
-import React from 'react';
+import * as React from 'react';
 
 import FeaturedPost from '../components/blog/FeaturedPost';
 import Navigation from '../components/blog/Navigation';
 import PostList from '../components/blog/PostList';
+import { useSearchIndex } from '../components/blog/postList/useSearchIndex';
 
 export const query = graphql`
   query BlogPage($id: String!, $locale: String!, $navigationId: String!) {
@@ -40,13 +41,45 @@ export const query = graphql`
 type BlogMainPageProps = PageProps<GatsbyTypes.BlogPageQuery>;
 
 const BlogMainPage: React.FC<BlogMainPageProps> = ({ data, pageContext, location }) => {
+  const initialSearchParams = new URLSearchParams(location.search);
+  const initialSearchQuery = initialSearchParams.get('q') || '';
+
+  const [searchQuery, setSearchQuery] = React.useState(initialSearchQuery);
+  const deferredSearchQuery = React.useDeferredValue(searchQuery);
+
+  const filterAnchorId = '_filter';
+  const searchResults = useSearchIndex(deferredSearchQuery);
+
+  const handleSearchQueryChange = React.useCallback((query: string) => {
+    setSearchQuery(query);
+
+    const searchParams = new URLSearchParams(window.location.search);
+    searchParams.set('q', query);
+
+    const search = searchParams.toString();
+    if (search) {
+      navigate(`?${search}#${filterAnchorId}`);
+    } else {
+      navigate(`#${filterAnchorId}`);
+    }
+  }, []);
+
+  const handleResetFilter = React.useCallback(() => {
+    setSearchQuery('');
+  }, []);
+
   return (
     <Container>
       {data.prismicBlogContent?.data?.featured_post && (
         <FeaturedPost data={data.prismicBlogContent.data.featured_post} />
       )}
-      <Navigation query={data} pageContext={pageContext.id} location={location} />
-      <PostList data={data} location={location} />
+      <Navigation
+        query={data}
+        pageContext={pageContext.id}
+        search={searchQuery}
+        onSearchChange={handleSearchQueryChange}
+      />
+      <PostList data={data} searchResults={searchResults} onResetFilter={handleResetFilter} />
     </Container>
   );
 };

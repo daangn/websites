@@ -22,7 +22,7 @@ export const useSearchIndex = (query?: string) => {
     }
   }, [staticData.localSearchBlogPosts?.publicIndexURL]);
   React.useEffect(() => {
-    if (query?.trim()) {
+    if (query) {
       const results = flexIndex?.[0].flatMap(
         (entities) => entities[query.toLocaleLowerCase()] || [],
       );
