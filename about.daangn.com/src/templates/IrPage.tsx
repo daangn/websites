@@ -17,7 +17,6 @@ export const query = graphql`
 
     prismicIr(uid: { eq: $uid }) {
       uid
-      first_publication_date(locale: "ko", formatString: "YYYY-MM-DD")
       data {
         title {
           text
@@ -155,12 +154,6 @@ const IrPage: React.FC<IrPageProps> = ({ data: prismicData }) => {
       <Content>
         <ContentHeader>
           <PageTitle>{ir.data.title?.text}</PageTitle>
-          <Properties>
-            <Property>
-              <span>게시일</span>
-              <span>{ir.first_publication_date}</span>
-            </Property>
-          </Properties>
         </ContentHeader>
         <Body>
           {ir.data.body.map((block) =>
