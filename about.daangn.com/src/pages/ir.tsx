@@ -16,7 +16,6 @@ export const query = graphql`
     ) {
       nodes {
         uid
-        first_publication_date(locale: "ko", formatString: "YYYY-MM-DD")
         data {
           title {
             text
@@ -145,7 +144,6 @@ const IrListPage: React.FC<IrListPageProps> = ({ data }) => {
               <IrListItem>
                 <IrLink to={`/ir/${ir.uid}/`}>
                   <IrTitle>{ir.data.title?.text}</IrTitle>
-                  <IrPublicationDate>{ir.first_publication_date}</IrPublicationDate>
                 </IrLink>
               </IrListItem>
             </FadeInWhenVisible>
