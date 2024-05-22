@@ -4,6 +4,9 @@ import { mimes as baseMimes } from 'hono/utils/mime';
 
 export const serve = makeServe<HonoEnv>({
   getContent: async (assetPath, c) => {
+    // biome-ignore lint/style/noParameterAssign: it's fine
+    assetPath = decodeURIComponent(assetPath);
+
     console.debug(`getContent: ${assetPath}`);
     if (
       assetPath.startsWith('static/') ||
