@@ -9,10 +9,6 @@ on:
       - about.daangn.com/**
     branches:
       - main
-  # FIXME: 이거 지우기 웹훅 트리거 만들기... 일정 다녀 와서
-  schedule:
-    # 빌드 캐시가 없는 상태로 cancel 나면 데드락이네;
-    - cron: "0 * * * *"
 
 jobs:
   build:
