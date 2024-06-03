@@ -1,0 +1,57 @@
+name: Cache about.daangn.com
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  warmup:
+    name: Warmup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup actions-cache extension
+        run: gh extension install actions/gh-actions-cache
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: yarn
+
+      - name: Install Dependencies
+        run: yarn install --immutable
+
+      - name: Restore cache
+        id: content-cache
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            about.daangn.com/public
+            about.daangn.com/.cache
+          key: cache-about_daangn_com
+
+      - name: Build about.daangn.com
+        id: build
+        run: yarn workspace about.daangn.com build
+
+      - name: Delete stale cache
+        run: |
+          gh actions-cache delete cache-about_daangn_com \
+            -R ${{ github.repository }} \
+            -B ${{ github.ref }} \
+            --confirm || echo "not exist"
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Save new cache
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            about.daangn.com/public
+            about.daangn.com/.cache
+          key: cache-about_daangn_com
