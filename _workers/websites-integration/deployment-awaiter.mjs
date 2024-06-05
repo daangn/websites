@@ -24,7 +24,7 @@ const baseUrl = new URL(WEBSITES_INTEGRATION_ENDPOINT);
 const { values } = parseArgs({
   args: process.argv.slice(2),
   options: {
-    workflowId: {
+    workflow: {
       type: 'string',
     },
     timeout: {
@@ -35,7 +35,7 @@ const { values } = parseArgs({
 });
 
 const params = {
-  workflow_id: values.workflowId,
+  workflow_id: values.workflow,
   ref: CF_PAGES_BRANCH,
   commit_sha: CF_PAGES_COMMIT_SHA,
 };
