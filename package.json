@@ -18,9 +18,6 @@
     "about.daangn.com"
   ],
   "scripts": {
-    "postinstall": "yarn init:gatsby",
-    "build:packages": "ultra --recursive --filter \"_packages/*\" build",
-    "init:gatsby": "ultra --recursive init:gatsby",
     "lint": "biome check . --apply",
     "format": "biome format . --write"
   },
@@ -30,8 +27,7 @@
   "devDependencies": {
     "@biomejs/biome": "1.6.1",
     "@types/node": "^20.11.28",
-    "typescript": "^5.4.2",
-    "ultra-runner": "^3.10.5"
+    "typescript": "^5.4.2"
   },
   "packageManager": "yarn@4.2.2"
 }

@@ -1,6 +1,13 @@
-import type { GatsbyConfig } from 'gatsby';
+// @ts-check
 
-const config: GatsbyConfig = {
+/**
+ * @typedef {import('gatsby').GatsbyConfig} GatsbyConfig
+ */
+
+/**
+ * @type {GatsbyConfig}
+ */
+export default {
   plugins: [
     'gatsby-plugin-svgr',
     'gatsby-theme-stitches',
@@ -8,5 +15,3 @@ const config: GatsbyConfig = {
     '@karrotmarket/gatsby-theme-seed-design',
   ],
 };
-
-export default config;

@@ -1,4 +1,10 @@
-// Note: gatsby-config 에서 함께 사용하기 위해 CommonJS 스타일로 전환
+// @ts-check
+
+/** 
+ * @typedef {import('@prismicio/helpers').LinkResolverFunction} LinkResolverFunction
+ */
+
+/** @type {LinkResolverFunction} */
 exports.linkResolver = (doc) => {
   switch (doc.type) {
     case 'site_navigation': {

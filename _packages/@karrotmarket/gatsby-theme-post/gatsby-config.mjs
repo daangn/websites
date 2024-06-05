@@ -1,9 +1,15 @@
-import type { GatsbyConfig } from 'gatsby';
+// @ts-check
 
-// @ts-ignore
+/**
+ * @typedef {import('gatsby').GatsbyConfig} GatsbyConfig
+ */
+
 import { linkResolver } from '@karrotmarket/gatsby-theme-post/src/@karrotmarket/gatsby-theme-prismic/linkResolver';
 
-const config = (): GatsbyConfig => ({
+/**
+ * @return {GatsbyConfig}
+ */
+export default {
   plugins: [
     'gatsby-theme-stitches',
     'gatsby-plugin-svgr',
@@ -50,6 +56,4 @@ const config = (): GatsbyConfig => ({
       },
     },
   ],
-});
-
-export default config;
+};

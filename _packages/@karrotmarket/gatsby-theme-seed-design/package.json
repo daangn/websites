@@ -3,13 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "init:gatsby": "yarn build",
-    "prepack": "yarn build",
-    "build": "babel gatsby -d . -x .ts,.tsx --presets gatsby-package",
     "generate": "seed-icon generate"
   },
   "peerDependencies": {
-    "gatsby": "^4.19.0 || ^5.0.0",
+    "gatsby": "^5.3.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
@@ -17,12 +14,9 @@
     "gatsby-plugin-seed-design": "^0.2.7"
   },
   "devDependencies": {
-    "@babel/cli": "^7.23.9",
-    "@babel/core": "^7.24.0",
     "@seed-design/icon": "^0.5.8",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
-    "babel-preset-gatsby-package": "^3.13.1",
     "gatsby": "^5.13.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

@@ -2,15 +2,9 @@
   "name": "@karrotmarket/gatsby-theme-post",
   "version": "0.0.1",
   "private": true,
-  "scripts": {
-    "init:gatsby": "yarn build",
-    "build": "concurrently \"yarn:build:*\"",
-    "build:babel": "babel gatsby -d . -x .ts,.tsx --presets gatsby-package",
-    "prepack": "yarn build"
-  },
   "peerDependencies": {
     "@stitches/react": "^0.1.0 || ^0.2.0 || ^1.0.0",
-    "gatsby": "^4.19.0 || ^5.0.0",
+    "gatsby": "^5.3.0",
     "polished": "^4.0.0",
     "react": "*",
     "react-dom": "*"
@@ -42,10 +36,6 @@
     "sharp": "^0.33.4"
   },
   "devDependencies": {
-    "@babel/cli": "^7.23.9",
-    "@babel/core": "^7.24.0",
-    "babel-preset-gatsby-package": "^3.13.1",
-    "concurrently": "^8.2.2",
     "gatsby": "^5.13.5",
     "polished": "^4.3.1",
     "react": "^18.2.0",

@@ -25,10 +25,6 @@ export type PrismicPostCategoryNode = PrismicSourceNode &
     'post_category'
   >;
 
-export function isPrismicPostCategoryNode(node: Node): node is PrismicPostCategoryNode {
-  return node.internal.type === 'PrismicPostCategory';
-}
-
 export type PrismicPostNode = PrismicSourceNode &
   PrismicDocument<
     {
@@ -141,10 +137,6 @@ export type PrismicPostDataBodySummaryBulletSectionSlice = Slice<
   }
 >;
 
-export function isPrismicPostNode(node: Node): node is PrismicPostNode {
-  return node.internal.type === 'PrismicPost';
-}
-
 export type PrismicMemberProfileNode = PrismicSourceNode &
   PrismicDocument<
     {
@@ -160,7 +152,3 @@ export type PrismicMemberProfileNode = PrismicSourceNode &
     },
     'member_profile'
   >;
-
-export function isPrismicMemberProfile(node: Node): node is PrismicMemberProfileNode {
-  return node.internal.type === 'PrismicMemberProfile';
-}

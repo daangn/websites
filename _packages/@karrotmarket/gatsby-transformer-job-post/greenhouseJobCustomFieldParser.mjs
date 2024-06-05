@@ -1,23 +1,46 @@
-import type { GreenhouseJobBoardJobNode } from '@karrotmarket/gatsby-source-greenhouse-jobboard/types';
-import type { NodePluginArgs } from 'gatsby';
+// @ts-check
 
-type FieldParser<FieldType> = (
-  node: GreenhouseJobBoardJobNode,
-  context: NodePluginArgs,
-) => FieldType | undefined;
+/**
+ * @typedef {(
+ *   import('@karrotmarket/gatsby-source-greenhouse-jobboard/types').GreenhouseJobBoardJobNode
+ * )} GreenhouseJobBoardJobNode
+ *
+ * @typedef {import('gatsby').NodePluginArgs} NodePluginArgs
+ */
 
-function findMetadataById<T extends string | number | null = string | number | null>(
-  node: GreenhouseJobBoardJobNode,
-  id: number,
-) {
+/**
+ * @template FieldType
+ * @typedef {(
+ *   node: GreenhouseJobBoardJobNode,
+ *   context: NodePluginArgs
+ * ) => FieldType | undefined} FieldParser
+ */
+
+/**
+ * @template {string | number | null} [T=string | number | null]
+ * @param {GreenhouseJobBoardJobNode} node
+ * @param {number} id
+ * @return {{
+ *   type: GreenhouseJobBoardJobNode['metadata'][number]['value_type'],
+ *   value: T | null,
+ * } | undefined}
+ */
+function findMetadataById(node, id) {
   const metadata = node.metadata.find((v) => v.id === id);
-  return metadata && { type: metadata.value_type, value: metadata.value as T | null };
+  return (
+    metadata && {
+      type: metadata.value_type,
+      /** @type {T | null} */
+      // @ts-ignore
+      value: metadata.value,
+    }
+  );
 }
 
-export const corporate: FieldParser<'KARROT_MARKET' | 'KARROT_PAY' | null> = (
-  node,
-  { reporter },
-) => {
+/**
+ * @type {FieldParser<'KARROT_MARKET' | 'KARROT_PAY' | null>}
+ */
+export const corporate = (node, { reporter }) => {
   const fieldId = 6128545003;
   const field = findMetadataById(node, fieldId);
   return (
@@ -51,9 +74,8 @@ export const corporate: FieldParser<'KARROT_MARKET' | 'KARROT_PAY' | null> = (
   );
 };
 
-export const employmentType: FieldParser<
-  'FULL_TIME' | 'CONTRACTOR' | 'INTERN' | 'ASSISTANT' | 'PART_TIME'
-> = (node, { reporter }) => {
+/** @type {FieldParser<'FULL_TIME' | 'CONTRACTOR' | 'INTERN' | 'ASSISTANT' | 'PART_TIME'>} */
+export const employmentType = (node, { reporter }) => {
   const fieldId = 5033980003;
   const field = findMetadataById(node, fieldId);
   return (
@@ -89,7 +111,8 @@ export const employmentType: FieldParser<
   );
 };
 
-export const alternativeCivilianService: FieldParser<boolean> = (node, { reporter }) => {
+/** @type {FieldParser<boolean>} */
+export const alternativeCivilianService = (node, { reporter }) => {
   const fieldId = 5784622003;
   const field = findMetadataById(node, fieldId);
   return (
@@ -117,7 +140,8 @@ export const alternativeCivilianService: FieldParser<boolean> = (node, { reporte
   );
 };
 
-export const priorExperience: FieldParser<'YES' | 'NO' | 'WHATEVER'> = (node, { reporter }) => {
+/** @type {FieldParser<'YES' | 'NO' | 'WHATEVER'>} */
+export const priorExperience = (node, { reporter }) => {
   const fieldId = 5784623003;
   const field = findMetadataById(node, fieldId);
   return (
@@ -149,7 +173,8 @@ export const priorExperience: FieldParser<'YES' | 'NO' | 'WHATEVER'> = (node, { 
   );
 };
 
-export const keywords: FieldParser<string[]> = (node) => {
+/** @type {FieldParser<string[]>} */
+export const keywords = (node) => {
   const metadata = findMetadataById(node, 6008744003);
   return (
     (metadata?.value &&
@@ -159,34 +184,43 @@ export const keywords: FieldParser<string[]> = (node) => {
   );
 };
 
-export const chapter: FieldParser<string> = (node) => {
-  const metadata = findMetadataById<string>(node, 6015694003);
+/** @type {FieldParser<string>} */
+export const chapter = (node) => {
+  const metadata = findMetadataById(node, 6015694003);
+  // @ts-ignore
   return metadata?.value ?? '';
 };
 
-export const order: FieldParser<number> = (node) => {
+/** @type {FieldParser<number>} */
+export const order = (node) => {
   const fieldId = 6990001003;
-  const field = findMetadataById<number>(node, fieldId);
+  const field = findMetadataById(node, fieldId);
+  // @ts-ignore
   return field && (field.value ?? 0 | 0);
 };
 
-export const tags: FieldParser<string[]> = (node) => {
+/** @type {FieldParser<string[]>} */
+export const tags = (node) => {
   const fieldId = 6990204003;
-  const field = findMetadataById<string>(node, fieldId);
+  const field = findMetadataById(node, fieldId);
   return (
     field &&
     (() => {
-      return field.value
-        ?.split(',')
-        .map((value) => value.trim())
-        .filter(Boolean);
+      return (
+        field.value
+          // @ts-ignore
+          ?.split(',')
+          .map((value) => value.trim())
+          .filter(Boolean)
+      );
     })()
   );
 };
 
-export const validThrough: FieldParser<Date> = (node) => {
+/** @type {FieldParser<Date>} */
+export const validThrough = (node) => {
   const fieldId = 6972127003;
-  const field = findMetadataById<string>(node, fieldId);
+  const field = findMetadataById(node, fieldId);
   return (
     field &&
     (() => {
@@ -195,12 +229,14 @@ export const validThrough: FieldParser<Date> = (node) => {
   );
 };
 
-export const externalUrl: FieldParser<URL> = (node) => {
+/** @type {FieldParser<URL>} */
+export const externalUrl = (node) => {
   const fieldId = 7142945003;
-  const field = findMetadataById<string>(node, fieldId);
+  const field = findMetadataById(node, fieldId);
   return (
     field &&
     (() => {
+      // @ts-ignore
       return field.value ? new URL(field.value) : undefined;
     })()
   );

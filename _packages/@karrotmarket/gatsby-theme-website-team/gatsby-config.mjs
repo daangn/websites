@@ -1,13 +1,27 @@
-import type { GatsbyConfig } from 'gatsby';
-import { assemble as assembleHangul, disassemble as disassembleHangul } from 'hangul-js';
+// @ts-check
 
-// @ts-ignore
-import { linkResolver } from '@karrotmarket/gatsby-theme-website-team/src/@karrotmarket/gatsby-theme-prismic/linkResolver';
-import type { PluginOptions } from './types';
+/**
+ * @typedef {import('gatsby').GatsbyConfig} GatsbyConfig
+ * @typedef {import('./types').PluginOptions} PluginOptions;
+ */
 
+import * as path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
+
+import Hangul from 'hangul-js';
+
+import { linkResolver } from '@karrotmarket/gatsby-theme-website-team/src/@karrotmarket/gatsby-theme-prismic/linkResolver.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const require = createRequire(import.meta.url);
 const gql = String.raw;
 
-const config = ({ locale }: PluginOptions): GatsbyConfig => ({
+/**
+ * @param {PluginOptions} options
+ * @return {GatsbyConfig}
+ */
+const config = ({ locale }) => ({
   siteMetadata: {
     locale,
   },
@@ -60,17 +74,19 @@ const config = ({ locale }: PluginOptions): GatsbyConfig => ({
         name: 'jobPosts',
         engine: 'flexsearch',
         engineOptions: {
-          tokenize: (str: string) => {
+          /** @param {string} str */
+          tokenize: (str) => {
             const index = JSON.parse(str);
             const specialCharactersRegex = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g;
             const splitTitle = index.title.replace(specialCharactersRegex, '').trim().split(/\s/);
 
             const wordSet = new Set([...splitTitle, ...index.keywords]);
-            const tokens: string[] = [];
+            /** @type {string[]} */
+            const tokens = [];
             for (const word of wordSet) {
-              const syllables = disassembleHangul(word);
+              const syllables = Hangul.disassemble(word);
               for (let i = 0; i < syllables.length; i++) {
-                const token = assembleHangul(syllables.slice(0, i + 1)).toLocaleLowerCase();
+                const token = Hangul.assemble(syllables.slice(0, i + 1)).toLocaleLowerCase();
                 tokens.push(token);
               }
             }
@@ -90,8 +106,7 @@ const config = ({ locale }: PluginOptions): GatsbyConfig => ({
         ref: 'id',
         index: ['title', 'keywords'],
         store: ['id'],
-        // biome-ignore lint/suspicious/noExplicitAny: intentional
-        normalizer: ({ data }: any) => data.allJobPost.nodes,
+        normalizer: ({ data }) => data.allJobPost.nodes,
       },
     },
 

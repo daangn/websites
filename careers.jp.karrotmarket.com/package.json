@@ -18,7 +18,6 @@
     "not ie 11"
   ],
   "scripts": {
-    "ultra": "yarn workspace @daangn/websites ultra --recursive --filter +careers.jp.karrotmarket.com",
     "develop": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
@@ -48,7 +47,6 @@
     "@types/node": "^20.11.28",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
-    "typescript": "^5.4.2",
-    "ultra-runner": "^3.10.5"
+    "typescript": "^5.4.2"
   }
 }

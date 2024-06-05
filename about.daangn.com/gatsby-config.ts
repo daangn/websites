@@ -1,5 +1,5 @@
 import type { GatsbyConfig } from 'gatsby';
-import * as Hangul from 'hangul-js';
+import Hangul from 'hangul-js';
 
 import 'dotenv/config';
 

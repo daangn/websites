@@ -1,6 +1,13 @@
-import { type GatsbyNode } from 'gatsby';
+// @ts-check
 
-export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({ actions }) => {
+/**
+ * @typedef {import('gatsby').GatsbyNode} GatsbyNode
+ */
+
+/**
+ * @type {GatsbyNode['createSchemaCustomization']}
+ */
+export const createSchemaCustomization = ({ actions }) => {
   const gql = String.raw;
 
   actions.createTypes(gql`

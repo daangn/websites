@@ -1,31 +1,40 @@
-import type {
-  GreenhouseJobBoardDepartmentNode,
-  GreenhouseJobBoardJobNode,
-} from '@karrotmarket/gatsby-source-greenhouse-jobboard/types';
-import slugify from 'cjk-slug';
-import type { GatsbyNode, NodeInput } from 'gatsby';
+// @ts-check
 
-import * as greenhouseJobBlockParser from './greenhouseJobBlockParser';
-import * as greenhouseJobCustomFieldParser from './greenhouseJobCustomFieldParser';
-import { isGreenhouseDepartmentNode, isGreenhouseJobNode } from './types';
-export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({ Joi }) => {
+/**
+ * @typedef {(
+ *   import('@karrotmarket/gatsby-source-greenhouse-jobboard/types').GreenhouseJobBoardDepartmentNode
+ * )} GreenhouseJobBoardDepartmentNode
+ *
+ * @typedef {(
+ *   import('@karrotmarket/gatsby-source-greenhouse-jobboard/types').GreenhouseJobBoardJobNode
+ * )} GreenhouseJobBoardJobNode
+ *
+ * @typedef {import('gatsby').GatsbyNode} GatsbyNode
+ * @typedef {import('gatsby').NodeInput} NodeInput
+ *
+ * @typedef {import('./types').PluginOptions} PluginOptions
+ */
+
+import slugify from 'cjk-slug';
+
+import * as greenhouseJobBlockParser from './greenhouseJobBlockParser.mjs';
+import * as greenhouseJobCustomFieldParser from './greenhouseJobCustomFieldParser.mjs';
+import { isGreenhouseDepartmentNode, isGreenhouseJobNode } from './types.mjs';
+
+/** @type {GatsbyNode['pluginOptionsSchema']} */
+export const pluginOptionsSchema = ({ Joi }) => {
   return Joi.object({
     defaultTags: Joi.object().pattern(Joi.string(), Joi.array().items(Joi.string())),
   });
 };
 
-type PluginOptions = {
-  defaultTags?: {
-    [boardToken: string]: string[];
-  };
-};
-
-export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = (
-  ctx,
-  options,
-) => {
+/** @type {GatsbyNode['createSchemaCustomization']} */
+export const createSchemaCustomization = (ctx, options) => {
   const { actions, schema } = ctx;
-  const { defaultTags = {} } = options as unknown as PluginOptions;
+
+  /** @type {PluginOptions} */
+  // @ts-ignore
+  const { defaultTags = {} } = options;
 
   const gql = String.raw;
   const fieldParser = greenhouseJobCustomFieldParser;
@@ -57,7 +66,8 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           extensions: {
             dateformat: {},
           },
-          resolve(source: GreenhouseJobBoardJobNode) {
+          /** @param {GreenhouseJobBoardJobNode} source */
+          resolve(source) {
             return source.updated_at;
           },
         },
@@ -67,7 +77,8 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           extensions: {
             dateformat: {},
           },
-          resolve(source: GreenhouseJobBoardJobNode) {
+          /** @param {GreenhouseJobBoardJobNode} source */
+          resolve(source) {
             return fieldParser.validThrough(source, ctx) ?? null;
           },
         },
@@ -79,14 +90,16 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
         },
         boardUrl: {
           type: 'String!',
-          resolve(source: GreenhouseJobBoardJobNode) {
+          /** @param {GreenhouseJobBoardJobNode} source */
+          resolve(source) {
             return source.absolute_url;
           },
         },
         content: {
           type: '[JobPostContentSection!]!',
           description: 'Parsed content',
-          resolve(source: GreenhouseJobBoardJobNode) {
+          /** @param {GreenhouseJobBoardJobNode} source */
+          resolve(source) {
             const { content } = greenhouseJobBlockParser.parseContent(source.content);
             return content;
           },
@@ -94,50 +107,57 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
         rawContent: {
           type: 'String!',
           description: 'HTML content (unsafe)',
-          resolve(source: GreenhouseJobBoardJobNode) {
+          /** @param {GreenhouseJobBoardJobNode} source */
+          resolve(source) {
             return source.content;
           },
         },
         corporate: {
           type: 'JobCorporate', // 이거 왜 nullable 이더라...?
           description: '회사 (당근, 당근페이)',
-          resolve(source: GreenhouseJobBoardJobNode) {
+          /** @param {GreenhouseJobBoardJobNode} source */
+          resolve(source) {
             return fieldParser.corporate(source, ctx);
           },
         },
         employmentType: {
           type: 'JobEmploymentType!',
           description: '고용 형태',
-          resolve(source: GreenhouseJobBoardJobNode) {
+          /** @param {GreenhouseJobBoardJobNode} source */
+          resolve(source) {
             return fieldParser.employmentType(source, ctx) ?? 'FULL_TIME';
           },
         },
         alternativeCivilianService: {
           type: 'Boolean!',
           description: '산업기능요원 근무 가능합니까?',
-          resolve(sourcsource: GreenhouseJobBoardJobNode) {
-            return fieldParser.alternativeCivilianService(sourcsource, ctx) ?? false;
+          /** @param {GreenhouseJobBoardJobNode} source */
+          resolve(source) {
+            return fieldParser.alternativeCivilianService(source, ctx) ?? false;
           },
         },
         priorExperience: {
           type: 'JobPriorExperience!',
           description: '경력? 신입?',
-          resolve(sourcsourcsource: GreenhouseJobBoardJobNode) {
-            return fieldParser.priorExperience(sourcsourcsource, ctx) ?? 'YES';
+          /** @param {GreenhouseJobBoardJobNode} source */
+          resolve(source) {
+            return fieldParser.priorExperience(source, ctx) ?? 'YES';
           },
         },
         chapter: {
           type: 'String!',
           description: '소속 챕터 (=직무)',
           deprecationReason: 'departments로 대체됨',
-          resolve(source: GreenhouseJobBoardJobNode) {
+          /** @param {GreenhouseJobBoardJobNode} source */
+          resolve(source) {
             return fieldParser.chapter(source, ctx) ?? '';
           },
         },
         departments: {
           type: '[JobDepartment!]!',
           description: '소속',
-          async resolve(source: GreenhouseJobBoardJobNode, _args, ctx) {
+          /** @param {GreenhouseJobBoardJobNode} source */
+          async resolve(source, _args, ctx) {
             const departmentIds = source.departments
               .filter((department) => !department.child_ids.length)
               .filter((department) => department.id !== 0)
@@ -164,14 +184,16 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
         keywords: {
           type: '[String!]!',
           description: '검색 키워드',
-          resolve(source: GreenhouseJobBoardJobNode) {
+          /** @param {GreenhouseJobBoardJobNode} source */
+          resolve(source) {
             return fieldParser.keywords(source, ctx) ?? [];
           },
         },
         order: {
           type: 'Int!',
           description: '정렬 선호 순위 값 (signed, 기본값: 0)',
-          resolve(source: GreenhouseJobBoardJobNode) {
+          /** @param {GreenhouseJobBoardJobNode} source */
+          resolve(source) {
             return fieldParser.order(source, ctx) ?? 0;
           },
         },
@@ -179,14 +201,16 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           type: 'String',
           description:
             '외부 링크 (공고가 바깥에서 열리는 경우.. 좀 컨텐츠 많으면 노션 링크 선호되는 경우 있음)',
-          resolve(source: GreenhouseJobBoardJobNode) {
+          /** @param {GreenhouseJobBoardJobNode} source */
+          resolve(source) {
             return fieldParser.externalUrl(source, ctx)?.toString() ?? null;
           },
         },
         tags: {
           type: '[String!]!',
           description: '목록에서 표시할 태그',
-          resolve(source: GreenhouseJobBoardJobNode) {
+          /** @param {GreenhouseJobBoardJobNode} source */
+          resolve(source) {
             return [
               ...(defaultTags[source.boardToken] ?? []),
               ...(fieldParser.tags(source, ctx) ?? []),
@@ -208,7 +232,8 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       fields: {
         ghId: {
           type: 'String!',
-          resolve(source: GreenhouseJobBoardDepartmentNode) {
+          /** @param {GreenhouseJobBoardDepartmentNode} source */
+          resolve(source) {
             return source.ghId.toString();
           },
         },
@@ -217,13 +242,15 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
         },
         slug: {
           type: 'String',
-          resolve(source: GreenhouseJobBoardDepartmentNode) {
+          /** @param {GreenhouseJobBoardDepartmentNode} source */
+          resolve(source) {
             return slugify(source.name);
           },
         },
         jobPosts: {
           type: '[JobPost!]!',
-          async resolve(source: GreenhouseJobBoardDepartmentNode, _args, ctx) {
+          /** @param {GreenhouseJobBoardDepartmentNode} source */
+          async resolve(source, _args, ctx) {
             const { entries } = await ctx.nodeModel.findAll({
               type: 'JobPost',
               query: {
@@ -294,10 +321,12 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
   `);
 };
 
-export const onCreateNode: GatsbyNode['onCreateNode'] = (ctx, options) => {
+/** @type {GatsbyNode['onCreateNode']} */
+export const onCreateNode = (ctx) => {
   const { node, actions, createNodeId, createContentDigest } = ctx;
   if (isGreenhouseJobNode(node)) {
-    const jobPostNode: NodeInput = {
+    /** @type {NodeInput} */
+    const jobPostNode = {
       ...node,
       id: createNodeId(`GreenhouseJobBoardJob:${node.id} >>> JobPost`),
       parent: node.id,
@@ -319,7 +348,8 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = (ctx, options) => {
       return;
     }
 
-    const jobChapterNode: NodeInput = {
+    /** @type {NodeInput} */
+    const jobChapterNode = {
       ...node,
       id: createNodeId(`GreenhouseJobBoardDepartment:${node.id} >>> JobChapter`),
       parent: node.id,

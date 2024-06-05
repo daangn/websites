@@ -1,28 +1,42 @@
-import type { GatsbyNode, Page } from 'gatsby';
+// @ts-check
+
+/**
+ * @typedef {import('gatsby').GatsbyNode} GatsbyNode
+ * @typedef {import('gatsby').Page} Page
+ */
 
 const gql = String.raw;
 
-export const onCreateBabelConfig: GatsbyNode['onCreateBabelConfig'] = ({ actions }) => {
+/**
+ * @type {GatsbyNode['onCreateBabelConfig']}
+ */
+export const onCreateBabelConfig = ({ actions }) => {
   actions.setBabelPlugin({
     name: require.resolve('babel-plugin-polished'),
     options: {},
   });
 };
 
-export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions }) => {
-  type Data = {
-    allPost: {
-      nodes: Array<{
-        id: string;
-        slug: string;
-        category: {
-          uid: string;
-        };
-      }>;
-    };
-  };
+/**
+ * @type {GatsbyNode['createPages']}
+ */
+export const createPages = async ({ graphql, actions }) => {
+  /**
+   * @typedef {{
+   *   allPost: {
+   *     nodes: Array<{
+   *       id: string;
+   *       slug: string;
+   *       category: {
+   *         uid: string;
+   *       };
+   *     }>;
+   *   };
+   * }} Data
+   */
 
-  const { data, errors } = await graphql<Data>(
+  /** @type {{ data?: Data, errors?: any }} */
+  const { data, errors } = await graphql(
     gql`
     query {
       allPost{

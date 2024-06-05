@@ -1,5 +1,9 @@
-import type { LinkResolverFunction } from '@prismicio/helpers';
-import type { GatsbyConfig } from 'gatsby';
+// @ts-check
+
+/**
+ * @typedef {import('gatsby').GatsbyConfig} GatsbyConfig
+ * @typedef {import('@prismicio/helpers').LinkResolverFunction} LinkResolverFunction
+ */
 
 // https://karrot.prismic.io
 const repositoryName = 'karrot';
@@ -8,13 +12,20 @@ const repositoryName = 'karrot';
 const customTypesApiToken =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoibWFjaGluZTJtYWNoaW5lIiwiZGJpZCI6ImthcnJvdC00NzU3OWU1Yy1jZjg5LTQ3YTMtODVjMS01MDkzMWM3MzU0ZTlfNSIsImRhdGUiOjE2MzcwODI3NzMsImRvbWFpbiI6ImthcnJvdCIsImlhdCI6MTYzNzA4Mjc3M30.QQfmjFJK_vPZT9765NP1UI9h6Prvr46AnIOrAiUm0fU';
 
-type ThemeOptions = {
-  accessToken?: string;
-  linkResolver?: LinkResolverFunction;
-};
+/**
+ * @typedef {{
+ *   accessToken?: string;
+ *   linkResolver?: LinkResolverFunction;
+ * }} ThemeOptions
+ */
 
-const config = ({ accessToken, linkResolver }: ThemeOptions): GatsbyConfig => ({
+/**
+ * @param {ThemeOptions} options
+ * @return {GatsbyConfig}
+ */
+const config = ({ accessToken, linkResolver }) => ({
   plugins: [
+    /** @type {satisfies import('gatsby-source-prismic').PluginOptions} */
     {
       resolve: 'gatsby-source-prismic',
       options: {
@@ -29,14 +40,15 @@ const config = ({ accessToken, linkResolver }: ThemeOptions): GatsbyConfig => ({
           fit: 'max',
           q: 100,
         },
-      } satisfies import('gatsby-source-prismic').PluginOptions,
+      },
     },
+    /** @type {satisfies import('gatsby-plugin-prismic-previews').PluginOptions} */
     {
       resolve: 'gatsby-plugin-prismic-previews',
       options: {
         repositoryName,
         accessToken,
-      } satisfies import('gatsby-plugin-prismic-previews').PluginOptions,
+      },
     },
   ],
 });

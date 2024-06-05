@@ -6,6 +6,5 @@
       "gatsby-theme-stitches/src/*": ["./src/gatsby-theme-stitches/*"]
     }
   },
-  "include": ["src/**/*", "src/**/*.json", "gatsby"],
   "exclude": []
 }

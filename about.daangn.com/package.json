@@ -18,7 +18,6 @@
     "not ie 11"
   ],
   "scripts": {
-    "ultra": "yarn workspace @daangn/websites ultra --recursive --filter +team.daangn.com",
     "develop": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
@@ -58,15 +57,12 @@
     "simple-reveal": "^0.6.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.24.0",
     "@types/dotenv-safe": "^8.1.6",
     "@types/node": "^20.11.28",
     "@types/prismjs": "^1.26.3",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
-    "babel-preset-gatsby-package": "^3.13.1",
     "typescript": "^5.4.2",
-    "ultra-runner": "^3.10.5",
     "websites-integration": "workspace:^"
   }
 }

@@ -1,30 +1,42 @@
+// @ts-check
+
 import { decode } from 'html-entities';
 
-type Content = {
-  level: `H${1 | 2 | 3 | 4 | 5 | 6}`;
-  title: string;
-  bodyHtml: string;
-};
+/**
+ * @typedef {{
+ *   level: `H${1 | 2 | 3 | 4 | 5 | 6}`;
+ *   title: string;
+ *   bodyHtml: string;
+ * }} Content
+ *
+ * @typedef {{
+ *   content: Content[];
+ *   raw: string;
+ * }} Result
+ */
 
-type Result = {
-  content: Content[];
-  raw: string;
-};
-
-export function parseContent(contentHtml: string): Result {
+/**
+ * @param {string} contentHtml
+ * @return {Result}
+ */
+export function parseContent(contentHtml) {
   const splitter = /<(h[1-6])>(.*)<\/\1>/;
   const parts = decode(contentHtml)
     .replace(/<div.*>[\s\S]*?<\/div>/g, '')
     .split(splitter);
 
-  const result: Result = {
+  /** @type {Result} */
+  const result = {
     content: [],
     raw: contentHtml,
   };
 
-  type State = 'initial' | 'wait_title' | 'wait_body';
-  let state: State = 'initial';
-  let current: Partial<Content> = {};
+  /** @typedef {'initial' | 'wait_title' | 'wait_body'} State */
+
+  /** @type {State} */
+  let state = 'initial';
+  /** @type {Partial<Content>} */
+  let current = {};
 
   for (const part of parts) {
     if (part === '') {
@@ -33,7 +45,8 @@ export function parseContent(contentHtml: string): Result {
 
     switch (state) {
       case 'initial': {
-        current.level = part.toUpperCase() as Content['level'];
+        // @ts-ignore
+        current.level = part.toUpperCase();
         state = 'wait_title';
         break;
       }
@@ -49,7 +62,8 @@ export function parseContent(contentHtml: string): Result {
 
       case 'wait_body': {
         current.bodyHtml = part.trim();
-        result.content.push(current as Content);
+        // @ts-ignore
+        result.content.push(current);
 
         current = {};
         state = 'initial';
