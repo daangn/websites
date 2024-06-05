@@ -1,5 +1,5 @@
-import { parseArgs } from 'node:util';
 import { setInterval } from 'node:timers/promises';
+import { parseArgs } from 'node:util';
 
 import { $ } from 'zx';
 

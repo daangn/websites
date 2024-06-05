@@ -5,9 +5,9 @@
  * @typedef {import('./types').PluginOptions} PluginOptions;
  */
 
+import { createRequire } from 'node:module';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { createRequire } from 'node:module';
 
 import Hangul from 'hangul-js';
 

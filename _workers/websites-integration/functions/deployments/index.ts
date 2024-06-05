@@ -1,5 +1,5 @@
-import { type DeploymentParameters } from '#lib/objects/Deployment';
 import { json } from '#lib/http';
+import { type DeploymentParameters } from '#lib/objects/Deployment';
 
 export const onRequestPost: PagesFunction<Env> = async (context) => {
   const request = context.request as Request;
