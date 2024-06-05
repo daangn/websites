@@ -55,7 +55,10 @@ if (!initResponse.ok) {
   process.exit(1);
 }
 
+console.log(`Deployment(id: ${initData.id}) initialized`);
+
 let state = initData.state;
+
 const checkUrl = new URL(initData.check_url);
 const artifactUrl = new URL(initData.artifact_url);
 
@@ -79,6 +82,7 @@ for await (const startTime of setInterval(5000, timeout)) {
     throw new Error('invariant');
   }
   if (state.type === 'IN_PROGRESS') {
+    console.log('Awaiting build complete...');
     continue;
   }
   if (state.type === 'DONE') {
