@@ -1,0 +1,97 @@
+name: Build about.daangn.com
+
+on:
+  workflow_dispatch:
+    inputs:
+      deployment_id:
+        description: Deployment ID
+        type: string
+        required: true
+      bind_url:
+        description: Bind URL from the websites-deployment worker
+        type: string
+        required: true
+      callback_url:
+        description: Callback URL from the websites-deployment worker
+        type: string
+        required: true
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Bind this to the deployment
+        run: |
+          curl -fsSL -X POST \
+            -H "Authorization: AdminKey ${{ secrets.WEBSITES_ADMIN_KEY }}" \
+            --json '{ "run_id": "${{ github.run_id }}" }' \
+            "${{ inputs.bind_url }}"
+
+      - uses: actions/checkout@v4
+
+      - name: Setup Rclone
+        uses: cometkim/rclone-actions/setup-rclone@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Rclone
+        run: |
+          mkdir -p ~/.config/rclone
+          {
+            echo "[r2]"
+            echo "type = s3"
+            echo "provider = Cloudflare"
+            echo "access_key_id = ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}"
+            echo "secret_access_key = ${{ secrets.CLOUDFLARE_R2_SECRET_ACCESS_KEY }}"
+            echo "endpoint = https://${{ secrets.CLOUDFLARE_ACCOUNT_ID }}.r2.cloudflarestorage.com"
+            echo "acl = private"
+          } > ~/.config/rclone/rclone.conf
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: yarn
+
+      - name: Install Dependencies
+        run: yarn install --immutable
+
+      - name: Restore cache
+        id: content-cache
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            about.daangn.com/public
+            about.daangn.com/.cache
+          key: cache-about_daangn_com
+
+      - name: Build about.daangn.com
+        id: build
+        run: yarn workspace about.daangn.com build
+
+      - name: Build artifact
+        run: |
+          cd about.daangn.com && \
+          tar -cvf --use-compress-program="zstd -T0 --adapt --exclude-compressed" \
+            "public.tar.zst" \
+            "public/"
+
+      - name: Upload artifact
+        run: |
+          cd about.daangn.com && \
+          rclone copyto --log-level INFO \
+            "public.tar.zst" \
+            "r2:websites-artifacts/about.daangn.com/${{ inputs.deployment_id }}.tar.zst"
+
+      - name: Execute callback
+        if: ${{ always() }}
+        run: |
+          curl -fsSL -X POST \
+            -H "Authorization: AdminKey ${{ secrets.WEBSITES_ADMIN_KEY }}" \
+            --json '{' \
+            --json '"run_id": "${{ github.run_id }}",' \
+            --json '"status": "${{ job.status }}",' \
+            --json '"artifact_name": "about.daangn.com/${{ inputs.deployment_id }}.tar.zst"' \
+            --json '}' \
+            "${{ inputs.callback_url }}"

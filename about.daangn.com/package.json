@@ -22,7 +22,8 @@
     "develop": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "websites-integration:deployment": "deployment-awaiter"
   },
   "dependencies": {
     "@karrotmarket/gatsby-source-greenhouse-jobboard": "^0.10.1",
@@ -65,6 +66,7 @@
     "@types/react-dom": "^18.2.22",
     "babel-preset-gatsby-package": "^3.13.1",
     "typescript": "^5.4.2",
-    "ultra-runner": "^3.10.5"
+    "ultra-runner": "^3.10.5",
+    "websites-integration": "workspace:^"
   }
 }

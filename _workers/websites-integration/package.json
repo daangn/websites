@@ -1,0 +1,19 @@
+{
+  "name": "websites-integration",
+  "private": true,
+  "bin": {
+    "deployment-awaiter": "./deployment-awaiter.mjs"
+  },
+  "imports": {
+    "#lib/*": "./functions/$lib/*.ts"
+  },
+  "dependencies": {
+    "@octokit/rest": "^20.1.1",
+    "zx": "^8.1.2"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240529.0",
+    "typescript": "^5.4.5",
+    "wrangler": "^3.58.0"
+  }
+}

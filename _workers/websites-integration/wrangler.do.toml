@@ -1,0 +1,11 @@
+name = "websites-integration"
+compatibility_date = "2024-05-04"
+main = "_worker.js"
+
+[[durable_objects.bindings]]
+name = "DEPLOYMENT"
+class_name = "Deployment"
+
+[[migrations]]
+tag = "v1"
+new_classes = ["Deployment"]

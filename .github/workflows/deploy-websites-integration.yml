@@ -1,0 +1,38 @@
+name: Deploy websites-integration
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - _workers/websites-integration/**
+      - .github/workflows/deploy-websites-integration.yml
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: yarn
+
+      - name: Install Dependencies
+        run: yarn install --immutable
+
+      - name: Deploy workers (Durable Objects only)
+        run: yarn workspace websites-integration deploy:pages
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+
+      - name: Deploy pages
+        run: yarn workspace websites-integration deploy:pages
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

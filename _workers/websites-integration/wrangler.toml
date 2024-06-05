@@ -1,0 +1,12 @@
+name = "websites-integration"
+pages_build_output_dir = "./public"
+compatibility_date = "2024-05-04"
+
+[[r2_buckets]]
+name = "ARTIFACTS"
+bucket_name = "websites-artifacts"
+
+[[durable_objects.bindings]]
+name = "DEPLOYMENT"
+class_name = "Deployment"
+script_name = "websites-integration"
