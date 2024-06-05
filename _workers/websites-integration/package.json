@@ -7,6 +7,10 @@
   "imports": {
     "#lib/*": "./functions/$lib/*.ts"
   },
+  "scripts": {
+    "deploy:objects": "wrangler deploy -c wrangler.do.toml",
+    "deploy:pages": "wrangler pages deploy"
+  },
   "dependencies": {
     "@octokit/rest": "^20.1.1",
     "zx": "^8.1.2"
