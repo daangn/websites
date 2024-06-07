@@ -10,23 +10,29 @@ export const onRequestPost: PagesFunction<Env, 'id'> = async (context) => {
   try {
     deploymentId = context.env.DEPLOYMENT.idFromString(paramId);
   } catch {
-    return json({ id: paramId, message: 'Bad request (invalid id format)' }, { status: 400 });
+    return json({ id: paramId, message: 'Invalid ID format' }, { status: 400 });
   }
 
   let stub: DurableObjectStub<Deployment>;
   try {
     stub = context.env.DEPLOYMENT.get(deploymentId);
   } catch {
-    return json({ message: 'Not Found' }, { status: 404 });
+    return json({ id: paramId, message: 'Not found' }, { status: 404 });
   }
 
   try {
     await stub.finish(result);
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
 
-    // @ts-ignore
-    return json({ message: err?.message || err.toString() }, { status: 400 });
+    return json(
+      {
+        id: paramId,
+        message: 'Callback failed, perhaps the deployment has already finished',
+        error,
+      },
+      { status: 400 },
+    );
   }
 
   return json(null, { status: 204 });

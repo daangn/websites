@@ -8,24 +8,24 @@ export const onRequestGet: PagesFunction<Env, 'id'> = async (context) => {
   try {
     deploymentId = context.env.DEPLOYMENT.idFromString(paramId);
   } catch {
-    return json({ id: paramId, message: 'Bad request (invalid id format)' }, { status: 400 });
+    return json({ id: paramId, message: 'Invalid ID format' }, { status: 400 });
   }
 
   let stub: DurableObjectStub<Deployment>;
   try {
     stub = context.env.DEPLOYMENT.get(deploymentId);
   } catch {
-    return json({ message: 'Not found' }, { status: 404 });
+    return json({ id: paramId, message: 'Not found' }, { status: 404 });
   }
 
   let state: DeploymentState;
   try {
     state = await stub.getCurrentState();
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
 
     // @ts-ignore
-    return json({ message: err?.message || err.toString() }, { status: 500 });
+    return json({ id: paramId, message: 'Invalid state', error }, { status: 500 });
   }
 
   if (state.type === 'DONE' && state.artifactName) {

@@ -8,7 +8,7 @@ export const onRequestGet: PagesFunction<Env, 'id'> = async (context) => {
   try {
     deploymentId = context.env.DEPLOYMENT.idFromString(paramId);
   } catch {
-    return json({ id: paramId, message: 'Bad request (invalid id format)' }, { status: 400 });
+    return json({ id: paramId, message: 'Invalid ID format' }, { status: 400 });
   }
 
   let stub: DurableObjectStub<Deployment>;
@@ -21,11 +21,10 @@ export const onRequestGet: PagesFunction<Env, 'id'> = async (context) => {
   try {
     const state = await stub.getCurrentState();
     return json({ id: paramId, state });
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
 
-    // @ts-ignore
-    return json({ id: paramId, message: err?.message || err.toString() }, { status: 500 });
+    return json({ id: paramId, message: 'Invalid state', error }, { status: 500 });
   }
 };
 
@@ -38,7 +37,10 @@ export const onRequestPost: PagesFunction<Env, 'id'> = async (context) => {
   try {
     deploymentId = context.env.DEPLOYMENT.idFromString(paramId);
   } catch (err) {
-    return json({ id: paramId, message: 'Bad request (invalid id format)' }, { status: 400 });
+    return json(
+      { id: paramId, message: 'Invalid ID format' },
+      { status: 400, statusText: 'Invalid ID format' },
+    );
   }
 
   let stub: DurableObjectStub<Deployment>;
@@ -50,11 +52,13 @@ export const onRequestPost: PagesFunction<Env, 'id'> = async (context) => {
 
   try {
     await stub.bind(params.run_id);
-    return json({ id: paramId, message: 'Workflow run bound', run_id: params.run_id });
-  } catch (err) {
-    console.error(err);
+    return json({ id: paramId, run_id: params.run_id, message: 'Job is successfully bound' });
+  } catch (error) {
+    console.error(error);
 
-    // @ts-ignore
-    return json({ id: paramId, message: err?.message || err.toString() }, { status: 500 });
+    return json(
+      { id: paramId, run_id: params.run_id, message: 'Failed to bind job', error },
+      { status: 500 },
+    );
   }
 };
