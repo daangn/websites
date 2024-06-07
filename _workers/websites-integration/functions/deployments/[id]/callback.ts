@@ -15,7 +15,7 @@ export const onRequestPost: PagesFunction<Env, 'id'> = async (context) => {
 
   let stub: DurableObjectStub<Deployment>;
   try {
-    stub = context.env.DEPLOYMENT.getExisting(deploymentId);
+    stub = context.env.DEPLOYMENT.get(deploymentId);
   } catch {
     return json({ message: 'Not Found' }, { status: 404 });
   }
