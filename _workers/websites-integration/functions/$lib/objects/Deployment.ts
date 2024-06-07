@@ -10,6 +10,7 @@ declare global {
 export type DeploymentState =
   | {
       type: 'IDLE';
+      runId?: string;
     }
   | {
       type: 'IN_PROGRESS';
@@ -20,7 +21,7 @@ export type DeploymentState =
       type: 'DONE';
       runId?: string;
       artifactName?: string;
-      params: DeploymentParameters;
+      params?: DeploymentParameters;
       status: DeploymentBuildStatus;
     };
 
@@ -119,25 +120,25 @@ export class Deployment extends DurableObject<Env> {
 
   async bind(runId: string) {
     const state = await this.getCurrentState();
-    if (state.type !== 'IN_PROGRESS') {
-      throw new Error('invariant');
+    if (!state.runId) {
+      this.#next({ ...state, runId });
     }
-
-    this.#next({ ...state, runId });
   }
 
   async finish(result: DeploymentResult) {
     const state = await this.getCurrentState();
-    if (state.type !== 'IN_PROGRESS') {
+    if (state.type === 'DONE') {
       throw new Error('invariant');
     }
 
     this.#next({
-      ...state,
       type: 'DONE',
       runId: result.run_id,
       status: result.status,
       artifactName: result.artifact_name,
+      ...(state.type === 'IN_PROGRESS' && {
+        params: state.params,
+      }),
     });
   }
 }
