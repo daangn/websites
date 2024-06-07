@@ -54,14 +54,14 @@ async function getAssetResponse(
 ): Promise<Response | null> {
   console.debug(`getAssetResponse: ${assetPath}`);
 
-  // console.debug(`cache open: ${cacheName}`);
-  // const cache = await caches.open(cacheName);
+  console.debug(`cache open: ${cacheName}`);
+  const cache = await caches.open(cacheName);
 
-  // let res = await cache.match(c.req.raw);
-  // if (res) {
-  //   console.debug('cache hit');
-  //   return res;
-  // }
+  let res = await cache.match(c.req.raw);
+  if (res) {
+    console.debug('cache hit');
+    return res;
+  }
 
   const object = await c.env.CONTENT_BUCKET.get(assetPath);
   if (!object) {
@@ -76,7 +76,7 @@ async function getAssetResponse(
     headers: objectHeaders,
   });
 
-  // c.executionCtx.waitUntil(cache.put(c.req.raw, res.clone()));
+  c.executionCtx.waitUntil(cache.put(c.req.raw, res.clone()));
 
   return res;
 }
