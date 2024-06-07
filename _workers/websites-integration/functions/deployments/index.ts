@@ -14,7 +14,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   const stub = context.env.DEPLOYMENT.get(id);
 
   try {
-    const { state } = await stub.init(params, callbackUrl.toString());
+    const { state } = await stub.init(params, bindUrl.toString(), callbackUrl.toString());
     return json({
       state,
       id: id.toString(),

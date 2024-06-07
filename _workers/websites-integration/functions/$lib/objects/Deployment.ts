@@ -70,7 +70,7 @@ export class Deployment extends DurableObject<Env> {
     return state;
   }
 
-  async init(params: DeploymentParameters, callbackUrl: string) {
+  async init(params: DeploymentParameters, bindUrl: string, callbackUrl: string) {
     const state = await this.getCurrentState();
     if (state.type !== 'IDLE') {
       throw new Error('invariant');
@@ -83,6 +83,7 @@ export class Deployment extends DurableObject<Env> {
       ref: params.ref,
       inputs: {
         deployment_id: this.#id,
+        bind_url: bindUrl,
         callback_url: callbackUrl,
       },
     });
