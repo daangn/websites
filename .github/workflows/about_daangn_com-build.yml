@@ -74,8 +74,8 @@ jobs:
       - name: Build artifact
         run: |
           cd about.daangn.com && \
-          tar -cvf --use-compress-program="zstd -T0 --adapt --exclude-compressed" \
-            "public.tar.zst" \
+          tar --use-compress-program="zstd -T0 --adapt --exclude-compressed" \
+            -cvf "public.tar.zst" \
             "public/"
 
       - name: Upload artifact
