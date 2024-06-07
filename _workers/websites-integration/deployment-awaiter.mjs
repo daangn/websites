@@ -1,8 +1,8 @@
-import { setInterval } from 'node:timers/promises';
-import { parseArgs } from 'node:util';
 import { createWriteStream } from 'node:fs';
 import { Readable } from 'node:stream';
 import { finished } from 'node:stream/promises';
+import { setInterval } from 'node:timers/promises';
+import { parseArgs } from 'node:util';
 import prettyMilliseconds from 'pretty-ms';
 
 import { $ } from 'zx';
