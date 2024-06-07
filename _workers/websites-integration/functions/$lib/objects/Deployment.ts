@@ -127,11 +127,12 @@ export class Deployment extends DurableObject<Env> {
 
   async finish(result: DeploymentResult) {
     const state = await this.getCurrentState();
+
     if (state.type === 'DONE') {
-      throw new Error('invariant');
+      throw new Error(`The deployment has already finished with status: ${state.status}`);
     }
 
-    this.#next({
+    await this.#next({
       type: 'DONE',
       runId: result.run_id,
       status: result.status,

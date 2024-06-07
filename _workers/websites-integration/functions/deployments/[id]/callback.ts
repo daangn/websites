@@ -24,7 +24,9 @@ export const onRequestPost: PagesFunction<Env, 'id'> = async (context) => {
     await stub.finish(result);
   } catch (err) {
     console.error(err);
-    return json({ message: 'Bad request' }, { status: 400 });
+
+    // @ts-ignore
+    return json({ message: err?.message || err.toString() }, { status: 500 });
   }
 
   return json(null, { status: 204 });
