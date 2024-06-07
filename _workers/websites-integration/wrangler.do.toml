@@ -1,6 +1,7 @@
 name = "websites-integration"
 compatibility_date = "2024-05-04"
 main = "_worker.js"
+compatibility_flags = ["durable_object_get_existing"]
 
 [[durable_objects.bindings]]
 name = "DEPLOYMENT"

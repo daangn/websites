@@ -43,8 +43,8 @@ const params = {
 const initResponse = await fetch(deploymentUrl, {
   method: 'POST',
   headers: {
-    Authorization: `AdminKey ${WEBSITES_ADMIN_KEY}`,
     Accept: 'application/json',
+    Authorization: `AdminKey ${WEBSITES_ADMIN_KEY}`,
     'Content-Type': 'application/json',
   },
   body: JSON.stringify(params),
@@ -69,7 +69,12 @@ for await (const startTime of setInterval(5000, Date.now())) {
     process.exit(1);
   }
 
-  const res = await fetch(checkUrl);
+  const res = await fetch(checkUrl, {
+    headers: {
+      Accept: 'application/json',
+      Authorization: `AdminKey ${WEBSITES_ADMIN_KEY}`,
+    },
+  });
   const data = await res.json();
   if (!res.ok) {
     console.error({ status: res.status, data });
