@@ -7,10 +7,10 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   const params = await request.json<DeploymentParameters>();
 
   const id = context.env.DEPLOYMENT.newUniqueId();
-  const bindUrl = new URL(`/deployment/${id.toString()}`, url);
-  const checkUrl = new URL(`/deployment/${id.toString()}`, url);
-  const callbackUrl = new URL(`/deployment/${id.toString()}/callback`, url);
-  const artifactUrl = new URL(`/deployment/${id.toString()}/download-artifact`, url);
+  const bindUrl = new URL(`/deployments/${id.toString()}`, url);
+  const checkUrl = new URL(`/deployments/${id.toString()}`, url);
+  const callbackUrl = new URL(`/deployments/${id.toString()}/callback`, url);
+  const artifactUrl = new URL(`/deployments/${id.toString()}/download-artifact`, url);
   const stub = context.env.DEPLOYMENT.get(id);
 
   try {

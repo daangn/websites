@@ -2,10 +2,16 @@ import { json } from '#lib/http';
 import { type Deployment, type DeploymentResult } from '#lib/objects/Deployment';
 
 export const onRequestPost: PagesFunction<Env, 'id'> = async (context) => {
+  const paramId = context.params.id as string;
   const request = context.request as Request;
   const result = await request.json<DeploymentResult>();
 
-  const deploymentId = context.env.DEPLOYMENT.idFromString(context.params.id as string);
+  let deploymentId: DurableObjectId;
+  try {
+    deploymentId = context.env.DEPLOYMENT.idFromString(paramId);
+  } catch {
+    return json({ id: paramId, message: 'Bad request (invalid id format)' }, { status: 400 });
+  }
 
   let stub: DurableObjectStub<Deployment>;
   try {

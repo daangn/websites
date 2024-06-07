@@ -5,7 +5,7 @@ import { $ } from 'zx';
 
 const {
   WEBSITES_ADMIN_KEY,
-  WEBSITES_INTEGRATION_ENDPOINT,
+  WEBSITES_DEPLOYMENT_ENDPOINT,
 
   // This script is available only on the Cloudflare Pages build, and some env vars will be injected from.
   // See https://developers.cloudflare.com/pages/configuration/build-configuration/
@@ -19,7 +19,7 @@ if (CF_PAGES !== '1') {
   throw new Error("deployment-awaiter should be executed only on Cloudflare Pages' build");
 }
 
-const baseUrl = new URL(WEBSITES_INTEGRATION_ENDPOINT);
+const deploymentUrl = new URL(WEBSITES_DEPLOYMENT_ENDPOINT);
 
 const { values } = parseArgs({
   args: process.argv.slice(2),
@@ -40,7 +40,7 @@ const params = {
   commit_sha: CF_PAGES_COMMIT_SHA,
 };
 
-const initResponse = await fetch(new URL('/deployments', baseUrl), {
+const initResponse = await fetch(deploymentUrl, {
   method: 'POST',
   headers: {
     Authorization: `AdminKey ${WEBSITES_ADMIN_KEY}`,
@@ -64,7 +64,7 @@ const artifactUrl = new URL(initData.artifact_url);
 
 const timeout = Number.parseInt(values.timeout);
 for await (const startTime of setInterval(5000, Date.now())) {
-  if (now - startTime >= timeout) {
+  if (Date.now() - startTime >= timeout) {
     console.error(`Timeout exceeded (${timeout} ms)`);
     process.exit(1);
   }

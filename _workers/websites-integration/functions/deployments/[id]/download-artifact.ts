@@ -3,7 +3,13 @@ import { type Deployment, type DeploymentState } from '#lib/objects/Deployment';
 
 export const onRequestGet: PagesFunction<Env, 'id'> = async (context) => {
   const paramId = context.params.id as string;
-  const deploymentId = context.env.DEPLOYMENT.idFromString(paramId);
+
+  let deploymentId: DurableObjectId;
+  try {
+    deploymentId = context.env.DEPLOYMENT.idFromString(paramId);
+  } catch {
+    return json({ id: paramId, message: 'Bad request (invalid id format)' }, { status: 400 });
+  }
 
   let stub: DurableObjectStub<Deployment>;
   try {
