@@ -29,7 +29,7 @@ const { values } = parseArgs({
     },
     timeout: {
       type: 'string',
-      default: (10 * 1000 * 60).toString(), // 10 mins
+      default: (10 * 60 * 1000).toString(), // 10 mins
     },
   },
 });
