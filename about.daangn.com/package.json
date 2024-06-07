@@ -29,6 +29,7 @@
     "@karrotmarket/gatsby-theme-prismic": "workspace:^",
     "@karrotmarket/gatsby-theme-website-team": "workspace:^",
     "@karrotmarket/gatsby-transformer-job-post": "workspace:^",
+    "@karrotmarket/gatsby-transformer-post": "workspace:^",
     "@prismicio/react": "^2.7.3",
     "@seed-design/design-token": "^1.0.3",
     "cjk-slug": "^0.3.1",
@@ -62,7 +63,7 @@
     "@types/prismjs": "^1.26.3",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
-    "typescript": "^5.4.2",
+    "typescript": "^5.4.5",
     "websites-integration": "workspace:^"
   }
 }

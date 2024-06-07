@@ -17,8 +17,8 @@
     "zx": "^8.1.2"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20240529.0",
+    "@cloudflare/workers-types": "^4.20240605.0",
     "typescript": "^5.4.5",
-    "wrangler": "^3.58.0"
+    "wrangler": "^3.59.0"
   }
 }

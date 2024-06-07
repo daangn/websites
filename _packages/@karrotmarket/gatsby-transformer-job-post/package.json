@@ -21,6 +21,6 @@
     "common-tags": "^1.8.2",
     "gatsby": "^5.13.5",
     "jest": "^29.5.0",
-    "typescript": "^5.4.2"
+    "typescript": "^5.4.5"
   }
 }
