@@ -63,8 +63,7 @@ const checkUrl = new URL(initData.check_url);
 const artifactUrl = new URL(initData.artifact_url);
 
 const timeout = Number.parseInt(values.timeout);
-for await (const startTime of setInterval(5000, timeout)) {
-  const now = Date.now();
+for await (const startTime of setInterval(5000, Date.now())) {
   if (now - startTime >= timeout) {
     console.error(`Timeout exceeded (${timeout} ms)`);
     process.exit(1);
