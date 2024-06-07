@@ -21,18 +21,28 @@ export const onRequestPost: PagesFunction<Env, 'id'> = async (context) => {
   }
 
   try {
-    await stub.finish(result);
+    const ok = await stub.finish(result);
+    if (!ok) {
+      return json(
+        {
+          id: paramId,
+          message: 'Callback failed, perhaps the deployment has already been finished',
+        },
+        { status: 400 },
+      );
+    }
   } catch (error) {
     console.error(error);
 
     return json(
       {
         id: paramId,
-        message: 'Callback failed, perhaps the deployment has already been finished',
+        message: 'Internal error',
+        error,
       },
-      { status: 400 },
+      { status: 500 },
     );
   }
 
-  return json(null, { status: 204 });
+  return json({ id: paramId, message: 'The result has been reported successfully' });
 };

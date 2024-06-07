@@ -61,12 +61,13 @@ export class Deployment extends DurableObject<Env> {
 
   async #next(nextState: DeploymentState) {
     await this.#ctx.storage.put<DeploymentState>('state', nextState);
+    return true;
   }
 
   async getCurrentState() {
     const state = await this.#ctx.storage.get<DeploymentState>('state');
     if (!state) {
-      throw new Error('not initialized');
+      throw new Error('Not initialized');
     }
     return state;
   }
@@ -74,7 +75,7 @@ export class Deployment extends DurableObject<Env> {
   async init(params: DeploymentParameters, bindUrl: string, callbackUrl: string) {
     const state = await this.getCurrentState();
     if (state.type !== 'IDLE') {
-      throw new Error('invariant');
+      return false;
     }
 
     const { status: actionStatus } = await this.#octokit.actions.createWorkflowDispatch({
@@ -98,20 +99,15 @@ export class Deployment extends DurableObject<Env> {
       params,
     };
 
-    await this.#next(nextState);
-
-    return {
-      state: nextState,
-    };
+    return await this.#next(nextState);
   }
 
   async cancel() {
     const state = await this.getCurrentState();
-    if (state.type !== 'IN_PROGRESS') {
-      return;
+    if (state.type === 'DONE') {
+      return false;
     }
-
-    this.#next({
+    return await this.#next({
       ...state,
       type: 'DONE',
       status: 'cancelled',
@@ -121,18 +117,17 @@ export class Deployment extends DurableObject<Env> {
   async bind(runId: string) {
     const state = await this.getCurrentState();
     if (!state.runId) {
-      this.#next({ ...state, runId });
+      return await this.#next({ ...state, runId });
     }
+    return false;
   }
 
   async finish(result: DeploymentResult) {
     const state = await this.getCurrentState();
-
     if (state.type === 'DONE') {
-      throw new Error(`The deployment has already finished with status: ${state.status}`);
+      return false;
     }
-
-    await this.#next({
+    return await this.#next({
       type: 'DONE',
       runId: result.run_id,
       status: result.status,

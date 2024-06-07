@@ -23,7 +23,7 @@ export const onRequestGet: PagesFunction<Env, 'id'> = async (context) => {
     return json({ id: paramId, state });
   } catch (error) {
     console.error(error);
-    return json({ id: paramId, message: 'Invalid state' }, { status: 500 });
+    return json({ id: paramId, message: 'Failed to get state', error }, { status: 500 });
   }
 };
 
@@ -35,11 +35,8 @@ export const onRequestPost: PagesFunction<Env, 'id'> = async (context) => {
   let deploymentId: DurableObjectId;
   try {
     deploymentId = context.env.DEPLOYMENT.idFromString(paramId);
-  } catch (err) {
-    return json(
-      { id: paramId, message: 'Invalid ID format' },
-      { status: 400, statusText: 'Invalid ID format' },
-    );
+  } catch {
+    return json({ id: paramId, message: 'Invalid ID format' }, { status: 400 });
   }
 
   let stub: DurableObjectStub<Deployment>;
@@ -51,11 +48,11 @@ export const onRequestPost: PagesFunction<Env, 'id'> = async (context) => {
 
   try {
     await stub.bind(params.run_id);
-    return json({ id: paramId, run_id: params.run_id, message: 'Job is successfully bound' });
+    return json({ id: paramId, run_id: params.run_id, message: 'Job bound successfully ' });
   } catch (error) {
     console.error(error);
     return json(
-      { id: paramId, run_id: params.run_id, message: 'Failed to bind job' },
+      { id: paramId, run_id: params.run_id, message: 'Failed to bind job', error },
       { status: 500 },
     );
   }

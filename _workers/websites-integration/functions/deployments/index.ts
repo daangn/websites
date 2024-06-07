@@ -14,17 +14,22 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   const stub = context.env.DEPLOYMENT.get(id);
 
   try {
-    const { state } = await stub.init(params, bindUrl.toString(), callbackUrl.toString());
+    const ok = await stub.init(params, bindUrl.toString(), callbackUrl.toString());
+    if (!ok) {
+      return json({ id: id.toString(), message: 'Already initialized' }, { status: 400 });
+    }
     return json({
-      state,
       id: id.toString(),
       bind_url: bindUrl.toString(),
       check_url: checkUrl.toString(),
       callback_url: callbackUrl.toString(),
       artifact_url: artifactUrl.toString(),
     });
-  } catch (err) {
-    console.error(err);
-    return json({ message: 'Failed to initialize a deployment' }, { status: 500 });
+  } catch (error) {
+    console.error(error);
+    return json(
+      { id: id.toString(), message: 'Failed to create a deployment', error },
+      { status: 500 },
+    );
   }
 };
