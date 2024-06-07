@@ -1,5 +1,9 @@
 import { setInterval } from 'node:timers/promises';
 import { parseArgs } from 'node:util';
+import { createWriteStream } from 'node:fs';
+import { Readable } from 'node:stream';
+import { finished } from 'node:stream/promises';
+import prettyMilliseconds from 'pretty-ms';
 
 import { $ } from 'zx';
 
@@ -19,7 +23,12 @@ if (CF_PAGES !== '1') {
   throw new Error("deployment-awaiter should be executed only on Cloudflare Pages' build");
 }
 
+const startedAt = Date.now();
+
 const deploymentUrl = new URL(WEBSITES_DEPLOYMENT_ENDPOINT);
+const headers = new Headers({
+  Authorization: `AdminKey ${WEBSITES_ADMIN_KEY}`,
+});
 
 const { values } = parseArgs({
   args: process.argv.slice(2),
@@ -42,11 +51,7 @@ const params = {
 
 const initResponse = await fetch(deploymentUrl, {
   method: 'POST',
-  headers: {
-    Accept: 'application/json',
-    Authorization: `AdminKey ${WEBSITES_ADMIN_KEY}`,
-    'Content-Type': 'application/json',
-  },
+  headers,
   body: JSON.stringify(params),
 });
 const initData = await initResponse.json();
@@ -66,16 +71,11 @@ const artifactUrl = new URL(initData.artifact_url);
 const timeout = Number.parseInt(values.timeout);
 for await (const startTime of setInterval(5000, Date.now())) {
   if (Date.now() - startTime >= timeout) {
-    console.error(`Timeout exceeded (${timeout} ms)`);
+    console.error(`Timeout exceeded (${prettyMilliseconds(timeout)})`);
     process.exit(1);
   }
 
-  const res = await fetch(checkUrl, {
-    headers: {
-      Accept: 'application/json',
-      Authorization: `AdminKey ${WEBSITES_ADMIN_KEY}`,
-    },
-  });
+  const res = await fetch(checkUrl, { headers });
   const data = await res.json();
   if (!res.ok) {
     console.error({ status: res.status, data });
@@ -91,7 +91,7 @@ for await (const startTime of setInterval(5000, Date.now())) {
   if (state.runId && !bound) {
     bound = true;
     runUrl = `https://github.com/daangn/websites/actions/runs/${state.runId}`;
-    console.log(`Awaiting build completed on ${runUrl} (timeout: ${timeout}ms)`);
+    console.log(`Waiting for job to finish on ${runUrl} (timeout: ${prettyMilliseconds(timeout)})`);
   }
 
   if (state.type === 'IN_PROGRESS') {
@@ -114,7 +114,21 @@ for await (const startTime of setInterval(5000, Date.now())) {
 }
 
 console.log('Downloading artifact...');
-await $`curl -fL -H "Authorization: AdminKey ${WEBSITES_ADMIN_KEY}" "${artifactUrl.toString()}" -o public.tar.zst`;
+const downloadRes = await fetch(artifactUrl, { headers });
+if (!downloadRes.ok) {
+  console.error('Failed to download artifact');
+  try {
+    const resData = await downloadRes.json();
+    console.error('status: %d, res: %o', downloadRes.status, resData);
+  } catch {
+    console.error('status: %d, res: %s', downloadRes.status, downloadRes.statusText);
+  }
+  process.exit(1);
+}
+const fileStream = createWriteStream('public.tar.zst');
+await finished(Readable.from(downloadRes.body).pipe(fileStream));
 
 console.log('Extracting artifact...');
 await $`tar --use-compress-program="zstd -d" -xvf public.tar.zst`;
+
+console.log(`Build is ready in ${prettyMilliseconds(Date.now() - startedAt)}`);

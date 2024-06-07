@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@octokit/rest": "^20.1.1",
+    "pretty-ms": "^9.0.0",
     "zx": "^8.1.2"
   },
   "devDependencies": {
