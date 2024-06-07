@@ -3,6 +3,7 @@
 .env
 .envrc
 .dev.vars
+.wrangler/
 
 *.DS_Store
 *.log
