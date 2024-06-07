@@ -58,6 +58,7 @@ if (!initResponse.ok) {
 console.log(`Deployment(id: ${initData.id}) initialized`);
 
 let state = initData.state;
+let bound = false;
 
 const checkUrl = new URL(initData.check_url);
 const artifactUrl = new URL(initData.artifact_url);
@@ -85,21 +86,25 @@ for await (const startTime of setInterval(5000, Date.now())) {
   if (state.type === 'IDLE') {
     throw new Error('invariant');
   }
+
+  let runUrl;
+  if (state.runId && !bound) {
+    bound = true;
+    runUrl = `https://github.com/daangn/websites/actions/runs/${state.runId}`;
+    console.log(`Awaiting build completed on ${runUrl} (timeout: ${timeout}ms)`);
+  }
+
   if (state.type === 'IN_PROGRESS') {
-    console.log('Awaiting build complete...');
     continue;
   }
+
   if (state.type === 'DONE') {
     if (state.status === 'failure') {
-      console.error(
-        `Workflow run failed: https://github.com/daangn/websites/actions/runs/${state.runId}`,
-      );
+      console.error(`Workflow run failed: ${runUrl}`);
       process.exit(1);
     }
     if (state.status === 'cancelled') {
-      console.error(
-        `Workflow run cancelled: https://github.com/daangn/websites/actions/runs/${state.runId}`,
-      );
+      console.error(`Workflow run failed: ${runUrl}`);
       process.exit(1);
     }
     if (state.status === 'success') {
@@ -109,7 +114,7 @@ for await (const startTime of setInterval(5000, Date.now())) {
 }
 
 console.log('Downloading artifact...');
-await $`curl -fL -H "Authorization: ${WEBSITES_ADMIN_KEY}" "${artifactUrl.toString()}" -o public.tar.zst`;
+await $`curl -fL -H "Authorization: AdminKey ${WEBSITES_ADMIN_KEY}" "${artifactUrl.toString()}" -o public.tar.zst`;
 
 console.log('Extracting artifact...');
 await $`tar --use-compress-program="zstd -d" -xvf public.tar.zst`;

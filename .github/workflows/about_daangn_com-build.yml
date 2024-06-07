@@ -81,7 +81,14 @@ jobs:
       - name: Upload artifact
         run: |
           cd about.daangn.com && \
-          rclone copyto --log-level INFO \
+          rclone copyto \
+            --transfers 8 \
+            --checkers 50 \
+            --buffer-size 128M \
+            --s3-chunk-size 128M \
+            --s3-upload-concurrency 8 \
+            --log-level INFO \
+            --stats 5 \
             "public.tar.zst" \
             "r2:websites-artifacts/about.daangn.com/${{ inputs.deployment_id }}.tar.zst"
 
