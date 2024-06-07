@@ -26,7 +26,7 @@ export const onRequestPost: PagesFunction<Env, 'id'> = async (context) => {
     console.error(err);
 
     // @ts-ignore
-    return json({ message: err?.message || err.toString() }, { status: 500 });
+    return json({ message: err?.message || err.toString() }, { status: 400 });
   }
 
   return json(null, { status: 204 });
