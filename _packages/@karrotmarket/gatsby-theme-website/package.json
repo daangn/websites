@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "peerDependencies": {
-    "@karrotmarket/gatsby-theme-prismic": "*",
+    "@karrotmarket/gatsby-theme-prismic": "workspace:*",
     "@stitches/react": "^0.1.0 || ^0.2.0 || ^1.0.0",
     "gatsby": "^5.3.0",
     "polished": "^4.0.0",
