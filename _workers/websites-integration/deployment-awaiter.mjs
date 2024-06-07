@@ -68,6 +68,7 @@ const artifactUrl = new URL(initData.artifact_url);
 const timeout = Number.parseInt(values.timeout);
 
 let bound = false;
+let runUrl;
 
 for await (const startTime of setInterval(5000, Date.now())) {
   if (Date.now() - startTime >= timeout) {
@@ -87,7 +88,6 @@ for await (const startTime of setInterval(5000, Date.now())) {
     throw new Error('invariant');
   }
 
-  let runUrl;
   if (state.runId && !bound) {
     bound = true;
     runUrl = `https://github.com/daangn/websites/actions/runs/${state.runId}`;

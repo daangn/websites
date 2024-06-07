@@ -82,13 +82,16 @@ jobs:
         run: |
           cd about.daangn.com && \
           rclone copyto \
+            --stats 5 \
+            --log-level INFO \
+            --disable-http2 \
             --transfers 8 \
             --checkers 50 \
             --buffer-size 128M \
             --s3-chunk-size 128M \
             --s3-upload-concurrency 8 \
-            --log-level INFO \
-            --stats 5 \
+            --contimeout 10s --timeout 300s \
+            --retries 5 --low-level-retries 10 \
             "public.tar.zst" \
             "r2:websites-artifacts/about.daangn.com/${{ inputs.deployment_id }}.tar.zst"
 
