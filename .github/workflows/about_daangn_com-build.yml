@@ -85,9 +85,9 @@ jobs:
             --stats 5 \
             --log-level INFO \
             --disable-http2 \
-            --buffer-size 256M \
-            --s3-chunk-size 256M \
-            --s3-upload-concurrency 16 \
+            --buffer-size 128M \
+            --s3-chunk-size 128M \
+            --s3-upload-concurrency 4 \
             --contimeout 10s --timeout 300s \
             --retries 5 --low-level-retries 10 \
             "public.tar.zst" \
