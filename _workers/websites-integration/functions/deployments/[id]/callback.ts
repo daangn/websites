@@ -28,8 +28,7 @@ export const onRequestPost: PagesFunction<Env, 'id'> = async (context) => {
     return json(
       {
         id: paramId,
-        message: 'Callback failed, perhaps the deployment has already finished',
-        error,
+        message: 'Callback failed, perhaps the deployment has already been finished',
       },
       { status: 400 },
     );

@@ -23,8 +23,7 @@ export const onRequestGet: PagesFunction<Env, 'id'> = async (context) => {
     return json({ id: paramId, state });
   } catch (error) {
     console.error(error);
-
-    return json({ id: paramId, message: 'Invalid state', error }, { status: 500 });
+    return json({ id: paramId, message: 'Invalid state' }, { status: 500 });
   }
 };
 
@@ -55,9 +54,8 @@ export const onRequestPost: PagesFunction<Env, 'id'> = async (context) => {
     return json({ id: paramId, run_id: params.run_id, message: 'Job is successfully bound' });
   } catch (error) {
     console.error(error);
-
     return json(
-      { id: paramId, run_id: params.run_id, message: 'Failed to bind job', error },
+      { id: paramId, run_id: params.run_id, message: 'Failed to bind job' },
       { status: 500 },
     );
   }

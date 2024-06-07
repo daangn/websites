@@ -23,9 +23,7 @@ export const onRequestGet: PagesFunction<Env, 'id'> = async (context) => {
     state = await stub.getCurrentState();
   } catch (error) {
     console.error(error);
-
-    // @ts-ignore
-    return json({ id: paramId, message: 'Invalid state', error }, { status: 500 });
+    return json({ id: paramId, message: 'Invalid state' }, { status: 500 });
   }
 
   if (state.type === 'DONE' && state.artifactName) {

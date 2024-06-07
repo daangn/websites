@@ -25,8 +25,6 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     });
   } catch (err) {
     console.error(err);
-
-    // @ts-ignore
-    return json({ message: err?.message || err.toString() }, { status: 500 });
+    return json({ message: 'Failed to initialize a deployment' }, { status: 500 });
   }
 };
