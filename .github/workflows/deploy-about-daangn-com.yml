@@ -1,0 +1,174 @@
+name: Deploy about.daangn.com
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/deploy-about-daangn-com.yml
+      - _packages/@karrotmarket/gatsby-*/**
+      - about.daangn.com/**
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    concurrency:
+      group: workflow-${{ github.workflow }}
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: yarn
+
+      - name: Install Dependencies
+        run: yarn install --immutable
+
+      - name: Restore about.daangn.com content cache
+        id: content-cache
+        # Uses actions/cache instead of actions/upload-artifacts
+        #
+        # The implementation quality of actions/cache is superior to that of upload-artifacts/download-artifacts.
+        # However, there are complex constraints.
+        # See https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows#usage-limits-and-eviction-policy
+        #
+        # The current site artifact is about 500MB due to zstd compression.
+        #
+        # Choose appropriate key stretagy to reduce cache thrashing and maximize hits.
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            about.daangn.com/public
+          key: about_daangn_com-public-latest
+
+      - name: Restore about.daangn.com build cache
+        id: build-cache
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            about.daangn.com/.cache
+          key: about_daangn_com-${{ runner.os }}-cache-latest
+
+      - name: Build about.daangn.com
+        id: build
+        run: yarn workspace about.daangn.com build
+
+      # 빌드 직후에 워크플로우 취소되면 조금 곤란할 수도...
+      - name: Install actions-cache extension
+        run: gh extension install actions/gh-actions-cache
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Cleanup about.daangn.com stale content cache
+        run: |
+          gh actions-cache delete about_daangn_com-public-latest \
+            -R ${{ github.repository }} \
+            -B ${{ github.ref }} \
+            --confirm || echo "not exist"
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Persist about.daangn.com content cache
+        uses: actions/cache/save@v4
+        with:
+          path: about.daangn.com/public
+          key: about_daangn_com-public-latest
+
+      - name: Cleanup about.daangn.com stale build cache
+        run: |
+          gh actions-cache delete about_daangn_com-${{ runner.os }}-cache-latest \
+            -R ${{ github.repository }} \
+            -B ${{ github.ref }} \
+            --confirm || echo "not exist"
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Persist about.daangn.com build cache
+        uses: actions/cache/save@v4
+        with:
+          path: about.daangn.com/.cache
+          key: about_daangn_com-${{ runner.os }}-cache-latest
+
+  # 배포는 Atomicity 보장을 위해 Concurrency 제약이 있으면 안됨
+  # 실제로는 빌드 디펜던시가 걸려서 배포 경합은 없을 것
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Setup Rclone
+        uses: cometkim/rclone-actions/setup-rclone@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Rclone
+        run: |
+          mkdir -p ~/.config/rclone
+          {
+            echo "[r2]"
+            echo "type = s3"
+            echo "provider = Cloudflare"
+            echo "access_key_id = ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}"
+            echo "secret_access_key = ${{ secrets.CLOUDFLARE_R2_SECRET_ACCESS_KEY }}"
+            echo "endpoint = https://${{ secrets.CLOUDFLARE_ACCOUNT_ID }}.r2.cloudflarestorage.com"
+            echo "acl = private"
+          } > ~/.config/rclone/rclone.conf
+
+      - name: Get date
+        id: get-date
+        run: |
+          echo "date=$(/bin/date -u "+%Y%m%d")" >> $GITHUB_OUTPUT
+
+      - name: Restore about.daangn.com latest content cache
+        id: content-cache
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            about.daangn.com/public
+          key: about_daangn_com-public-latest
+          fail-on-cache-miss: true
+
+      - name: Upload artifacts (immutable first)
+        run: |
+          rclone copy \
+            --checksum \
+            --fast-list \
+            --transfers 8 \
+            --checkers 50 \
+            --buffer-size 128M \
+            --log-level INFO \
+            --stats 5 \
+            --immutable --ignore-existing \
+            about.daangn.com/public/static r2:websites-about-daangn-com/static
+
+      - name: Upload artifacts (rest)
+        run: |
+          rclone copy \
+            --checksum \
+            --fast-list \
+            --transfers 8 \
+            --checkers 50 \
+            --buffer-size 128M \
+            --log-level INFO \
+            --stats 5 \
+            --exclude "about.daangn.com/public/static/**" \
+            about.daangn.com/public r2:websites-about-daangn-com
+
+      - name: Invalidate PUBLIC_TAG
+        run: |
+          echo "${{ hashFiles('about.daangn.com/public/**') }}" |\
+            npx wrangler pages secret put PUBLIC_TAG \
+              --project about-daangn-com-production
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
