@@ -28,7 +28,7 @@ Cron 스케줄을 통해 매일 빌드 캐시를 만들어 Actions Cache로 저�
 
 ## Configuration
 
-![Deployment Configuration Overview](https://github.com/daangn/websites/tree/main/_docs/images/deployment-configuration-overview.png)
+![Deployment Configuration Overview](../../_docs/images/deployment-configuration-overview.png)
 
 (Enterprise 도메인이 있는 경우) Cloudflare Pages를 주 플랫폼으로 사용합니다.
 
