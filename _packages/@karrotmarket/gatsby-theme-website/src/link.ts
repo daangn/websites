@@ -41,7 +41,7 @@ export function parseLink(urlString: string, baseOrigin: string): LinkType {
   const baseUrl = new URL(baseOrigin);
   const url = new URL(urlString, baseOrigin);
   if (baseUrl.origin === url.origin) {
-    return { t: 'Internal', pathname: url.pathname };
+    return { t: 'Internal', pathname: url.pathname + url.search };
   } else {
     return { t: 'External', url };
   }
