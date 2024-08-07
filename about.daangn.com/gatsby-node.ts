@@ -70,6 +70,9 @@ export const createPages: GatsbyNode['createPages'] = async ({
             in: ["team.daangn.com"]
           }
         }
+        sort: {
+          first_publication_date: DESC
+        }
       ) {
         nodes {
           uid
