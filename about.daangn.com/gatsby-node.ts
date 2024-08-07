@@ -140,6 +140,18 @@ export const createPages: GatsbyNode['createPages'] = async ({
     isPermanent: false,
     redirectInBrowser: true,
   });
+  actions.createRedirect({
+    fromPath: '/ir/finances/2022-seperate/',
+    toPath: '/ir/finances/2022-separate/',
+    isPermanent: true,
+    redirectInBrowser: false,
+  });
+  actions.createRedirect({
+    fromPath: '/ir/finances/2023-seperate/',
+    toPath: '/ir/finances/2023-separate/',
+    isPermanent: true,
+    redirectInBrowser: false,
+  });
 
   actions.createPage({
     path: '/blog/',
