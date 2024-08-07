@@ -10,8 +10,14 @@ export const query = graphql`
     ...TeamWebsite_DefaultLayout_query
 
     allPrismicFinancialStatements(
-      filter: {tags: {in: ["team.daangn.com"]}}
-      sort: {data: {year: DESC}}
+      filter: {
+        tags: {
+          in: ["team.daangn.com"]
+        }
+      }
+      sort: {
+        first_publication_date: DESC
+      }
     ) {
       nodes {
         uid
