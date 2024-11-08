@@ -192,9 +192,11 @@ export const createSchemaCustomization = ({
             if (!node.data.related_posts || node.data.related_posts.length === 0) {
               return [];
             }
+            // TODO: post.isBroken 은 원본이 제거된 참조의 경우
+            //  어떻게 찾아 지울 수 있게 검증 및 가이드 마련 필요함
             return node.data.related_posts
-              .map(({ post }) => ('id' in post ? post.id : null))
-              .filter(Boolean);
+              .filter(({ post }) => 'id' in post && !post.isBroken)
+              .map(({ post }) => 'id' in post && post.id);
           },
         },
         body: {
