@@ -143,6 +143,7 @@ export const createPages = async ({ graphql, actions }, pluginOptions) => {
    *      enable_faq_page?: boolean;
    *      enable_life_page?: boolean;
    *      enable_culture_page?: boolean;
+   *      use_confirmation_email?: boolean;
    *      faq_page_entries: Array<{
    *        faq_page: {
    *          document: {
@@ -190,6 +191,7 @@ export const createPages = async ({ graphql, actions }, pluginOptions) => {
           enable_faq_page
           enable_life_page
           enable_culture_page
+          use_confirmation_email
           faq_page_entries {
             faq_page {
               document {
@@ -303,6 +305,7 @@ export const createPages = async ({ graphql, actions }, pluginOptions) => {
         navigationId,
         id: jobPost.id,
         ghId: jobPost.ghId,
+        useComfirmationEmail: data.prismicTeamContents?.data?.use_confirmation_email ?? false,
       },
     });
   }

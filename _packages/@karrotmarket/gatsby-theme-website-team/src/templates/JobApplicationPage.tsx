@@ -28,6 +28,7 @@ export const query = graphql`
     $id: String!
     $locale: String!
     $navigationId: String!
+    $useConfirmiationEmail: Boolean!
   ) {
     ...TeamWebsite_DefaultLayout_query
     ...TeamWebsite_JobPostLayout_query
@@ -155,8 +156,10 @@ const makeEndpoint = (boardToken: string, jobId: string): string => {
 };
 
 type JobApplicationPageProps = PageProps<GatsbyTypes.TeamWebsite_JobApplicationPageQuery>;
-const JobApplicationPage: React.FC<JobApplicationPageProps> = ({ data }) => {
+const JobApplicationPage: React.FC<JobApplicationPageProps> = ({ data, pageContext }) => {
   required(data.jobPost);
+
+  const useConfirmiationEmail = pageContext.useConfirmiationEmail ?? false;
 
   const messages = useTranslation();
   const [state, dispatch] = React.useReducer(reducer, initialState);
@@ -170,14 +173,13 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({ data }) => {
   // 사실 이거 없어도 기본 폼으로 100% 동작함
   type SubmitHandler = NonNullable<PropOf<typeof Form, 'onSubmit'>>;
   const handleSubmit: SubmitHandler = (e) => {
-    e.preventDefault();
-
     if (!formRef.current) {
       return;
     }
 
-    const formData = new FormData(formRef.current);
+    e.preventDefault();
 
+    const formData = new FormData(formRef.current);
     (async () => {
       required(data.jobPost);
 
@@ -189,7 +191,11 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({ data }) => {
         });
         if (response.ok) {
           dispatch('FETCH_COMPLETE');
-          window.alert(messages.job_application_page__alert_completed);
+          window.alert(
+            useConfirmiationEmail
+              ? messages.job_application_page__alert_completed_check_email
+              : messages.job_application_page__alert_completed,
+          );
         } else {
           dispatch('INVALID');
           const message = await response.text();
@@ -242,6 +248,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({ data }) => {
         type="email"
         name="email"
         label={messages.job_application_page__field_email_label}
+        description={messages.job_application_page__field_email_description}
         placeholder={messages.job_application_page__field_email_placeholder}
         required
       />
