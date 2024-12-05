@@ -28,7 +28,6 @@ export const query = graphql`
     $id: String!
     $locale: String!
     $navigationId: String!
-    $useConfirmiationEmail: Boolean!
   ) {
     ...TeamWebsite_DefaultLayout_query
     ...TeamWebsite_JobPostLayout_query
