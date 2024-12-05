@@ -36,7 +36,6 @@ export const query = graphql`
 
 const Container = styled('main', {
   contentArea: true,
-  contentSpaceTop: true,
   display: 'grid',
   gap: rem(24),
   alignItems: 'center',
@@ -55,6 +54,7 @@ const Message = styled('div', {
 const ButtonLinkGroup = styled('div', {
   display: 'flex',
   flexDirection: 'column',
+  alignItems: 'center',
   gap: rem(16),
 });
 
@@ -82,6 +82,7 @@ const CompletedPage: React.FC<CompletedPageProps> = (pageProps) => {
                   key={i}
                   to={link.pathname}
                   type={i === 0 ? 'primary' : 'default'}
+                  css={{ width: '60%', minWidth: rem(240) }}
                   fullWidth={{ initial: true, '@sm': false }}
                 >
                   {entry.display_text}
@@ -96,7 +97,7 @@ const CompletedPage: React.FC<CompletedPageProps> = (pageProps) => {
                   rel="external noopener"
                   href={link.url.href}
                   type={i === 0 ? 'primary' : 'default'}
-                  fullWidth={{ initial: true, '@sm': false }}
+                  css={{ width: '60%', minWidth: rem(240) }}
                 >
                   {entry.display_text}
                 </ButtonLink>
