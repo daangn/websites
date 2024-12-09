@@ -36,6 +36,7 @@ export const query = graphql`
 
 const Container = styled('main', {
   contentArea: true,
+  contentSpaceTop: true,
   display: 'grid',
   gap: rem(24),
   alignItems: 'center',
