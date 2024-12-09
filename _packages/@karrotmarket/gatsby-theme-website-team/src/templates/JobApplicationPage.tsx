@@ -158,7 +158,7 @@ type JobApplicationPageProps = PageProps<GatsbyTypes.TeamWebsite_JobApplicationP
 const JobApplicationPage: React.FC<JobApplicationPageProps> = ({ data, pageContext }) => {
   required(data.jobPost);
 
-  const useConfirmiationEmail = pageContext.useConfirmiationEmail ?? false;
+  const useConfirmationEmail = pageContext.useConfirmationEmail ?? false;
 
   const messages = useTranslation();
   const [state, dispatch] = React.useReducer(reducer, initialState);
@@ -191,7 +191,7 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({ data, pageConte
         if (response.ok) {
           dispatch('FETCH_COMPLETE');
           window.alert(
-            useConfirmiationEmail
+            useConfirmationEmail
               ? messages.job_application_page__alert_completed_check_email
               : messages.job_application_page__alert_completed,
           );
