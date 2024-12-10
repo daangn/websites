@@ -305,7 +305,7 @@ export const createPages = async ({ graphql, actions }, pluginOptions) => {
         navigationId,
         id: jobPost.id,
         ghId: jobPost.ghId,
-        useComfirmationEmail: data.prismicTeamContents?.data?.use_confirmation_email ?? false,
+        useConfirmationEmail: data.prismicTeamContents?.data?.use_confirmation_email ?? false,
       },
     });
   }
