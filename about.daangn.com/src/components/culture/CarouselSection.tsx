@@ -6,8 +6,7 @@ import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import { SimpleReveal } from 'simple-reveal';
 
-import { ReactComponent as ArrowLineLeft } from '../../assets/arrow_line_left.svg';
-import { ReactComponent as ArrowLineRight } from '../../assets/arrow_line_right.svg';
+import { IconArrowLeftFill, IconArrowRightFill } from '@daangn/react-monochrome-icon';
 
 type ArrowProps = {
   clickHandler: () => void;
@@ -21,14 +20,14 @@ type CarouselProps = {
 const PrevArrow: React.FC<ArrowProps> = (clickHandler, hasPrev) =>
   hasPrev && (
     <PrevArrowWapper onClick={clickHandler}>
-      <ArrowLineLeft />
+      <IconArrowLeftFill size={16} />
     </PrevArrowWapper>
   );
 
 const NextArrow: React.FC<ArrowProps> = (clickHandler, hasNext) =>
   hasNext && (
     <NextArrowWapper onClick={clickHandler}>
-      <ArrowLineRight />
+      <IconArrowRightFill size={16} />
     </NextArrowWapper>
   );
 

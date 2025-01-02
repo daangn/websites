@@ -1710,6 +1710,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@daangn/react-monochrome-icon@npm:^0.0.14":
+  version: 0.0.14
+  resolution: "@daangn/react-monochrome-icon@npm:0.0.14::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40daangn%2Freact-monochrome-icon%2F0.0.14%2F3f3426bb4125879dfd5bb1c7863dcd0bf0770784"
+  peerDependencies:
+    "@types/react": "*"
+    react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+  checksum: 10c0/8dddd9360a11332509597b842e530338fa2a5ec16757a15060c06ae40d8d907897db5b90aa24d0c91400fd96486a95dfda5048a01790647d9e4cb280f0085138
+  languageName: node
+  linkType: hard
+
 "@daangn/websites@workspace:.":
   version: 0.0.0-use.local
   resolution: "@daangn/websites@workspace:."
@@ -4888,6 +4898,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "about.daangn.com@workspace:about.daangn.com"
   dependencies:
+    "@daangn/react-monochrome-icon": "npm:^0.0.14"
     "@karrotmarket/gatsby-source-greenhouse-jobboard": "npm:^0.10.1"
     "@karrotmarket/gatsby-theme-prismic": "workspace:^"
     "@karrotmarket/gatsby-theme-website-team": "workspace:^"

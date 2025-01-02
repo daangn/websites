@@ -4,8 +4,7 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import React from 'react';
 
-import { ReactComponent as QuoteClose } from '../../assets/icon_quote_close.svg';
-import { ReactComponent as QuoteOpen } from '../../assets/icon_quote_open.svg';
+import { IconQuotationmark2LeftFill, IconQuotationmark2RightFill } from '@daangn/react-monochrome-icon';
 
 type PostBodyQuoteProps = {
   slice: GatsbyTypes.PostQuoteSection;
@@ -14,7 +13,7 @@ type PostBodyQuoteProps = {
 const PostBodyQuote: React.FC<PostBodyQuoteProps> = ({ slice }) => {
   return (
     <Container>
-      <QuoteOpen style={{ width: '18px' }} />
+      <IconQuotationmark2LeftFill size={18} />
       <PrismicRichText
         field={slice.primary.quote}
         components={{
@@ -24,7 +23,7 @@ const PostBodyQuote: React.FC<PostBodyQuoteProps> = ({ slice }) => {
           heading5: ({ children, key }) => <Heading5 key={key}>{children}</Heading5>,
         }}
       />
-      <QuoteClose style={{ width: '18px' }} />
+      <IconQuotationmark2RightFill size={18} />
     </Container>
   );
 };

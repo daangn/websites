@@ -1,6 +1,5 @@
-import SeedIcon from '@karrotmarket/gatsby-theme-seed-design/src/Icon';
+import { IconMagnifyingglassLine } from '@daangn/react-monochrome-icon';
 import { vars } from '@seed-design/design-token';
-import { navigate } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import * as React from 'react';
@@ -20,7 +19,7 @@ const SearchInput = ({ search, onSearchChange }: Props) => {
 
   return (
     <Container>
-      <Icon name="icon_search_regular" />
+      <Icon />
       <Input
         type="text"
         placeholder="블로그 검색"
@@ -51,9 +50,9 @@ const Container = styled('div', {
   },
 });
 
-const Icon = styled(SeedIcon, {
-  width: rem(24),
-  height: rem(24),
+const Icon = styled(IconMagnifyingglassLine, {
+  width: rem(22),
+  height: rem(22),
 
   ':focus-within > &': {
     color: vars.$scale.color.gray800,
