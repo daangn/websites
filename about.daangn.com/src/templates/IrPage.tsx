@@ -1,5 +1,5 @@
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
-import SeedIcon from '@karrotmarket/gatsby-theme-seed-design/src/Icon';
+import { IconArrowLeftLine } from '@daangn/react-monochrome-icon';
 import PageTitle from '@karrotmarket/gatsby-theme-website-team/src/components/PageTitle';
 import { vars } from '@seed-design/design-token';
 import { type HeadProps, Link, type PageProps, graphql, navigate, withPrefix } from 'gatsby';
@@ -149,7 +149,7 @@ const IrPage: React.FC<IrPageProps> = ({ data: prismicData }) => {
           }
         }}
       >
-        <SeedIcon name="icon_backward_regular" size="100%" />
+        <IconArrowLeftLine size={rem(22)} />
       </PreviousLink>
       <Content>
         <ContentHeader>

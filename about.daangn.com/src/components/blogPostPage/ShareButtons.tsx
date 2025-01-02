@@ -1,8 +1,8 @@
-import SeedIcon from '@karrotmarket/gatsby-theme-seed-design/src/Icon';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import * as React from 'react';
 
+import { IconAndroidshareFill } from '@daangn/react-monochrome-icon';
 import { ReactComponent as FacebookIcon } from '../../assets/facebook.svg';
 import { ReactComponent as LinkedinIcon } from '../../assets/linkedin.svg';
 import { ReactComponent as TwitterIcon } from '../../assets/twitter.svg';
@@ -59,7 +59,7 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({ onClickLinkShare }) => {
         <TwitterIcon />
       </Button>
       <Button onClick={onClickShare}>
-        <SeedIcon name="icon_ios_share_regular" size="100%" />
+        <IconAndroidshareFill size={rem(22)} />
       </Button>
     </ShareContainer>
   );
