@@ -58,16 +58,19 @@ export const corporate = (node, { reporter }) => {
           return 'KARROT_MARKET';
         case null: {
           reporter.warn(reporter.stripIndent`
-          Corporate 필드 값이 비어있습니다. (See https://app3.greenhouse.io/plans/${node.ghId})
-        `);
+            Corporate 필드 값이 비어있습니다. (See https://app3.greenhouse.io/plans/${node.ghId})
+          `);
           return null;
         }
         default: {
           reporter.error(reporter.stripIndent`
-          알 수 없는 Corporate 필드 값 입니다. 값: ${field.value}
-          Greenhouse 에서 커스텀 필드 형식을 확인하고 코드를 올바르게 변경해주세요.
-          See https://app3.greenhouse.io/custom_fields/jobs/${fieldId}
-        `);
+            알 수 없는 Corporate 필드 값 입니다. 값: ${field.value}
+
+            Greenhouse 에서 커스텀 필드 형식을 확인하고 코드를 올바르게 변경해주세요.
+
+            See https://app3.greenhouse.io/custom_fields/jobs/${fieldId}
+            See https://app3.greenhouse.io/plans/${node.ghId}
+          `);
           return null;
         }
       }
@@ -106,6 +109,7 @@ export const employmentType = (node, { reporter }) => {
           Greenhouse 에서 커스텀 필드 형식을 확인하고 코드를 올바르게 변경해주세요.
 
           See https://app3.greenhouse.io/custom_fields/jobs/${fieldId}
+          See https://app3.greenhouse.io/plans/${node.ghId}
         `);
       }
     })()
@@ -136,6 +140,7 @@ export const alternativeCivilianService = (node, { reporter }) => {
       Greenhouse 에서 커스텀 필드 형식을 확인하고 코드를 올바르게 변경해주세요.
 
       See https://app3.greenhouse.io/custom_fields/jobs/${fieldId}
+      See https://app3.greenhouse.io/plans/${node.ghId}
     `);
     })()
   );
@@ -168,6 +173,7 @@ export const priorExperience = (node, { reporter }) => {
           Greenhouse 에서 커스텀 필드 형식을 확인하고 코드를 올바르게 변경해주세요.
 
           See https://app3.greenhouse.io/custom_fields/jobs/${fieldId}
+          See https://app3.greenhouse.io/plans/${node.ghId}
         `);
       }
     })()
