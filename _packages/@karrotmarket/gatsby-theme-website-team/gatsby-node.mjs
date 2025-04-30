@@ -7,6 +7,8 @@
  */
 
 import { createRequire } from 'node:module';
+import slugify from 'cjk-slug';
+
 const require = createRequire(import.meta.url);
 
 const gql = String.raw;
@@ -256,14 +258,14 @@ export const createPages = async ({ graphql, actions }, pluginOptions) => {
   ) {
     actions.createRedirect({
       fromPath: '/faq/',
-      toPath: `/faq/${data.prismicTeamContents.data.faq_page_entries[0].faq_page.document.uid}/`,
+      toPath: `/faq/${slugify(data.prismicTeamContents.data.faq_page_entries[0].faq_page.document.uid)}/`,
       redirectInBrowser: true,
     });
 
     for (const faq of data.prismicTeamContents.data.faq_page_entries) {
       if (faq.faq_page.document.data.entries.length) {
         actions.createPage({
-          path: `/faq/${faq.faq_page.document.uid}/`,
+          path: `/faq/${slugify(faq.faq_page.document.uid)}/`,
           component: require.resolve('./src/templates/FaqPage.tsx'),
           context: {
             locale,
@@ -335,7 +337,7 @@ export const createPages = async ({ graphql, actions }, pluginOptions) => {
 
   for (const article of data.allPrismicTeamsArticle.nodes) {
     actions.createPage({
-      path: `/jobs/article/${article.uid}/`,
+      path: `/jobs/article/${slugify(article.uid)}/`,
       component: require.resolve('./src/templates/PrismicTeamsArticlePage.tsx'),
       context: {
         locale,

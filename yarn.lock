@@ -2772,6 +2772,7 @@ __metadata:
     "@types/react": "npm:^18.2.66"
     "@types/react-dom": "npm:^18.2.22"
     babel-plugin-polished: "npm:^1.1.0"
+    cjk-slug: "npm:^0.3.1"
     clsx: "npm:^2.1.0"
     focus-trap-react: "npm:^10.2.3"
     framer-motion: "npm:^11.0.14"
