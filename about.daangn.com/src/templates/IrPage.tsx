@@ -88,6 +88,12 @@ const ContentHeader = styled('header', {
   gap: '1rem',
 });
 
+const ContentFooter = styled('footer', {
+  display: 'flex',
+  whiteSpace: 'pre',
+  typography: '$body2',
+});
+
 const Properties = styled('div', {
   typography: '$body2',
   display: 'flex',
@@ -199,6 +205,11 @@ const IrPage: React.FC<IrPageProps> = ({ data: prismicData }) => {
             </FileList>
           </AttachmentSection>
         )}
+        <ContentFooter>
+          {"(IR 관련 문의 : "}
+          <a href="mailto:ir@daangn.com">ir@daangn.com</a>
+          {" )"}
+        </ContentFooter>
       </Content>
     </Container>
   );
