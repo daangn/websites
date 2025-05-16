@@ -8,6 +8,7 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { matchSorter } from 'match-sorter';
 import { rem } from 'polished';
 import * as React from 'react';
+import slugify from 'cjk-slug';
 
 import FaqAccordion from '../components/FaqAccordion';
 import _FaqList from '../components/FaqList';
@@ -182,7 +183,7 @@ const FaqPage: React.FC<FaqPageProps> = ({ data }) => {
           {data.prismicTeamContents.data.faq_page_entries.map((faq) => (
             <FaqGroup key={faq.faq_page.id}>
               <FaqGroupLink
-                to={`/faq/${faq.faq_page.uid}/?${searchParams.toString()}`}
+                to={`/faq/${slugify(faq.faq_page.uid)}/?${searchParams.toString()}`}
                 selected={faq.faq_page.uid === data.prismicFaq.uid}
               >
                 {faq.faq_category_title}
