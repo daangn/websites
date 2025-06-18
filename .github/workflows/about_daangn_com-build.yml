@@ -33,8 +33,6 @@ jobs:
 
       - name: Setup Rclone
         uses: cometkim/rclone-actions/setup-rclone@main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Configure Rclone
         run: |
