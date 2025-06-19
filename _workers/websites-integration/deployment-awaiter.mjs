@@ -35,7 +35,7 @@ const startedAt = Date.now();
  */
 let artifactUrl;
 
-if (HOTFIX_DEPLOYMENT_NAME) {
+if (HOTFIX_DEPLOYMENT_OBJECT_URL) {
   artifactUrl = new URL(HOTFIX_DEPLOYMENT_OBJECT_URL);
 } else {
   const deploymentUrl = new URL(WEBSITES_DEPLOYMENT_ENDPOINT);
