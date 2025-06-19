@@ -22,7 +22,7 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "websites-integration:deployment": "deployment-awaiter --workflow about_daangn_com-build.yml --timeout 90000"
+    "websites-integration:deployment": "deployment-awaiter --workflow about_daangn_com-build.yml"
   },
   "dependencies": {
     "@karrotmarket/gatsby-source-greenhouse-jobboard": "^0.10.1",
