@@ -11,6 +11,11 @@ const {
   WEBSITES_ADMIN_KEY,
   WEBSITES_DEPLOYMENT_ENDPOINT,
 
+  /** 
+   * Force a deployment object for hotfix
+   */
+  HOTFIX_DEPLOYMENT_OBJECT_URL,
+
   // This script is available only on the Cloudflare Pages build, and some env vars will be injected from.
   // See https://developers.cloudflare.com/pages/configuration/build-configuration/
   CF_PAGES,
@@ -25,90 +30,99 @@ if (CF_PAGES !== '1') {
 
 const startedAt = Date.now();
 
-const deploymentUrl = new URL(WEBSITES_DEPLOYMENT_ENDPOINT);
-const headers = new Headers({
-  Authorization: `AdminKey ${WEBSITES_ADMIN_KEY}`,
-});
+/**
+ * @type {URL}
+ */
+let artifactUrl;
 
-const { values } = parseArgs({
-  args: process.argv.slice(2),
-  options: {
-    workflow: {
-      type: 'string',
+if (HOTFIX_DEPLOYMENT_NAME) {
+  artifactUrl = new URL(HOTFIX_DEPLOYMENT_OBJECT_URL);
+} else {
+  const deploymentUrl = new URL(WEBSITES_DEPLOYMENT_ENDPOINT);
+  const headers = new Headers({
+    Authorization: `AdminKey ${WEBSITES_ADMIN_KEY}`,
+  });
+
+  const { values } = parseArgs({
+    args: process.agv.slice(2),
+    options: {
+      workflow: {
+        type: 'string',
+      },
+      timeout: {
+        type: 'string',
+        default: (10 * 60 * 1000).toString(), // 10 mins
+      },
     },
-    timeout: {
-      type: 'string',
-      default: (10 * 60 * 1000).toString(), // 10 mins
-    },
-  },
-});
+  });
 
-const params = {
-  workflow_id: values.workflow,
-  ref: CF_PAGES_BRANCH,
-  commit_sha: CF_PAGES_COMMIT_SHA,
-};
+  const params = {
+    workflow_id: values.workflow,
+    ref: CF_PAGES_BRANCH,
+    commit_sha: CF_PAGES_COMMIT_SHA,
+  };
 
-const initResponse = await fetch(deploymentUrl, {
-  method: 'POST',
-  headers,
-  body: JSON.stringify(params),
-});
-const initData = await initResponse.json();
-if (!initResponse.ok) {
-  console.error({ status: initResponse.status, data: initData });
-  process.exit(1);
-}
-
-console.log(`Deployment(id: ${initData.id}) initialized`);
-
-const checkUrl = new URL(initData.check_url);
-const artifactUrl = new URL(initData.artifact_url);
-
-const timeout = Number.parseInt(values.timeout);
-
-let bound = false;
-let runUrl;
-
-for await (const startTime of setInterval(5000, Date.now())) {
-  if (Date.now() - startTime >= timeout) {
-    console.error(`Timeout exceeded (${prettyMilliseconds(timeout)})`);
+  const initResponse = await fetch(deploymentUrl, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(params),
+  });
+  const initData = await initResponse.json();
+  if (!initResponse.ok) {
+    console.error({ status: initResponse.status, data: initData });
     process.exit(1);
   }
 
-  const res = await fetch(checkUrl, { headers });
-  const data = await res.json();
-  if (!res.ok) {
-    console.error({ status: res.status, data });
-    process.exit(1);
-  }
+  console.log(`Deployment(id: ${initData.id}) initialized`);
 
-  const state = data.state;
-  if (state.type === 'IDLE') {
-    throw new Error('invariant');
-  }
+  const checkUrl = new URL(initData.check_url);
+  artifactUrl = new URL(initData.artifact_url);
 
-  if (state.runId && !bound) {
-    bound = true;
-    runUrl = `https://github.com/daangn/websites/actions/runs/${state.runId}`;
-    console.log(`Waiting for job to finish on ${runUrl} (timeout: ${prettyMilliseconds(timeout)})`);
-  }
+  const timeout = Number.parseInt(values.timeout);
 
-  if (state.type === 'IN_PROGRESS') {
-    continue;
-  }
+  let bound = false;
+  let runUrl;
 
-  if (state.type === 'DONE') {
-    if (state.status === 'failure') {
-      console.error(`Workflow run failed: ${runUrl}`);
+  for await (const startTime of setInterval(5000, Date.now())) {
+    if (Date.now() - startTime >= timeout) {
+      console.error(`Timeout exceeded (${prettyMilliseconds(timeout)})`);
       process.exit(1);
     }
-    if (state.status === 'cancelled') {
-      console.error(`Workflow run failed: ${runUrl}`);
+
+    const res = await fetch(checkUrl, { headers });
+    const data = await res.json();
+    if (!res.ok) {
+      console.error({ status: res.status, data });
       process.exit(1);
     }
-    if (state.status === 'success') {
-      break;
+
+    const state = data.state;
+    if (state.type === 'IDLE') {
+      throw new Error('invariant');
+    }
+
+    if (state.runId && !bound) {
+      bound = true;
+      runUrl = `https://github.com/daangn/websites/actions/runs/${state.runId}`;
+      console.log(`Waiting for job to finish on ${runUrl} (timeout: ${prettyMilliseconds(timeout)})`);
+    }
+
+    if (state.type === 'IN_PROGRESS') {
+      continue;
+    }
+
+    if (state.type === 'DONE') {
+      if (state.status === 'failure') {
+        console.error(`Workflow run failed: ${runUrl}`);
+        process.exit(1);
+      }
+      if (state.status === 'cancelled') {
+        console.error(`Workflow run failed: ${runUrl}`);
+        process.exit(1);
+      }
+      if (state.status === 'success') {
+        break;
+      }
     }
   }
 }
