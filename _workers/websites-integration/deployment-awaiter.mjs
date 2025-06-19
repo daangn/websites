@@ -46,7 +46,7 @@ if (HOTFIX_DEPLOYMENT_OBJECT_URL) {
   });
 
   const { values } = parseArgs({
-    args: process.agv.slice(2),
+    args: process.argv.slice(2),
     options: {
       workflow: {
         type: 'string',
