@@ -30,16 +30,18 @@ if (CF_PAGES !== '1') {
 
 const startedAt = Date.now();
 
-/**
- * @type {URL}
- */
+/** @type {URL} */
 let artifactUrl;
+
+/** @type {Headers | undefined} */
+let headers = undefined;
 
 if (HOTFIX_DEPLOYMENT_OBJECT_URL) {
   artifactUrl = new URL(HOTFIX_DEPLOYMENT_OBJECT_URL);
 } else {
   const deploymentUrl = new URL(WEBSITES_DEPLOYMENT_ENDPOINT);
-  const headers = new Headers({
+
+  headers = new Headers({
     Authorization: `AdminKey ${WEBSITES_ADMIN_KEY}`,
   });
 
