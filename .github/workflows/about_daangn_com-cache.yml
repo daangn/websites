@@ -33,7 +33,7 @@ jobs:
           path: |
             about.daangn.com/public
             about.daangn.com/.cache
-          key: cache-about_daangn_com
+          key: cache-about_daangn_com-v2
 
       - name: Build about.daangn.com
         id: build
@@ -41,7 +41,7 @@ jobs:
 
       - name: Delete stale cache
         run: |
-          gh actions-cache delete cache-about_daangn_com \
+          gh actions-cache delete cache-about_daangn_com-v2 \
             -R ${{ github.repository }} \
             -B ${{ github.ref }} \
             --confirm || echo "not exist"
@@ -54,4 +54,4 @@ jobs:
           path: |
             about.daangn.com/public
             about.daangn.com/.cache
-          key: cache-about_daangn_com
+          key: cache-about_daangn_com-v2

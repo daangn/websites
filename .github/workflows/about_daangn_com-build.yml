@@ -63,7 +63,7 @@ jobs:
           path: |
             about.daangn.com/public
             about.daangn.com/.cache
-          key: cache-about_daangn_com
+          key: cache-about_daangn_com-v2
 
       - name: Build about.daangn.com
         id: build
