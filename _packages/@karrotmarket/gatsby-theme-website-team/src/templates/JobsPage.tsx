@@ -68,6 +68,7 @@ export const query = graphql`
       totalCount
       nodes {
         corporate
+        employmentType
       }
     }
   }
@@ -189,17 +190,12 @@ const JobsPage: React.FC<JobsPageProps> = ({ data, pageContext, location }) => {
   const employmentType = initialSearchParams.get('etype') || '';
   const corporate = initialSearchParams.get('corp') || '';
 
-  const allCorporates = data.allJobPost.nodes.reduce((acc, jobPost) => {
-    const corporateType = jobPost.corporate;
-    for (const corporate of acc) {
-      if (corporate === corporateType) {
-        return acc;
-      }
-    }
-    acc.push(jobPost.corporate);
-
-    return acc;
-  }, []);
+  const allCorporates = new Set<string>();
+  const allEmploymentTypes = new Set<string>();
+  for (const jobPost of data.allJobPost.nodes) {
+    allCorporates.add(jobPost.corporate);
+    allEmploymentTypes.add(jobPost.employmentType);
+  }
 
   const allSelectedJobPosts = data.allDepartmentFilteredJobPost.nodes.filter((node) => {
     if (!corporate) return true;
@@ -299,28 +295,40 @@ const JobsPage: React.FC<JobsPageProps> = ({ data, pageContext, location }) => {
             <SelectWrapper css={{ gridArea: 'corporate' }}>
               <Select defaultValue={corporate} onChange={(e) => onFilterChange(e, 'corp')}>
                 <option key="*" value="">
-                  {$(messages.jobs_page__corporate_all, {
-                    n: () => <>{allCorporates.length}</>,
-                  })}
+                  {messages.jobs_page__corporate_all}
                 </option>
-                {allCorporates.map((corp) => {
-                  return (
-                    <option key={corp} value={corp}>
-                      {messages[`jobs_page__${corp}`]}
-                    </option>
-                  );
-                })}
+                {allCorporates.has("KARROT_MARKET") && (
+                  <option key="KARROT_MARKET" value="KARROT_MARKET">
+                    {messages.jobs_page__KARROT_MARKET}
+                  </option>
+                )}
+                {allCorporates.has("KARROT_PAY") && (
+                  <option key="KARROT_PAY" value="KARROT_PAY">
+                    {messages.jobs_page__KARROT_PAY}
+                  </option>
+                )}
+                {/* Note: corporate 추가까지 고려할 수 있어야 마땅하나 국제화 처리의 미비로 표시하지 않음. */}
               </Select>
               <ExpandIcon name="icon_expand_more_regular" aria-hidden />
             </SelectWrapper>
             <EtypeSelectWrapper css={{ gridArea: 'etype' }}>
               <Select value={employmentType} onChange={(e) => onFilterChange(e, 'etype')}>
                 <option value="">{messages.jobs_page__employment_type_all}</option>
-                <option value="FULL_TIME">{messages.jobs_page__employment_type_fulltime}</option>
-                <option value="CONTRACTOR">{messages.jobs_page__employment_type_contractor}</option>
-                <option value="INTERN">{messages.jobs_page__employment_type_intern}</option>
-                <option value="ASSISTANT">{messages.jobs_page__employment_type_assistant}</option>
-                <option value="PART_TIME">{messages.jobs_page__employment_type_parttime}</option>
+                {allEmploymentTypes.has("FULL_TIME") && (
+                  <option value="FULL_TIME">{messages.jobs_page__employment_type_fulltime}</option>
+                )}
+                {allEmploymentTypes.has("CONTRACTOR") && (
+                  <option value="CONTRACTOR">{messages.jobs_page__employment_type_contractor}</option>
+                )}
+                {allEmploymentTypes.has("INTERN") && (
+                  <option value="INTERN">{messages.jobs_page__employment_type_intern}</option>
+                )}
+                {allEmploymentTypes.has("ASSISTANT") && (
+                  <option value="ASSISTANT">{messages.jobs_page__employment_type_assistant}</option>
+                )}
+                {allEmploymentTypes.has("PART_TIME") && (
+                  <option value="PART_TIME">{messages.jobs_page__employment_type_parttime}</option>
+                )}
               </Select>
               <ExpandIcon name="icon_expand_more_regular" aria-hidden />
             </EtypeSelectWrapper>
