@@ -2,19 +2,18 @@ import { type HeadProps, type PageProps, graphql } from 'gatsby';
 import { HeadSeo, OpenGraph, TwitterCard } from 'gatsby-plugin-head-seo/src';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import * as React from 'react';
-
-import FullImageSection from '../../components/company/FullImageSection';
-import HorizontalCard from '../../components/company/HorizontalCard';
-import InvestorsSection from '../../components/company/InvestorsSection';
-import PrSection from '../../components/company/PrSection';
-import SummaryCard from '../../components/company/SummaryCard';
-import TempHeroSection from '../../components/company/TempHeroSection';
-import VerticalCard from '../../components/company/VerticalCard';
+import FirstFold from '../../components/company/FirstFold';
+import Statement from '../../components/company/Statement';
+import UserStory from '../../components/company/UserStory';
+import ProStory from '../../components/company/ProStory';
+import Cartoon from '../../components/company/Cartoon';
+import Numbers from '../../components/company/Numbers';
+import Investors from '../../components/company/Investors';
+import News from '../../components/company/News';
 
 export const query = graphql`
   query CompanyPage($locale: String!, $navigationId: String!) {
     ...TeamWebsite_DefaultLayout_query
-    ...PrPostList_query
 
     prismicCompanyContent {
       data {
@@ -36,139 +35,6 @@ export const query = graphql`
             }
           }
         }
-        body {
-          ... on PrismicCompanyContentDataBodyFullImage {
-            id
-            slice_type
-            primary {
-              full_image {
-                alt
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
-                  }
-                }
-              }
-              mobile_image {
-                alt
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
-                  }
-                }
-              }
-              text {
-                html
-              }
-            }
-          }
-          ... on PrismicCompanyContentDataBodyHorizontalCard {
-            id
-            primary {
-              description
-              image {
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
-                  }
-                }
-                alt
-              }
-              image_mobile {
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
-                  }
-                }
-                alt
-              }
-              title {
-                html
-              }
-            }
-            slice_type
-          }
-          ... on PrismicCompanyContentDataBodyVerticalCard {
-            id
-            slice_type
-            primary {
-              description
-              title {
-                html
-              }
-              full_width_image {
-                alt
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
-                  }
-                }
-              }
-              image_mobile {
-                alt
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
-                  }
-                }
-              }
-            }
-          }
-          ... on PrismicCompanyContentDataBodySummaryCard {
-            id
-            slice_type
-            primary {
-              title {
-                text
-              }
-            }
-            items {
-              summary_text
-              graphic_image {
-                alt
-                localFile {
-                  publicURL
-                }
-              }
-            }
-          }
-          ... on PrismicCompanyContentDataBodyInvestorsSection {
-            id
-            slice_type
-            primary {
-              title {
-                text
-              }
-            }
-            items {
-              image {
-                alt
-                localFile {
-                  publicURL
-                }
-              }
-            }
-          }
-          ... on PrismicCompanyContentDataBodyPrSection {
-            id
-            slice_type
-            primary {
-              section_title {
-                text
-                richText
-                html
-              }
-              background_image {
-                alt
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
-                  }
-                }
-              }
-            }
-          }
-        }
       }
     }
   }
@@ -179,31 +45,14 @@ type CompanyPageProps = PageProps<GatsbyTypes.CompanyPageQuery>;
 const CompanyPage: React.FC<CompanyPageProps> = ({ data }) => {
   return (
     <Main>
-      {data.prismicCompanyContent?.data.body.map((slice) => {
-        switch (slice.slice_type) {
-          case 'full_image': {
-            return <TempHeroSection slice={slice} key={slice.id} />;
-            // return <FullImageSection slice={slice} key={slice.id} />;
-          }
-          case 'horizontal_card': {
-            return <HorizontalCard slice={slice} key={slice.id} />;
-          }
-          case 'vertical_card': {
-            return <VerticalCard slice={slice} key={slice.id} />;
-          }
-          case 'summary_card': {
-            return <SummaryCard slice={slice} key={slice.id} />;
-          }
-          case 'investors_section': {
-            return <InvestorsSection slice={slice} key={slice.id} />;
-          }
-          case 'pr_section': {
-            return <PrSection slice={slice} data={data} key={slice.id} />;
-          }
-          default:
-            break;
-        }
-      })}
+      <FirstFold />
+      <Statement />
+      <UserStory />
+      <ProStory />
+      <Cartoon />
+      <Numbers />
+      <Investors />
+      <News />
     </Main>
   );
 };

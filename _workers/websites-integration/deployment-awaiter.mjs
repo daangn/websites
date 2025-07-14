@@ -11,7 +11,7 @@ const {
   WEBSITES_ADMIN_KEY,
   WEBSITES_DEPLOYMENT_ENDPOINT,
 
-  /** 
+  /**
    * Force a deployment object for hotfix
    */
   HOTFIX_DEPLOYMENT_OBJECT_URL,
@@ -106,7 +106,9 @@ if (HOTFIX_DEPLOYMENT_OBJECT_URL) {
     if (state.runId && !bound) {
       bound = true;
       runUrl = `https://github.com/daangn/websites/actions/runs/${state.runId}`;
-      console.log(`Waiting for job to finish on ${runUrl} (timeout: ${prettyMilliseconds(timeout)})`);
+      console.log(
+        `Waiting for job to finish on ${runUrl} (timeout: ${prettyMilliseconds(timeout)})`,
+      );
     }
 
     if (state.type === 'IN_PROGRESS') {

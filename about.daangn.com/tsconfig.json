@@ -4,6 +4,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "baseUrl": ".",
+    "moduleResolution": "bundler",
     "paths": {
       "~/*": ["./src/*"],
       "gatsby-theme-stitches/src/*": ["./src/gatsby-theme-stitches/*"]
