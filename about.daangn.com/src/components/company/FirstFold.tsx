@@ -1,11 +1,11 @@
 import { useGSAP } from '@gsap/react';
+import { graphql, useStaticQuery } from 'gatsby';
 import gsap from 'gsap';
 import { useRef } from 'react';
 import { useWindowSize } from 'react-use';
+import * as css from './FirstFold.css';
 import { FIRST_FOLD_STORY_HEIGHT, MAX_WIDTH, SIDE_MARGIN } from './constants';
 import { media } from './media.css';
-import * as css from './FirstFold.css';
-import { graphql, useStaticQuery } from 'gatsby';
 
 const STORY_TITLE_OFFSET = 24;
 

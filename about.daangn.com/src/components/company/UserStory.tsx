@@ -1,12 +1,12 @@
 import { useGSAP } from '@gsap/react';
 import { IconArrowRightLine } from '@karrotmarket/react-monochrome-icon';
+import { graphql, useStaticQuery } from 'gatsby';
 import gsap from 'gsap';
 import { useRef } from 'react';
-import { media, show } from './media.css';
 import Button from './Button';
 import Centered from './Centered';
 import * as css from './UserStory.css';
-import { graphql, useStaticQuery } from 'gatsby';
+import { media, show } from './media.css';
 
 export default function UserStory() {
   const data = useStaticQuery(graphql`

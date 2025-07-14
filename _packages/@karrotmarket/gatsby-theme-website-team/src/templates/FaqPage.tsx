@@ -1,6 +1,7 @@
 import { required } from '@cometjs/core';
 import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
 import { vars } from '@seed-design/design-token';
+import slugify from 'cjk-slug';
 import { type HeadProps, Link, type PageProps, graphql, navigate } from 'gatsby';
 import { HeadSeo } from 'gatsby-plugin-head-seo/src';
 import { FAQPageJsonLd } from 'gatsby-plugin-head-seo/src/jsonld';
@@ -8,7 +9,6 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { matchSorter } from 'match-sorter';
 import { rem } from 'polished';
 import * as React from 'react';
-import slugify from 'cjk-slug';
 
 import FaqAccordion from '../components/FaqAccordion';
 import _FaqList from '../components/FaqList';

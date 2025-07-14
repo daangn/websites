@@ -1,10 +1,10 @@
 import Autoplay from 'embla-carousel-autoplay';
 import useEmblaCarousel from 'embla-carousel-react';
-import { media } from './media.css';
-import Centered from './Centered';
-import * as css from './Investors.css';
 import { graphql, useStaticQuery } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
+import Centered from './Centered';
+import * as css from './Investors.css';
+import { media } from './media.css';
 
 export default function Investors() {
   const data = useStaticQuery(graphql`

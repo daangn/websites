@@ -2,15 +2,15 @@ import { type HeadProps, type PageProps, graphql } from 'gatsby';
 import { HeadSeo, OpenGraph, TwitterCard } from 'gatsby-plugin-head-seo/src';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import * as React from 'react';
-import FirstFold from '../../components/company/FirstFold';
-import Statement from '../../components/company/Statement';
-import UserStory from '../../components/company/UserStory';
-import ProStory from '../../components/company/ProStory';
+import { useWindowScroll } from 'react-use';
 import Cartoon from '../../components/company/Cartoon';
-import Numbers from '../../components/company/Numbers';
+import FirstFold from '../../components/company/FirstFold';
 import Investors from '../../components/company/Investors';
 import News from '../../components/company/News';
-import { useWindowScroll } from 'react-use';
+import Numbers from '../../components/company/Numbers';
+import ProStory from '../../components/company/ProStory';
+import Statement from '../../components/company/Statement';
+import UserStory from '../../components/company/UserStory';
 import { FIRST_FOLD_STORY_HEIGHT } from '../../components/company/constants';
 
 export const query = graphql`

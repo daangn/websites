@@ -1,13 +1,13 @@
 import { useGSAP } from '@gsap/react';
 import { IconArrowRightLine } from '@karrotmarket/react-monochrome-icon';
+import { graphql, useStaticQuery } from 'gatsby';
 import gsap from 'gsap';
 import { useRef } from 'react';
 import { useWindowSize } from 'react-use';
-import { MAX_WIDTH, SIDE_MARGIN } from './constants';
 import Button from './Button';
 import * as css from './Cartoon.css';
 import Centered from './Centered';
-import { graphql, useStaticQuery } from 'gatsby';
+import { MAX_WIDTH, SIDE_MARGIN } from './constants';
 
 export default function Cartoon() {
   const data = useStaticQuery(graphql`

@@ -1,8 +1,8 @@
 import { IconArrowRightLine } from '@karrotmarket/react-monochrome-icon';
-import Centered from './Centered';
-import * as css from './ProStory.css';
 import { graphql, useStaticQuery } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
+import Centered from './Centered';
+import * as css from './ProStory.css';
 
 export default function ProStory() {
   // biome-ignore lint/suspicious/noExplicitAny: typegen이 동작을 안함

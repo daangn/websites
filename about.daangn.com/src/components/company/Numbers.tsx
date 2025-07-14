@@ -2,12 +2,12 @@ import NumberFlow, { continuous } from '@number-flow/react';
 import commaNumber from 'comma-number';
 import Autoplay from 'embla-carousel-autoplay';
 import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react';
+import { graphql, useStaticQuery } from 'gatsby';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useIntersection, useMedia } from 'react-use';
-import { media } from './media.css';
 import Centered from './Centered';
 import * as css from './Numbers.css';
-import { graphql, useStaticQuery } from 'gatsby';
+import { media } from './media.css';
 
 type EmblaCarouselType = UseEmblaCarouselType[1];
 

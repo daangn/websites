@@ -1,12 +1,12 @@
 import { IconArrowRightLine } from '@karrotmarket/react-monochrome-icon';
 import useEmblaCarousel from 'embla-carousel-react';
-import { media, show } from './media.css';
+import { Link, graphql, useStaticQuery } from 'gatsby';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import Button from './Button';
 import CarouselControl from './CarouselControl';
 import Centered from './Centered';
 import * as css from './News.css';
-import { graphql, Link, useStaticQuery } from 'gatsby';
-import { GatsbyImage } from 'gatsby-plugin-image';
+import { media, show } from './media.css';
 
 function chunkArray<T>(array: T[], chunkSize: number): T[][] {
   return array.reduce<T[][]>((acc, _, index) => {

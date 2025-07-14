@@ -1,11 +1,11 @@
-import Marquee from 'react-fast-marquee';
 import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
-import { useRef } from 'react';
-import Centered from './Centered';
-import * as css from './Statement.css';
 import { graphql, useStaticQuery } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
+import gsap from 'gsap';
+import { useRef } from 'react';
+import Marquee from 'react-fast-marquee';
+import Centered from './Centered';
+import * as css from './Statement.css';
 
 export default function Statement() {
   // biome-ignore lint/suspicious/noExplicitAny: typegen이 동작을 안함
