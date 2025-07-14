@@ -318,9 +318,9 @@ export default function UserStory() {
                 }}
               >
                 <div className={css.imageLeftBadge}>{d.badge}</div>
-                <div className={css.imageRightButton}>
+                <a className={css.imageRightButton} href={d.link} target="_blank" rel="noreferrer">
                   {d.button} <IconArrowRightLine width={18} />
-                </div>
+                </a>
               </div>
             ))}
           </div>

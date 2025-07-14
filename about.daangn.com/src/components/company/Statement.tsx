@@ -1,5 +1,4 @@
-
-import Marquee from "react-fast-marquee";
+import Marquee from 'react-fast-marquee';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { useRef } from 'react';

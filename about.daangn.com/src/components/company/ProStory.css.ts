@@ -69,6 +69,7 @@ export const card = style({
   maxWidth: '570px',
   transition: `box-shadow ${CARD_TRANSITION}ms`,
   cursor: 'pointer',
+  textDecoration: 'none',
   ':hover': {
     boxShadow: 'inset 0 0 0 2px #1A1C20',
   },

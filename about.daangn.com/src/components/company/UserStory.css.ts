@@ -189,6 +189,7 @@ export const imageLeftBadge = style({
   fontWeight: '400',
   lineHeight: '26px',
   letterSpacing: '-0.6px',
+  textDecoration: 'none',
 });
 
 export const imageRightButton = style([

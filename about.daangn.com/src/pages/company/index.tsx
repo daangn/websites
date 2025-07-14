@@ -10,12 +10,14 @@ import Cartoon from '../../components/company/Cartoon';
 import Numbers from '../../components/company/Numbers';
 import Investors from '../../components/company/Investors';
 import News from '../../components/company/News';
+import { useWindowScroll } from 'react-use';
+import { FIRST_FOLD_STORY_HEIGHT } from '../../components/company/constants';
 
 export const query = graphql`
   query CompanyPage($locale: String!, $navigationId: String!) {
     ...TeamWebsite_DefaultLayout_query
 
-    prismicCompanyContent {
+    prismicVisionPage {
       data {
         company_page_meta_description
         company_page_meta_title
@@ -43,6 +45,36 @@ export const query = graphql`
 type CompanyPageProps = PageProps<GatsbyTypes.CompanyPageQuery>;
 
 const CompanyPage: React.FC<CompanyPageProps> = ({ data }) => {
+  const { y } = useWindowScroll();
+
+  const isFirstFoldStarted = y > FIRST_FOLD_STORY_HEIGHT / 2;
+  const isFirstFoldEnded = y > FIRST_FOLD_STORY_HEIGHT;
+
+  React.useEffect(() => {
+    if (isFirstFoldEnded) {
+      document.documentElement.style.setProperty('--header-background', 'rgba(255, 255, 255, 0.9)');
+      document.documentElement.style.setProperty('--header-color', 'var(--header-color)');
+      document.documentElement.style.setProperty(
+        '--header-hover-color',
+        'var(--header-hover-color)',
+      );
+      document.documentElement.style.setProperty('--header-backdrop-filter', 'blur(16px)');
+    } else if (isFirstFoldStarted) {
+      document.documentElement.style.setProperty('--header-background', 'transparent');
+      document.documentElement.style.setProperty('--header-color', '#fff');
+      document.documentElement.style.setProperty(
+        '--header-hover-color',
+        'rgba(255, 255, 255, 0.7)',
+      );
+      document.documentElement.style.setProperty('--header-backdrop-filter', 'blur(0px)');
+    } else {
+      document.documentElement.style.setProperty('--header-background', 'rgba(255, 255, 255, 0)');
+      document.documentElement.style.setProperty('--header-backdrop-filter', 'blur(0px)');
+      document.documentElement.style.removeProperty('--header-color');
+      document.documentElement.style.removeProperty('--header-hover-color');
+    }
+  }, [isFirstFoldStarted, isFirstFoldEnded]);
+
   return (
     <Main>
       <FirstFold />
@@ -66,10 +98,10 @@ export default CompanyPage;
 type CompanyPageHeadProps = HeadProps<GatsbyTypes.CompanyPageQuery>;
 
 export const Head: React.FC<CompanyPageHeadProps> = ({ data, location }) => {
-  const metaTitle = data?.prismicCompanyContent?.data.company_page_meta_title || '';
-  const metaDescription = data?.prismicCompanyContent?.data.company_page_meta_description || '';
+  const metaTitle = data?.prismicVisionPage?.data.company_page_meta_title || '';
+  const metaDescription = data?.prismicVisionPage?.data.company_page_meta_description || '';
   const metaImage =
-    data?.prismicCompanyContent?.data.company_page_og_image?.localFile?.childImageSharp?.fixed;
+    data?.prismicVisionPage?.data.company_page_og_image?.localFile?.childImageSharp?.fixed;
 
   return (
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>

@@ -77,6 +77,7 @@ export const newsCard = style({
   flexDirection: 'column',
   gap: '16px',
   cursor: 'pointer',
+  textDecoration: 'none',
   '@media': {
     [media.medium]: {
       flexDirection: 'row',

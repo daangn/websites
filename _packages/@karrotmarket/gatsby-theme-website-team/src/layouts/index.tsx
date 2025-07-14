@@ -21,6 +21,12 @@ const globalStyles = globalCss({
   },
   ':root': {
     colorSchema: 'light dark',
+    '--header-background': vars.$semantic.color.paperDefault,
+    '--header-backdrop-filter': 'blur(16px)',
+    '--header-color': vars.$scale.color.gray900,
+    '--header-hover-color': vars.$scale.color.gray900,
+    '--header-active-color': vars.$scale.color.carrot500,
+    '--header-active-hover-color': vars.$scale.color.carrot600,
   },
   body: {
     accentColor: vars.$semantic.color.primary,

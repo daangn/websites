@@ -124,7 +124,7 @@ export default function ProStory() {
           </div>
           <div className={css.cards}>
             {stories.map((d) => (
-              <div key={d.title} className={css.card}>
+              <a key={d.title} className={css.card} href={d.link}>
                 <div className={css.cardImage}>
                   <GatsbyImage image={d.image} alt={d.imageAlt} />
                 </div>
@@ -135,7 +135,7 @@ export default function ProStory() {
                     <IconArrowRightLine className={css.cardCaptionIcon} width={14} height={14} />
                   </div>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>

@@ -4,7 +4,7 @@ import { GNB_HEIGHT, MAX_WIDTH } from './constants';
 import { media } from './media.css';
 
 export const root = style({
-  padding: `calc(${GNB_HEIGHT}px + 120px) 0 200px`,
+  padding: `calc(${GNB_HEIGHT}px + 80px) 0 200px`,
   display: 'flex',
   flexDirection: 'column',
   gap: '92px',

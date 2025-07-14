@@ -97,6 +97,7 @@ const NavigationList = styled('ul', {
 
   ':checked ~ &': {
     transform: 'translateX(0)',
+    height: '100vh',
     background: vars.$semantic.color.paperDefault,
   },
 

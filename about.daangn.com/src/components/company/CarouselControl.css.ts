@@ -9,7 +9,6 @@ export const root = style({
 });
 
 export const button = style({
-  // padding: '7px',
   borderRadius: '999px',
   transition: 'background-color 0.2s, color 0.2s',
   border: 0,
@@ -19,6 +18,7 @@ export const button = style({
   alignItems: 'center',
   justifyContent: 'center',
   background: 'none',
+  cursor: 'pointer',
   ':hover': {
     backgroundColor: '#EAEBEE',
   },

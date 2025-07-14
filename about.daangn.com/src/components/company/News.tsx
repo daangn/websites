@@ -5,7 +5,7 @@ import Button from './Button';
 import CarouselControl from './CarouselControl';
 import Centered from './Centered';
 import * as css from './News.css';
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 
 function chunkArray<T>(array: T[], chunkSize: number): T[][] {
@@ -36,6 +36,16 @@ export default function News() {
           }
         }
       }
+      prismicVisionPage {
+        data {
+          news_title {
+            text
+          }
+          news_more_button_label {
+            text
+          }
+        }
+      }
     }
   `);
 
@@ -44,6 +54,7 @@ export default function News() {
     title: node.title,
     date: node.publishedAt,
     image: node.thumbnailImage.childImageSharp.gatsbyImageData,
+    slug: node.slug,
   }));
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -58,7 +69,7 @@ export default function News() {
       <div className={css.container}>
         <div className={css.heading}>
           <div className={css.title}>
-            <span>{'당근의 최근 소식을\n확인하세요'}</span>
+            <span>{data.prismicVisionPage.data.news_title.text}</span>
           </div>
           <div className={css.right}>
             <div className={show({ when: 'base' })}>
@@ -71,7 +82,9 @@ export default function News() {
                 }}
               />
             </div>
-            <Button icon={<IconArrowRightLine size={18} />}>보도자료 보러 가기</Button>
+            <Button icon={<IconArrowRightLine size={18} />} to="/company/pr/">
+              {data.prismicVisionPage.data.news_more_button_label.text}
+            </Button>
           </div>
         </div>
         <div className={css.cards} ref={emblaRef}>
@@ -85,11 +98,9 @@ export default function News() {
               >
                 {/* biome-ignore lint/suspicious/noExplicitAny: typegen isn't working */}
                 {newsItemGroup.map((d: any) => (
-                  <div key={d.title} className={css.newsCard}>
+                  <Link key={d.title} className={css.newsCard} to={`/company/pr/archive/${d.slug}`}>
                     <div className={css.newsCardImageContainer}>
-                      <div
-                        className={css.newsCardImageRatio}
-                      >
+                      <div className={css.newsCardImageRatio}>
                         <GatsbyImage className={css.newsCardImage} image={d.image} alt={d.title} />
                       </div>
                     </div>
@@ -97,7 +108,7 @@ export default function News() {
                       <div className={css.newsCardTitle}>{d.title}</div>
                       <div className={css.newsCardDate}>{d.date}</div>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             ))}
