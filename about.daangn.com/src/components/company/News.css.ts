@@ -113,7 +113,8 @@ export const newsCardImageRatio = style({
 });
 
 export const newsCardImage = style({
-  position: 'absolute',
+  // biome-ignore lint/suspicious/noExplicitAny: important
+  position: 'absolute !important' as any,
   top: 0,
   left: 0,
   width: '100%',

@@ -48,8 +48,14 @@ export const titleFrag = style({
   color: '#D1D3D8',
 });
 
+export const marqueeContainer = style({
+  height: '400px',
+  minHeight: '400px',
+});
+
 export const marquee = style({
   height: '400px',
+  minHeight: '400px',
   display: 'flex',
 });
 
@@ -58,6 +64,7 @@ export const marqueeInner = style({
   flexDirection: 'row',
   gap: '24px',
   alignItems: 'center',
+  marginRight: '24px',
 });
 
 export const card = recipe({
@@ -81,4 +88,10 @@ export const card = recipe({
       },
     },
   },
+});
+
+export const cardImage = style({
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
 });

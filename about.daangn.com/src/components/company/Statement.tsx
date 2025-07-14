@@ -181,15 +181,17 @@ export default function Statement() {
           </div>
         </div>
       </Centered>
-      <Marquee className={css.marquee}>
-        <div className={css.marqueeInner}>
-          {images.map((image) => (
-            <div key={image.id} className={css.card({ type: image.type })}>
-              <GatsbyImage image={image.image} alt={image.alt} />
-            </div>
-          ))}
-        </div>
-      </Marquee>
+      <div className={css.marqueeContainer}>
+        <Marquee className={css.marquee}>
+          <div className={css.marqueeInner}>
+            {images.map((image) => (
+              <div key={image.id} className={css.card({ type: image.type })}>
+                <GatsbyImage image={image.image} alt={image.alt} className={css.cardImage} />
+              </div>
+            ))}
+          </div>
+        </Marquee>
+      </div>
     </div>
   );
 }
