@@ -57,7 +57,7 @@ export default function Cartoon() {
       tl.fromTo(
         video,
         {
-          clipPath: 'inset(1px 1px 1px 1px round 0px)',
+          clipPath: 'inset(0px 0px 0px 0px round 0px)',
         },
         {
           clipPath: `inset(0px ${cardSidePadding}px 0px ${cardSidePadding}px round 20px)`,
