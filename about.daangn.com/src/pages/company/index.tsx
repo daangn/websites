@@ -2,21 +2,22 @@ import { type HeadProps, type PageProps, graphql } from 'gatsby';
 import { HeadSeo, OpenGraph, TwitterCard } from 'gatsby-plugin-head-seo/src';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import * as React from 'react';
-
-import FullImageSection from '../../components/company/FullImageSection';
-import HorizontalCard from '../../components/company/HorizontalCard';
-import InvestorsSection from '../../components/company/InvestorsSection';
-import PrSection from '../../components/company/PrSection';
-import SummaryCard from '../../components/company/SummaryCard';
-import TempHeroSection from '../../components/company/TempHeroSection';
-import VerticalCard from '../../components/company/VerticalCard';
+import { useWindowScroll } from 'react-use';
+import Cartoon from '../../components/company/Cartoon';
+import FirstFold from '../../components/company/FirstFold';
+import Investors from '../../components/company/Investors';
+import News from '../../components/company/News';
+import Numbers from '../../components/company/Numbers';
+import ProStory from '../../components/company/ProStory';
+import Statement from '../../components/company/Statement';
+import UserStory from '../../components/company/UserStory';
+import { FIRST_FOLD_STORY_HEIGHT } from '../../components/company/constants';
 
 export const query = graphql`
   query CompanyPage($locale: String!, $navigationId: String!) {
     ...TeamWebsite_DefaultLayout_query
-    ...PrPostList_query
 
-    prismicCompanyContent {
+    prismicVisionPage {
       data {
         company_page_meta_description
         company_page_meta_title
@@ -36,139 +37,6 @@ export const query = graphql`
             }
           }
         }
-        body {
-          ... on PrismicCompanyContentDataBodyFullImage {
-            id
-            slice_type
-            primary {
-              full_image {
-                alt
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
-                  }
-                }
-              }
-              mobile_image {
-                alt
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
-                  }
-                }
-              }
-              text {
-                html
-              }
-            }
-          }
-          ... on PrismicCompanyContentDataBodyHorizontalCard {
-            id
-            primary {
-              description
-              image {
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
-                  }
-                }
-                alt
-              }
-              image_mobile {
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
-                  }
-                }
-                alt
-              }
-              title {
-                html
-              }
-            }
-            slice_type
-          }
-          ... on PrismicCompanyContentDataBodyVerticalCard {
-            id
-            slice_type
-            primary {
-              description
-              title {
-                html
-              }
-              full_width_image {
-                alt
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
-                  }
-                }
-              }
-              image_mobile {
-                alt
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
-                  }
-                }
-              }
-            }
-          }
-          ... on PrismicCompanyContentDataBodySummaryCard {
-            id
-            slice_type
-            primary {
-              title {
-                text
-              }
-            }
-            items {
-              summary_text
-              graphic_image {
-                alt
-                localFile {
-                  publicURL
-                }
-              }
-            }
-          }
-          ... on PrismicCompanyContentDataBodyInvestorsSection {
-            id
-            slice_type
-            primary {
-              title {
-                text
-              }
-            }
-            items {
-              image {
-                alt
-                localFile {
-                  publicURL
-                }
-              }
-            }
-          }
-          ... on PrismicCompanyContentDataBodyPrSection {
-            id
-            slice_type
-            primary {
-              section_title {
-                text
-                richText
-                html
-              }
-              background_image {
-                alt
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
-                  }
-                }
-              }
-            }
-          }
-        }
       }
     }
   }
@@ -177,33 +45,46 @@ export const query = graphql`
 type CompanyPageProps = PageProps<GatsbyTypes.CompanyPageQuery>;
 
 const CompanyPage: React.FC<CompanyPageProps> = ({ data }) => {
+  const { y } = useWindowScroll();
+
+  const isFirstFoldStarted = y > FIRST_FOLD_STORY_HEIGHT / 2;
+  const isFirstFoldEnded = y > FIRST_FOLD_STORY_HEIGHT;
+
+  React.useEffect(() => {
+    if (isFirstFoldEnded) {
+      document.documentElement.style.setProperty('--header-background', 'rgba(255, 255, 255, 0.9)');
+      document.documentElement.style.setProperty('--header-color', 'var(--header-color)');
+      document.documentElement.style.setProperty(
+        '--header-hover-color',
+        'var(--header-hover-color)',
+      );
+      document.documentElement.style.setProperty('--header-backdrop-filter', 'blur(16px)');
+    } else if (isFirstFoldStarted) {
+      document.documentElement.style.setProperty('--header-background', 'transparent');
+      document.documentElement.style.setProperty('--header-color', '#fff');
+      document.documentElement.style.setProperty(
+        '--header-hover-color',
+        'rgba(255, 255, 255, 0.7)',
+      );
+      document.documentElement.style.setProperty('--header-backdrop-filter', 'blur(0px)');
+    } else {
+      document.documentElement.style.setProperty('--header-background', 'rgba(255, 255, 255, 0)');
+      document.documentElement.style.setProperty('--header-backdrop-filter', 'blur(0px)');
+      document.documentElement.style.removeProperty('--header-color');
+      document.documentElement.style.removeProperty('--header-hover-color');
+    }
+  }, [isFirstFoldStarted, isFirstFoldEnded]);
+
   return (
     <Main>
-      {data.prismicCompanyContent?.data.body.map((slice) => {
-        switch (slice.slice_type) {
-          case 'full_image': {
-            return <TempHeroSection slice={slice} key={slice.id} />;
-            // return <FullImageSection slice={slice} key={slice.id} />;
-          }
-          case 'horizontal_card': {
-            return <HorizontalCard slice={slice} key={slice.id} />;
-          }
-          case 'vertical_card': {
-            return <VerticalCard slice={slice} key={slice.id} />;
-          }
-          case 'summary_card': {
-            return <SummaryCard slice={slice} key={slice.id} />;
-          }
-          case 'investors_section': {
-            return <InvestorsSection slice={slice} key={slice.id} />;
-          }
-          case 'pr_section': {
-            return <PrSection slice={slice} data={data} key={slice.id} />;
-          }
-          default:
-            break;
-        }
-      })}
+      <FirstFold />
+      <Statement />
+      <UserStory />
+      <ProStory />
+      <Cartoon />
+      <Numbers />
+      <Investors />
+      <News />
     </Main>
   );
 };
@@ -217,10 +98,10 @@ export default CompanyPage;
 type CompanyPageHeadProps = HeadProps<GatsbyTypes.CompanyPageQuery>;
 
 export const Head: React.FC<CompanyPageHeadProps> = ({ data, location }) => {
-  const metaTitle = data?.prismicCompanyContent?.data.company_page_meta_title || '';
-  const metaDescription = data?.prismicCompanyContent?.data.company_page_meta_description || '';
+  const metaTitle = data?.prismicVisionPage?.data.company_page_meta_title || '';
+  const metaDescription = data?.prismicVisionPage?.data.company_page_meta_description || '';
   const metaImage =
-    data?.prismicCompanyContent?.data.company_page_og_image?.localFile?.childImageSharp?.fixed;
+    data?.prismicVisionPage?.data.company_page_og_image?.localFile?.childImageSharp?.fixed;
 
   return (
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>

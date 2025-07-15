@@ -297,12 +297,12 @@ const JobsPage: React.FC<JobsPageProps> = ({ data, pageContext, location }) => {
                 <option key="*" value="">
                   {messages.jobs_page__corporate_all}
                 </option>
-                {allCorporates.has("KARROT_MARKET") && (
+                {allCorporates.has('KARROT_MARKET') && (
                   <option key="KARROT_MARKET" value="KARROT_MARKET">
                     {messages.jobs_page__KARROT_MARKET}
                   </option>
                 )}
-                {allCorporates.has("KARROT_PAY") && (
+                {allCorporates.has('KARROT_PAY') && (
                   <option key="KARROT_PAY" value="KARROT_PAY">
                     {messages.jobs_page__KARROT_PAY}
                   </option>
@@ -314,19 +314,21 @@ const JobsPage: React.FC<JobsPageProps> = ({ data, pageContext, location }) => {
             <EtypeSelectWrapper css={{ gridArea: 'etype' }}>
               <Select value={employmentType} onChange={(e) => onFilterChange(e, 'etype')}>
                 <option value="">{messages.jobs_page__employment_type_all}</option>
-                {allEmploymentTypes.has("FULL_TIME") && (
+                {allEmploymentTypes.has('FULL_TIME') && (
                   <option value="FULL_TIME">{messages.jobs_page__employment_type_fulltime}</option>
                 )}
-                {allEmploymentTypes.has("CONTRACTOR") && (
-                  <option value="CONTRACTOR">{messages.jobs_page__employment_type_contractor}</option>
+                {allEmploymentTypes.has('CONTRACTOR') && (
+                  <option value="CONTRACTOR">
+                    {messages.jobs_page__employment_type_contractor}
+                  </option>
                 )}
-                {allEmploymentTypes.has("INTERN") && (
+                {allEmploymentTypes.has('INTERN') && (
                   <option value="INTERN">{messages.jobs_page__employment_type_intern}</option>
                 )}
-                {allEmploymentTypes.has("ASSISTANT") && (
+                {allEmploymentTypes.has('ASSISTANT') && (
                   <option value="ASSISTANT">{messages.jobs_page__employment_type_assistant}</option>
                 )}
-                {allEmploymentTypes.has("PART_TIME") && (
+                {allEmploymentTypes.has('PART_TIME') && (
                   <option value="PART_TIME">{messages.jobs_page__employment_type_parttime}</option>
                 )}
               </Select>

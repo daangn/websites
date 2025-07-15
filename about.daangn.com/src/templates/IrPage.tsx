@@ -206,9 +206,9 @@ const IrPage: React.FC<IrPageProps> = ({ data: prismicData }) => {
           </AttachmentSection>
         )}
         <ContentFooter>
-          {"(IR 관련 문의 : "}
+          {'(IR 관련 문의 : '}
           <a href="mailto:ir@daangn.com">ir@daangn.com</a>
-          {" )"}
+          {' )'}
         </ContentFooter>
       </Content>
     </Container>

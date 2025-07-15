@@ -34,17 +34,17 @@ const NavigationLink = styled(Link, {
   alignItems: 'center',
 
   textDecoration: 'none',
-  color: vars.$scale.color.gray900,
+  color: 'var(--header-color)',
   '&:hover, &:focus': {
-    color: vars.$scale.color.gray600,
+    color: 'var(--header-hover-color)',
   },
 
   variants: {
     active: {
       true: {
-        color: vars.$scale.color.carrot500,
+        color: 'var(--header-active-color)',
         '&:hover, &:focus': {
-          color: vars.$scale.color.carrot600,
+          color: 'var(--header-active-hover-color)',
         },
       },
     },

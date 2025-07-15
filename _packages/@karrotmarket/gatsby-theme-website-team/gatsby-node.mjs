@@ -258,7 +258,9 @@ export const createPages = async ({ graphql, actions }, pluginOptions) => {
   ) {
     actions.createRedirect({
       fromPath: '/faq/',
-      toPath: `/faq/${slugify(data.prismicTeamContents.data.faq_page_entries[0].faq_page.document.uid)}/`,
+      toPath: `/faq/${slugify(
+        data.prismicTeamContents.data.faq_page_entries[0].faq_page.document.uid,
+      )}/`,
       redirectInBrowser: true,
     });
 

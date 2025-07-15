@@ -16,6 +16,7 @@ const config: GatsbyConfig = {
   jsxRuntime: 'automatic',
   siteMetadata,
   plugins: [
+    'gatsby-plugin-vanilla-extract',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {

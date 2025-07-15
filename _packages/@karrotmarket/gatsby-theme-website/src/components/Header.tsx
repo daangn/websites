@@ -25,11 +25,13 @@ export const query = graphql`
 const Container = styled('header', {
   position: 'fixed',
   top: 0,
-  background: vars.$semantic.color.paperDefault,
+  background: 'var(--header-background)',
   width: '100%',
   height: rem(58),
   zIndex: 100,
   transition: 'background 0.3s',
+  backdropFilter: 'var(--header-backdrop-filter)',
+  color: 'var(--header-color)',
 
   '@sm': {
     height: rem(68),
