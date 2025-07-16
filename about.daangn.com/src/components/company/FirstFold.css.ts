@@ -35,6 +35,7 @@ export const outerTitleContainer = style({
   paddingRight: DYNAMIC_PADDING_SIDE,
   width: '100vw',
   paddingTop: '178px',
+  boxSizing: 'border-box',
   '@media': {
     [media.medium]: {
       paddingTop: '128px',
