@@ -26,7 +26,7 @@ export const heading = style({
 
 export const title = style({
   color: '#1A1C20',
-  fontFamily: 'Karrot Sans',
+  fontFamily: '"Karrot Sans", sans-serif',
   fontSize: '36px',
   fontStyle: 'normal',
   fontWeight: '700',
@@ -127,7 +127,7 @@ export const newsCardTitles = style({
 
 export const newsCardTitle = style({
   color: '#1A1C20',
-  fontFamily: 'Karrot Sans',
+  fontFamily: '"Karrot Sans", sans-serif',
   fontSize: '20px',
   fontStyle: 'normal',
   fontWeight: '700',
@@ -139,7 +139,7 @@ export const newsCardTitle = style({
 
 export const newsCardDate = style({
   color: '#1A1C20',
-  fontFamily: 'Karrot Sans',
+  fontFamily: '"Karrot Sans", sans-serif',
   fontSize: '14px',
   fontStyle: 'normal',
   fontWeight: '400',

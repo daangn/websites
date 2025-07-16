@@ -17,7 +17,7 @@ export const container = style({
 
 export const title = style({
   color: '#1A1C20',
-  fontFamily: 'Karrot Sans',
+  fontFamily: '"Karrot Sans", sans-serif',
   fontSize: '42px',
   fontStyle: 'normal',
   fontWeight: '700',

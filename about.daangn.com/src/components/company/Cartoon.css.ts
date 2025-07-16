@@ -12,7 +12,7 @@ export const title = style({
   width: '100%',
   maxWidth: `${MAX_WIDTH}px`,
   color: '#1A1C20',
-  fontFamily: 'Karrot Sans',
+  fontFamily: '"Karrot Sans", sans-serif',
   fontSize: '42px',
   fontWeight: '700',
   lineHeight: '58px',

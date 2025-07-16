@@ -15,7 +15,7 @@ export const subtitle = style({
   lineHeight: '28px',
   letterSpacing: '-0.6px',
   marginBottom: '8px',
-  fontFamily: 'Karrot Sans',
+  fontFamily: '"Karrot Sans", sans-serif',
   '@media': {
     [media.small]: {
       marginBottom: '4px',
@@ -39,7 +39,7 @@ export const title = style({
   fontWeight: '700',
   lineHeight: '58px',
   letterSpacing: '-0.6px',
-  fontFamily: 'Karrot Sans',
+  fontFamily: '"Karrot Sans", sans-serif',
   whiteSpace: 'pre-wrap',
   flex: 1,
   marginBottom: '48px',
@@ -104,7 +104,7 @@ export const cardTitles = style({
 
 export const cardTitle = style({
   color: '#1A1C20',
-  fontFamily: 'Karrot Sans',
+  fontFamily: '"Karrot Sans", sans-serif',
   fontSize: '18px',
   fontWeight: '700',
   lineHeight: '28px',
@@ -114,7 +114,7 @@ export const cardTitle = style({
 
 export const cardCaption = style({
   color: '#1A1C20',
-  fontFamily: 'Karrot Sans',
+  fontFamily: '"Karrot Sans", sans-serif',
   fontSize: '14px',
   fontWeight: '400',
   lineHeight: '24px',

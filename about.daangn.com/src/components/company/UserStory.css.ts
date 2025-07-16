@@ -33,7 +33,7 @@ export const left = style({
 });
 
 export const titles = style({
-  fontFamily: 'Karrot Sans',
+  fontFamily: '"Karrot Sans", sans-serif',
   display: 'flex',
   flexDirection: 'column',
   gap: '8px',
@@ -103,12 +103,12 @@ export const centerTextTitle = style({
   fontWeight: '700',
   lineHeight: '40px',
   letterSpacing: '-0.6px',
-  fontFamily: 'Karrot Sans',
+  fontFamily: '"Karrot Sans", sans-serif',
 });
 
 export const centerTextDescription = style({
   color: '#1A1C20',
-  fontFamily: 'Karrot Sans',
+  fontFamily: '"Karrot Sans", sans-serif',
   fontSize: '16px',
   fontWeight: '400',
   lineHeight: '28px',
@@ -184,7 +184,7 @@ export const imageLeftBadge = style({
   background: 'rgba(0, 0, 0, 0.30)',
   backdropFilter: 'blur(10px)',
   color: '#FFF',
-  fontFamily: 'Karrot Sans',
+  fontFamily: '"Karrot Sans", sans-serif',
   fontSize: '16px',
   fontWeight: '400',
   lineHeight: '26px',

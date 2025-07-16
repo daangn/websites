@@ -342,7 +342,9 @@ export default function UserStory() {
             <div className={css.userStoryCardContent}>
               <div className={css.userStoryCardTitle}>{d.title}</div>
               <div className={css.userStoryCardDescription}>{d.description}</div>
-              <Button icon={<IconArrowRightLine width={18} />}>{d.button}</Button>
+              <Button href={d.link} target="_blank" icon={<IconArrowRightLine width={18} />}>
+                {d.button}
+              </Button>
             </div>
           </div>
         ))}

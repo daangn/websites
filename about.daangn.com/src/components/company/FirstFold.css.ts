@@ -50,7 +50,7 @@ export const outerTitle = style({
   fontSize: '64px',
   lineHeight: '84px',
   fontWeight: '700',
-  fontFamily: 'Karrot Sans',
+  fontFamily: '"Karrot Sans", sans-serif',
   wordBreak: 'keep-all',
   '@media': {
     [media.medium]: {

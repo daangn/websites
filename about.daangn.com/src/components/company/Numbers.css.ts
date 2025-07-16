@@ -29,7 +29,7 @@ export const titles = style({
 
 export const title = style({
   color: '#1A1C20',
-  fontFamily: 'Karrot Sans',
+  fontFamily: '"Karrot Sans", sans-serif',
   fontSize: '42px',
   fontStyle: 'normal',
   fontWeight: '700',
@@ -46,7 +46,7 @@ export const title = style({
 
 export const subtitle = style({
   color: '#ADB1BA',
-  fontFamily: 'Karrot Sans',
+  fontFamily: '"Karrot Sans", sans-serif',
   fontSize: '14px',
   fontStyle: 'normal',
   fontWeight: '400',
@@ -119,7 +119,7 @@ export const cardTitle = style({
   top: '36px',
   left: '36px',
   color: '#1A1C20',
-  fontFamily: 'Karrot Sans',
+  fontFamily: '"Karrot Sans", sans-serif',
   fontSize: '18px',
   fontStyle: 'normal',
   fontWeight: '700',
@@ -146,7 +146,7 @@ export const cardNumber = style({
   bottom: '36px',
   left: '36px',
   color: '#1A1C20',
-  fontFamily: 'Karrot Sans',
+  fontFamily: '"Karrot Sans", sans-serif',
   fontSize: '60px',
   fontStyle: 'normal',
   fontWeight: '700',
