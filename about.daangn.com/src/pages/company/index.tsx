@@ -132,6 +132,7 @@ export const Head: React.FC<CompanyPageHeadProps> = ({ data, location }) => {
             type: 'summary_large_image',
           }}
         />,
+        <link rel="stylesheet" href="https://assets.krrt.io/daangn/branding-assets/0.0.2/typography/fonts/KarrotSans.css" />
       ]}
     </HeadSeo>
   );
