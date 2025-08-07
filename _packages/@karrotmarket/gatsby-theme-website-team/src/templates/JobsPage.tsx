@@ -15,7 +15,6 @@ import SearchInput from '../components/SearchInput';
 import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import { useFlexSearch } from '../utils/useFlexSearch';
 
-import { isCanonicalUrl } from '../utils/common';
 import BannerArea from './jobsPage/BannerArea';
 
 export const query = graphql`
@@ -377,32 +376,25 @@ export const Head: React.FC<JobsPageHeadProps> = ({ data, location }) => {
   const metaDescription = data.prismicTeamContents.data.jobs_page_meta_description;
   const metaImage =
     data.prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
-  const canonicalUrl = 'https://about.daangn.com'.concat(location.pathname);
 
   return (
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
       {(props) => (
-        <>
-          {!isCanonicalUrl(String(props.url)) && (
-            <meta http-equiv="refresh" content={`0; url=${canonicalUrl}`} />
-          )}
-          <DefaultLayoutHead
-            {...props}
-            location={location}
-            data={data}
-            image={
-              metaImage && {
-                url: new URL(
-                  metaImage.src,
-                  metaImage.src.startsWith('http') ? metaImage.src : props.url,
-                ),
-                width: metaImage.width,
-                height: metaImage.height,
-              }
+        <DefaultLayoutHead
+          {...props}
+          location={location}
+          data={data}
+          image={
+            metaImage && {
+              url: new URL(
+                metaImage.src,
+                metaImage.src.startsWith('http') ? metaImage.src : props.url,
+              ),
+              width: metaImage.width,
+              height: metaImage.height,
             }
-          />
-          <link rel="canonical" href={canonicalUrl} />
-        </>
+          }
+        />
       )}
     </HeadSeo>
   );

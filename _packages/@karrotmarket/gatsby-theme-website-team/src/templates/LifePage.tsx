@@ -9,7 +9,6 @@ import * as React from 'react';
 import _PageTitle from '../components/PageTitle';
 import PrismicTeamContentsDataLifeBodyLifeContent from '../components/PrismicTeamContentsDataLifeBodyLifeContent';
 import { DefaultLayoutHead } from '../layouts/DefaultLayout';
-import { isCanonicalUrl } from '../utils/common';
 
 export const query = graphql`
   query TeamWebsite_LifePage(
@@ -105,32 +104,25 @@ export const Head: React.FC<LifePageHeadProps> = ({ data, location }) => {
   const metaDescription = data.prismicTeamContents.data.life_page_meta_description;
   const metaImage =
     data.prismicTeamContents.data.life_page_meta_image?.localFile?.childImageSharp?.fixed;
-  const canonicalUrl = 'https://about.daangn.com'.concat(location.pathname);
 
   return (
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
       {(props) => (
-        <>
-          {!isCanonicalUrl(String(props.url)) && (
-            <meta http-equiv="refresh" content={`0; url=${canonicalUrl}`} />
-          )}
-          <DefaultLayoutHead
-            {...props}
-            location={location}
-            data={data}
-            image={
-              metaImage && {
-                url: new URL(
-                  metaImage.src,
-                  metaImage.src.startsWith('http') ? metaImage.src : props.url,
-                ),
-                width: metaImage.width,
-                height: metaImage.height,
-              }
+        <DefaultLayoutHead
+          {...props}
+          location={location}
+          data={data}
+          image={
+            metaImage && {
+              url: new URL(
+                metaImage.src,
+                metaImage.src.startsWith('http') ? metaImage.src : props.url,
+              ),
+              width: metaImage.width,
+              height: metaImage.height,
             }
-          />
-          <link rel="canonical" href={canonicalUrl} />
-        </>
+          }
+        />
       )}
     </HeadSeo>
   );

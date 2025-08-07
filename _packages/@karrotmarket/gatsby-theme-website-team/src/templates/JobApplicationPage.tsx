@@ -21,7 +21,6 @@ import TermsField from '../components/formField/TermsField';
 import YesNoField from '../components/formField/YesNoField';
 import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import { JobPostLayoutHead } from '../layouts/JobPostLayout';
-import { isCanonicalUrl } from '../utils/common';
 
 export const query = graphql`
   query TeamWebsite_JobApplicationPage(
@@ -369,15 +368,11 @@ export const Head: React.FC<JobApplicationPageHeadProps> = ({
   const metaDescription = prismicTeamContents.data.jobs_page_meta_description;
   const metaImage =
     prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
-  const canonicalUrl = 'https://about.daangn.com'.concat(location.pathname);
 
   return (
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
       {(props) => (
         <>
-          {!isCanonicalUrl(String(props.url)) && (
-            <meta http-equiv="refresh" content={`0; url=${canonicalUrl}`} />
-          )}
           <DefaultLayoutHead
             {...props}
             location={location}
@@ -395,7 +390,6 @@ export const Head: React.FC<JobApplicationPageHeadProps> = ({
           />
           <JobPostLayoutHead {...props} location={location} data={data} />
           <Robots none />
-          <link rel="canonical" href={canonicalUrl} />
         </>
       )}
     </HeadSeo>

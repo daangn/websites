@@ -12,7 +12,7 @@ import Button from '../components/Button';
 import JobPostContentSection from '../components/JobPostContentSection';
 import { DefaultLayoutHead } from '../layouts/DefaultLayout';
 import { JobPostLayoutHead } from '../layouts/JobPostLayout';
-import { isCanonicalUrl, lookup } from '../utils/common';
+import { lookup } from '../utils/common';
 
 export const query = graphql`
   query TeamWebsite_JobPostPage(
@@ -157,15 +157,11 @@ export const Head: React.FC<JobPostPageHeadProps> = ({
   const metaDescription = prismicTeamContents.data.jobs_page_meta_description;
   const metaImage =
     prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
-  const canonicalUrl = 'https://about.daangn.com'.concat(location.pathname);
 
   return (
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
       {(props) => (
         <>
-          {!isCanonicalUrl(String(props.url)) && (
-            <meta http-equiv="refresh" content={`0; url=${canonicalUrl}`} />
-          )}
           <DefaultLayoutHead
             {...props}
             location={location}
@@ -182,7 +178,6 @@ export const Head: React.FC<JobPostPageHeadProps> = ({
             }
           />
           <JobPostLayoutHead {...props} location={location} data={data} />
-          <link rel="canonical" href={canonicalUrl} />
         </>
       )}
     </HeadSeo>

@@ -15,7 +15,6 @@ import _FaqList from '../components/FaqList';
 import _PageTitle from '../components/PageTitle';
 import _SearchInput from '../components/SearchInput';
 import { DefaultLayoutHead } from '../layouts/DefaultLayout';
-import { isCanonicalUrl } from '../utils/common';
 import { useURLSearchParams } from '../utils/useURLSearchParams';
 
 export const query = graphql`
@@ -214,15 +213,11 @@ export const Head: React.FC<FaqPageHeadProps> = ({ data, location }) => {
 
   const metaTitle = data.prismicTeamContents.data.faq_page_meta_title;
   const metaDescription = data.prismicTeamContents.data.faq_page_meta_description;
-  const canonicalUrl = 'https://about.daangn.com'.concat(location.pathname);
 
   return (
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
       {(props) => (
         <>
-          {!isCanonicalUrl(String(props.url)) && (
-            <meta http-equiv="refresh" content={`0; url=${canonicalUrl}`} />
-          )}
           <DefaultLayoutHead {...props} location={location} data={data} />
           <FAQPageJsonLd
             faq={{
@@ -238,7 +233,6 @@ export const Head: React.FC<FaqPageHeadProps> = ({ data, location }) => {
               })),
             }}
           />
-          <link rel="canonical" href={canonicalUrl} />
         </>
       )}
     </HeadSeo>
