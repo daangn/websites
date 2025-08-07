@@ -175,6 +175,13 @@ const config: GatsbyConfig = {
       },
     },
     {
+      resolve: '@karrotmarket/gatsby-source-greenhouse-jobboard',
+      options: {
+        boardToken: '07153',
+        forceGC: true,
+      },
+    },
+    {
       resolve: '@karrotmarket/gatsby-transformer-job-post',
       options: {
         defaultTags: {

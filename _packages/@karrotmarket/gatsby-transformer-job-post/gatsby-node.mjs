@@ -217,6 +217,10 @@ export const createSchemaCustomization = (ctx, options) => {
             ];
           },
         },
+        searchable: {
+          type: 'Boolean!',
+          resolve: (source) => !source.fields?.hidden,
+        },
       },
     }),
 

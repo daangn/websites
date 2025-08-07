@@ -56,6 +56,7 @@ export const query = graphql`
       employmentType
       priorExperience
       externalUrl
+      searchable
       # Avoid File System Route API
       # viewPath: gatsbyPath(filePath: "/jobs/{JobPost.ghId}")
       # applyPath: gatsbyPath(filePath: "/jobs/{JobPost.ghId}/apply")
@@ -283,15 +284,18 @@ export const JobPostLayoutHead: React.FC<JobPostLayoutHeadProps> = ({
 
   return (
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
-      {({ url, description }) => [
-        <JobPostingJsonLd
-          key="jobposting-jsonld"
-          jobPost={jobPost}
-          url={url}
-          description={description}
-          logo={logoPath.startsWith('http') ? new URL(logoPath) : new URL(logoPath, url)}
-        />,
-      ]}
+      {({ url, description }) => (
+        jobPost.searchable 
+          ? (
+            <JobPostingJsonLd
+              jobPost={jobPost}
+              url={url}
+              description={description}
+              logo={logoPath.startsWith('http') ? new URL(logoPath) : new URL(logoPath, url)}
+            />
+          )
+          : <meta name="robots" content="noindex" />
+      )}
     </HeadSeo>
   );
 };

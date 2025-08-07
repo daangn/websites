@@ -45,7 +45,14 @@ export const query = graphql`
       name
     }
     allDepartmentFilteredJobPost: allJobPost(
-      filter: {departments: {elemMatch: {id: {glob: $departmentId}}}}
+      filter: {
+        searchable: { eq: true }
+        departments: {
+          elemMatch: {
+            id: { glob: $departmentId }
+          }
+        }
+      }
       sort: {title: ASC}
     ) {
       nodes {

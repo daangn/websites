@@ -9,6 +9,22 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = ({ actions }) => {
   });
 };
 
+
+export const onCreateNode: GatsbyNode['onCreateNode'] = ({ node, actions }) => {
+  // Note: 원래 tags 필터링으로 숨기려고 했는데, 
+  // in/nin 조건 들어가면 배열이 비어있는 노드들이 다 빠짐...
+  const nonSearchableJobBoards = [
+    '07153',
+  ];
+  if (node.internal.type === 'JobPost') {
+    actions.createNodeField({
+      node,
+      name: 'searchable',
+      value: !nonSearchableJobBoards.includes((node as any).boardToken),
+    })
+  }
+}
+
 export const createPages: GatsbyNode['createPages'] = async ({
   graphql,
   actions,
