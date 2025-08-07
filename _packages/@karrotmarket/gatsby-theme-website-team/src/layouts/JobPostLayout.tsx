@@ -4,7 +4,7 @@ import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/tran
 import { vars } from '@seed-design/design-token';
 import { LayoutGroup, motion } from 'framer-motion';
 import { Link, type PageProps, graphql, navigate } from 'gatsby';
-import { HeadSeo } from 'gatsby-plugin-head-seo/src';
+import { HeadSeo, Robots } from 'gatsby-plugin-head-seo/src';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import * as React from 'react';
@@ -294,7 +294,7 @@ export const JobPostLayoutHead: React.FC<JobPostLayoutHeadProps> = ({
               logo={logoPath.startsWith('http') ? new URL(logoPath) : new URL(logoPath, url)}
             />
           )
-          : <meta name="robots" content="noindex" />
+          : <Robots none />
       )}
     </HeadSeo>
   );
