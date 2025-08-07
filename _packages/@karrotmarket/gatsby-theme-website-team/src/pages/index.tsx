@@ -1,5 +1,5 @@
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
-import { type HeadProps, type PageProps, graphql } from 'gatsby';
+import { type HeadProps, type PageProps, graphql, navigate } from 'gatsby';
 import { HeadSeo } from 'gatsby-plugin-head-seo/src';
 import { withPrismicPreview } from 'gatsby-plugin-prismic-previews';
 import { styled } from 'gatsby-theme-stitches/src/config';
@@ -101,6 +101,15 @@ const Content = styled('div', {
 type IndexPageProps = PageProps<GatsbyTypes.TeamWebsite_IndexPageQuery>;
 const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
   const locale = data.site.siteMetadata.locale;
+
+  React.useEffect(() => {
+    const url = new URL(window.location.href);
+    const jid = url.searchParams.get('gh_jid');
+    if (jid) {
+      // "View Live" from Greenhouse
+      navigate(`/jobs/${jid}/?from=greenhouse`, { replace: true });
+    }
+  }, []);
 
   return (
     <MainContainer>
