@@ -34,6 +34,7 @@ export const query = graphql`
       ghId
       title
       boardToken
+      allowResume
       parentJob {
         questions {
           __typename
@@ -250,14 +251,16 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({ data, pageConte
         placeholder={messages.job_application_page__field_email_placeholder}
         required
       />
-      <FileAttachmentField
-        name="resume"
-        accepts={greenhouseAcceptedMimeTypes}
-        label={messages.job_application_page__field_resume_label}
-        description={messages.job_application_page__field_resume_description}
-        placeholder={messages.job_application_page__field_resume_placeholder}
-        required
-      />
+      {data.jobPost.allowResume && (
+        <FileAttachmentField
+          name="resume"
+          accepts={greenhouseAcceptedMimeTypes}
+          label={messages.job_application_page__field_resume_label}
+          description={messages.job_application_page__field_resume_description}
+          placeholder={messages.job_application_page__field_resume_placeholder}
+          required
+        />
+      )}
       {portfolioField && (
         <FileAttachmentField
           accepts={greenhouseAcceptedMimeTypes}

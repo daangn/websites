@@ -265,9 +265,14 @@ export const createSchemaCustomization = (ctx, options) => {
             ];
           },
         },
+        // Temp: extensions
         searchable: {
           type: 'Boolean!',
-          resolve: (source) => !source.fields?.hidden,
+          resolve: (source) => !(source.fields?.hidden === false),
+        },
+        allowResume: {
+          type: 'Boolean!',
+          resolve: (source) => !(source.fields?.allowResume === false),
         },
       },
     }),

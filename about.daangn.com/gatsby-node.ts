@@ -11,17 +11,22 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = ({ actions }) => {
 
 
 export const onCreateNode: GatsbyNode['onCreateNode'] = ({ node, actions }) => {
-  // Note: 원래 tags 필터링으로 숨기려고 했는데, 
-  // in/nin 조건 들어가면 배열이 비어있는 노드들이 다 빠짐...
-  const nonSearchableJobBoards = [
-    '07153',
-  ];
   if (node.internal.type === 'JobPost') {
-    actions.createNodeField({
-      node,
-      name: 'searchable',
-      value: !nonSearchableJobBoards.includes((node as any).boardToken),
-    })
+    // FIXME: 얘네도 다 컨텐츠로 관리해야하는데...
+    if ((node as any).boardToken === '07153') {
+      // Note: 원래 tags 필터링으로 숨기려고 했는데, 
+      // in/nin 조건 들어가면 배열이 비어있는 노드들이 다 빠짐...
+      actions.createNodeField({
+        node,
+        name: 'searchable',
+        value: false,
+      });
+      actions.createNodeField({
+        node,
+        name: 'allowResume',
+        value: false,
+      });
+    }
   }
 }
 
