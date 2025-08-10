@@ -35,6 +35,22 @@ export const query = graphql`
       title
       boardToken
       allowResume
+      metaTitle
+      metaDescription
+      metaImage {
+        childImageSharp {
+          fixed(
+            width: 1200
+            height: 630
+            toFormat: PNG
+            quality: 90
+          ) {
+            src
+            width
+            height
+          }
+        }
+      }
       parentJob {
         questions {
           __typename
@@ -367,9 +383,10 @@ export const Head: React.FC<JobApplicationPageHeadProps> = ({
   required(jobPost);
   required(prismicTeamContents);
 
-  const metaTitle = `${jobPost.title} | ${prismicTeamContents.data.jobs_page_meta_title}`;
-  const metaDescription = prismicTeamContents.data.jobs_page_meta_description;
+  const metaTitle = jobPost.metatTitle || `${jobPost.title} | ${prismicTeamContents.data.jobs_page_meta_title}`;
+  const metaDescription = jobPost.metaDescription || prismicTeamContents.data.jobs_page_meta_description;
   const metaImage =
+    jobPost.metaImage?.childImageSharp?.fixed ||
     prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
 
   return (
