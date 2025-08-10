@@ -31,6 +31,22 @@ export const query = graphql`
       content {
         ...TeamWebsite_JobPostContentSection_content
       }
+      metaTitle
+      metaDescription
+      metaImage {
+        childImageSharp {
+          fixed(
+            width: 1200
+            height: 630
+            toFormat: PNG
+            quality: 90
+          ) {
+            src
+            width
+            height
+          }
+        }
+      }
     }
 
     prismicTeamContents(
@@ -151,11 +167,12 @@ export const Head: React.FC<JobPostPageHeadProps> = ({
     KARROT_PAY: messages.job_post_layout__property_karrot_pay,
   });
 
-  const metaTitle = `${jobPost.title} | ${
+  const metaTitle = jobPost.metaTitle || `${jobPost.title} | ${
     prismicTeamContents.data.jobs_page_meta_title || corpName
   }`;
-  const metaDescription = prismicTeamContents.data.jobs_page_meta_description;
+  const metaDescription = jobPost.metaDescription || prismicTeamContents.data.jobs_page_meta_description;
   const metaImage =
+    jobPost.metaImage?.childImageSharp?.fixed ||
     prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
 
   return (

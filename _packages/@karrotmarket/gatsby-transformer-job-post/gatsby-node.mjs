@@ -16,6 +16,7 @@
  */
 
 import slugify from 'cjk-slug';
+import { createRemoteFileNode } from 'gatsby-source-filesystem';
 
 import * as greenhouseJobBlockParser from './greenhouseJobBlockParser.mjs';
 import * as greenhouseJobCustomFieldParser from './greenhouseJobCustomFieldParser.mjs';
@@ -25,21 +26,38 @@ import { isGreenhouseDepartmentNode, isGreenhouseJobNode } from './types.mjs';
 export const pluginOptionsSchema = ({ Joi }) => {
   return Joi.object({
     defaultTags: Joi.object().pattern(Joi.string(), Joi.array().items(Joi.string())),
+    defaultMeta: Joi.object().pattern(
+      Joi.string(),
+      Joi.object({
+        title: Joi.string().optional(),
+        description: Joi.string().optional(),
+        image: Joi.string().optional(),
+      }),
+    ),
   });
 };
 
 /** @type {GatsbyNode['createSchemaCustomization']} */
 export const createSchemaCustomization = (ctx, options) => {
-  const { actions, schema } = ctx;
+  const {
+    actions: {
+      createNode,
+      createTypes,
+    },
+    cache,
+    createNodeId,
+    schema,
+  } = ctx;
 
-  /** @type {PluginOptions} */
-  // @ts-ignore
-  const { defaultTags = {} } = options;
+  const {
+    defaultTags = {},
+    defaultMeta = {},
+  } = /** @type {PluginOptions} */ (options);
 
   const gql = String.raw;
   const fieldParser = greenhouseJobCustomFieldParser;
 
-  actions.createTypes([
+  createTypes([
     schema.buildObjectType({
       name: 'JobPost',
       interfaces: ['Node'],
@@ -80,6 +98,36 @@ export const createSchemaCustomization = (ctx, options) => {
           /** @param {GreenhouseJobBoardJobNode} source */
           resolve(source) {
             return fieldParser.validThrough(source, ctx) ?? null;
+          },
+        },
+        metaTitle: {
+          type: 'String',
+          description: '잡보드에 지정된 기본 OG title',
+          /** @param {GreenhouseJobBoardJobNode} source */
+          resolve(source) {
+            return defaultMeta[source.boardToken]?.title ?? null;
+          },
+        },
+        metaDescription: {
+          type: 'String',
+          description: '잡보드에 지정된 기본 OG description',
+          /** @param {GreenhouseJobBoardJobNode} source */
+          resolve(source) {
+            return defaultMeta[source.boardToken]?.description ?? null;
+          },
+        },
+        metaImage: {
+          type: 'File',
+          description: '잡보드에 지정된 기본 OG image',
+          /** @param {GreenhouseJobBoardJobNode} source */
+          resolve(source) {
+            const imageUrl = defaultMeta[source.boardToken]?.image ?? null;
+            return imageUrl && createRemoteFileNode({
+              url: imageUrl,
+              createNode,
+              createNodeId,
+              cache,
+            });
           },
         },
         title: {
@@ -278,7 +326,7 @@ export const createSchemaCustomization = (ctx, options) => {
     }),
   ]);
 
-  actions.createTypes(gql`
+  createTypes(gql`
     # 이건 assertion이 안되네
     type GreenhouseJobBoardJob implements Node {
       childJobPost: JobPost!
