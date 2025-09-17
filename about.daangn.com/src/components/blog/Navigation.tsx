@@ -21,9 +21,7 @@ export const query = graphql`
 const Navigation: React.FC<NavigationProos> = ({ query, pageContext, search, onSearchChange }) => {
   return (
     <BlogNavigation id="_filter">
-      <div>
-        <CategoryList query={query} pageContext={pageContext} />
-      </div>
+      <CategoryList query={query} pageContext={pageContext} />
       <SearchInput search={search} onSearchChange={onSearchChange} />
     </BlogNavigation>
   );
@@ -35,6 +33,7 @@ const BlogNavigation = styled('div', {
   margin: 0,
   scrollBehavior: 'smooth',
   scrollMarginTop: '96px',
+  overflowX: 'scroll',
 
   '@lg': {
     margin: '0 48px',

@@ -31,7 +31,7 @@ export const query = graphql`
     }
 
     allPost(
-      filter: {category: {name: {eq: "pr"}}}
+      filter: {category: {uid: {eq: "pr"}}}
       sort: {publishedAt: DESC}
     ) {
       nodes {

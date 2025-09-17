@@ -1,11 +1,10 @@
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import * as React from 'react';
 
 import PostCard from './PostCard';
 import EmptyPlaceholder from './postList/EmptyPlaceholder';
-import { useSearchIndex } from './postList/useSearchIndex';
 
 type PostListProps = {
   data: GatsbyTypes.PostList_queryFragment;
@@ -16,8 +15,19 @@ type PostListProps = {
 export const query = graphql`
   fragment PostList_query on Query {
     allPost(
-      filter: {category: {uid: {glob: $id, ne: "pr"}}}
-      sort: {publishedAt: DESC}
+      filter: {
+        category: {
+          uid: { ne: "pr" }
+        }
+        blogCategory: {
+          elemMatch: {
+            uid: { glob: $id }
+          }
+        }
+      }
+      sort: {
+        publishedAt: DESC
+      }
     ) {
       nodes {
         id

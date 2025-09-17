@@ -196,7 +196,8 @@ const config: GatsbyConfig = {
           '07153': {
             title: '2025 Daangn Builder’s Camp',
             description: '당근에서 프로덕트 빌더를 찾아요! (서류 접수: 2025.8.8-8.31)',
-            image: 'https://assetstorage.krrt.io/1518824262134778584/6d5199d8-4b78-4762-9370-6cf9a3559faf/width_1200_height_630.webp',
+            image:
+              'https://assetstorage.krrt.io/1518824262134778584/6d5199d8-4b78-4762-9370-6cf9a3559faf/width_1200_height_630.webp',
           },
         },
       },

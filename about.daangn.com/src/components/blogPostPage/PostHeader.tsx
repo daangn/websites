@@ -11,10 +11,6 @@ export const query = graphql`
   fragment PostHeader_data on Post {
     title
     publishedAt
-    category {
-      name
-      uid
-    }
   }
 `;
 
@@ -22,9 +18,7 @@ const PostHeader: React.FC<PostHeaderProps> = ({ postHeader }) => {
   return (
     <Header>
       <Title>{postHeader.title}</Title>
-      <Wrapper>
-        {postHeader.category.name} | {postHeader.publishedAt}
-      </Wrapper>
+      <Wrapper>{postHeader.publishedAt}</Wrapper>
     </Header>
   );
 };

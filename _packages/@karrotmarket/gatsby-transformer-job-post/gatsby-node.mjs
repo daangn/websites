@@ -40,19 +40,13 @@ export const pluginOptionsSchema = ({ Joi }) => {
 /** @type {GatsbyNode['createSchemaCustomization']} */
 export const createSchemaCustomization = (ctx, options) => {
   const {
-    actions: {
-      createNode,
-      createTypes,
-    },
+    actions: { createNode, createTypes },
     cache,
     createNodeId,
     schema,
   } = ctx;
 
-  const {
-    defaultTags = {},
-    defaultMeta = {},
-  } = /** @type {PluginOptions} */ (options);
+  const { defaultTags = {}, defaultMeta = {} } = /** @type {PluginOptions} */ (options);
 
   const gql = String.raw;
   const fieldParser = greenhouseJobCustomFieldParser;
@@ -122,12 +116,15 @@ export const createSchemaCustomization = (ctx, options) => {
           /** @param {GreenhouseJobBoardJobNode} source */
           resolve(source) {
             const imageUrl = defaultMeta[source.boardToken]?.image ?? null;
-            return imageUrl && createRemoteFileNode({
-              url: imageUrl,
-              createNode,
-              createNodeId,
-              cache,
-            });
+            return (
+              imageUrl &&
+              createRemoteFileNode({
+                url: imageUrl,
+                createNode,
+                createNodeId,
+                cache,
+              })
+            );
           },
         },
         title: {

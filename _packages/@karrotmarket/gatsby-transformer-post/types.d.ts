@@ -1,4 +1,5 @@
 import {
+  type NumberField,
   type ContentRelationshipField,
   type DateField,
   type GroupField,
@@ -21,6 +22,7 @@ export type PrismicPostCategoryNode = PrismicSourceNode &
     {
       uid: string;
       name: KeyTextField;
+      priority: NumberField;
     },
     'post_category'
   >;

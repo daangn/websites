@@ -19,6 +19,10 @@ export const query = graphql`
       name
       uid
     }
+    blogCategory {
+      name
+      uid
+    }
   }
 `;
 
@@ -34,7 +38,13 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
         <PostTitle>{post.title}</PostTitle>
         <PostSummary>{post.summary}</PostSummary>
       </BlogLink>
-      <PostCategory to={`/blog/category/${post.category.uid}/`}>{post.category.name}</PostCategory>
+      <PostCategoryList>
+        {post.blogCategory.map((category) => (
+          <PostCategory key={category.uid} to={`/blog/category/${category.uid}/#_filter`}>
+            {category.name}
+          </PostCategory>
+        ))}
+      </PostCategoryList>
     </Container>
   );
 };
@@ -107,6 +117,11 @@ const PostSummary = styled('p', {
   '@sm': {
     marginTop: rem(12),
   },
+});
+
+const PostCategoryList = styled('div', {
+  display: 'flex',
+  columnGap: rem(8),
 });
 
 const PostCategory = styled(Link, {

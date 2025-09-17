@@ -280,25 +280,26 @@ export const JobPostLayoutHead: React.FC<JobPostLayoutHeadProps> = ({
     KARROT_PAY: messages.job_post_layout__property_karrot_pay,
   });
 
-  const metaTitle = jobPost.metaTitle || `${jobPost.title} | ${
-    prismicTeamContents.data.jobs_page_meta_title || corpName
-  }`;
-  const metaDescription = jobPost.metaDescription || prismicTeamContents.data.jobs_page_meta_description;
+  const metaTitle =
+    jobPost.metaTitle ||
+    `${jobPost.title} | ${prismicTeamContents.data.jobs_page_meta_title || corpName}`;
+  const metaDescription =
+    jobPost.metaDescription || prismicTeamContents.data.jobs_page_meta_description;
 
   return (
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
-      {({ url, description }) => (
-        jobPost.searchable 
-          ? (
-            <JobPostingJsonLd
-              jobPost={jobPost}
-              url={url}
-              description={description}
-              logo={logoPath.startsWith('http') ? new URL(logoPath) : new URL(logoPath, url)}
-            />
-          )
-          : <Robots none />
-      )}
+      {({ url, description }) =>
+        jobPost.searchable ? (
+          <JobPostingJsonLd
+            jobPost={jobPost}
+            url={url}
+            description={description}
+            logo={logoPath.startsWith('http') ? new URL(logoPath) : new URL(logoPath, url)}
+          />
+        ) : (
+          <Robots none />
+        )
+      }
     </HeadSeo>
   );
 };

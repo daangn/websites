@@ -9,12 +9,11 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = ({ actions }) => {
   });
 };
 
-
 export const onCreateNode: GatsbyNode['onCreateNode'] = ({ node, actions }) => {
   if (node.internal.type === 'JobPost') {
     // FIXME: 얘네도 다 컨텐츠로 관리해야하는데...
     if ((node as any).boardToken === '07153') {
-      // Note: 원래 tags 필터링으로 숨기려고 했는데, 
+      // Note: 원래 tags 필터링으로 숨기려고 했는데,
       // in/nin 조건 들어가면 배열이 비어있는 노드들이 다 빠짐...
       actions.createNodeField({
         node,
@@ -28,7 +27,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({ node, actions }) => {
       });
     }
   }
-}
+};
 
 export const createPages: GatsbyNode['createPages'] = async ({
   graphql,
@@ -52,7 +51,16 @@ export const createPages: GatsbyNode['createPages'] = async ({
         uid: string;
       }>;
     };
-    allPost: {
+    allPrPost: {
+      nodes: Array<{
+        id: string;
+        slug: string;
+        category: {
+          uid: string;
+        };
+      }>;
+    };
+    allBlogPost: {
       nodes: Array<{
         id: string;
         slug: string;
@@ -100,7 +108,13 @@ export const createPages: GatsbyNode['createPages'] = async ({
         }
       }
 
-      allPost {
+      allPrPost: allPost(
+        filter: {
+          category: {
+            uid: { eq: "pr" }
+          }
+        }
+      ) {
         nodes {
           id
           slug
@@ -110,7 +124,27 @@ export const createPages: GatsbyNode['createPages'] = async ({
         }
       }
 
-      allPostCategory {
+      allBlogPost: allPost(
+        filter: {
+          category: {
+            uid: { ne: "pr" }
+          }
+        }
+      ) {
+        nodes {
+          id
+          slug
+          category {
+            uid
+          }
+        }
+      }
+
+      allPostCategory(
+        filter: {
+          uid: { ne: "pr" }
+        }
+      ) {
         nodes {
           uid
           name
@@ -182,8 +216,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
     },
   });
 
-  const prPost = data.allPost.nodes.filter((post) => post.category.uid === 'pr');
-  for (const post of prPost) {
+  for (const post of data.allPrPost.nodes) {
     actions.createPage({
       path: `/company/pr/archive/${post.slug}/`,
       component: path.resolve(basePath, 'src/templates/PrPostPage.tsx'),
@@ -193,8 +226,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
     });
   }
 
-  const blogPost = data.allPost.nodes.filter((post) => post.category.uid !== 'pr');
-  for (const post of blogPost) {
+  for (const post of data.allBlogPost.nodes) {
     actions.createPage({
       path: `/blog/archive/${post.slug}/`,
       component: path.resolve(basePath, 'src/templates/BlogPostPage.tsx'),

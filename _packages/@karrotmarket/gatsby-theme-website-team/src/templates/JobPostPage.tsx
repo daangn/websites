@@ -167,10 +167,11 @@ export const Head: React.FC<JobPostPageHeadProps> = ({
     KARROT_PAY: messages.job_post_layout__property_karrot_pay,
   });
 
-  const metaTitle = jobPost.metaTitle || `${jobPost.title} | ${
-    prismicTeamContents.data.jobs_page_meta_title || corpName
-  }`;
-  const metaDescription = jobPost.metaDescription || prismicTeamContents.data.jobs_page_meta_description;
+  const metaTitle =
+    jobPost.metaTitle ||
+    `${jobPost.title} | ${prismicTeamContents.data.jobs_page_meta_title || corpName}`;
+  const metaDescription =
+    jobPost.metaDescription || prismicTeamContents.data.jobs_page_meta_description;
   const metaImage =
     jobPost.metaImage?.childImageSharp?.fixed ||
     prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;

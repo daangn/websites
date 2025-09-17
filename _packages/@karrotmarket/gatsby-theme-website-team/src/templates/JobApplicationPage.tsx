@@ -383,8 +383,10 @@ export const Head: React.FC<JobApplicationPageHeadProps> = ({
   required(jobPost);
   required(prismicTeamContents);
 
-  const metaTitle = jobPost.metatTitle || `${jobPost.title} | ${prismicTeamContents.data.jobs_page_meta_title}`;
-  const metaDescription = jobPost.metaDescription || prismicTeamContents.data.jobs_page_meta_description;
+  const metaTitle =
+    jobPost.metatTitle || `${jobPost.title} | ${prismicTeamContents.data.jobs_page_meta_title}`;
+  const metaDescription =
+    jobPost.metaDescription || prismicTeamContents.data.jobs_page_meta_description;
   const metaImage =
     jobPost.metaImage?.childImageSharp?.fixed ||
     prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;

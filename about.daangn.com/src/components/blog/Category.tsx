@@ -1,5 +1,5 @@
 import { vars } from '@seed-design/design-token';
-import { graphql, navigate } from 'gatsby';
+import { Link, graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 
@@ -18,30 +18,16 @@ export const query = graphql`
 `;
 
 const Category: React.FC<CategoryProps> = ({ category, pageContext }) => {
-  const handleCategoryClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const targetElement = e.target as HTMLElement;
-    const categoryId = targetElement.id;
-
-    if (categoryId === '*') {
-      navigate(`/blog/${window.location.search}#_filter`);
-      return;
-    }
-
-    navigate(`/blog/category/${categoryId}/${window.location.search}#_filter`);
-  };
-
+  const path = category.uid === '*' ? '/blog/' : `/blog/category/${category.uid}`;
+  const href = path + '#_filter';
   return (
-    <Container
-      id={category.uid}
-      onClick={handleCategoryClick}
-      active={pageContext === category.uid}
-    >
+    <Container id={category.uid} to={href} active={pageContext === category.uid}>
       {category.name}
     </Container>
   );
 };
 
-const Container = styled('div', {
+const Container = styled(Link, {
   padding: `${rem(12)} ${rem(18)}`,
   marginRight: rem(8),
   border: 'none',

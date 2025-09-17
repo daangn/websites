@@ -11,6 +11,7 @@
  * @typedef {import('./types').PrismicPostDataBodySummaryBulletSectionSlice} PrismicPostDataBodySummaryBulletSectionSlice
  * @typedef {import('./types').PrismicPostDataBodyVerticalQuoteSectionSlice} PrismicPostDataBodyVerticalQuoteSectionSlice
  * @typedef {import('./types').PrismicPostNode} PrismicPostNode
+ * @typedef {import('./types').PrismicPostCategoryNode} PrismicPostCategoryNode
  * @typedef {import('./types').PrismicPostRichTextSectionSlice} PrismicPostRichTextSectionSlice
  */
 
@@ -46,6 +47,13 @@ export const createSchemaCustomization = ({
             proxy: {
               from: 'data.name',
             },
+          },
+        },
+        priority: {
+          type: 'Int!',
+          /** @param {PrismicPostCategoryNode} node */
+          resolve(node) {
+            return node.data.priority || 0;
           },
         },
       },
@@ -160,6 +168,15 @@ export const createSchemaCustomization = ({
             link: {
               by: 'prismicId',
               from: 'data.category.id',
+            },
+          },
+        },
+        blogCategory: {
+          type: '[PostCategory!]!',
+          extensions: {
+            link: {
+              by: 'prismicId',
+              from: 'data.category_group.blog_category.id',
             },
           },
         },
