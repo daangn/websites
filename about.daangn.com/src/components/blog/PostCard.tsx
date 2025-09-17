@@ -18,11 +18,13 @@ export const query = graphql`
     blogCategory {
       name
       uid
+      priority # 사전 정렬 보장 안됨
     }
   }
 `;
 
 const PostCard: React.FC<PostCardProps> = ({ post }) => {
+  const categories = [...post.blogCategory].sort((a, b) => b.priority - a.priority);
   return (
     <Container>
       <BlogLink to={`/blog/archive/${post.slug}/`}>
@@ -35,7 +37,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
         <PostSummary>{post.summary}</PostSummary>
       </BlogLink>
       <PostCategoryList>
-        {post.blogCategory.map((category) => (
+        {categories.map((category) => (
           <PostCategory key={category.uid} to={`/blog/category/${category.uid}/#_filter`}>
             {category.name}
           </PostCategory>
