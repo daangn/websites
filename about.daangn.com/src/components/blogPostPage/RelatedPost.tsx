@@ -16,7 +16,7 @@ export const query = graphql`
       thumbnailImage {
         publicURL
       }
-      category {
+      blogCategory {
         name
         uid
       }
@@ -42,7 +42,11 @@ const RelatedPost: React.FC<RelatedPostProps> = ({ data }) => {
                   <PostTitle>{post.title}</PostTitle>
                   <PostSummary>{post.summary}</PostSummary>
                 </BlogLink>
-                <PostCategory>{post.category.name}</PostCategory>
+                <PostCategoryList>
+                  {post.blogCategory.map((category) => (
+                    <PostCategory key={category.uid}>{category.name}</PostCategory>
+                  ))}
+                </PostCategoryList>
               </PostCard>
             ))}
           </CardContainer>
@@ -121,6 +125,11 @@ const PostSummary = styled('p', {
   marginTop: rem(4),
   color: vars.$scale.color.gray700,
   fontSize: '$body2',
+});
+
+const PostCategoryList = styled('div', {
+  display: 'flex',
+  columnGap: rem(8),
 });
 
 const PostCategory = styled('div', {

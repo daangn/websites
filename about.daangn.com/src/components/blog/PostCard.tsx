@@ -15,10 +15,6 @@ export const query = graphql`
     thumbnailImage {
       publicURL
     }
-    category {
-      name
-      uid
-    }
     blogCategory {
       name
       uid

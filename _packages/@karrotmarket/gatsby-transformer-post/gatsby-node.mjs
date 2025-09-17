@@ -163,7 +163,7 @@ export const createSchemaCustomization = ({
           },
         },
         category: {
-          type: 'PostCategory!',
+          type: 'PostCategory',
           extensions: {
             link: {
               by: 'prismicId',

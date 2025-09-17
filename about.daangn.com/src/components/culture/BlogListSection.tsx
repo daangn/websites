@@ -56,7 +56,7 @@ const BlogListSection: React.FC<BlogListSectionProps> = ({ slice, data }) => {
         delay={200}
         initialTransform="translateY(2rem)"
       />
-      <CtaButton link="/blog/category/career/">블로그 글 보러 가기</CtaButton>
+      <CtaButton link="/blog/category/culture/">블로그 글 보러 가기</CtaButton>
       <BlogCardWraaper ref={scrollRef}>
         {data.allPost.nodes.map((post) => (
           <BlogCard key={post.slug} to={`/blog/archive/${post.slug}`}>

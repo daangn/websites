@@ -55,18 +55,12 @@ export const createPages: GatsbyNode['createPages'] = async ({
       nodes: Array<{
         id: string;
         slug: string;
-        category: {
-          uid: string;
-        };
       }>;
     };
     allBlogPost: {
       nodes: Array<{
         id: string;
         slug: string;
-        category: {
-          uid: string;
-        };
       }>;
     };
     allPostCategory: {
@@ -118,9 +112,6 @@ export const createPages: GatsbyNode['createPages'] = async ({
         nodes {
           id
           slug
-          category {
-            uid
-          }
         }
       }
 
@@ -134,9 +125,6 @@ export const createPages: GatsbyNode['createPages'] = async ({
         nodes {
           id
           slug
-          category {
-            uid
-          }
         }
       }
 
