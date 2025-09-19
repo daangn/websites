@@ -1,5 +1,5 @@
 import { useGSAP } from '@gsap/react';
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql } from 'gatsby';
 import gsap from 'gsap';
 import { useRef } from 'react';
 import { useWindowSize } from 'react-use';
@@ -11,28 +11,31 @@ const STORY_TITLE_OFFSET = 24;
 
 const mm = gsap.matchMedia();
 
-export default function FirstFold() {
-  // biome-ignore lint/suspicious/noExplicitAny: typegen이 동작을 안함
-  const data = useStaticQuery<any>(graphql`
-    query FirstFold {
-      prismicVisionPage {
-        data {
-          first_fold_video1 {
-            localFile {
-              publicURL
-            }
+export const query = graphql`
+  fragment TeamWebsite_FirstFold_query on Query {
+    prismicVisionPage {
+      data {
+        first_fold_video1 {
+          localFile {
+            publicURL
           }
-          first_fold_title_1 {
-            text
-          }
-          first_fold_title_2 {
-            text
-          }
+        }
+        first_fold_title_1 {
+          text
+        }
+        first_fold_title_2 {
+          text
         }
       }
     }
-  `);
+  }
+`;
 
+type Props = {
+  query: GatsbyTypes.TeamWebsite_FirstFold_queryFragment,
+};
+
+export default function FirstFold({ query: data }) {
   const { width: windowWidth, height: windowHeight } = useWindowSize();
 
   /**

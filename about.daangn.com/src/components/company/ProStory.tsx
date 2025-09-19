@@ -1,86 +1,89 @@
 import { IconArrowRightLine } from '@karrotmarket/react-monochrome-icon';
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import Centered from './Centered';
 import * as css from './ProStory.css';
 
-export default function ProStory() {
-  // biome-ignore lint/suspicious/noExplicitAny: typegen이 동작을 안함
-  const data = useStaticQuery<any>(graphql`
-    query ProStory {
-      prismicVisionPage {
-        data {
-          pro_story_title {
-            text
-          }
-          pro_story_subtitle {
-            text
-          }
+export const query = graphql`
+  fragment TeamWebsite_ProStory_query on Query {
+    prismicVisionPage {
+      data {
+        pro_story_title {
+          text
+        }
+        pro_story_subtitle {
+          text
+        }
 
-          # Pro Story 1
-          pro_story_1_image {
-            gatsbyImageData
-            alt
-          }
-          pro_story_1_title {
-            text
-          }
-          pro_story_1_caption {
-            text
-          }
-          pro_story_1_link {
-            url
-          }
+        # Pro Story 1
+        pro_story_1_image {
+          gatsbyImageData
+          alt
+        }
+        pro_story_1_title {
+          text
+        }
+        pro_story_1_caption {
+          text
+        }
+        pro_story_1_link {
+          url
+        }
 
-          # Pro Story 2
-          pro_story_2_image {
-            gatsbyImageData
-            alt
-          }
-          pro_story_2_title {
-            text
-          }
-          pro_story_2_caption {
-            text
-          }
-          pro_story_2_link {
-            url
-          }
+        # Pro Story 2
+        pro_story_2_image {
+          gatsbyImageData
+          alt
+        }
+        pro_story_2_title {
+          text
+        }
+        pro_story_2_caption {
+          text
+        }
+        pro_story_2_link {
+          url
+        }
 
-          # Pro Story 3
-          pro_story_3_image {
-            gatsbyImageData
-            alt
-          }
-          pro_story_3_title {
-            text
-          }
-          pro_story_3_caption {
-            text
-          }
-          pro_story_3_link {
-            url
-          }
+        # Pro Story 3
+        pro_story_3_image {
+          gatsbyImageData
+          alt
+        }
+        pro_story_3_title {
+          text
+        }
+        pro_story_3_caption {
+          text
+        }
+        pro_story_3_link {
+          url
+        }
 
-          # Pro Story 4
-          pro_story_4_image {
-            gatsbyImageData
-            alt
-          }
-          pro_story_4_title {
-            text
-          }
-          pro_story_4_caption {
-            text
-          }
-          pro_story_4_link {
-            url
-          }
+        # Pro Story 4
+        pro_story_4_image {
+          gatsbyImageData
+          alt
+        }
+        pro_story_4_title {
+          text
+        }
+        pro_story_4_caption {
+          text
+        }
+        pro_story_4_link {
+          url
         }
       }
     }
-  `);
+  }
+`;
 
+type Props = {
+  query: GatsbyTypes.TeamWebsite_ProStory_queryFragment,
+};
+
+export default function ProStory({ query: data }: Props) {
   const stories = [
     {
       title: data.prismicVisionPage.data.pro_story_1_title.text,

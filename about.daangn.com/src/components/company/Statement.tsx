@@ -1,5 +1,5 @@
 import { useGSAP } from '@gsap/react';
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import gsap from 'gsap';
 import { useRef } from 'react';
@@ -7,78 +7,81 @@ import Marquee from 'react-fast-marquee';
 import Centered from './Centered';
 import * as css from './Statement.css';
 
-export default function Statement() {
-  // biome-ignore lint/suspicious/noExplicitAny: typegen이 동작을 안함
-  const data = useStaticQuery<any>(graphql`
-    query Statement {
-      prismicVisionPage {
-        data {
-          statement_text_1 {
-            text
+export const query = graphql`
+  fragment TeamWebsite_Statement_query on Query {
+    prismicVisionPage {
+      data {
+        statement_text_1 {
+          text
+        }
+        statement_text_2 {
+          text
+        }
+        statement_text_3 {
+          text
+        }
+        statement_text_4 {
+          text
+        }
+        statement_image_1 {
+          localFile {
+            id
           }
-          statement_text_2 {
-            text
+          alt
+          gatsbyImageData
+        }
+        statement_image_2 {
+          localFile {
+            id
           }
-          statement_text_3 {
-            text
+          alt
+          gatsbyImageData
+        }
+        statement_image_3 {
+          localFile {
+            id
           }
-          statement_text_4 {
-            text
+          alt
+          gatsbyImageData
+        }
+        statement_image_4 {
+          localFile {
+            id
           }
-          statement_image_1 {
-            localFile {
-              id
-            }
-            alt
-            gatsbyImageData
+          alt
+          gatsbyImageData
+        }
+        statement_image_5 {
+          localFile {
+            id
           }
-          statement_image_2 {
-            localFile {
-              id
-            }
-            alt
-            gatsbyImageData
+          alt
+          gatsbyImageData
+        }
+        statement_image_6 {
+          localFile {
+            id
           }
-          statement_image_3 {
-            localFile {
-              id
-            }
-            alt
-            gatsbyImageData
+          alt
+          gatsbyImageData
+        }
+        statement_image_7 {
+          localFile {
+            id
           }
-          statement_image_4 {
-            localFile {
-              id
-            }
-            alt
-            gatsbyImageData
-          }
-          statement_image_5 {
-            localFile {
-              id
-            }
-            alt
-            gatsbyImageData
-          }
-          statement_image_6 {
-            localFile {
-              id
-            }
-            alt
-            gatsbyImageData
-          }
-          statement_image_7 {
-            localFile {
-              id
-            }
-            alt
-            gatsbyImageData
-          }
+          alt
+          gatsbyImageData
         }
       }
     }
-  `);
+  }
+`;
 
+type Props = {
+  query: GatsbyTypes.TeamWebsite_Statement_queryFragment,
+};
+
+export default function Statement({ query: data }: Props) {
   const images = [
     {
       id: data.prismicVisionPage.data.statement_image_1.localFile.id,

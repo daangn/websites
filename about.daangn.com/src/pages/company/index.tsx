@@ -16,6 +16,14 @@ import { FIRST_FOLD_STORY_HEIGHT } from '../../components/company/constants';
 export const query = graphql`
   query CompanyPage($locale: String!, $navigationId: String!) {
     ...TeamWebsite_DefaultLayout_query
+    ...TeamWebsite_FirstFold_query
+    ...TeamWebsite_Statement_query
+    ...TeamWebsite_UserStory_query
+    ...TeamWebsite_ProStory_query
+    ...TeamWebsite_Cartoon_query
+    ...TeamWebsite_Numbers_query
+    ...TeamWebsite_Investors_query
+    ...TeamWebsite_News_query
 
     prismicVisionPage {
       data {
@@ -77,14 +85,14 @@ const CompanyPage: React.FC<CompanyPageProps> = ({ data }) => {
 
   return (
     <Main>
-      <FirstFold />
-      <Statement />
-      <UserStory />
-      <ProStory />
-      <Cartoon />
-      <Numbers />
-      <Investors />
-      <News />
+      <FirstFold query={data} />
+      <Statement query={data} />
+      <UserStory query={data} />
+      <ProStory query={data} />
+      <Cartoon query={data} />
+      <Numbers query={data} />
+      <Investors query={data} />
+      <News query={data} />
     </Main>
   );
 };

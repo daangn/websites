@@ -2,109 +2,90 @@ import NumberFlow, { continuous } from '@number-flow/react';
 import commaNumber from 'comma-number';
 import Autoplay from 'embla-carousel-autoplay';
 import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react';
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql } from 'gatsby';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useIntersection, useMedia } from 'react-use';
 import Centered from './Centered';
 import * as css from './Numbers.css';
 import { media } from './media.css';
 
-type EmblaCarouselType = UseEmblaCarouselType[1];
-
-function useSelectedIndex(emblaApi: EmblaCarouselType | undefined) {
-  const [selectedIndex, setSelectedIndex] = useState(0);
-
-  const onSelect = useCallback((emblaApi: EmblaCarouselType) => {
-    if (emblaApi) {
-      setSelectedIndex(emblaApi.selectedScrollSnap());
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!emblaApi) {
-      return;
-    }
-
-    onSelect(emblaApi);
-    emblaApi.on('reInit', onSelect).on('select', onSelect);
-  }, [emblaApi, onSelect]);
-
-  return selectedIndex;
-}
-
-export default function Numbers() {
-  const data = useStaticQuery(graphql`
-    query Numbers {
-      prismicVisionPage {
-        data {
-          numbers_title {
-            text
-          }
-
-          # Numbers 1
-          numbers_1_title {
-            text
-          }
-          numbers_1_small_title {
-            text
-          }
-          numbers_1_number {
-            text
-          }
-          numbers_1_number_suffix {
-            text
-          }
-          numbers_1_color
-
-          # Numbers 2
-          numbers_2_title {
-            text
-          }
-          numbers_2_small_title {
-            text
-          }
-          numbers_2_number {
-            text
-          }
-          numbers_2_number_suffix {
-            text
-          }
-          numbers_2_color
-
-          # Numbers 3
-          numbers_3_title {
-            text
-          }
-          numbers_3_small_title {
-            text
-          }
-          numbers_3_number {
-            text
-          }
-          numbers_3_number_suffix {
-            text
-          }
-          numbers_3_color
-
-          # Numbers 4
-          numbers_4_title {
-            text
-          }
-          numbers_4_small_title {
-            text
-          }
-          numbers_4_number {
-            text
-          }
-          numbers_4_number_suffix {
-            text
-          }
-          numbers_4_color
+export const query = graphql`
+  fragment TeamWebsite_Numbers_query on Query {
+    prismicVisionPage {
+      data {
+        numbers_title {
+          text
         }
+
+        # Numbers 1
+        numbers_1_title {
+          text
+        }
+        numbers_1_small_title {
+          text
+        }
+        numbers_1_number {
+          text
+        }
+        numbers_1_number_suffix {
+          text
+        }
+        numbers_1_color
+
+        # Numbers 2
+        numbers_2_title {
+          text
+        }
+        numbers_2_small_title {
+          text
+        }
+        numbers_2_number {
+          text
+        }
+        numbers_2_number_suffix {
+          text
+        }
+        numbers_2_color
+
+        # Numbers 3
+        numbers_3_title {
+          text
+        }
+        numbers_3_small_title {
+          text
+        }
+        numbers_3_number {
+          text
+        }
+        numbers_3_number_suffix {
+          text
+        }
+        numbers_3_color
+
+        # Numbers 4
+        numbers_4_title {
+          text
+        }
+        numbers_4_small_title {
+          text
+        }
+        numbers_4_number {
+          text
+        }
+        numbers_4_number_suffix {
+          text
+        }
+        numbers_4_color
       }
     }
-  `);
+  }
+`;
 
+type Props = {
+  query: GatsbyTypes.TeamWebsite_Numbers_queryFragment,
+};
+
+export default function Numbers({ query: data }: Props) {
   const numbers = [
     {
       title: data.prismicVisionPage.data.numbers_1_title.text,
@@ -205,4 +186,27 @@ export default function Numbers() {
       </div>
     </Centered>
   );
+}
+
+type EmblaCarouselType = UseEmblaCarouselType[1];
+
+function useSelectedIndex(emblaApi: EmblaCarouselType | undefined) {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const onSelect = useCallback((emblaApi: EmblaCarouselType) => {
+    if (emblaApi) {
+      setSelectedIndex(emblaApi.selectedScrollSnap());
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!emblaApi) {
+      return;
+    }
+
+    onSelect(emblaApi);
+    emblaApi.on('reInit', onSelect).on('select', onSelect);
+  }, [emblaApi, onSelect]);
+
+  return selectedIndex;
 }

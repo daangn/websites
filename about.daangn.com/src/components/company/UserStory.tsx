@@ -1,6 +1,6 @@
 import { useGSAP } from '@gsap/react';
 import { IconArrowRightLine } from '@karrotmarket/react-monochrome-icon';
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql } from 'gatsby';
 import gsap from 'gsap';
 import { useRef } from 'react';
 import Button from './Button';
@@ -8,110 +8,114 @@ import Centered from './Centered';
 import * as css from './UserStory.css';
 import { media, show } from './media.css';
 
-export default function UserStory() {
-  const data = useStaticQuery(graphql`
-    query UserStory {
-      prismicVisionPage {
-        data {
-          user_story_title {
-            text
-          }
-          user_story_subtitle {
-            text
-          }
+export const query = graphql`
+  fragment TeamWebsite_UserStory_query on Query {
+    prismicVisionPage {
+      data {
+        user_story_title {
+          text
+        }
+        user_story_subtitle {
+          text
+        }
 
-          # User Story 1
-          user_story_1_title {
-            text
+        # User Story 1
+        user_story_1_title {
+          text
+        }
+        user_story_1_description {
+          text
+        }
+        user_story_1_video {
+          localFile {
+            publicURL
           }
-          user_story_1_description {
-            text
-          }
-          user_story_1_video {
-            localFile {
-              publicURL
-            }
-          }
-          user_story_1_badge {
-            text
-          }
-          user_story_1_button_label {
-            text
-          }
-          user_story_1_link {
-            url
-          }
+        }
+        user_story_1_badge {
+          text
+        }
+        user_story_1_button_label {
+          text
+        }
+        user_story_1_link {
+          url
+        }
 
-          # User Story 2
-          user_story_2_title {
-            text
+        # User Story 2
+        user_story_2_title {
+          text
+        }
+        user_story_2_description {
+          text
+        }
+        user_story_2_video {
+          localFile {
+            publicURL
           }
-          user_story_2_description {
-            text
-          }
-          user_story_2_video {
-            localFile {
-              publicURL
-            }
-          }
-          user_story_2_badge {
-            text
-          }
-          user_story_2_button_label {
-            text
-          }
-          user_story_2_link {
-            url
-          }
+        }
+        user_story_2_badge {
+          text
+        }
+        user_story_2_button_label {
+          text
+        }
+        user_story_2_link {
+          url
+        }
 
-          # User Story 3
-          user_story_3_title {
-            text
+        # User Story 3
+        user_story_3_title {
+          text
+        }
+        user_story_3_description {
+          text
+        }
+        user_story_3_video {
+          localFile {
+            publicURL
           }
-          user_story_3_description {
-            text
-          }
-          user_story_3_video {
-            localFile {
-              publicURL
-            }
-          }
-          user_story_3_badge {
-            text
-          }
-          user_story_3_button_label {
-            text
-          }
-          user_story_3_link {
-            url
-          }
+        }
+        user_story_3_badge {
+          text
+        }
+        user_story_3_button_label {
+          text
+        }
+        user_story_3_link {
+          url
+        }
 
-          # User Story 4
-          user_story_4_title {
-            text
+        # User Story 4
+        user_story_4_title {
+          text
+        }
+        user_story_4_description {
+          text
+        }
+        user_story_4_video {
+          localFile {
+            publicURL
           }
-          user_story_4_description {
-            text
-          }
-          user_story_4_video {
-            localFile {
-              publicURL
-            }
-          }
-          user_story_4_badge {
-            text
-          }
-          user_story_4_button_label {
-            text
-          }
-          user_story_4_link {
-            url
-          }
+        }
+        user_story_4_badge {
+          text
+        }
+        user_story_4_button_label {
+          text
+        }
+        user_story_4_link {
+          url
         }
       }
     }
-  `);
+  }
+`;
 
+type Props = {
+  query: GatsbyTypes.TeamWebsite_UserStory_queryFragment,
+};
+
+export default function UserStory({ query: data }: Props) {
   const stories = [
     {
       title: data.prismicVisionPage.data.user_story_1_title.text,

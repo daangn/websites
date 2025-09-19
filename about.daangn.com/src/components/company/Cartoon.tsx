@@ -1,6 +1,6 @@
 import { useGSAP } from '@gsap/react';
 import { IconArrowRightLine } from '@karrotmarket/react-monochrome-icon';
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql } from 'gatsby';
 import gsap from 'gsap';
 import { useRef } from 'react';
 import { useWindowSize } from 'react-use';
@@ -9,30 +9,34 @@ import * as css from './Cartoon.css';
 import Centered from './Centered';
 import { MAX_WIDTH, SIDE_MARGIN } from './constants';
 
-export default function Cartoon() {
-  const data = useStaticQuery(graphql`
-    query Cartoon {
-      prismicVisionPage {
-        data {
-          cartoon_title {
-            text
+export const query = graphql`
+  fragment TeamWebsite_Cartoon_query on Query {
+    prismicVisionPage {
+      data {
+        cartoon_title {
+          text
+        }
+        cartoon_video {
+          localFile {
+            publicURL
           }
-          cartoon_video {
-            localFile {
-              publicURL
-            }
-          }
-          cartoon_button_label {
-            text
-          }
-          cartoon_button_link {
-            url
-          }
+        }
+        cartoon_button_label {
+          text
+        }
+        cartoon_button_link {
+          url
         }
       }
     }
-  `);
+  }
+`;
 
+type Props = {
+  query: GatsbyTypes.TeamWebsite_Cartoon_queryFragment,
+}
+
+export default function Cartoon({ query: data }: Props) {
   const { width: windowWidth, height: windowHeight } = useWindowSize();
   const videoRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLDivElement>(null);

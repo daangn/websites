@@ -1,88 +1,92 @@
 import Autoplay from 'embla-carousel-autoplay';
 import useEmblaCarousel from 'embla-carousel-react';
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import Centered from './Centered';
 import * as css from './Investors.css';
 import { media } from './media.css';
 
-export default function Investors() {
-  const data = useStaticQuery(graphql`
-    query Investors {
-      prismicVisionPage {
-        data {
-          investors_title {
-            text
-          }
+export const query = graphql`
+  fragment TeamWebsite_Investors_query on Query {
+    prismicVisionPage {
+      data {
+        investors_title {
+          text
+        }
 
-          investors_1_image {
-            localFile {
-              id
-            }
-            gatsbyImageData
-            alt
+        investors_1_image {
+          localFile {
+            id
           }
-          investors_2_image {
-            localFile {
-              id
-            }
-            gatsbyImageData
-            alt
+          gatsbyImageData
+          alt
+        }
+        investors_2_image {
+          localFile {
+            id
           }
-          investors_3_image {
-            localFile {
-              id
-            }
-            gatsbyImageData
-            alt
+          gatsbyImageData
+          alt
+        }
+        investors_3_image {
+          localFile {
+            id
           }
-          investors_4_image {
-            localFile {
-              id
-            }
-            gatsbyImageData
-            alt
+          gatsbyImageData
+          alt
+        }
+        investors_4_image {
+          localFile {
+            id
           }
-          investors_5_image {
-            localFile {
-              id
-            }
-            gatsbyImageData
-            alt
+          gatsbyImageData
+          alt
+        }
+        investors_5_image {
+          localFile {
+            id
           }
-          investors_6_image {
-            localFile {
-              id
-            }
-            gatsbyImageData
-            alt
+          gatsbyImageData
+          alt
+        }
+        investors_6_image {
+          localFile {
+            id
           }
-          investors_7_image {
-            localFile {
-              id
-            }
-            gatsbyImageData
-            alt
+          gatsbyImageData
+          alt
+        }
+        investors_7_image {
+          localFile {
+            id
           }
-          investors_8_image {
-            localFile {
-              id
-            }
-            gatsbyImageData
-            alt
+          gatsbyImageData
+          alt
+        }
+        investors_8_image {
+          localFile {
+            id
           }
-          investors_9_image {
-            localFile {
-              id
-            }
-            gatsbyImageData
-            alt
+          gatsbyImageData
+          alt
+        }
+        investors_9_image {
+          localFile {
+            id
           }
+          gatsbyImageData
+          alt
         }
       }
     }
-  `);
+  }
+`;
 
+type Props = {
+  query: GatsbyTypes.TeamWebsite_Investors_queryFragment,
+}
+
+export default function Investors({ query: data }: Props) {
   const images = [
     [
       {
