@@ -19,7 +19,11 @@ export const query = graphql`
       filter: {
         blogCategory: {
           elemMatch: {
-            uid: { eq: "culture" }
+            # 이건 또 뭔 버근지 모르겟는데... 
+            # uid 쿼리한거 개발환경에선 잘 나오는데 프로덕션 빌드에선 비어있음;
+            #
+            # uid: { eq: "culture" }
+            name: { eq: "문화" }
           }
         }
       }
