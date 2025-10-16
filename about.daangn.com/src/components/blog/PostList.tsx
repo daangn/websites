@@ -74,6 +74,7 @@ const Container = styled('div', {
 
   '@media (min-width: 880px)': {
     gridTemplateColumns: 'repeat(2, 1fr)',
+    columnGap: rem(16),
   },
 });
 

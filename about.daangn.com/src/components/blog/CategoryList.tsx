@@ -43,8 +43,14 @@ const CategoryList: React.FC<CategoryListProps> = ({ query, pageContext }) => {
 
 const Container = styled('div', {
   display: 'flex',
-  overFlowX: 'auto',
+  overflowX: 'auto',
   boxSizing: 'border-box',
+  paddingBottom: '0.5rem',
+  scrollbarWidth: 'thin',
+
+  '@sm': {
+    scrollbarWidth: 'none',
+  },
 });
 
 export default CategoryList;

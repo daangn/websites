@@ -52,18 +52,15 @@ const Container = styled('div', {
   minHeight: rem(320),
 
   '@sm': {
-    width: rem(380),
-    height: rem(360),
+    width: `max(${rem(380)}, 100%)`,
   },
 
   '@lg': {
     width: rem(440),
-    height: rem(420),
   },
 
   '@xl': {
     width: rem(480),
-    height: rem(460),
   },
 
   transition: 'all .3s ease-in-out',
