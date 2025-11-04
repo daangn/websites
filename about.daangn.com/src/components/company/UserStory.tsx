@@ -112,7 +112,7 @@ export const query = graphql`
 `;
 
 type Props = {
-  query: GatsbyTypes.TeamWebsite_UserStory_queryFragment,
+  query: GatsbyTypes.TeamWebsite_UserStory_queryFragment;
 };
 
 export default function UserStory({ query: data }: Props) {

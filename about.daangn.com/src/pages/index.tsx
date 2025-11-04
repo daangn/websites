@@ -12,6 +12,7 @@ import ProStory from '../components/company/ProStory';
 import Statement from '../components/company/Statement';
 import UserStory from '../components/company/UserStory';
 import { FIRST_FOLD_STORY_HEIGHT } from '../components/company/constants';
+import WorkingCulture from '../components/company/WorkingCulture';
 
 export const query = graphql`
   query CompanyPage($locale: String!, $navigationId: String!) {
@@ -92,6 +93,7 @@ const CompanyPage: React.FC<CompanyPageProps> = ({ data }) => {
       <Cartoon query={data} />
       <Numbers query={data} />
       <Investors query={data} />
+      <WorkingCulture />
       <News query={data} />
     </Main>
   );

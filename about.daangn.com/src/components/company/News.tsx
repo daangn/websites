@@ -40,11 +40,11 @@ export const query = graphql`
 `;
 
 type Props = {
-  query: GatsbyTypes.TeamWebsite_News_queryFragment,
+  query: GatsbyTypes.TeamWebsite_News_queryFragment;
 };
 
 export default function News({ query }: Props) {
-  const newsItems = query.allPost.nodes.map(node => ({
+  const newsItems = query.allPost.nodes.map((node) => ({
     title: node.title,
     date: node.publishedAt,
     image: node.thumbnailImage.childImageSharp?.gatsbyImageData,

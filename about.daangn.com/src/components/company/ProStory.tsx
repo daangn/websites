@@ -80,7 +80,7 @@ export const query = graphql`
 `;
 
 type Props = {
-  query: GatsbyTypes.TeamWebsite_ProStory_queryFragment,
+  query: GatsbyTypes.TeamWebsite_ProStory_queryFragment;
 };
 
 export default function ProStory({ query: data }: Props) {
