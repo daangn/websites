@@ -80,38 +80,38 @@ export const query = graphql`
 `;
 
 type Props = {
-  query: GatsbyTypes.TeamWebsite_ProStory_queryFragment,
+  query: GatsbyTypes.TeamWebsite_ProStory_queryFragment;
 };
 
 export default function ProStory({ query: data }: Props) {
   const stories = [
     {
-      title: data.prismicVisionPage.data.pro_story_1_title.text,
-      caption: data.prismicVisionPage.data.pro_story_1_caption.text,
-      image: data.prismicVisionPage.data.pro_story_1_image.gatsbyImageData,
-      imageAlt: data.prismicVisionPage.data.pro_story_1_image.alt,
-      link: data.prismicVisionPage.data.pro_story_1_link?.url,
+      title: data.prismicVisionPage?.data.pro_story_1_title.text,
+      caption: data.prismicVisionPage?.data.pro_story_1_caption.text,
+      image: data.prismicVisionPage?.data.pro_story_1_image?.gatsbyImageData,
+      imageAlt: data.prismicVisionPage?.data.pro_story_1_image?.alt,
+      link: data.prismicVisionPage?.data.pro_story_1_link?.url,
     },
     {
-      title: data.prismicVisionPage.data.pro_story_2_title.text,
-      caption: data.prismicVisionPage.data.pro_story_2_caption.text,
-      image: data.prismicVisionPage.data.pro_story_2_image.gatsbyImageData,
-      imageAlt: data.prismicVisionPage.data.pro_story_2_image.alt,
-      link: data.prismicVisionPage.data.pro_story_2_link?.url,
+      title: data.prismicVisionPage?.data.pro_story_2_title.text,
+      caption: data.prismicVisionPage?.data.pro_story_2_caption.text,
+      image: data.prismicVisionPage?.data.pro_story_2_image?.gatsbyImageData,
+      imageAlt: data.prismicVisionPage?.data.pro_story_2_image?.alt,
+      link: data.prismicVisionPage?.data.pro_story_2_link?.url,
     },
     {
-      title: data.prismicVisionPage.data.pro_story_3_title.text,
-      caption: data.prismicVisionPage.data.pro_story_3_caption.text,
-      image: data.prismicVisionPage.data.pro_story_3_image.gatsbyImageData,
-      imageAlt: data.prismicVisionPage.data.pro_story_3_image.alt,
-      link: data.prismicVisionPage.data.pro_story_3_link?.url,
+      title: data.prismicVisionPage?.data.pro_story_3_title.text,
+      caption: data.prismicVisionPage?.data.pro_story_3_caption.text,
+      image: data.prismicVisionPage?.data.pro_story_3_image?.gatsbyImageData,
+      imageAlt: data.prismicVisionPage?.data.pro_story_3_image?.alt,
+      link: data.prismicVisionPage?.data.pro_story_3_link?.url,
     },
     {
-      title: data.prismicVisionPage.data.pro_story_4_title.text,
-      caption: data.prismicVisionPage.data.pro_story_4_caption.text,
-      image: data.prismicVisionPage.data.pro_story_4_image.gatsbyImageData,
-      imageAlt: data.prismicVisionPage.data.pro_story_4_image.alt,
-      link: data.prismicVisionPage.data.pro_story_4_link?.url,
+      title: data.prismicVisionPage?.data.pro_story_4_title.text,
+      caption: data.prismicVisionPage?.data.pro_story_4_caption.text,
+      image: data.prismicVisionPage?.data.pro_story_4_image?.gatsbyImageData,
+      imageAlt: data.prismicVisionPage?.data.pro_story_4_image?.alt,
+      link: data.prismicVisionPage?.data.pro_story_4_link?.url,
     },
   ];
 
@@ -119,17 +119,17 @@ export default function ProStory({ query: data }: Props) {
     <Centered>
       <div className={css.container}>
         <div className={css.subtitle}>
-          <span>{data.prismicVisionPage.data.pro_story_subtitle.text}</span>
+          <span>{data.prismicVisionPage?.data.pro_story_subtitle.text}</span>
         </div>
         <div className={css.grid}>
           <div className={css.title}>
-            <span>{data.prismicVisionPage.data.pro_story_title.text}</span>
+            <span>{data.prismicVisionPage?.data.pro_story_title.text}</span>
           </div>
           <div className={css.cards}>
             {stories.map((d) => (
-              <a key={d.title} className={css.card} href={d.link}>
+              <a key={d.title} className={css.card} href={d.link ?? undefined}>
                 <div className={css.cardImage}>
-                  <GatsbyImage image={d.image} alt={d.imageAlt} />
+                  {d.image && d.imageAlt && <GatsbyImage image={d.image} alt={d.imageAlt} />}
                 </div>
                 <div className={css.cardTitles}>
                   <div className={css.cardTitle}>{d.title}</div>

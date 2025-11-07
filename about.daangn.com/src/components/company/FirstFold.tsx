@@ -32,7 +32,7 @@ export const query = graphql`
 `;
 
 type Props = {
-  query: GatsbyTypes.TeamWebsite_FirstFold_queryFragment,
+  query: GatsbyTypes.TeamWebsite_FirstFold_queryFragment;
 };
 
 export default function FirstFold({ query: data }) {

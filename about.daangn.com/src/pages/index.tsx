@@ -3,15 +3,16 @@ import { HeadSeo, OpenGraph, TwitterCard } from 'gatsby-plugin-head-seo/src';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import * as React from 'react';
 import { useWindowScroll } from 'react-use';
-import Cartoon from '../../components/company/Cartoon';
-import FirstFold from '../../components/company/FirstFold';
-import Investors from '../../components/company/Investors';
-import News from '../../components/company/News';
-import Numbers from '../../components/company/Numbers';
-import ProStory from '../../components/company/ProStory';
-import Statement from '../../components/company/Statement';
-import UserStory from '../../components/company/UserStory';
-import { FIRST_FOLD_STORY_HEIGHT } from '../../components/company/constants';
+import Cartoon from '../components/company/Cartoon';
+import FirstFold from '../components/company/FirstFold';
+import Investors from '../components/company/Investors';
+import News from '../components/company/News';
+import Numbers from '../components/company/Numbers';
+import ProStory from '../components/company/ProStory';
+import Statement from '../components/company/Statement';
+import UserStory from '../components/company/UserStory';
+import WorkingCulture from '../components/company/WorkingCulture';
+import { FIRST_FOLD_STORY_HEIGHT } from '../components/company/constants';
 
 export const query = graphql`
   query CompanyPage($locale: String!, $navigationId: String!) {
@@ -23,6 +24,7 @@ export const query = graphql`
     ...TeamWebsite_Cartoon_query
     ...TeamWebsite_Numbers_query
     ...TeamWebsite_Investors_query
+    ...TeamWebsite_WorkingCulture_query
     ...TeamWebsite_News_query
 
     prismicVisionPage {
@@ -92,6 +94,7 @@ const CompanyPage: React.FC<CompanyPageProps> = ({ data }) => {
       <Cartoon query={data} />
       <Numbers query={data} />
       <Investors query={data} />
+      <WorkingCulture query={data} />
       <News query={data} />
     </Main>
   );

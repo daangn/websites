@@ -83,8 +83,8 @@ export const query = graphql`
 `;
 
 type Props = {
-  query: GatsbyTypes.TeamWebsite_Investors_queryFragment,
-}
+  query: GatsbyTypes.TeamWebsite_Investors_queryFragment;
+};
 
 export default function Investors({ query: data }: Props) {
   const images = [

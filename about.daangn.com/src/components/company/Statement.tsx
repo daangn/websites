@@ -78,7 +78,7 @@ export const query = graphql`
 `;
 
 type Props = {
-  query: GatsbyTypes.TeamWebsite_Statement_queryFragment,
+  query: GatsbyTypes.TeamWebsite_Statement_queryFragment;
 };
 
 export default function Statement({ query: data }: Props) {

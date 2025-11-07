@@ -33,8 +33,8 @@ export const query = graphql`
 `;
 
 type Props = {
-  query: GatsbyTypes.TeamWebsite_Cartoon_queryFragment,
-}
+  query: GatsbyTypes.TeamWebsite_Cartoon_queryFragment;
+};
 
 export default function Cartoon({ query: data }: Props) {
   const { width: windowWidth, height: windowHeight } = useWindowSize();
