@@ -23,6 +23,7 @@ export const query = graphql`
     ...TeamWebsite_Cartoon_query
     ...TeamWebsite_Numbers_query
     ...TeamWebsite_Investors_query
+    ...TeamWebsite_WorkingCulture_query
     ...TeamWebsite_News_query
 
     prismicVisionPage {
