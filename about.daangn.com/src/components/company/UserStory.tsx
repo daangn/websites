@@ -118,36 +118,36 @@ type Props = {
 export default function UserStory({ query: data }: Props) {
   const stories = [
     {
-      title: data.prismicVisionPage.data.user_story_1_title.text,
-      description: data.prismicVisionPage.data.user_story_1_description.text,
-      video: data.prismicVisionPage.data.user_story_1_video.localFile.publicURL,
-      badge: data.prismicVisionPage.data.user_story_1_badge.text,
-      button: data.prismicVisionPage.data.user_story_1_button_label.text,
-      link: data.prismicVisionPage.data.user_story_1_link?.url,
+      title: data.prismicVisionPage?.data.user_story_1_title.text,
+      description: data.prismicVisionPage?.data.user_story_1_description.text,
+      video: data.prismicVisionPage?.data.user_story_1_video?.localFile?.publicURL,
+      badge: data.prismicVisionPage?.data.user_story_1_badge.text,
+      button: data.prismicVisionPage?.data.user_story_1_button_label.text,
+      link: data.prismicVisionPage?.data.user_story_1_link?.url,
     },
     {
-      title: data.prismicVisionPage.data.user_story_2_title.text,
-      description: data.prismicVisionPage.data.user_story_2_description.text,
-      video: data.prismicVisionPage.data.user_story_2_video.localFile.publicURL,
-      badge: data.prismicVisionPage.data.user_story_2_badge.text,
-      button: data.prismicVisionPage.data.user_story_2_button_label.text,
-      link: data.prismicVisionPage.data.user_story_2_link?.url,
+      title: data.prismicVisionPage?.data.user_story_2_title.text,
+      description: data.prismicVisionPage?.data.user_story_2_description.text,
+      video: data.prismicVisionPage?.data.user_story_2_video?.localFile?.publicURL,
+      badge: data.prismicVisionPage?.data.user_story_2_badge.text,
+      button: data.prismicVisionPage?.data.user_story_2_button_label.text,
+      link: data.prismicVisionPage?.data.user_story_2_link?.url,
     },
     {
-      title: data.prismicVisionPage.data.user_story_3_title.text,
-      description: data.prismicVisionPage.data.user_story_3_description.text,
-      video: data.prismicVisionPage.data.user_story_3_video.localFile.publicURL,
-      badge: data.prismicVisionPage.data.user_story_3_badge.text,
-      button: data.prismicVisionPage.data.user_story_3_button_label.text,
-      link: data.prismicVisionPage.data.user_story_3_link?.url,
+      title: data.prismicVisionPage?.data.user_story_3_title.text,
+      description: data.prismicVisionPage?.data.user_story_3_description.text,
+      video: data.prismicVisionPage?.data.user_story_3_video?.localFile?.publicURL,
+      badge: data.prismicVisionPage?.data.user_story_3_badge.text,
+      button: data.prismicVisionPage?.data.user_story_3_button_label.text,
+      link: data.prismicVisionPage?.data.user_story_3_link?.url,
     },
     {
-      title: data.prismicVisionPage.data.user_story_4_title.text,
-      description: data.prismicVisionPage.data.user_story_4_description.text,
-      video: data.prismicVisionPage.data.user_story_4_video.localFile.publicURL,
-      badge: data.prismicVisionPage.data.user_story_4_badge.text,
-      button: data.prismicVisionPage.data.user_story_4_button_label.text,
-      link: data.prismicVisionPage.data.user_story_4_link?.url,
+      title: data.prismicVisionPage?.data.user_story_4_title.text,
+      description: data.prismicVisionPage?.data.user_story_4_description.text,
+      video: data.prismicVisionPage?.data.user_story_4_video?.localFile?.publicURL,
+      badge: data.prismicVisionPage?.data.user_story_4_badge.text,
+      button: data.prismicVisionPage?.data.user_story_4_button_label.text,
+      link: data.prismicVisionPage?.data.user_story_4_link?.url,
     },
   ];
 
@@ -279,9 +279,9 @@ export default function UserStory({ query: data }: Props) {
           <div className={css.left}>
             <div className={css.titles}>
               <div className={css.subtitle}>
-                {data.prismicVisionPage.data.user_story_subtitle.text}
+                {data.prismicVisionPage?.data.user_story_subtitle.text}
               </div>
-              <div className={css.title}>{data.prismicVisionPage.data.user_story_title.text}</div>
+              <div className={css.title}>{data.prismicVisionPage?.data.user_story_title.text}</div>
             </div>
             <div className={show({ when: 'base', grow: true })}>
               {stories.map((d, i) => (
@@ -307,7 +307,14 @@ export default function UserStory({ query: data }: Props) {
                 })}
                 ref={imageRefs[i]}
               >
-                <video className={css.video} src={d.video} autoPlay muted loop playsInline />
+                <video
+                  className={css.video}
+                  src={d.video ?? undefined}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                />
               </div>
             ))}
             {stories.map((d, i) => (
@@ -322,7 +329,12 @@ export default function UserStory({ query: data }: Props) {
                 }}
               >
                 <div className={css.imageLeftBadge}>{d.badge}</div>
-                <a className={css.imageRightButton} href={d.link} target="_blank" rel="noreferrer">
+                <a
+                  className={css.imageRightButton}
+                  href={d.link ?? undefined}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   {d.button} <IconArrowRightLine width={18} />
                 </a>
               </div>
@@ -336,7 +348,7 @@ export default function UserStory({ query: data }: Props) {
             <div className={css.userStoryCardVideoContainer}>
               <video
                 className={css.userStoryCardVideo}
-                src={d.video}
+                src={d.video ?? undefined}
                 autoPlay
                 muted
                 loop
@@ -346,7 +358,11 @@ export default function UserStory({ query: data }: Props) {
             <div className={css.userStoryCardContent}>
               <div className={css.userStoryCardTitle}>{d.title}</div>
               <div className={css.userStoryCardDescription}>{d.description}</div>
-              <Button href={d.link} target="_blank" icon={<IconArrowRightLine width={18} />}>
+              <Button
+                href={d.link ?? undefined}
+                target="_blank"
+                icon={<IconArrowRightLine width={18} />}
+              >
                 {d.button}
               </Button>
             </div>

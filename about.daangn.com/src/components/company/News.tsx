@@ -83,16 +83,19 @@ export default function News({ query }: Props) {
         </div>
         <div className={css.cards} ref={emblaRef}>
           <div className={css.cardsContainer}>
-            {chunkArray(newsItems, 3).map((newsItemGroup: any) => (
-              <div
-                className={css.newsCardGroup}
-                key={newsItemGroup.map((d: any) => d.title).join(',')}
-              >
-                {newsItemGroup.map((d: any) => (
+            {chunkArray(newsItems, 3).map((newsItemGroup) => (
+              <div className={css.newsCardGroup} key={newsItemGroup.map((d) => d.title).join(',')}>
+                {newsItemGroup.map((d) => (
                   <Link key={d.title} className={css.newsCard} to={`/company/pr/archive/${d.slug}`}>
                     <div className={css.newsCardImageContainer}>
                       <div className={css.newsCardImageRatio}>
-                        <GatsbyImage className={css.newsCardImage} image={d.image} alt={d.title} />
+                        {d.image && (
+                          <GatsbyImage
+                            className={css.newsCardImage}
+                            image={d.image}
+                            alt={d.title}
+                          />
+                        )}
                       </div>
                     </div>
                     <div className={css.newsCardTitles}>

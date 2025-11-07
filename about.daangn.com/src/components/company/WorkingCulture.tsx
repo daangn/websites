@@ -17,6 +17,7 @@ export const query = graphql`
         }
         working_culture_card_1_image {
           gatsbyImageData
+          alt
         }
         working_culture_card_1_button_label {
           text
@@ -29,6 +30,7 @@ export const query = graphql`
         }
         working_culture_card_2_image {
           gatsbyImageData
+          alt
         }
         working_culture_card_2_button_label {
           text
@@ -70,14 +72,14 @@ export default function WorkingCulture(props: Props) {
                 </Button>
               </div>
               <div className={css.cardIllustration}>
-                {props.query.prismicVisionPage?.data.working_culture_card_1_image && (
+                {props.query.prismicVisionPage?.data.working_culture_card_1_image?.alt && (
                   <GatsbyImage
                     className={css.cardIllustrationImage}
                     image={
                       props.query.prismicVisionPage?.data.working_culture_card_1_image
                         ?.gatsbyImageData
                     }
-                    alt="working culture"
+                    alt={props.query.prismicVisionPage?.data.working_culture_card_1_image?.alt}
                   />
                 )}
               </div>
@@ -100,14 +102,14 @@ export default function WorkingCulture(props: Props) {
                 </Button>
               </div>
               <div className={css.cardIllustration}>
-                {props.query.prismicVisionPage?.data.working_culture_card_2_image && (
+                {props.query.prismicVisionPage?.data.working_culture_card_2_image?.alt && (
                   <GatsbyImage
                     className={css.cardIllustrationImage}
                     image={
                       props.query.prismicVisionPage?.data.working_culture_card_2_image
                         ?.gatsbyImageData
                     }
-                    alt="working culture"
+                    alt={props.query.prismicVisionPage.data.working_culture_card_2_image.alt}
                   />
                 )}
               </div>

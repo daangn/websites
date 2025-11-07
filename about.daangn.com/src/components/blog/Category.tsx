@@ -19,7 +19,7 @@ export const query = graphql`
 
 const Category: React.FC<CategoryProps> = ({ category, pageContext }) => {
   const path = category.uid === '*' ? '/blog/' : `/blog/category/${category.uid}`;
-  const href = path + '#_filter';
+  const href = `${path}#_filter`;
   return (
     <Container id={category.uid} to={href} active={pageContext === category.uid}>
       {category.name}
