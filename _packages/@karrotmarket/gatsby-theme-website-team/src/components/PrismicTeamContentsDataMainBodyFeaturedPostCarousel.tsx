@@ -13,8 +13,8 @@ import FeaturedPost from './PrismicTeamContentsDataMainBodyFeaturedPostCarousel/
 import { ReactComponent as ArrowLeft } from './PrismicTeamContentsDataMainBodyFeaturedPostCarousel/arrow_left.svg';
 import { ReactComponent as ArrowRight } from './PrismicTeamContentsDataMainBodyFeaturedPostCarousel/arrow_right.svg';
 
-type PrismicTeamContentsDataMainBodyMemberQuoteCarouselProps = {
-  data: GatsbyTypes.PrismicTeamContentsDataMainBodyMemberQuoteCarousel_dataFragment;
+type PrismicTeamContentsDataMainBodyFeaturedPostCarouselProps = {
+  data: GatsbyTypes.PrismicTeamContentsDataMainBodyFeaturedPostCarousel_dataFragment;
   className?: string;
 };
 
@@ -233,7 +233,7 @@ const Dot = styled('button', {
 });
 
 const PrismicTeamContentsDataMainBodyFeaturedPostCarousel: React.FC<
-  PrismicTeamContentsDataMainBodyMemberQuoteCarouselProps
+  PrismicTeamContentsDataMainBodyFeaturedPostCarouselProps
 > = ({ data, className }) => {
   const items = data.items || [];
   const [slide, setSlide] = React.useState(0);

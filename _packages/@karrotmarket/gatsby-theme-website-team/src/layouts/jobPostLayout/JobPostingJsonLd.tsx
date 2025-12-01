@@ -23,7 +23,8 @@ export const query = graphql`
     datePosted: updatedAt(formatString: "YYYY-MM-DD")
     validThrough(formatString: "YYYY-MM-DD")
     priorExperience
-    corporate 
+    corporate
+    employmentType
   }
 `;
 

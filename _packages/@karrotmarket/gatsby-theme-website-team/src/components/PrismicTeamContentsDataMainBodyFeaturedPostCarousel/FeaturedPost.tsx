@@ -95,28 +95,29 @@ const Summary = styled('p', {
 });
 
 const FeaturedPost: React.FC<FeaturedPostProps> = ({ item, className }) => {
-  const image =
-    item.main_page_featured_post?.document?.data?.thumbnail_image?.localFile?.childImageSharp
-      ?.gatsbyImageData &&
-    getImage(
-      item.main_page_featured_post.document.data.thumbnail_image.localFile.childImageSharp
-        .gatsbyImageData,
-    );
+  const postData = item.main_page_featured_post?.document && 'data' in item.main_page_featured_post.document
+    ? item.main_page_featured_post.document.data
+    : null;
 
-  if (image == null) {
+  const image =
+    postData?.thumbnail_image?.localFile?.childImageSharp?.gatsbyImageData &&
+    getImage(postData.thumbnail_image.localFile.childImageSharp.gatsbyImageData);
+
+  if (image == null || !item.main_page_featured_post?.uid) {
     return null;
   }
+
   return (
     <Container
       className={className}
       to={`/blog/archive/${slugify(item.main_page_featured_post.uid)}/`}
     >
       <ImageWrapper>
-        <Image image={image} alt={item.image?.alt || ''} />
+        <Image image={image} alt={postData?.thumbnail_image?.alt || ''} />
       </ImageWrapper>
       <TextWrapper>
-        <Title>{item.main_page_featured_post?.document?.data?.title?.text}</Title>
-        <Summary>{item.main_page_featured_post?.document?.data?.summary}</Summary>
+        <Title>{postData?.title?.text}</Title>
+        <Summary>{postData?.summary}</Summary>
       </TextWrapper>
     </Container>
   );

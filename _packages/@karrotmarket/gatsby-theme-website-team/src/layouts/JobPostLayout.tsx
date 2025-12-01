@@ -173,7 +173,7 @@ const TabLink = styled(motion(Link), {
 });
 
 type JobPostLayoutProps = OverrideProps<
-  PageProps<GatsbyTypes.TeamWebSite_JobPostLayout_queryFragment>,
+  PageProps<GatsbyTypes.TeamWebsite_JobPostLayout_queryFragment>,
   {
     children: React.ReactNode;
   }
@@ -262,7 +262,7 @@ const JobPostLayout: React.FC<JobPostLayoutProps> = ({
 export default JobPostLayout;
 
 type JobPostLayoutHeadProps = {
-  data: GatsbyTypes.TeamWebSite_JobPostLayout_queryFragment;
+  data: GatsbyTypes.TeamWebsite_JobPostLayout_queryFragment;
   location: {
     pathname: string;
   };

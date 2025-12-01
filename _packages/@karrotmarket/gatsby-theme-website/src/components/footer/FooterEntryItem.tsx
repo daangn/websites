@@ -49,7 +49,7 @@ const ExternalLink = styled(FooterEntryLink, {
 });
 
 interface FooterEntryItemProps {
-  entry: Pick<GatsbyTypes.PrismicSiteNavigationDataFooterEntries, 'text'> & {
+  entry: Pick<GatsbyTypes.PrismicSiteNavigationDataFooterEntriesItem, 'text'> & {
     readonly link: GatsbyTypes.Maybe<Pick<GatsbyTypes.PrismicLinkField, 'url'>>;
   };
 }

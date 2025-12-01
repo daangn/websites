@@ -10,7 +10,7 @@ import JobPostSummary from './JobPostSummary';
 import EmptyPlaceholder from './jobPostList/EmptyPlaceholder';
 
 type JobPostListProps = {
-  jobPosts: GatsbyTypes.TeamWebsite_JobPostList_jobPostsFragment;
+  jobPosts: GatsbyTypes.TeamWebsite_JobPostList_jobPostsFragment[];
   className?: string;
   filterEmploymentType?: string;
   searchResults?: string[];

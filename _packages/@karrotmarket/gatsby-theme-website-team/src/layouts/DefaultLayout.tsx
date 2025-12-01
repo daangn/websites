@@ -97,7 +97,7 @@ export const DefaultLayoutHead: React.FC<DefaultLayoutHeadProps> = ({
 
   const messages = useTranslation();
 
-  const facebookAppId = data.prismicTeamContents.data.facebook_app_id;
+  const facebookAppId = data.prismicTeamContents.data.fb_app_id;
   const twitterSiteHandle = data.prismicTeamContents.data.twitter_site_handle;
 
   return (

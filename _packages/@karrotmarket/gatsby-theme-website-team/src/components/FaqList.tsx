@@ -8,7 +8,7 @@ import EmptyPlaceholder from './jobPostList/EmptyPlaceholder';
 type FaqListProps = {
   className?: string;
   emptyPlaceHolderLink: string;
-  faqLists: GatsbyTypes.TeamWebsite_FaqList_faqListsFragment;
+  faqLists: GatsbyTypes.TeamWebsite_FaqAccordion_faqDataFragment;
 };
 
 export const query = graphql`
