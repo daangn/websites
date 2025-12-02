@@ -45,11 +45,10 @@ const Container = styled(Link, {
       },
       false: {
         backgroundColor: vars.$scale.color.gray100,
-        color: vars.$scale.color.gray600,
+        color: vars.$scale.color.gray900,
         '&:hover': {
-          backgroundColor: vars.$scale.color.gray900,
-          color: vars.$scale.color.gray00,
-          fontWeight: 'bold',
+          backgroundColor: vars.$scale.color.gray300,
+          color: vars.$scale.color.gray700,
         },
       },
     },
