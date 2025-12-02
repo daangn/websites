@@ -1,8 +1,8 @@
 import { useLocation } from '@reach/router';
 import { vars } from '@seed-design/design-token';
 import { graphql } from 'gatsby';
-import { styled } from 'gatsby-theme-stitches/src/config';
-import { rem } from 'polished';
+import { config, styled } from 'gatsby-theme-stitches/src/config';
+import { em, rem } from 'polished';
 import * as React from 'react';
 
 import SocialServiceProfile from '../footer/SocialServiceProfile';
@@ -22,6 +22,22 @@ export const query = graphql`
         url
       }
       display_text
+      children {
+        document {
+          ... on PrismicSiteNavigationHeaderEntryChildren {
+            data {
+              children {
+                display_text
+                link {
+                  url
+                }
+                new_tab
+                service
+              }
+            }
+          }
+        }
+      }
     }
     sns_profiles {
       ...SocialServiceProfile_profile
@@ -153,6 +169,20 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ controlId, className, d
       hamburgerRef.current.checked = false;
     }
   }, [location.pathname]);
+
+  React.useEffect(() => {
+    const mediaQuery = window.matchMedia(`(min-width: ${em(768)})`); // @md
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      if (!hamburgerRef.current) return;
+      if (!e.matches) return;
+
+      hamburgerRef.current.checked = false;
+    };
+
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
 
   return (
     <Container className={className}>

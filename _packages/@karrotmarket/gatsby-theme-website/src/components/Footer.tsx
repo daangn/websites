@@ -62,6 +62,8 @@ const TopContent = styled('nav', {
   width: '100%',
   display: 'flex',
   flexDirection: 'column',
+  flexWrap: 'wrap',
+  gap: rem(24),
 
   '@sm': {
     flexDirection: 'row',
@@ -128,6 +130,8 @@ const SocialServiceProfileList = styled('ul', {
   gap: rem(24),
   padding: 0,
   listStyle: 'none',
+
+  marginInlineStart: 'auto',
 });
 
 const SocialServiceProfileItem = styled('li', {

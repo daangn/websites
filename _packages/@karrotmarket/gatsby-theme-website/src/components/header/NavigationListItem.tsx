@@ -1,5 +1,4 @@
 import { useLocation } from '@reach/router';
-import { vars } from '@seed-design/design-token';
 import { Link } from 'gatsby';
 import { rem } from 'polished';
 import * as React from 'react';
@@ -8,24 +7,25 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { mapLink, useLinkParser } from '../../link';
 
 import externalSvgUrl from '!!file-loader!./navigationListItem/external.svg';
+import ChildrenList from './navigationListItem/ChildrenList';
 
 const NavigationListItemContainer = styled('li', {
   fontSize: '$subtitle2',
   fontWeight: 'bold',
 
-  opacity: 0.5,
-  transform: 'translateY(50%)',
-  transition: ['opacity .3s', 'transform .3s'].join(','),
-
-  ':checked ~ ul > &': {
-    opacity: 1,
-    transform: 'none',
-  },
-
   '@sm': {
     fontSize: '$body2',
-    opacity: 1,
-    transform: 'none',
+  },
+
+  '@md': {
+    position: 'relative',
+
+    '&:hover > ul, &:focus-within > ul': {
+      opacity: 1,
+      visibility: 'visible',
+      transform: 'translateX(-50%) scale(1)',
+      transitionDelay: '0s',
+    },
   },
 });
 
@@ -35,8 +35,23 @@ const NavigationLink = styled(Link, {
 
   textDecoration: 'none',
   color: 'var(--header-color)',
+
+  opacity: 0.5,
+  transform: 'translateY(50%)',
+  transition: 'opacity .3s, transform .3s',
+
+  ':checked ~ ul > li > &': {
+    opacity: 1,
+    transform: 'none',
+  },
+
   '&:hover, &:focus': {
     color: 'var(--header-hover-color)',
+  },
+
+  '@sm': {
+    opacity: 1,
+    transform: 'none',
   },
 
   variants: {
@@ -62,13 +77,13 @@ const ExternalLink = styled(NavigationLink, {
   },
 });
 
-interface FooterEntryItemProps {
-  entry: Pick<GatsbyTypes.PrismicSiteNavigationDataFooterEntries, 'display_text'> & {
-    readonly link: GatsbyTypes.Maybe<Pick<GatsbyTypes.PrismicLinkField, 'url'>>;
-  };
+type HeaderEntry = GatsbyTypes.NavigationMenu_dataFragment['header_entries'][number];
+
+interface HeaderEntryItemProps {
+  entry: HeaderEntry;
 }
 
-const NavigationListItem: React.FC<FooterEntryItemProps> = ({ entry }) => {
+const NavigationListItem: React.FC<HeaderEntryItemProps> = ({ entry }) => {
   const parseLink = useLinkParser();
   const location = useLocation();
 
@@ -95,6 +110,9 @@ const NavigationListItem: React.FC<FooterEntryItemProps> = ({ entry }) => {
           </ExternalLink>
         ),
       })}
+      {entry.children?.document && 'data' in entry.children.document && (
+        <ChildrenList items={entry.children.document.data.children} />
+      )}
     </NavigationListItemContainer>
   );
 };
