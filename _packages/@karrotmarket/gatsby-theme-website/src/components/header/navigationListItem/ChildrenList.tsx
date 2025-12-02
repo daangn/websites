@@ -116,6 +116,10 @@ const ExternalChildLink = styled(ChildLink, {
     maskImage: `url(${externalSvgUrl})`,
     flexShrink: 0,
   },
+
+  '& > span': {
+    flexGrow: 1,
+  },
 });
 
 const IconContainer = styled('div', {
@@ -126,6 +130,7 @@ const IconContainer = styled('div', {
   height: rem(20),
   borderRadius: rem(4),
   backgroundColor: 'white',
+  flexShrink: 0,
 });
 
 interface ChildItem {
