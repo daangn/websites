@@ -2,14 +2,13 @@ import { useLocation } from '@reach/router';
 import { vars } from '@seed-design/design-token';
 import { graphql } from 'gatsby';
 import { config, styled } from 'gatsby-theme-stitches/src/config';
-import { em, rem } from 'polished';
+import { em, hideVisually, rem } from 'polished';
 import * as React from 'react';
 
 import SocialServiceProfile from '../footer/SocialServiceProfile';
 import NavigationListItem from './NavigationListItem';
 
 type NavigationMenuProps = {
-  controlId: string;
   className?: string;
   data: GatsbyTypes.NavigationMenu_dataFragment;
   sns?: boolean;
@@ -59,7 +58,7 @@ const Hamburger = styled('label', {
   lineHeight: '100%',
 
   variants: {
-    disabled: {
+    hidden: {
       true: {
         display: 'none',
       },
@@ -67,9 +66,7 @@ const Hamburger = styled('label', {
   },
 });
 
-const HamburgerControl = styled('input', {
-  display: 'none',
-});
+const HamburgerControl = styled('input', hideVisually());
 
 const HamburgerSvg = styled('svg', {
   width: rem(24),
@@ -159,7 +156,7 @@ const SocialServiceProfileItem = styled('li', {
   justifyContent: 'center',
 });
 
-const NavigationMenu: React.FC<NavigationMenuProps> = ({ controlId, className, data, sns }) => {
+const NavigationMenu: React.FC<NavigationMenuProps> = ({ className, data, sns }) => {
   const hamburgerRef = React.useRef<HTMLInputElement>();
   const location = useLocation();
 
@@ -184,10 +181,13 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ controlId, className, d
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
+  const controlId = React.useId();
+
   return (
     <Container className={className}>
-      <HamburgerControl type="checkbox" id={controlId} ref={hamburgerRef} />
-      <Hamburger htmlFor={controlId} disabled={{ '@md': true }}>
+      <HamburgerControl id={controlId} type="checkbox" ref={hamburgerRef} />
+      <Hamburger htmlFor={controlId} hidden={{ '@md': true }}>
+        <div style={hideVisually()}>네비게이션 메뉴 토글</div>
         <HamburgerSvg viewBox="0 0 100 100">
           <Line d="M 20 30 H 80 C 80 30 95 30 95 65 C 95 80 90 80 85 80 C 80 80 75 75 75 75 L 25 25" />
           <Line d="M 20 70 H 80 C 80 70 95 70 95 35 C 95 20 90 20 85 20 C 80 20 75 25 75 25 L 25 75" />

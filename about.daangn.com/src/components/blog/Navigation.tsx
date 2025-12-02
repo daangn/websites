@@ -33,7 +33,7 @@ const BlogNavigation = styled('div', {
   margin: 0,
   scrollBehavior: 'smooth',
   scrollMarginTop: '96px',
-  overflowX: 'scroll',
+  overflowX: 'visible',
 
   '@lg': {
     margin: '0 48px',

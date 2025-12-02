@@ -96,7 +96,7 @@ const Header: React.FC<HeaderProps> = ({ className, navigationData, isStatic = f
             <Logo />
           </HomeLink>
           <Something />
-          <NavigationMenu controlId="navigation-menu" data={navigationData} sns={sns} />
+          <NavigationMenu data={navigationData} sns={sns} />
         </Content>
       </Container>
     </div>

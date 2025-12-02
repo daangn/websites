@@ -8,6 +8,7 @@ import { mapLink, useLinkParser } from '../../../link';
 
 import externalSvgUrl from '!!file-loader!./external.svg';
 
+import { vars } from '@seed-design/design-token';
 import { ReactComponent as MediumIcon } from '../../../assets/medium.svg';
 import { ReactComponent as YoutubeIcon } from '../../../assets/youtube.svg';
 
@@ -67,7 +68,7 @@ const ChildLink = styled(Link, {
 
   opacity: 0.5,
   transform: 'translateY(50%)',
-  transition: 'opacity .3s, transform .3s, background-color 0.2s, color 0.2s',
+  transition: 'opacity .2s, transform .2s, background-color 0.2s, color 0.2s',
 
   ':checked ~ ul > li > ul > li > &': {
     opacity: 1,
@@ -90,7 +91,7 @@ const ChildLink = styled(Link, {
 
     '&:hover, &:focus-visible': {
       color: 'var(--header-hover-color)',
-      backgroundColor: '#F7F8F9',
+      backgroundColor: vars.$semantic.color.grayHover,
     },
   },
 
