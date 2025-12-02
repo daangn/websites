@@ -95,9 +95,10 @@ const Summary = styled('p', {
 });
 
 const FeaturedPost: React.FC<FeaturedPostProps> = ({ item, className }) => {
-  const postData = item.main_page_featured_post?.document && 'data' in item.main_page_featured_post.document
-    ? item.main_page_featured_post.document.data
-    : null;
+  const postData =
+    item.main_page_featured_post?.document && 'data' in item.main_page_featured_post.document
+      ? item.main_page_featured_post.document.data
+      : null;
 
   const image =
     postData?.thumbnail_image?.localFile?.childImageSharp?.gatsbyImageData &&

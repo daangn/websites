@@ -170,9 +170,7 @@ const makeEndpoint = (boardToken: string, jobId: string): string => {
   return `${host.replace(/\/$/, '')}/boards/${boardToken}/jobs/${jobId}/application/proxy`;
 };
 
-type JobApplicationPageProps = PageProps<
-  GatsbyTypes.TeamWebsite_JobApplicationPageQuery
->;
+type JobApplicationPageProps = PageProps<GatsbyTypes.TeamWebsite_JobApplicationPageQuery>;
 
 const JobApplicationPage: React.FC<JobApplicationPageProps> = ({ data, pageContext }) => {
   required(data.jobPost);
