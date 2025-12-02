@@ -24,7 +24,6 @@ const NavigationListItemContainer = styled('li', {
       opacity: 1,
       visibility: 'visible',
       transform: 'translateX(-50%) scale(1)',
-      transitionDelay: '0s',
     },
   },
 });
@@ -40,11 +39,6 @@ const NavigationLink = styled(Link, {
   transform: 'translateY(50%)',
   transition: 'opacity .3s, transform .3s',
 
-  ':checked ~ ul > li > &': {
-    opacity: 1,
-    transform: 'none',
-  },
-
   '&:hover, &:focus': {
     color: 'var(--header-hover-color)',
   },
@@ -55,6 +49,12 @@ const NavigationLink = styled(Link, {
   },
 
   variants: {
+    visible: {
+      true: {
+        opacity: 1,
+        transform: 'none',
+      },
+    },
     active: {
       true: {
         color: 'var(--header-active-color)',
@@ -81,9 +81,11 @@ type HeaderEntry = GatsbyTypes.NavigationMenu_dataFragment['header_entries'][num
 
 interface HeaderEntryItemProps {
   entry: HeaderEntry;
+  menuOpen: boolean;
+  isDesktop: boolean;
 }
 
-const NavigationListItem: React.FC<HeaderEntryItemProps> = ({ entry }) => {
+const NavigationListItem: React.FC<HeaderEntryItemProps> = ({ entry, menuOpen, isDesktop }) => {
   const parseLink = useLinkParser();
   const location = useLocation();
 
@@ -95,6 +97,7 @@ const NavigationListItem: React.FC<HeaderEntryItemProps> = ({ entry }) => {
         Internal: (link) => (
           <NavigationLink
             to={link.pathname}
+            visible={menuOpen}
             active={
               link.pathname === '/'
                 ? location.pathname === '/'
@@ -105,13 +108,17 @@ const NavigationListItem: React.FC<HeaderEntryItemProps> = ({ entry }) => {
           </NavigationLink>
         ),
         External: (link) => (
-          <ExternalLink as="a" rel="external noopener" href={link.url.href}>
+          <ExternalLink as="a" rel="external noopener" href={link.url.href} visible={menuOpen}>
             {entry.display_text}
           </ExternalLink>
         ),
       })}
       {entry.children?.document && 'data' in entry.children.document && (
-        <ChildrenList items={entry.children.document.data.children} />
+        <ChildrenList
+          items={entry.children.document.data.children}
+          menuOpen={menuOpen}
+          showTransition={isDesktop}
+        />
       )}
     </NavigationListItemContainer>
   );

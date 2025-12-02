@@ -33,19 +33,28 @@ const Container = styled('ul', {
   '@md': {
     position: 'absolute',
     top: `calc(100% + ${rem(12)})`,
-    left: 'calc(50%)',
+    left: '50%',
 
     alignItems: 'stretch',
 
     padding: rem(6),
-    backgroundColor: 'white',
+    backgroundColor: vars.$semantic.color.paperDefault,
     boxShadow: '0 3px 15px rgba(0, 0, 0, 0.1)',
 
     opacity: 0,
     visibility: 'hidden',
     transform: 'translateX(-50%) scale(0.9)',
     transformOrigin: 'top center',
-    transition: 'opacity 0.2s 0.2s, visibility 0.2s 0.2s, transform 0.2s 0.2s',
+  },
+
+  variants: {
+    showTransition: {
+      true: {
+        '@md': {
+          transition: 'opacity 0.2s, visibility 0.2s, transform 0.2s',
+        },
+      },
+    },
   },
 });
 
@@ -70,11 +79,6 @@ const ChildLink = styled(Link, {
   transform: 'translateY(50%)',
   transition: 'opacity .2s, transform .2s, background-color 0.2s, color 0.2s',
 
-  ':checked ~ ul > li > ul > li > &': {
-    opacity: 1,
-    transform: 'none',
-  },
-
   '& > svg': {
     flexShrink: 0,
   },
@@ -96,6 +100,12 @@ const ChildLink = styled(Link, {
   },
 
   variants: {
+    visible: {
+      true: {
+        opacity: 1,
+        transform: 'none',
+      },
+    },
     active: {
       true: {
         color: 'var(--header-active-color)',
@@ -143,6 +153,8 @@ interface ChildItem {
 
 interface ChildrenListProps {
   items: ChildItem[];
+  menuOpen: boolean;
+  showTransition: boolean;
 }
 
 const iconMap: Record<string, { comp: () => React.ReactElement }> = {
@@ -166,7 +178,7 @@ const iconMap: Record<string, { comp: () => React.ReactElement }> = {
   },
 };
 
-const ChildrenList: React.FC<ChildrenListProps> = ({ items }) => {
+const ChildrenList: React.FC<ChildrenListProps> = ({ items, menuOpen, showTransition }) => {
   const parseLink = useLinkParser();
   const location = useLocation();
 
@@ -177,7 +189,7 @@ const ChildrenList: React.FC<ChildrenListProps> = ({ items }) => {
   }
 
   return (
-    <Container>
+    <Container showTransition={showTransition}>
       {validChildren.map((child) => (
         // biome-ignore lint/style/noNonNullAssertion: filtered above
         <li key={child.link!.url}>
@@ -186,6 +198,7 @@ const ChildrenList: React.FC<ChildrenListProps> = ({ items }) => {
             Internal: (link) => (
               <ChildLink
                 to={link.pathname}
+                visible={menuOpen}
                 active={
                   link.pathname === '/'
                     ? location.pathname === '/'
@@ -201,6 +214,7 @@ const ChildrenList: React.FC<ChildrenListProps> = ({ items }) => {
                 rel="external noopener"
                 href={link.url.href}
                 target={child.new_tab ? '_blank' : undefined}
+                visible={menuOpen}
               >
                 {child.service && iconMap[child.service]?.comp()}
                 <span>{child.display_text}</span>

@@ -84,9 +84,13 @@ const Line = styled('path', {
     'stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1)',
   ].join(', '),
 
-  ':checked + label &': {
-    strokeDasharray: '90 207',
-    strokeDashoffset: '-134',
+  variants: {
+    active: {
+      true: {
+        strokeDasharray: '90 207',
+        strokeDashoffset: '-134',
+      },
+    },
   },
 });
 
@@ -108,13 +112,14 @@ const NavigationList = styled('ul', {
 
   transition: 'background .3s ease-in-out',
 
-  ':checked ~ &': {
-    transform: 'translateX(0)',
-    height: '100vh',
-    background: vars.$semantic.color.paperDefault,
-  },
-
   variants: {
+    open: {
+      true: {
+        transform: 'translateX(0)',
+        height: '100vh',
+        background: vars.$semantic.color.paperDefault,
+      },
+    },
     fixed: {
       false: {
         flexDirection: 'row',
@@ -156,48 +161,61 @@ const SocialServiceProfileItem = styled('li', {
   justifyContent: 'center',
 });
 
+const DESKTOP_BREAKPOINT = `(min-width: ${em(768)})`; // @md
+
 const NavigationMenu: React.FC<NavigationMenuProps> = ({ className, data, sns }) => {
-  const hamburgerRef = React.useRef<HTMLInputElement>();
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isDesktop, setIsDesktop] = React.useState(false);
   const location = useLocation();
 
   React.useEffect(() => {
     location.pathname;
-    if (hamburgerRef.current) {
-      hamburgerRef.current.checked = false;
-    }
+    setIsMenuOpen(false);
   }, [location.pathname]);
 
   React.useEffect(() => {
-    const mediaQuery = window.matchMedia(`(min-width: ${em(768)})`); // @md
+    const mediaQuery = window.matchMedia(DESKTOP_BREAKPOINT);
+    setIsDesktop(mediaQuery.matches);
 
-    const handleChange = (e: MediaQueryListEvent) => {
-      if (!hamburgerRef.current) return;
-      if (!e.matches) return;
-
-      hamburgerRef.current.checked = false;
+    const handleBreakpointChange = (e: MediaQueryListEvent) => {
+      setIsDesktop(e.matches);
+      setIsMenuOpen(false);
     };
 
-    mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
+    mediaQuery.addEventListener('change', handleBreakpointChange);
+    return () => mediaQuery.removeEventListener('change', handleBreakpointChange);
   }, []);
-
-  const controlId = React.useId();
 
   return (
     <Container className={className}>
-      <HamburgerControl id={controlId} type="checkbox" ref={hamburgerRef} />
-      <Hamburger htmlFor={controlId} hidden={{ '@md': true }}>
+      <Hamburger hidden={{ '@md': true }}>
         <div style={hideVisually()}>네비게이션 메뉴 토글</div>
+        <HamburgerControl
+          type="checkbox"
+          checked={isMenuOpen}
+          onChange={(e) => setIsMenuOpen(e.target.checked)}
+        />
         <HamburgerSvg viewBox="0 0 100 100">
-          <Line d="M 20 30 H 80 C 80 30 95 30 95 65 C 95 80 90 80 85 80 C 80 80 75 75 75 75 L 25 25" />
-          <Line d="M 20 70 H 80 C 80 70 95 70 95 35 C 95 20 90 20 85 20 C 80 20 75 25 75 25 L 25 75" />
+          <Line
+            active={isMenuOpen}
+            d="M 20 30 H 80 C 80 30 95 30 95 65 C 95 80 90 80 85 80 C 80 80 75 75 75 75 L 25 25"
+          />
+          <Line
+            active={isMenuOpen}
+            d="M 20 70 H 80 C 80 70 95 70 95 35 C 95 20 90 20 85 20 C 80 20 75 25 75 25 L 25 75"
+          />
         </HamburgerSvg>
       </Hamburger>
-      <NavigationList fixed={{ initial: true, '@md': false }}>
+      <NavigationList open={isMenuOpen} fixed={{ initial: true, '@md': false }}>
         {data.header_entries
           .filter((entry) => entry.link)
           .map((entry) => (
-            <NavigationListItem key={entry.link.url} entry={entry} />
+            <NavigationListItem
+              key={entry.link.url}
+              entry={entry}
+              menuOpen={isMenuOpen}
+              isDesktop={isDesktop}
+            />
           ))}
         {sns && (
           <SocialServiceProfileList fixed={{ initial: true, '@sm': false }}>
