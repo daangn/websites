@@ -16,17 +16,6 @@ type BlogListSectionProps = {
 export const query = graphql`
   fragment BlogPostList_query on Query {
     allPost(
-      filter: {
-        blogCategory: {
-          elemMatch: {
-            # 이건 또 뭔 버근지 모르겟는데... 
-            # uid 쿼리한거 개발환경에선 잘 나오는데 프로덕션 빌드에선 비어있음;
-            #
-            # uid: { eq: "culture" }
-            name: { eq: "문화" }
-          }
-        }
-      }
       sort: { publishedAt: DESC }
       limit: 5
     ) {
@@ -66,7 +55,7 @@ const BlogListSection: React.FC<BlogListSectionProps> = ({ slice, data }) => {
         delay={200}
         initialTransform="translateY(2rem)"
       />
-      <CtaButton link="/blog/category/culture/">블로그 글 보러 가기</CtaButton>
+      <CtaButton link="/blog/">블로그 글 보러 가기</CtaButton>
       <BlogCardWraaper ref={scrollRef}>
         {data.allPost.nodes.map((post) => (
           <BlogCard key={post.slug} to={`/blog/archive/${post.slug}`}>
