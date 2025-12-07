@@ -212,7 +212,7 @@ const ChildrenList: React.FC<ChildrenListProps> = ({ items }) => {
   const suppress = useBreakpointTransitionGuard(`min-width: ${em(768)}`);
 
   return (
-    <Container {...(suppress && { 'data-disable-transition': "" })}>
+    <Container {...(suppress && { 'data-disable-transition': '' })}>
       {items.map((child) => (
         // biome-ignore lint/style/noNonNullAssertion: filtered already
         <li key={child.link!.url!}>
