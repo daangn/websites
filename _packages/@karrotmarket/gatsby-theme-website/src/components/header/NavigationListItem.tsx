@@ -63,12 +63,14 @@ const NavigationLink = styled(Link, {
     color: 'var(--header-hover-color)',
   },
 
-  '&:hover + ul, &:focus + ul': {
-    opacity: 1,
-    visibility: 'visible',
-    transform: 'translateX(-50%) scale(1)',
-    // Enter transition: no delay
-    transition: 'opacity 0.2s, visibility 0.2s, transform 0.2s',
+  '@md': {
+    '&:hover + ul, &:focus + ul': {
+      opacity: 1,
+      visibility: 'visible',
+      transform: 'translateX(-50%) scale(1)',
+      // Enter transition: no delay
+      transition: 'opacity 0.2s, visibility 0.2s, transform 0.2s',
+    },
   },
 
   variants: {
