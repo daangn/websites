@@ -209,7 +209,7 @@ const iconMap: Record<string, { comp: () => React.ReactElement }> = {
 const ChildrenList: React.FC<ChildrenListProps> = ({ items }) => {
   const parseLink = useLinkParser();
   const location = useLocation();
-  const suppress = useBreakpointTransitionGuard(`min-width: ${em(768)}`);
+  const suppress = useBreakpointTransitionGuard(`(min-width: ${em(768)})`);
 
   return (
     <Container {...(suppress && { 'data-disable-transition': '' })}>
