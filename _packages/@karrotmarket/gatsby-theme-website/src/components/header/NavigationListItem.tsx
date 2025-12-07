@@ -1,6 +1,5 @@
 import { useLocation } from '@reach/router';
-import { vars } from '@seed-design/design-token';
-import { Link } from 'gatsby';
+import { Link, graphql } from 'gatsby';
 import { rem } from 'polished';
 import * as React from 'react';
 
@@ -8,6 +7,27 @@ import { styled } from 'gatsby-theme-stitches/src/config';
 import { mapLink, useLinkParser } from '../../link';
 
 import externalSvgUrl from '!!file-loader!./navigationListItem/external.svg';
+import ChildrenList from './navigationListItem/ChildrenList';
+
+export const query = graphql`
+  fragment NavigationListItem_entry on PrismicSiteNavigationDataHeaderEntriesItem {
+    display_text
+    link {
+      url
+    }
+    children {
+      document {
+        ... on PrismicSiteNavigationHeaderEntryChildren {
+          data {
+            children {
+              ...ChildrenList_item
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 
 const NavigationListItemContainer = styled('li', {
   fontSize: '$subtitle2',
@@ -27,6 +47,10 @@ const NavigationListItemContainer = styled('li', {
     opacity: 1,
     transform: 'none',
   },
+
+  '@md': {
+    position: 'relative',
+  },
 });
 
 const NavigationLink = styled(Link, {
@@ -37,6 +61,14 @@ const NavigationLink = styled(Link, {
   color: 'var(--header-color)',
   '&:hover, &:focus': {
     color: 'var(--header-hover-color)',
+  },
+
+  '&:hover + ul, &:focus + ul': {
+    opacity: 1,
+    visibility: 'visible',
+    transform: 'translateX(-50%) scale(1)',
+    // Enter transition: no delay
+    transition: 'opacity 0.2s, visibility 0.2s, transform 0.2s',
   },
 
   variants: {
@@ -62,13 +94,11 @@ const ExternalLink = styled(NavigationLink, {
   },
 });
 
-interface FooterEntryItemProps {
-  entry: Pick<GatsbyTypes.PrismicSiteNavigationDataFooterEntries, 'display_text'> & {
-    readonly link: GatsbyTypes.Maybe<Pick<GatsbyTypes.PrismicLinkField, 'url'>>;
-  };
+interface HeaderEntryItemProps {
+  entry: GatsbyTypes.NavigationListItem_entryFragment;
 }
 
-const NavigationListItem: React.FC<FooterEntryItemProps> = ({ entry }) => {
+const NavigationListItem: React.FC<HeaderEntryItemProps> = ({ entry }) => {
   const parseLink = useLinkParser();
   const location = useLocation();
 
@@ -95,6 +125,13 @@ const NavigationListItem: React.FC<FooterEntryItemProps> = ({ entry }) => {
           </ExternalLink>
         ),
       })}
+      {entry.children?.document && 'data' in entry.children.document && (
+        <ChildrenList
+          items={entry.children.document.data.children}
+          menuOpen={false}
+          showTransition={true}
+        />
+      )}
     </NavigationListItemContainer>
   );
 };
