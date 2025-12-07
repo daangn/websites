@@ -19,7 +19,7 @@ export const query = graphql`
       filter: {
         blogCategory: {
           elemMatch: {
-            uid: { ne: "pr" }
+            name: { ne: "pr" }
           }
         }
       }
