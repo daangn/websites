@@ -9,6 +9,7 @@ import { mapLink, useLinkParser } from '../../../link';
 import externalSvgUrl from '!!file-loader!./external.svg';
 
 import { vars } from '@seed-design/design-token';
+import { ReactComponent as LogoSvg } from '../../../assets/logo.svg';
 import { ReactComponent as MediumIcon } from '../../../assets/medium.svg';
 import { ReactComponent as YoutubeIcon } from '../../../assets/youtube.svg';
 
@@ -186,6 +187,17 @@ interface ChildrenListProps {
 }
 
 const iconMap: Record<string, { comp: () => React.ReactElement }> = {
+  daangn: {
+    comp: () => (
+      <IconContainer
+        css={{
+          boxShadow: 'inset 0 0 0 1px rgba(0, 0, 0, 0.1)',
+        }}
+      >
+        <LogoSvg height="18" />
+      </IconContainer>
+    ),
+  },
   medium: {
     comp: () => (
       <IconContainer>
@@ -200,7 +212,7 @@ const iconMap: Record<string, { comp: () => React.ReactElement }> = {
           boxShadow: 'inset 0 0 0 1px rgba(0, 0, 0, 0.1)',
         }}
       >
-        <YoutubeIcon color="#FF0000" width="16" />
+        <YoutubeIcon color="#FF0000" width="14" />
       </IconContainer>
     ),
   },
@@ -227,7 +239,8 @@ const ChildrenList: React.FC<ChildrenListProps> = ({ items }) => {
                     : location.pathname.startsWith(link.pathname)
                 }
               >
-                {child.display_text}
+                {child.service && iconMap[child.service]?.comp()}
+                <span>{child.display_text}</span>
               </ChildLink>
             ),
             External: (link) => (
