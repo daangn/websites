@@ -12,38 +12,45 @@ type State = {
     left: boolean;
     right: boolean;
   };
+  autoscroll: boolean;
 };
 
-type Action =
-  | {
-      type: 'LEFT';
-    }
-  | {
-      type: 'RIGHT';
-    };
+type Action = (
+  | { type: 'LEFT' }
+  | { type: 'RIGHT' }
+  | { type: 'AUTOSCROLL_NEXT' }
+);
 
+// TODO: replace entierly with native scroll snap events
 const reducer: React.Reducer<State, Action> = (state, action) => {
   switch (action.type) {
     case 'LEFT': {
-      const leftIdx = state.idx - 1;
+      let idx = (state.idx - 1) % state.count;
+      if (idx < 0) {
+        idx = state.count - 1;
+      }
       return {
         ...state,
-        idx: leftIdx,
+        idx,
         visible: {
-          left: leftIdx !== 0,
-          right: leftIdx !== state.count - 1,
+          left: idx !== 0,
+          right: idx !== state.count - 1,
         },
+        autoscroll: false,
       };
     }
-    case 'RIGHT': {
-      const rightIdx = state.idx + 1;
+    case 'RIGHT':
+    case 'AUTOSCROLL_NEXT':
+    {
+      const idx = (state.idx + 1) % state.count;
       return {
         ...state,
-        idx: rightIdx,
+        idx,
         visible: {
-          left: rightIdx !== 0,
-          right: rightIdx !== state.count - 1,
+          left: idx !== 0,
+          right: idx !== state.count - 1,
         },
+        autoscroll: action.type === 'AUTOSCROLL_NEXT',
       };
     }
   }
@@ -52,8 +59,9 @@ const reducer: React.Reducer<State, Action> = (state, action) => {
 interface CarouselProps {
   children: React.ReactNode;
 }
+
 const Carousel: React.FC<CarouselProps> = ({ children }) => {
-  const carouselRef = useRef<HTMLDivElement | null>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
   const [state, dispatch] = React.useReducer(reducer, null, () => ({
     idx: 0,
     count: React.Children.toArray(children).length,
@@ -61,33 +69,27 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
       left: false,
       right: React.Children.toArray(children).length > 1,
     },
+    autoscroll: true,
   }));
 
-  const scrollToRight = (e: React.MouseEvent) => {
-    e.preventDefault();
+  React.useEffect(() => {
     if (carouselRef.current) {
-      carouselRef.current.scrollBy({
-        left: carouselRef.current.clientWidth,
-        top: 0,
+      carouselRef.current.children[state.idx]?.scrollIntoView({
         behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center',
       });
     }
+  }, [state.idx]);
 
-    dispatch({ type: 'RIGHT' });
-  };
-
-  const scrollToLeft = (e: React.MouseEvent) => {
-    e.preventDefault();
-    if (carouselRef.current) {
-      carouselRef.current.scrollBy({
-        left: -carouselRef.current.clientWidth,
-        top: 0,
-        behavior: 'smooth',
-      });
-    }
-
-    dispatch({ type: 'LEFT' });
-  };
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      if (state.autoscroll) {
+        dispatch({ type: 'AUTOSCROLL_NEXT' });
+      }
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [state.autoscroll]);
 
   return (
     <Container>
@@ -95,14 +97,14 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
         {children}
       </CarouselItem>
       {state.visible.left && (
-        <LeftButton onClick={scrollToLeft}>
+        <LeftButton onClick={() => dispatch({ type: 'LEFT' })}>
           <CarouselButton>
             <ChevronLeft />
           </CarouselButton>
         </LeftButton>
       )}
       {state.visible.right && (
-        <RightButton onClick={scrollToRight}>
+        <RightButton onClick={() => dispatch({ type: 'RIGHT' })}>
           <CarouselButton>
             <ChevronRight />
           </CarouselButton>
