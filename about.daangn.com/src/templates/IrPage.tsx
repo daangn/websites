@@ -116,6 +116,9 @@ const Body = styled('main', {
 
 const MainText = styled('div', {
   typography: '$body1',
+  '> p:not(:last-child)': {
+    marginBottom: '1.5rem',
+  },
 });
 
 const SupplementaryText = styled('div', {
