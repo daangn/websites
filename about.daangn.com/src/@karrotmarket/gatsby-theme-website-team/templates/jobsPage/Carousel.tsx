@@ -74,11 +74,18 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
 
   React.useEffect(() => {
     if (carouselRef.current) {
-      carouselRef.current.children[state.idx]?.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'center',
-      });
+      const targetElement = carouselRef.current.children[state.idx] as HTMLElement;
+      if (targetElement) {
+        const containerRect = carouselRef.current.getBoundingClientRect();
+        const targetRect = targetElement.getBoundingClientRect();
+        const scrollLeft = targetElement.offsetLeft - (containerRect.width / 2) + (targetRect.width / 2);
+
+        carouselRef.current.scrollTo({
+          left: scrollLeft,
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
     }
   }, [state.idx]);
 
