@@ -26,7 +26,7 @@ jobs:
           curl -fsSL -X POST \
             -H "Authorization: Bearer ${{ secrets.WEBSITES_ADMIN_KEY }}" \
             -H "Content-Type: application/json" \
-            -d '{ "run_id": "${{ github.run_id }}" }' \
+            -d '{ "runId": "${{ github.run_id }}" }' \
             "${{ inputs.bind_url }}"
 
       - uses: actions/checkout@v4
@@ -97,5 +97,5 @@ jobs:
           curl -fsSL -X POST \
             -H "Authorization: AdminKey ${{ secrets.WEBSITES_ADMIN_KEY }}" \
             -H "Content-Type: application/json" \
-            -d '{ "run_id": "${{ github.run_id }}", "status": "${{ job.status }}", "artifact_name": "about.daangn.com/${{ inputs.deployment_id }}.tar.zst" }' \
+            -d '{ "runId": "${{ github.run_id }}", "status": "${{ job.status }}", "artifactName": "about.daangn.com/${{ inputs.deployment_id }}.tar.zst" }' \
             "${{ inputs.callback_url }}"
