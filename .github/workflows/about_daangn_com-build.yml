@@ -24,7 +24,7 @@ jobs:
       - name: Bind this to the deployment
         run: |
           curl -fsSL -X POST \
-            -H "Authorization: AdminKey ${{ secrets.WEBSITES_ADMIN_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.WEBSITES_ADMIN_KEY }}" \
             -H "Content-Type: application/json" \
             -d '{ "run_id": "${{ github.run_id }}" }' \
             "${{ inputs.bind_url }}"
