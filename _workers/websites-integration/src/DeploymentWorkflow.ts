@@ -65,14 +65,14 @@ export class DeploymentWorkflow extends WorkflowEntrypoint<Env, DeploymentWorkfl
       { type: 'build-job-finished', timeout: 1000 * 60 * 60 },
     );
 
-    const buildJobStatus = buildJobFinishedEvent.payload.status;
+    const { payload } = buildJobFinishedEvent;
 
     await step.do('check the build job result', async () => {
-      if (buildJobStatus !== 'success') {
-        throw new NonRetryableError(`Build job ${buildJobStatus}`);
+      if (payload.status !== 'success') {
+        throw new NonRetryableError(`Build job ${payload.status}`);
       }
     })
 
-    return buildJobFinishedEvent;
+    return payload;
   }
 }
