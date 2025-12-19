@@ -40,9 +40,7 @@ export class DeploymentWorkflow extends WorkflowEntrypoint<Env, DeploymentWorkfl
         inputs: {
           deployment_id: event.instanceId,
           bind_url: new URL(`/deployments/${event.instanceId}`, event.payload.baseUrl).toString(),
-          check_url: new URL(`/deployments/${event.instanceId}`, event.payload.baseUrl).toString(),
           callback_url: new URL(`/deployments/${event.instanceId}/callback`, event.payload.baseUrl).toString(),
-          artifact_url: new URL(`/deployments/${event.instanceId}/download-artifact`, event.payload.baseUrl).toString(),
         },
       });
       if (actionStatus !== 204) {
