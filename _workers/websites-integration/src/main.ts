@@ -9,7 +9,6 @@ import {
   BuildJobBindEventSchema,
 } from './DeploymentWorkflow.ts';
 
-export { Deployment } from './_migrated/Deployment.ts';
 export { DeploymentWorkflow } from './DeploymentWorkflow.ts';
 
 const app = new Hono<{ Bindings: Env }>()
