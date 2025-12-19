@@ -63,7 +63,7 @@ const params = {
 
 const initResponse = await client.deployments.$post({ json: params });
 if (!initResponse.ok) {
-  console.error(initResponse);
+  console.error(await initResponse.text(), initResponse);
   process.exit(1);
 }
 
@@ -87,7 +87,7 @@ for await (const startTime of setInterval(5000, Date.now())) {
     },
   });
   if (!checkResponse.ok) {
-    console.error(checkResponse);
+    console.error(await checkResponse.text(), checkResponse);
     process.exit(1);
   }
   const { runId, status } = await checkResponse.json();
