@@ -12,7 +12,7 @@ export const DeploymentWorkflowParamsSchema = v.object({
   workflowId: v.string(),
   ref: v.string(),
   commitSha: v.string(),
-  callbackUrl: v.string(),
+  baseUrl: v.string(),
 });
 
 export type BuildJobBindEvent = v.InferOutput<typeof BuildJobFinishedEventSchema>;
@@ -39,7 +39,10 @@ export class DeploymentWorkflow extends WorkflowEntrypoint<Env, DeploymentWorkfl
         ref: event.payload.ref,
         inputs: {
           deployment_id: event.instanceId,
-          callback_url: event.payload.callbackUrl,
+          bind_url: new URL(`/deployments/${event.instanceId}`, event.payload.baseUrl).toString(),
+          check_url: new URL(`/deployments/${event.instanceId}`, event.payload.baseUrl).toString(),
+          callback_url: new URL(`/deployments/${event.instanceId}/callback`, event.payload.baseUrl).toString(),
+          artifact_url: new URL(`/deployments/${event.instanceId}/download-artifact`, event.payload.baseUrl).toString(),
         },
       });
       if (actionStatus !== 204) {

@@ -18,17 +18,17 @@ const app = new Hono<{ Bindings: Env }>()
   })
 
   // Create a new deployment
-  .post('/deployments', sValidator('json', DeploymentWorkflowParamsSchema), async (c) => {
-    const params = c.req.valid('json');
-    const instance = await c.env.DEPLOYMENT_WORKFLOW.create({ params });
-    return c.json({
-      id: instance.id,
-      bind_url: new URL(`/deployments/${instance.id}`, c.req.url).toString(),
-      check_url: new URL(`/deployments/${instance.id}`, c.req.url).toString(),
-      callback_url: new URL(`/deployments/${instance.id}/callback`, c.req.url).toString(),
-      artifact_url: new URL(`/deployments/${instance.id}/download-artifact`, c.req.url).toString(),
-    });
-  })
+  .post(
+    '/deployments',
+    sValidator('json', v.omit(DeploymentWorkflowParamsSchema, ['baseUrl'])),
+    async (c) => {
+      const params = c.req.valid('json');
+      const instance = await c.env.DEPLOYMENT_WORKFLOW.create({
+        params: { ...params, baseUrl: c.req.url },
+      });
+      return c.json({ id: instance.id });
+    },
+  )
 
   // Bind the build job to the deployment
   .post('/deployments/:id', sValidator('json', BuildJobBindEventSchema), async (c) => {

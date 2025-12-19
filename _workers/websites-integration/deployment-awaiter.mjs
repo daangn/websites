@@ -55,13 +55,13 @@ const client = hc(WEBSITES_DEPLOYMENT_ENDPOINT, {
   },
 });
 
-const params = {
-  workflow_id: values.workflow,
-  ref: CF_PAGES_BRANCH,
-  commit_sha: CF_PAGES_COMMIT_SHA,
-};
-
-const initResponse = await client.deployments.$post({ json: params });
+const initResponse = await client.deployments.$post({
+  json: {
+    workflowId: values.workflow,
+    ref: CF_PAGES_BRANCH,
+    commitSha: CF_PAGES_COMMIT_SHA,
+  },
+});
 if (!initResponse.ok) {
   console.error(await initResponse.text(), initResponse);
   process.exit(1);
