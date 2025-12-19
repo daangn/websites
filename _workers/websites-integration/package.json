@@ -4,21 +4,19 @@
   "bin": {
     "deployment-awaiter": "./deployment-awaiter.mjs"
   },
-  "imports": {
-    "#lib/*": "./functions/$lib/*.ts"
-  },
   "scripts": {
-    "deploy:objects": "wrangler deploy -c wrangler.do.toml",
-    "deploy:pages": "wrangler pages deploy"
+    "deploy": "wrangler deploy"
   },
   "dependencies": {
+    "@hono/standard-validator": "^0.2.1",
     "@octokit/rest": "^20.1.1",
+    "hono": "^4.11.1",
     "pretty-ms": "^9.0.0",
+    "valibot": "^1.2.0",
     "zx": "^8.1.2"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20240605.0",
-    "typescript": "^5.4.5",
-    "wrangler": "^3.59.0"
+    "typescript": "^5.9.3",
+    "wrangler": "^4.56.0"
   }
 }

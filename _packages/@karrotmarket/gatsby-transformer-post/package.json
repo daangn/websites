@@ -12,6 +12,6 @@
   "devDependencies": {
     "@prismicio/types": "^0.2.8",
     "gatsby": "^5.13.5",
-    "typescript": "^5.4.5"
+    "typescript": "^5.9.3"
   }
 }

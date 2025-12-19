@@ -6,7 +6,8 @@
     "noEmit": true,
     "skipLibCheck": true,
     "strict": true,
-    "types": ["@cloudflare/workers-types/experimental"]
-  },
-  "include": ["functions"]
+    "types": [
+      "./worker-configuration.d.ts"
+    ]
+  }
 }

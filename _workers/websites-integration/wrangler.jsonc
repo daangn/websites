@@ -1,0 +1,48 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "websites-integration",
+  "main": "./src/main.ts",
+  "compatibility_date": "2025-12-19",
+  "observability": {
+    "enabled": true
+  },
+  "routes": [
+    {
+      "custom_domain": true,
+      "pattern": "websites-integration.krrt.io"
+    }
+  ],
+  "assets": {
+    "directory": "public",
+    "binding": "ASSETS"
+  },
+  "r2_buckets": [
+    {
+      "binding": "ARTIFACTS",
+      "bucket_name": "websites-artifacts"
+    }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "DEPLOYMENT_META",
+      "id": "websites-integration-deployment-meta"
+    }
+  ],
+  "workflows": [
+    {
+      "name": "websites-integration-deployment",
+      "binding": "DEPLOYMENT_WORKFLOW",
+      "class_name": "DeploymentWorkflow"
+    }
+  ],
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_classes": ["Deployment"]
+    },
+    {
+      "tag": "v2",
+      "deleted_classes": ["Deployment"]
+    }
+  ]
+}

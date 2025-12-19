@@ -1,8 +1,15 @@
+// @ts-check
+
+/**
+ * @import { AppType } from './src/main.ts'
+ */
+
 import { createWriteStream } from 'node:fs';
 import { Readable } from 'node:stream';
 import { finished } from 'node:stream/promises';
 import { setInterval } from 'node:timers/promises';
 import { parseArgs } from 'node:util';
+import { hc } from 'hono/client';
 import prettyMilliseconds from 'pretty-ms';
 
 import { $ } from 'zx';
@@ -10,11 +17,6 @@ import { $ } from 'zx';
 const {
   WEBSITES_ADMIN_KEY,
   WEBSITES_DEPLOYMENT_ENDPOINT,
-
-  /**
-   * Force a deployment object for hotfix
-   */
-  HOTFIX_DEPLOYMENT_OBJECT_URL,
 
   // This script is available only on the Cloudflare Pages build, and some env vars will be injected from.
   // See https://developers.cloudflare.com/pages/configuration/build-configuration/
@@ -30,121 +32,101 @@ if (CF_PAGES !== '1') {
 
 const startedAt = Date.now();
 
-/** @type {URL} */
-let artifactUrl;
-
-/** @type {Headers | undefined} */
-let headers = undefined;
-
-if (HOTFIX_DEPLOYMENT_OBJECT_URL) {
-  artifactUrl = new URL(HOTFIX_DEPLOYMENT_OBJECT_URL);
-} else {
-  const deploymentUrl = new URL(WEBSITES_DEPLOYMENT_ENDPOINT);
-
-  headers = new Headers({
-    Authorization: `AdminKey ${WEBSITES_ADMIN_KEY}`,
-  });
-
-  const { values } = parseArgs({
-    args: process.argv.slice(2),
-    options: {
-      workflow: {
-        type: 'string',
-      },
-      timeout: {
-        type: 'string',
-        default: (10 * 60 * 1000).toString(), // 10 mins
-      },
+const { values } = parseArgs({
+  args: process.argv.slice(2),
+  options: {
+    workflow: {
+      type: 'string',
     },
-  });
+    timeout: {
+      type: 'string',
+      default: (10 * 60 * 1000).toString(), // 10 mins
+    },
+  },
+});
 
-  const params = {
-    workflow_id: values.workflow,
-    ref: CF_PAGES_BRANCH,
-    commit_sha: CF_PAGES_COMMIT_SHA,
-  };
+/** 
+ * @typedef {ReturnType<typeof hc<AppType>>} Client
+ * @type {Client}
+ */
+const client = hc(WEBSITES_DEPLOYMENT_ENDPOINT, {
+  headers: {
+    Authorization: `Bearer ${WEBSITES_ADMIN_KEY}`,
+  },
+});
 
-  const initResponse = await fetch(deploymentUrl, {
-    method: 'POST',
-    headers,
-    body: JSON.stringify(params),
-  });
-  const initData = await initResponse.json();
-  if (!initResponse.ok) {
-    console.error({ status: initResponse.status, data: initData });
+const params = {
+  workflow_id: values.workflow,
+  ref: CF_PAGES_BRANCH,
+  commit_sha: CF_PAGES_COMMIT_SHA,
+};
+
+const initResponse = await client.deployments.$post({ json: params });
+if (!initResponse.ok) {
+  console.error(initResponse);
+  process.exit(1);
+}
+
+const initData = await initResponse.json();
+console.log(`Deployment(id: ${initData.id}) initialized`);
+
+const timeout = Number.parseInt(values.timeout);
+
+let bound = false;
+let runUrl;
+
+for await (const startTime of setInterval(5000, Date.now())) {
+  if (Date.now() - startTime >= timeout) {
+    console.error(`Timeout exceeded (${prettyMilliseconds(timeout)})`);
     process.exit(1);
   }
 
-  console.log(`Deployment(id: ${initData.id}) initialized`);
+  const checkResponse = await client.deployments[':id'].$get({
+    param: {
+      id: initData.id,
+    },
+  });
+  if (!checkResponse.ok) {
+    console.error(checkResponse);
+    process.exit(1);
+  }
+  const { runId, status } = await checkResponse.json();
+  if (!bound && runId) {
+    bound = true;
+    runUrl = `https://github.com/daangn/websites/actions/runs/${runId}`;
+    console.log(
+      `Waiting for job to finish on ${runUrl} (timeout: ${prettyMilliseconds(timeout)})`,
+    );
+  }
 
-  const checkUrl = new URL(initData.check_url);
-  artifactUrl = new URL(initData.artifact_url);
-
-  const timeout = Number.parseInt(values.timeout);
-
-  let bound = false;
-  let runUrl;
-
-  for await (const startTime of setInterval(5000, Date.now())) {
-    if (Date.now() - startTime >= timeout) {
-      console.error(`Timeout exceeded (${prettyMilliseconds(timeout)})`);
-      process.exit(1);
-    }
-
-    const res = await fetch(checkUrl, { headers });
-    const data = await res.json();
-    if (!res.ok) {
-      console.error({ status: res.status, data });
-      process.exit(1);
-    }
-
-    const state = data.state;
-    if (state.type === 'IDLE') {
-      throw new Error('invariant');
-    }
-
-    if (state.runId && !bound) {
-      bound = true;
-      runUrl = `https://github.com/daangn/websites/actions/runs/${state.runId}`;
-      console.log(
-        `Waiting for job to finish on ${runUrl} (timeout: ${prettyMilliseconds(timeout)})`,
-      );
-    }
-
-    if (state.type === 'IN_PROGRESS') {
-      continue;
-    }
-
-    if (state.type === 'DONE') {
-      if (state.status === 'failure') {
-        console.error(`Workflow run failed: ${runUrl}`);
-        process.exit(1);
-      }
-      if (state.status === 'cancelled') {
-        console.error(`Workflow run failed: ${runUrl}`);
-        process.exit(1);
-      }
-      if (state.status === 'success') {
-        break;
-      }
-    }
+  if (status === 'errored' || status === 'terminated') {
+    console.error(`Workflow run failed: ${runUrl}`);
+    process.exit(1);
+  }
+ 
+  if (status === 'complete') {
+    break;
   }
 }
 
 console.log('Downloading artifact...');
-const downloadRes = await fetch(artifactUrl, { headers });
-if (!downloadRes.ok) {
+const downloadResponse = await client.deployments[':id']['download-artifact'].$get({
+  param: {
+    id: initData.id,
+  },
+});
+if (!downloadResponse.ok) {
   console.error('Failed to download artifact');
   try {
-    const resData = await downloadRes.json();
-    console.error('status: %d, res: %o', downloadRes.status, resData);
+    const downloadData = await downloadResponse.json();
+    console.error('status: %d, res: %o', downloadResponse.status, downloadData);
   } catch {
-    console.error('status: %d, res: %s', downloadRes.status, downloadRes.statusText);
+    console.error('status: %d, res: %s', downloadResponse.status, downloadResponse.statusText);
   }
   process.exit(1);
 }
 const fileStream = createWriteStream('public.tar.zst');
-await finished(Readable.from(downloadRes.body).pipe(fileStream));
+await finished(Readable.from(downloadResponse.body).pipe(fileStream));
 
 console.log('Extracting artifact...');
 await $`tar --use-compress-program="zstd -d" -xvf public.tar.zst`;

@@ -6,3 +6,5 @@
 /.pnp.*                   binary linguist-vendored
 
 /**/__generated__/**      linguist-generated
+
+worker-configuration.d.ts linguist-generated
