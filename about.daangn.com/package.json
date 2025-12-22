@@ -2,17 +2,6 @@
   "name": "about.daangn.com",
   "version": "0.0.0",
   "private": true,
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/daangn/websites.git",
-    "directory": "about.daangn.com"
-  },
-  "maintainers": [
-    {
-      "name": "Carson",
-      "email": "carson@daangn.com"
-    }
-  ],
   "browserslist": [
     "defaults",
     "not ie 11"
