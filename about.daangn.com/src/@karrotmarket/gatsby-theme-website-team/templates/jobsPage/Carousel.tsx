@@ -15,11 +15,7 @@ type State = {
   autoscroll: boolean;
 };
 
-type Action = (
-  | { type: 'LEFT' }
-  | { type: 'RIGHT' }
-  | { type: 'AUTOSCROLL_NEXT' }
-);
+type Action = { type: 'LEFT' } | { type: 'RIGHT' } | { type: 'AUTOSCROLL_NEXT' };
 
 // TODO: replace entierly with native scroll snap events
 const reducer: React.Reducer<State, Action> = (state, action) => {
@@ -40,8 +36,7 @@ const reducer: React.Reducer<State, Action> = (state, action) => {
       };
     }
     case 'RIGHT':
-    case 'AUTOSCROLL_NEXT':
-    {
+    case 'AUTOSCROLL_NEXT': {
       const idx = (state.idx + 1) % state.count;
       return {
         ...state,
@@ -78,12 +73,13 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
       if (targetElement) {
         const containerRect = carouselRef.current.getBoundingClientRect();
         const targetRect = targetElement.getBoundingClientRect();
-        const scrollLeft = targetElement.offsetLeft - (containerRect.width / 2) + (targetRect.width / 2);
+        const scrollLeft =
+          targetElement.offsetLeft - containerRect.width / 2 + targetRect.width / 2;
 
         carouselRef.current.scrollTo({
           left: scrollLeft,
           top: 0,
-          behavior: 'smooth'
+          behavior: 'smooth',
         });
       }
     }
