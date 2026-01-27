@@ -1,8 +1,4 @@
-import {
-  WorkflowEntrypoint,
-  type WorkflowStep,
-  type WorkflowEvent,
-} from 'cloudflare:workers';
+import { WorkflowEntrypoint, type WorkflowEvent, type WorkflowStep } from 'cloudflare:workers';
 import { NonRetryableError } from 'cloudflare:workflows';
 import { Octokit } from '@octokit/rest';
 import * as v from 'valibot';
@@ -40,7 +36,10 @@ export class DeploymentWorkflow extends WorkflowEntrypoint<Env, DeploymentWorkfl
         inputs: {
           deployment_id: event.instanceId,
           bind_url: new URL(`/deployments/${event.instanceId}`, event.payload.baseUrl).toString(),
-          callback_url: new URL(`/deployments/${event.instanceId}/callback`, event.payload.baseUrl).toString(),
+          callback_url: new URL(
+            `/deployments/${event.instanceId}/callback`,
+            event.payload.baseUrl,
+          ).toString(),
         },
       });
       if (actionStatus !== 204) {
@@ -56,9 +55,9 @@ export class DeploymentWorkflow extends WorkflowEntrypoint<Env, DeploymentWorkfl
     await step.do('bind the build job', async () => {
       await this.env.DEPLOYMENT_META.put(
         `deployment:${event.instanceId}:runId`,
-        buildJobBindEvent.payload.runId
+        buildJobBindEvent.payload.runId,
       );
-    })
+    });
 
     const buildJobFinishedEvent = await step.waitForEvent<BuildJobFinishedEvent>(
       'wait for the build to complete',
@@ -71,7 +70,7 @@ export class DeploymentWorkflow extends WorkflowEntrypoint<Env, DeploymentWorkfl
       if (payload.status !== 'success') {
         throw new NonRetryableError(`Build job ${payload.status}`);
       }
-    })
+    });
 
     return payload;
   }

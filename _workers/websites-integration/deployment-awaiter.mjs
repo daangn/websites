@@ -45,7 +45,7 @@ const { values } = parseArgs({
   },
 });
 
-/** 
+/**
  * @typedef {ReturnType<typeof hc<AppType>>} Client
  * @type {Client}
  */
@@ -94,16 +94,14 @@ for await (const startTime of setInterval(5000, Date.now())) {
   if (!bound && runId) {
     bound = true;
     runUrl = `https://github.com/daangn/websites/actions/runs/${runId}`;
-    console.log(
-      `Waiting for job to finish on ${runUrl} (timeout: ${prettyMilliseconds(timeout)})`,
-    );
+    console.log(`Waiting for job to finish on ${runUrl} (timeout: ${prettyMilliseconds(timeout)})`);
   }
 
   if (status === 'errored' || status === 'terminated') {
     console.error(`Workflow run failed: ${runUrl}`);
     process.exit(1);
   }
- 
+
   if (status === 'complete') {
     break;
   }

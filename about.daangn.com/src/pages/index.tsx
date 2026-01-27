@@ -83,6 +83,13 @@ const CompanyPage: React.FC<CompanyPageProps> = ({ data }) => {
       document.documentElement.style.removeProperty('--header-color');
       document.documentElement.style.removeProperty('--header-hover-color');
     }
+
+    return () => {
+      document.documentElement.style.removeProperty('--header-background');
+      document.documentElement.style.removeProperty('--header-color');
+      document.documentElement.style.removeProperty('--header-hover-color');
+      document.documentElement.style.removeProperty('--header-backdrop-filter');
+    };
   }, [isFirstFoldStarted, isFirstFoldEnded]);
 
   return (
