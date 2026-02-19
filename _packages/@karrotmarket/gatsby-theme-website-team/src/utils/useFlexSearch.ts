@@ -23,10 +23,21 @@ export const useFlexSearch = (query?: string) => {
   }, [staticData.localSearchJobPosts.publicIndexURL]);
   useEffect(() => {
     if (query) {
-      const results = flexIndex?.[0].flatMap(
-        (entities) => entities[query.toLocaleLowerCase()] || [],
+      const words = query.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
+      if (words.length === 0) {
+        setSearchResult(undefined);
+        return;
+      }
+
+      const perWordSets = words.map(
+        (word) => new Set(flexIndex?.[0].flatMap((entities) => entities[word] || [])),
       );
-      setSearchResult(Array.from(new Set(results)));
+
+      const intersection = [...perWordSets[0]].filter((id) =>
+        perWordSets.every((set) => set.has(id)),
+      );
+
+      setSearchResult(intersection);
     } else {
       setSearchResult(undefined);
     }
