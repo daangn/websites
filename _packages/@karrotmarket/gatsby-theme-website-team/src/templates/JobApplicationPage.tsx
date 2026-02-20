@@ -347,15 +347,9 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({ data, pageConte
             ),
           }),
         )}
-      {pageContext.applicationTerms.map(uid => {
-        const terms = data.applicationTerms.nodes.find(node => node.uid === uid);
-        return (
-          <TermsField
-            key={uid}
-            terms={terms.data.content.html}
-            label={terms.data.title}
-          />
-        );
+      {pageContext.applicationTerms.map((uid) => {
+        const terms = data.applicationTerms.nodes.find((node) => node.uid === uid);
+        return <TermsField key={uid} terms={terms.data.content.html} label={terms.data.title} />;
       })}
       <TurnstileImplicitFormInput />
       <Button as="button" type="submit" variant="primary" fullWidth disabled={state === 'fetching'}>

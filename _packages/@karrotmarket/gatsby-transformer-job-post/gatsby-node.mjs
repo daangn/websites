@@ -47,7 +47,11 @@ export const createSchemaCustomization = (ctx, options) => {
     schema,
   } = ctx;
 
-  const { defaultTags = {}, defaultMeta = {}, applicationTerms = {} } = /** @type {PluginOptions} */ (options);
+  const {
+    defaultTags = {},
+    defaultMeta = {},
+    applicationTerms = {},
+  } = /** @type {PluginOptions} */ (options);
 
   const gql = String.raw;
   const fieldParser = greenhouseJobCustomFieldParser;
