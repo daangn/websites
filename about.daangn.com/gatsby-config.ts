@@ -170,6 +170,13 @@ const config: GatsbyConfig = {
     {
       resolve: '@karrotmarket/gatsby-source-greenhouse-jobboard',
       options: {
+        boardToken: 'daangnpay',
+        forceGC: true,
+      },
+    },
+    {
+      resolve: '@karrotmarket/gatsby-source-greenhouse-jobboard',
+      options: {
         boardToken: 'daangntest',
         forceGC: true,
       },
