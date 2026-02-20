@@ -22,8 +22,6 @@
   "job_application_page__field_resume_description": "ファイルはなるべくpdf形式でアップロードしてください。Notionなどウェブ形式の応募は、Web Linkを添付してください。",
   "job_application_page__field_resume_label": "履歴書",
   "job_application_page__field_resume_placeholder": "ファイルを添付する",
-  "job_application_page__terms_privacy_info": "個人情報保護方針",
-  "job_application_page__terms_sensitive_info": "個人情報保護方針",
   "job_post_layout__prior_experience_no": "新卒",
   "job_post_layout__prior_experience_whatever": "中途/新卒",
   "job_post_layout__prior_experience_yes": "中途",

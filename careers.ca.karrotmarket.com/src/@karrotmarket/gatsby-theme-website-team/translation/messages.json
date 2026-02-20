@@ -22,8 +22,6 @@
   "job_application_page__field_resume_description": "File types: pdf, doc, docx, txt, rtf (pdf is preferred)",
   "job_application_page__field_resume_label": "Resume",
   "job_application_page__field_resume_placeholder": "Attach a file",
-  "job_application_page__terms_privacy_info": "Privacy policy",
-  "job_application_page__terms_sensitive_info": "Sensitive information policy",
   "job_post_layout__prior_experience_no": "Entry level",
   "job_post_layout__prior_experience_whatever": "Entry level/Experienced",
   "job_post_layout__prior_experience_yes": "Experienced",

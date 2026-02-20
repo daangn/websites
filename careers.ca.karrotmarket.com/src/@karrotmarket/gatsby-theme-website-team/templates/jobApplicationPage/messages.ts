@@ -19,9 +19,6 @@ export default {
   field_portfolio_placeholder: 'Attach a file',
   field_portfolio_description: '* Up to 50MB',
 
-  terms_privacy_info: 'Privacy policy',
-  terms_sensitive_info: 'Sensitive information policy',
-
   button_submit: 'Agree and Submit Application',
 
   custom_field_file_placeholder: 'Attach a file',

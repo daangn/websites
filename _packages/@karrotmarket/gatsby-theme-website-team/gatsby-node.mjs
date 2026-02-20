@@ -173,6 +173,7 @@ export const createPages = async ({ graphql, actions }, pluginOptions) => {
    *    nodes: Array<{
    *      id: string;
    *      ghId: string;
+   *      applicationTerms: string[];
    *    }>;
    *  };
    *  allJobDepartment: {
@@ -227,6 +228,7 @@ export const createPages = async ({ graphql, actions }, pluginOptions) => {
         nodes {
           id
           ghId
+          applicationTerms
         }
       }
       allJobDepartment {
@@ -310,6 +312,7 @@ export const createPages = async ({ graphql, actions }, pluginOptions) => {
         id: jobPost.id,
         ghId: jobPost.ghId,
         useConfirmationEmail: data.prismicTeamContents?.data?.use_confirmation_email ?? false,
+        applicationTerms: jobPost.applicationTerms,
       },
     });
   }

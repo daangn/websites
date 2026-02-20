@@ -207,6 +207,18 @@ const config: GatsbyConfig = {
               'https://assetstorage.krrt.io/1518824262134778584/6d5199d8-4b78-4762-9370-6cf9a3559faf/width_1200_height_630.webp',
           },
         },
+        applicationTerms: {
+          daangn: [
+            'job-application-privacy',
+            'job-application-sensitive',
+            'job-application-thirdparty-karrotmarket',
+          ],
+          daangnpay: [
+            'job-application-privacy',
+            'job-application-sensitive',
+            'job-application-thirdparty-karrotpay',
+          ],
+        },
       },
     },
   ],
