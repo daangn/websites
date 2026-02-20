@@ -27,6 +27,7 @@ export const query = graphql`
     $id: String!
     $locale: String!
     $navigationId: String!
+    $applicationTerms: [String!]!
   ) {
     ...TeamWebsite_DefaultLayout_query
     ...TeamWebsite_JobPostLayout_query
@@ -79,25 +80,19 @@ export const query = graphql`
         }
       }
     }
-    privacyPolicy: prismicTermsAndConditions(
-      uid: { eq: "job-application-privacy" }
-      lang: { eq: $locale }
-    ) {
-      id
-      data {
-        content {
-          html
-        }
+    applicationTerms: allPrismicTermsAndConditions(
+      filter: {
+        uid: { in: $applicationTerms }
+        lang: { eq: $locale }
       }
-    }
-    sensitiveInfoPolicy: prismicTermsAndConditions(
-      uid: { eq: "job-application-sensitive" }
-      lang: { eq: $locale }
     ) {
-      id
-      data {
-        content {
-          html
+      nodes {
+        uid
+        data {
+          title
+          content {
+            html
+          }
         }
       }
     }
@@ -352,18 +347,16 @@ const JobApplicationPage: React.FC<JobApplicationPageProps> = ({ data, pageConte
             ),
           }),
         )}
-      {data.privacyPolicy?.data?.content?.html && (
-        <TermsField
-          terms={data.privacyPolicy.data.content.html}
-          label={messages.job_application_page__terms_privacy_info}
-        />
-      )}
-      {data.sensitiveInfoPolicy?.data?.content?.html && (
-        <TermsField
-          terms={data.sensitiveInfoPolicy.data.content.html}
-          label={messages.job_application_page__terms_sensitive_info}
-        />
-      )}
+      {pageContext.applicationTerms.map(uid => {
+        const terms = data.applicationTerms.nodes.find(node => node.uid === uid);
+        return (
+          <TermsField
+            key={uid}
+            terms={terms.data.content.html}
+            label={terms.data.title}
+          />
+        );
+      })}
       <TurnstileImplicitFormInput />
       <Button as="button" type="submit" variant="primary" fullWidth disabled={state === 'fetching'}>
         {state === 'fetching' ? <Spinner /> : messages.job_application_page__button_submit}

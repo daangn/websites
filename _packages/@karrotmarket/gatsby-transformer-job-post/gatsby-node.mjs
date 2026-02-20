@@ -34,6 +34,7 @@ export const pluginOptionsSchema = ({ Joi }) => {
         image: Joi.string().optional(),
       }),
     ),
+    applicationTerms: Joi.object().pattern(Joi.string(), Joi.array().items(Joi.string())),
   });
 };
 
@@ -46,7 +47,7 @@ export const createSchemaCustomization = (ctx, options) => {
     schema,
   } = ctx;
 
-  const { defaultTags = {}, defaultMeta = {} } = /** @type {PluginOptions} */ (options);
+  const { defaultTags = {}, defaultMeta = {}, applicationTerms = {} } = /** @type {PluginOptions} */ (options);
 
   const gql = String.raw;
   const fieldParser = greenhouseJobCustomFieldParser;
@@ -260,6 +261,15 @@ export const createSchemaCustomization = (ctx, options) => {
               ...(defaultTags[source.boardToken] ?? []),
               ...(fieldParser.tags(source, ctx) ?? []),
             ];
+          },
+        },
+        applicationTerms: {
+          type: '[String!]!',
+          description: '지원 시 동의 약관 컨텐츠 UID',
+          /** @param {GreenhouseJobBoardJobNode} source */
+          resolve(source) {
+            const defaultTerms = ['job-application-privacy', 'job-application-sensitive'];
+            return applicationTerms[source.boardToken] ?? defaultTerms;
           },
         },
         // Temp: extensions

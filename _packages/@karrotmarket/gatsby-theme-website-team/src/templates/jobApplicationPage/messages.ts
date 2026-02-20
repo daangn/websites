@@ -21,9 +21,6 @@ export default {
   field_portfolio_description: 'field_portfolio_description',
   field_portfolio_placeholder: 'field_portfolio_placeholder',
 
-  terms_privacy_info: 'terms_privacy_info',
-  terms_sensitive_info: 'terms_sensitive_info',
-
   button_submit: 'button_submit',
 
   custom_field_file_placeholder: 'custom_field_file_placeholder',
