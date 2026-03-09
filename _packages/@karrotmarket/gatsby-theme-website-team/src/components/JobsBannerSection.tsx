@@ -52,7 +52,7 @@ const JobsBannerSection: React.FC = () => {
         layout="fullWidth"
         alt="이미지_채용배너"
         src={'./JobsBannerSection/jobs_banner.png'}
-        formats={['auto', 'webp', 'avif']}
+        formats={['avif', 'auto']}
       />
       <SimpleReveal
         render={({ ref, cn, style }) => (

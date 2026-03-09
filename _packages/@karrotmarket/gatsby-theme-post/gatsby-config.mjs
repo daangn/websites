@@ -24,7 +24,7 @@ export default {
       resolve: 'gatsby-plugin-sharp',
       options: {
         defaults: {
-          formats: ['avif', 'webp', 'auto'],
+          formats: ['avif', 'auto'],
           placeholder: 'dominantColor',
           quality: 80,
           breakpoints: [768, 1200, 1920],

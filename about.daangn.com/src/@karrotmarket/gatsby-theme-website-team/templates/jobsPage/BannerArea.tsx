@@ -21,7 +21,7 @@ const BannerArea: React.FC = () => {
                       gatsbyImageData(
                         layout: FULL_WIDTH
                         placeholder: TRACED_SVG
-                        formats: [AVIF, WEBP, AUTO]
+                        formats: [AVIF, AUTO]
                       )
                     }
                   }
@@ -33,7 +33,7 @@ const BannerArea: React.FC = () => {
                       gatsbyImageData(
                         layout: FULL_WIDTH
                         placeholder: TRACED_SVG
-                        formats: [AVIF, WEBP, AUTO]
+                        formats: [AVIF, AUTO]
                       )
                     }
                   }
@@ -45,7 +45,7 @@ const BannerArea: React.FC = () => {
                       gatsbyImageData(
                         layout: FULL_WIDTH
                         placeholder: TRACED_SVG
-                        formats: [AVIF, WEBP, AUTO]
+                        formats: [AVIF, AUTO]
                       )
                     }
                   }
