@@ -49,7 +49,7 @@ const config = ({ locale }) => ({
           formats: ['avif', 'webp', 'auto'],
           placeholder: 'dominantColor',
           quality: 80,
-          breakpoints: [576, 768, 992, 1200, 1400, 1920],
+          breakpoints: [576, 768, 1200],
           backgroundColor: 'transparent',
           tracedSVGOptions: {},
           blurredOptions: {},
