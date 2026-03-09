@@ -1,5 +1,6 @@
 import { vars } from '@seed-design/design-token';
 import { Link, graphql } from 'gatsby';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 
@@ -13,7 +14,9 @@ export const query = graphql`
     title
     summary
     thumbnailImage {
-      publicURL
+      childImageSharp {
+        gatsbyImageData
+      }
     }
     blogCategory {
       name
@@ -29,8 +32,8 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
     <Container>
       <BlogLink to={`/blog/archive/${post.slug}/`}>
         <ImageWrapper>
-          {post.thumbnailImage.publicURL && (
-            <Image src={post.thumbnailImage.publicURL} alt={`${post.title}_이미지`} />
+          {post.thumbnailImage.childImageSharp && (
+            <Image image={post.thumbnailImage.childImageSharp.gatsbyImageData} loading="lazy" alt="" />
           )}
         </ImageWrapper>
         <PostTitle>{post.title}</PostTitle>
@@ -85,7 +88,7 @@ const ImageWrapper = styled('div', {
   overflow: 'hidden',
 });
 
-const Image = styled('img', {
+const Image = styled(GatsbyImage, {
   width: '100%',
   height: 'auto',
   borderRadius: rem(20),
