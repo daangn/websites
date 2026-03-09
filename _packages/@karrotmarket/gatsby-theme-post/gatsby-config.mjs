@@ -27,7 +27,7 @@ export default {
           formats: ['avif', 'webp', 'auto'],
           placeholder: 'dominantColor',
           quality: 80,
-          breakpoints: [576, 768, 1200],
+          breakpoints: [768, 1200, 1920],
           backgroundColor: 'transparent',
           tracedSVGOptions: {},
           blurredOptions: {},
