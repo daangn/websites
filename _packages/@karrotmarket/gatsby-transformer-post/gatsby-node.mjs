@@ -93,9 +93,8 @@ export const createSchemaCustomization = ({
             return node.data.published_at;
           },
         },
-        // TODO: switch to RemoteFile interface
         thumbnailImage: {
-          type: 'File!',
+          type: 'PrismicImageField!',
           /** @param {PrismicPostNode} node */
           resolve(node) {
             if (!node.data.thumbnail_image.url) {
@@ -103,17 +102,11 @@ export const createSchemaCustomization = ({
                 `Post 의 thumbnail_image 필드 값이 비어있습니다. prismicId: ${node.prismicId}`,
               );
             }
-            return createRemoteFileNode({
-              url: node.data.thumbnail_image.url,
-              createNode,
-              createNodeId,
-              cache,
-            });
+            return node.data.thumbnail_image;
           },
         },
-        // TODO: switch to RemoteFile interface
         verticalThumbnailImage: {
-          type: 'File!',
+          type: 'PrismicImageField!',
           /** @param {PrismicPostNode} node */
           resolve(node) {
             if (!node.tags.includes('blog')) {
@@ -126,12 +119,7 @@ export const createSchemaCustomization = ({
               );
             }
 
-            return createRemoteFileNode({
-              url: node.data.vertical_thumbnail_image.url,
-              createNode,
-              createNodeId,
-              cache,
-            });
+            return node.data.vertical_thumbnail_image;
           },
         },
         title: {
@@ -328,7 +316,7 @@ export const createSchemaCustomization = ({
           },
         },
         groupImage1: {
-          type: 'File!',
+          type: 'PrismicImageField!',
           /** @param {PrismicPostDataBodyGroupImageSectionSlice} parent */
           resolve(parent) {
             if (!parent.primary.group_image1.url) {
@@ -336,16 +324,11 @@ export const createSchemaCustomization = ({
                 `GroupImageSection 의 image 필드 값이 비어있습니다. prismicId: ${parent.id}`,
               );
             }
-            return createRemoteFileNode({
-              url: parent.primary.group_image1.url,
-              createNode,
-              createNodeId,
-              cache,
-            });
+            return parent.primary.group_image1;
           },
         },
         groupImage2: {
-          type: 'File!',
+          type: 'PrismicImageField!',
           /** @param {PrismicPostDataBodyGroupImageSectionSlice} parent */
           resolve(parent) {
             if (!parent.primary.group_image2.url) {
@@ -353,12 +336,7 @@ export const createSchemaCustomization = ({
                 `GroupImageSection 의 image 필드 값이 비어있습니다. prismicId: ${parent.id}`,
               );
             }
-            return createRemoteFileNode({
-              url: parent.primary.group_image2.url,
-              createNode,
-              createNodeId,
-              cache,
-            });
+            return parent.primary.group_image2;
           },
         },
         groupImageCaption: {
@@ -490,7 +468,7 @@ export const createSchemaCustomization = ({
           },
         },
         image: {
-          type: 'File!',
+          type: 'PrismicImageField!',
           /** @param {PrismicMemberProfileNode} node */
           resolve(node) {
             if (!node.data.image.url) {
@@ -498,12 +476,7 @@ export const createSchemaCustomization = ({
                 `MemberProfile 의 image 필드 값이 비어있습니다. prismicId: ${node.prismicId}`,
               );
             }
-            return createRemoteFileNode({
-              url: node.data.image.url,
-              createNode,
-              createNodeId,
-              cache,
-            });
+            return node.data.image;
           },
         },
         nickname: {
@@ -572,7 +545,7 @@ export const createSchemaCustomization = ({
           },
         },
         image: {
-          type: 'File!',
+          type: 'PrismicImageField!',
           /** @param {PrismicPostDataBodySingleImageSectionSlice} parent */
           resolve(parent) {
             if (!parent.primary.image.url) {
@@ -580,12 +553,7 @@ export const createSchemaCustomization = ({
                 `SingleImageSection 의 image 필드 값이 비어있습니다. prismicId: ${parent.id}`,
               );
             }
-            return createRemoteFileNode({
-              url: parent.primary.image.url,
-              createNode,
-              createNodeId,
-              cache,
-            });
+            return parent.primary.image;
           },
         },
         imageCaption: {

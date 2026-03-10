@@ -1,5 +1,6 @@
+import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
 import { vars } from '@seed-design/design-token';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import React from 'react';
@@ -10,11 +11,11 @@ type PostBodyGroupImageProps = {
 
 const PostBodyGroupImage: React.FC<PostBodyGroupImageProps> = ({ slice }) => {
   const groupImage1 =
-    slice.groupImage1.childImageSharp?.gatsbyImageData &&
-    getImage(slice.groupImage1.childImageSharp?.gatsbyImageData);
+    slice.groupImage1?.gatsbyImageData &&
+    getCdnImage(slice.groupImage1.gatsbyImageData);
   const groupImage2 =
-    slice.groupImage2.childImageSharp?.gatsbyImageData &&
-    getImage(slice.groupImage2.childImageSharp?.gatsbyImageData);
+    slice.groupImage2?.gatsbyImageData &&
+    getCdnImage(slice.groupImage2.gatsbyImageData);
   const groupImage1Alt = slice.primary.group_image1.alt || '';
   const groupImage2Alt = slice.primary.group_image2.alt || '';
   const groupImageCaption = slice?.groupImageCaption || '';

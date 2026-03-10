@@ -1,6 +1,7 @@
+import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
 import { vars } from '@seed-design/design-token';
 import { Link, graphql } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import * as React from 'react';
@@ -16,22 +17,22 @@ export const query = graphql`
     summary
     publishedAt
     thumbnailImage {
-      childImageSharp {
-        gatsbyImageData
-      }
+      alt
+      gatsbyImageData
     }
   }
 `;
 
 const PostCard: React.FC<PrCardProps> = ({ data }) => {
-  const image =
-    data.thumbnailImage?.childImageSharp?.gatsbyImageData &&
-    getImage(data.thumbnailImage.childImageSharp.gatsbyImageData);
-
   return (
     <Container to={`/company/pr/archive/${data.slug}/`}>
       <ThumbnailWrapper>
-        {image && <ThumbnailImage alt={`썸네일-${data.title}`} image={image} />}
+        {data.thumbnailImage && (
+          <ThumbnailImage 
+            image={getCdnImage(data.thumbnailImage.gatsbyImageData)} 
+            alt={data.thumbnailImage.alt || ''} 
+          />
+        )}
       </ThumbnailWrapper>
       <DescriptionWrapper>
         <Title>{data.title}</Title>

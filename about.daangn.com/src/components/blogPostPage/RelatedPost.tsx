@@ -1,5 +1,7 @@
+import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
 import { vars } from '@seed-design/design-token';
 import { Link, graphql } from 'gatsby';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 
@@ -14,7 +16,8 @@ export const query = graphql`
       title
       summary
       thumbnailImage {
-        publicURL
+        alt
+        gatsbyImageData(width: 480)
       }
       blogCategory {
         name
@@ -36,8 +39,11 @@ const RelatedPost: React.FC<RelatedPostProps> = ({ data }) => {
             {data.relatedPosts.map((post) => (
               <PostCard key={post.slug}>
                 <BlogLink to={`/blog/archive/${post.slug}/`}>
-                  {post.thumbnailImage.publicURL && (
-                    <Image src={post.thumbnailImage.publicURL} alt={`${post.title}_이미지`} />
+                  {post.thumbnailImage && (
+                    <Image
+                      image={getCdnImage(post.thumbnailImage.gatsbyImageData)}
+                      alt={post.thumbnailImage.alt || ''} 
+                    />
                   )}
                   <PostTitle>{post.title}</PostTitle>
                   <PostSummary>{post.summary}</PostSummary>
@@ -96,7 +102,7 @@ const PostCard = styled('div', {
   maxWidth: rem(480),
 });
 
-const Image = styled('img', {
+const Image = styled(GatsbyImage, {
   width: '100%',
   maxWidth: 480,
   maxHeight: 270,

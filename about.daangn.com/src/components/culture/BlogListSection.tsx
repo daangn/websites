@@ -1,3 +1,4 @@
+import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
 import { vars } from '@seed-design/design-token';
 import { Link, graphql } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
@@ -30,9 +31,8 @@ export const query = graphql`
         slug
         title
         verticalThumbnailImage {
-          childImageSharp {
-            gatsbyImageData
-          }
+          alt
+          gatsbyImageData
         }
       }
     }
@@ -67,8 +67,8 @@ const BlogListSection: React.FC<BlogListSectionProps> = ({ slice, data }) => {
         {data.allPost.nodes.map((post) => (
           <BlogCard key={post.slug} to={`/blog/archive/${post.slug}`}>
             <BlogcardThumbnail
-              image={post.verticalThumbnailImage?.childImageSharp?.gatsbyImageData}
-              alt={`${post.slug}_썸네일이미지`}
+              image={getCdnImage(post.verticalThumbnailImage?.gatsbyImageData)}
+              alt={post.verticalThumbnailImage?.alt || ''}
             />
             <BlogTitleBox>
               <BlogTitle>{post.title}</BlogTitle>

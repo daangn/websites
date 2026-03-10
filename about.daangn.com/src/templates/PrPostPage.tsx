@@ -1,3 +1,4 @@
+import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
 import { SliceZone } from '@prismicio/react';
 import { vars } from '@seed-design/design-token';
 import { type HeadProps, Link, type PageProps, graphql } from 'gatsby';
@@ -23,25 +24,25 @@ export const query = graphql`
         nickname
         role
         image {
-          childImageSharp {
-            gatsbyImageData
-          }
+          alt
+          gatsbyImageData
         }
       }
       headerQuote
       ogImage: thumbnailImage {
-        childImageSharp {
-          fixed(width: 1200, height: 630, toFormat: PNG, quality: 90) {
-            src
-            width
-            height
+        localFile {
+          childImageSharp {
+            fixed(width: 1200, height: 630, toFormat: PNG, quality: 90) {
+              src
+              width
+              height
+            }
           }
         }
       }
       thumbnailImage {
-        childImageSharp {
-          gatsbyImageData
-        }
+        alt
+        gatsbyImageData
       }
       body {
         ... on PostRichTextSection {
@@ -77,10 +78,10 @@ const PrPostPage: React.FC<PrPostPageProps> = ({ data }) => {
       </Header>
       <Body>
         <Divider />
-        {data?.post?.thumbnailImage.childImageSharp?.gatsbyImageData && (
+        {data?.post?.thumbnailImage && (
           <ThumbnailImage
-            image={data.post.thumbnailImage.childImageSharp?.gatsbyImageData}
-            alt={`${data.post.title}_PR썸네일`}
+            image={getCdnImage(data.post.thumbnailImage.gatsbyImageData)}
+            alt={data.post.thumbnailImage.alt || ''}
           />
         )}
         <ContentContainer>
@@ -94,10 +95,10 @@ const PrPostPage: React.FC<PrPostPageProps> = ({ data }) => {
           />
         </ContentContainer>
         <Author>
-          {data.post?.author?.image?.childImageSharp?.gatsbyImageData && (
+          {data.post?.author?.image && (
             <AuthorImage
-              image={data.post?.author?.image?.childImageSharp?.gatsbyImageData}
-              alt="member-profile"
+              image={getCdnImage(data.post.author.image.gatsbyImageData)}
+              alt={data.post.author.image.alt || ''}
             />
           )}
           <AuthorInfo>
@@ -123,7 +124,7 @@ type PrPostPageHeadProps = HeadProps<GatsbyTypes.PrPostPageQuery>;
 export const Head: React.FC<PrPostPageHeadProps> = ({ data, location }) => {
   const title = data.post?.title ? `${data.post?.title} | 당근 보도자료` : '당근 보도자료';
   const description = data.post?.summary || '';
-  const metaImage = data.post?.ogImage.childImageSharp?.fixed;
+  const metaImage = data.post?.ogImage?.localFile?.childImageSharp?.fixed;
 
   return (
     <HeadSeo location={location} title={title} description={description}>

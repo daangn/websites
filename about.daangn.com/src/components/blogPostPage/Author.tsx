@@ -1,39 +1,45 @@
+import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
 import { vars } from '@seed-design/design-token';
 import { graphql } from 'gatsby';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 
 type AuthorProps = {
-  data: GatsbyTypes.Author_postFragment;
+  author: GatsbyTypes.Author_authorFragment;
 };
 
 export const query = graphql`
-  fragment Author_post on Post {
-    author {
-      nickname
-      image {
-        publicURL
-      }
-      profileLink
-      role
+  fragment Author_author on MemberProfile {
+    nickname
+    image {
+      alt
+      gatsbyImageData(width: 50)
     }
+    profileLink
+    role
   }
 `;
 
-const Author: React.FC<AuthorProps> = ({ data }) => {
+const Author: React.FC<AuthorProps> = ({ author }) => {
   return (
     <Container
-      css={{ cursor: data?.profileLink ? 'pointer' : 'auto' }}
+      css={{ cursor: author.profileLink ? 'pointer' : 'auto' }}
       onClick={() => {
-        if (data?.profileLink) {
-          window.open(data.profileLink, '_blank');
+        if (author.profileLink) {
+          window.open(author.profileLink, '_blank');
         }
       }}
     >
-      {data.image?.publicURL && <AuthorImage src={data.image.publicURL} />}
+      {author.image && (
+        <AuthorImage 
+          image={getCdnImage(author.image.gatsbyImageData)}
+          alt={author.image.alt || ''} 
+        />
+      )}
       <AuthorInfo>
-        <AuthorName>{data.nickname}</AuthorName>
-        <p>{data.role}</p>
+        <AuthorName>{author.nickname}</AuthorName>
+        <p>{author.role}</p>
       </AuthorInfo>
     </Container>
   );
@@ -45,7 +51,7 @@ const Container = styled('div', {
   margin: `${rem(56)} 0`,
 });
 
-const AuthorImage = styled('img', {
+const AuthorImage = styled(GatsbyImage, {
   width: rem(50),
   height: rem(50),
   borderRadius: '50%',

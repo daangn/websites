@@ -1,5 +1,6 @@
+import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
 import { vars } from '@seed-design/design-token';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import React from 'react';
@@ -10,8 +11,8 @@ type PostBodySingleImageProps = {
 
 const PostBodySingleImage: React.FC<PostBodySingleImageProps> = ({ slice }) => {
   const image =
-    slice.image.childImageSharp?.gatsbyImageData &&
-    getImage(slice.image.childImageSharp?.gatsbyImageData);
+    slice.image?.gatsbyImageData &&
+    getCdnImage(slice.image.gatsbyImageData);
   const imageCaption = slice?.imageCaption || '';
 
   if (!image) {

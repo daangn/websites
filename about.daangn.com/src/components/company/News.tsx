@@ -1,3 +1,4 @@
+import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
 import { IconArrowRightLine } from '@karrotmarket/react-monochrome-icon';
 import useEmblaCarousel from 'embla-carousel-react';
 import { Link, graphql } from 'gatsby';
@@ -20,9 +21,7 @@ export const query = graphql`
         title
         publishedAt
         thumbnailImage {
-          childImageSharp {
-            gatsbyImageData
-          }
+          gatsbyImageData
         }
       }
     }
@@ -47,7 +46,7 @@ export default function News({ query }: Props) {
   const newsItems = query.allPost.nodes.map((node) => ({
     title: node.title,
     date: node.publishedAt,
-    image: node.thumbnailImage.childImageSharp?.gatsbyImageData,
+    image: getCdnImage(node.thumbnailImage?.gatsbyImageData),
     slug: node.slug,
   }));
 

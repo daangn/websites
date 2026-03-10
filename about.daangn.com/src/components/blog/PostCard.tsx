@@ -1,3 +1,4 @@
+import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
 import { vars } from '@seed-design/design-token';
 import { Link, graphql } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
@@ -14,9 +15,8 @@ export const query = graphql`
     title
     summary
     thumbnailImage {
-      childImageSharp {
-        gatsbyImageData
-      }
+      alt
+      gatsbyImageData(width: 500)
     }
     blogCategory {
       name
@@ -32,8 +32,12 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
     <Container>
       <BlogLink to={`/blog/archive/${post.slug}/`}>
         <ImageWrapper>
-          {post.thumbnailImage.childImageSharp && (
-            <Image image={post.thumbnailImage.childImageSharp.gatsbyImageData} loading="lazy" alt="" />
+          {post.thumbnailImage && (
+            <Image
+              image={getCdnImage(post.thumbnailImage.gatsbyImageData)}
+              alt={post.thumbnailImage.alt || ''} 
+              loading="lazy" 
+            />
           )}
         </ImageWrapper>
         <PostTitle>{post.title}</PostTitle>

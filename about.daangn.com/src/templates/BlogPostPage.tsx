@@ -1,3 +1,4 @@
+import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
 import { SliceZone } from '@prismicio/react';
 import { vars } from '@seed-design/design-token';
 import { type HeadProps, type PageProps, graphql } from 'gatsby';
@@ -27,19 +28,22 @@ export const query = graphql`
     post(id: { eq: $id }) {
       ...PostHeader_data
       thumbnailImage {
-        childImageSharp {
-          gatsbyImageData
-        }
+        alt
+        gatsbyImageData(width: 1200)
       }
       ...Tags_post
-      ...Author_post
       ...RelatedPost_post
+      author {
+        ...Author_author
+      }
       ogImage: thumbnailImage {
-        childImageSharp {
-          fixed(width: 1200, height: 630, toFormat: PNG, quality: 90) {
-            src
-            width
-            height
+        localFile {
+          childImageSharp {
+            fixed(width: 1200, height: 630, toFormat: PNG, quality: 90) {
+              src
+              width
+              height
+            }
           }
         }
       }
@@ -55,14 +59,10 @@ export const query = graphql`
           primary
           groupImageCaption
           groupImage1 {
-            childImageSharp {
-              gatsbyImageData
-            }
+            gatsbyImageData
           }
           groupImage2 {
-            childImageSharp {
-              gatsbyImageData
-            }
+            gatsbyImageData
           }
         }
         ... on PostQuoteSection {
@@ -85,9 +85,7 @@ export const query = graphql`
           imageCaption
           slice_type: sliceType
           image {
-            childImageSharp {
-              gatsbyImageData
-            }
+            gatsbyImageData
           }
         }
         ... on PostDivider {
@@ -117,10 +115,10 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ data }) => {
       <>
         <Container>
           <PostHeader postHeader={data.post} />
-          {data.post.thumbnailImage.childImageSharp?.gatsbyImageData && (
+          {data.post.thumbnailImage && (
             <ThumbnailImage
-              image={data.post.thumbnailImage.childImageSharp?.gatsbyImageData}
-              alt={`${data.post.title}_포스트썸네일`}
+              image={getCdnImage(data.post.thumbnailImage.gatsbyImageData)}
+              alt={data.post.thumbnailImage.alt || ''}
             />
           )}
           <PostBody>
@@ -140,7 +138,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ data }) => {
               />
             </ContentContainer>
             <ShareButtons onClickLinkShare={setModalOpen} />
-            <Author data={data.post.author} />
+            <Author author={data.post.author} />
             <TagList data={data.post.tags} />
           </PostBody>
           <PostFooter />
@@ -157,7 +155,7 @@ type BlogPostPageHeadProps = HeadProps<GatsbyTypes.BlogPostPageQuery>;
 export const Head: React.FC<BlogPostPageHeadProps> = ({ data, location }) => {
   const title = data.post?.title ? `${data.post.title} | 당근 블로그` : '당근 블로그';
   const description = data.prismicBlogContent?.data?.blog_page_meta_description || '';
-  const metaImage = data.post?.ogImage.childImageSharp?.fixed;
+  const metaImage = data.post?.ogImage?.localFile?.childImageSharp?.fixed;
 
   return (
     <HeadSeo location={location} title={title} description={description}>

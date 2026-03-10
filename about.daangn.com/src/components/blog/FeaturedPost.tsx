@@ -26,7 +26,7 @@ export const query = graphql`
             summary
             thumbnail_image {
               alt
-              gatsbyImageData
+              gatsbyImageData(width: 1200)
             }
           }
         }

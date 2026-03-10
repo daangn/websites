@@ -1,3 +1,4 @@
+import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
 import { useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
 import { vars } from '@seed-design/design-token';
 import { Link, graphql } from 'gatsby';
@@ -25,9 +26,8 @@ export const query = graphql`
         slug
         title
         verticalThumbnailImage {
-          childImageSharp {
-            gatsbyImageData
-          }
+          alt
+          gatsbyImageData
         }
       }
     }
@@ -192,8 +192,8 @@ const LatestBlogSection: React.FC<LatestBlogSectionProps> = ({ data, className }
           {data.allPost.nodes.map((post) => (
             <BlogCard key={post.slug} to={`/blog/archive/${post.slug}`}>
               <BlogcardThumbnail
-                image={post.verticalThumbnailImage?.childImageSharp?.gatsbyImageData}
-                alt={`${post.slug}_썸네일이미지`}
+                image={getCdnImage(post.verticalThumbnailImage?.gatsbyImageData)}
+                alt={post.verticalThumbnailImage?.alt || ''}
               />
               <BlogTitleBox>
                 <BlogTitle>{post.title}</BlogTitle>
@@ -205,8 +205,8 @@ const LatestBlogSection: React.FC<LatestBlogSectionProps> = ({ data, className }
           {data.allPost.nodes.map((post) => (
             <BlogCard key={post.slug} to={`/blog/archive/${post.slug}`}>
               <BlogcardThumbnail
-                image={post.verticalThumbnailImage?.childImageSharp?.gatsbyImageData}
-                alt={`${post.slug}_썸네일이미지`}
+                image={getCdnImage(post.verticalThumbnailImage?.gatsbyImageData)}
+                alt={post.verticalThumbnailImage?.alt || ''}
               />
               <BlogTitleBox>
                 <BlogTitle>{post.title}</BlogTitle>
