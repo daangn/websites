@@ -18,7 +18,7 @@ export const query = graphql`
     publishedAt
     thumbnailImage {
       alt
-      gatsbyImageData
+      gatsbyImageData(width: 300)
     }
   }
 `;
