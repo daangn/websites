@@ -1,5 +1,6 @@
 import { vars } from '@seed-design/design-token';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import React from 'react';
@@ -11,12 +12,12 @@ type TempHeroSectionProps = {
 
 const TempHeroSection: React.FC<TempHeroSectionProps> = ({ slice }) => {
   const image =
-    slice.primary?.full_image?.localFile?.childImageSharp?.gatsbyImageData &&
-    getImage(slice.primary.full_image.localFile.childImageSharp.gatsbyImageData);
+    slice.primary?.full_image?.gatsbyImageData &&
+    getCdnImage(slice.primary.full_image.gatsbyImageData);
 
   const mobileImage =
-    slice.primary?.mobile_image?.localFile?.childImageSharp?.gatsbyImageData &&
-    getImage(slice.primary.mobile_image.localFile.childImageSharp.gatsbyImageData);
+    slice.primary?.mobile_image?.gatsbyImageData &&
+    getCdnImage(slice.primary.mobile_image.gatsbyImageData);
 
   return (
     <Section>

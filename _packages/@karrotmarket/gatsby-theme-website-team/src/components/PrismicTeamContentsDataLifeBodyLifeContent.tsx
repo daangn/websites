@@ -1,6 +1,7 @@
+import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
 import { vars } from '@seed-design/design-token';
 import { graphql } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import * as React from 'react';
@@ -26,15 +27,10 @@ export const query = graphql`
       }
       thumbnail_image {
         alt
-        localFile {
-          childImageSharp {
-            gatsbyImageData(
-              quality: 100
-              width: 760
-              layout: CONSTRAINED
-            )
-          }
-        }
+        gatsbyImageData(
+          width: 760
+          layout: CONSTRAINED
+        )
       }
     }
   }
@@ -95,8 +91,8 @@ const PrismicTeamContentsDataLifeBodyLifeContent: React.FC<
       <ThumbnailContainer>
         {data.items.map((item, i) => {
           const image =
-            item.thumbnail_image?.localFile?.childImageSharp?.gatsbyImageData &&
-            getImage(item.thumbnail_image.localFile.childImageSharp.gatsbyImageData);
+            item.thumbnail_image?.gatsbyImageData &&
+            getCdnImage(item.thumbnail_image.gatsbyImageData);
           if (image == null) {
             return null;
           }

@@ -1,0 +1,14 @@
+{
+  "name": "prismic-image-proxy",
+  "private": true,
+  "scripts": {
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "hono": "^4.11.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "wrangler": "^4.56.0"
+  }
+}

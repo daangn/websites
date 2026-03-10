@@ -1,5 +1,5 @@
+import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
 import { PrismicRichText } from '@prismicio/react';
-
 import { vars } from '@seed-design/design-token';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { styled } from 'gatsby-theme-stitches/src/config';
@@ -14,7 +14,7 @@ const FullImageSection: React.FC<FullImageProps> = ({ slice }) => {
   return (
     <HeroImageSection>
       <Image
-        image={slice.primary.full_image.localFile.childImageSharp.gatsbyImageData}
+        image={getCdnImage(slice.primary.full_image.gatsbyImageData)}
         alt={slice.primary.full_image.alt}
       />
       <TextWrapper>

@@ -1,6 +1,7 @@
 import { useGSAP } from '@gsap/react';
 import { graphql } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
+import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
 import gsap from 'gsap';
 import { useRef } from 'react';
 import Marquee from 'react-fast-marquee';
@@ -24,51 +25,30 @@ export const query = graphql`
           text
         }
         statement_image_1 {
-          localFile {
-            id
-          }
           alt
           gatsbyImageData
         }
         statement_image_2 {
-          localFile {
-            id
-          }
           alt
           gatsbyImageData
         }
         statement_image_3 {
-          localFile {
-            id
-          }
           alt
           gatsbyImageData
         }
         statement_image_4 {
-          localFile {
-            id
-          }
           alt
           gatsbyImageData
         }
         statement_image_5 {
-          localFile {
-            id
-          }
           alt
           gatsbyImageData
         }
         statement_image_6 {
-          localFile {
-            id
-          }
           alt
           gatsbyImageData
         }
         statement_image_7 {
-          localFile {
-            id
-          }
           alt
           gatsbyImageData
         }
@@ -84,37 +64,37 @@ type Props = {
 export default function Statement({ query: data }: Props) {
   const images = [
     {
-      id: data.prismicVisionPage.data.statement_image_1.localFile.id,
+      id: data.prismicVisionPage.data.statement_image_1?.gatsbyImageData.url,
       image: data.prismicVisionPage.data.statement_image_1.gatsbyImageData,
       alt: data.prismicVisionPage.data.statement_image_1.alt,
       type: 'horizontal' as const,
     },
     {
-      id: data.prismicVisionPage.data.statement_image_2.localFile.id,
+      id: data.prismicVisionPage.data.statement_image_2?.gatsbyImageData.url,
       image: data.prismicVisionPage.data.statement_image_2.gatsbyImageData,
       alt: data.prismicVisionPage.data.statement_image_2.alt,
       type: 'vertical' as const,
     },
     {
-      id: data.prismicVisionPage.data.statement_image_3.localFile.id,
+      id: data.prismicVisionPage.data.statement_image_3?.gatsbyImageData.url,
       image: data.prismicVisionPage.data.statement_image_3.gatsbyImageData,
       alt: data.prismicVisionPage.data.statement_image_3.alt,
       type: 'square' as const,
     },
     {
-      id: data.prismicVisionPage.data.statement_image_4.localFile.id,
+      id: data.prismicVisionPage.data.statement_image_4?.gatsbyImageData.url,
       image: data.prismicVisionPage.data.statement_image_4.gatsbyImageData,
       alt: data.prismicVisionPage.data.statement_image_4.alt,
       type: 'vertical' as const,
     },
     {
-      id: data.prismicVisionPage.data.statement_image_5.localFile.id,
+      id: data.prismicVisionPage.data.statement_image_5?.gatsbyImageData.url,
       image: data.prismicVisionPage.data.statement_image_5.gatsbyImageData,
       alt: data.prismicVisionPage.data.statement_image_5.alt,
       type: 'square' as const,
     },
     {
-      id: data.prismicVisionPage.data.statement_image_7.localFile.id,
+      id: data.prismicVisionPage.data.statement_image_7?.gatsbyImageData.url,
       image: data.prismicVisionPage.data.statement_image_7.gatsbyImageData,
       alt: data.prismicVisionPage.data.statement_image_7.alt,
       type: 'vertical' as const,
@@ -189,7 +169,7 @@ export default function Statement({ query: data }: Props) {
           <div className={css.marqueeInner}>
             {images.map((image) => (
               <div key={image.id} className={css.card({ type: image.type })}>
-                <GatsbyImage image={image.image} alt={image.alt} className={css.cardImage} />
+                <GatsbyImage image={getCdnImage(image.image)} alt={image.alt} className={css.cardImage} />
               </div>
             ))}
           </div>

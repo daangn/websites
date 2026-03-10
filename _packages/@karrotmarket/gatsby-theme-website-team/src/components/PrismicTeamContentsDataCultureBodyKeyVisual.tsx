@@ -1,5 +1,6 @@
+import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
 import { graphql } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import * as React from 'react';
@@ -14,25 +15,15 @@ export const query = graphql`
     primary {
       key_visual_image {
         alt
-        localFile {
-          childImageSharp {
-            gatsbyImageData(
-              layout: FULL_WIDTH
-              quality: 100
-            )
-          }
-        }
+        gatsbyImageData(
+          layout: FULL_WIDTH
+        )
         thumbnails {
           portrait {
             alt
-            localFile {
-              childImageSharp {
-                gatsbyImageData(
-                  layout: FULL_WIDTH
-                  quality: 100
-                )
-              }
-            }
+            gatsbyImageData(
+              layout: FULL_WIDTH
+            )
           }
         }
       }
@@ -119,8 +110,8 @@ const PrismicTeamContentsDataCultureBodyKeyVisual: React.FC<
   }
 
   const image =
-    data.primary.key_visual_image?.localFile?.childImageSharp?.gatsbyImageData &&
-    getImage(data.primary.key_visual_image.localFile.childImageSharp.gatsbyImageData);
+    data.primary.key_visual_image?.gatsbyImageData &&
+    getCdnImage(data.primary.key_visual_image.gatsbyImageData);
 
   if (image == null) {
     return null;
@@ -129,11 +120,8 @@ const PrismicTeamContentsDataCultureBodyKeyVisual: React.FC<
   // Note: 선택적으로 art-direction 적용
   // CMS 에서 portrait 추가 이미지 업로드하면 사용, landscape 이미지가 항상 우선 됨
   const portraitImage =
-    (data.primary.key_visual_image?.thumbnails?.portrait?.localFile?.childImageSharp
-      ?.gatsbyImageData &&
-      getImage(
-        data.primary.key_visual_image.thumbnails.portrait.localFile.childImageSharp.gatsbyImageData,
-      )) ??
+    (data.primary.key_visual_image?.thumbnails?.portrait?.gatsbyImageData &&
+      getCdnImage(data.primary.key_visual_image.thumbnails.portrait.gatsbyImageData)) ??
     image;
 
   return (

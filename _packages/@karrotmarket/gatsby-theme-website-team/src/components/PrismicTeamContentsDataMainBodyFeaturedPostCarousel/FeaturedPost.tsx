@@ -1,7 +1,8 @@
 import { vars } from '@seed-design/design-token';
+import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
 import slugify from 'cjk-slug';
 import { Link, graphql } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import * as React from 'react';
@@ -21,11 +22,7 @@ export const query = graphql`
           data {
             thumbnail_image {
               alt
-              localFile {
-                childImageSharp {
-                  gatsbyImageData
-                }
-              }
+              gatsbyImageData
             }
             summary
             title {
@@ -96,11 +93,9 @@ const Summary = styled('p', {
 
 const FeaturedPost: React.FC<FeaturedPostProps> = ({ item, className }) => {
   const image =
-    item.main_page_featured_post?.document?.data?.thumbnail_image?.localFile?.childImageSharp
-      ?.gatsbyImageData &&
-    getImage(
-      item.main_page_featured_post.document.data.thumbnail_image.localFile.childImageSharp
-        .gatsbyImageData,
+    item.main_page_featured_post?.document?.data?.thumbnail_image?.gatsbyImageData &&
+    getCdnImage(
+      item.main_page_featured_post.document.data.thumbnail_image.gatsbyImageData,
     );
 
   if (image == null) {

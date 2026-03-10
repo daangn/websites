@@ -15550,6 +15550,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prismic-image-proxy@workspace:_workers/prismic-image-proxy":
+  version: 0.0.0-use.local
+  resolution: "prismic-image-proxy@workspace:_workers/prismic-image-proxy"
+  dependencies:
+    hono: "npm:^4.11.1"
+    typescript: "npm:^5.9.3"
+    wrangler: "npm:^4.56.0"
+  languageName: unknown
+  linkType: soft
+
 "prismic-reactjs@npm:^1.3.4":
   version: 1.3.4
   resolution: "prismic-reactjs@npm:1.3.4"

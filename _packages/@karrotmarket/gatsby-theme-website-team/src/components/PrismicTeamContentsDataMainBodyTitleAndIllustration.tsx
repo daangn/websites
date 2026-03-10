@@ -1,6 +1,7 @@
+import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
 import { useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
 import { graphql } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import * as React from 'react';
@@ -23,14 +24,10 @@ export const query = graphql`
       inverted
       illustration {
         alt
-        localFile {
-          childImageSharp {
-            gatsbyImageData(
-              width: 560
-              layout: FULL_WIDTH
-            )
-          }
-        }
+        gatsbyImageData(
+          width: 560
+          layout: FULL_WIDTH
+        )
       }
       link {
         url
@@ -109,8 +106,8 @@ const PrismicTeamContentsDataMainBodyTitleAndIllustration: React.FC<
   }
 
   const image =
-    data.primary.illustration?.localFile?.childImageSharp?.gatsbyImageData &&
-    getImage(data.primary.illustration.localFile.childImageSharp.gatsbyImageData);
+    data.primary.illustration?.gatsbyImageData &&
+    getCdnImage(data.primary.illustration.gatsbyImageData);
   const link = data.primary.link?.url && parseLink(data.primary.link.url);
 
   return (

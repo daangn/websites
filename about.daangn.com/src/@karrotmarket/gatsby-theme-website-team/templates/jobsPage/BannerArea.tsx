@@ -16,39 +16,24 @@ const BannerArea: React.FC = () => {
               items {
                 image_size_360 {
                   alt
-                  localFile {
-                    childImageSharp {
-                      gatsbyImageData(
-                        layout: FULL_WIDTH
-                        placeholder: TRACED_SVG
-                        formats: [AVIF, AUTO]
-                      )
-                    }
-                  }
+                  gatsbyImageData(
+                    layout: FULL_WIDTH
+                    formats: [AVIF, AUTO]
+                  )
                 }
                 image_size_576 {
                   alt
-                  localFile {
-                    childImageSharp {
-                      gatsbyImageData(
-                        layout: FULL_WIDTH
-                        placeholder: TRACED_SVG
-                        formats: [AVIF, AUTO]
-                      )
-                    }
-                  }
+                  gatsbyImageData(
+                    layout: FULL_WIDTH
+                    formats: [AVIF, AUTO]
+                  )
                 }
                 image_size_768 {
                   alt
-                  localFile {
-                    childImageSharp {
-                      gatsbyImageData(
-                        layout: FULL_WIDTH
-                        placeholder: TRACED_SVG
-                        formats: [AVIF, AUTO]
-                      )
-                    }
-                  }
+                  gatsbyImageData(
+                    layout: FULL_WIDTH
+                    formats: [AVIF, AUTO]
+                  )
                 }
                 link_href {
                   id
@@ -76,7 +61,7 @@ const BannerArea: React.FC = () => {
     if (
       !(
         banner.image_size_360?.alt &&
-        banner.image_size_360.localFile?.childImageSharp?.gatsbyImageData
+        banner.image_size_360?.gatsbyImageData
       )
     ) {
       return false;
@@ -84,7 +69,7 @@ const BannerArea: React.FC = () => {
     if (
       !(
         banner.image_size_576?.alt &&
-        banner.image_size_576.localFile?.childImageSharp?.gatsbyImageData
+        banner.image_size_576?.gatsbyImageData
       )
     ) {
       return false;
@@ -92,7 +77,7 @@ const BannerArea: React.FC = () => {
     if (
       !(
         banner.image_size_768?.alt &&
-        banner.image_size_768.localFile?.childImageSharp?.gatsbyImageData
+        banner.image_size_768?.gatsbyImageData
       )
     ) {
       return false;

@@ -93,6 +93,7 @@ export const createSchemaCustomization = ({
             return node.data.published_at;
           },
         },
+        // TODO: switch to RemoteFile interface
         thumbnailImage: {
           type: 'File!',
           /** @param {PrismicPostNode} node */
@@ -110,6 +111,7 @@ export const createSchemaCustomization = ({
             });
           },
         },
+        // TODO: switch to RemoteFile interface
         verticalThumbnailImage: {
           type: 'File!',
           /** @param {PrismicPostNode} node */

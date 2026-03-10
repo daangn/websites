@@ -1,0 +1,19 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "prismic-image-proxy",
+  "main": "./src/main.ts",
+  "compatibility_date": "2026-03-10",
+  "workers_dev": false,
+  "observability": {
+    "enabled": true
+  },
+  "placement": {
+    "hostname": "images.prismic.io"
+  },
+  "routes": [
+    {
+      "custom_domain": true,
+      "pattern": "prismic-image-proxy.krrt.io"
+    }
+  ]
+}

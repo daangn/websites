@@ -1,4 +1,5 @@
 import { vars } from '@seed-design/design-token';
+import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
 import { type HeadProps, Link, type PageProps, graphql } from 'gatsby';
 import { HeadSeo, OpenGraph, TwitterCard } from 'gatsby-plugin-head-seo/src';
 import { GatsbyImage } from 'gatsby-plugin-image';
@@ -51,19 +52,11 @@ query ServicePage($locale: String!, $navigationId: String!) {
             }
             service_image {
               alt
-              localFile {
-                childImageSharp {
-                  gatsbyImageData
-                }
-              }
+              gatsbyImageData
             }
             service_icon {
               alt
-              localFile {
-                childImageSharp {
-                  gatsbyImageData
-                }
-              }
+              gatsbyImageData
             }
           }
         }
@@ -131,7 +124,7 @@ const ServicePage: React.FC<ServicePageProps> = ({ data }) => {
                   <Card ref={ref} className={cn()} style={style}>
                     <LeftContent>
                       <ServiceIcon
-                        image={service_icon.localFile.childImageSharp.gatsbyImageData}
+                        image={getCdnImage(service_icon.gatsbyImageData)}
                         alt={service_icon?.alt}
                       />
                       <ServiceText>
@@ -152,7 +145,7 @@ const ServicePage: React.FC<ServicePageProps> = ({ data }) => {
                     </LeftContent>
                     <RightContent>
                       <ServiceImage
-                        image={service_image.localFile.childImageSharp.gatsbyImageData}
+                        image={getCdnImage(service_image.gatsbyImageData)}
                         alt={service_image?.alt}
                       />
                     </RightContent>

@@ -1,3 +1,4 @@
+import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
 import Autoplay from 'embla-carousel-autoplay';
 import useEmblaCarousel from 'embla-carousel-react';
 import { graphql } from 'gatsby';
@@ -15,65 +16,38 @@ export const query = graphql`
         }
 
         investors_1_image {
-          localFile {
-            id
-          }
           gatsbyImageData
           alt
         }
         investors_2_image {
-          localFile {
-            id
-          }
           gatsbyImageData
           alt
         }
         investors_3_image {
-          localFile {
-            id
-          }
           gatsbyImageData
           alt
         }
         investors_4_image {
-          localFile {
-            id
-          }
           gatsbyImageData
           alt
         }
         investors_5_image {
-          localFile {
-            id
-          }
           gatsbyImageData
           alt
         }
         investors_6_image {
-          localFile {
-            id
-          }
           gatsbyImageData
           alt
         }
         investors_7_image {
-          localFile {
-            id
-          }
           gatsbyImageData
           alt
         }
         investors_8_image {
-          localFile {
-            id
-          }
           gatsbyImageData
           alt
         }
         investors_9_image {
-          localFile {
-            id
-          }
           gatsbyImageData
           alt
         }
@@ -90,41 +64,41 @@ export default function Investors({ query: data }: Props) {
   const images = [
     [
       {
-        image: data.prismicVisionPage.data.investors_1_image.gatsbyImageData,
+        image: getCdnImage(data.prismicVisionPage.data.investors_1_image.gatsbyImageData),
         alt: data.prismicVisionPage.data.investors_1_image.alt,
       },
       {
-        image: data.prismicVisionPage.data.investors_2_image.gatsbyImageData,
+        image: getCdnImage(data.prismicVisionPage.data.investors_2_image.gatsbyImageData),
         alt: data.prismicVisionPage.data.investors_2_image.alt,
       },
       {
-        image: data.prismicVisionPage.data.investors_3_image.gatsbyImageData,
+        image: getCdnImage(data.prismicVisionPage.data.investors_3_image.gatsbyImageData),
         alt: data.prismicVisionPage.data.investors_3_image.alt,
       },
       {
-        image: data.prismicVisionPage.data.investors_4_image.gatsbyImageData,
+        image: getCdnImage(data.prismicVisionPage.data.investors_4_image.gatsbyImageData),
         alt: data.prismicVisionPage.data.investors_4_image.alt,
       },
     ],
     [
       {
-        image: data.prismicVisionPage.data.investors_5_image.gatsbyImageData,
+        image: getCdnImage(data.prismicVisionPage.data.investors_5_image.gatsbyImageData),
         alt: data.prismicVisionPage.data.investors_5_image.alt,
       },
       {
-        image: data.prismicVisionPage.data.investors_6_image.gatsbyImageData,
+        image: getCdnImage(data.prismicVisionPage.data.investors_6_image.gatsbyImageData),
         alt: data.prismicVisionPage.data.investors_6_image.alt,
       },
       {
-        image: data.prismicVisionPage.data.investors_7_image.gatsbyImageData,
+        image: getCdnImage(data.prismicVisionPage.data.investors_7_image.gatsbyImageData),
         alt: data.prismicVisionPage.data.investors_7_image.alt,
       },
       {
-        image: data.prismicVisionPage.data.investors_8_image.gatsbyImageData,
+        image: getCdnImage(data.prismicVisionPage.data.investors_8_image.gatsbyImageData),
         alt: data.prismicVisionPage.data.investors_8_image.alt,
       },
       {
-        image: data.prismicVisionPage.data.investors_9_image.gatsbyImageData,
+        image: getCdnImage(data.prismicVisionPage.data.investors_9_image.gatsbyImageData),
         alt: data.prismicVisionPage.data.investors_9_image.alt,
       },
     ],

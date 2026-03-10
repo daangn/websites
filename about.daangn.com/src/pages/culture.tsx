@@ -6,7 +6,6 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 import BlogListSection from '../components/culture/BlogListSection';
 import CarouselSection from '../components/culture/CarouselSection';
-import FullImageSection from '../components/culture/FullImageSection';
 import FullWidthImageSection from '../components/culture/FullWidthImageSection';
 import ListCardSection from '../components/culture/ListCardSection';
 import TempHeroSection from '../components/culture/TempHeroSection';
@@ -50,11 +49,7 @@ export const query = graphql`
               carousel_card_title
               carousel_card_image {
                 alt
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData(width: 2880)
-                  }
-                }
+                gatsbyImageData(width: 2880)
               }
               carousel_card_description {
                 html
@@ -71,19 +66,11 @@ export const query = graphql`
               }
               full_image {
                 alt
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
-                  }
-                }
+                gatsbyImageData
               }
               mobile_image {
                 alt
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
-                  }
-                }
+                gatsbyImageData
               }
             }
           }
@@ -101,11 +88,7 @@ export const query = graphql`
               }
               card_image {
                 alt
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
-                  }
-                }
+                gatsbyImageData
               }
             }
           }
@@ -122,19 +105,11 @@ export const query = graphql`
             primary {
               image {
                 alt
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
-                  }
-                }
+                gatsbyImageData
               }
               vertical_image {
                 alt
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
-                  }
-                }
+                gatsbyImageData
               }
               description {
                 text

@@ -1,6 +1,7 @@
+import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
 import { vars } from '@seed-design/design-token';
 import { graphql } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import * as React from 'react';
@@ -14,15 +15,10 @@ export const query = graphql`
   fragment TeamWebsite_CarouselItem_item on PrismicTeamContentsDataMainBodyMemberQuoteCarouselItem {
     image {
       alt
-      localFile {
-        childImageSharp {
-          gatsbyImageData(
-            width: 560
-            layout: CONSTRAINED
-            quality: 80
-          )
-        }
-      }
+      gatsbyImageData(
+        width: 560
+        layout: CONSTRAINED
+      )
     }
     quote
     who
@@ -69,8 +65,8 @@ const By = styled('figcaption', {
 
 const CarouselItem: React.FC<CarouselItemProps> = ({ item, className }) => {
   const image =
-    item.image?.localFile?.childImageSharp?.gatsbyImageData &&
-    getImage(item.image.localFile.childImageSharp.gatsbyImageData);
+    item.image?.gatsbyImageData &&
+    getCdnImage(item.image.gatsbyImageData);
 
   if (image == null || item.quote == null || item.who == null) {
     return null;

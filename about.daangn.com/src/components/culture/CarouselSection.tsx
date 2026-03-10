@@ -1,4 +1,5 @@
 import { vars } from '@seed-design/design-token';
+import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
@@ -61,7 +62,7 @@ const CarouselSection: React.FC<CarouselProps> = ({ slice }) => {
             <Card key={item?.carousel_card_title}>
               <ImageWrapper>
                 <CarouselImage
-                  image={item.carousel_card_image?.localFile?.childImageSharp?.gatsbyImageData}
+                  image={getCdnImage(item.carousel_card_image?.gatsbyImageData)}
                   alt={item.carousel_card_image?.alt ?? ''}
                 />
               </ImageWrapper>

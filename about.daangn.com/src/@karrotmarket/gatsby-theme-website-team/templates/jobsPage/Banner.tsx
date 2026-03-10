@@ -1,4 +1,5 @@
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 
@@ -8,7 +9,7 @@ interface BannerProps {
 const Banner: React.FC<BannerProps> = ({ item }) => {
   if (
     !(
-      item?.image_size_360?.alt &&
+      item.image_size_360?.alt &&
       item.image_size_576?.alt &&
       item.image_size_768?.alt &&
       item.link_href?.url
@@ -18,14 +19,14 @@ const Banner: React.FC<BannerProps> = ({ item }) => {
   }
 
   const image360 =
-    item.image_size_360.localFile?.childImageSharp?.gatsbyImageData &&
-    getImage(item.image_size_360?.localFile?.childImageSharp?.gatsbyImageData);
+    item.image_size_360?.gatsbyImageData &&
+    getCdnImage(item.image_size_360.gatsbyImageData);
   const image576 =
-    item.image_size_576.localFile?.childImageSharp?.gatsbyImageData &&
-    getImage(item.image_size_576?.localFile?.childImageSharp?.gatsbyImageData);
+    item.image_size_576?.gatsbyImageData &&
+    getCdnImage(item.image_size_576.gatsbyImageData);
   const image768 =
-    item.image_size_768.localFile?.childImageSharp?.gatsbyImageData &&
-    getImage(item.image_size_768?.localFile?.childImageSharp?.gatsbyImageData);
+    item.image_size_768?.gatsbyImageData &&
+    getCdnImage(item.image_size_768.gatsbyImageData);
 
   if (!image360) {
     return null;

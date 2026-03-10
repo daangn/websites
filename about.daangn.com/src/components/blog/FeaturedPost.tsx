@@ -1,3 +1,4 @@
+import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
 import { vars } from '@seed-design/design-token';
 import slugify from 'cjk-slug';
 import { Link, graphql } from 'gatsby';
@@ -25,11 +26,7 @@ export const query = graphql`
             summary
             thumbnail_image {
               alt
-              localFile {
-                childImageSharp {
-                  gatsbyImageData
-                }
-              }
+              gatsbyImageData
             }
           }
         }
@@ -41,10 +38,10 @@ export const query = graphql`
 const FeaturedPost: React.FC<FeaturedPostProps> = ({ data }) => {
   return (
     <Container to={`/blog/archive/${slugify(data.document.uid)}/`}>
-      {data?.document?.data?.thumbnail_image?.localFile?.childImageSharp?.gatsbyImageData && (
+      {data?.document?.data?.thumbnail_image?.gatsbyImageData && (
         <FeaturedImage
-          image={data.document.data.thumbnail_image.localFile.childImageSharp.gatsbyImageData}
-          alt={data?.document?.data?.thumbnail_image?.alt || ''}
+          image={getCdnImage(data.document.data.thumbnail_image.gatsbyImageData)}
+          alt={data.document.data.thumbnail_image.alt || ''}
         />
       )}
       <FeaturedDescription>

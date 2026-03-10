@@ -1,5 +1,6 @@
+import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
 import { graphql } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 import * as React from 'react';
@@ -17,14 +18,7 @@ export const query = graphql`
     primary {
       illustration {
         alt
-        localFile {
-          childImageSharp {
-            gatsbyImageData(
-              quality: 80
-              layout: FULL_WIDTH
-            )
-          }
-        }
+        gatsbyImageData(layout: FULL_WIDTH)
       }
       expanded
       inverted
@@ -118,8 +112,8 @@ const PrismicTeamContentsDataCultureBodyIllustrationAndDescription: React.FC<
   const parseLink = useLinkParser();
 
   const image =
-    data.primary?.illustration?.localFile?.childImageSharp?.gatsbyImageData &&
-    getImage(data.primary.illustration.localFile.childImageSharp.gatsbyImageData);
+    data.primary?.illustration?.gatsbyImageData &&
+    getCdnImage(data.primary.illustration.gatsbyImageData);
 
   if (image == null || data.primary?.description == null) {
     return null;
