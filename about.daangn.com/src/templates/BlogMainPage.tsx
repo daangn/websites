@@ -1,3 +1,4 @@
+import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
 import { type HeadProps, type PageProps, graphql, navigate } from 'gatsby';
 import { HeadSeo, OpenGraph, TwitterCard } from 'gatsby-plugin-head-seo/src';
 import { styled } from 'gatsby-theme-stitches/src/config';
@@ -21,15 +22,13 @@ export const query = graphql`
           text
         }
         blog_page_og_image {
-          localFile {
-            childImageSharp {
-              fixed(width: 1200, height: 630, toFormat: PNG, quality: 90) {
-                src
-                width
-                height
-              }
-            }
-          }
+          gatsbyImageData(
+            width: 1200
+            height: 630
+            layout: FIXED
+            formats: [PNG]
+            placeholder: NONE
+          )
         }
       }
     }
@@ -90,7 +89,8 @@ export const Head: React.FC<BlogPageHeadProps> = ({ data, location }) => {
   const { blog_page_meta_title, blog_page_meta_description, blog_page_og_image } =
     // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     data.prismicBlogContent?.data as any;
-  const metaImage = blog_page_og_image?.localFile?.childImageSharp?.fixed;
+  const metaImage = blog_page_og_image?.gatsbyImageData &&
+    getCdnImage(blog_page_og_image.gatsbyImageData);
 
   return (
     <HeadSeo
@@ -104,13 +104,10 @@ export const Head: React.FC<BlogPageHeadProps> = ({ data, location }) => {
           og={{
             ...props,
             type: 'website',
-            ...(metaImage && {
+            ...(metaImage?.images.fallback && {
               images: [
                 {
-                  url: new URL(
-                    metaImage.src,
-                    metaImage.src.startsWith('http') ? metaImage.src : props.url,
-                  ),
+                  url: new URL(metaImage.images.fallback.src, props.url),
                   width: metaImage.width,
                   height: metaImage.height,
                 },

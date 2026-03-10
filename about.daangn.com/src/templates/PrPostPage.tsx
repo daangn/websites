@@ -30,15 +30,13 @@ export const query = graphql`
       }
       headerQuote
       ogImage: thumbnailImage {
-        localFile {
-          childImageSharp {
-            fixed(width: 1200, height: 630, toFormat: PNG, quality: 90) {
-              src
-              width
-              height
-            }
-          }
-        }
+        gatsbyImageData(
+          width: 1200
+          height: 630
+          layout: FIXED
+          formats: [PNG]
+          placeholder: NONE
+        )
       }
       thumbnailImage {
         alt
@@ -124,7 +122,7 @@ type PrPostPageHeadProps = HeadProps<GatsbyTypes.PrPostPageQuery>;
 export const Head: React.FC<PrPostPageHeadProps> = ({ data, location }) => {
   const title = data.post?.title ? `${data.post?.title} | 당근 보도자료` : '당근 보도자료';
   const description = data.post?.summary || '';
-  const metaImage = data.post?.ogImage?.localFile?.childImageSharp?.fixed;
+  const metaImage = data.post?.ogImage?.gatsbyImageData && getCdnImage(data.post.ogImage.gatsbyImageData);
 
   return (
     <HeadSeo location={location} title={title} description={description}>
@@ -134,13 +132,10 @@ export const Head: React.FC<PrPostPageHeadProps> = ({ data, location }) => {
           og={{
             ...props,
             type: 'website',
-            ...(metaImage && {
+            ...(metaImage?.images.fallback && {
               images: [
                 {
-                  url: new URL(
-                    metaImage.src,
-                    metaImage.src.startsWith('http') ? metaImage.src : props.url,
-                  ),
+                  url: new URL(metaImage.images.fallback.src, props.url),
                   width: metaImage.width,
                   height: metaImage.height,
                 },

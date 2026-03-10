@@ -1,3 +1,4 @@
+import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
 import { type HeadProps, type PageProps, graphql } from 'gatsby';
 import { HeadSeo, OpenGraph, TwitterCard } from 'gatsby-plugin-head-seo/src';
 import { styled } from 'gatsby-theme-stitches/src/config';
@@ -17,15 +18,13 @@ export const query = graphql`
     ) {
       data {
         main_page_meta_image {
-          localFile {
-            childImageSharp {
-              fixed(width: 1200, height: 630, toFormat: PNG, quality: 90) {
-                src
-                width
-                height
-              }
-            }
-          }
+          gatsbyImageData(
+            width: 1200,
+            height: 630,
+            formats: [PNG],
+            placeholder: NONE,
+            layout: FIXED,
+          )
         }
       }
     }
@@ -87,8 +86,8 @@ export const Head: React.FC<PrPageHeadProps> = ({ data, location }) => {
   /**
    * (임시)어바웃당근 메인페이지와 동일한 og 이미지 사용
    */
-  const metaImage =
-    data.prismicTeamContents?.data.main_page_meta_image?.localFile?.childImageSharp?.fixed;
+  const metaImage = data.prismicTeamContents?.data.main_page_meta_image?.gatsbyImageData &&
+    getCdnImage(data.prismicTeamContents.data.main_page_meta_image.gatsbyImageData);
 
   return (
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
@@ -98,13 +97,10 @@ export const Head: React.FC<PrPageHeadProps> = ({ data, location }) => {
           og={{
             ...props,
             type: 'website',
-            ...(metaImage && {
+            ...(metaImage?.images.fallback && {
               images: [
                 {
-                  url: new URL(
-                    metaImage.src,
-                    metaImage.src.startsWith('http') ? metaImage.src : props.url,
-                  ),
+                  url: new URL(metaImage.images.fallback.src, props.url),
                   width: metaImage.width,
                   height: metaImage.height,
                 },

@@ -1,3 +1,4 @@
+import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
 import { type HeadProps, type PageProps, graphql } from 'gatsby';
 import { HeadSeo, OpenGraph, TwitterCard } from 'gatsby-plugin-head-seo/src';
 import { styled } from 'gatsby-theme-stitches/src/config';
@@ -23,20 +24,13 @@ export const query = graphql`
           text
         }
         culture_page_og_image {
-          localFile {
-            childImageSharp {
-              fixed(
-                width: 1200
-                height: 630
-                toFormat: PNG
-                quality: 90
-              ) {
-                src
-                width
-                height
-              }
-            }
-          }
+          gatsbyImageData(
+            width: 1200
+            height: 630
+            layout: FIXED
+            formats: [PNG]
+            placeholder: NONE
+          )
         }
         body {
           ... on PrismicCultureContentDataBodyCarousel {
@@ -163,8 +157,8 @@ type CulturePageHeadProps = HeadProps<GatsbyTypes.CulturePageQuery>;
 export const Head: React.FC<CulturePageHeadProps> = ({ data, location }) => {
   const metaTitle = data?.prismicCultureContent?.data.culture_page_meta_title || '';
   const metaDescription = data?.prismicCultureContent?.data.culture_page_meta_description || '';
-  const metaImage =
-    data?.prismicCultureContent?.data.culture_page_og_image?.localFile?.childImageSharp?.fixed;
+  const metaImage = data?.prismicCultureContent?.data.culture_page_og_image?.gatsbyImageData &&
+    getCdnImage(data.prismicCultureContent.data.culture_page_og_image.gatsbyImageData);
 
   return (
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
@@ -174,12 +168,12 @@ export const Head: React.FC<CulturePageHeadProps> = ({ data, location }) => {
           og={{
             ...props,
             type: 'website',
-            ...(metaImage && {
+            ...(metaImage?.images.fallback && {
               images: [
                 {
                   url: new URL(
-                    metaImage.src,
-                    metaImage.src.startsWith('http') ? metaImage.src : props.url,
+                    metaImage.images.fallback.src,
+                    props.url,
                   ),
                   width: metaImage.width,
                   height: metaImage.height,

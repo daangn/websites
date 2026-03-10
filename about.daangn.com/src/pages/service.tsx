@@ -22,20 +22,13 @@ query ServicePage($locale: String!, $navigationId: String!) {
         text
       }
       service_page_og_image {
-        localFile {
-          childImageSharp {
-            fixed(
-              width: 1200
-              height: 630
-              toFormat: PNG
-              quality: 90
-            ) {
-              src
-              width
-              height
-            }
-          }
-        }
+        gatsbyImageData(
+          width: 1200
+          height: 630
+          layout: FIXED
+          formats: [PNG]
+          placeholder: NONE
+        )
       }
       body {
         ... on PrismicServiceContentDataBodyServiceDescription {
@@ -189,7 +182,8 @@ export const Head: React.FC<ServicePageHeadProps> = ({ data, location }) => {
     // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   } = data.prismicServiceContent?.data as any;
 
-  const metaImage = service_page_og_image?.localFile?.childImageSharp?.fixed;
+  const metaImage = service_page_og_image?.gatsbyImageData &&
+    getCdnImage(service_page_og_image.gatsbyImageData);
 
   return (
     <HeadSeo
@@ -203,13 +197,10 @@ export const Head: React.FC<ServicePageHeadProps> = ({ data, location }) => {
           og={{
             ...props,
             type: 'website',
-            ...(metaImage && {
+            ...(metaImage?.images.fallback && {
               images: [
                 {
-                  url: new URL(
-                    metaImage.src,
-                    metaImage.src.startsWith('http') ? metaImage.src : props.url,
-                  ),
+                  url: new URL(metaImage.images.fallback.src, props.url),
                   width: metaImage.width,
                   height: metaImage.height,
                 },

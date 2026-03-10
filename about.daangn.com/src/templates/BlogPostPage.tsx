@@ -37,15 +37,13 @@ export const query = graphql`
         ...Author_author
       }
       ogImage: thumbnailImage {
-        localFile {
-          childImageSharp {
-            fixed(width: 1200, height: 630, toFormat: PNG, quality: 90) {
-              src
-              width
-              height
-            }
-          }
-        }
+        gatsbyImageData(
+          width: 1200
+          height: 630
+          layout: FIXED
+          formats: [PNG]
+          placeholder: NONE
+        )
       }
       body {
         ... on PostRichTextSection {
@@ -155,7 +153,7 @@ type BlogPostPageHeadProps = HeadProps<GatsbyTypes.BlogPostPageQuery>;
 export const Head: React.FC<BlogPostPageHeadProps> = ({ data, location }) => {
   const title = data.post?.title ? `${data.post.title} | 당근 블로그` : '당근 블로그';
   const description = data.prismicBlogContent?.data?.blog_page_meta_description || '';
-  const metaImage = data.post?.ogImage?.localFile?.childImageSharp?.fixed;
+  const metaImage = data.post?.ogImage?.gatsbyImageData && getCdnImage(data.post.ogImage.gatsbyImageData);
 
   return (
     <HeadSeo location={location} title={title} description={description}>
@@ -165,13 +163,10 @@ export const Head: React.FC<BlogPostPageHeadProps> = ({ data, location }) => {
           og={{
             ...props,
             type: 'website',
-            ...(metaImage && {
+            ...(metaImage?.images.fallback && {
               images: [
                 {
-                  url: new URL(
-                    metaImage.src,
-                    metaImage.src.startsWith('http') ? metaImage.src : props.url,
-                  ),
+                  url: new URL(metaImage.images.fallback.src, props.url),
                   width: metaImage.width,
                   height: metaImage.height,
                 },

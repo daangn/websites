@@ -26,20 +26,13 @@ export const query = graphql`
         jobs_page_meta_title
         jobs_page_meta_description
         jobs_page_meta_image {
-          localFile {
-            childImageSharp {
-              fixed(
-                width: 1200
-                height: 630
-                toFormat: PNG
-                quality: 90
-              ) {
-                src
-                width
-                height
-              }
-            }
-          }
+          gatsbyImageData(
+            width: 1200
+            height: 630
+            layout: FIXED
+            formats: [PNG]
+            placeholder: NONE
+          )
         }
         jobs_page_title {
           text

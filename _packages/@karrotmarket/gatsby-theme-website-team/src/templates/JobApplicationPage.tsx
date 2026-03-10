@@ -1,6 +1,7 @@
 import { required } from '@cometjs/core';
 import { mapAbstractType } from '@cometjs/graphql-utils';
 import type { PropOf, RefOf } from '@cometjs/react-utils';
+import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
 import { useTranslation } from '@karrotmarket/gatsby-theme-website-team/src/translation';
 import { type HeadProps, type PageProps, graphql, navigate } from 'gatsby';
 import { HeadSeo, Robots } from 'gatsby-plugin-head-seo/src';
@@ -374,9 +375,14 @@ export const Head: React.FC<JobApplicationPageHeadProps> = ({
     jobPost.metatTitle || `${jobPost.title} | ${prismicTeamContents.data.jobs_page_meta_title}`;
   const metaDescription =
     jobPost.metaDescription || prismicTeamContents.data.jobs_page_meta_description;
-  const metaImage =
-    jobPost.metaImage?.childImageSharp?.fixed ||
-    prismicTeamContents.data.jobs_page_meta_image?.localFile?.childImageSharp?.fixed;
+
+  const fallbackImage = prismicTeamContents.data.jobs_page_meta_image?.gatsbyImageData && 
+    getCdnImage(prismicTeamContents.data.jobs_page_meta_image.gatsbyImageData);
+  const metaImage = jobPost.metaImage?.childImageSharp?.fixed || (fallbackImage?.images.fallback && {
+    src: fallbackImage.images.fallback.src,
+    width: fallbackImage.width,
+    height: fallbackImage.height,
+  });
 
   return (
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>
@@ -388,10 +394,7 @@ export const Head: React.FC<JobApplicationPageHeadProps> = ({
             data={data}
             image={
               metaImage && {
-                url: new URL(
-                  metaImage.src,
-                  metaImage.src.startsWith('http') ? metaImage.src : props.url,
-                ),
+                url: new URL(metaImage.src, props.url),
                 width: metaImage.width,
                 height: metaImage.height,
               }
