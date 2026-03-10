@@ -1,10 +1,22 @@
-import type { IGatsbyImageData } from 'gatsby-plugin-image';
+// @ts-check
 
-export function replaceImageHost(imageSrc: string): string {
+/**
+ * @import { IGatsbyImageData } from 'gatsby-plugin-image'
+ */
+
+/**
+ * @param {string} imageSrc
+ * @return {string}
+ */
+export function replaceImageHost(imageSrc) {
   return imageSrc.replaceAll('https://images.prismic.io', 'https://prismic-image-proxy.krrt.io');
 }
 
-export function getCdnImage(imageData: IGatsbyImageData): IGatsbyImageData {
+/**
+ * @param {IGatsbyImageData} imageData
+ * @return {IGatsbyImageData}
+ */
+export function getCdnImage(imageData) {
   const copy = structuredClone(imageData);
   if (copy.images.fallback) {
     copy.images.fallback.src = replaceImageHost(copy.images.fallback.src);
