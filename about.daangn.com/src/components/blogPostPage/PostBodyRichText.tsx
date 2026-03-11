@@ -44,7 +44,7 @@ const PostBodyRichText: React.FC<PostBodyRichTextProps> = ({ slice }) => {
           image: ({ node }) => {
             return (
               <Image
-                src={node.url}
+                src={replaceImageHost(node.url)}
                 alt={node.alt ?? undefined}
                 data-copyright={node.copyright ? node.copyright : undefined}
               />
