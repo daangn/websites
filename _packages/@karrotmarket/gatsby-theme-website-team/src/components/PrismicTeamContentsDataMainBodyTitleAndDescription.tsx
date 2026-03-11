@@ -1,3 +1,4 @@
+import { replaceImageHost } from '@karrotmarket/gatsby-theme-prismic/image-utils.mjs';
 import { useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
 import { vars } from '@seed-design/design-token';
 import { graphql } from 'gatsby';
@@ -121,7 +122,7 @@ const PrismicTeamContentsDataMainBodyTitleAndDescription: React.FC<
         <Title>{data.primary.title?.text}</Title>
         {link && <DetailLink link={link} />}
       </TitleContainer>
-      <Description dangerouslySetInnerHTML={{ __html: data.primary.description?.html || '' }} />
+      <Description dangerouslySetInnerHTML={{ __html: replaceImageHost(data.primary.description?.html || '') }} />
     </Container>
   );
 };

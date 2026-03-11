@@ -1,3 +1,4 @@
+import { replaceImageHost } from '@karrotmarket/gatsby-theme-prismic/image-utils.mjs'; 
 import { PrismicRichText } from '@prismicio/react';
 import { vars } from '@seed-design/design-token';
 import { styled } from 'gatsby-theme-stitches/src/config';
@@ -43,7 +44,7 @@ const PrPostBodyRichText: React.FC<PrPostBodyRichText> = ({ slice }) => {
               data-oembed={node.oembed.embed_url}
               data-oembed-type={node.oembed.type}
               data-oembed-provider={node.oembed.provider_name}
-              dangerouslySetInnerHTML={{ __html: node.oembed.html ?? '' }}
+              dangerouslySetInnerHTML={{ __html: replaceImageHost(node.oembed.html ?? '') }}
             />
           ),
         }}

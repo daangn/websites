@@ -1,3 +1,4 @@
+import { replaceImageHost } from '@karrotmarket/gatsby-theme-prismic/image-utils.mjs';
 import { PrismicLink, PrismicRichText } from '@prismicio/react';
 import { vars } from '@seed-design/design-token';
 import { styled } from 'gatsby-theme-stitches/src/config';
@@ -24,7 +25,7 @@ const PostBodyRichText: React.FC<PostBodyRichTextProps> = ({ slice }) => {
           heading3: ({ children, key }) => <Heading3 key={key}>{children}</Heading3>,
           paragraph: ({ children, key, node }) => {
             return node.text.includes('<span') || node.text.includes('<font') ? (
-              <Description dangerouslySetInnerHTML={{ __html: node.text || '' }} key={key} />
+              <Description dangerouslySetInnerHTML={{ __html: replaceImageHost(node.text || '') }} key={key} />
             ) : (
               <Description key={key}>{children}</Description>
             );
@@ -56,7 +57,7 @@ const PostBodyRichText: React.FC<PostBodyRichTextProps> = ({ slice }) => {
                 data-oembed={node.oembed.embed_url}
                 data-oembed-type={node.oembed.type}
                 data-oembed-provider={node.oembed.provider_name}
-                dangerouslySetInnerHTML={{ __html: node.oembed.html ?? '' }}
+                dangerouslySetInnerHTML={{ __html: replaceImageHost(node.oembed.html ?? '') }}
               />
             </EmbedWrapper>
           ),

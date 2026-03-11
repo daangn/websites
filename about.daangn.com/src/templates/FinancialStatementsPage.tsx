@@ -1,3 +1,4 @@
+import { replaceImageHost } from '@karrotmarket/gatsby-theme-prismic/image-utils.mjs';
 import _PageTitle from '@karrotmarket/gatsby-theme-website-team/src/components/PageTitle';
 import { vars } from '@seed-design/design-token';
 import { type HeadProps, Link, type PageProps, graphql } from 'gatsby';
@@ -286,7 +287,7 @@ const FinancialStatementsPage: React.FC<FinancialStatementsPageProps> = ({ data:
             </tbody>
           </Table>
           {current.data.note.html && (
-            <Note dangerouslySetInnerHTML={{ __html: current.data.note.html }} />
+            <Note dangerouslySetInnerHTML={{ __html: replaceImageHost(current.data.note.html) }} />
           )}
         </FinancialStatements>
       </Content>

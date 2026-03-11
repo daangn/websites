@@ -1,3 +1,4 @@
+import { replaceImageHost } from '@karrotmarket/gatsby-theme-prismic/image-utils.mjs';
 import { vars } from '@seed-design/design-token';
 import { graphql } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
@@ -133,7 +134,11 @@ const PrismicTeamContentsDataCultureBodyBenefit: React.FC<
             </BenefitGroupTitle>
             <Benefit>
               <BenefitSummary>{item.subtext}</BenefitSummary>
-              <BenefitDetail dangerouslySetInnerHTML={{ __html: item.description?.html || '' }} />
+              <BenefitDetail
+                dangerouslySetInnerHTML={{
+                  __html: replaceImageHost(item.description?.html || ''),
+                }} 
+              />
             </Benefit>
           </BenefitGroup>
         ))}

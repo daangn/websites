@@ -1,3 +1,4 @@
+import { replaceImageHost } from '@karrotmarket/gatsby-theme-prismic/image-utils.mjs';
 import { mapLink, useLinkParser } from '@karrotmarket/gatsby-theme-website/src/link';
 import { type HeadProps, type PageProps, graphql } from 'gatsby';
 import { Robots } from 'gatsby-plugin-head-seo/src';
@@ -71,7 +72,7 @@ const CompletedPage: React.FC<CompletedPageProps> = (pageProps) => {
       <Container>
         <Illustration />
         <MessageContainer>
-          <Message dangerouslySetInnerHTML={{ __html: messageContentsHtml }} />
+          <Message dangerouslySetInnerHTML={{ __html: replaceImageHost(messageContentsHtml || '') }} />
         </MessageContainer>
         <ButtonLinkGroup>
           {data.prismicTeamContents.data.completed_page_link_group.map((entry, i) => {

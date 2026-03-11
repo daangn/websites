@@ -1,4 +1,5 @@
 import { mapAbstractTypeWithDefault } from '@cometjs/graphql-utils';
+import { replaceImageHost } from '@karrotmarket/gatsby-theme-prismic/image-utils.mjs';
 import SeedIcon from '@karrotmarket/gatsby-theme-seed-design/src/Icon';
 import PageTitle from '@karrotmarket/gatsby-theme-website-team/src/components/PageTitle';
 import { vars } from '@seed-design/design-token';
@@ -170,13 +171,13 @@ const IrPage: React.FC<IrPageProps> = ({ data: prismicData }) => {
               PrismicIrDataBodyMainText: (block) => (
                 <MainText
                   key={block.id}
-                  dangerouslySetInnerHTML={{ __html: block.primary.text?.html || '' }}
+                  dangerouslySetInnerHTML={{ __html: replaceImageHost(block.primary.text?.html || '') }}
                 />
               ),
               PrismicIrDataBodySupplementaryText: (block) => (
                 <SupplementaryText
                   key={block.id}
-                  dangerouslySetInnerHTML={{ __html: block.primary.text?.html || '' }}
+                  dangerouslySetInnerHTML={{ __html: replaceImageHost(block.primary.text?.html || '') }}
                 />
               ),
               _: null,

@@ -1,5 +1,5 @@
 import { vars } from '@seed-design/design-token';
-import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
+import { getCdnImage, replaceImageHost } from '@karrotmarket/gatsby-theme-prismic/image-utils.mjs';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
@@ -69,7 +69,7 @@ const CarouselSection: React.FC<CarouselProps> = ({ slice }) => {
               <CarouselTitle>{item.carousel_card_title}</CarouselTitle>
               <CarouselDescription
                 dangerouslySetInnerHTML={{
-                  __html: item.carousel_card_description?.html || '',
+                  __html: replaceImageHost(item.carousel_card_description?.html || ''),
                 }}
               />
             </Card>

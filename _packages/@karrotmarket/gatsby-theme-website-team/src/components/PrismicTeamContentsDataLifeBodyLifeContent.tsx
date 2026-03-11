@@ -1,4 +1,4 @@
-import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
+import { getCdnImage, replaceImageHost } from '@karrotmarket/gatsby-theme-prismic/image-utils.mjs';
 import { vars } from '@seed-design/design-token';
 import { graphql } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
@@ -87,7 +87,7 @@ const PrismicTeamContentsDataLifeBodyLifeContent: React.FC<
   return (
     <Container className={className}>
       <Title>{data.primary.title.text}</Title>
-      <BodyText dangerouslySetInnerHTML={{ __html: data.primary.body_text?.html || '' }} />
+      <BodyText dangerouslySetInnerHTML={{ __html: replaceImageHost(data.primary.body_text?.html || '') }} />
       <ThumbnailContainer>
         {data.items.map((item, i) => {
           const image =
