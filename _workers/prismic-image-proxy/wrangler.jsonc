@@ -7,9 +7,6 @@
   "observability": {
     "enabled": true
   },
-  "placement": {
-    "hostname": "images.prismic.io"
-  },
   "routes": [
     {
       "custom_domain": true,
