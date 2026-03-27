@@ -17,6 +17,7 @@ const BannerArea: React.FC = () => {
                 image_size_360 {
                   alt
                   gatsbyImageData(
+                    width: 360
                     layout: FULL_WIDTH
                     formats: [AVIF, AUTO]
                   )
@@ -24,6 +25,7 @@ const BannerArea: React.FC = () => {
                 image_size_576 {
                   alt
                   gatsbyImageData(
+                    width: 576
                     layout: FULL_WIDTH
                     formats: [AVIF, AUTO]
                   )
@@ -31,6 +33,7 @@ const BannerArea: React.FC = () => {
                 image_size_768 {
                   alt
                   gatsbyImageData(
+                    width: 768
                     layout: FULL_WIDTH
                     formats: [AVIF, AUTO]
                   )
