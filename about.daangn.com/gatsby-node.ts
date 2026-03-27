@@ -162,7 +162,13 @@ export const createPages: GatsbyNode['createPages'] = async ({
     });
   }
 
+  const visited = new Set<string>();
   for (const finance of data.allPrismicFinancialStatements.nodes) {
+    if (visited.has(finance.uid)) {
+      console.warn(`Detected duplicated uid in financial_statements: ${finance.uid}`);
+      continue;
+    } else visited.add(finance.uid);
+
     if (!finance.uid) {
       reporter.warn('Some financial_statements in Prismic CMS have empty uid');
       continue;
