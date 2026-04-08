@@ -245,13 +245,4 @@ export const createPages: GatsbyNode['createPages'] = async ({
     toPath: '/blog/',
     redirectInBrowser: true,
   });
-
-  // 2025-11-04
-  // 회사소개를 홈으로 합침
-  actions.createRedirect({
-    fromPath: '/company/',
-    toPath: '/',
-    isPermanent: false,
-    redirectInBrowser: true,
-  });
 };
