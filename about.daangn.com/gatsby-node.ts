@@ -1,13 +1,9 @@
+import * as fs from 'node:fs';
 import * as path from 'node:path';
 import type { GatsbyNode } from 'gatsby';
 
-export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = ({ actions }) => {
-  actions.createRedirect({
-    fromPath: '/jobs/faq/',
-    toPath: '/faq/',
-    isPermanent: true,
-  });
-};
+// DC-1368: careers(careers.daangn.com)로 이전된 라우트를 여기로 redirect한다.
+const CAREERS_ORIGIN = 'https://careers.daangn.com';
 
 export const onCreateNode: GatsbyNode['onCreateNode'] = ({ node, actions }) => {
   if (node.internal.type === 'JobPost') {
@@ -26,6 +22,23 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({ node, actions }) => {
         value: false,
       });
     }
+  }
+};
+
+// DC-1368: careers로 이전된 라우트의 페이지를 제거한다(about.daangn.com 한정).
+// 페이지를 지우면 같은 경로의 _redirects 규칙(static/_redirects + onPostBuild 생성분)이 받는다.
+// 비전 블로그 포스트(/blog/archive/...)는 createPages에서 비전만 생성하므로 애초에 여기 대상이 아니다.
+export const onCreatePage: GatsbyNode['onCreatePage'] = ({ page, actions }) => {
+  const p = page.path;
+  const migrated =
+    p === '/' ||
+    p === '/culture/' ||
+    p === '/completed/' ||
+    p.startsWith('/faq/') ||
+    // 채용 목록/상세/지원/부서는 이전 대상. 채용 아티클(/jobs/article/)은 어당 유지.
+    (p.startsWith('/jobs/') && !p.startsWith('/jobs/article/'));
+  if (migrated) {
+    actions.deletePage(page);
   }
 };
 
@@ -61,12 +74,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
       nodes: Array<{
         id: string;
         slug: string;
-      }>;
-    };
-    allPostCategory: {
-      nodes: Array<{
-        name: string;
-        uid: string;
+        blogCategory: Array<{ uid: string }>;
       }>;
     };
   };
@@ -125,17 +133,9 @@ export const createPages: GatsbyNode['createPages'] = async ({
         nodes {
           id
           slug
-        }
-      }
-
-      allPostCategory(
-        filter: {
-          uid: { ne: "pr" }
-        }
-      ) {
-        nodes {
-          uid
-          name
+          blogCategory {
+            uid
+          }
         }
       }
     }
@@ -202,14 +202,6 @@ export const createPages: GatsbyNode['createPages'] = async ({
     redirectInBrowser: false,
   });
 
-  actions.createPage({
-    path: '/blog/',
-    component: path.resolve(basePath, 'src/templates/BlogMainPage.tsx'),
-    context: {
-      id: '*',
-    },
-  });
-
   for (const post of data.allPrPost.nodes) {
     actions.createPage({
       path: `/company/pr/archive/${post.slug}/`,
@@ -220,7 +212,14 @@ export const createPages: GatsbyNode['createPages'] = async ({
     });
   }
 
+  // DC-1368: 블로그는 careers로 이전. 단 비전 카테고리 포스트는 careers가 노출하지 않으므로
+  // (커당 content.config의 post 로더가 category_group에 vision이 있으면 드롭) 어당에 상세 페이지를 유지한다.
+  // 비전 외 포스트는 페이지를 만들지 않고 onPostBuild에서 careers로 redirect를 발행한다.
+  // /blog/ 메인과 /blog/category/는 전부 careers redirect(static/_redirects)로 대체.
   for (const post of data.allBlogPost.nodes) {
+    const isVision = post.blogCategory.some((category) => category.uid === 'vision');
+    if (!isVision) continue;
+
     actions.createPage({
       path: `/blog/archive/${post.slug}/`,
       component: path.resolve(basePath, 'src/templates/BlogPostPage.tsx'),
@@ -229,20 +228,95 @@ export const createPages: GatsbyNode['createPages'] = async ({
       },
     });
   }
+};
 
-  for (const postCategory of data.allPostCategory.nodes) {
-    actions.createPage({
-      path: `/blog/category/${postCategory.uid}/`,
-      component: path.resolve(basePath, 'src/templates/BlogMainPage.tsx'),
-      context: {
-        id: postCategory.uid,
-      },
-    });
+// DC-1368: careers로 이전된 동적 라우트의 redirect를 빌드타임에 생성해 public/_redirects에 덧붙인다.
+// CF Pages _redirects는 placeholder/splat을 지원하지만 숫자 ghId와 텍스트 부서 slug를 구분하지 못하므로,
+// 부서만 exact로 열거(ghId placeholder보다 먼저)하고 ghId는 placeholder로 받는다.
+// 블로그 포스트는 비전 슬러그에 규칙을 만들지 않기 위해 exact로 열거한다(비전은 어당 유지).
+export const onPostBuild: GatsbyNode['onPostBuild'] = async ({ graphql, reporter, store }) => {
+  const { program } = store.getState();
+  const basePath = program.directory as string;
+
+  const gql = String.raw;
+
+  type Data = {
+    allBlogPost: {
+      nodes: Array<{
+        slug: string;
+        blogCategory: Array<{ uid: string }>;
+      }>;
+    };
+    allJobDepartment: {
+      nodes: Array<{
+        slug: string;
+      }>;
+    };
+  };
+  const { data, errors } = await graphql<Data>(gql`
+    {
+      allBlogPost: allPost(
+        filter: {
+          category: {
+            uid: { ne: "pr" }
+          }
+        }
+      ) {
+        nodes {
+          slug
+          blogCategory {
+            uid
+          }
+        }
+      }
+
+      allJobDepartment {
+        nodes {
+          slug
+        }
+      }
+    }
+  `);
+
+  if (errors) {
+    reporter.panicOnBuild(errors);
+  }
+  if (!data) {
+    throw new Error('Failed to fetch redirect data for about.daangn.com');
   }
 
-  actions.createRedirect({
-    fromPath: '/blog/cateogry/*',
-    toPath: '/blog/',
-    redirectInBrowser: true,
-  });
+  const lines: string[] = [];
+
+  // 블로그 포스트 상세 (비전 제외) → careers
+  for (const post of data.allBlogPost.nodes) {
+    const isVision = post.blogCategory.some((category) => category.uid === 'vision');
+    if (isVision) continue;
+
+    // 한글 slug는 인코딩 (CF Pages _redirects 매칭은 인코딩 기준 — 기존 faq redirect 컨벤션).
+    const slug = encodeURIComponent(post.slug);
+    lines.push(`/blog/archive/${slug}/  ${CAREERS_ORIGIN}/blog/post/${slug}/  308`);
+  }
+
+  // 부서 목록 → careers 채용 목록 (ghId placeholder보다 먼저 와야 함)
+  for (const department of data.allJobDepartment.nodes) {
+    if (!department.slug) continue;
+
+    lines.push(`/jobs/${encodeURIComponent(department.slug)}/  ${CAREERS_ORIGIN}/jobs/  308`);
+  }
+
+  // 채용 상세 / 지원 폼 (ghId placeholder)
+  lines.push(`/jobs/:ghId/apply/  ${CAREERS_ORIGIN}/jobs/role/:ghId/apply/  308`);
+  lines.push(`/jobs/:ghId/  ${CAREERS_ORIGIN}/jobs/role/:ghId/  308`);
+
+  // static/_redirects 원본에 생성 규칙을 이어붙여 public/_redirects에 쓴다.
+  // (gatsby가 static/을 public/으로 복사하지만, 캐시 빌드에서도 idempotent하도록 원본을 기준으로 재작성.)
+  const staticRedirects = fs
+    .readFileSync(path.join(basePath, 'static/_redirects'), 'utf8')
+    .trimEnd();
+  const generated = ['', '# --- DC-1368: 빌드타임 생성 careers redirect ---', ...lines, ''].join(
+    '\n',
+  );
+  fs.writeFileSync(path.join(basePath, 'public/_redirects'), `${staticRedirects}\n${generated}`);
+
+  reporter.info(`[DC-1368] public/_redirects에 생성 규칙 ${lines.length}개를 추가했어요.`);
 };

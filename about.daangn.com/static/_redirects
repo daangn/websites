@@ -1,27 +1,47 @@
-/company  / 308
-/company/ / 308
+# DC-1368: careers(careers.daangn.com)로 이전된 라우트 redirect.
+# CF Pages는 _redirects 규칙이 정적 자산보다 우선. 동적 라우트(블로그 포스트/부서/채용 상세)는
+# gatsby-node의 onPostBuild가 이 파일 뒤에 이어붙인다. (먼저 매칭되는 규칙이 이김 = 위에서부터)
 
-/faq        /faq/  308
-/jobs/faq   /faq/  308
-/jobs/faq/  /faq/  308
+# 고정 경로 → careers
+/                 https://careers.daangn.com/                  308
+/culture/         https://careers.daangn.com/culture/          308
+/blog/            https://careers.daangn.com/blog/             308
+/jobs/            https://careers.daangn.com/jobs/             308
+/completed        https://careers.daangn.com/jobs/completed/   308
+/completed/       https://careers.daangn.com/jobs/completed/   308
 
+# 기존 redirect 재지정 → careers
+/company          https://careers.daangn.com/     308
+/company/         https://careers.daangn.com/     308
+/faq              https://careers.daangn.com/faq  308
+/faq/             https://careers.daangn.com/faq  308
+/jobs/faq         https://careers.daangn.com/faq  308
+/jobs/faq/        https://careers.daangn.com/faq  308
+
+# FAQ 한글 자모(NFD) → careers NFC. /faq/:slug/ placeholder보다 먼저 와야 함.
+# 지원-관련
+/faq/%E1%84%8C%E1%85%B5%E1%84%8B%E1%85%AF%E1%86%AB-%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB   https://careers.daangn.com/faq/%EC%A7%80%EC%9B%90-%EA%B4%80%EB%A0%A8/  308
+/faq/%E1%84%8C%E1%85%B5%E1%84%8B%E1%85%AF%E1%86%AB-%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB/  https://careers.daangn.com/faq/%EC%A7%80%EC%9B%90-%EA%B4%80%EB%A0%A8/  308
+
+# 전형-관련
+/faq/%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%92%E1%85%A7%E1%86%BC-%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB   https://careers.daangn.com/faq/%EC%A0%84%ED%98%95-%EA%B4%80%EB%A0%A8/  308
+/faq/%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%92%E1%85%A7%E1%86%BC-%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB/  https://careers.daangn.com/faq/%EC%A0%84%ED%98%95-%EA%B4%80%EB%A0%A8/  308
+
+# 당근마켓-관련
+/faq/%E1%84%83%E1%85%A1%E1%86%BC%E1%84%80%E1%85%B3%E1%86%AB%E1%84%86%E1%85%A1%E1%84%8F%E1%85%A6%E1%86%BA-%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB   https://careers.daangn.com/faq/%EB%8B%B9%EA%B7%BC%EB%A7%88%EC%BC%93-%EA%B4%80%EB%A0%A8/  308
+/faq/%E1%84%83%E1%85%A1%E1%86%BC%E1%84%80%E1%85%B3%E1%86%AB%E1%84%86%E1%85%A1%E1%84%8F%E1%85%A6%E1%86%BA-%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB/  https://careers.daangn.com/faq/%EB%8B%B9%EA%B7%BC%EB%A7%88%EC%BC%93-%EA%B4%80%EB%A0%A8/  308
+
+# 기타
+/faq/%E1%84%80%E1%85%B5%E1%84%90%E1%85%A1   https://careers.daangn.com/faq/%EA%B8%B0%ED%83%80/  308
+/faq/%E1%84%80%E1%85%B5%E1%84%90%E1%85%A1/  https://careers.daangn.com/faq/%EA%B8%B0%ED%83%80/  308
+
+# placeholder / splat → careers
+/blog/category/:uid/   https://careers.daangn.com/blog/?category=:uid   308
+/blog/cateogry/*       https://careers.daangn.com/blog/                 308
+/faq/:slug/            https://careers.daangn.com/faq/:slug/            308
+
+# IR 오타 redirect (어당 유지 — careers 아님)
 /ir/finances/2022-seperate   /ir/finances/2022-separate/  308
 /ir/finances/2022-seperate/  /ir/finances/2022-separate/  308
 /ir/finances/2023-seperate   /ir/finances/2023-separate/  308
 /ir/finances/2023-seperate/  /ir/finances/2023-separate/  308
-
-# 지원-관련
-/faq/%E1%84%8C%E1%85%B5%E1%84%8B%E1%85%AF%E1%86%AB-%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB   /faq/%EC%A7%80%EC%9B%90-%EA%B4%80%EB%A0%A8/  308
-/faq/%E1%84%8C%E1%85%B5%E1%84%8B%E1%85%AF%E1%86%AB-%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB/  /faq/%EC%A7%80%EC%9B%90-%EA%B4%80%EB%A0%A8/  308
-
-# 전형-관련
-/faq/%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%92%E1%85%A7%E1%86%BC-%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB   /faq/%EC%A0%84%ED%98%95-%EA%B4%80%EB%A0%A8/  308
-/faq/%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%92%E1%85%A7%E1%86%BC-%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB/  /faq/%EC%A0%84%ED%98%95-%EA%B4%80%EB%A0%A8/  308
-
-# 당근마켓-관련
-/faq/%E1%84%83%E1%85%A1%E1%86%BC%E1%84%80%E1%85%B3%E1%86%AB%E1%84%86%E1%85%A1%E1%84%8F%E1%85%A6%E1%86%BA-%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB   /faq/%EB%8B%B9%EA%B7%BC%EB%A7%88%EC%BC%93-%EA%B4%80%EB%A0%A8/  308
-/faq/%E1%84%83%E1%85%A1%E1%86%BC%E1%84%80%E1%85%B3%E1%86%AB%E1%84%86%E1%85%A1%E1%84%8F%E1%85%A6%E1%86%BA-%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB/  /faq/%EB%8B%B9%EA%B7%BC%EB%A7%88%EC%BC%93-%EA%B4%80%EB%A0%A8/  308
-
-# 기타
-/faq/%E1%84%80%E1%85%B5%E1%84%90%E1%85%A1   /faq/%EA%B8%B0%ED%83%80/  308
-/faq/%E1%84%80%E1%85%B5%E1%84%90%E1%85%A1/  /faq/%EA%B8%B0%ED%83%80/  308
