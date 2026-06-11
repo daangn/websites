@@ -16,7 +16,6 @@ import PostBodyQuote from '../components/blogPostPage/PostBodyQuote';
 import PostBodyRichText from '../components/blogPostPage/PostBodyRichText';
 import PostBodySingleImage from '../components/blogPostPage/PostBodySingleImage';
 import PostBodyVerticalQuote from '../components/blogPostPage/PostBodyVerticalQuote';
-import PostFooter from '../components/blogPostPage/PostFooter';
 import PostHeader from '../components/blogPostPage/PostHeader';
 import RelatedPost from '../components/blogPostPage/RelatedPost';
 import ShareButtons from '../components/blogPostPage/ShareButtons';
@@ -139,7 +138,6 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ data }) => {
             <Author author={data.post.author} />
             <TagList data={data.post.tags} />
           </PostBody>
-          <PostFooter />
           {modalOpen && <Modal>링크가 복사되었어요</Modal>}
         </Container>
         <RelatedPost data={data.post} />
