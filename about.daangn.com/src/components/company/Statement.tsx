@@ -1,7 +1,7 @@
 import { useGSAP } from '@gsap/react';
+import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
 import { graphql } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
-import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
 import gsap from 'gsap';
 import { useRef } from 'react';
 import Marquee from 'react-fast-marquee';
@@ -169,7 +169,11 @@ export default function Statement({ query: data }: Props) {
           <div className={css.marqueeInner}>
             {images.map((image) => (
               <div key={image.id} className={css.card({ type: image.type })}>
-                <GatsbyImage image={getCdnImage(image.image)} alt={image.alt} className={css.cardImage} />
+                <GatsbyImage
+                  image={getCdnImage(image.image)}
+                  alt={image.alt}
+                  className={css.cardImage}
+                />
               </div>
             ))}
           </div>

@@ -96,7 +96,8 @@ export const Head: React.FC<TeamsArticlePageHeadProps> = ({ data, location }) =>
 
   const metaTitle = data.prismicTeamsArticle.data.page_meta_title;
   const metaDescription = data.prismicTeamsArticle.data.page_meta_description;
-  const metaImage = data.prismicTeamsArticle.data.page_meta_image?.gatsbyImageData &&
+  const metaImage =
+    data.prismicTeamsArticle.data.page_meta_image?.gatsbyImageData &&
     getCdnImage(data.prismicTeamsArticle.data.page_meta_image.gatsbyImageData);
 
   return (

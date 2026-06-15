@@ -153,7 +153,8 @@ type BlogPostPageHeadProps = HeadProps<GatsbyTypes.BlogPostPageQuery>;
 export const Head: React.FC<BlogPostPageHeadProps> = ({ data, location }) => {
   const title = data.post?.title ? `${data.post.title} | 당근 블로그` : '당근 블로그';
   const description = data.prismicBlogContent?.data?.blog_page_meta_description || '';
-  const metaImage = data.post?.ogImage?.gatsbyImageData && getCdnImage(data.post.ogImage.gatsbyImageData);
+  const metaImage =
+    data.post?.ogImage?.gatsbyImageData && getCdnImage(data.post.ogImage.gatsbyImageData);
 
   return (
     <HeadSeo location={location} title={title} description={description}>

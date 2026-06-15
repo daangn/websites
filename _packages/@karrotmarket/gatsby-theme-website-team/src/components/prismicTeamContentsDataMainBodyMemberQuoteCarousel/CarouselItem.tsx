@@ -64,9 +64,7 @@ const By = styled('figcaption', {
 });
 
 const CarouselItem: React.FC<CarouselItemProps> = ({ item, className }) => {
-  const image =
-    item.image?.gatsbyImageData &&
-    getCdnImage(item.image.gatsbyImageData);
+  const image = item.image?.gatsbyImageData && getCdnImage(item.image.gatsbyImageData);
 
   if (image == null || item.quote == null || item.who == null) {
     return null;

@@ -157,7 +157,8 @@ type CulturePageHeadProps = HeadProps<GatsbyTypes.CulturePageQuery>;
 export const Head: React.FC<CulturePageHeadProps> = ({ data, location }) => {
   const metaTitle = data?.prismicCultureContent?.data.culture_page_meta_title || '';
   const metaDescription = data?.prismicCultureContent?.data.culture_page_meta_description || '';
-  const metaImage = data?.prismicCultureContent?.data.culture_page_og_image?.gatsbyImageData &&
+  const metaImage =
+    data?.prismicCultureContent?.data.culture_page_og_image?.gatsbyImageData &&
     getCdnImage(data.prismicCultureContent.data.culture_page_og_image.gatsbyImageData);
 
   return (
@@ -171,10 +172,7 @@ export const Head: React.FC<CulturePageHeadProps> = ({ data, location }) => {
             ...(metaImage?.images.fallback && {
               images: [
                 {
-                  url: new URL(
-                    metaImage.images.fallback.src,
-                    props.url,
-                  ),
+                  url: new URL(metaImage.images.fallback.src, props.url),
                   width: metaImage.width,
                   height: metaImage.height,
                 },

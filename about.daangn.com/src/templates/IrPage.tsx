@@ -171,13 +171,17 @@ const IrPage: React.FC<IrPageProps> = ({ data: prismicData }) => {
               PrismicIrDataBodyMainText: (block) => (
                 <MainText
                   key={block.id}
-                  dangerouslySetInnerHTML={{ __html: replaceImageHost(block.primary.text?.html || '') }}
+                  dangerouslySetInnerHTML={{
+                    __html: replaceImageHost(block.primary.text?.html || ''),
+                  }}
                 />
               ),
               PrismicIrDataBodySupplementaryText: (block) => (
                 <SupplementaryText
                   key={block.id}
-                  dangerouslySetInnerHTML={{ __html: replaceImageHost(block.primary.text?.html || '') }}
+                  dangerouslySetInnerHTML={{
+                    __html: replaceImageHost(block.primary.text?.html || ''),
+                  }}
                 />
               ),
               _: null,

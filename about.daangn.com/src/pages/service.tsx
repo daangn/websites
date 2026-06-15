@@ -1,5 +1,5 @@
-import { vars } from '@seed-design/design-token';
 import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
+import { vars } from '@seed-design/design-token';
 import { type HeadProps, Link, type PageProps, graphql } from 'gatsby';
 import { HeadSeo, OpenGraph, TwitterCard } from 'gatsby-plugin-head-seo/src';
 import { GatsbyImage } from 'gatsby-plugin-image';
@@ -182,8 +182,8 @@ export const Head: React.FC<ServicePageHeadProps> = ({ data, location }) => {
     // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   } = data.prismicServiceContent?.data as any;
 
-  const metaImage = service_page_og_image?.gatsbyImageData &&
-    getCdnImage(service_page_og_image.gatsbyImageData);
+  const metaImage =
+    service_page_og_image?.gatsbyImageData && getCdnImage(service_page_og_image.gatsbyImageData);
 
   return (
     <HeadSeo

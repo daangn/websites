@@ -1,5 +1,5 @@
-import { vars } from '@seed-design/design-token';
 import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
+import { vars } from '@seed-design/design-token';
 import slugify from 'cjk-slug';
 import { Link, graphql } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
@@ -94,9 +94,7 @@ const Summary = styled('p', {
 const FeaturedPost: React.FC<FeaturedPostProps> = ({ item, className }) => {
   const image =
     item.main_page_featured_post?.document?.data?.thumbnail_image?.gatsbyImageData &&
-    getCdnImage(
-      item.main_page_featured_post.document.data.thumbnail_image.gatsbyImageData,
-    );
+    getCdnImage(item.main_page_featured_post.document.data.thumbnail_image.gatsbyImageData);
 
   if (image == null) {
     return null;

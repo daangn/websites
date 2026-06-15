@@ -28,9 +28,9 @@ const PostCard: React.FC<PrCardProps> = ({ data }) => {
     <Container to={`/company/pr/archive/${data.slug}/`}>
       <ThumbnailWrapper>
         {data.thumbnailImage && (
-          <ThumbnailImage 
-            image={getCdnImage(data.thumbnailImage.gatsbyImageData)} 
-            alt={data.thumbnailImage.alt || ''} 
+          <ThumbnailImage
+            image={getCdnImage(data.thumbnailImage.gatsbyImageData)}
+            alt={data.thumbnailImage.alt || ''}
           />
         )}
       </ThumbnailWrapper>

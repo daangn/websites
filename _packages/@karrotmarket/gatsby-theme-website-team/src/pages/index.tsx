@@ -181,9 +181,9 @@ type IndexPageHeadProps = HeadProps<GatsbyTypes.TeamWebsite_IndexPageQuery>;
 export const Head: React.FC<IndexPageHeadProps> = ({ data, location }) => {
   const metaTitle = data.prismicTeamContents.data.main_page_meta_title;
   const metaDescription = data.prismicTeamContents.data.main_page_meta_description;
-  const metaImage = data.prismicTeamContents.data.main_page_meta_image?.gatsbyImageData && getCdnImage(
-    data.prismicTeamContents.data.main_page_meta_image?.gatsbyImageData
-  );
+  const metaImage =
+    data.prismicTeamContents.data.main_page_meta_image?.gatsbyImageData &&
+    getCdnImage(data.prismicTeamContents.data.main_page_meta_image?.gatsbyImageData);
 
   return (
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>

@@ -86,7 +86,8 @@ export const Head: React.FC<PrPageHeadProps> = ({ data, location }) => {
   /**
    * (임시)어바웃당근 메인페이지와 동일한 og 이미지 사용
    */
-  const metaImage = data.prismicTeamContents?.data.main_page_meta_image?.gatsbyImageData &&
+  const metaImage =
+    data.prismicTeamContents?.data.main_page_meta_image?.gatsbyImageData &&
     getCdnImage(data.prismicTeamContents.data.main_page_meta_image.gatsbyImageData);
 
   return (

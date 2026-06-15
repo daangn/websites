@@ -373,7 +373,8 @@ export const Head: React.FC<JobsPageHeadProps> = ({ data, location }) => {
     : metaTitleBase;
 
   const metaDescription = data.prismicTeamContents.data.jobs_page_meta_description;
-  const metaImage = data.prismicTeamContents.data.jobs_page_meta_image?.gatsbyImageData && 
+  const metaImage =
+    data.prismicTeamContents.data.jobs_page_meta_image?.gatsbyImageData &&
     getCdnImage(data.prismicTeamContents.data.jobs_page_meta_image.gatsbyImageData);
 
   return (
