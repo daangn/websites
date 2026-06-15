@@ -87,7 +87,9 @@ const PrismicTeamContentsDataLifeBodyLifeContent: React.FC<
   return (
     <Container className={className}>
       <Title>{data.primary.title.text}</Title>
-      <BodyText dangerouslySetInnerHTML={{ __html: replaceImageHost(data.primary.body_text?.html || '') }} />
+      <BodyText
+        dangerouslySetInnerHTML={{ __html: replaceImageHost(data.primary.body_text?.html || '') }}
+      />
       <ThumbnailContainer>
         {data.items.map((item, i) => {
           const image =

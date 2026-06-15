@@ -1,5 +1,5 @@
-import { vars } from '@seed-design/design-token';
 import { getCdnImage } from '@karrotmarket/gatsby-theme-prismic/image-utils';
+import { vars } from '@seed-design/design-token';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';

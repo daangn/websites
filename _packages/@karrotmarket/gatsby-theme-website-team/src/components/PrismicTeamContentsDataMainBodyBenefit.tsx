@@ -134,7 +134,9 @@ const PrismicTeamContentsDataMainBodyBenefit: React.FC<
             </BenefitGroupTitle>
             <Benefit>
               <BenefitSummary>{item.subtext}</BenefitSummary>
-              <BenefitDetail dangerouslySetInnerHTML={{ __html: replaceImageHost(item.description?.html || '') }} />
+              <BenefitDetail
+                dangerouslySetInnerHTML={{ __html: replaceImageHost(item.description?.html || '') }}
+              />
             </Benefit>
           </BenefitGroup>
         ))}

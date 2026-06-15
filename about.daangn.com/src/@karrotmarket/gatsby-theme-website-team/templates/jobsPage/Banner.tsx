@@ -19,14 +19,11 @@ const Banner: React.FC<BannerProps> = ({ item }) => {
   }
 
   const image360 =
-    item.image_size_360?.gatsbyImageData &&
-    getCdnImage(item.image_size_360.gatsbyImageData);
+    item.image_size_360?.gatsbyImageData && getCdnImage(item.image_size_360.gatsbyImageData);
   const image576 =
-    item.image_size_576?.gatsbyImageData &&
-    getCdnImage(item.image_size_576.gatsbyImageData);
+    item.image_size_576?.gatsbyImageData && getCdnImage(item.image_size_576.gatsbyImageData);
   const image768 =
-    item.image_size_768?.gatsbyImageData &&
-    getCdnImage(item.image_size_768.gatsbyImageData);
+    item.image_size_768?.gatsbyImageData && getCdnImage(item.image_size_768.gatsbyImageData);
 
   if (!image360) {
     return null;

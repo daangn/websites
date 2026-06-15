@@ -76,8 +76,7 @@ const PrismicTeamContentsDataCultureBodyWideBanner: React.FC<
   }
 
   const thumbnailImage =
-    data.primary.thumbnail.gatsbyImageData &&
-    getCdnImage(data.primary.thumbnail.gatsbyImageData);
+    data.primary.thumbnail.gatsbyImageData && getCdnImage(data.primary.thumbnail.gatsbyImageData);
 
   return (
     <Container className={className}>

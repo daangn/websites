@@ -72,7 +72,9 @@ const CompletedPage: React.FC<CompletedPageProps> = (pageProps) => {
       <Container>
         <Illustration />
         <MessageContainer>
-          <Message dangerouslySetInnerHTML={{ __html: replaceImageHost(messageContentsHtml || '') }} />
+          <Message
+            dangerouslySetInnerHTML={{ __html: replaceImageHost(messageContentsHtml || '') }}
+          />
         </MessageContainer>
         <ButtonLinkGroup>
           {data.prismicTeamContents.data.completed_page_link_group.map((entry, i) => {

@@ -89,8 +89,8 @@ export const Head: React.FC<BlogPageHeadProps> = ({ data, location }) => {
   const { blog_page_meta_title, blog_page_meta_description, blog_page_og_image } =
     // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     data.prismicBlogContent?.data as any;
-  const metaImage = blog_page_og_image?.gatsbyImageData &&
-    getCdnImage(blog_page_og_image.gatsbyImageData);
+  const metaImage =
+    blog_page_og_image?.gatsbyImageData && getCdnImage(blog_page_og_image.gatsbyImageData);
 
   return (
     <HeadSeo

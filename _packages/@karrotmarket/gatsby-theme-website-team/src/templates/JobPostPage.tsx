@@ -174,13 +174,16 @@ export const Head: React.FC<JobPostPageHeadProps> = ({
   const metaDescription =
     jobPost.metaDescription || prismicTeamContents.data.jobs_page_meta_description;
 
-  const fallbackImage = prismicTeamContents.data.jobs_page_meta_image?.gatsbyImageData &&
+  const fallbackImage =
+    prismicTeamContents.data.jobs_page_meta_image?.gatsbyImageData &&
     getCdnImage(prismicTeamContents.data.jobs_page_meta_image.gatsbyImageData);
-  const metaImage = jobPost.metaImage?.childImageSharp?.fixed || (fallbackImage?.images.fallback && {
-    src: fallbackImage.images.fallback.src,
-    width: fallbackImage.width,
-    height: fallbackImage.height,
-  });
+  const metaImage =
+    jobPost.metaImage?.childImageSharp?.fixed ||
+    (fallbackImage?.images.fallback && {
+      src: fallbackImage.images.fallback.src,
+      width: fallbackImage.width,
+      height: fallbackImage.height,
+    });
 
   return (
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>

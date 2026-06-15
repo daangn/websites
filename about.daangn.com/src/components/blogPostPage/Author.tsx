@@ -32,9 +32,9 @@ const Author: React.FC<AuthorProps> = ({ author }) => {
       }}
     >
       {author.image && (
-        <AuthorImage 
+        <AuthorImage
           image={getCdnImage(author.image.gatsbyImageData)}
-          alt={author.image.alt || ''} 
+          alt={author.image.alt || ''}
         />
       )}
       <AuthorInfo>

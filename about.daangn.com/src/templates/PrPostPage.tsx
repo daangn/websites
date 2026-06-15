@@ -122,7 +122,8 @@ type PrPostPageHeadProps = HeadProps<GatsbyTypes.PrPostPageQuery>;
 export const Head: React.FC<PrPostPageHeadProps> = ({ data, location }) => {
   const title = data.post?.title ? `${data.post?.title} | 당근 보도자료` : '당근 보도자료';
   const description = data.post?.summary || '';
-  const metaImage = data.post?.ogImage?.gatsbyImageData && getCdnImage(data.post.ogImage.gatsbyImageData);
+  const metaImage =
+    data.post?.ogImage?.gatsbyImageData && getCdnImage(data.post.ogImage.gatsbyImageData);
 
   return (
     <HeadSeo location={location} title={title} description={description}>

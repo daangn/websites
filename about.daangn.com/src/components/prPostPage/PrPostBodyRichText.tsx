@@ -1,4 +1,4 @@
-import { replaceImageHost } from '@karrotmarket/gatsby-theme-prismic/image-utils.mjs'; 
+import { replaceImageHost } from '@karrotmarket/gatsby-theme-prismic/image-utils.mjs';
 import { PrismicRichText } from '@prismicio/react';
 import { vars } from '@seed-design/design-token';
 import { styled } from 'gatsby-theme-stitches/src/config';

@@ -35,8 +35,8 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
           {post.thumbnailImage && (
             <Image
               image={getCdnImage(post.thumbnailImage.gatsbyImageData)}
-              alt={post.thumbnailImage.alt || ''} 
-              loading="lazy" 
+              alt={post.thumbnailImage.alt || ''}
+              loading="lazy"
             />
           )}
         </ImageWrapper>

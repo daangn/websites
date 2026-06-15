@@ -25,7 +25,7 @@ export function getCdnImage(imageData) {
     }
   }
   if (copy.images.sources) {
-    copy.images.sources = copy.images.sources.map(source => ({
+    copy.images.sources = copy.images.sources.map((source) => ({
       ...source,
       srcSet: replaceImageHost(source.srcSet),
     }));

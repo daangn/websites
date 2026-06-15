@@ -25,7 +25,10 @@ const PostBodyRichText: React.FC<PostBodyRichTextProps> = ({ slice }) => {
           heading3: ({ children, key }) => <Heading3 key={key}>{children}</Heading3>,
           paragraph: ({ children, key, node }) => {
             return node.text.includes('<span') || node.text.includes('<font') ? (
-              <Description dangerouslySetInnerHTML={{ __html: replaceImageHost(node.text || '') }} key={key} />
+              <Description
+                dangerouslySetInnerHTML={{ __html: replaceImageHost(node.text || '') }}
+                key={key}
+              />
             ) : (
               <Description key={key}>{children}</Description>
             );

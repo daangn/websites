@@ -10,9 +10,7 @@ type PostBodySingleImageProps = {
 };
 
 const PostBodySingleImage: React.FC<PostBodySingleImageProps> = ({ slice }) => {
-  const image =
-    slice.image?.gatsbyImageData &&
-    getCdnImage(slice.image.gatsbyImageData);
+  const image = slice.image?.gatsbyImageData && getCdnImage(slice.image.gatsbyImageData);
   const imageCaption = slice?.imageCaption || '';
 
   if (!image) {

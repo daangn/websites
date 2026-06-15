@@ -4,7 +4,7 @@
  * @typedef {import('gatsby').GatsbyNode} GatsbyNode
  */
 
-import { replaceImageHost, getCdnImage } from './image-utils.mjs';
+import { getCdnImage, replaceImageHost } from './image-utils.mjs';
 
 /**
  * @type {GatsbyNode['createResolvers']}
@@ -13,10 +13,10 @@ export const createResolvers = ({ createResolvers }) => {
   createResolvers({
     PrismicImageField: {
       url: {
-				resolve: async (source, args, ctx, info) => {
+        resolve: async (source, args, ctx, info) => {
           const url = await info.originalResolver(source, args, ctx, info);
           return replaceImageHost(url);
-				},
+        },
       },
       gatsbyImageData: {
         resolve: async (source, args, ctx, info) => {

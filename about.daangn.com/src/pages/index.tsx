@@ -112,7 +112,8 @@ type CompanyPageHeadProps = HeadProps<GatsbyTypes.CompanyPageQuery>;
 export const Head: React.FC<CompanyPageHeadProps> = ({ data, location }) => {
   const metaTitle = data?.prismicVisionPage?.data.company_page_meta_title || '';
   const metaDescription = data?.prismicVisionPage?.data.company_page_meta_description || '';
-  const metaImage = data?.prismicVisionPage?.data.company_page_og_image?.gatsbyImageData &&
+  const metaImage =
+    data?.prismicVisionPage?.data.company_page_og_image?.gatsbyImageData &&
     getCdnImage(data.prismicVisionPage.data.company_page_og_image.gatsbyImageData);
 
   return (

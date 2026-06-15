@@ -122,7 +122,9 @@ const PrismicTeamContentsDataCultureBodyTitleAndDescription: React.FC<
         <Title>{data.primary.title?.text}</Title>
         {link && <DetailLink link={link} />}
       </TitleContainer>
-      <Description dangerouslySetInnerHTML={{ __html: replaceImageHost(data.primary.description?.html || '') }} />
+      <Description
+        dangerouslySetInnerHTML={{ __html: replaceImageHost(data.primary.description?.html || '') }}
+      />
     </Container>
   );
 };

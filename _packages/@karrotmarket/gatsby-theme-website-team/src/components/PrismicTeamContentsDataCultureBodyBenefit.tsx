@@ -137,7 +137,7 @@ const PrismicTeamContentsDataCultureBodyBenefit: React.FC<
               <BenefitDetail
                 dangerouslySetInnerHTML={{
                   __html: replaceImageHost(item.description?.html || ''),
-                }} 
+                }}
               />
             </Benefit>
           </BenefitGroup>

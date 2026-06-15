@@ -42,7 +42,7 @@ const RelatedPost: React.FC<RelatedPostProps> = ({ data }) => {
                   {post.thumbnailImage && (
                     <Image
                       image={getCdnImage(post.thumbnailImage.gatsbyImageData)}
-                      alt={post.thumbnailImage.alt || ''} 
+                      alt={post.thumbnailImage.alt || ''}
                     />
                   )}
                   <PostTitle>{post.title}</PostTitle>

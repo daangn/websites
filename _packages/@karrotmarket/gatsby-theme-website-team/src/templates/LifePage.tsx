@@ -96,7 +96,8 @@ export const Head: React.FC<LifePageHeadProps> = ({ data, location }) => {
 
   const metaTitle = data.prismicTeamContents.data.life_page_meta_title;
   const metaDescription = data.prismicTeamContents.data.life_page_meta_description;
-  const metaImage = data.prismicTeamContents.data.life_page_meta_image?.gatsbyImageData &&
+  const metaImage =
+    data.prismicTeamContents.data.life_page_meta_image?.gatsbyImageData &&
     getCdnImage(data.prismicTeamContents.data.life_page_meta_image.gatsbyImageData);
 
   return (

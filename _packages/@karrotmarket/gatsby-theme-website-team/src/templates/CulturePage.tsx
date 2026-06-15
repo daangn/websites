@@ -141,9 +141,9 @@ export const Head: React.FC<CulturePageHeadProps> = ({ data, location }) => {
 
   const metaTitle = data.prismicTeamContents.data.culture_page_meta_title;
   const metaDescription = data.prismicTeamContents.data.culture_page_meta_description;
-  const metaImage = data.prismicTeamContents.data.culture_page_meta_image?.gatsbyImageData && getCdnImage(
-    data.prismicTeamContents.data.culture_page_meta_image?.gatsbyImageData
-  );
+  const metaImage =
+    data.prismicTeamContents.data.culture_page_meta_image?.gatsbyImageData &&
+    getCdnImage(data.prismicTeamContents.data.culture_page_meta_image?.gatsbyImageData);
 
   return (
     <HeadSeo location={location} title={metaTitle} description={metaDescription}>

@@ -61,28 +61,13 @@ const BannerArea: React.FC = () => {
     if (!banner.link_href?.url) {
       return false;
     }
-    if (
-      !(
-        banner.image_size_360?.alt &&
-        banner.image_size_360?.gatsbyImageData
-      )
-    ) {
+    if (!(banner.image_size_360?.alt && banner.image_size_360?.gatsbyImageData)) {
       return false;
     }
-    if (
-      !(
-        banner.image_size_576?.alt &&
-        banner.image_size_576?.gatsbyImageData
-      )
-    ) {
+    if (!(banner.image_size_576?.alt && banner.image_size_576?.gatsbyImageData)) {
       return false;
     }
-    if (
-      !(
-        banner.image_size_768?.alt &&
-        banner.image_size_768?.gatsbyImageData
-      )
-    ) {
+    if (!(banner.image_size_768?.alt && banner.image_size_768?.gatsbyImageData)) {
       return false;
     }
 
