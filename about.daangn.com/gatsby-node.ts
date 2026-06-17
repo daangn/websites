@@ -332,20 +332,56 @@ export const onPostBuild: GatsbyNode['onPostBuild'] = async ({ graphql, reporter
   }
   staticFromFile.push(...pending); // 파일 끝 주석은 static 쪽에 남긴다.
 
+  // 슬래시 없는 형태 보강: 이전된 라우트는 페이지가 삭제돼 슬래시 정규화(308) 대상 자산이 없어
+  // 슬래시 없는 요청이 그대로 404가 된다. from이 '/'로 끝나는 규칙마다 슬래시 없는 짝을 같은
+  // 버킷에 추가한다(이미 명시된 from은 건너뜀, splat 제외).
+  const isRule = (line: string) => {
+    const trimmed = line.trim();
+    return trimmed !== '' && !trimmed.startsWith('#');
+  };
+  const allRules = [
+    ...staticFromFile,
+    ...staticGenerated,
+    ...dynamicFromFile,
+    ...dynamicGenerated,
+  ].filter(isRule);
+  const existingFroms = new Set(allRules.map((line) => line.trim().split(/\s+/)[0]));
+
+  const staticSlashless: string[] = [];
+  const dynamicSlashless: string[] = [];
+  for (const line of allRules) {
+    const [from, ...rest] = line.trim().split(/\s+/);
+    if (!from.endsWith('/') || from === '/') continue;
+
+    const slashless = from.slice(0, -1);
+    if (existingFroms.has(slashless)) continue;
+    existingFroms.add(slashless);
+
+    (isDynamicFrom(slashless) ? dynamicSlashless : staticSlashless).push(
+      [slashless, ...rest].join('  '),
+    );
+  }
+
   const out = [
     ...staticFromFile,
     '',
     '# --- 빌드타임 생성 — exact(static) ---',
     ...staticGenerated,
+    ...staticSlashless,
     '',
     '# --- 빌드타임 생성 — dynamic(splat/placeholder). 반드시 static 뒤 ---',
     ...dynamicFromFile,
     ...dynamicGenerated,
+    ...dynamicSlashless,
     '',
   ].join('\n');
   fs.writeFileSync(path.join(basePath, 'public/_redirects'), out);
 
   reporter.info(
-    `public/_redirects 재작성: static(exact) 생성 ${staticGenerated.length}개 + dynamic 생성 ${dynamicGenerated.length}개.`,
+    `public/_redirects 재작성: static(exact) 생성 ${staticGenerated.length}개 + dynamic 생성 ${
+      dynamicGenerated.length
+    }개 + 슬래시 없는 보강 ${staticSlashless.length + dynamicSlashless.length}개(static ${
+      staticSlashless.length
+    } / dynamic ${dynamicSlashless.length}).`,
   );
 };
