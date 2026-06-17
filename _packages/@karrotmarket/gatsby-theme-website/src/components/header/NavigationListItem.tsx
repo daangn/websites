@@ -15,6 +15,7 @@ export const query = graphql`
     link {
       url
     }
+    new_tab
     children {
       document {
         ... on PrismicSiteNavigationHeaderEntryChildren {
@@ -122,7 +123,12 @@ const NavigationListItem: React.FC<HeaderEntryItemProps> = ({ entry }) => {
           </NavigationLink>
         ),
         External: (link) => (
-          <ExternalLink as="a" rel="external noopener" href={link.url.href}>
+          <ExternalLink
+            as="a"
+            rel="external noopener"
+            href={link.url.href}
+            target={entry.new_tab ? '_blank' : undefined}
+          >
             {entry.display_text}
           </ExternalLink>
         ),
