@@ -1,13 +1,12 @@
 import { vars } from '@seed-design/design-token';
-import { Link as _Link } from 'gatsby';
 import { styled } from 'gatsby-theme-stitches/src/config';
 import { rem } from 'polished';
 
 const Tag = ({ children }: { children: string }) => {
-  return <Link to={`/blog/?q=${children}#_filter`}>{children}</Link>;
+  return <Hashtag>{children}</Hashtag>;
 };
 
-const Link = styled(_Link, {
+const Hashtag = styled('span', {
   width: 'fit-content',
   border: 'none',
   borderRadius: rem(40),
