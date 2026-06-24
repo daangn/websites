@@ -7,8 +7,8 @@
     "not ie 11"
   ],
   "scripts": {
-    "develop": "gatsby develop",
-    "build": "gatsby build",
+    "develop": "PRISMIC_SKIP_IMAGE_DOWNLOAD=true gatsby develop",
+    "build": "PRISMIC_SKIP_IMAGE_DOWNLOAD=true gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "websites-integration:deployment": "deployment-awaiter --workflow about_daangn_com-build.yml --timeout 5400000"
