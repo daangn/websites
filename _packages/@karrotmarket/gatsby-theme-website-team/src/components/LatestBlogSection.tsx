@@ -25,6 +25,10 @@ export const query = graphql`
       nodes {
         slug
         title
+        thumbnailImage {
+          alt
+          gatsbyImageData
+        }
         verticalThumbnailImage {
           alt
           gatsbyImageData
@@ -171,6 +175,24 @@ const BlogTitle = styled('p', {
 const LatestBlogSection: React.FC<LatestBlogSectionProps> = ({ data, className }) => {
   const parseLink = useLinkParser();
 
+  // verticalThumbnailImage 는 `blog` 태그가 붙은 글에만 있다. 없는 글은 가로 썸네일로 대신 채운다 —
+  // 이미지를 비우면 BlogTitle(흰 글씨 + 어두운 그라디언트)이 흰 카드 위에서 읽히지 않는다.
+  const cards = data.allPost.nodes.map((post) => {
+    const thumbnail = post.verticalThumbnailImage ?? post.thumbnailImage;
+
+    return (
+      <BlogCard key={post.slug} to={`/blog/archive/${post.slug}`}>
+        <BlogcardThumbnail
+          image={getCdnImage(thumbnail.gatsbyImageData)}
+          alt={thumbnail.alt ?? ''}
+        />
+        <BlogTitleBox>
+          <BlogTitle>{post.title}</BlogTitle>
+        </BlogTitleBox>
+      </BlogCard>
+    );
+  });
+
   return (
     <Container className={className}>
       <SimpleReveal
@@ -188,32 +210,8 @@ const LatestBlogSection: React.FC<LatestBlogSectionProps> = ({ data, className }
         initialTransform="translateY(2rem)"
       />
       <BlogList>
-        <BlogCardWraaper>
-          {data.allPost.nodes.map((post) => (
-            <BlogCard key={post.slug} to={`/blog/archive/${post.slug}`}>
-              <BlogcardThumbnail
-                image={getCdnImage(post.verticalThumbnailImage?.gatsbyImageData)}
-                alt={post.verticalThumbnailImage?.alt || ''}
-              />
-              <BlogTitleBox>
-                <BlogTitle>{post.title}</BlogTitle>
-              </BlogTitleBox>
-            </BlogCard>
-          ))}
-        </BlogCardWraaper>
-        <SecondaryBlogCardWraaper>
-          {data.allPost.nodes.map((post) => (
-            <BlogCard key={post.slug} to={`/blog/archive/${post.slug}`}>
-              <BlogcardThumbnail
-                image={getCdnImage(post.verticalThumbnailImage?.gatsbyImageData)}
-                alt={post.verticalThumbnailImage?.alt || ''}
-              />
-              <BlogTitleBox>
-                <BlogTitle>{post.title}</BlogTitle>
-              </BlogTitleBox>
-            </BlogCard>
-          ))}
-        </SecondaryBlogCardWraaper>
+        <BlogCardWraaper>{cards}</BlogCardWraaper>
+        <SecondaryBlogCardWraaper>{cards}</SecondaryBlogCardWraaper>
       </BlogList>
     </Container>
   );
