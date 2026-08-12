@@ -106,7 +106,7 @@ export const createSchemaCustomization = ({
           },
         },
         verticalThumbnailImage: {
-          type: 'PrismicImageField!',
+          type: 'PrismicImageField',
           /** @param {PrismicPostNode} node */
           resolve(node) {
             if (!node.tags.includes('blog')) {

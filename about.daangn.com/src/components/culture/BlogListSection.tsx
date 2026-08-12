@@ -30,6 +30,10 @@ export const query = graphql`
       nodes {
         slug
         title
+        thumbnailImage {
+          alt
+          gatsbyImageData
+        }
         verticalThumbnailImage {
           alt
           gatsbyImageData
@@ -64,17 +68,21 @@ const BlogListSection: React.FC<BlogListSectionProps> = ({ slice, data }) => {
       />
       <CtaButton link="/blog/">블로그 글 보러 가기</CtaButton>
       <BlogCardWraaper ref={scrollRef}>
-        {data.allPost.nodes.map((post) => (
-          <BlogCard key={post.slug} to={`/blog/archive/${post.slug}`}>
-            <BlogcardThumbnail
-              image={getCdnImage(post.verticalThumbnailImage?.gatsbyImageData)}
-              alt={post.verticalThumbnailImage?.alt || ''}
-            />
-            <BlogTitleBox>
-              <BlogTitle>{post.title}</BlogTitle>
-            </BlogTitleBox>
-          </BlogCard>
-        ))}
+        {data.allPost.nodes.map((post) => {
+          const thumbnail = post.verticalThumbnailImage ?? post.thumbnailImage;
+
+          return (
+            <BlogCard key={post.slug} to={`/blog/archive/${post.slug}`}>
+              <BlogcardThumbnail
+                image={getCdnImage(thumbnail.gatsbyImageData)}
+                alt={thumbnail.alt ?? ''}
+              />
+              <BlogTitleBox>
+                <BlogTitle>{post.title}</BlogTitle>
+              </BlogTitleBox>
+            </BlogCard>
+          );
+        })}
       </BlogCardWraaper>
     </BlogSection>
   );
