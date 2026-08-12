@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "develop": "gatsby develop",
-    "build": "gatsby clean && gatsby build",
+    "build": "PRISMIC_SKIP_IMAGE_DOWNLOAD=true gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean"
   },
