@@ -26,3 +26,83 @@ index 20861da6e36d2484eeebbec57d5b36c5c06d0d40..64b0288d4b463cc974bf5678b480737b
          }
        }
      }),
+diff --git a/dist/lib/resolveGatsbyImageData.server.cjs b/dist/lib/resolveGatsbyImageData.server.cjs
+index d3ac4300f87c460e7671b11e94b97365ea896afb..a6032495a7f3444f571b8d2ddd9bfd539fe6dda6 100644
+--- a/dist/lib/resolveGatsbyImageData.server.cjs
++++ b/dist/lib/resolveGatsbyImageData.server.cjs
+@@ -23,6 +23,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
+ ));
+ Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
+ const buffer = require("buffer");
++const crypto = require("crypto");
+ const gatsbyPluginImage = require("gatsby-plugin-image");
+ const imgixUrlBuilder = require("imgix-url-builder");
+ const index = require('./../_node_modules/p-queue/dist/index.cjs');
+@@ -30,6 +31,10 @@ const path = require("path");
+ const _package = require("../packages/gatsby-source-prismic/package.json.cjs");
+ const constants = require("../constants.cjs");
+ const imgixRequestQueue = new index.default({ concurrency: 5 });
++// Prismic asset URLs embed the original filename, and an NFD-decomposed Korean
++// filename percent-encodes to 27 bytes per character, so a raw-URL cache key can
++// exceed LMDB's 1978-byte limit and kill the query worker. Hashing bounds it.
++const buildCacheKey = (prefix, url) => `${prefix}___${crypto.createHash("sha256").update(url).digest("hex")}`;
+ const generateImageSource = (sourceUrl, width, height, format, _fit, options) => {
+   const imgixParams = {
+     ...constants.DEFAULT_IMGIX_PARAMS,
+@@ -48,7 +53,7 @@ const generateImageSource = (sourceUrl, width, height, format, _fit, options) =>
+   };
+ };
+ const fetchBase64Image = async (config) => {
+-  const cacheKey = `base64___${config.url}`;
++  const cacheKey = buildCacheKey("base64", config.url);
+   const cacheValue = await config.cache.get(cacheKey);
+   if (cacheValue) {
+     return cacheValue;
+@@ -104,7 +109,7 @@ const resolveGatsbyImageData = async (image, options = {}, config) => {
+     });
+   }
+   if (options.placeholder === constants.GatsbyImageDataPlaceholderKind.DominantColor) {
+-    const cacheKey = `${constants.GatsbyImageDataPlaceholderKind.DominantColor}___${placeholderURL}`;
++    const cacheKey = buildCacheKey(constants.GatsbyImageDataPlaceholderKind.DominantColor, placeholderURL);
+     const cacheValue = await config.cache.get(cacheKey);
+     if (cacheValue) {
+       imageDataArgs.backgroundColor = cacheValue;
+diff --git a/dist/lib/resolveGatsbyImageData.server.js b/dist/lib/resolveGatsbyImageData.server.js
+index 0809f85e99926e0f5bb2d7edc88bb7adf4d6c030..b9613df03639b72279a9689e41a94a9d736fe262 100644
+--- a/dist/lib/resolveGatsbyImageData.server.js
++++ b/dist/lib/resolveGatsbyImageData.server.js
+@@ -1,4 +1,5 @@
+ import { Buffer } from "buffer";
++import { createHash } from "crypto";
+ import { getLowResolutionImageURL, generateImageData } from "gatsby-plugin-image";
+ import { buildURL } from "imgix-url-builder";
+ import PQueue from './../_node_modules/p-queue/dist/index.js';
+@@ -6,6 +7,10 @@ import { extname } from "path";
+ import { name } from "../packages/gatsby-source-prismic/package.json.js";
+ import { DEFAULT_IMGIX_PARAMS, GatsbyImageDataPlaceholderKind } from "../constants.js";
+ const imgixRequestQueue = new PQueue({ concurrency: 5 });
++// Prismic asset URLs embed the original filename, and an NFD-decomposed Korean
++// filename percent-encodes to 27 bytes per character, so a raw-URL cache key can
++// exceed LMDB's 1978-byte limit and kill the query worker. Hashing bounds it.
++const buildCacheKey = (prefix, url) => `${prefix}___${createHash("sha256").update(url).digest("hex")}`;
+ const generateImageSource = (sourceUrl, width, height, format, _fit, options) => {
+   const imgixParams = {
+     ...DEFAULT_IMGIX_PARAMS,
+@@ -24,7 +29,7 @@ const generateImageSource = (sourceUrl, width, height, format, _fit, options) =>
+   };
+ };
+ const fetchBase64Image = async (config) => {
+-  const cacheKey = `base64___${config.url}`;
++  const cacheKey = buildCacheKey("base64", config.url);
+   const cacheValue = await config.cache.get(cacheKey);
+   if (cacheValue) {
+     return cacheValue;
+@@ -80,7 +85,7 @@ const resolveGatsbyImageData = async (image, options = {}, config) => {
+     });
+   }
+   if (options.placeholder === GatsbyImageDataPlaceholderKind.DominantColor) {
+-    const cacheKey = `${GatsbyImageDataPlaceholderKind.DominantColor}___${placeholderURL}`;
++    const cacheKey = buildCacheKey(GatsbyImageDataPlaceholderKind.DominantColor, placeholderURL);
+     const cacheValue = await config.cache.get(cacheKey);
+     if (cacheValue) {
+       imageDataArgs.backgroundColor = cacheValue;
