@@ -10552,7 +10552,7 @@ __metadata:
 
 "gatsby-source-prismic@patch:gatsby-source-prismic@npm%3A6.0.1#~/.yarn/patches/gatsby-source-prismic-npm-6.0.1-def93125b2.patch":
   version: 6.0.1
-  resolution: "gatsby-source-prismic@patch:gatsby-source-prismic@npm%3A6.0.1#~/.yarn/patches/gatsby-source-prismic-npm-6.0.1-def93125b2.patch::version=6.0.1&hash=d956a0"
+  resolution: "gatsby-source-prismic@patch:gatsby-source-prismic@npm%3A6.0.1#~/.yarn/patches/gatsby-source-prismic-npm-6.0.1-def93125b2.patch::version=6.0.1&hash=e869d5"
   dependencies:
     "@prismicio/client": "npm:^7.1.0"
     "@prismicio/custom-types-client": "npm:^1.1.0"
@@ -10567,7 +10567,7 @@ __metadata:
   peerDependencies:
     gatsby: ^5
     gatsby-plugin-image: ^3
-  checksum: 10c0/3746f64b06fc315ca2e53cc1b7eabcc604dd72358e4753682a7444cf2274e460d41405c5383186631565b6eff2896e051e366cd35ec7467ab8e9031a566e0faf
+  checksum: 10c0/ba066dff9f1f1b80a9aebc860c8b5f1ded2767527d747fba69458da465755df8076fa7a309505d72d6e27f907fb13d8591885fb295ac6f726475a36264a003b3
   languageName: node
   linkType: hard
 
