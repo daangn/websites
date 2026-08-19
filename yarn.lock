@@ -5342,7 +5342,6 @@ __metadata:
     gatsby-plugin-sitemap: "npm:^6.13.1"
     gatsby-plugin-typegen: "npm:^3.1.0"
     gatsby-plugin-vanilla-extract: "npm:^4.0.2"
-    gatsby-plugin-vercel-deploy: "npm:^1.1.0"
     gatsby-source-filesystem: "npm:^5.13.1"
     gsap: "npm:^3.13.0"
     hangul-js: "npm:^0.2.6"
@@ -10474,15 +10473,6 @@ __metadata:
     "@vanilla-extract/webpack-plugin": ^2.2.0
     gatsby: ^4.0.0 || ^5.0.0
   checksum: 10c0/e61ad0e05a98e05e83aa04bdf7cca87d2b2377b8235b68c70d50a34ebf0e7f90b2b4c9439e7221067ef2b2cc8fd748ba0c68fc4d1bd53a883c5c882e1d49a019
-  languageName: node
-  linkType: hard
-
-"gatsby-plugin-vercel-deploy@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "gatsby-plugin-vercel-deploy@npm:1.1.0"
-  peerDependencies:
-    gatsby: ^4.0.0 || ^5.0.0
-  checksum: 10c0/16afeade5e13adbf08d63112ce8452645dc0aaf9a8d144c9c0e0026bd50f98db0ef8dbfac88fad0cb092e1fb5a5ef607cef4f89617c0f4945dc300933c5d83c4
   languageName: node
   linkType: hard
 
