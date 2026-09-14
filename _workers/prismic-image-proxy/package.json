@@ -5,7 +5,7 @@
     "deploy": "wrangler deploy"
   },
   "dependencies": {
-    "hono": "^4.11.1"
+    "hono": "^4.13.5"
   },
   "devDependencies": {
     "typescript": "^5.9.3",
