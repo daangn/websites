@@ -11334,10 +11334,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hono@npm:^4.11.1":
-  version: 4.11.1
-  resolution: "hono@npm:4.11.1"
-  checksum: 10c0/d45041872a8b017422edff21ee98eb52e9bb45cc1c7175e3119ff16badbfe6d15fc0fb5ec3ec280b60a1e13e5c696e5494b2a2284f4a6b801dd4d59363a28f51
+"hono@npm:^4.13.7":
+  version: 4.13.7
+  resolution: "hono@npm:4.13.7"
+  checksum: 10c0/29672a94a4f2be7f3f4d959ad69808dd3bbc220909ca4f9660997022ff45d48ae71e42a460e417d808809d68110196f19359aaab2b14ae6a750331d789601b5a
   languageName: node
   linkType: hard
 
@@ -15544,7 +15544,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "prismic-image-proxy@workspace:_workers/prismic-image-proxy"
   dependencies:
-    hono: "npm:^4.11.1"
+    hono: "npm:^4.13.7"
     typescript: "npm:^5.9.3"
     wrangler: "npm:^4.56.0"
   languageName: unknown
@@ -18740,7 +18740,7 @@ __metadata:
   dependencies:
     "@hono/standard-validator": "npm:^0.2.1"
     "@octokit/rest": "npm:^20.1.1"
-    hono: "npm:^4.11.1"
+    hono: "npm:^4.13.7"
     pretty-ms: "npm:^9.0.0"
     typescript: "npm:^5.9.3"
     valibot: "npm:^1.2.0"
